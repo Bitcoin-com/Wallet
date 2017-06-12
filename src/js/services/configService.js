@@ -12,15 +12,18 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     // Bitcore wallet service URL
     bws: {
-      url: 'https://bws.bitpay.com/bws/api',
+      url: 'https://bws.bitcoin.com/bws/api',
     },
 
     download: {
       bitpay: {
-        url: 'https://bitpay.com/wallet'
+        url: 'https://bitcoin.com/wallet'
       },
       copay: {
         url: 'https://copay.io/#download'
+      },
+      bitcoincom: {
+        url: 'https://wallet.bitcoin.com'
       }
     },
 
@@ -32,6 +35,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       },
       copay: {
         ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
+        android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+        wp: ''
+      },
+      bitcoincom: {
+        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pa$
         android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
         wp: ''
       }

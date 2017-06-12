@@ -1,8 +1,8 @@
 {
   "packageName": "bitcoin.com",
-  "packageDescription": "Copay Bitcoin Wallet",
+  "packageDescription": "Bitcoin.com Wallet",
   "packageNameId": "com.bitpay.copay",
-  "userVisibleName": "Bitcoin.com",
+  "userVisibleName": "Bitcoin.com Wallet",
   "purposeLine": "Bitcoin.com Wallet",
   "bundleName": "copay",
   "appUri": "bitcoincom",
@@ -26,8 +26,8 @@
   "androidVersion": "340001",
   "_extraCSS": null,
   "_enabledExtensions": {
-    "coinbase": true,
-    "glidera": true,
-    "amazon": true
+    "coinbase": false,
+    "glidera": false,
+    "amazon": false
   }
 }
