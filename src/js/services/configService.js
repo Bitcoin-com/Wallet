@@ -39,7 +39,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         wp: ''
       },
       bitcoincom: {
-        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pa$
+        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
         android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
         wp: ''
       }
