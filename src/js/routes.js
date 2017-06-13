@@ -1014,6 +1014,18 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         abstract: true
       })
 
+
+      /* Explore Bitcoin.com */
+      .state('tabs.bitcoin-com', {
+        url: '/bitcoincom',
+        views: {
+          'tab-home@tabs': {
+            controller: 'bitcoincomController',
+            templateUrl: 'views/bitcoincom.html'
+          }
+        }
+      })
+
       /*
        *
        * Amazon.com Gift Card

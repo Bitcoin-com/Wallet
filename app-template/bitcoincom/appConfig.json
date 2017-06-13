@@ -28,6 +28,7 @@
   "_enabledExtensions": {
     "coinbase": false,
     "glidera": false,
-    "amazon": false
+    "amazon": false,
+    "bitcoincom": true,
   }
 }
