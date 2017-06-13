@@ -2,7 +2,7 @@
   <ion-nav-bar class="bar-royal">
     <ion-nav-back-button>
     </ion-nav-back-button>
-    <ion-nav-title>Amazon.com Gift Cards</ion-nav-title>
+    <ion-nav-title>Bitcoin Price</ion-nav-title>
   </ion-nav-bar>
 
   <ion-content scroll="false" class="ng-hide" ng-show="!giftCards">
@@ -10,14 +10,7 @@
       Sandbox version. Only for testing purpose.
     </div>
     <div class="integration-onboarding">
-      <div class="integration-onboarding-logo">
-        <img src="img/GCs-logo-cllb.png">
-      </div>
-      <div class="integration-onboarding-description">Gift Cards are only redeemable on Amazon.com (US website). Cards never expire and can be redeemed towards millions of items.</div>
-      <div class="integration-onboarding-cta" ng-show="!showOauthForm">
-        <button class="button button-standard button-primary" ui-sref="tabs.giftcards.amazon.amount" no-low-fee>Buy a Gift Card</button>
-        <button class="button button-standard button-secondary" ng-click="openExternalLink('https://www.amazon.com')">Visit Amazon.com &rarr;</button>
-      </div>
+        <div class="btcwdgt-chart"></div>
     </div>
   </ion-content>
   <ion-content class="ng-hide" ng-show="giftCards">

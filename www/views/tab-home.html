@@ -1,6 +1,6 @@
 <ion-view id="tab-home">
   <ion-nav-bar class="bar-royal">
-    <ion-nav-title><img class="tab-home__logo" style="height: 48px; top: 0px;" src="img/app/logo-negative.png"></ion-nav-title>
+    <ion-nav-title><span class="nav-bar-title textlogo"><span class="moon-symbol"></span>itcoin.com Wallet</span></ion-nav-title>
   </ion-nav-bar>
 
   <ion-content>
@@ -109,6 +109,6 @@
     <div class="ng-hide" ng-show="wallets[0] && buyAndSellItems.length>0" ng-include="'views/includes/buyAndSellCard.html'"></div>
     <div class="ng-hide" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
     <div class="ng-hide" ng-show="nextStepsItems.length>0" ng-include="'views/includes/nextSteps.html'"></div>
-
+ 
   </ion-content>
 </ion-view>
