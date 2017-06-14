@@ -3,25 +3,25 @@
 <plist version="1.0">
 <dict>
 	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<string>ca-app-pub-432300239540/2934735716</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<string>ca-app-pub-432300239540/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>149194066736-tukkdahsck00842frm4l7c2r04bhhj4l.apps.googleusercontent.com</string>
+	<string>432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.149194066736-tukkdahsck00842frm4l7c2r04bhhj4l</string>
+	<string>com.googleusercontent.apps.432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAygvOaO5hmkL2Vze66yVAGU2QhcoTyZFA</string>
+	<string>AIzaSyADYCe-0VVCzndVH1nXMdV2JLD_cM8TmJo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>149194066736</string>
+	<string>432300239540</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bitpay.copay</string>
+	<string>com.bitcoin.wallet</string>
 	<key>PROJECT_ID</key>
-	<string>bitpay-wallet</string>
+	<string>bitcoin-com-wallet</string>
 	<key>STORAGE_BUCKET</key>
-	<string>bitpay-wallet.appspot.com</string>
+	<string>bitcoin-com-wallet.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:149194066736:ios:6de8942b48fea047</string>
+	<string>1:432300239540:android:3be699f352c30a45</string>
 	<key>DATABASE_URL</key>
-	<string>https://bitpay-wallet.firebaseio.com</string>
+	<string>https://bitcoin-com-wallet.firebaseio.com/</string>
 </dict>
 </plist>
