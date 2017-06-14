@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.bitpay.*BUNDLENAME*"
+<widget id="com.bitcoin.wallet"
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*VERSION*">
@@ -7,8 +7,8 @@
     <description>
       *PURPOSELINE*
     </description>
-    <author email="support@bitpay.com" href="*URL*">
-        BitPay Inc.
+    <author email="support@bitcoin.com" href="*URL*">
+        Saint Bitts LLC.
     </author>
     <content src="index.html" />
     <access origin="*" />
