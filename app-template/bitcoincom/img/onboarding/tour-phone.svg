@@ -11,13 +11,13 @@
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="onboarding-tour-phone">
-            <path d="M123.5,247 C191.7,247 247,191.7 247,123.5 C247,55.3 191.7,0 123.5,0 C55.3,0 0,55.3 0,123.5 C0,191.7 55.3,247 123.5,247 Z" id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero" opacity="0.3"></path>
+            <path d="M123.5,247 C191.7,247 247,191.7 247,123.5 C247,55.3 191.7,0 123.5,0 C55.3,0 0,55.3 0,123.5 C0,191.7 55.3,247 123.5,247 Z" id="Shape" fill="url(#linearGradient-1)" fill-rule="nonzero" opacity="0"></path>
             <g id="Group" transform="translate(69.000000, 32.000000)" stroke="#707D89" stroke-width="2">
                 <path d="M8,0 L91.8,0 C96.2,0 99.8,3.6 99.8,8 L99.8,175.9 C99.8,180.3 96.2,183.9 91.8,183.9 L8,183.9 C3.6,183.9 0,180.3 0,175.9 L0,8 C0,3.6 3.6,0 8,0 Z" id="Shape" fill-opacity="0.6548" fill="#192C3A" fill-rule="nonzero"></path>
                 <path d="M0.5,156 L99.3,156" id="Shape" stroke-linecap="square"></path>
                 <path d="M44.1,170.3 L62.8,170.3" id="Shape" stroke-linecap="square"></path>
             </g>
-            <g id="Group" transform="translate(102.000000, 66.000000)" fill-rule="nonzero" fill="#5BC2A7">
+            <g id="Group" transform="translate(102.000000, 66.000000)" fill-rule="nonzero" fill="#ffffff">
                 <path d="M31.8,0 L0,0 L0,31.8 L31.8,31.8 L31.8,0 L31.8,0 Z M27.3,27.3 L4.6,27.3 L4.6,4.5 L27.3,4.5 L27.3,27.3 L27.3,27.3 Z" id="Shape"></path>
                 <polygon id="Shape" points="65.9 90.9 61.4 90.9 61.4 100 100 100 100 95.5 65.9 95.5"></polygon>
                 <rect id="Rectangle-path" x="9.1" y="9.1" width="13.6" height="13.6"></rect>
