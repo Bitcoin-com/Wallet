@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:432300239540:android:3be699f352c30a45",
         "android_client_info": {
-          "package_name": "com.bitcoin.wallet"
+          "package_name": "com.bitcoin.mwallet"
         }
       },
       "oauth_client": [

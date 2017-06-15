@@ -1,7 +1,7 @@
 {
   "packageName": "bitcoin.com",
   "packageDescription": "Bitcoin.com",
-  "packageNameId": "com.bitcoin.wallet",
+  "packageNameId": "com.bitcoin.mwallet",
   "userVisibleName": "Bitcoin.com",
   "purposeLine": "Bitcoin.com Wallet",
   "bundleName": "bitcoincom",
