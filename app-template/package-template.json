@@ -1,7 +1,7 @@
 {
   "name": "*PACKAGENAME*",
   "description": "*DESCRIPTION*",
-  "author": "BitPay",
+  "author": "Bitcoin.com",
   "version": "*VERSION*",
   "keywords": [
     "bitcoin",
