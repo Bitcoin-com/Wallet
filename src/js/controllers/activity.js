@@ -11,6 +11,30 @@ angular.module('copayApp.controllers').controller('activityController',
           $log.error(err);
           return;
         }
+
+        var txIdList = [];
+
+        var notificationsBeforeCheck = n.length;
+
+        for (var i=0; i<n.length; i++) {
+            var txId = n[i].txid;
+            if (txIdList.includes(txId)) {
+                n.splice(i, 1);
+                i = i - 1;
+            } else {
+                txIdList.push(txId)
+            }
+        }
+
+        var notificationsAfterCheck = n.length;
+        var removedNotifications = notificationsBeforeCheck - notificationsAfterCheck;
+
+        if (notificationsBeforeCheck != notificationsAfterCheck) {
+            console.log("Found a redundant notification. Removed " + removedNotifications);
+        }
+
+        console.log(n);
+
         $scope.fetchingNotifications = false;
         $scope.notifications = n;
 
