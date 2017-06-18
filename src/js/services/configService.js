@@ -17,10 +17,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     download: {
       bitpay: {
-        url: 'https://bitcoin.com/wallet'
+        url: 'https://wallet.bitcoin.com'
       },
       copay: {
-        url: 'https://copay.io/#download'
+        url: 'https://wallet.bitcoin.com'
       },
       bitcoincom: {
         url: 'https://wallet.bitcoin.com'
@@ -40,7 +40,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       },
       bitcoincom: {
         ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
-        android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+        android: 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet',
         wp: ''
       }
     },
@@ -81,7 +81,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     },
 
     release: {
-      url: 'https://api.github.com/repos/bitpay/copay/releases/latest'
+      url: 'https://api.github.com/repos/Bitcoin-com/Wallet/releases/latest'
     },
 
     pushNotificationsEnabled: true,
