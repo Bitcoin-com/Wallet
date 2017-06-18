@@ -16,4 +16,15 @@ angular.module('copayApp.controllers').controller('preferencesAbout',
       var cancelText = gettextCatalog.getString('Go Back');
       externalLinkService.open(url, optIn, title, message, okText, cancelText);
     };
+
+    $scope.openExternalLink2 = function() {
+      var url = 'https://github.com/bitpay/copay';
+      var optIn = true;
+      var title = gettextCatalog.getString('Open GitHub Project');
+      var message = gettextCatalog.getString('This will take you to the original Github project for Copay.');
+      var okText = gettextCatalog.getString('Open GitHub');
+      var cancelText = gettextCatalog.getString('Go Back');
+      externalLinkService.open(url, optIn, title, message, okText, cancelText);
+    };
+
   });
