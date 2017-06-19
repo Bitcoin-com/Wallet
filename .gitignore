@@ -86,10 +86,8 @@ src/sass/*.css
 src/sass/app
 
 # copay www
-www/css/*
 www/lib/*
 www/js/*
-www/fonts
 
 ## templates
 /config.xml
@@ -101,9 +99,7 @@ src/js/appConfig.js
 src/js/externalServices.js
 chrome-app/manifest.json
 www/img/app
-www/index.html
 
 ## Firebase
 /GoogleService-Info.plist
 /google-services.json
-

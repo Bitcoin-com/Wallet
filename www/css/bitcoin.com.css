@@ -1,0 +1,168 @@
+@font-face {
+	font-family:"Montserrat";
+	src:url('../fonts/Montserrat-Regular.ttf');
+	font-style:normal;font-weight:400;
+}
+
+@font-face {
+	font-family:"Montserrat";
+	src:url('../fonts/Montserrat-Bold.ttf');
+	font-style:normal;font-weight:700;
+}
+
+@font-face{
+    font-family:'ProximaNova';
+    src:url('../fonts/ProximaNova-Regular.otf');
+    font-weight:normal;
+    font-style:normal;
+}
+
+@font-face{
+    font-family:'ProximaNova';
+    src:url('../fonts/ProximaNova-Semibold.otf');
+    font-weight:bold;
+    font-style:bold;
+}
+
+body {
+    font-family:'ProximaNova' !important;
+}
+
+.textlogo {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Montserrat';
+    line-height: 50px;
+    margin-left: 20px;
+    letter-spacing: -0.02em;
+    position: relative;
+    top: -4px;
+}
+
+.textlogo .moon-symbol {
+    color: #fab915;
+    margin-right: 1px;
+    position: relative;
+    top: 1px;
+}
+
+.bg.icon-bitcoincom:before {
+        content: "\e904";
+}
+
+.bg.icon-bitcoincom {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 8px;
+    padding-left: 11px;
+    background-color: #494949;
+    color: #fab915;
+}
+
+.bg.icon-buy-bitcoin2:before {
+    content: "\e906";
+}
+
+.icon-bitcoinlogoplain:before {
+    content: "\e904";
+}
+
+.icon-bitcoinlogoplain {
+    font-family: 'icomoon' !important;
+}
+
+.bg.icon-buy-bitcoin2 {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-top: 0px;
+    padding-left: 2px;
+    background-color: #494949;
+    color: #fab915;
+    font-size: 36px;
+}
+
+ion-header-bar.bar-royal {
+    background-color: #000 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+}
+.bitcoin-com-page-header .textlogo {
+    font-size: 42px;
+    color: #8b8b8b;
+}
+.bitcoin-com-page-header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#get-started {
+    background-color: #494949 !important;
+}
+
+#restore {
+    color: #494949 !important;
+}
+
+div.onboarding-topic, div.onboarding-description, div.onboarding-tldr, #lead, .onboarding .bar.bar-header button {
+    color: #FFF !important;
+}
+
+.onboarding .button.button-secondary {
+    color: #494949 !important;
+}
+
+div.onboarding-topic {
+    font-weight: 600;
+}
+
+#onboarding-collect-email {
+    background: #23d111 !important;
+}
+
+#email-form button {
+    background: #fab915 !important;
+}
+
+.big-icon-svg > .bg.green {
+   background: #fab915 !important;
+}
+
+button.button.button-secondary {
+    color: #494949 !important;
+}
+
+#wallet-backup-phrase-step-2 .select-word {
+    color: #FFF !important;
+}
+
+#pin .circle-Bitcoin\.com {
+    border-radius: 50%;
+    box-shadow: 0 0 3px 0px #5b5b5b;
+    transition: background-color .2s ease-in-out;
+    padding: 7%;
+    margin: 5%;
+    border: 1px solid #fab915;
+}
+
+#pin .filled-Bitcoin\.com {
+    background-color: #fab915;
+}
+
+div.slide-success__background.fill-screen {
+    background-color: #fab915 !important;
+}
