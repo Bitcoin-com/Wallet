@@ -18,7 +18,7 @@
     <preference name="HideKeyboardFormAccessoryBar" value="true"/>
     <!-- #355 -->
     <!-- <preference name="KeyboardDisplayRequiresUserAction" value="false" /> -->
-    <preference name="StatusBarBackgroundColor" value="#000000" />
+    <preference name="StatusBarBackgroundColor" value="#494949" />
     <preference name="BackupWebStorage" value="none"/>
     <preference name="windows-target-version" value="10.0"/>
     <preference name="Orientation" value="default" />
