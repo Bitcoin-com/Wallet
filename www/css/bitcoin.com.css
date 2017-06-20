@@ -146,6 +146,10 @@ button.button.button-secondary {
     color: #494949 !important;
 }
 
+#wallet-backup-phrase .backup-phrase {
+    color: inherit !important;
+}
+
 #wallet-backup-phrase-step-2 .select-word {
     color: #FFF !important;
 }
