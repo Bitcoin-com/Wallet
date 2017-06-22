@@ -1026,6 +1026,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      /* buy.Bitcoin.com */
+      .state('tabs.buyandsell.bitcoindotcom', {
+        url: '/buyBitcoindotcom',
+        views: {
+          'tab-home@tabs': {
+            controller: 'buyBitcoindotcomController',
+            templateUrl: 'views/buyBitcoindotcom.html'
+          }
+        }
+      })
+
       /*
        *
        * Amazon.com Gift Card
@@ -1135,7 +1146,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ coinbaseService, glideraService, amazonService, bitpayCardService, applicationService) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ glideraService, buydotbitcoindotcomService, amazonService, bitpayCardService, applicationService) {
 
     uxLanguage.init();
 

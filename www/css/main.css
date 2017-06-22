@@ -11319,9 +11319,6 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     display: block;
     align-items: center;
     justify-content: center; }
-    @media (max-width: 320px) {
-      #walletDetails .amount {
-        padding-top: 60px; } }
     #walletDetails .amount.collapsible {
       margin-bottom: 10px; }
     #walletDetails .amount__balance {
@@ -11420,6 +11417,9 @@ a.item {
     color: #727272;
     padding: 2px 1rem;
     background: #f8f8f9; }
+    #bitpayCard .status-label i {
+      position: absolute;
+      padding-left: 5px; }
   #bitpayCard .comment {
     padding: 15px;
     background: #f8f8f9;
@@ -11470,10 +11470,14 @@ a.item {
       padding: 0 0 0 1rem;
       margin: 0;
       border: 0; }
-      #bitpayCard .item.activity.receive .svg #-Transaction-icons {
-        stroke: #09C286; }
-      #bitpayCard .item.activity.pending .svg #-Transaction-icons {
-        stroke: #fab915; }
+      #bitpayCard .item.activity.receive .svg #-Transaction-icons,
+      #bitpayCard .item.activity.receive .tx-icon .houston {
+        stroke: #09C286;
+        color: #09C286; }
+      #bitpayCard .item.activity.pending .svg #-Transaction-icons,
+      #bitpayCard .item.activity.pending .tx-icon .houston {
+        stroke: #fab915;
+        color: #fab915; }
   #bitpayCard .tx-icon {
     margin-right: 25px; }
     #bitpayCard .tx-icon .houston {
