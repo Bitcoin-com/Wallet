@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:432300239540:android:e23224cd1aed3778</string>
+        <string>1:149194066736:ios:6de8942b48fea047</string>
 	<key>DATABASE_URL</key>
 	<string>https://bitcoin-com-wallet.firebaseio.com/</string>
 </dict>
