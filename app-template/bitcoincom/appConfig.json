@@ -29,6 +29,7 @@
     "coinbase": false,
     "glidera": false,
     "amazon": false,
-    "bitcoincom": true
+    "bitcoincom": true,
+    "pricechart": true
   }
 }

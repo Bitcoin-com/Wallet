@@ -170,3 +170,59 @@ button.button.button-secondary {
 div.slide-success__background.fill-screen {
     background-color: #fab915 !important;
 }
+
+.chart-container {
+    font-family: 'Varela Round', sans-serif;
+    width:100%;
+    height:100%;
+}
+
+.ct-series-a .ct-area {
+    fill: #FDE9BE;
+}
+.ct-area {
+    opacity:.6 !important;
+}
+
+.ct-series-a .ct-line,
+.ct-series-a .ct-point {
+    stroke: #F9B016;
+    stroke-width: 2px;
+}
+.ct-labels {
+    border: red thin solid;
+}
+.chart-header {
+    display: flex;
+    box-sizing: border-box;
+    width:100%;
+    height:10%;
+    color: white;
+
+}
+.latest-price {
+    box-sizing: border-box;
+    padding: .6em .2em 0 .4em;
+    font-size: 1.6em;
+    background-color: #F9B016;
+    width:40%;
+}
+.high-price {
+    box-sizing: border-box;
+    padding:.7em 1em;
+    font-size: 1em;
+    background-color: #EFA406;
+    width:30%;
+    height:64px;
+}
+.low-price {
+    box-sizing: border-box;
+    padding:.7em 0em;
+    font-size: 1em;
+    background-color: #EFA406;
+    width:30%;
+    height:64px;
+}
+.light-yellow {
+    color:#FFD579;
+}

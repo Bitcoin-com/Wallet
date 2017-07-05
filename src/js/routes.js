@@ -1037,6 +1037,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      /* Price Chart */
+      .state('tabs.pricechart', {
+        url: '/pricechart',
+        views: {
+          'tab-home@tabs': {
+            controller: 'pricechartController',
+            templateUrl: 'views/pricechart.html'
+          }
+        }
+      })
+
       /*
        *
        * Amazon.com Gift Card
