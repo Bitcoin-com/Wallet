@@ -5,7 +5,12 @@
   $item-vertical-padding: 10px;
   $item-border-color: #EFEFEF;
   $item-label-color: #6C6C6E;
-
+  .item-note {
+    float: none;
+    .fee-rate {
+      display: inline-block;
+    }
+  }
   .list {
     background: #f5f5f5;
   }
@@ -26,10 +31,6 @@
         margin-right: 1rem;
         height: 35px;
         width: 35px;
-      }
-
-      span {
-        text-transform: capitalize;
       }
     }
     .amount-label{
@@ -93,7 +94,7 @@
       &.low-fees {
         display: flex;
         font-size: 14px;
-        color: #aaa;
+        color: #777;
         align-items: center;
         i {
           padding-right: 20px;
@@ -107,7 +108,7 @@
       margin-top: 5px;
       font-size: 14px;
       color: $item-label-color;
-    } 
+    }
     .item-divider {
       padding-top: 1.2rem;
       color: $item-label-color;

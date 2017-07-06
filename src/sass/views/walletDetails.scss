@@ -85,7 +85,7 @@
     font-size: 14px;
     font-weight: 300;
     color: #727272;
-    padding: 2px 1rem;
+    padding: 1rem;
     background: #f8f8f9;
   }
 }
@@ -248,6 +248,7 @@
   text-decoration: none;
   z-index: 9999;
   position: relative;
+  padding: 2px 5px;
 }
 
 a.item {

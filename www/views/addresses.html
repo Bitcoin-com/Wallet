@@ -1,4 +1,4 @@
-<ion-view id="addresses" class="addr">
+<ion-view id="addresses" class="addr" hide-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>{{'Wallet Addresses' | translate}}</ion-nav-title>
     <ion-nav-back-button>
@@ -33,9 +33,9 @@
         <div class="item item-icon-right view-all" ng-if="viewAll.value" ng-click="viewAllAddresses()">
           <span translate>View All Addresses</span>
           <i class="icon ion-ios-arrow-thin-right"></i>
-        </div> 
+        </div>
 
-        <div class="item item-divider item-icon-right" ng-click="newAddress()">
+        <div class="item item-divider item-icon-right"  ng-click="newAddress()">
           <span translate>Unused Addresses</span>
           <i class="icon ion-ios-plus-empty"></i>
         </div>
@@ -69,6 +69,34 @@
             {{w.address}}
             <div class="addr-balance">{{w.balanceStr}}</div>
           </div>
+        </div>
+
+
+        <div ng-if="allUtxosNb">
+          <div class="item item-divider" translate>
+            Wallet Inputs
+          </div>
+
+          <div class="item" >
+            <span translate> Total wallet inputs </span>
+            <div class="addr-path">
+              {{allUtxosNb}} [{{allUtxosSum}}]
+            </div>
+          </div>
+          <div class="item" >
+            <span  translate> Low amount inputs </span>
+            <div class="addr-path">
+              {{lowUtxosNb}} [{{ lowUtxosSum }}]
+            </div>
+          </div>
+
+          <div class="item" >
+            <span translate> Approximate Bitcoin network fee to transfer wallet's balance (with normal priority) </span>
+            <div class="addr-path">
+              {{minFeePer}} [{{minFee}}]
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

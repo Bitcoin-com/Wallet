@@ -11,7 +11,7 @@
     font-size: 14px;
     font-weight: 300;
     color: #727272;
-    padding: 2px 1rem;
+    padding: 1rem;
     background: #f8f8f9;
     i {
       position: absolute;
@@ -52,8 +52,8 @@
         width: 35px;
       }
 
-      span {
-        text-transform: capitalize;
+      .big-icon-svg {
+        padding: 0 12px 0 0;
       }
     }
     .amount-label{
@@ -100,6 +100,9 @@
         stroke: $v-bitcoin-orange;
         color: $v-bitcoin-orange;
       }
+    }
+    .total {
+      font-weight: bold;
     }
   }
   .tx-icon {
