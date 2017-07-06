@@ -20,7 +20,6 @@ angular.module('copayApp.controllers').controller('pricechartController',
 	request.onload = function () {
 	    if (request.status >= 200 && request.status < 400) {
 		// Success!
-		console.log(request.responseText);
 
 		var data = {
 		    series: [
@@ -30,11 +29,10 @@ angular.module('copayApp.controllers').controller('pricechartController',
 		        }
 		    ]
 		};
-		console.log(data);
 		rawData = JSON.parse("" + request.responseText + "");
 		for (var i = rawData.length - 1; i > 0; i--) {
 		    var tuple = rawData[i];
-		    data.series[0].data.push({x: new Date(tuple[0]), y: tuple[1]});
+		    data.series[0].data.push({x: new Date(tuple[0]*1000), y: tuple[1]});
 
 		    if (priceHigh < tuple[1])
 		    {
@@ -52,19 +50,12 @@ angular.module('copayApp.controllers').controller('pricechartController',
 		document.getElementById("high-price").innerHTML = (priceHigh / 100).toFixed(2);
 
 		var chartContainer = document.querySelector('.chart-container');
-                var chartHeader = document.querySelector('.chart-header');
-		console.log("Height: " + window.getComputedStyle(chartContainer).height);
-                console.log("Height2: " + window.getComputedStyle(chartHeader).height);
-		console.log("Width: " + window.getComputedStyle(chartContainer).width);
 
-                var chartHeight = window.getComputedStyle(chartContainer).height - window.getComputedStyle(chartHeader).height;
                 var chartWidth = window.getComputedStyle(chartContainer).width;
-
-                console.log(chartHeight);
 
 		var options = {
                     width: chartWidth,
-                    height: 570,
+                    height: 250,
 		    // Don't draw the line chart points
 		    showPoint: false,
 		    // Disable line smoothing

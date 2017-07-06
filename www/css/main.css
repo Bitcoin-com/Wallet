@@ -10374,6 +10374,8 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     float: none; }
     #view-confirm .item-note .fee-rate {
       display: inline-block; }
+      #view-confirm .item-note .fee-rate .warn {
+        color: red; }
   #view-confirm .icon-amazon {
     background-image: url("../img/icon-amazon.svg"); }
   #view-confirm .tx-details-content > .scroll {
@@ -10438,6 +10440,8 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     display: table-cell;
     vertical-align: middle;
     text-align: center; }
+  #starting .block-spinner {
+    display: block; }
 
 #tab-home .icon-create-wallet {
   background-color: #4A90E2; }
@@ -11254,7 +11258,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   font-size: 14px;
   font-weight: 300;
   color: #727272;
-  padding: 2px 1rem;
+  padding: 1rem;
   background: #f8f8f9; }
 
 #walletDetails {
@@ -11369,7 +11373,8 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   display: block;
   text-decoration: none;
   z-index: 9999;
-  position: relative; }
+  position: relative;
+  padding: 2px 5px; }
 
 a.item {
   cursor: pointer; }
@@ -11415,7 +11420,7 @@ a.item {
     font-size: 14px;
     font-weight: 300;
     color: #727272;
-    padding: 2px 1rem;
+    padding: 1rem;
     background: #f8f8f9; }
     #bitpayCard .status-label i {
       position: absolute;
@@ -11444,8 +11449,8 @@ a.item {
         margin-right: 1rem;
         height: 35px;
         width: 35px; }
-      #bitpayCard .head .sending-label span {
-        text-transform: capitalize; }
+      #bitpayCard .head .sending-label .big-icon-svg {
+        padding: 0 12px 0 0; }
     #bitpayCard .head .amount-label {
       line-height: 30px; }
       #bitpayCard .head .amount-label .amount-final {
@@ -11478,6 +11483,8 @@ a.item {
       #bitpayCard .item.activity.pending .tx-icon .houston {
         stroke: #fab915;
         color: #fab915; }
+    #bitpayCard .item .total {
+      font-weight: bold; }
   #bitpayCard .tx-icon {
     margin-right: 25px; }
     #bitpayCard .tx-icon .houston {
@@ -13108,7 +13115,6 @@ click-to-accept {
     height: 100%;
     width: 100%;
     z-index: 4;
-    text-transform: capitalize;
     -webkit-transform: translateY(2rem);
     transform: translateY(2rem);
     opacity: 0;
@@ -13289,7 +13295,6 @@ slide-to-accept {
     width: 100%;
     font-size: 17px;
     letter-spacing: 0.02rem;
-    text-transform: capitalize;
     -webkit-transform: translateY(2rem);
     transform: translateY(2rem);
     opacity: 0; }
@@ -13330,6 +13335,11 @@ slide-to-accept-success {
   display: flex;
   align-items: center;
   justify-content: center; }
+  slide-to-accept-success .slide-success__windows-background {
+    background: #11D1A6;
+    height: 100%;
+    width: 100%;
+    position: fixed; }
   slide-to-accept-success .slide-success__background {
     height: 10vmax;
     width: 10vmax;
@@ -13401,6 +13411,13 @@ slide-to-accept-success {
 #tx-details .action-rejected {
   color: red; }
 
+#txp-details .item-note,
+#view-confirm .item-note {
+  float: none; }
+  #txp-details .item-note .fee-rate,
+  #view-confirm .item-note .fee-rate {
+    display: inline-block; }
+
 #txp-details .list,
 #view-confirm .list {
   background: #f5f5f5; }
@@ -13424,9 +13441,6 @@ slide-to-accept-success {
       margin-right: 1rem;
       height: 35px;
       width: 35px; }
-    #txp-details .head .sending-label span,
-    #view-confirm .head .sending-label span {
-      text-transform: capitalize; }
   #txp-details .head .amount-label,
   #view-confirm .head .amount-label {
     line-height: 30px; }
@@ -13487,7 +13501,7 @@ slide-to-accept-success {
   #view-confirm .info .item.low-fees {
     display: flex;
     font-size: 14px;
-    color: #aaa;
+    color: #777;
     align-items: center; }
     #txp-details .info .item.low-fees i,
     #view-confirm .info .item.low-fees i {
@@ -13831,8 +13845,6 @@ account-selector {
       margin-right: 1rem;
       height: 35px;
       width: 35px; }
-    #coinbase .head .sending-label span {
-      text-transform: capitalize; }
   #coinbase .head .amount-label {
     line-height: 30px; }
     #coinbase .head .amount-label .amount {
@@ -13923,8 +13935,6 @@ account-selector {
       margin-right: 1rem;
       height: 35px;
       width: 35px; }
-    #glidera .head .sending-label span {
-      text-transform: capitalize; }
   #glidera .head .amount-label {
     line-height: 30px; }
     #glidera .head .amount-label .amount {
@@ -14043,8 +14053,6 @@ account-selector {
       margin-right: 1rem;
       height: 35px;
       width: 35px; }
-    #amazon .head .sending-label span {
-      text-transform: capitalize; }
     #amazon .head .sending-label .big-icon-svg {
       margin-right: 0.6rem; }
   #amazon .head .amount-label {
