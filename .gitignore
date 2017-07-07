@@ -87,7 +87,7 @@ src/sass/app
 
 # copay www
 www/lib/*
-www/js/*
+www/js/app.js
 
 ## templates
 /config.xml
