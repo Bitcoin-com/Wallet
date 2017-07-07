@@ -445,6 +445,7 @@ angular.module('copayApp.services').factory('glideraService', function($http, $l
     storageService.getGlideraToken(credentials.NETWORK, function(err, token) {
       if (err) return cb(err);
 
+/*
       buyAndSellService.register({
         name: 'glidera',
         logo: 'img/glidera-logo.png',
@@ -453,6 +454,7 @@ angular.module('copayApp.services').factory('glideraService', function($http, $l
         configSref: 'tabs.preferences.glidera',
         linked: !!token,
       });
+*/
     });
   };
 
