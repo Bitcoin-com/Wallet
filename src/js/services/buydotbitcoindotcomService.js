@@ -13,7 +13,7 @@ angular.module('copayApp.services').factory('buydotbitcoindotcomService', functi
 
       buyAndSellService.register({
         name: 'buydotbitcoindotcom',
-        logo: 'img/bitcoin-com-logo.png',
+        logo: 'img/bitcoin-com-logo-grey.png',
         location: 'Buy Bitcoin With Credit Card',
         sref: 'tabs.buyandsell.bitcoindotcom'
       });

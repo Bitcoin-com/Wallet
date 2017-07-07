@@ -229,7 +229,8 @@ div.slide-success__background.fill-screen {
 }
 
 .icon-chart {
-    background: url('../img/chart.svg');
+    background-color: #494949;
+    background-image: url('../img/chart.svg');
 }
 
 .tabs .tab-item .icon {

@@ -11,7 +11,6 @@ angular.module('copayApp.controllers').controller('bitcoincomController',
     };
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
-      $scope.network = bitcoincomController.getNetwork();
-      initBitcoincom;
+        
     });
   });
