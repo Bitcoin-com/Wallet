@@ -25,7 +25,7 @@
   "pushSenderId": "1036948132229",
   "description": "A Secure Bitcoin Wallet",
   "version": "3.5.8",
-  "androidVersion": "350802",
+  "androidVersion": "350803",
   "_extraCSS": "",
   "_enabledExtensions": {
     "coinbase": false,
