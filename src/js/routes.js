@@ -44,7 +44,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       function($delegate, platformInfo) {
         var historicLog = historicLogProvider.$get();
 
-        ['debug', 'info', 'warn', 'error', 'log'].forEach(function(level) {
+        historicLog.getLevels().forEach(function(levelDesc) {
+          var level = levelDesc.level;
           if (platformInfo.isDevel && level == 'error') return;
 
           var orig = $delegate[level];
@@ -1083,7 +1084,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         },
         params: {
-          cardClaimCode: null
+          invoiceId: null
         }
       })
       .state('tabs.giftcards.amazon.amount', {
