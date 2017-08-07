@@ -83,6 +83,7 @@ angular.module('copayApp.services').factory('feeService', function($log, $timeou
               'bcctestnet': levelsBccTestnet
             };
 
+
             return cb(null, cache.data);
           });
         });
