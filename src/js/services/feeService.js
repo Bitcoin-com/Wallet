@@ -62,27 +62,39 @@ angular.module('copayApp.services').factory('feeService', function($log, $timeou
     if (cache.updateTs > Date.now() - CACHE_TIME_TS * 1000) {
       return cb(null, cache.data, true);
     }
-
+    var conf = configService.getSync();
+    var unitName = conf.wallet.settings.unitName;
     var walletClient = bwcService.getClient();
-    var unitName = configService.getSync().wallet.settings.unitName;
+    var BccWalletClient = bwcService.getClient(false,{'bwsurl':conf.bwsbcc.url });
 
 
+
+    console.log("Start get fee levels");
     walletClient.getFeeLevels('livenet', function(errLivenet, levelsLivenet) {
+      if (errLivenet  ) {
+        return cb(gettextCatalog.getString('Could not get dynamic fee from Livenet'));
+      }
+      cache.updateTs = Date.now();
+      cache.data = {
+        'livenet': levelsLivenet,
+      };
       walletClient.getFeeLevels('testnet', function(errTestnet, levelsTestnet) {
-        walletClient.getFeeLevels('bcclivenet', function(errBccLivenet, levelsBccLivenet) {
-          walletClient.getFeeLevels('bcctestnet', function(errBccTestnet, levelsBccTestnet) {
-            if (errLivenet || errTestnet || errBccLivenet || errBccTestnet ) {
-              return cb(gettextCatalog.getString('Could not get dynamic fee'));
+        if (errTestnet  ) {
+          return cb(gettextCatalog.getString('Could not get dynamic fee from Testnet'));
+        }
+        cache.data['testnet'] = levelsTestnet;
+        console.log("Start get fee levels from Bcc");
+        BccWalletClient.getFeeLevels('bcclivenet', function(errBccLivenet, levelsBccLivenet) {
+          if (errBccLivenet ) {
+            return cb(gettextCatalog.getString('Could not get dynamic fee from BccLivenet'));
+          }
+          cache.data['bcclivenet'] = levelsBccLivenet;
+          BccWalletClient.getFeeLevels('bcctestnet', function(errBccTestnet, levelsBccTestnet) {
+            if (errBccTestnet ) {
+              return cb(gettextCatalog.getString('Could not get dynamic fee from BccTestnet'));
             }
-
-            cache.updateTs = Date.now();
-            cache.data = {
-              'livenet': levelsLivenet,
-              'testnet': levelsTestnet,
-              'bcclivenet': levelsBccLivenet,
-              'bcctestnet': levelsBccTestnet
-            };
-
+            cache.data['bcctestnet'] = levelsBccTestnet;
+            console.log("got fee levels");
 
             return cb(null, cache.data);
           });

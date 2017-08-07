@@ -18,8 +18,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     },
     bwsbcc: {
       // url: 'https://bws.bitpay.com/bws/api',
-      //url: 'https://bws.bitcoin.com/bws/api',
-      url: 'http://localhost:4232/bws/api',
+      //url: 'http://localhost:4232/bws/api',
+      //url: 'https://bwsbcc.bitcoin.com/bws/api',
+      url:'https://www.coinnode.net/bwsbcc/bws/api',
+
+
     },
 
     blockchain_services: {
