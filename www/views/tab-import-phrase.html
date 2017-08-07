@@ -26,6 +26,12 @@
         <qr-scanner class="qr-icon size-24" on-scan="processWalletInfo(data)"></qr-scanner>
       </div>
     </div>
+
+    <ion-toggle   ng-model="formData.BCCEnabled" toggle-class="toggle-positive" ng-change="setBwsUrl()" >
+          <span translate>Bitcoin Cash</span>
+    </ion-toggle>
+
+
     <div class="item item-divider"></div>
 
     <a class="item" ng-click="showAdvChange()">

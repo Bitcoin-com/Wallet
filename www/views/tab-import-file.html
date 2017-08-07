@@ -29,7 +29,10 @@
     </a>
 
     <div ng-show="showAdv">
-      <label class="item item-input item-stacked-label">
+      <ion-toggle  ng-model="formData.overwriteBwsurl" toggle-class="toggle-positive">
+        <span translate>Overwrite Wallet Service URL</span>
+      </ion-toggle>
+      <label class="item item-input item-stacked-label" ng-show="formData.overwriteBwsurl">
         <span class="input-label">Wallet Service URL</span>
         <input type="text" ng-model="formData.bwsurl">
       </label>

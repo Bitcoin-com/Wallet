@@ -18,6 +18,7 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.importErr = false;
       $scope.isCopay = appConfigService.name == 'copay';
       $scope.fromHardwareWallet = { value: false };
+      $scope.formData.BCCEnabled = false;
 
       if ($stateParams.code)
         $scope.processWalletInfo($stateParams.code);
@@ -83,7 +84,9 @@ angular.module('copayApp.controllers').controller('importController',
         popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Password required. Make sure to enter your password in advanced options'));
 
       $scope.formData.derivationPath = info.derivationPath;
-      $scope.formData.testnetEnabled = info.network == 'testnet' ? true : false;
+      $scope.formData.testnetEnabled = (info.network == 'testnet' || info.network == 'bcctestnet') ? true : false;
+      $scope.formData.BCCEnabled = (info.network == 'bcclivenet' || info.network == 'bcctestnet') ? true : false;
+
 
       $timeout(function() {
         $scope.formData.words = info.data;
@@ -197,12 +200,30 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.formData.derivationPath = $scope.formData.testnetEnabled ? derivationPathHelper.defaultTestnet : derivationPathHelper.default;
     };
 
+
+    $scope.setBwsUrl = function() {
+      // if(!$scope.formData.seedSource.supportsBCC) return;
+      var defaults = configService.getDefaults();
+      if(!('bwsbcc' in defaults)) return;
+
+      if ($scope.formData.BCCEnabled) {
+        $scope.formData.bwsurl = defaults.bwsbcc.url;
+
+      } else {
+        $scope.formData.bwsurl = defaults.bws.url;
+      }
+
+
+    };
+
+
     $scope.getFile = function() {
       // If we use onloadend, we need to check the readyState.
       reader.onloadend = function(evt) {
         if (evt.target.readyState == FileReader.DONE) { // DONE == 2
           var opts = {};
           opts.bwsurl = $scope.formData.bwsurl;
+          opts.overwriteBwsurl = $scope.formData.overwriteBwsurl;
           _importBlob(evt.target.result, opts);
         }
       }
@@ -228,6 +249,7 @@ angular.module('copayApp.controllers').controller('importController',
       } else {
         var opts = {};
         opts.bwsurl = $scope.formData.bwsurl;
+        opts.overwriteBwsurl = $scope.formData.overwriteBwsurl;
         _importBlob(backupText, opts);
       }
     };
