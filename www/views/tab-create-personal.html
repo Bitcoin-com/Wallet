@@ -1,4 +1,4 @@
-<ion-view class="settings" show-tabs>
+<ion-view class="settings">
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>{{'Create Personal Wallet' | translate}}</ion-nav-title>
     <ion-nav-back-button>
@@ -19,6 +19,10 @@
           required>
         </label>
 
+        <ion-toggle  ng-show="formData.seedSource.supportsBCC" ng-change="setBwsUrl()" ng-model="formData.BCCEnabled" toggle-class="toggle-positive">
+          <span translate>Bitcoin Cash</span>
+        </ion-toggle>
+
         <div class="item item-divider"></div>
 
         <a class="item" ng-click="showAdvChange()">
@@ -27,9 +31,12 @@
         </a>
 
         <div ng-show="showAdv">
+
+
+
           <label class="item item-input item-stacked-label">
             <span class="input-label">Wallet Service URL</span>
-            <input type="text" ng-model="formData.bwsurl" placeholder="https://bws.bitcoin.com/bws/api">
+            <input type="text" ng-model="formData.bwsurl" placeholder="https://bws.bitpay.com/bws/api">
           </label>
 
           <label class="item item-input item-select">
@@ -112,7 +119,8 @@
             ng-model="formData.derivationPath">
           </label>
 
-          <ion-toggle ng-show="formData.seedSource.supportsTestnet" ng-model="formData.testnetEnabled" toggle-class="toggle-positive">
+
+          <ion-toggle ng-change="setDerivationPath()" ng-show="formData.seedSource.supportsTestnet" ng-model="formData.testnetEnabled" toggle-class="toggle-positive">
             <span translate>Testnet</span>
           </ion-toggle>
 

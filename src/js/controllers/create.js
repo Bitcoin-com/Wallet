@@ -77,11 +77,13 @@ angular.module('copayApp.controllers').controller('createController',
       var seedOptions = [{
         id: 'new',
         label: gettextCatalog.getString('Random'),
-        supportsTestnet: true
+        supportsTestnet: true,
+        supportsBCC: true
       }, {
         id: 'set',
         label: gettextCatalog.getString('Specify Recovery Phrase...'),
-        supportsTestnet: false
+        supportsTestnet: true,
+        supportsBCC: true
       }];
 
       $scope.formData.seedSource = seedOptions[0];
@@ -139,6 +141,12 @@ angular.module('copayApp.controllers').controller('createController',
         walletPrivKey: $scope.formData._walletPrivKey, // Only for testing
       };
 
+      if($scope.formData.BCCEnabled) {
+        opts.networkName="bcc"+opts.networkName;
+      }
+
+
+
       var setSeed = $scope.formData.seedSource.id == 'set';
       if (setSeed) {
 
@@ -158,6 +166,12 @@ angular.module('copayApp.controllers').controller('createController',
 
         opts.account = pathData.account;
         opts.networkName = pathData.networkName;
+
+        if($scope.formData.BCCEnabled) {
+          opts.networkName="bcc"+pathData.networkName;
+        }
+
+
         opts.derivationStrategy = pathData.derivationStrategy;
 
       } else {
@@ -208,6 +222,7 @@ angular.module('copayApp.controllers').controller('createController',
           _create(opts);
         });
       } else {
+        
         _create(opts);
       }
     };
@@ -245,5 +260,27 @@ angular.module('copayApp.controllers').controller('createController',
           } else $state.go('tabs.home');
         });
       }, 300);
-    }
+    };
+
+    $scope.setDerivationPath = function() {
+      $scope.formData.derivationPath = $scope.formData.testnetEnabled ? derivationPathHelper.defaultTestnet : derivationPathHelper.default;
+    };
+
+    $scope.setBwsUrl = function() {
+      if(!$scope.formData.seedSource.supportsBCC) return;
+      var defaults = configService.getDefaults();
+      if(!('bwsbcc' in defaults)) return;
+
+      if ($scope.formData.BCCEnabled) {
+        $scope.formData.bwsurl = defaults.bwsbcc.url;
+
+      } else {
+        $scope.formData.bwsurl = defaults.bws.url;
+      }
+
+
+    };
+
+
+
   });
