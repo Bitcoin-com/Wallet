@@ -146,7 +146,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       toEmail: data.stateParams.toEmail,
       toColor: data.stateParams.toColor,
       // network: (new bitcore.Address(data.stateParams.toAddress)).network.name,
-      network: prefix+(new bitcore.Address($scope.toAddress)).network.name,
+      network: prefix+(new bitcore.Address(data.stateParams.toAddress)).network.name,
       txp: {},
     };
 
@@ -228,7 +228,11 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     }
     txp.excludeUnconfirmedUtxos = !tx.spendUnconfirmed;
     txp.dryRun = dryRun;
+
+    console.log("start create tx from:", txp);
+    console.log("start create tx from wallet:", wallet);
     walletService.createTx(wallet, txp, function(err, ctxp) {
+
       if (err) {
         setSendError(err);
         return cb(err);
