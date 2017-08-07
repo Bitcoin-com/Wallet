@@ -872,7 +872,7 @@ angular.module('copayApp.services')
           x.types = [x.type];
 
           if (x.data && x.data.amount)
-            x.amountStr = txFormatService.formatAmountStr(x.data.amount);
+            x.amountStr = txFormatService.formatAmountStr(x.data.amount,x.wallet.network);
 
           x.action = function() {
             // TODO?

@@ -69,6 +69,15 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
 
+    console.log("Send to address:"+data.stateParams.toAddress);
+    console.log("Is Cash:"+data.stateParams.showCash);
+    var prefix='';
+    if(data.stateParams.showCash ==='yes') {
+      console.log("Adding prefix");
+      prefix='bcc'
+    }
+
+
     function setWalletSelector(network, minAmount, cb) {
 
       // no min amount? (sendMax) => look for no empty wallets
@@ -136,7 +145,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       toName: data.stateParams.toName,
       toEmail: data.stateParams.toEmail,
       toColor: data.stateParams.toColor,
-      network: (new bitcore.Address(data.stateParams.toAddress)).network.name,
+      // network: (new bitcore.Address(data.stateParams.toAddress)).network.name,
+      network: prefix+(new bitcore.Address($scope.toAddress)).network.name,
       txp: {},
     };
 
@@ -194,6 +204,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     }
 
     var txp = {};
+    txp.network=wallet.network;
 
     txp.outputs = [{
       'toAddress': tx.toAddress,

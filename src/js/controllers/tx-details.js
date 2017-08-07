@@ -102,7 +102,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
         return popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Transaction not available at this time'));
       }
 
-      $scope.btx = txFormatService.processTx(tx);
+      $scope.btx = txFormatService.processTx(tx,$scope.wallet.network);
       txFormatService.formatAlternativeStr(tx.fees, function(v) {
         $scope.btx.feeFiatStr = v;
         $scope.btx.feeRateStr = ($scope.btx.fees / ($scope.btx.amount + $scope.btx.fees) * 100).toFixed(2) + '%';
@@ -169,8 +169,16 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
   $scope.viewOnBlockchain = function() {
     var btx = $scope.btx;
     var url = 'https://blockchain.info/tx/' + btx.txid;
+
+    console.log("tx-details.js $scope.viewOnBlockchain: ",config.blockchain_services);
     if ($scope.getShortNetworkName() == 'test') {
         url = "https://test-insight.bitpay.com/tx/" + btx.txid;
+    }
+    try {
+      url = config.blockchain_services[$scope.wallet.credentials.network] + btx.txid;
+    } catch (err) {
+      $log.debug('Could not find  blockchain service url' + err);
+
     }
     var optIn = true;
     var title = null;

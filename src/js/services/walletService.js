@@ -2,8 +2,8 @@
 
 angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService) {
 
-  // Ratio low amount warning (fee/amount) in incoming TX 
-  var LOW_AMOUNT_RATIO = 0.15; 
+  // Ratio low amount warning (fee/amount) in incoming TX
+  var LOW_AMOUNT_RATIO = 0.15;
 
   // Ratio of "many utxos" warning in total balance (fee/amount)
   var TOTAL_LOW_WARNING_RATIO = .3;
@@ -130,7 +130,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
       lodash.each(txps, function(tx) {
 
-        tx = txFormatService.processTx(tx);
+        tx = txFormatService.processTx(tx,wallet.network);
 
         // no future transactions...
         if (tx.createdOn > now)
@@ -213,7 +213,21 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       // Selected unit
       cache.unitToSatoshi = config.settings.unitToSatoshi;
       cache.satToUnit = 1 / cache.unitToSatoshi;
-      cache.unitName = config.settings.unitName;
+
+
+      var unitmap={
+        'testnet':{'BTC':'tBTC','bits':'tbits'},
+        'livenet':{'BTC':'BTC','bits':'bits'},
+        'bcctestnet':{'BTC':'tBCC','bits':'tcash'},
+        'bcclivenet':{'BTC':'BCC','bits':'cash'},
+
+      };
+
+      try {
+        cache.unitName = unitmap[wallet.credentials.network][config.settings.unitName];
+      } catch (e) {
+        cache.unitName = config.settings.unitName;
+      }
 
       //STR
       cache.totalBalanceStr = txFormatService.formatAmount(cache.totalBalanceSat) + ' ' + cache.unitName;
@@ -366,7 +380,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     wallet.hasUnsafeConfirmed = false;
 
     lodash.each(txs, function(tx) {
-      tx = txFormatService.processTx(tx);
+      tx = txFormatService.processTx(tx,wallet.network);
 
       // no future transactions...
       if (tx.time > now)
@@ -416,14 +430,32 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
       var cacheUnit = txs[0].amountStr.split(' ')[1];
 
-      if (cacheUnit == config.unitName)
-        return;
+       if (cacheUnit == config.unitName)
+         return;
 
-      var name = ' ' + config.unitName;
+      var name = ' ' + config.unitName ;
+
+      var unitmap={
+        'testnet':{'BTC':'tBTC','bits':'tbits'},
+        'livenet':{'BTC':'BTC','bits':'bits'},
+        'bcctestnet':{'BTC':'tBCC','bits':'tcash'},
+        'bcclivenet':{'BTC':'BCC','bits':'cash'},
+
+      };
+
+
+
+      try {
+        name = ' ' + unitmap[wallet.credentials.network][config.unitName];
+      } catch (e) {
+
+      }
+
+
 
       $log.debug('Fixing Tx Cache Unit to:' + name)
       lodash.each(txs, function(tx) {
-        tx.amountStr = txFormatService.formatAmount(tx.amount) + name;
+        tx.amountStr = txFormatService.formatAmount(tx.amount) + name ;
         tx.feeStr = txFormatService.formatAmount(tx.fees) + name;
       });
     };
@@ -922,7 +954,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   };
 
 
-  // Approx utxo amount, from which the uxto is economically redeemable  
+  // Approx utxo amount, from which the uxto is economically redeemable
   root.getMinFee = function(wallet, feeLevels, nbOutputs) {
     var lowLevelRate = (lodash.find(feeLevels[wallet.network], {
       level: 'normal',
@@ -933,7 +965,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   };
 
 
-  // Approx utxo amount, from which the uxto is economically redeemable  
+  // Approx utxo amount, from which the uxto is economically redeemable
   root.getLowAmount = function(wallet, feeLevels, nbOutputs) {
     var minFee = root.getMinFee(wallet,feeLevels, nbOutputs);
     return parseInt( minFee / LOW_AMOUNT_RATIO);

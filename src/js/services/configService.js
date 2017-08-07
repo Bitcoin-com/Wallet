@@ -22,6 +22,14 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       url: 'http://localhost:4232/bws/api',
     },
 
+    blockchain_services: {
+      'livenet':'https://blockchain.info/tx/',
+      'testnet':'https://blockchain.info/tx/',
+      'bcclivenet':'https://blockchain.info/tx/',
+      'bcctestnet':'https://blockchain.info/tx/'
+
+    },
+
 
     download: {
       bitpay: {
