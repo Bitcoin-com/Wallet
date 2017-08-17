@@ -88,9 +88,10 @@ angular.module('copayApp.controllers').controller('addressesController', functio
           $scope.lowWarning = resp.warning;
           $scope.lowUtxosNb = resp.lowUtxos.length;
           $scope.allUtxosNb = resp.allUtxos.length;
-          $scope.lowUtxosSum = txFormatService.formatAmountStr(lodash.sum(resp.lowUtxos || 0, 'satoshis'));
-          $scope.allUtxosSum = txFormatService.formatAmountStr(allSum);
-          $scope.minFee = txFormatService.formatAmountStr(resp.minFee || 0);
+          console.log("addresses , network: ",$scope.wallet.network);
+          $scope.lowUtxosSum = txFormatService.formatAmountStr(lodash.sum(resp.lowUtxos || 0, 'satoshis'),$scope.wallet.network);
+          $scope.allUtxosSum = txFormatService.formatAmountStr(allSum,$scope.wallet.network);
+          $scope.minFee = txFormatService.formatAmountStr(resp.minFee || 0,$scope.wallet.network);
           $scope.minFeePer = per.toFixed(2) + '%';
 
 

@@ -351,6 +351,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       skip: skip,
       limit: limit
     }, function(err, txsFromServer) {
+
+
+      console.log("getTxsFromServer error:",err);
+      console.log("getTxsFromServer txsFromServer:",txsFromServer);
       if (err) return cb(err);
 
       if (!txsFromServer.length)
@@ -459,7 +463,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         tx.feeStr = txFormatService.formatAmount(tx.fees) + name;
       });
     };
-
+    console.log("Get saved TX");
     getSavedTxs(walletId, function(err, txsFromLocal) {
       if (err) return cb(err);
 
@@ -474,8 +478,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       wallet.completeHistory = txsFromLocal;
 
       function getNewTxs(newTxs, skip, next) {
+        console.log("getTxsFromServer");
         getTxsFromServer(wallet, skip, endingTxid, requestLimit, function(err, res, shouldContinue) {
           if (err) {
+            console.log("getNewTxs",bwcError.msg(err, 'Server Error'));
             $log.warn(bwcError.msg(err, 'Server Error')); //TODO
             if (err instanceof errors.CONNECTION_ERROR || (err.message && err.message.match(/5../))) {
               $log.info('Retrying history download in 5 secs...');
@@ -519,6 +525,8 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           getNewTxs(newTxs, skip, next);
         });
       };
+
+      console.log("Get new TX");
 
       getNewTxs([], 0, function(err, txs) {
         if (err) return cb(err);
@@ -627,9 +635,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       return cb(null, tx);
     };
 
-    if (wallet.completeHistory && wallet.completeHistory.isValid) {
+    if (false && wallet.completeHistory && wallet.completeHistory.isValid) {
       finish(wallet.completeHistory);
     } else {
+      console.log("start root.getTxHistory");
       root.getTxHistory(wallet, {
         limitTx: txid
       }, function(err, txHistory) {
@@ -658,6 +667,8 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   root.getTxHistory = function(wallet, opts, cb) {
     opts = opts || {};
 
+
+    console.log("enter root.getTxHistory");
     var walletId = wallet.credentials.walletId;
 
     if (!wallet.isComplete()) return cb();
@@ -665,10 +676,14 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     function isHistoryCached() {
       return wallet.completeHistory && wallet.completeHistory.isValid;
     };
+// console.log("Blank callback");
+//     return cb(null, []);
 
     if (isHistoryCached() && !opts.force) return cb(null, wallet.completeHistory);
 
     $log.debug('Updating Transaction History');
+
+    console.log("Updating Transaction History");
 
     updateLocalTxHistory(wallet, opts, function(err, txs) {
       if (err) return cb(err);
@@ -956,9 +971,11 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
   // Approx utxo amount, from which the uxto is economically redeemable
   root.getMinFee = function(wallet, feeLevels, nbOutputs) {
-    var lowLevelRate = (lodash.find(feeLevels[wallet.network], {
+    var fee = lodash.find(feeLevels[wallet.network], {
       level: 'normal',
-    }).feePerKB / 1000).toFixed(0);
+    });
+
+    var lowLevelRate = (fee.feePerKB / 1000).toFixed(0);
 
     var size = root.getEstimatedTxSize(wallet, nbOutputs);
     return size * lowLevelRate;

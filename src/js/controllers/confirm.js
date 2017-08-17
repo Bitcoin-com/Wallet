@@ -70,7 +70,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
 
     console.log("Send to address:"+data.stateParams.toAddress);
-    console.log("Is Cash:"+data.stateParams.showCash);
+    console.log("1, Is Cash:"+data.stateParams.showCash);
     var prefix='';
     if(data.stateParams.showCash ==='yes') {
       console.log("Adding prefix");
@@ -149,7 +149,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       network: prefix+(new bitcore.Address(data.stateParams.toAddress)).network.name,
       txp: {},
     };
-
+    console.log("3. tx formatted");
 
     // Other Scope vars
     $scope.isCordova = isCordova;
@@ -243,17 +243,22 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
   function updateTx(tx, wallet, opts, cb) {
 
+    console.log("1. updateTx start");
+
     if (opts.clearCache) {
       tx.txp = {};
     }
 
     $scope.tx = tx;
 
+    console.log("1. updateTx:", tx);
+
     function updateAmount() {
       if (!tx.toAmount) return;
 
       // Amount
-      tx.amountStr = txFormatService.formatAmountStr(tx.toAmount);
+      console.log("!!! updateTx network:",tx.network);
+      tx.amountStr = txFormatService.formatAmountStr(tx.toAmount,tx.network);
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
       txFormatService.formatAlternativeStr(tx.toAmount, function(v) {
@@ -307,7 +312,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         getTxp(lodash.clone(tx), wallet, opts.dryRun, function(err, txp) {
           if (err) return cb(err);
 
-          txp.feeStr = txFormatService.formatAmountStr(txp.fee);
+          console.log("confirm 311, network:",wallet.network);
+
+          txp.feeStr = txFormatService.formatAmountStr(txp.fee,wallet.network);
           txFormatService.formatAlternativeStr(txp.fee, function(v) {
             txp.alternativeFeeStr = v;
           });

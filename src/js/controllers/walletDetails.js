@@ -172,10 +172,12 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     };
 
     feeService.getFeeLevels(function(err, levels) {
+
       walletService.getTxHistory($scope.wallet, {
         progressFn: progressFn,
         feeLevels: levels,
       }, function(err, txHistory) {
+        console.log("got txHistory",err, txHistory);
         $scope.updatingTxHistory = false;
         if (err) {
           $scope.txHistory = null;
@@ -183,8 +185,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
           return;
         }
         $scope.completeTxHistory = txHistory;
+        console.log("before show history");
         $scope.showHistory();
+        console.log("after show history");
         $scope.$apply();
+        console.log("after apply");
         return cb();
       });
     });
@@ -250,8 +255,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   $scope.updateAll = function(force, cb)  {
+    console.log("start update status");
     updateStatus(force);
+    console.log("start update history");
     updateTxHistory(cb);
+    console.log("end update history");
   };
 
   $scope.hideToggle = function() {

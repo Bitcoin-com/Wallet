@@ -110,6 +110,9 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
   };
 
   root.processTx = function(tx,network) {
+
+
+    console.log("Process TX network:",network);
     if (!tx || tx.action == 'invalid')
       return tx;
 

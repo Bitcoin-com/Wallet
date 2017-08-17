@@ -218,7 +218,9 @@ angular.module('copayApp.controllers').controller('topUpController', function($s
         // Save TX in memory
         createdTx = ctxp;
 
-        $scope.totalAmountStr = txFormatService.formatAmountStr(ctxp.amount);
+        console.log("topup.js network=",wallet.network)
+
+        $scope.totalAmountStr = txFormatService.formatAmountStr(ctxp.amount,wallet.network);
 
         setTotalAmount(parsedAmount.amountSat, invoiceFeeSat, ctxp.fee);
 
