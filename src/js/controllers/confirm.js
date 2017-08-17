@@ -70,7 +70,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
 
     console.log("Send to address:"+data.stateParams.toAddress);
-    console.log("1, Is Cash:"+data.stateParams.showCash);
+    console.log("Is Cash:"+data.stateParams.showCash);
     var prefix='';
     if(data.stateParams.showCash ==='yes') {
       console.log("Adding prefix");
@@ -257,7 +257,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       if (!tx.toAmount) return;
 
       // Amount
-      console.log("!!! updateTx network:",tx.network);
       tx.amountStr = txFormatService.formatAmountStr(tx.toAmount,tx.network);
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
@@ -300,7 +299,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           tx.sendMaxInfo = sendMaxInfo;
           tx.toAmount = tx.sendMaxInfo.amount;
           updateAmount();
-          showSendMaxWarning(sendMaxInfo);
+          showSendMaxWarning(sendMaxInfo,tx.network);
         }
 
         // txp already generated for this wallet?
@@ -311,8 +310,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
         getTxp(lodash.clone(tx), wallet, opts.dryRun, function(err, txp) {
           if (err) return cb(err);
-
-          console.log("confirm 311, network:",wallet.network);
 
           txp.feeStr = txFormatService.formatAmountStr(txp.fee,wallet.network);
           txFormatService.formatAlternativeStr(txp.fee, function(v) {
@@ -359,26 +356,26 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   };
 
 
-  function showSendMaxWarning(sendMaxInfo) {
+  function showSendMaxWarning(sendMaxInfo,network) {
 
     function verifyExcludedUtxos() {
       var warningMsg = [];
       if (sendMaxInfo.utxosBelowFee > 0) {
         warningMsg.push(gettextCatalog.getString("A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided.", {
-          amountBelowFeeStr: txFormatService.formatAmountStr(sendMaxInfo.amountBelowFee)
+          amountBelowFeeStr: txFormatService.formatAmountStr(sendMaxInfo.amountBelowFee,network)
         }));
       }
 
       if (sendMaxInfo.utxosAboveMaxSize > 0) {
         warningMsg.push(gettextCatalog.getString("A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded.", {
-          amountAboveMaxSizeStr: txFormatService.formatAmountStr(sendMaxInfo.amountAboveMaxSize)
+          amountAboveMaxSizeStr: txFormatService.formatAmountStr(sendMaxInfo.amountAboveMaxSize,network)
         }));
       }
       return warningMsg.join('\n');
     };
 
     var msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees.", {
-      fee: txFormatService.formatAmountStr(sendMaxInfo.fee)
+      fee: txFormatService.formatAmountStr(sendMaxInfo.fee,network)
     });
     var warningMsg = verifyExcludedUtxos();
 
