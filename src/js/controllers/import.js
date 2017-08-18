@@ -7,7 +7,7 @@ angular.module('copayApp.controllers').controller('importController',
     var defaults = configService.getDefaults();
     var errors = bwcService.getErrors();
 
-    $scope.init = function() {
+    $scope.init = function () {
       $scope.supportsLedger = platformInfo.supportsLedger;
       $scope.supportsTrezor = platformInfo.supportsTrezor;
       $scope.isCordova = platformInfo.isCordova;
@@ -17,7 +17,7 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.formData.account = 1;
       $scope.importErr = false;
       $scope.isCopay = appConfigService.name == 'copay';
-      $scope.fromHardwareWallet = { value: false };
+      $scope.fromHardwareWallet = {value: false};
       $scope.formData.BCCEnabled = false;
 
       if ($stateParams.code)
@@ -55,12 +55,12 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.formData.seedSourceAll = $scope.seedOptionsAll[0];
 
 
-      $timeout(function() {
+      $timeout(function () {
         $scope.$apply();
       });
     };
 
-    $scope.processWalletInfo = function(code) {
+    $scope.processWalletInfo = function (code) {
       if (!code) return;
 
       $scope.importErr = false;
@@ -88,20 +88,21 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.formData.BCCEnabled = (info.network == 'bcclivenet' || info.network == 'bcctestnet') ? true : false;
 
 
-      $timeout(function() {
+      $timeout(function () {
         $scope.formData.words = info.data;
         $scope.$apply();
       }, 1);
     };
 
-    var _importBlob = function(str, opts) {
+    var _importBlob = function (str, opts) {
       var str2, err;
       try {
         str2 = sjcl.decrypt($scope.formData.password, str);
       } catch (e) {
         err = gettextCatalog.getString('Could not decrypt file, check your password');
         $log.warn(e);
-      };
+      }
+      ;
 
       if (err) {
         popupService.showAlert(gettextCatalog.getString('Error'), err);
@@ -112,8 +113,8 @@ angular.module('copayApp.controllers').controller('importController',
       opts.compressed = null;
       opts.password = null;
 
-      $timeout(function() {
-        profileService.importWallet(str2, opts, function(err, client) {
+      $timeout(function () {
+        profileService.importWallet(str2, opts, function (err, client) {
           ongoingProcess.set('importingWallet', false);
           if (err) {
             popupService.showAlert(gettextCatalog.getString('Error'), err);
@@ -125,10 +126,10 @@ angular.module('copayApp.controllers').controller('importController',
       }, 100);
     };
 
-    var _importExtendedPrivateKey = function(xPrivKey, opts) {
+    var _importExtendedPrivateKey = function (xPrivKey, opts) {
       ongoingProcess.set('importingWallet', true);
-      $timeout(function() {
-        profileService.importExtendedPrivateKey(xPrivKey, opts, function(err, client) {
+      $timeout(function () {
+        profileService.importExtendedPrivateKey(xPrivKey, opts, function (err, client) {
           ongoingProcess.set('importingWallet', false);
           if (err) {
             if (err instanceof errors.NOT_AUTHORIZED) {
@@ -136,7 +137,7 @@ angular.module('copayApp.controllers').controller('importController',
             } else {
               popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
-            return $timeout(function() {
+            return $timeout(function () {
               $scope.$apply();
             });
           }
@@ -146,38 +147,38 @@ angular.module('copayApp.controllers').controller('importController',
     };
 
     /*
-      IMPORT FROM PUBLIC KEY - PENDING
+     IMPORT FROM PUBLIC KEY - PENDING
 
-    var _importExtendedPublicKey = function(xPubKey, opts) {
+     var _importExtendedPublicKey = function(xPubKey, opts) {
+     ongoingProcess.set('importingWallet', true);
+     $timeout(function() {
+     profileService.importExtendedPublicKey(opts, function(err, walletId) {
+     ongoingProcess.set('importingWallet', false);
+     if (err) {
+     $scope.error = err;
+     return $timeout(function() {
+     $scope.$apply();
+     });
+     }
+
+     profileService.setBackupFlag(walletId);
+     if ($stateParams.fromOnboarding) {
+     profileService.setDisclaimerAccepted(function(err) {
+     if (err) $log.error(err);
+     });
+     }
+
+     $state.go('tabs.home');
+     });
+     }, 100);
+     };
+     */
+
+    var _importMnemonic = function (words, opts) {
       ongoingProcess.set('importingWallet', true);
-      $timeout(function() {
-        profileService.importExtendedPublicKey(opts, function(err, walletId) {
-          ongoingProcess.set('importingWallet', false);
-          if (err) {
-            $scope.error = err;
-            return $timeout(function() {
-              $scope.$apply();
-            });
-          }
 
-          profileService.setBackupFlag(walletId);
-           if ($stateParams.fromOnboarding) {
-             profileService.setDisclaimerAccepted(function(err) {
-               if (err) $log.error(err);
-             });
-           }
-
-          $state.go('tabs.home');
-        });
-      }, 100);
-    };
-    */
-
-    var _importMnemonic = function(words, opts) {
-      ongoingProcess.set('importingWallet', true);
-
-      $timeout(function() {
-        profileService.importMnemonic(words, opts, function(err, client) {
+      $timeout(function () {
+        profileService.importMnemonic(words, opts, function (err, client) {
 
           ongoingProcess.set('importingWallet', false);
 
@@ -187,7 +188,7 @@ angular.module('copayApp.controllers').controller('importController',
             } else {
               popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
-            return $timeout(function() {
+            return $timeout(function () {
               $scope.$apply();
             });
           }
@@ -196,15 +197,15 @@ angular.module('copayApp.controllers').controller('importController',
       }, 100);
     };
 
-    $scope.setDerivationPath = function() {
+    $scope.setDerivationPath = function () {
       $scope.formData.derivationPath = $scope.formData.testnetEnabled ? derivationPathHelper.defaultTestnet : derivationPathHelper.default;
     };
 
 
-    $scope.setBwsUrl = function() {
+    $scope.setBwsUrl = function () {
       // if(!$scope.formData.seedSource.supportsBCC) return;
       var defaults = configService.getDefaults();
-      if(!('bwsbcc' in defaults)) return;
+      if (!('bwsbcc' in defaults)) return;
 
       if ($scope.formData.BCCEnabled) {
         $scope.formData.bwsurl = defaults.bwsbcc.url;
@@ -217,9 +218,9 @@ angular.module('copayApp.controllers').controller('importController',
     };
 
 
-    $scope.getFile = function() {
+    $scope.getFile = function () {
       // If we use onloadend, we need to check the readyState.
-      reader.onloadend = function(evt) {
+      reader.onloadend = function (evt) {
         if (evt.target.readyState == FileReader.DONE) { // DONE == 2
           var opts = {};
           opts.bwsurl = $scope.formData.bwsurl;
@@ -229,7 +230,7 @@ angular.module('copayApp.controllers').controller('importController',
       }
     };
 
-    $scope.importBlob = function(form) {
+    $scope.importBlob = function (form) {
       if (form.$invalid) {
         popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('There is an error in the form'));
         return;
@@ -254,7 +255,7 @@ angular.module('copayApp.controllers').controller('importController',
       }
     };
 
-    $scope.importMnemonic = function(form) {
+      $scope.importMnemonic = function(form) {
       if (form.$invalid) {
         popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('There is an error in the form'));
         return;

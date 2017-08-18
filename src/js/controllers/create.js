@@ -52,10 +52,55 @@ angular.module('copayApp.controllers').controller('createController',
         $scope.result = null;
     };
 
+    $scope.selectTest = function() {
+      // console.log("selected wallet:", $scope.formData.selectedWallet);
+
+    }
+
+
     $scope.resizeView = function() {
       $timeout(function() {
         $ionicScrollDelegate.resize();
       }, 10);
+
+      // Select wallet
+      if ($scope.formData.seedSource.id=='copy') {
+
+        var net = 'bcclivenet';
+        if ($scope.formData.BCCEnabled) {
+          if ($scope.formData.testnetEnabled) {
+            net = 'testnet';
+          } else {
+            net = 'livenet';
+          }
+        } else {
+          if ($scope.formData.testnetEnabled) {
+            net = 'bcctestnet';
+          } else {
+            net = 'bcclivenet';
+          }
+        }
+
+        $scope.wallets = profileService.getWallets({
+          onlyComplete: false,
+          network: net
+        });
+        // console.log($scope.wallets);
+
+        if (!$scope.wallets || !$scope.wallets.length) {
+          var msg = gettextCatalog.getString('No wallets available');
+          $scope.formData.selectedWallet = null;
+          $scope.noWalletMessage = msg;
+          $log.warn('Not ready to make the payment:' + msg);
+          $timeout(function () {
+            $scope.$apply();
+          });
+        } else {
+          $scope.noWalletMessage = undefined;
+        }
+      }
+
+      //
       resetPasswordFields();
     };
 
@@ -82,6 +127,11 @@ angular.module('copayApp.controllers').controller('createController',
       }, {
         id: 'set',
         label: gettextCatalog.getString('Specify Recovery Phrase...'),
+        supportsTestnet: true,
+        supportsBCC: true
+      }, {
+        id: 'copy',
+        label: gettextCatalog.getString('Copy from wallet ...'),
         supportsTestnet: true,
         supportsBCC: true
       }];
@@ -130,6 +180,7 @@ angular.module('copayApp.controllers').controller('createController',
 
     $scope.create = function() {
 
+
       var opts = {
         name: $scope.formData.walletName,
         m: $scope.formData.requiredCopayers,
@@ -139,11 +190,14 @@ angular.module('copayApp.controllers').controller('createController',
         bwsurl: $scope.formData.bwsurl,
         singleAddress: $scope.formData.singleAddressEnabled,
         walletPrivKey: $scope.formData._walletPrivKey, // Only for testing
+        selectedWallet: $scope.formData.selectedWallet,
+
       };
 
       if($scope.formData.BCCEnabled) {
         opts.networkName="bcc"+opts.networkName;
       }
+
 
 
 
@@ -171,8 +225,32 @@ angular.module('copayApp.controllers').controller('createController',
           opts.networkName="bcc"+pathData.networkName;
         }
 
-
         opts.derivationStrategy = pathData.derivationStrategy;
+
+      } else if ($scope.formData.seedSource.id == 'copy') {
+        console.log("start copy of wallet: ", opts.selectedWallet);
+        if (!opts.selectedWallet) {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Wallet not selected'));
+          return;
+        }
+
+
+        opts.mnemonic = opts.selectedWallet.credentials.mnemonic;
+        console.log("start copy of wallet mnemonic: ", opts.mnemonic);
+        var pathData = derivationPathHelper.parse($scope.formData.derivationPath);
+        if (!pathData) {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid derivation path'));
+          return;
+        }
+        opts.account = pathData.account;
+        opts.networkName = pathData.networkName;
+
+        if($scope.formData.BCCEnabled) {
+          opts.networkName="bcc"+pathData.networkName;
+        }
+        opts.derivationStrategy = pathData.derivationStrategy;
+
+        setSeed = true;
 
       } else {
         opts.passphrase = $scope.formData.createPassphrase;
@@ -222,7 +300,7 @@ angular.module('copayApp.controllers').controller('createController',
           _create(opts);
         });
       } else {
-        
+
         _create(opts);
       }
     };
@@ -230,6 +308,7 @@ angular.module('copayApp.controllers').controller('createController',
     function _create(opts) {
       ongoingProcess.set('creatingWallet', true);
       $timeout(function() {
+        console.log("_create opts:",opts);
         profileService.createWallet(opts, function(err, client) {
           ongoingProcess.set('creatingWallet', false);
           if (err) {
@@ -264,6 +343,7 @@ angular.module('copayApp.controllers').controller('createController',
 
     $scope.setDerivationPath = function() {
       $scope.formData.derivationPath = $scope.formData.testnetEnabled ? derivationPathHelper.defaultTestnet : derivationPathHelper.default;
+      $scope.resizeView();
     };
 
     $scope.setBwsUrl = function() {
@@ -277,6 +357,10 @@ angular.module('copayApp.controllers').controller('createController',
       } else {
         $scope.formData.bwsurl = defaults.bws.url;
       }
+
+      $scope.formData.derivationPath = $scope.formData.testnetEnabled ? derivationPathHelper.defaultTestnet : derivationPathHelper.default;
+
+      $scope.resizeView();
 
 
     };

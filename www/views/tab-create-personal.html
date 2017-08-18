@@ -59,6 +59,21 @@
             ng-model="formData.privateKey">
           </label>
 
+          <label class="item item-input item-select" ng-show="formData.seedSource.id == 'copy' && !noWalletMessage">
+            <div class="input-label" translate >Select wallet to clone</div>
+            <select class="m10t" ng-model="formData.selectedWallet"
+                    ng-options="wallet as (wallet.name + ' (' + wallet.cachedBalance +' )' ) for wallet in wallets"
+                    ng-required="formData.seedSource.id == 'copy'"
+
+            >
+              <option value=""> choose wallet </option>
+            </select>
+          </label>
+          <label class="item item-input item-stacked-label" translate ng-show="formData.seedSource.id == 'copy' && noWalletMessage">
+            {{noWalletMessage}}
+          </label>
+
+
           <div ng-show="formData.seedSource.id == 'new' || formData.seedSource.id == 'set'">
             <ion-toggle class="has-comment" ng-model="encrypt" toggle-class="toggle-positive" ng-change="resizeView()">
               <span class="toggle-label" translate>Add a password</span>
@@ -85,6 +100,18 @@
                    ng-model="formData.passphrase"
                    ng-change="checkPassword(formData.passphrase, formData.repeatPassword)"
                    ng-class="{'correct': result == 'correct', 'incorrect': result == 'incorrect'}">
+
+            <input ng-show="formData.seedSource.id == 'copy'"
+                   placeholder="{{'Password'|translate}}"
+                   type="password"
+                   autocapitalize="off"
+                   ng-model="formData.passphrase"
+                   ng-change="checkPassword(formData.passphrase, formData.repeatPassword)"
+                   ng-class="{'correct': result == 'correct', 'incorrect': result == 'incorrect'}">
+
+
+
+
           </div>
           <div class="item item-input" ng-show="encrypt">
             <input ng-show="formData.seedSource.id == 'new'"
@@ -133,7 +160,8 @@
       </div> <!-- list -->
 
       <button type="submit" class="button button-standard button-primary"
-        ng-disabled="setupForm.$invalid || ((encrypt && !formData.passwordSaved) || encrypt && ((formData.seedSource.id == 'new' && !formData.createPassphrase) || (formData.seedSource.id == 'set' && !formData.passphrase)))">
+        ng-disabled="setupForm.$invalid ||
+        ((encrypt && !formData.passwordSaved) || encrypt && ((formData.seedSource.id == 'new' && !formData.createPassphrase) || (formData.seedSource.id == 'set' && !formData.passphrase)))">
         <span translate>Create new wallet</span>
       </button>
     </form>
