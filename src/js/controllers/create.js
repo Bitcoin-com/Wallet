@@ -38,6 +38,11 @@ angular.module('copayApp.controllers').controller('createController',
       $scope.resizeView();
     };
 
+
+    $scope.checkPassphrase = function(pw1) {
+      $scope.passpraseresult = 'correct';
+    }
+
     $scope.checkPassword = function(pw1, pw2) {
       if (pw1 && pw1.length > 0) {
         if (pw2 && pw2.length > 0) {
@@ -229,6 +234,7 @@ angular.module('copayApp.controllers').controller('createController',
 
       } else if ($scope.formData.seedSource.id == 'copy') {
         console.log("start copy of wallet: ", opts.selectedWallet);
+
         if (!opts.selectedWallet) {
           popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Wallet not selected'));
           return;
@@ -236,6 +242,11 @@ angular.module('copayApp.controllers').controller('createController',
 
 
         opts.mnemonic = opts.selectedWallet.credentials.mnemonic;
+        if (opts.selectedWallet.credentials.mnemonicHasPassphrase) {
+          opts.passphrase = $scope.formData.myMnemonicPassphrase;
+        }
+
+
         console.log("start copy of wallet mnemonic: ", opts.mnemonic);
         var pathData = derivationPathHelper.parse($scope.formData.derivationPath);
         if (!pathData) {

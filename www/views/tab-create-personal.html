@@ -60,6 +60,7 @@
           </label>
 
           <label class="item item-input item-select" ng-show="formData.seedSource.id == 'copy' && !noWalletMessage">
+
             <div class="input-label" translate >Select wallet to clone</div>
             <select class="m10t" ng-model="formData.selectedWallet"
                     ng-options="wallet as (wallet.name + ' (' + wallet.cachedBalance +' )' ) for wallet in wallets"
@@ -68,7 +69,30 @@
             >
               <option value=""> choose wallet </option>
             </select>
+
+
           </label>
+
+
+          <label class="item item-input item-stacked-label" ng-show="(formData.seedSource.id == 'copy') && formData.selectedWallet && formData.selectedWallet.credentials && formData.selectedWallet.credentials.mnemonicHasPassphrase " >
+              <span class="input-label item-start" translate>recovery phrase password</span>
+
+              <input
+                placeholder="{{'Password'|translate}}"
+                type="password"  size="10"
+                autocapitalize="off"
+                ng-model="formData.myMnemonicPassphrase"
+                ng-change="checkPassphrase(formData.myMnemonicPassphrase)"
+                ng-class="{'correct': checkPassphrase == 'correct', 'incorrect': checkPassphrase == 'incorrect'}"
+                class="item-end"
+                ng-required="(formData.seedSource.id == 'copy') && formData.selectedWallet && formData.selectedWallet.credentials && formData.selectedWallet.credentials.mnemonicHasPassphrase"
+              >
+
+
+
+          </label>
+
+
           <label class="item item-input item-stacked-label" translate ng-show="formData.seedSource.id == 'copy' && noWalletMessage">
             {{noWalletMessage}}
           </label>
@@ -101,13 +125,6 @@
                    ng-change="checkPassword(formData.passphrase, formData.repeatPassword)"
                    ng-class="{'correct': result == 'correct', 'incorrect': result == 'incorrect'}">
 
-            <input ng-show="formData.seedSource.id == 'copy'"
-                   placeholder="{{'Password'|translate}}"
-                   type="password"
-                   autocapitalize="off"
-                   ng-model="formData.passphrase"
-                   ng-change="checkPassword(formData.passphrase, formData.repeatPassword)"
-                   ng-class="{'correct': result == 'correct', 'incorrect': result == 'incorrect'}">
 
 
 
