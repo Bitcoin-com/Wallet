@@ -178,6 +178,7 @@ angular.module('copayApp.controllers').controller('importController',
       ongoingProcess.set('importingWallet', true);
 
       $timeout(function () {
+        console.log("_importMnemonic",opts);
         profileService.importMnemonic(words, opts, function (err, client) {
 
           ongoingProcess.set('importingWallet', false);
@@ -275,7 +276,13 @@ angular.module('copayApp.controllers').controller('importController',
 
       opts.account = pathData.account;
       opts.networkName = pathData.networkName;
-      opts.derivationStrategy = pathData.derivationStrategy;
+        if($scope.formData.BCCEnabled) {
+          console.log("patch network name to BCC ")
+          opts.networkName="bcc"+pathData.networkName;
+        }
+
+
+        opts.derivationStrategy = pathData.derivationStrategy;
 
       var words = $scope.formData.words || null;
 
