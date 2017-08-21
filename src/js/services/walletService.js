@@ -192,7 +192,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
       if (wallet.network == 'bcclivenet') {
          isCash = true;
-         console.log("Wallet is cash");
       }
       
       console.log(wallet);
@@ -268,7 +267,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         var alternativeConversionRate = rateService.toFiat(100000000, cache.alternativeIsoCode);
 
         var cashRate = rateService.toFiat(100000000, 'BCC');
-        console.log("Cash rate: " + cashRate);
 
         if (isCash) {
             totalBalanceAlternative = totalBalanceAlternative * cashRate;
