@@ -220,6 +220,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         txp.feePerKb = tx.feeRate;
       } else txp.feeLevel = tx.feeLevel;
     }
+    console.log("Network: " + wallet.network);
+    console.log("Fee: " + tx.feeRate); // 10000
 
     txp.message = tx.description;
 
@@ -273,6 +275,11 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     feeService.getFeeRate(tx.network, tx.feeLevel, function(err, feeRate) {
       if (err) return cb(err);
+
+      if (tx.network == 'bcclivenet') {
+         tx.feeRate = 10000;
+         usingCustomFee = true;
+      }
 
       if (!usingCustomFee) tx.feeRate = feeRate;
       tx.feeLevelName = feeService.feeOpts[tx.feeLevel];
