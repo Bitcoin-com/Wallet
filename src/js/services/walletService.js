@@ -188,6 +188,14 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       var config = configService.getSync().wallet;
 
       var cache = wallet.cachedStatus;
+      var isCash = false;
+
+      if (wallet.network == 'bcclivenet') {
+         isCash = true;
+         console.log("Wallet is cash");
+      }
+      
+      console.log(wallet);
 
       // Address with Balance
       cache.balanceByAddress = balance.byAddress;
@@ -253,10 +261,22 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       rateService.whenAvailable(function() {
 
         var totalBalanceAlternative = rateService.toFiat(cache.totalBalanceSat, cache.alternativeIsoCode);
+        var cashRate = rateService.toFiat(100000000, 'BCC');
         var pendingBalanceAlternative = rateService.toFiat(cache.pendingAmount, cache.alternativeIsoCode);
         var lockedBalanceAlternative = rateService.toFiat(cache.lockedBalanceSat, cache.alternativeIsoCode);
         var spendableBalanceAlternative = rateService.toFiat(cache.spendableAmount, cache.alternativeIsoCode);
         var alternativeConversionRate = rateService.toFiat(100000000, cache.alternativeIsoCode);
+
+        var cashRate = rateService.toFiat(100000000, 'BCC');
+        console.log("Cash rate: " + cashRate);
+
+        if (isCash) {
+            totalBalanceAlternative = totalBalanceAlternative * cashRate;
+            pendingBalanceAlternative = pendingBalanceAlternative * cashRate;
+            lockedBalanceAlternative = lockedBalanceAlternative * cashRate;
+            spendableBalanceAlternative = spendableBalanceAlternative * cashRate;
+            alternativeConversionRate = alternativeConversionRate * cashRate;
+        }
 
         cache.totalBalanceAlternative = $filter('formatFiatAmount')(totalBalanceAlternative);
         cache.pendingBalanceAlternative = $filter('formatFiatAmount')(pendingBalanceAlternative);
