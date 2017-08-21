@@ -28,8 +28,8 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     blockchain_services: {
       'livenet':'https://blockchain.info/tx/',
       'testnet':'https://blockchain.info/tx/',
-      'bcclivenet':'https://blockchain.info/tx/',
-      'bcctestnet':'https://blockchain.info/tx/'
+      'bcclivenet':'https://cashexplorer.bitcoin.com/tx/',
+      'bcctestnet':'https://cashexplorer.bitcoin.com/tx/'
 
     },
 
@@ -58,7 +58,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         wp: ''
       },
       bitcoincom: {
-        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
+        ios: 'https://itunes.apple.com/us/app/bitcoin-wallet-by-bitcoin-com/id1252903728?ls=1&mt=8',
         android: 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet',
         wp: ''
       }
