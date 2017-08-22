@@ -9,6 +9,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   var SMALL_FONT_SIZE_LIMIT = 10;
   var LENGTH_EXPRESSION_LIMIT = 19;
   var isNW = platformInfo.isNW;
+  var fiatMultiplier = 1;
   $scope.isChromeApp = platformInfo.isChromeApp;
 
   $scope.$on('$ionicView.leave', function() {
@@ -131,9 +132,13 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     if($scope.showCash) {
       $scope.unitName = "BCC";
+      fiatMultiplier = rateService.toFiat(100000000, 'BCC');
+      processAmount();
     } else {
       var config = configService.getSync().wallet.settings;
+      fiatMultiplier = 1;
       $scope.unitName = config.unitName;
+      processAmount();
     }
 
 
@@ -215,11 +220,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   function fromFiat(val) {
-    return parseFloat((rateService.fromFiat(val, $scope.alternativeIsoCode) * satToUnit).toFixed(unitDecimals));
+    return parseFloat((rateService.fromFiat(val, $scope.alternativeIsoCode) * satToUnit / fiatMultiplier).toFixed(unitDecimals));
   };
 
   function toFiat(val) {
-    return parseFloat((rateService.toFiat(val * unitToSatoshi, $scope.alternativeIsoCode)).toFixed(2));
+    return parseFloat((rateService.toFiat(val * unitToSatoshi * fiatMultiplier, $scope.alternativeIsoCode)).toFixed(2));
   };
 
   function evaluate(val) {
