@@ -67,8 +67,6 @@ angular.module('copayApp.services').factory('feeService', function($log, $timeou
     var walletClient = bwcService.getClient();
     var BccWalletClient = bwcService.getClient(false,{'bwsurl':conf.bwsbcc.url });
 
-
-
     console.log("Start get fee levels");
     walletClient.getFeeLevels('livenet', function(errLivenet, levelsLivenet) {
       if (errLivenet  ) {

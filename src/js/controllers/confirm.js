@@ -319,8 +319,16 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           if (err) return cb(err);
 
           txp.feeStr = txFormatService.formatAmountStr(txp.fee,wallet.network);
-          txFormatService.formatAlternativeStr(txp.fee, function(v) {
+          var uglyMultiplier = 1;
+          if (wallet.network == 'bcclivenet') {
+		var cashRate = rateService.toFiat(100000000, 'BCC');
+		console.log(cashRate);
+              uglyMultiplier = 0.16;
+          }
+          var modifiedFeeUgly = txp.fee * uglyMultiplier;
+          txFormatService.formatAlternativeStr(modifiedFeeUgly, function(v) {
             txp.alternativeFeeStr = v;
+            console.log("txp.alternativeFeeStr: " + txp.alternativeFeeStr);
           });
 
           var per = (txp.fee / (txp.amount + txp.fee) * 100);
@@ -510,6 +518,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           return cb();
 
         var amountUsd = parseFloat(txFormatService.formatToUSD(txp.amount));
+
         if (amountUsd <= CONFIRM_LIMIT_USD)
           return cb();
 
