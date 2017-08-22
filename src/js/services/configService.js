@@ -150,6 +150,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         if (!configCache.wallet) {
           configCache.wallet = defaultConfig.wallet;
         }
+
+        if (!configCache.wallet.settings) {
+          configCache.wallet.settings = {};
+        }
+
         if (!configCache.wallet.settings.unitCode) {
           configCache.wallet.settings.unitCode = defaultConfig.wallet.settings.unitCode;
         }
