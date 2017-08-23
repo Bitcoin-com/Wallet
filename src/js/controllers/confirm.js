@@ -262,7 +262,16 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.amountStr = txFormatService.formatAmountStr(tx.toAmount,tx.network);
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
-      txFormatService.formatAlternativeStr(tx.toAmount, function(v) {
+
+      // This is ugly and will be replaced later with a long term solution
+      var uglyMultiplier = 1;
+      if (tx.network == 'bcclivenet') {
+          var cashRate = rateService.toFiat(100000000, 'BCC');
+          uglyMultiplier = 0.16;
+      }
+      var modifiedAmountUgly = tx.toAmount * uglyMultiplier;
+
+      txFormatService.formatAlternativeStr(modifiedAmountUgly, function(v) {
         tx.alternativeAmountStr = v;
       });
     }
