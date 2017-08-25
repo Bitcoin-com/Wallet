@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('txDetailsController', function($rootScope, $log, $ionicHistory, $scope, $timeout, walletService, lodash, gettextCatalog, profileService, externalLinkService, popupService, ongoingProcess, txFormatService, txConfirmNotification, feeService, configService) {
+angular.module('copayApp.controllers').controller('txDetailsController', function($rootScope, $log, $ionicHistory, $scope, $timeout, walletService, lodash, gettextCatalog, profileService, externalLinkService, popupService, ongoingProcess, txFormatService, txConfirmNotification, feeService, configService, rateService) {
 
   var txId;
   var listeners = [];
@@ -101,11 +101,13 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
         $ionicHistory.goBack();
         return popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Transaction not available at this time'));
       }
-
+      console.log($scope.btx);
       $scope.btx = txFormatService.processTx(tx,$scope.wallet.network);
+
       txFormatService.formatAlternativeStr(tx.fees, function(v) {
         $scope.btx.feeFiatStr = v;
         $scope.btx.feeRateStr = ($scope.btx.fees / ($scope.btx.amount + $scope.btx.fees) * 100).toFixed(2) + '%';
+        console.log($scope.btx);
       });
 
       if ($scope.btx.action != 'invalid') {
@@ -174,6 +176,11 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
     if ($scope.getShortNetworkName() == 'test') {
         url = "https://test-insight.bitpay.com/tx/" + btx.txid;
     }
+    console.log("Network: " + $scope.getShortNetworkName());
+    if ($scope.getShortNetworkName() == 'bcclivenet') {
+        url = "https://cashexplorer.bitcoin.com/tx/" + btx.txid;
+    }
+
     try {
       url = config.blockchain_services[$scope.wallet.credentials.network] + btx.txid;
     } catch (err) {
@@ -195,6 +202,16 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
 
   var getFiatRate = function() {
     $scope.alternativeIsoCode = $scope.wallet.status.alternativeIsoCode;
+    console.log("Get fiat rate, wallet:");
+    console.log($scope.wallet);
+    var uglyMultiplier = 1;
+
+    if ($scope.wallet.network == 'bcclivenet') {
+        console.log("Is cash");
+        uglyMultiplier = rateService.toFiat(100000000, 'BCC');
+        console.log(uglyMultiplier);
+    }
+
     $scope.wallet.getFiatRate({
       code: $scope.alternativeIsoCode,
       ts: $scope.btx.time * 1000
@@ -205,7 +222,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
       }
       if (res && res.rate) {
         $scope.rateDate = res.fetchedOn;
-        $scope.rate = res.rate;
+        $scope.rate = res.rate * uglyMultiplier;
       }
     });
   };

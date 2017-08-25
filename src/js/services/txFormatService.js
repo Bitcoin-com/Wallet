@@ -115,6 +115,12 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
     if (!tx || tx.action == 'invalid')
       return tx;
 
+    // This will be deprecated in next major release
+    var uglyMultiplier = 1;
+    if (network == 'bcclivenet') {
+          uglyMultiplier = rateService.toFiat(100000000, 'BCC');
+    }
+
     // New transaction output format
     if (tx.outputs && tx.outputs.length) {
 
@@ -127,7 +133,7 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
         }
         tx.amount = lodash.reduce(tx.outputs, function(total, o) {
           o.amountStr = root.formatAmountStr(o.amount,network);
-          o.alternativeAmountStr = root.formatAlternativeStr(o.amount);
+          o.alternativeAmountStr = root.formatAlternativeStr(o.amount * uglyMultiplier);
           return total + o.amount;
         }, 0);
       }
@@ -135,7 +141,7 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
     }
 
     tx.amountStr = root.formatAmountStr(tx.amount,network);
-    tx.alternativeAmountStr = root.formatAlternativeStr(tx.amount);
+    tx.alternativeAmountStr = root.formatAlternativeStr(tx.amount * uglyMultiplier);
     tx.feeStr = root.formatAmountStr(tx.fee || tx.fees,network);
 
     if (tx.amountStr) {
