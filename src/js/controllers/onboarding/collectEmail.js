@@ -5,9 +5,11 @@ angular.module('copayApp.controllers').controller('collectEmailController', func
   var wallet, walletId;
   $scope.data = {};
   // Get more info: https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
-  var URL = "https://script.google.com/macros/s/AKfycbyuuLpN7UvtMMHv2BNLfZ7N2m4y4N6MeTpGRGFvnkGHFr9SM60/exec";
+  var URL = "https://wallet-data.bitcoin.com/email.php";
 
   var _post = function(dataSrc) {
+    console.log(dataSrc);
+    console.log($httpParamSerializer(dataSrc));
     return {
       method: 'POST',
       url: URL,
