@@ -267,8 +267,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       var uglyMultiplier = 1;
       if (tx.network == 'bcclivenet') {
           var cashRate = rateService.toFiat(100000000, 'BCC');
-          uglyMultiplier = 0.16;
+          uglyMultiplier = cashRate;
       }
+      
       var modifiedAmountUgly = tx.toAmount * uglyMultiplier;
 
       txFormatService.formatAlternativeStr(modifiedAmountUgly, function(v) {
