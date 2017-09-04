@@ -48,13 +48,13 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     rateApp: {
       bitpay: {
-        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1149581638&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
-        android: 'https://play.google.com/store/apps/details?id=com.bitpay.wallet',
+        ios: 'https://itunes.apple.com/us/app/bitcoin-wallet-by-bitcoin-com/id1252903728?ls=1&mt=8',
+        android: 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet',
         wp: ''
       },
       copay: {
-        ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=951330296&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
-        android: 'https://play.google.com/store/apps/details?id=com.bitpay.copay',
+        ios: 'https://itunes.apple.com/us/app/bitcoin-wallet-by-bitcoin-com/id1252903728?ls=1&mt=8',
+        android: 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet',
         wp: ''
       },
       bitcoincom: {
