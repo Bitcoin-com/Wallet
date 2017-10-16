@@ -13,7 +13,7 @@
 
       <a class="item item-icon-right" ui-sref="tabs.preferences.preferencesAlias">
         <span translate>Name</span>
-        <span class="item-note">
+        <span class="item-note ellipsis">
           {{wallet.name}}
         </span>
         <i class="icon bp-arrow-right"></i>
@@ -45,9 +45,10 @@
           <span translate>
             If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected.
           </span>
-          <span class="text-light assertive" ng-show="wallet.needsBackup" translate>
+          <a ng-click="openWikiSpendingPassword()" translate>Learn more</a>
+          <div class="text-light assertive" ng-show="wallet.needsBackup" translate>
             Complete the backup process to use this option
-          </span>
+          </div>
         </div>
       </div>
       <div ng-show="wallet.canSign() && touchIdAvailable">

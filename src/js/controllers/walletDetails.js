@@ -52,7 +52,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var analyzeUtxos = function() {
     if (analyzeUtxosDone) return;
 
-    feeService.getFeeLevels(function(err, levels) {
+    feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
       if (err) return;
       walletService.getLowUtxos($scope.wallet, levels, function(err, resp) {
         if (err || !resp) return;
@@ -156,9 +156,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   var updateTxHistory = function(cb) {
     if (!cb) cb = function() {};
-    if ($scope.updatingTxHistory) return;
 
-    $scope.updatingTxHistory = true;
     $scope.updateTxHistoryError = false;
     $scope.updatingTxHistoryProgress = 0;
 
@@ -171,7 +169,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     };
 
-    feeService.getFeeLevels(function(err, levels) {
+    feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
       walletService.getTxHistory($scope.wallet, {
         progressFn: progressFn,
         feeLevels: levels,
@@ -184,7 +182,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         }
         $scope.completeTxHistory = txHistory;
         $scope.showHistory();
-        $scope.$apply();
+        $timeout(function() {
+          $scope.$apply();
+        });
         return cb();
       });
     });
@@ -355,6 +355,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.wallet = profileService.getWallet($scope.walletId);
     if (!$scope.wallet) return;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
+
+    $scope.updatingTxHistory = true;
 
     addressbookService.list(function(err, ab) {
       if (err) $log.error(err);

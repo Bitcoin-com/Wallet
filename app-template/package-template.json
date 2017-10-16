@@ -1,7 +1,7 @@
 {
   "name": "*PACKAGENAME*",
   "description": "*DESCRIPTION*",
-  "author": "Bitcoin.com",
+  "author": "BitPay",
   "version": "*VERSION*",
   "keywords": [
     "bitcoin",
@@ -54,9 +54,9 @@
     "angular": "1.4.6",
     "angular-mocks": "1.4.10",
     "bezier-easing": "^2.0.3",
-    "bhttp": "^1.2.1",
+    "bhttp": "1.2.1",
     "bitauth": "^0.2.1",
-    "bitcore-wallet-client": "5.3.0",
+    "bitcore-wallet-client": "6.2.1",
     "bower": "^1.7.9",
     "cordova-android": "5.1.1",
     "cordova-custom-config": "^3.0.5",
@@ -107,10 +107,9 @@
     "run:android":            "cordova run android --device",
     "run:android-release":            "cordova run android --device --release",
     "log:android":            "adb logcat | grep chromium",
-    "sign:android":           "rm -f platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../copay.keystore -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && ../android-sdk-macosx/build-tools/25.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned.apk",
+    "sign:android":           "rm -f platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../copay.keystore -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk copay_play && $ANDROID_HOME/build-tools/26.0.1/zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned.apk",
     "apply:copay":            "npm i fs-extra && cd app-template && node apply.js copay && npm i && cordova prepare",
     "apply:bitpay":           "npm i fs-extra && cd app-template && node apply.js bitpay && npm i && cordova prepare",
-    "apply:bitcoincom":           "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare",
     "test":                   "echo \"no package tests configured\"",
     "clean":                  "trash platforms && trash plugins && cordova prepare",
     "unstage-package":        "git reset package.json",
@@ -119,9 +118,9 @@
   "devDependencies": {
     "cordova": "^6.3.1",
     "grunt": "^1.0.1",
-    "ionic": "^2.1.0",
+    "ionic": "^3.6.0",
     "trash-cli": "^1.4.0",
-    "lodash": "^4.3.0",
+    "lodash": "^4.17.4",
     "pre-commit": "^1.1.3"
   },
   "pre-commit": "unstage-package"

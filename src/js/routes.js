@@ -287,7 +287,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor',
+        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
@@ -296,7 +296,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.confirm', {
-        url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:useSendMax',
+        url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:coin/:useSendMax',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',
@@ -329,6 +329,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home@tabs': {
             templateUrl: 'views/add.html'
           }
+        },
+        params: {
+          coin: 'btc'
         }
       })
       .state('tabs.add.join', {
@@ -374,6 +377,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        *
        */
 
+      .state('tabs.preferencesCash', {
+        url: '/preferencesCash',
+        views: {
+          'tab-settings@tabs': {
+            controller: 'preferencesCashController',
+            templateUrl: 'views/preferencesCash.html'
+          }
+        }
+      })
+
       .state('tabs.notifications', {
         url: '/notifications',
         views: {
@@ -389,15 +402,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-settings@tabs': {
             controller: 'preferencesLanguageController',
             templateUrl: 'views/preferencesLanguage.html'
-          }
-        }
-      })
-      .state('tabs.unit', {
-        url: '/unit',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'preferencesUnitController',
-            templateUrl: 'views/preferencesUnit.html'
           }
         }
       })
@@ -473,6 +477,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+
 
       /*
        *
@@ -589,6 +594,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.preferencesCash.scan', {
+        url: '/cashScan',
+        views: {
+          'tab-settings@tabs': {
+            controller: 'cashScanController',
+            templateUrl: 'views/cashScan.html'
+          }
+        }
+      })
+
       /*
        *
        * Addressbook
@@ -676,12 +691,12 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         abstract: true,
         params: {
           id: null,
-          nextStep: 'tabs.paymentRequest.confirm'
+          nextStep: 'tabs.paymentRequest.confirm',
         }
       })
 
       .state('tabs.paymentRequest.amount', {
-        url: '/amount',
+        url: '/amount/:coin',
         views: {
           'tab-receive@tabs': {
             controller: 'amountController',
@@ -690,7 +705,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.paymentRequest.confirm', {
-        url: '/confirm/:amount/:currency',
+        url: '/confirm/:amount/:currency/:coin',
         views: {
           'tab-receive@tabs': {
             controller: 'customAmountController',
@@ -923,6 +938,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             controllerAs: 'glidera',
             templateUrl: 'views/glidera.html'
           }
+        },
+        params: {
+          coin: 'btc',
         }
       })
       .state('tabs.buyandsell.glidera.amount', {
@@ -976,6 +994,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             controllerAs: 'coinbase',
             templateUrl: 'views/coinbase.html'
           }
+        },
+        params: {
+          coin: 'btc',
         }
       })
       .state('tabs.preferences.coinbase', {
@@ -1026,36 +1047,54 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         abstract: true
       })
 
+      /*
+       *
+       * Mercado Libre Gift Card
+       *
+       */
 
-      /* Explore Bitcoin.com */
-      .state('tabs.bitcoin-com', {
-        url: '/bitcoincom',
+      .state('tabs.giftcards.mercadoLibre', {
+        url: '/mercadoLibre',
         views: {
           'tab-home@tabs': {
-            controller: 'bitcoincomController',
-            templateUrl: 'views/bitcoincom.html'
+            controller: 'mercadoLibreController',
+            templateUrl: 'views/mercadoLibre.html'
           }
         }
       })
-
-      /* buy.Bitcoin.com */
-      .state('tabs.buyandsell.bitcoindotcom', {
-        url: '/buyBitcoindotcom',
+      .state('tabs.giftcards.mercadoLibre.cards', {
+        url: '/cards',
         views: {
           'tab-home@tabs': {
-            controller: 'buyBitcoindotcomController',
-            templateUrl: 'views/buyBitcoindotcom.html'
+            controller: 'mercadoLibreCardsController',
+            templateUrl: 'views/mercadoLibreCards.html'
           }
+        },
+        params: {
+          invoiceId: null
         }
       })
-
-      /* Price Chart */
-      .state('tabs.pricechart', {
-        url: '/pricechart',
+      .state('tabs.giftcards.mercadoLibre.amount', {
+        url: '/amount',
         views: {
           'tab-home@tabs': {
-            controller: 'pricechartController',
-            templateUrl: 'views/pricechart.html'
+            controller: 'amountController',
+            templateUrl: 'views/amount.html'
+          }
+        },
+        params: {
+          nextStep: 'tabs.giftcards.mercadoLibre.buy',
+          currency: 'BRL',
+          coin: 'btc',
+          fixedUnit: 1,
+        }
+      })
+      .state('tabs.giftcards.mercadoLibre.buy', {
+        url: '/buy/:amount/:currency',
+        views: {
+          'tab-home@tabs': {
+            controller: 'buyMercadoLibreController',
+            templateUrl: 'views/buyMercadoLibre.html'
           }
         }
       })
@@ -1098,7 +1137,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         params: {
           nextStep: 'tabs.giftcards.amazon.buy',
           currency: 'USD',
-          forceCurrency: true
+          coin: 'btc',
+          fixedUnit: true,
         }
       })
       .state('tabs.giftcards.amazon.buy', {
@@ -1138,6 +1178,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         params: {
           id: null,
           currency: 'USD',
+          coin: 'btc',
           useSendMax: null
         }
       })
@@ -1169,7 +1210,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ glideraService, buydotbitcoindotcomService, amazonService, bitpayCardService, applicationService) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ coinbaseService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService) {
 
     uxLanguage.init();
 

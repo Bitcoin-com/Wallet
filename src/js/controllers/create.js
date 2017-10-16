@@ -22,11 +22,16 @@ angular.module('copayApp.controllers').controller('createController',
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       $scope.formData = {};
       var defaults = configService.getDefaults();
+      var config = configService.getSync();
       var tc = $state.current.name == 'tabs.add.create-personal' ? 1 : defaults.wallet.totalCopayers;
       $scope.formData.account = 1;
       $scope.formData.bwsurl = defaults.bws.url;
       $scope.TCValues = lodash.range(2, defaults.limits.totalCopayers + 1);
       $scope.formData.derivationPath = derivationPathHelper.default;
+      $scope.formData.coin = data.stateParams.coin;
+
+      if (config.cashSupport) $scope.enableCash = true;
+
       $scope.setTotalCopayers(tc);
       updateRCSelect(tc);
       resetPasswordFields();
@@ -133,10 +138,11 @@ angular.module('copayApp.controllers').controller('createController',
         m: $scope.formData.requiredCopayers,
         n: $scope.formData.totalCopayers,
         myName: $scope.formData.totalCopayers > 1 ? $scope.formData.myName : null,
-        networkName: $scope.formData.testnetEnabled ? 'testnet' : 'livenet',
+        networkName: $scope.formData.testnetEnabled && $scope.formData.coin != 'bch' ? 'testnet' : 'livenet',
         bwsurl: $scope.formData.bwsurl,
         singleAddress: $scope.formData.singleAddressEnabled,
         walletPrivKey: $scope.formData._walletPrivKey, // Only for testing
+        coin: $scope.formData.coin
       };
 
       var setSeed = $scope.formData.seedSource.id == 'set';
@@ -170,6 +176,11 @@ angular.module('copayApp.controllers').controller('createController',
       }
 
       if ($scope.formData.seedSource.id == walletService.externalSource.ledger.id || $scope.formData.seedSource.id == walletService.externalSource.trezor.id || $scope.formData.seedSource.id == walletService.externalSource.intelTEE.id) {
+        if ($scope.formData.coin == 'bch') {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Hardware wallets are not yet supported with Bitcoin Cash'));
+          return;
+        }
+
         var account = $scope.formData.account;
         if (!account || account < 1) {
           popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid account number'));

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('profileService', function profileServiceFactory($rootScope, $timeout, $filter, $log, sjcl, lodash, storageService, bwcService, configService, gettextCatalog, bwcError, uxLanguage, platformInfo, txFormatService, $state) {
+  .factory('profileService', function profileServiceFactory($rootScope, $timeout, $filter, $log, $state, sjcl, lodash, storageService, bwcService, configService, gettextCatalog, bwcError, uxLanguage, platformInfo, txFormatService, appConfigService) {
 
 
     var isChromeApp = platformInfo.isChromeApp;
@@ -89,6 +89,7 @@ angular.module('copayApp.services')
       wallet.copayerId = wallet.credentials.copayerId;
       wallet.m = wallet.credentials.m;
       wallet.n = wallet.credentials.n;
+      wallet.coin = wallet.credentials.coin;
 
       root.updateWalletSettings(wallet);
       root.wallet[walletId] = wallet;
@@ -222,10 +223,11 @@ angular.module('copayApp.services')
         return ((config.bwsFor && config.bwsFor[walletId]) || defaults.bws.url);
       };
 
-
       var client = bwcService.getClient(JSON.stringify(credentials), {
         bwsurl: getBWSURL(credentials.walletId),
       });
+
+
 
       var skipKeyValidation = shouldSkipValidation(credentials.walletId);
       if (!skipKeyValidation)
@@ -328,6 +330,7 @@ angular.module('copayApp.services')
             passphrase: opts.passphrase,
             account: opts.account || 0,
             derivationStrategy: opts.derivationStrategy || 'BIP44',
+            coin: opts.coin
           });
 
         } catch (ex) {
@@ -336,7 +339,12 @@ angular.module('copayApp.services')
         }
       } else if (opts.extendedPrivateKey) {
         try {
-          walletClient.seedFromExtendedPrivateKey(opts.extendedPrivateKey);
+          walletClient.seedFromExtendedPrivateKey(opts.extendedPrivateKey, {
+            network: network,
+            account: opts.account || 0,
+            derivationStrategy: opts.derivationStrategy || 'BIP44',
+            coin: opts.coin,
+          });
         } catch (ex) {
           $log.warn(ex);
           return cb(gettextCatalog.getString('Could not create using the specified extended private key'));
@@ -346,6 +354,7 @@ angular.module('copayApp.services')
           walletClient.seedFromExtendedPublicKey(opts.extendedPublicKey, opts.externalSource, opts.entropySource, {
             account: opts.account || 0,
             derivationStrategy: opts.derivationStrategy || 'BIP44',
+            coin: opts.coin
           });
           walletClient.credentials.hwInfo = opts.hwInfo;
         } catch (ex) {
@@ -360,6 +369,7 @@ angular.module('copayApp.services')
             passphrase: opts.passphrase,
             language: lang,
             account: 0,
+            coin: opts.coin
           });
         } catch (e) {
           $log.info('Error creating recovery phrase: ' + e.message);
@@ -369,6 +379,7 @@ angular.module('copayApp.services')
               network: network,
               passphrase: opts.passphrase,
               account: 0,
+              coin: opts.coin
             });
           } else {
             return cb(e);
@@ -380,7 +391,11 @@ angular.module('copayApp.services')
 
     // Creates a wallet on BWC/BWS
     var doCreateWallet = function(opts, cb) {
-      $log.debug('Creating Wallet:', opts);
+      var showOpts = lodash.clone(opts);
+      if (showOpts.extendedPrivateKey) showOpts.extendedPrivateKey='[hidden]';
+      if (showOpts.mnemonic) showOpts.mnemonic='[hidden]';
+
+      $log.debug('Creating Wallet:', showOpts);
       $timeout(function() {
         seedWallet(opts, function(err, walletClient) {
           if (err) return cb(err);
@@ -392,6 +407,7 @@ angular.module('copayApp.services')
             network: opts.networkName,
             singleAddress: opts.singleAddress,
             walletPrivKey: opts.walletPrivKey,
+            coin: opts.coin
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
             return cb(null, walletClient, secret);
@@ -435,7 +451,9 @@ angular.module('copayApp.services')
       seedWallet(opts, function(err, walletClient) {
         if (err) return cb(err);
 
-        walletClient.joinWallet(opts.secret, opts.myName || 'me', {}, function(err) {
+        walletClient.joinWallet(opts.secret, opts.myName || 'me', {
+          coin: opts.coin
+        }, function(err) {
           if (err) return bwcError.cb(err, gettextCatalog.getString('Could not join wallet'), cb);
           addAndBindWalletClient(walletClient, {
             bwsurl: opts.bwsurl
@@ -495,7 +513,9 @@ angular.module('copayApp.services')
       var walletId = client.credentials.walletId
 
       if (!root.profile.addWallet(JSON.parse(client.export())))
-        return cb(gettextCatalog.getString('Wallet already in Copay'));
+        return cb(gettextCatalog.getString("Wallet already in {{appName}}", {
+          appName: appConfigService.nameCase
+        }));
 
 
       var skipKeyValidation = shouldSkipValidation(walletId);
@@ -621,6 +641,7 @@ angular.module('copayApp.services')
         entropySourcePath: opts.entropySourcePath,
         derivationStrategy: opts.derivationStrategy || 'BIP44',
         account: opts.account || 0,
+        coin: opts.coin
       }, function(err) {
         if (err) {
           if (err instanceof errors.NOT_AUTHORIZED)
@@ -642,6 +663,7 @@ angular.module('copayApp.services')
       walletClient.importFromExtendedPublicKey(opts.extendedPublicKey, opts.externalSource, opts.entropySource, {
         account: opts.account || 0,
         derivationStrategy: opts.derivationStrategy || 'BIP44',
+        coin: opts.coin
       }, function(err) {
         if (err) {
 
@@ -682,6 +704,7 @@ angular.module('copayApp.services')
       opts.m = 1;
       opts.n = 1;
       opts.networkName = 'livenet';
+      opts.coin = 'btc';
       root.createWallet(opts, cb);
     };
 
@@ -747,6 +770,12 @@ angular.module('copayApp.services')
 
       var ret = lodash.values(root.wallet);
 
+      if (opts.coin) {
+        ret = lodash.filter(ret, function(x) {
+          return (x.credentials.coin == opts.coin);
+        });
+      }
+
       if (opts.network) {
         ret = lodash.filter(ret, function(x) {
           return (x.credentials.network == opts.network);
@@ -767,12 +796,14 @@ angular.module('copayApp.services')
 
       if (opts.hasFunds) {
         ret = lodash.filter(ret, function(w) {
+          if (!w.status) return;
           return (w.status.availableBalanceSat > 0);
         });
       }
 
       if (opts.minAmount) {
         ret = lodash.filter(ret, function(w) {
+          if (!w.status) return;
           return (w.status.availableBalanceSat > opts.minAmount);
         });
       }
@@ -857,7 +888,7 @@ angular.module('copayApp.services')
           x.types = [x.type];
 
           if (x.data && x.data.amount)
-            x.amountStr = txFormatService.formatAmountStr(x.data.amount);
+            x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
 
           x.action = function() {
             // TODO?

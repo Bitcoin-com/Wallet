@@ -53,6 +53,7 @@ angular.module('copayApp.services').factory('coinbaseService', function($http, $
       'wallet:sells:create,' +
       'wallet:transactions:read,' +
       'wallet:transactions:send,' +
+      'wallet:transactions:send:bypass-2fa,' +
       'wallet:payment-methods:read';
 
     // NW has a bug with Window Object
@@ -169,9 +170,9 @@ angular.module('copayApp.services').factory('coinbaseService', function($http, $
   var _getNetAmount = function(amount, cb) {
     // Fee Normal for a single transaction (450 bytes)
     var txNormalFeeKB = 450 / 1000;
-    feeService.getFeeRate(null, 'normal', function(err, feePerKB) {
+    feeService.getFeeRate('btc', 'livenet', 'normal', function(err, feePerKb) {
       if (err) return cb(err);
-      var feeBTC = (feePerKB * txNormalFeeKB / 100000000).toFixed(8);
+      var feeBTC = (feePerKb * txNormalFeeKB / 100000000).toFixed(8);
 
       return cb(null, amount - feeBTC, feeBTC);
     });

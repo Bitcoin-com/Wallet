@@ -34,7 +34,7 @@
               <span translate>Show address</span>
             </button>
           </span>
-          <qrcode ng-if="addr" size="220" data="bitcoin:{{addr}}" color="#334"></qrcode>
+          <qrcode ng-if="addr" size="220" data="{{ protocolHandler }}:{{addr}}" color="#334"></qrcode>
           <div class="address-label">
             <span class="ellipsis">{{addr}}</span>
             <ion-spinner ng-show="!addr" class="spinner-dark" icon="crescent"></ion-spinner>
@@ -62,9 +62,7 @@
 
     <div class="wallet-selector" ng-click="showWalletSelector()" ng-if="wallets[0] && wallet">
       <a ng-if="wallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
-        <i class="icon big-icon-svg">
-          <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg wallet"/>
-        </i>
+        <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
         <span>
           {{wallet.name || wallet.id}}
         </span>
