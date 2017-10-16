@@ -9913,7 +9913,7 @@ ion-nav-bar.hide {
 .card {
   margin: 20px 14px; }
 
-ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm:before, ion-view#copayers-invitation:before, ion-view#tab-home:before, ion-view#tab-receive:before, ion-view#tab-send:before, ion-view.settings:before, ion-view#bitpayCard:before, ion-view#bitpayCard-intro:before, ion-view#view-address-book:before, ion-view#addresses:before, ion-view#send-feedback:before, ion-view#txp-details:before, ion-view#coinbase:before, ion-view#glidera:before, ion-view#amazon:before, ion-view#custom-amount:before {
+ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm:before, ion-view#copayers-invitation:before, ion-view#tab-home:before, ion-view#tab-receive:before, ion-view#tab-send:before, ion-view.settings:before, ion-view#bitpayCard:before, ion-view#bitpayCard-intro:before, ion-view#view-address-book:before, ion-view#addresses:before, ion-view#send-feedback:before, ion-view#choose-fee-level:before, ion-view#txp-details:before, ion-view#coinbase:before, ion-view#glidera:before, ion-view#amazon:before, ion-view#mercadolibre:before, ion-view#custom-amount:before {
   content: " ";
   display: block;
   position: absolute;
@@ -9923,7 +9923,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   height: 44px;
   background-color: #fab915; }
 
-.platform-ios.platform-cordova:not(.fullscreen) ion-view.deflash-blue:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-amount:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-confirm:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#copayers-invitation:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-home:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-receive:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-send:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view.settings:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#bitpayCard:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#bitpayCard-intro:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-address-book:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#addresses:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#send-feedback:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#txp-details:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#coinbase:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#glidera:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#amazon:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#custom-amount:before {
+.platform-ios.platform-cordova:not(.fullscreen) ion-view.deflash-blue:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-amount:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-confirm:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#copayers-invitation:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-home:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-receive:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#tab-send:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view.settings:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#bitpayCard:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#bitpayCard-intro:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#view-address-book:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#addresses:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#send-feedback:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#choose-fee-level:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#txp-details:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#coinbase:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#glidera:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#amazon:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#mercadolibre:before, .platform-ios.platform-cordova:not(.fullscreen) ion-view#custom-amount:before {
   height: 64px; }
 
 .just-a-hint, .icon.bp-arrow-right, .icon.bp-arrow-down, .icon.bp-arrow-up {
@@ -10272,6 +10272,19 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     #view-amount .amount-pane-no-recipient .amount .light {
       color: #9b9bab; }
 
+#view-amount .amount .icon-toggle {
+  font-size: 1.2em;
+  width: auto;
+  margin: 0.8em auto;
+  border: 1px solid #f2f2f2;
+  color: #445;
+  border-radius: 3px;
+  padding: 0 10px;
+  cursor: pointer; }
+  @media (max-height: 280px) {
+    #view-amount .amount .icon-toggle {
+      margin: 0.1em auto; } }
+
 #view-amount .amount__editable--minimize {
   font-size: 22px; }
 
@@ -10316,7 +10329,6 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 #view-amount .amount__result {
   color: #9b9bab;
   font-size: .9em;
-  margin-bottom: -.9em;
   line-height: 1; }
   @media (max-height: 480px) {
     #view-amount .amount__result {
@@ -10324,8 +10336,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 
 #view-amount .amount__result-equiv {
   color: #667;
-  font-size: 1.2em;
-  margin-top: 2rem; }
+  font-size: 1.2em; }
   @media (max-height: 480px) {
     #view-amount .amount__result-equiv {
       margin-top: 0;
@@ -10460,6 +10471,11 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 #tab-home .icon-amazon {
   background-image: url("../img/icon-amazon.svg"); }
 
+#tab-home .icon-ml {
+  background-image: url("../img/mercado-libre/icon-ml.svg");
+  background-position: center;
+  background-size: 85%; }
+
 #tab-home .bg.wallet {
   padding: .25rem; }
 
@@ -10487,6 +10503,10 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   @media (min-width: 450px) {
     #tab-home .card .item-sub:before {
       width: 90%; } }
+
+#tab-home .wallet-coin-logo {
+  vertical-align: middle;
+  margin-right: 5px; }
 
 #tab-home .wallet-details__item.item {
   padding-top: 0;
@@ -10859,11 +10879,25 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 .settings .has-comment {
   border-bottom: 0 none; }
 
+.settings .scan-label {
+  cursor: pointer;
+  cursor: hand;
+  color: #494949;
+  font-weight: bold; }
+
 .settings .comment {
   padding: 15px;
   background-color: #fff;
   font-size: 0.9em;
   color: #667; }
+  .settings .comment .text {
+    padding-left: 25px; }
+  .settings .comment .icon {
+    position: absolute; }
+    .settings .comment .icon img {
+      width: 20px; }
+  .settings .comment a {
+    cursor: pointer; }
 
 .settings-explanation, .settings-button-group {
   padding: 0 1rem;
@@ -10924,6 +10958,10 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 .settings .settings-list .item-button-right > .button {
   top: 16px; }
 
+.settings .settings-list .toggle-small.item-toggle .toggle,
+.settings .settings-list .item-button-right > .button {
+  top: 25px; }
+
 .settings .settings-list .item-button-right > .button {
   font-size: 16px; }
 
@@ -10940,11 +10978,38 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     border: 1px solid;
     color: #00901B; }
 
+.settings .log-bg {
+  background: white; }
+
+.settings .log-entry {
+  font-size: 12px;
+  line-height: 18px;
+  border: none; }
+
+.settings .log-timestamp {
+  font-weight: bold; }
+
+.settings .log-level {
+  font-weight: bold; }
+
+.settings .alt-currency-radio .item-content {
+  padding-right: 16px; }
+
+.settings .alt-currency-radio .radio-icon {
+  display: none; }
+
 #tab-settings .list .item .big-icon-svg > .bg {
   width: 20px;
   height: 20px;
   border-radius: 0;
   box-shadow: none; }
+
+#tab-settings .list .item .big-icon-svg > .bch {
+  background-color: #9b9bab;
+  border-radius: 1rem; }
+
+#tab-settings .list .item .big-icon-svg > .bch-enabled {
+  background-color: #ff9900 !important; }
 
 #tab-settings .list .item .big-icon-svg.circle {
   left: 8px; }
@@ -10975,6 +11040,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   font-size: 18px; }
 
 #settings-fee .estimates {
+  min-height: 6rem;
   font-size: 15px;
   color: #445;
   margin-bottom: .5rem; }
@@ -11261,6 +11327,24 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   padding: 1rem;
   background: #f8f8f9; }
 
+.wallet-details__no-transaction {
+  color: #667;
+  font-size: 12.5px;
+  text-align: center;
+  padding-top: 2rem; }
+
+.wallet-details__no-update-history {
+  color: #ef473a;
+  font-size: 12.5px;
+  text-align: center;
+  padding-top: 2rem; }
+
+.wallet-details__updating-history {
+  color: #667;
+  font-size: 12.5px;
+  text-align: center;
+  padding-top: 1rem; }
+
 #walletDetails {
   background: #F8F8F9; }
   #walletDetails .scroll-refresher {
@@ -11323,8 +11407,6 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     display: block;
     align-items: center;
     justify-content: center; }
-    #walletDetails .amount.collapsible {
-      margin-bottom: 10px; }
     #walletDetails .amount__balance {
       -webkit-transform: scale3d(1, 1, 1) translateY(45px);
       transform: scale3d(1, 1, 1) translateY(45px); }
@@ -11335,7 +11417,16 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       line-height: 36px; }
     #walletDetails .amount__button-balance {
       background-color: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.25); }
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      margin-top: 10px; }
+      #walletDetails .amount__button-balance i.icon {
+        margin-right: 7px;
+        vertical-align: middle; }
+    #walletDetails .amount__error {
+      font-size: 14px;
+      padding: 35px 20px; }
+  #walletDetails .no-alternative {
+    padding-top: 45px; }
   #walletDetails .item.item-footer {
     font-weight: lighter; }
   #walletDetails .tx-search:before {
@@ -11364,6 +11455,14 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   font-size: 20px;
   color: #fff;
   width: 95%; }
+  .wallet-details-wallet-info .actions {
+    float: right; }
+    .wallet-details-wallet-info .actions a {
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px;
+      line-height: 16px; }
 
 .wallet-not-backed-up-warning {
   background: orange;
@@ -11475,11 +11574,13 @@ a.item {
       padding: 0 0 0 1rem;
       margin: 0;
       border: 0; }
-      #bitpayCard .item.activity.receive .svg #-Transaction-icons,
+      #bitpayCard .item.activity.receive svg .nc-icon-wrapper g,
+      #bitpayCard .item.activity.receive svg .nc-icon-wrapper path,
       #bitpayCard .item.activity.receive .tx-icon .houston {
         stroke: #09C286;
         color: #09C286; }
-      #bitpayCard .item.activity.pending .svg #-Transaction-icons,
+      #bitpayCard .item.activity.pending svg .nc-icon-wrapper g,
+      #bitpayCard .item.activity.pending svg .nc-icon-wrapper path,
       #bitpayCard .item.activity.pending .tx-icon .houston {
         stroke: #fab915;
         color: #fab915; }
@@ -11526,11 +11627,13 @@ a.item {
     color: #445;
     overflow: hidden; }
   #bitpayCard .tx-message {
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    text-transform: capitalize; }
   #bitpayCard .tx-location {
     margin-right: 1rem;
     font-size: 12.5px;
-    color: #9b9bab; }
+    color: #9b9bab;
+    text-transform: capitalize; }
   #bitpayCard .tx-amount {
     font-size: 16px;
     white-space: nowrap; }
@@ -11968,6 +12071,21 @@ a.item {
 #wallet-backup-phrase {
   background: #ffffff;
   text-align: center; }
+  #wallet-backup-phrase .comment {
+    color: #667;
+    font-size: 0.9em; }
+  #wallet-backup-phrase .item {
+    color: #445;
+    padding-top: 1.3rem;
+    padding-bottom: 1.3rem;
+    border: none; }
+  #wallet-backup-phrase .heading {
+    font-size: 17px;
+    color: #445;
+    margin: 1rem 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none; }
   #wallet-backup-phrase h3 {
     padding: 15px; }
   #wallet-backup-phrase .button-confirm {
@@ -13097,6 +13215,48 @@ action-sheet .bp-action-sheet__backdrop {
 #screenshot-warning-modal .popup-modal-header-img {
   background-image: url("../img/no-screenshot.svg"); }
 
+#choose-fee-level .selected-fee-level {
+  text-align: center;
+  background: #f9f9f9;
+  font-size: 11px;
+  height: 140px;
+  padding-top: 25px; }
+  #choose-fee-level .selected-fee-level .row {
+    padding: 0; }
+  #choose-fee-level .selected-fee-level .col {
+    padding-top: 15px; }
+  #choose-fee-level .selected-fee-level .separator {
+    border-left: 1px solid #d9d9df;
+    height: 75%; }
+  #choose-fee-level .selected-fee-level .value {
+    font-size: 20px;
+    margin-bottom: 10px; }
+  #choose-fee-level .selected-fee-level .rate .list {
+    margin-bottom: 0; }
+  #choose-fee-level .selected-fee-level .item-input input[type="number"] {
+    text-align: right;
+    padding-right: 90px; }
+  #choose-fee-level .selected-fee-level .item-input .unit {
+    color: #9c9c9c;
+    background: #f2f2f2;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 15px 10px 12px 10px; }
+
+#choose-fee-level .error-fee {
+  padding: 8px 10px;
+  color: #ef473a;
+  font-size: 12px;
+  text-align: center; }
+  #choose-fee-level .error-fee i {
+    margin-right: 8px; }
+
+#choose-fee-level .box-notification {
+  margin: 0;
+  padding: 1px;
+  text-align: center; }
+
 click-to-accept {
   position: fixed;
   bottom: 0;
@@ -13506,6 +13666,9 @@ slide-to-accept-success {
     #txp-details .info .item.low-fees i,
     #view-confirm .info .item.low-fees i {
       padding-right: 20px; }
+    #txp-details .info .item.low-fees span,
+    #view-confirm .info .item.low-fees span {
+      display: inline; }
 
 #txp-details .info .toggle-unconfirmed,
 #view-confirm .info .toggle-unconfirmed {
@@ -13734,6 +13897,15 @@ item-selector .item-selector .item-selector-details {
 wallet-selector .bp-action-sheet__sheet {
   padding-left: 2rem;
   padding-right: .75rem; }
+
+wallet-selector .subheader {
+  margin: 20px 0 10px 0;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #EFEFEF; }
+  wallet-selector .subheader .wallet-coin-logo {
+    vertical-align: middle;
+    margin-right: 5px; }
 
 wallet-selector .wallet-selector .wallet {
   border: 0;
@@ -14126,6 +14298,149 @@ account-selector {
       margin-right: .7rem;
       box-shadow: none; }
 
+#mercadolibre .icon-amazon {
+  background-image: url("../img/mercado-libre/icon-ml.svg"); }
+
+#mercadolibre .spinner svg {
+  stroke: black;
+  fill: black; }
+
+#mercadolibre .add-bottom-for-cta {
+  bottom: 92px; }
+
+#mercadolibre .head {
+  padding: 30px 20px 4rem;
+  border-top: 0; }
+  #mercadolibre .head .sending-label {
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    margin-bottom: 1.8rem; }
+    #mercadolibre .head .sending-label img {
+      margin-right: 1rem;
+      height: 35px;
+      width: 35px; }
+    #mercadolibre .head .sending-label span {
+      text-transform: capitalize; }
+    #mercadolibre .head .sending-label .big-icon-svg {
+      padding: 0 7px 0 0;
+      margin-right: 0.6rem; }
+    #mercadolibre .head .sending-label .big-icon-svg > .bg {
+      height: 28px;
+      box-shadow: none; }
+  #mercadolibre .head .amount-label {
+    line-height: 30px; }
+    #mercadolibre .head .amount-label .amount {
+      font-size: 38px;
+      margin-bottom: .5rem; }
+      #mercadolibre .head .amount-label .amount > .unit {
+        font-family: "Roboto-Light"; }
+    #mercadolibre .head .amount-label .alternative {
+      font-size: 12px;
+      font-family: "Roboto-Light";
+      color: #9B9B9B; }
+
+#mercadolibre .item {
+  border-color: #EFEFEF; }
+
+#mercadolibre .info .badge {
+  border-radius: 0;
+  padding: .5rem; }
+
+#mercadolibre .info .item {
+  color: #4A4A4A;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px; }
+  #mercadolibre .info .item:not(.item-icon-right) {
+    padding-right: 20px; }
+  #mercadolibre .info .item .label {
+    font-size: 14px;
+    color: #6C6C6E;
+    margin-bottom: 8px; }
+  #mercadolibre .info .item .capitalized {
+    text-transform: capitalize; }
+  #mercadolibre .info .item .wallet .big-icon-svg > .bg {
+    height: 24px;
+    width: 24px;
+    padding: 2px;
+    box-shadow: none;
+    vertical-align: middle; }
+  #mercadolibre .info .item .total-amount {
+    font-weight: bold; }
+  #mercadolibre .info .item.single-line {
+    display: flex;
+    align-items: center;
+    padding-top: 17px;
+    padding-bottom: 17px; }
+    #mercadolibre .info .item.single-line .label {
+      margin: 0;
+      flex-grow: 1; }
+
+#mercadolibre .info .item-divider {
+  padding-top: 1.2rem;
+  color: #6C6C6E;
+  font-size: 15px; }
+
+#mercadolibre .info .wallet {
+  display: flex;
+  align-items: center;
+  padding: .2rem 0;
+  margin-bottom: 5px; }
+  #mercadolibre .info .wallet ~ .bp-arrow-right {
+    top: 14px; }
+  #mercadolibre .info .wallet > i {
+    padding: 0;
+    position: static; }
+    #mercadolibre .info .wallet > i > img {
+      height: 24px;
+      width: 24px;
+      padding: 2px;
+      margin-right: .7rem;
+      box-shadow: none; }
+
+#meli-list-cards img.item-logo {
+  width: auto;
+  height: auto;
+  border-radius: 0; }
+
+#meli-card .card-head {
+  margin: 20px 0;
+  text-align: center; }
+  #meli-card .card-head .date {
+    font-size: 12px;
+    margin: 10px 0; }
+  #meli-card .card-head .amount {
+    font-size: 16px;
+    font-weight: bold; }
+
+#meli-card .card-status {
+  text-align: center;
+  margin-bottom: 25px; }
+  #meli-card .card-status .card-status-desc {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #f8ecd0; }
+  #meli-card .card-status .redeem-pin {
+    font-weight: bold;
+    font-size: 22px; }
+  #meli-card .card-status .button-redeem {
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    color: #aaa; }
+
+#meli-card .card-remove {
+  text-align: center;
+  margin-top: 30px; }
+  #meli-card .card-remove .button-remove {
+    margin-top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 12px;
+    color: red; }
+
 #coinbase .button-small, #glidera .button-small {
   font-size: 13px; }
 
@@ -14300,6 +14615,143 @@ account-selector {
   #pin .error {
     color: #f13333;
     max-width: 70%; }
+
+log-options .bp-action-sheet__sheet {
+  padding-left: 2rem;
+  padding-right: .75rem; }
+
+log-options .entry {
+  border: 0;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 1px;
+  overflow: visible; }
+  log-options .entry > i {
+    color: #494949;
+    padding: 0 0 5px 0;
+    margin-left: -5px; }
+    log-options .entry > i > img {
+      height: 39px;
+      width: 39px;
+      padding: 4px; }
+
+log-options .entry-inner {
+  display: flex;
+  position: relative;
+  padding-top: 16px;
+  padding-bottom: 16px; }
+  log-options .entry-inner::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: #EFEFEF;
+    bottom: 0;
+    right: 0;
+    content: ''; }
+
+log-options .entry-details {
+  flex-grow: 1; }
+  log-options .entry-details .entry-name {
+    padding-bottom: 5px; }
+
+log-options #check-bar .check-bar .initial-bar {
+  border: 2px solid #494949; }
+
+log-options #check-bar .check-bar .fill-bar-error {
+  width: 10% !important; }
+
+log-options #check-bar .check-bar .fill-bar-warn {
+  width: 35% !important; }
+
+log-options #check-bar .check-bar .fill-bar-info {
+  width: 65% !important; }
+
+log-options #check-bar .check-bar .fill-bar-debug {
+  width: 90% !important; }
+
+log-options #check-bar .head .checkbox-icon {
+  width: 22px;
+  height: 22px;
+  top: 0; }
+
+log-options #check-bar .checkbox-icon {
+  width: 10px;
+  height: 10px;
+  top: 6px; }
+
+#check-bar .item {
+  padding: 40px; }
+
+#check-bar .checkbox-icon {
+  width: 22px;
+  height: 22px; }
+
+#check-bar .checkbox-icon:after {
+  border: none; }
+
+#check-bar .check-bar {
+  position: relative; }
+  #check-bar .check-bar .initial-bar-default {
+    border: 2px solid #fab915;
+    width: 0%;
+    top: 40px;
+    z-index: 99;
+    border-radius: 10px;
+    position: absolute; }
+  #check-bar .check-bar .base-bar {
+    position: absolute;
+    width: 100%;
+    border-bottom: 2px solid #f2f2f2;
+    top: 41px;
+    z-index: 98;
+    left: 0px; }
+  #check-bar .check-bar.list {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between; }
+    #check-bar .check-bar.list .custom-checkbox {
+      text-align: -webkit-center; }
+      #check-bar .check-bar.list .custom-checkbox .item {
+        border-style: none;
+        z-index: 999;
+        background-color: inherit; }
+      #check-bar .check-bar.list .custom-checkbox label {
+        padding-top: 5px; }
+
+#cash-scan .comment {
+  color: #667;
+  font-size: 0.9em; }
+
+#cash-scan .item {
+  color: #445;
+  padding-top: 1.3rem;
+  padding-bottom: 1.3rem; }
+
+#cash-scan .heading {
+  font-size: 17px;
+  color: #445;
+  margin: 1rem 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: none; }
+
+#cash-scan .text-disabled {
+  color: #9b9bab; }
+
+#cash-scan .supported {
+  display: flex; }
+  #cash-scan .supported .wallet-content {
+    padding-left: 7px; }
+
+#cash-scan .duplicate-button {
+  position: absolute;
+  right: 15px;
+  padding-top: .5rem; }
+
+#cash-scan a {
+  cursor: pointer; }
 
 .gravatar {
   border-radius: 3px;
