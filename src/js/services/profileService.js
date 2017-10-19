@@ -72,8 +72,22 @@ angular.module('copayApp.services')
         return cb(hideBalance);
       });
     };
+
+    // Convert tarascash style bch wallet to copay style
+    function convertToNewCashWallet(wallet) {
+      var baseUrl = bwcService.getClient(null, null).baseUrl;
+      wallet.baseUrl = baseUrl;
+      wallet.credentials.coin = 'bch';
+      wallet.credentials.network = 'livenet';
+    }
+
     // Adds a wallet client to profileService
     root.bindWalletClient = function(wallet, opts) {
+
+      if (wallet.credentials.network == 'bcclivenet') {
+        convertToNewCashWallet(wallet);
+      }
+
       var opts = opts || {};
       var walletId = wallet.credentials.walletId;
 
