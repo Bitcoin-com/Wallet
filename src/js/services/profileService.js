@@ -75,9 +75,8 @@ angular.module('copayApp.services')
 
     // Convert tarascash style bch wallet to copay style
     function convertToNewCashWallet(wallet) {
-      //var baseUrl = bwcService.getClient(null, null).baseUrl;
-      var baseUrl = 'https://bws-v2.bitcoin.com/bws/api';
-      wallet.baseUrl = baseUrl;
+      var defaults = configService.getDefaults();
+      wallet.baseUrl = defaults.bwscash.url;
       wallet.credentials.coin = 'bch';
       wallet.credentials.network = 'livenet';
     }
