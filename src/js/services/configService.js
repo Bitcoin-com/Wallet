@@ -14,7 +14,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     // Bitcore wallet service URL
     bws: {
-      url: 'https://bws.bitcoin.com/bws/api',
+      url: 'https://bws.bitcoin.com/bws/api'
+    },
+
+    bwscash: {
+      url: 'https://bwscash.bitcoin.com/bws/api'
     },
 
     download: {
@@ -69,7 +73,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       bannedUntil: null,
     },
 
-    cashSupport: false,
+    cashSupport: true,
 
     recentTransactions: {
       enabled: true,
@@ -107,7 +111,6 @@ angular.module('copayApp.services').factory('configService', function(storageSer
   root.getSync = function() {
     if (!configCache)
       throw new Error('configService#getSync called when cache is not initialized');
-
     return configCache;
   };
 
@@ -122,7 +125,6 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
 
   root.get = function(cb) {
-
     storageService.getConfig(function(err, localConfig) {
       if (localConfig) {
         configCache = JSON.parse(localConfig);
@@ -142,10 +144,8 @@ angular.module('copayApp.services').factory('configService', function(storageSer
           configCache.hideNextSteps = defaultConfig.hideNextSteps;
         }
 
-
-        if (!configCache.cashSupport) {
-          configCache.cashSupport = defaultConfig.cashSupport;
-        }
+        // Always support Bitcoin Cash
+        configCache.cashSupport = true;
 
         if (!configCache.recentTransactions) {
           configCache.recentTransactions = defaultConfig.recentTransactions;
@@ -163,6 +163,19 @@ angular.module('copayApp.services').factory('configService', function(storageSer
           configCache.wallet.settings.unitToSatoshi = defaultConfig.wallet.settings.unitToSatoshi;
           configCache.wallet.settings.unitDecimals = defaultConfig.wallet.settings.unitDecimals;
           configCache.wallet.settings.unitCode = defaultConfig.wallet.settings.unitCode;
+        }
+
+        // Convert tarascash wallet to new style cash wallet
+        if (configCache.bwsbcc && configCache.bwsbcc.url && configCache.bwsbcc.url.indexOf('bwsbcc') >= 0) {
+          configCache.bwsbcc = defaultConfig.bwscash.url;
+        }
+
+        if (configCache.bwsFor) {
+          for (var key in configCache.bwsFor) {
+            if (configCache.bwsFor[key].indexOf('bwsbcc') >= 0) {
+              configCache.bwsFor[key] = defaultConfig.bwscash.url;
+            }
+          }
         }
 
       } else {
