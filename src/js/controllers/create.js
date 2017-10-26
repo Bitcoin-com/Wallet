@@ -19,13 +19,14 @@ angular.module('copayApp.controllers').controller('createController',
       12: 1,
     };
 
+    var defaults = configService.getDefaults();
+
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       $scope.formData = {};
-      var defaults = configService.getDefaults();
       var config = configService.getSync();
       var tc = $state.current.name == 'tabs.add.create-personal' ? 1 : defaults.wallet.totalCopayers;
       $scope.formData.account = 1;
-      $scope.formData.bwsurl = defaults.bws.url;
+      $scope.formData.bwsurl = data.stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
       $scope.TCValues = lodash.range(2, defaults.limits.totalCopayers + 1);
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.coin = data.stateParams.coin;
@@ -36,6 +37,10 @@ angular.module('copayApp.controllers').controller('createController',
       updateRCSelect(tc);
       resetPasswordFields();
     });
+
+    $scope.coinChanged = function() {
+      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
+    }
 
     $scope.showAdvChange = function() {
       $scope.showAdv = !$scope.showAdv;

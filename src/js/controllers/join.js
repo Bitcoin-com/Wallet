@@ -3,8 +3,9 @@
 angular.module('copayApp.controllers').controller('joinController',
   function($scope, $rootScope, $timeout, $state, $ionicHistory, $ionicScrollDelegate, profileService, configService, storageService, applicationService, gettextCatalog, lodash, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, $log, $stateParams, popupService, appConfigService) {
 
+    var defaults = configService.getDefaults();
+
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
-      var defaults = configService.getDefaults();
       var config = configService.getSync();
       $scope.formData = {};
       $scope.formData.bwsurl = defaults.bws.url;
@@ -16,6 +17,10 @@ angular.module('copayApp.controllers').controller('joinController',
       resetPasswordFields();
       updateSeedSourceSelect();
     });
+
+    $scope.coinChanged = function() {
+      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
+    }
 
     $scope.showAdvChange = function() {
       $scope.showAdv = !$scope.showAdv;

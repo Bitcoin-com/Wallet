@@ -74,6 +74,10 @@ angular.module('copayApp.controllers').controller('importController',
       });
     };
 
+    $scope.coinChanged = function() {
+      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
+    }
+
     $scope.processWalletInfo = function(code) {
       if (!code) return;
 
