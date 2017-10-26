@@ -17,6 +17,11 @@
   .icon-amazon {
     background-image: url("../img/icon-amazon.svg");
   }
+  .icon-ml {
+    background-image: url("../img/mercado-libre/icon-ml.svg");
+    background-position: center;
+    background-size: 85%;
+  }
   .bg {
     &.wallet {
       padding: .25rem
@@ -53,6 +58,10 @@
         }
       }
     }
+  }
+  .wallet-coin-logo {
+    vertical-align: middle;
+    margin-right: 5px;
   }
   .wallet-details__item.item {
     padding-top: 0;

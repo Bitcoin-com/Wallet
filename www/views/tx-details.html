@@ -52,9 +52,7 @@
           <span class="label" ng-if="btx.action === 'sent'" translate>From</span>
           <span class="label" ng-if="btx.action !== 'sent'" translate>To</span>
           <div class="wallet">
-            <i class="icon big-icon-svg">
-              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg"/>
-            </i>
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
             <div>{{wallet.name}}</div>
           </div>
         </div>
@@ -91,9 +89,11 @@
         <div class="item low-fees" ng-if="btx.lowAmount">
           <i class="icon"><img src="img/icon-warning.png" width="20px"></i>
           <span translate>
-This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself. </span>
+            This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself.
+          </span>
+          <a ng-click="readMore()" translate>Learn more</a>
         </div>
- 
+
         <div class="item single-line">
           <span class="label" translate>Confirmations</span>
           <span class="item-note">

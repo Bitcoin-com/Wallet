@@ -20,6 +20,12 @@
   .has-comment {
     border-bottom: 0 none;
   }
+  .scan-label {
+    cursor: pointer;
+    cursor: hand;
+    color: $link-color;
+    font-weight: bold;
+  }
   .comment {
     padding: 15px;
     background-color: #fff;
@@ -33,6 +39,9 @@
       img {
         width: 20px;
       }
+    }
+    a {
+      cursor: pointer;
     }
   }
   &-explanation, &-button-group {
@@ -137,6 +146,14 @@
  .log-level {
     font-weight: bold;
   }
+  .alt-currency-radio {
+    .item-content {
+      padding-right: 16px;
+    }
+    .radio-icon {
+      display: none;
+    }
+  }
 }
 
 #tab-settings {
@@ -148,6 +165,13 @@
         height:20px;
         border-radius: 0;
         box-shadow: none;
+       }
+       & > .bch {
+         background-color: #9b9bab;
+         border-radius: 1rem;
+       }
+       & > .bch-enabled {
+         background-color: #ff9900 !important;
        }
        &.circle{
           left:8px;

@@ -26,6 +26,9 @@
         <qr-scanner class="qr-icon size-24" on-scan="processWalletInfo(data)"></qr-scanner>
       </div>
     </div>
+
+    <div ng-include="'views/includes/cash.html'" ng-if="enableCash"></div>
+
     <div class="item item-divider"></div>
 
     <a class="item" ng-click="showAdvChange()">
@@ -61,7 +64,7 @@
         <select class="m10t" ng-model="formData.seedSourceAll" ng-options="seed as seed.label for seed in seedOptionsAll"></select>
       </label>
 
-      <ion-toggle ng-model="formData.testnetEnabled" ng-change="setDerivationPath()" toggle-class="toggle-positive">
+      <ion-toggle ng-model="formData.testnetEnabled" ng-change="setDerivationPath()" toggle-class="toggle-positive" ng-if="formData.coin == 'btc'">
         <span translate>Testnet</span>
       </ion-toggle>
 

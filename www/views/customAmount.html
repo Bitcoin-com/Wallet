@@ -21,7 +21,7 @@
   <ion-content scroll="false">
     <div class="address" ng-if="address && amountBtc">
       <div class="qr-code" copy-to-clipboard="copyToClipboard()">
-        <qrcode size="220" data="bitcoin:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
+        <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
       <div class="info">
         <div class="item single-line" copy-to-clipboard="address">
@@ -38,9 +38,7 @@
         </div>
         <div class="item single-line">
           <div class="wallet">
-            <i class="icon big-icon-svg">
-              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg">
-            </i>
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
             {{wallet.name}}
           </div>
           <div class="label" translate>Receive in</div>

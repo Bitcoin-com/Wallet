@@ -34,7 +34,7 @@
           <div class="label" translate>From</div>
           <div class="wallet">
             <i class="icon big-icon-svg">
-              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg">
+              <img ng-src="img/{{wallet.network == 'testnet' ? 'icon-wallet-testnet' : 'icon-wallet'}}.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg">
             </i>
             {{wallet ? wallet.name : '...'}}
           </div>
@@ -53,14 +53,14 @@
             </span>
           </div>
           <div class="item">
-            <span translate>Invoice Fee</span>
+            <span translate>Network Cost</span>
             <span class="item-note">
               <span ng-if="invoiceFee">{{invoiceFee | currency:currencySymbol:2}} {{currencyIsoCode}}</span>
               <span ng-if="!invoiceFee">...</span>
             </span>
           </div>
           <div class="item">
-            <span translate>Network Fee</span>
+            <span translate>Miner Fee</span>
             <span class="item-note">
               <span ng-if="networkFee">{{networkFee | currency:currencySymbol:2}} {{currencyIsoCode}}</span>
               <span ng-if="!networkFee">...</span>

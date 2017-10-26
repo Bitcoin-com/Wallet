@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, configService, platformInfo) {
+angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, configService, platformInfo, externalLinkService, gettextCatalog) {
 
   var updateConfig = function() {
     var config = configService.getSync();
@@ -14,6 +14,7 @@ angular.module('copayApp.controllers').controller('advancedSettingsController', 
     $scope.hideNextSteps = {
       value: config.hideNextSteps.enabled
     };
+
   };
 
   $scope.spendUnconfirmedChange = function() {

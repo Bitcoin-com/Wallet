@@ -9,7 +9,7 @@
 
   <ion-content class="add-bottom-for-cta">
     <div class="list">
-      <div class="item head">
+      <div class="item head" ng-hide="criticalError">
         <div class="sending-label">
           <img src="img/icon-tx-sent-outline.svg">
           <span translate ng-if="!tx.sendMax">Sending</span>
@@ -27,13 +27,13 @@
           <span class="item-note" ng-if="paymentExpired" ng-style="{'color': 'red'}" translate>Expired</span>
         </div>
 
-        <div class="item">
+        <div class="item" ng-hide="criticalError">
           <span class="label" translate>To</span>
           <span class="payment-proposal-to" ng-if="!recipientType">
             <i class="icon icon-svg abs-v-center icon-bitcoinlogoplain"></i>
 
             <div copy-to-clipboard="tx.toAddress" ng-if="!tx.paypro" class="ellipsis">
-              <contact ng-if="!tx.toName" address="{{tx.toAddress}}"></contact>
+              <contact ng-if="tx.toAddress && !tx.toName" address="{{tx.toAddress}}"></contact>
               <span class="m15l size-14" ng-if="tx.toName">{{tx.toName}}</span>
             </div>
 
@@ -51,7 +51,7 @@
               <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !toColor}" ng-style="{'background-color': toColor}" class="bg"/>
             </i>
             <div copy-to-clipboard="tx.toAddress" class="ellipsis">
-              <contact ng-if="!tx.toName" address="{{tx.toAddress}}"></contact>
+              <contact ng-if="tx.toAddress && !tx.toName" address="{{tx.toAddress}}"></contact>
               <span ng-if="tx.toName" class="wallet-name">{{tx.toName}}</span>
             </div>
           </div>
@@ -64,9 +64,7 @@
         <a class="item item-icon-right" ng-hide="!wallet" ng-click="showWalletSelector()">
           <span class="label" translate>From</span>
           <div class="wallet" ng-if="wallet">
-            <i class="icon big-icon-svg">
-              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}" class="bg"/>
-            </i>
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
             <div>{{wallet.name}}</div>
           </div>
           <div class="wallet" ng-if="!wallet">
@@ -79,18 +77,18 @@
         </a>
         <div class="item item-icon-right" ng-if="wallet" ng-click="chooseFeeLevel(tx, wallet)">
           <span class="label">{{'Fee:' | translate}} {{tx.feeLevelName | translate}}</span>
-          <span class="m10l">{{tx.txp[wallet.id].feeStr || '...'}}</span>
-          <span class="item-note m10l">
-            <span>{{tx.txp[wallet.id].alternativeFeeStr || '...'}}&nbsp;
-            <span class="fee-rate" ng-if="tx.txp[wallet.id].feeRatePerStr"> &middot;
-                <i class="ion-alert-circled warn" ng-show="tx.txp[wallet.id].feeToHigh"></i> &nbsp;
-                <span class="fee-rate" ng-class="{'warn':tx.txp[wallet.id].feeToHigh}" translate> {{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount </span>
+            <span class="m10l">{{tx.txp[wallet.id].feeStr || '...'}}</span>
+            <span class="item-note m10l">
+              <span>{{tx.txp[wallet.id].alternativeFeeStr || '...'}}&nbsp;
+              <span class="fee-rate" ng-if="tx.txp[wallet.id].feeRatePerStr"> &middot;
+                  <i class="ion-alert-circled warn" ng-show="tx.txp[wallet.id].feeToHigh"></i> &nbsp;
+                  <span class="fee-rate" ng-class="{'warn':tx.txp[wallet.id].feeToHigh}" translate> {{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount </span>
 
+              </span>
+              </span>
             </span>
-          </span>
-          </span>
 
-          <i class="icon bp-arrow-right"></i>
+          <i ng-if="wallet.coin == 'btc'" class="icon bp-arrow-right"></i>
         </div>
         <a class="item item-icon-right" ng-if="wallet" ng-click="showDescriptionPopup(tx)">
           <span class="label" translate>Add Memo</span>

@@ -23,7 +23,7 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
   };
 
   function displayFeeValues() {
-    txFormatService.formatAlternativeStr($scope.tx.fee, function(v) {
+    txFormatService.formatAlternativeStr($scope.wallet.coin, $scope.tx.fee, function(v) {
       $scope.tx.feeFiatStr = v;
     });
     $scope.tx.feeRateStr = ($scope.tx.fee / ($scope.tx.amount + $scope.tx.fee) * 100).toFixed(2) + '%';
@@ -31,17 +31,23 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
   };
 
   function applyButtonText() {
-    $scope.buttonText = $scope.isCordova && !$scope.isWindowsPhoneApp ? gettextCatalog.getString('Slide') + ' ' : gettextCatalog.getString('Click') + ' ';
-
     var lastSigner = lodash.filter($scope.tx.actions, {
       type: 'accept'
     }).length == $scope.tx.requiredSignatures - 1;
 
     if (lastSigner) {
-      $scope.buttonText += gettextCatalog.getString('to send');
+      if ($scope.isCordova && !$scope.isWindowsPhoneApp) {
+        $scope.buttonText = gettextCatalog.getString('Slide to send');
+      } else {
+        $scope.buttonText = gettextCatalog.getString('Click to send');
+      }
       $scope.successText = gettextCatalog.getString('Payment Sent');
     } else {
-      $scope.buttonText += gettextCatalog.getString('to accept');
+      if ($scope.isCordova && !$scope.isWindowsPhoneApp) {
+        $scope.buttonText = gettextCatalog.getString('Slide to accept');
+      } else {
+        $scope.buttonText = gettextCatalog.getString('Click to accept');
+      }
       $scope.successText = gettextCatalog.getString('Payment Accepted');
     }
   };
@@ -219,7 +225,7 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
         copayerId: $scope.wallet.credentials.copayerId
       });
 
-      $scope.tx = txFormatService.processTx(tx);
+      $scope.tx = txFormatService.processTx($scope.wallet.coin, tx);
 
       if (!action && tx.status == 'pending')
         $scope.tx.pendingForUs = true;
