@@ -377,16 +377,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        *
        */
 
-      .state('tabs.preferencesCash', {
-        url: '/preferencesCash',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'preferencesCashController',
-            templateUrl: 'views/preferencesCash.html'
-          }
-        }
-      })
-
       .state('tabs.notifications', {
         url: '/notifications',
         views: {
