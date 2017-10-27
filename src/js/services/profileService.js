@@ -83,7 +83,6 @@ angular.module('copayApp.services')
 
     // Adds a wallet client to profileService
     root.bindWalletClient = function(wallet, opts) {
-
       if (wallet.credentials.network == 'bcclivenet') {
         convertToNewCashWallet(wallet);
       }
@@ -424,6 +423,13 @@ angular.module('copayApp.services')
             coin: opts.coin
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
+
+            if (opts.bchOpts) {
+              opts.bchOpts.singleAddress = opts.singleAddress;
+              opts.bchOpts.mnemonic = walletClient.credentials.mnemonic;
+              root.createWallet(opts.bchOpts, null);
+            }
+
             return cb(null, walletClient, secret);
           });
         });
@@ -544,7 +550,7 @@ angular.module('copayApp.services')
         bwsFor[walletId] = opts.bwsurl || defaults.bws.url;
 
         // Dont save the default
-        if (bwsFor[walletId] == defaults.bws.url)
+        if (bwsFor[walletId] == defaults.bws.url || bwsFor[walletId] == defaults.bwscash.url)
           return cb();
 
         configService.set({
@@ -557,7 +563,10 @@ angular.module('copayApp.services')
 
       saveBwsUrl(function() {
         storageService.storeProfile(root.profile, function(err) {
-          return cb(err, client);
+          if (cb) {
+            return cb(err, client);
+          }
+          return;
         });
       });
     };
@@ -714,11 +723,23 @@ angular.module('copayApp.services')
     };
 
     root.createDefaultWallet = function(cb) {
+      var defaults = configService.getDefaults();
+
       var opts = {};
       opts.m = 1;
       opts.n = 1;
       opts.networkName = 'livenet';
       opts.coin = 'btc';
+      opts.bwsurl = defaults.bws.url;
+
+      var bchOpts = {};
+      bchOpts.m = 1;
+      bchOpts.n = 1;
+      bchOpts.networkName = 'livenet';
+      bchOpts.coin = 'bch';
+      bchOpts.bwsurl = defaults.bwscash.url;
+      opts.bchOpts = bchOpts;
+
       root.createWallet(opts, cb);
     };
 
