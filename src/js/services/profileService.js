@@ -550,7 +550,7 @@ angular.module('copayApp.services')
         bwsFor[walletId] = opts.bwsurl || defaults.bws.url;
 
         // Dont save the default
-        if (bwsFor[walletId] == defaults.bws.url || bwsFor[walletId] == defaults.bwscash.url)
+        if (bwsFor[walletId] == defaults.bws.url)
           return cb();
 
         configService.set({
