@@ -5,9 +5,6 @@ angular.module('copayApp.controllers').controller('advancedSettingsController', 
   var updateConfig = function() {
     var config = configService.getSync();
 
-    $scope.spendUnconfirmed = {
-      value: config.wallet.spendUnconfirmed
-    };
     $scope.recentTransactionsEnabled = {
       value: config.recentTransactions.enabled
     };
@@ -15,17 +12,6 @@ angular.module('copayApp.controllers').controller('advancedSettingsController', 
       value: config.hideNextSteps.enabled
     };
 
-  };
-
-  $scope.spendUnconfirmedChange = function() {
-    var opts = {
-      wallet: {
-        spendUnconfirmed: $scope.spendUnconfirmed.value
-      }
-    };
-    configService.set(opts, function(err) {
-      if (err) $log.debug(err);
-    });
   };
 
   $scope.nextStepsChange = function() {
