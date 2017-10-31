@@ -4,58 +4,118 @@
     <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="secondary">
-      <button ng-disabled="sending || balanceSat <= 0 || noMatchingWallet" class="button no-border" ng-click="sweepWallet()" translate>
+      <button ng-disabled="sending || btcBalanceSat <= 0 && bchBalanceSat <= 0 || noMatchingWallet" class="button no-border" ng-click="sweepWallet()" translate>
         Sweep
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content scroll="false">
     <div ng-class="ng-hide" ng-show="!noMatchingWallet">
-      <div class="row">
-        <div class="col text-center">
-          <h4 class="text-bold" translate>Funds found:</h4>
-          <div ng-show="balance" class="size-24 ng-hide">{{balance}}</div>
-          <div ng-show="!balance" class="size-24 ng-hide">...</div>
+      <div ng-class="ng-hide" ng-show="btcWallets.length > 0">
+        <div class="row">
+          <div class="col text-center">
+            <h4 class="text-bold" translate>Funds found:</h4>
+            <div ng-show="btcBalance" class="size-24 ng-hide">
+              <span>{{btcBalance}}</span>
+              <span>
+                <button ng-disabled="btcBalanceSat <= 0 || noMatchingWallet" class="button no-border" ng-click="sweepWallet('btc')" translate>
+                  Sweep
+                </button>
+              </span>
+            </div>
+            <div ng-show="!btcBalance" class="size-24 ng-hide">...</div>
+          </div>
+        </div>
+        <div class="text-center size-12 text-gray">
+          <span translate>Funds will be transferred to</span>:
+        </div>
+        <div class="list card" ng-click="showBtcWalletSelector()" ng-if="btcWallets[0]">
+          <a ng-if="btcWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+            <span>
+              {{btcWallet.name || btcWallet.id}}
+            </span>
+            <p>
+            <span ng-if="!btcWallet.balanceHidden"> {{btcWallet.status.totalBalanceStr}} </span>
+
+            <span ng-if="btcWallet.balanceHidden" translate>[Balance Hidden]</span>
+            <span class="tab-home__wallet__multisig-number" ng-if="btcWallet.n > 1">
+              {{btcWallet.m}}-of-{{btcWallet.n}}
+            </span>
+            <span class="assertive" ng-if="wallet.error">{{wallet.error}}</span>
+            &nbsp;
+            </p>
+            <i ng-if="!singleBtcWallet" class="icon bp-arrow-right"></i>
+          </a>
         </div>
       </div>
-      <div class="text-center size-12 text-gray">
-        <span translate>Funds will be transferred to</span>:
-      </div>
-      <div class="list card" ng-click="showWalletSelector()" ng-if="wallets[0]">
-        <a ng-if="wallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
-          <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
-          <span>
-            {{wallet.name || wallet.id}}
-          </span>
-          <p>
-          <span ng-if="!wallet.balanceHidden"> {{wallet.status.totalBalanceStr}} </span>
+      <slide-to-accept-success
+        slide-success-show="sendStatus === 'success'"
+        slide-success-on-confirm="onSuccessConfirm()"
+        slide-success-hide-on-confirm="true">
+        <span translate>Funds transferred</span>
+      </slide-to-accept-success>
+      <div ng-class="ng-hide" ng-show="bchWallets.length > 0">
+        <div class="row">
+          <div class="col text-center">
+            <h4 class="text-bold" translate>Funds found:</h4>
+            <div ng-show="bchBalance" class="size-24 ng-hide">
+              <span>{{bchBalance}}</span>
+              <span>
+                <button ng-disabled="bchBalanceSat <= 0 || noMatchingWallet" class="button no-border" ng-click="sweepWallet('bch')" translate>
+                  Sweep
+                </button>
+              </span>
+            </div>
+            <div ng-show="!bchBalance" class="size-24 ng-hide">...</div>
+          </div>
+        </div>
+        <div class="text-center size-12 text-gray">
+          <span translate>Funds will be transferred to</span>:
+        </div>
+        <div class="list card" ng-click="showBchWalletSelector()" ng-if="bchWallets[0]">
+          <a ng-if="bchWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+            <span>
+              {{bchWallet.name || bchWallet.id}}
+            </span>
+            <p>
+            <span ng-if="!bchWallet.balanceHidden"> {{bchWallet.status.totalBalanceStr}} </span>
 
-          <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
-          <span class="tab-home__wallet__multisig-number" ng-if="wallet.n > 1">
-            {{wallet.m}}-of-{{wallet.n}}
-          </span>
-          <span class="assertive" ng-if="wallet.error">{{wallet.error}}</span>
-          &nbsp;
-          </p>
-          <i ng-if="!singleWallet" class="icon bp-arrow-right"></i>
-        </a>
+            <span ng-if="bchWallet.balanceHidden" translate>[Balance Hidden]</span>
+            <span class="tab-home__wallet__multisig-number" ng-if="bchWallet.n > 1">
+              {{bchWallet.m}}-of-{{bchWallet.n}}
+            </span>
+            <span class="assertive" ng-if="wallet.error">{{wallet.error}}</span>
+            &nbsp;
+            </p>
+            <i ng-if="!singleBchWallet" class="icon bp-arrow-right"></i>
+          </a>
+        </div>
       </div>
+      <slide-to-accept-success
+        slide-success-show="sendStatus === 'success'"
+        slide-success-on-confirm="onSuccessConfirm()"
+        slide-success-hide-on-confirm="true">
+        <span translate>Funds transferred</span>
+      </slide-to-accept-success>
     </div>
     <div class="text-center padding ng-hide" ng-show="noMatchingWallet">
       <span class="badge badge-energized" translate>No wallets available to receive funds</span>
     </div>
-    <slide-to-accept-success
-      slide-success-show="sendStatus === 'success'"
-      slide-success-on-confirm="onSuccessConfirm()"
-      slide-success-hide-on-confirm="true">
-      <span translate>Funds transferred</span>
-    </slide-to-accept-success>
   </ion-content>
   <wallet-selector
     wallet-selector-title="walletSelectorTitle"
-    wallet-selector-wallets="wallets"
-    wallet-selector-selected-wallet="wallet"
-    wallet-selector-show="showWallets"
-    wallet-selector-on-select="onWalletSelect">
+    wallet-selector-wallets="btcWallets"
+    wallet-selector-selected-wallet="btcWallet"
+    wallet-selector-show="showBtcWallets"
+    wallet-selector-on-select="onBtcWalletSelect">
+  </wallet-selector>
+  <wallet-selector
+    wallet-selector-title="walletSelectorTitle"
+    wallet-selector-wallets="bchWallets"
+    wallet-selector-selected-wallet="bchWallet"
+    wallet-selector-show="showBchWallets"
+    wallet-selector-on-select="onBchWalletSelect">
   </wallet-selector>
 </ion-view>
