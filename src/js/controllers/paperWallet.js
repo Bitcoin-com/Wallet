@@ -68,14 +68,15 @@ angular.module('copayApp.controllers').controller('paperWalletController',
             $state.go('tabs.home');
           } else {
             $scope.privateKey = privateKey;
-            $scope.btcBalanceSat = btcBalance;
-            $scope.bchBalanceSat = bchBalance;
-            if ($scope.balanceSat <= 0)
-              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not funds found'));
+            $scope.btcBalance = btcBalance;
+            $scope.bchBalance = bchBalance;
+
             if ($scope.btcWallet)
-              $scope.btcBalance = txFormatService.formatAmountStr($scope.btcWallet.coin, btcBalance);
+              $scope.btcBalanceText = txFormatService.formatAmountStr($scope.btcWallet.coin, btcBalance);
             if ($scope.bchWallet)
-              $scope.bchBalance = txFormatService.formatAmountStr($scope.bchWallet.coin, bchBalance);
+              $scope.bchBalanceText = txFormatService.formatAmountStr($scope.bchWallet.coin, bchBalance);
+
+            $scope.readyToShow = true;
           }
           $scope.$apply();
         });
@@ -162,17 +163,13 @@ angular.module('copayApp.controllers').controller('paperWalletController',
         network: 'livenet',
       });
 
-      $scope.noMatchingWallet = false;
-      if (!wallets || wallets.length == 0) {
-        $scope.noMatchingWallet = true;
-        return;
-      }
-
       $scope.wallets = wallets;
       $scope.btcWallets = _.filter($scope.wallets, function(w) { return w.coin == 'btc'; });
       $scope.bchWallets = _.filter($scope.wallets, function(w) { return w.coin == 'bch'; });
       $scope.singleBtcWallet = $scope.btcWallets.length == 1;
       $scope.singleBchWallet = $scope.bchWallets.length == 1;
+      $scope.noMatchingBtcWallet = $scope.btcWallets.length == 0;
+      $scope.noMatchingBchWallet = $scope.bchWallets.length == 0;
     });
 
     $scope.$on("$ionicView.enter", function(event, data) {
