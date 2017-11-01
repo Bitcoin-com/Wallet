@@ -8,7 +8,7 @@ angular.module('copayApp.controllers').controller('joinController',
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       var config = configService.getSync();
       $scope.formData = {};
-      $scope.formData.bwsurl = defaults.bws.url;
+      $scope.formData.bwsurl = data.stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.account = 1;
       $scope.formData.secret = null;
