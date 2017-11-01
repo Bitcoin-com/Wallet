@@ -24,12 +24,15 @@ angular.module('copayApp.controllers').controller('createController',
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       $scope.formData = {};
       var config = configService.getSync();
+      var defaults = configService.getDefaults();
       var tc = $state.current.name == 'tabs.add.create-personal' ? 1 : defaults.wallet.totalCopayers;
       $scope.formData.account = 1;
       $scope.formData.bwsurl = data.stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
       $scope.TCValues = lodash.range(2, defaults.limits.totalCopayers + 1);
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.coin = data.stateParams.coin;
+      $scope.bitcoinAlias = (config.bitcoinAlias || defaults.bitcoinAlias).toUpperCase();
+      $scope.bitcoinCashAlias = (config.bitcoinCashAlias || defaults.bitcoinCashAlias).toUpperCase();
 
       if (config.cashSupport) $scope.enableCash = true;
 

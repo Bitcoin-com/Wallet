@@ -13,6 +13,8 @@ angular.module('copayApp.controllers').controller('joinController',
       $scope.formData.account = 1;
       $scope.formData.secret = null;
       $scope.formData.coin = data.stateParams.coin;
+      $scope.bitcoinAlias = (config.bitcoinAlias || defaults.bitcoinAlias).toUpperCase();
+      $scope.bitcoinCashAlias = (config.bitcoinCashAlias || defaults.bitcoinCashAlias).toUpperCase();
       if (config.cashSupport) $scope.enableCash = true;
       resetPasswordFields();
       updateSeedSourceSelect();

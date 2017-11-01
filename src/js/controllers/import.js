@@ -23,6 +23,9 @@ angular.module('copayApp.controllers').controller('importController',
         value: false
       };
 
+      $scope.bitcoinAlias = (config.bitcoinAlias || defaults.bitcoinAlias).toUpperCase();
+      $scope.bitcoinCashAlias = (config.bitcoinCashAlias || defaults.bitcoinCashAlias).toUpperCase();
+
       if (config.cashSupport) $scope.enableCash = true;
 
       if ($stateParams.code)

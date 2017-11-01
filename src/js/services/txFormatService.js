@@ -18,8 +18,13 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
   };
 
   root.formatAmountStr = function(coin, satoshis) {
+    var defaults = configService.getDefaults();
+    var configCache = configService.getSync();
+    var c = coin == 'btc' ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
+                          : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
+
     if (isNaN(satoshis)) return;
-    return root.formatAmount(satoshis) + ' ' + (coin).toUpperCase();
+    return root.formatAmount(satoshis) + ' ' + (c).toUpperCase();
   };
 
   root.toFiat = function(coin, satoshis, code, cb) {

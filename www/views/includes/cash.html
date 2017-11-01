@@ -3,7 +3,7 @@
     Coin
   </div>
   <select ng-model="formData.coin" ng-change="coinChanged()">
-    <option value="btc">BTC</option>
-    <option value="bch">BCH</option>
+    <option value="btc">{{bitcoinAlias}}</option>
+    <option value="bch">{{bitcoinCashAlias}}</option>
   </select>
 </label>

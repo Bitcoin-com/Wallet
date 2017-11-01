@@ -30,7 +30,7 @@
           <i class="icon"><img src="img/icon-warning.png" width="20px"></i>
           <span class="comment" translate>Amount too low to spend</span>
         </div>
- 
+
       </div>
 
       <div ng-show="btx.action == 'sent'" class="ellipsis">
@@ -65,7 +65,7 @@
         (possible double spend)
         </span>
         <span  ng-if="btx.action != 'invalid'">
-        {{btx.amountStr}}
+          {{btx.amountValueStr}} {{btx.amountUnitStr}}
         </span>
       </span>
       <div>

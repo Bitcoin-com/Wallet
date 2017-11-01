@@ -180,6 +180,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
           $scope.updateTxHistoryError = true;
           return;
         }
+
+        applyCurrencyAliases(txHistory);
         $scope.completeTxHistory = txHistory;
         $scope.showHistory();
         $timeout(function() {
@@ -189,6 +191,19 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     });
   };
+
+  function applyCurrencyAliases(txHistory) {
+    var defaults = configService.getDefaults();
+    var configCache = configService.getSync();
+
+    lodash.each(txHistory, function(t) {
+      t.amountUnitStr = $scope.wallet.coin == 'btc'
+                        ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
+                        : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
+
+      t.amountUnitStr = t.amountUnitStr.toUpperCase();
+    });
+  }
 
   $scope.showHistory = function() {
     if ($scope.completeTxHistory) {
