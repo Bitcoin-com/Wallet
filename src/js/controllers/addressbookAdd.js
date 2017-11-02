@@ -1,13 +1,20 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('addressbookAddController', function($scope, $state, $stateParams, $timeout, $ionicHistory, gettextCatalog, addressbookService, popupService) {
+angular.module('copayApp.controllers').controller('addressbookAddController', function($scope, $state, $stateParams, $timeout, $ionicHistory, gettextCatalog, addressbookService, popupService, configService) {
+
+  var config = configService.getSync();
+  var defaults = configService.getDefaults();
+
+  $scope.bitcoinAlias = (config.bitcoinAlias || defaults.bitcoinAlias).toUpperCase();
+  $scope.bitcoinCashAlias = (config.bitcoinCashAlias || defaults.bitcoinCashAlias).toUpperCase();
 
   $scope.fromSendTab = $stateParams.fromSendTab;
 
   $scope.addressbookEntry = {
     'address': $stateParams.addressbookEntry || '',
     'name': '',
-    'email': ''
+    'email': '',
+    'coin': 'btc'
   };
 
   $scope.onQrCodeScannedAddressBook = function(data, addressbookForm) {

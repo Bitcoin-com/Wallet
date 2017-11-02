@@ -87,15 +87,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       originalList = originalList.concat(walletList);
     }
   }
-
-  var getCoin = function(address) {
-    var cashAddress = bitcoreCash.Address.isValid(address, 'livenet');
-    if (cashAddress) {
-      return 'bch';
-    }
-    return 'btc';
-  };
-
+  
   var updateContactsList = function(cb) {
     var config = configService.getSync();
     var defaults = configService.getDefaults();
@@ -107,14 +99,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       var completeContacts = [];
       lodash.each(ab, function(v, k) {
-        var c = getCoin(k);
         completeContacts.push({
           name: lodash.isObject(v) ? v.name : v,
           address: k,
           email: lodash.isObject(v) ? v.email : null,
           recipientType: 'contact',
-          coin: c,
-          displayCoin:  (c == 'bch'
+          coin: v.coin,
+          displayCoin:  (v.coin == 'bch'
                         ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
                         : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
           getAddress: function(cb) {
