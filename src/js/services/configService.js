@@ -106,7 +106,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     },
 
     bitcoinAlias: 'btc',
-    bitcoinCashAlias: 'bcc'
+    bitcoinCashAlias: 'bch'
   };
 
   var configCache = null;
