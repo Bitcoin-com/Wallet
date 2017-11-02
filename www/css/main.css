@@ -10766,7 +10766,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     #tab-send .search-wrapper.focus .svg#Bitcoin_Symbol {
       display: none; }
     #tab-send .search-wrapper.focus .search-input {
-      padding-left: 0; }
+      padding-left: 30px; }
       #tab-send .search-wrapper.focus .search-input:focus::-webkit-input-placeholder {
         opacity: 0; }
 
