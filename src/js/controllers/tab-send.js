@@ -116,7 +116,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           coin: c,
           displayCoin:  (c == 'bch'
                         ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
-                        : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase();
+                        : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
           getAddress: function(cb) {
             return cb(null, k);
           },
