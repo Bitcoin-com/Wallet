@@ -54,6 +54,9 @@
             <gravatar class="send-gravatar" name="{{item.name}}" width="30" email="{{item.email}}" ng-if="!isChromeApp"></gravatar>
           </i>
           {{item.name}}
+          <p>
+            <span>{{item.displayCoin}}</span>
+          </p>
           <i class="icon bp-arrow-right"></i>
         </a>
         <div class="show-more" ng-if="contactsShowMore" ng-click="showMore()" translate>
@@ -70,6 +73,9 @@
         <a class="item item-icon-left item-icon-right" ng-repeat="item in list" ng-if="hasWallets && item.recipientType == 'wallet'" ng-click="goToAmount(item)">
           <i class="icon big-icon-svg" ng-if="item.recipientType == 'wallet'" ng-init="wallet = item" ng-include="'views/includes/walletIcon.html'"></i>
           {{item.name}}
+          <p>
+            <span>{{item.balanceString}}</span>
+          </p>
           <i class="icon bp-arrow-right"></i>
         </a>
       </div>

@@ -78,6 +78,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           recipientType: 'wallet',
           coin: v.coin,
           network: v.network,
+          balanceString: v.cachedBalance,
           getAddress: function(cb) {
             walletService.getAddress(v, false, cb);
           },
@@ -104,12 +105,14 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       var completeContacts = [];
       lodash.each(ab, function(v, k) {
+        var c = getCoin(k);
         completeContacts.push({
           name: lodash.isObject(v) ? v.name : v,
           address: k,
           email: lodash.isObject(v) ? v.email : null,
           recipientType: 'contact',
-          coin: getCoin(k),
+          coin: c,
+          displayCoin: c.toUpperCase(),
           getAddress: function(cb) {
             return cb(null, k);
           },
