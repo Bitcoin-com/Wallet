@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, bitcoreCash, configService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService) {
 
   var originalList;
   var CONTACTS_SHOW_LIMIT;
@@ -87,7 +87,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       originalList = originalList.concat(walletList);
     }
   }
-  
+
   var updateContactsList = function(cb) {
     var config = configService.getSync();
     var defaults = configService.getDefaults();
