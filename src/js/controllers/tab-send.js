@@ -97,6 +97,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   var updateContactsList = function(cb) {
+    var config = configService.getSync();
     var defaults = configService.getDefaults();
     addressbookService.list(function(err, ab) {
       if (err) $log.error(err);
@@ -113,7 +114,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           email: lodash.isObject(v) ? v.email : null,
           recipientType: 'contact',
           coin: c,
-          displayCoin: (c == 'bch' ? defaults.bitcoinCashAlias : defaults.bitcoinAlias).toUpperCase(),
+          displayCoin:  (c == 'bch'
+                        ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
+                        : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase();
           getAddress: function(cb) {
             return cb(null, k);
           },
