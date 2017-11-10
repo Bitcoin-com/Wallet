@@ -11,16 +11,16 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
     if (!usePushNotifications || _token) return;
     configService.whenAvailable(function(config) {
       if (!config.pushNotificationsEnabled) return;
-    
-      $log.debug('Starting push notification registration...'); 
+
+      $log.debug('Starting push notification registration...');
 
       //Keep in mind the function will return null if the token has not been established yet.
-      FCMPlugin.getToken(function(token) {
+      FirebasePlugin.getToken(function(token) {
         $log.debug('Get token for push notifications: ' + token);
         _token = token;
         root.enable();
-      }); 
-    }); 
+      });
+    });
   };
 
   root.updateSubscription = function(walletClient) {
@@ -87,10 +87,10 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
     });
 
     if (!wallet) return;
-    
+
     if (!wallet.isComplete()) {
       return $state.go('tabs.copayers', {
-        walletId: wallet.id 
+        walletId: wallet.id
       });
     }
 
@@ -100,19 +100,19 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
   };
 
   if (usePushNotifications) {
-    
-    FCMPlugin.onTokenRefresh(function(token) {
+
+    FirebasePlugin.onTokenRefresh(function(token) {
       if (!_token) return;
       $log.debug('Refresh and update token for push notifications...');
       _token = token;
       root.enable();
     });
 
-    FCMPlugin.onNotification(function(data) {
+    FirebasePlugin.onNotificationOpen(function(data) {
       if (!_token) return;
       $log.debug('New Event Push onNotification: ' + JSON.stringify(data));
-      if(data.wasTapped) {
-        // Notification was received on device tray and tapped by the user. 
+      if(data.tap) {
+        // Notification was received on device tray and tapped by the user.
         var walletIdHashed = data.walletId;
         if (!walletIdHashed) return;
         $ionicHistory.nextViewOptions({
@@ -128,10 +128,10 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
         });
       } else {
         // TODO
-        // Notification was received in foreground. Maybe the user needs to be notified. 
+        // Notification was received in foreground. Maybe the user needs to be notified.
       }
     });
-  } 
+  }
 
   return root;
 

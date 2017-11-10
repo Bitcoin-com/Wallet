@@ -70,10 +70,7 @@
     </plugin>
     <plugin name="cordova-custom-config" spec="~3.0.5" />
     <plugin name="cordova-plugin-queries-schemes" spec="~0.1.5" />
-    <plugin name="cordova-plugin-fcm" spec="https://github.com/cmgustavo/cordova-plugin-fcm.git" />
-
-    <!--  Delete cordova-plugin-qrscanner plugin and enable phonegap-plugin-barcodescanner to build cordova windows-->
-    <!-- <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/phonegap/phonegap-plugin-barcodescanner.git" /> -->
+    <plugin name="cordova-plugin-firebase" spec="https://github.com/arnesson/cordova-plugin-firebase.git" />
 
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.2.1" />
