@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('disclaimerController', function($scope, $timeout, $state, $log, $ionicModal, $ionicConfig, profileService, uxLanguage, externalLinkService, storageService, $stateParams, startupService, $rootScope) {
+angular.module('copayApp.controllers').controller('disclaimerController', function($scope, $timeout, $state, $log, $ionicModal, $ionicConfig, profileService, uxLanguage, externalLinkService, storageService, $stateParams, startupService, $rootScope, firebaseEventsService) {
 
   $scope.$on("$ionicView.afterEnter", function() {
     startupService.ready();
@@ -28,6 +28,7 @@ angular.module('copayApp.controllers').controller('disclaimerController', functi
     profileService.setDisclaimerAccepted(function(err) {
       if (err) $log.error(err);
       else {
+        firebaseEventsService.logEvent('completed_onboarding');
         $state.go('tabs.home', {
           fromOnboarding: true
         });
