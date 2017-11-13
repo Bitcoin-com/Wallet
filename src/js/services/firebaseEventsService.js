@@ -11,6 +11,7 @@ angular.module('copayApp.services').factory('firebaseEventsService', function fi
 
     FirebasePlugin.getToken(function(token) {
       $log.debug('Get token for events: ' + token);
+      $log.debug(token);
       _token = token;
     });
   }
@@ -25,6 +26,7 @@ angular.module('copayApp.services').factory('firebaseEventsService', function fi
     FirebasePlugin.onTokenRefresh(function(token) {
       if (!token) return;
       $log.debug('Refresh and update token for events...');
+      $log.debug(token);
       _token = token;
     });
   }

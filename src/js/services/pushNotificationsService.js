@@ -17,6 +17,7 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
       //Keep in mind the function will return null if the token has not been established yet.
       FirebasePlugin.getToken(function(token) {
         $log.debug('Get token for push notifications: ' + token);
+        $log.debug(token);
         _token = token;
         root.enable();
       });
@@ -104,6 +105,7 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
     FirebasePlugin.onTokenRefresh(function(token) {
       if (!token) return;
       $log.debug('Refresh and update token for push notifications...');
+      $log.debug(token);
       _token = token;
       root.enable();
     });
