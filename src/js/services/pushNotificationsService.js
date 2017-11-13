@@ -102,7 +102,7 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
   if (usePushNotifications) {
 
     FirebasePlugin.onTokenRefresh(function(token) {
-      if (!_token) return;
+      if (!token) return;
       $log.debug('Refresh and update token for push notifications...');
       _token = token;
       root.enable();
