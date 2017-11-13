@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, feedbackService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService) {
+  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, feedbackService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -122,6 +122,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         }
 
         pushNotificationsService.init();
+        firebaseEventsService.init();
 
         $timeout(function() {
           $ionicScrollDelegate.resize();
@@ -268,7 +269,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         var txIdList = [];
 
         var notificationsBeforeCheck = notifications.length;
-        
+
         for (var i=0; i<notifications.length; i++) {
             var txId = notifications[i].txid;
             if (txIdList.includes(txId)) {

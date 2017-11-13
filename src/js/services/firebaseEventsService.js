@@ -1,0 +1,33 @@
+'use strict';
+angular.module('copayApp.services').factory('firebaseEventsService', function firebaseEventsService($log, $state, $ionicHistory, sjcl, platformInfo, lodash, appConfigService, profileService, configService) {
+  var root = {};
+  var useEvents = platformInfo.isCordova && !platformInfo.isWP;
+
+  var _token = null;
+
+  root.init = function() {
+    if (!useEvents || _token) return;
+    $log.debug('Starting event registration...');
+
+    FirebasePlugin.getToken(function(token) {
+      $log.debug('Get token for events: ' + token);
+      _token = token;
+    });
+  }
+
+  root.logEvent = function(eventName, params) {
+    if (!_token) return;
+    var p = params ? params : {};
+    FirebasePlugin.logEvent(eventName, p);
+  }
+
+  if (useEvents) {
+    FirebasePlugin.onTokenRefresh(function(token) {
+      if (!token) return;
+      $log.debug('Refresh and update token for events...');
+      _token = token;
+    });
+  }
+
+  return root;
+});
