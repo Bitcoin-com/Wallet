@@ -6,12 +6,12 @@
 
   <div class="header" ng-show="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
 
-  <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0]" translate>
-    <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
-    <span translate>Bitcoin Wallets</span>
+  <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
+    <img class="wallet-coin-logo" src="img/bitcoin-cash-logo.svg" width="22">
+    <span translate>Bitcoin Cash Wallets</span>
   </div>
   <a
-    ng-repeat="wallet in walletsBtc track by $index"
+    ng-repeat="wallet in walletsBch track by $index"
     class="item item-icon-left item-big-icon-left item-icon-right wallet"
     ng-click="selectWallet(wallet)"
   >
@@ -37,12 +37,12 @@
       </div>
     </a>
 
-  <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
-    <img class="wallet-coin-logo" src="img/bitcoin-cash-logo.svg" width="22">
-    <span translate>Bitcoin Cash Wallets</span>
+  <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0]" translate>
+    <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
+    <span translate>Bitcoin Wallets</span>
   </div>
   <a
-    ng-repeat="wallet in walletsBch track by $index"
+    ng-repeat="wallet in walletsBtc track by $index"
     class="item item-icon-left item-big-icon-left item-icon-right wallet"
     ng-click="selectWallet(wallet)"
   >

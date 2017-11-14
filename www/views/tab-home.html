@@ -64,35 +64,7 @@
       </a>
     </div>
 
-    <div class="list card" ng-if="!walletsBtc[0] && !walletsBch[0]">
-      <div class="item item-icon-right item-heading">
-        <span translate>Wallets</span>
-      </div>
-      <a ui-sref="tabs.add" class="item item-icon-left item-big-icon-left item-icon-right next-step">
-        <i class="icon big-icon-svg">
-          <img src="img/icon-wallet.svg" class="bg wallet icon-create-wallet"/>
-        </i>
-        <span translate>Create bitcoin wallet</span>
-        <i class="icon bp-arrow-right"></i>
-      </a>
-    </div>
-
-    <div class="list card" ng-if="walletsBtc[0]">
-      <div class="item item-icon-right item-heading">
-        <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
-        <span translate>Bitcoin Wallets</span>
-        <a ui-sref="tabs.add"><i class="icon ion-ios-plus-empty list-add-button"></i></a>
-      </div>
-      <div>
-        <a ng-repeat="wallet in walletsBtc track by $index"
-           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
-          <span ng-include="'views/includes/walletList.html'"></span>
-        </a>
-      </div>
-    </div>
-
-    <div class="list card" ng-if="walletsBch[0]">
+    <div class="list card">
       <div class="item item-icon-right item-heading">
         <img class="wallet-coin-logo" src="img/bitcoin-cash-logo.svg" width="22">
         <span translate>Bitcoin Cash Wallets</span>
@@ -100,6 +72,21 @@
       </div>
       <div>
         <a ng-repeat="wallet in walletsBch track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="openWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-icon-right item-heading">
+        <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
+        <span translate>Bitcoin Wallets</span>
+        <a ui-sref="tabs.add"><i class="icon ion-ios-plus-empty list-add-button"></i></a>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsBtc track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
            ng-click="openWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
