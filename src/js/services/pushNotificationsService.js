@@ -8,6 +8,7 @@ angular.module('copayApp.services').factory('pushNotificationsService', function
   var _token = null;
 
   root.init = function() {
+    if (isIOS) FirebasePlugin.grantPermission();
     if (!usePushNotifications || _token) return;
     configService.whenAvailable(function(config) {
       if (!config.pushNotificationsEnabled) return;
