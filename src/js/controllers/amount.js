@@ -31,18 +31,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
       var configCache = configService.getSync();
       availableUnits = [];
 
-      var hasBTCWallets = profileService.getWallets({
-        coin: 'btc'
-      }).length;
-
-      if (hasBTCWallets) {
-        availableUnits.push({
-          name: 'Bitcoin',
-          id: 'btc',
-          shortName: (configCache.bitcoinAlias || defaults.bitcoinAlias).toUpperCase(),
-        });
-      }
-
       var hasBCHWallets = profileService.getWallets({
         coin: 'bch'
       }).length;
@@ -54,6 +42,18 @@ angular.module('copayApp.controllers').controller('amountController', function($
           shortName: (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias).toUpperCase(),
         });
       };
+
+      var hasBTCWallets = profileService.getWallets({
+        coin: 'btc'
+      }).length;
+
+      if (hasBTCWallets) {
+        availableUnits.push({
+          name: 'Bitcoin',
+          id: 'btc',
+          shortName: (configCache.bitcoinAlias || defaults.bitcoinAlias).toUpperCase(),
+        });
+      }
 
       unitIndex = 0;
 
