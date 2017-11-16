@@ -594,7 +594,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         (processName == 'sendingTx' && !$scope.wallet.canSign() && !$scope.wallet.isPrivKeyExternal())
       ) && !isOn) {
       $scope.sendStatus = 'success';
-      firebaseEventsService.logEvent('sent_bitcoin');
+      firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();
       }, 100);
