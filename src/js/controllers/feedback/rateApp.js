@@ -39,9 +39,9 @@ angular.module('copayApp.controllers').controller('rateAppController', function(
     var defaults = configService.getDefaults();
     var url;
     if (isAndroid)
-      url = $scope.appName == 'Copay' ? defaults.rateApp.copay.android : defaults.rateApp.bitpay.android;
+      url = defaults.rateApp.bitcoincom.android;
     if (isIOS)
-      url = $scope.appName == 'Copay' ? defaults.rateApp.copay.ios : defaults.rateApp.bitpay.ios;
+      url = defaults.rateApp.bitcoincom.ios;
 
     externalLinkService.open(url);
     $state.go('tabs.rate.complete', {
