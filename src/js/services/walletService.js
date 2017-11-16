@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService) {
+angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService, firebaseEventsService) {
 
   // Ratio low amount warning (fee/amount) in incoming TX
   var LOW_AMOUNT_RATIO = 0.15;
@@ -488,8 +488,42 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         });
       };
 
+      function createReceivedEvents(newTxs) {
+        storageService.getReceivedTransactions(walletId, function(err, txIds) {
+          if (!txIds) {
+            txIds = [];
+          } else {
+              txIds = JSON.parse(txIds);
+          }
+
+          var newReceived = lodash.filter(newTxs, function(t) {
+            return t.action === 'received';
+          });
+
+          var newReceivedTxIds = lodash.map(newReceived, function(t) {
+            return t.txid;
+          });
+
+          var notInStorage = lodash.filter(newReceivedTxIds, function(t) {
+            return !lodash.includes(txIds, t);
+          });
+
+          lodash.each(notInStorage, function(t) {
+            firebaseEventsService.logEvent('received_bitcoin', { coin: wallet.coin });
+          });
+
+          var receivedTransactions = txIds.concat(notInStorage);
+
+          storageService.setReceivedTransactions(walletId, receivedTransactions, function() {
+            $log.debug('Received transactions saved');
+          });
+        });
+      }
+
       getNewTxs([], 0, function(err, txs) {
         if (err) return cb(err);
+
+        createReceivedEvents(txs);
 
         var newHistory = lodash.uniq(lodash.compact(txs.concat(confirmedTxs)), function(x) {
           return x.txid;

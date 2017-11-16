@@ -622,5 +622,17 @@ angular.module('copayApp.services')
       storage.remove('MercadoLibreGiftCards-' + network, cb);
     };
 
+    root.setReceivedTransactions = function(walletId, txIds, cb) {
+      storage.set('receivedTxs-' + walletId, txIds, cb);
+    }
+
+    root.getReceivedTransactions = function(walletId, cb) {
+      storage.get('receivedTxs-' + walletId, cb);
+    }
+
+    root.removeReceivedTransactions = function(walletId, cb) {
+      storage.remove('receivedTxs-' + walletId, cb);
+    }
+
     return root;
   });
