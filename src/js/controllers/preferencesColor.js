@@ -5,6 +5,7 @@ angular.module('copayApp.controllers').controller('preferencesColorController', 
   $scope.wallet = wallet;
   var walletId = wallet.credentials.walletId;
   var config = configService.getSync();
+  var defaults = configService.getDefaults();
   config.colorFor = config.colorFor || {};
 
   var retries = 3;
@@ -27,7 +28,11 @@ angular.module('copayApp.controllers').controller('preferencesColorController', 
   };
 
   function getColorDefault() {
-    return rgb2hex(window.getComputedStyle(document.getElementsByClassName('wallet-color-default')[0]).color);
+    if ($scope.wallet.coin == 'bch') {
+      return defaults.bitcoinCashWalletColor;
+    } else {
+      return defaults.bitcoinWalletColor;
+    }
   };
 
   function getColorCount() {

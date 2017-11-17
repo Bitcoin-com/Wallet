@@ -106,7 +106,9 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     },
 
     bitcoinAlias: 'btc',
-    bitcoinCashAlias: 'bch'
+    bitcoinCashAlias: 'bch',
+    bitcoinWalletColor: '#fab915', // Observatory
+    bitcoinCashWalletColor: '#26B03C' // Dollar Green
   };
 
   var configCache = null;
