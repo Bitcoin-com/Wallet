@@ -33,6 +33,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       }
     },
 
+    blockExplorer: {
+      btc: 'explorer.bitcoin.com/btc',
+      bch: 'explorer.bitcoin.com/bch'
+    },
+
     rateApp: {
       bitpay: {
         ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1149581638&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',

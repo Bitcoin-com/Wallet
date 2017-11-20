@@ -5,6 +5,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
   var txId;
   var listeners = [];
   var config = configService.getSync();
+  var defaults = configService.getDefaults();
   var blockexplorerUrl;
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
@@ -16,11 +17,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
     $scope.isShared = $scope.wallet.credentials.n > 1;
     $scope.txsUnsubscribedForNotifications = config.confirmedTxsNotifications ? !config.confirmedTxsNotifications.enabled : true;
 
-    if ($scope.wallet.coin == 'bch') {
-      blockexplorerUrl = 'bch-insight.bitpay.com';
-    } else {
-      blockexplorerUrl = 'insight.bitpay.com';
-    }
+    blockexplorerUrl = defaults.blockExplorer[$scope.wallet.coin];
 
     txConfirmNotification.checkIfEnabled(txId, function(res) {
       $scope.txNotification = {
