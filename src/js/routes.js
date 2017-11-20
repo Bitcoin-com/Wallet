@@ -1037,6 +1037,39 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         abstract: true
       })
 
+      /* Explore Bitcoin.com */
+      .state('tabs.bitcoin-com', {
+        url: '/bitcoincom',
+        views: {
+          'tab-home@tabs': {
+            controller: 'bitcoincomController',
+            templateUrl: 'views/bitcoincom.html'
+          }
+        }
+      })
+
+      /* buy.Bitcoin.com */
+      .state('tabs.buyandsell.bitcoindotcom', {
+        url: '/buyBitcoindotcom',
+        views: {
+          'tab-home@tabs': {
+            controller: 'buyBitcoindotcomController',
+            templateUrl: 'views/buyBitcoindotcom.html'
+          }
+        }
+      })
+
+      /* Price Chart */
+      .state('tabs.pricechart', {
+        url: '/pricechart',
+        views: {
+          'tab-home@tabs': {
+            controller: 'pricechartController',
+            templateUrl: 'views/pricechart.html'
+          }
+        }
+      })
+
       /*
        *
        * Mercado Libre Gift Card
@@ -1200,7 +1233,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ coinbaseService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService) {
 
     uxLanguage.init();
 
