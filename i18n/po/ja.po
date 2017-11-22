@@ -361,17 +361,17 @@ msgstr "ビットコインアドレス"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr "ビーキャッシュ (BCH) 残高"
+msgstr "ビットコインキャッシュ (BCH) 残高"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr "ビーキャッシュ対応"
+msgstr "ビットコインキャッシュ対応"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
 msgid "Bitcoin Cash Wallets"
-msgstr "ビーキャッシュウォレット"
+msgstr "ビットコインキャッシュウォレット"
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
@@ -386,7 +386,7 @@ msgstr "ビットコインウォレット"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr "ビーキャッシュペイメント"
+msgstr "ビットコインキャッシュペイメント"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
@@ -631,7 +631,7 @@ msgstr "翻訳に協力"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay のビーキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
+msgstr "Copay のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
@@ -942,7 +942,7 @@ msgstr "ダウンロード"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
-msgstr "ビーキャッシュウォレットを複製"
+msgstr "ビットコインキャッシュウォレットを複製"
 
 #: src/js/services/onGoingProcess.js:49
 msgid "Duplicating wallet..."
@@ -975,7 +975,7 @@ msgstr "未使用アドレスを生成しすぎたため、これ以上アドレ
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr "アプリ内でのビーキャッシュのウォレット作成及び操作を有効化する。"
+msgstr "アプリ内でのビットコインキャッシュのウォレット作成及び操作を有効化する。"
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
@@ -1408,7 +1408,7 @@ msgstr "ハードウェアウォレット"
 #: src/js/controllers/create.js:180
 #: src/js/controllers/join.js:145
 msgid "Hardware wallets are not yet supported with Bitcoin Cash"
-msgstr "ビーキャッシュはまだハードウェアウォレットに対応しておりません。"
+msgstr "ビットコインキャッシュはまだハードウェアウォレットに対応しておりません。"
 
 #: www/views/tab-settings.html:20
 msgid "Help & Support"
@@ -1917,7 +1917,7 @@ msgstr "ペーパーウォレットの出金を受け取るためのウォレッ
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr "ビーキャッシュ対応できるウォレットがありません。"
+msgstr "ビットコインキャッシュ対応できるウォレットがありません。"
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
@@ -1958,7 +1958,7 @@ msgstr "メモ"
 
 #: www/views/backup.html:19
 msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
-msgstr "注意: このビーキャッシュウォレットがビットコインウォレットからの複製の場合、復元フレーズは一緒です。"
+msgstr "注意: このビットコインキャッシュウォレットがビットコインウォレットからの複製の場合、復元フレーズは一緒です。"
 
 #: www/views/modals/wallets.html:25
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
@@ -2063,7 +2063,7 @@ msgstr "サイトを開く"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr "ビーキャッシュの宣伝サイト開きますか？"
+msgstr "ビットコインキャッシュの宣伝サイト開きますか？"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
@@ -2167,7 +2167,7 @@ msgstr "取引が承認されました。Glideraより送信されます。問�
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr "支払先アドレスはビーキャッシュの新フォーマットに変更された:"
+msgstr "支払先アドレスはビットコインキャッシュの新フォーマットに変更された:"
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
@@ -2505,7 +2505,7 @@ msgstr "指紋をスキャンしてください"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr "ウォレットの中にビーキャッシュが無いか確認する"
+msgstr "ウォレットの中にビットコインキャッシュが無いか確認する"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
@@ -2760,7 +2760,7 @@ msgstr "スライドして送る"
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr "いくつかのウォレットがビーキャッシュに対応できません。ビーキャッシュの取り戻しは復元ツールで試すとうまくいくかもしれません。"
+msgstr "いくつかのウォレットがビットコインキャッシュに対応できません。ビットコインキャッシュの取り戻しは復元ツールで試すとうまくいくかもしれません。"
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
@@ -2806,7 +2806,7 @@ msgstr "超節約"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr "ビーキャッシュ対応"
+msgstr "ビットコインキャッシュ対応"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
@@ -3633,4 +3633,3 @@ msgstr "{{updatingTxHistoryProgress}} 個の取引ダウンロード済み"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-of-{{wallet.n}}"
-
