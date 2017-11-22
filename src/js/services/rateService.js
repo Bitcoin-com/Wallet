@@ -25,7 +25,7 @@ var RateService = function(opts) {
   self._isAvailable = false;
   self._rates = {};
   self._alternatives = [];
-  self._ratesBCH = {};
+  self._bchRate = null;
   self._queued = [];
 
   self.updateRates();
@@ -46,7 +46,7 @@ RateService.prototype.updateRates = function() {
   var backoffSeconds = 5;
   var updateFrequencySeconds = 5 * 60;
   var rateServiceUrl = 'https://bitpay.com/api/rates';
-  var bchRateServiceUrl = 'https://api.kraken.com/0/public/Ticker?pair=BCHUSD,BCHEUR';
+  var bchRateServiceUrl = 'https://www.bitcoin.com/special/rates.json';
 
 
   function getBTC(cb, tries) {
@@ -91,11 +91,7 @@ RateService.prototype.updateRates = function() {
     }
 
     self.httprequest.get(bchRateServiceUrl).success(function(res) {
-      self.lodash.each(res.result, function(data, paircode) {
-        var code = paircode.substr(3,3);
-        var rate =data.c[0];
-        self._ratesBCH[code] = rate;
-      })
+      self._bchRate = self.lodash.find(res, function(c) { return c.code == 'BCH'; }).rate;
       return cb();
     }).error(function() {
       return retry(tries);
@@ -118,10 +114,8 @@ RateService.prototype.updateRates = function() {
 };
 
 RateService.prototype.getRate = function(code, chain) {
-  if (chain == 'bch')
-    return this._ratesBCH[code];
-  else
-    return this._rates[code];
+  var rate = this._rates[code];
+  return chain == 'bch' ? this._bchRate * rate : rate;
 };
 
 RateService.prototype.getAlternatives = function() {
