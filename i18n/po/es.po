@@ -379,7 +379,7 @@ msgstr "Política de Comisión de la Red Bitcoin"
 
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
-msgid "Bitcoin Wallets"
+msgid "Bitcoin Core Wallets"
 msgstr "Billeteras Bitcoin"
 
 #: src/js/services/incomingData.js:151

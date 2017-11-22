@@ -379,7 +379,7 @@ msgstr "Política de taxa de rede Bitcoin"
 
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
-msgid "Bitcoin Wallets"
+msgid "Bitcoin Core Wallets"
 msgstr "Carteiras Bitcoin"
 
 #: src/js/services/incomingData.js:151
