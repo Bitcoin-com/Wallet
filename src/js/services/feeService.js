@@ -20,6 +20,9 @@ angular.module('copayApp.services').factory('feeService', function($log, $timeou
     coin: ''
   };
 
+
+  var defaults = configService.getDefaults();
+
   root.getCurrentFeeLevel = function() {
     return configService.getSync().wallet.settings.feeLevel || 'normal';
   };
@@ -60,12 +63,18 @@ angular.module('copayApp.services').factory('feeService', function($log, $timeou
 
   root.getFeeLevels = function(coin, cb) {
     coin = coin || 'btc';
+    var opts = {};
+    if (coin == 'bch') {
+      opts.bwsurl = defaults.bwscash.url;
+    } else {
+      opts.bwsurl = defaults.bws.url;
+    }
 
     if (cache.coin == coin && cache.updateTs > Date.now() - CACHE_TIME_TS * 1000) {
       return cb(null, cache.data, true);
     }
 
-    var walletClient = bwcService.getClient();
+    var walletClient = bwcService.getClient(null, opts);
 
     walletClient.getFeeLevels(coin, 'livenet', function(errLivenet, levelsLivenet) {
       walletClient.getFeeLevels('btc', 'testnet', function(errTestnet, levelsTestnet) {

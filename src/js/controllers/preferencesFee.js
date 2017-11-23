@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesFeeController', function($scope, $timeout, $ionicHistory, lodash, gettextCatalog, configService, feeService, ongoingProcess, popupService) {
+angular.module('copayApp.controllers').controller('preferencesFeeController', function($scope, $q, $timeout, $ionicHistory, lodash, gettextCatalog, configService, feeService, ongoingProcess, popupService) {
 
   $scope.save = function(newFee) {
 
@@ -32,24 +32,43 @@ angular.module('copayApp.controllers').controller('preferencesFeeController', fu
   });
 
   $scope.init = function() {
-    var coin = 'btc'; // TODO: only BTC in preferences
     $scope.network = $scope.network || 'livenet';
     $scope.feeOpts = feeService.feeOpts;
     $scope.currentFeeLevel = $scope.feeLevel || feeService.getCurrentFeeLevel();
     $scope.loadingFee = true;
-    feeService.getFeeLevels(coin, function(err, levels) {
-      $scope.loadingFee = false;
-      if (err) {
-        //Error is already formatted
-        popupService.showAlert(err);
-        return;
-      }
-      $scope.feeLevels = levels;
-      updateCurrentValues();
-      $timeout(function() {
-        $scope.$apply();
+
+    var btcFeePromise = $q(function(resolve, reject) {
+      feeService.getFeeLevels('btc', function(err, btcFeeLevels) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(btcFeeLevels);
+        }
       });
     });
+
+    var bchFeePromise = $q(function(resolve, reject) {
+      feeService.getFeeLevels('bch', function(err, bchFeeLevels) {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(bchFeeLevels);
+        }
+      });
+    });
+
+    $q.all([btcFeePromise, bchFeePromise]).then(function(levels) {
+        $scope.loadingFee = false;
+        $scope.feeLevels = levels[0];
+        $scope.bchFeeLevels = levels[1];
+        updateCurrentValues();
+        $timeout(function() {
+          $scope.$apply();
+        });
+      }, function(err) {
+        popupService.showAlert(err);
+        return;
+      });
   };
 
   var updateCurrentValues = function() {
@@ -60,18 +79,33 @@ angular.module('copayApp.controllers').controller('preferencesFeeController', fu
     });
 
     if (lodash.isEmpty(value)) {
-      $scope.feePerSatByte = $scope.currentFeeLevel == 'custom' ? $scope.feePerSatByte : null;
+      $scope.feePerSatByteBtc = $scope.currentFeeLevel == 'custom' ? $scope.feePerSatByteBtc : null;
       $scope.avgConfirmationTime = null;
       setMinWarning();
       setMaxWarning();
       return;
     }
 
-    $scope.feePerSatByte = (value.feePerKb / 1000).toFixed();
+    $scope.feePerSatByteBtc = (value.feePerKb / 1000).toFixed();
     $scope.avgConfirmationTime = value.nbBlocks * 10;
     $scope.invalidCustomFeeEntered = false;
     setMinWarning();
     setMaxWarning();
+
+    if (lodash.isEmpty($scope.bchFeeLevels)) return;
+
+    var bchValue = {};
+    if ($scope.network == 'livenet') {
+      bchValue = lodash.find($scope.bchFeeLevels[$scope.network], {
+        level: 'normal'
+      });
+    } else {
+      bchValue = lodash.find($scope.bchFeeLevels[$scope.network], {
+        level: $scope.currentFeeLevel
+      });
+    }
+
+    $scope.feePerSatByteBch = (bchValue.feePerKb / 1000).toFixed();
   };
 
   $scope.chooseNewFee = function() {
@@ -84,8 +118,8 @@ angular.module('copayApp.controllers').controller('preferencesFeeController', fu
     $scope.showMinWarning = false;
     popupService.showPrompt(gettextCatalog.getString('Custom Fee'), gettextCatalog.getString('Set your own fee in satoshis/byte'), null, function(text) {
       if (!text || !parseInt(text) || parseInt(text) <= 0) return;
-      $scope.feePerSatByte = parseInt(text);
-      $scope.customFeePerKB = ($scope.feePerSatByte * 1000).toFixed();
+      $scope.feePerSatByteBtc = parseInt(text);
+      $scope.customFeePerKB = ($scope.feePerSatByteBtc * 1000).toFixed();
       setMaxWarning();
       setMinWarning();
       $timeout(function() {
@@ -102,12 +136,12 @@ angular.module('copayApp.controllers').controller('preferencesFeeController', fu
   };
 
   var setMinWarning = function() {
-    if (parseInt($scope.feePerSatByte) < $scope.getMinimumRecommeded()) $scope.showMinWarning = true;
+    if (parseInt($scope.feePerSatByteBtc) < $scope.getMinimumRecommeded()) $scope.showMinWarning = true;
     else $scope.showMinWarning = false;
   };
 
   var setMaxWarning = function() {
-    if (parseInt($scope.feePerSatByte) > 1000) {
+    if (parseInt($scope.feePerSatByteBtc) > 1000) {
       $scope.showMaxWarning = true;
       $scope.invalidCustomFeeEntered = true;
     } else {
