@@ -452,7 +452,7 @@ angular.module('copayApp.services')
 
     // joins and stores a wallet
     root.joinWallet = function(opts, cb) {
-      var walletClient = bwcService.getClient();
+      var walletClient = bwcService.getClient(null, opts);
       $log.debug('Joining Wallet:', opts);
 
       try {
