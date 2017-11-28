@@ -7,6 +7,16 @@
 
   <ion-content>
     <div class="settings-list list">
+
+      <ion-toggle class="has-comment" ng-model="spendUnconfirmed.value" toggle-class="toggle-balanced" ng-change="spendUnconfirmedChange()">
+        <span class="toggle-label" translate>Use Unconfirmed Funds</span>
+      </ion-toggle>
+      <div class="comment" translate>
+        If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays.
+      </div>
+
+      <div class="item item-divider"></div>
+
       <ion-toggle class="has-comment" ng-model="recentTransactionsEnabled.value" toggle-class="toggle-balanced" ng-change="recentTransactionsChange()">
         <span class="toggle-label" translate>Recent Transaction Card</span>
       </ion-toggle>
