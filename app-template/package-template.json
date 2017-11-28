@@ -58,7 +58,6 @@
     "bitauth": "^0.2.1",
     "bitcore-wallet-client": "https://github.com/Bitcoin-com/bitcore-wallet-client.git",
     "bower": "^1.7.9",
-    "cordova-android": "5.1.1",
     "cordova-custom-config": "^3.0.5",
     "cordova-plugin-qrscanner": "^2.5.0",
     "coveralls": "^2.11.9",
@@ -77,7 +76,8 @@
     "grunt-nw-builder": "^2.0.3",
     "grunt-sass": "^1.2.0",
     "load-grunt-tasks": "^3.5.0",
-    "shelljs": "^0.3.0"
+    "shelljs": "^0.3.0",
+    "android-versions": "^1.2.1"
   },
   "scripts": {
     "postinstall":            "bower install",
