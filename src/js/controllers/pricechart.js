@@ -79,7 +79,7 @@ angular.module('copayApp.controllers').controller('pricechartController', functi
       getChartData(bchPriceUrl).then(function(data) {
         $scope.bchPriceLatest = data.priceLatest;
         new Chartist.Line('#bch-chart', data.chartData, options);
-      })
+      });
 
       getChartData(btcPriceUrl).then(function(data) {
         $scope.btcPriceLatest = data.priceLatest;
