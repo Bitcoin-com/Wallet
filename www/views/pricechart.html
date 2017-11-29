@@ -7,11 +7,20 @@
   <ion-content>
         <div class="chart-container">
             <div class="chart">
-            <div class="ct-chart"></div>
-
-                <div class="latest-price"><span class="light-yellow" style="font-size: 16px;">Latest price:</span><br/>$<span id="latest-price">2500</span></div>
-                <div class="high-price"><span class="light-yellow">High:</span><br/>$<span id="high-price">2500</span></div>
-                <div class="low-price"><span  class="light-yellow">Low:</span><br/>$<span id="low-price">2500</span></div>
+              <div class="ct-chart" id="bch-chart"></div>
+                <div class="latest-price">
+                  <span class="light-yellow" style="font-size: 16px;">Latest BCH price:</span>
+                  <br/>
+                  <span id="latest-price">{{bchPriceLatest}}</span>
+                </div>
+            </div>
+            <div class="chart">
+              <div class="ct-chart" id="btc-chart"></div>
+                <div class="latest-price">
+                  <span class="light-yellow" style="font-size: 16px;">Latest BTC price:</span>
+                  <br/>
+                  <span id="latest-price">{{btcPriceLatest}}</span>
+                </div>
             </div>
         </div>
   </ion-content>

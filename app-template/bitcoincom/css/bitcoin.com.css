@@ -144,6 +144,11 @@ div.onboarding-topic {
 .ct-series-a .ct-area {
     fill: #FDE9BE;
 }
+
+#bch-chart .ct-area {
+	fill: #008917;
+}
+
 .ct-area {
     opacity:.6 !important;
 }
@@ -153,6 +158,13 @@ div.onboarding-topic {
     stroke: #F9B016;
     stroke-width: 2px;
 }
+
+#bch-chart .ct-series-a .ct-line,
+#bch-chart .ct-series-a .ct-point {
+	stroke: #46C05C;
+	stroke-width: 2px;
+}
+
 .ct-labels {
     border: red thin solid;
 }
@@ -189,4 +201,8 @@ div.onboarding-topic {
 }
 .light-yellow {
     color:#FFD579;
+}
+
+.light-green {
+	color:#26B03C;
 }
