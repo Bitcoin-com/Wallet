@@ -774,7 +774,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('onboarding.collectEmail', {
-        url: '/collectEmail/:walletId',
+        url: '/collectEmail/:bchWalletId/:btcWalletId',
         views: {
           'onboarding': {
             templateUrl: 'views/onboarding/collectEmail.html',
@@ -783,7 +783,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('onboarding.backupRequest', {
-        url: '/backupRequest/:walletId',
+        url: '/backupRequest/:bchWalletId/:btcWalletId',
         views: {
           'onboarding': {
             templateUrl: 'views/onboarding/backupRequest.html',
@@ -792,7 +792,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('onboarding.backupWarning', {
-        url: '/backupWarning/:from/:walletId',
+        url: '/backupWarning/:from/:walletId/:bchWalletId/:btcWalletId',
         views: {
           'onboarding': {
             templateUrl: 'views/backupWarning.html',
@@ -801,7 +801,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('onboarding.backup', {
-        url: '/backup/:walletId',
+        url: '/backup/:walletId/:bchWalletId/:btcWalletId',
         views: {
           'onboarding': {
             templateUrl: 'views/backup.html',
@@ -810,7 +810,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('onboarding.disclaimer', {
-        url: '/disclaimer/:walletId/:backedUp/:resume',
+        url: '/disclaimer/:bchWalletId/:btcWalletId/:backedUp/:resume',
         views: {
           'onboarding': {
             templateUrl: 'views/onboarding/disclaimer.html',

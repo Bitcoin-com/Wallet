@@ -2,7 +2,8 @@
 
 angular.module('copayApp.controllers').controller('backupRequestController', function($scope, $state, $stateParams, $ionicConfig, popupService, gettextCatalog) {
 
-  $scope.walletId = $stateParams.walletId;
+  $scope.bchWalletId = $stateParams.bchWalletId;
+  $scope.btcWalletId = $stateParams.btcWalletId;
 
   $scope.$on("$ionicView.enter", function() {
     $ionicConfig.views.swipeBackEnabled(false);
@@ -27,7 +28,8 @@ angular.module('copayApp.controllers').controller('backupRequestController', fun
         popupService.showConfirm(title, message, okText, cancelText, function(val) {
           if (val) {
             $state.go('onboarding.disclaimer', {
-              walletId: $scope.walletId,
+              bchWalletId: $scope.bchWalletId,
+              btcWalletId: $scope.btcWalletId,
               backedUp: false
             });
           }

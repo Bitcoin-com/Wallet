@@ -427,12 +427,6 @@ angular.module('copayApp.services')
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
 
-            if (opts.btcOpts) {
-              opts.btcOpts.singleAddress = opts.singleAddress;
-              opts.btcOpts.mnemonic = walletClient.credentials.mnemonic;
-              root.createWallet(opts.btcOpts, null);
-            }
-
             return cb(null, walletClient, secret);
           });
         });
@@ -488,7 +482,6 @@ angular.module('copayApp.services')
     root.getWallet = function(walletId) {
       return root.wallet[walletId];
     };
-
 
     root.deleteWalletClient = function(client, cb) {
       var walletId = client.credentials.walletId;
@@ -728,12 +721,12 @@ angular.module('copayApp.services')
     root.createDefaultWallet = function(cb) {
       var defaults = configService.getDefaults();
 
-      var opts = {};
-      opts.m = 1;
-      opts.n = 1;
-      opts.networkName = 'livenet';
-      opts.coin = 'bch';
-      opts.bwsurl = defaults.bwscash.url;
+      var bchOpts = {};
+      bchOpts.m = 1;
+      bchOpts.n = 1;
+      bchOpts.networkName = 'livenet';
+      bchOpts.coin = 'bch';
+      bchOpts.bwsurl = defaults.bwscash.url;
 
       var btcOpts = {};
       btcOpts.m = 1;
@@ -741,9 +734,15 @@ angular.module('copayApp.services')
       btcOpts.networkName = 'livenet';
       btcOpts.coin = 'btc';
       btcOpts.bwsurl = defaults.bws.url;
-      opts.btcOpts = btcOpts;
 
-      root.createWallet(opts, cb);
+      root.createWallet(bchOpts, function(bchErr, bchWalletClient) {
+        if (bchErr) return cb(bchErr);
+        btcOpts.mnemonic = bchWalletClient.credentials.mnemonic;
+        root.createWallet(btcOpts, function(btcErr, btcWalletClient) {
+          if (btcErr) return cb(btcErr);
+          return cb(null, [bchWalletClient, btcWalletClient]);
+        });
+      });
     };
 
     root.setDisclaimerAccepted = function(cb) {

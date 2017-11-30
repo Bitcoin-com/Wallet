@@ -40,7 +40,7 @@ angular.module('copayApp.controllers').controller('tourController',
     $scope.createDefaultWallet = function() {
       ongoingProcess.set('creatingWallet', true);
       $timeout(function() {
-        profileService.createDefaultWallet(function(err, walletClient) {
+        profileService.createDefaultWallet(function(err, walletClients) {
           if (err) {
             $log.warn(err);
 
@@ -60,18 +60,16 @@ angular.module('copayApp.controllers').controller('tourController',
             }, 2000);
           };
           ongoingProcess.set('creatingWallet', false);
-          var wallet = walletClient;
-          var walletId = wallet.credentials.walletId;
+          var bchWallet = walletClients[0];
+          var btcWallet = walletClients[1];
+
+          var bchWalletId = bchWallet.credentials.walletId;
+          var btcWalletId = btcWallet.credentials.walletId;
 
           $state.go('onboarding.collectEmail', {
-            walletId: walletId
+            bchWalletId: bchWalletId,
+            btcWalletId: btcWalletId
           });
-
-            /*
-          $state.go('onboarding.backupRequest', {
-            walletId: walletId
-          });
-            */
         });
       }, 300);
     };

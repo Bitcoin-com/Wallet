@@ -2,7 +2,13 @@
 
 angular.module('copayApp.controllers').controller('backupController',
   function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, lodash, profileService, bwcService, walletService, ongoingProcess, popupService, gettextCatalog, $ionicModal, firebaseEventsService) {
-    $scope.wallet = profileService.getWallet($stateParams.walletId);
+    if ($stateParams.bchWalletId && $stateParams.btcWalletId) {
+      $scope.wallet = profileService.getWallet($stateParams.bchWalletId);
+      $scope.btcWallet = profileService.getWallet($stateParams.btcWalletId);
+    } else {
+      $scope.wallet = profileService.getWallet($stateParams.walletId);
+    }
+
     $scope.viewTitle = $scope.wallet.name || $scope.wallet.credentials.walletName;
     $scope.n = $scope.wallet.n;
     var keys;
@@ -92,7 +98,8 @@ angular.module('copayApp.controllers').controller('backupController',
           $ionicHistory.removeBackView();
           $state.go('tabs.home');
         } else $state.go('onboarding.disclaimer', {
-          walletId: $stateParams.walletId,
+          bchWalletId: $stateParams.bchWalletId,
+          btcWalletId: $stateParams.btcWalletId,
           backedUp: true
         });
       });
@@ -138,6 +145,9 @@ angular.module('copayApp.controllers').controller('backupController',
         }
 
         profileService.setBackupFlag($scope.wallet.credentials.walletId);
+        if ($scope.btcWallet) {
+          profileService.setBackupFlag($scope.btcWallet.credentials.walletId);
+        }
         return cb();
       }, 1);
     };

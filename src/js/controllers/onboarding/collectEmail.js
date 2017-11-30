@@ -2,7 +2,11 @@
 
 angular.module('copayApp.controllers').controller('collectEmailController', function($scope, $state, $log, $timeout, $http, $httpParamSerializer, $ionicConfig, profileService, configService, walletService, appConfigService, emailService) {
 
-  var wallet, walletId;
+  var bchWalletId;
+  var btcWalletId;
+  var bchWallet;
+  var btcWallet;
+
   $scope.data = {};
   // Get more info: https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/
   var URL = "https://script.google.com/macros/s/AKfycbyuuLpN7UvtMMHv2BNLfZ7N2m4y4N6MeTpGRGFvnkGHFr9SM60/exec";
@@ -27,8 +31,11 @@ angular.module('copayApp.controllers').controller('collectEmailController', func
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    walletId = data.stateParams.walletId;
-    wallet = profileService.getWallet(walletId);
+    bchWalletId = data.stateParams.bchWalletId;
+    btcWalletId = data.stateParams.btcWalletId;
+
+    bchWallet = profileService.getWallet(bchWalletId);
+    btcWallet = profileService.getWallet(btcWalletId);
     $scope.data.accept = true;
   });
 
@@ -56,7 +63,7 @@ angular.module('copayApp.controllers').controller('collectEmailController', func
         enabled: enabled,
         email: enabled ? $scope.data.email : null
       });
-          
+
       if ($scope.data.accept) collectEmail();
 
       $timeout(function() {
@@ -67,7 +74,8 @@ angular.module('copayApp.controllers').controller('collectEmailController', func
 
   $scope.goNextView = function() {
     $state.go('onboarding.backupRequest', {
-      walletId: walletId
+      bchWalletId: bchWalletId,
+      btcWalletId: btcWalletId
     });
   };
 
