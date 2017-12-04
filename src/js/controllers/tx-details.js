@@ -139,6 +139,8 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
         if (err) return;
         walletService.getLowAmount($scope.wallet, levels, function(err, amount) {
           if (err) return;
+          if ($scope.wallet.coin == 'bch') return;
+
           $scope.btx.lowAmount = tx.amount < amount;
 
           $timeout(function() {
