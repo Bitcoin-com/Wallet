@@ -20,7 +20,6 @@ For a list of frequently asked questions please visit the [Bitcoin.com Wallet FA
 - Support for over 150 currency pricing options and unit denomination in BTC or bits
 - Mnemonic (BIP39) support for wallet backups
 - Paper wallet sweep support (BIP38)
-- Hardware wallet support (Trezor and Ledger) (only in Chrome App version)
 - Email notifications for payments and transfers
 - Push notifications (only available for ios and android versions)
 - Customizable wallet naming and background colors
