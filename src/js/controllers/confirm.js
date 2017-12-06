@@ -333,10 +333,13 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           txp.feeStr = txFormatService.formatAmountStr(wallet.coin, txp.fee);
           txFormatService.formatAlternativeStr(wallet.coin, txp.fee, function(v) {
             txp.alternativeFeeStr = v;
+            if (txp.alternativeFeeStr.substring(0, 4) == '0.00')
+              txp.alternativeFeeStr = '< ' + txp.alternativeFeeStr;
           });
 
           var per = (txp.fee / (txp.amount + txp.fee) * 100);
-          txp.feeRatePerStr = per.toFixed(2) + '%';
+          var perString = per.toFixed(2);
+          txp.feeRatePerStr = (perString == '0.00' ? '< ' : '') + perString + '%';
           txp.feeToHigh = per > FEE_TOO_HIGH_LIMIT_PER;
 
           tx.txp[wallet.id] = txp;
