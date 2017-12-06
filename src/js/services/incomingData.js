@@ -119,11 +119,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         if (parsed.r) {
           payproService.getPayProDetails(parsed.r, function(err, details) {
             if (err) {
-              if (addr && amount) 
+              if (addr && amount)
                 goSend(addr, amount, message, coin);
-              else 
+              else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
-            } 
+            }
             handlePayPro(details, coin);
           });
         } else {
@@ -131,7 +131,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         }
         return true;
 
-    // Cash URI with bitcoin core address version number?
+    // Cash URI with bitcoin (btc) address version number?
     } else if (bitcore.URI.isValid(data.replace(/^bitcoincash:/,'bitcoin:'))) {
         $log.debug('Handling bitcoincash URI with legacy address');
         var coin = 'bch';
@@ -148,10 +148,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         // Translate address
         $log.debug('address transalated to:' + addr);
         popupService.showConfirm(
-          gettextCatalog.getString('Bitcoin cash Payment'), 
+          gettextCatalog.getString('Bitcoin cash Payment'),
           gettextCatalog.getString('Payment address was translated to new Bitcoin Cash address format: ' + addr),
-          gettextCatalog.getString('OK'), 
-          gettextCatalog.getString('Cancel'), 
+          gettextCatalog.getString('OK'),
+          gettextCatalog.getString('Cancel'),
           function(ret) {
             if (!ret) return false;
 
@@ -162,11 +162,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             if (parsed.r) {
               payproService.getPayProDetails(parsed.r, function(err, details) {
                 if (err) {
-                  if (addr && amount) 
+                  if (addr && amount)
                     goSend(addr, amount, message, coin);
-                  else 
+                  else
                     popupService.showAlert(gettextCatalog.getString('Error'), err);
-                } 
+                }
                 handlePayPro(details, coin);
               });
             } else {
