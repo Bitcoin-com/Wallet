@@ -1070,6 +1070,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      /* Shapeshift */
+      .state('tabs.shapeshift', {
+        url: '/shapeshift',
+        views: {
+          'tab-home@tabs': {
+            controller: 'shapeshiftController',
+            templateUrl: 'views/shapeshift.html'
+          }
+        }
+      })
+
       /*
        *
        * Mercado Libre Gift Card
