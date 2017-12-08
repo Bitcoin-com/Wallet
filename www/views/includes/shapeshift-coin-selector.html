@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <select ng-model="selectedCoinModel.coin" ng-change="getMarketData(selectedCoinModel.coin)">
+      <option ng-repeat="(k, coin) in coins" value="{{coin.symbol}}">
+        {{coin.symbol}}
+      </option>
+    </select>
+    <br/>
+    <div>
+      <div>
+        <div>
+          <label>{{ label }}</label>
+          <input type="text" ng-model="coinAddress">
+        </div>
+        <div ng-show="direction=='out'">
+          <label>Amount</label>
+          <input type="text" ng-model="amount">
+        </div>
+      </div>
+      <div ng-if="direction=='in'">
+        <div>Deposit Limit: {{marketData.limit}}</div>
+        <div>Minimum Amount: {{marketData.minimum}}</div>
+        <div>MinerFee: {{marketData.minerFee}}</div>
+        <div>Rate: {{marketData.rate}}</div>
+      </div>
+    </div>
+  </div>
+</div>

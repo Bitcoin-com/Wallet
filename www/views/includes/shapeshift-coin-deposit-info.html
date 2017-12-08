@@ -1,0 +1,19 @@
+<div ng-if="depositInfo">
+    <div>
+        {{DepositStatus.status}}
+    </div>
+    <div>
+        <qrcode version="20" error-correction-level="H" size=200 data="{{depositInfo.depositQR}}"></qrcode>
+    </div>
+    <div>
+        <div>Deposit Type: {{depositInfo.depositType}}</div>
+        <div ng-if="depositInfo.depositAmount">Deposit Amount: {{depositInfo.depositAmount}}</div>
+        <div>Deposit Address: {{depositInfo.deposit}}</div>
+        <div>Withdrawal Type: {{depositInfo.withdrawalType}}</div>
+        <div>Withdrawal Address: {{depositInfo.withdrawal}}</div>
+        <div ng-if="depositInfo.withdrawalAmount">Withdrawal Amount: {{depositInfo.withdrawalAmount}}</div>
+        <div ng-if="depositInfo.quotedRate">Quoted Rate: {{depositInfo.quotedRate}}</div>
+        <div ng-if="depositInfo.minerFee">Miner Fee: {{depositInfo.minerFee}}</div>
+        <div ng-if="depositInfo.expiration">Expires: {{depositInfo.expiration}}</div>
+    </div>
+</div>
