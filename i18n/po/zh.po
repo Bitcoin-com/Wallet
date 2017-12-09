@@ -36,25 +36,25 @@ msgstr "-{{tx.feeRateStr}} 的交易记录"
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
-msgstr "5 星评级帮助我们进入更多的人手, {{appName}} 和更多的用户意味着的的资源可以致力于应用!"
+msgstr "5 星评级帮助 {{appName}} 获得和投入更多的资源!"
 
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr "<b>Only</b>可在悔尔卡多里弗(巴西) 兌換"
+msgstr "<b>仅</b>可在悔尔卡多里弗(巴西) 兑换"
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
 msgid "A member of the team will review your feedback as soon as possible."
-msgstr "团队的成员将尽快审查您的反馈意见。"
+msgstr "团队的成员将尽快查看你的反馈意见。"
 
 #: src/js/controllers/confirm.js:401
 msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
-msgstr "备注︰共有{{amountAboveMaxSizeStr}} 被排除了。超出了交易允许的最大体积"
+msgstr "备注︰共有 {{amountAboveMaxSizeStr}} 被排除了。超出了交易允许的最大体积"
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "备注：共有{{amountBelowFeeStr}} 被排除了。这些来自 UTXOs 的资金小于提供的网络费用。"
+msgstr "备注：共有 {{amountBelowFeeStr}} 被排除了。这些来自 UTXOs 的资金小于网络所需费用。"
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -64,7 +64,7 @@ msgstr "关于"
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr "同意"
+msgstr "接受"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
@@ -163,11 +163,11 @@ msgstr "地址与余额"
 
 #: www/views/tab-settings.html:149
 msgid "Advanced"
-msgstr "進階"
+msgstr "高级"
 
 #: www/views/advancedSettings.html:3
 msgid "Advanced Settings"
-msgstr "进阶设置"
+msgstr "高级设置"
 
 #: www/views/bitpayCard.html:62
 msgid "All"
@@ -179,11 +179,11 @@ msgstr "所有地址"
 
 #: www/views/modals/wallet-balance.html:18
 msgid "All of your bitcoin wallet balance may not be available for immediate spending."
-msgstr "所有您的比特币的钱包余额可能无法用于直接支出。"
+msgstr "所有你的比特币的钱包余额可能无法用于直接支出"
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "比特币地址可以创建之前，签名的所有设备都必须都添加到这个对数钱包。"
+msgstr "比特币地址可以创建之前，签名的所有设备都必须都添加到这个多重签名钱包"
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
@@ -195,7 +195,7 @@ msgstr "允许通知"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
-msgstr "差不多完成了 ！让我们回顾一下。"
+msgstr "差不多完成了，让我们回顾一下"
 
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
@@ -204,7 +204,7 @@ msgstr "替代货币"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr "亚马逊服务器暂时无法访问，请稍候再试。"
+msgstr "Amazon.com 暂时无法访问，请稍候再试。"
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
@@ -218,19 +218,19 @@ msgstr "数额低于最低允许值"
 
 #: src/js/controllers/confirm.js:216
 msgid "Amount too big"
-msgstr "量太大"
+msgstr "数额太大"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr "數額低於可消費額"
+msgstr "数额低于可消费额"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
-msgstr "本程序有一个可用的更新。为了您的安全，请更新到最新版本。"
+msgstr "本程序有一个可用的更新。为了你的安全，请更新到最新版本"
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
-msgstr "任何人只要持有你的备份短语，就可以访问或者花掉你的比特币。"
+msgstr "任何人只要获得你的备份短语，就可以访问和使用你的比特币"
 
 #: www/views/addresses.html:94
 msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
@@ -238,7 +238,7 @@ msgstr "近似的比特币网络费用将钱包的余额转移 (与正常优先�
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
-msgstr "你正在被监视吗？"
+msgstr "有旁观者吗？"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
@@ -275,7 +275,7 @@ msgstr "你确定你要登出你的BitPay Card账户？"
 #: src/js/controllers/preferencesBitpayCard.js:7
 #: src/js/controllers/preferencesBitpayServices.js:20
 msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
-msgstr "你确定你想要从这个设备中删除您的 BitPay 卡 ({{lastFourDigits}})吗？"
+msgstr "你确定你想要从这个设备中删除你的 BitPay 卡 ({{lastFourDigits}})吗？"
 
 #: www/views/includes/walletInfo.html:10
 msgid "Auditable"
@@ -303,7 +303,7 @@ msgstr "BIP32 路径的地址衍生"
 
 #: www/views/cashScan.html:25
 msgid "BTC wallets"
-msgstr "比特幣錢包"
+msgstr "比特币钱包"
 
 #: www/views/preferences.html:34
 msgid "Backup"
@@ -338,7 +338,7 @@ msgstr "在使用此功能之前，请备份你的钱包。"
 
 #: src/js/services/profileService.js:446
 msgid "Bad wallet invitation"
-msgstr "坏钱包邀请"
+msgstr "错误的钱包邀请"
 
 #: www/views/preferencesInformation.html:102
 msgid "Balance By Address"
@@ -346,7 +346,7 @@ msgstr "地址余额"
 
 #: www/views/includes/confirmBackupPopup.html:7
 msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
-msgstr "请务必将您的恢复短语存储在一个安全的地方。如果这个程序被删除，不能没有它恢复你的钱。"
+msgstr "请务必将你的恢复短语存储在一个安全的地方。如果没有恢复短语，应用被删除后钱将无法被找回。"
 
 #: www/views/preferencesBitpayServices.html:9
 msgid "BitPay Visa&reg; Cards"
@@ -359,17 +359,17 @@ msgstr "比特币地址"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr "小比特幣(BCH) 結餘"
+msgstr "比特币现金 (BCH) 余额"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr "小比特幣支援"
+msgstr "比特币现金支持"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
 msgid "Bitcoin Cash Wallets"
-msgstr ""
+msgstr "比特币现金钱包 (BCH)"
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
@@ -380,11 +380,11 @@ msgstr "比特币网络手续费策略"
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr ""
+msgstr "比特币钱包 (BTC)"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr "小比特幣支付"
+msgstr "比特币现金支付"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
@@ -392,7 +392,7 @@ msgstr "比特币是一种货币。"
 
 #: www/views/onboarding/disclaimer.html:15
 msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
-msgstr "比特币是不同 — — 它不能安全地举行以银行或 web 服务。"
+msgstr "比特币和传统的银行及网站服务不同"
 
 #: www/views/onboarding/tour.html:18
 msgid "Bitcoin is secure,<br>digital money."
@@ -413,7 +413,7 @@ msgstr "广播支付"
 #: src/js/controllers/modals/txpDetails.js:64
 #: src/js/controllers/tx-details.js:81
 msgid "Broadcasted"
-msgstr "广播商"
+msgstr "已广播成功"
 
 #: src/js/services/onGoingProcess.js:11
 msgid "Broadcasting transaction"
@@ -519,16 +519,16 @@ msgstr "清空缓存"
 #: src/js/controllers/confirm.js:373
 #: src/js/controllers/modals/txpDetails.js:49
 msgid "Click to accept"
-msgstr "在此點擊以接受"
+msgstr "在此点击以接受"
 
 #: src/js/controllers/confirm.js:367
 msgid "Click to pay"
-msgstr "在此點擊以支付"
+msgstr "在此点击以支付"
 
 #: src/js/controllers/confirm.js:379
 #: src/js/controllers/modals/txpDetails.js:42
 msgid "Click to send"
-msgstr "點擊以寄出"
+msgstr "点击以发送"
 
 #: www/views/customAmount.html:4
 #: www/views/modals/mercadolibre-card-details.html:3
@@ -543,7 +543,7 @@ msgstr "关闭"
 #: www/views/includes/cash.html:2
 #: www/views/preferencesInformation.html:17
 msgid "Coin"
-msgstr "電子幣种"
+msgstr "电子币种"
 
 #: www/views/preferences.html:22
 msgid "Color"
@@ -629,7 +629,7 @@ msgstr "参与翻译"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "本公司Copay只支持用新版本數字地址的小比特幣"
+msgstr "本公司Copay只支持用新版本數字地址的比特币现金"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
@@ -679,7 +679,7 @@ msgstr "无法访问服务器上的钱包。请确认︰"
 
 #: src/js/controllers/buyAmazon.js:102
 msgid "Could not access to Amazon.com"
-msgstr "不能访问到亚马逊网站"
+msgstr "不能访问到 Amazon.com"
 
 #: src/js/services/profileService.js:511
 msgid "Could not access wallet"
@@ -687,7 +687,7 @@ msgstr "无法访问钱包"
 
 #: src/js/controllers/confirm.js:210
 msgid "Could not add message to imported wallet without shared encrypting key"
-msgstr "无法将消息添加到进口钱包没有共享的加密密钥"
+msgstr "没有共享的加密密钥无法将消息添加到导入的钱包"
 
 #: src/js/controllers/modals/txpDetails.js:199
 msgid "Could not broadcast payment"
@@ -733,11 +733,11 @@ msgstr "无法删除支付提议"
 
 #: src/js/controllers/cashScan.js:117
 msgid "Could not duplicate"
-msgstr "無法复制"
+msgstr "无法复制"
 
 #: src/js/services/feeService.js:73
 msgid "Could not get dynamic fee"
-msgstr "不能动态费用"
+msgstr "无法获取动态手续费"
 
 #: src/js/services/feeService.js:43
 msgid "Could not get dynamic fee for level: {{feeLevel}}"
@@ -940,15 +940,15 @@ msgstr "下载"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
-msgstr "為小比特幣复制"
+msgstr "为比特币现金复制"
 
 #: src/js/services/onGoingProcess.js:49
 msgid "Duplicating wallet..."
-msgstr "复制錢包進行中"
+msgstr "复制钱包進行中"
 
 #: www/views/addresses.html:19
 msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
-msgstr "每个比特币钱包可以从您的 12 字备份生成亿万个地址。一个新的地址是自动生成和显示每个时间你收到付款。"
+msgstr "每个比特币钱包可以从你的 12 字备份生成亿万个地址。一个新的地址是自动生成和显示每个时间你收到付款。"
 
 #: src/js/services/feeService.js:13
 msgid "Economy"
@@ -973,11 +973,11 @@ msgstr "已达到空地址限制。无法生成新的地址。"
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr "能在本應用程序中創建和啟用小比特幣錢包"
+msgstr "能在本应用程序中创建和启用比特币现金钱包"
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
-msgstr "相机中启用访问您的设备设置入门。"
+msgstr "相机中启用访问你的设备设置入门。"
 
 #: www/views/preferencesNotifications.html:29
 msgid "Enable email notifications"
@@ -993,7 +993,7 @@ msgstr "使该摄像机开始。"
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr "巳啟用"
+msgstr "巳启用"
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
@@ -1002,7 +1002,7 @@ msgstr "输入支出密码"
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
-msgstr "为您的 BitPay 帐户输入两个因素"
+msgstr "为你的 BitPay 帐户输入两个因素"
 
 #: www/views/amount.html:4
 msgid "Enter amount"
@@ -1024,7 +1024,7 @@ msgstr "输入恢复短语 (BIP39)"
 
 #: www/views/onboarding/collectEmail.html:13
 msgid "Enter your email"
-msgstr "输入您的电子邮件"
+msgstr "输入你的电子邮件"
 
 #: www/views/backup.html:69
 msgid "Enter your password"
@@ -1185,7 +1185,7 @@ msgstr "导出钱包"
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
 msgid "Exporting via QR not supported for this wallet"
-msgstr "此钱包不支持通过 QR 的导出"
+msgstr "此钱包不支持通过二维码的导出"
 
 #: www/views/preferencesInformation.html:89
 msgid "Extended Public Keys"
@@ -1321,16 +1321,20 @@ msgstr "正在生成新的地址..."
 
 #: www/views/bitpayCardIntro.html:23
 msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
-msgstr "得到当地现金任何地方您去，从任何 Visa<sup>®</sup> 兼容的自动取款机 ATM 银行费用可能适用。"
+msgstr "得到当地现金任何地方你去，从任何 Visa<sup>®</sup> 兼容的自动取款机 ATM 银行费用可能适用。"
 
 #: www/views/onboarding/collectEmail.html:15
-msgid "Get news and updates from BitPay"
-msgstr "从 BitPay 获取新闻和更新"
+msgid "Get news and updates from Bitcoin.com"
+msgstr "订阅 Bitcoin.com 的新闻和更新"
+
+#: www/views/onboarding/collectEmail.html:17
+msgid "Continue &rarr;"
+msgstr "继续"
 
 #: www/views/onboarding/welcome.html:8
 msgctxt "button"
 msgid "Get started"
-msgstr "入门"
+msgstr "创建新的钱包"
 
 #: www/views/bitpayCard.html:49
 msgid "Get started"
@@ -1338,7 +1342,7 @@ msgstr "马上体验"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr "通过添加您的第一个开始。"
+msgstr "通过添加你的第一个开始。"
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
@@ -1388,7 +1392,7 @@ msgstr "上一页"
 #: www/views/includes/confirmBackupPopup.html:8
 #: www/views/onboarding/tour.html:23
 msgid "Got it"
-msgstr "收到！"
+msgstr "好的"
 
 #: www/views/preferencesInformation.html:53
 #: www/views/preferencesInformation.html:59
@@ -1406,7 +1410,7 @@ msgstr "硬件钱包"
 #: src/js/controllers/create.js:180
 #: src/js/controllers/join.js:145
 msgid "Hardware wallets are not yet supported with Bitcoin Cash"
-msgstr "硬體錢包不支持小比特幣"
+msgstr "硬體钱包不支持比特币现金"
 
 #: www/views/tab-settings.html:20
 msgid "Help & Support"
@@ -1415,15 +1419,15 @@ msgstr "帮助与支持"
 #: src/js/controllers/bitpayCard.js:112
 #: src/js/controllers/tab-settings.js:51
 msgid "Help and support information is available at the website."
-msgstr "此網站提供幫助及支援資訊"
+msgstr "此网站提供帮助及支援信息"
 
 #: www/views/addresses.html:25
 msgid "Hide"
-msgstr "隱藏"
+msgstr "隐藏"
 
 #: www/views/preferences.html:27
 msgid "Hide Balance"
-msgstr "隐藏的平衡"
+msgstr "隐藏余额"
 
 #: www/views/advancedSettings.html:30
 msgid "Hide Next Steps Card"
@@ -1447,7 +1451,7 @@ msgstr "主屏幕"
 #: src/js/controllers/feedback/send.js:65
 #: src/js/controllers/feedback/send.js:69
 msgid "How could we improve your experience?"
-msgstr "我们如何可以改善您的体验？"
+msgstr "我们如何可以改善你的体验？"
 
 #: www/views/feedback/rateCard.html:3
 msgid "How do you like {{appName}}?"
@@ -1459,17 +1463,17 @@ msgstr "我不喜欢"
 
 #: www/views/onboarding/disclaimer.html:43
 msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
-msgstr "我已经阅读、 理解并同意 <a ng-click=\"openTerms()\"translate=\"\"> 使用条款</a>。"
+msgstr "我已经阅读、 理解并同意 <a ng-click=\"openTerms()\"translate=\"\"> 使用条款</a>"
 
 #: www/views/modals/terms.html:22
 msgid "I have read, understood, and agree with the Terms of use."
-msgstr "我已经阅读、 理解并同意本使用条款。"
+msgstr "我已经阅读、 理解并同意本使用条款"
 
 #: www/views/join.html:137
 #: www/views/tab-create-personal.html:107
 #: www/views/tab-create-shared.html:136
 msgid "I have written it down"
-msgstr "我有把它写下来"
+msgstr "我已经把它写下来了"
 
 #: src/js/controllers/feedback/rateCard.js:35
 msgid "I like the app"
@@ -1477,7 +1481,7 @@ msgstr "我喜欢这个应用程序"
 
 #: src/js/controllers/feedback/rateCard.js:26
 msgid "I think this app is terrible."
-msgstr "这个应用程序是可怕。"
+msgstr "这个应用程序很差"
 
 #: src/js/controllers/onboarding/backupRequest.js:19
 #: www/views/includes/screenshotWarningModal.html:9
@@ -1486,11 +1490,11 @@ msgstr "我知道了"
 
 #: www/views/onboarding/disclaimer.html:21
 msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
-msgstr "我明白是否这个应用程序是搬到另一个设备或删除，我比特币可以只能进行恢复与备份的短语。"
+msgstr "我已经明白，如果此应用程序被删除或是我更换设备，我的比特币只能通过自己备份好的恢复短语找回"
 
 #: www/views/onboarding/disclaimer.html:18
 msgid "I understand that my funds are held securely on this device, not by a company."
-msgstr "我明白，我的资金安全地在此设备上，不由公司举行。"
+msgstr "我已经明白，我的资金安全地被保存在此设备上，而不是由其它公司和服务保存"
 
 #: www/views/backup.html:36
 msgid "I've written it down"
@@ -1498,11 +1502,11 @@ msgstr "我已经把它写下来"
 
 #: www/views/preferences.html:45
 msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
-msgstr "如果启用,将保护所有的敏感信息(私人密钥和恢复短语) 和与这个钱包关联的操作 (支出和出口)."
+msgstr "如果启用,将保护所有的敏感信息(私人密钥和恢复短语) 和与这个钱包关联的操作 (支出和出口)"
 
 #: www/views/advancedSettings.html:23
 msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
-msgstr "如果启用，最近的交易卡-交易发生跨所有钱包名单-将出现在主页选项卡。"
+msgstr "如果启用，最近的交易卡-交易发生跨所有钱包名单-将出现在主页选项卡"
 
 #: www/views/advancedSettings.html:14
 msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
@@ -1518,7 +1522,7 @@ msgstr "如果你有额外的反馈，请让我们知道通过点击设置选项
 
 #: www/views/includes/screenshotWarningModal.html:8
 msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
-msgstr "如果你拿一张截图，您的备份可能会被其他应用程序。您可以安全备份与物理纸和一支钢笔。"
+msgstr "截图保存的照片会被其他应用程序获取，所以非常不安全。可以使用物理纸和笔来记下恢复短语"
 
 #: www/views/tab-import-hardware.html:42
 #: www/views/tab-import-phrase.html:80
@@ -1543,7 +1547,7 @@ msgstr "正在导入钱包..."
 
 #: www/views/backup.html:72
 msgid "In order to verify your wallet backup, please type your password."
-msgstr "为了验证您的钱包的备份，请键入您的密码。"
+msgstr "为了验证你的钱包的备份，请键入你的密码。"
 
 #: www/views/mercadoLibreCards.html:24
 #: www/views/modals/mercadolibre-card-details.html:29
@@ -1588,7 +1592,7 @@ msgstr "费用的资金不足"
 
 #: www/views/tab-settings.html:123
 msgid "Integrations"
-msgstr ""
+msgstr "集成"
 
 #: www/views/includes/walletHistory.html:49
 msgid "Invalid"
@@ -1635,7 +1639,7 @@ msgstr "有什么我们可以做得更好吗？"
 
 #: www/views/backup.html:54
 msgid "Is this correct?"
-msgstr "这是正确的吗？"
+msgstr "确认无误了吗？"
 
 #: www/views/onboarding/collectEmail.html:22
 msgid "Is this email address correct?"
@@ -1643,11 +1647,11 @@ msgstr "此电子邮件地址是正确的？"
 
 #: www/views/addresses.html:25
 msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
-msgstr "它是一个好主意，以避免重用地址 — — 这既能保护您的隐私又保持您的比特币安全假设攻击由量子计算机。"
+msgstr "避免重用地址是一个好习惯 — — 这既能保护你的隐私又保持你的比特币免受量子计算机攻击"
 
 #: src/js/controllers/backup.js:76
 msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
-msgstr "它是重要的你写你备份的短语正确。如果发生什么事情到你的钱包，你会需要此备份来恢复你的钱。请检查您的备份并再试一次。"
+msgstr "备份好恢复短语非常重要。如果你的钱包发生什么意外，你会需要此恢复短语来恢复你的钱。请检查你的备份并再试一次"
 
 #: www/views/join.html:151
 msgid "Join"
@@ -1655,7 +1659,7 @@ msgstr "加入"
 
 #: src/js/controllers/copayers.js:85
 msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
-msgstr "加入我的 {{appName}} 的钱包。这里是邀请码︰ {{secret}} 你可以下载为您的电话或桌面的 {{appUrl}} {{appName}}"
+msgstr "加入我的 {{appName}} 的钱包。这里是邀请码︰ {{secret}} 你可以下载为你的电话或桌面的 {{appUrl}} {{appName}}"
 
 #: www/views/add.html:30
 #: www/views/join.html:5
@@ -1668,11 +1672,11 @@ msgstr "正在加入钱包..."
 
 #: www/views/onboarding/tour.html:22
 msgid "Just scan the code to pay."
-msgstr "只是扫描代码来支付。"
+msgstr "扫描二维码即可支付。"
 
 #: src/js/services/bwcError.js:116
 msgid "Key already associated with an existing wallet"
-msgstr "钥已经关联现有的钱包"
+msgstr "密钥已经关联至现有的钱包"
 
 #: www/views/preferencesLanguage.html:4
 #: www/views/tab-settings.html:68
@@ -1688,11 +1692,11 @@ msgstr "上个月"
 #: www/views/preferencesCash.html:18
 #: www/views/tx-details.html:94
 msgid "Learn more"
-msgstr "更多資訊"
+msgstr "更多信息"
 
 #: www/views/backup.html:43
 msgid "Let's verify your backup phrase."
-msgstr "让我们验证您备份的短语。"
+msgstr "让我们验证你的恢复短语:"
 
 #: www/views/addresses.html:45
 #: www/views/allAddresses.html:14
@@ -1717,7 +1721,7 @@ msgstr "用PIN码锁定"
 
 #: www/views/modals/wallet-balance.html:80
 msgid "Locked"
-msgstr "锁定"
+msgstr "已锁定"
 
 #: src/js/services/bwcError.js:86
 msgid "Locktime in effect. Please wait to create a new spend proposal"
@@ -1777,13 +1781,13 @@ msgstr "馬卡杜勒比禮品卡服務現時未能使用，請稍後再試"
 
 #: www/views/modals/txp-details.html:131
 msgid "Merchant Message"
-msgstr "商人的消息"
+msgstr "商户的消息"
 
 #: www/views/buyAmazon.html:55
 #: www/views/buyMercadoLibre.html:54
 #: www/views/topup.html:63
 msgid "Miner Fee"
-msgstr "礦工費用"
+msgstr "矿工费用"
 
 #: src/js/services/bwcError.js:134
 msgid "Missing parameter"
@@ -1805,7 +1809,7 @@ msgstr "已调动"
 
 #: src/js/controllers/tx-details.js:131
 msgid "Moved Funds"
-msgstr "转移资金"
+msgstr "被转移的资金"
 
 #: www/views/modals/txp-details.html:57
 msgid "Multiple recipients"
@@ -1826,7 +1830,7 @@ msgstr "名称"
 #: www/views/buyMercadoLibre.html:48
 #: www/views/topup.html:56
 msgid "Network Cost"
-msgstr "網路支援成本"
+msgstr "网络传输成本"
 
 #: src/js/services/bwcError.js:47
 msgid "Network error"
@@ -1859,7 +1863,7 @@ msgstr "没有定义的访问键"
 
 #: www/views/onboarding/backupRequest.html:5
 msgid "No backup, no bitcoin."
-msgstr "没有备份，没有比特币。"
+msgstr "不备份的比特币钱包是极不安全的"
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
@@ -1915,15 +1919,15 @@ msgstr "没有可用于接收资金的钱包"
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr "没有錢包合乎支持小比特幣資格"
+msgstr "没有钱包支持比特币现金"
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
-msgstr "非BIP44錢包"
+msgstr "非BIP44钱包"
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr "非合格比特幣錢包"
+msgstr "非合格比特币钱包"
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
@@ -1956,7 +1960,7 @@ msgstr "备注"
 
 #: www/views/backup.html:19
 msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
-msgstr "注意: 如此比特幣錢包由小比特幣复制，他們共享相同恢復短語"
+msgstr "注意: 非自主创建的比特币现金钱包与比特币钱包共享恢复短语"
 
 #: www/views/modals/wallets.html:25
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
@@ -1969,7 +1973,7 @@ msgstr "通知"
 
 #: www/views/onboarding/collectEmail.html:9
 msgid "Notifications by email"
-msgstr "用电子邮件通知"
+msgstr "接受邮件通知"
 
 #: www/views/tx-details.html:117
 msgid "Notify me if confirmed"
@@ -1981,11 +1985,11 @@ msgstr "交易确认完毕时通知我"
 
 #: www/views/includes/backupNeededPopup.html:8
 msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
-msgstr "现在是很好的时间进行备份你的钱包。如果此设备丢失，它是无法访问您没有备份的资金。"
+msgstr "现在是很好的时间进行备份你的钱包。如果此设备丢失，它是无法访问你没有备份的资金。"
 
 #: www/views/backupWarning.html:11
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
-msgstr "现在是一个完美的时间来评估你的周围。附近的窗户吗？隐藏的摄像机？肩-间谍吗？"
+msgstr "评估一下你周围的安全。附近的窗户？隐藏的摄像头？间谍？"
 
 #: src/js/controllers/buyAmazon.js:312
 #: src/js/controllers/topup.js:286
@@ -2019,7 +2023,7 @@ msgstr "还行"
 
 #: www/views/tab-home.html:39
 msgid "On this screen you can see all your wallets, accounts, and assets."
-msgstr "在此屏幕上您可以看到您的钱包、 帐户和资产。"
+msgstr "在此屏幕上你可以看到你的钱包、 帐户和资产"
 
 #: src/js/controllers/bitpayCard.js:113
 #: src/js/controllers/cashScan.js:19
@@ -2061,11 +2065,11 @@ msgstr "打开网站"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr "打開小比特幣網址bitcoincash.org?"
+msgstr "打开比特币现金网站 bitcoincash.org ?"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
-msgstr "打開恢復工具"
+msgstr "打开恢复工具"
 
 #: www/views/tab-receive.html:27
 msgid "Open wallet"
@@ -2104,7 +2108,7 @@ msgstr "粘贴备份的纯文本代码"
 
 #: www/views/bitpayCardIntro.html:28
 msgid "Pay 0% fees to turn bitcoin into dollars."
-msgstr "0%付费以比特币变成美元。"
+msgstr "0%付费以比特币变成美元"
 
 #: www/views/modals/paypro.html:18
 msgid "Pay To"
@@ -2165,7 +2169,7 @@ msgstr "支付以被接受。它将由 Glidera 广播。如果出现问题，它
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr "付款地址转化为新的小比特幣地址格式"
+msgstr "付款地址转化为新的比特币现金地址格式"
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
@@ -2194,11 +2198,11 @@ msgstr "个人钱包"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
-msgstr "请仔细记下这句话。"
+msgstr "请仔细记下这些字"
 
 #: www/views/tab-scan.html:20
 msgid "Please connect a camera to get started."
-msgstr "请连接相机入门。"
+msgstr "请连接相机以开始"
 
 #: src/js/controllers/import.js:278
 msgid "Please enter the recovery phrase"
@@ -2215,7 +2219,7 @@ msgstr "请输入你的PIN码"
 
 #: www/views/backup.html:53
 msgid "Please tap each word in the correct order."
-msgstr "请点击每个单词按照正确的顺序。"
+msgstr "请按正确的顺序点击每个单词"
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
@@ -2224,7 +2228,7 @@ msgstr "请升级 Copay 以执行此操作"
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62
 msgid "Please wait"
-msgstr "請等等"
+msgstr "请稍等"
 
 #: src/js/controllers/import.js:238
 msgid "Please, select your backup file"
@@ -2294,11 +2298,11 @@ msgstr "每天最多购买{{limitPerDay}}{{currency}}"
 
 #: src/js/controllers/buyMercadoLibre.js:281
 msgid "Purchase amount must be a value between 50 and 2000"
-msgstr "采购金额必须 50 到 2000年之间的值"
+msgstr "采购金额必须 50 到 2000 之间的值"
 
 #: www/views/onboarding/notifications.html:3
 msgid "Push Notifications"
-msgstr "推式通知"
+msgstr "推送通知"
 
 #: www/views/preferencesNotifications.html:17
 msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
@@ -2306,11 +2310,11 @@ msgstr "{{appName}} 的推式通知当前已禁用。在设置应用程序启用
 
 #: www/views/export.html:17
 msgid "QR Code"
-msgstr "QR 码"
+msgstr "二维码"
 
 #: www/views/onboarding/disclaimer.html:13
 msgid "Quick review!"
-msgstr "快速审查 ！"
+msgstr "快速审查！"
 
 #: src/js/controllers/create.js:84
 #: src/js/controllers/join.js:68
@@ -2319,7 +2323,7 @@ msgstr "随机"
 
 #: www/views/feedback/rateApp.html:14
 msgid "Rate on the app store"
-msgstr "率的应用程序商店"
+msgstr "去程序商店打分"
 
 #: www/views/addresses.html:52
 msgid "Read less"
@@ -2332,11 +2336,11 @@ msgstr "阅读更多"
 #: src/js/controllers/preferences.js:65
 #: src/js/controllers/tx-details.js:54
 msgid "Read more in our Wiki"
-msgstr "去我們的維基閱讀更多"
+msgstr "去我们的维基阅读更多"
 
 #: src/js/controllers/cashScan.js:61
 msgid "Read only wallet"
-msgstr "錢包只供唯讀"
+msgstr "只读钱包"
 
 #: www/views/tab-receive.html:3
 #: www/views/tabs.html:7
@@ -2424,7 +2428,7 @@ msgstr "删除 BitPay 卡吗？"
 
 #: src/js/controllers/preferencesBitpayServices.js:8
 msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
-msgstr "从该设备删除您的 BitPay 帐户将删除所有关联的 BitPay 帐户数据。你确定你想要从这个设备中删除您的 BitPay 帐户:({{email}})？"
+msgstr "从该设备删除你的 BitPay 帐户将删除所有关联的 BitPay 帐户数据。你确定你想要从这个设备中删除你的 BitPay 帐户:({{email}})？"
 
 #: www/views/join.html:116
 #: www/views/join.html:124
@@ -2503,7 +2507,7 @@ msgstr "请扫描你的指纹"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr "掃描你的錢包以存取小比特幣"
+msgstr "扫描你的钱包以存取比特币现金"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
@@ -2511,7 +2515,7 @@ msgstr "正在扫描钱包资金..."
 
 #: www/views/includes/walletList.html:11
 msgid "Scanning funds..."
-msgstr "掃描資金中....."
+msgstr "扫描资金中....."
 
 #: www/views/includes/screenshotWarningModal.html:7
 msgid "Screenshots are not secure"
@@ -2531,7 +2535,7 @@ msgstr "搜索交易"
 
 #: www/views/preferencesAltCurrency.html:14
 msgid "Search your currency"
-msgstr "搜索您的货币"
+msgstr "搜索你的货币"
 
 #: www/views/preferences.html:30
 msgid "Security"
@@ -2607,7 +2611,7 @@ msgstr "正在发送"
 
 #: src/js/services/onGoingProcess.js:39
 msgid "Sending 2FA code..."
-msgstr "正在发送 2FA 代码..."
+msgstr "正在发送二次验证码..."
 
 #: src/js/services/onGoingProcess.js:36
 msgid "Sending feedback..."
@@ -2673,7 +2677,7 @@ msgstr "设置"
 #: www/views/feedback/complete.html:17
 #: www/views/feedback/complete.html:26
 msgid "Share the love by inviting your friends."
-msgstr "邀请您的朋友分享爱。"
+msgstr "邀请你的朋友分享爱。"
 
 #: www/views/copayers.html:20
 msgid "Share this invitation with your copayers"
@@ -2724,7 +2728,7 @@ msgstr "签名交易"
 
 #: www/views/onboarding/backupRequest.html:6
 msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
-msgstr "因为只有你控制你的钱，你会需要删除此应用程序的情况下保存您备份的短语。"
+msgstr "因为只有你能控制你的钱包，如果不保存好恢复短语，一旦钱包应用被删除，你的比特币将无法被找回"
 
 #: www/views/tab-create-personal.html:122
 #: www/views/tab-create-shared.html:151
@@ -2739,7 +2743,7 @@ msgstr "跳过"
 #: src/js/controllers/confirm.js:371
 #: src/js/controllers/modals/txpDetails.js:47
 msgid "Slide to accept"
-msgstr "在此點擊掃描以接受"
+msgstr "在此点击扫描以接受"
 
 #: www/views/buyAmazon.html:96
 msgid "Slide to buy"
@@ -2747,16 +2751,16 @@ msgstr "滑动购买"
 
 #: src/js/controllers/confirm.js:365
 msgid "Slide to pay"
-msgstr "在此點擊掃描以付款"
+msgstr "在此点击扫描以付款"
 
 #: src/js/controllers/confirm.js:377
 #: src/js/controllers/modals/txpDetails.js:40
 msgid "Slide to send"
-msgstr "在此點擊滑動以發送"
+msgstr "在此点击滑动以发送"
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr "你有些錢包不合資格得到小比特幣的支持可嘗試連結這些錢包至BCH基金"
+msgstr "你有些钱包不合资格得到比特币现金的支持可尝试连接这些钱包至 BCH 基金"
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
@@ -2802,7 +2806,7 @@ msgstr "超级经济"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr "支持小比特幣"
+msgstr "支持比特币现金"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
@@ -2811,7 +2815,7 @@ msgstr "扫描"
 #: www/views/includes/incomingDataMenu.html:89
 #: www/views/paperWallet.html:3
 msgid "Sweep paper wallet"
-msgstr "Sweep 纸钱包"
+msgstr "扫描纸钱包"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -2823,7 +2827,7 @@ msgstr "此操作无法撤消"
 
 #: www/views/onboarding/welcome.html:5
 msgid "Take control of your money,<br>get started with bitcoin."
-msgstr "把你的钱，<br>得到控制开始用比特币。"
+msgstr "自由地掌控你的钱，<br>开始玩转比特币"
 
 #: www/views/walletDetails.html:132
 #: www/views/walletDetails.html:52
@@ -2832,7 +2836,7 @@ msgstr "点击并按住以显示"
 
 #: www/views/includes/walletInfo.html:3
 msgid "Tap to recreate"
-msgstr "點擊此以重新創建"
+msgstr "点击此以重新创建"
 
 #: www/views/includes/walletInfo.html:4
 msgid "Tap to retry"
@@ -2852,7 +2856,7 @@ msgstr "使用条款"
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
 msgid "Testnet"
-msgstr "Testnet"
+msgstr "测试网络"
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
@@ -2871,7 +2875,7 @@ msgstr "谢谢你 ！"
 
 #: src/js/controllers/feedback/send.js:73
 msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
-msgstr "这是令人兴奋的听到。我们愿意赚五明星从你 — — 我们如何可以改善您的体验吗？"
+msgstr "收到你的反馈很高兴。我们希望能获得你的五星好评 — — 我们如何可以改善你的体验吗？"
 
 #: src/js/services/ledger.js:152
 msgid "The Ledger Chrome application is not installed"
@@ -2879,15 +2883,15 @@ msgstr "Ledger Chrome 应用程序未安装"
 
 #: www/views/modals/wallet-balance.html:55
 msgid "The amount of bitcoin immediately spendable from this wallet."
-msgstr "比特币立即可从这个钱包的金额。"
+msgstr "此钱包的比特币金额立即可用"
 
 #: www/views/modals/wallet-balance.html:93
 msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
-msgstr "比特币存储在分配作为你挂起的事务建议的输入这个钱包中的金额。量确定使用未用余额交易记录输出与这个钱包关联，可能会与您挂起的事务建议相关联的实际数额超过。"
+msgstr "此钱包里比特币余额数量为已经和正在转入中的币数量扣除未花掉的比特币数量，因为有些花出去的比特币还未经确认，所以可能余额显示的会比真实的多"
 
 #: www/views/modals/wallet-balance.html:74
 msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
-msgstr "比特币存储在与小于 1 blockchain 确认这个钱包中的金额。"
+msgstr "小于1个确认的存在此钱包中的比特币数量"
 
 #: www/views/tab-import-phrase.html:5
 msgid "The derivation path"
@@ -2895,15 +2899,15 @@ msgstr "衍生路径"
 
 #: www/views/onboarding/tour.html:37
 msgid "The exchange rate changes with the market."
-msgstr "与市场汇率的变化。"
+msgstr "兑换汇率会随市场不断变化"
 
 #: www/views/preferencesFee.html:12
 msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
-msgstr "越高的费用、 更大的激励矿工有要在一个块中包含该事务。当前的费用是基于网络负载和选定的策略来确定的。"
+msgstr "越高手续费的交易会越早被确认。当前的手续费是基于网络负载和即定的策略来确定的"
 
 #: www/views/addresses.html:51
 msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
-msgstr "已连续未使用的地址 (20) 的最大数目。当您未使用的地址之一收到付款时，将生成一个新的地址，和您接收选项卡所示。"
+msgstr "已达到连续未使用的最大地址数 (20) 。当你未使用的地址之一收到付款时，将生成一个新的地址显示在你的收取选项中"
 
 #: src/js/controllers/onboarding/terms.js:21
 msgid "The official English Terms of Service are available on the BitPay website."
@@ -2934,19 +2938,19 @@ msgstr "服务器不理解此请求"
 
 #: www/views/addresses.html:52
 msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
-msgstr "还原过程将停止 20 地址生成行包含没有资金中时。要安全地生成更多的地址，到未使用的地址已经产生之一进行付款。"
+msgstr "当有 20 个无余额地址生成为一行的时候，还原过程将会停止。要安全地生成更多的地址，往一个未使用的地址上打一笔款即可"
 
 #: src/js/services/bwcError.js:98
 msgid "The spend proposal is not pending"
-msgstr "花费提议不是未决"
+msgstr "花费不在进行中"
 
 #: www/views/modals/wallet-balance.html:36
 msgid "The total amount of bitcoin stored in this wallet."
-msgstr "比特币存储在这个钱包的总量。"
+msgstr "此钱包存储的比特币总量"
 
 #: www/views/preferencesHistory.html:27
 msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
-msgstr "在应用程序缓存的交易历史记录和每个新传入事务。此功能清洁，这点和再次从服务器进行同步"
+msgstr "在应用程序上缓存了交易历史记录和新的转入交易。此功能会清除缓存，重新同步"
 
 #: www/views/tab-import-phrase.html:6
 msgid "The wallet service URL"
@@ -2965,7 +2969,7 @@ msgstr "表格中有错误"
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 msgid "There's obviously something we're doing wrong."
-msgstr "显然是我们正在做的事情错了。"
+msgstr "我们应当是做错了什么"
 
 #: src/js/controllers/feedback/rateCard.js:38
 msgid "This app is fantastic!"
@@ -2973,21 +2977,21 @@ msgstr "这个应用程序太棒了 ！"
 
 #: www/views/onboarding/tour.html:47
 msgid "This app stores your bitcoin with cutting-edge security."
-msgstr "此应用程序商店你比特币与尖端的安全。"
+msgstr "此钱包应用，让你的比特币享受顶级的安全"
 
 #: src/js/controllers/confirm.js:523
 msgid "This bitcoin payment request has expired."
-msgstr "这比特币付款请求已过期。"
+msgstr "这比特币付款请求已过期"
 
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
 msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
-msgstr "此密码将无法恢复。如果密码丢失，有是没有办法，你可以恢复您的资金。"
+msgstr "此密码将无法恢复。如果密码丢失，你将无法找回你的资金"
 
 #: www/views/backup.html:31
 msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
-msgstr "此恢复短语是用密码创建。为了恢复此钱包，需要恢复短语和密码。"
+msgstr "此恢复短语是用密码创建。为了恢复此钱包，需要恢复短语和密码"
 
 #: www/views/tx-details.html:91
 msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
@@ -2995,12 +2999,12 @@ msgstr "相对于当前比特币网络费，这笔交易金额太小。手续费
 
 #: www/views/tx-details.html:87
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
-msgstr "这笔交易可能需要很长的时间来确认或可能受到由发件人设置的低费用下降"
+msgstr "这笔交易可能需要很长的时间来确认或可能会因为设置的手续费太低而失败"
 
 #: www/views/walletDetails.html:109
 #: www/views/walletDetails.html:29
 msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
-msgstr "此钱包不在给定的 Bitcore Wallet Service (BWS) 注册。你可以从本地信息重新创建它。"
+msgstr "此钱包不在所谓的比特钱包中心 (BWS) 里注册。你可以用恢复短信随时恢复它。"
 
 #: www/views/modals/txp-details.html:136
 #: www/views/tx-details.html:121
@@ -3018,15 +3022,15 @@ msgstr "发送到"
 
 #: www/views/tab-send.html:32
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr "若要开始，请买比特币或共享您的地址。你可以从任何钱包或服务接收比特币。"
+msgstr "若要开始，请买比特币或分享你的接受地址。你可以从任何人的钱包或服务商处接收比特币。"
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "若要开始，您将需要创建一个比特币的钱包，并获得一些比特币。"
+msgstr "若要开始，你将需要创建一个比特币的钱包，并获得一些比特币。"
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
-msgstr "到 {{reason}}，您必须首先添加您的 BitPay 帐户-{{email}}"
+msgstr "到 {{reason}}，你必须首先添加你的 BitPay 帐户-{{email}}"
 
 #: src/js/services/onGoingProcess.js:48
 msgid "Top up in progress..."
@@ -3170,7 +3174,7 @@ msgstr "正在验证恢复短语。。。"
 
 #: www/views/modals/fingerprintCheck.html:4
 msgid "Verify your identity"
-msgstr "验证您的身份"
+msgstr "验证你的身份"
 
 #: www/views/preferencesAbout.html:14
 #: www/views/preferencesExternal.html:25
@@ -3253,7 +3257,7 @@ msgstr "钱包配置 (m n)"
 
 #: www/views/onboarding/collectEmail.html:5
 msgid "Wallet Created"
-msgstr "创建的钱包"
+msgstr "钱包创建成功"
 
 #: www/views/preferencesInformation.html:23
 msgid "Wallet Id"
@@ -3371,11 +3375,11 @@ msgstr "钱包不在 Wallet Service 注册。使用“创建钱包\"的\"高级�
 
 #: www/views/backup.html:12
 msgid "Wallet recovery phrase not available"
-msgstr "錢包恢復短語不存在"
+msgstr "钱包恢復短语不存在"
 
 #: src/js/services/bwcError.js:50
 msgid "Wallet service not found"
-msgstr "找不到 Wallet Service"
+msgstr "找不到钱包服务"
 
 #: www/views/tab-home.html:69
 msgid "Wallets"
@@ -3404,7 +3408,7 @@ msgstr "我们很乐意做得更好。"
 
 #: www/views/backup.html:35
 msgid "We'll confirm on the next screen."
-msgstr "我们会在下一个屏幕上确认。"
+msgstr "我们会在下一个页面确认以上内容"
 
 #: src/js/controllers/feedback/send.js:77
 msgid "We're always looking for ways to improve {{appName}}."
@@ -3412,7 +3416,7 @@ msgstr "我们一直在寻找方法去改进{{appName}}"
 
 #: src/js/controllers/feedback/send.js:83
 msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
-msgstr "我们一直在寻找方法去改进{{appName}}。我们该怎么改善您的使用体验？"
+msgstr "我们一直在寻找方法去改进{{appName}}。我们该怎么改善你的使用体验？"
 
 #: www/views/includes/incomingDataMenu.html:6
 msgid "Website"
@@ -3428,11 +3432,11 @@ msgstr "你叫这个钱包是什么？"
 
 #: www/views/preferencesAlias.html:12
 msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
-msgstr "这个钱包在创建时，它被称为\"{{walletName}}\"。您可以更改显示在这下面的设备的名称。"
+msgstr "这个钱包在创建时，它被称为\"{{walletName}}\"。你可以更改显示在这下面的设备的名称。"
 
 #: www/views/onboarding/collectEmail.html:10
 msgid "Where would you like to receive email notifications about payments?"
-msgstr "在那里你想要接收电子邮件通知有关付款？"
+msgstr "请输入你用来接受通知的邮箱"
 
 #: www/views/addresses.html:19
 msgid "Why?"
@@ -3444,11 +3448,11 @@ msgstr "你会愿意率 {{appName}} app store 中的吗？"
 
 #: www/views/onboarding/notifications.html:4
 msgid "Would you like to receive push notifications about payments?"
-msgstr "你想收到推式通知有关付款吗？"
+msgstr "你想收到付款的相关推式通知吗？"
 
 #: src/js/controllers/import.js:288
 msgid "Wrong number of recovery words:"
-msgstr "恢复词句数不正确："
+msgstr "恢复词数量不正确："
 
 #: src/js/services/bwcError.js:140
 msgid "Wrong spending password"
@@ -3468,31 +3472,35 @@ msgstr "你可以从你的钱包设置以后创建备份。"
 
 #: src/js/controllers/preferencesLanguage.js:12
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
-msgstr "您可以通过签约我们 Crowdin 社区翻译网站作出贡献。我们期待你的听力 ！"
+msgstr "你可以通过签约我们 Crowdin 社区翻译网站作出贡献。我们期待听到你的反馈 ！"
 
 #: www/views/tab-scan.html:16
 msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "您可以扫描比特币地址、 付款申请、 纸钱包和更多。"
+msgstr "你可以扫描比特币地址、 付款申请、 纸钱包和更多。"
 
 #: src/js/controllers/preferencesAbout.js:14
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
-msgstr "你可以看到最新的事态发展和贡献这个开放源码应用程序通过在 GitHub 上访问我们的项目。"
+msgstr "你可以在我们的 GitHub 地址上看到我们最新的开发进展，也可以为此开源项目贡献力量"
 
 #: www/views/onboarding/tour.html:19
 msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr "你可以花比特币在数以百万计的网站和世界各地的商店。"
+msgstr "你可以在数以百万计的网站和世界各地的商店使用比特币支付"
 
 #: www/views/backup.html:15
 msgid "You can still export it from Advanced &gt; Export."
-msgstr "你仍然可以将其导出从高级 &gt; 出口。"
+msgstr "你仍然可以将其从高级 &gt; 导出"
 
 #: www/views/onboarding/tour.html:32
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
-msgstr "你可以换其他货币，如美元、 欧元或英镑。"
+msgstr "你可以使用比特币换取其他货币，如美元、 欧元或英镑"
 
 #: www/views/onboarding/tour.html:46
 msgid "You control your bitcoin."
-msgstr "您可以控制您的比特币。"
+msgstr "只有你能控制此钱包里的比特币"
+
+#: www/views/onboarding/tour.html:50
+msgid "Not even Bitcoin.com can access it."
+msgstr "Bitcoin.com也无法触碰你的钱包"
 
 #: www/views/modals/chooseFeeLevel.html:64
 msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
@@ -3500,15 +3508,15 @@ msgstr "你不应设置高于 {{maxFeeRecommended}} satoshis/字节 的交易手
 
 #: www/views/modals/bitpay-card-confirmation.html:5
 msgid "You will need to log back for fill in your BitPay Card."
-msgstr "您将需要登录回来为你 BitPay 卡填写。"
+msgstr "你将需要登录回来为你 BitPay 卡填写。"
 
 #: www/views/preferencesNotifications.html:34
 msgid "You'll receive email notifications about payments sent and received from your wallets."
-msgstr "在您的钱包进行付款操作时发送通知。"
+msgstr "在你的钱包进行付款操作时发送通知。"
 
 #: www/views/bitpayCard.html:50
 msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
-msgstr "您的 BitPay 卡是准备好了。添加到您的卡开始使用它在商店和自动取款机全球基金。"
+msgstr "你的 BitPay 卡是准备好了。为卡充值后，你就可以在各商店和ATM里使用它了"
 
 #: www/views/mercadoLibre.html:57
 #: www/views/mercadoLibreCards.html:6
@@ -3521,11 +3529,11 @@ msgstr "你的比特币钱包被备份 ！"
 
 #: www/views/tab-home.html:36
 msgid "Your bitcoin wallet is ready!"
-msgstr "你的比特币钱包是准备好了 ！"
+msgstr "你的比特币钱包已经准备好"
 
 #: www/views/modals/chooseFeeLevel.html:61
 msgid "Your fee is lower than recommended."
-msgstr "你的交易手续费低于建议量。"
+msgstr "你的交易手续费低于系统建议值。"
 
 #: www/views/feedback/send.html:42
 msgid "Your ideas, feedback, or comments"
@@ -3533,7 +3541,7 @@ msgstr "你的想法、 反馈或评论"
 
 #: www/views/tab-create-shared.html:22
 msgid "Your name"
-msgstr "您的名字："
+msgstr "你的名字："
 
 #: www/views/join.html:16
 msgid "Your nickname"
@@ -3546,15 +3554,15 @@ msgstr "你的密码"
 
 #: www/views/buyAmazon.html:102
 msgid "Your purchase could not be completed"
-msgstr "无法完成您的购买"
+msgstr "无法完成你的购买"
 
 #: www/views/buyAmazon.html:105
 msgid "Your purchase was added to the list of pending"
-msgstr "您的购买被添加到列表的挂起"
+msgstr "你的购买已经被添加到处理列表中"
 
 #: www/views/onboarding/backupRequest.html:10
 msgid "Your wallet is never saved to cloud storage or standard device backups."
-msgstr "你的钱包是永远不会保存到云存储或标准设备备份。"
+msgstr "你的钱包不会被保存到云端或是其它硬件备份服务上"
 
 #: src/js/services/walletService.js:1030
 msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
@@ -3572,15 +3580,15 @@ msgstr "[隐藏余额]"
 #: www/views/walletDetails.html:141
 #: www/views/walletDetails.html:61
 msgid "[Scanning Funds]"
-msgstr "[正在掃描資金]"
+msgstr "[正在扫描资金]"
 
 #: src/js/controllers/bitpayCardIntro.js:11
 msgid "add your BitPay Visa card(s)"
-msgstr "添加您的 BitPay 签证卡"
+msgstr "添加你的 BitPay 签证卡"
 
 #: www/views/includes/available-balance.html:8
 msgid "locked by pending payments"
-msgstr "被未决支付锁定"
+msgstr "被延迟中的支付锁定"
 
 #: src/js/services/profileService.js:404
 msgid "me"
@@ -3596,15 +3604,15 @@ msgstr "准备中..."
 
 #: www/views/cashScan.html:57
 msgid "recovery tool."
-msgstr "恢復工具"
+msgstr "恢复工具"
 
 #: src/js/controllers/buyAmazon.js:239
 msgid "{{amountStr}} for Amazon.com Gift Card"
-msgstr "{{amountStr}} 为亚马逊礼品卡的"
+msgstr "{{amountStr}} 用于购买亚马逊礼品卡"
 
 #: src/js/controllers/buyMercadoLibre.js:237
 msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
-msgstr "梅尔卡多里弗巴西礼品卡 {{amountStr}}"
+msgstr "{{amountStr}} 用于购买梅尔卡多里弗巴西礼品卡 "
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
@@ -3627,4 +3635,3 @@ msgstr "下载的 {{updatingTxHistoryProgress}} 交易"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}{{wallet.n}}"
-
