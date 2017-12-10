@@ -85,7 +85,7 @@ The desktop version of the Bitcoin.com wallet currently uses NW.js, an app runti
 When NW.js is installed, run the `start:desktop` npm package script.
 
 ```sh
-npm run apply:bitcoin.com
+npm run apply:bitcoincom
 npm run start:desktop
 ```
 
