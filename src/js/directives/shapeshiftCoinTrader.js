@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService) {
+angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingData) {
   return {
     restrict: 'E',
     transclude: true,
@@ -36,6 +36,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                 .marketInfo($scope.coinIn, $scope.coinOut)
                 .then(function(marketData){
                     $scope.marketData = marketData;
+                    $scope.rateString = $scope.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
             });
         };
 
@@ -50,9 +51,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
           'BTC': { name: 'Bitcoin', symbol: 'BTC' },
           'BCH': { name: 'Bitcoin Cash', symbol: 'BCH' }
         };
-        $scope.coinIn = $scope.coins['BTC'].symbol;
-        $scope.coinOut = $scope.coins['BCH'].symbol;
-        $scope.getMarketData($scope.coinIn, $scope.coinOut);
 
         function checkForError(data){
             if(data.error) return true;
@@ -60,22 +58,21 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
         }
 
         $scope.shiftIt = function(){
-            console.log($scope.coinOut)
             var validate=shapeshiftApiService.ValidateAddress($scope.withdrawalAddress, $scope.coinOut);
             validate.then(function(valid){
-                console.log($scope.withdrawalAddress)
-                console.log(valid)
+                //console.log($scope.withdrawalAddress)
+                //console.log(valid)
                 var tx = ShapeShift();
                 tx.then(function(txData){
                     if(txData['fixedTxData']){
                         txData = txData.fixedTxData;
                         if(checkForError(txData)) return;
-                        console.log(txData)
+                        //console.log(txData)
                         var coinPair=txData.pair.split('_');
                         txData.depositType = coinPair[0].toUpperCase();
                         txData.withdrawalType = coinPair[1].toUpperCase();
                         var coin = $scope.coins[txData.depositType].name.toLowerCase();
-                        console.log(coin)
+                        //console.log(coin)
                         txData.depositQR = coin + ":" + txData.deposit + "?amount=" + txData.depositAmount
                         $scope.txFixedPending = true;
                     } else if(txData['normalTxData']){
@@ -94,7 +91,20 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                         return;
                     }
                     $scope.depositInfo = txData;
-                    console.log($scope.depositInfo)
+                    console.log($scope.marketData);
+                    console.log($scope.depositInfo);
+                    var sendAddress = txData.depositQR;
+                    if (sendAddress && sendAddress.indexOf('bitcoin cash') >= 0)
+                      sendAddress = sendAddress.replace('bitcoin cash', 'bitcoincash');
+
+                    var shapeshiftData = {
+                      minAmount: $scope.marketData.minimum,
+                      maxAmount: $scope.marketData.maxLimit
+                    };
+
+                    if (incomingData.redir(sendAddress, shapeshiftData))
+                      return;
+
                     $scope.ShiftState = 'Cancel';
                     $scope.GetStatus();
                     $scope.txInterval=$interval($scope.GetStatus, 8000);
@@ -118,33 +128,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                     $scope.ShiftState = 'Shift'
                 }
             });
-        }
-
-        $scope.walletsBtc = profileService.getWallets({coin: 'btc'});
-        $scope.walletsBch = profileService.getWallets({coin: 'bch'});
-        $scope.fromWallet = $scope.walletsBtc[0];
-        $scope.toWallet = $scope.walletsBch[0];
-        $scope.fromWalletSelectorTitle = 'From';
-        $scope.toWalletSelectorTitle = 'To';
-        $scope.showFromWallets = false;
-        $scope.showFromWalletSelector = function() {
-          $scope.showFromWallets = true;
-        }
-        $scope.showToWallets = false;
-        $scope.showToWalletSelector = function() {
-          $scope.showToWallets = true;
-        }
-
-        $scope.onFromWalletSelect = function(wallet) {
-          $scope.fromWallet = wallet;
-          //setProtocolHandler();
-          //$scope.setAddress();
-        };
-
-        $scope.onToWalletSelect = function(wallet) {
-          $scope.toWallet = wallet;
-          //setProtocolHandler();
-          //$scope.setAddress();
         }
     },
     templateUrl: 'views/includes/shapeshift-coin-trader.html'

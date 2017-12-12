@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicScrollDelegate, $ionicHistory, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, bwcError, payproService, profileService, bitcore, amazonService, nodeWebkitService) {
+
   var _id;
   var unitToSatoshi;
   var satToUnit;
@@ -24,6 +25,12 @@ angular.module('copayApp.controllers').controller('amountController', function($
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+
+    if (data.stateParams.minShapeshiftAmount.length > 0 && data.stateParams.maxShapeshiftAmount.length > 0) {
+      $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
+      $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
+    }
+
     var config = configService.getSync().wallet.settings;
 
     function setAvailableUnits() {
@@ -297,7 +304,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
   function processAmount() {
     var formatedValue = format($scope.amount);
     var result = evaluate(formatedValue);
-    $scope.allowSend = lodash.isNumber(result) && +result > 0;
+    $scope.allowSend = lodash.isNumber(result) && +result > 0 
+        && ((!$scope.minShapeshiftAmount && !$scope.maxShapeshiftAmount)
+            || ($scope.minShapeshiftAmount && $scope.maxShapeshiftAmount
+                && result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
+
     if (lodash.isNumber(result)) {
       $scope.globalResult = isExpression($scope.amount) ? '= ' + processResult(result) : '';
 

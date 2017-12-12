@@ -1,0 +1,104 @@
+<ion-view class="settings" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>
+      {{'Shapeshift'|translate}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <shapeshift-coin-trader>
+        <div class="send-header-wrapper shapeshift-banner">
+          <img class="shapeshift-logo" src="img/shapeshiftlogo.svg"/>
+        </div>
+        <div class="list card">
+          <div class="item item-heading">
+            <span translate><strong>From</strong></span>
+          </div>
+          <div class="item wallet-selector" ng-click="showFromWalletSelector()" ng-if="fromWallet">
+            <a ng-if="fromWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
+              <i class="icon big-icon-svg" ng-include="'views/includes/fromWalletIcon.html'"></i>
+              <span>
+                {{fromWallet.name || fromWallet.id}}
+              </span>
+              <p>
+              <span ng-if="!fromWallet.balanceHidden"> {{fromWallet.status.totalBalanceStr}} </span>
+
+              <span ng-if="fromWallet.balanceHidden" translate>[Balance Hidden]</span>
+              <span class="tab-home__wallet__multisig-number" ng-if="fromWallet.n > 1">
+                {{fromWallet.m}}-of-{{fromWallet.n}}
+              </span>
+              <span class="assertive" ng-if="fromWallet.error">{{fromWallet.error}}</span>
+              &nbsp;
+              </p>
+              <i ng-if="!singleFromWallet" class="icon bp-arrow-right"></i>
+            </a>
+          </div>
+
+          <div class="item item-heading">
+            <span translate><strong>To</strong></span>
+          </div>
+          <div class="item wallet-selector" ng-click="showToWalletSelector()" ng-if="toWallet">
+            <a ng-if="toWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
+              <i class="icon big-icon-svg" ng-include="'views/includes/toWalletIcon.html'"></i>
+              <span>
+                {{toWallet.name || toWallet.id}}
+              </span>
+              <p>
+              <span ng-if="!toWallet.balanceHidden"> {{toWallet.status.totalBalanceStr}} </span>
+
+              <span ng-if="toWallet.balanceHidden" translate>[Balance Hidden]</span>
+              <span class="tab-home__wallet__multisig-number" ng-if="toWallet.n > 1">
+                {{toWallet.m}}-of-{{toWallet.n}}
+              </span>
+              <span class="assertive" ng-if="toWallet.error">{{toWallet.error}}</span>
+              &nbsp;
+              </p>
+              <i ng-if="!singleToWallet" class="icon bp-arrow-right"></i>
+            </a>
+          </div>
+          <div class="item item-heading">
+            Rate: {{rateString}}
+          </div>
+        </div>
+
+        <shapeshift-coin-selector
+                coins="coins"
+                label="'Return Address'"
+                get-market-data="getMarketDataIn"
+                market-data="marketData"
+                selected-coin="fromWallet.coin"
+                coin-address="fromWalletAddress"
+                amount="amount"
+                direction="'in'">
+        </shapeshift-coin-selector>
+        <br/>
+        <shapeshift-coin-selector
+                coins="coins"
+                label="'Withdrawal Address'"
+                get-market-data="getMarketDataOut"
+                selected-coin="toWallet.coin"
+                coin-address="toWalletAddress"
+                direction="'out'">
+        </shapeshift-coin-selector>
+        <shapeshift-coin-error ssError="ssError"></shapeshift-coin-error>
+        <!--<shapeshift-coin-deposit-info deposit-status="DepositStatus" deposit-info="depositInfo"></shapeshift-coin-deposit-info>-->
+        <shapeshift-coin-shift-button shift-it="shiftIt" shift-state="ShiftState"></shapeshift-coin-shift-button>
+    </shapeshift-coin-trader>
+  </ion-content>
+
+  <wallet-selector
+    wallet-selector-wallets="fromWallets"
+    wallet-selector-selected-wallet="fromWallet"
+    wallet-selector-show="showFromWallets"
+    wallet-selector-on-select="onFromWalletSelect">
+  </wallet-selector>
+
+  <wallet-selector
+    wallet-selector-title="toWalletSelectorTitle"
+    wallet-selector-wallets="toWallets"
+    wallet-selector-selected-wallet="toWallet"
+    wallet-selector-show="showToWallets"
+    wallet-selector-on-select="onToWalletSelect">
+  </wallet-selector>
+</ion-view>

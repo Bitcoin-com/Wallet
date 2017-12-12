@@ -8,7 +8,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     $rootScope.$broadcast('incomingDataMenu.showMenu', data);
   };
 
-  root.redir = function(data) {
+  root.redir = function(data, shapeshiftData) {
     $log.debug('Processing incoming data: ' + data);
 
     function sanitizeUri(data) {
@@ -46,7 +46,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
     }
 
-    function goSend(addr, amount, message, coin) {
+    function goSend(addr, amount, message, coin, shapeshiftData) {
       $state.go('tabs.send', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.send' ? false : true
@@ -61,10 +61,12 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             coin: coin
           });
         } else {
-          $state.transitionTo('tabs.send.amount', {
-            toAddress: addr,
-            coin: coin
-          });
+          var params = { toAddress: addr, coin: coin };
+          if (shapeshiftData) {
+            params['minShapeshiftAmount'] = shapeshiftData.minAmount;
+            params['maxShapeshiftAmount'] = shapeshiftData.maxAmount;
+          }
+          $state.transitionTo('tabs.send.amount', params);
         }
       }, 100);
     }
@@ -97,12 +99,12 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         if (parsed.r) {
           payproService.getPayProDetails(parsed.r, function(err, details) {
             if (err) {
-              if (addr && amount) goSend(addr, amount, message, coin);
+              if (addr && amount) goSend(addr, amount, message, coin, shapeshiftData);
               else popupService.showAlert(gettextCatalog.getString('Error'), err);
             } else handlePayPro(details);
           });
         } else {
-          goSend(addr, amount, message, coin);
+          goSend(addr, amount, message, coin, shapeshiftData);
         }
         return true;
     // Cash URI
@@ -120,14 +122,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           payproService.getPayProDetails(parsed.r, function(err, details) {
             if (err) {
               if (addr && amount)
-                goSend(addr, amount, message, coin);
+                goSend(addr, amount, message, coin, shapeshiftData);
               else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
             handlePayPro(details, coin);
           });
         } else {
-          goSend(addr, amount, message, coin);
+          goSend(addr, amount, message, coin, shapeshiftData);
         }
         return true;
 
@@ -163,14 +165,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
               payproService.getPayProDetails(parsed.r, function(err, details) {
                 if (err) {
                   if (addr && amount)
-                    goSend(addr, amount, message, coin);
+                    goSend(addr, amount, message, coin, shapeshiftData);
                   else
                     popupService.showAlert(gettextCatalog.getString('Error'), err);
                 }
                 handlePayPro(details, coin);
               });
             } else {
-              goSend(addr, amount, message, coin);
+              goSend(addr, amount, message, coin, shapeshiftData);
             }
           }
         );

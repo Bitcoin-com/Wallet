@@ -22,13 +22,17 @@ angular.module('copayApp.directives').directive('shapeshiftCoinSelector', functi
               coin: scope.selectedCoin
             }
 
-            scope.$watch('coinAddress', function(newVal){
+            scope.$watch('selectedCoin', function(newVal) {
+              scope.getMarketData(newVal);
+            });
+
+            scope.$watch('coinAddress', function(newVal) {
                 if(scope.direction === 'in')
                     coinTraderCtrl.returnAddress(newVal);
                 else if(scope.direction === 'out')
                     coinTraderCtrl.withdrawalAddress(newVal);
             });
-            scope.$watch('amount', function(newVal){
+            scope.$watch('amount', function(newVal) {
                 coinTraderCtrl.amount(newVal)
             });
         },

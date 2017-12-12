@@ -45,6 +45,11 @@
         </div>
       </div>
 
+      <div ng-if="minShapeshiftAmount && maxShapeshiftAmount">
+        Minimum amount: {{minShapeshiftAmount}} <br/>
+        Maximum amount: {{maxShapeshiftAmount}}
+      </div>
+
       <div class="amount">
         <div class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amount}">
           <span class="amount__number">{{amount || "0.00" }}</span>
