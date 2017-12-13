@@ -1,0 +1,18 @@
+<div ng-controller="servicesController">
+  <div class="item item-icon-right item-heading" ng-click="toggle()">
+    <span translate>Services</span>
+    <i class="icon bp-arrow-up" ng-show="!hide"></i>
+    <i class="icon bp-arrow-down" ng-show="hide"></i>
+  </div>
+  <div ng-show="!hide">
+    <div>
+      <a ui-sref="tabs.shapeshift" class="item item-sub item-icon-left item-big-icon-left item-icon-right service">
+        <i class="icon big-icon-svg">
+          <img src="img/shapeshifticon.png" class="bg"/>
+        </i>
+        <span>Shapeshift</span>
+        <i class="icon bp-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
