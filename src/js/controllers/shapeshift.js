@@ -60,23 +60,4 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
   $scope.showToWalletSelector = function() {
     $scope.showToWallets = true;
   }
-
-  /*var setAddress = function(newAddr) {
-    $scope.addr = null;
-    if (!$scope.wallet || $scope.generatingAddress || !$scope.wallet.isComplete()) return;
-    $scope.generatingAddress = true;
-    walletService.getAddress($scope.wallet, newAddr, function(err, addr) {
-      $scope.generatingAddress = false;
-
-      if (err) {
-        //Error is already formated
-        popupService.showAlert(err);
-      }
-
-      $scope.addr = addr;
-      $timeout(function() {
-        $scope.$apply();
-      }, 10);
-    });
-  };*/
 });
