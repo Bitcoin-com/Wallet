@@ -100,7 +100,8 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
 
                     var shapeshiftData = {
                       minAmount: $scope.marketData.minimum,
-                      maxAmount: $scope.marketData.maxLimit
+                      maxAmount: $scope.marketData.maxLimit,
+                      orderId: $scope.depositInfo.orderId
                     };
 
                     if (incomingData.redir(sendAddress, shapeshiftData)) {

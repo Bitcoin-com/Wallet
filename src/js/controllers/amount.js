@@ -26,9 +26,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
 
-    if (data.stateParams.minShapeshiftAmount.length > 0 && data.stateParams.maxShapeshiftAmount.length > 0) {
+    if (data.stateParams.shapeshiftOrderId.length > 0) {
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
+      $scope.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
+      console.log($scope.shapeshiftOrderId);
     }
 
     var config = configService.getSync().wallet.settings;
@@ -174,6 +176,19 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }, 10);
   });
 
+  $scope.goBack = function() {
+    if ($scope.shapeshiftOrderId) {
+      $state.go('tabs.send').then(function() {
+        $ionicHistory.clearHistory();
+        $state.go('tabs.home').then(function() {
+            $state.transitionTo('tabs.shapeshift');
+        });
+      });
+    } else {
+      $ionicHistory.goBack();
+    }
+  }
+
   function paste(value) {
     $scope.amount = value;
     processAmount();
@@ -304,7 +319,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   function processAmount() {
     var formatedValue = format($scope.amount);
     var result = evaluate(formatedValue);
-    $scope.allowSend = lodash.isNumber(result) && +result > 0 
+    $scope.allowSend = lodash.isNumber(result) && +result > 0
         && ((!$scope.minShapeshiftAmount && !$scope.maxShapeshiftAmount)
             || ($scope.minShapeshiftAmount && $scope.maxShapeshiftAmount
                 && result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
