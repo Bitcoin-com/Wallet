@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService) {
+angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService, lodash) {
 
   var walletsBtc = [];
   var walletsBch = [];
@@ -39,13 +39,15 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
-    $scope.fromWallets = walletsBtc.concat(walletsBch);
-    $scope.toWallets = walletsBch;
-    if ($scope.fromWallets.length == 0 || $scope.toWallets.length == 0) return;
+    $scope.fromWallets = lodash.filter(walletsBtc.concat(walletsBch), function(w) {
+      return w.status.balance.availableAmount > 0;
+    });
+    if ($scope.fromWallets.length == 0) return;
     $scope.onFromWalletSelect($scope.fromWallets[0]);
     $scope.onToWalletSelect($scope.toWallets[0]);
     $scope.singleFromWallet = $scope.fromWallets.length == 1;
     $scope.singleToWallet = $scope.toWallets.length == 1;
+    $scope.fromWalletSelectorTitle = 'From';
     $scope.toWalletSelectorTitle = 'To';
     $scope.showFromWallets = false;
     $scope.showToWallets = false;
