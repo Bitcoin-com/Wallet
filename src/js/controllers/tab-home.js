@@ -15,6 +15,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     $scope.isNW = platformInfo.isNW;
     $scope.showRateCard = {};
+    $scope.showServices = false;
 
     $scope.$on("$ionicView.afterEnter", function() {
       startupService.ready();
@@ -121,6 +122,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.nextStepsItems = nextStepsService.get();
         }
 
+        $scope.showServices = true;
         pushNotificationsService.init();
         firebaseEventsService.init();
 
