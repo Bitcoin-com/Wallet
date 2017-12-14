@@ -13,6 +13,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'connectingCoinbase': gettext('Connecting to Coinbase...'),
     'connectingGlidera': gettext('Connecting to Glidera...'),
     'connectingledger': gettext('Waiting for Ledger...'),
+    'connectingShapeshift': gettext('Connecting to Shapeshift...'),
     'connectingtrezor': gettext('Waiting for Trezor...'),
     'creatingTx': gettext('Creating transaction'),
     'creatingWallet': gettext('Creating Wallet...'),

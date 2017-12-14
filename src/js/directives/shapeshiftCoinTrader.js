@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingData) {
+angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingData, ongoingProcess) {
   return {
     restrict: 'E',
     transclude: true,
@@ -58,6 +58,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
         }
 
         $scope.shiftIt = function(){
+            ongoingProcess.set('connectingShapeshift', true);
             var validate=shapeshiftApiService.ValidateAddress($scope.withdrawalAddress, $scope.coinOut);
             validate.then(function(valid){
                 //console.log($scope.withdrawalAddress)
@@ -102,12 +103,14 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                       maxAmount: $scope.marketData.maxLimit
                     };
 
-                    if (incomingData.redir(sendAddress, shapeshiftData))
-                      return;
+                    if (incomingData.redir(sendAddress, shapeshiftData)) {
+                        ongoingProcess.set('connectingShapeshift', false);
+                        return;
+                    }
 
-                    $scope.ShiftState = 'Cancel';
+                    /*$scope.ShiftState = 'Cancel';
                     $scope.GetStatus();
-                    $scope.txInterval=$interval($scope.GetStatus, 8000);
+                    $scope.txInterval=$interval($scope.GetStatus, 8000);*/
                 });
             })
         };
