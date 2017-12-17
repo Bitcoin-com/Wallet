@@ -296,7 +296,7 @@ var ShapeShift = (function() {
         ShapeShiftApi: ShapeShiftApi
     }
 })();
-var PUBLIC_API_KEY = '08ef330fe264f674ddd4943a5156cfb1ea06f10b95d5db54781afa3d8b108100874083d53b28afa5ce58bf3e834158a3114db725bce5b49da9454ef036753599'
+var PUBLIC_API_KEY = '023735052c21eaf1a9a9087ed03cac30fccd64bdd2515c8de230f8591caf282faa3afb8694cb3e44d25621b4e46453c5526d56e007468b56cced10d37cfed351'
 var SSA = new ShapeShift.ShapeShiftApi(PUBLIC_API_KEY);
 
 angular.module('copayApp.services').factory('shapeshiftApiService', function($q) {
