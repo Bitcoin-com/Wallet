@@ -16,7 +16,7 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.formData.bwsurl = $stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.account = 1;
-      $scope.formData.coin = $stateParams.coin;
+      $scope.formData.coin = $stateParams.coin ? $stateParams.coin : 'bch';
       $scope.importErr = false;
       $scope.isCopay = appConfigService.name == 'copay';
       $scope.fromHardwareWallet = {
