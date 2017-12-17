@@ -9,7 +9,7 @@ For a list of frequently asked questions please visit the [Bitcoin.com Wallet FA
 ## Main Features
 
 - Multiple wallet creation and management in-app
-- Creates both Bitcoin Cash (BCH) and Bitcoin (BTC) wallets by default
+- Creates both Bitcoin Cash (BCH) and Bitcoin Core (BTC) wallets by default
 - Intuitive, multisignature security for personal or shared wallets
 - Easy spending proposal flow for shared wallets and group payments
 - [BIP32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki) Hierarchical deterministic (HD) address generation and wallet backups
