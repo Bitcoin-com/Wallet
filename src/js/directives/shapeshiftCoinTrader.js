@@ -92,8 +92,8 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                         return;
                     }
                     $scope.depositInfo = txData;
-                    console.log($scope.marketData);
-                    console.log($scope.depositInfo);
+                    //console.log($scope.marketData);
+                    //console.log($scope.depositInfo);
                     var sendAddress = txData.depositQR;
                     if (sendAddress && sendAddress.indexOf('bitcoin cash') >= 0)
                       sendAddress = sendAddress.replace('bitcoin cash', 'bitcoincash');

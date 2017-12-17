@@ -30,7 +30,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
       $scope.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
-      console.log($scope.shapeshiftOrderId);
+      //console.log($scope.shapeshiftOrderId);
     }
 
     var config = configService.getSync().wallet.settings;
@@ -320,9 +320,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
     var formatedValue = format($scope.amount);
     var result = evaluate(formatedValue);
     $scope.allowSend = lodash.isNumber(result) && +result > 0
-        && ((!$scope.minShapeshiftAmount && !$scope.maxShapeshiftAmount)
-            || ($scope.minShapeshiftAmount && $scope.maxShapeshiftAmount
-                && result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
+      && (!$scope.shapeshiftOrderId
+          || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
 
     if (lodash.isNumber(result)) {
       $scope.globalResult = isExpression($scope.amount) ? '= ' + processResult(result) : '';
@@ -409,7 +408,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
         amount = (amount * unitToSatoshi).toFixed(0);
       }
 
-      $state.transitionTo('tabs.send.confirm', {
+      var confirmData = {
         recipientType: $scope.recipientType,
         toAmount: amount,
         toAddress: $scope.toAddress,
@@ -417,8 +416,16 @@ angular.module('copayApp.controllers').controller('amountController', function($
         toEmail: $scope.toEmail,
         toColor: $scope.toColor,
         coin: coin,
-        useSendMax: $scope.useSendMax
-      });
+        useSendMax: $scope.useSendMax,
+      };
+
+      if ($scope.shapeshiftOrderId) {
+        var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
+        shapeshiftOrderUrl += $scope.shapeshiftOrderId;
+        confirmData.description = shapeshiftOrderUrl;
+      }
+
+      $state.transitionTo('tabs.send.confirm', confirmData);
     }
     $scope.useSendMax = null;
   };
