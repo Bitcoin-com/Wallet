@@ -390,13 +390,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     ];
   });
 
+  var refreshInterval;
+
   $scope.$on("$ionicView.afterEnter", function(event, data) {
     $scope.updateAll();
     refreshAmountSection();
+    refreshInterval = $interval($scope.onRefresh, 600000);
   });
 
   $scope.$on("$ionicView.afterLeave", function(event, data) {
-
+    $interval.cancel(refreshInterval);
     if ($window.StatusBar) {
       var statusBarColor = appConfigService.name == 'copay' ? '#192c3a' : '#1e3186';
       $window.StatusBar.backgroundColorByHexString(statusBarColor);
