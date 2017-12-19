@@ -11,7 +11,6 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-
   <ion-content scroll="false">
 
     <div ng-if="!customAmount && !nextStep">
@@ -37,40 +36,51 @@
     </div>
 
     <div ng-class="{'amount-pane-recipient': !customAmount && !nextStep,
-      'amount-pane-no-recipient': customAmount || nextStep}">
+    'amount-pane-no-recipient': customAmount || nextStep}">
 
-      <div class="amount-bar oh">
-        <div class="title">
-          <span translate>Amount</span>
-        </div>
-      </div>
-
-      <div ng-if="shapeshiftOrderId">
-        Minimum amount: {{minShapeshiftAmount}} <br/>
-        Maximum amount: {{maxShapeshiftAmount}}
-      </div>
-
-      <div class="amount">
-        <div class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amount}">
-          <span class="amount__number">{{amount || "0.00" }}</span>
-          <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
-        </div>
-        <div ng-class="{'amount__results--minimize': smallFont, 'amount__results--standard': !smallFont, 'amount__results--placeholder': amountResult}" ng-click="changeAlternativeUnit()">
-          <div class="amount__result" ng-show="globalResult">{{globalResult}} {{unit}}</div>
-          <div class="amount__result-equiv" ng-show="alternativeAmount">&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
-          <div class="amount__result-equiv" ng-show="!alternativeAmount">&nbsp;</div>
-        </div>
+    <div class="amount-bar oh">
+      <div class="title">
+        <span translate>Amount</span>
       </div>
     </div>
 
+    <div ng-if="shapeshiftOrderId">
+      Minimum amount: {{minShapeshiftAmount}} <br/>
+      Maximum amount: {{maxShapeshiftAmount}}
+    </div>
 
-    <div class="keypad">
-      <div class="row">
-        <div class="col col-25 col-offset-75 operator-send"
-             ng-show="allowSend" ng-click="finish()">
+    <div class="amount">
+      <div ng-show="!isAndroid && !isIos" class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
+        <span class="amount__number">{{amountModel.amount || "0.00" }}</span>
+        <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
+      </div>
+      <div ng-show="isAndroid || isIos" class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
+        <span style="display:inline;">
+          <input class="amount__number" style="float:left;" type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
+          <a class="amount__currency-toggle" style="float:left;" ng-click="changeUnit()">{{unit}}</a>
+        </span>
+      </div>
+      <div ng-class="{'amount__results--minimize': smallFont, 'amount__results--standard': !smallFont, 'amount__results--placeholder': amountResult}" ng-click="changeAlternativeUnit()">
+        <div class="amount__result" ng-show="globalResult">{{globalResult}} {{unit}}</div>
+        <div class="amount__result-equiv" ng-show="alternativeAmount">&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
+        <div class="amount__result-equiv" ng-show="!alternativeAmount">&nbsp;</div>
+      </div>
+      <div ng-show="isAndroid || isIos">
+        <button class="button button-standard button-primary" ng-disabled="!allowSend" ng-click="finish()">
+          Send
+        </button>
+      </div>
+    </div>
+
+    <div ng-show="!isAndroid && !isIos">
+      <div class="keypad">
+        <div class="row">
+          <div class="col col-25 col-offset-75 operator-send"
+          ng-show="allowSend" ng-click="finish()">
           <i class="icon ion-ios-arrow-thin-right"></i>
         </div>
       </div>
+
       <div class="row">
         <div class="col digit" ng-click="pushDigit('7')">7</div>
         <div class="col digit" ng-click="pushDigit('8')">8</div>
@@ -99,9 +109,10 @@
         <div class="col operator" ng-click="pushOperator('-')">&minus;</div>
       </div>
     </div>
+
   </ion-content>
-  <item-selector
-    item-selector-show="showSendMax"
-    item-selector-on-select="sendMax">
-  </item-selector>
+<item-selector
+item-selector-show="showSendMax"
+item-selector-on-select="sendMax">
+</item-selector>
 </ion-view>
