@@ -10,12 +10,12 @@
     <div class="send-header-wrapper shapeshift-banner">
       <img class="shapeshift-logo" src="img/shapeshiftlogo.svg"/>
     </div>
-    <div class="list card ng-hide" ng-show="fromWallets.length == 0">
+    <div class="list card ng-hide" ng-show="fromWallets.length == 0 || toWallets.length == 0">
       <div class="item item-heading">
-        <span translate>No available wallets to convert from.</span>
+        <span translate>No available wallets to convert between.</span>
       </div>
     </div>
-    <shapeshift-coin-trader class="ng-hide" ng-show="fromWallets.length > 0">
+    <shapeshift-coin-trader class="ng-hide" ng-show="fromWallets.length > 0 && toWallets.length > 0">
       <div class="list card">
         <div class="item item-heading">
           <span translate><strong>From</strong></span>
