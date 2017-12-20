@@ -10,7 +10,7 @@ msgstr ""
 "X-Crowdin-File: template.pot\n"
 "Last-Translator: emilold <emil@moar.se>\n"
 "Language-Team: Korean\n"
-"Language: ko_KR\n"
+"Language: ko\n"
 "PO-Revision-Date: 2017-12-15 01:07-0500\n"
 
 #: www/views/modals/paypro.html:34
@@ -3627,4 +3627,3 @@ msgstr "{{updatingTxHistoryProgress}} 거래 내역 다운로드 완료"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.n}}의 {{wallet.m}}"
-
