@@ -18,7 +18,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   var fixedUnit;
 
+  $scope.amountModel = { amount: 0 };
+
   $scope.isChromeApp = platformInfo.isChromeApp;
+  $scope.isAndroid = platformInfo.isAndroid;
+  $scope.isIos = platformInfo.isIOS;
 
   $scope.$on('$ionicView.leave', function() {
     angular.element($window).off('keydown');
@@ -30,7 +34,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
       $scope.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
-      //console.log($scope.shapeshiftOrderId);
     }
 
     var config = configService.getSync().wallet.settings;
@@ -136,25 +139,28 @@ angular.module('copayApp.controllers').controller('amountController', function($
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
 
-    var disableKeys = angular.element($window).on('keydown', function(e) {
-      if (!e.key) return;
-      if (e.which === 8) { // you can add others here inside brackets.
-        e.preventDefault();
-        $scope.removeDigit();
-      }
+    if (!$scope.isAndroid && !$scope.isIos) {
+      var disableKeys = angular.element($window).on('keydown', function(e) {
+        if (!e.key) return;
+        if (e.which === 8) { // you can add others here inside brackets.
+          e.preventDefault();
+          $scope.removeDigit();
+        }
 
-      if (e.key.match(reNr)) {
-        $scope.pushDigit(e.key);
-      } else if (e.key.match(reOp)) {
-        $scope.pushOperator(e.key);
-      } else if (e.keyCode === 86) {
-        if (e.ctrlKey || e.metaKey) processClipboard();
-      } else if (e.keyCode === 13) $scope.finish();
+        if (e.key.match(reNr)) {
+          $scope.pushDigit(e.key);
+        } else if (e.key.match(reOp)) {
+          $scope.pushOperator(e.key);
+        } else if (e.keyCode === 86) {
+          if (e.ctrlKey || e.metaKey) processClipboard();
+        } else if (e.keyCode === 13) $scope.finish();
 
-      $timeout(function() {
-        $scope.$apply();
+        $timeout(function() {
+          $scope.$apply();
+        });
       });
-    });
+    }
+
     $scope.specificAmount = $scope.specificAlternativeAmount = '';
     $scope.isCordova = platformInfo.isCordova;
     unitToSatoshi = config.unitToSatoshi;
@@ -166,10 +172,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     // in SAT ALWAYS
     if ($stateParams.toAmount) {
-      $scope.amount = (($stateParams.toAmount) * satToUnit).toFixed(unitDecimals);
+      $scope.amountModel.amount = (($stateParams.toAmount) * satToUnit).toFixed(unitDecimals);
     }
 
-    processAmount();
+    $scope.processAmount();
 
     $timeout(function() {
       $ionicScrollDelegate.resize();
@@ -190,8 +196,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   }
 
   function paste(value) {
-    $scope.amount = value;
-    processAmount();
+    $scope.amountModel.amount = value;
+    $scope.processAmount();
     $timeout(function() {
       $scope.$apply();
     });
@@ -215,8 +221,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
 
   $scope.toggleAlternative = function() {
-    if ($scope.amount && isExpression($scope.amount)) {
-      var amount = evaluate(format($scope.amount));
+    if ($scope.amountModel.amount && isExpression($scope.amountModel.amount)) {
+      var amount = evaluate(format($scope.amountModel.amount));
       $scope.globalResult = '= ' + processResult(amount);
     }
   };
@@ -225,7 +231,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.unit = availableUnits[unitIndex].shortName;
     $scope.alternativeUnit = availableUnits[altUnitIndex].shortName;
 
-    processAmount();
+    $scope.processAmount();
     $log.debug('Update unit coin @amount unit:' + $scope.unit + " alternativeUnit:" + $scope.alternativeUnit);
   };
 
@@ -267,23 +273,23 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   function checkFontSize() {
-    if ($scope.amount && $scope.amount.length >= SMALL_FONT_SIZE_LIMIT) $scope.smallFont = true;
+    if ($scope.amountModel.amount && $scope.amountModel.amount.length >= SMALL_FONT_SIZE_LIMIT) $scope.smallFont = true;
     else $scope.smallFont = false;
   };
 
   $scope.pushDigit = function(digit) {
-    if ($scope.amount && $scope.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
-    if ($scope.amount.indexOf('.') > -1 && digit == '.') return;
-    if (availableUnits[unitIndex].isFiat && $scope.amount.indexOf('.') > -1 && $scope.amount[$scope.amount.indexOf('.') + 2]) return;
+    if ($scope.amountModel.amount && $scope.amountModel.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
+    if (!$scope.isAndroid && !$scope.isIos && $scope.amountModel.amount.indexOf('.') > -1 && digit == '.') return;
+    if (availableUnits[unitIndex].isFiat && $scope.amountModel.amount.indexOf('.') > -1 && $scope.amountModel.amount[$scope.amountModel.amount.indexOf('.') + 2]) return;
 
-    $scope.amount = ($scope.amount + digit).replace('..', '.');
+    $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
-    processAmount();
+    $scope.processAmount();
   };
 
   $scope.pushOperator = function(operator) {
-    if (!$scope.amount || $scope.amount.length == 0) return;
-    $scope.amount = _pushOperator($scope.amount);
+    if (!$scope.amountModel.amount || $scope.amountModel.amount.length == 0) return;
+    $scope.amountModel.amount = _pushOperator($scope.amountModel.amount);
 
     function _pushOperator(val) {
       if (!isOperator(lodash.last(val))) {
@@ -305,26 +311,26 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.removeDigit = function() {
-    $scope.amount = ($scope.amount).toString().slice(0, -1);
-    processAmount();
+    $scope.amountModel.amount = ($scope.amountModel.amount).toString().slice(0, -1);
+    $scope.processAmount();
     checkFontSize();
   };
 
   $scope.resetAmount = function() {
-    $scope.amount = $scope.alternativeAmount = $scope.globalResult = '';
+    $scope.amountModel.amount = $scope.alternativeAmount = $scope.globalResult = '';
     $scope.allowSend = false;
     checkFontSize();
   };
 
-  function processAmount() {
-    var formatedValue = format($scope.amount);
+  $scope.processAmount = function() {
+    var formatedValue = format($scope.amountModel.amount);
     var result = evaluate(formatedValue);
     $scope.allowSend = lodash.isNumber(result) && +result > 0
       && (!$scope.shapeshiftOrderId
           || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
 
     if (lodash.isNumber(result)) {
-      $scope.globalResult = isExpression($scope.amount) ? '= ' + processResult(result) : '';
+      $scope.globalResult = isExpression($scope.amountModel.amount) ? '= ' + processResult(result) : '';
 
       if (availableUnits[unitIndex].isFiat) {
 
@@ -384,7 +390,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   $scope.finish = function() {
 
     var unit = availableUnits[unitIndex];
-    var _amount = evaluate(format($scope.amount));
+    var _amount = evaluate(format($scope.amountModel.amount));
     var coin = unit.id;
     if (unit.isFiat) {
       coin = availableUnits[altUnitIndex].id;
