@@ -46,7 +46,7 @@
 
     <div ng-if="shapeshiftOrderId">
       Minimum amount: {{minShapeshiftAmount}} <br/>
-      Maximum amount: {{maxShapeshiftAmount}}
+      Maximum amount: {{maxShapeshiftAmount}} <br/>
     </div>
 
     <div class="amount">
@@ -56,7 +56,7 @@
       </div>
       <div ng-show="isAndroid || isIos" class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
         <span style="display:inline;">
-          <input class="amount__number" style="float:left;" type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
+          <input class="amount__number" style="float:left;" type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount" focus-me>
           <a class="amount__currency-toggle" style="float:left;" ng-click="changeUnit()">{{unit}}</a>
         </span>
       </div>
