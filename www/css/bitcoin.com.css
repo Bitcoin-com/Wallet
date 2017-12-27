@@ -180,6 +180,11 @@ div.slide-success__background.fill-screen {
 .ct-series-a .ct-area {
     fill: #FDE9BE;
 }
+
+#bch-chart .ct-area {
+	fill: #008917;
+}
+
 .ct-area {
     opacity:.6 !important;
 }
@@ -189,6 +194,13 @@ div.slide-success__background.fill-screen {
     stroke: #F9B016;
     stroke-width: 2px;
 }
+
+#bch-chart .ct-series-a .ct-line,
+#bch-chart .ct-series-a .ct-point {
+	stroke: #46C05C;
+	stroke-width: 2px;
+}
+
 .ct-labels {
     border: red thin solid;
 }
@@ -228,6 +240,10 @@ div.slide-success__background.fill-screen {
     color:#555;
 }
 
+.light-green {
+	color:#26B03C;
+}
+
 .icon-chart {
     background-color: #494949;
     background-image: url('../img/chart.svg');
@@ -237,3 +253,16 @@ div.slide-success__background.fill-screen {
     background-size: contain;
 }
 
+.shapeshift-banner {
+	background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
+	padding: 10px;
+	box-shadow: 0px 5px 10px 0px #cccccc;
+	height: 5em;
+}
+
+.shapeshift-logo {
+	display: block;
+	float: left;
+	max-height: 100%;
+	max-width: 100%;
+}
