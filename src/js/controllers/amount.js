@@ -119,7 +119,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     _id = data.stateParams.id; // Optional (BitPay Card ID or Wallet ID)
     $scope.nextStep = data.stateParams.nextStep;
 
-
     setAvailableUnits();
     updateUnitUI();
 
@@ -236,6 +235,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.changeUnit = function() {
+
+    if ($scope.alternativeAmount == 0) {
+      $scope.alternativeAmount = null;
+    }
+
     if (fixedUnit) return;
 
     unitIndex++;
