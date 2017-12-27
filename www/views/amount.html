@@ -73,20 +73,6 @@
       </div>
     </div>
 
-    <!--<div class="item item-no-bottom-border label" ng-show="isAndroid || isIos" translate>Amount</div>
-    <div class="item item-no-bottom-border" ng-if="shapeshiftOrderId" ng-show="isAndroid || isIos">
-      Minimum amount: {{minShapeshiftAmount}} <br/>
-      Maximum amount: {{maxShapeshiftAmount}} <br/>
-    </div>
-    <div class="item amount" ng-show="isAndroid || isIos">
-      <span>
-        <input type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
-        <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
-      </span>
-      <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
-      <span>&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
-    </div>-->
-
     <div class="item" ng-show="isAndroid || isIos">
       <button class="button button-standard button-primary" ng-disabled="!allowSend" ng-click="finish()">
         Confirm
