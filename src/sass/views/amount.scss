@@ -44,6 +44,10 @@
     position: absolute;
     top: 10px;
   }
+  .amount span input {
+    display: inline;
+    width: 120px;
+  }
   .amount-pane-recipient {
     position: absolute;
     top: 95px;

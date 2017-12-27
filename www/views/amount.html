@@ -35,41 +35,62 @@
       </div>
     </div>
 
-    <div ng-class="{'amount-pane-recipient': !customAmount && !nextStep,
-    'amount-pane-no-recipient': customAmount || nextStep}">
-
-    <div class="amount-bar oh">
-      <div class="title">
-        <span translate>Amount</span>
+    <div ng-show="!isAndroid && !isIos" ng-class="{'amount-pane-recipient': !customAmount && !nextStep,'amount-pane-no-recipient': customAmount || nextStep}">
+      <div class="amount-bar oh">
+        <div class="title">
+          <span translate>Amount</span>
+        </div>
+      </div>
+      <div ng-if="shapeshiftOrderId">
+        Minimum amount: {{minShapeshiftAmount}} <br/>
+        Maximum amount: {{maxShapeshiftAmount}} <br/>
+      </div>
+      <div class="amount">
+        <div class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
+          <span class="amount__number">{{amountModel.amount || "0.00" }}</span>
+          <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
+        </div>
+        <div ng-class="{'amount__results--minimize': smallFont, 'amount__results--standard': !smallFont, 'amount__results--placeholder': amountResult}" ng-click="changeAlternativeUnit()">
+          <div class="amount__result" ng-show="globalResult">{{globalResult}} {{unit}}</div>
+          <div class="amount__result-equiv">&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
+        </div>
       </div>
     </div>
 
-    <div ng-if="shapeshiftOrderId">
+    <div class="item" ng-show="isAndroid || isIos">
+      <span class="label" translate>Amount</span><br/>
+      <div ng-if="shapeshiftOrderId">
+        Minimum amount: {{minShapeshiftAmount}} <br/>
+        Maximum amount: {{maxShapeshiftAmount}} <br/>
+      </div>
+      <div class="amount">
+        <span>
+          <input type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
+          <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
+        </span>
+        <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
+        <span>&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
+      </div>
+    </div>
+
+    <!--<div class="item item-no-bottom-border label" ng-show="isAndroid || isIos" translate>Amount</div>
+    <div class="item item-no-bottom-border" ng-if="shapeshiftOrderId" ng-show="isAndroid || isIos">
       Minimum amount: {{minShapeshiftAmount}} <br/>
       Maximum amount: {{maxShapeshiftAmount}} <br/>
     </div>
-
-    <div class="amount">
-      <div ng-show="!isAndroid && !isIos" class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
-        <span class="amount__number">{{amountModel.amount || "0.00" }}</span>
+    <div class="item amount" ng-show="isAndroid || isIos">
+      <span>
+        <input type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
         <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
-      </div>
-      <div ng-show="isAndroid || isIos" class="amount__editable" ng-class="{'amount__editable--minimize': smallFont, 'amount__editable--standard': !smallFont, 'amount__editable--placeholder': !amountModel.amount}">
-        <span style="display:inline;">
-          <input class="amount__number" style="float:left;" type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount" focus-me>
-          <a class="amount__currency-toggle" style="float:left;" ng-click="changeUnit()">{{unit}}</a>
-        </span>
-      </div>
-      <div ng-class="{'amount__results--minimize': smallFont, 'amount__results--standard': !smallFont, 'amount__results--placeholder': amountResult}" ng-click="changeAlternativeUnit()">
-        <div class="amount__result" ng-show="globalResult">{{globalResult}} {{unit}}</div>
-        <div class="amount__result-equiv" ng-show="alternativeAmount">&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
-        <div class="amount__result-equiv" ng-show="!alternativeAmount">&nbsp;</div>
-      </div>
-      <div ng-show="isAndroid || isIos">
-        <button class="button button-standard button-primary" ng-disabled="!allowSend" ng-click="finish()">
-          Send
-        </button>
-      </div>
+      </span>
+      <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
+      <span>&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
+    </div>-->
+
+    <div class="item" ng-show="isAndroid || isIos">
+      <button class="button button-standard button-primary" ng-disabled="!allowSend" ng-click="finish()">
+        Confirm
+      </button>
     </div>
 
     <div ng-show="!isAndroid && !isIos">
@@ -111,8 +132,8 @@
     </div>
 
   </ion-content>
-<item-selector
-item-selector-show="showSendMax"
-item-selector-on-select="sendMax">
+  <item-selector
+  item-selector-show="showSendMax"
+  item-selector-on-select="sendMax">
 </item-selector>
 </ion-view>
