@@ -65,8 +65,8 @@
       </div>
       <div class="amount">
         <span>
-          <input type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount">
-          <a class="amount__currency-toggle" ng-click="changeUnit()">{{unit}}</a>
+          <input type="number" ng-model="amountModel.amount" ng-change="processAmount()" placeholder="Enter amount" focus-me>
+          <a class="amount__currency-toggle-mobile" ng-click="changeUnit()">{{unit}}</a>
         </span>
         <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
         <span>&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>

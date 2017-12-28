@@ -189,6 +189,18 @@
         height: 30px;
       }
     }
+    &__currency-toggle-mobile {
+      border: 1px solid $v-subtle-gray;
+      color: $v-dark-gray;
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+      line-height: 1;
+      @media(max-width: 320px) {
+        line-height: 30px;
+        height: 30px;
+      }
+    }
     &__results {
       &--minimize {
         font-size: 12px;
