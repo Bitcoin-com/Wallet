@@ -40,3 +40,7 @@
     @include button-outline($v-button-secondary-color);
   }
 }
+
+.button-sendmax {
+  line-height: inherit;
+}

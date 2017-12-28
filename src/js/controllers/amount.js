@@ -128,7 +128,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.toName = data.stateParams.toName;
     $scope.toEmail = data.stateParams.toEmail;
     $scope.toColor = data.stateParams.toColor;
-    $scope.showSendMax = false;
 
     if (!$scope.nextStep && !data.stateParams.toAddress) {
       $log.error('Bad params at amount')
@@ -208,12 +207,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     if (value && evaluate(value) > 0) paste(evaluate(value));
   };
 
-  $scope.showSendMaxMenu = function() {
-    $scope.showSendMax = true;
-  };
-
   $scope.sendMax = function() {
-    $scope.showSendMax = false;
     $scope.useSendMax = true;
     $scope.finish();
   };
