@@ -4,7 +4,7 @@
   <span ng-repeat="wallet in wallets track by $index"
     ng-init="wallet.coin == 'btc' ? walletsBtc.push(wallet) : walletsBch.push(wallet)"></span>
 
-  <div class="header" ng-show="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
+  <div class="header" ng-if="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
 
   <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
     <img class="wallet-coin-logo" src="img/bitcoin-cash-logo.svg" width="22">
@@ -66,5 +66,5 @@
         </div>
         <img class="check" src="img/icon-check-selected.svg" ng-show="selectedWallet === wallet">
       </div>
-    </a>
+    </a><br/><br/>
 </action-sheet>
