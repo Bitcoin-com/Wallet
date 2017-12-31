@@ -49,14 +49,12 @@
           <div class="amount__result-equiv">&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
         </div>
         <div>
-          <button class="button button-standard button-sendmax">
-            <a class="item item-icon-left option no-border" ng-click="sendMax()">
-              <i class="icon ion-ios-speedometer-outline"></i>
-              <div class="item-selector-inner">
-                <div class="item-selector-details">
-                  <div class="item-selector-name" translate>Send max amount</div>
-                </div>
-              </div>
+          <button class="button button-sendmax">
+            <a ng-click="sendMax()">
+              <span>
+                <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+                <span translate>Send max amount</span>
+              </span>
             </a>
           </button>
         </div>
@@ -78,14 +76,12 @@
         <span>&asymp; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
       </div>
       <div>
-        <button class="button button-standard button-sendmax">
-          <a class="item item-icon-left option no-border" ng-click="sendMax()">
-            <i class="icon ion-ios-speedometer-outline"></i>
-            <div class="item-selector-inner">
-              <div class="item-selector-details">
-                <div class="item-selector-name" translate>Send max amount</div>
-              </div>
-            </div>
+        <button class="button button-sendmax">
+          <a ng-click="sendMax()">
+            <span>
+              <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+              <span translate>Send max amount</span>
+            </span>
           </a>
         </button>
       </div>
