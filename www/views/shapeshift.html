@@ -67,13 +67,14 @@
         </div>
       </div>
 
-      <shapeshift-coin-selector
+    <shapeshift-coin-selector
       coins="coins"
       label="'Return Address'"
       get-market-data="getMarketDataIn"
       market-data="marketData"
       selected-coin="fromWallet.coin"
       coin-address="fromWalletAddress"
+      wallet-id="fromWallet.id"
       amount="amount"
       direction="'in'">
     </shapeshift-coin-selector>
@@ -84,6 +85,7 @@
     get-market-data="getMarketDataOut"
     selected-coin="toWallet.coin"
     coin-address="toWalletAddress"
+    wallet-id="toWallet.id"
     direction="'out'">
   </shapeshift-coin-selector>
   <shapeshift-coin-error ssError="ssError"></shapeshift-coin-error>

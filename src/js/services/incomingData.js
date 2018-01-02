@@ -63,6 +63,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         } else {
           var params = { toAddress: addr, coin: coin };
           if (shapeshiftData) {
+            params['fromWalletId'] = shapeshiftData.fromWalletId;
             params['minShapeshiftAmount'] = shapeshiftData.minAmount;
             params['maxShapeshiftAmount'] = shapeshiftData.maxAmount;
             params['shapeshiftOrderId'] = shapeshiftData.orderId;

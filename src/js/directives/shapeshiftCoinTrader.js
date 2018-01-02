@@ -19,6 +19,12 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
         this.amount = function(amount) {
             $scope.amount = amount;
         };
+        this.fromWalletId = function(id) {
+          $scope.fromWalletId = id;
+        };
+        this.toWalletId = function(id) {
+          $scope.toWalletId = id;
+        };
 
         $scope.getMarketDataIn = function(coin) {
             if(coin === $scope.coinOut) return $scope.getMarketData($scope.coinOut, $scope.coinIn);
@@ -99,6 +105,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                       sendAddress = sendAddress.replace('bitcoin cash', 'bitcoincash');
 
                     var shapeshiftData = {
+                      fromWalletId: $scope.fromWalletId,
                       minAmount: $scope.marketData.minimum,
                       maxAmount: $scope.marketData.maxLimit,
                       orderId: $scope.depositInfo.orderId

@@ -81,6 +81,14 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         coin: coin
       });
 
+      if (tx.fromWalletId) {
+        $scope.wallets = lodash.filter($scope.wallets, function(w) {
+          return w.id == tx.fromWalletId;
+        });
+      }
+
+
+
       if (!$scope.wallets || !$scope.wallets.length) {
         setNoWallet(gettextCatalog.getString('No wallets available'), true);
         return cb();
@@ -150,6 +158,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     tx = {
       toAmount: parseInt(data.stateParams.toAmount),
       sendMax: data.stateParams.useSendMax == 'true' ? true : false,
+      fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
       description: data.stateParams.description,
       paypro: data.stateParams.paypro,

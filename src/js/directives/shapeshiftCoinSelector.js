@@ -13,6 +13,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinSelector', functi
             amount:'=amount',
             marketData:'=marketData',
             coinAddress:'=coinAddress',
+            walletId:'=walletId',
             direction:'=direction',
         },
         link: function(scope, element, attrs, controllers) {
@@ -34,6 +35,12 @@ angular.module('copayApp.directives').directive('shapeshiftCoinSelector', functi
             });
             scope.$watch('amount', function(newVal) {
                 coinTraderCtrl.amount(newVal)
+            });
+            scope.$watch('walletId', function(newVal) {
+              if(scope.direction === 'in')
+                  coinTraderCtrl.fromWalletId(newVal);
+              else if(scope.direction === 'out')
+                  coinTraderCtrl.toWalletId(newVal);
             });
         },
         templateUrl: 'views/includes/shapeshift-coin-selector.html'

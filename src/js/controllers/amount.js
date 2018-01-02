@@ -34,6 +34,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
       $scope.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
+      $scope.fromWalletId = data.stateParams.fromWalletId;
     }
 
     var config = configService.getSync().wallet.settings;
@@ -427,6 +428,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
         var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
         shapeshiftOrderUrl += $scope.shapeshiftOrderId;
         confirmData.description = shapeshiftOrderUrl;
+        confirmData.fromWalletId = $scope.fromWalletId;
       }
 
       $state.transitionTo('tabs.send.confirm', confirmData);
