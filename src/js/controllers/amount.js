@@ -213,7 +213,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.finish();
   };
 
-
   $scope.toggleAlternative = function() {
     if ($scope.amountModel.amount && isExpression($scope.amountModel.amount)) {
       var amount = evaluate(format($scope.amountModel.amount));
