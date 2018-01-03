@@ -395,7 +395,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }
 
     if ($scope.nextStep) {
-
       $state.transitionTo($scope.nextStep, {
         id: _id,
         amount: $scope.useSendMax ? null : _amount,
@@ -428,6 +427,22 @@ angular.module('copayApp.controllers').controller('amountController', function($
         shapeshiftOrderUrl += $scope.shapeshiftOrderId;
         confirmData.description = shapeshiftOrderUrl;
         confirmData.fromWalletId = $scope.fromWalletId;
+
+        if (confirmData.useSendMax) {
+          var wallet = lodash.find(profileService.getWallets({ coin: coin }),
+            function(w) {
+              return w.id == $scope.fromWalletId;
+            });
+
+          var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
+          if (balance < $scope.minShapeshiftAmount * 1.04) {
+            confirmData.useSendMax = false;
+            confirmData.toAmount = $scope.minShapeshiftAmount * unitToSatoshi;
+          } else if (balance > $scope.maxShapeshiftAmount) {
+            confirmData.useSendMax = false;
+            confirmData.toAmount = $scope.maxShapeshiftAmount * unitToSatoshi * 0.99;
+          }
+        }
       }
 
       $state.transitionTo('tabs.send.confirm', confirmData);
