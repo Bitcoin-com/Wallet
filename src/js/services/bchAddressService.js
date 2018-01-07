@@ -101,17 +101,18 @@ angular.module('copayApp.services').factory('bchAddressService', function($log) 
   }
 
   function parseAndConvertOldAddress(oldAddress) {
-  	var ALPHABET_MAP = {86: 28, 100: 36, 118: 53, 50: 1, 54: 5, 57: 8, 71: 15,
-  		74: 17, 66: 10, 77: 20, 99: 35, 75: 18, 111: 46, 112: 47, 117: 52, 52: 3, 83: 25, 113: 48,
-  		67: 11, 68: 12, 98: 34, 104: 40, 121: 56, 85: 27, 122: 57, 109: 44, 115: 50, 56: 7, 72: 16,
-  		90: 32, 97: 33, 102: 38, 76: 19, 84: 26, 107: 43, 78: 21, 81: 23, 88: 30, 101: 37, 65: 9,
-  		51: 2, 103: 39, 106: 42, 116: 51, 49: 0, 53: 4, 82: 24, 105: 41, 114: 49, 70: 14, 55: 6,
-  		69: 13, 87: 29, 89: 31, 120: 55, 80: 22, 110: 45, 119: 54}
+var ALPHABET_MAP = {"1": 0, "2": 1, "3": 2, "4": 3, "5": 4, "6": 5, "7": 6,
+  "8": 7, "9": 8, "A": 9, "B": 10, "C": 11, "D": 12, "E": 13, "F": 14, "G": 15,
+  "H": 16, "J": 17, "K": 18, "L": 19, "M": 20, "N": 21, "P": 22, "Q": 23, "R": 24,
+  "S": 25, "T": 26, "U": 27, "V": 28, "W": 29, "X": 30, "Y": 31, "Z": 32, "a": 33,
+  "b": 34, "c": 35, "d": 36, "e": 37, "f": 38, "g": 39, "h": 40, "i": 41, "j": 42,
+  "k": 43, "m": 44, "n": 45, "o": 46, "p": 47, "q": 48, "r": 49, "s": 50, "t": 51,
+"u": 52, "v": 53, "w": 54, "x": 55, "y": 56, "z": 57}
 
   	var bytes = [0]
   	for (var i = 0; i < oldAddress.length; i++) {
-  		var value = ALPHABET_MAP[oldAddress.charCodeAt(i)]
-  		if (value == 0 && oldAddress[i] != '1') {
+  		var value = ALPHABET_MAP[oldAddress[i]]
+  		if (value == undefined) {
   			return null;
   		}
   		var carry = value
@@ -126,35 +127,25 @@ angular.module('copayApp.services').factory('bchAddressService', function($log) 
   		}
   	}
 
-  	var numZeros = 0
-  	for (numZeros = 0; numZeros < oldAddress.length; numZeros++) {
+  	for (var i = 0; i < oldAddress.length; i++) {
   		if (oldAddress[numZeros] != '1') {
   			break
   		}
+      bytes.push(0)
   	}
-    var val = []
-    for (var i = 0; i < numZeros + bytes.length; i++) {
-      val.push(0)
-    }
-    for (var i = 0; i < bytes.length; i++) {
-      val[i] = bytes[i]
-    }
+  	bytes = bytes.reverse()
 
-  	if (val.length < 5) {
+  	if (bytes.length < 5) {
       return null;
   	}
 
-  	var answer = new Array()
-  	for (var t = val.length - 1; t >= 0; t--) {
-  		answer.push(val[t])
-  	}
-  	var version = answer[0]
-  	var h = sha256(Uint8Array.from(answer.slice(0,-4)))
+  	var version = bytes[0]
+  	var h = sha256(Uint8Array.from(bytes.slice(0,-4)))
   	var h2 = sha256(h)
-  	if (h2[0] != answer[answer.length-4] || h2[1] != answer[answer.length-3] || h2[2] != answer[answer.length-2] || h2[3] != answer[answer.length-1]) {
+  	if (h2[0] != bytes[bytes.length-4] || h2[1] != bytes[bytes.length-3] || h2[2] != bytes[bytes.length-2] || h2[3] != bytes[bytes.length-1]) {
       return null;
   	}
-  	var payload = answer.slice(1, answer.length-4)
+  	var payload = bytes.slice(1, -4)
   	if (version == 0x00) {
   		craftCashAddress(0, payload, true)
   	} else if (version == 0x05) {
@@ -163,10 +154,6 @@ angular.module('copayApp.services').factory('bchAddressService', function($log) 
   		craftCashAddress(0, payload, false)
   	} else if (version == 0xc4) {
   		craftCashAddress(1, payload, false)
-  	} else if (version == 0x1c) {
-  		craftCashAddress(0, payload, true)
-  	} else if (version == 0x28) {
-  		craftCashAddress(1, payload, true)
   	} else {
   		return null;
   	}
@@ -201,7 +188,7 @@ angular.module('copayApp.services').factory('bchAddressService', function($log) 
     for (var i = 0; i < data.length; i++) {
       var value = data[i]
       if (value < 0 || (value >> fromBits) !== 0) {
-        return null;
+        return [];
       }
       acc = ((acc << fromBits) | value) & maxAcc
       bits += fromBits
@@ -248,11 +235,12 @@ angular.module('copayApp.services').factory('bchAddressService', function($log) 
     for (var i = 0; i < combined.length; i++) {
       ret = ret.concat(CHARSET[combined[i]])
     }
+    // Currently the addresses should be as long as 50 (testnet) or 54 characters,
+    // Longer addresses are not in use currently
   	if (ret.length == 54 || ret.length == 50) {
-      document.getElementById('resultAddress').value = ret
-      document.getElementById('resultAddressBlock').style.display = 'block'
+      return ret
   	} else {
-  		cleanResultAddress()
+  		return null
   	}
   }
 
