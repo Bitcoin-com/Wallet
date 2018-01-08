@@ -47,6 +47,7 @@ node_modules
 bower_components
 angular-bitcore-wallet-client/angular-bitcore-wallet-client.js
 angular-bitauth/angular-bitauth.js
+bitcoin-cash-js/bitcoin-cash-js.js
 
 # Users Environment Variables
 .lock-wscript
