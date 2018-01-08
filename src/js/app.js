@@ -13,6 +13,7 @@ var modules = [
   'angular-md5',
   'bwcModule',
   'bitauthModule',
+  'bitcoinCashJsModule',
   'copayApp.filters',
   'copayApp.services',
   'copayApp.controllers',

@@ -77,7 +77,8 @@
     "grunt-sass": "^1.2.0",
     "load-grunt-tasks": "^3.5.0",
     "shelljs": "^0.3.0",
-    "android-versions": "^1.2.1"
+    "android-versions": "^1.2.1",
+    "bitcoincashjs": "^0.1.7"
   },
   "scripts": {
     "postinstall":            "bower install",
