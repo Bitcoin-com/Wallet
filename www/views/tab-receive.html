@@ -41,6 +41,21 @@
           </div>
         </div>
         <div>
+          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'cashaddr'" class="button-address" ng-click="displayAddress('cashaddr')">
+            <span translate>Display new style address</span>
+          </button>
+        </div>
+        <div>
+          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'legacy'" class="button-address" ng-click="displayAddress('legacy')">
+            <span translate>Display legacy address</span>
+          </button>
+        </div>
+        <div>
+          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'bitpay'" class="button-address" ng-click="displayAddress('bitpay')">
+            <span translate>Display BitPay address</span>
+          </button>
+        </div>
+        <div>
           <button ng-show="addr" class="button-request" ng-click="requestSpecificAmount()">
             <span translate>Request Specific amount</span>
             <i class="icon ion-ios-arrow-right"></i>

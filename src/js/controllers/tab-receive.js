@@ -1,8 +1,11 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService) {
 
   var listeners = [];
+  $scope.bchAddressType = 'cashaddr';
+  var bchAddresses = {};
+
   $scope.isCordova = platformInfo.isCordova;
   $scope.isNW = platformInfo.isNW;
 
@@ -25,12 +28,23 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         popupService.showAlert(err);
       }
 
-      $scope.addr = addr;
+      if ($scope.wallet.coin == 'bch') {
+          bchAddresses = bitcoinCashJsService.translateAddresses(addr);
+          $scope.addr = bchAddresses[$scope.bchAddressType];
+      } else {
+          $scope.addr = addr;
+      }
+
       $timeout(function() {
         $scope.$apply();
       }, 10);
     });
   };
+
+  $scope.displayAddress = function(type) {
+    $scope.bchAddressType = type;
+    $scope.addr = bchAddresses[$scope.bchAddressType];
+  }
 
   $scope.goCopayers = function() {
     $ionicHistory.removeBackView();

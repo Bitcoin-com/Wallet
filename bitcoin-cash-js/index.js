@@ -17,7 +17,7 @@ bitcoinCashJsModule.provider('bitcoinCashJsService', function() {
       return {
         'legacy': result.toString(),
         'bitpay': result.toString(BitpayFormat),
-        'cashaddr': result.toString(CashAddrFormat)
+        'cashaddr': result.toString(CashAddrFormat).replace('bitcoincash:', '')
       };
     }
 
