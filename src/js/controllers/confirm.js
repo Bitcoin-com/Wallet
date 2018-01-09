@@ -160,6 +160,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       sendMax: data.stateParams.useSendMax == 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
+      displayAddress: data.stateParams.displayAddress,
       description: data.stateParams.description,
       paypro: data.stateParams.paypro,
 

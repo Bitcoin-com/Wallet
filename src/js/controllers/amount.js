@@ -126,6 +126,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.showMenu = $ionicHistory.backView() && ($ionicHistory.backView().stateName == 'tabs.send' || $ionicHistory.backView().stateName == 'tabs.bitpayCard');
     $scope.recipientType = data.stateParams.recipientType || null;
     $scope.toAddress = data.stateParams.toAddress;
+    $scope.displayAddress = data.stateParams.displayAddress;
     $scope.toName = data.stateParams.toName;
     $scope.toEmail = data.stateParams.toEmail;
     $scope.toColor = data.stateParams.toColor;
@@ -415,6 +416,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
         recipientType: $scope.recipientType,
         toAmount: amount,
         toAddress: $scope.toAddress,
+        displayAddress: $scope.displayAddress || $scope.toAddress,
         toName: $scope.toName,
         toEmail: $scope.toEmail,
         toColor: $scope.toColor,

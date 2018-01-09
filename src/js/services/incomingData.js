@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, appConfigService, popupService, gettextCatalog) {
+angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
 
   var root = {};
 
@@ -9,6 +9,18 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
   };
 
   root.redir = function(data, shapeshiftData) {
+    var originalAddress = null;
+    if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'C' || data[0] == 'H')) {
+      try {
+        if (data.indexOf('BITCOINCASH:') >= 0) {
+          data = data.toLowerCase();
+        }
+        originalAddress = data.replace('bitcoincash:', '');
+        var legacyAddress = bitcoinCashJsService.readAddress(data).legacy;
+        data = 'bitcoincash:' + legacyAddress;
+      } catch (ex) {}
+    }
+
     $log.debug('Processing incoming data: ' + data);
 
     function sanitizeUri(data) {
@@ -57,11 +69,16 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           $state.transitionTo('tabs.send.confirm', {
             toAmount: amount,
             toAddress: addr,
+            displayAddress: originalAddress,
             description: message,
             coin: coin
           });
         } else {
-          var params = { toAddress: addr, coin: coin };
+          var params = {
+            toAddress: addr,
+            coin: coin,
+            displayAddress: originalAddress
+          };
           if (shapeshiftData) {
             params['fromWalletId'] = shapeshiftData.fromWalletId;
             params['minShapeshiftAmount'] = shapeshiftData.minAmount;
