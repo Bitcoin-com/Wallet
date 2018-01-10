@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('txDetailsController', function($rootScope, $log, $ionicHistory, $scope, $timeout, walletService, lodash, gettextCatalog, profileService, externalLinkService, popupService, ongoingProcess, txFormatService, txConfirmNotification, feeService, configService) {
+angular.module('copayApp.controllers').controller('txDetailsController', function($rootScope, $log, $ionicHistory, $scope, $timeout, walletService, lodash, gettextCatalog, profileService, externalLinkService, popupService, ongoingProcess, txFormatService, txConfirmNotification, feeService, configService, bitcoinCashJsService) {
 
   var txId;
   var listeners = [];
@@ -117,6 +117,19 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
       }
 
       $scope.btx = txFormatService.processTx($scope.wallet.coin, tx);
+
+      var cashaddrDate = new Date(2018, 0, 16);
+      var txDate = new Date(($scope.btx.createdOn || $scope.btx.time) * 1000);
+
+      if ($scope.wallet.coin == 'bch' && txDate >= cashaddrDate) {
+        var bchAddresses = bitcoinCashJsService.translateAddresses($scope.btx.addressTo);
+        $scope.btx.displayAddress = bchAddresses.cashaddr;
+        $scope.btx.copyAddress = 'bitcoincash:' + $scope.btx.displayAddress;
+      } else {
+        $scope.btx.displayAddress = $scope.btx.addressTo;
+        $scope.btx.copyAddress = $scope.btx.displayAddress;
+      }
+
       txFormatService.formatAlternativeStr($scope.wallet.coin, tx.fees, function(v) {
         $scope.btx.feeFiatStr = v;
         $scope.btx.feeRateStr = ($scope.btx.fees / ($scope.btx.amount + $scope.btx.fees) * 100).toFixed(2) + '%';
