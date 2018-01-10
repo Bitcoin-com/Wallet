@@ -3,7 +3,9 @@
 angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService) {
 
   var listeners = [];
-  $scope.bchAddressType = 'cashaddr';
+  var cashaddrDate = new Date(2018, 0, 16);
+  var currentDate = new Date();
+  $scope.bchAddressType = currentDate >= cashaddrDate ? 'cashaddr' : 'legacy';
   var bchAddresses = {};
 
   $scope.isCordova = platformInfo.isCordova;
