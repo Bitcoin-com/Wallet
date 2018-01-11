@@ -118,7 +118,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
 
       $scope.btx = txFormatService.processTx($scope.wallet.coin, tx);
 
-      var cashaddrDate = new Date(2018, 0, 16);
+      var cashaddrDate = new Date(2018, 0, 15);
       var txDate = new Date(($scope.btx.createdOn || $scope.btx.time) * 1000);
 
       if ($scope.wallet.coin == 'bch' && txDate >= cashaddrDate) {
