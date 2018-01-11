@@ -37,7 +37,7 @@
           <i class="icon ion-ios-arrow-thin-right"></i>
         </div>
 
-        <div ng-if="wallet.coin == 'bch'" class="item item-input item-select">
+        <div ng-if="showAddressTypes" class="item item-input item-select">
           <div class="view-all input-label" translate>
             Address type
           </div>
@@ -65,7 +65,7 @@
             <p ng-if="showMore"><span translate>The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated.</span>&nbsp;<a ng-click="readMore()" translate>Read less</a></p>
           </div>
 
-          <div class="item" ng-repeat="u in latestUnused track by $index" copy-to-clipboard="wallet.coin == 'bch' ? u.translatedAddresses[addressType.type] : u.address">
+          <div class="item" ng-repeat="u in latestUnused track by $index" copy-to-clipboard="wallet.coin == 'bch' ? (addressType.type == 'cashaddr' ? 'bitcoincash:' : '') + u.translatedAddresses[addressType.type] : u.address">
             {{wallet.coin == 'bch' ? u.translatedAddresses[addressType.type] : u.address}}
             <div class="addr-path">
               {{u.path}} {{u.createdOn * 1000 | amDateFormat:'MMMM Do YYYY, hh:mm a'}}
@@ -78,7 +78,7 @@
             Addresses With Balance
           </div>
 
-          <div class="item" ng-repeat="w in latestWithBalance track by $index" copy-to-clipboard="wallet.coin == 'bch' ? w.translatedAddresses[addressType.type] : w.address">
+          <div class="item" ng-repeat="w in latestWithBalance track by $index" copy-to-clipboard="wallet.coin == 'bch' ? (addressType.type == 'cashaddr' ? 'bitcoincash:' : '') + w.translatedAddresses[addressType.type] : w.address">
             {{wallet.coin == 'bch' ? w.translatedAddresses[addressType.type] : w.address}}
             <div class="addr-balance">{{w.balanceStr}}</div>
           </div>

@@ -69,6 +69,7 @@ angular.module('copayApp.controllers').controller('addressesController', functio
           $scope.addressType = {
             type: currentDate >= cashaddrDate ? 'cashaddr' : 'legacy'
           };
+          $scope.showAddressTypes = true;
         }
 
         cachedWallet = $scope.wallet.id;
@@ -137,7 +138,10 @@ angular.module('copayApp.controllers').controller('addressesController', functio
         ongoingProcess.set('generatingNewAddress', false);
         if (err) return popupService.showAlert(gettextCatalog.getString('Error'), err);
         if (addr != _addr[0].address) return popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('New address could not be generated. Please try again.'));
-
+        if ($scope.wallet.coin == 'bch') {
+          _addr[0].translatedAddresses = bitcoinCashJsService.translateAddresses(_addr[0].address);
+        }
+        
         $scope.noBalance = [_addr[0]].concat($scope.noBalance);
         $scope.latestUnused = lodash.slice($scope.noBalance, 0, UNUSED_ADDRESS_LIMIT);
         $scope.viewAll = {
