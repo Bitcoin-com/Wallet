@@ -1,7 +1,7 @@
 'use strict';
 angular.module('copayApp.directives')
-  .directive('validAddress', ['$rootScope', 'bitcore', 'bitcoreCash',
-    function($rootScope, bitcore, bitcoreCash) {
+  .directive('validAddress', ['$rootScope', 'bitcore', 'bitcoreCash', 'bitcoinCashJsService',
+    function($rootScope, bitcore, bitcoreCash, bitcoinCashJsService) {
       return {
         require: 'ngModel',
         link: function(scope, elem, attrs, ctrl) {
@@ -14,6 +14,10 @@ angular.module('copayApp.directives')
           var AddressCash = bitcoreCash.Address
 
           var validator = function(value) {
+
+            if (value.indexOf('bitcoincash:') >= 0 || value[0] == 'C' || value[0] == 'H') {
+              value = bitcoinCashJsService.readAddress(value).legacy;
+            }
 
             // Regular url
             if (/^https?:\/\//.test(value)) {

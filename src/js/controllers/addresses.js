@@ -63,11 +63,8 @@ angular.module('copayApp.controllers').controller('addressesController', functio
             a.translatedAddresses = bitcoinCashJsService.translateAddresses(a.address);
           });
 
-          var cashaddrDate = new Date(2018, 0, 15);
-          var currentDate = new Date();
-
           $scope.addressType = {
-            type: currentDate >= cashaddrDate ? 'cashaddr' : 'legacy'
+            type: 'cashaddr'
           };
           $scope.showAddressTypes = true;
         }
@@ -141,7 +138,7 @@ angular.module('copayApp.controllers').controller('addressesController', functio
         if ($scope.wallet.coin == 'bch') {
           _addr[0].translatedAddresses = bitcoinCashJsService.translateAddresses(_addr[0].address);
         }
-        
+
         $scope.noBalance = [_addr[0]].concat($scope.noBalance);
         $scope.latestUnused = lodash.slice($scope.noBalance, 0, UNUSED_ADDRESS_LIMIT);
         $scope.viewAll = {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('addressbookListController', function($scope, $log, $timeout, addressbookService, lodash, popupService, gettextCatalog, platformInfo) {
+angular.module('copayApp.controllers').controller('addressbookListController', function($scope, $log, $timeout, addressbookService, lodash, popupService, gettextCatalog, platformInfo, bitcoinCashJsService) {
 
   var contacts;
 
@@ -15,10 +15,18 @@ angular.module('copayApp.controllers').controller('addressbookListController', f
 
       contacts = [];
       lodash.each(ab, function(v, k) {
+        var c = lodash.isObject(v) ? v.coin : null;
+        var a = null;
+        if (c && c == 'bch') {
+          a = bitcoinCashJsService.readAddress(v.address).cashaddr.replace('bitcoincash:', '');
+        } else {
+          a = v.address;
+        }
         contacts.push({
           name: lodash.isObject(v) ? v.name : v,
-          address: k,
-          email: lodash.isObject(v) ? v.email : null
+          address: a,
+          email: lodash.isObject(v) ? v.email : null,
+          coin: c
         });
       });
 

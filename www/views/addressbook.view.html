@@ -22,7 +22,7 @@
         <span class="address-book-field-label" translate>Email</span>
         <span>{{addressbookEntry.email}}</span>
       </div>
-      <div class="item item-text-wrap" copy-to-clipboard="addressbookEntry.address">
+      <div class="item item-text-wrap" copy-to-clipboard="(addressbookEntry.coin == 'bch' ? 'bitcoincash:' : '') + addressbookEntry.address">
         <span class="address-book-field-label" translate>Address</span>
         <span>{{addressbookEntry.address}}</span>
       </div>

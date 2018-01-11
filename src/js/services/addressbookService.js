@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('addressbookService', function($log, bitcore, bitcoreCash, storageService, lodash) {
+angular.module('copayApp.services').factory('addressbookService', function($log, bitcore, bitcoreCash, storageService, lodash, bitcoinCashJsService) {
   var root = {};
 
   var getNetwork = function(address) {
@@ -53,8 +53,8 @@ angular.module('copayApp.services').factory('addressbookService', function($log,
       if (ab) ab = JSON.parse(ab);
       ab = ab || {};
       if (lodash.isArray(ab)) ab = {}; // No array
-      if (ab[entry.address]) return cb('Entry already exist');
-      ab[entry.address] = entry;
+      if (ab[entry.coin + entry.address]) return cb('Entry already exist');
+      ab[entry.coin + entry.address] = entry;
       storageService.setAddressbook(network, JSON.stringify(ab), function(err, ab) {
         if (err) return cb('Error adding new entry');
         root.list(function(err, ab) {
