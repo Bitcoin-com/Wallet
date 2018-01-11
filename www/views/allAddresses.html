@@ -9,6 +9,17 @@
     <div class="addr-list list">
       <div class="item item-divider"></div>
 
+      <div ng-if="wallet.coin == 'bch'" class="item item-input item-select">
+        <div class="view-all input-label" translate>
+          Address type
+        </div>
+        <select ng-model="addressType.type">
+          <option value="cashaddr">Cash Address</option>
+          <option value="legacy">Legacy</option>
+          <option value="bitpay">BitPay</option>
+        </select>
+      </div>
+
       <div ng-if="loading" class="updating">
         <ion-spinner class="spinner-dark recent" icon="crescent"></ion-spinner>
         <span translate>Loading addresses...</span>
@@ -22,8 +33,8 @@
         <div class="item item-divider"></div>
       </div>
 
-      <div class="item" ng-repeat="a in allAddresses track by $index" copy-to-clipboard="a.address">
-        {{a.address}}
+      <div class="item" ng-repeat="a in allAddresses track by $index" copy-to-clipboard="wallet.coin == 'bch' ? a.translatedAddresses[addressType.type] : a.address">
+        {{wallet.coin == 'bch' ? a.translatedAddresses[addressType.type] : a.address}}
         <div class="addr-path" ng-if="!a.balanceStr">
           {{a.path}} {{a.createdOn * 1000 | amDateFormat:'MMMM Do YYYY, hh:mm a'}}
         </div>

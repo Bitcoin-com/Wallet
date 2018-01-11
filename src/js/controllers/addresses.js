@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('addressesController', function($scope, $log, $stateParams, $state, $timeout, $ionicHistory, $ionicScrollDelegate, popupService, gettextCatalog, ongoingProcess, lodash, profileService, walletService, bwcError, platformInfo, appConfigService, txFormatService, feeService) {
+angular.module('copayApp.controllers').controller('addressesController', function($scope, $log, $stateParams, $state, $timeout, $ionicHistory, $ionicScrollDelegate, popupService, gettextCatalog, ongoingProcess, lodash, profileService, walletService, bwcError, platformInfo, appConfigService, txFormatService, feeService, bitcoinCashJsService) {
   var UNUSED_ADDRESS_LIMIT = 5;
   var BALANCE_ADDRESS_LIMIT = 5;
   var withBalance, cachedWallet;
@@ -57,6 +57,19 @@ angular.module('copayApp.controllers').controller('addressesController', functio
           value: $scope.noBalance.length > UNUSED_ADDRESS_LIMIT || withBalance.length > BALANCE_ADDRESS_LIMIT
         };
         $scope.allAddresses = $scope.noBalance.concat(withBalance);
+
+        if ($scope.wallet.coin == 'bch') {
+          lodash.each($scope.allAddresses, function(a) {
+            a.translatedAddresses = bitcoinCashJsService.translateAddresses(a.address);
+          });
+
+          var cashaddrDate = new Date(2018, 0, 15);
+          var currentDate = new Date();
+
+          $scope.addressType = {
+            type: currentDate >= cashaddrDate ? 'cashaddr' : 'legacy'
+          };
+        }
 
         cachedWallet = $scope.wallet.id;
         $scope.loading = false;
