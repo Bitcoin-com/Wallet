@@ -23,8 +23,25 @@
       <div class="qr-code" copy-to-clipboard="copyToClipboard()">
         <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
+      <div ng-show="address && coin == 'bch'" class="address-types">
+        <div>
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'cashaddr'" class="button-address" ng-click="displayAddress('cashaddr')">
+            <span translate>Display new style address</span>
+          </button>
+        </div>
+        <div>
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'legacy'" class="button-address" ng-click="displayAddress('legacy')">
+            <span translate>Display legacy address</span>
+          </button>
+        </div>
+        <div>
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'bitpay'" class="button-address" ng-click="displayAddress('bitpay')">
+            <span translate>Display BitPay address</span>
+          </button>
+        </div>
+      </div>
       <div class="info">
-        <div class="item single-line" copy-to-clipboard="address">
+        <div class="item single-line" copy-to-clipboard="(coin == 'bch' && bchAddressType == 'cashaddr' ? 'bitcoincash:' : '') + address">
           <span class="label" translate>Address</span>
           <span class="item-note ellipsis">
             {{address}}

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService) {
+angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService, bitcoinCashJsService) {
 
   var showErrorAndBack = function(title, msg) {
     popupService.showAlert(title, msg, function() {
@@ -32,7 +32,20 @@ angular.module('copayApp.controllers').controller('customAmountController', func
         return;
       }
 
-      $scope.address = addr;
+      $scope.bchAddressType = 'cashaddr';
+      var bchAddresses = {};
+
+      if ($scope.wallet.coin == 'bch') {
+          bchAddresses = bitcoinCashJsService.translateAddresses(addr);
+          $scope.address = bchAddresses[$scope.bchAddressType];
+      } else {
+          $scope.address = addr;
+      }
+
+      $scope.displayAddress = function(type) {
+        $scope.bchAddressType = type;
+        $scope.address = bchAddresses[$scope.bchAddressType];
+      }
 
       $scope.coin = data.stateParams.coin;
       var parsedAmount = txFormatService.parseAmount(
@@ -76,9 +89,11 @@ angular.module('copayApp.controllers').controller('customAmountController', func
   }
 
   $scope.copyToClipboard = function() {
-    var protocol = 'bitcoin';
-    if ($scope.wallet.coin == 'bch') protocol += 'cash';
-    return protocol + ':' + $scope.address + '?amount=' + $scope.amountBtc;
+    var protocol = '';
+    if ($scope.wallet.coin == 'bch' && $scope.bchAddressType == 'cashaddr') {
+      protocol = 'bitcoincash:';
+    }
+    return protocol + $scope.address + '?amount=' + $scope.amountBtc;
   };
 
 });
