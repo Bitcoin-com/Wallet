@@ -138,10 +138,15 @@ module.exports = function(grunt) {
           'bower_components/angular-mocks/angular-mocks.js',
           'bower_components/ngtouch/src/ngTouch.js',
           'angular-bitauth/angular-bitauth.js',
-          'angular-bitcore-wallet-client/angular-bitcore-wallet-client.js',
-          'bitcoin-cash-js/bitcoin-cash-js.js'
+          'angular-bitcore-wallet-client/angular-bitcore-wallet-client.js'
         ],
         dest: 'www/lib/angular-components.js'
+      },
+      bitcoinCashJs: {
+        src: [
+          'bitcoin-cash-js/bitcoin-cash-js.js'
+        ],
+        dest: 'www/lib/bitcoin-cash-js.js'
       },
       js: {
         src: [
