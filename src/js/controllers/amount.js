@@ -30,7 +30,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
 
-    if (data.stateParams.shapeshiftOrderId.length > 0) {
+    if (data.stateParams.shapeshiftOrderId && data.stateParams.shapeshiftOrderId.length > 0) {
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       $scope.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
       $scope.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
