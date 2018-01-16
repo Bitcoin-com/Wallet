@@ -16,7 +16,9 @@
       </div>
     </div>
     <div class="item">
-      <span class="comment" ng-if="wallet.coin == 'bch'" translate>Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase.</span>
+      <span class="comment" ng-if="!onboarding && wallet.coin == 'bch'" translate>Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase.</span>
+      <span class="comment" ng-if="!onboarding && wallet.coin == 'btc'" translate>Note: if this BTC wallet was duplicated from a BCH wallet, they share the same recovery phrase.</span>
+      <span class="comment" ng-if="onboarding" translate>Note: Both of the default BCH and BTC wallets share this same recovery phrase.</span>
     </div>
     <!--
       ## STEP 1

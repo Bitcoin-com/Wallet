@@ -2,6 +2,11 @@
 
 angular.module('copayApp.controllers').controller('backupController',
   function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, lodash, profileService, bwcService, walletService, ongoingProcess, popupService, gettextCatalog, $ionicModal, firebaseEventsService) {
+
+    if ($state.current.name == 'onboarding.backup') {
+      $scope.onboarding = true;
+    }
+
     if ($stateParams.bchWalletId && $stateParams.btcWalletId) {
       $scope.wallet = profileService.getWallet($stateParams.bchWalletId);
       $scope.btcWallet = profileService.getWallet($stateParams.btcWalletId);
