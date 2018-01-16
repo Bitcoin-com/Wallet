@@ -176,7 +176,8 @@ module.exports = function(grunt) {
       prod: {
         files: {
           'www/js/app.js': ['www/js/app.js'],
-          'www/lib/angular-components.js': ['www/lib/angular-components.js']
+          'www/lib/angular-components.js': ['www/lib/angular-components.js'],
+          'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js']
         }
       }
     },
