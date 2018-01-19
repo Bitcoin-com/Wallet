@@ -114,6 +114,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
       if (data.stateParams.fixedUnit) {
         fixedUnit = true;
       }
+
+      if (availableUnits.length == 2) {
+        unitIndex = 1;
+        altUnitIndex = 0;
+      }
     };
 
     // Go to...
