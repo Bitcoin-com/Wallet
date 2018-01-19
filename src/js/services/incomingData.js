@@ -12,12 +12,18 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     var originalAddress = null;
     if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'C' || data[0] == 'H')) {
       try {
+        var paramString = '';
+        if (data.indexOf('?') >= 0) {
+          paramString = data.substring(data.indexOf('?'));
+          data = data.substring(0, data.indexOf('?'));
+        }
+
         if (data.indexOf('BITCOINCASH:') >= 0) {
           data = data.toLowerCase();
         }
         originalAddress = data.replace('bitcoincash:', '');
         var legacyAddress = bitcoinCashJsService.readAddress(data).legacy;
-        data = 'bitcoincash:' + legacyAddress;
+        data = 'bitcoincash:' + legacyAddress + paramString;
       } catch (ex) {}
     }
 
