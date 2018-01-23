@@ -42,7 +42,7 @@ angular.module('copayApp.controllers').controller('backupWarningController', fun
 
   $scope.goBack = function() {
     if ($stateParams.from == 'onboarding') {
-      $state.go($scope.toState, {
+      $state.go($scope.fromState, {
         bchWalletId: $scope.bchWalletId,
         btcWalletId: $scope.btcWalletId
       });
