@@ -97,12 +97,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
     if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
+      var c = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
       $state.go('tabs.send', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.send' ? false : true
       }).then(function() {
         $state.transitionTo('tabs.send.confirm', {
+          coin: c,
           paypro: data
         });
       });
