@@ -133,7 +133,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     var B = data.stateParams.coin == 'bch' ? bitcoreCash : bitcore;
     var networkName;
     try {
-      networkName = (new B.Address(data.stateParams.toAddress)).network.name;
+      if (!data.stateParams.paypro) {
+        networkName = (new B.Address(data.stateParams.toAddress)).network.name;
+      }
     } catch(e) {
       var message = gettextCatalog.getString('Invalid address');
       var backText = gettextCatalog.getString('Go back');
@@ -248,7 +250,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     txp.message = tx.description;
 
     if (tx.paypro) {
-      txp.payProUrl = tx.paypro.url;
+      txp.payProUrl = tx.paypro;
     }
     txp.excludeUnconfirmedUtxos = !tx.spendUnconfirmed;
     txp.dryRun = dryRun;
