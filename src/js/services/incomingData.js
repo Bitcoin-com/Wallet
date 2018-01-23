@@ -10,8 +10,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   root.redir = function(data, shapeshiftData) {
     var originalAddress = null;
-    if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'C' || data[0] == 'H')) {
+    if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'q' || data[0] == 'p' || data[0] == 'C' || data[0] == 'H')) {
       try {
+        if (data[0] == 'p' || data[0] == 'q') {
+          data = 'bitcoincash:' + data;
+        }
         var paramString = '';
         if (data.indexOf('?') >= 0) {
           paramString = data.substring(data.indexOf('?'));
