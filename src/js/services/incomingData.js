@@ -102,14 +102,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
       var c = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
-      $state.go('tabs.send', {}, {
-        'reload': true,
-        'notify': $state.current.name == 'tabs.send' ? false : true
-      }).then(function() {
-        $state.transitionTo('tabs.send.confirm', {
-          coin: c,
-          paypro: data
-        });
+      payproService.getPayProDetails(data, function(err, details) {
+        if (err) {
+          popupService.showAlert(gettextCatalog.getString('Error'), err);
+        } else handlePayPro(details, coin);
       });
       return true;
     }
