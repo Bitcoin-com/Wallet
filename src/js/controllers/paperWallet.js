@@ -1,5 +1,5 @@
 angular.module('copayApp.controllers').controller('paperWalletController',
-  function($scope, $timeout, $log, $ionicModal, $ionicHistory, feeService, popupService, gettextCatalog, platformInfo, configService, profileService, $state, lodash, bitcore, bitcoreCash, ongoingProcess, txFormatService, $stateParams, walletService) {
+  function($scope, $timeout, $log, $ionicModal, $ionicHistory, feeService, popupService, gettextCatalog, platformInfo, configService, profileService, $state, lodash, bitcore, bitcoreCash, ongoingProcess, txFormatService, $stateParams, walletService, rateService) {
 
     var _ = lodash;
 
@@ -71,10 +71,15 @@ angular.module('copayApp.controllers').controller('paperWalletController',
             $scope.btcBalance = btcBalance;
             $scope.bchBalance = bchBalance;
 
-            if ($scope.btcWallet)
+            if ($scope.btcWallet) {
               $scope.btcBalanceText = txFormatService.formatAmountStr($scope.btcWallet.coin, btcBalance);
-            if ($scope.bchWallet)
+              $scope.btcFiatBalance = rateService.toFiat(btcBalance, $scope.fiatCode, 'btc').toFixed(2);
+            }
+
+            if ($scope.bchWallet) {
               $scope.bchBalanceText = txFormatService.formatAmountStr($scope.bchWallet.coin, bchBalance);
+              $scope.bchFiatBalance = rateService.toFiat(bchBalance, $scope.fiatCode, 'bch').toFixed(2);
+            }
 
             $scope.readyToShow = true;
           }
@@ -170,6 +175,9 @@ angular.module('copayApp.controllers').controller('paperWalletController',
       $scope.singleBchWallet = $scope.bchWallets.length == 1;
       $scope.noMatchingBtcWallet = $scope.btcWallets.length == 0;
       $scope.noMatchingBchWallet = $scope.bchWallets.length == 0;
+
+      var config = configService.getSync().wallet.settings;
+      $scope.fiatCode = config.alternativeIsoCode || 'USD';
     });
 
     $scope.$on("$ionicView.enter", function(event, data) {
