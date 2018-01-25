@@ -20,7 +20,9 @@
         </div>
         <div class="list card" ng-click="showBchWalletSelector()" ng-if="bchWallets[0]">
           <a ng-if="bchWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
-            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+            <i class="icon big-icon-svg">
+              <img ng-if="bchWallet.network != 'testnet'" src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !bchWallet.color}" ng-style="{'background-color': bchWallet.color}" class="bg"/>
+            </i>
             <span>
               {{bchWallet.name || bchWallet.id}}
             </span>
@@ -64,7 +66,9 @@
         </div>
         <div class="list card" ng-click="showBtcWalletSelector()" ng-if="btcWallets[0]">
           <a ng-if="btcWallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
-            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+            <i class="icon big-icon-svg">
+              <img ng-if="btcWallet.network != 'testnet'" src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !btcWallet.color}" ng-style="{'background-color': btcWallet.color}" class="bg"/>
+            </i>
             <span>
               {{btcWallet.name || btcWallet.id}}
             </span>
