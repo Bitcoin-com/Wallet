@@ -119,10 +119,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
         fixedUnit = true;
       }
 
-      if (availableUnits.length == 2) {
-        unitIndex = 1;
-        altUnitIndex = 0;
-      }
+      unitIndex = lodash.findIndex(availableUnits, {
+        isFiat: true
+      });
+
+      altUnitIndex = 0;
     };
 
     // Go to...
@@ -246,13 +247,13 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     if (fixedUnit) return;
 
-    unitIndex++;
-    if (unitIndex >= availableUnits.length) unitIndex = 0;
-
+    if (!(availableUnits[unitIndex].isFiat && availableUnits.length > 2 && altUnitIndex == 0)) {
+      unitIndex++;
+      if (unitIndex >= availableUnits.length) unitIndex = 0;
+    }
 
     if (availableUnits[unitIndex].isFiat) {
-      // Always return to BTC... TODO?
-      altUnitIndex = 0;
+      altUnitIndex = altUnitIndex == 0 && availableUnits.length > 2 ? 1 : 0;
     } else {
       altUnitIndex = lodash.findIndex(availableUnits, {
         isFiat: true
