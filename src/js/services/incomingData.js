@@ -10,8 +10,16 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   root.redir = function(data, shapeshiftData) {
     var originalAddress = null;
+    var noPrefixInAddress = 0;
+
+    if (data.toLowerCase().indexOf('bitcoin') < 0) {
+      noPrefixInAddress = 1;
+    }
+
     if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'q' || data[0] == 'p' || data[0] == 'C' || data[0] == 'H')) {
       try {
+        noPrefixInAddress = 0;
+
         if (data[0] == 'p' || data[0] == 'q') {
           data = 'bitcoincash:' + data;
         }
@@ -86,7 +94,8 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           var params = {
             toAddress: addr,
             coin: coin,
-            displayAddress: originalAddress
+            displayAddress: originalAddress,
+            noPrefix: noPrefixInAddress
           };
           if (shapeshiftData) {
             params['fromWalletId'] = shapeshiftData.fromWalletId;
@@ -358,6 +367,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       $state.transitionTo('tabs.send.amount', {
         toAddress: toAddress,
         coin: coin,
+        noPrefix: 1
       });
     }, 100);
   }

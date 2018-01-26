@@ -37,6 +37,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $scope.fromWalletId = data.stateParams.fromWalletId;
     }
 
+    if (data.stateParams.noPrefix) {
+      $scope.showWarningMessage = data.stateParams.noPrefix != 0;
+    }
+
     var config = configService.getSync().wallet.settings;
 
     function setAvailableUnits() {

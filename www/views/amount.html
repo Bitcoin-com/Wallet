@@ -30,6 +30,7 @@
     </div>
 
     <div ng-show="!isAndroid && !isIos" ng-class="{'amount-pane-recipient': !customAmount && !nextStep,'amount-pane-no-recipient': customAmount || nextStep}">
+      <span class="recipient-label" ng-if="showWarningMessage" translate>Note: Address doesn't contain currency information, please make sure you are sending the correct currency.</span>
       <div class="amount-bar oh">
         <div class="title">
           <span translate>Amount</span>
@@ -60,6 +61,7 @@
     </div>
 
     <div class="item" ng-show="isAndroid || isIos">
+      <span class="recipient-label" ng-if="showWarningMessage" translate>Note: Address doesn't contain currency information, please make sure you are sending the correct currency.</span><br/><br/>
       <span class="label" translate>Amount</span><br/>
       <div ng-if="shapeshiftOrderId">
         Minimum amount: {{minShapeshiftAmount}} <br/>
