@@ -397,67 +397,80 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   $scope.finish = function() {
 
-    var unit = availableUnits[unitIndex];
-    var _amount = evaluate(format($scope.amountModel.amount));
-    var coin = unit.id;
-    if (unit.isFiat) {
-      coin = availableUnits[altUnitIndex].id;
-    }
-
-    if ($scope.nextStep) {
-      $state.transitionTo($scope.nextStep, {
-        id: _id,
-        amount: $scope.useSendMax ? null : _amount,
-        currency: unit.id.toUpperCase(),
-        coin: coin,
-        useSendMax: $scope.useSendMax
-      });
-    } else {
-      var amount = _amount;
-
+    function finish() {
+      var unit = availableUnits[unitIndex];
+      var _amount = evaluate(format($scope.amountModel.amount));
+      var coin = unit.id;
       if (unit.isFiat) {
-        amount = (fromFiat(amount) * unitToSatoshi).toFixed(0);
-      } else {
-        amount = (amount * unitToSatoshi).toFixed(0);
+        coin = availableUnits[altUnitIndex].id;
       }
 
-      var confirmData = {
-        recipientType: $scope.recipientType,
-        toAmount: amount,
-        toAddress: $scope.toAddress,
-        displayAddress: $scope.displayAddress || $scope.toAddress,
-        toName: $scope.toName,
-        toEmail: $scope.toEmail,
-        toColor: $scope.toColor,
-        coin: coin,
-        useSendMax: $scope.useSendMax,
-      };
+      if ($scope.nextStep) {
+        $state.transitionTo($scope.nextStep, {
+          id: _id,
+          amount: $scope.useSendMax ? null : _amount,
+          currency: unit.id.toUpperCase(),
+          coin: coin,
+          useSendMax: $scope.useSendMax
+        });
+      } else {
+        var amount = _amount;
 
-      if ($scope.shapeshiftOrderId) {
-        var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
-        shapeshiftOrderUrl += $scope.shapeshiftOrderId;
-        confirmData.description = shapeshiftOrderUrl;
-        confirmData.fromWalletId = $scope.fromWalletId;
+        if (unit.isFiat) {
+          amount = (fromFiat(amount) * unitToSatoshi).toFixed(0);
+        } else {
+          amount = (amount * unitToSatoshi).toFixed(0);
+        }
 
-        if (confirmData.useSendMax) {
-          var wallet = lodash.find(profileService.getWallets({ coin: coin }),
-            function(w) {
-              return w.id == $scope.fromWalletId;
-            });
+        var confirmData = {
+          recipientType: $scope.recipientType,
+          toAmount: amount,
+          toAddress: $scope.toAddress,
+          displayAddress: $scope.displayAddress || $scope.toAddress,
+          toName: $scope.toName,
+          toEmail: $scope.toEmail,
+          toColor: $scope.toColor,
+          coin: coin,
+          useSendMax: $scope.useSendMax,
+        };
 
-          var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
-          if (balance < $scope.minShapeshiftAmount * 1.04) {
-            confirmData.useSendMax = false;
-            confirmData.toAmount = $scope.minShapeshiftAmount * unitToSatoshi;
-          } else if (balance > $scope.maxShapeshiftAmount) {
-            confirmData.useSendMax = false;
-            confirmData.toAmount = $scope.maxShapeshiftAmount * unitToSatoshi * 0.99;
+        if ($scope.shapeshiftOrderId) {
+          var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
+          shapeshiftOrderUrl += $scope.shapeshiftOrderId;
+          confirmData.description = shapeshiftOrderUrl;
+          confirmData.fromWalletId = $scope.fromWalletId;
+
+          if (confirmData.useSendMax) {
+            var wallet = lodash.find(profileService.getWallets({ coin: coin }),
+              function(w) {
+                return w.id == $scope.fromWalletId;
+              });
+
+            var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
+            if (balance < $scope.minShapeshiftAmount * 1.04) {
+              confirmData.useSendMax = false;
+              confirmData.toAmount = $scope.minShapeshiftAmount * unitToSatoshi;
+            } else if (balance > $scope.maxShapeshiftAmount) {
+              confirmData.useSendMax = false;
+              confirmData.toAmount = $scope.maxShapeshiftAmount * unitToSatoshi * 0.99;
+            }
           }
         }
-      }
 
-      $state.transitionTo('tabs.send.confirm', confirmData);
+        $state.transitionTo('tabs.send.confirm', confirmData);
+      }
+      $scope.useSendMax = null;
     }
-    $scope.useSendMax = null;
+
+    if ($scope.showWarningMessage) {
+      var message = 'Are you sure you want to send ' + $scope.unit.toUpperCase()  + '?';
+      popupService.showConfirm(message, null, 'Yes', 'No', function(res) {
+        if (!res) return;
+        finish();
+      });
+    } else {
+      finish();
+    }
+
   };
 });
