@@ -109,6 +109,6 @@ angular.module('copayApp.services').factory('rateService', function($http, lodas
   };
 
   root.updateRates();
-  setInterval(root.updateRates, 10000);
+  setInterval(root.updateRates, 5 * 60 * 1000);
   return root;
 });
