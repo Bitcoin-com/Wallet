@@ -1579,7 +1579,7 @@ msgstr "サーバーのアドレスが不正です"
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
-msgid "Insufficient funds"
+msgid "Insufficient confirmed funds"
 msgstr "残高不足"
 
 #: src/js/controllers/topup.js:165

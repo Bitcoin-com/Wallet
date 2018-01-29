@@ -1577,7 +1577,7 @@ msgstr "네트워크 주소가 틀렸습니다"
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
-msgid "Insufficient funds"
+msgid "Insufficient confirmed funds"
 msgstr "잔액이 부족합니다"
 
 #: src/js/controllers/topup.js:165

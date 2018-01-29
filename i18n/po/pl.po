@@ -1577,7 +1577,7 @@ msgstr "Nieprawidłowy adres"
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
-msgid "Insufficient funds"
+msgid "Insufficient confirmed funds"
 msgstr "Nie ma wystarczającej ilości środków"
 
 #: src/js/controllers/topup.js:165
@@ -3627,4 +3627,3 @@ msgstr "{{updatingTxHistoryProgress}} transakcje pobrane"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-z-{{wallet.n}}"
-

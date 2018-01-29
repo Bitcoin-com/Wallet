@@ -1577,7 +1577,7 @@ msgstr "Indirizzo di rete non corretto"
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
-msgid "Insufficient funds"
+msgid "Insufficient confirmed funds"
 msgstr "Fondi insufficienti"
 
 #: src/js/controllers/topup.js:165
@@ -3627,4 +3627,3 @@ msgstr "{{updatingTxHistoryProgress}} transazioni scaricate"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-di-{{wallet.n}}"
-

@@ -1577,7 +1577,7 @@ msgstr "网络地址不正确"
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
-msgid "Insufficient funds"
+msgid "Insufficient confirmed funds"
 msgstr "资金不足"
 
 #: src/js/controllers/topup.js:165
@@ -3627,4 +3627,3 @@ msgstr "下载的 {{updatingTxHistoryProgress}} 交易"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}{{wallet.n}}"
-
