@@ -41,7 +41,7 @@ angular.module('copayApp.services')
             body = gettextCatalog.getString('Could not build transaction');
             break;
           case 'INSUFFICIENT_FUNDS':
-            body = gettextCatalog.getString('Insufficient funds');
+            body = gettextCatalog.getString('Insufficient confirmed funds');
             break;
           case 'CONNECTION_ERROR':
             body = gettextCatalog.getString('Network error');
