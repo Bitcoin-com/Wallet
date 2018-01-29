@@ -1,182 +1,114 @@
 'use strict';
 
-//var util = require('util');
-//var _ = require('lodash');
-//var log = require('../util/log');
-//var preconditions = require('preconditions').singleton();
-//var request = require('request');
+angular.module('copayApp.services').factory('rateService', function($http, lodash) {
+  var SAT_TO_BTC = 1 / 1e8;
+  var BTC_TO_SAT = 1e8;
+  var UNAVAILABLE_ERROR = 'Service is not available - check for service.isAvailable() or use service.whenAvailable()';
+  var UNSUPPORTED_CURRENCY_ERROR = 'Currency not supported';
 
-/*
-  This class lets interfaces with BitPay's exchange rate API.
-*/
+  var _isAvailable = false;
+  var _rates = {};
+  var _alternatives = [];
+  var _bchRate = null;
+  var _queued = [];
 
-var RateService = function(opts) {
-  var self = this;
+  var root = {};
 
-  opts = opts || {};
-  self.httprequest = opts.httprequest; // || request;
-  self.lodash = opts.lodash;
+  root.updateRates = function() {
+    var backoffSeconds = 5;
+    var rateServiceUrl = 'https://www.bitcoin.com/special/rates.json';
 
-  self.SAT_TO_BTC = 1 / 1e8;
-  self.BTC_TO_SAT = 1e8;
-  self.UNAVAILABLE_ERROR = 'Service is not available - check for service.isAvailable() or use service.whenAvailable()';
-  self.UNSUPPORTED_CURRENCY_ERROR = 'Currency not supported';
+    function getRates(cb, tries) {
+      tries = tries || 0;
+      if (tries > 5) return cb('could not get rates');
 
-  self._isAvailable = false;
-  self._rates = {};
-  self._alternatives = [];
-  self._bchRate = null;
-  self._queued = [];
-
-  self.updateRates();
-};
-
-
-var _instance;
-RateService.singleton = function(opts) {
-  if (!_instance) {
-    _instance = new RateService(opts);
-  }
-  return _instance;
-};
-
-RateService.prototype.updateRates = function() {
-  var self = this;
-
-  var backoffSeconds = 5;
-  var updateFrequencySeconds = 5 * 60;
-  var rateServiceUrl = 'https://bitpay.com/api/rates';
-  var bchRateServiceUrl = 'https://www.bitcoin.com/special/rates.json';
-
-
-  function getBTC(cb, tries) {
-    tries = tries || 0;
-    if (!self.httprequest) return;
-    if (tries > 5) return cb('could not get BTC rates');
-
-    //log.info('Fetching exchange rates');
-    self.httprequest.get(rateServiceUrl).success(function(res) {
-      self.lodash.each(res, function(currency) {
-        self._rates[currency.code] = currency.rate;
-        self._alternatives.push({
-          name: currency.name,
-          isoCode: currency.code,
-          rate: currency.rate
+      $http.get(rateServiceUrl).success(function(res) {
+        lodash.each(res, function(currency) {
+          _rates[currency.code] = currency.rate;
+          _alternatives.push({
+            name: currency.name,
+            isoCode: currency.code,
+            rate: currency.rate
+          });
+          if (currency.code == 'BCH') {
+            _bchRate = currency.rate;
+          }
         });
+        return cb();
+      }).error(function() {
+        setTimeout(function() {
+          backoffSeconds *= 1.5;
+          getRates(cb, tries++)
+        }, backoffSeconds * 1000)
+        return;
       });
-
-      return cb();
-    }).error(function() {
-      //log.debug('Error fetching exchange rates', err);
-      setTimeout(function() {
-        backoffSeconds *= 1.5;
-        getBTC(cb, tries++);
-      }, backoffSeconds * 1000);
-      return;
-    })
-  }
-
-  function getBCH(cb, tries) {
-    tries = tries || 0;
-    if (!self.httprequest) return;
-    if (tries > 5) return cb('could not get BCH rates');
-
-    function retry(tries) {
-      //log.debug('Error fetching exchange rates', err);
-      setTimeout(function() {
-        backoffSeconds *= 1.5;
-        getBTC(cb, tries++);
-      }, backoffSeconds * 1000);
-      return;
     }
 
-    self.httprequest.get(bchRateServiceUrl).success(function(res) {
-      self._bchRate = self.lodash.find(res, function(c) { return c.code == 'BCH'; }).rate;
-      return cb();
-    }).error(function() {
-      return retry(tries);
-    })
-  }
-
-  getBTC(function(err) {
-    if (err) return;
-    getBCH(function(err) {
+    getRates(function(err) {
       if (err) return;
-
-      self._isAvailable = true;
-      self.lodash.each(self._queued, function(callback) {
+      _isAvailable = true;
+      lodash.each(_queued, function(callback) {
         setTimeout(callback, 1);
       });
-      setTimeout( self.updateRates  , updateFrequencySeconds * 1000);
-    })
-  })
-
-};
-
-RateService.prototype.getRate = function(code, chain) {
-  var rate = this._rates[code];
-  return chain == 'bch' ? this._bchRate * rate : rate;
-};
-
-RateService.prototype.getAlternatives = function() {
-  return this._alternatives;
-};
-
-RateService.prototype.isAvailable = function() {
-  return this._isAvailable;
-};
-
-RateService.prototype.whenAvailable = function(callback) {
-  if (this.isAvailable()) {
-    setTimeout(callback, 10);
-  } else {
-    this._queued.push(callback);
-  }
-};
-
-RateService.prototype.toFiat = function(satoshis, code, chain) {
-  if (!this.isAvailable()) {
-    return null;
-  }
-
-  return satoshis * this.SAT_TO_BTC * this.getRate(code, chain);
-};
-
-RateService.prototype.fromFiat = function(amount, code, chain) {
-  if (!this.isAvailable()) {
-    return null;
-  }
-  return amount / this.getRate(code, chain) * this.BTC_TO_SAT;
-};
-
-RateService.prototype.listAlternatives = function(sort) {
-  var self = this;
-  if (!this.isAvailable()) {
-    return [];
-  }
-
-  var alternatives = self.lodash.map(this.getAlternatives(), function(item) {
-    return {
-      name: item.name,
-      isoCode: item.isoCode
-    }
-  });
-  if (sort) {
-    alternatives.sort(function(a, b) {
-      return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
     });
   }
-  return self.lodash.uniq(alternatives, 'isoCode');
-};
 
-angular.module('copayApp.services').factory('rateService', function($http, lodash) {
-  // var cfg = _.extend(config.rates, {
-  //   httprequest: $http
-  // });
+  root.getRate = function(code, chain) {
+    var rate = _rates[code];
+    return chain == 'bch' ? _bchRate * rate : rate;
+  }
 
-  var cfg = {
-    httprequest: $http,
-    lodash: lodash
+  root.getAlternatives = function() {
+    return _alternatives;
+  }
+
+  root.isAvailable = function() {
+    return _isAvailable;
+  }
+
+  root.whenAvailable = function(callback) {
+    if (root.isAvailable()) {
+      setTimeout(callback, 10);
+    } else {
+      _queued.push(callback);
+    }
+  }
+
+  root.toFiat = function(satoshis, code, chain) {
+    if (!root.isAvailable()) {
+      return null;
+    }
+
+    return satoshis * SAT_TO_BTC * root.getRate(code, chain);
+  }
+
+  root.fromFiat = function(amount, code, chain) {
+    if (!root.isAvailable()) {
+      return null;
+    }
+    return amount / root.getRate(code, chain) * BTC_TO_SAT;
   };
-  return RateService.singleton(cfg);
+
+  root.listAlternatives = function(sort) {
+    if (!root.isAvailable()) {
+      return [];
+    }
+
+    var alternatives = lodash.map(root.getAlternatives(), function(item) {
+      return {
+        name: item.name,
+        isoCode: item.isoCode
+      }
+    });
+    if (sort) {
+      alternatives.sort(function(a, b) {
+        return a.name.toLowerCase() > b.name.toLowerCase() ? 1 : -1;
+      });
+    }
+    return lodash.uniq(alternatives, 'isoCode');
+  };
+
+  root.updateRates();
+  setInterval(root.updateRates, 10000);
+  return root;
 });
