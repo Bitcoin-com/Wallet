@@ -14,8 +14,8 @@
           placeholder="{{'Search your currency' | translate}}">
       </label>
     </div>
-    <div class="list" ng-if="lastUsedAltCurrencyList[0]">
-      <ion-radio class="alt-currency-radio" ng-repeat="lastUsedAltCurrency in lastUsedAltCurrencyList" ng-value="lastUsedAltCurrency.isoCode" ng-model="currentCurrency"
+    <div class="list" ng-if="lastUsedPopularList[0]">
+      <ion-radio class="alt-currency-radio" ng-repeat="lastUsedAltCurrency in lastUsedPopularList" ng-value="lastUsedAltCurrency.isoCode" ng-model="currentCurrency"
         ng-click="save(lastUsedAltCurrency)">{{lastUsedAltCurrency.name}} <span class="item-note">{{lastUsedAltCurrency.isoCode}}</span>
       </ion-radio>
     </div>
