@@ -122,9 +122,17 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
       var txDate = new Date(($scope.btx.createdOn || $scope.btx.time) * 1000);
 
       if ($scope.wallet.coin == 'bch' && txDate >= cashaddrDate) {
-        var bchAddresses = bitcoinCashJsService.translateAddresses($scope.btx.addressTo);
-        $scope.btx.cashAddr = bchAddresses.cashaddr;
-        $scope.btx.cashCopyAddr = 'bitcoincash:' + $scope.btx.cashAddr;
+        if ($scope.btx.action === 'sent') {
+          var bchAddresses = bitcoinCashJsService.translateAddresses($scope.btx.addressTo);
+          $scope.btx.cashAddr = bchAddresses.cashaddr;
+          $scope.btx.cashCopyAddr = 'bitcoincash:' + $scope.btx.cashAddr;
+        } else {
+          lodash.each($scope.btx.outputs, function(o) {
+            var bchAddresses = bitcoinCashJsService.translateAddresses(o.address);
+            o.cashAddr = bchAddresses.cashaddr;
+          });
+          console.log($scope.btx.outputs);
+        }
       }
 
       $scope.btx.displayAddress = $scope.btx.addressTo;

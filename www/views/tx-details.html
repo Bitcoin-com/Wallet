@@ -42,8 +42,8 @@
           <span ng-if="btx.cashAddr" class="payment-proposal-to">
             <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="cardId" src="img/icon-card.svg" width="34">
-            <div copy-to-clipboard="btx.cashCopyAddr" class="elipsis">
-              <contact ng-if="!toName" address="{{btx.cashAddr}}" class="elipsis" style="display: block;"></contact>
+            <div copy-to-clipboard="btx.cashCopyAddr" class="ellipsis">
+              <contact ng-if="!toName" address="{{btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
               <span class="m15l size-14" ng-if="toName">{{toName}}</span>
             </div>
           </span>
@@ -59,10 +59,26 @@
 
         <div class="item">
           <span class="label" ng-if="btx.action === 'sent'" translate>From</span>
-          <span class="label" ng-if="btx.action !== 'sent'" translate>To</span>
+          <span class="label" ng-if="btx.action !== 'sent'" translate>Received To</span>
           <div class="wallet">
             <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
             <div>{{wallet.name}}</div>
+          </div>
+          <div ng-if="btx.action === 'received' || btx.action === 'moved'">
+            <span ng-repeat="o in btx.outputs" ng-if="o.cashAddr" class="payment-proposal-to">
+              <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
+              <img ng-if="cardId" src="img/icon-card.svg" width="34">
+              <div copy-to-clipboard="'bitcoincash:' + o.cashAddr" class="ellipsis">
+                <contact address="{{o.cashAddr}}" class="ellipsis" style="display: block;"></contact>
+              </div>
+            </span>
+            <span ng-repeat="o in btx.outputs" class="payment-proposal-to">
+              <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
+              <img ng-if="cardId" src="img/icon-card.svg" width="34">
+              <div copy-to-clipboard="o.address" class="ellipsis">
+                <contact address="{{o.address}}" class="ellipsis" style="display: block;"></contact>
+              </div>
+            </span>
           </div>
         </div>
         <div class="item single-line" ng-if="btx.action != 'received' && isShared">
