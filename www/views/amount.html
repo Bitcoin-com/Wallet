@@ -25,7 +25,7 @@
             <img src="img/contact-placeholder.svg" class="bg"/>
           </i>
         </span>
-        <span class="m10l">{{toName || displayAddress || toAddress}}</span>
+        <span class="m10l" copy-to-clipboard="displayAddress ? ((displayAddress[0] == 'q' || displayAddress[0] == 'p') ? 'bitcoincash:' : '') + displayAddress : toAddress">{{toName || displayAddress || toAddress}}</span>
       </div>
     </div>
 

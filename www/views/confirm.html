@@ -32,7 +32,7 @@
           <span class="payment-proposal-to" ng-if="!recipientType">
             <i class="icon icon-svg abs-v-center icon-bitcoinlogoplain"></i>
 
-            <div copy-to-clipboard="tx.displayAddress" ng-if="!tx.paypro" class="ellipsis">
+            <div copy-to-clipboard="(tx.displayAddress[0] == 'p' || tx.displayAddress[0] == 'q' ? 'bitcoincash:' : '') + tx.displayAddress" ng-if="!tx.paypro" class="ellipsis">
               <contact ng-if="tx.displayAddress && !tx.toName" address="{{tx.displayAddress}}"></contact>
               <span class="m15l size-14" ng-if="tx.toName">{{tx.toName}}</span>
             </div>
