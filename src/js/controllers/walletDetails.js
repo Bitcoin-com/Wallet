@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -182,7 +182,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         }
 
         applyCurrencyAliases(txHistory);
-        $scope.completeTxHistory = txHistory;
+
+        var config = configService.getSync();
+        var fiatCode = config.wallet.settings.alternativeIsoCode;
+        lodash.each(txHistory, function(t) {
+          var r = rateService.toFiat(t.amount, fiatCode, $scope.wallet.coin);
+          t.alternativeAmountStr = r.toFixed(2) + ' ' + fiatCode;
+        });
+
+        $scope.completeTxHistory = txHistory;        
+
         $scope.showHistory();
         $timeout(function() {
           $scope.$apply();
