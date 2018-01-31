@@ -131,7 +131,6 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
             var bchAddresses = bitcoinCashJsService.translateAddresses(o.address);
             o.cashAddr = bchAddresses.cashaddr;
           });
-          console.log($scope.btx.outputs);
         }
       }
 
