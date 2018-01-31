@@ -464,7 +464,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }
 
     if ($scope.showWarningMessage) {
-      var message = 'Are you sure you want to send ' + $scope.unit.toUpperCase()  + '?';
+      var u = $scope.unit == 'BCH' || $scope.unit == 'BTC' ? $scope.unit : $scope.alternativeUnit;
+      var message = 'Are you sure you want to send ' + u.toUpperCase()  + '?';
       popupService.showConfirm(message, null, 'Yes', 'No', function(res) {
         if (!res) return;
         finish();
