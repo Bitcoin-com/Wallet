@@ -189,6 +189,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           //Error is already formated
           return popupService.showAlert(err);
         }
+
+        if (item.recipientType && item.recipientType == 'contact') {
+          if (addr.indexOf('bch') == 0 || addr.indexOf('btc') == 0) {
+            addr = addr.substring(3);
+          }
+        }
+
         $log.debug('Got toAddress:' + addr + ' | ' + item.name);
         return $state.transitionTo('tabs.send.amount', {
           recipientType: item.recipientType,
@@ -197,7 +204,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           toEmail: item.email,
           toColor: item.color,
           coin: item.coin
-        })
+        });
       });
     });
   };
