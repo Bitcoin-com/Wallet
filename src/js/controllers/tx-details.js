@@ -123,12 +123,12 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
 
       if ($scope.wallet.coin == 'bch' && txDate >= cashaddrDate) {
         var bchAddresses = bitcoinCashJsService.translateAddresses($scope.btx.addressTo);
-        $scope.btx.displayAddress = bchAddresses.cashaddr;
-        $scope.btx.copyAddress = 'bitcoincash:' + $scope.btx.displayAddress;
-      } else {
-        $scope.btx.displayAddress = $scope.btx.addressTo;
-        $scope.btx.copyAddress = $scope.btx.displayAddress;
+        $scope.btx.cashAddr = bchAddresses.cashaddr;
+        $scope.btx.cashCopyAddr = 'bitcoincash:' + $scope.btx.cashAddr;
       }
+
+      $scope.btx.displayAddress = $scope.btx.addressTo;
+      $scope.btx.copyAddress = $scope.btx.displayAddress;
 
       txFormatService.formatAlternativeStr($scope.wallet.coin, tx.fees, function(v) {
         $scope.btx.feeFiatStr = v;

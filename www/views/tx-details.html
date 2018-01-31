@@ -39,6 +39,14 @@
       <div class="info">
         <div class="item" ng-if="btx.action === 'sent'">
           <span class="label" translate>To</span>
+          <span ng-if="btx.cashAddr" class="payment-proposal-to">
+            <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
+            <img ng-if="cardId" src="img/icon-card.svg" width="34">
+            <div copy-to-clipboard="btx.cashCopyAddr" class="elipsis">
+              <contact ng-if="!toName" address="{{btx.cashAddr}}" class="elipsis" style="display: block;"></contact>
+              <span class="m15l size-14" ng-if="toName">{{toName}}</span>
+            </div>
+          </span>
           <span class="payment-proposal-to">
             <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="cardId" src="img/icon-card.svg" width="34">
@@ -48,6 +56,7 @@
             </div>
           </span>
         </div>
+
         <div class="item">
           <span class="label" ng-if="btx.action === 'sent'" translate>From</span>
           <span class="label" ng-if="btx.action !== 'sent'" translate>To</span>
