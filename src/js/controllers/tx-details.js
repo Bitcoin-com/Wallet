@@ -117,6 +117,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
       }
 
       $scope.btx = txFormatService.processTx($scope.wallet.coin, tx);
+      $scope.addressDisplayType = 'legacy';
 
       var cashaddrDate = new Date(2018, 0, 15);
       var txDate = new Date(($scope.btx.createdOn || $scope.btx.time) * 1000);
@@ -132,6 +133,9 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
             o.cashAddr = bchAddresses.cashaddr;
           });
         }
+
+        $scope.canToggleAddressType = true;
+        $scope.addressDisplayType = 'cashAddr';
       }
 
       $scope.btx.displayAddress = $scope.btx.addressTo;
@@ -244,5 +248,9 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
       txConfirmNotification.unsubscribe($scope.wallet, txId);
     }
   };
+
+  $scope.displayAddress = function(type) {
+    $scope.addressDisplayType = type;
+  }
 
 });

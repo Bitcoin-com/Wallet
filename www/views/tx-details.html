@@ -39,7 +39,7 @@
       <div class="info">
         <div class="item" ng-if="btx.action === 'sent'">
           <span class="label" translate>To</span>
-          <span ng-if="btx.cashAddr" class="payment-proposal-to">
+          <span ng-if="addressDisplayType === 'cashAddr'" class="payment-proposal-to">
             <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="cardId" src="img/icon-card.svg" width="34">
             <div copy-to-clipboard="btx.cashCopyAddr" class="ellipsis">
@@ -47,7 +47,7 @@
               <span class="m15l size-14" ng-if="toName">{{toName}}</span>
             </div>
           </span>
-          <span class="payment-proposal-to">
+          <span ng-if="addressDisplayType === 'legacy'" class="payment-proposal-to">
             <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="cardId" src="img/icon-card.svg" width="34">
             <div copy-to-clipboard="btx.copyAddress" class="ellipsis">
@@ -55,6 +55,12 @@
               <span class="m15l size-14" ng-if="toName">{{toName}}</span>
             </div>
           </span>
+          <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'cashAddr'" ng-click="displayAddress('legacy')">
+            <span translate>Display legacy address</span>
+          </button>
+          <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'legacy'" ng-click="displayAddress('cashAddr')">
+            <span translate>Display new style address</span>
+          </button>
         </div>
 
         <div class="item">
@@ -65,20 +71,26 @@
             <div>{{wallet.name}}</div>
           </div>
           <div ng-if="btx.action === 'received' || btx.action === 'moved'">
-            <span ng-repeat="o in btx.outputs" ng-if="o.cashAddr" class="payment-proposal-to">
+            <span ng-repeat="o in btx.outputs" ng-if="addressDisplayType === 'cashAddr'" class="payment-proposal-to">
               <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
               <img ng-if="cardId" src="img/icon-card.svg" width="34">
               <div copy-to-clipboard="'bitcoincash:' + o.cashAddr" class="ellipsis">
                 <contact address="{{o.cashAddr}}" class="ellipsis" style="display: block;"></contact>
               </div>
             </span>
-            <span ng-repeat="o in btx.outputs" class="payment-proposal-to">
+            <span ng-repeat="o in btx.outputs" ng-if="addressDisplayType === 'legacy'" class="payment-proposal-to">
               <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
               <img ng-if="cardId" src="img/icon-card.svg" width="34">
               <div copy-to-clipboard="o.address" class="ellipsis">
                 <contact address="{{o.address}}" class="ellipsis" style="display: block;"></contact>
               </div>
             </span>
+            <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'cashAddr'" ng-click="displayAddress('legacy')">
+              <span translate>Display legacy address</span>
+            </button>
+            <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'legacy'" ng-click="displayAddress('cashAddr')">
+              <span translate>Display new style address</span>
+            </button>
           </div>
         </div>
         <div class="item single-line" ng-if="btx.action != 'received' && isShared">
