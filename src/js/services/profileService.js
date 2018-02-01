@@ -570,50 +570,48 @@ angular.module('copayApp.services')
     // Adds and bind a new client to the profile
     var addAndBindWalletClient = function(client, opts, cb) {
       if (!client || !client.credentials)
-        return cb(gettextCatalog.getString('Could not access wallet'));
+      return cb(gettextCatalog.getString('Could not access wallet'));
 
       // Encrypt wallet
       ongoingProcess.pause();
       encryptWallet(client, function() {
-      ongoingProcess.resume();
+        ongoingProcess.resume();
 
-      var walletId = client.credentials.walletId
+        var walletId = client.credentials.walletId
 
-      if (!root.profile.addWallet(JSON.parse(client.export())))
+        if (!root.profile.addWallet(JSON.parse(client.export())))
         return cb(gettextCatalog.getString("Wallet already in {{appName}}", {
           appName: appConfigService.nameCase
         }));
 
 
-      var skipKeyValidation = shouldSkipValidation(walletId);
-      if (!skipKeyValidation)
+        var skipKeyValidation = shouldSkipValidation(walletId);
+        if (!skipKeyValidation)
         root.runValidation(client);
 
-      root.bindWalletClient(client);
+        root.bindWalletClient(client);
 
-      var saveBwsUrl = function(cb) {
-        var defaults = configService.getDefaults();
-        var bwsFor = {};
-        bwsFor[walletId] = opts.bwsurl || defaults.bws.url;
+        var saveBwsUrl = function(cb) {
+          var defaults = configService.getDefaults();
+          var bwsFor = {};
+          bwsFor[walletId] = opts.bwsurl || defaults.bws.url;
 
-        // Dont save the default
-        if (bwsFor[walletId] == defaults.bws.url)
+          // Dont save the default
+          if (bwsFor[walletId] == defaults.bws.url)
           return cb();
 
-        configService.set({
-          bwsFor: bwsFor,
-        }, function(err) {
-          if (err) $log.warn(err);
-          return cb();
-        });
-      };
+          configService.set({
+            bwsFor: bwsFor,
+          }, function(err) {
+            if (err) $log.warn(err);
+            return cb();
+          });
+        };
 
-      saveBwsUrl(function() {
-        storageService.storeProfile(root.profile, function(err) {
-          if (cb) {
+        saveBwsUrl(function() {
+          storageService.storeProfile(root.profile, function(err) {
             return cb(err, client);
-          }
-          return;
+          });
         });
       });
     };
