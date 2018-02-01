@@ -38,7 +38,6 @@ angular.module('copayApp.controllers').controller('createController',
 
       $scope.setTotalCopayers(tc);
       updateRCSelect(tc);
-      resetPasswordFields();
     });
 
     $scope.coinChanged = function() {
