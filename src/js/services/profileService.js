@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('profileService', function profileServiceFactory($rootScope, $timeout, $filter, $log, $state, sjcl, lodash, storageService, bwcService, configService, gettextCatalog, bwcError, uxLanguage, platformInfo, txFormatService, appConfigService) {
+  .factory('profileService', function profileServiceFactory($rootScope, $timeout, $filter, $log, $state, sjcl, lodash, storageService, bwcService, configService, gettextCatalog, bwcError, uxLanguage, platformInfo, txFormatService, appConfigService, popupService, ongoingProcess) {
 
 
     var isChromeApp = platformInfo.isChromeApp;
@@ -521,10 +521,61 @@ angular.module('copayApp.services')
       });
     }
 
+    // An alert dialog
+    var askPassword = function(name, title, cb) {
+      var opts = {
+        inputType: 'password',
+        forceHTMLPrompt: true,
+        class: 'text-warn'
+      };
+      popupService.showPrompt(title, name, opts, function(res) {
+        if (!res) return cb();
+        if (res) return cb(res)
+      });
+    };
+
+    var showWarningNoEncrypt = function(cb) {
+      var title = gettextCatalog.getString('Are you sure?');
+      var msg = gettextCatalog.getString('Your wallet keys will be stored in plan text in this device, if an other app access the store it will be able to access your Bitcoin');
+      var yes = gettextCatalog.getString('Yes');
+      var no = gettextCatalog.getString('No');
+      popupService.showConfirm(title, msg, yes, no, function(res) {
+        return cb(res);
+      });
+    };
+
+    var encryptWallet = function(wallet, cb) {
+
+      var title = gettextCatalog.getString('Please enter a password to encrypt your wallet keys on this device storage');
+      var warnMsg = gettextCatalog.getString('Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down.');
+      askPassword(warnMsg, title, function(password) {
+        if (!password) {
+          showWarningNoEncrypt(function(res) {
+            if (res) return cb()
+            return encryptWallet(wallet, cb);
+          });
+        } else {
+          title = gettextCatalog.getString('Confirm your new spending password');
+          askPassword(warnMsg, title, function(password2) {
+            if (!password2 || password != password2)
+            return encryptWallet(wallet, cb);
+
+            wallet.encryptPrivateKey(password);
+            return cb();
+          });
+        }
+      });
+    };
+
     // Adds and bind a new client to the profile
     var addAndBindWalletClient = function(client, opts, cb) {
       if (!client || !client.credentials)
         return cb(gettextCatalog.getString('Could not access wallet'));
+
+      // Encrypt wallet
+      ongoingProcess.pause();
+      encryptWallet(client, function() {
+      ongoingProcess.resume();
 
       var walletId = client.credentials.walletId
 
