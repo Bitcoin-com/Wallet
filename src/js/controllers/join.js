@@ -30,10 +30,32 @@ angular.module('copayApp.controllers').controller('joinController',
       $scope.resizeView();
     };
 
+    $scope.checkPassword = function(pw1, pw2) {
+      if (pw1 && pw1.length > 0) {
+        if (pw2 && pw2.length > 0) {
+          if (pw1 == pw2) $scope.result = 'correct';
+          else {
+            $scope.formData.passwordSaved = null;
+            $scope.result = 'incorrect';
+          }
+        } else
+          $scope.result = null;
+      } else
+        $scope.result = null;
+    };
+
     $scope.resizeView = function() {
       $timeout(function() {
         $ionicScrollDelegate.resize();
       }, 10);
+      resetPasswordFields();
+    };
+
+    function resetPasswordFields() {
+      $scope.formData.passphrase = $scope.formData.createPassphrase = $scope.formData.passwordSaved = $scope.formData.repeatPassword = $scope.result = null;
+      $timeout(function() {
+        $scope.$apply();
+      });
     };
 
     $scope.onQrCodeScannedJoin = function(data) {
