@@ -755,15 +755,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         abstract: true,
         template: '<ion-nav-view name="onboarding"></ion-nav-view>'
       })
-      .state('onboarding.welcome', {
-        url: '/welcome',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/onboarding/welcome.html',
-            controller: 'welcomeController'
-          }
-        }
-      })
       .state('onboarding.tour', {
         url: '/tour',
         views: {
@@ -1228,11 +1219,10 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         var fromTabs = matchHome | matchReceive | matchScan | matchSend | matchSettings;
 
         //onboarding with no back views
-        var matchWelcome = $ionicHistory.currentStateName() == 'onboarding.welcome' ? true : false;
         var matchCollectEmail = $ionicHistory.currentStateName() == 'onboarding.collectEmail' ? true : false;
         var noBackView = $ionicHistory.backView().stateName == 'starting' ? true : false;
 
-        var fromOnboarding = matchCollectEmail | matchWelcome ;
+        var fromOnboarding = matchCollectEmail ;
 
         //views with disable backbutton
         var matchComplete = $ionicHistory.currentStateName() == 'tabs.rate.complete' ? true : false;
@@ -1277,11 +1267,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         if (err) {
           if (err.message && err.message.match('NOPROFILE')) {
             $log.debug('No profile... redirecting');
-            $state.go('onboarding.welcome');
+            $state.go('onboarding.tour');
           } else if (err.message && err.message.match('NONAGREEDDISCLAIMER')) {
             if (lodash.isEmpty(profileService.getWallets())) {
               $log.debug('No wallets and no disclaimer... redirecting');
-              $state.go('onboarding.welcome');
+              $state.go('onboarding.tour');
             } else {
               $log.debug('Display disclaimer... redirecting');
               $state.go('onboarding.disclaimer', {

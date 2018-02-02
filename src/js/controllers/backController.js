@@ -3,7 +3,7 @@
 angular.module('copayApp.controllers').controller('backController', function($scope, $state, $stateParams) {
 
   $scope.importGoBack = function() {
-    if ($stateParams.fromOnboarding) $state.go('onboarding.welcome');
+    if ($stateParams.fromOnboarding) $state.go('onboarding.tour');
     else $state.go('tabs.add');
   };
 

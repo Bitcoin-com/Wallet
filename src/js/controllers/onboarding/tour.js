@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.controllers').controller('tourController',
-  function($scope, $state, $log, $timeout, $filter, ongoingProcess, profileService, rateService, popupService, gettextCatalog) {
+  function($scope, $state, $log, $timeout, $filter, ongoingProcess, profileService, rateService, popupService, gettextCatalog, startupService, storageService) {
 
     $scope.data = {
       index: 0
@@ -13,15 +13,16 @@ angular.module('copayApp.controllers').controller('tourController',
       spaceBetween: 100
     }
 
-    $scope.$on("$ionicSlides.sliderInitialized", function(event, data) {
-      $scope.slider = data.slider;
+    $scope.$on("$ionicView.afterEnter", function() {
+      startupService.ready();
     });
 
-    $scope.$on("$ionicSlides.slideChangeStart", function(event, data) {
-      $scope.data.index = data.slider.activeIndex;
-    });
-
-    $scope.$on("$ionicSlides.slideChangeEnd", function(event, data) {});
+    $scope.createProfile = function() {
+      $log.debug('Creating profile');
+      profileService.createProfile(function(err) {
+        if (err) $log.warn(err);
+      });
+    };
 
     $scope.$on("$ionicView.enter", function(event, data) {
       rateService.whenAvailable(function() {
@@ -73,14 +74,4 @@ angular.module('copayApp.controllers').controller('tourController',
         });
       }, 300);
     };
-
-    $scope.goBack = function() {
-      if ($scope.data.index != 0) $scope.slider.slidePrev();
-      else $state.go('onboarding.welcome');
-    }
-
-    $scope.slideNext = function() {
-      if ($scope.data.index != 2) $scope.slider.slideNext();
-      else $state.go('onboarding.welcome');
-    }
   });
