@@ -782,51 +782,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('onboarding.backupRequest', {
-        url: '/backupRequest/:bchWalletId/:btcWalletId',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/onboarding/backupRequest.html',
-            controller: 'backupRequestController'
-          }
-        }
-      })
-      .state('onboarding.backupWarning', {
-        url: '/backupWarning/:from/:walletId/:bchWalletId/:btcWalletId',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/backupWarning.html',
-            controller: 'backupWarningController'
-          }
-        }
-      })
-      .state('onboarding.backup', {
-        url: '/backup/:walletId/:bchWalletId/:btcWalletId',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/backup.html',
-            controller: 'backupController'
-          }
-        }
-      })
-      .state('onboarding.disclaimer', {
-        url: '/disclaimer/:bchWalletId/:btcWalletId/:backedUp/:resume',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/onboarding/disclaimer.html',
-            controller: 'disclaimerController'
-          }
-        }
-      })
-      .state('onboarding.terms', {
-        url: '/terms',
-        views: {
-          'onboarding': {
-            templateUrl: 'views/onboarding/terms.html',
-            controller: 'termsController'
-          }
-        }
-      })
       .state('onboarding.import', {
         url: '/import',
         views: {

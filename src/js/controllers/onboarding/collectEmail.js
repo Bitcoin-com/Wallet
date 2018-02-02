@@ -73,10 +73,7 @@ angular.module('copayApp.controllers').controller('collectEmailController', func
   };
 
   $scope.goNextView = function() {
-    $state.go('onboarding.backupRequest', {
-      bchWalletId: bchWalletId,
-      btcWalletId: btcWalletId
-    });
+    $state.go('tabs.home');
   };
 
   $scope.confirm = function(emailForm) {
