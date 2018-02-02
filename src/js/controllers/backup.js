@@ -97,17 +97,7 @@ angular.module('copayApp.controllers').controller('backupController',
     $scope.closeBackupResultModal = function() {
       $scope.confirmBackupModal.hide();
       $scope.confirmBackupModal.remove();
-
-      profileService.isDisclaimerAccepted(function(val) {
-        if (val) {
-          $ionicHistory.removeBackView();
-          $state.go('tabs.home');
-        } else $state.go('onboarding.disclaimer', {
-          bchWalletId: $stateParams.bchWalletId,
-          btcWalletId: $stateParams.btcWalletId,
-          backedUp: true
-        });
-      });
+      $state.go('tabs.home');
     };
 
     $scope.copyRecoveryPhrase = function() {

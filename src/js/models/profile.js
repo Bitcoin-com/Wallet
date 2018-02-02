@@ -15,7 +15,7 @@ Profile.create = function(opts) {
   var x = new Profile();
   x.createdOn = Date.now();
   x.credentials = opts.credentials || [];
-  x.disclaimerAccepted = false;
+  x.disclaimerAccepted = true;
   x.checked = {};
   return x;
 };
