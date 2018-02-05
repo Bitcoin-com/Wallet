@@ -5,6 +5,10 @@ angular.module('copayApp.controllers').controller('joinController',
 
     var defaults = configService.getDefaults();
 
+    $scope.coinChanged = function() {
+      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
+    }
+
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       var config = configService.getSync();
       $scope.formData = {};
@@ -18,11 +22,16 @@ angular.module('copayApp.controllers').controller('joinController',
       if (config.cashSupport) $scope.enableCash = true;
       resetPasswordFields();
       updateSeedSourceSelect();
+      if (data.stateParams.url) {
+        var s = data.stateParams.url.replace('copay:', '');
+        $scope.formData.secret = s;
+        var coin = s.substring(s.length-3);
+        if ($scope.formData.coin != coin) {
+          $scope.formData.coin = coin;
+          $scope.coinChanged();
+        }
+      }
     });
-
-    $scope.coinChanged = function() {
-      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
-    }
 
     $scope.showAdvChange = function() {
       $scope.showAdv = !$scope.showAdv;
@@ -67,12 +76,6 @@ angular.module('copayApp.controllers').controller('joinController',
       }
       $scope.$apply();
     };
-
-    if ($stateParams.url) {
-      var data = $stateParams.url;
-      data = data.replace('copay:', '');
-      $scope.onQrCodeScannedJoin(data);
-    }
 
     function updateSeedSourceSelect() {
       $scope.seedOptions = [{
