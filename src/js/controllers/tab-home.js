@@ -268,6 +268,8 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           return;
         }
 
+        if (!notifications) return;
+
         var txIdList = [];
 
         var notificationsBeforeCheck = notifications.length;
