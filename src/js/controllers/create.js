@@ -235,36 +235,48 @@ angular.module('copayApp.controllers').controller('createController',
       ongoingProcess.set('creatingWallet', true);
       $timeout(function() {
         profileService.createWallet(opts, function(err, client) {
-          ongoingProcess.set('creatingWallet', false);
-          if (err) {
-            $log.warn(err);
-            popupService.showAlert(gettextCatalog.getString('Error'), err);
-            return;
-          }
+          function finish(error) {
+            ongoingProcess.set('creatingWallet', false);
+            if (error) {
+              $log.warn(error);
+              popupService.showAlert(gettextCatalog.getString('Error'), error);
+              return;
+            }
 
-          walletService.updateRemotePreferences(client);
-          pushNotificationsService.updateSubscription(client);
+            walletService.updateRemotePreferences(client);
+            pushNotificationsService.updateSubscription(client);
 
-          if ($scope.formData.seedSource.id == 'set') {
-            profileService.setBackupFlag(client.credentials.walletId);
-          }
+            if ($scope.formData.seedSource.id == 'set') {
+              profileService.setBackupFlag(client.credentials.walletId);
+            }
 
-          $ionicHistory.removeBackView();
+            $ionicHistory.removeBackView();
 
-          if (!client.isComplete()) {
-            $ionicHistory.nextViewOptions({
-              disableAnimate: true
-            });
-            $state.go('tabs.home');
-            $timeout(function() {
-              $state.transitionTo('tabs.copayers', {
-                walletId: client.credentials.walletId
+            if (!client.isComplete()) {
+              $ionicHistory.nextViewOptions({
+                disableAnimate: true
               });
-            }, 100);
+              $state.go('tabs.home');
+              $timeout(function() {
+                $state.transitionTo('tabs.copayers', {
+                  walletId: client.credentials.walletId
+                });
+              }, 100);
+            }
+            else {
+              firebaseEventsService.logEvent('wallet_created', { coin: opts.coin });
+              $state.go('tabs.home');
+            }
           }
-          else {
-            firebaseEventsService.logEvent('wallet_created', { coin: opts.coin });
-            $state.go('tabs.home');
+
+          if (opts.n >= 2) {
+            finish(err);
+          } else {
+            ongoingProcess.set('generatingNewAddress', true);
+            walletService.getAddress(client, true, function(e, addr) {
+              ongoingProcess.set('generatingNewAddress', false);
+              finish(e);
+            });
           }
         });
       }, 300);

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.controllers').controller('tourController',
-  function($scope, $state, $log, $timeout, $filter, ongoingProcess, profileService, rateService, popupService, gettextCatalog, startupService, storageService) {
+  function($scope, $state, $log, $timeout, $filter, ongoingProcess, profileService, rateService, popupService, gettextCatalog, startupService, storageService, walletService, $q) {
 
     $scope.data = {
       index: 0
@@ -60,16 +60,41 @@ angular.module('copayApp.controllers').controller('tourController',
               }
             }, 2000);
           };
+
           ongoingProcess.set('creatingWallet', false);
           var bchWallet = walletClients[0];
           var btcWallet = walletClients[1];
-
           var bchWalletId = bchWallet.credentials.walletId;
           var btcWalletId = btcWallet.credentials.walletId;
 
-          $state.go('onboarding.collectEmail', {
-            bchWalletId: bchWalletId,
-            btcWalletId: btcWalletId
+          function createAddressPromise(wallet) {
+            return $q(function(resolve, reject) {
+              walletService.getAddress(wallet, true, function(e, addr) {
+                if (e) reject(e);
+                resolve(addr);
+              });
+            });
+          }
+
+          function goToCollectEmail() {
+            $state.go('onboarding.collectEmail', {
+              bchWalletId: bchWalletId,
+              btcWalletId: btcWalletId
+            });
+          }
+
+          var bchAddressPromise = createAddressPromise(bchWallet);
+          var btcAddressPromise = createAddressPromise(btcWallet);
+          ongoingProcess.set('generatingNewAddress', true);
+
+          $q.all([bchAddressPromise, btcAddressPromise]).then(function(addresses) {
+            ongoingProcess.set('generatingNewAddress', false);
+            goToCollectEmail();
+          }, function(e) {
+            ongoingProcess.set('generatingNewAddress', false);
+            $log.warn(e);
+            popupService.showAlert(gettextCatalog.getString('Error'), e);
+            goToCollectEmail();
           });
         });
       }, 300);
