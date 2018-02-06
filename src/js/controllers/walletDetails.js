@@ -71,6 +71,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       force: !!force,
     }, function(err, status) {
       $scope.updatingStatus = false;
+      var statusChanged = false;
       if (err) {
         if (err === 'WALLET_NOT_REGISTERED') {
           $scope.walletNotRegistered = true;
@@ -80,8 +81,12 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         $scope.status = null;
       } else {
         setPendingTxps(status.pendingTxps);
-        $scope.status = status;
+        if (!$scope.status || status.balance.totalConfirmedAmount != $scope.status.balance.totalConfirmedAmount) {
+            $scope.status = status;
+            statusChanged = true;
+        }
       }
+
       refreshAmountSection();
       $timeout(function() {
         $scope.$apply();
@@ -190,7 +195,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
           t.alternativeAmountStr = r.toFixed(2) + ' ' + fiatCode;
         });
 
-        $scope.completeTxHistory = txHistory;        
+        $scope.completeTxHistory = txHistory;
 
         $scope.showHistory();
         $timeout(function() {
@@ -404,7 +409,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.$on("$ionicView.afterEnter", function(event, data) {
     $scope.updateAll();
     refreshAmountSection();
-    refreshInterval = $interval($scope.onRefresh, 6 * 60 * 1000);
+    refreshInterval = $interval($scope.onRefresh, 10 * 1000);
   });
 
   $scope.$on("$ionicView.afterLeave", function(event, data) {
