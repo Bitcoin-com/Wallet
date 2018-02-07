@@ -38,7 +38,11 @@ angular.module('copayApp.controllers').controller('tourController',
     });
 
     var retryCount = 0;
+    var creatingWallet = false;
     $scope.createDefaultWallet = function() {
+      if (creatingWallet) return;
+
+      creatingWallet = true;
       ongoingProcess.set('creatingWallet', true);
       $timeout(function() {
         profileService.createDefaultWallet(function(err, walletClients) {
