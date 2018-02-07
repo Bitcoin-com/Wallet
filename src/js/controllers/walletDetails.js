@@ -161,23 +161,12 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   var updateTxHistory = function(cb) {
     if (!cb) cb = function() {};
-
     $scope.updateTxHistoryError = false;
     $scope.updatingTxHistoryProgress = 0;
 
-    var progressFn = function(txs, newTxs) {
-      $scope.updatingTxHistoryProgress = newTxs;
-      $scope.completeTxHistory = txs;
-      $scope.showHistory();
-      $timeout(function() {
-        $scope.$apply();
-      });
-    };
-
     feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
       walletService.getTxHistory($scope.wallet, {
-        progressFn: progressFn,
-        feeLevels: levels,
+        feeLevels: levels
       }, function(err, txHistory) {
         $scope.updatingTxHistory = false;
         if (err) {
