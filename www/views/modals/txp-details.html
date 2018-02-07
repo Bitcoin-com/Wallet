@@ -51,11 +51,22 @@
       <div class="info">
         <div class="item">
           <span class="label" translate>To</span>
-          <span class="payment-proposal-to" copy-to-clipboard="tx.toAddress">
+          <span class="payment-proposal-to" ng-if="addressDisplayType == 'cashAddr'" copy-to-clipboard="'bitcoincash:' + toAddresses['cashAddr']">
             <img src="img/icon-bitcoin-small.svg">
-            <contact ng-if="!tx.hasMultiplesOutputs" class="ellipsis" address="{{tx.toAddress}}"></contact>
+            <contact ng-if="!tx.hasMultiplesOutputs" class="ellipsis" address="{{toAddresses['cashAddr']}}"></contact>
             <span ng-if="tx.hasMultiplesOutputs" translate>Multiple recipients</span>
           </span>
+          <span class="payment-proposal-to" ng-if="addressDisplayType == 'legacy'" copy-to-clipboard="toAddresses['legacy']">
+            <img src="img/icon-bitcoin-small.svg">
+            <contact ng-if="!tx.hasMultiplesOutputs" class="ellipsis" address="{{toAddresses['legacy']}}"></contact>
+            <span ng-if="tx.hasMultiplesOutputs" translate>Multiple recipients</span>
+          </span>
+          <button class="address-info button-address" ng-if="addressDisplayType === 'cashAddr'" ng-click="changeAddressDisplayType('legacy')">
+            <span translate>Display legacy address</span>
+          </button>
+          <button class="address-info button-address" ng-if="addressDisplayType === 'legacy'" ng-click="changeAddressDisplayType('cashAddr')">
+            <span translate>Display new style address</span>
+          </button>
         </div>
 
         <div ng-show="tx.hasMultiplesOutputs" class="item" ng-click="showMultiplesOutputs = !showMultiplesOutputs">

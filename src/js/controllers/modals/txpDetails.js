@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('txpDetailsController', function($scope, $rootScope, $timeout, $interval, $log, ongoingProcess, platformInfo, $ionicScrollDelegate, txFormatService, bwcError, gettextCatalog, lodash, walletService, popupService, $ionicHistory, feeService) {
+angular.module('copayApp.controllers').controller('txpDetailsController', function($scope, $rootScope, $timeout, $interval, $log, ongoingProcess, platformInfo, $ionicScrollDelegate, txFormatService, bwcError, gettextCatalog, lodash, walletService, popupService, $ionicHistory, feeService, bitcoinCashJsService) {
   var isGlidera = $scope.isGlidera;
   var GLIDERA_LOCK_TIME = 6 * 60 * 60;
   var now = Math.floor(Date.now() / 1000);
@@ -20,7 +20,19 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
     initActionList();
     checkPaypro();
     applyButtonText();
+
+    $scope.addressDisplayType = 'legacy';
+    $scope.toAddresses = { 'legacy': $scope.tx.toAddress }
+    if ($scope.tx.coin == 'bch') {
+      var cashAddr = bitcoinCashJsService.translateAddresses($scope.tx.toAddress).cashaddr;
+      $scope.toAddresses['cashAddr'] = cashAddr;
+      $scope.addressDisplayType = 'cashAddr';
+    }
   };
+
+  $scope.changeAddressDisplayType = function(type) {
+    $scope.addressDisplayType = type;
+  }
 
   function displayFeeValues() {
     txFormatService.formatAlternativeStr($scope.wallet.coin, $scope.tx.fee, function(v) {
