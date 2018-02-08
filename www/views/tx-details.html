@@ -105,13 +105,12 @@
             <time>{{ (btx.ts || btx.createdOn || btx.time) * 1000 | amDateFormat:'MM/DD/YYYY hh:mm a'}}</time>
           </span>
         </div>
-        <a class="item item-icon-right" ng-class="{'single-line': !btx.note.body && !btx.message}" ng-click="showCommentPopup()">
-          <span class="label" translate>Memo</span>
-          <div class="item-note" style="display: block; float: none; margin-bottom: .25rem;">
-            {{btx.note.body || btx.message}}
-          </div>
-          <i class="icon bp-arrow-right"></i>
-        </a>
+        <div class="item single-line">
+          <span class="label" translate>
+            Memo: &emsp;
+            <input style="display:inline-block;" class="label" type="text" placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" ng-model="btx.note.body" ng-blur="updateNote(btx.note.body)"/>
+          </span>
+        </div>
         <div class="item" ng-if="btx.action != 'received'">
           <span class="label" translate>Fee</span>
           <span class="m10l">{{btx.feeStr || '...'}}</span>
