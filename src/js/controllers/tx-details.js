@@ -203,7 +203,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
     var url = 'https://' + ($scope.getShortNetworkName() == 'test' ? 'test-' : '') + blockexplorerUrl + '/tx/' + btx.txid;
     var optIn = true;
     var title = null;
-    var message = gettextCatalog.getString('View Transaction on Insight');
+    var message = gettextCatalog.getString('View Transaction on explorer.bitcoin.com');
     var okText = gettextCatalog.getString('Open Insight');
     var cancelText = gettextCatalog.getString('Go Back');
     externalLinkService.open(url, optIn, title, message, okText, cancelText);

@@ -3191,7 +3191,7 @@ msgstr "서비스 약관 보기"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
-msgid "View Transaction on Insight"
+msgid "View Transaction on explorer.bitcoin.com"
 msgstr "거래 Insight 보기"
 
 #: src/js/controllers/tab-home.js:148

@@ -3197,7 +3197,7 @@ msgstr "サービス利用規約を表示"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
-msgid "View Transaction on Insight"
+msgid "View Transaction on explorer.bitcoin.com"
 msgstr "Insightにて取引を表示"
 
 #: src/js/controllers/tab-home.js:148

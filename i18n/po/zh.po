@@ -3191,7 +3191,7 @@ msgstr "查看服务条款"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
-msgid "View Transaction on Insight"
+msgid "View Transaction on explorer.bitcoin.com"
 msgstr "查看交易记录的洞察"
 
 #: src/js/controllers/tab-home.js:148
