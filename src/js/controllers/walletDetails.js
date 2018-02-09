@@ -71,7 +71,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       force: !!force,
     }, function(err, status) {
       $scope.updatingStatus = false;
-      var statusChanged = false;
       if (err) {
         if (err === 'WALLET_NOT_REGISTERED') {
           $scope.walletNotRegistered = true;
@@ -81,9 +80,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         $scope.status = null;
       } else {
         setPendingTxps(status.pendingTxps);
-        if (!$scope.status || status.balance.totalConfirmedAmount != $scope.status.balance.totalConfirmedAmount) {
+        if (!$scope.status || status.balance.totalAmount != $scope.status.balance.totalAmount) {
             $scope.status = status;
-            statusChanged = true;
         }
       }
 
