@@ -119,8 +119,8 @@ angular.module('copayApp.controllers').controller('bitpayCardController', functi
     var url = 'https://insight.bitpay.com/tx/' + transactionId;
     var optIn = true;
     var title = null;
-    var message = gettextCatalog.getString('View Transaction on explorer.bitcoin.com');
-    var okText = gettextCatalog.getString('Open Insight');
+    var message = gettextCatalog.getString('View Transaction on Explorer.Bitcoin.com');
+    var okText = gettextCatalog.getString('Open Explorer');
     var cancelText = gettextCatalog.getString('Go Back');
     externalLinkService.open(url, optIn, title, message, okText, cancelText);
   };

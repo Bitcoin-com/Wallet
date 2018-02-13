@@ -2044,7 +2044,7 @@ msgstr "GibHub Project 열기"
 
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
-msgid "Open Insight"
+msgid "Open Explorer"
 msgstr "Insight 열기"
 
 #: www/views/tab-scan.html:22
@@ -3191,7 +3191,7 @@ msgstr "서비스 약관 보기"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
-msgid "View Transaction on explorer.bitcoin.com"
+msgid "View Transaction on Explorer.Bitcoin.com"
 msgstr "거래 Insight 보기"
 
 #: src/js/controllers/tab-home.js:148

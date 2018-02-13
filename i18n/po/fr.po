@@ -2044,7 +2044,7 @@ msgstr "Ouvrir le projet GitHub"
 
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
-msgid "Open Insight"
+msgid "Open Explorer"
 msgstr "Ouvrir Insight"
 
 #: www/views/tab-scan.html:22
@@ -3191,7 +3191,7 @@ msgstr "Voir les conditions d'utilisation"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
-msgid "View Transaction on explorer.bitcoin.com"
+msgid "View Transaction on Explorer.Bitcoin.com"
 msgstr "Voir la transaction sur Insight"
 
 #: src/js/controllers/tab-home.js:148
