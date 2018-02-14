@@ -207,6 +207,11 @@ div.onboarding-topic {
 	color:#26B03C;
 }
 
+.icon-shapeshift {
+	background-color: #494949;
+	background-image: url('../img/shapeshifticon.png');
+}
+
 .shapeshift-banner {
 	background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
 	padding: 10px;
