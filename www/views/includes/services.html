@@ -1,16 +1,16 @@
 <div ng-controller="servicesController">
-  <div class="item item-icon-right item-heading" ng-click="toggle()">
-    <span translate>Services</span>
+  <div class="item item-icon-right item-heading" ng-click="toggle()" >
+    <span translate>Next steps</span>
     <i class="icon bp-arrow-up" ng-show="!hide"></i>
     <i class="icon bp-arrow-down" ng-show="hide"></i>
   </div>
   <div ng-show="!hide">
-    <div>
-      <a ui-sref="tabs.shapeshift" class="item item-sub item-icon-left item-big-icon-left item-icon-right service">
+    <div ng-repeat="service in services track by $index">
+      <a ui-sref="{{service.sref}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg">
-          <img src="img/shapeshifticon.png" class="bg"/>
+          <div class="bg {{service.icon}}"></div>
         </i>
-        <span>Shapeshift</span>
+        <span>{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
     </div>

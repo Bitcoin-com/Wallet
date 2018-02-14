@@ -249,6 +249,11 @@ div.slide-success__background.fill-screen {
     background-image: url('../img/chart.svg');
 }
 
+.icon-shapeshift {
+	background-color: #494949;
+	background-image: url('../img/shapeshifticon.png');
+}
+
 .tabs .tab-item .icon {
     background-size: contain;
 }
