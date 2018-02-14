@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('buyAndSellService', function($log, nextStepsService, lodash, $ionicScrollDelegate, $timeout) {
+angular.module('copayApp.services').factory('buyAndSellService', function($log, servicesService, lodash, $ionicScrollDelegate, $timeout) {
   var root = {};
   var services = [];
   var linkedServices = [];
@@ -22,14 +22,14 @@ angular.module('copayApp.services').factory('buyAndSellService', function($log, 
     $log.debug('buyAndSell Service, updating nextSteps. linked/total: ' + linkedServices.length + '/' + services.length);
 
     if (linkedServices.length == 0) {
-      nextStepsService.register({
+      servicesService.register({
         title: 'Buy Bitcoin',
         name: 'buyandsell',
         icon: 'icon-buy-bitcoin2',
         sref: 'tabs.buyandsell',
       });
     } else {
-      nextStepsService.unregister({
+      servicesService.unregister({
         name: 'buyandsell',
       });
     };
