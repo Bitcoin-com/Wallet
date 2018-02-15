@@ -3,16 +3,9 @@ angular.module('copayApp.services').factory('pricechartService', function($http,
   var root = {};
   var credentials = {};
 
-  var homeItem = {
-    name: 'pricechart',
-    title: 'Bitcoin Price Chart',
-    icon: 'icon-bitcoincom',
-    sref: 'tabs.pricechart',
-  };
-
   var nextStepItem = {
     name: 'pricechart',
-    title: 'Bitcoin Price Chart',
+    title: 'Bitcoin Price Charts',
     icon: 'icon-chart',
     sref: 'tabs.pricechart',
   };
