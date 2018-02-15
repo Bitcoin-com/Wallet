@@ -16,13 +16,6 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
     credentials.BITPAY_API_URL = "https://bitpay.com";
   };
 
-  var homeItem = {
-    name: 'bitcoincom',
-    title: 'Explore Bitcoin.com',
-    icon: 'icon-bitcoincom',
-    sref: 'tabs.bitcoin-com',
-  };
-
   var nextStepItem = {
     name: 'bitcoincom',
     title: 'Explore Bitcoin.com',
