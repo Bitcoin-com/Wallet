@@ -47,7 +47,7 @@
         </div>
         <div ng-class="{'amount__results--minimize': smallFont, 'amount__results--standard': !smallFont, 'amount__results--placeholder': amountResult}" ng-click="changeAlternativeUnit()">
           <div class="amount__result" ng-show="globalResult">{{globalResult}} {{unit}}</div>
-          <div class="amount__result-equiv">&harr; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
+          <div class="amount__result-equiv">&lt;&gt; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
         </div>
         <div>
           <button class="button button-sendmax" ng-click="sendMax()">
@@ -74,7 +74,7 @@
           <a class="amount__currency-toggle-mobile" ng-click="changeUnit()">{{unit}}</a>
         </span>
         <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
-        <span>&harr; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
+        <span>&lt;&gt; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
       </div>
       <div>
         <button class="button button-sendmax" ng-click="sendMax()">
