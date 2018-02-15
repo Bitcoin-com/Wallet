@@ -212,6 +212,26 @@ div.onboarding-topic {
 	background-image: url('../img/shapeshifticon.png');
 }
 
+.icon-games {
+	background-color: #494949;
+	background-image: url('../img/icon-games.svg');
+}
+
+.icon-mining {
+	background-color: #494949;
+	background-image: url('../img/icon-mining.svg');
+}
+
+.icon-news {
+	background-color: #494949;
+	background-image: url('../img/icon-news.svg');
+}
+
+.icon-tools {
+	background-color: #494949;
+	background-image: url('../img/icon-tools.svg');
+}
+
 .shapeshift-banner {
 	background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
 	padding: 10px;

@@ -19,28 +19,28 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
   var cashGamesItem = {
     name: 'games',
     title: 'Bitcoin Cash Games',
-    icon: 'icon-bitcoincom',
+    icon: 'icon-games',
     href: 'http://cashgames.bitcoin.com'
   };
 
   var newsItem = {
     name: 'news',
     title: 'News',
-    icon: 'icon-bitcoincom',
+    icon: 'icon-news',
     href: 'http://news.bitcoin.com'
   };
 
   var poolItem = {
     name: 'pool',
     title: 'Mining Pool',
-    icon: 'icon-bitcoincom',
+    icon: 'icon-mining',
     href: 'http://pool.bitcoin.com'
   };
 
   var toolsItem = {
     name: 'tools',
     title: 'Tools',
-    icon: 'icon-bitcoincom',
+    icon: 'icon-tools',
     href: 'http://tools.bitcoin.com'
   }
 
