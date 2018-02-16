@@ -42,7 +42,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
     title: 'Tools',
     icon: 'icon-tools',
     href: 'http://tools.bitcoin.com'
-  }
+  };
 
   var _getBitPay = function(endpoint) {
     return {
