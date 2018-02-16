@@ -274,6 +274,21 @@ div.slide-success__background.fill-screen {
 	background-image: url('../img/icon-tools.svg');
 }
 
+.icon-reddit {
+	background-color: #494949;
+	background-image: url('../img/icon-reddit.svg');
+}
+
+.icon-twitter {
+	background-color: #494949;
+	background-image: url('../img/icon-twitter.svg');
+}
+
+.icon-share {
+	background-color: #494949;
+	background-image: url('../img/icon-share.svg');
+}
+
 .tabs .tab-item .icon {
     background-size: contain;
 }

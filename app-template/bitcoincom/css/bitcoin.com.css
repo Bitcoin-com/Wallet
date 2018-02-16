@@ -232,6 +232,21 @@ div.onboarding-topic {
 	background-image: url('../img/icon-tools.svg');
 }
 
+.icon-reddit {
+	background-color: #494949;
+	background-image: url('../img/icon-reddit.svg');
+}
+
+.icon-twitter {
+	background-color: #494949;
+	background-image: url('../img/icon-twitter.svg');
+}
+
+.icon-share {
+	background-color: #494949;
+	background-image: url('../img/icon-share.svg');
+}
+
 .shapeshift-banner {
 	background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
 	padding: 10px;
