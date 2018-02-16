@@ -1,0 +1,35 @@
+<div ng-controller="communityController">
+  <div class="item item-icon-right item-heading" ng-click="toggle()" >
+    <span translate>Community</span>
+    <i class="icon bp-arrow-up" ng-show="!hide"></i>
+    <i class="icon bp-arrow-down" ng-show="hide"></i>
+  </div>
+  <div ng-show="!hide">
+    <div ng-repeat="service in services track by $index">
+      <a ng-if="service.sref" ui-sref="{{service.sref}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+        <i class="icon big-icon-svg">
+          <div class="bg {{service.icon}}"></div>
+        </i>
+        <span>{{service.title ||  service.name}}</span>
+        <i class="icon bp-arrow-right"></i>
+      </a>
+      <a ng-if="!service.sref" href="{{service.href}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+        <i class="icon big-icon-svg">
+          <div class="bg {{service.icon}}"></div>
+        </i>
+        <span>{{service.title ||  service.name}}</span>
+        <i class="icon bp-arrow-right"></i>
+      </a>
+
+    </div>
+    <div>
+      <a ng-click="share()" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+        <i class="icon big-icon-svg">
+          <div class="bg icon-share"></div>
+        </i>
+        <span>Share the Wallet App</span>
+        <i class="icon bp-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>
