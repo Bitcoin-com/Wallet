@@ -20,10 +20,9 @@
         <span>{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
-
     </div>
     <div>
-      <a ng-click="share()" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ng-if="isCordova" ng-click="share()" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg">
           <div class="bg icon-share"></div>
         </i>
