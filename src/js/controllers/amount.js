@@ -334,9 +334,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
   $scope.processAmount = function() {
     var formatedValue = format($scope.amountModel.amount);
     var result = evaluate(formatedValue);
-    $scope.allowSend = lodash.isNumber(result) && +result > 0
-      && (!$scope.shapeshiftOrderId
-          || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
 
     if (lodash.isNumber(result)) {
       $scope.globalResult = isExpression($scope.amountModel.amount) ? '= ' + processResult(result) : '';
@@ -346,6 +343,9 @@ angular.module('copayApp.controllers').controller('amountController', function($
         var a = fromFiat(result);
         if (a) {
           $scope.alternativeAmount = txFormatService.formatAmount(a * unitToSatoshi, true);
+          $scope.allowSend = lodash.isNumber(a) && a > 0
+            && (!$scope.shapeshiftOrderId
+                || (a >= $scope.minShapeshiftAmount && a <= $scope.maxShapeshiftAmount));
         } else {
           if (result) {
             $scope.alternativeAmount = 'N/A';
@@ -356,6 +356,9 @@ angular.module('copayApp.controllers').controller('amountController', function($
         }
       } else {
         $scope.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
+        $scope.allowSend = lodash.isNumber(result) && result > 0
+          && (!$scope.shapeshiftOrderId
+              || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
       }
     }
   };
