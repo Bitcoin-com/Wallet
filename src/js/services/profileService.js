@@ -856,13 +856,21 @@ angular.module('copayApp.services')
         root.addLastKnownBalance(x, function() {});
       });
 
-
-      return lodash.sortBy(ret, [
-
+      var sortedByCreatedOn = lodash.sortBy(ret, [
         function(x) {
           return x.isComplete();
         }, 'createdOn'
       ]);
+
+      var bchSortedWallets = lodash.filter(sortedByCreatedOn, function(x) {
+        return x.coin == 'bch';
+      });
+
+      var btcSortedWallets = lodash.filter(sortedByCreatedOn, function(x) {
+        return x.coin == 'btc';
+      });
+
+      return bchSortedWallets.concat(btcSortedWallets);
     };
 
     root.toggleHideBalanceFlag = function(walletId, cb) {
