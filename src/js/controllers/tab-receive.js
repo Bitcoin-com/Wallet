@@ -3,7 +3,7 @@
 angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService) {
 
   var listeners = [];
-  $scope.bchAddressType = 'cashaddr';
+  $scope.bchAddressType = { type: 'cashaddr' };
   var bchAddresses = {};
 
   $scope.isCordova = platformInfo.isCordova;
@@ -30,7 +30,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
       if ($scope.wallet.coin == 'bch') {
           bchAddresses = bitcoinCashJsService.translateAddresses(addr);
-          $scope.addr = bchAddresses[$scope.bchAddressType];
+          $scope.addr = bchAddresses[$scope.bchAddressType.type];
       } else {
           $scope.addr = addr;
       }
@@ -42,8 +42,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   };
 
   $scope.displayAddress = function(type) {
-    $scope.bchAddressType = type;
-    $scope.addr = bchAddresses[$scope.bchAddressType];
+    $scope.bchAddressType.type = type;
+    $scope.addr = bchAddresses[$scope.bchAddressType.type];
   }
 
   $scope.goCopayers = function() {

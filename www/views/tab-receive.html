@@ -31,10 +31,9 @@
         <div>
           <button ng-show="addr" class="button button-standard button-small" ng-click="requestSpecificAmount()">
             <span translate>Request Specific amount</span>
-            <i class="icon ion-ios-arrow-right"></i>
           </button><br/><br/>
         </div>
-        <div copy-to-clipboard="wallet.coin == 'bch' && bchAddressType == 'cashaddr' ? 'bitcoincash:' + addr : addr">
+        <div copy-to-clipboard="wallet.coin == 'bch' && bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + addr : addr">
           <span ng-show="shouldShowReceiveAddressFromHardware()">
             <button class="button button-standard button-primary" ng-click="showReceiveAddressFromHardware()">
               <span translate>Show address</span>
@@ -47,24 +46,21 @@
           </div>
         </div>
         <div>
-          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'cashaddr'" class="button-address" ng-click="displayAddress('cashaddr')">
-            <span translate>Display new style address</span>
-          </button>
-        </div>
-        <div>
-          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'legacy'" class="button-address" ng-click="displayAddress('legacy')">
-            <span translate>Display legacy address</span>
-          </button>
-        </div>
-        <div>
-          <button ng-show="addr && wallet.coin == 'bch' && bchAddressType != 'bitpay'" class="button-address" ng-click="displayAddress('bitpay')">
-            <span translate>Display BitPay address</span>
-          </button>
-        </div>
-        <div>
           <button ng-show="addr" class="button-address" ng-click="setAddress(true)">
             <span translate>Generate new address</span>
-          </button>
+          </button><br/>
+        </div>
+        <div ng-show="addr && wallet.coin == 'bch'">
+          <label class="item-input item-select">
+            <div class="input-label" translate>
+              Address Type:
+            </div>
+            <select ng-model="bchAddressType.type" ng-change="displayAddress(bchAddressType.type)">
+              <option value="cashaddr">Cash Address</option>
+              <option value="legacy">Legacy</option>
+              <option value="bitpay">BitPay</option>
+            </select>
+          </label>
         </div>
       </div>
     </article>
