@@ -23,6 +23,9 @@ angular.module('copayApp.directives')
           }, 100);
           scope.onSelect(wallet);
         };
+        scope.$watch('wallets', function(newValue, oldValue) {
+          scope.wallets = newValue;
+        });
       }
     };
   });
