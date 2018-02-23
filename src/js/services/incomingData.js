@@ -111,7 +111,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
       var c = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
-      payproService.getPayProDetails(data, function(err, details) {
+      payproService.getPayProDetails(data, coin, function(err, details) {
         if (err) {
           popupService.showAlert(gettextCatalog.getString('Error'), err);
         } else handlePayPro(details, coin);
@@ -132,7 +132,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         var amount = parsed.amount ? parsed.amount : '';
 
         if (parsed.r) {
-          payproService.getPayProDetails(parsed.r, function(err, details) {
+          payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
               if (addr && amount) goSend(addr, amount, message, coin, shapeshiftData);
               else popupService.showAlert(gettextCatalog.getString('Error'), err);
@@ -154,7 +154,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
         // paypro not yet supported on cash
         if (parsed.r) {
-          payproService.getPayProDetails(parsed.r, function(err, details) {
+          payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
               if (addr && amount)
                 goSend(addr, amount, message, coin, shapeshiftData);
@@ -197,7 +197,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
             // paypro not yet supported on cash
             if (parsed.r) {
-              payproService.getPayProDetails(parsed.r, function(err, details) {
+              payproService.getPayProDetails(parsed.r, coin, function(err, details) {
                 if (err) {
                   if (addr && amount)
                     goSend(addr, amount, message, coin, shapeshiftData);
@@ -215,7 +215,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       // Plain URL
     } else if (/^https?:\/\//.test(data)) {
 
-      payproService.getPayProDetails(data, function(err, details) {
+      payproService.getPayProDetails(data, coin, function(err, details) {
         if (err) {
           root.showMenu({
             data: data,

@@ -189,7 +189,8 @@ angular.module('copayApp.controllers').controller('topUpController', function($s
     $scope.amountUnitStr = parsedAmount.amountUnitStr;
     var dataSrc = {
       amount: parsedAmount.amount,
-      currency: parsedAmount.currency
+      currency: parsedAmount.currency,
+      buyerSelectedTransactionCurrency: coin.toUpperCase()
     };
     ongoingProcess.set('loadingTxInfo', true);
     createInvoice(dataSrc, function(err, invoice) {
