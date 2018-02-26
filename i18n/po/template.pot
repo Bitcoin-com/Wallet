@@ -978,6 +978,10 @@ msgstr ""
 msgid "Enable push notifications"
 msgstr ""
 
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr ""
+
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
 msgstr ""
