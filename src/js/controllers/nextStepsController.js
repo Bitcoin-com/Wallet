@@ -13,4 +13,7 @@ angular.module('copayApp.controllers').controller('nextStepsController', functio
     }, 10);
   };
 
+  $scope.open = function(url) {
+    window.open(url, '_system');
+  }
 });

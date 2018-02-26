@@ -1,29 +1,6 @@
 <action-sheet
   action-sheet-show="showMenu">
 
-  <div ng-if="type === 'url'">
-    <div class="incoming-data-menu__item head">
-      <div class="incoming-data-menu__header" translate>Website</div>
-      <div class="incoming-data-menu__url">
-        <div class="incoming-data-menu__url__icon">
-          <img ng-hide="https" src="img/icon-lock-x.svg" style="height: 22px;">
-          <img ng-show="https" src="img/icon-lock-green.svg" style="height: 22px;">
-        </div>
-        <div class="incoming-data-menu__url__text">
-          {{data}}
-        </div>
-      </div>
-    </div>
-    <a class="incoming-data-menu__item item item-icon-right" ng-click="goToUrl(data)">
-      <img src="img/icon-link-external.svg">
-      <div class="incoming-data-menu__item__text" translate>Open website</div>
-      <i class="icon bp-arrow-right"></i>
-    </a>
-    <a class="incoming-data-menu__cancel item" ng-click="hide()" translate>
-      Cancel
-    </a>
-  </div>
-
   <div ng-if="type === 'bitcoinAddress'">
     <div class="incoming-data-menu__item head">
       <div class="incoming-data-menu__header" translate>Bitcoin Address</div>

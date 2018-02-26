@@ -20,4 +20,8 @@ angular.module('copayApp.controllers').controller('communityController', functio
     window.plugins.socialsharing.share(text, null, null, null);
   }
 
+  $scope.open = function(url) {
+    window.open(url, '_system');
+  }
+
 });

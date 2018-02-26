@@ -13,7 +13,7 @@
         <span>{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
-      <a ng-if="!service.sref" href="{{service.href}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ng-if="!service.sref" ng-click="open('{{service.href}}')" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg">
           <div class="bg {{service.icon}}"></div>
         </i>
