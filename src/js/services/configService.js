@@ -106,6 +106,8 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       enabled: false,
     },
 
+    soundsEnabled: false,
+
     log: {
       filter: 'debug',
     },

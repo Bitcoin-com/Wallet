@@ -29,6 +29,10 @@
         <span class="toggle-label" translate>Enable email notifications</span>
       </ion-toggle>
 
+      <ion-toggle ng-model="sounds.value" toggle-class="toggle-balanced" ng-change="soundNotificationsChange()">
+        <span class="toggle-label" translate>Enable sound</span>
+      </ion-toggle>
+
       <div ng-if="emailNotifications.value">
         <div class="settings-explanation">
           <div class="settings-description" translate>

@@ -28,6 +28,11 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
       value: isEmailEnabled && $scope.newEmail.value ? true : false
     };
 
+    var isSoundEnabled = config.soundsEnabled ? config.soundsEnabled : false;
+    $scope.sounds = {
+      value: isSoundEnabled
+    };
+
     $timeout(function() {
       $scope.$apply();
     });
@@ -70,6 +75,16 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
     };
 
     emailService.updateEmail(opts);
+  };
+
+  $scope.soundNotificationsChange = function() {
+    if (!$scope.sounds) return;
+    var opts = {
+      soundsEnabled: $scope.sounds.value
+    };
+    configService.set(opts, function(err) {
+      if (err) $log.debug(err);
+    });
   };
 
   $scope.save = function() {

@@ -607,7 +607,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         (processName == 'sendingTx' && !$scope.wallet.canSign() && !$scope.wallet.isPrivKeyExternal())
       ) && !isOn) {
       $scope.sendStatus = 'success';
-      if ($scope.wallet.coin == 'bch') {
+      if (config.soundsEnabled && $scope.wallet.coin == 'bch') {
         var audio = new Audio('misc/bch_sent.mp3');
         audio.play();
       }
