@@ -28,11 +28,16 @@ angular.module('copayApp.directives')
           externalLinkService.open(url);
         };
         scope.sendPaymentToAddress = function(bitcoinAddress) {
+          var noPrefixInAddress = 0;
+          if (bitcoinAddress.toLowerCase().indexOf('bitcoin') < 0) {
+            noPrefixInAddress = 1;
+          }
           scope.showMenu = false;
           $state.go('tabs.send').then(function() {
             $timeout(function() {
               $state.transitionTo('tabs.send.amount', {
-                toAddress: bitcoinAddress
+                toAddress: bitcoinAddress,
+                noPrefix: noPrefixInAddress
               });
             }, 50);
           });
