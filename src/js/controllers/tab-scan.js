@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabScanController', function($scope, $log, $timeout, scannerService, incomingData, $state, $ionicHistory, $rootScope) {
+angular.module('copayApp.controllers').controller('tabScanController', function($scope, $log, $timeout, scannerService, incomingData, $state, $ionicHistory, $rootScope, $ionicNavBarDelegate) {
 
   var scannerStates = {
     unauthorized: 'unauthorized',
@@ -53,6 +53,10 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   $rootScope.$on('scannerServiceInitialized', function(){
     $log.debug('Scanner initialization finished, reinitializing scan view...');
     _refreshScanView();
+  });
+
+  $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
   });
 
   $scope.$on("$ionicView.afterEnter", function() {

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate) {
 
   var originalList;
   var CONTACTS_SHOW_LIMIT;
@@ -235,6 +235,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
     if (!$scope.hasWallets) {
       $scope.checkingBalance = false;
       return;

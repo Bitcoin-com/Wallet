@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('createController',
-  function($scope, $rootScope, $timeout, $log, lodash, $state, $ionicScrollDelegate, $ionicHistory, profileService, configService, gettextCatalog, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, storageService, popupService, appConfigService, pushNotificationsService, firebaseEventsService) {
+  function($scope, $rootScope, $timeout, $log, lodash, $state, $ionicScrollDelegate, $ionicHistory, profileService, configService, gettextCatalog, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, storageService, popupService, appConfigService, pushNotificationsService, firebaseEventsService, $ionicNavBarDelegate) {
 
     /* For compressed keys, m*73 + n*34 <= 496 */
     var COPAYER_PAIR_LIMITS = {
@@ -39,6 +39,10 @@ angular.module('copayApp.controllers').controller('createController',
       $scope.setTotalCopayers(tc);
       updateRCSelect(tc);
       resetPasswordFields();
+    });
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
     });
 
     $scope.coinChanged = function() {

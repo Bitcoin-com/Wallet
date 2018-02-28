@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesAbout',
-  function($scope, $window, appConfigService, gettextCatalog, externalLinkService) {
+  function($scope, $window, appConfigService, gettextCatalog, externalLinkService, $ionicNavBarDelegate) {
 
     $scope.title = gettextCatalog.getString('About') + ' ' + appConfigService.nameCase;
     $scope.version = $window.version;
@@ -26,5 +26,9 @@ angular.module('copayApp.controllers').controller('preferencesAbout',
       var cancelText = gettextCatalog.getString('Go Back');
       externalLinkService.open(url, optIn, title, message, okText, cancelText);
     };
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
+    });
 
   });

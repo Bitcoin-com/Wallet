@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesNotificationsController', function($scope, $log, $timeout, appConfigService, lodash, configService, platformInfo, pushNotificationsService, emailService) {
+angular.module('copayApp.controllers').controller('preferencesNotificationsController', function($scope, $log, $timeout, appConfigService, lodash, configService, platformInfo, pushNotificationsService, emailService, $ionicNavBarDelegate) {
   var updateConfig = function() {
     var config = configService.getSync();
     $scope.appName = appConfigService.nameCase;
@@ -103,6 +103,7 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
   };
 
   $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
     updateConfig();
   });
 });

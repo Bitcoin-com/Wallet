@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesAltCurrencyController',
-  function($scope, $log, $timeout, $ionicHistory, configService, rateService, lodash, profileService, walletService, storageService) {
+  function($scope, $log, $timeout, $ionicHistory, configService, rateService, lodash, profileService, walletService, storageService, $ionicNavBarDelegate) {
 
     var next = 10;
     var completeAlternativeList = [];
@@ -48,7 +48,7 @@ angular.module('copayApp.controllers').controller('preferencesAltCurrencyControl
             completeAlternativeList.push(c);
           }
         });
-      
+
         $scope.altCurrencyList = completeAlternativeList.slice(0, 10);
         $scope.lastUsedPopularList = lodash.unique(lodash.union($scope.lastUsedAltCurrencyList, popularCurrencyList), 'isoCode');
 
@@ -113,5 +113,9 @@ angular.module('copayApp.controllers').controller('preferencesAltCurrencyControl
         $scope.lastUsedAltCurrencyList = lastUsedAltCurrency ? JSON.parse(lastUsedAltCurrency) : [];
         init();
       });
+    });
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
     });
   });

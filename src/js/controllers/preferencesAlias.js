@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesAliasController',
-  function($scope, $timeout, $stateParams, $ionicHistory, configService, profileService, walletService) {
+  function($scope, $timeout, $stateParams, $ionicHistory, configService, profileService, walletService, $ionicNavBarDelegate) {
     var wallet = profileService.getWallet($stateParams.walletId);
     var walletId = wallet.credentials.walletId;
     var config = configService.getSync();
@@ -24,4 +24,8 @@ angular.module('copayApp.controllers').controller('preferencesAliasController',
         $ionicHistory.goBack();
       });
     };
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
+    });
   });

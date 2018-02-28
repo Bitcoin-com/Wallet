@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesBwsUrlController',
-  function($scope, $log, $stateParams, configService, applicationService, profileService, storageService, appConfigService) {
+  function($scope, $log, $stateParams, configService, applicationService, profileService, storageService, appConfigService, $ionicNavBarDelegate) {
     $scope.success = null;
 
     var wallet = profileService.getWallet($stateParams.walletId);
@@ -53,4 +53,8 @@ angular.module('copayApp.controllers').controller('preferencesBwsUrlController',
         });
       });
     };
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
+    });
   });

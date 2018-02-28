@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesColorController', function($scope, $timeout, $log, $stateParams, $ionicHistory, configService, profileService) {
+angular.module('copayApp.controllers').controller('preferencesColorController', function($scope, $timeout, $log, $stateParams, $ionicHistory, configService, profileService, $ionicNavBarDelegate) {
   var wallet = profileService.getWallet($stateParams.walletId);
   $scope.wallet = wallet;
   var walletId = wallet.credentials.walletId;
@@ -76,4 +76,7 @@ angular.module('copayApp.controllers').controller('preferencesColorController', 
       ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
   };
 
+  $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
+  });
 });

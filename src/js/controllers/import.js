@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('importController',
-  function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, $ionicScrollDelegate, profileService, configService, sjcl, ledger, trezor, derivationPathHelper, platformInfo, bwcService, ongoingProcess, walletService, popupService, gettextCatalog, appConfigService, hwWallet) {
+  function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, $ionicScrollDelegate, profileService, configService, sjcl, ledger, trezor, derivationPathHelper, platformInfo, bwcService, ongoingProcess, walletService, popupService, gettextCatalog, appConfigService, hwWallet, $ionicNavBarDelegate) {
 
     var reader = new FileReader();
     var defaults = configService.getDefaults();
@@ -421,6 +421,10 @@ angular.module('copayApp.controllers').controller('importController',
         $ionicScrollDelegate.resize();
       }, 10);
     };
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
+    });
 
     $scope.$on("$ionicView.afterEnter", function(event, data) {
       $scope.showAdv = false;

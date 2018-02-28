@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, configService, platformInfo, externalLinkService, gettextCatalog) {
+angular.module('copayApp.controllers').controller('advancedSettingsController', function($scope, $log, configService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
 
   var updateConfig = function() {
     var config = configService.getSync();
@@ -52,6 +52,10 @@ angular.module('copayApp.controllers').controller('advancedSettingsController', 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     updateConfig();
+  });
+
+  $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
   });
 
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('pricechartController', function($scope, $q, $http, $timeout, $ionicModal, $log, $state, $ionicHistory, lodash, pricechartService, externalLinkService, popupService) {
+angular.module('copayApp.controllers').controller('pricechartController', function($scope, $q, $http, $timeout, $ionicModal, $log, $state, $ionicHistory, lodash, pricechartService, externalLinkService, popupService, $ionicNavBarDelegate) {
 
     $scope.openExternalLink = function(url) {
       externalLinkService.open(url);
@@ -85,5 +85,9 @@ angular.module('copayApp.controllers').controller('pricechartController', functi
         $scope.btcPriceLatest = data.priceLatest;
         new Chartist.Line('#btc-chart', data.chartData, options);
       });
+    });
+
+    $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
     });
 });

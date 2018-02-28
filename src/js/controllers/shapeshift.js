@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService, lodash) {
+angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
 
   var walletsBtc = [];
   var walletsBch = [];
@@ -51,6 +51,10 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     $scope.toWalletSelectorTitle = 'To';
     $scope.showFromWallets = false;
     $scope.showToWallets = false;
+  });
+
+  $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
   });
 
   $scope.showFromWalletSelector = function() {

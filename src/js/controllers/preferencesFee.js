@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('preferencesFeeController', function($scope, $q, $timeout, $ionicHistory, lodash, gettextCatalog, configService, feeService, ongoingProcess, popupService) {
+angular.module('copayApp.controllers').controller('preferencesFeeController', function($scope, $q, $timeout, $ionicHistory, lodash, gettextCatalog, configService, feeService, ongoingProcess, popupService, $ionicNavBarDelegate) {
 
   $scope.save = function(newFee) {
 
@@ -29,6 +29,10 @@ angular.module('copayApp.controllers').controller('preferencesFeeController', fu
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.init();
+  });
+
+  $scope.$on("$ionicView.enter", function(event, data) {
+    $ionicNavBarDelegate.showBar(true);
   });
 
   $scope.init = function() {

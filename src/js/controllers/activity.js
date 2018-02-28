@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('activityController',
-  function($timeout, $scope, $log, $ionicModal, lodash, txpModalService, profileService, walletService, ongoingProcess, popupService, gettextCatalog, $state) {
+  function($timeout, $scope, $log, $ionicModal, lodash, txpModalService, profileService, walletService, ongoingProcess, popupService, gettextCatalog, $state, $ionicNavBarDelegate) {
     $scope.openTxpModal = txpModalService.open;
     $scope.fetchingNotifications = true;
 
     $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
       profileService.getNotifications(50, function(err, n) {
         if (err) {
           $log.error(err);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesLogs',
-  function($scope, historicLog, lodash, configService, gettextCatalog) {
+  function($scope, historicLog, lodash, configService, gettextCatalog, $ionicNavBarDelegate) {
 
     var config = configService.getSync();
     var logLevels = historicLog.getLevels();
@@ -68,6 +68,7 @@ angular.module('copayApp.controllers').controller('preferencesLogs',
     });
 
     $scope.$on("$ionicView.enter", function(event, data) {
+      $ionicNavBarDelegate.showBar(true);
       filterLogs(selectedLevel.weight);
     });
   });
