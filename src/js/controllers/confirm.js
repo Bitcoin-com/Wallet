@@ -3,7 +3,6 @@
 angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService) {
 
   var countDown = null;
-  var CONFIRM_LIMIT_USD = 20;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
 
   var tx = {};
@@ -583,18 +582,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           return cb();
 
         var amountUsd = parseFloat(txFormatService.formatToUSD(wallet.coin, txp.amount));
-        if (amountUsd <= CONFIRM_LIMIT_USD)
-          return cb();
-
-        var message = gettextCatalog.getString('Sending {{amountStr}} from your {{name}} wallet', {
-          amountStr: tx.amountStr,
-          name: wallet.name
-        });
-        var okText = gettextCatalog.getString('Confirm');
-        var cancelText = gettextCatalog.getString('Cancel');
-        popupService.showConfirm(null, message, okText, cancelText, function(ok) {
-          return cb(!ok);
-        });
+        return cb();
       };
 
       function publishAndSign() {
