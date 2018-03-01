@@ -16,7 +16,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       noPrefixInAddress = 1;
     }
 
-    if (typeof(data) == 'string' && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'q' || data[0] == 'p' || data[0] == 'C' || data[0] == 'H')) {
+    if (typeof(data) == 'string' && !(/^bitcoin(cash)?:\?r=[\w+]/).exec(data) && (data.toLowerCase().indexOf('bitcoincash:') >= 0 || data[0] == 'q' || data[0] == 'p' || data[0] == 'C' || data[0] == 'H')) {
       try {
         noPrefixInAddress = 0;
 
@@ -109,7 +109,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
     if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
-      var c = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
+      var coin = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
       payproService.getPayProDetails(data, coin, function(err, details) {
         if (err) {
@@ -136,7 +136,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             if (err) {
               if (addr && amount) goSend(addr, amount, message, coin, shapeshiftData);
               else popupService.showAlert(gettextCatalog.getString('Error'), err);
-            } else handlePayPro(details);
+            } else handlePayPro(details, coin);
           });
         } else {
           goSend(addr, amount, message, coin, shapeshiftData);
@@ -214,7 +214,6 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
       // Plain URL
     } else if (/^https?:\/\//.test(data)) {
-
       payproService.getPayProDetails(data, coin, function(err, details) {
         if (err) {
           root.showMenu({
