@@ -47,6 +47,14 @@ angular.module('copayApp.controllers').controller('addressesController', functio
         processPaths(withBalance);
 
         $scope.latestUnused = lodash.slice($scope.noBalance, 0, UNUSED_ADDRESS_LIMIT);
+
+        var withBalanceDict = lodash.indexBy(withBalance, 'address');
+        lodash.each(allAddresses, function(a) {
+          if(withBalanceDict[a.address]) {
+            withBalanceDict[a.address].createdOn = a.createdOn;
+          }
+        });
+
         $scope.latestWithBalance = lodash.slice(withBalance, 0, BALANCE_ADDRESS_LIMIT);
 
         lodash.each(withBalance, function(a) {
