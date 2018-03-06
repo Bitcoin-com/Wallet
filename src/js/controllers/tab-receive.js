@@ -5,7 +5,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
   var bchAddresses = {};
-  $scope.payment_recieved = false;
+  $scope.showingPaymentReceived = false;
 
   $scope.isCordova = platformInfo.isCordova;
   $scope.isNW = platformInfo.isNW;
@@ -56,14 +56,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
       currentAddressSocket.onopen = function (event) {
-        console.log("message sent: " + msg); 
+        //console.log("message sent: " + msg); 
         currentAddressSocket.send(msg);
       }
       
 
       // listen for response
       currentAddressSocket.onmessage = function (event) {
-        console.log("message received:" + event.data);
+        //console.log("message received:" + event.data);
         receivedPayment(event.data);
       }
 
@@ -118,7 +118,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }*/
 
     if (data.op == "utx") {
-      $scope.payment_recieved = true
+      $scope.showingPaymentReceived = true
       $scope.$apply();
     }
   }
