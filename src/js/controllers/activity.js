@@ -30,10 +30,6 @@ angular.module('copayApp.controllers').controller('activityController',
         var notificationsAfterCheck = n.length;
         var removedNotifications = notificationsBeforeCheck - notificationsAfterCheck;
 
-        if (notificationsBeforeCheck != notificationsAfterCheck) {
-            console.log("Found a redundant notification. Removed " + removedNotifications);
-        }
-
         console.log(n);
 
         $scope.fetchingNotifications = false;

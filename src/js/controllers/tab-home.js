@@ -289,7 +289,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         var removedNotifications = notificationsBeforeCheck - notificationsAfterCheck;
 
         if (notificationsBeforeCheck != notificationsAfterCheck) {
-            console.log("Found a redundant notification. Removed " + removedNotifications);
             total = total - removedNotifications;
         }
 
