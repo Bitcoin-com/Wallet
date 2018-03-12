@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('txpDetailsController', function($scope, $rootScope, $timeout, $interval, $log, ongoingProcess, platformInfo, $ionicScrollDelegate, txFormatService, bwcError, gettextCatalog, lodash, walletService, popupService, $ionicHistory, feeService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('txpDetailsController', function($scope, $rootScope, $timeout, $interval, $log, ongoingProcess, platformInfo, $ionicScrollDelegate, txFormatService, bwcError, gettextCatalog, lodash, walletService, popupService, $ionicHistory, feeService, bitcoinCashJsService, payproService) {
   var isGlidera = $scope.isGlidera;
   var GLIDERA_LOCK_TIME = 6 * 60 * 60;
   var now = Math.floor(Date.now() / 1000);
@@ -204,15 +204,19 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
 
     $timeout(function() {
       ongoingProcess.set('broadcastingTx', true);
-      walletService.broadcastTx($scope.wallet, $scope.tx, function(err, txpb) {
+      function handleBroadcastTx(err, txpb) {
         ongoingProcess.set('broadcastingTx', false);
-
         if (err) {
           return setError(err, gettextCatalog.getString('Could not broadcast payment'));
         }
-
         $scope.close();
-      });
+      }
+
+      if (txp.payProUrl && txp.coin == 'bch') {
+        payproService.broadcastBchTx(txp, handleBroadcastTx);
+      } else {
+        walletService.broadcastTx($scope.wallet, txp, handleBroadcastTx);
+      }
     }, 10);
   };
 

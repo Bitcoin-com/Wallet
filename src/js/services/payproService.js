@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.services').factory('payproService',
-  function(profileService, platformInfo, gettextCatalog, ongoingProcess, $log) {
+  function(profileService, platformInfo, gettextCatalog, ongoingProcess, $log, $http) {
 
     var ret = {};
 
@@ -35,6 +35,35 @@ angular.module('copayApp.services').factory('payproService',
         return cb(null, paypro);
       });
     };
+
+    ret.getPayProDetailsViaHttp = function(uri, cb) {
+      var config = {
+        headers: {'Accept': 'application/payment-request'}
+      };
+      $http.get(uri, config).then(function(response) {
+        return cb(null, response.data);
+      }, function(error) {
+        return cb(error, null);
+      });
+    }
+
+    ret.broadcastBchTx = function(signedTxp, cb) {
+      var config = {
+        headers: {'Content-Type': 'application/payment'}
+      };
+
+      var data = {
+        currency: 'BCH',
+        transactions: [signedTxp.raw]
+      };
+
+      $http.post(signedTxp.payProUrl, data, config).then(function(response) {
+        signedTxp.response = response.data;
+        return cb(null, signedTxp);
+      }, function(error) {
+        return cb(error.data, null);
+      });
+    }
 
     return ret;
   });

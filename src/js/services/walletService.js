@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService, firebaseEventsService) {
+angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService, firebaseEventsService, payproService) {
 
   // Ratio low amount warning (fee/amount) in incoming TX
   var LOW_AMOUNT_RATIO = 0.15;
@@ -1179,13 +1179,18 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           if (signedTxp.status == 'accepted') {
             ongoingProcess.set('broadcastingTx', true, customStatusHandler);
-            root.broadcastTx(wallet, signedTxp, function(err, broadcastedTxp) {
+            function handleBroadcastTx(err, broadcastedTxp) {
               ongoingProcess.set('broadcastingTx', false, customStatusHandler);
-              if (err) return cb(bwcError.msg(err));
-
+              if (err) return cb(bwcError.msg(err));              
               $rootScope.$emit('Local/TxAction', wallet.id);
               return cb(null, broadcastedTxp);
-            });
+            }
+
+            if (signedTxp.payProUrl && signedTxp.coin == 'bch') {
+              payproService.broadcastBchTx(signedTxp, handleBroadcastTx);
+            } else {
+              root.broadcastTx(wallet, signedTxp, handleBroadcastTx);
+            }
           } else {
             $rootScope.$emit('Local/TxAction', wallet.id);
             return cb(null, signedTxp);

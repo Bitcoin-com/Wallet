@@ -111,11 +111,23 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
       var coin = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
-      payproService.getPayProDetails(data, coin, function(err, details) {
-        if (err) {
-          popupService.showAlert(gettextCatalog.getString('Error'), err);
-        } else handlePayPro(details, coin);
-      });
+      if (coin == 'bch') {
+        payproService.getPayProDetailsViaHttp(data, function(err, details) {
+          if (err) {
+            popupService.showAlert(gettextCatalog.getString('Error'), err)
+          } else {
+            handlePayPro(createBchPayProObject(details), coin);
+          }
+        });
+      } else {
+        payproService.getPayProDetails(data, coin, function(err, details) {
+          if (err) {
+            popupService.showAlert(gettextCatalog.getString('Error'), err);
+          } else {
+            handlePayPro(details, coin);
+          }
+        });
+      }
       return true;
     }
 
@@ -369,6 +381,26 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         noPrefix: 1
       });
     }, 100);
+  }
+
+  function createBchPayProObject(payProData) {
+    var displayAddr = payProData.outputs[0].address;
+    var toAddr = bitcoinCashJsService.readAddress('bitcoincash:' + displayAddr).legacy;
+    return {
+      amount: payProData.outputs[0].amount,
+      caTrusted: true,
+      domain: 'bitpay.com',
+      expires: Math.floor(new Date(payProData.expires).getTime() / 1000),
+      memo: payProData.memo,
+      network: 'livenet',
+      requiredFeeRate: payProData.requiredFeeRate,
+      selfSigned: 0,
+      time: Math.ceil(new Date(payProData.time).getTime() / 1000),
+      displayAddress: displayAddr,
+      toAddress: toAddr,
+      url: payProData.paymentUrl,
+      verified: true
+    };
   }
 
   function handlePayPro(payProDetails, coin) {
