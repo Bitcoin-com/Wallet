@@ -1,5 +1,5 @@
 /*
-CSS svg animation 
+CSS svg animation
 
 Copyright (c) 2018 by Lee Porter (https://codepen.io/elevaunt/pen/JYRBzJ)
 
@@ -34,11 +34,6 @@ svg {
   stroke-dashoffset: -100;
   -webkit-animation: dash-check 0.9s 0.35s ease-in-out forwards;
   animation: dash-check 0.9s 0.35s ease-in-out forwards;
-}
-p {
-  text-align: center;
-  margin: 20px 0 60px;
-  font-size: 1.25em;
 }
 p.success {
   color: #27B03C;
