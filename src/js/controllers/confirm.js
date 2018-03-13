@@ -298,7 +298,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return cb();
     }
 
-    feeService.getFeeRate(wallet.coin, tx.network, usingMerchantFee ? 'urgent' : tx.feeLevel, function(err, feeRate) {
+    var feeServiceLevel = usingMerchantFee && wallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
+    feeService.getFeeRate(wallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
       if (err) {
         ongoingProcess.set('calculatingFee', false);
         return cb(err);
