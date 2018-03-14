@@ -19,7 +19,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content scroll="false">
-    <div class="address" ng-if="address && amountBtc">
+    <div ng-show="!showingPaymentReceived" class="address" ng-if="address && amountBtc">
       <div class="qr-code" copy-to-clipboard="copyToClipboard()">
         <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
@@ -61,6 +61,16 @@
           <div class="label" translate>Receive in</div>
         </div>
       </div>
+    </div>
+    <div ng-show="showingPaymentReceived" ng-click="showingPaymentReceived = false">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+        <circle class="path circle" fill="none" stroke="#19B234" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+        <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+      </svg>
+      <p class="success animated fadeIn" style="text-align: center">
+        <br/>Payment Received!<br/>
+        <br/>Return To Address<br/>
+      </p>
     </div>
   </ion-content>
 </ion-view>

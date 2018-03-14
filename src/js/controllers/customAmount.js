@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService, bitcoinCashJsService, $timeout) {
+
+  var currentAddressSocket = {};
+  var paymentSubscriptionObj = { op:"addr_sub" }
+  $scope.showingPaymentReceived = false;
 
   var showErrorAndBack = function(title, msg) {
     popupService.showAlert(title, msg, function() {
@@ -38,8 +42,10 @@ angular.module('copayApp.controllers').controller('customAmountController', func
       if ($scope.wallet.coin == 'bch') {
           bchAddresses = bitcoinCashJsService.translateAddresses(addr);
           $scope.address = bchAddresses[$scope.bchAddressType];
+          prepareWebSocket(bchAddresses['legacy']);
       } else {
           $scope.address = addr;
+          prepareWebSocket(addr);
       }
 
       $scope.displayAddress = function(type) {
@@ -70,6 +76,8 @@ angular.module('copayApp.controllers').controller('customAmountController', func
         $scope.amountBtc = amount; // BTC or BCH
         $scope.altAmountStr = txFormatService.formatAlternativeStr($scope.wallet.coin, parsedAmount.amountSat);
       }
+
+
     });
   });
 
@@ -95,5 +103,40 @@ angular.module('copayApp.controllers').controller('customAmountController', func
     }
     return protocol + $scope.address + '?amount=' + $scope.amountBtc;
   };
+
+  var prepareWebSocket = function(address) {
+    if (currentAddressSocket.close === 'function') {
+      currentAddressSocket.close();
+    }
+
+    if ($scope.wallet.coin == 'bch') {
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/bch/inv');
+    } else {
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv/');
+    }
+
+    paymentSubscriptionObj.addr = address;
+    var msg = JSON.stringify(paymentSubscriptionObj);
+    currentAddressSocket.onopen = function(event) {
+      currentAddressSocket.send(msg);
+    }
+
+    currentAddressSocket.onmessage = function(event) {
+      receivedPayment(event.data);
+    }
+
+    $timeout(function() {
+      $scope.$apply();
+    }, 10);
+  };
+
+  var receivedPayment = function(data) {
+    data = JSON.parse(data);
+
+    if (data.op == 'utx') {
+      $scope.showingPaymentReceived = true;
+      $scope.$apply();
+    }
+  }
 
 });
