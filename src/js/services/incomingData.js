@@ -86,7 +86,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           $state.transitionTo('tabs.send.confirm', {
             toAmount: amount,
             toAddress: addr,
-            displayAddress: originalAddress,
+            displayAddress: originalAddress ? originalAddress : addr,
             description: message,
             coin: coin
           });
@@ -94,7 +94,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           var params = {
             toAddress: addr,
             coin: coin,
-            displayAddress: originalAddress,
+            displayAddress: originalAddress ? originalAddress : addr,
             noPrefix: noPrefixInAddress
           };
           if (shapeshiftData) {
