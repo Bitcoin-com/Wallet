@@ -26,6 +26,26 @@ For a list of frequently asked questions please visit the [Bitcoin.com Wallet FA
 - Multiple languages supported
 - Available for [iOS](https://itunes.apple.com/us/app/bitcoin-wallet-by-bitcoin-com/id1252903728?ls=1), [Android](https://play.google.com/store/apps/details?id=com.bitcoin.mwallet), [Linux](https://www.bitcoin.com/api/rv/click?p=2&b=435&z=6&c=be81fd753f&dest=https://github.com/Bitcoin-com/Wallet/releases/download/4.0.4/bitcoin-com-wallet-4.0.4-linux-x64.tar.gz), [Windows](https://www.bitcoin.com/api/rv/click?p=2&b=435&z=6&c=be81fd753f&dest=https://github.com/Bitcoin-com/Wallet/releases/download/4.0.4/bitcoin-com-wallet-4.0.4-win-x64.zip) and [OS X](https://www.bitcoin.com/api/rv/click?p=2&b=435&z=6&c=be81fd753f&dest=https://github.com/Bitcoin-com/Wallet/releases/download/4.0.4/bitcoin-com-wallet-4.0.4-osx.dmg) devices
 
+## Building the wallet
+You don't need to run npm install, run apply:bitcoincom instead
+```sh
+npm run apply:bitcoincom
+```
+There is a bug when building the next step, you will need to go directly into one of the javascript files in node_modules
+```sh
+nano Wallet/node_modules/asn1.js-rfc5280/index.js
+```
+Delete the whole try catch part, replace it with only
+```
+var asn1 = require('asn1.js');
+```
+If you don't do this, you will get this error:
+```sh
+» <!doctype html>
+» ^
+» ParseError: Unexpected token
+```
+
 ## Testing in a Browser
 
 > **Note:** This method should only be used for development purposes. When running the Bitcoin.com wallet in a normal browser environment, browser extensions and other malicious code might have access to internal data and private keys.
