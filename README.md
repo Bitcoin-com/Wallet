@@ -35,7 +35,7 @@ There is a bug when building the next step, you will need to go directly into on
 ```sh
 nano node_modules/asn1.js-rfc5280/index.js
 ```
-Delete the whole try catch part, replace it with only
+Delete the whole try catch part at the top, replace it with only
 ```
 var asn1 = require('asn1.js');
 ```
