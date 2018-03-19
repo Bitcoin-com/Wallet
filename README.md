@@ -33,7 +33,7 @@ npm run apply:bitcoincom
 ```
 There is a bug when building the next step, you will need to go directly into one of the javascript files in node_modules
 ```sh
-nano Wallet/node_modules/asn1.js-rfc5280/index.js
+nano node_modules/asn1.js-rfc5280/index.js
 ```
 Delete the whole try catch part, replace it with only
 ```
