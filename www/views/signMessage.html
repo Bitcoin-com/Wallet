@@ -1,0 +1,55 @@
+<ion-view class="settings" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>
+      {{'Sign Message'|translate}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="list card">
+      <div class="item item-heading">
+        <span translate><strong>Wallet</strong></span>
+      </div>
+      <div class="item wallet-selector" ng-click="showWalletSelector()" ng-if="wallets">
+        <a ng-if="wallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
+          <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+          <span>
+            {{wallet.name || wallet.id}}
+          </span>
+          <p>
+            <span ng-if="!wallet.balanceHidden"> {{wallet.status.totalBalanceStr}} </span>
+
+            <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
+            <span class="tab-home__wallet__multisig-number" ng-if="wallet.n > 1">
+              {{wallet.m}}-of-{{wallet.n}}
+            </span>
+            <span class="assertive" ng-if="wallet.error">{{wallet.error}}</span>
+            &nbsp;
+          </p>
+          <i ng-if="!singleWallet" class="icon bp-arrow-right"></i>
+        </a>
+      </div>
+      <div class="item">
+        <span class="item-heading">Message To Sign</span>
+        <input type="text" placeholder="Message" ng-model="message.value"/>
+      </div>
+      <div class="item" copy-to-clipboard="signedMessage">
+        <span class="item-heading">Signed Message</span>
+        {{signedMessage}}
+      </div>
+      <div class="item">
+        <button class="button" ng-click="signMessage()">
+          Sign Message
+        </button>
+      </div>
+    </div>
+  </ion-content>
+  <wallet-selector
+  wallet-selector-title="walletSelectorTitle"
+  wallet-selector-wallets="wallets"
+  wallet-selector-selected-wallet="wallet"
+  wallet-selector-show="showWallets"
+  wallet-selector-on-select="onWalletSelect">
+</wallet-selector>
+</ion-view>

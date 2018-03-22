@@ -1016,6 +1016,26 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      /* Message Signing and Verification */
+      .state('tabs.signMessage', {
+        url: '/signMessage',
+        views: {
+          'tab-home@tabs': {
+            controller: 'signMessageController',
+            templateUrl: 'views/signMessage.html'
+          }
+        }
+      })
+      .state('tabs.verifyMessage', {
+        url: '/verifyMessage',
+        views: {
+          'tab-home@tabs': {
+            controller: 'verifyMessageController',
+            templateUrl: 'views/verifyMessage.html'
+          }
+        }
+      })
+
       /*
        *
        * Mercado Libre Gift Card

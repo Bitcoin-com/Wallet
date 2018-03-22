@@ -242,6 +242,16 @@ div.onboarding-topic {
 	background-image: url('../img/icon-twitter.svg');
 }
 
+.icon-sign-message {
+	background-color: #494949;
+	background-image: url('../img/icon-sign-message.svg');
+}
+
+.icon-verify-message {
+	background-color: #494949;
+	background-image: url('../img/icon-verify-message.svg');
+}
+
 .icon-share {
 	background-color: #494949;
 	background-image: url('../img/icon-share.svg');

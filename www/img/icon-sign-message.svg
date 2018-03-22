@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg8" inkscape:version="0.92.1 r15371" sodipodi:docname="chart.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
+	 style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FCB619;}
+	.st1{fill:#494949;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="500.00002" inkscape:cy="499.99999" inkscape:document-units="mm" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:snap-to-guides="false" inkscape:window-height="1017" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:zoom="0.83599997" pagecolor="#ffffff" showgrid="false" units="px">
+	</sodipodi:namedview>
+<g>
+	<g>
+		<g>
+			<rect x="239.7" y="197" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="281.1" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="365.1" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="449.2" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="533.2" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="617.3" class="st0" width="412.8" height="20.3"/>
+		</g>
+		<g>
+			<rect x="239.7" y="701.3" class="st0" width="412.8" height="20.3"/>
+		</g>
+	</g>
+	<g>
+		<path class="st0" d="M690.1,129.9c11.2,0,20.3,9.1,20.3,20.3v699.5c0,11.2-9.1,20.3-20.3,20.3h-488c-11.2,0-20.3-9.1-20.3-20.3
+			V150.2c0-11.2,9.1-20.3,20.3-20.3H690.1 M690.1,101.4h-488c-26.8,0-48.8,22-48.8,48.8v699.5c0,26.8,22,48.8,48.8,48.8h488
+			c26.8,0,48.8-22,48.8-48.8V150.2C738.9,123.4,716.9,101.4,690.1,101.4L690.1,101.4z"/>
+	</g>
+	<g>
+		<path class="st0" d="M616.6,802.2L616.6,802.2c-16.6-8.6,77.8-223.6,95-256.8l187.7-361.7c17.2-33.2,44.8-53.3,61.4-44.7l0,0
+			c16.6,8.6,16.1,42.8-1.1,75.9L771.8,576.7C754.6,609.8,633.2,810.8,616.6,802.2z"/>
+		<g>
+			
+				<rect x="610.1" y="399.6" transform="matrix(0.4604 -0.8877 0.8877 0.4604 94.8719 963.7711)" class="st1" width="460.3" height="8.5"/>
+		</g>
+	</g>
+	<g>
+		<path class="st0" d="M390.8,819c20.1-7.2,41-10.7,61.9-14.4c9.9-1.8,19.8-3.9,29.6-5.9c9.3-1.9,21.1-4.6,30.6-3.7
+			c-2-2-4.1-4.1-6.1-6.1c-0.4,4.1-4.1,8-5,12.2c-0.6,3,0.9,6.9,4.3,7.5c8.1,1.4,15.8,0.2,23.8-1.5c3-0.7,7.8-0.8,10.5-2.4
+			c0.8-0.2,1.7-0.5,2.5-0.7c0.6-4,0.6-5,0-3c-0.3,1.6-0.5,2.4-0.3,4.2c0.4,2.8,1.7,5,4.5,5.9c3.5,1,6.7,1.4,10.3,0.9
+			c3.3-0.5,7.1-3.5,8.9,0c1.3,2.6,4.3,3.2,6.9,2.8c6.2-0.9,10.3-4.4,16.8-2.7c4.6,1.2,7.7,3.1,12.7,3c7.8-0.2,7.9-12.4,0-12.2
+			c-6,0.1-10.9-4.1-17-4c-5.7,0.1-10.2,3.4-15.7,4.2c2.3,0.9,4.6,1.9,6.9,2.8c-6.9-13.8-15.8-3.3-26.5-6.5c1.5,2,3,3.9,4.5,5.9
+			c-0.5-3.9,1.4-6.1-1.2-9.7c-2.3-3.1-6-4.1-9.7-4c-11.7,0.3-22.5,7.4-34.5,5.2c1.4,2.5,2.8,5,4.3,7.5c1.2-5.7,4.8-9.5,5.5-15.4
+			c0.4-3.5-3.1-5.8-6.1-6.1c-8.9-0.8-18.3,1.7-27.1,3c-11,1.7-21.9,4.4-32.8,6.4c-22.1,4-44.3,7.5-65.5,15.1
+			C380.2,809.9,383.3,821.7,390.8,819L390.8,819z"/>
+	</g>
+</g>
+</svg>

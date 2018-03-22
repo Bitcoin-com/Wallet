@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="svg8" inkscape:version="0.92.1 r15371" sodipodi:docname="chart.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
+	 style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FCB619;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1.0" id="base" inkscape:current-layer="layer1" inkscape:cx="500.00002" inkscape:cy="499.99999" inkscape:document-units="mm" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:snap-to-guides="false" inkscape:window-height="1017" inkscape:window-maximized="1" inkscape:window-width="1920" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:zoom="0.83599997" pagecolor="#ffffff" showgrid="false" units="px">
+	</sodipodi:namedview>
+<g>
+	<path class="st0" d="M491.8,702.2c-46.3,0-90.6-4.1-136.8-18.8c-74.1-23.6-151-73-256.9-165.3l-21.5-18.8l18.3-22.4
+		c1.5-1.8,37.4-45.6,97.5-89.5c35.4-25.9,72-46.5,108.9-61.3c46.6-18.8,93.5-28.3,139.6-28.3c95.3,0,163,1.8,232.2,25.6
+		c68,23.5,134.4,67.4,229.2,151.6l21.4,19L905,516.2c-1.5,1.8-36.7,44-93.9,87.5c-33.7,25.7-68.2,46.6-102.4,62.1
+		c-43.5,19.7-86.8,30.9-128.8,33.1C549.3,700.6,520.2,702.2,491.8,702.2z M154.5,493.3c190.6,160.9,265.6,156.9,422.8,148.5
+		c81.1-4.3,154.7-48.1,202-84c28.5-21.6,51.3-43.1,66.2-58.3C685.8,361.9,617.1,355.1,440.8,355.1c-39.4,0-79.9,8.2-120.2,24.3
+		c-32.7,13.1-65.4,31.5-97.2,54.5C193.4,455.8,169.8,477.7,154.5,493.3z"/>
+</g>
+<g>
+	<path class="st0" d="M500,671.7c-94.7,0-171.7-77-171.7-171.7c0-94.7,77-171.7,171.7-171.7c94.7,0,171.7,77,171.7,171.7
+		C671.7,594.7,594.7,671.7,500,671.7z M500,379.1c-66.7,0-120.9,54.2-120.9,120.9c0,66.7,54.2,120.9,120.9,120.9
+		S620.9,566.7,620.9,500C620.9,433.3,566.7,379.1,500,379.1z"/>
+</g>
+<g>
+	<circle class="st0" cx="500" cy="500" r="69.3"/>
+</g>
+</svg>
