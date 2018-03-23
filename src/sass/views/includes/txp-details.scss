@@ -290,4 +290,20 @@
     font-size: 12px;
     color: $v-text-accent-color;
   }
+  /*
+    Helper classes for .label. Will have to relook into the whole CSS structure for potential optimisations.
+  */
+  .label {
+    &.flex {
+      display: flex;
+
+      textarea {
+        flex: 1 1 auto;
+      }
+    }
+  
+    &.align-items-center {
+      align-items: center;
+    }
+  }
 }

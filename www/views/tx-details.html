@@ -106,9 +106,9 @@
           </span>
         </div>
         <div class="item single-line">
-          <span class="label" translate>
+          <span class="label flex" translate>
             Memo: &emsp;
-            <input style="display:inline-block;" class="label" type="text" placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" ng-model="btx.note.body" ng-blur="updateNote(btx.note.body)"/>
+            <textarea elastic placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" ng-model="btx.note.body" ng-blur="updateNote(btx.note.body)"></textarea>
           </span>
         </div>
         <div class="item" ng-if="btx.action != 'received'">

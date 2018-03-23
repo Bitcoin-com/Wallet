@@ -57,6 +57,7 @@
         <span ng-if="btx.action == 'sent' || btx.action == 'moved'">
           {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Sending'|translate}}
         </span>
+        <div ng-if="btx.note.body" class="wallet-details__tx-message ellipsis">{{btx.note.body}}</div>
         <span ng-if="btx.action == 'received'" translate>Receiving</span>
       </div>
     </div>
