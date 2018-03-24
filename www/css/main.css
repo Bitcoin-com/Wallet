@@ -10150,12 +10150,19 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   font-size: 0.7em !important;
   display: inline !important; }
 
+.button.button-full {
+  display: block; }
+
 .button-clear {
   background: none !important; }
 
 .button-skip {
   padding-top: 15px !important;
   font-size: 24px !important; }
+
+textarea.d-block {
+  display: block;
+  width: 100%; }
 
 .center-block {
   float: none;

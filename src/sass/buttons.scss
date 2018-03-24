@@ -45,3 +45,9 @@
   font-size: 0.7em !important;
   display: inline !important;
 }
+
+.button {
+  &.button-full {
+    display: block;
+  }
+}
