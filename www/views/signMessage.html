@@ -32,16 +32,21 @@
       </div>
       <div class="item">
         <span class="item-heading">Message To Sign</span>
-        <input type="text" placeholder="Message" ng-model="message.value"/>
-      </div>
-      <div class="item" copy-to-clipboard="signedMessage">
-        <span class="item-heading">Signed Message</span>
-        {{signedMessage}}
+        <textarea type="text" placeholder="Message" ng-model="message.value"></textarea>
       </div>
       <div class="item">
-        <button class="button" ng-click="signMessage()">
+        <button class="button button-full button-primary" ng-click="signMessage()">
           Sign Message
         </button>
+      </div>
+    </div>
+    <div class="list card" ng-if="signedMessage.length">
+      <div class="item item-heading item-icon-right">
+        <span translate><strong>Signed Message</strong></span>
+        <i class="icon ion-ios-copy-outline list-add-button" copy-to-clipboard="signedMessage"></i>
+      </div>
+      <div class="item" copy-to-clipboard="signedMessage">
+        {{signedMessage}}
       </div>
     </div>
   </ion-content>
