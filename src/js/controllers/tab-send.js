@@ -86,7 +86,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
         });
       });
       originalList = originalList.concat(walletList);
-      console.log(originalList);
     }
   }
 
