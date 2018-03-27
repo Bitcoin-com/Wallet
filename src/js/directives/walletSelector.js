@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.directives')
-  .directive('walletSelector', function($timeout) {
+  .directive('walletSelector', function($rootScope, $timeout, configService) {
     return {
       restrict: 'E',
       templateUrl: 'views/includes/walletSelector.html',
@@ -11,9 +11,11 @@ angular.module('copayApp.directives')
         show: '=walletSelectorShow',
         wallets: '=walletSelectorWallets',
         selectedWallet: '=walletSelectorSelectedWallet',
-        onSelect: '=walletSelectorOnSelect'
+        onSelect: '=walletSelectorOnSelect',
+        alwaysDisplayBitcoinCore: '=walletSelectorAlwaysDisplayBitcoinCore'
       },
       link: function(scope, element, attrs) {
+        scope.displayWallet = true;
         scope.hide = function() {
           scope.show = false;
         };
@@ -25,6 +27,19 @@ angular.module('copayApp.directives')
         };
         scope.$watch('wallets', function(newValue, oldValue) {
           scope.wallets = newValue;
+        });
+        scope.initDisplayBitcoinCoreConfig = function() {
+          configService.whenAvailable(function(config) {
+            scope.displayBitcoinCore = config.displayBitcoinCore.enabled;
+            scope.initWalletDisplay();
+          });
+        };
+        scope.initWalletDisplay = function() {
+          scope.displayWallet = scope.alwaysDisplayBitcoinCore ? true : scope.displayBitcoinCore;
+        };
+        scope.initDisplayBitcoinCoreConfig();
+        $rootScope.$on('Local/SettingsUpdated', function(e, walletId) {
+          scope.initDisplayBitcoinCoreConfig();
         });
       }
     };

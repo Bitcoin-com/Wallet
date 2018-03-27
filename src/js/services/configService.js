@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('configService', function(storageService, lodash, $log, $timeout, $rootScope, platformInfo) {
+angular.module('copayApp.services').factory('configService', function(storageService, lodash, $log, $timeout, $rootScope, $injector, platformInfo) {
   var root = {};
 
   var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
@@ -82,6 +82,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     recentTransactions: {
       enabled: true,
+    },
+
+    displayBitcoinCore: {
+      enabled: false,
     },
 
     hideNextSteps: {
@@ -245,6 +249,18 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     return lodash.clone(defaultConfig);
   };
 
+  root.checkIfConfigIsSet = function(key) {
+    return new Promise(function(resolve, reject) {
+      storageService.getConfig(function(err, localConfig) {
+        if (localConfig) {
+          configCache = JSON.parse(localConfig);
+          resolve(configCache.hasOwnProperty(key));
+        } else {
+          reject(false);
+        }
+      });
+    });
+  }
 
   return root;
 });
