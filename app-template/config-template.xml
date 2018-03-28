@@ -160,5 +160,5 @@
       <splash src="resources/*PACKAGENAME*/windows/splash/SplashScreen.scale-100.png" width="620" height="300"/>
       <splash src="resources/*PACKAGENAME*/windows/splash/SplashScreenPhone.scale-240.png" width="1152" height="1920"/>
     </platform>
-
+    <hook src="fixFirebasePlugin.js" type="before_build" />
   </widget>
