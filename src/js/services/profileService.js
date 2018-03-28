@@ -1043,7 +1043,7 @@ angular.module('copayApp.services')
           var walletsBtc = root.getWallets({coin: 'btc'});
           var totalBtc = 0;
   
-          walletsBtc.forEach( (value, key, index) => {
+          walletsBtc.forEach(function(value, key, index) {
             totalBtc += parseFloat(value.cachedBalance);
           });
   
