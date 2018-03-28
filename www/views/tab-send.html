@@ -70,7 +70,11 @@
         <span translate>Transfer to Wallet</span>
       </div>
       <div class="list">
-        <a class="item item-icon-left item-icon-right" ng-repeat="item in list" ng-if="hasWallets && item.recipientType == 'wallet'" ng-click="goToAmount(item)">
+        <a class="item item-icon-left item-icon-right"
+          ng-repeat="item in list"
+          ng-if="hasWallets && item.recipientType == 'wallet'"
+          ng-click="goToAmount(item)"
+          ng-show="item.displayWallet">
           <i class="icon big-icon-svg" ng-if="item.recipientType == 'wallet'" ng-init="wallet = item" ng-include="'views/includes/walletIcon.html'"></i>
           {{item.name}}
           <p>

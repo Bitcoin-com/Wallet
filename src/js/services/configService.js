@@ -84,6 +84,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       enabled: true,
     },
 
+    displayBitcoinCore: {
+      enabled: false,
+    },
+
     hideNextSteps: {
       enabled: isWindowsPhoneApp ? true : false,
     },
@@ -245,6 +249,18 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     return lodash.clone(defaultConfig);
   };
 
+  root.checkIfConfigIsSet = function(key) {
+    return new Promise(function(resolve, reject) {
+      storageService.getConfig(function(err, localConfig) {
+        if (localConfig) {
+          configCache = JSON.parse(localConfig);
+          resolve(configCache.hasOwnProperty(key));
+        } else {
+          reject(false);
+        }
+      });
+    });
+  }
 
   return root;
 });

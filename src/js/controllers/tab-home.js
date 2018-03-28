@@ -123,6 +123,8 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.nextStepsItems = nextStepsService.get();
         }
 
+        $scope.displayBitcoinCore = config.displayBitcoinCore.enabled;
+
         $scope.showServices = true;
         pushNotificationsService.init();
         firebaseEventsService.init();
@@ -317,4 +319,10 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       }, 300);
       updateAllWallets();
     };
+
+    $rootScope.$on('Local/SettingsUpdated', function(e, walletId) {
+      configService.whenAvailable(function(config) {
+        $scope.displayBitcoinCore = config.displayBitcoinCore.enabled;
+      });
+    });
   });

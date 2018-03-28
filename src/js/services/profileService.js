@@ -1037,5 +1037,29 @@ angular.module('copayApp.services')
       return cb(null, txps, n);
     };
 
+    root.initBitcoinCoreDisplay = function() {
+      configService.checkIfConfigIsSet('displayBitcoinCore').then(function(result) {
+        if (!result) {
+          var walletsBtc = root.getWallets({coin: 'btc'});
+          var totalBtc = 0;
+  
+          walletsBtc.forEach( (value, key, index) => {
+            totalBtc += parseFloat(value.cachedBalance);
+          });
+  
+          var enableDisplayBitcoinCore = totalBtc > 0 ? true : false;
+
+          var opts = {
+            displayBitcoinCore: {
+              enabled: enableDisplayBitcoinCore
+            }
+          };
+          configService.set(opts, function(err) {
+            if (err) $log.debug(err);
+          });
+        }
+      });
+    };
+
     return root;
   });

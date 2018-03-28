@@ -1310,6 +1310,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             applicationService.appLockModal('check');
           });
         };
+
+        profileService.initBitcoinCoreDisplay();
+        
         // After everything have been loaded
         $timeout(function() {
           emailService.init(); // Update email subscription if necessary
