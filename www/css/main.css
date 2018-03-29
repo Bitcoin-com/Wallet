@@ -10735,6 +10735,15 @@ textarea.d-block {
   bottom: 0;
   width: 100%; }
 
+#tab-receive .payment-received-container {
+  margin: 0 20px; }
+  #tab-receive .payment-received-container .payment-received-amount {
+    font-size: 1.8em;
+    display: block;
+    margin: 15px auto; }
+  #tab-receive .payment-received-container .payment-received-currency {
+    text-transform: uppercase; }
+
 #tab-scan {
   color: #fff;
   text-align: center;

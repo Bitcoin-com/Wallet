@@ -83,4 +83,15 @@
     bottom: 0;
     width: 100%;
   }
+  .payment-received-container {
+    margin: 0 20px;
+    .payment-received-amount {
+      font-size: 1.8em;
+      display: block;
+      margin: 20px auto;
+    }
+    .payment-received-currency {
+      text-transform: uppercase;
+    }
+  }
 }

@@ -40,6 +40,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       if ($scope.wallet.coin == 'bch') {
           bchAddresses = bitcoinCashJsService.translateAddresses(addr);
           $scope.addr = bchAddresses[$scope.bchAddressType.type];
+          $scope.addrBchLegacy = bchAddresses['legacy'];
 
           // listen to bch address
           currentAddressSocket = new WebSocket("wss://ws.blockchain.info/bch/inv");
@@ -118,6 +119,13 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }*/
 
     if (data.op == "utx") {
+      var watchAddress = $scope.wallet.coin == 'bch' ? $scope.addrBchLegacy : $scope.addr;
+      for (var i = 0; i < data.x.out.length; i++) {
+        if (data.x.out[i].addr == watchAddress) {
+          $scope.paymentReceivedAmount = (data.x.out[i].value / 100000000).toFixed(8);
+        }
+      }
+      $scope.paymentReceivedCoin = $scope.wallet.coin;
       $scope.showingPaymentReceived = true
       $scope.$apply();
     }
