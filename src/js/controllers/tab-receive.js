@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -122,7 +122,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       var watchAddress = $scope.wallet.coin == 'bch' ? $scope.addrBchLegacy : $scope.addr;
       for (var i = 0; i < data.x.out.length; i++) {
         if (data.x.out[i].addr == watchAddress) {
-          $scope.paymentReceivedAmount = (data.x.out[i].value / 100000000).toFixed(8);
+          $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
