@@ -14,7 +14,7 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
     var opts = {
       fullPrecision: !!fullPrecision
     };
-    return this.Utils.formatAmount(satoshis, config.unitCode, opts);
+    return parseInt(satoshis) == 0 ? '0.00' : this.Utils.formatAmount(satoshis, config.unitCode, opts);
   };
 
   root.formatAmountStr = function(coin, satoshis) {
