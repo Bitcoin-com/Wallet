@@ -10740,7 +10740,7 @@ textarea.d-block {
   #tab-receive .payment-received-container .payment-received-amount {
     font-size: 1.8em;
     display: block;
-    margin: 15px auto; }
+    margin: 20px auto; }
   #tab-receive .payment-received-container .payment-received-currency {
     text-transform: uppercase; }
 
@@ -11586,6 +11586,9 @@ a.item {
 .updatingHistory {
   color: #445;
   font-size: 0.9em; }
+
+.loading-wallet svg {
+  margin-top: 0; }
 
 #advanced-settings .list .item:before {
   display: block;
