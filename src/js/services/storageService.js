@@ -634,5 +634,24 @@ angular.module('copayApp.services')
       storage.remove('receivedTxs-' + walletId, cb);
     }
 
+    root.checkIfFlagIsSet = function(key) {
+      return new Promise(function(resolve, reject) {
+        storage.get(key, function(i, value) {
+          if (value == null) {
+            resolve(false);
+          } else {
+            resolve(true);
+          }
+        });
+      });
+    }
+
+    root.activateDisplayBitcoinCoreFlag = function() {
+      var flag = {
+        initialized: true
+      };
+      storage.set('displayBitcoinCoreFlag', flag, function() { });
+    }
+
     return root;
   });

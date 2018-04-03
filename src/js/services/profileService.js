@@ -1038,7 +1038,7 @@ angular.module('copayApp.services')
     };
 
     root.initBitcoinCoreDisplay = function() {
-      configService.checkIfConfigIsSet('displayBitcoinCore').then(function(result) {
+      storageService.checkIfFlagIsSet('displayBitcoinCoreFlag').then(function(result) {
         if (!result) {
           var walletsBtc = root.getWallets({coin: 'btc'});
           var totalBtc = 0;
@@ -1057,6 +1057,8 @@ angular.module('copayApp.services')
           configService.set(opts, function(err) {
             if (err) $log.debug(err);
           });
+
+          storageService.activateDisplayBitcoinCoreFlag();
         }
       });
     };
