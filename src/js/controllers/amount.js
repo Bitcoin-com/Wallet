@@ -240,6 +240,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.changeUnit = function() {
+    $scope.amountModel.amount = '';
 
     if ($scope.alternativeAmount == 0) {
       $scope.alternativeAmount = null;
@@ -294,6 +295,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
     $scope.processAmount();
+    navigator.vibrate(50);
   };
 
   $scope.pushOperator = function(operator) {
@@ -323,6 +325,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = ($scope.amountModel.amount).toString().slice(0, -1);
     $scope.processAmount();
     checkFontSize();
+    navigator.vibrate(50);
   };
 
   $scope.resetAmount = function() {
@@ -464,6 +467,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
         $state.transitionTo('tabs.send.confirm', confirmData);
       }
       $scope.useSendMax = null;
+      navigator.vibrate(50);
     }
 
     if ($scope.showWarningMessage) {

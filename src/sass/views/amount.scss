@@ -233,58 +233,220 @@
       }
     }
   }
-  .keypad {
-    text-align: center;
-    font-size: 24px;
-    font-weight: lighter;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    color: $v-mid-gray;
 
-    .row {
-      padding: 0 !important;
-      margin: 0 !important;
-    }
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
 
-    .col {
-      line-height: 45px;
-    }
+    .send-amount {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-    .operator {
-      background-color: $v-subtle-gray;
-      font-weight: normal;
-      cursor: pointer;
+      .send-amount-tool {
+        flex: 0 1 auto;
 
-      &:active {
-        background-color: $v-light-gray;
+        .send-amount-tool-input {
+          text-align: center;
+          position: relative;
+          padding: 10px 30px;
+
+          .primary-amount {
+            input, .unit, .primary-amount-display {
+              font-size: 1.8em;
+
+              @media (min-width: 375px) {
+                font-size: 2.1em;
+              }
+              
+              @media (min-width: 414px) {
+                font-size: 2.4em;
+              }
+            }
+
+            &.long {
+              input, .unit, .primary-amount-display {
+                font-size: 1.6em;
+  
+                @media (min-width: 375px) {
+                  font-size: 1.8em;
+                }
+                
+                @media (min-width: 414px) {
+                  font-size: 2em;
+                }
+              }
+            }
+
+            &.very-long {
+              input, .unit, .primary-amount-display {
+                font-size: 0.9em;
+  
+                @media (min-width: 375px) {
+                  font-size: 1.3em;
+                }
+                
+                @media (min-width: 414px) {
+                  font-size: 1.4em;
+                }
+              }
+            }
+
+
+            input {
+              border:0;
+              padding:0;
+              white-space:normal;
+              background:none;
+              line-height:1;
+              box-sizing:content-box;
+              display: inline-block;
+              vertical-align: middle;
+              margin: 0;
+              height: 1em;
+              margin-right: 5px;
+              font-family: 'ProximaNova';
+
+              @media (min-width: 375px) {
+              }
+              
+              @media (min-width: 414px) {
+              }
+            }
+
+            .unit,
+            .primary-amount-display {
+              display: inline-block;
+              vertical-align: middle;
+              line-height: 1em;
+            }
+
+            .unit {
+              font-weight: bold;
+            }
+
+            .primary-amount-display {
+              margin-right: 5px;
+              word-break: break-all;
+            }
+          }
+
+          .switch-currencies {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            padding: 5px;
+
+            img {
+              width: 18px;
+            }
+          }
+        }
+
+        .send-amount-actions {
+          margin-top: 15px;
+        }
       }
     }
 
-    .operator-send {
-      font-weight: bolder;
-      color: #fff;
-      background-color: $positive;
-      font-size: 36px;
-      cursor: pointer;
-
-      &:active {
-        background-color: #eaeaea;
+    .button {
+      &.no-margin {
+        margin: 0;
       }
     }
 
-    .digit{
-      cursor: pointer;
-      border-top: 1px solid $v-subtle-gray;
-      border-left: 1px solid $v-subtle-gray;
-      &:active {
-        background-color: $v-subtle-gray;
-      }
+    .notification-warning {
+      display: block;
+      padding: .75rem 1.25rem;
+      color: #856404;
+      background-color: #fff3cd;
+      border: 1px solid #ffeeba;
+      line-height: 1.4em;
+      margin-bottom: 20px;
     }
 
-    @media(max-height: 480px) {
-      font-size: 12px;
+    .keypad-container {
+      position: relative;
+      flex: 0 1 196px;
 
+      @media (min-height: 667px) {
+        flex: 0 1 224px;
+      }
+
+      .keypad {
+        text-align: center;
+        font-size: 18px;
+        font-weight: lighter;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        color: $v-mid-gray;
+        
+        @media (min-height: 667px) {
+          font-size: 24px;
+        }
+    
+        .row {
+          padding: 0 !important;
+          margin: 0 !important;
+        }
+    
+        .col {
+          line-height: 38px;
+        
+          @media (min-height: 667px) {
+            line-height: 45px;
+          }
+        }
+
+        .row {
+          &:last-child {
+            .col {
+              padding-bottom: 10px;
+            }
+          }
+        }
+    
+        .operator {
+          background-color: $v-subtle-gray;
+          font-weight: normal;
+          cursor: pointer;
+    
+          &:active {
+            background-color: $v-light-gray;
+          }
+        }
+    
+        .operator-send {
+          font-weight: bolder;
+          color: #fff;
+          background-color: $positive;
+          font-size: 36px;
+          cursor: pointer;
+    
+          &:active {
+            background-color: #eaeaea;
+          }
+        }
+    
+        .digit{
+          cursor: pointer;
+          border-top: 1px solid $v-subtle-gray;
+          border-left: 1px solid $v-subtle-gray;
+          transition: all 0.1s ease;
+
+          &:active {
+            background-color: $v-subtle-gray;
+          }
+        }
+    
+        @media(max-height: 480px) {
+          font-size: 12px;
+    
+        }
+      }
     }
   }
 }
