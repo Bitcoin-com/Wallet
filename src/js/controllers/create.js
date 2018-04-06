@@ -240,7 +240,7 @@ angular.module('copayApp.controllers').controller('createController',
       $timeout(function() {
         profileService.createWallet(opts, function(err, client) {
           ongoingProcess.set('creatingWallet', false);
-          function finish(error) {            
+          function finish(error) {
             if (error) {
               $log.warn(error);
               popupService.showAlert(gettextCatalog.getString('Error'), error);
@@ -273,7 +273,7 @@ angular.module('copayApp.controllers').controller('createController',
             }
           }
 
-          if (opts.n >= 2) {
+          if (opts.n >= 2 || $scope.formData.seedSource.id == 'set') {
             finish(err);
           } else {
             ongoingProcess.set('generatingNewAddress', true);
