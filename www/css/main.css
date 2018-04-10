@@ -10492,7 +10492,19 @@ textarea.d-block {
           #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .switch-currencies img {
             width: 18px; }
       #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions {
-        margin-top: 15px; }
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button {
+          flex: 1 1 auto;
+          line-height: 1.2em; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button + .button {
+            margin-left: 10px; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button span {
+            display: flex;
+            align-items: center;
+            justify-content: center; }
   #view-amount .scroll-content .button.no-margin {
     margin: 0; }
   #view-amount .scroll-content .notification-warning {

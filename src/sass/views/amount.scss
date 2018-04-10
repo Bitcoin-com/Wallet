@@ -347,6 +347,24 @@
 
         .send-amount-actions {
           margin-top: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .button {
+            flex: 1 1 auto;
+            line-height: 1.2em;
+
+            + .button {
+              margin-left: 10px;
+            }
+
+            span {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          }
         }
       }
     }
