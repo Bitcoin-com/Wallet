@@ -18,7 +18,7 @@ angular.module('copayApp.services').factory('signVerifyMessageService', function
   };*/
 
   var register = function() {
-    servicesService.register(signServicesItem);
+    //servicesService.register(signServicesItem);
     //servicesService.register(verifyServicesItem);
   };
 
