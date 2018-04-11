@@ -1072,7 +1072,7 @@ angular.module('copayApp.services')
 
     // Calculate wallets total balance (Promise). Attempts to fix asynchronous issue with cachedBalance not being available when it's needed
     root.getWalletsBalance = function(wallets) {
-      return new Promise((resolve, reject) => {
+      return new Promise(function(resolve, reject) {
         var totalBalance = 0;
         // Manually call getLastKnownBalance for each wallet ID
         wallets.forEach(function(value, index, array) {
