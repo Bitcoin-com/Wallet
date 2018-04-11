@@ -1037,28 +1037,24 @@ angular.module('copayApp.services')
       return cb(null, txps, n);
     };
 
+    // Displays Bitcoin Core Wallets if BTC balance is more than 0
     root.initBitcoinCoreDisplay = function() {
-      console.log('Init Bitcoin Core Display...');
-      storageService.checkIfFlagIsSet('displayBitcoinCoreFlag').then(function(result) {
-        if (!result) {
-          var walletsBtc = root.getWallets({coin: 'btc'});
-          var totalBtc = 0;
-          var errorBalance = false;
-  
-          if (walletsBtc.length > 0) {
-            walletsBtc.forEach(function(value, key, index) {
-              // Do not trust cachedBalance as it is added asynchronously. Manually call getLastKnownBalance for each wallet ID
-              root.getLastKnownBalance(value.id, function(err, data) {
-                if (data) {
-                  var balanceData = JSON.parse(data);
-                  totalBtc += parseFloat(balanceData.balance);
-                } else {
-                  errorBalance = true;
-                }
-              });
-            });
+      storageService.checkIfFlagIsSet('displayBitcoinCoreFlag')
+        .then(function(result) {
+          // Perform checks for flags which are even set to true once more, set the new flag value to 1
+          if (result === false || result === true) {
+            root.checkBtcBalanceAndInitDisplay(1);
+          }
+        });
+    };
 
-            var enableDisplayBitcoinCore = (totalBtc > 0) && !errorBalance ? true : false;
+    root.checkBtcBalanceAndInitDisplay = function(flagValue) {
+      var walletsBtc = root.getWallets({coin: 'btc'});
+      if (walletsBtc.length > 0) {
+        // Do not trust cachedBalance as it is added asynchronously. Using a new promise-based function.
+        root.getWalletsBalance(walletsBtc)
+          .then(function(totalBalance) {
+            var enableDisplayBitcoinCore = totalBalance > 0 ? true : false;
 
             var opts = {
               displayBitcoinCore: {
@@ -1069,11 +1065,29 @@ angular.module('copayApp.services')
               if (err) $log.debug(err);
             });
 
-            if (!errorBalance) storageService.activateDisplayBitcoinCoreFlag();
-          }
-        }
+            storageService.activateDisplayBitcoinCoreFlag(flagValue);
+          });
+      }
+    }
+
+    // Calculate wallets total balance (Promise). Attempts to fix asynchronous issue with cachedBalance not being available when it's needed
+    root.getWalletsBalance = function(wallets) {
+      return new Promise((resolve, reject) => {
+        var totalBalance = 0;
+        // Manually call getLastKnownBalance for each wallet ID
+        wallets.forEach(function(value, index, array) {
+          root.getLastKnownBalance(value.id, function(err, data) {
+            if (data) {
+              var balanceData = JSON.parse(data);
+              totalBalance += parseFloat(balanceData.balance);
+            }
+
+            // Resolves promise with the total balance on the final iteration
+            if (index === array.length - 1) resolve(totalBalance);
+          });
+        });
       });
-    };
+    }
 
     return root;
   });

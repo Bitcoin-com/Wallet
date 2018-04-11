@@ -640,15 +640,15 @@ angular.module('copayApp.services')
           if (value == null) {
             resolve(false);
           } else {
-            resolve(true);
+            resolve(JSON.parse(value).initialized);
           }
         });
       });
     }
 
-    root.activateDisplayBitcoinCoreFlag = function() {
+    root.activateDisplayBitcoinCoreFlag = function(value) {
       var flag = {
-        initialized: true
+        initialized: value
       };
       storage.set('displayBitcoinCoreFlag', flag, function() { });
     }
