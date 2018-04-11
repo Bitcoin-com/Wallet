@@ -1315,7 +1315,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         $timeout(function() {
           emailService.init(); // Update email subscription if necessary
           openURLService.init();
-          profileService.initBitcoinCoreDisplay();
         }, 1000);
       });
     });

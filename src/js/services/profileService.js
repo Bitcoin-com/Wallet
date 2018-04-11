@@ -1038,27 +1038,39 @@ angular.module('copayApp.services')
     };
 
     root.initBitcoinCoreDisplay = function() {
+      console.log('Init Bitcoin Core Display...');
       storageService.checkIfFlagIsSet('displayBitcoinCoreFlag').then(function(result) {
         if (!result) {
           var walletsBtc = root.getWallets({coin: 'btc'});
           var totalBtc = 0;
+          var errorBalance = false;
   
-          walletsBtc.forEach(function(value, key, index) {
-            totalBtc += parseFloat(value.cachedBalance);
-          });
-  
-          var enableDisplayBitcoinCore = totalBtc > 0 ? true : false;
+          if (walletsBtc.length > 0) {
+            walletsBtc.forEach(function(value, key, index) {
+              // Do not trust cachedBalance as it is added asynchronously. Manually call getLastKnownBalance for each wallet ID
+              root.getLastKnownBalance(value.id, function(err, data) {
+                if (data) {
+                  var balanceData = JSON.parse(data);
+                  totalBtc += parseFloat(balanceData.balance);
+                } else {
+                  errorBalance = true;
+                }
+              });
+            });
 
-          var opts = {
-            displayBitcoinCore: {
-              enabled: enableDisplayBitcoinCore
-            }
-          };
-          configService.set(opts, function(err) {
-            if (err) $log.debug(err);
-          });
+            var enableDisplayBitcoinCore = (totalBtc > 0) && !errorBalance ? true : false;
 
-          storageService.activateDisplayBitcoinCoreFlag();
+            var opts = {
+              displayBitcoinCore: {
+                enabled: enableDisplayBitcoinCore
+              }
+            };
+            configService.set(opts, function(err) {
+              if (err) $log.debug(err);
+            });
+
+            if (!errorBalance) storageService.activateDisplayBitcoinCoreFlag();
+          }
         }
       });
     };

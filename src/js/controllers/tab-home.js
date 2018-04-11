@@ -84,6 +84,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
       updateAllWallets();
+      profileService.initBitcoinCoreDisplay();
 
       addressbookService.list(function(err, ab) {
         if (err) $log.error(err);
