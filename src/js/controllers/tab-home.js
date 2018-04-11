@@ -83,11 +83,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
-      updateAllWallets();
-
-      $timeout(function() {
+      updateAllWallets(function() {
         profileService.initBitcoinCoreDisplay();
-      }, 1000);
+      });
 
       addressbookService.list(function(err, ab) {
         if (err) $log.error(err);
@@ -215,7 +213,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       })
     };
 
-    var updateAllWallets = function() {
+    var updateAllWallets = function(cb) {
       var wallets = [];
       $scope.walletsBtc = profileService.getWallets({coin: 'btc'});
       $scope.walletsBch = profileService.getWallets({coin: 'bch'});
@@ -249,6 +247,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           }
           if (++j == i) {
             updateTxps();
+            if (cb !== undefined) {
+              cb();
+            }
           }
         });
       });
