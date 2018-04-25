@@ -1,0 +1,19 @@
+<ion-view id="settings-fee" class="settings" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>
+      {{'Price display'|translate}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="price-display">
+      <ion-radio class="capitalize" ng-value="'fiat'" ng-model="selectedPriceDisplay" ng-click="save(selectedPriceDisplay)">
+        fiat
+      </ion-radio>
+      <ion-radio class="capitalize" ng-value="'crypto'" ng-model="selectedPriceDisplay" ng-click="save(selectedPriceDisplay)">
+        cryptocurrency
+      </ion-radio>
+    </div>
+  </ion-content>
+</ion-view>

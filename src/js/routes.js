@@ -413,6 +413,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.priceDisplay', {
+        url: '/priceDisplay',
+        views: {
+          'tab-settings@tabs': {
+            controller: 'preferencesPriceDisplayController',
+            templateUrl: 'views/preferencesPriceDisplay.html'
+          }
+        }
+      })
       .state('tabs.about', {
         url: '/about',
         views: {
