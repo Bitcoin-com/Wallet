@@ -10038,6 +10038,9 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     right: 0;
     content: ''; }
 
+.loading .spinner svg {
+  margin-top: 0; }
+
 .button.button-primary.button-standard, .button.button-secondary.button-standard, .button.button-light.button-standard, .button.button-assertive.button-standard,
 .onboarding .button.button-primary.button-standard,
 .onboarding .button.button-secondary.button-standard,
