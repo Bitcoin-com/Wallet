@@ -8,41 +8,53 @@ angular.module('copayApp.services')
     root.availableLanguages = [{
       name: 'English',
       isoCode: 'en',
+      rateCode: 'USD'
     }, {
       name: 'Español',
       isoCode: 'es',
+      rateCode: 'EUR'
     }, {
       name: 'Français',
       isoCode: 'fr',
+      rateCode: 'EUR'
     }, {
       name: 'Italiano',
       isoCode: 'it',
+      rateCode: 'EUR'
     }, {
       name: 'Nederlands',
       isoCode: 'nl',
+      rateCode: 'EUR'
     }, {
       name: 'Polski',
       isoCode: 'pl',
+      rateCode: 'EUR'
     }, {
       name: 'Deutsch',
       isoCode: 'de',
+      rateCode: 'EUR'
     }, {
       name: '日本語',
       isoCode: 'ja',
       useIdeograms: true,
+      rateCode: 'JPY'
     }, {
       name: '中文（简体）',
       isoCode: 'zh',
       useIdeograms: true,
+      rateCode: 'CNY'
     }, {
       name: 'Pусский',
       isoCode: 'ru',
+      rateCode: 'RUB'
     }, {
       name: 'Português',
       isoCode: 'pt',
+      rateCode: 'EUR'
     }, {
       name: '한국어',
-      isoCode: 'ko'
+      isoCode: 'ko',
+      rateCode: 'KRW'
     }];
 
     // }, {
@@ -105,18 +117,19 @@ angular.module('copayApp.services')
       return root.availableLanguages;
     };
 
-    root.init = function(cb) {
+    root.init = function(cb, cbSuccess) {
       configService.whenAvailable(function(config) {
         var userLang = config.wallet.settings.defaultLanguage;
 
         if (userLang && userLang != root.currentLanguage) {
           root._set(userLang);
+          if (cb) return cb(userLang);
         } else {
           root._detect(function(lang) {
             root._set(lang);
+            if (cb) return cb(lang);
           });
         }
-        if (cb) return cb();
       });
     };
 
@@ -124,6 +137,12 @@ angular.module('copayApp.services')
       return lodash.result(lodash.find(root.availableLanguages, {
         'isoCode': lang
       }), 'name');
+    };
+
+    root.getRateCode = function(lang) {
+      return lodash.result(lodash.find(root.availableLanguages, {
+        'isoCode': lang
+      }), 'rateCode');
     };
 
     return root;
