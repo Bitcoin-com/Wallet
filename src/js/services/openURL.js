@@ -6,12 +6,6 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
   var handleOpenURL = function(args) {
 
     $log.info('Handling Open URL: ' + JSON.stringify(args));
-    // Stop it from caching the first view as one to return when the app opens
-    $ionicHistory.nextViewOptions({
-      historyRoot: true,
-      disableBack: false,
-      disableAnimation: true
-    });
 
     var url = args.url;
     if (!url) {
