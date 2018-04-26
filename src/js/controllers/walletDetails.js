@@ -372,7 +372,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
       $timeout(function () {
-        $scope.apply();
+        $scope.$apply();
       });
     });
 
