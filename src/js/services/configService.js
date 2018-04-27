@@ -184,7 +184,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
         // If display is not configure, take the default value
         if (!configCache.wallet.settings.priceDisplay) {
-          configCache.wallet.settings.display = defaultConfig.wallet.settings.priceDisplay;
+          configCache.wallet.settings.priceDisplay = defaultConfig.wallet.settings.priceDisplay;
         }
 
         // Convert tarascash wallet to new style cash wallet
