@@ -133,6 +133,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
     setAvailableUnits();
     updateUnitUI();
 
+    $scope.hasMaxAmount = true;
+    if ($ionicHistory.backView().stateName == 'tabs.receive') {
+      $scope.hasMaxAmount = false;
+    }
+
     $scope.showMenu = $ionicHistory.backView() && ($ionicHistory.backView().stateName == 'tabs.send' || $ionicHistory.backView().stateName == 'tabs.bitpayCard');
     $scope.recipientType = data.stateParams.recipientType || null;
     $scope.toAddress = data.stateParams.toAddress;
