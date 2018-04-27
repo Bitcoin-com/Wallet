@@ -50,7 +50,7 @@
           <div class="amount__result-equiv">&lt;&gt; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</div>
         </div>
         <div>
-          <button class="button button-sendmax" ng-click="sendMax()">
+          <button ng-if="hasMaxAmount" class="button button-sendmax" ng-click="sendMax()">
             <span>
               <i class="icon ion-ios-speedometer-outline"></i>&emsp;
               <span translate>Send max amount</span>
@@ -77,7 +77,7 @@
         <span>&lt;&gt; {{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
       </div>
       <div>
-        <button class="button button-sendmax" ng-click="sendMax()">
+        <button ng-if="hasMaxAmount" class="button button-sendmax" ng-click="sendMax()">
           <span>
             <i class="icon ion-ios-speedometer-outline"></i>&emsp;
             <span translate>Send max amount</span>
