@@ -218,7 +218,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   });
 
   $scope.$on("$ionicView.leave", function(event, data) {
-    $ionicHistory.clearCache();
     lodash.each(listeners, function(x) {
       x();
     });
