@@ -40,12 +40,13 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
     }, 100);
   };
 
-  $scope.remove = function(addr) {
+  $scope.remove = function(addressbookEntry) {
     var title = gettextCatalog.getString('Warning!');
     var message = gettextCatalog.getString('Are you sure you want to delete this contact?');
     popupService.showConfirm(title, message, null, null, function(res) {
       if (!res) return;
-      addressbookService.remove(addr, function(err, ab) {
+
+      addressbookService.remove(addressbookEntry, function(err, ab) {
         if (err) {
           popupService.showAlert(gettextCatalog.getString('Error'), err);
           return;
