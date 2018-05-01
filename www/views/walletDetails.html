@@ -157,7 +157,7 @@
       </div>
 
 
-      <div ng-if="!wallet.balanceHidden && !wallet.scanning && showBalanceButton" ng-style="{'opacity': altAmountOpacity, 'transform': amountScale}">
+      <div ng-if="selectedPriceDisplay=='crypto' && !wallet.balanceHidden && !wallet.scanning && showBalanceButton" ng-style="{'opacity': altAmountOpacity, 'transform': amountScale}">
         <button class="button button-standard button-primary amount__button-balance size-14" ng-click="openBalanceModal()">
           <i class="icon ion-ios-checkmark-outline"></i>
           <strong>
@@ -166,6 +166,19 @@
           &nbsp;
           <span>
             {{status.spendableBalanceAlternative}} {{status.alternativeIsoCode}}
+          </span>
+        </button>
+      </div>
+
+      <div ng-if="selectedPriceDisplay=='fiat' && !wallet.balanceHidden && !wallet.scanning && showBalanceButton" ng-style="{'opacity': altAmountOpacity, 'transform': amountScale}">
+        <button class="button button-standard button-primary amount__button-balance size-14" ng-click="openBalanceModal()">
+          <i class="icon ion-ios-checkmark-outline"></i>
+          <strong>
+            {{status.spendableBalanceAlternative}} {{status.alternativeIsoCode}}
+          </strong>
+          &nbsp;
+          <span>
+            {{status.spendableBalanceStr}}
           </span>
         </button>
       </div>
