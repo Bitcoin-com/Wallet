@@ -123,7 +123,7 @@
 
       <div
         ng-click='updateAll(true)'
-        ng-show="!updateStatusError && !wallet.balanceHidden && !wallet.scanning"
+        ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
@@ -133,6 +133,21 @@
           ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
           {{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}
+        </div>
+      </div>
+
+      <div
+        ng-click='updateAll(true)'
+        ng-show="selectedPriceDisplay=='fiat' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
+        on-hold="hideToggle()"
+        ng-style="{'transform': amountScale}"
+        ng-class="{amount__balance: amountIsCollapsible}">
+        <strong class="size-36">{{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}</strong>
+        <div
+          class="size-14 amount-alternative"
+          ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
+          ng-style="{opacity: altAmountOpacity}">
+          {{status.totalBalanceStr}}
         </div>
       </div>
 
