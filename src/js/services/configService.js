@@ -69,6 +69,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         unitCode: 'btc',
         alternativeName: 'US Dollar',
         alternativeIsoCode: 'USD',
+        priceDisplay: 'fiat', // 'fiat' || 'crypto'
       }
     },
 
@@ -179,6 +180,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
           configCache.wallet.settings.unitToSatoshi = defaultConfig.wallet.settings.unitToSatoshi;
           configCache.wallet.settings.unitDecimals = defaultConfig.wallet.settings.unitDecimals;
           configCache.wallet.settings.unitCode = defaultConfig.wallet.settings.unitCode;
+        }
+
+        // If display is not configure, take the default value
+        if (!configCache.wallet.settings.priceDisplay) {
+          configCache.wallet.settings.priceDisplay = defaultConfig.wallet.settings.priceDisplay;
         }
 
         // Convert tarascash wallet to new style cash wallet

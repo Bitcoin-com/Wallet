@@ -133,6 +133,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
     setAvailableUnits();
     updateUnitUI();
 
+    $scope.hasMaxAmount = true;
+    if ($ionicHistory.backView().stateName == 'tabs.receive') {
+      $scope.hasMaxAmount = false;
+    }
+
     $scope.showMenu = $ionicHistory.backView() && ($ionicHistory.backView().stateName == 'tabs.send' || $ionicHistory.backView().stateName == 'tabs.bitpayCard');
     $scope.recipientType = data.stateParams.recipientType || null;
     $scope.toAddress = data.stateParams.toAddress;
@@ -240,7 +245,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.changeUnit = function() {
-    $scope.amountModel.amount = '';
 
     if ($scope.alternativeAmount == 0) {
       $scope.alternativeAmount = null;
@@ -295,7 +299,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
     $scope.processAmount();
-    navigator.vibrate(50);
   };
 
   $scope.pushOperator = function(operator) {
@@ -325,7 +328,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = ($scope.amountModel.amount).toString().slice(0, -1);
     $scope.processAmount();
     checkFontSize();
-    navigator.vibrate(50);
   };
 
   $scope.resetAmount = function() {
@@ -467,14 +469,16 @@ angular.module('copayApp.controllers').controller('amountController', function($
         $state.transitionTo('tabs.send.confirm', confirmData);
       }
       $scope.useSendMax = null;
-      navigator.vibrate(50);
     }
 
     if ($scope.showWarningMessage) {
       var u = $scope.unit == 'BCH' || $scope.unit == 'BTC' ? $scope.unit : $scope.alternativeUnit;
       var message = 'Are you sure you want to send ' + u.toUpperCase()  + '?';
       popupService.showConfirm(message, '', 'Yes', 'No', function(res) {
-        if (!res) return;
+        if (!res) {
+          $scope.useSendMax = null;
+          return;
+        };
         finish();
       });
     } else {

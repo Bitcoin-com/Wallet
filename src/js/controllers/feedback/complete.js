@@ -7,7 +7,8 @@ angular.module('copayApp.controllers').controller('completeController', function
   });
 
   var defaults = configService.getDefaults();
-  var downloadUrl = appConfigService.name == 'copay' ? defaults.download.copay.url : defaults.download.bitpay.url;
+  var content = appConfigService.name == 'copay' ? defaults.download.copay.url : defaults.download.bitpay.url;
+  content = 'I love the Bitcoin.com Wallet App! Get yours today! ' + content;
 
   function quickFeedback(cb) {
     window.plugins.spinnerDialog.show();
@@ -17,37 +18,38 @@ angular.module('copayApp.controllers').controller('completeController', function
 
   $scope.shareFacebook = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareVia($scope.shareFacebookVia, null, null, null, downloadUrl);
+      var content = 'Try the Bitcoin.com Wallet for free today!'
+      window.plugins.socialsharing.shareVia($scope.shareFacebookVia, null, null, null, content);
     });
   };
 
   $scope.shareTwitter = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareVia($scope.shareTwitterVia, null, null, null, downloadUrl);
+      window.plugins.socialsharing.shareVia($scope.shareTwitterVia, null, null, null, content);
     });
   };
 
   $scope.shareGooglePlus = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareVia($scope.shareGooglePlusVia, downloadUrl);
+      window.plugins.socialsharing.shareVia($scope.shareGooglePlusVia, content);
     });
   };
 
   $scope.shareEmail = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareViaEmail(downloadUrl);
+      window.plugins.socialsharing.shareViaEmail(content);
     });
   };
 
   $scope.shareWhatsapp = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareViaWhatsApp(downloadUrl);
+      window.plugins.socialsharing.shareViaWhatsApp(content);
     });
   };
 
   $scope.shareMessage = function() {
     quickFeedback(function() {
-      window.plugins.socialsharing.shareViaSMS(downloadUrl);
+      window.plugins.socialsharing.shareViaSMS(content);
     });
   };
 
