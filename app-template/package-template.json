@@ -60,6 +60,7 @@
     "bower": "^1.7.9",
     "cordova-custom-config": "^3.0.5",
     "cordova-plugin-qrscanner": "^2.5.0",
+    "cordova-plugin-vibration": "^3.0.1",
     "coveralls": "^2.11.9",
     "express": "^4.11.2",
     "fs": "0.0.2",
