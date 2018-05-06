@@ -33,7 +33,6 @@ angular.module('copayApp.controllers').controller('tourController',
         $scope.localCurrencyPerBtc = $filter('formatFiatAmount')(parseFloat(rate.toFixed(2), 10));
         $timeout(function() {
           $scope.$apply();
-          $scope.createDefaultWallet();
         })
       });
     });
@@ -94,12 +93,12 @@ angular.module('copayApp.controllers').controller('tourController',
 
           $q.all([bchAddressPromise, btcAddressPromise]).then(function(addresses) {
             ongoingProcess.set('generatingNewAddress', false);
-            $state.go('tabs.home');
+            goToCollectEmail();
           }, function(e) {
             ongoingProcess.set('generatingNewAddress', false);
             $log.warn(e);
             popupService.showAlert(gettextCatalog.getString('Error'), e);
-            $state.go('tabs.home');
+            goToCollectEmail();
           });
         });
       }, 300);
