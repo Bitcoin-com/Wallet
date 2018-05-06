@@ -18,6 +18,7 @@ angular.module('copayApp.controllers').controller('completeController', function
 
   $scope.shareFacebook = function() {
     quickFeedback(function() {
+      var content = 'Try the Bitcoin.com Wallet for free today!'
       window.plugins.socialsharing.shareVia($scope.shareFacebookVia, null, null, null, content);
     });
   };
