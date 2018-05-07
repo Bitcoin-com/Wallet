@@ -387,10 +387,10 @@
 
     .keypad-container {
       position: relative;
-      flex: 0 1 196px;
+      //flex: 0 1 196px;
 
       @media (min-height: 667px) {
-        flex: 0 1 224px;
+        //flex: 0 1 224px;
       }
 
       .keypad {

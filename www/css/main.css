@@ -10516,11 +10516,7 @@ textarea.d-block {
     line-height: 1.4em;
     margin-bottom: 20px; }
   #view-amount .scroll-content .keypad-container {
-    position: relative;
-    flex: 0 1 196px; }
-    @media (min-height: 667px) {
-      #view-amount .scroll-content .keypad-container {
-        flex: 0 1 224px; } }
+    position: relative; }
     #view-amount .scroll-content .keypad-container .keypad {
       text-align: center;
       font-size: 18px;

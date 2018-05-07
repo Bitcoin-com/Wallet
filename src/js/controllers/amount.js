@@ -39,6 +39,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     if (data.stateParams.noPrefix) {
       $scope.showWarningMessage = data.stateParams.noPrefix != 0;
+      if ($scope.showWarningMessage) {
+        var message = 'Address doesn\'t contain currency information, please make sure you are sending the correct currency.';
+        popupService.showAlert('', message, function() {}, 'Ok');
+      }
     }
 
     var config = configService.getSync().wallet.settings;
@@ -240,7 +244,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.changeUnit = function() {
-    $scope.amountModel.amount = '';
+    $scope.amountModel.amount = '0';
 
     if ($scope.alternativeAmount == 0) {
       $scope.alternativeAmount = null;
@@ -289,8 +293,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
   $scope.pushDigit = function(digit) {
     if ($scope.amountModel.amount && $scope.amountModel.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
-    if (!$scope.isAndroid && !$scope.isIos && $scope.amountModel.amount.indexOf('.') > -1 && digit == '.') return;
+    if (($scope.amountModel.amount.indexOf('.') > -1 || $scope.amountModel.amount == '') && digit == '.') return;
+    if ($scope.amountModel.amount == '0' && digit == '0') return;
     if (availableUnits[unitIndex].isFiat && $scope.amountModel.amount.indexOf('.') > -1 && $scope.amountModel.amount[$scope.amountModel.amount.indexOf('.') + 2]) return;
+
+    if ($scope.amountModel.amount == '0' && digit != '.') { $scope.amountModel.amount = ''}
 
     $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
