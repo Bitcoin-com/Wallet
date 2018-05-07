@@ -218,6 +218,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   });
 
   $scope.$on("$ionicView.leave", function(event, data) {
+    $ionicHistory.clearCache();
     lodash.each(listeners, function(x) {
       x();
     });
@@ -235,12 +236,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   var setProtocolHandler = function() {
     $scope.protocolHandler = walletService.getProtocolHandler($scope.wallet);
   }
-
-  $scope.$watch('showWallets' , function () {
-    if ($scope.showingPaymentReceived) {
-      $scope.showingPaymentReceived = false;
-    }
-  });
 
   $scope.onWalletSelect = function(wallet) {
     $scope.wallet = wallet;

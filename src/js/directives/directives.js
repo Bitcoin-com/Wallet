@@ -15,10 +15,7 @@ angular.module('copayApp.directives')
 
           var validator = function(value) {
 
-            if (value.indexOf('bitcoincash:') >= 0 || value[0] == 'C' || value[0] == 'H' || value[0] == 'p' || value[0] == 'q') {
-              if (value.indexOf('bitcoincash:') < 0) {
-                value = 'bitcoincash:' + value;
-              }
+            if (value.indexOf('bitcoincash:') >= 0 || value[0] == 'C' || value[0] == 'H') {
               value = bitcoinCashJsService.readAddress(value).legacy;
             }
 

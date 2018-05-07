@@ -116,7 +116,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       });
 
       configService.whenAvailable(function(config) {
-        $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
         $scope.recentTransactionsEnabled = config.recentTransactions.enabled;
         if ($scope.recentTransactionsEnabled) getNotifications();
 

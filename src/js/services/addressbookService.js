@@ -64,28 +64,16 @@ angular.module('copayApp.services').factory('addressbookService', function($log,
     });
   };
 
-  root.remove = function(entry, cb) {
-    
-    // The entry is in bitcoin address, so I get the legacy one, and I operate.
-    if (entry.coin == 'bch') {
-      var a = entry.address;
-      if (entry.address.indexOf('bitcoincash:') < 0) {
-        a = 'bitcoincash:' + a;
-      }
-      entry.address = bitcoinCashJsService.readAddress(a).legacy;
-    } else {
-      entry.address = entry.address;
-    }
-
-    var network = getNetwork(entry.address);
+  root.remove = function(addr, cb) {
+    var network = getNetwork(addr);
     if (lodash.isEmpty(network)) return cb('Not valid bitcoin address');
     storageService.getAddressbook(network, function(err, ab) {
       if (err) return cb(err);
       if (ab) ab = JSON.parse(ab);
       ab = ab || {};
       if (lodash.isEmpty(ab)) return cb('Addressbook is empty');
-      if (!ab[entry.coin + entry.address]) return cb('Entry does not exist');
-      delete ab[entry.coin + entry.address];
+      if (!ab[addr]) return cb('Entry does not exist');
+      delete ab[addr];
       storageService.setAddressbook(network, JSON.stringify(ab), function(err) {
         if (err) return cb('Error deleting entry');
         root.list(function(err, ab) {

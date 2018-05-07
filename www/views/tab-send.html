@@ -66,10 +66,12 @@
     </div>
 
     <div class="card" ng-if="showTransferCard && hasFunds">
-      <div class="item item-heading">
+      <div class="item item-icon-right item-heading" ng-click="toggle('transferToWallet')">
         <span translate>Transfer to Wallet</span>
+        <i class="icon bp-arrow-up" ng-show="sectionDisplay.transferToWallet"></i>
+        <i class="icon bp-arrow-down" ng-show="!sectionDisplay.transferToWallet"></i>
       </div>
-      <div class="list">
+      <div class="list" ng-show="sectionDisplay.transferToWallet">
         <a class="item item-icon-left item-icon-right"
           ng-repeat="item in list"
           ng-if="hasWallets && item.recipientType == 'wallet'"

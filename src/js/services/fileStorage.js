@@ -97,7 +97,7 @@ angular.module('copayApp.services')
               v = v.toString();
             }
 
-            //$log.debug('Writing:', k, v);
+            $log.debug('Writing:', k, v);
             fileWriter.write(v);
 
           }, cb);
