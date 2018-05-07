@@ -413,15 +413,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('tabs.priceDisplay', {
-        url: '/priceDisplay',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'preferencesPriceDisplayController',
-            templateUrl: 'views/preferencesPriceDisplay.html'
-          }
-        }
-      })
       .state('tabs.about', {
         url: '/about',
         views: {
@@ -1208,46 +1199,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
-    
-    $ionicPlatform.ready(function() { 
-      
-      // Init language
-      uxLanguage.init(function (lang) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService) {
 
-        // Try to load the profile
-        profileService.loadAndBindProfile(function(err) {
-          
-          // If err, first time so I define the currency rate by language
-          if (err) {
-            var rateCode = uxLanguage.getRateCode(lang);
+    uxLanguage.init();
 
-            rateService.whenAvailable(function() {
-              var alternatives = rateService.listAlternatives(true);
-
-              var newAltCurrency = lodash.find(alternatives, {
-                'isoCode': rateCode
-              });
-
-              configService.whenAvailable(function(config) {
-                var opts = {
-                  wallet: {
-                    settings: {
-                      alternativeName: newAltCurrency.name,
-                      alternativeIsoCode: newAltCurrency.isoCode,
-                    }
-                  }
-                };
-                configService.set(opts, function(err) {
-                  if (err) $log.warn(err);
-                });
-              });
-              $log.debug('Setting default currency : ' + newAltCurrency);
-            });
-          };
-        });
-      });
-      
+    $ionicPlatform.ready(function() {
       if (screen.width < 768 && platformInfo.isCordova)
         screen.lockOrientation('portrait');
 
@@ -1322,7 +1278,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             $log.debug('No profile... redirecting');
             $state.go('onboarding.tour');
           } else if (err.message && err.message.match('NONAGREEDDISCLAIMER')) {
-            $scope.setRateByLanguage();
             if (lodash.isEmpty(profileService.getWallets())) {
               $log.debug('No wallets and no disclaimer... redirecting');
               $state.go('onboarding.tour');

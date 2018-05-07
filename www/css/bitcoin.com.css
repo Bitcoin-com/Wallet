@@ -28,10 +28,6 @@ body {
     font-family:'ProximaNova' !important;
 }
 
-.capitalize {
-    text-transform: capitalize;
-}
-
 .textlogo {
     color: #FFF;
     font-size: 20px;
