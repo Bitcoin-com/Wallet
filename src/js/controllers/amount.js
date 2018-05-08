@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicScrollDelegate, $ionicHistory, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, bwcError, payproService, profileService, bitcore, amazonService, nodeWebkitService) {
+angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicModal, $ionicScrollDelegate, $ionicHistory, storageService, walletService, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, bwcError, payproService, profileService, bitcore, amazonService, nodeWebkitService) {
 
   var _id;
   var unitToSatoshi;
@@ -29,6 +29,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+
+    initCurrencies();
 
     if (data.stateParams.shapeshiftOrderId && data.stateParams.shapeshiftOrderId.length > 0) {
       $scope.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
@@ -345,6 +347,20 @@ angular.module('copayApp.controllers').controller('amountController', function($
     checkFontSize();
     navigator.vibrate(50);
   };
+  
+
+  $scope.openPopup = function() {
+    $ionicModal.fromTemplateUrl('views/modals/altCurrency.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.altCurrencyModal = modal;
+      $scope.altCurrencyModal.show();
+    });
+  };
+
+  $scope.close = function() {
+    $scope.altCurrencyModal.hide();
+  };
 
   $scope.processAmount = function() {
     var formatedValue = format($scope.amountModel.amount);
@@ -496,4 +512,108 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }
 
   };
+
+
+  // Currency
+
+  var next = 10;
+    var completeAlternativeList = [];
+
+    var popularCurrencyList = [
+      {isoCode: 'USD', order: 0},
+      {isoCode: 'EUR', order: 1},
+      {isoCode: 'JPY', order: 2},
+      {isoCode: 'GBP', order: 3},
+      {isoCode: 'AUD', order: 4},
+      {isoCode: 'CAD', order: 5},
+      {isoCode: 'CHF', order: 6},
+      {isoCode: 'CNY', order: 7},
+      {isoCode: 'KRW', order: 8},
+      {isoCode: 'HKD', order: 9},
+    ]
+
+    function initCurrencies() {
+      var unusedCurrencyList = [{
+        isoCode: 'LTL'
+      }, {
+        isoCode: 'BTC'
+      }, {
+        isoCode: 'BCC'
+      }, {
+        isoCode: 'BCH_BTC'
+      }, {
+        isoCode: 'BCH'
+      }];
+      rateService.whenAvailable(function() {
+
+        $scope.listComplete = false;
+
+        var idx = lodash.indexBy(unusedCurrencyList, 'isoCode');
+        var idx2 = lodash.indexBy($scope.lastUsedAltCurrencyList, 'isoCode');
+        var idx3 = lodash.indexBy(popularCurrencyList, 'isoCode');
+        var alternatives = rateService.listAlternatives(true);
+
+        lodash.each(alternatives, function(c) {
+          if (idx3[c.isoCode]) {
+              idx3[c.isoCode].name = c.name;
+          }
+          if (!idx[c.isoCode] && !idx2[c.isoCode] && !idx3[c.isoCode]) {
+            completeAlternativeList.push(c);
+          }
+        });
+
+        $scope.altCurrencyList = completeAlternativeList.slice(0, 10);
+        $scope.lastUsedPopularList = lodash.unique(lodash.union($scope.lastUsedAltCurrencyList, popularCurrencyList), 'isoCode');
+
+        $timeout(function() {
+          $scope.$apply();
+        });
+      });
+    }
+
+    $scope.loadMore = function() {
+      $timeout(function() {
+        $scope.altCurrencyList = completeAlternativeList.slice(0, next);
+        next += 10;
+        $scope.listComplete = $scope.altCurrencyList.length >= completeAlternativeList.length;
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+      }, 100);
+    };
+
+    $scope.findCurrency = function(search) {
+      if (!search) init();
+      $scope.altCurrencyList = lodash.filter(completeAlternativeList, function(item) {
+        var val = item.name
+        var val2 = item.isoCode;
+        return lodash.includes(val.toLowerCase(), search.toLowerCase()) || lodash.includes(val2.toLowerCase(), search.toLowerCase());
+      });
+      $timeout(function() {
+        $scope.$apply();
+      });
+    };
+
+    $scope.save = function(newAltCurrency) {
+      var opts = {
+        wallet: {
+          settings: {
+            alternativeName: newAltCurrency.name,
+            alternativeIsoCode: newAltCurrency.isoCode,
+          }
+        }
+      };
+
+      configService.set(opts, function(err) {
+        if (err) $log.warn(err);
+        walletService.updateRemotePreferences(profileService.getWallets());
+        var altUnitIndex = lodash.findIndex(availableUnits, {
+          isFiat: true
+        });
+        availableUnits[altUnitIndex].id = newAltCurrency.isoCode;
+        availableUnits[altUnitIndex].name = newAltCurrency.isoCode;
+        availableUnits[altUnitIndex].shortName = newAltCurrency.isoCode;
+        fiatCode = newAltCurrency.isoCode;
+        updateUnitUI();
+        $scope.close();
+      });
+    };
 });
