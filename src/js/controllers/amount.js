@@ -164,8 +164,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
       var disableKeys = angular.element($window).on('keydown', function(e) {
         if (!e.key) return;
         if (e.which === 8) { // you can add others here inside brackets.
-          e.preventDefault();
-          $scope.removeDigit();
+          if (!$scope.altCurrencyModal) {
+            e.preventDefault();
+            $scope.removeDigit();
+          }
         }
 
         if (e.key.match(reNr)) {
@@ -359,7 +361,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.close = function() {
-    $scope.altCurrencyModal.hide();
+    $scope.altCurrencyModal.remove();
+    $scope.altCurrencyModal = false;
   };
 
   $scope.processAmount = function() {
