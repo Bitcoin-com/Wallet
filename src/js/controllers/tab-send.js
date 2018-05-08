@@ -6,7 +6,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   var CONTACTS_SHOW_LIMIT;
   var currentContactsPage;
   $scope.isChromeApp = platformInfo.isChromeApp;
-
+  $scope.sectionDisplay = {
+    transferToWallet: false
+  };
 
   var hasWallets = function() {
     $scope.wallets = profileService.getWallets({
@@ -247,4 +249,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       updateList();
     });
   });
+  
+  $scope.toggle = function(section) {
+    $scope.sectionDisplay[section] = !$scope.sectionDisplay[section];
+    $timeout(function() {
+      $ionicScrollDelegate.resize();
+      $scope.$apply();
+    }, 10);
+  };
 });

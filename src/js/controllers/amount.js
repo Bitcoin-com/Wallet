@@ -307,6 +307,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
     $scope.processAmount();
+    navigator.vibrate(50);
   };
 
   $scope.pushOperator = function(operator) {
@@ -342,6 +343,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = $scope.alternativeAmount = $scope.globalResult = '';
     $scope.allowSend = false;
     checkFontSize();
+    navigator.vibrate(50);
   };
 
   $scope.processAmount = function() {
