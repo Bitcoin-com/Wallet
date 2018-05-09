@@ -64,7 +64,6 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     if(!scannerService.isInitialized()){
       scannerService.gentleInitialize();
     }
-    activate();
   });
 
   function activate(){
