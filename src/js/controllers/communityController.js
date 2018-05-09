@@ -1,8 +1,13 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('communityController', function($scope, communityService, $ionicScrollDelegate, $timeout, platformInfo) {
+angular.module('copayApp.controllers').controller('communityController', function($scope, communityService, $ionicScrollDelegate, $timeout, platformInfo, configService) {
 
   $scope.hide = false;
+
+  configService.whenAvailable(function(config) {
+    $scope.hide = config.homeSectionIsHidden&&config.homeSectionIsHidden['community']?config.homeSectionIsHidden['community']:false;
+  });
+
   $scope.services = communityService.get();
   $scope.isCordova = platformInfo.isCordova;
 
@@ -11,6 +16,9 @@ angular.module('copayApp.controllers').controller('communityController', functio
     $timeout(function() {
       $ionicScrollDelegate.resize();
       $scope.$apply();
+      configService.set({homeSectionIsHidden: {community: $scope.hide}}, function(err) {
+        if (err) $log.debug(err);
+      });
     }, 10);
   };
 

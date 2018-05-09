@@ -257,6 +257,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     if ($scope.alternativeAmount == 0) {
       $scope.alternativeAmount = null;
+    } else {
+        $scope.amountModel.amount = parseFloat($scope.alternativeAmount.replace(/[^0-9-.]/g, ''));
     }
 
     if (fixedUnit) return;
@@ -267,6 +269,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }
 
     if (availableUnits[unitIndex].isFiat) {
+      $scope.amountModel.amount = parseFloat($scope.amountModel.amount).toFixed(2);
       altUnitIndex = altUnitIndex == 0 && availableUnits.length > 2 ? 1 : 0;
     } else {
       altUnitIndex = lodash.findIndex(availableUnits, {
