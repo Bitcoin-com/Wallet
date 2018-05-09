@@ -6,7 +6,9 @@
     <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content scroll="false">
+
     <div ng-if="!customAmount && !nextStep" style="order: 0; position: relative; height: 100%; background: #fff;">
+
       <div class="item send-amount">
         <div ng-if="shapeshiftOrderId">
           Minimum amount: {{minShapeshiftAmount}} <br/>
