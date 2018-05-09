@@ -122,7 +122,9 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     bitcoinWalletColor: '#fab915', // Observatory
     bitcoinCashWalletColor: '#26B03C', // Dollar Green
 
-    homeSectionIsHidden: {}
+    homeSectionIsHidden: {
+      services: false
+    }
   };
 
   var configCache = null;
@@ -200,6 +202,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
               configCache.bwsFor[key] = defaultConfig.bwscash.url;
             }
           }
+        }
+        
+        if (!configCache.homeSectionIsHidden) {
+          configCache.homeSectionIsHidden = defaultConfig.homeSectionIsHidden;
         }
 
       } else {
