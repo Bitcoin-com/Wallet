@@ -9,6 +9,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   var satToBtc;
   var SMALL_FONT_SIZE_LIMIT = 10;
   var LENGTH_EXPRESSION_LIMIT = 19;
+  var LENGTH_COMMA_EXPRESSION_LIMIT = 8;
   var isNW = platformInfo.isNW;
 
   var unitIndex = 0;
@@ -255,9 +256,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
   $scope.changeUnit = function() {
 
     $scope.amountModel.amount = '0';
-    if ($scope.alternativeAmount && $scope.alternativeAmount > 0) {
-      $scope.amountModel.amount = $scope.alternativeAmount;
-    }
 
     if (fixedUnit) return;
 
@@ -301,6 +299,11 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
 
   $scope.pushDigit = function(digit) {
+    if ($scope.amountModel.amount) {
+      var amountSplitByComma = $scope.amountModel.amount.split('.');
+      if (amountSplitByComma.length > 1 && amountSplitByComma[1].length >= LENGTH_COMMA_EXPRESSION_LIMIT) return;
+    }
+
     if ($scope.amountModel.amount && $scope.amountModel.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
     if (($scope.amountModel.amount.indexOf('.') > -1 || $scope.amountModel.amount == '') && digit == '.') return;
     if ($scope.amountModel.amount == '0' && digit == '0') return;
