@@ -29,6 +29,7 @@ angular.module('copayApp.controllers').controller('searchController', function($
         var message = tx.message ? tx.message : '';
         var comment = tx.note ? tx.note.body : '';
         var addressTo = tx.addressTo ? tx.addressTo : '';
+        if (tx.amountUnitStr === 'BCH' && addressTo) addressTo = 'bitcoincash:'+addressTo;
         var txid = tx.txid ? tx.txid : '';
         return ((tx.amountStr + message + addressTo + addrbook + searchableDate + comment + txid).toString()).toLowerCase();
       }
