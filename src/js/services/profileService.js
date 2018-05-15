@@ -1037,39 +1037,6 @@ angular.module('copayApp.services')
       return cb(null, txps, n);
     };
 
-    // Displays Bitcoin Core Wallets if BTC balance is more than 0
-    root.initBitcoinCoreDisplay = function() {
-      storageService.checkIfFlagIsSet('displayBitcoinCoreFlag')
-        .then(function(result) {
-          // Perform checks for flags which are even set to true once more, set the new flag value to 1
-          if (result === false || result === true) {
-            root.checkBtcBalanceAndInitDisplay(1);
-          }
-        });
-    };
-
-    root.checkBtcBalanceAndInitDisplay = function(flagValue) {
-      var walletsBtc = root.getWallets({coin: 'btc'});
-      if (walletsBtc.length > 0) {
-        // Do not trust cachedBalance as it is added asynchronously. Using a new promise-based function.
-        root.getWalletsBalance(walletsBtc)
-          .then(function(totalBalance) {
-            var enableDisplayBitcoinCore = totalBalance > 0 ? true : false;
-
-            var opts = {
-              displayBitcoinCore: {
-                enabled: enableDisplayBitcoinCore
-              }
-            };
-            configService.set(opts, function(err) {
-              if (err) $log.debug(err);
-            });
-
-            storageService.activateDisplayBitcoinCoreFlag(flagValue);
-          });
-      }
-    }
-
     // Calculate wallets total balance (Promise). Attempts to fix asynchronous issue with cachedBalance not being available when it's needed
     root.getWalletsBalance = function(wallets) {
       return new Promise(function(resolve, reject) {
