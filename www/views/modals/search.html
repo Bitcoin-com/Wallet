@@ -18,6 +18,26 @@
     </div>
 
     <div class="list">
+      <div class="wallet-details__list" ng-show="filteredTxHistory.length === 0 && search != ''">
+        <div class="text-gray text-center p10t">
+        {{'No results found'|translate}}
+        </div>
+        <div class="p10t text-center">
+          <button ng-if="searchTermIsAddress" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
+            {{'Show Address on Blockchain'|translate}}
+          </button>
+        </div>
+        <div class="p10t text-center">
+          <button ng-if="searchTermIsTxId" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
+            {{'Show Transaction on Blockchain'|translate}}
+          </button>
+        </div>
+        <div class="p10t text-center">
+          <button ng-if="!searchTermIsAddress && !searchTermIsTxId" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
+            {{'Search on Blockchain'|translate}}
+          </button>
+        </div>
+      </div>
       <div class="wallet-details__list" ng-show="txHistory[0]">
         <div ng-repeat="btx in txHistorySearchResults track by $index" ng-click="openTx(btx)">
           <span ng-include="'views/includes/walletHistory.html'"></span>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService) {
+angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, externalLinkService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -21,6 +21,8 @@ angular.module('copayApp.controllers').controller('searchController', function($
 
     function filter(search) {
       $scope.filteredTxHistory = [];
+      $scope.searchTermIsAddress = false;
+      $scope.searchTermIsTxId = false;
 
       function computeSearchableString(tx) {
         var addrbook = '';
@@ -50,8 +52,15 @@ angular.module('copayApp.controllers').controller('searchController', function($
         return lodash.includes(tx.searcheableString, search.toLowerCase());
       });
 
+      if (search && (search.indexOf('bitcoincash:') >= 0 || search[0] === 'C' || search[0] === 'H' || search[0] === 'p' || search[0] === 'q') && search.replace('bitcoincash:', '').length === 42) {
+        $scope.searchTermIsAddress = true;
+      } else if (search && search.lengh === 64) {
+        $scope.searchTermIsTxId = true;
+      }
+
       if ($scope.filteredTxHistory.length > HISTORY_SHOW_LIMIT) $scope.txHistoryShowMore = true;
       else $scope.txHistoryShowMore = false;
+
       return $scope.filteredTxHistory;
     };
 
@@ -75,6 +84,16 @@ angular.module('copayApp.controllers').controller('searchController', function($
   $scope.showHistory = function() {
     $scope.txHistorySearchResults = $scope.filteredTxHistory ? $scope.filteredTxHistory.slice(0, (currentTxHistoryPage + 1) * HISTORY_SHOW_LIMIT) : [];
     $scope.txHistoryShowMore = $scope.filteredTxHistory.length > $scope.txHistorySearchResults.length;
+  };
+
+  $scope.searchOnBlockchain = function(searchTerm) {
+    var url = 'https://explorer.bitcoin.com/bch/search/' + searchTerm;
+    var optIn = true;
+    var title = null;
+    var message = gettextCatalog.getString('Search on Explorer.Bitcoin.com');
+    var okText = gettextCatalog.getString('Open Explorer');
+    var cancelText = gettextCatalog.getString('Go Back');
+    externalLinkService.open(url, optIn, title, message, okText, cancelText);
   };
 
 });
