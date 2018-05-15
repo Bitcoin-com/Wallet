@@ -85,10 +85,6 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       enabled: true,
     },
 
-    displayBitcoinCore: {
-      enabled: false,
-    },
-
     hideNextSteps: {
       enabled: isWindowsPhoneApp ? true : false,
     },
