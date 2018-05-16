@@ -60,7 +60,7 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
                     '1. No changes since last translation build, or\n' +
                     '2. API limit of once per 30 minutes has not been waited.\n\n' +
                     'Since we can not guarantee that translations have been built properly, this script will end here.\n' +
-                    'Log in to Copay\'s Crowdin Settings and click the "Build Project" button to assure it is built recently, and then run this ' +
+                    'Log in to Bitcoin.com Wallet\'s Crowdin Settings and click the "Build Project" button to assure it is built recently, and then run this ' +
                     'script again with the --nobuild arg to download translations without checking if built.');
         process.exit(1);
       };
