@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService) {
+angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, bitcoinCashJsService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -29,7 +29,16 @@ angular.module('copayApp.controllers').controller('searchController', function($
         var message = tx.message ? tx.message : '';
         var comment = tx.note ? tx.note.body : '';
         var addressTo = tx.addressTo ? tx.addressTo : '';
-        if (tx.amountUnitStr === 'BCH' && addressTo) addressTo = 'bitcoincash:'+addressTo;
+
+        if ($scope.wallet.coin === 'bch' && addressTo) {
+          try {
+            var addr = bitcoinCashJsService.readAddress(addressTo);
+            if (addr !== null) addressTo = addressTo + ' bitcoincash:'+addr.cashaddr;
+          } catch (e) {
+            $log.debug(addressTo+' not a valid address.. continuing..');
+          }
+        }
+
         var txid = tx.txid ? tx.txid : '';
         return ((tx.amountStr + message + addressTo + addrbook + searchableDate + comment + txid).toString()).toLowerCase();
       }
