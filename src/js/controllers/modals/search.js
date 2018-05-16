@@ -52,10 +52,14 @@ angular.module('copayApp.controllers').controller('searchController', function($
         return lodash.includes(tx.searcheableString, search.toLowerCase());
       });
 
-      if (search && (search.indexOf('bitcoincash:') >= 0 || search[0] === 'C' || search[0] === 'H' || search[0] === 'p' || search[0] === 'q') && search.replace('bitcoincash:', '').length === 42) {
-        $scope.searchTermIsAddress = true;
-      } else if (search && search.lengh === 64) {
-        $scope.searchTermIsTxId = true;
+      if (search) {
+        if ((search.indexOf('bitcoincash:') >= 0 || search[0] === 'C' || search[0] === 'H' || search[0] === 'p' || search[0] === 'q') && search.replace('bitcoincash:', '').length === 42) { // CashAddr
+          $scope.searchTermIsAddress = true;
+        } else if ((search[0] === "1" || search[0] === "3" || search.substring(0, 3) === "bc1") && search.length >= 26 && search.length <= 35) { // Legacy Addresses
+          $scope.searchTermIsAddress = true;
+        } else if (search.lengh === 64) {
+          $scope.searchTermIsTxId = true;
+        }
       }
 
       if ($scope.filteredTxHistory.length > HISTORY_SHOW_LIMIT) $scope.txHistoryShowMore = true;
@@ -87,7 +91,7 @@ angular.module('copayApp.controllers').controller('searchController', function($
   };
 
   $scope.searchOnBlockchain = function(searchTerm) {
-    var url = 'https://explorer.bitcoin.com/bch/search/' + searchTerm;
+    var url = 'https://explorer.bitcoin.com/'+$scope.wallet.coin+'/search/' + searchTerm;
     var optIn = true;
     var title = null;
     var message = gettextCatalog.getString('Search on Explorer.Bitcoin.com');

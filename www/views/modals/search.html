@@ -4,7 +4,7 @@
       Close
     </button>
     <div class="title" translate>
-      Search Transactions
+      Search Transactions ({{wallet.coin}})
     </div>
   </ion-header-bar>
 
@@ -23,18 +23,10 @@
         {{'No results found'|translate}}
         </div>
         <div class="p10t text-center">
-          <button ng-if="searchTermIsAddress" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
-            {{'Show Address on Blockchain'|translate}}
-          </button>
-        </div>
-        <div class="p10t text-center">
-          <button ng-if="searchTermIsTxId" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
-            {{'Show Transaction on Blockchain'|translate}}
-          </button>
-        </div>
-        <div class="p10t text-center">
-          <button ng-if="!searchTermIsAddress && !searchTermIsTxId" class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
-            {{'Search on Blockchain'|translate}}
+          <button class="button button-small button-primary" ng-click="searchOnBlockchain(search)" translate>
+            <span ng-if="searchTermIsTxId">{{'Show Transaction on Blockchain'|translate}}</span>
+            <span ng-if="searchTermIsAddress">{{'Show Address on Blockchain'|translate}}</span>
+            <span ng-if="!searchTermIsAddress && !searchTermIsTxId">{{'Search on Blockchain'|translate}}</span>
           </button>
         </div>
       </div>
