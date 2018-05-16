@@ -81,7 +81,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           coin: v.coin,
           network: v.network,
           balanceString: v.cachedBalance,
-          displayWallet: v.coin == 'btc' ? config.displayBitcoinCore.enabled : true,
           getAddress: function(cb) {
             walletService.getAddress(v, false, cb);
           },
