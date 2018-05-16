@@ -10,7 +10,7 @@ msgstr ""
 "X-Crowdin-File: template.pot\n"
 "Last-Translator: emilold <emil@moar.se>\n"
 "Language-Team: Czech\n"
-"Language: cs_CZ\n"
+"Language: cs\n"
 "PO-Revision-Date: 2018-05-08 00:44-0400\n"
 
 #: www/views/modals/paypro.html:34
