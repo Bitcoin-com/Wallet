@@ -29,7 +29,11 @@ angular.module('copayApp.controllers').controller('communityController', functio
   }
 
   $scope.open = function(url) {
-    window.open(url, '_system');
+    if (platformInfo.isNW) {
+      require('nw.gui').Shell.openExternal( url );
+    } else {
+      window.open(url, '_system');
+    }
   }
 
 });
