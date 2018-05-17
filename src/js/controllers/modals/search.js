@@ -38,8 +38,10 @@ angular.module('copayApp.controllers').controller('searchController', function($
            * These two lines should be removed.. because tx.addressTo does not exist.
            * The address is in tx.outputs[..].address, cf. the JSON
            */
-          var addr = bitcoinCashJsService.translateAddresses(addressTo);
-          addressTo = addr.legacy + addr.bitpay + 'bitcoincash:' + addr.cashaddr
+          if (addressTo) {
+            var addr = bitcoinCashJsService.translateAddresses(addressTo);
+            addressTo = addr.legacy + addr.bitpay + 'bitcoincash:' + addr.cashaddr
+          }
 
           /**
            * For each address (normally only one)
