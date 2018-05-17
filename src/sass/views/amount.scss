@@ -252,6 +252,13 @@
           position: relative;
           padding: 10px 30px;
 
+          .text-selectable {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+          }
+
           .primary-amount {
             input, .unit, .primary-amount-display {
               font-size: 1.8em;
