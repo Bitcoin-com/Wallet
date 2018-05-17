@@ -117,36 +117,7 @@ function updateLocalFilesFromDownloadedZipBuffer(buf) {
   zip.extractAllTo(extractionPath, true);
   console.log('Done extracting ZIP file.');
   
-  /* // Docs are not currently in crowdin
-  let untranslatedDocsDeletedCount = 0;
-  var files = fs.readdirSync('./docs');
-  
-  for (var i in files) {
-    if (files[i].slice(0,9) == 'appstore_' && files[i].slice(-4) == '.txt' && files[i] != 'appstore_en.txt') {
-      var english_file = fs.readFileSync(local_file_name2, 'utf8');
-      var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-      english_file = english_file.replace(/\r\n/g, '\n');
-      compare_file = compare_file.replace(/\r\n/g, '\n');
-      if (compare_file == english_file) {
-        fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
-      };
-    };
-    if (files[i].slice(0,11) == 'updateinfo_' && files[i].slice(-4) == '.txt' && files[i] != 'updateinfo_en.txt') {
-      var english_file = fs.readFileSync(local_file_name3, 'utf8');
-      var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-      english_file = english_file.replace(/\r\n/g, '\n');
-      compare_file = compare_file.replace(/\r\n/g, '\n');
-      if (compare_file == english_file) {
-        fs.unlinkSync(filePath);
-      };
-    };
-  };
-  
-  console.log(`Completely untranslated appstore docs cleaned out: ${untranslatedDocsDeletedCount}`);
-  */
-  
   let untranslatedPoFileDeletedCount = 0;
-  //var files = fs.readdirSync('./po');
   var files = fs.readdirSync(extractionPath);
         
   for (var i in files) {
@@ -160,9 +131,8 @@ function updateLocalFilesFromDownloadedZipBuffer(buf) {
         continue;
       }
 
-      //const filePath = path.join(__dirname, 'po/' + files[i])
       const filePath = path.join(fullPath, `template-${name}.po`);
-      console.log(`filePath: ${filePath}`);
+      console.log(`Processing file: ${filePath}`);
       var po_file = fs.readFileSync(filePath, 'utf8');
       var po_array = po_file.split('\n');
       for (var j in po_array) {
@@ -183,6 +153,8 @@ function updateLocalFilesFromDownloadedZipBuffer(buf) {
             var po_end = po_file.slice(lang_pos + 5);
             
             // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
+            // TODO: Fix how this is done, because it won't work properly for
+            // Chinese, Traditional and Chinese, Simplified, they will clash.
             if (po_locale.search('_') > 0) {
               fs.writeFileSync(filePath, po_start + po_locale.slice(0,2) + po_end);
               po_start = '';
