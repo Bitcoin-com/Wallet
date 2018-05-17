@@ -30,13 +30,25 @@ angular.module('copayApp.controllers').controller('searchController', function($
         var comment = tx.note ? tx.note.body : '';
         var addressTo = tx.addressTo ? tx.addressTo : '';
 
-        if ($scope.wallet.coin === 'bch' && addressTo) {
-          try {
-            var addr = bitcoinCashJsService.readAddress(addressTo);
-            if (addr !== null) addressTo = addressTo + ' bitcoincash:'+addr.cashaddr;
-          } catch (e) {
-            $log.debug(addressTo+' not a valid address.. continuing..');
-          }
+        if ($scope.wallet.coin === 'bch') {
+
+          /**
+           * One tx in JSON
+           * {"txid":"97ed105ea5042a328b68da43439b4..","action":"received","amount":730216,"fees":392,"time":1525661853,"confirmations":1459,"feePerKb":1074,"outputs":[{"amount":730216,"address":"19zA4aP1sAavtHF2wJcMpi..","message":null}],"message":null,"creatorName":"","hasUnconfirmedInputs":false,"amountStr":"0.00730216 BCH","alternativeAmountStr":"7.95 EUR","feeStr":"0.00000392 BCH","amountValueStr":"0.00730216","amountUnitStr":"BCH","safeConfirmed":"6+","lowAmount":false}
+           * These two lines should be removed.. because tx.addressTo does not exist.
+           * The address is in tx.outputs[..].address, cf. the JSON
+           */
+          var addr = bitcoinCashJsService.translateAddresses(addressTo);
+          addressTo = addr.legacy + addr.bitpay + 'bitcoincash:' + addr.cashaddr
+
+          /**
+           * For each address (normally only one)
+           * I translate the legacy address and add in the searchable string the 3 kind of addresses
+           */
+          lodash.each(tx.outputs, function(output) {
+            var addr = bitcoinCashJsService.translateAddresses(output.address);
+            addressTo += addr.legacy + addr.bitpay + 'bitcoincash:' + addr.cashaddr
+          });
         }
 
         var txid = tx.txid ? tx.txid : '';
