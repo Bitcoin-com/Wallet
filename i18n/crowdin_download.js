@@ -65,6 +65,8 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
         process.exit(1);
       };
       
+      downloadAllTranslationsAfterLastBuild();
+
       // Download most recent translations for all languages.
       https.get('https://crowdin.com/download/project/' + crowdin_identifier + '.zip', function(res) {
         var data = [], dataLen = 0; 
@@ -78,78 +80,8 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
               data[i].copy(buf, pos);
               pos += data[i].length;
             };
-            var zip = new AdmZip(buf);
-            zip.extractAllTo('./', true);
-            console.log('Done extracting ZIP file.');
-            
-            var files = fs.readdirSync('./docs');
-            
-            for (var i in files) {
-              debugger;
-              if (files[i].slice(0,9) == 'appstore_' && files[i].slice(-4) == '.txt' && files[i] != 'appstore_en.txt') {
-                var english_file = fs.readFileSync(local_file_name2, 'utf8');
-                var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-                english_file = english_file.replace(/\r\n/g, '\n');
-                compare_file = compare_file.replace(/\r\n/g, '\n');
-                if (compare_file == english_file) {
-                  fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
-                };
-              };
-              if (files[i].slice(0,11) == 'updateinfo_' && files[i].slice(-4) == '.txt' && files[i] != 'updateinfo_en.txt') {
-                var english_file = fs.readFileSync(local_file_name3, 'utf8');
-                var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-                english_file = english_file.replace(/\r\n/g, '\n');
-                compare_file = compare_file.replace(/\r\n/g, '\n');
-                if (compare_file == english_file) {
-                  fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
-                };
-              };
-            };
-            
-            console.log('Cleaned out completely untranslated appstore docs.');
-            
-            var files = fs.readdirSync('./po');
-            
-            for (var i in files) {
-              if (files[i] != 'template.pot') {
-                var po_file = fs.readFileSync(path.join(__dirname, 'po/' + files[i]), 'utf8');
-                var po_array = po_file.split('\n');
-                for (var j in po_array) {
-                  if (po_array[j].slice(0,5) == 'msgid') {
-                    var source_text = po_array[j].slice(5);
-                  } else if (po_array[j].slice(0,6) == 'msgstr') {
-                    var translate_text = po_array[j].slice(6);
-                    // if a line is not == English, it means there is translation. Keep this file.
-                    if (source_text != translate_text) {
-                      // erase email addresses of last translator for privacy
-                      po_file = po_file.replace(/ <.+@.+\..+>/, '')
-                      fs.writeFileSync(path.join(__dirname, 'po/' + files[i]), po_file);
-                      
-                      // split the file into 3 parts, before locale, locale, and after locale.
-                      var lang_pos = po_file.search('"Language: ') + 11;
-                      var po_start = po_file.slice(0,lang_pos);
-                      var po_locale = po_file.slice(lang_pos,lang_pos + 5);
-                      var po_end = po_file.slice(lang_pos + 5);
-                      
-                      // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
-                      if (po_locale.search('_') > 0) {
-                        fs.writeFileSync(path.join(__dirname, 'po/' + files[i]), po_start + po_locale.slice(0,2) + po_end);
-                        po_start = '';
-                        po_locale = '';
-                        po_end = '';
-                      };
-                      break;
-                    };
-                  };
-                  if (j == po_array.length - 1) { // All strings are exactly identical to English. Delete po file.
-                    fs.unlinkSync(path.join(__dirname, 'po/' + files[i]));
-                  };
-                };
-              };
-            };
-            
-            console.log('Cleaned out completely untranslated po files.');
-            
+
+            updateLocalFilesFromDownloadedZipBuffer(buf);
           });
       });
     });
@@ -172,77 +104,101 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
           data[i].copy(buf, pos);
           pos += data[i].length;
         };
-        var zip = new AdmZip(buf);
-        zip.extractAllTo('./', true);
-        console.log('Done extracting ZIP file.');
-        
-        var files = fs.readdirSync('./docs');
-        
-        for (var i in files) {
-          if (files[i].slice(0,9) == 'appstore_' && files[i].slice(-4) == '.txt' && files[i] != 'appstore_en.txt') {
-            var english_file = fs.readFileSync(local_file_name2, 'utf8');
-            var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-            english_file = english_file.replace(/\r\n/g, '\n');
-            compare_file = compare_file.replace(/\r\n/g, '\n');
-            if (compare_file == english_file) {
-              fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
-            };
-          };
-          if (files[i].slice(0,11) == 'updateinfo_' && files[i].slice(-4) == '.txt' && files[i] != 'updateinfo_en.txt') {
-            var english_file = fs.readFileSync(local_file_name3, 'utf8');
-            var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
-            english_file = english_file.replace(/\r\n/g, '\n');
-            compare_file = compare_file.replace(/\r\n/g, '\n');
-            if (compare_file == english_file) {
-              fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
-            };
-          };
-        };
-        
-        console.log('Cleaned out completely untranslated appstore docs.');
-        
-        var files = fs.readdirSync('./po');
-        
-        for (var i in files) {
-          if (files[i] != 'template.pot') {
-            var po_file = fs.readFileSync(path.join(__dirname, 'po/' + files[i]), 'utf8');
-            var po_array = po_file.split('\n');
-            for (var j in po_array) {
-              if (po_array[j].slice(0,5) == 'msgid') {
-                var source_text = po_array[j].slice(5);
-              } else if (po_array[j].slice(0,6) == 'msgstr') {
-                var translate_text = po_array[j].slice(6);
-                // if a line is not == English, it means there is translation. Keep this file.
-                if (source_text != translate_text) {
-                  // erase email addresses of last translator for privacy
-                  po_file = po_file.replace(/ <.+@.+\..+>/, '')
-                  fs.writeFileSync(path.join(__dirname, 'po/' + files[i]), po_file);
-                  
-                  // split the file into 3 parts, before locale, locale, and after locale.
-                  var lang_pos = po_file.search('"Language: ') + 11;
-                  var po_start = po_file.slice(0,lang_pos);
-                  var po_locale = po_file.slice(lang_pos,lang_pos + 5);
-                  var po_end = po_file.slice(lang_pos + 5);
-                  
-                  // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
-                  if (po_locale.search('_') > 0) {
-                    fs.writeFileSync(path.join(__dirname, 'po/' + files[i]), po_start + po_locale.slice(0,2) + po_end);
-                    po_start = '';
-                    po_locale = '';
-                    po_end = '';
-                  };
-                  break;
-                };
-              };
-              if (j == po_array.length - 1) { // All strings are exactly identical to English. Delete po file.
-                fs.unlinkSync(path.join(__dirname, 'po/' + files[i]));
-              };
-            };
-          };
-        };
-        
-        console.log('Cleaned out completely untranslated po files.');
-        
+
+        updateLocalFilesFromDownloadedZipBuffer(buf);
       });
   });
 };
+
+function updateLocalFilesFromDownloadedZipBuffer(buf) {
+  
+  var zip = new AdmZip(buf);
+  const extractionPath = path.join(__dirname, 'po')
+  zip.extractAllTo(extractionPath, true);
+  console.log('Done extracting ZIP file.');
+  
+  /* // Docs are not currently in crowdin
+  let untranslatedDocsDeletedCount = 0;
+  var files = fs.readdirSync('./docs');
+  
+  for (var i in files) {
+    if (files[i].slice(0,9) == 'appstore_' && files[i].slice(-4) == '.txt' && files[i] != 'appstore_en.txt') {
+      var english_file = fs.readFileSync(local_file_name2, 'utf8');
+      var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
+      english_file = english_file.replace(/\r\n/g, '\n');
+      compare_file = compare_file.replace(/\r\n/g, '\n');
+      if (compare_file == english_file) {
+        fs.unlinkSync(path.join(__dirname, 'docs/' + files[i]));
+      };
+    };
+    if (files[i].slice(0,11) == 'updateinfo_' && files[i].slice(-4) == '.txt' && files[i] != 'updateinfo_en.txt') {
+      var english_file = fs.readFileSync(local_file_name3, 'utf8');
+      var compare_file = fs.readFileSync(path.join(__dirname, 'docs/' + files[i]), 'utf8')
+      english_file = english_file.replace(/\r\n/g, '\n');
+      compare_file = compare_file.replace(/\r\n/g, '\n');
+      if (compare_file == english_file) {
+        fs.unlinkSync(filePath);
+      };
+    };
+  };
+  
+  console.log(`Completely untranslated appstore docs cleaned out: ${untranslatedDocsDeletedCount}`);
+  */
+  
+  let untranslatedPoFileDeletedCount = 0;
+  //var files = fs.readdirSync('./po');
+  var files = fs.readdirSync(extractionPath);
+        
+  for (var i in files) {
+    const name = files[i];
+    if (name != 'template.pot') {
+      // Assume it is a directory
+      const fullPath = path.join(extractionPath, name);
+      const status = fs.statSync(fullPath);
+      if (!status.isDirectory()) {
+        console.log(`Not a directory. Don't know what to do with "%{name}", skipping.`);
+        continue;
+      }
+
+      //const filePath = path.join(__dirname, 'po/' + files[i])
+      const filePath = path.join(fullPath, `template-${name}.po`);
+      console.log(`filePath: ${filePath}`);
+      var po_file = fs.readFileSync(filePath, 'utf8');
+      var po_array = po_file.split('\n');
+      for (var j in po_array) {
+        if (po_array[j].slice(0,5) == 'msgid') {
+          var source_text = po_array[j].slice(5);
+        } else if (po_array[j].slice(0,6) == 'msgstr') {
+          var translate_text = po_array[j].slice(6);
+          // If a line is not == English, it means there is at least one translation. Keep this entire file.
+          if (source_text != translate_text) {
+            // erase email addresses of last translator for privacy
+            po_file = po_file.replace(/ <.+@.+\..+>/, '')
+            fs.writeFileSync(filePath, po_file);
+            
+            // split the file into 3 parts, before locale, locale, and after locale.
+            var lang_pos = po_file.search('"Language: ') + 11;
+            var po_start = po_file.slice(0,lang_pos);
+            var po_locale = po_file.slice(lang_pos,lang_pos + 5);
+            var po_end = po_file.slice(lang_pos + 5);
+            
+            // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
+            if (po_locale.search('_') > 0) {
+              fs.writeFileSync(filePath, po_start + po_locale.slice(0,2) + po_end);
+              po_start = '';
+              po_locale = '';
+              po_end = '';
+            };
+            break;
+          };
+        };
+        if (j == po_array.length - 1) { // All strings are exactly identical to English. Delete po file.
+          fs.unlinkSync(filePath);
+          untranslatedPoFileDeletedCount++;
+        };
+      };
+    };
+  };
+  
+  console.log(`Completely untranslated po files cleaned out: ${untranslatedPoFileDeletedCount}`);
+}

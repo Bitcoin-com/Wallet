@@ -2,458 +2,456 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: copay\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Project-Id-Version: bitcoincom-wallet\n"
+"Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
 "X-Generator: crowdin.com\n"
-"X-Crowdin-Project: copay\n"
-"X-Crowdin-Language: ja\n"
+"X-Crowdin-Project: bitcoincom-wallet\n"
+"X-Crowdin-Language: ru\n"
 "X-Crowdin-File: template.pot\n"
-"Last-Translator: cmgustavo83\n"
-"Language-Team: Japanese\n"
-"Language: ja\n"
-"PO-Revision-Date: 2017-10-09 10:33-0400\n"
+"Last-Translator: emilold\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"PO-Revision-Date: 2018-05-15 20:18-0400\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
-msgstr "(信頼済み)"
+msgstr "(Доверенный)"
 
 #: www/views/includes/txp.html:23
 #: www/views/includes/walletHistory.html:64
 msgid "(possible double spend)"
-msgstr "(二重払い可能性あり)"
+msgstr "(возможна двойная трата)"
 
 #: www/views/modals/txp-details.html:159
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
-msgstr "* 送金の提案の取下げは①他のウォレット参加者に署名されていなかった場合、提案者に提案を取り下げることができます。②提案の起案から24時間が経っても解決しなかった場合、全員に取り下げることができます。"
+msgstr "* Предложенный платёж может быть удалён если 1) вы создали этот платёж и никто его еще не подписал, или 2) если прошло более 24 часов с момента его создания."
 
 #: www/views/tx-details.html:82
 msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}}のレート"
+msgstr "{{feeRateStr}} транзакции"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
-msgstr "- {{tx.feeRateStr}}のレート"
+msgstr ""
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
-msgstr "5つ星の評価をいただけると、もっとたくさんの人にこのアプリを届けることができます。そして、ユーザーが増えればこのアプリの改善に当てられる人員やリソースも増えます。"
+msgstr "=896t7!"
 
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr "Mercado Livre (ブラジル)<b>のみ</b>で引き換え可能"
+msgstr ""
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
 msgid "A member of the team will review your feedback as soon as possible."
-msgstr "ただちに開発メンバーでいただいた評価を拝読し参考にさせていただきます。"
+msgstr "Участник команды рассмотрит ваш отзыв при первой возможности."
 
 #: src/js/controllers/confirm.js:401
 msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
-msgstr "注意：合計{{amountAboveMaxSizeStr}} を除外しました。取引に許可される最大サイズを超えました"
+msgstr "Всего {{amountAboveMaxSizeStr}} было исключено. Превышен максимальный размер, разрешенный для транзакции."
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "注意：合計 {{amountBelowFeeStr}} を除外しました。これらのビットコインは手数料よりも低い額となるため除外しました。"
+msgstr "Примечание: в общей сложности {{amountBelowFeeStr}} было исключено. Эти средства входят поступившие в UTXOs меньше чем комиссия сети."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
 msgid "About"
-msgstr "このアプリについて"
+msgstr "О проекте"
 
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr "承諾済"
+msgstr "Принято"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
-msgstr "ポケット"
+msgstr "Учётная запись"
 
 #: www/views/join.html:72
 #: www/views/tab-create-personal.html:45
 #: www/views/tab-create-shared.html:74
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
-msgstr "ポケット番号"
+msgstr "Номер учётной записи"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
-msgstr "アカウント一覧"
+msgstr "Аккаунты"
 
 #: www/views/bitpayCard.html:56
 msgid "Activity"
-msgstr "履歴"
+msgstr "Активность"
 
 #: src/js/services/bitpayAccountService.js:83
 msgid "Add Account"
-msgstr "アカウントを追加"
+msgstr "Добавить учётную запись"
 
 #: src/js/services/bitpayAccountService.js:69
 msgid "Add BitPay Account?"
-msgstr "BitPay アカウントを追加しますか？"
+msgstr "L; pkoi[jpiouhouihuiykjb jvgbgyfcthgfvjyuhnij; okml',./; lkmjnhbg v?"
 
 #: www/views/addressbook.add.html:4
 #: www/views/addressbook.html:22
 msgid "Add Contact"
-msgstr "連絡先を追加"
+msgstr "Добавить контакт"
 
 #: www/views/bitpayCard.html:28
 msgid "Add Funds"
-msgstr "資金を追加"
+msgstr "Пополнить счёт"
 
 #: www/views/confirm.html:94
 msgid "Add Memo"
-msgstr "メモを追加"
+msgstr "Добавить памятку"
 
 #: www/views/join.html:87
 #: www/views/tab-create-personal.html:59
 #: www/views/tab-create-shared.html:88
 msgid "Add a password"
-msgstr "復元フレーズ用パスワードを追加"
+msgstr "Защитить паролем"
 
 #: www/views/includes/accountSelector.html:27
 msgid "Add account"
-msgstr "アカウントを追加"
+msgstr "gfhcdtgfdth"
 
 #: www/views/join.html:90
 #: www/views/tab-create-personal.html:62
 #: www/views/tab-create-shared.html:91
 msgid "Add an optional password to secure the recovery phrase"
-msgstr "フレーズを守るために任意のパスワードをかけて下さい"
+msgstr "Добавьте необязательный пароль для защиты ключевого словосочетания"
 
 #: www/views/includes/incomingDataMenu.html:41
 msgid "Add as a contact"
-msgstr "連絡先に追加"
+msgstr "Добавить контакт"
 
 #: src/js/controllers/confirm.js:424
 msgid "Add description"
-msgstr "詳細を追加"
+msgstr "Добавить описание"
 
 #: www/views/topup.html:6
 msgid "Add funds"
-msgstr "資金を追加"
+msgstr "Пополнить счёт"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
-msgstr "このBitPayアカウント ({{email}}) を追加しますか？"
+msgstr ""
 
 #: www/views/add.html:3
 msgid "Add wallet"
-msgstr "ウォレットを追加"
+msgstr "Добавить кошелёк"
 
 #: www/views/addressbook.view.html:26
 #: www/views/customAmount.html:28
 #: www/views/modals/paypro.html:24
 msgid "Address"
-msgstr "アドレス"
+msgstr "Адрес"
 
 #: www/views/addressbook.html:6
 #: www/views/tab-settings.html:13
 msgid "Address Book"
-msgstr "アドレス帳"
+msgstr "Aдресная книга"
 
 #: www/views/preferencesInformation.html:41
 msgid "Address Type"
-msgstr "アドレスの種類"
+msgstr "Тип адреса"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
-msgstr "残高のあるアドレス"
+msgstr "Адреса с балансом"
 
 #: www/views/tab-settings.html:149
 msgid "Advanced"
-msgstr "上級者向け"
+msgstr "Дополнительные возможности"
 
 #: www/views/advancedSettings.html:3
 msgid "Advanced Settings"
-msgstr "詳細の設定"
+msgstr "Расширенные настройки"
 
 #: www/views/bitpayCard.html:62
 msgid "All"
-msgstr "すべて"
+msgstr "Все"
 
 #: www/views/allAddresses.html:3
 msgid "All Addresses"
-msgstr "全アドレス"
+msgstr "Все адреса"
 
 #: www/views/modals/wallet-balance.html:18
 msgid "All of your bitcoin wallet balance may not be available for immediate spending."
-msgstr "ビットコインのウォレットの残高の内、即座に送れないビットコインが含まれている可能性があります。"
+msgstr "В данный момент весь баланс вашего кошелька может быть недоступен для совершения платежей."
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "この共有ウォレットの必要参加者の人数が集まるまではビットコインアドレスを発行することができません。"
+msgstr "Все совладельцы должны быть добавлены в этот общий кошелек, прежде чем можно будет получать переводы."
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
-msgstr "カメラへのアクセスを許可"
+msgstr "Разрешить доступ к камере"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
-msgstr "通知を許可する"
+msgstr "Разрешить уведомления"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
-msgstr "ほぼ完了!確認してみましょう。"
+msgstr "Почти готово! Давайте проверим."
 
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
-msgstr "表示通貨"
+msgstr "Альтернативная валюта"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr "Amazon.com は現在ご利用できません、また後でお試しください"
+msgstr ""
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
 #: www/views/includes/output.html:7
 msgid "Amount"
-msgstr "金額"
+msgstr "Сумма"
 
 #: src/js/services/bwcError.js:110
 msgid "Amount below minimum allowed"
-msgstr "送金可能最少額を下回っています"
+msgstr "Сумма ниже допустимого минимума"
 
 #: src/js/controllers/confirm.js:216
 msgid "Amount too big"
-msgstr "金額が大きすぎます"
+msgstr "Слишком большая сумма"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr "小さすぎて送れない額"
+msgstr ""
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
-msgstr "このアプリのアップデートがあります。セキュリティーを保持するために最新版にアップデートして下さい。"
+msgstr "Доступно обновление. Для вашей же безопасности, пожалуйста, обновитесь до последней версии."
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
-msgstr "復元フレーズを知る者はあなたのビットコインが勝手に送れてしまいます。"
+msgstr "Любой, у кого есть доступ к вашему ключевому словосочетанию, может потратить ваши биткойны."
 
 #: www/views/addresses.html:94
 msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
-msgstr "ウォレットの残高を送るために推測される必要なビットコインネットワーク手数料(優先度：普通)"
+msgstr ""
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
-msgstr "見られていませんか？"
+msgstr "За вами сейчас кто-нибудь смотрит?"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
-msgstr "見られていますか？ 復元フレーズを知る者はあなたのビットコインが勝手に送れてしまいます。"
+msgstr "За вами подглядывают? Любой у кого есть ваша фраза восстановления может получить или потратить ваши биткойны."
 
 #: src/js/controllers/copayers.js:56
 msgid "Are you sure you want to cancel and delete this wallet?"
-msgstr "本当にこのウォレットをキャンセルし、削除しても\n"
-"宜しいですか？"
+msgstr "Вы точно хотите отменить и удалить этот кошелёк?"
 
 #: src/js/controllers/addressbookView.js:37
 msgid "Are you sure you want to delete this contact?"
-msgstr "本当にこの連絡先を削除しますか？"
+msgstr "Вы действительно хотите удалить этот контакт?"
 
 #: src/js/controllers/preferencesDelete.js:25
 msgid "Are you sure you want to delete this wallet?"
-msgstr "本当にこのウォレットを削除しても\n"
-"宜しいですか？"
+msgstr "Вы точно хотите удалить этот кошелёк?"
 
 #: src/js/controllers/modals/txpDetails.js:154
 msgid "Are you sure you want to reject this transaction?"
-msgstr "この取引を却下してもよろしいですか?"
+msgstr "Вы точно хотите отклонить этот платёж?"
 
 #: src/js/controllers/modals/txpDetails.js:171
 msgid "Are you sure you want to remove this transaction?"
-msgstr "この取引を破棄してもよろしいですか?"
+msgstr "Вы точно хотите удалить эту транзакцию?"
 
 #: src/js/controllers/onboarding/backupRequest.js:23
 msgid "Are you sure you want to skip it?"
-msgstr "本当にバックアップの手順を飛ばしても良いですか？"
+msgstr "Вы точно хотите пропустить резервное копирование?"
 
 #: www/views/modals/bitpay-card-confirmation.html:4
 msgid "Are you sure you would like to log out of your BitPay Card account?"
-msgstr "BitPayカードアカウントからログアウトしてもよろしいですか?"
+msgstr ""
 
 #: src/js/controllers/preferencesBitpayCard.js:7
 #: src/js/controllers/preferencesBitpayServices.js:20
 msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
-msgstr "この端末から BitPay カード ({{lastFourDigits}}) を本当に削除してもよろしいですか？"
+msgstr "Вы уверены, что вы хотели бы удалить карточку BitPay Card ({{lastFourDigits}}) из этого устройства?"
 
 #: www/views/includes/walletInfo.html:10
 msgid "Auditable"
-msgstr "監査用"
+msgstr "Проверяемый"
 
 #: www/views/modals/wallet-balance.html:42
 msgid "Available"
-msgstr "即座送金可能"
+msgstr "Доступно"
 
 #: www/views/includes/available-balance.html:3
 msgid "Available Balance"
-msgstr "送金可能残高"
+msgstr "Доступный баланс"
 
 #: www/views/modals/chooseFeeLevel.html:24
 #: www/views/preferencesFee.html:15
 msgid "Average confirmation time"
-msgstr "平均承認時間"
+msgstr "Среднее время подтверждения"
 
 #: www/views/join.html:143
 #: www/views/tab-create-personal.html:113
 #: www/views/tab-create-shared.html:142
 #: www/views/tab-import-phrase.html:51
 msgid "BIP32 path for address derivation"
-msgstr "階級アドレス派生のパス"
+msgstr "Укажите BIP32 для генерации адресов"
 
 #: www/views/cashScan.html:25
 msgid "BTC wallets"
-msgstr "ビットコインウォレット"
+msgstr "Кошельки BTC"
 
 #: www/views/preferences.html:34
 msgid "Backup"
-msgstr "バックアップ"
+msgstr "Резервное копирование"
 
 #: www/views/includes/backupNeededPopup.html:7
 msgid "Backup Needed"
-msgstr "要バックアップ"
+msgstr "Требуется резервное копирование"
 
 #: src/js/controllers/lockSetup.js:87
 msgid "Backup all livenet wallets before using this function"
-msgstr "この機能を使う前に必ず全てのウォレットの復元フレーズのバックアップを取って下さい！"
+msgstr "Сделайте резервную копию всех livenet кошельков перед использованием этой функции"
 
 #: src/js/controllers/cashScan.js:64
 #: www/views/includes/walletListSettings.html:12
 #: www/views/preferences.html:36
 msgid "Backup needed"
-msgstr "要バックアップ"
+msgstr "Требуется резервное копирование"
 
 #: www/views/includes/backupNeededPopup.html:9
 msgid "Backup now"
-msgstr "今すぐバックアップ"
+msgstr "Создать резервную копию"
 
 #: www/views/onboarding/backupRequest.html:11
 #: www/views/tab-export-file.html:89
 msgid "Backup wallet"
-msgstr "ウォレットをバックアップ"
+msgstr "Резервное копирование"
 
 #: src/js/controllers/lockSetup.js:84
 msgid "Backup your wallet before using this function"
-msgstr "この機能を使う前に必ず復元フレーズのバックアップを取って下さい！"
+msgstr "Сделайте резервную копию вашего кошелька перед использованием этой функции"
 
 #: src/js/services/profileService.js:446
 msgid "Bad wallet invitation"
-msgstr "不正なウォレット招待コード"
+msgstr "Недействительное приглашение"
 
 #: www/views/preferencesInformation.html:102
 msgid "Balance By Address"
-msgstr "アドレスごとの残高"
+msgstr "Баланс на адресах"
 
 #: www/views/includes/confirmBackupPopup.html:7
 msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
-msgstr "書き留めた復元フレーズは金庫など、安全な場所にて保管して下さい。このアプリが削除されたら、復元フレーズが必須になってきます。"
+msgstr "Сохраните ваше ключевое словосочетание в безопасном месте. Если {{appName}} будет удален, ваши деньги нельзя будет восстановить без ключевого словосочетания."
 
 #: www/views/preferencesBitpayServices.html:9
 msgid "BitPay Visa&reg; Cards"
-msgstr "BitPayのVISA&reg; カード"
+msgstr "BitPay Visa® картыllllll"
 
 #: www/views/addressbook.add.html:38
 #: www/views/includes/incomingDataMenu.html:29
 msgid "Bitcoin Address"
-msgstr "ビットコインアドレス"
+msgstr "Биткойн-адрес"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr "ビットコインキャッシュ (BCH) 残高"
+msgstr ""
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr "ビットコインキャッシュ対応"
+msgstr ""
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
 msgid "Bitcoin Cash Wallets"
-msgstr "ビットコインキャッシュウォレット"
+msgstr ""
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
 #: www/views/tab-settings.html:90
 msgid "Bitcoin Network Fee Policy"
-msgstr "ビットコインネットワークの手数料設定"
+msgstr "Политика комиссии сети Биткойн"
 
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr "ビットコインウォレット"
+msgstr ""
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr "ビットコインキャッシュペイメント"
+msgstr ""
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
-msgstr "ビットコインは通貨の一つ"
+msgstr "Биткойн - это валюта."
 
 #: www/views/onboarding/disclaimer.html:15
 msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
-msgstr "ビットコインは違う &ndash; 銀行やウェブのサービスに安全に預けることはできません。"
+msgstr ""
 
 #: www/views/onboarding/tour.html:18
 msgid "Bitcoin is secure,<br>digital money."
-msgstr "ビットコインは世界で<br>最も安全な仮想通貨。"
+msgstr "Биткойн это безопасные,<br>цифровые деньги."
 
 #: www/views/preferencesFee.html:11
 msgid "Bitcoin transactions include a fee collected by miners on the network."
-msgstr "ビットコインの取引はネットワークの安全を守る「採掘者」と呼ばれる者達に送る手数料が含まれます。"
+msgstr ""
 
 #: www/views/buyAmazon.html:108
 msgid "Bought {{amountUnitStr}}"
-msgstr "{{amountUnitStr}} 購入済み"
+msgstr ""
 
 #: www/views/modals/txp-details.html:36
 msgid "Broadcast Payment"
-msgstr "取引送信"
+msgstr "Отправить платёж"
 
 #: src/js/controllers/modals/txpDetails.js:64
 #: src/js/controllers/tx-details.js:81
 msgid "Broadcasted"
-msgstr "送信済み"
+msgstr "Отправка"
 
 #: src/js/services/onGoingProcess.js:11
 msgid "Broadcasting transaction"
-msgstr "取引送信中"
+msgstr "Отправка транзакции"
 
 #: www/views/unsupported.html:6
 msgid "Browser unsupported"
-msgstr "ブラウザ未対応"
+msgstr "Браузер не поддерживается"
 
 #: www/views/buyAmazon.html:5
 #: www/views/buyMercadoLibre.html:6
 msgid "Buy"
-msgstr "購入"
+msgstr "Купить"
 
 #: www/views/includes/buyAndSellCard.html:3
 msgid "Buy &amp; Sell Bitcoin"
-msgstr "ビットコインの購入&amp;売却"
+msgstr "Купить &amp; продать биткойн"
 
 #: www/views/tab-send.html:35
 msgid "Buy Bitcoin"
-msgstr "ビットコインを購入"
+msgstr "Купить биткойн"
 
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
-msgstr "ギフトカードの購入"
+msgstr "Купить подарочную карту"
 
 #: src/js/controllers/buyAmazon.js:334
 msgid "Buy from"
-msgstr "今すぐ購入"
+msgstr "Купить"
 
 #: src/js/services/onGoingProcess.js:40
 msgid "Buying Bitcoin..."
-msgstr "ビットコインを購入中..."
+msgstr "Покупка биткойн..."
 
 #: src/js/services/onGoingProcess.js:12
 msgid "Calculating fee"
-msgstr "手数料計算中..."
+msgstr "Вычисление комиссии"
 
 #: src/js/controllers/buyAmazon.js:313
 #: src/js/controllers/buyMercadoLibre.js:307
@@ -472,65 +470,65 @@ msgstr "手数料計算中..."
 #: www/views/modals/bitpay-card-confirmation.html:8
 #: www/views/modals/confirmation.html:13
 msgid "Cancel"
-msgstr "キャンセル"
+msgstr "Отмена"
 
 #: www/views/copayers.html:36
 msgid "Cancel invitation"
-msgstr "招待状のキャンセル"
+msgstr "Отменить приглашение?"
 
 #: src/js/controllers/onboarding/tour.js:52
 msgid "Cannot Create Wallet"
-msgstr "ウォレットを作成できません。"
+msgstr "Не удаётся создать кошелёк"
 
 #: src/js/services/profileService.js:442
 msgid "Cannot join the same wallet more that once"
-msgstr "同じ端末で同じウォレットに複数回参加することができません。"
+msgstr "Нельзя присоединиться к одному и тому же кошельку более одного раза"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
-msgstr "カード"
+msgstr "Карты"
 
 #: www/views/modals/paypro.html:30
 msgid "Certified by"
-msgstr "証明元："
+msgstr "Сертифицирован"
 
 #: www/views/preferencesExternal.html:19
 msgid "Check installation and retry."
-msgstr "正しくインストールされたか確認してから再度お試し下さい。"
+msgstr "Проверьте установку и повторите попытку."
 
 #: www/views/tab-import-file.html:4
 msgid "Choose a backup file from your computer"
-msgstr "パソコンからバックアップファイルを選択して下さい。"
+msgstr "Выберите файл резервной копии"
 
 #: www/views/modals/wallets.html:9
 msgid "Choose your destination wallet"
-msgstr "宛先ウォレットの選択"
+msgstr "Выберите целевой кошелёк"
 
 #: www/views/modals/wallets.html:10
 msgid "Choose your source wallet"
-msgstr "送金元のウォレットを選択して下さい"
+msgstr "Выберите исходный кошелёк"
 
 #: www/views/backup.html:61
 msgid "Clear"
-msgstr "やり直し"
+msgstr "Очистить"
 
 #: www/views/preferencesHistory.html:24
 msgid "Clear cache"
-msgstr "キャッシュを消去"
+msgstr "Очистить кэш"
 
 #: src/js/controllers/confirm.js:373
 #: src/js/controllers/modals/txpDetails.js:49
 msgid "Click to accept"
-msgstr "クリックして承諾"
+msgstr "Подтвердить"
 
 #: src/js/controllers/confirm.js:367
 msgid "Click to pay"
-msgstr "クリックして支払う"
+msgstr "Оплатить"
 
 #: src/js/controllers/confirm.js:379
 #: src/js/controllers/modals/txpDetails.js:42
 msgid "Click to send"
-msgstr "クリックして送る"
+msgstr "Отправить"
 
 #: www/views/customAmount.html:4
 #: www/views/modals/mercadolibre-card-details.html:3
@@ -540,28 +538,28 @@ msgstr "クリックして送る"
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
 msgid "Close"
-msgstr "閉じる"
+msgstr "Закрыть"
 
 #: www/views/includes/cash.html:2
 #: www/views/preferencesInformation.html:17
 msgid "Coin"
-msgstr "別通貨切り替え"
+msgstr "Монета"
 
 #: www/views/preferences.html:22
 msgid "Color"
-msgstr "色"
+msgstr "Цвет"
 
 #: www/views/preferencesAbout.html:21
 msgid "Commit hash"
-msgstr "コミットのハッシュ値"
+msgstr "Хэш версии"
 
 #: www/views/preferences.html:49
 msgid "Complete the backup process to use this option"
-msgstr "この機能をご利用いただくにはバックアップを行う必要があります"
+msgstr "Завершите процесс резервного копирования для использования этой опции"
 
 #: www/views/bitpayCard.html:93
 msgid "Completed"
-msgstr "完了"
+msgstr "Завершено"
 
 #: src/js/controllers/buyAmazon.js:311
 #: src/js/controllers/buyMercadoLibre.js:305
@@ -573,95 +571,95 @@ msgstr "完了"
 #: www/views/confirm.html:4
 #: www/views/onboarding/collectEmail.html:32
 msgid "Confirm"
-msgstr "確認"
+msgstr "Подтвердить"
 
 #: www/views/modals/terms.html:26
 #: www/views/onboarding/disclaimer.html:44
 msgid "Confirm &amp; Finish"
-msgstr "承諾して終了する"
+msgstr "Подтвердить &amp; Завершить"
 
 #: www/views/buyAmazon.html:90
 msgid "Confirm purchase"
-msgstr "購入の確認"
+msgstr "Подтвердить покупку"
 
 #: www/views/modals/pin.html:10
 msgid "Confirm your PIN"
-msgstr "確認のためPINを再入力してください"
+msgstr "Подтвердите Ваш PIN-код"
 
 #: src/js/services/walletService.js:1033
 msgid "Confirm your new spending password"
-msgstr "新しい送金時パスワードを確認してください"
+msgstr "Подтвердите ваш новый платёжный пароль"
 
 #: www/views/tx-details.html:98
 msgid "Confirmations"
-msgstr "承認回数"
+msgstr "Подтверждения"
 
 #: www/views/bitpayCard.html:68
 #: www/views/modals/wallet-balance.html:61
 msgid "Confirming"
-msgstr "承認中"
+msgstr "Ожидает подтверждения"
 
 #: www/views/bitpayCardIntro.html:37
 msgid "Connect my BitPay Card"
-msgstr "BitPay カードを接続"
+msgstr "Подключить мою BitPay Card"
 
 #: src/js/services/onGoingProcess.js:13
 msgid "Connecting to Coinbase..."
-msgstr "Coinbase に接続中…"
+msgstr "Подключение к Coinbase..."
 
 #: src/js/services/onGoingProcess.js:14
 msgid "Connecting to Glidera..."
-msgstr "Glidera に接続中…"
+msgstr "Подключение к Glidera..."
 
 #: src/js/services/bwcError.js:53
 msgid "Connection reset by peer"
-msgstr "接続がピアによってリセットされました"
+msgstr "Соединение сброшено другой стороной"
 
 #: www/views/tab-send.html:45
 msgid "Contacts"
-msgstr "連絡先"
+msgstr "Контакты"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
-msgstr "続ける"
+msgstr "Продолжить"
 
 #: www/views/preferencesLanguage.html:26
 msgid "Contribute Translations"
-msgstr "翻訳に協力"
+msgstr "Помочь в переводе"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
+msgstr ""
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
-msgstr "ウォレット参加者が既に存在しています。"
+msgstr "Совладелец кошелька уже присоединился"
 
 #: src/js/services/bwcError.js:77
 msgid "Copayer already voted on this spend proposal"
-msgstr "ウォレット参加者が既に送金の提案の意思表明をしています。"
+msgstr "Совладелец уже проголосовал по этому платежу"
 
 #: src/js/services/bwcError.js:107
 msgid "Copayer data mismatch"
-msgstr "ウォレット参加者のデータ不整合"
+msgstr "Несоответствие данных совладельца кошелька"
 
 #: www/views/includes/walletActivity.html:2
 msgid "Copayer joined"
-msgstr "ウォレット参加者が加わりました"
+msgstr "Совладелец присоединился"
 
 #: www/views/preferencesInformation.html:94
 msgid "Copayer {{$index}}"
-msgstr "ウォレット参加者 {{$index}}"
+msgstr "Совладелец {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
-msgstr "クリップボードにコピーしました"
+msgstr "Скопировано в буфер обмена"
 
 #: www/views/tab-export-file.html:94
 msgid "Copy this text as it is to a safe place (notepad or email)"
-msgstr "このテキストを安全な場所に貼り付けて保管して下さい (メモ帳やメールの下書きなど)"
+msgstr "Скопируйте этот текст как есть (в блокнот или письмо)"
 
 #: www/views/includes/incomingDataMenu.html:51
 #: www/views/includes/incomingDataMenu.html:70
@@ -669,368 +667,372 @@ msgstr "このテキストを安全な場所に貼り付けて保管して下さ
 #: www/views/includes/logOptions.html:9
 #: www/views/tab-export-file.html:78
 msgid "Copy to clipboard"
-msgstr "クリップボードへコピー"
+msgstr "Скопировать в буфер обмена"
 
 #: src/js/controllers/buyMercadoLibre.js:102
 msgid "Could not access Gift Card Service"
-msgstr "ギフトカードサービスにアクセスできません"
+msgstr ""
 
 #: www/views/tab-import-phrase.html:2
 msgid "Could not access the wallet at the server. Please check:"
-msgstr "サーバーにてウォレットの確認ができませんでした。こちらをご確認下さい:"
+msgstr "Не удалось получить доступ к кошельку на сервере. Проверьте, пожалуйста:"
 
 #: src/js/controllers/buyAmazon.js:102
 msgid "Could not access to Amazon.com"
-msgstr "Amazon.comにアクセスできませんでした。"
+msgstr "Невозможно получить доступ к Amazon.com"
 
 #: src/js/services/profileService.js:511
 msgid "Could not access wallet"
-msgstr "ウォレットにアクセスできませんでした。"
+msgstr "Не удалось получить доступ к кошельку"
 
 #: src/js/controllers/confirm.js:210
 msgid "Could not add message to imported wallet without shared encrypting key"
-msgstr "共有キー無しでインポートされたウォレットへのメッセージの追加ができません"
+msgstr "Не удалось добавить сообщение в импортированный кошелёк без общего ключа шифрования"
 
 #: src/js/controllers/modals/txpDetails.js:199
 msgid "Could not broadcast payment"
-msgstr "送金を配信できませんでした。"
+msgstr "Не удалось отправить платёж"
 
 #: src/js/services/bwcError.js:41
 msgid "Could not build transaction"
-msgstr "取引を作成できませんでした。"
+msgstr "Не удалось создать транзакцию"
 
 #: src/js/services/walletService.js:854
 msgid "Could not create address"
-msgstr "アドレスを生成できませんでした。"
+msgstr "Не удалось создать адрес"
 
 #: src/js/controllers/topup.js:92
 msgid "Could not create the invoice"
-msgstr "請求を作成できませんでした"
+msgstr "Невозможно создать инвойс"
 
 #: src/js/controllers/buyAmazon.js:164
 #: src/js/controllers/buyMercadoLibre.js:164
 #: src/js/controllers/topup.js:142
 msgid "Could not create transaction"
-msgstr "取引を作成できませんでした。"
+msgstr "Невозможно создать транзакцию"
 
 #: src/js/services/profileService.js:350
 msgid "Could not create using the specified extended private key"
-msgstr "指定された拡張秘密鍵で作成できませんでした。"
+msgstr "Не удалось создать используя указанный расширенный закрытый ключ"
 
 #: src/js/services/profileService.js:362
 msgid "Could not create using the specified extended public key"
-msgstr "指定された拡張公開鍵で作成できませんでした。"
+msgstr "Не удалось создать используя указанный расширенный открытый ключ"
 
 #: src/js/services/profileService.js:338
 msgid "Could not create: Invalid wallet recovery phrase"
-msgstr "作成できません：ウォレットの復元フレーズが不正です。"
+msgstr "Не удалось создать: недействительное ключевое словосочетание"
 
 #: src/js/controllers/import.js:114
 msgid "Could not decrypt file, check your password"
-msgstr "複合化できませんでした。パスワードが正しいかご確認下さい。"
+msgstr "Не удалось расшифровать файл, проверьте пароль"
 
 #: src/js/controllers/modals/txpDetails.js:181
 msgid "Could not delete payment proposal"
-msgstr "送金の提案を削除できませんでした"
+msgstr "Не удалось удалить предложенный платёж"
 
 #: src/js/controllers/cashScan.js:117
 msgid "Could not duplicate"
-msgstr "複製できませんでした。"
+msgstr ""
 
 #: src/js/services/feeService.js:73
 msgid "Could not get dynamic fee"
-msgstr "手数料の金額を取得できませんでした。"
+msgstr "Не удалось получить динамическую комиссию"
 
 #: src/js/services/feeService.js:43
 msgid "Could not get dynamic fee for level: {{feeLevel}}"
-msgstr "次の手数料レートを取得できませんでした: {{feeLevel}}"
+msgstr "Не удалось получить динамическую комиссию для уровня: {{feeLevel}}"
 
 #: src/js/controllers/modals/feeLevels.js:112
 msgid "Could not get fee levels"
-msgstr "手数料のレベルを取得できませんでした。"
+msgstr ""
 
 #: src/js/controllers/buyAmazon.js:122
 #: src/js/controllers/buyMercadoLibre.js:122
 #: src/js/controllers/topup.js:100
 msgid "Could not get the invoice"
-msgstr "請求の取得ができませんでした"
+msgstr ""
 
 #: src/js/controllers/bitpayCard.js:66
 msgid "Could not get transactions"
-msgstr "取引を取得できませんでした。"
+msgstr "Не удалось получить транзакции"
 
 #: src/js/services/profileService.js:615
 #: src/js/services/profileService.js:650
 #: src/js/services/profileService.js:674
 msgid "Could not import"
-msgstr "インポートできませんでした。"
+msgstr "Не удалось импортировать"
 
 #: src/js/services/profileService.js:584
 msgid "Could not import. Check input file and spending password"
-msgstr "インポートできませんでした。入力ファイルとパスワードが正しいかご確認下さい。"
+msgstr "Не удалось импортировать. Проверьте импортируемый файл и платёжный пароль"
 
 #: src/js/services/profileService.js:457
 msgid "Could not join wallet"
-msgstr "ウォレットに参加できませんでした。"
+msgstr "Не удалось присоединиться к кошельку"
 
 #: src/js/controllers/modals/txpDetails.js:161
 msgid "Could not reject payment"
-msgstr "送金を却下できませんでした。"
+msgstr "Не удалось отклонить платёж"
 
 #: src/js/controllers/preferencesBitpayServices.js:33
 msgid "Could not remove account"
-msgstr "アカウントを削除できませんでした。"
+msgstr "Не удалось удалить аккаунт"
 
 #: src/js/controllers/preferencesBitpayCard.js:20
 #: src/js/controllers/preferencesBitpayServices.js:50
 msgid "Could not remove card"
-msgstr "カードを削除できませんでした。"
+msgstr "Не удалось удалить карту"
 
 #: src/js/services/walletService.js:776
 msgid "Could not save preferences on the server"
-msgstr "設定をサーバーと同期できませんでした。"
+msgstr "Не удалось сохранить параметры на сервере"
 
 #: src/js/controllers/modals/txpDetails.js:147
 msgid "Could not send payment"
-msgstr "送金できませんでした。"
+msgstr "Не удалось отправить платёж"
 
 #: src/js/controllers/buyAmazon.js:325
 #: src/js/controllers/buyMercadoLibre.js:318
 #: src/js/controllers/topup.js:299
 msgid "Could not send transaction"
-msgstr "取引が送れませんでした"
+msgstr "Невозможно отправить транзакцию"
 
 #: www/views/walletDetails.html:210
 msgid "Could not update transaction history"
-msgstr "取引履歴を更新できませんでした。"
+msgstr "Не удалось обновить журнал транзакций"
 
 #: src/js/controllers/addresses.js:29
 #: src/js/controllers/addresses.js:37
 #: src/js/controllers/copayers.js:30
 #: src/js/controllers/walletDetails.js:78
 msgid "Could not update wallet"
-msgstr "ウォレットが更新できませんでした。"
+msgstr "Не удалось обновить кошелёк"
 
 #: www/views/tab-create-personal.html:3
 msgid "Create Personal Wallet"
-msgstr "個人用ウォレットを作成"
+msgstr "Создать личный кошелёк"
 
 #: www/views/tab-create-shared.html:3
 msgid "Create Shared Wallet"
-msgstr "共有ウォレットを作成"
+msgstr "Создать общий кошелёк"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
 #: www/views/tab-send.html:36
 msgid "Create bitcoin wallet"
-msgstr "ビットコインウォレット作成"
+msgstr "Создать биткойн-кошелёк"
 
 #: www/views/tab-create-personal.html:131
 msgid "Create new wallet"
-msgstr "新規ウォレット作成"
+msgstr "Создать новый кошелёк"
 
 #: www/views/add.html:22
 msgid "Create shared wallet"
-msgstr "共有ウォレットを作成"
+msgstr "Создать общий кошелёк"
 
 #: www/views/tab-create-shared.html:160
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
-msgstr "{{formData.requiredCopayers}}-of-{{formData.totalCopayers}} ウォレットを作成"
+msgstr "Создать кошелёк {{formData.requiredCopayers}}-из-{{formData.totalCopayers}}"
 
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
-msgstr "作成者"
+msgstr "Создан"
 
 #: src/js/services/onGoingProcess.js:18
 msgid "Creating Wallet..."
-msgstr "ウォレット作成中…"
+msgstr "Создание кошелька..."
 
 #: src/js/services/onGoingProcess.js:17
 msgid "Creating transaction"
-msgstr "取引作成中…"
+msgstr "Создание транзакции"
 
 #: www/views/modals/chooseFeeLevel.html:34
 #: www/views/preferencesFee.html:20
 msgid "Current fee rate for this policy"
-msgstr "この設定の現在の手数料レート"
+msgstr "Текущая комиссия для этой политики"
 
 #: src/js/services/feeService.js:15
 msgid "Custom"
-msgstr "カスタム設定"
+msgstr ""
 
 #: www/views/customAmount.html:9
 msgid "Custom Amount"
-msgstr "金額を入力"
+msgstr "Сумма"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Custom Fee"
-msgstr "カスタム手数料"
+msgstr "Пользовательская комиссия"
 
 #: www/views/modals/mercadolibre-card-details.html:56
 #: www/views/modals/txp-details.html:87
 #: www/views/tx-details.html:66
 msgid "Date"
-msgstr "日付"
+msgstr "Дата"
 
 #: www/views/preferencesDeleteWallet.html:21
 msgid "Delete"
-msgstr "削除する"
+msgstr "Удалить"
 
 #: www/views/modals/txp-details.html:164
 msgid "Delete Payment Proposal"
-msgstr "送金の提案を削除"
+msgstr "Удалить предложенный платёж"
 
 #: www/views/preferencesAdvanced.html:33
 #: www/views/preferencesDeleteWallet.html:3
 msgid "Delete Wallet"
-msgstr "ウォレットを削除"
+msgstr "Удалить кошелёк"
 
 #: www/views/copayers.html:59
 msgid "Delete it and create a new one"
-msgstr "削除して新規作成"
+msgstr "Удалите и создайте заново"
 
 #: src/js/services/onGoingProcess.js:19
 msgid "Deleting Wallet..."
-msgstr "ウォレット削除中…"
+msgstr "Удаление кошелька..."
 
 #: src/js/services/onGoingProcess.js:28
 msgid "Deleting payment proposal"
-msgstr "送金の提案を削除"
+msgstr "Удаление предложенного платежа"
 
 #: www/views/join.html:141
 #: www/views/tab-create-personal.html:111
 #: www/views/tab-create-shared.html:140
 #: www/views/tab-import-phrase.html:49
 msgid "Derivation Path"
-msgstr "派生パス"
+msgstr "Путь деривации"
 
 #: www/views/preferencesInformation.html:47
 msgid "Derivation Strategy"
-msgstr "派生パス"
+msgstr "Стратегия деривации"
 
 #: www/views/buyAmazon.html:39
 #: www/views/buyMercadoLibre.html:38
 #: www/views/modals/mercadolibre-card-details.html:6
 #: www/views/topup.html:45
 msgid "Details"
-msgstr "詳細"
+msgstr "Подробности"
 
 #: src/js/controllers/lockSetup.js:9
 #: src/js/controllers/tab-settings.js:65
 #: www/views/tab-settings.html:50
 msgid "Disabled"
-msgstr "無効"
+msgstr "Отключено"
 
 #: www/views/includes/backupNeededPopup.html:10
 #: www/views/onboarding/backupRequest.html:12
 msgid "Do it later"
-msgstr "後で行う"
+msgstr "Отложить"
 
 #: www/views/tab-export-file.html:29
 msgid "Do not include private key"
-msgstr "秘密鍵を含めない"
+msgstr "Не включать закрытый ключ"
 
 #: www/views/preferencesLanguage.html:21
 msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
-msgstr "ご自分の言語はCrowdinで見当たりませんか？Crowdinの管理者に連絡とってみてください。是非とも対応したく思っております。"
+msgstr "Не видите свой язык на Crowdin? Свяжитесь с владельцем по Crowdin! Мы с удовольствием поддержим ваш язык."
 
 #: www/views/tab-export-file.html:59
 #: www/views/tab-home.html:22
 msgid "Download"
-msgstr "ダウンロード"
+msgstr "Скачать"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
-msgstr "ビットコインキャッシュウォレットを複製"
+msgstr ""
 
 #: src/js/services/onGoingProcess.js:49
 msgid "Duplicating wallet..."
-msgstr "ウォレットを複製しています..."
+msgstr ""
 
 #: www/views/addresses.html:19
 msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
-msgstr "12個の単語から無限大のアドレスを生成することができ、それをビットコインウォレットと呼びます。送金を受け取る度に新しいアドレスを生成して受取画面でお見せします。"
+msgstr "Любой биткойн-кошелёк может создать миллиарды адресов из вашей ключевой фразы. Новый адрес автоматически генерируется каждый раз, когда вы получаете платеж."
 
 #: src/js/services/feeService.js:13
 msgid "Economy"
-msgstr "節約"
+msgstr "Экономичная"
 
 #: www/views/onboarding/collectEmail.html:27
 msgid "Edit"
-msgstr "編集"
+msgstr "Редактировать"
 
 #: www/views/addressbook.add.html:29
 #: www/views/addressbook.view.html:22
 msgid "Email"
-msgstr "電子メール"
+msgstr ""
 
 #: www/views/preferencesNotifications.html:42
 msgid "Email Address"
-msgstr "メールアドレス"
+msgstr "Email"
 
 #: src/js/services/bwcError.js:122
 msgid "Empty addresses limit reached. New addresses cannot be generated."
-msgstr "未使用アドレスを生成しすぎたため、これ以上アドレスを生成することができません。"
+msgstr "Достигнут предел пустых адресов. Новые адреса больше не могут быть сгенерированы."
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr "アプリ内でのビットコインキャッシュのウォレット作成及び操作を有効化する。"
+msgstr ""
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
-msgstr "端末の設定でカメラの使用許可をしないとスキャンができません。"
+msgstr "Чтобы начать, разрешите доступ к камере в настройках вашего устройства."
 
 #: www/views/preferencesNotifications.html:29
 msgid "Enable email notifications"
-msgstr "メール通知を有効化"
+msgstr "Включить email-уведомления"
 
 #: www/views/preferencesNotifications.html:12
 msgid "Enable push notifications"
-msgstr "プッシュ通知を有効化"
+msgstr "Включить push-уведомления"
+
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr ""
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
-msgstr "始めるためにカメラを有効にして下さい。"
+msgstr "Чтобы начать, включите камеру."
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr "有効"
+msgstr ""
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
 msgid "Enter Spending Password"
-msgstr "送金時のパスワード入力して下さい。"
+msgstr "Введите платёжный пароль"
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
-msgstr "BitPay アカウントの2段階認証コードを入力して下さい"
+msgstr "Введите второй фактор вашей учётной записи BitPay"
 
 #: www/views/amount.html:4
 msgid "Enter amount"
-msgstr "金額を入力"
+msgstr "Введите сумму"
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
-msgstr "カスタム手数料を入力"
+msgstr "Ввести пользовательское значение комиссии"
 
 #: src/js/services/walletService.js:1029
 msgid "Enter new spending password"
-msgstr "新しい送金時パスワードを入力してください"
+msgstr "Введите новый платёжный пароль"
 
 #: www/views/join.html:79
 #: www/views/tab-create-personal.html:51
 #: www/views/tab-create-shared.html:80
 msgid "Enter the recovery phrase (BIP39)"
-msgstr "復元フレーズの単語をご入力下さい。"
+msgstr "Введите ключевое словосочетание (BIP39)"
 
 #: www/views/onboarding/collectEmail.html:13
 msgid "Enter your email"
-msgstr "メールアドレスを入力してください"
+msgstr "Введите Ваш email"
 
 #: www/views/backup.html:69
 msgid "Enter your password"
-msgstr "パスワードを入力して下さい。"
+msgstr "Введите пароль"
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/activity.js:45
@@ -1109,54 +1111,54 @@ msgstr "パスワードを入力して下さい。"
 #: www/views/mercadoLibreCards.html:19
 #: www/views/modals/mercadolibre-card-details.html:45
 msgid "Error"
-msgstr "エラー"
+msgstr "Ошибка"
 
 #: src/js/controllers/confirm.js:502
 msgid "Error at confirm"
-msgstr "確認のエラー"
+msgstr "Ошибка при подтверждении"
 
 #: src/js/controllers/buyAmazon.js:179
 msgid "Error creating gift card"
-msgstr "ギフトカード作成時にエラー"
+msgstr "Ошибка создания Подарочной карты"
 
 #: src/js/controllers/buyAmazon.js:94
 #: src/js/controllers/buyMercadoLibre.js:94
 msgid "Error creating the invoice"
-msgstr "請求の作成中にエラー"
+msgstr "Ошибка создания инвойса"
 
 #: src/js/services/profileService.js:412
 msgid "Error creating wallet"
-msgstr "ウォレット作成時にエラー"
+msgstr "Ошибка создания кошелька"
 
 #: src/js/controllers/confirm.js:296
 msgid "Error getting SendMax information"
-msgstr "全額送金データ取得時にエラー"
+msgstr ""
 
 #: src/js/controllers/buyAmazon.js:136
 #: src/js/controllers/buyMercadoLibre.js:136
 #: src/js/controllers/topup.js:114
 msgid "Error in Payment Protocol"
-msgstr "支払い検証のエラー"
+msgstr ""
 
 #: src/js/controllers/bitpayCardIntro.js:14
 msgid "Error pairing BitPay Account"
-msgstr "Bitpayアカウントを接続中にエラー"
+msgstr ""
 
 #: src/js/controllers/paperWallet.js:41
 msgid "Error scanning funds:"
-msgstr "残高確認に失敗しました"
+msgstr "Ошибка сканирования кошелька:"
 
 #: src/js/controllers/paperWallet.js:90
 msgid "Error sweeping wallet:"
-msgstr "ペーパーウォレット出金時にエラー"
+msgstr "Ошибка считывания кошелька:"
 
 #: src/js/controllers/bitpayCardIntro.js:20
 msgid "Error updating Debit Cards"
-msgstr "デビットカードの更新エラー"
+msgstr "Ошибка обновления Дебетовых Карт"
 
 #: src/js/services/bwcError.js:143
 msgid "Exceeded daily limit of $500 per user"
-msgstr "ユーザーの1日当たりの制限 500 米ドルを超えました"
+msgstr "Превышен дневной лимит в 500$ на пользователя"
 
 #: src/js/controllers/confirm.js:461
 #: www/views/confirm.html:27
@@ -1164,38 +1166,38 @@ msgstr "ユーザーの1日当たりの制限 500 米ドルを超えました"
 #: www/views/modals/mercadolibre-card-details.html:34
 #: www/views/modals/txp-details.html:119
 msgid "Expired"
-msgstr "期限切れ"
+msgstr "Истекла"
 
 #: www/views/modals/paypro.html:54
 #: www/views/modals/txp-details.html:125
 msgid "Expires"
-msgstr "有効期限："
+msgstr "истёк"
 
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
-msgstr "ウォレットをエクスポート"
+msgstr "Экспорт кошелька"
 
 #: www/views/preferencesHistory.html:11
 #: www/views/preferencesHistory.html:14
 msgid "Export to file"
-msgstr "ファイルへのエクスポート"
+msgstr "Экспорт в файл"
 
 #: www/views/export.html:3
 msgid "Export wallet"
-msgstr "ウォレットをエクスポート"
+msgstr "Экспорт кошелька"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
 msgid "Exporting via QR not supported for this wallet"
-msgstr "このウォレットはQRによるエクスポートに対応していません"
+msgstr "Экспорт QR-кодом не поддерживается для этого кошелька"
 
 #: www/views/preferencesInformation.html:89
 msgid "Extended Public Keys"
-msgstr "拡張公開鍵"
+msgstr "Расширенные открытые ключи"
 
 #: src/js/services/onGoingProcess.js:20
 msgid "Extracting Wallet information..."
-msgstr "ウォレット情報を抽出中…"
+msgstr "Выполняется извлечение информации из кошелька..."
 
 #: src/js/controllers/export.js:115
 #: src/js/controllers/export.js:126
@@ -1203,65 +1205,65 @@ msgstr "ウォレット情報を抽出中…"
 #: src/js/controllers/export.js:171
 #: www/views/tab-export-file.html:4
 msgid "Failed to export"
-msgstr "エクスポートに失敗しました。"
+msgstr "Не удалось экспортировать"
 
 #: www/views/tab-create-personal.html:14
 #: www/views/tab-create-shared.html:14
 msgid "Family vacation funds"
-msgstr "家族旅行貯金"
+msgstr "Отпускной бюджет"
 
 #: www/views/tx-details.html:79
 msgid "Fee"
-msgstr "手数料"
+msgstr "Комиссия"
 
 #: www/views/modals/chooseFeeLevel.html:75
 msgid "Fee level"
-msgstr "手数料レベル"
+msgstr ""
 
 #: src/js/controllers/modals/feeLevels.js:100
 msgid "Fee level is not defined"
-msgstr "手数料レベルが定義されていません"
+msgstr ""
 
 #: www/views/confirm.html:79
 #: www/views/modals/txp-details.html:99
 msgid "Fee:"
-msgstr "手数料:"
+msgstr "Комиссия:"
 
 #: src/js/controllers/feedback/send.js:23
 msgid "Feedback could not be submitted. Please try again later."
-msgstr "フォームを送信する事ができませんでした。時間をおいて再試行ください。"
+msgstr "Отзыв не может быть отправлен. Пожалуйста, попробуйте позже."
 
 #: src/js/services/onGoingProcess.js:42
 msgid "Fetching BitPay Account..."
-msgstr "BitPay アカウントを取得..."
+msgstr "Подключение учетной записи BitPay..."
 
 #: src/js/services/onGoingProcess.js:21
 msgid "Fetching payment information"
-msgstr "支払い情報要求しています…"
+msgstr ""
 
 #: www/views/export.html:14
 #: www/views/import.html:16
 msgid "File/Text"
-msgstr "ファイル/テキスト"
+msgstr "Файл/текст"
 
 #: www/views/preferencesLogs.html:17
 msgid "Filter setting"
-msgstr "フィルタ設定"
+msgstr "Настройка фильтров"
 
 #: src/js/services/fingerprintService.js:43
 #: src/js/services/fingerprintService.js:48
 msgid "Finger Scan Failed"
-msgstr "指紋認証に失敗しました"
+msgstr "Не удалось сканировать отпечаток пальца"
 
 #: src/js/controllers/feedback/send.js:34
 #: www/views/feedback/complete.html:7
 msgid "Finish"
-msgstr "完了"
+msgstr "Готово"
 
 #: www/views/tab-create-personal.html:123
 #: www/views/tab-create-shared.html:152
 msgid "For audit purposes"
-msgstr "監査用機能"
+msgstr "Для целей ревизии"
 
 #: src/js/controllers/topup.js:308
 #: www/views/buyAmazon.html:29
@@ -1271,80 +1273,80 @@ msgstr "監査用機能"
 #: www/views/topup.html:34
 #: www/views/tx-details.html:52
 msgid "From"
-msgstr "送信者"
+msgstr "От"
 
 #: src/js/controllers/bitpayCardIntro.js:71
 msgid "From BitPay account"
-msgstr " BitPayアカウントから"
+msgstr "С аккаунта BitPay"
 
 #: www/views/tab-import-phrase.html:57
 msgid "From Hardware Wallet"
-msgstr "ハードウェアウォレットから"
+msgstr ""
 
 #: www/views/tab-export-qrCode.html:5
 msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
-msgstr "移行先の端末では、ウォレットを追加から、ウォレットをインポートの画面でQRをスキャンして下さい。"
+msgstr "На целевом устройстве выберите \"Добавить кошелёк\" &gt; \"Импорт кошелька\" и отсканируйте этот QR-код"
 
 #: src/js/services/bwcError.js:74
 msgid "Funds are locked by pending spend proposals"
-msgstr "協議中の送金の提案により、資金がロックされています。"
+msgstr "Средства заблокированы предложенным платежом"
 
 #: www/views/paperWallet.html:16
 msgid "Funds found:"
-msgstr "残高がありました:"
+msgstr "Обнаружены средства:"
 
 #: www/views/topup.html:49
 msgid "Funds to be added"
-msgstr "追加する資金"
+msgstr ""
 
 #: www/views/paperWallet.html:51
 msgid "Funds transferred"
-msgstr "入金されました"
+msgstr "Средства переведены"
 
 #: www/views/topup.html:103
 msgid "Funds were added to debit card"
-msgstr "デビットカードへ入金されました"
+msgstr ""
 
 #: www/views/paperWallet.html:22
 msgid "Funds will be transferred to"
-msgstr "送金先"
+msgstr "Средства будут переведены на"
 
 #: www/views/tab-receive.html:51
 msgid "Generate new address"
-msgstr "新規アドレスを生成"
+msgstr "Сгенерировать новый адрес"
 
 #: src/js/services/onGoingProcess.js:22
 msgid "Generating .csv file..."
-msgstr "CSVファイル作成中…"
+msgstr "Создание .сsv-файла..."
 
 #: src/js/services/onGoingProcess.js:37
 msgid "Generating new address..."
-msgstr "新規アドレスを生成中..."
+msgstr "Генерация нового адреса..."
 
 #: www/views/bitpayCardIntro.html:23
 msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
-msgstr "Visa<sup>&reg;</sup>カード対応ATMから現地通貨をいつでも引き出せます。ATMの手数料はATMによって異なります。"
+msgstr "Получайте местную валюту везде, где есть банкоматы с поддержкой карт Visa<sup>&reg;</sup>. Банком может взиматься комиссия."
 
 #: www/views/onboarding/collectEmail.html:15
 msgid "Get news and updates from BitPay"
-msgstr "BitPay からのニュースや更新情報を受け取ります。"
+msgstr "Получать письма с новостями от BitPay"
 
 #: www/views/onboarding/welcome.html:8
 msgctxt "button"
 msgid "Get started"
-msgstr "始めよう"
+msgstr "Начать"
 
 #: www/views/bitpayCard.html:49
 msgid "Get started"
-msgstr "始めよう"
+msgstr "Начать"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr "初めての連絡先を追加しましょう。"
+msgstr "Начните, добавив первый контакт."
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
-msgstr "手数料レベルを取得しています…"
+msgstr "Получение информации о комиссиях..."
 
 #: www/views/buyAmazon.html:43
 #: www/views/buyMercadoLibre.html:42
@@ -1354,15 +1356,15 @@ msgstr ""
 #: www/views/modals/mercadolibre-card-details.html:30
 #: www/views/modals/mercadolibre-card-details.html:35
 msgid "Gift Card is not available to use anymore"
-msgstr "ギフトカードがもう使用できません。"
+msgstr ""
 
 #: src/js/controllers/buyAmazon.js:204
 msgid "Gift card expired"
-msgstr "期限切れのギフトカード"
+msgstr ""
 
 #: www/views/buyAmazon.html:111
 msgid "Gift card generated and ready to use."
-msgstr "ギフトカードが利用可能になりました。"
+msgstr ""
 
 #: src/js/controllers/bitpayCard.js:114
 #: src/js/controllers/bitpayCard.js:124
@@ -1377,59 +1379,59 @@ msgstr "ギフトカードが利用可能になりました。"
 #: src/js/controllers/tx-details.js:193
 #: src/js/controllers/tx-details.js:56
 msgid "Go Back"
-msgstr "戻る"
+msgstr "Вернуться"
 
 #: src/js/controllers/confirm.js:131
 #: src/js/controllers/onboarding/backupRequest.js:20
 #: src/js/controllers/onboarding/backupRequest.js:26
 #: src/js/services/bitpayAccountService.js:84
 msgid "Go back"
-msgstr "戻る"
+msgstr "Вернуться"
 
 #: www/views/backupWarning.html:15
 #: www/views/includes/confirmBackupPopup.html:8
 #: www/views/onboarding/tour.html:23
 msgid "Got it"
-msgstr "分かりました"
+msgstr "Понял"
 
 #: www/views/preferencesInformation.html:53
 #: www/views/preferencesInformation.html:59
 msgid "Hardware Wallet"
-msgstr "ハードウェアウォレット"
+msgstr "Аппаратный кошелёк"
 
 #: www/views/preferencesExternal.html:18
 msgid "Hardware not connected."
-msgstr "ハードウェアは接続されていません。"
+msgstr "Аппаратное обеспечение не подключено."
 
 #: www/views/import.html:20
 msgid "Hardware wallet"
-msgstr "ハードウェアウォレット"
+msgstr "Аппаратный кошелёк"
 
 #: src/js/controllers/create.js:180
 #: src/js/controllers/join.js:145
 msgid "Hardware wallets are not yet supported with Bitcoin Cash"
-msgstr "ビットコインキャッシュはまだハードウェアウォレットに対応しておりません。"
+msgstr ""
 
 #: www/views/tab-settings.html:20
 msgid "Help & Support"
-msgstr "ヘルプ＆サポート"
+msgstr "Помощь и поддержка"
 
 #: src/js/controllers/bitpayCard.js:112
 #: src/js/controllers/tab-settings.js:51
 msgid "Help and support information is available at the website."
-msgstr "サポートに関する情報はウェブサイトに掲載しております。"
+msgstr "Информация о помощи и поддержке доступна на сайте."
 
 #: www/views/addresses.html:25
 msgid "Hide"
-msgstr "非表示"
+msgstr "Спрятать"
 
 #: www/views/preferences.html:27
 msgid "Hide Balance"
-msgstr "残高を非表示"
+msgstr "Скрыть баланс"
 
 #: www/views/advancedSettings.html:30
 msgid "Hide Next Steps Card"
-msgstr "次のステップカードを非表示"
+msgstr "Пропустить следующие шаги"
 
 #: www/views/join.html:49
 #: www/views/tab-create-personal.html:28
@@ -1439,555 +1441,555 @@ msgstr "次のステップカードを非表示"
 #: www/views/tab-import-hardware.html:31
 #: www/views/tab-import-phrase.html:36
 msgid "Hide advanced options"
-msgstr "詳細設定を非表示"
+msgstr "Скрыть дополнительные параметры"
 
 #: www/views/tabs.html:3
 msgid "Home"
-msgstr "ホーム"
+msgstr "Обзор"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 #: src/js/controllers/feedback/send.js:69
 msgid "How could we improve your experience?"
-msgstr "このアプリを改善するためにご意見下さい。"
+msgstr "Как мы можем улучшить ваши навыки?"
 
 #: www/views/feedback/rateCard.html:3
 msgid "How do you like {{appName}}?"
-msgstr "このアプリを使用してみて、どのようにお感じですか?"
+msgstr "Как Вам нравится {{appName}}?"
 
 #: src/js/controllers/feedback/rateCard.js:29
 msgid "I don't like it"
-msgstr "好きではない"
+msgstr "Приложение не нравится"
 
 #: www/views/onboarding/disclaimer.html:43
 msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
-msgstr "<a ng-click=\"openTerms()\" translate>利用規約</a>をよく読み、理解し、同意します。"
+msgstr "Я прочитал, понял, и соглашаюсь с <a ng-click=\"openTerms()\" translate=\"\">Условиями использования</a>."
 
 #: www/views/modals/terms.html:22
 msgid "I have read, understood, and agree with the Terms of use."
-msgstr "利用規約をよく読み、理解し、同意します。"
+msgstr "Я прочитал, понял, и соглашаюсь с Условиями использования."
 
 #: www/views/join.html:137
 #: www/views/tab-create-personal.html:107
 #: www/views/tab-create-shared.html:136
 msgid "I have written it down"
-msgstr "紙に書き留めました"
+msgstr "Я записал"
 
 #: src/js/controllers/feedback/rateCard.js:35
 msgid "I like the app"
-msgstr "このアプリが好き"
+msgstr "Приложение нравится"
 
 #: src/js/controllers/feedback/rateCard.js:26
 msgid "I think this app is terrible."
-msgstr "このアプリは最悪です!"
+msgstr "Ужасное приложение."
 
 #: src/js/controllers/onboarding/backupRequest.js:19
 #: www/views/includes/screenshotWarningModal.html:9
 msgid "I understand"
-msgstr "承知しました"
+msgstr "Я понимаю"
 
 #: www/views/onboarding/disclaimer.html:21
 msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
-msgstr "このアプリが別の端末に移動されたり、削除されたりした場合に、含まれたビットコインが復元フレーズからのみ復元ができることを理解しています。"
+msgstr "Я осознаю, что если {{appName}} будет перемещён на другое устройство, или удален, мои биткойны будут восстановимы только с помощью ключевого словосочетания."
 
 #: www/views/onboarding/disclaimer.html:18
 msgid "I understand that my funds are held securely on this device, not by a company."
-msgstr "自分のビットコインがこの端末に入っていて、外部のサーバー等に保管は一切されていないことを理解しています。"
+msgstr "Я понимаю, что мои средства безопасно хранятся на устройстве, а не компанией."
 
 #: www/views/backup.html:36
 msgid "I've written it down"
-msgstr "紙に書き留めました"
+msgstr "Я записал"
 
 #: www/views/preferences.html:45
 msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
-msgstr "有効にした場合は、このウォレットに関連する全ての秘密情報(秘密鍵と復元フレーズ)と履歴情報(送金やエクスポート)は守られます。"
+msgstr "Если включено, вся конфиденциальная информация (секретный ключ и фраза для восстановления) и действия (расходы и экспорт) связанные с этим кошельком будут защищены."
 
 #: www/views/advancedSettings.html:23
 msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
-msgstr "有効にした場合、「最近の取引」カードがホームのメニューに表示されます。アプリに含まれる全ウォレットの取引が一覧できるカードです。"
+msgstr "Если этот параметр включен, на вкладке Обзор будет отображаться список транзакций из всех кошельков."
 
 #: www/views/advancedSettings.html:14
 msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "有効にした場合、ウォレットは未承認ビットコインも送金時の候補に含めます。これを有効にした場合、承認に時間がかかることがあります。"
+msgstr "Если этот параметр включен, {{appName}} будет пытаться тратить неподтверждённые средства, что может привезти к задержкам подтверждения транзакций."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
-msgstr "この端末の機種変更をしたり、アプリを削除したりした場合、端末のバックアップを取っていてもビットコインは復元されません。BitPayは復元フレーズを知らないため、お金を失ったことになります。なので、絶対に復元フレーズを書き留めて安全な場所に保管して下さい。"
+msgstr "Если это устройство будет заменено, или если {{appName}} будет удален, ни вы, ни BitPay не смогут восстановить доступ к вашим деньгам без резервной копии."
 
 #: www/views/feedback/complete.html:23
 msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
-msgstr "他にご意見などありましたら、設定画面の「フィードバックの送信」をタップして下さい。"
+msgstr "Если вы хотите что-то ещё нам сообщить, пожалуйста, нажмите \"Отправить отзыв\" в разделе Параметры."
 
 #: www/views/includes/screenshotWarningModal.html:8
 msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
-msgstr "画面写真を撮ってしまうと、その時点で他のアプリに見られるようになりますので、そのアプリの運営者が安易にビットコインを全て盗めます。安全にバックアップを取るには、紙とボールペンで書き留めましょう。"
+msgstr "Если вы сохраните скриншот, ваша резервная копия может быть просмотрена другими приложениями. Безопасный способ резервного копирования - ручка и бумага."
 
 #: www/views/tab-import-hardware.html:42
 #: www/views/tab-import-phrase.html:80
 msgid "Import"
-msgstr "インポート"
+msgstr "Импорт"
 
 #: www/views/import.html:3
 msgid "Import Wallet"
-msgstr "ウォレットをインポート"
+msgstr "Импорт кошелька"
 
 #: www/views/tab-import-file.html:41
 msgid "Import backup"
-msgstr "バックアップをインポート"
+msgstr "Импорт резервной копии"
 
 #: www/views/add.html:38
 msgid "Import wallet"
-msgstr "ウォレットをインポート"
+msgstr "Импортировать кошелёк"
 
 #: src/js/services/onGoingProcess.js:24
 msgid "Importing Wallet..."
-msgstr "ウォレットインポート中…"
+msgstr "Импортирование кошелька..."
 
 #: www/views/backup.html:72
 msgid "In order to verify your wallet backup, please type your password."
-msgstr "ウォレットのバックアップを確認するためには、復元フレーズ用のパスワードをご入力下さい。"
+msgstr "Для проверки резервной копии требуется ввести пароль."
 
 #: www/views/mercadoLibreCards.html:24
 #: www/views/modals/mercadolibre-card-details.html:29
 msgid "Inactive"
-msgstr "非アクティブ"
+msgstr ""
 
 #: www/views/includes/walletItem.html:9
 #: www/views/includes/walletList.html:6
 #: www/views/includes/walletListSettings.html:9
 #: www/views/includes/walletSelector.html:16
 msgid "Incomplete"
-msgstr "未完成"
+msgstr "Не все совладельцы присоединились"
 
 #: www/views/tab-receive.html:22
 msgid "Incomplete wallet"
-msgstr "未完成のウォレット"
+msgstr "Не все совладельцы присоединились"
 
 #: www/views/modals/pin.html:12
 msgid "Incorrect PIN, try again."
-msgstr "PINが間違っています。もう一度やり直して下さい。"
+msgstr "Неверный PIN-код, попробуйте снова."
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/import.js:85
 msgid "Incorrect code format"
-msgstr "コードの形式が異なります"
+msgstr "Некорректный формат QR-кода"
 
 #: src/js/services/bwcError.js:113
 msgid "Incorrect network address"
-msgstr "サーバーのアドレスが不正です"
+msgstr ""
 
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr "残高不足"
+msgstr ""
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
 #: src/js/services/bwcError.js:71
 msgid "Insufficient funds for fee"
-msgstr "手数料付けるには残高が足りません"
+msgstr "Недостаточно средств на комиссию"
 
 #: www/views/tab-settings.html:123
 msgid "Integrations"
-msgstr "連携"
+msgstr ""
 
 #: www/views/includes/walletHistory.html:49
 msgid "Invalid"
-msgstr "無効"
+msgstr "Недействительно"
 
 #: src/js/controllers/buyAmazon.js:137
 #: src/js/controllers/buyMercadoLibre.js:137
 #: src/js/controllers/topup.js:115
 msgid "Invalid URL"
-msgstr "無効なURL"
+msgstr "Неверный URL"
 
 #: src/js/controllers/create.js:186
 #: src/js/controllers/import.js:345
 #: src/js/controllers/join.js:151
 msgid "Invalid account number"
-msgstr "無効なポケット番号です。"
+msgstr "Недопустимый номер учётной записи"
 
 #: src/js/services/bwcError.js:119
 msgid "Invalid address"
-msgstr "不正アドレス"
+msgstr "Неверный адрес"
 
 #: src/js/controllers/tabsController.js:7
 msgid "Invalid data"
-msgstr "無効のデータ"
+msgstr "Недопустимые данные"
 
 #: src/js/controllers/create.js:161
 #: src/js/controllers/import.js:266
 #: src/js/controllers/join.js:125
 msgid "Invalid derivation path"
-msgstr "無効な派生パス"
+msgstr "Недействительный путь деривации"
 
 #: src/js/controllers/copayers.js:90
 msgid "Invitation to share a {{appName}} Wallet"
-msgstr "{{appName}} 共有ウォレットへの招待"
+msgstr "Приглашение присоединиться к кошельку {{appName}}"
 
 #: www/views/mercadoLibreCards.html:20
 #: www/views/modals/mercadolibre-card-details.html:48
 msgid "Invoice expired"
-msgstr "請求有効期限切れ"
+msgstr ""
 
 #: src/js/controllers/feedback/send.js:79
 msgid "Is there anything we could do better?"
-msgstr "もっと頑張って欲しいところはありますか？"
+msgstr "Есть ли что-то, что мы могли бы сделать лучше?"
 
 #: www/views/backup.html:54
 msgid "Is this correct?"
-msgstr "正しいですか？"
+msgstr "Правильно?"
 
 #: www/views/onboarding/collectEmail.html:22
 msgid "Is this email address correct?"
-msgstr "このメールアドレスで宜しいですか？"
+msgstr "Это правильный email?"
 
 #: www/views/addresses.html:25
 msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
-msgstr "アドレスの再利用は避けましょう。これはプライバシーを守ることももちろんのこと、将来的にあり得るかもしれない量子コンピューターからの、ある攻撃からビットコインを守ることもできます。"
+msgstr "Не используйте адреса повторно - это защитит вашу конфиденциальность и сохранит ваши биткойны в безопасности от возможных атак на квантовых компьютерах."
 
 #: src/js/controllers/backup.js:76
 msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
-msgstr "正確に復元フレーズを書き留めることが大変重要です。このアプリやこの端末に問題が発生したりデータが破損したりすると、ビットコインの残高を元に戻すためには復元フレーズが必須になってきます。バックアップを再確認して、もう一度お試し下さい。"
+msgstr "Крайне важно правильно записать ваше ключевое словосочетание. Оно понадобится для восстановления доступа к деньгам, если что-то случится с вашим кошельком. Пожалуйста, перепроверьте записанное и попробуйте ещё раз."
 
 #: www/views/join.html:151
 msgid "Join"
-msgstr "参加"
+msgstr "Присоединиться"
 
 #: src/js/controllers/copayers.js:85
 msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
-msgstr "{{appName}}の共有ウォレット作りました： {{secret}} この招待コードを入力して、ウォレットに参加して下さい。アプリのダウンロードは {{appUrl}} にてどうぞ！"
+msgstr "Присоединяйся к моему кошельку {{appName}}. Код приглашения: {{secret}} Ты можешь загрузить {{appName}} для своего телефона или настольного компьютера на сайте {{appUrl}}"
 
 #: www/views/add.html:30
 #: www/views/join.html:5
 msgid "Join shared wallet"
-msgstr "共有ウォレットに参加"
+msgstr "Присоединиться к общему кошельку"
 
 #: src/js/services/onGoingProcess.js:25
 msgid "Joining Wallet..."
-msgstr "ウォレット参加中…"
+msgstr "Присоединение к кошельку..."
 
 #: www/views/onboarding/tour.html:22
 msgid "Just scan the code to pay."
-msgstr "コードを読み取って送金できます"
+msgstr "Для совершения оплаты достаточно отсканировать QR-код."
 
 #: src/js/services/bwcError.js:116
 msgid "Key already associated with an existing wallet"
-msgstr "この鍵は既存のウォレットにて登録されています"
+msgstr "Ключ уже связан с существующим кошельком"
 
 #: www/views/preferencesLanguage.html:4
 #: www/views/tab-settings.html:68
 msgid "Language"
-msgstr "言語設定"
+msgstr "Язык"
 
 #: www/views/bitpayCard.html:61
 msgid "Last Month"
-msgstr "先月"
+msgstr "Прошедший месяц"
 
 #: src/js/controllers/confirm.js:132
 #: www/views/preferences.html:48
 #: www/views/preferencesCash.html:18
 #: www/views/tx-details.html:94
 msgid "Learn more"
-msgstr "詳細情報"
+msgstr ""
 
 #: www/views/backup.html:43
 msgid "Let's verify your backup phrase."
-msgstr "復元フレーズを確認しましょう。"
+msgstr "Давайте проверим ваше ключевое словосочетание."
 
 #: www/views/addresses.html:45
 #: www/views/allAddresses.html:14
 msgid "Loading addresses..."
-msgstr "アドレスを読み込んでいます..."
+msgstr "Загрузка адресов..."
 
 #: src/js/services/onGoingProcess.js:35
 msgid "Loading transaction info..."
-msgstr "取引情報の読み込み中..."
+msgstr "Загрузка транзакции..."
 
 #: www/views/tab-settings.html:100
 msgid "Lock App"
-msgstr "アプリをロックする"
+msgstr "Заблокировать приложение"
 
 #: src/js/controllers/lockSetup.js:23
 msgid "Lock by Fingerprint"
-msgstr "指紋認証でロック"
+msgstr "Заблокировать отпечатком пальца"
 
 #: src/js/controllers/lockSetup.js:14
 msgid "Lock by PIN"
-msgstr "PINでロック"
+msgstr "Заблокировать PIN-ом"
 
 #: www/views/modals/wallet-balance.html:80
 msgid "Locked"
-msgstr "ロック済み"
+msgstr "Заблокировано"
 
 #: src/js/services/bwcError.js:86
 msgid "Locktime in effect. Please wait to create a new spend proposal"
-msgstr "Locktime待ち中です。新しい送金の提案が作成できるまであとしばらくお待ち下さい。"
+msgstr "Действует блокировка. Пожалуйста, подождите, чтобы предложить новый платёж"
 
 #: src/js/services/bwcError.js:89
 msgid "Locktime in effect. Please wait to remove this spend proposal"
-msgstr "Locktime待ち中です。この送金の提案が削除できるまであとしばらくお待ち下さい。"
+msgstr "Действует блокировка. Пожалуйста, подождите, чтобы удалить предложенный платёж"
 
 #: www/views/includes/logOptions.html:3
 msgid "Log options"
-msgstr "ログの設定"
+msgstr ""
 
 #: www/views/modals/bitpay-card-confirmation.html:14
 msgid "Log out"
-msgstr "ログアウト"
+msgstr "Bыйти"
 
 #: www/views/addresses.html:87
 msgid "Low amount inputs"
-msgstr "少額の入力"
+msgstr ""
 
 #: www/views/includes/walletHistory.html:27
 msgid "Low fees"
-msgstr "低手数料"
+msgstr "Маленькая комиссия"
 
 #: www/views/onboarding/tour.html:38
 msgid "Makes sense"
-msgstr "わかりました"
+msgstr "Вполне разумно"
 
 #: src/js/controllers/modals/search.js:61
 msgid "Matches:"
-msgstr "結果:"
+msgstr "Совпадения:"
 
 #: www/views/includes/copayers.html:4
 #: www/views/preferencesInformation.html:85
 msgid "Me"
-msgstr "自分"
+msgstr "Я"
 
 #: src/js/controllers/feedback/rateCard.js:32
 msgid "Meh - it's alright"
-msgstr "まあまあです"
+msgstr "Ну так, терпимо"
 
 #: src/js/controllers/tx-details.js:165
 #: www/views/modals/paypro.html:48
 #: www/views/modals/txp-details.html:93
 #: www/views/tx-details.html:72
 msgid "Memo"
-msgstr "メモ"
+msgstr "Памятка"
 
 #: www/views/mercadoLibre.html:6
 msgid "Mercado Livre Brazil Gift Cards"
-msgstr "Mercado Livre Brazil ギフトカード"
+msgstr ""
 
 #: src/js/controllers/buyMercadoLibre.js:98
 msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
-msgstr "Mercadolibre Gift Card Service は現在ご利用できません、また後でお試しください"
+msgstr ""
 
 #: www/views/modals/txp-details.html:131
 msgid "Merchant Message"
-msgstr "お店からのメッセージ："
+msgstr "Сообщение от продавца"
 
 #: www/views/buyAmazon.html:55
 #: www/views/buyMercadoLibre.html:54
 #: www/views/topup.html:63
 msgid "Miner Fee"
-msgstr "ネットワーク手数料"
+msgstr ""
 
 #: src/js/services/bwcError.js:134
 msgid "Missing parameter"
-msgstr "不足しているパラメータ"
+msgstr "Недостающий параметр"
 
 #: src/js/services/bwcError.js:32
 msgid "Missing private keys to sign"
-msgstr "署名するための秘密鍵がありません。"
+msgstr "Отсутствуют закрытые ключи для подписи"
 
 #: www/views/preferences.html:61
 #: www/views/preferencesAdvanced.html:3
 msgid "More Options"
-msgstr "その他オプション"
+msgstr "Дополнительные параметры"
 
 #: www/views/includes/walletHistory.html:47
 #: www/views/tx-details.html:19
 msgid "Moved"
-msgstr "移動済"
+msgstr "Перемещено"
 
 #: src/js/controllers/tx-details.js:131
 msgid "Moved Funds"
-msgstr "資金を移動済み"
+msgstr "Перемещённые средства"
 
 #: www/views/modals/txp-details.html:57
 msgid "Multiple recipients"
-msgstr "複数送金先"
+msgstr "Несколько получателей"
 
 #: www/views/tab-import-phrase.html:8
 msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
-msgstr "注意：他アプリのウォレットをインポートする場合、ウォレットを追加 &gt; 新規ウォレット作成にて復元フレーズを指定するオプションを詳細設定にて有効にして下さい。"
+msgstr "Примечание: для импортирования кошелька из другой программы откройте \"Добавить кошелёк\" &gt; \"Создать личный кошелёк\", и укажите там ключевое словосочетание."
 
 #: www/views/addressbook.add.html:21
 #: www/views/addressbook.view.html:18
 #: www/views/preferences.html:15
 #: www/views/preferencesAlias.html:17
 msgid "Name"
-msgstr "名前"
+msgstr "Название"
 
 #: www/views/buyAmazon.html:49
 #: www/views/buyMercadoLibre.html:48
 #: www/views/topup.html:56
 msgid "Network Cost"
-msgstr "ネットワーク手数料"
+msgstr ""
 
 #: src/js/services/bwcError.js:47
 msgid "Network error"
-msgstr "ネットワークにエラーが発生した"
+msgstr "Ошибка сети"
 
 #: www/views/includes/walletActivity.html:43
 msgid "New Proposal"
-msgstr "新しい提案"
+msgstr "Предложить платёж"
 
 #: src/js/controllers/addresses.js:126
 msgid "New address could not be generated. Please try again."
-msgstr "アドレスを生成できませんでした。もう一度やり直してください。"
+msgstr "Адрес не может быть сгенерирован. Попробуйте позже."
 
 #: www/views/add.html:14
 msgid "New personal wallet"
-msgstr "個人用ウォレットを作成"
+msgstr "Новый личный кошелёк"
 
 #: www/views/includes/nextSteps.html:3
 msgid "Next steps"
-msgstr "次のステップ"
+msgstr "Дальнейшие шаги"
 
 #: www/views/tab-receive.html:16
 msgid "No Wallet"
-msgstr "ウォレットが無いよ…(´・ω・`)"
+msgstr "Нет кошельков"
 
 #: src/js/controllers/buyAmazon.js:115
 #: src/js/controllers/buyMercadoLibre.js:115
 msgid "No access key defined"
-msgstr "アクセスキーが定義されていません"
+msgstr ""
 
 #: www/views/onboarding/backupRequest.html:5
 msgid "No backup, no bitcoin."
-msgstr "バックアップは非常に重要です！"
+msgstr "Нет резервной копии - нет биткойнов."
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
-msgstr "連絡先が無い"
+msgstr "Нет контактов"
 
 #: www/views/preferencesLogs.html:16
 msgid "No entries for this log level"
-msgstr "このレベルのログのエントリーがありません。"
+msgstr ""
 
 #: www/views/preferencesExternal.html:12
 msgid "No hardware information available."
-msgstr "ハードウェア情報はありません"
+msgstr "Информация об аппаратном обеспечении отсутствует."
 
 #: www/views/tab-import-hardware.html:3
 msgid "No hardware wallets supported on this device"
-msgstr "この端末ではハードウェアウォレットがサポートされていません"
+msgstr "Аппаратные кошельки не поддерживаются на этом устройстве"
 
 #: www/views/proposals.html:24
 msgid "No pending proposals"
-msgstr "保留中の提案はありません"
+msgstr "Нет предложенных платежей"
 
 #: www/views/activity.html:25
 msgid "No recent transactions"
-msgstr "最近の取引がありません"
+msgstr "Нет недавних транзакций"
 
 #: src/js/controllers/buyAmazon.js:44
 #: src/js/controllers/topup.js:47
 msgid "No signing proposal: No private key"
-msgstr "提案に署名できない：秘密鍵がありません"
+msgstr ""
 
 #: www/views/walletDetails.html:204
 msgid "No transactions yet"
-msgstr "取引がありません"
+msgstr "Транзакций пока не было"
 
 #: src/js/controllers/preferencesDelete.js:15
 msgid "No wallet found"
-msgstr "ウォレットが見つかりません"
+msgstr "Кошельки не обнаружены"
 
 #: src/js/controllers/preferencesDelete.js:8
 msgid "No wallet selected"
-msgstr "ウォレットが選択されていません"
+msgstr "Не выбран кошелёк"
 
 #: src/js/controllers/buyAmazon.js:300
 #: src/js/controllers/buyMercadoLibre.js:292
 #: src/js/controllers/confirm.js:85
 #: src/js/controllers/topup.js:265
 msgid "No wallets available"
-msgstr "利用可能なウォレットがありません"
+msgstr ""
 
 #: www/views/paperWallet.html:45
 msgid "No wallets available to receive funds"
-msgstr "ペーパーウォレットの出金を受け取るためのウォレットが入っていません。"
+msgstr "Некуда перевести средства"
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr "ビットコインキャッシュ対応できるウォレットがありません。"
+msgstr ""
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
-msgstr "非 BIP44 ウォレット"
+msgstr ""
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr "非対応ビットコインウォレット"
+msgstr ""
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
-msgstr "通常"
+msgstr "Обычная"
 
 #: src/js/services/bwcError.js:80
 msgid "Not authorized"
-msgstr "権限がありません。"
+msgstr "Не авторизован"
 
 #: src/js/controllers/confirm.js:307
 msgid "Not enough funds for fee"
-msgstr "手数料含めたら残高が不足しています。"
+msgstr "Недостаточно средств для уплаты комиссии"
 
 #: www/views/onboarding/tour.html:50
 msgid "Not even BitPay can access it."
-msgstr "BitPayは管理できない。"
+msgstr "BitPay не сможет получить доступ самостоятельно."
 
 #: src/js/controllers/paperWallet.js:47
 msgid "Not funds found"
-msgstr "残高がありませんでした"
+msgstr "Cредства не обнаружены"
 
 #: www/views/feedback/rateApp.html:3
 #: www/views/onboarding/notifications.html:8
 msgid "Not now"
-msgstr "今はしない"
+msgstr "Потом"
 
 #: www/views/includes/output.html:15
 msgid "Note"
-msgstr "メモ"
+msgstr "Примечание"
 
 #: www/views/backup.html:19
 msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
-msgstr "注意: このビットコインキャッシュウォレットがビットコインウォレットからの複製の場合、復元フレーズは一緒です。"
+msgstr ""
 
 #: www/views/modals/wallets.html:25
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
-msgstr "注意： ビットコインの売却は 1-of-1 (単一署名) のウォレットからしか行えません。"
+msgstr "Внимание: только 1-1 кошельки (требующие одной подписи) могут быть использованы для продажи биткойн"
 
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:61
 msgid "Notifications"
-msgstr "通知設定"
+msgstr "Уведомления"
 
 #: www/views/onboarding/collectEmail.html:9
 msgid "Notifications by email"
-msgstr "メール通知"
+msgstr ""
 
 #: www/views/tx-details.html:117
 msgid "Notify me if confirmed"
-msgstr "取引承認時に通知"
+msgstr ""
 
 #: www/views/preferencesNotifications.html:24
 msgid "Notify me when transactions are confirmed"
-msgstr "取引が承認されたら通知する。"
+msgstr ""
 
 #: www/views/includes/backupNeededPopup.html:8
 msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
-msgstr "お金を受け取る前に、このウォレットのバックアップを取っておくことを強くオススメします。一ウォレットごとにバックアップは一回です。バックアップを取らないまま、この端末が紛失・故障されてしまったら全残高が消失されてしまいます。"
+msgstr "Если это устройство окажется утеряно, без резервной копии будет невозможно восстановить доступ к деньгам. Самое время создать резервную копию."
 
 #: www/views/backupWarning.html:11
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
-msgstr "今一度周りの環境をよく見てみましょう。隠しカメラ、窓、覗いてくる人などありませんか？"
+msgstr "Самое время оценить окружение. Окна поблизости? Скрытые камеры? Плечешпионы?"
 
 #: src/js/controllers/buyAmazon.js:312
 #: src/js/controllers/topup.js:286
@@ -1998,30 +2000,30 @@ msgstr "今一度周りの環境をよく見てみましょう。隠しカメラ
 #: src/js/services/popupService.js:72
 #: www/views/modals/chooseFeeLevel.html:6
 msgid "OK"
-msgstr "OK"
+msgstr "ХОРОШО"
 
 #: www/views/modals/tx-status.html:12
 #: www/views/modals/tx-status.html:24
 #: www/views/modals/tx-status.html:36
 #: www/views/modals/tx-status.html:46
 msgid "OKAY"
-msgstr "OK"
+msgstr "ХОРОШО"
 
 #: www/views/modals/terms.html:15
 msgid "Official English Disclaimer"
-msgstr "公式免責事項 (英語)"
+msgstr "Официальный оригинал"
 
 #: src/js/controllers/feedback/send.js:64
 msgid "Oh no!"
-msgstr "おっと!"
+msgstr "О, нет!"
 
 #: src/js/controllers/buyMercadoLibre.js:306
 msgid "Ok"
-msgstr "OK"
+msgstr ""
 
 #: www/views/tab-home.html:39
 msgid "On this screen you can see all your wallets, accounts, and assets."
-msgstr "この画面では、全てのウォレット、アカウント、資産が閲覧できます。"
+msgstr "На этой вкладке вы можете видеть все ваши кошельки, учетные записи и активы."
 
 #: src/js/controllers/bitpayCard.js:113
 #: src/js/controllers/cashScan.js:19
@@ -2030,56 +2032,56 @@ msgstr "この画面では、全てのウォレット、アカウント、資産
 #: src/js/controllers/tab-settings.js:52
 #: src/js/controllers/tx-details.js:55
 msgid "Open"
-msgstr "開く"
+msgstr "Открыть"
 
 #: src/js/controllers/preferencesLanguage.js:13
 msgid "Open Crowdin"
-msgstr "Crowdinを開く"
+msgstr "Открыть Crowdin"
 
 #: src/js/controllers/preferencesAbout.js:15
 msgid "Open GitHub"
-msgstr "GitHubを開く"
+msgstr "Открытые GitHub"
 
 #: src/js/controllers/preferencesAbout.js:13
 msgid "Open GitHub Project"
-msgstr "GitHub のプロジェクトを開く"
+msgstr "Откройте проект GitHub"
 
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr "Insightを開く"
+msgstr ""
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
-msgstr "設定を開く"
+msgstr "Открыть Параметры"
 
 #: src/js/controllers/preferencesLanguage.js:11
 msgid "Open Translation Community"
-msgstr "翻訳ページを開く"
+msgstr "Редактировать перевод"
 
 #: src/js/controllers/onboarding/terms.js:22
 msgid "Open Website"
-msgstr "サイトを開く"
+msgstr "Перейти на сайт"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr "ビットコインキャッシュの宣伝サイト開きますか？"
+msgstr ""
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
-msgstr "復元ツールを開く"
+msgstr ""
 
 #: www/views/tab-receive.html:27
 msgid "Open wallet"
-msgstr "ウォレットを開く"
+msgstr "Открыть кошелёк"
 
 #: www/views/includes/incomingDataMenu.html:19
 msgid "Open website"
-msgstr "サイトを開く"
+msgstr "Открыть сайт"
 
 #: www/views/bitpayCardIntro.html:34
 msgid "Order the BitPay Card"
-msgstr "BitPay カードを申し込み"
+msgstr "Заказать BitPay Card"
 
 #: www/views/join.html:105
 #: www/views/join.html:96
@@ -2090,343 +2092,343 @@ msgstr "BitPay カードを申し込み"
 #: www/views/tab-import-file.html:18
 #: www/views/tab-import-phrase.html:41
 msgid "Password"
-msgstr "パスワード"
+msgstr "Пароль"
 
 #: src/js/controllers/import.js:98
 msgid "Password required. Make sure to enter your password in advanced options"
-msgstr "パスワードが必要です。上級者向け設定にてパスワードを入力してください。"
+msgstr "Необходим пароль. Убедитесь, что вы ввели ваш пароль в дополнительных настройках"
 
 #: www/views/join.html:33
 msgid "Paste invitation here"
-msgstr "招待コードをこちらへ貼り付けて下さい"
+msgstr "Вставьте приглашение сюда"
 
 #: www/views/tab-import-file.html:13
 msgid "Paste the backup plain text code"
-msgstr "バックアップの文字をここに貼り付けて下さい"
+msgstr "Вставьте код резервной копии обычным текстом"
 
 #: www/views/bitpayCardIntro.html:28
 msgid "Pay 0% fees to turn bitcoin into dollars."
-msgstr "0% 手数料でビットコインを米ドルに替える"
+msgstr "Платите нулевую комиссию за конвертацию биткойн в доллары США."
 
 #: www/views/modals/paypro.html:18
 msgid "Pay To"
-msgstr "支払い先"
+msgstr "Отправить платёж"
 
 #: src/js/controllers/modals/txpDetails.js:51
 #: www/views/modals/tx-status.html:33
 msgid "Payment Accepted"
-msgstr "支払いが完了しました"
+msgstr "Платёж принят"
 
 #: www/views/confirm.html:25
 msgid "Payment Expires:"
-msgstr "支払い請求の有効期限:"
+msgstr "Платёж истекает:"
 
 #: www/views/modals/txp-details.html:6
 msgid "Payment Proposal"
-msgstr "送金の提案"
+msgstr "Предложенный платёж"
 
 #: www/views/modals/tx-status.html:21
 msgid "Payment Proposal Created"
-msgstr "送金の提案が作成されました"
+msgstr "Платёж предложен"
 
 #: www/views/tab-home.html:46
 msgid "Payment Proposals"
-msgstr "送金の提案"
+msgstr "Предложенные платежи"
 
 #: src/js/services/payproService.js:32
 msgid "Payment Protocol Invalid"
-msgstr "ペイメントプロトコルが不正です。"
+msgstr "Недействительный протокол оплаты"
 
 #: src/js/services/payproService.js:18
 msgid "Payment Protocol not supported on Chrome App"
-msgstr "クロームのアプリではペイメントプロトコールがサポートされていません。"
+msgstr "Платёжный протокол не поддерживается в приложении Chrome"
 
 #: www/views/includes/walletActivity.html:20
 msgid "Payment Received"
-msgstr "送金が受領されました"
+msgstr "Платёж получен"
 
 #: www/views/modals/tx-status.html:43
 #: www/views/modals/txp-details.html:43
 msgid "Payment Rejected"
-msgstr "送金が却下されました"
+msgstr "Платёж отклонён"
 
 #: src/js/controllers/modals/txpDetails.js:44
 #: www/views/confirm.html:124
 #: www/views/includes/walletActivity.html:11
 #: www/views/modals/txp-details.html:42
 msgid "Payment Sent"
-msgstr "送金が完了しました"
+msgstr "Платёж отправлен"
 
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
-msgstr "取引が承認されましたが、まだ送信していません。"
+msgstr "Платёж принят, но пока не отправлен"
 
 #: www/views/modals/txp-details.html:40
 msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
-msgstr "取引が承認されました。Glideraより送信されます。問題があった場合、送金命令を出す６時間以内に取り消すことができます。"
+msgstr "Платёж принят и будет отправлен Glidera. В случае проблем он может быть удалён спустя шесть часов после создания."
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr "支払先アドレスはビットコインキャッシュの新フォーマットに変更された:"
+msgstr ""
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
-msgstr "支払いの詳細"
+msgstr "Детали платежа"
 
 #: www/views/modals/paypro.html:6
 msgid "Payment request"
-msgstr "支払い請求"
+msgstr "Запрос платежа"
 
 #: www/views/mercadoLibreCards.html:22
 #: www/views/modals/mercadolibre-card-details.html:39
 msgid "Pending"
-msgstr "未決"
+msgstr ""
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
-msgstr "保留中の提案"
+msgstr "Рассматриваемые платежи"
 
 #: www/views/preferencesDeleteWallet.html:13
 msgid "Permanently delete this wallet."
-msgstr "ウォレットを完全に削除する"
+msgstr "Навсегда удалить этот кошелёк."
 
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
-msgstr "個人用ウォレット"
+msgstr "Личный кошелёк"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
-msgstr "丁寧に復元フレーズを紙に書き留めて下さい"
+msgstr "Внимательно запишите ключевое словосочетание."
 
 #: www/views/tab-scan.html:20
 msgid "Please connect a camera to get started."
-msgstr "始めるためにカメラを接続して下さい。"
+msgstr "Чтобы начать, подключите камеру."
 
 #: src/js/controllers/import.js:278
 msgid "Please enter the recovery phrase"
-msgstr "復元フレーズをご入力下さい"
+msgstr "Введите ключевое словосочетание"
 
 #: src/js/controllers/create.js:174
 #: src/js/controllers/join.js:139
 msgid "Please enter the wallet recovery phrase"
-msgstr "復元フレーズをご入力下さい"
+msgstr "Введите ключевое словосочетание кошелька"
 
 #: www/views/modals/pin.html:9
 msgid "Please enter your PIN"
-msgstr "PIN コードを入力してください。"
+msgstr "Пожалуйста, введите Ваш PIN-код"
 
 #: www/views/backup.html:53
 msgid "Please tap each word in the correct order."
-msgstr "正しい順序で各単語をタップしてください。"
+msgstr "Тапните каждое слово в правильном порядке."
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
-msgstr "この操作を実行するにはCopayを最新バージョンに更新してください"
+msgstr "Пожалуйста, обновите Copay для выполнения этого действия"
 
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62
 msgid "Please wait"
-msgstr "お待ちください"
+msgstr "Пожалуйста, подождите"
 
 #: src/js/controllers/import.js:238
 msgid "Please, select your backup file"
-msgstr "バックアップファイルを選択"
+msgstr "Пожалуйста, выберите ваш файл резервной копии"
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr "承認前の保留"
+msgstr ""
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
-msgstr "設定"
+msgstr "Параметры"
 
 #: src/js/services/onGoingProcess.js:38
 msgid "Preparing addresses..."
-msgstr "アドレスを処理中…"
+msgstr "Подготовка адресов..."
 
 #: src/js/controllers/export.js:198
 msgid "Preparing backup..."
-msgstr "バックアップを準備中..."
+msgstr "Подготовка резервной копии..."
 
 #: src/js/routes.js:1264
 msgid "Press again to exit"
-msgstr "もう一度押して終了"
+msgstr "Нажмите еще раз для выхода"
 
 #: src/js/services/feeService.js:11
 msgid "Priority"
-msgstr "優先"
+msgstr "Приоритетная"
 
 #: www/views/includes/incomingDataMenu.html:80
 msgid "Private Key"
-msgstr "秘密鍵"
+msgstr "Приватный ключ"
 
 #: src/js/controllers/paperWallet.js:136
 msgid "Private key encrypted. Enter password"
-msgstr "秘密鍵は暗号化されています。復号化パスワードを入力して下さい。"
+msgstr "Приватный ключ зашифрован. Введите пароль"
 
 #: src/js/services/bwcError.js:35
 msgid "Private key is encrypted, cannot sign"
-msgstr "秘密鍵が暗号化されており署名できません。"
+msgstr "Закрытый ключ зашифрован, не удалось подписать"
 
 #: www/views/includes/walletActivity.html:51
 msgid "Proposal Accepted"
-msgstr "提案が承諾されました"
+msgstr "Платёж принят"
 
 #: src/js/controllers/modals/txpDetails.js:61
 #: src/js/controllers/tx-details.js:78
 #: www/views/confirm.html:125
 msgid "Proposal Created"
-msgstr "提案が作成されました"
+msgstr "Платёж создан"
 
 #: www/views/includes/walletActivity.html:27
 msgid "Proposal Deleted"
-msgstr "提案が削除されました"
+msgstr "Платёж удалён"
 
 #: www/views/includes/walletActivity.html:35
 msgid "Proposal Rejected"
-msgstr "提案が却下されました"
+msgstr "Платёж отклонён"
 
 #: www/views/walletDetails.html:189
 msgid "Proposals"
-msgstr "提案"
+msgstr "Предложенные платежи"
 
 #: src/js/controllers/buyAmazon.js:282
 msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
-msgstr "購入額が一日最大 {{limitPerDay}} {{currency}} になります。"
+msgstr ""
 
 #: src/js/controllers/buyMercadoLibre.js:281
 msgid "Purchase amount must be a value between 50 and 2000"
-msgstr "購入金額は 50〜2000 の間の値でなければなりません"
+msgstr ""
 
 #: www/views/onboarding/notifications.html:3
 msgid "Push Notifications"
-msgstr "プッシュ通知"
+msgstr "Push-уведомления"
 
 #: www/views/preferencesNotifications.html:17
 msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
-msgstr "{{appName}}のプッシュ通知は現在無効です。アプリ設定で有効にします。"
+msgstr "Push-уведомления для {{appName}} в настоящее время отключены. Включите их в Параметрах."
 
 #: www/views/export.html:17
 msgid "QR Code"
-msgstr "QRコード"
+msgstr "QR-код"
 
 #: www/views/onboarding/disclaimer.html:13
 msgid "Quick review!"
-msgstr "おさらい！"
+msgstr "Быстрый просмотр!"
 
 #: src/js/controllers/create.js:84
 #: src/js/controllers/join.js:68
 msgid "Random"
-msgstr "乱数"
+msgstr "Случайное"
 
 #: www/views/feedback/rateApp.html:14
 msgid "Rate on the app store"
-msgstr "App Storeで評価"
+msgstr "Оценить в магазине приложений"
 
 #: www/views/addresses.html:52
 msgid "Read less"
-msgstr "非表示にする"
+msgstr "Показать меньше"
 
 #: www/views/addresses.html:51
 msgid "Read more"
-msgstr "もっと読む"
+msgstr "Показать больше"
 
 #: src/js/controllers/preferences.js:65
 #: src/js/controllers/tx-details.js:54
 msgid "Read more in our Wiki"
-msgstr "詳しくはwikiでお読みください"
+msgstr ""
 
 #: src/js/controllers/cashScan.js:61
 msgid "Read only wallet"
-msgstr "閲覧専用ウォレット"
+msgstr ""
 
 #: www/views/tab-receive.html:3
 #: www/views/tabs.html:7
 msgid "Receive"
-msgstr "受取"
+msgstr "Получить"
 
 #: www/views/customAmount.html:44
 msgid "Receive in"
-msgstr "通貨"
+msgstr ""
 
 #: www/views/includes/walletHistory.html:24
 #: www/views/tx-details.html:18
 msgid "Received"
-msgstr "受取済み"
+msgstr "Получено"
 
 #: src/js/controllers/tx-details.js:130
 msgid "Received Funds"
-msgstr "受領した資金"
+msgstr "Полученные средства"
 
 #: www/views/includes/walletHistory.html:57
 #: www/views/tx-details.html:24
 msgid "Receiving"
-msgstr "受け取り中"
+msgstr "Получение"
 
 #: www/views/bitpayCard.html:60
 #: www/views/includes/walletHistory.html:3
 msgid "Recent"
-msgstr "履歴"
+msgstr "Недавние"
 
 #: www/views/advancedSettings.html:21
 msgid "Recent Transaction Card"
-msgstr "最近の取引カード"
+msgstr "Недавние транзакции"
 
 #: www/views/activity.html:4
 #: www/views/tab-home.html:58
 msgid "Recent Transactions"
-msgstr "最近の取引"
+msgstr "Недавние транзакции"
 
 #: www/views/amount.html:18
 #: www/views/tab-send.html:9
 msgid "Recipient"
-msgstr "受取人"
+msgstr "Получатель"
 
 #: www/views/modals/txp-details.html:62
 msgid "Recipients"
-msgstr "受取人"
+msgstr "Получатели"
 
 #: www/views/import.html:12
 msgid "Recovery phrase"
-msgstr "復元フレーズ"
+msgstr "Ключевое словосочетание"
 
 #: src/js/services/onGoingProcess.js:26
 msgid "Recreating Wallet..."
-msgstr "ウォレットを再作成中…"
+msgstr "Воссоздаю кошелёк..."
 
 #: www/views/modals/mercadolibre-card-details.html:22
 msgid "Redeem now"
-msgstr "今すぐ引き換えをする"
+msgstr ""
 
 #: src/js/controllers/modals/txpDetails.js:63
 #: src/js/controllers/tx-details.js:80
 msgid "Rejected"
-msgstr "却下済み"
+msgstr "Отклонён"
 
 #: src/js/services/onGoingProcess.js:27
 msgid "Rejecting payment proposal"
-msgstr "送金の提案却下中"
+msgstr "Отклонение платежа"
 
 #: www/views/preferencesAbout.html:9
 msgid "Release information"
-msgstr "リリース情報"
+msgstr "Информация о выпуске"
 
 #: www/views/addressbook.view.html:36
 #: www/views/modals/mercadolibre-card-details.html:69
 msgid "Remove"
-msgstr "削除"
+msgstr "Удалить"
 
 #: src/js/controllers/preferencesBitpayServices.js:7
 msgid "Remove BitPay Account?"
-msgstr "BitPay アカウントの接続を解除しますか？"
+msgstr "Удалить BitPay аккаунт?"
 
 #: src/js/controllers/preferencesBitpayServices.js:19
 msgid "Remove BitPay Card?"
-msgstr "BitPay カードを削除しますか？"
+msgstr "Удалить BitPay карту?"
 
 #: src/js/controllers/preferencesBitpayServices.js:8
 msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
-msgstr "BitPay アカウントを削除すると、このデバイスからすべての関連付けられている BitPay のアカウントデータが削除されます。本当にこのデバイスから BitPay アカウント ({{email}}) を削除してもよろしいですか。"
+msgstr "Удаление учетной записи BitPay удалит все связанные данные учетной записи BitPay с этого устройства. Вы уверены, что вы хотели бы удалить свой BitPay аккаунт ({{email}}) с этого устройства?"
 
 #: www/views/join.html:116
 #: www/views/join.html:124
@@ -2436,43 +2438,43 @@ msgstr "BitPay アカウントを削除すると、このデバイスからす�
 #: www/views/tab-create-shared.html:123
 #: www/views/tab-export-file.html:17
 msgid "Repeat password"
-msgstr "パスワードを再入力"
+msgstr "Повторите пароль"
 
 #: www/views/tab-export-file.html:16
 msgid "Repeat the password"
-msgstr "パスワードの再入力"
+msgstr "Повторите пароль"
 
 #: www/views/preferences.html:56
 msgid "Request Fingerprint"
-msgstr "指紋を要求"
+msgstr "Запрос отпечатка пальца"
 
 #: www/views/tab-receive.html:45
 msgid "Request Specific amount"
-msgstr "指定金額を要求"
+msgstr "Запросить определенную сумму"
 
 #: www/views/preferences.html:42
 msgid "Request Spending Password"
-msgstr "送金時のパスワード入力"
+msgstr "Запрашивать платёжный пароль"
 
 #: www/views/tab-create-shared.html:44
 msgid "Required number of signatures"
-msgstr "必要な署名の数を選択"
+msgstr "Требуемое число подписей"
 
 #: www/views/onboarding/welcome.html:9
 msgid "Restore from backup"
-msgstr "バックアップから復元"
+msgstr "Восстановить из резервной копии"
 
 #: src/js/services/onGoingProcess.js:29
 msgid "Retrieving inputs information"
-msgstr "入力情報の取得中"
+msgstr "Получение информации о входах"
 
 #: src/js/controllers/onboarding/tour.js:56
 msgid "Retry"
-msgstr "やり直し"
+msgstr "Повторить попытку"
 
 #: www/views/tab-scan.html:23
 msgid "Retry Camera"
-msgstr "カメラを再試行"
+msgstr "Проверить камеру"
 
 #: www/views/addressbook.add.html:56
 #: www/views/includes/note.html:9
@@ -2480,225 +2482,223 @@ msgstr "カメラを再試行"
 #: www/views/preferencesBwsUrl.html:25
 #: www/views/preferencesNotifications.html:46
 msgid "Save"
-msgstr "保存"
+msgstr "Сохранить"
 
 #: www/views/tab-scan.html:3
 #: www/views/tabs.html:11
 msgid "Scan"
-msgstr "スキャン"
+msgstr "Сканировать"
 
 #: www/views/tab-scan.html:15
 msgid "Scan QR Codes"
-msgstr "QRコードを読み取る"
+msgstr "Сканирование QR-кодов"
 
 #: www/views/addresses.html:31
 msgid "Scan addresses for funds"
-msgstr "アドレスの残高照会"
+msgstr "Просканировать адреса для обнаружения средств"
 
 #: www/views/modals/fingerprintCheck.html:11
 msgid "Scan again"
-msgstr "もう一度スキャンし直してください。"
+msgstr ""
 
 #: src/js/services/fingerprintService.js:56
 msgid "Scan your fingerprint please"
-msgstr "指紋をスキャンしてください"
+msgstr "Пожалуйста, отсканируйте ваш отпечаток пальца"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr "ウォレットの中にビットコインキャッシュが無いか確認する"
+msgstr ""
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
-msgstr "ウォレット残高照会中…"
+msgstr "Сканирование адресов кошелька..."
 
 #: www/views/includes/walletList.html:11
 msgid "Scanning funds..."
-msgstr "確認中…"
+msgstr ""
 
 #: www/views/includes/screenshotWarningModal.html:7
 msgid "Screenshots are not secure"
-msgstr "画面写真を撮ってしまうと危険です！"
+msgstr "Скриншоты не безопасны"
 
 #: www/views/modals/search.html:6
 msgid "Search Transactions"
-msgstr "取引を検索"
+msgstr "Поиск транзакций"
 
 #: www/views/tab-send.html:13
 msgid "Search or enter bitcoin address"
-msgstr "連絡先検索かビットコインアドレスを指定"
+msgstr "Найти или ввести биткойн-адрес"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
-msgstr "取引を検索"
+msgstr "Поиск транзакций"
 
 #: www/views/preferencesAltCurrency.html:14
 msgid "Search your currency"
-msgstr "通貨を検索"
+msgstr "Найти вашу валюту"
 
 #: www/views/preferences.html:30
 msgid "Security"
-msgstr "セキュリティ"
+msgstr "Безопасность"
 
 #: www/views/modals/mercadolibre-card-details.html:64
 msgid "See invoice"
-msgstr "請求書を表示"
+msgstr ""
 
 #: www/views/tab-import-file.html:7
 msgid "Select a backup file"
-msgstr "バックアップファイルを選択"
+msgstr "Выберите файл резервной копии"
 
 #: src/js/controllers/tab-receive.js:139
 msgid "Select a wallet"
-msgstr "ウォレットを選択"
+msgstr "Выберите кошелёк"
 
 #: www/views/modals/paypro.html:38
 msgid "Self-signed Certificate"
-msgstr "自己署名証明書"
+msgstr "Самозаверенные сертификат"
 
 #: src/js/services/onGoingProcess.js:41
 msgid "Selling Bitcoin..."
-msgstr "ビットコインを売却中..."
+msgstr "Продажа биткойн..."
 
 #: www/views/feedback/send.html:13
 #: www/views/feedback/send.html:43
 #: www/views/tab-send.html:3
 #: www/views/tabs.html:15
 msgid "Send"
-msgstr "送信"
+msgstr "Отправить"
 
 #: www/views/feedback/send.html:3
 #: www/views/tab-settings.html:29
 msgid "Send Feedback"
-msgstr "フィードバックの送信"
+msgstr "Отправить отзыв"
 
 #: www/views/addressbook.view.html:31
 msgid "Send Money"
-msgstr "送金する"
+msgstr "Отправить деньги"
 
 #: www/views/allAddresses.html:19
 msgid "Send addresses by email"
-msgstr "ビットコインアドレスをメールにて共有"
+msgstr "Отправить адреса по email"
 
 #: www/views/includes/logOptions.html:17
 #: www/views/tab-export-file.html:82
 msgid "Send by email"
-msgstr "メールで送信"
+msgstr "Отправить на email"
 
 #: src/js/controllers/confirm.js:177
 msgid "Send from"
-msgstr "ここから送金"
+msgstr "Отправить от"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
-msgstr "全残高を送金"
+msgstr "Отправить макс. сумму"
 
 #: www/views/includes/incomingDataMenu.html:46
 msgid "Send payment to this address"
-msgstr "このアドレスへ送信して下さい"
+msgstr ""
 
 #: www/views/feedback/rateApp.html:17
 msgid "Send us feedback instead"
-msgstr "代わりにフィードバックを送信"
+msgstr "Или отправьте нам отзыв"
 
 #: www/views/confirm.html:15
 #: www/views/includes/txp.html:12
 #: www/views/modals/txp-details.html:19
 #: www/views/tx-details.html:23
 msgid "Sending"
-msgstr "送信中"
+msgstr "Отправка"
 
 #: src/js/services/onGoingProcess.js:39
 msgid "Sending 2FA code..."
-msgstr "2段階認証コードを送信中…"
+msgstr "Отправка второго фактора..."
 
 #: src/js/services/onGoingProcess.js:36
 msgid "Sending feedback..."
-msgstr "フィードバックを送信中..."
+msgstr "Отправка отзыва..."
 
 #: www/views/confirm.html:16
 msgid "Sending maximum amount"
-msgstr "全残高を送金"
+msgstr "Отправляю максимальную сумму"
 
 #: src/js/services/onGoingProcess.js:31
 msgid "Sending transaction"
-msgstr "取引送信中"
+msgstr "Отправка транзакции"
 
 #: src/js/controllers/confirm.js:545
 msgid "Sending {{amountStr}} from your {{name}} wallet"
-msgstr "ウォレット {{name}} から {{amountStr}} の送金を行います。"
+msgstr "Отправка {{amountStr}} из вашего кошелька {{name}}"
 
 #: www/views/includes/walletHistory.html:42
 #: www/views/modals/tx-status.html:9
 #: www/views/topup.html:100
 #: www/views/tx-details.html:17
 msgid "Sent"
-msgstr "送金済み"
+msgstr "Отправлено"
 
 #: src/js/controllers/tx-details.js:129
 msgid "Sent Funds"
-msgstr "資金を送金済み"
+msgstr "Отправленные средства"
 
 #: src/js/services/bwcError.js:38
 msgid "Server response could not be verified"
-msgstr "サーバーからの返答を検証できませんでした"
+msgstr "Ответ сервера не может быть проверен"
 
 #: src/js/controllers/buyAmazon.js:97
 #: src/js/controllers/buyMercadoLibre.js:97
 msgid "Service not available"
-msgstr "このサービスは利用できません"
+msgstr ""
 
 #: www/views/includes/homeIntegrations.html:3
 msgid "Services"
-msgstr "サービス"
+msgstr "Службы"
 
 #: www/views/preferencesLogs.html:3
 msgid "Session Log"
-msgstr "セッションのログ"
+msgstr "Журнал сеанса"
 
 #: www/views/preferencesAbout.html:35
 msgid "Session log"
-msgstr "セッションのログ"
+msgstr "Журнал сеанса"
 
 #: www/views/tab-export-file.html:10
 msgid "Set up a password"
-msgstr "パスワードを設定"
+msgstr "Задайте пароль"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Set your own fee in satoshis/byte"
-msgstr "カスタム手数料は satoshis/byte で指定"
+msgstr ""
 
 #: www/views/tab-settings.html:3
 #: www/views/tabs.html:19
 msgid "Settings"
-msgstr "設定"
+msgstr "Параметры"
 
 #: www/views/feedback/complete.html:17
 #: www/views/feedback/complete.html:26
 msgid "Share the love by inviting your friends."
-msgstr "是非友達と共有して下さい"
+msgstr "Поделитесь любовью и пригласите друзей."
 
 #: www/views/copayers.html:20
 msgid "Share this invitation with your copayers"
-msgstr "ウォレット参加者に\n"
-"この招待コードを\n"
-"送って下さい。"
+msgstr "Отправьте приглашение совладельцам кошелька"
 
 #: src/js/controllers/feedback/complete.js:5
 #: www/views/tab-settings.html:36
 msgid "Share {{appName}}"
-msgstr "{{appName}}を共有"
+msgstr "Поделиться {{appName}}"
 
 #: www/views/tab-import-hardware.html:24
 msgid "Shared Wallet"
-msgstr "共有ウォレットに参加"
+msgstr "Общий кошелёк"
 
 #: www/views/preferencesExternal.html:34
 msgid "Show Recovery Phrase"
-msgstr "復元フレーズを表示"
+msgstr "Показать фразу для восстановления"
 
 #: www/views/tab-receive.html:34
 msgid "Show address"
-msgstr "アドレスを表示"
+msgstr "Показать адрес"
 
 #: www/views/join.html:48
 #: www/views/tab-create-personal.html:27
@@ -2708,310 +2708,308 @@ msgstr "アドレスを表示"
 #: www/views/tab-import-hardware.html:30
 #: www/views/tab-import-phrase.html:35
 msgid "Show advanced options"
-msgstr "詳細設定を表示"
+msgstr "Показать дополнительные параметры"
 
 #: www/views/tab-send.html:37
 msgid "Show bitcoin address"
-msgstr "ビットコインアドレスを表示"
+msgstr "Показать биткойн-адрес"
 
 #: www/views/tab-send.html:59
 msgid "Show more"
-msgstr "すべて表示"
+msgstr "Показать еще"
 
 #: src/js/services/bwcError.js:104
 msgid "Signatures rejected by server"
-msgstr "サーバーより署名が却下されました。"
+msgstr "Подписи отклонены сервером"
 
 #: src/js/services/onGoingProcess.js:32
 msgid "Signing transaction"
-msgstr "取引署名中"
+msgstr "Подписание транзакции"
 
 #: www/views/onboarding/backupRequest.html:6
 msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
-msgstr "ビットコインの管理は全てご自身でしていただくため、端末やアプリの不具合や削除に備えるために復元フレーズを書き留めていただきます。"
+msgstr "Так как кошелёк хранится только у вас, вам необходимо записать ключевую фразу на случай удаления {{appName}}."
 
 #: www/views/tab-create-personal.html:122
 #: www/views/tab-create-shared.html:151
 msgid "Single Address Wallet"
-msgstr "単一アドレスウォレット"
+msgstr "Кошелёк с одним адресом"
 
 #: www/views/onboarding/collectEmail.html:40
 #: www/views/onboarding/tour.html:11
 msgid "Skip"
-msgstr "スキップ"
+msgstr "Пропустить"
 
 #: src/js/controllers/confirm.js:371
 #: src/js/controllers/modals/txpDetails.js:47
 msgid "Slide to accept"
-msgstr "スライドして承諾"
+msgstr ""
 
 #: www/views/buyAmazon.html:96
 msgid "Slide to buy"
-msgstr "スライドして購入"
+msgstr ""
 
 #: src/js/controllers/confirm.js:365
 msgid "Slide to pay"
-msgstr "スライドして支払う"
+msgstr ""
 
 #: src/js/controllers/confirm.js:377
 #: src/js/controllers/modals/txpDetails.js:40
 msgid "Slide to send"
-msgstr "スライドして送る"
+msgstr ""
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr "いくつかのウォレットがビットコインキャッシュに対応できません。ビットコインキャッシュの取り戻しは復元ツールで試すとうまくいくかもしれません。"
+msgstr ""
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
 msgid "Specify Recovery Phrase..."
-msgstr "復元フレーズを指定…"
+msgstr "Указать ключевое словосочетание..."
 
 #: src/js/services/bwcError.js:92
 msgid "Spend proposal is not accepted"
-msgstr "送金の提案が受諾されませんでした。"
+msgstr "Платёж не принят"
 
 #: src/js/services/bwcError.js:95
 msgid "Spend proposal not found"
-msgstr "送金の提案が見つかりませんでした。"
+msgstr "Платёж не найден"
 
 #: src/js/services/bwcError.js:137
 msgid "Spending Password needed"
-msgstr "パスワードが必要"
+msgstr "Необходим платёжный пароль"
 
 #: www/views/walletDetails.html:173
 msgid "Spending this balance will need significant Bitcoin network fees"
-msgstr "この入力の組み合わせを送金するために膨大なビットコインネットワーク手数料を必要とします"
+msgstr ""
 
 #: www/views/tab-send.html:28
 msgid "Start sending bitcoin"
-msgstr "ビットコインの送金を始めましょう"
+msgstr "Начать отправку bitcoin"
 
 #: www/views/lockSetup.html:3
 msgid "Startup Lock"
-msgstr "起動ロック"
+msgstr "Блокировка при запуске"
 
 #: www/views/mercadoLibreCards.html:21
 #: www/views/modals/mercadolibre-card-details.html:42
 msgid "Still pending"
-msgstr "まだ未決"
+msgstr ""
 
 #: www/views/topup.html:101
 msgid "Success"
-msgstr "成功"
+msgstr "Успешно"
 
 #: src/js/services/feeService.js:14
 msgid "Super Economy"
-msgstr "超節約"
+msgstr "Очень экономичная"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr "ビットコインキャッシュ対応"
+msgstr ""
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
-msgstr "全残高インポート"
+msgstr "Считать"
 
 #: www/views/includes/incomingDataMenu.html:89
 #: www/views/paperWallet.html:3
 msgid "Sweep paper wallet"
-msgstr "ペーパーウォレットの全残高インポート"
+msgstr "Пополнить с бумажного кошелька"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
-msgstr "ビットコイン回収中…"
+msgstr "Считывание кошелька..."
 
 #: www/views/preferencesDeleteWallet.html:16
 msgid "THIS ACTION CANNOT BE REVERSED"
-msgstr "＊＊＊注意＊＊＊ このアクションを元に戻すことはできません！！！"
+msgstr "ЭТО ДЕЙСТВИЕ НЕ МОЖЕТ БЫТЬ ОТМЕНЕНО"
 
 #: www/views/onboarding/welcome.html:5
 msgid "Take control of your money,<br>get started with bitcoin."
-msgstr "お金のコントロールを取り戻そう、<br>ビットコインをはじめよう"
+msgstr "Возьмите ваши финансы под контроль,<br>начните пользоваться Биткойн."
 
 #: www/views/walletDetails.html:132
 #: www/views/walletDetails.html:52
 msgid "Tap and hold to show"
-msgstr "長押しで表示"
+msgstr "Коснитесь и удерживайте, чтобы показать"
 
 #: www/views/includes/walletInfo.html:3
 msgid "Tap to recreate"
-msgstr "タップして再構築"
+msgstr ""
 
 #: www/views/includes/walletInfo.html:4
 msgid "Tap to retry"
-msgstr "タップしてやり直し"
+msgstr "Повторить"
 
 #: www/views/termsOfUse.html:3
 msgid "Terms Of Use"
-msgstr "利用規約"
+msgstr "Условия использования"
 
 #: www/views/modals/terms.html:3
 #: www/views/onboarding/disclaimer.html:29
 #: www/views/onboarding/disclaimer.html:43
 #: www/views/preferencesAbout.html:30
 msgid "Terms of Use"
-msgstr "利用規約"
+msgstr "Условия использования"
 
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
 msgid "Testnet"
-msgstr "テスト用ネットワーク"
+msgstr ""
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
-msgstr "テキスト"
+msgstr "Текст"
 
 #: src/js/controllers/feedback/send.js:27
 #: src/js/controllers/feedback/send.js:76
 #: www/views/feedback/complete.html:20
 #: www/views/feedback/rateApp.html:4
 msgid "Thank you!"
-msgstr "ありがとうございます!"
+msgstr "Спасибо!"
 
 #: src/js/controllers/feedback/send.js:72
 msgid "Thanks!"
-msgstr "ありがとうございます。"
+msgstr "Спасибо!"
 
 #: src/js/controllers/feedback/send.js:73
 msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
-msgstr "嬉しい限りです！是非5つ星のアプリを目指したいため、このアプリの改善するにはどうしたら良いと思いますか？"
+msgstr ""
 
 #: src/js/services/ledger.js:152
 msgid "The Ledger Chrome application is not installed"
-msgstr "Ledgerのクロームアプリがインストールされていません。"
+msgstr "Приложение Ledger для Chrome не установлено"
 
 #: www/views/modals/wallet-balance.html:55
 msgid "The amount of bitcoin immediately spendable from this wallet."
-msgstr "このウォレットからすぐに送金できる額"
+msgstr "Сумма биткойнов доступных для совершения платежей."
 
 #: www/views/modals/wallet-balance.html:93
 msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
-msgstr "現在協議中の送金の提案によってロックされてしまっている金額です。この金額は未使用出力の割り当てられた合計額になりますので、必ずしも送金提案の送金額だけがロックされるというものではありません。"
+msgstr "Сумма биткойнов, выделенных в качестве входов для ожидающих рассмотрения платежей. Сумма определяется непотраченными выходами, ассоциированными с этим кошельком, и может превышать сумму, ассоциированную с предложенными платежами."
 
 #: www/views/modals/wallet-balance.html:74
 msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
-msgstr "このウォレットの1承認未満の残高。"
+msgstr "Сумма биткойнов с менее, чем одним подтверждением."
 
 #: www/views/tab-import-phrase.html:5
 msgid "The derivation path"
-msgstr "派生パス"
+msgstr "Путь деривации"
 
 #: www/views/onboarding/tour.html:37
 msgid "The exchange rate changes with the market."
-msgstr "為替レートは市場と共に変動する"
+msgstr ""
 
 #: www/views/preferencesFee.html:12
 msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
-msgstr "円滑な送金をしていただくために、ビットコインの送金には少量の手数料を付けることが義務付けられております。この手数料はビットコインのネットワークを運用する人たちに寄付され、より高い手数料であればより優先的にブロックに含まれ、承認されます。選択された手数料基準やネットワークの混雑状況により、その時点で払われるべき手数料が変動することがあります。"
+msgstr "Чем выше комиссия, тем вероятнее майнеры включат эту транзакцию в блок. Текущая комиссия опеделяется на основании нагрузки на сеть и выбранной политики."
 
 #: www/views/addresses.html:51
 msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
-msgstr "連続未使用アドレスの上限(20)に達しました。どれかにアドレスにビットコインが少量でも入れば再び受取画面にて新しいアドレスを生成することができるようになります。"
+msgstr ""
 
 #: src/js/controllers/onboarding/terms.js:21
 msgid "The official English Terms of Service are available on the BitPay website."
-msgstr "英語公式の規約は BitPay のウェブサイトにてご覧いただけます。"
+msgstr "Официальные Условия обслуживания на английском языке доступны на сайте BitPay."
 
 #: www/views/tab-import-phrase.html:4
 msgid "The password of the recovery phrase (if set)"
-msgstr "復元フレーズ用のパスワード(設定してある場合のみ)"
+msgstr "Пароль ключевого словосочетания (если установлен)"
 
 #: src/js/services/walletService.js:1139
 msgid "The payment was created but could not be completed. Please try again from home screen"
-msgstr "送金の提案は作成されましたが完了できませんでした。ホーム画面からやり直して下さい。"
+msgstr "Платёж был создан, но не может быть завершен. Пожалуйста, вернитесь на вкладку Обзор и попробуйте снова"
 
 #: www/views/modals/txp-details.html:26
 msgid "The payment was removed by creator"
-msgstr "送金の提案が作成者により削除されました"
+msgstr "Платёж был удалён его создателем"
 
 #: www/views/join.html:91
 #: www/views/tab-create-personal.html:63
 #: www/views/tab-create-shared.html:92
 #: www/views/tab-import-phrase.html:43
 msgid "The recovery phrase could require a password to be imported"
-msgstr "復元フレーズにパスワードをかけることが\n"
-"できるのでかけてある場合は\n"
-"インポート時に必要です。"
+msgstr "Для импортирования ключевого словосочетания может потребоваться пароль"
 
 #: src/js/services/bwcError.js:56
 msgid "The request could not be understood by the server"
-msgstr "サーバーが要求を処理できませんでした。"
+msgstr "Запрос не распознан сервером"
 
 #: www/views/addresses.html:52
 msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
-msgstr "復元のプロセスは残高の無いアドレスを20個連続で生成した場合に中止します。更にアドレスを生成したい場合は既存の20個のアドレスのどれかにビットコインを少量でも入金しますと、新しいアドレスが生成できます。"
+msgstr ""
 
 #: src/js/services/bwcError.js:98
 msgid "The spend proposal is not pending"
-msgstr "送金の提案が協議中ではありません。"
+msgstr "Предложенный платёж больше не на рассмотрении"
 
 #: www/views/modals/wallet-balance.html:36
 msgid "The total amount of bitcoin stored in this wallet."
-msgstr "このウォレットのビットコインの総残高"
+msgstr "Сумма биткойнов в этом кошельке."
 
 #: www/views/preferencesHistory.html:27
 msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
-msgstr "取引履歴は新規の取引が現れる度に端末にキャッシュとして保存されます。この機能はそのキャッシュを削除し、全ての取引履歴を初期の状態からサーバーに問い合わせ直します。"
+msgstr ""
 
 #: www/views/tab-import-phrase.html:6
 msgid "The wallet service URL"
-msgstr "ウォレットサービスのURL"
+msgstr "Адрес сервера Bitcore"
 
 #: src/js/controllers/tab-home.js:38
 msgid "There is a new version of {{appName}} available"
-msgstr "{{appName}} の新しいバージョンがあります。"
+msgstr "Доступна новая версия {{appName}}"
 
 #: src/js/controllers/import.js:229
 #: src/js/controllers/import.js:254
 #: src/js/controllers/import.js:335
 msgid "There is an error in the form"
-msgstr "フォームにエラーがありました"
+msgstr "Ошибка в форме"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 msgid "There's obviously something we're doing wrong."
-msgstr "このアプリで何か間違ったことをやっているようです。"
+msgstr ""
 
 #: src/js/controllers/feedback/rateCard.js:38
 msgid "This app is fantastic!"
-msgstr "このアプリは素晴らしいです!"
+msgstr "Замечательное приложение!"
 
 #: www/views/onboarding/tour.html:47
 msgid "This app stores your bitcoin with cutting-edge security."
-msgstr "このアプリは、最先端のセキュリティであなたのビットコインをお守りします。"
+msgstr ""
 
 #: src/js/controllers/confirm.js:523
 msgid "This bitcoin payment request has expired."
-msgstr "ビットコインペイメントの請求期限が切れています。"
+msgstr "Этот запрос платежа истёк."
 
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
 msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
-msgstr "このパスワードは復元できません。リセットすることができません。弊社のサーバーで管理するものではありません。復元フレーズとセットで必ず書き留めておいて下さい。復元フレーズとこのパスワードのどれかを忘れてしまうと、ビットコインを復元することができません。ご注意下さい。"
+msgstr ""
 
 #: www/views/backup.html:31
 msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
-msgstr "この復元フレーズにパスワードがかかっています。このウォレットを復元するためには、復元フレーズに加え、パスワードも必要です。"
+msgstr "Это ключевое словосочетание было создано с паролем. Для восстановления кошелька необходимо ключевое словосочетание и его пароль."
 
 #: www/views/tx-details.html:91
 msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
-msgstr "この取引の金額はビットコインネットワーク手数料より低いです。送金額より大きい手数料を払ってしまうことになります。"
+msgstr ""
 
 #: www/views/tx-details.html:87
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
-msgstr "この取引は承認されるまで非常に時間のかかる可能性があります。承認されずにネットワークに捨てられてしまう危険性もありますので、承認されるまでお待ちいただくことを強くおすすめします。"
+msgstr ""
 
 #: www/views/walletDetails.html:109
 #: www/views/walletDetails.html:29
 msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
-msgstr "現在設定中のBitcore Wallet Service (BWS) サーバーにて、このウォレットの登録がありません。再登録を行うこともできます。"
+msgstr "Это кошелёк не зарегистрирован на данном сервере Bitcore. Вы можете воссоздать его из локальной информации."
 
 #: www/views/modals/txp-details.html:136
 #: www/views/tx-details.html:121
 msgid "Timeline"
-msgstr "履歴"
+msgstr "Хронология"
 
 #: www/views/confirm.html:31
 #: www/views/includes/output.html:2
@@ -3020,372 +3018,372 @@ msgstr "履歴"
 #: www/views/tx-details.html:41
 #: www/views/tx-details.html:53
 msgid "To"
-msgstr "宛先"
+msgstr "Кому"
 
 #: www/views/tab-send.html:32
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr "はじめるには、ビットコインを購入したり、アドレスを他の人に共有したりしましょう。どのビットコインウォレットやサービスから受け取れます。"
+msgstr "Чтобы начать работу, купите биткойн или поделитесь вашим адресом. Вы можете получать биткойны из любого кошелька или сервиса."
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "はじめに、ビットコインウォレットを作成し、ビットコインを入手する必要があります。"
+msgstr "Чтобы начать работу, вам нужно создать кошелёк и получить биткойн."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
-msgstr "{{reason}}：その前にBitPayアカウントを追加する必要があります - {{email}}"
+msgstr ""
 
 #: src/js/services/onGoingProcess.js:48
 msgid "Top up in progress..."
-msgstr "残高補充処理中..."
+msgstr ""
 
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
-msgstr "デビットカード ({{cardLastNumber}}) に {{amountStr}} の入金を行う"
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
 #: www/views/modals/wallet-balance.html:23
 #: www/views/topup.html:70
 msgid "Total"
-msgstr "合計"
+msgstr "Баланс кошелька"
 
 #: www/views/walletDetails.html:196
 msgid "Total Locked Balance"
-msgstr "ロック中の残高"
+msgstr "Всего заблокировано средств"
 
 #: www/views/tab-create-shared.html:35
 msgid "Total number of copayers"
-msgstr "参加人数を選択して下さい。"
+msgstr "Количество совладельцев"
 
 #: www/views/addresses.html:81
 msgid "Total wallet inputs"
-msgstr "合計ウォレット入力"
+msgstr ""
 
 #: src/js/services/fingerprintService.js:63
 #: src/js/services/fingerprintService.js:68
 msgid "Touch ID Failed"
-msgstr "Touch ID が失敗しました。"
+msgstr "Ошибка Touch ID"
 
 #: src/js/controllers/tx-details.js:12
 msgid "Transaction"
-msgstr "取引"
+msgstr "Транзакция"
 
 #: www/views/confirm.html:126
 msgid "Transaction Created"
-msgstr "取引情報を作成しました"
+msgstr ""
 
 #: www/views/preferencesAdvanced.html:29
 #: www/views/preferencesHistory.html:3
 msgid "Transaction History"
-msgstr "取引履歴"
+msgstr "История транзакций"
 
 #: src/js/services/bwcError.js:83
 msgid "Transaction already broadcasted"
-msgstr "取引は既に配信されました。"
+msgstr "Транзакция уже отправлена"
 
 #: src/js/controllers/buyAmazon.js:308
 #: src/js/controllers/buyMercadoLibre.js:301
 #: src/js/controllers/topup.js:281
 msgid "Transaction has not been created"
-msgstr "取引が未作成です"
+msgstr ""
 
 #: www/views/topup.html:104
 msgid "Transaction initiated"
-msgstr "取引が開始されました"
+msgstr ""
 
 #: src/js/controllers/tx-details.js:119
 msgid "Transaction not available at this time"
-msgstr "現在この取引はご覧いただけません。"
+msgstr "Транзакция недоступна в данный момент"
 
 #: src/js/controllers/activity.js:45
 #: src/js/controllers/tab-home.js:174
 msgid "Transaction not found"
-msgstr "取引は見つかりません"
+msgstr "Транзакция не обнаружена"
 
 #: www/views/modals/chooseFeeLevel.html:55
 msgid "Transactions without fee are not supported."
-msgstr "手数料なしの取引はサポートされていません。"
+msgstr ""
 
 #: src/js/controllers/paperWallet.js:109
 msgid "Transfer to"
-msgstr "移動先"
+msgstr "Перевести в"
 
 #: www/views/tab-send.html:67
 msgid "Transfer to Wallet"
-msgstr "ウォレットに移動"
+msgstr "Перевод в кошелёк"
 
 #: www/views/modals/pin.html:13
 msgid "Try again in {{expires}}"
-msgstr "{{expires}} 経過後にもう一度試してください。"
+msgstr "Попробуйте снова через {{expires}}"
 
 #: www/views/bitpayCardIntro.html:18
 msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
-msgstr "瞬時にビットコインを米ドルに変換！Visa<sup>&reg;</sup>カード利用可能店舗ならどこでも！"
+msgstr "Превращайте биткойны в доллары США - платите везде, где принимают карты Visa<sup>&reg;</sup>."
 
 #: www/views/tab-import-phrase.html:17
 msgid "Type the Recovery Phrase (usually 12 words)"
-msgstr "復元フレーズの単語 (通常 12 個) を入力して下さい。"
+msgstr "Введите ключевое словосочетание (обычно двенадцать слов)"
 
 #: src/js/controllers/backup.js:75
 msgid "Uh oh..."
-msgstr "あら…"
+msgstr "Упс..."
 
 #: www/views/tx-details.html:100
 msgid "Unconfirmed"
-msgstr "未承認"
+msgstr "Неподтверждено"
 
 #: www/views/walletDetails.html:190
 msgid "Unsent transactions"
-msgstr "未送信取引"
+msgstr "Неотправленные транзакции"
 
 #: www/views/addresses.html:39
 msgid "Unused Addresses"
-msgstr "未使用アドレス"
+msgstr "Неиспользованные адреса"
 
 #: www/views/addresses.html:50
 msgid "Unused Addresses Limit"
-msgstr "未使用アドレス生成上限"
+msgstr "Лимит неиспользованных адресов"
 
 #: src/js/controllers/tab-home.js:146
 msgid "Update Available"
-msgstr "利用可能なアップデートあり"
+msgstr "Доступно обновление"
 
 #: www/views/proposals.html:14
 msgid "Updating pending proposals. Please stand by"
-msgstr "協議中の送金提案を更新します。しばらくお待ちください。"
+msgstr "Обновление ожидающих рассмотрения платежей. Подождите, пожалуйста"
 
 #: www/views/walletDetails.html:217
 msgid "Updating transaction history. Please stand by."
-msgstr "取引履歴を更新します。しばらくお待ちください。"
+msgstr "Обновление истории транзакций. Подождите, пожалуйста."
 
 #: www/views/activity.html:14
 msgid "Updating... Please stand by"
-msgstr "更新中... お待ち下さい"
+msgstr "Обновление... Подождите, пожалуйста"
 
 #: src/js/services/feeService.js:10
 msgid "Urgent"
-msgstr "緊急"
+msgstr "Срочно"
 
 #: www/views/advancedSettings.html:12
 msgid "Use Unconfirmed Funds"
-msgstr "未承認ビットコインを使用"
+msgstr "Использовать неподтверждённые средства"
 
 #: src/js/services/onGoingProcess.js:34
 msgid "Validating recovery phrase..."
-msgstr "復元フレーズを検証中…"
+msgstr "Проверка ключевого словосочетания..."
 
 #: www/views/modals/fingerprintCheck.html:4
 msgid "Verify your identity"
-msgstr "認証を行って下さい"
+msgstr "Подтвердить личность"
 
 #: www/views/preferencesAbout.html:14
 #: www/views/preferencesExternal.html:25
 msgid "Version"
-msgstr "バージョン"
+msgstr "Версия"
 
 #: www/views/tab-export-file.html:69
 msgid "View"
-msgstr "表示"
+msgstr "Просмотреть"
 
 #: www/views/addresses.html:34
 msgid "View All Addresses"
-msgstr "全アドレスを表示"
+msgstr "Просмотреть все адреса"
 
 #: src/js/controllers/onboarding/terms.js:20
 msgid "View Terms of Service"
-msgstr "サービス利用規約を表示"
+msgstr "Посмотреть Условия обслуживания"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr "Insightにて取引を表示"
+msgstr ""
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
-msgstr "更新情報を表示"
+msgstr "Просмотреть обновление"
 
 #: www/views/tx-details.html:147
 msgid "View on blockchain"
-msgstr "ブロックチェーンで詳細を閲覧"
+msgstr "Посмотреть в блокчейне"
 
 #: www/views/mercadoLibre.html:26
 msgid "Visit mercadolivre.com.br &rarr;"
-msgstr "mercadolivre.com.br を訪れる &rarr;"
+msgstr ""
 
 #: www/views/walletDetails.html:182
 msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
-msgstr "注意：このデバイスでは鍵の派生がちゃんと動いておりません。このウォレットは正常に動作しません。"
+msgstr "ВНИМАНИЕ: Деривация ключей не работает на этом устройстве/кошельке. Никакие действия не могут быть произведены с этим кошельком."
 
 #: www/views/tab-export-file.html:45
 msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr "注意：このウォレットは秘密鍵がありません。残高の確認、取引履歴の確認、送金の提案ができます。しかし、<b>送金の提案を承諾 (署名) できません</b>。"
+msgstr "ВНИМАНИЕ: экспортируемый файл не включает закрытый ключ, поэтому позволит только просматривать баланс, историю транзакций и предлагать платежи. Однако, его нельзя будет использовать для одобрения (подписания) предложенных платежей, поэтому <b>средства не будет доступны из экспортируемого файла</b>."
 
 #: www/views/tab-export-file.html:36
 msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr "注意：このウォレットは秘密鍵がありません。残高の確認、取引履歴の確認、送金の提案ができます。しかし、<b>送金の提案を承諾 (署名) できません</b>。"
+msgstr "ВНИМАНИЕ: Закрытый ключ этого кошелька недоступен. Экспортируемый файл позволит только просматривать баланс, историю транзакций и предлагать платежи. Однако, его нельзя будет использовать для одобрения (подписания) предложенных платежей, поэтому <b>средства не будет доступны из экспортируемого файла</b>."
 
 #: www/views/modals/paypro.html:42
 msgid "WARNING: UNTRUSTED CERTIFICATE"
-msgstr "警告: 信頼されていない証明書"
+msgstr "ВНИМАНИЕ: НЕНАДЕЖНЫЙ СЕРТИФИКАТ"
 
 #: src/js/services/onGoingProcess.js:15
 msgid "Waiting for Ledger..."
-msgstr "Ledger を待っています..."
+msgstr "Ожидание Ledger..."
 
 #: src/js/services/onGoingProcess.js:16
 msgid "Waiting for Trezor..."
-msgstr "Trezor を待っています..."
+msgstr "Ожидание Trezor..."
 
 #: www/views/copayers.html:48
 msgid "Waiting for copayers"
-msgstr "ウォレット参加者を待っています"
+msgstr "Ожидание совладельцев кошелька"
 
 #: www/views/copayers.html:53
 msgid "Waiting..."
-msgstr "少々お待ち下さい…"
+msgstr "Ожидание..."
 
 #: www/views/addresses.html:3
 #: www/views/preferencesAdvanced.html:17
 msgid "Wallet Addresses"
-msgstr "ウォレットのアドレス"
+msgstr "Адреса кошелька"
 
 #: www/views/preferencesColor.html:4
 msgid "Wallet Color"
-msgstr "ウォレットの色"
+msgstr "Цвет кошелька"
 
 #: www/views/preferencesInformation.html:29
 msgid "Wallet Configuration (m-n)"
-msgstr "ウォレット構成 (m-of-n)"
+msgstr "Конфигурация кошелька (m-n)"
 
 #: www/views/onboarding/collectEmail.html:5
 msgid "Wallet Created"
-msgstr "ウォレットが作成されました"
+msgstr "Кошелёк создан"
 
 #: www/views/preferencesInformation.html:23
 msgid "Wallet Id"
-msgstr "ウォレットID"
+msgstr "Идентификатор кошелька"
 
 #: www/views/preferencesAdvanced.html:13
 #: www/views/preferencesInformation.html:3
 msgid "Wallet Information"
-msgstr "ウォレット詳細"
+msgstr "Информация о кошельке"
 
 #: www/views/addresses.html:76
 msgid "Wallet Inputs"
-msgstr "ウォレットの入力"
+msgstr ""
 
 #: www/views/join.html:26
 msgid "Wallet Invitation"
-msgstr "ウォレット招待"
+msgstr "Приглашение присоединиться к кошельку"
 
 #: www/views/join.html:60
 #: www/views/tab-create-personal.html:38
 #: www/views/tab-create-shared.html:67
 msgid "Wallet Key"
-msgstr "ウォレットの鍵"
+msgstr "Ключевое словосочетание"
 
 #: www/views/preferencesAlias.html:4
 msgid "Wallet Name"
-msgstr "ウォレット名"
+msgstr "Название кошелька"
 
 #: www/views/preferencesInformation.html:11
 msgid "Wallet Name (at creation)"
-msgstr "ウォレット名 (作成時)"
+msgstr "Название кошелька (при создании)"
 
 #: www/views/preferencesInformation.html:35
 msgid "Wallet Network"
-msgstr "ウォレットのネットワーク"
+msgstr "Сеть кошелька"
 
 #: www/views/join.html:77
 #: www/views/tab-create-personal.html:50
 #: www/views/tab-create-shared.html:79
 msgid "Wallet Recovery Phrase"
-msgstr "復元フレーズ"
+msgstr "Ключевое словосочетание кошелька"
 
 #: src/js/services/bwcError.js:26
 msgid "Wallet Recovery Phrase is invalid"
-msgstr "ウォレットシードが不正です。"
+msgstr "Ключевое словосочетание кошелька недействительно"
 
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "ウォレットサービスのURL"
+msgstr "Адрес сервера Bitcore"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
-msgstr "ウォレットの設定"
+msgstr "Параметры кошелька"
 
 #: www/views/tab-import-hardware.html:11
 #: www/views/tab-import-phrase.html:61
 msgid "Wallet Type"
-msgstr "ウォレットタイプ"
+msgstr "Тип кошелька"
 
 #: src/js/services/bwcError.js:59
 msgid "Wallet already exists"
-msgstr "既存のウォレットです"
+msgstr "Кошелёк уже существует"
 
 #: src/js/services/profileService.js:516
 msgid "Wallet already in {{appName}}"
-msgstr "{{appName}}内の既存のウォレットです"
+msgstr ""
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
-msgstr "ウォレットが作成されました"
+msgstr "Кошелёк создан"
 
 #: www/views/copayers.html:58
 msgid "Wallet incomplete and broken"
-msgstr "ウォレットが未完成で破損しています"
+msgstr "Не все совладельцы присоединились, кошелёк повреждён"
 
 #: src/js/services/bwcError.js:65
 msgid "Wallet is full"
-msgstr "ウォレットがいっぱいです。"
+msgstr "Все уже присоединены"
 
 #: src/js/services/bwcError.js:125
 msgid "Wallet is locked"
-msgstr "ウォレットがロックされています。"
+msgstr "Кошелёк заблокирован"
 
 #: src/js/services/bwcError.js:128
 msgid "Wallet is not complete"
-msgstr "ウォレットが未完成です。"
+msgstr "Не все совладельцы присоединились"
 
 #: www/views/tab-create-personal.html:12
 #: www/views/tab-create-shared.html:12
 msgid "Wallet name"
-msgstr "ウォレット名"
+msgstr "Название кошелька"
 
 #: src/js/services/bwcError.js:131
 msgid "Wallet needs backup"
-msgstr "ウォレットバックアップが必要"
+msgstr "Необходимо создать резервную копию"
 
 #: www/views/tab-receive.html:59
 #: www/views/walletDetails.html:169
 msgid "Wallet not backed up"
-msgstr "ウォレットがバックアップされていません"
+msgstr "Резервное копирование не выполнено"
 
 #: src/js/services/bwcError.js:68
 msgid "Wallet not found"
-msgstr "ウォレットが見つかりません。"
+msgstr "Кошелёк не найден"
 
 #: src/js/controllers/cashScan.js:81
 #: src/js/controllers/tab-home.js:230
 msgid "Wallet not registered"
-msgstr "ウォレットが未登録"
+msgstr "Кошелёк не зарегистрирован"
 
 #: src/js/services/bwcError.js:29
 msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
-msgstr "このウォレットは Wallet Service にて登録されていません。再び「新規作成」メニューから詳細設定を選び、復元フレーズをご入力下さい。"
+msgstr "Кошелёк не зарегистрирован на сервере Bitcore. Пересоздайте кошелёк воспользовавшись дополнительными параметрами, чтобы указать ключевое словосочетание"
 
 #: www/views/backup.html:12
 msgid "Wallet recovery phrase not available"
-msgstr "ウォレットの復元フレーズが削除されているため表示できません"
+msgstr ""
 
 #: src/js/services/bwcError.js:50
 msgid "Wallet service not found"
-msgstr "Wallet serviceが見つかりません。"
+msgstr "Сервер Bitcore не найден"
 
 #: www/views/tab-home.html:69
 msgid "Wallets"
-msgstr "ウォレット"
+msgstr "Кошельки"
 
 #: src/js/controllers/addressbookView.js:36
 #: src/js/controllers/modals/txpDetails.js:153
@@ -3394,177 +3392,177 @@ msgstr "ウォレット"
 #: src/js/controllers/preferencesExternal.js:14
 #: www/views/preferencesDeleteWallet.html:11
 msgid "Warning!"
-msgstr "注意！"
+msgstr "Внимание!"
 
 #: www/views/modals/txp-details.html:47
 msgid "Warning: this transaction has unconfirmed inputs"
-msgstr "注意: この取引は未承認資金が含まれており、承認されるまで商品等をお渡しするのを待つことをお勧めします。"
+msgstr "Предупреждение: эта транзакция имеет неподтвержденные входы"
 
 #: src/js/controllers/onboarding/backupRequest.js:17
 msgid "Watch out!"
-msgstr "注意して下さい！"
+msgstr "Осторожно!"
 
 #: src/js/controllers/feedback/send.js:69
 msgid "We'd love to do better."
-msgstr "サービスを改善していきます"
+msgstr "Мы хотели бы сделать лучше."
 
 #: www/views/backup.html:35
 msgid "We'll confirm on the next screen."
-msgstr "次の画面で確認作業を行います。"
+msgstr "Проверим на следующем шаге."
 
 #: src/js/controllers/feedback/send.js:77
 msgid "We're always looking for ways to improve {{appName}}."
-msgstr "弊社では、{{appName}} を改善する方法を常に探しています。"
+msgstr "Мы всегда ищем пути улучшения {{appName}}."
 
 #: src/js/controllers/feedback/send.js:83
 msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
-msgstr "常に{{appName}}を改善したく思っております。どのようにしたら改善できると思いますか？"
+msgstr ""
 
 #: www/views/includes/incomingDataMenu.html:6
 msgid "Website"
-msgstr "ウェブサイト"
+msgstr "Сайт"
 
 #: www/views/preferencesLanguage.html:16
 msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
-msgstr "常にボランティア翻訳者募集中です！Crowdinにてご自分の母国語の翻訳をしてこのアプリをより良いものにしてみませんか？"
+msgstr ""
 
 #: www/views/preferencesAlias.html:11
 msgid "What do you call this wallet?"
-msgstr "このウォレットの名前は何ですか？"
+msgstr "Как вы называете этот кошелёк?"
 
 #: www/views/preferencesAlias.html:12
 msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
-msgstr "このウォレットが作成された当時は「{{walletName}}」と名付けられましたが、この端末での表示名を下記にて変更することができます。"
+msgstr "Когда этот кошелёк был создан, он назывался &ldquo;{{walletName}}&rdquo;. Вы можете изменить отображаемое имя ниже."
 
 #: www/views/onboarding/collectEmail.html:10
 msgid "Where would you like to receive email notifications about payments?"
-msgstr "送金発生時のメール通知はどのメールアドレスで受け取りますか?"
+msgstr "Куда бы вы хотели получать email-уведомления о платежах?"
 
 #: www/views/addresses.html:19
 msgid "Why?"
-msgstr "なぜ？"
+msgstr "Почему?"
 
 #: www/views/feedback/rateApp.html:10
 msgid "Would you be willing to rate {{appName}} in the app store?"
-msgstr "アプリケーションストアにレビューを書いてみませんか？"
+msgstr ""
 
 #: www/views/onboarding/notifications.html:4
 msgid "Would you like to receive push notifications about payments?"
-msgstr "送金発生時にプッシュ通知を受け取りますか?"
+msgstr "Вы хотели бы получать push-уведомления о платежах?"
 
 #: src/js/controllers/import.js:288
 msgid "Wrong number of recovery words:"
-msgstr "単語の数が間違っています："
+msgstr "Неподходящее количество слов в ключевом словосочетании:"
 
 #: src/js/services/bwcError.js:140
 msgid "Wrong spending password"
-msgstr "不正なパスワード"
+msgstr "Неверный платёжный пароль"
 
 #: www/views/modals/confirmation.html:7
 msgid "Yes"
-msgstr "はい"
+msgstr "Да"
 
 #: src/js/controllers/onboarding/backupRequest.js:25
 msgid "Yes, skip"
-msgstr "飛ばす"
+msgstr "Да, пропустить"
 
 #: src/js/controllers/onboarding/backupRequest.js:24
 msgid "You can create a backup later from your wallet settings."
-msgstr "ウォレットの設定から、後でバックアップを作成できます。"
+msgstr "Вы можете создать резервную копию позже из параметров кошелька."
 
 #: src/js/controllers/preferencesLanguage.js:12
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
-msgstr "Crowdinのサイトにて翻訳者登録をして、今すぐに投稿をいただけます。お待ちしております。"
+msgstr ""
 
 #: www/views/tab-scan.html:16
 msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "ビットコインアドレス、支払い請求、ペーパーウォレットなどをスキャンできます。"
+msgstr "Вы можете сканировать биткойн-адреса, запросы платежей, бумажные кошельки, и многое другое."
 
 #: src/js/controllers/preferencesAbout.js:14
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
-msgstr "GitHubのページにて最近の開発動向を見たり、改善案のソースコードの貢献したりすることができます。"
+msgstr ""
 
 #: www/views/onboarding/tour.html:19
 msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr "世界中のECサイトや店舗でビットコインを使って支払いができます。"
+msgstr ""
 
 #: www/views/backup.html:15
 msgid "You can still export it from Advanced &gt; Export."
-msgstr "バックアップファイルの作成は「上級者向け」⇒「エクスポート」からアクセスできます。"
+msgstr "Вы можете экспортировать её в Дополнительные параметры &gt; Экспорт."
 
 #: www/views/onboarding/tour.html:32
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
-msgstr "米ドル、ユーロ、ポンドなど他の通貨との取引ができます。"
+msgstr ""
 
 #: www/views/onboarding/tour.html:46
 msgid "You control your bitcoin."
-msgstr "ビットコインの自己管理"
+msgstr "Вы контролируете Ваши bitcoin-ы."
 
 #: www/views/modals/chooseFeeLevel.html:64
 msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
-msgstr "{{maxFeeRecommended}} satoshis/byte より高い手数料を設定しない方が良いです。"
+msgstr ""
 
 #: www/views/modals/bitpay-card-confirmation.html:5
 msgid "You will need to log back for fill in your BitPay Card."
-msgstr "BitPayカードに入金するためにログインする必要があります。"
+msgstr ""
 
 #: www/views/preferencesNotifications.html:34
 msgid "You'll receive email notifications about payments sent and received from your wallets."
-msgstr "メールアドレスにウォレットへの入金や出金に関する通知が送られます。"
+msgstr "Вы будете получать email-уведомления о входящих и исходящих платежах."
 
 #: www/views/bitpayCard.html:50
 msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
-msgstr "BitPayカードの準備が整いました。入金して全世界のお店やATMでご利用下さい。"
+msgstr ""
 
 #: www/views/mercadoLibre.html:57
 #: www/views/mercadoLibreCards.html:6
 msgid "Your Gift Cards"
-msgstr "ギフトカード"
+msgstr "Мои подарочные карты"
 
 #: www/views/includes/confirmBackupPopup.html:6
 msgid "Your bitcoin wallet is backed up!"
-msgstr "ビットコインウォレットがバックアップされました!"
+msgstr "Резервная копия кошелька создана!"
 
 #: www/views/tab-home.html:36
 msgid "Your bitcoin wallet is ready!"
-msgstr "ビットコインウォレットが完成しました!"
+msgstr "Ваш кошелёк готов!"
 
 #: www/views/modals/chooseFeeLevel.html:61
 msgid "Your fee is lower than recommended."
-msgstr "手数料設定が推奨値より低くなっております。"
+msgstr ""
 
 #: www/views/feedback/send.html:42
 msgid "Your ideas, feedback, or comments"
-msgstr "提案、評価、コメントなど"
+msgstr "Ваши идеи, отзывы или комментарии"
 
 #: www/views/tab-create-shared.html:22
 msgid "Your name"
-msgstr "自分の名前"
+msgstr "Ваше имя"
 
 #: www/views/join.html:16
 msgid "Your nickname"
-msgstr "自分のハンドルネーム"
+msgstr "Ваше псевдоним"
 
 #: www/views/tab-export-file.html:11
 #: www/views/tab-import-file.html:20
 msgid "Your password"
-msgstr "パスワード"
+msgstr "Ваш пароль"
 
 #: www/views/buyAmazon.html:102
 msgid "Your purchase could not be completed"
-msgstr "購入が完了されませんでした。"
+msgstr ""
 
 #: www/views/buyAmazon.html:105
 msgid "Your purchase was added to the list of pending"
-msgstr "ご購入の品物が保留中のリストに追加されました。"
+msgstr ""
 
 #: www/views/onboarding/backupRequest.html:10
 msgid "Your wallet is never saved to cloud storage or standard device backups."
-msgstr "ウォレットは一度もクラウドへ保存されたりすることはありませんし、携帯電話などに付いている標準バックアップ機能ではバックアップされません！！！！"
+msgstr "Ваш кошелёк никогда не сохраняется в облачное хранилище или в резервные копии устройства."
 
 #: src/js/services/walletService.js:1030
 msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
-msgstr "ウォレットの鍵が暗号化されます。Copayでは送金時のパスワードをリセットしてくれる機能がありませんので、パスワードを忘れないよう、控えておいて下さい。"
+msgstr "Ваш кошелёк будет зашифрован. Платёжный пароль нельзя восстановить. Обязательно его запишите."
 
 #: www/views/includes/walletList.html:13
 #: www/views/includes/walletSelector.html:21
@@ -3573,63 +3571,64 @@ msgstr "ウォレットの鍵が暗号化されます。Copayでは送金時の�
 #: www/views/walletDetails.html:131
 #: www/views/walletDetails.html:51
 msgid "[Balance Hidden]"
-msgstr "[残高非表示中]"
+msgstr "[Баланс скрыт]"
 
 #: www/views/walletDetails.html:141
 #: www/views/walletDetails.html:61
 msgid "[Scanning Funds]"
-msgstr "[確認中]"
+msgstr ""
 
 #: src/js/controllers/bitpayCardIntro.js:11
 msgid "add your BitPay Visa card(s)"
-msgstr "BitPay VISAカードを追加します"
+msgstr "добавьте вашу BitPay Visa карту(ы)"
 
 #: www/views/includes/available-balance.html:8
 msgid "locked by pending payments"
-msgstr "未対応送金の提案によりロック中"
+msgstr "заблокировано неподтверждёнными платежами"
 
 #: src/js/services/profileService.js:404
 msgid "me"
-msgstr "自分"
+msgstr "мне"
 
 #: www/views/addressbook.add.html:32
 msgid "name@example.com"
-msgstr "name@example.com"
+msgstr ""
 
 #: www/views/preferencesHistory.html:15
 msgid "preparing..."
-msgstr "準備中..."
+msgstr "Подготавливается..."
 
 #: www/views/cashScan.html:57
 msgid "recovery tool."
-msgstr "復元ツールはこちら"
+msgstr ""
 
 #: src/js/controllers/buyAmazon.js:239
 msgid "{{amountStr}} for Amazon.com Gift Card"
-msgstr "{{amountStr}} を Amazon.com ギフトカードに"
+msgstr ""
 
 #: src/js/controllers/buyMercadoLibre.js:237
 msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
-msgstr "{{amountStr}} を Mercado Livre Brazil ギフトカードに"
+msgstr ""
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}}はブロックチェーンの情報を取得したり参加者を同期させたりするためにBitcore Wallet Service (BWS)に依存します。初期値としてBitPay社が提供する https://bws.bitpay.com (BitPay公式のBWSサーバー)を設定していますが、独自で運用してウォレットをそちらに接続しても構いません。"
+msgstr "{{appName}} требует Bitcore для координации совладельцев и получения информации из блокчейна. По-умолчанию используется сервер https://bws.bitpay.com (публичный сервер Bitcore компании BitPay)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
-msgstr "{{fee}} のビットコインネットワーク手数料が差し引かれます。"
+msgstr "{{fee}} будет использовано для оплаты комиссии."
 
 #: www/views/confirm.html:85
 msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
-msgstr "送金額に対する {{tx.txp[wallet.id].feeRatePerStr}}"
+msgstr ""
 
 #: www/views/walletDetails.html:218
 msgid "{{updatingTxHistoryProgress}} transactions downloaded"
-msgstr "{{updatingTxHistoryProgress}} 個の取引ダウンロード済み"
+msgstr "{{updatingTxHistoryProgress}} транзакций загружено"
 
 #: www/views/cashScan.html:33
 #: www/views/copayers.html:46
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
-msgstr "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.m}}-из-{{wallet.n}}"
+
