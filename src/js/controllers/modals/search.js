@@ -57,7 +57,7 @@ angular.module('copayApp.controllers').controller('searchController', function($
           $scope.searchTermIsAddress = true;
         } else if ((search[0] === "1" || search[0] === "3" || search.substring(0, 3) === "bc1") && search.length >= 26 && search.length <= 35) { // Legacy Addresses
           $scope.searchTermIsAddress = true;
-        } else if (search.lengh === 64) {
+        } else if (search.length === 64) {
           $scope.searchTermIsTxId = true;
         }
       }
