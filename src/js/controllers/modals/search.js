@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, externalLinkService, bitcoinCashJsService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -21,6 +21,8 @@ angular.module('copayApp.controllers').controller('searchController', function($
 
     function filter(search) {
       $scope.filteredTxHistory = [];
+      $scope.searchTermIsAddress = false;
+      $scope.searchTermIsTxId = false;
 
       function computeSearchableString(tx) {
         var addrbook = '';
@@ -63,8 +65,19 @@ angular.module('copayApp.controllers').controller('searchController', function($
         return lodash.includes(tx.searcheableString, search.toLowerCase());
       });
 
+      if (search) {
+        if ((search.indexOf('bitcoincash:') === 0 || search[0] === 'C' || search[0] === 'H' || search[0] === 'p' || search[0] === 'q') && search.replace('bitcoincash:', '').length === 42) { // CashAddr
+          $scope.searchTermIsAddress = true;
+        } else if ((search[0] === "1" || search[0] === "3" || search.substring(0, 3) === "bc1") && search.length >= 26 && search.length <= 35) { // Legacy Addresses
+          $scope.searchTermIsAddress = true;
+        } else if (search.length === 64) {
+          $scope.searchTermIsTxId = true;
+        }
+      }
+
       if ($scope.filteredTxHistory.length > HISTORY_SHOW_LIMIT) $scope.txHistoryShowMore = true;
       else $scope.txHistoryShowMore = false;
+
       return $scope.filteredTxHistory;
     };
 
@@ -88,6 +101,16 @@ angular.module('copayApp.controllers').controller('searchController', function($
   $scope.showHistory = function() {
     $scope.txHistorySearchResults = $scope.filteredTxHistory ? $scope.filteredTxHistory.slice(0, (currentTxHistoryPage + 1) * HISTORY_SHOW_LIMIT) : [];
     $scope.txHistoryShowMore = $scope.filteredTxHistory.length > $scope.txHistorySearchResults.length;
+  };
+
+  $scope.searchOnBlockchain = function(searchTerm) {
+    const url = 'https://explorer.bitcoin.com/'+$scope.wallet.coin+'/search/' + searchTerm;
+    const optIn = true;
+    const title = null;
+    const message = gettextCatalog.getString('Search on Explorer.Bitcoin.com');
+    const okText = gettextCatalog.getString('Open Explorer');
+    const cancelText = gettextCatalog.getString('Go Back');
+    externalLinkService.open(url, optIn, title, message, okText, cancelText);
   };
 
 });
