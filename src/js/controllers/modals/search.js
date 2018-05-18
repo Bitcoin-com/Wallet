@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, externalLinkService) {
+angular.module('copayApp.controllers').controller('searchController', function($scope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicScrollDelegate, bwcError, profileService, lodash, configService, gettext, gettextCatalog, platformInfo, walletService, externalLinkService, bitcoinCashJsService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -31,6 +31,19 @@ angular.module('copayApp.controllers').controller('searchController', function($
         var message = tx.message ? tx.message : '';
         var comment = tx.note ? tx.note.body : '';
         var addressTo = tx.addressTo ? tx.addressTo : '';
+
+        if ($scope.wallet.coin === 'bch') {
+
+          /**
+           * For each address
+           * I translate the legacy address and add in the searchable string the 3 kind of addresses
+           */
+          lodash.each(tx.outputs, function(output) {
+            var addr = bitcoinCashJsService.translateAddresses(output.address);
+            addressTo += addr.legacy + addr.bitpay + 'bitcoincash:' + addr.cashaddr
+          });
+        }
+
         var txid = tx.txid ? tx.txid : '';
         return ((tx.amountStr + message + addressTo + addrbook + searchableDate + comment + txid).toString()).toLowerCase();
       }

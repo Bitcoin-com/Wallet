@@ -37,14 +37,13 @@
       </div>
     </a>
 
-  <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0] && displayWallet" translate>
+  <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0]" translate>
     <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
     <span translate>Bitcoin Core (BTC)</span>
   </div>
   <a
     ng-repeat="wallet in walletsBtc track by $index"
     class="item item-icon-left item-big-icon-left item-icon-right wallet"
-    ng-show="displayWallet"
     ng-click="selectWallet(wallet)"
   >
       <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>

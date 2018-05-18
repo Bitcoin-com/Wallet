@@ -83,9 +83,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
-      updateAllWallets(function() {
-        profileService.initBitcoinCoreDisplay();
-      });
+      updateAllWallets();
 
       addressbookService.list(function(err, ab) {
         if (err) $log.error(err);
@@ -125,8 +123,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         } else {
           $scope.nextStepsItems = nextStepsService.get();
         }
-
-        $scope.displayBitcoinCore = config.displayBitcoinCore.enabled;
 
         $scope.showServices = true;
         pushNotificationsService.init();
@@ -281,8 +277,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
         var txIdList = [];
 
-        var notificationsBeforeCheck = notifications.length;
-
         for (var i=0; i<notifications.length; i++) {
             var txId = notifications[i].txid;
             if (txIdList.includes(txId)) {
@@ -293,15 +287,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
             }
         }
 
-        var notificationsAfterCheck = notifications.length;
-        var removedNotifications = notificationsBeforeCheck - notificationsAfterCheck;
-
-        if (notificationsBeforeCheck != notificationsAfterCheck) {
-            total = total - removedNotifications;
-        }
-
         $scope.notifications = notifications;
-        $scope.notificationsN = total;
         $timeout(function() {
           $ionicScrollDelegate.resize();
           $scope.$apply();
@@ -326,9 +312,4 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       updateAllWallets();
     };
 
-    $rootScope.$on('Local/SettingsUpdated', function(e, walletId) {
-      configService.whenAvailable(function(config) {
-        $scope.displayBitcoinCore = config.displayBitcoinCore.enabled;
-      });
-    });
   });
