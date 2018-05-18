@@ -2,6 +2,8 @@
 
 'use strict';
 
+const blankOrEmptyTranslationRegex = /^\s*"\s*"$/
+
 if (process.argv[2]) {
   var no_build = (process.argv[2].toLowerCase() == '--nobuild')
   if (no_build == false) {
@@ -110,6 +112,7 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
   });
 };
 
+
 function updateLocalFilesFromDownloadedZipBuffer(buf) {
   
   var zip = new AdmZip(buf);
@@ -122,55 +125,67 @@ function updateLocalFilesFromDownloadedZipBuffer(buf) {
         
   for (var i in files) {
     const name = files[i];
-    if (name != 'template.pot') {
-      // Assume it is a directory
-      const fullPath = path.join(extractionPath, name);
-      const status = fs.statSync(fullPath);
-      if (!status.isDirectory()) {
-        console.log(`Not a directory. Don't know what to do with "%{name}", skipping.`);
-        continue;
-      }
+    if (name == 'template.pot') {
+      continue;
+    }
 
-      const filePath = path.join(fullPath, `template-${name}.po`);
-      console.log(`Processing file: ${filePath}`);
-      var po_file = fs.readFileSync(filePath, 'utf8');
-      var po_array = po_file.split('\n');
-      for (var j in po_array) {
-        if (po_array[j].slice(0,5) == 'msgid') {
-          var source_text = po_array[j].slice(5);
-        } else if (po_array[j].slice(0,6) == 'msgstr') {
-          var translate_text = po_array[j].slice(6);
-          // If a line is not == English, it means there is at least one translation. Keep this entire file.
-          if (source_text != translate_text) {
-            // erase email addresses of last translator for privacy
-            po_file = po_file.replace(/ <.+@.+\..+>/, '')
-            fs.writeFileSync(filePath, po_file);
-            
-            // split the file into 3 parts, before locale, locale, and after locale.
-            var lang_pos = po_file.search('"Language: ') + 11;
-            var po_start = po_file.slice(0,lang_pos);
-            var po_locale = po_file.slice(lang_pos,lang_pos + 5);
-            var po_end = po_file.slice(lang_pos + 5);
-            
-            // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
-            // TODO: Fix how this is done, because it won't work properly for
-            // Chinese, Traditional and Chinese, Simplified, they will clash.
-            if (po_locale.search('_') > 0) {
-              fs.writeFileSync(filePath, po_start + po_locale.slice(0,2) + po_end);
-              po_start = '';
-              po_locale = '';
-              po_end = '';
-            };
-            break;
+    const fullPath = path.join(extractionPath, name);
+    const status = fs.statSync(fullPath);
+    if (!status.isDirectory()) {
+      console.log(`Not a directory. Don't know what to do with "%{name}", skipping.`);
+      continue;
+    }
+
+    const filePath = path.join(fullPath, `template-${name}.po`);
+
+    if (name === "zh-HK") {
+      console.log("Deleting zh-HK, because we also have zh-CN and the app uses 2-character locales. Also zh-HK was untranslated at time of writing.");
+      fs.unlinkSync(filePath);
+      continue
+    }
+
+    var po_file = fs.readFileSync(filePath, 'utf8');
+    var po_array = po_file.split('\n');
+    const linesCount = po_array.length;
+    for (let j = 0; j < linesCount; j++) {
+      if (po_array[j].slice(0,5) === 'msgid') {
+        var source_text = po_array[j].slice(5);
+      } else if (po_array[j].slice(0,6) === 'msgstr') {
+        var translate_text = po_array[j].slice(6);
+        // If a line is not == English, it means there is at least one translation. Keep this entire file.
+        if ((!blankOrEmptyTranslationRegex.test(translate_text)) &&
+            source_text !== translate_text) {
+          console.log(`Keeping ${name}`);
+          // erase email addresses of last translator for privacy
+          po_file = po_file.replace(/ <.+@.+\..+>/, '')
+          fs.writeFileSync(filePath, po_file);
+          
+          // split the file into 3 parts, before locale, locale, and after locale.
+          var lang_pos = po_file.search('"Language: ') + 11;
+          var po_start = po_file.slice(0,lang_pos);
+          var po_locale = po_file.slice(lang_pos,lang_pos + 5);
+          var po_end = po_file.slice(lang_pos + 5);
+          
+          // check for underscore, if it's there, only take the first 2 letters and reconstruct the po file.
+          // TODO: Fix how this is done, because it won't work properly for
+          // Chinese, Traditional and Chinese, Simplified, they will clash.
+          if (po_locale.search('_') > 0) {
+            fs.writeFileSync(filePath, po_start + po_locale.slice(0,2) + po_end);
+            po_start = '';
+            po_locale = '';
+            po_end = '';
           };
-        };
-        if (j == po_array.length - 1) { // All strings are exactly identical to English. Delete po file.
-          fs.unlinkSync(filePath);
-          untranslatedPoFileDeletedCount++;
+          break;
         };
       };
+      if (j === (linesCount - 1)) { // All strings are exactly identical to English. Delete po file.
+        fs.unlinkSync(filePath);
+        console.log(`Deleted ${name}`)
+        untranslatedPoFileDeletedCount++;
+      };
+      
     };
   };
   
-  console.log(`Completely untranslated po files cleaned out: ${untranslatedPoFileDeletedCount}`);
+  console.log(`Completely untranslated po files cleaned out: ${untranslatedPoFileDeletedCount} (Not including zh-HK)`);
 }
