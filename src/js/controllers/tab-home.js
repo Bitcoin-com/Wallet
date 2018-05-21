@@ -277,8 +277,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
         var txIdList = [];
 
-        var notificationsBeforeCheck = notifications.length;
-
         for (var i=0; i<notifications.length; i++) {
             var txId = notifications[i].txid;
             if (txIdList.includes(txId)) {
@@ -289,15 +287,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
             }
         }
 
-        var notificationsAfterCheck = notifications.length;
-        var removedNotifications = notificationsBeforeCheck - notificationsAfterCheck;
-
-        if (notificationsBeforeCheck != notificationsAfterCheck) {
-            total = total - removedNotifications;
-        }
-
         $scope.notifications = notifications;
-        $scope.notificationsN = total;
         $timeout(function() {
           $ionicScrollDelegate.resize();
           $scope.$apply();

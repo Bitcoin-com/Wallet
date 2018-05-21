@@ -18,11 +18,11 @@
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
                 ng-class="{long: amountModel.amount.length > 5, 'very-long': amountModel.amount.length > 10}">
-                <span class="primary-amount-display">{{ amountModel.amount || 0 }}</span><span class="unit">{{unit}}</span>
+                <span class="primary-amount-display text-selectable">{{ amountModel.amount || 0 }}</span><span class="unit">{{unit}}</span>
               </div>
               <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
               <div class="alternative-amount">
-                <span>{{alternativeAmount || '0.00'}} {{alternativeUnit}}</span>
+                <span class="text-selectable">{{alternativeAmount || '0.00'}}</span> <span>{{alternativeUnit}}</span>
               </div>
               <div class="switch-currencies" ng-click="changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
