@@ -1,5 +1,5 @@
 configurations.all {
-   resolutionStrategy {
+    resolutionStrategy {
         force "com.android.support:support-v4:26.1.0"
         force "com.google.android.gms:play-services-auth:11.8.0"
         force "com.google.android.gms:play-services-identity:11.8.0"
@@ -17,5 +17,5 @@ configurations.all {
         force 'com.google.firebase:firebase-config:11.8.0'
         force 'com.google.firebase:firebase-perf:11.8.0'
         force 'com.google.firebase:firebase-messaging:11.8.0'
-   }
+    }
 }
