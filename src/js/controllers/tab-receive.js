@@ -126,8 +126,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
-      $scope.showingPaymentReceived = true
-      $scope.$apply();
+      $scope.$apply(function () {
+        $scope.showingPaymentReceived = true;
+      });
     }
   }
 
@@ -246,6 +247,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     $scope.wallet = wallet;
     setProtocolHandler();
     $scope.setAddress();
+  };
+
+  $scope.hidePaymentScreen = function() {
+    $scope.showingPaymentReceived = false;
   };
 
   $scope.showWalletSelector = function() {
