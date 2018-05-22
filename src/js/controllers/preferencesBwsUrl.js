@@ -16,7 +16,7 @@ angular.module('copayApp.controllers').controller('preferencesBwsUrlController',
     };
 
     $scope.resetDefaultUrl = function() {
-      $scope.bwsurl.value = defaults.bws.url;
+      $scope.bwsurl.value = ($scope.wallet.coin === 'btc') ? defaults.bws.url : defaults.bwscash.url;
     };
 
     $scope.save = function() {
