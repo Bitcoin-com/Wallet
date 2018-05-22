@@ -1251,7 +1251,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (screen.width < 768 && platformInfo.isCordova)
         screen.lockOrientation('portrait');
 
-      if (ionic.Platform.isAndroid() && StatusBar) {
+      if (ionic.Platform.isAndroid() && platformInfo.isCordova && StatusBar) {
         StatusBar.backgroundColorByHexString('#000000');
       }
 
