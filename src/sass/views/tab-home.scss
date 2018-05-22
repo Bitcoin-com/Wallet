@@ -79,17 +79,15 @@
   .homeTip {
     text-align: center;
     & > .item-heading {
-      margin-top: 10px;
       background: 0 none;
     }
     .item {
       border-style: none;
     }
-    & > .title {
+    .title {
       font-size: 20px;
       font-weight: bold;
       color: $v-dark-gray;
-      margin: 20px 10px;
     }
     & > .subtitle {
       font-size: 1rem;
@@ -108,6 +106,8 @@
   .icon.close-home-tip {
     color: #666;
     font-size: 38px;
+    height: auto;
+    top: 8px;
   }
   .tab-home {
     &__logo {
