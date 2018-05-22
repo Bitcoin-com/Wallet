@@ -45,9 +45,7 @@ var crowdin_api_key = fs.readFileSync(path.join(__dirname, 'crowdin_api_key.txt'
 if (crowdin_api_key != '') {
 
   var payload = {
-    'files[template.pot]': local_file1,
-    'files[appstore/appstore_en.txt]': local_file2,
-    'files[appstore/updateinfo_en.txt]': local_file3
+    'files[template.pot]': local_file1
   };
 
   bhttp.post('https://api.crowdin.com/api/project/' + crowdin_identifier + '/update-file?key=' + crowdin_api_key, payload, {}, function(err, response) {

@@ -26,18 +26,6 @@ var AdmZip = require('adm-zip');
 
 var crowdin_identifier = 'bitcoincom-wallet'
 
-var local_file_name2 = path.join(__dirname, 'docs/appstore_en.txt')
-var local_file_name3 = path.join(__dirname, 'docs/updateinfo_en.txt')
-
-try {
-    fs.statSync(local_file_name2);
-    fs.statSync(local_file_name3);
-}
-catch (e) {
-    console.log('\n### ABORTING ### One of the following files does not exist:\n' + local_file_name2 + '\n' + local_file_name3);
-    process.exit(1);
-}
-
 try {
   // obtain the crowdin api key
   var crowdin_api_key = fs.readFileSync(path.join(__dirname, 'crowdin_api_key.txt'), 'utf8')
@@ -68,31 +56,16 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
       };
       
       downloadAllTranslationsAfterLastBuild();
-
-      // Download most recent translations for all languages.
-      https.get('https://crowdin.com/download/project/' + crowdin_identifier + '.zip', function(res) {
-        var data = [], dataLen = 0; 
-        
-        res.on('data', function(chunk) {
-            data.push(chunk);
-            dataLen += chunk.length;
-          }).on('end', function() {
-            var buf = new Buffer(dataLen);
-            for (var i=0, len = data.length, pos = 0; i < len; i++) {
-              data[i].copy(buf, pos);
-              pos += data[i].length;
-            };
-
-            updateLocalFilesFromDownloadedZipBuffer(buf);
-          });
-      });
     });
   }).on('error', function(e) {
     console.log('Export Got error: ' + e.message);
   });
 
 } else { // Reminder: Any changes to the script below must also be made to the above and vice versa.
+  downloadAllTranslationsAfterLastBuild();
+};
 
+function downloadAllTranslationsAfterLastBuild () {
   // Download most recent translations for all languages.
   https.get('https://api.crowdin.com/api/project/' + crowdin_identifier + '/download/all.zip?key=' + crowdin_api_key, function(res) {
     var data = [], dataLen = 0; 
@@ -110,8 +83,7 @@ if (no_build == false) { // Reminder: Any changes to the script below must also 
         updateLocalFilesFromDownloadedZipBuffer(buf);
       });
   });
-};
-
+}
 
 function updateLocalFilesFromDownloadedZipBuffer(buf) {
   
