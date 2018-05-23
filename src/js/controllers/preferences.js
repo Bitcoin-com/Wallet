@@ -59,7 +59,7 @@ angular.module('copayApp.controllers').controller('preferencesController',
     };
 
     $scope.openWikiSpendingPassword = function() {
-      var url = 'https://github.com/bitpay/copay/wiki/COPAY---FAQ#what-the-spending-password-does';
+      var url = 'https://walletsupport.bitcoin.com/article/129/what-does-the-spending-password-do-';
       var optIn = true;
       var title = null;
       var message = gettextCatalog.getString('Read more in our Wiki');
