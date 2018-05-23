@@ -932,8 +932,19 @@ angular.module('copayApp.services')
           x.txid = x.data ? x.data.txid : null;
           x.types = [x.type];
 
-          if (x.data && x.data.amount)
-            x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
+          if (x.data && x.data.amount) {
+            x.amountStr = null; // Will have loading state in view
+            configService.whenAvailable(function(config) {
+              if (config.wallet.settings.priceDisplay === "fiat") {
+                txFormatService.formatAlternativeStr(x.wallet.coin, x.data.amount, function(formattedString) {
+                  x.amountStr = formattedString;
+                  // Will I need an apply() after this?
+                });
+              } else {
+                x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
+              }
+            });
+          }
 
           x.action = function() {
             // TODO?
