@@ -155,12 +155,8 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       externalLinkService.open(url, optIn, title, message, okText, cancelText);
     };
 
-    $scope.openURL = function(url) {
-      if (platformInfo.isNW) {
-        require('nw.gui').Shell.openExternal( url );
-      } else {
-        window.open(url, '_system');
-      }
+    $scope.openStore = function() {
+      externalLinkService.open('https://store.bitcoin.com/', false);
     };
 
     $scope.openNotificationModal = function(n) {
