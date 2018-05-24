@@ -410,8 +410,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.$on("$ionicView.afterLeave", function(event, data) {
     $interval.cancel(refreshInterval);
     if ($window.StatusBar) {
-      var statusBarColor = appConfigService.name == 'copay' ? '#192c3a' : '#1e3186';
-      $window.StatusBar.backgroundColorByHexString(statusBarColor);
+      $window.StatusBar.backgroundColorByHexString('#000000');
     }
   });
 

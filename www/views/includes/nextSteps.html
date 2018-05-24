@@ -7,14 +7,14 @@
   <div ng-show="!hide">
     <div ng-repeat="service in services track by $index">
       <a ng-if="service.sref" ui-sref="{{service.sref}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
-        <i class="icon big-icon-svg">
+        <i class="icon big-icon-svg theme-circle">
           <div class="bg {{service.icon}}"></div>
         </i>
         <span>{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
       <a ng-if="!service.sref" ng-click="open('{{service.href}}')" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
-        <i class="icon big-icon-svg">
+        <i class="icon big-icon-svg theme-circle">
           <div class="bg {{service.icon}}"></div>
         </i>
         <span>{{service.title ||  service.name}}</span>
