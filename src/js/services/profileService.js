@@ -933,15 +933,13 @@ angular.module('copayApp.services')
           x.types = [x.type];
 
           if (x.data && x.data.amount) {
-            x.amountStr = null; // Will have loading state in view
+            // Default to showing amount in crypto because we have that now
+            x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
             configService.whenAvailable(function(config) {
               if (config.wallet.settings.priceDisplay === "fiat") {
                 txFormatService.formatAlternativeStr(x.wallet.coin, x.data.amount, function(formattedString) {
                   x.amountStr = formattedString;
-                  // Will I need an apply() after this?
                 });
-              } else {
-                x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
               }
             });
           }
