@@ -69,7 +69,7 @@
       }
 
       &.icon-buy-bitcoin2 {
-        background-color: #494949;
+        border: 1px solid #faba13;
       }
 
       &.icon-reddit-white {
@@ -82,6 +82,11 @@
         background-image: url('../img/icon-twitter-white.svg');
         background-color: #1da1f2;
         background-size: 60%;
+      }
+
+      &.icon-faucet {
+        background-image: url('../img/icon-faucet.svg');
+        background-size: 70%;
       }
     }
   }
