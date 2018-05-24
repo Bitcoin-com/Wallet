@@ -10025,7 +10025,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     .big-icon-svg.theme-circle > .bg.icon-shapeshift {
       background-color: #263e5c; }
     .big-icon-svg.theme-circle > .bg.icon-buy-bitcoin2 {
-      background-color: #494949; }
+      border: 1px solid #faba13; }
     .big-icon-svg.theme-circle > .bg.icon-reddit-white {
       background-image: url("../img/icon-reddit-white.svg");
       background-color: #ff4500;
