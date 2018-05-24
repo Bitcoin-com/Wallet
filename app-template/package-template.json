@@ -14,7 +14,7 @@
   "main": "www/index.html",
   "title": "*USERVISIBLENAME*",
   "window": {
-    "title": "*USERVISIBLENAME* - *PURPOSELINE*",
+    "title": "*USERVISIBLENAME*",
     "icon": "www/img/app/icon.png",
     "toolbar": false,
     "show": true,

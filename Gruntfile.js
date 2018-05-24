@@ -237,6 +237,10 @@ module.exports = function(grunt) {
         macIcns: './resources/<%= pkg.name %>/mac/app.icns',
         exeIco: './www/img/app/logo.ico',
         macPlist: {
+          'CFBundleIdentifier': 'com.bitcoin.mwallet.mac',
+          'CFBundleDisplayName': '<%= pkg.title %>',
+          'CFBundleShortVersionString': '<%= pkg.version %>',
+          'LSApplicationCategoryType': 'public.app-category.finance',
           'CFBundleURLTypes': [
             {
               'CFBundleURLName': 'URI Handler',
