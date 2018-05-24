@@ -16,6 +16,13 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
     credentials.BITPAY_API_URL = "https://bitpay.com";
   };
 
+  var faucetItem = {
+    name: 'faucet',
+    title: 'Free Bitcoin Cash',
+    icon: 'icon-faucet',
+    href: 'https://free.bitcoin.com/'
+  };
+
   var cashGamesItem = {
     name: 'games',
     title: 'Bitcoin Cash Games',
@@ -70,6 +77,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
   };
 
   var register = function() {
+    nextStepsService.register(faucetItem);
     nextStepsService.register(cashGamesItem);
     nextStepsService.register(newsItem);
     nextStepsService.register(poolItem);

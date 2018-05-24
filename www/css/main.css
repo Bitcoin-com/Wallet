@@ -10034,6 +10034,9 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-image: url("../img/icon-twitter-white.svg");
       background-color: #1da1f2;
       background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-faucet {
+      background-image: url("../img/icon-faucet.svg");
+      background-size: 70%; }
   .big-icon-svg.theme-circle-services > .bg {
     border: 1px solid #191919; }
   .big-icon-svg.theme-circle-community > .bg {
