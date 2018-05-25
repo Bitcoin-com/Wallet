@@ -307,16 +307,21 @@ angular.module('copayApp.controllers').controller('amountController', function($
     }
 
     if ($scope.amountModel.amount && $scope.amountModel.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
-    if (($scope.amountModel.amount.indexOf('.') > -1 || $scope.amountModel.amount == '') && digit == '.') return;
+    if ($scope.amountModel.amount.indexOf('.') > -1 && digit == '.') return;
     if ($scope.amountModel.amount == '0' && digit == '0') return;
     if (availableUnits[unitIndex].isFiat && $scope.amountModel.amount.indexOf('.') > -1 && $scope.amountModel.amount[$scope.amountModel.amount.indexOf('.') + 2]) return;
     
-    if ($scope.amountModel.amount == '0' && digit != '.') { $scope.amountModel.amount = ''}
-    
+    if ($scope.amountModel.amount == '0' && digit != '.') { 
+      $scope.amountModel.amount = '';
+    }
+
+    if ($scope.amountModel.amount == '' && digit == '.') { 
+      $scope.amountModel.amount = '0';
+    }
+
     $scope.amountModel.amount = ($scope.amountModel.amount + digit).replace('..', '.');
     checkFontSize();
     $scope.processAmount();
-    navigator.vibrate(50);
   };
 
   $scope.pushOperator = function(operator) {
@@ -352,7 +357,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.amountModel.amount = $scope.alternativeAmount = $scope.globalResult = '';
     $scope.allowSend = false;
     checkFontSize();
-    navigator.vibrate(50);
   };
   
 

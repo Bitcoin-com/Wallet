@@ -645,13 +645,6 @@ angular.module('copayApp.services')
         });
       });
     }
-
-    root.activateDisplayBitcoinCoreFlag = function(value) {
-      var flag = {
-        initialized: value
-      };
-      storage.set('displayBitcoinCoreFlag', flag, function() { });
-    }
-
+    
     return root;
   });

@@ -10011,6 +10011,36 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     background-size: 103%; }
     .big-icon-svg > .bg.green {
       background: #01d1a2; }
+  .big-icon-svg.theme-circle > .bg {
+    border-radius: 50%;
+    background-size: 85%;
+    background-position: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #faba13;
+    text-align: center;
+    font-size: 30px; }
+    .big-icon-svg.theme-circle > .bg:before {
+      vertical-align: middle; }
+    .big-icon-svg.theme-circle > .bg.icon-shapeshift {
+      background-color: #263e5c; }
+    .big-icon-svg.theme-circle > .bg.icon-buy-bitcoin2 {
+      border: 1px solid #faba13; }
+    .big-icon-svg.theme-circle > .bg.icon-reddit-white {
+      background-image: url("../img/icon-reddit-white.svg");
+      background-color: #ff4500;
+      background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-twitter-white {
+      background-image: url("../img/icon-twitter-white.svg");
+      background-color: #1da1f2;
+      background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-faucet {
+      background-image: url("../img/icon-faucet.svg");
+      background-size: 70%; }
+  .big-icon-svg.theme-circle-services > .bg {
+    border: 1px solid #191919; }
+  .big-icon-svg.theme-circle-community > .bg {
+    border: 1px solid #FFFFFF; }
 
 .wallet-item {
   padding: 1rem 0 2rem 0; }
@@ -10439,6 +10469,11 @@ textarea.d-block {
         text-align: center;
         position: relative;
         padding: 10px 30px; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .text-selectable {
+          -webkit-user-select: text;
+          -moz-user-select: text;
+          -ms-user-select: text;
+          user-select: text; }
         #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
           font-size: 1.8em; }
           @media (min-width: 375px) {
@@ -10709,15 +10744,13 @@ textarea.d-block {
 #tab-home .homeTip {
   text-align: center; }
   #tab-home .homeTip > .item-heading {
-    margin-top: 10px;
     background: 0 none; }
   #tab-home .homeTip .item {
     border-style: none; }
-  #tab-home .homeTip > .title {
+  #tab-home .homeTip .title {
     font-size: 20px;
     font-weight: bold;
-    color: #445;
-    margin: 20px 10px; }
+    color: #445; }
   #tab-home .homeTip > .subtitle {
     font-size: 1rem;
     line-height: 1.5em;
@@ -10730,7 +10763,9 @@ textarea.d-block {
 
 #tab-home .icon.close-home-tip {
   color: #666;
-  font-size: 38px; }
+  font-size: 38px;
+  height: auto;
+  top: 8px; }
 
 #tab-home .tab-home__logo {
   height: 18px;
