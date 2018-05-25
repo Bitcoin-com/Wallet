@@ -932,8 +932,17 @@ angular.module('copayApp.services')
           x.txid = x.data ? x.data.txid : null;
           x.types = [x.type];
 
-          if (x.data && x.data.amount)
+          if (x.data && x.data.amount) {
+            // Default to showing amount in crypto because we have that now
             x.amountStr = txFormatService.formatAmountStr(x.wallet.coin, x.data.amount);
+            configService.whenAvailable(function(config) {
+              if (config.wallet.settings.priceDisplay === "fiat") {
+                txFormatService.formatAlternativeStr(x.wallet.coin, x.data.amount, function(formattedString) {
+                  x.amountStr = formattedString;
+                });
+              }
+            });
+          }
 
           x.action = function() {
             // TODO?
@@ -1036,39 +1045,6 @@ angular.module('copayApp.services')
       txps = lodash.compact(lodash.flatten(txps)).slice(0, opts.limit || MAX);
       return cb(null, txps, n);
     };
-
-    // Displays Bitcoin Core Wallets if BTC balance is more than 0
-    root.initBitcoinCoreDisplay = function() {
-      storageService.checkIfFlagIsSet('displayBitcoinCoreFlag')
-        .then(function(result) {
-          // Perform checks for flags which are even set to true once more, set the new flag value to 1
-          if (result === false || result === true) {
-            root.checkBtcBalanceAndInitDisplay(1);
-          }
-        });
-    };
-
-    root.checkBtcBalanceAndInitDisplay = function(flagValue) {
-      var walletsBtc = root.getWallets({coin: 'btc'});
-      if (walletsBtc.length > 0) {
-        // Do not trust cachedBalance as it is added asynchronously. Using a new promise-based function.
-        root.getWalletsBalance(walletsBtc)
-          .then(function(totalBalance) {
-            var enableDisplayBitcoinCore = totalBalance > 0 ? true : false;
-
-            var opts = {
-              displayBitcoinCore: {
-                enabled: enableDisplayBitcoinCore
-              }
-            };
-            configService.set(opts, function(err) {
-              if (err) $log.debug(err);
-            });
-
-            storageService.activateDisplayBitcoinCoreFlag(flagValue);
-          });
-      }
-    }
 
     // Calculate wallets total balance (Promise). Attempts to fix asynchronous issue with cachedBalance not being available when it's needed
     root.getWalletsBalance = function(wallets) {
