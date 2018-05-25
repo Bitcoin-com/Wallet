@@ -28,7 +28,7 @@
             </span>
             <span ng-if="wallet.isComplete()">
               <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
-              <span ng-if="(!displayBalanceAsFiat) && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>
@@ -60,7 +60,7 @@
             </span>
             <span ng-if="wallet.isComplete()">
               <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
-              <span ng-if="(!displayBalanceAsFiat) && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>
