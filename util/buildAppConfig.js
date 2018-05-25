@@ -26,6 +26,7 @@ console.log('v' + pkg.version + ' #' + commitHash + ' App:' + appConfig.name);
 
 var content = 'window.version="' + pkg.version + '";';
 content = content + '\nwindow.commitHash="' + commitHash + '";';
+content = content + '\nwindow.fullVersion="' + pkg.fullVersion + '";';
 
 content = content + '\nwindow.appConfig=' + JSON.stringify(appConfig) + ';';
 fs.writeFileSync("./src/js/appConfig.js", content);
