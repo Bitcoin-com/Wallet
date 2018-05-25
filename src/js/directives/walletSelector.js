@@ -2,9 +2,6 @@
 
 angular.module('copayApp.directives')
   .directive('walletSelector', function($rootScope, $timeout, configService) {
-
-    console.log("walletSelector");
-
     return {
       restrict: 'E',
       templateUrl: 'views/includes/walletSelector.html',
