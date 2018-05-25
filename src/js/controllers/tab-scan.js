@@ -105,6 +105,9 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   function handleSuccessfulScan(contents){
     $log.debug('Scan returned: "' + contents + '"');
     scannerService.pausePreview();
+    // Sometimes (testing in Chrome, when reading QR Code) data is an object
+    // that has a string data.result.
+    contents = contents.result || contents;
     incomingData.redir(contents);
   }
 
