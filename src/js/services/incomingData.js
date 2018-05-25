@@ -12,6 +12,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     var originalAddress = null;
     var noPrefixInAddress = 0;
 
+    // Sometimes (testing in Chrome, when reading QR Code) data is an object
+    // that has a string data.result.
+    data = data.result || data;
+    
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
     }
