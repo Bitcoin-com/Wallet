@@ -45,7 +45,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
   });
 
   $scope.readMore = function() {
-    var url = 'https://github.com/bitpay/copay/wiki/COPAY---FAQ#amount-too-low-to-spend';
+    var url = 'https://walletsupport.bitcoin.com/article/101/transaction-fees';
     var optIn = true;
     var title = null;
     var message = gettextCatalog.getString('Read more in our Wiki');
@@ -201,7 +201,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
   $scope.viewOnBlockchain = function() {
     var btx = $scope.btx;
     var url = 'https://' + ($scope.getShortNetworkName() == 'test' ? 'test-' : '') + blockexplorerUrl + '/tx/' + btx.txid;
-    window.open(url, '_system');
+    externalLinkService.open(url, false);
   };
 
   $scope.getShortNetworkName = function() {

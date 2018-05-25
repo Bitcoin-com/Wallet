@@ -200,7 +200,7 @@ module.exports = function(grunt) {
           module: 'copayApp'
         },
         files: {
-          'src/js/translations.js': ['i18n/po/*.po']
+          'src/js/translations.js': ['i18n/po/**/*.po']
         }
       },
     },

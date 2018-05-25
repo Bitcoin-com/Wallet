@@ -205,6 +205,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       }
     });
 
+    $scope.displayBalanceAsFiat = walletConfig.settings.priceDisplay === 'fiat';
+
   });
 
 

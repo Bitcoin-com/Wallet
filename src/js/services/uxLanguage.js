@@ -10,6 +10,14 @@ angular.module('copayApp.services')
       isoCode: 'en',
       rateCode: 'USD'
     }, {
+      name: 'Čeština',
+      isoCode: 'cs',
+      rateCode: 'EUR'
+    }, {
+      name: 'Deutsch',
+      isoCode: 'de',
+      rateCode: 'EUR'
+    }, {
       name: 'Español',
       isoCode: 'es',
       rateCode: 'EUR'
@@ -28,10 +36,6 @@ angular.module('copayApp.services')
     }, {
       name: 'Polski',
       isoCode: 'pl',
-      rateCode: 'EUR'
-    }, {
-      name: 'Deutsch',
-      isoCode: 'de',
       rateCode: 'EUR'
     }, {
       name: '日本語',
@@ -55,12 +59,11 @@ angular.module('copayApp.services')
       name: '한국어',
       isoCode: 'ko',
       rateCode: 'KRW'
+    }, {
+      name: 'فارسی',
+      isoCode: 'fa',
+      rateCode: 'IRR'
     }];
-
-    // }, {
-    //   name: 'Český',
-    //   isoCode: 'cs',
-    // }
 
     root._detect = function(cb) {
       var userLang, androidLang;

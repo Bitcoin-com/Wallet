@@ -44,6 +44,20 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
     href: 'http://tools.bitcoin.com'
   };
 
+  var priceChartItem = {
+    name: 'pricechart',
+    title: 'Bitcoin Price Charts',
+    icon: 'icon-chart',
+    sref: 'tabs.pricechart',
+  };
+
+  var faucetItem = {
+    name: 'faucet',
+    title: 'Free Bitcoin Cash',
+    icon: 'icon-faucet',
+    href: 'https://free.bitcoin.com/'
+  };
+
   var _getBitPay = function(endpoint) {
     return {
       method: 'GET',
@@ -74,6 +88,8 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
     nextStepsService.register(newsItem);
     nextStepsService.register(poolItem);
     nextStepsService.register(toolsItem);
+    nextStepsService.register(priceChartItem);
+    nextStepsService.register(faucetItem);
   };
 
   register();

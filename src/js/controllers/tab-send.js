@@ -72,16 +72,22 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           return item.network == 'livenet';
         });
       }
+
       var walletList = [];
       lodash.each(walletsToTransfer, function(v) {
+        var displayBalanceAsFiat = 
+            v.status.alternativeBalanceAvailable &&
+            config.wallet.settings.priceDisplay === 'fiat';
+
         walletList.push({
           color: v.color,
           name: v.name,
           recipientType: 'wallet',
           coin: v.coin,
           network: v.network,
-          balanceString: v.cachedBalance,
-          displayWallet: v.coin == 'btc' ? config.displayBitcoinCore.enabled : true,
+          balanceString: displayBalanceAsFiat ?
+              v.status.totalBalanceAlternative + ' ' + v.status.alternativeIsoCode : 
+              v.cachedBalance,
           getAddress: function(cb) {
             walletService.getAddress(v, false, cb);
           },

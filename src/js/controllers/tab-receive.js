@@ -13,6 +13,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   var currentAddressSocket = {};
   var paymentSubscriptionObj = { op:"addr_sub" }
 
+  $scope.displayBalanceAsFiat = true;
+
   $scope.requestSpecificAmount = function() {
     $state.go('tabs.paymentRequest.amount', {
       id: $scope.wallet.credentials.walletId,
@@ -126,8 +128,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
-      $scope.showingPaymentReceived = true
-      $scope.$apply();
+      $scope.$apply(function () {
+        $scope.showingPaymentReceived = true;
+      });
     }
   }
 
@@ -211,6 +214,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         if ($scope.wallet && walletId == $scope.wallet.id && type == 'NewIncomingTx') $scope.setAddress(true);
       })
     ];
+
+    configService.whenAvailable(function(config) {
+      $scope.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
+    });
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
@@ -246,6 +253,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     $scope.wallet = wallet;
     setProtocolHandler();
     $scope.setAddress();
+  };
+
+  $scope.hidePaymentScreen = function() {
+    $scope.showingPaymentReceived = false;
   };
 
   $scope.showWalletSelector = function() {
