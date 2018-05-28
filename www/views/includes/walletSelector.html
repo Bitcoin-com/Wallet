@@ -2,7 +2,8 @@
   <img class="back-arrow" src="img/icon-back-arrow.svg" ng-click="hide()">
 
   <span ng-repeat="wallet in wallets track by $index"
-    ng-init="wallet.coin == 'btc' ? walletsBtc.push(wallet) : walletsBch.push(wallet)"></span>
+    ng-init="wallet.coin == 'btc' ? walletsBtc.push(wallet) : walletsBch.push(wallet)">
+  </span>
 
   <div class="header" ng-if="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
 
@@ -26,7 +27,8 @@
               Incomplete
             </span>
             <span ng-if="wallet.isComplete()">
-              <span ng-if="!wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>
@@ -57,7 +59,8 @@
               Incomplete
             </span>
             <span ng-if="wallet.isComplete()">
-              <span ng-if="!wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>

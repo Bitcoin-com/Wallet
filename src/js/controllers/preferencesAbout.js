@@ -4,7 +4,7 @@ angular.module('copayApp.controllers').controller('preferencesAbout',
   function($scope, $window, appConfigService, gettextCatalog, externalLinkService, $ionicNavBarDelegate) {
 
     $scope.title = gettextCatalog.getString('About') + ' ' + appConfigService.nameCase;
-    $scope.version = $window.version;
+    $scope.version = $window.fullVersion;
     $scope.commitHash = $window.commitHash;
 
     $scope.openExternalLink = function() {
