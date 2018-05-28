@@ -11,7 +11,8 @@ angular.module('copayApp.directives')
         show: '=walletSelectorShow',
         wallets: '=walletSelectorWallets',
         selectedWallet: '=walletSelectorSelectedWallet',
-        onSelect: '=walletSelectorOnSelect'
+        onSelect: '=walletSelectorOnSelect',
+        displayBalanceAsFiat : '=walletSelectorDisplayBalanceAsFiat'
       },
       link: function(scope, element, attrs) {
         scope.hide = function() {
