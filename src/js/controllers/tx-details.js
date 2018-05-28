@@ -201,7 +201,7 @@ angular.module('copayApp.controllers').controller('txDetailsController', functio
   $scope.viewOnBlockchain = function() {
     var btx = $scope.btx;
     var url = 'https://' + ($scope.getShortNetworkName() == 'test' ? 'test-' : '') + blockexplorerUrl + '/tx/' + btx.txid;
-    window.open(url, '_system');
+    externalLinkService.open(url, false);
   };
 
   $scope.getShortNetworkName = function() {

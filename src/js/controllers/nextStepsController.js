@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('nextStepsController', function($scope, nextStepsService, $ionicScrollDelegate, $timeout, platformInfo, configService) {
+angular.module('copayApp.controllers').controller('nextStepsController', function($scope, nextStepsService, $ionicScrollDelegate, $timeout, platformInfo, configService, externalLinkService) {
 
   $scope.hide = false;
 
@@ -22,10 +22,6 @@ angular.module('copayApp.controllers').controller('nextStepsController', functio
   };
 
   $scope.open = function(url) {
-    if (platformInfo.isNW) {
-      require('nw.gui').Shell.openExternal( url );
-    } else {
-      window.open(url, '_system');
-    }
+    externalLinkService.open(url, false)
   }
 });
