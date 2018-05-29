@@ -3,11 +3,21 @@
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
+  require('grunt-curl')(grunt);
 
   // Project Configuration
   grunt.initConfig({
+    curl: {
+      './cache/nwjs.zip': 'https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip',
+    },
+    unzip: {
+      './cache/': './cache/nwjs.zip'
+    },
     pkg: grunt.file.readJSON('package.json'),
     exec: {
+      replaceNWJS: {
+        command: 'rm -R ./cache/0.19.5/osx64/nwjs.app; cp -R ./cache/nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./cache/0.19.5/osx64/'
+      },
       appConfig: {
         command: 'node ./util/buildAppConfig.js'
       },
@@ -240,6 +250,7 @@ module.exports = function(grunt) {
           'CFBundleIdentifier': 'com.bitcoin.mwallet.mac',
           'CFBundleDisplayName': '<%= pkg.title %>',
           'CFBundleShortVersionString': '<%= pkg.version %>',
+          'CFBundleVersion': '<%= pkg.androidVersion %>',
           'LSApplicationCategoryType': 'public.app-category.finance',
           'CFBundleURLTypes': [
             {
@@ -276,7 +287,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('prod', ['default', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
-  grunt.registerTask('desktop', ['prod', 'nwjs', 'copy:linux', 'compress:linux']);
+  grunt.registerTask('desktop', ['prod', 'nwjs', 'fix-nwjs-macos', 'nwjs', 'copy:linux', 'compress:linux']);
   grunt.registerTask('osx', ['prod', 'nwjs', 'exec:macos', 'exec:osxsign']);
   grunt.registerTask('osx-debug', ['default', 'nwjs']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
@@ -290,6 +301,7 @@ module.exports = function(grunt) {
   grunt.registerTask('android-debug', ['exec:androiddebug', 'exec:androidrun']);
   grunt.registerTask('android', ['exec:android']);
   grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
-  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']);
+  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']);  
+  grunt.registerTask('fix-nwjs-macos', ['curl', 'unzip', 'exec:replaceNWJS']);  
 
 };
