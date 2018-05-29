@@ -66,25 +66,6 @@ SIZE=250
 if [ $? -ne 0 ]; then
    echo "Error: Cannot compute size of staging dir"
    exit
- fi
-
-# Sign Code (MATIAS)
-if [ $SHOULD_SIGN ]
-then
-  echo "Signing ${APP_NAME} DMG"
-
-  export IDENTITY="3rd Party Mac Developer Application: BitPay, Inc. (884JRH5R93)"
-
-  # not need for 'out of app store' distribution (?)
-#  export PARENT_PLIST=parent.plist
-#  export CHILD_PLIST=child.plist
-  export APP_PATH=${STAGING_DIR}/${APP_NAME}.app
-
-  codesign --deep -s "${IDENTITY}"  $APP_PATH"/Contents/Versions/52.0.2743.82/nwjs Helper.app" && echo "Sign 1"
-  codesign --deep -s "${IDENTITY}"  $APP_PATH"/Contents/Versions/52.0.2743.82/nwjs Framework.framework/Resources/app_mode_loader.app" && echo "Sign 2"
-  codesign --deep -s "${IDENTITY}"  $APP_PATH && echo "Sign 3"
-  echo "Signing Done"
-
 fi
 
 # create the temp DMG file
@@ -174,6 +155,31 @@ hdiutil detach "${DEVICE}"
 # now make the final image a compressed disk image
 echo "Creating compressed image"
 hdiutil convert "${DMG_TMP}" -format UDZO -imagekey zlib-level=9 -o "${DMG_FINAL}"
+
+# Sign Code (MATIAS)
+if [ $SHOULD_SIGN ]
+then
+
+  rm entitlements-child.plist
+  ln -s ../resources/bitcoin.com/mac/entitlements-child.plist entitlements-child.plist
+
+  rm entitlements-parent.plist
+  ln -s ../resources/bitcoin.com/mac/entitlements-parent.plist entitlements-parent.plist
+
+  rm build.cfg
+  ln -s ../resources/bitcoin.com/mac/build.cfg build.cfg
+
+  rm build_mas.py
+  ln -s ../resources/bitcoin.com/mac/build_mas.py build_mas.py
+
+  echo "Signing ${APP_NAME}"
+  export APP_PATH=${STAGING_DIR}/${APP_NAME}.app
+
+  python build_mas.py -C build.cfg -I "${APP_PATH}" -P "${APP_NAME}.pkg"
+
+  echo "Signing Done"
+
+fi
 
 # clean up
 rm -rf "${DMG_TMP}"
