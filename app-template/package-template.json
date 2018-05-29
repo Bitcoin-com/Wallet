@@ -3,6 +3,7 @@
   "description": "*DESCRIPTION*",
   "author": "BitPay",
   "version": "*VERSION*",
+  "androidVersion": "*ANDROIDVERSION*",
   "fullVersion": "*FULLVERSION*",
   "keywords": [
     "bitcoin",
