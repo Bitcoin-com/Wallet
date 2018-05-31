@@ -474,4 +474,10 @@
       }
     }
   }
+  background: #494949;
+
+  ion-content {
+    margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+    margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+  }
 }
