@@ -72,6 +72,7 @@
     <plugin name="cordova-plugin-queries-schemes" spec="~0.1.5" />
     <plugin name="cordova-plugin-firebase" spec="https://github.com/arnesson/cordova-plugin-firebase.git" />
     <plugin name="cordova-plugin-wkwebview-inputfocusfix" spec="https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix.git" />
+    <plugin name="cordova-plugin-secure-storage" spec="~2.6.8" />
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.3.0" />

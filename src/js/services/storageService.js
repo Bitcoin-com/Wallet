@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
+  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -116,15 +116,21 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      storage.create('profile', profile.toObj(), cb);
+      //storage.create('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      storage.set('profile', profile.toObj(), cb);
+      //storage.set('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.getProfile = function(cb) {
-      storage.get('profile', function(err, str) {
+      $log.debug("getProfile() 31 7");
+
+      //storage.get('profile', function(err, str) {
+      secureStorageService.get('profile', function(err, str) {
+
         if (err || !str)
           return cb(err);
 
