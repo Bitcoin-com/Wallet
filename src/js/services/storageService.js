@@ -1,9 +1,11 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
+  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout, desktopSecureStorageService) {
 
     var root = {};
     var storage;
+    var profileStorage;
+    var isNW = platformInfo.isNW;
 
     // File storage is not supported for writing according to
     // https://github.com/apache/cordova-plugin-file/#supported-platforms
@@ -16,6 +18,35 @@ angular.module('copayApp.services')
       $log.debug('Using: LocalStorage');
       storage = localStorageService;
     }
+
+    profileStorage = storage;
+    /* migration script */
+    // var migratingProfile = false;
+    // if (isNW) {
+    //   $log.debug('NW.js app, checking if profile migration is needed..');
+    //   profileStorage = desktopSecureStorageService;
+    //   migratingProfile = true;
+    //   storage.get('profile', function(err, str) {
+    //     if (err || !str)
+    //       $log.warn(err);
+    //
+    //     if (str) {
+    //       $log.debug("Local Storage found.. Migration is needed..");
+    //       $log.debug("Trying to migrate profile!");
+    //       console.log(str);
+    //       profileStorage.set('profile', str, function(err) {
+    //         if (err)
+    //           $log.warn(err);
+    //         //else
+    //           //storage.remove('profile', function() {})
+    //       });
+    //
+    //     } else {
+    //       $log.debug("Local Storage not found.. skipping migration..");
+    //     }
+    //     migratingProfile = false;
+    //   });
+    // }
 
     var getUUID = function(cb) {
       // TO SIMULATE MOBILE
@@ -116,15 +147,16 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      storage.create('profile', profile.toObj(), cb);
+      profileStorage.create('profile', profile.toObj(), cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      storage.set('profile', profile.toObj(), cb);
+      profileStorage.set('profile', profile.toObj(), cb);
     };
 
     root.getProfile = function(cb) {
-      storage.get('profile', function(err, str) {
+      // if (!migratingProfile) {
+      profileStorage.get('profile', function(err, str) {
         if (err || !str)
           return cb(err);
 
@@ -140,10 +172,16 @@ angular.module('copayApp.services')
           return cb(err, p);
         });
       });
+      // } else {
+      //   setTimeout(function() {
+      //     $log.debug('Wait for a while.. Migrating..');
+      //     root.getProfile(cb);
+      //   }, 500);
+      // }
     };
 
     root.deleteProfile = function(cb) {
-      storage.remove('profile', cb);
+      profileStorage.remove('profile', cb);
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
@@ -624,15 +662,15 @@ angular.module('copayApp.services')
 
     root.setReceivedTransactions = function(walletId, txIds, cb) {
       storage.set('receivedTxs-' + walletId, txIds, cb);
-    }
+    };
 
     root.getReceivedTransactions = function(walletId, cb) {
       storage.get('receivedTxs-' + walletId, cb);
-    }
+    };
 
     root.removeReceivedTransactions = function(walletId, cb) {
       storage.remove('receivedTxs-' + walletId, cb);
-    }
+    };
 
     root.checkIfFlagIsSet = function(key) {
       return new Promise(function(resolve, reject) {
@@ -644,7 +682,7 @@ angular.module('copayApp.services')
           }
         });
       });
-    }
+    };
     
     return root;
   });
