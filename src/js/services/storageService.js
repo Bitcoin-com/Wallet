@@ -116,19 +116,16 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      //storage.create('profile', profile.toObj(), cb);
       secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      //storage.set('profile', profile.toObj(), cb);
       secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.getProfile = function(cb) {
       $log.debug("getProfile() 1 8");
 
-      //storage.get('profile', function(err, str) {
       secureStorageService.get('profile', function(err, str) {
 
         if (err || !str)
@@ -146,10 +143,6 @@ angular.module('copayApp.services')
           return cb(err, p);
         });
       });
-    };
-
-    root.deleteProfile = function(cb) {
-      storage.remove('profile', cb);
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
