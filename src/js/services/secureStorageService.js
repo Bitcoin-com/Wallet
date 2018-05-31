@@ -47,7 +47,8 @@ angular.module('copayApp.services').factory('secureStorageService', function($lo
       function (error) { 
         console.log('ss Error "' + error.message + '" ' + JSON.stringify(error)); 
 
-        if (error.message === 'Failure in SecureStorage.get() - The specified item could not be found in the keychain') {
+        if (error.message === 'Failure in SecureStorage.get() - The specified item could not be found in the keychain' ||
+          error.message === 'Key [_SS_profile] not found.') {
           $log.debug("Sending back null error.");
           // The callback expects no error, but also no value, if it cannot be found.
           cb(null);
