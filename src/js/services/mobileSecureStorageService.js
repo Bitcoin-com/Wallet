@@ -12,7 +12,6 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
   if (platformInfo.isCordova) {
     storage = new cordova.plugins.SecureStorage(
     function () {
-        $log.debug('mobileSecureStorageService initialised.');
         isReady = true;
         for (var i = 0; i < pending.length; i++) {
           pending[i]();
@@ -20,7 +19,6 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
         pending = [];
       },
     function (error) { 
-      c$log.debug('mobileSecureStorageService initialisation failed. ' + error); 
       initialisationFailed = true;
     },
     appConfigService.packageNameId);
@@ -37,16 +35,13 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
       if (initialisationFailed) {
         cb(new Error('mobileSecureStorageService initialisation failed.'));
       } else {
-        $log.debug('mss.get() queued.');
         pending.push(function(){ root.get(key, cb); });
       }
       return;
     }
 
-    $log.debug('mss.get() running.');
     storage.get(
       function (value) { 
-        $log.debug('mss.get() succeeded.');
         cb(null, value);
       },
       function (error) { 

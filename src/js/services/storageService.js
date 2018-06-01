@@ -124,8 +124,6 @@ angular.module('copayApp.services')
     };
 
     root.getProfile = function(cb) {
-      $log.debug("getProfile() 1 8");
-
       secureStorageService.get('profile', function(err, str) {
 
         if (err || !str)

@@ -9,12 +9,9 @@ angular.module('copayApp.services').factory('secureStorageService', function(des
   }
 
   root.get = function(k, cb) {
-    $log.debug('ss.get()');
     if (platformInfo.isMobile) {
-      $log.debug('ss.get() using mobile.');
       mobileSecureStorageService.get(k, cb);
     } else if (platformInfo.isNW) {
-      $log.debug('ss.get() using desktop.');
       desktopSecureStorageService.get(k, cb);
     } else { // Browser
       localStorageService.get(alteredKeyIndicatingDesireForSecureStorage(k), cb);
