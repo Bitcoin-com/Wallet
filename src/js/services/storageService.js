@@ -1,11 +1,9 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout, desktopSecureStorageService) {
+  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
-    var profileStorage;
-    var isNW = platformInfo.isNW;
 
     // File storage is not supported for writing according to
     // https://github.com/apache/cordova-plugin-file/#supported-platforms
@@ -19,7 +17,6 @@ angular.module('copayApp.services')
       storage = localStorageService;
     }
 
-    profileStorage = storage;
     /* migration script */
     // var migratingProfile = false;
     // if (isNW) {
@@ -147,16 +144,16 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      profileStorage.create('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      profileStorage.set('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.getProfile = function(cb) {
-      // if (!migratingProfile) {
-      profileStorage.get('profile', function(err, str) {
+      secureStorageService.get('profile', function(err, str) {
+
         if (err || !str)
           return cb(err);
 
@@ -172,16 +169,6 @@ angular.module('copayApp.services')
           return cb(err, p);
         });
       });
-      // } else {
-      //   setTimeout(function() {
-      //     $log.debug('Wait for a while.. Migrating..');
-      //     root.getProfile(cb);
-      //   }, 500);
-      // }
-    };
-
-    root.deleteProfile = function(cb) {
-      profileStorage.remove('profile', cb);
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
