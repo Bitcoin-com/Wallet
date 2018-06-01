@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
+  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -116,60 +116,20 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      console.log('storeNewProfile() 6');
-      
-      SecureStorage.set('profile', profile.toObj(), function success(){ cb(); }, function error(err){ cb(err); });
-      
-      //storage.create('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      console.log('storeProfile() 6');
-      SecureStorage.set('profile', profile.toObj(), function success(){ cb(); }, function error(err){ cb(err); });
-      //storage.set('profile', profile.toObj(), cb);
+      secureStorageService.set('profile', profile.toObj(), cb);
     };
 
     root.getProfile = function(cb) {
-      console.log("getProfile() 6");
+      secureStorageService.get('profile', function(err, str) {
 
-      
-      SecureStorage.get(
-        'profile', 
-        function success(str) {
-          $log.debug('get profile returned success.');
-          decryptOnMobile(str, function(err, str) {
-            if (err) return cb(err);
-            var p, err;
-            try {
-              p = Profile.fromString(str);
-            } catch (e) {
-              $log.debug('Could not read profile:', e);
-              err = new Error('Could not read profile:' + p);
-            }
-            return cb(err, p);
-          });
-        }, 
-        function error(err) {
-          $log.debug('get profile returned error.');
-          $log.debug('returning error.');
-          // Callback requires no error and no profile for creation of new profiles
-          return cb();
-        }
-      );
-      
-
-      
-      /*
-      storage.get('profile', function(err, str) {
-        $log.debug('get profile returned.');
-        if (err || !str) {
-          $log.debug('get profile returned error: ' + err + ' with string: ' + str);
+        if (err || !str)
           return cb(err);
-        }
 
-        $log.debug('calling decrypt');
         decryptOnMobile(str, function(err, str) {
-          $log.debug('decrypt returned.');
           if (err) return cb(err);
           var p, err;
           try {
@@ -181,14 +141,6 @@ angular.module('copayApp.services')
           return cb(err, p);
         });
       });
-      */
-      
-      
-    };
-
-    // Is this ever used?
-    root.deleteProfile = function(cb) {
-      storage.remove('profile', cb);
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
