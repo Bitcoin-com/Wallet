@@ -528,7 +528,7 @@ angular.module('copayApp.services')
 
       var walletId = client.credentials.walletId
 
-      if (!root.profile.addWallet(JSON.parse(client.export())))
+      if (root.profile && !root.profile.addWallet(JSON.parse(client.export())))
         return cb(gettextCatalog.getString("Wallet already in {{appName}}", {
           appName: appConfigService.nameCase
         }));
