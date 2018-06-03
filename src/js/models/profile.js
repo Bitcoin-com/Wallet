@@ -62,6 +62,13 @@ Profile.prototype.isDeviceChecked = function(ua) {
   return this.checkedUA == ua;
 };
 
+/**
+ * 
+ * @param {Profile} other 
+ */
+Profile.prototype.merge = function(other) {
+  throw 'Profile merge not implemented.';
+};
 
 Profile.prototype.setChecked = function(ua, walletId) {
   if (this.checkedUA != ua) {

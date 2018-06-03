@@ -123,9 +123,89 @@ angular.module('copayApp.services')
       secureStorageService.set('profile', profile.toObj(), cb);
     };
 
-    root.getProfile = function(cb) {
-      secureStorageService.get('profile', function(err, str) {
+    /**
+     * @callback getProfileCallback
+     * @param {Error} error - falsy if profile not found.
+     * @param {Profile} profile - falsy if error or profile not found.
+     */
 
+    /**
+     * 
+     * @param {Profile} oldProfile 
+     * @param {Profile} secureProfile - may be falsy if no secure profile found.
+     * @param {getProfileCallback} cb 
+     */
+    function _migrateProfiles(oldProfile, secureProfile, cb) {
+      if (secureProfile) {
+
+      } else {
+        root.storeNewProfile(oldProfile, function(err) {
+          if (err) {
+            cb(err, null);
+            return;
+          }
+
+          return;
+        });
+      }
+
+    };
+
+    /**
+     * 
+     * @param {getProfileCallback} cb 
+     */
+    root.getProfile = function(cb) {
+      secureStorageService.get('profile', function(secureErr, secureStr) {
+        var secureProfile;
+        var oldProfile;
+
+        if (secureErr) {
+          return cb(secureErr);
+        }
+
+        if (secureStr) {
+          try {
+            secureProfile = Profile.fromString(secureStr);
+          } catch (e) {
+            var profileError = new Error('Could not read secure profile.');
+            return cb(profileError, null);
+          }
+        }
+
+        storage.get('profile', function(getErr, str) {
+          if (getErr) {
+            return cb(getErr);
+          }
+
+          if (!str) {
+            if (secureProfile) {
+              return cb(null, secureProfile);
+            } else {
+              return cb(null, null);
+            }
+          }
+
+          decryptOnMobile(getStr, function(err, str) {
+            if (err) return cb(err);
+            var p, err;
+            try {
+              oldProfile = Profile.fromString(str);
+            } catch (e) {
+              $log.debug('Could not read profile:', e);
+              err = new Error('Could not read profile.');
+              return(err, null);
+            }
+
+            // Now we have to do a migration
+            _migrateProfiles(oldProfile, secureProfile, cb);
+
+          });
+        });
+      });
+    };
+
+    /*
         if (err || !str)
           return cb(err);
 
@@ -140,8 +220,7 @@ angular.module('copayApp.services')
           }
           return cb(err, p);
         });
-      });
-    };
+        */
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
       storage.set('feedback', feedbackValues, cb);
