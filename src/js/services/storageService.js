@@ -131,19 +131,30 @@ angular.module('copayApp.services')
 
     /**
      * 
-     * @param {Profile} oldProfile 
+     * @param {Profile} oldProfile
      * @param {Profile} secureProfile - may be falsy if no secure profile found.
      * @param {getProfileCallback} cb 
      */
     function _migrateProfiles(oldProfile, secureProfile, cb) {
       if (secureProfile) {
+        secureProfile.merge(oldProfile);
 
       } else {
-        root.storeNewProfile(oldProfile, function(err) {
+        root.storeNewProfile(secureProfile, function(err) {
           if (err) {
             cb(err, null);
             return;
           }
+
+          storage.remove('profile', function(err){
+            if (err) {
+              cb(err, null);
+              return;
+            }
+
+            cb(null, securePofile);
+
+          });
 
           return;
         });
@@ -161,17 +172,21 @@ angular.module('copayApp.services')
         var oldProfile;
 
         if (secureErr) {
-          return cb(secureErr);
+          return cb(secureErr, null);
         }
 
         if (secureStr) {
           try {
             secureProfile = Profile.fromString(secureStr);
+            $log.error('profile: ' + JSON.stringify(secureProfile));
           } catch (e) {
-            var profileError = new Error('Could not read secure profile.');
-            return cb(profileError, null);
+            $log.error(e);
+            return cb(e, null);
           }
         }
+
+        // Ignore insecure stuff for now
+        return cb(null, secureProfile);
 
         storage.get('profile', function(getErr, str) {
           if (getErr) {
