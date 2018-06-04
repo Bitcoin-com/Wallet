@@ -67,7 +67,22 @@ Profile.prototype.isDeviceChecked = function(ua) {
  * @param {Profile} other 
  */
 Profile.prototype.merge = function(other) {
-  throw 'Profile merge not implemented.';
+
+  var newCredentials = [];
+
+  other.credentials.forEach(function(otherCredential) {
+    var credentialExists = false;
+    this.credentials.forEach(function(thisCredential) {
+      if (otherCredential.walletId === thisCredential.walletId) {
+        credentialExists = true;
+      }
+    });
+    if (!credentialExists) {
+      newCredentials.push(otherCredential);
+    }
+  });
+
+  Array.prototype.push.apply(this.credentials, newCredentials);
 };
 
 Profile.prototype.setChecked = function(ua, walletId) {
