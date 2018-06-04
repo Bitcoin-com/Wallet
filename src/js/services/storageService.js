@@ -136,30 +136,29 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     function _migrateProfiles(oldProfile, secureProfile, cb) {
+      var newProfile = oldProfile;
+
       if (secureProfile) {
         secureProfile.merge(oldProfile);
+        newProfile = secureProfile;
+      }
 
-      } else {
-        root.storeNewProfile(secureProfile, function(err) {
-          if (err) {
-            cb(err, null);
+      root.storeNewProfile(newProfile, function(storeErr) {
+        if (storeErr) {
+          cb(storeErr, null);
+          return;
+        }
+
+        storage.remove('profile', function(removeErr){
+          if (removeErr) {
+            cb(removeErr, null);
             return;
           }
 
-          storage.remove('profile', function(err){
-            if (err) {
-              cb(err, null);
-              return;
-            }
-
-            cb(null, securePofile);
-
-          });
-
-          return;
+          cb(null, newProfile);
         });
-      }
 
+      });
     };
 
     /**
@@ -178,25 +177,23 @@ angular.module('copayApp.services')
         if (secureStr) {
           try {
             secureProfile = Profile.fromString(secureStr);
-            $log.error('profile: ' + JSON.stringify(secureProfile));
+            $log.debug('profile: ' + JSON.stringify(secureProfile));
           } catch (e) {
             $log.error(e);
             return cb(e, null);
           }
         }
 
-        // Ignore insecure stuff for now
-        return cb(null, secureProfile);
-
-        storage.get('profile', function(getErr, str) {
+        storage.get('profile', function(getErr, getStr) {
           if (getErr) {
             return cb(getErr);
           }
 
-          if (!str) {
+          if (!getStr) {
             if (secureProfile) {
               return cb(null, secureProfile);
             } else {
+              // No profiles found. No errors either.
               return cb(null, null);
             }
           }
@@ -212,30 +209,12 @@ angular.module('copayApp.services')
               return(err, null);
             }
 
-            // Now we have to do a migration
             _migrateProfiles(oldProfile, secureProfile, cb);
 
           });
         });
       });
     };
-
-    /*
-        if (err || !str)
-          return cb(err);
-
-        decryptOnMobile(str, function(err, str) {
-          if (err) return cb(err);
-          var p, err;
-          try {
-            p = Profile.fromString(str);
-          } catch (e) {
-            $log.debug('Could not read profile:', e);
-            err = new Error('Could not read profile:' + p);
-          }
-          return cb(err, p);
-        });
-        */
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
       storage.set('feedback', feedbackValues, cb);
