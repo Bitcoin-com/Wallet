@@ -80,7 +80,7 @@
     "load-grunt-tasks": "^3.5.0",
     "shelljs": "^0.3.0",
     "android-versions": "^1.2.1",
-    "bitcoincashjs": "^0.1.7"
+    "bitcoincashjs-fork": "^1.0.3"
   },
   "scripts": {
     "postinstall":            "bower install",
