@@ -1179,17 +1179,21 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           if (signedTxp.status == 'accepted') {
             ongoingProcess.set('broadcastingTx', true, customStatusHandler);
-            function handleBroadcastTx(err, broadcastedTxp) {
-              ongoingProcess.set('broadcastingTx', false, customStatusHandler);
-              if (err) return cb(bwcError.msg(err));              
-              $rootScope.$emit('Local/TxAction', wallet.id);
-              return cb(null, broadcastedTxp);
-            }
 
             if (signedTxp.payProUrl && signedTxp.coin == 'bch') {
-              payproService.broadcastBchTx(signedTxp, handleBroadcastTx);
+              payproService.broadcastBchTx(signedTxp, function(err, broadcastedTxp) {
+                ongoingProcess.set('broadcastingTx', false, customStatusHandler);
+                if (err) return cb(bwcError.msg(err));
+                $rootScope.$emit('Local/TxAction', wallet.id);
+                return cb(null, broadcastedTxp);
+              });
             } else {
-              root.broadcastTx(wallet, signedTxp, handleBroadcastTx);
+              root.broadcastTx(wallet, signedTxp, function(err, broadcastedTxp) {
+                ongoingProcess.set('broadcastingTx', false, customStatusHandler);
+                if (err) return cb(bwcError.msg(err));
+                $rootScope.$emit('Local/TxAction', wallet.id);
+                return cb(null, broadcastedTxp);
+              });
             }
           } else {
             $rootScope.$emit('Local/TxAction', wallet.id);
