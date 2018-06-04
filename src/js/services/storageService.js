@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
+  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -136,11 +136,14 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     function _migrateProfiles(oldProfile, secureProfile, cb) {
-      var newProfile = oldProfile;
+      var newProfile;
 
       if (secureProfile) {
         secureProfile.merge(oldProfile);
         newProfile = secureProfile;
+      } else {
+        newProfile = oldProfile;
+        newProfile.setAppVersion(appConfigService.version);
       }
 
       root.storeNewProfile(newProfile, function(storeErr) {
