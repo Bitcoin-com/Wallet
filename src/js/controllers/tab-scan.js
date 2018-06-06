@@ -60,11 +60,14 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   });
 
   $scope.$on("$ionicView.afterEnter", function() {
-    // try initializing and refreshing status any time the view is entered
-    if(!scannerService.isInitialized()) {
-      scannerService.gentleInitialize();
+    var capabilities = scannerService.getCapabilities();
+    if (capabilities.hasPermission) {
+      // try initializing and refreshing status any time the view is entered
+      if(!scannerService.isInitialized()) {
+        scannerService.gentleInitialize();
+      }
+      activate();
     }
-    activate();
   });
 
   function activate(){
