@@ -104,12 +104,12 @@ angular.module('copayApp.controllers').controller('searchController', function($
   };
 
   $scope.searchOnBlockchain = function(searchTerm) {
-    const url = 'https://explorer.bitcoin.com/'+$scope.wallet.coin+'/search/' + searchTerm;
-    const optIn = true;
-    const title = null;
-    const message = gettextCatalog.getString('Search on Explorer.Bitcoin.com');
-    const okText = gettextCatalog.getString('Open Explorer');
-    const cancelText = gettextCatalog.getString('Go Back');
+    var url = 'https://explorer.bitcoin.com/'+$scope.wallet.coin+'/search/' + searchTerm;
+    var optIn = true;
+    var title = null;
+    var message = gettextCatalog.getString('Search on Explorer.Bitcoin.com');
+    var okText = gettextCatalog.getString('Open Explorer');
+    var cancelText = gettextCatalog.getString('Go Back');
     externalLinkService.open(url, optIn, title, message, okText, cancelText);
   };
 
