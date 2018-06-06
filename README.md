@@ -31,19 +31,22 @@ You don't need to run npm install, run apply:bitcoincom instead
 ```sh
 npm run apply:bitcoincom
 ```
-There is a bug when building the next step, you will need to go directly into one of the javascript files in node_modules
+
+#####asn1.js bug
+If get the following error:
+```sh
+» <!doctype html>
+» ^
+» ParseError: Unexpected token
+```
+
+You will need to go directly into one of the javascript files in node_modules
 ```sh
 nano node_modules/asn1.js-rfc5280/index.js
 ```
 Delete the whole try catch part at the top, replace it with only
 ```
 var asn1 = require('asn1.js');
-```
-If you don't do this, you will get this error:
-```sh
-» <!doctype html>
-» ^
-» ParseError: Unexpected token
 ```
 
 ## Testing in a Browser
