@@ -32,7 +32,7 @@ You don't need to run npm install, run apply:bitcoincom instead
 npm run apply:bitcoincom
 ```
 
-#####asn1.js bug
+#### asn1.js bug
 If get the following error:
 ```sh
 » <!doctype html>
