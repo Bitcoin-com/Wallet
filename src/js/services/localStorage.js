@@ -20,8 +20,7 @@ angular.module('copayApp.services')
       if (isChromeApp || isNW) {
         chrome.storage.local.get(k,
           function(data) {
-            //TODO check for errors
-            return cb(null, data[k]);
+            return cb(chrome.runtime.lastError, data[k]);
           });
       } else {
         return cb(null, ls.getItem(k));
@@ -56,16 +55,24 @@ angular.module('copayApp.services')
 
         obj[k] = v;
 
-        chrome.storage.local.set(obj, cb);
+        chrome.storage.local.set(obj, function(){
+          cb(chrome.runtime.lastError);
+        });
       } else {
-        ls.setItem(k, v);
+        try {
+          ls.setItem(k, v);
+        } catch (e) {
+          return cb(e);
+        }
         return cb();
       }
     };
 
     root.remove = function(k, cb) {
       if (isChromeApp || isNW) {
-        chrome.storage.local.remove(k, cb);
+        chrome.storage.local.remove(k, function(){
+          cb(chrome.runtime.lastError);
+        });
       } else {
         ls.removeItem(k);
         return cb();
