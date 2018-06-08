@@ -1,3 +1,5 @@
+
+
 describe('storageService on mobile', function(){
   var appConfig,
     expectedOldProfileSavedToSecure,
@@ -60,22 +62,26 @@ describe('storageService on mobile', function(){
   });
 
   it('getProfile() from file storage.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, keyFileRemove, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, null);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
   
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
       savedProfile = v;
       cb(null);
     });
 
     fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyFileRemove = k;
       cb(null);
     });
 
@@ -87,7 +93,13 @@ describe('storageService on mobile', function(){
     expect(error).toBeFalsy();
     expect(profile).toBeTruthy();
 
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyFileRemove).toBe('profile');
+
     expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
+    expect(fileStorageServiceMock.remove.calls.any()).toBe(true);
 
     expect(profile.appVersion).toBe(appConfig.version);
     expect(profile.createdOn).toBe(1528363022385);
@@ -102,22 +114,26 @@ describe('storageService on mobile', function(){
   });
 
   it('getProfile() from file storage, remove fails.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, keyFileRemove, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, null);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
   
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
       savedProfile = v;
       cb(null);
     });
 
     fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyFileRemove = k;
       cb(new Error('Remove error.'));
     });
 
@@ -129,21 +145,29 @@ describe('storageService on mobile', function(){
     expect(error.message).toBe('Remove error.');
     expect(profile).toBeFalsy();
 
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyFileRemove).toBe('profile');
+
     expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
   });
 
   it('getProfile() from file storage, secure set fails, not removed.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, null);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
   
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
       savedProfile = v;
       cb(new Error('Set error.'));
     });
@@ -156,15 +180,20 @@ describe('storageService on mobile', function(){
     expect(error.message).toBe('Set error.');
     expect(profile).toBeFalsy();
 
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+
     expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
 
     expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
   });
 
   it('getProfile(), secure get fails.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(new Error('Secure get error.'), null);
     });
   
@@ -175,16 +204,22 @@ describe('storageService on mobile', function(){
 
     expect(error.message).toBe('Secure get error.');
     expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+
+    expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
   });
 
   it('getProfile(), secure get succeeds, file storage get fails.', function() {
-    var error, profile;
+    var error, keySecureGet, keyFileGet, profile, profile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, secureProfile);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(new Error('File storage get error.'), null);
     });
   
@@ -195,16 +230,23 @@ describe('storageService on mobile', function(){
 
     expect(error.message).toBe('File storage get error.');
     expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+
+    expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
   });
 
   it('getProfile() from secure storage.', function() {
-    var error, profile;
+    var error, keySecureGet, keyFileGet, profile, profile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, secureProfile);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, null);
     });
   
@@ -215,6 +257,10 @@ describe('storageService on mobile', function(){
 
     expect(error).toBeFalsy();
     expect(profile).toBeTruthy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+
     expect(profile.appVersion).toBe('4.11.0');
     expect(profile.createdOn).toBe(1528363260283);
 
@@ -228,22 +274,26 @@ describe('storageService on mobile', function(){
   });
 
   it('getProfile() merge from local and secure storage.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, keyFileRemove, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, secureProfile);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
 
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
       savedProfile = v;
       cb(null);
     });
 
     fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyFileRemove = k;
       cb(null);
     });
   
@@ -254,6 +304,11 @@ describe('storageService on mobile', function(){
 
     expect(error).toBeFalsy();
     expect(profile).toBeTruthy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyFileRemove).toBe('profile');
 
     expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
 
@@ -281,17 +336,20 @@ describe('storageService on mobile', function(){
   });
 
   it('getProfile() merge from local and secure storage, secure set fails, not removed from local.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, secureProfile);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
 
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
       savedProfile = v;
       cb(new Error('Secure set error.'));
     });
@@ -304,28 +362,36 @@ describe('storageService on mobile', function(){
     expect(error.message).toBe('Secure set error.');
     expect(profile).toBeFalsy();
 
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+
     expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
 
     expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
   });
 
   it('getProfile() merge from local and secure storage, remove from local fails.', function() {
-    var error, profile, savedProfile;
+    var error, keySecureGet, keyFileGet, keySecureSet, keyFileRemove, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
       cb(null, secureProfile);
     });
     
     fileStorageServiceMock.get.and.callFake(function(k, cb){
+      keyFileGet = k;
       cb(null, oldProfile);
     });
 
     secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k
       savedProfile = v;
       cb(null);
     });
 
     fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyFileRemove = k;
       cb(new Error('Remove error.'));
     });
   
@@ -336,6 +402,11 @@ describe('storageService on mobile', function(){
 
     expect(error.message).toBe('Remove error.');
     expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyFileGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyFileRemove).toBe('profile');
 
     expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
   });
