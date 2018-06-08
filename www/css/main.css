@@ -10726,6 +10726,12 @@ textarea.d-block {
     #tab-home .card .item-sub:before {
       width: 90%; } }
 
+#tab-home .card-banner {
+  padding: 0; }
+  #tab-home .card-banner__img {
+    width: 100%;
+    display: block; }
+
 #tab-home .wallet-coin-logo {
   vertical-align: middle;
   margin-right: 5px; }
@@ -11305,13 +11311,13 @@ textarea.d-block {
 
 /* background-color and color defaults should be the same */
 .wallet-background-color-default {
-  background-color: #fab915; }
+  background-color: #535353; }
 
 .wallet-color-default {
-  color: #fab915; }
+  color: #535353; }
 
 .cashwallet-color-default {
-  color: #26B03C; }
+  color: #eeb640; }
 
 /* generate classes for all colors */
 .wallet-color-0 {
@@ -11357,17 +11363,17 @@ textarea.d-block {
   margin-left: 2.4rem; }
 
 .wallet-color-6 {
-  background: #26B03C; }
+  background: #eeb640; }
 
 .wallet-color-6:before {
-  content: "Dollar Green";
+  content: "Light Orange";
   margin-left: 2.4rem; }
 
 .wallet-color-7 {
-  background: #fab915; }
+  background: #535353; }
 
 .wallet-color-7:before {
-  content: "Observatory";
+  content: "Dark Grey";
   margin-left: 2.4rem; }
 
 .wallet-color-8 {
