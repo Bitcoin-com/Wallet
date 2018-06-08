@@ -10005,7 +10005,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     border-radius: 3px;
     width: 40px;
     height: 40px;
-    box-shadow: 0px 6px 12px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.3);
     background-repeat: no-repeat;
     background-clip: padding-box;
     background-size: 103%; }
