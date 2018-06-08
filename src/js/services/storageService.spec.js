@@ -1,4 +1,3 @@
-// TODO: Error cases for all of these, at each step.
 describe('storageService on mobile', function(){
   var appConfig,
     expectedOldProfileSavedToSecure,
@@ -102,6 +101,102 @@ describe('storageService on mobile', function(){
     expect(profile.credentials[1].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
   });
 
+  it('getProfile() from file storage, remove fails.', function() {
+    var error, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, null);
+    });
+    
+    fileStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, oldProfile);
+    });
+  
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      savedProfile = v;
+      cb(null);
+    });
+
+    fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      cb(new Error('Remove error.'));
+    });
+
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Remove error.');
+    expect(profile).toBeFalsy();
+
+    expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
+  });
+
+  it('getProfile() from file storage, secure set fails, not removed.', function() {
+    var error, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, null);
+    });
+    
+    fileStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, oldProfile);
+    });
+  
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      savedProfile = v;
+      cb(new Error('Set error.'));
+    });
+
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Set error.');
+    expect(profile).toBeFalsy();
+
+    expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
+
+    expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile(), secure get fails.', function() {
+    var error, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(new Error('Secure get error.'), null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Secure get error.');
+    expect(profile).toBeFalsy();
+  });
+
+  it('getProfile(), secure get succeeds, file storage get fails.', function() {
+    var error, profile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, secureProfile);
+    });
+    
+    fileStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(new Error('File storage get error.'), null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('File storage get error.');
+    expect(profile).toBeFalsy();
+  });
+
   it('getProfile() from secure storage.', function() {
     var error, profile;
 
@@ -183,6 +278,66 @@ describe('storageService on mobile', function(){
     expect(profile.credentials[3].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
     expect(profile.credentials[3].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
  
+  });
+
+  it('getProfile() merge from local and secure storage, secure set fails, not removed from local.', function() {
+    var error, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, secureProfile);
+    });
+    
+    fileStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, oldProfile);
+    });
+
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      savedProfile = v;
+      cb(new Error('Secure set error.'));
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Secure set error.');
+    expect(profile).toBeFalsy();
+
+    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
+
+    expect(fileStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile() merge from local and secure storage, remove from local fails.', function() {
+    var error, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, secureProfile);
+    });
+    
+    fileStorageServiceMock.get.and.callFake(function(k, cb){
+      cb(null, oldProfile);
+    });
+
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      savedProfile = v;
+      cb(null);
+    });
+
+    fileStorageServiceMock.remove.and.callFake(function(k, cb){
+      cb(new Error('Remove error.'));
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Remove error.');
+    expect(profile).toBeFalsy();
+
+    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
   });
 
 });
