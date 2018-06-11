@@ -706,7 +706,7 @@ angular.module('copayApp.services')
       configService.get(function(err) {
         if (err) $log.debug(err);
 
-        var p = Profile.create();
+        var p = Profile.create(appConfigService.version);
         storageService.storeNewProfile(p, function(err) {
           if (err) return cb(err);
           root.bindProfile(p, function(err) {
