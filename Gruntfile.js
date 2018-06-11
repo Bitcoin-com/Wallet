@@ -3,6 +3,7 @@
 module.exports = function(grunt) {
 
   require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-patcher');
 
   // Project Configuration
   grunt.initConfig({
@@ -266,7 +267,18 @@ module.exports = function(grunt) {
           'bitcoin-cash-js/bitcoin-cash-js.js': ['bitcoin-cash-js/index.js']
         },
       }
-    }
+    },
+    patch: {
+      asn1: {
+        options: {
+          patch: './patches/asn1-fix.patch'
+        },
+        files: {
+          './node_modules/asn1.js-rfc5280/index.js': './node_modules/asn1.js-rfc5280/index.js'
+        }
+      }
+
+    },
   });
 
   grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
@@ -287,5 +299,7 @@ module.exports = function(grunt) {
   grunt.registerTask('android', ['exec:android']);
   grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
   grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']);
+  grunt.registerTask('apply-patches', ['patch:asn1']);
+
 
 };
