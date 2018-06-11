@@ -111,7 +111,7 @@ xdescribe('storageService on desktop', function(){
     expect(profile.credentials[1].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
   });
 
-  it('getProfile() from file storage, remove fails.', function() {
+  it('getProfile() from local storage, remove fails.', function() {
     var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
@@ -151,7 +151,7 @@ xdescribe('storageService on desktop', function(){
     expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
   });
 
-  it('getProfile() from file storage, secure set fails, not removed.', function() {
+  it('getProfile() from local storage, secure set fails, not removed.', function() {
     var error, keySecureGet, keyLocalGet, keySecureSet, profile, profile, savedProfile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
@@ -208,7 +208,7 @@ xdescribe('storageService on desktop', function(){
     expect(localStorageServiceMock.remove.calls.any()).toBe(false);
   });
 
-  it('getProfile(), secure get succeeds, file storage get fails.', function() {
+  it('getProfile(), secure get succeeds, local storage get fails.', function() {
     var error, keySecureGet, keyLocalGet, profile, profile;
 
     secureStorageServiceMock.get.and.callFake(function(k, cb){
@@ -218,7 +218,7 @@ xdescribe('storageService on desktop', function(){
     
     localStorageServiceMock.get.and.callFake(function(k, cb){
       keyLocalGet = k;
-      cb(new Error('File storage get error.'), null);
+      cb(new Error('Local storage get error.'), null);
     });
   
     storageService.getProfile(function(err, p){
@@ -226,7 +226,7 @@ xdescribe('storageService on desktop', function(){
       profile = p;
     });
 
-    expect(error.message).toBe('File storage get error.');
+    expect(error.message).toBe('Local storage get error.');
     expect(profile).toBeFalsy();
 
     expect(keySecureGet).toBe('profile');
@@ -411,7 +411,7 @@ xdescribe('storageService on desktop', function(){
 
 });
 
-describe('storageService on desktop using old storage', function(){
+describe('storageService on desktop using local storage', function(){
   var appConfig,
     localStorageServiceMock,
     log, 
@@ -440,7 +440,6 @@ describe('storageService on desktop using old storage', function(){
     };
 
     platformInfoStub = {
-      isCordova: false,
       isNW: true
     };
     
@@ -460,13 +459,9 @@ describe('storageService on desktop using old storage', function(){
       appConfig = $injector.get('appConfigService');
       storageService = $injector.get('storageService');
     });
-
-    secureProfileFromOldOnly = secureProfileFromOldOnly.replace('${appVersion}', appConfig.version);
-    expectedOldProfileSavedToSecure = expectedOldProfileSavedToSecure.replace('${appVersion}', appConfig.version);
-
   });
 
-  fit('getProfile() from local storage.', function() {
+  it('getProfile().', function() {
     var error, keyLocalGet, profile;
    
     localStorageServiceMock.get.and.callFake(function(k, cb){
@@ -500,7 +495,7 @@ describe('storageService on desktop using old storage', function(){
     expect(profile.credentials[1].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
   });
 
-  fit('getProfile() from local storage, get fails.', function() {
+  it('getProfile(), get fails.', function() {
     var error, keyLocalGet, profile;
    
     localStorageServiceMock.get.and.callFake(function(k, cb){
@@ -513,7 +508,7 @@ describe('storageService on desktop using old storage', function(){
       profile = p;
     });
 
-    expect(error.message).toBeFalsy('Local get error.');
+    expect(error.message).toBe('Local get error.');
     expect(profile).toBeFalsy();
 
     expect(keyLocalGet).toBe('profile');
@@ -521,271 +516,6 @@ describe('storageService on desktop using old storage', function(){
     expect(localStorageServiceMock.remove.calls.any()).toBe(false);
     expect(secureStorageServiceMock.get.calls.any()).toBe(false);
     expect(secureStorageServiceMock.set.calls.any()).toBe(false);
-
-    expect(profile.appVersion).toBeUndefined();
-    expect(profile.createdOn).toBe(1528363022385);
-  });
-
-  it('getProfile() from file storage, remove fails.', function() {
-    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, null);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(null, oldProfile);
-    });
-  
-    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
-      keySecureSet = k;
-      savedProfile = v;
-      cb(null);
-    });
-
-    localStorageServiceMock.remove.and.callFake(function(k, cb){
-      keyLocalRemove = k;
-      cb(new Error('Remove error.'));
-    });
-
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error.message).toBe('Remove error.');
-    expect(profile).toBeFalsy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-    expect(keySecureSet).toBe('profile');
-    expect(keyLocalRemove).toBe('profile');
-
-    expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
-  });
-
-  it('getProfile(), secure get fails.', function() {
-    var error, keySecureGet, profile, profile, savedProfile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(new Error('Secure get error.'), null);
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error.message).toBe('Secure get error.');
-    expect(profile).toBeFalsy();
-
-    expect(keySecureGet).toBe('profile');
-
-    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
-  });
-
-  it('getProfile(), secure get succeeds, file storage get fails.', function() {
-    var error, keySecureGet, keyLocalGet, profile, profile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, secureProfile);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(new Error('File storage get error.'), null);
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error.message).toBe('File storage get error.');
-    expect(profile).toBeFalsy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-
-    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
-  });
-
-  it('getProfile() from secure storage.', function() {
-    var error, keySecureGet, keyLocalGet, profile, profile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, secureProfile);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(null, null);
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error).toBeFalsy();
-    expect(profile).toBeTruthy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-
-    expect(profile.appVersion).toBe('4.11.0');
-    expect(profile.createdOn).toBe(1528363260283);
-
-    expect(profile.credentials[0].coin).toBe('bch');
-    expect(profile.credentials[0].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
-    expect(profile.credentials[0].walletId).toBe('9580929b-417d-4fce-bcbf-de8e16a51c25');
-    
-    expect(profile.credentials[1].coin).toBe('btc');
-    expect(profile.credentials[1].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
-    expect(profile.credentials[1].walletId).toBe('ef78459e-52b1-418a-b89d-4df2ef1d27ea');
-  });
-
-  it('getProfile() merge from local and secure storage.', function() {
-    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, secureProfile);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(null, oldProfile);
-    });
-
-    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
-      keySecureSet = k;
-      savedProfile = v;
-      cb(null);
-    });
-
-    localStorageServiceMock.remove.and.callFake(function(k, cb){
-      keyLocalRemove = k;
-      cb(null);
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error).toBeFalsy();
-    expect(profile).toBeTruthy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-    expect(keySecureSet).toBe('profile');
-    expect(keyLocalRemove).toBe('profile');
-
-    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
-
-    expect(profile.appVersion).toBe('4.11.0');
-    expect(profile.createdOn).toBe(1528363260283);
-
-    // Existing secure
-    expect(profile.credentials[0].coin).toBe('bch');
-    expect(profile.credentials[0].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
-    expect(profile.credentials[0].walletId).toBe('9580929b-417d-4fce-bcbf-de8e16a51c25');
-    
-    expect(profile.credentials[1].coin).toBe('btc');
-    expect(profile.credentials[1].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
-    expect(profile.credentials[1].walletId).toBe('ef78459e-52b1-418a-b89d-4df2ef1d27ea');
-
-    // Old
-    expect(profile.credentials[2].coin).toBe('bch');
-    expect(profile.credentials[2].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
-    expect(profile.credentials[2].walletId).toBe('a8ea9291-1369-4862-90a1-d80a5d4bcc20');
-    
-    expect(profile.credentials[3].coin).toBe('btc');
-    expect(profile.credentials[3].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
-    expect(profile.credentials[3].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
- 
-  });
-
-  it('getProfile() merge from local and secure storage, secure set fails, not removed from local.', function() {
-    var error, keySecureGet, keyLocalGet, keySecureSet, profile, profile, savedProfile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, secureProfile);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(null, oldProfile);
-    });
-
-    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
-      keySecureSet = k;
-      savedProfile = v;
-      cb(new Error('Secure set error.'));
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error.message).toBe('Secure set error.');
-    expect(profile).toBeFalsy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-    expect(keySecureSet).toBe('profile');
-
-    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
-
-    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
-  });
-
-  it('getProfile() merge from local and secure storage, remove from local fails.', function() {
-    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
-
-    secureStorageServiceMock.get.and.callFake(function(k, cb){
-      keySecureGet = k;
-      cb(null, secureProfile);
-    });
-    
-    localStorageServiceMock.get.and.callFake(function(k, cb){
-      keyLocalGet = k;
-      cb(null, oldProfile);
-    });
-
-    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
-      keySecureSet = k
-      savedProfile = v;
-      cb(null);
-    });
-
-    localStorageServiceMock.remove.and.callFake(function(k, cb){
-      keyLocalRemove = k;
-      cb(new Error('Remove error.'));
-    });
-  
-    storageService.getProfile(function(err, p){
-      error = err;
-      profile = p;
-    });
-
-    expect(error.message).toBe('Remove error.');
-    expect(profile).toBeFalsy();
-
-    expect(keySecureGet).toBe('profile');
-    expect(keyLocalGet).toBe('profile');
-    expect(keySecureSet).toBe('profile');
-    expect(keyLocalRemove).toBe('profile');
-
-    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
   });
 
 });
