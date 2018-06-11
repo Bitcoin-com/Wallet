@@ -77,7 +77,7 @@
     "grunt-exec": "^1.0.0",
     "grunt-nw-builder": "^2.0.3",
     "grunt-sass": "^1.2.0",
-    "keytar": "^4.2.1",
+    "keytar": "git+https://github.com/spasma/node-keytar.git",
     "load-grunt-tasks": "^3.5.0",
     "shelljs": "^0.3.0",
     "android-versions": "^1.2.1",
