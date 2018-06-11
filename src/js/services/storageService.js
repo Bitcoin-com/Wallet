@@ -116,11 +116,16 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      secureStorageService.set('profile', profile.toObj(), cb);
+      root.storeProfile(profile, cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      secureStorageService.set('profile', profile.toObj(), cb);
+      var profileString = profile.toObj();
+      if (platformInfo.isNW) {
+        storage.set('profile', profileString, cb);
+      } else {
+        secureStorageService.set('profile', profileString, cb);
+      }
     };
 
     /**

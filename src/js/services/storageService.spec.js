@@ -409,6 +409,9 @@ xdescribe('storageService on desktop', function(){
     expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
   });
 
+
+  
+
 });
 
 describe('storageService on desktop using local storage', function(){
@@ -416,13 +419,15 @@ describe('storageService on desktop using local storage', function(){
     localStorageServiceMock,
     log, 
     oldProfile,
+    oldProfileString,
     platformInfoStub, 
     secureStorageService,
     secureStorageServiceMock,
     storageService;
 
-  oldProfile = '{"version":"1.0.0","createdOn":1528363022385,"credentials":[{"coin":"bch","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"cc5667792d8378ad61dc30a65bafea3d03d9179c5615d9f183738b002d978659","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"a8ea9291-1369-4862-90a1-d80a5d4bcc20","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"8437d2824b17f31d548fc2855577e9092ac5a7f9c985e5329acab34a8e786fb8","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"ZhMBX+t9/0n2kCasR5KH0w==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"},{"coin":"btc","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"8430d4ca7a324ce0176e782c2d48f333666bd8f9b66fdd432a7f1ad1c80341ec","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"30df9228ff38258afe363a29cb02bff6d76f9f66ed36250de493717f4c941cc1","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"2wQyQJGV3vyRPE/uil9ZRA==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"}],"disclaimerAccepted":true,"checked":{"a8ea9291-1369-4862-90a1-d80a5d4bcc20":true,"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b":true},"checkedUA":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"}';  
-  
+  oldProfileString = '{"version":"1.0.0","createdOn":1528363022385,"credentials":[{"coin":"bch","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"cc5667792d8378ad61dc30a65bafea3d03d9179c5615d9f183738b002d978659","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"a8ea9291-1369-4862-90a1-d80a5d4bcc20","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"8437d2824b17f31d548fc2855577e9092ac5a7f9c985e5329acab34a8e786fb8","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"ZhMBX+t9/0n2kCasR5KH0w==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"},{"coin":"btc","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"8430d4ca7a324ce0176e782c2d48f333666bd8f9b66fdd432a7f1ad1c80341ec","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"30df9228ff38258afe363a29cb02bff6d76f9f66ed36250de493717f4c941cc1","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"2wQyQJGV3vyRPE/uil9ZRA==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"}],"disclaimerAccepted":true,"checked":{"a8ea9291-1369-4862-90a1-d80a5d4bcc20":true,"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b":true},"checkedUA":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"}';  
+  oldProfile = Profile.fromString(oldProfileString);
+
   log = {
     debug: function(s){ console.log(s); },
     error: function(s){ console.log(s); },
@@ -436,7 +441,8 @@ describe('storageService on desktop using local storage', function(){
 
     localStorageServiceMock = {
       get: jasmine.createSpy(),
-      remove: jasmine.createSpy()
+      remove: jasmine.createSpy(),
+      set: jasmine.createSpy()
     };
 
     platformInfoStub = {
@@ -466,7 +472,7 @@ describe('storageService on desktop using local storage', function(){
    
     localStorageServiceMock.get.and.callFake(function(k, cb){
       keyLocalGet = k;
-      cb(null, oldProfile);
+      cb(null, oldProfileString);
     });
 
     storageService.getProfile(function(err, p){
@@ -515,6 +521,94 @@ describe('storageService on desktop using local storage', function(){
 
     expect(localStorageServiceMock.remove.calls.any()).toBe(false);
     expect(secureStorageServiceMock.get.calls.any()).toBe(false);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+  });
+
+  it('storeNewProfile() to local storage.', function() {
+    var error, keyLocalSet, savedProfileString;
+  
+    localStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keyLocalSet = k;
+      savedProfileString = v;
+      cb(null);
+    });
+
+    storageService.storeNewProfile(oldProfile, function(err){
+      error = err;
+    });
+
+    expect(error).toBeFalsy();
+    expect(savedProfileString).toBeTruthy();
+
+    expect(keyLocalSet).toBe('profile');
+
+    expect(savedProfileString).toBe(oldProfileString);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+  });
+
+  it('storeNewProfile() to local storage, set fails.', function() {
+    var error, keyLocalSet, savedProfileString;
+  
+    localStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keyLocalSet = k;
+      savedProfileString = v;
+      cb(new Error('Local set failed.'));
+    });
+
+    storageService.storeNewProfile(oldProfile, function(err){
+      error = err;
+    });
+
+    expect(error.message).toBe('Local set failed.');
+    expect(savedProfileString).toBe(oldProfileString);
+
+    expect(keyLocalSet).toBe('profile');
+
+    expect(savedProfileString).toBe(oldProfileString);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+  });
+
+  it('storeProfile() to local storage.', function() {
+    var error, keyLocalSet, savedProfileString;
+  
+    localStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keyLocalSet = k;
+      savedProfileString = v;
+      cb(null);
+    });
+
+    storageService.storeProfile(oldProfile, function(err){
+      error = err;
+    });
+
+    expect(error).toBeFalsy();
+    expect(savedProfileString).toBeTruthy();
+
+    expect(keyLocalSet).toBe('profile');
+
+    expect(savedProfileString).toBe(oldProfileString);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+  });
+
+  it('storeProfile() to local storage, set fails.', function() {
+    var error, keyLocalSet, savedProfileString;
+  
+    localStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keyLocalSet = k;
+      savedProfileString = v;
+      cb(new Error('Local set failed.'));
+    });
+
+    storageService.storeProfile(oldProfile, function(err){
+      error = err;
+    });
+
+    expect(error.message).toBe('Local set failed.');
+    expect(savedProfileString).toBe(oldProfileString);
+
+    expect(keyLocalSet).toBe('profile');
+
+    expect(savedProfileString).toBe(oldProfileString);
     expect(secureStorageServiceMock.set.calls.any()).toBe(false);
   });
 
