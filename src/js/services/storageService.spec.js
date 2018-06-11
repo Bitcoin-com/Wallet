@@ -1,4 +1,4 @@
-describe('storageService on desktop', function(){
+xdescribe('storageService on desktop', function(){
   var appConfig,
     expectedOldProfileSavedToSecure,
     expectedOldProfileMergedWithSecure,
@@ -185,6 +185,385 @@ describe('storageService on desktop', function(){
     expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
 
     expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile(), secure get fails.', function() {
+    var error, keySecureGet, profile, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(new Error('Secure get error.'), null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Secure get error.');
+    expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+
+    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile(), secure get succeeds, file storage get fails.', function() {
+    var error, keySecureGet, keyLocalGet, profile, profile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, secureProfile);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(new Error('File storage get error.'), null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('File storage get error.');
+    expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+
+    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile() from secure storage.', function() {
+    var error, keySecureGet, keyLocalGet, profile, profile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, secureProfile);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error).toBeFalsy();
+    expect(profile).toBeTruthy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+
+    expect(profile.appVersion).toBe('4.11.0');
+    expect(profile.createdOn).toBe(1528363260283);
+
+    expect(profile.credentials[0].coin).toBe('bch');
+    expect(profile.credentials[0].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
+    expect(profile.credentials[0].walletId).toBe('9580929b-417d-4fce-bcbf-de8e16a51c25');
+    
+    expect(profile.credentials[1].coin).toBe('btc');
+    expect(profile.credentials[1].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
+    expect(profile.credentials[1].walletId).toBe('ef78459e-52b1-418a-b89d-4df2ef1d27ea');
+  });
+
+  it('getProfile() merge from local and secure storage.', function() {
+    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, secureProfile);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, oldProfile);
+    });
+
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
+      savedProfile = v;
+      cb(null);
+    });
+
+    localStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyLocalRemove = k;
+      cb(null);
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error).toBeFalsy();
+    expect(profile).toBeTruthy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyLocalRemove).toBe('profile');
+
+    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
+
+    expect(profile.appVersion).toBe('4.11.0');
+    expect(profile.createdOn).toBe(1528363260283);
+
+    // Existing secure
+    expect(profile.credentials[0].coin).toBe('bch');
+    expect(profile.credentials[0].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
+    expect(profile.credentials[0].walletId).toBe('9580929b-417d-4fce-bcbf-de8e16a51c25');
+    
+    expect(profile.credentials[1].coin).toBe('btc');
+    expect(profile.credentials[1].mnemonic).toBe('forget camera antique cement army ahead quantum leisure claim behind climb eight');
+    expect(profile.credentials[1].walletId).toBe('ef78459e-52b1-418a-b89d-4df2ef1d27ea');
+
+    // Old
+    expect(profile.credentials[2].coin).toBe('bch');
+    expect(profile.credentials[2].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
+    expect(profile.credentials[2].walletId).toBe('a8ea9291-1369-4862-90a1-d80a5d4bcc20');
+    
+    expect(profile.credentials[3].coin).toBe('btc');
+    expect(profile.credentials[3].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
+    expect(profile.credentials[3].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
+ 
+  });
+
+  it('getProfile() merge from local and secure storage, secure set fails, not removed from local.', function() {
+    var error, keySecureGet, keyLocalGet, keySecureSet, profile, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, secureProfile);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, oldProfile);
+    });
+
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
+      savedProfile = v;
+      cb(new Error('Secure set error.'));
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Secure set error.');
+    expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+
+    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
+
+    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+  });
+
+  it('getProfile() merge from local and secure storage, remove from local fails.', function() {
+    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, secureProfile);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, oldProfile);
+    });
+
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k
+      savedProfile = v;
+      cb(null);
+    });
+
+    localStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyLocalRemove = k;
+      cb(new Error('Remove error.'));
+    });
+  
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Remove error.');
+    expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyLocalRemove).toBe('profile');
+
+    expect(savedProfile).toBe(expectedOldProfileMergedWithSecure);
+  });
+
+});
+
+describe('storageService on desktop using old storage', function(){
+  var appConfig,
+    localStorageServiceMock,
+    log, 
+    oldProfile,
+    platformInfoStub, 
+    secureStorageService,
+    secureStorageServiceMock,
+    storageService;
+
+  oldProfile = '{"version":"1.0.0","createdOn":1528363022385,"credentials":[{"coin":"bch","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"cc5667792d8378ad61dc30a65bafea3d03d9179c5615d9f183738b002d978659","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"a8ea9291-1369-4862-90a1-d80a5d4bcc20","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"8437d2824b17f31d548fc2855577e9092ac5a7f9c985e5329acab34a8e786fb8","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"ZhMBX+t9/0n2kCasR5KH0w==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"},{"coin":"btc","network":"livenet","xPrivKey":"xprv9s21ZrQH143K2vd69iX1D5R2Acdjx6hzsSncBqnTri7UUad3SxSxFGukcjCUBKfWtZx3KGVjSd94ypEz4gB5RzATenxCEVPPZsgVJpoXkRq","xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPrivKey":"c1cac5328bf71c0f73f64ef868ddea66356ba797f87af4939390d58a7ff1aeda","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d","copayerId":"8430d4ca7a324ce0176e782c2d48f333666bd8f9b66fdd432a7f1ad1c80341ec","publicKeyRing":[{"xPubKey":"xpub6CZLbRhS7jEN2UT3ZhGeia6jPxr4guckZDa7ogncrrES2GyMj7Pq5U4oYLV2FhAMuuYA8qzxWV3TDXXDSkGTaqHstjRANCgCjrMDA1r7AN8","requestPubKey":"02b41c465aaf8f41192f2444a07c6e64d6147a080c5b82a6e73b3b232f11e1575d"}],"walletId":"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b","walletName":"Personal Wallet","m":1,"n":1,"walletPrivKey":"30df9228ff38258afe363a29cb02bff6d76f9f66ed36250de493717f4c941cc1","personalEncryptingKey":"qZmFZypS3TufwM5+WzvNJw==","sharedEncryptingKey":"2wQyQJGV3vyRPE/uil9ZRA==","copayerName":"me","mnemonic":"morning conduct milk catch victory smoke ship little dutch original legal gadget","entropySource":"3f88849ae9522574a2aaab870594b25a4e90b9dc632724ef3675fc3c49aa93b9","mnemonicHasPassphrase":false,"derivationStrategy":"BIP44","account":0,"compliantDerivation":true,"addressType":"P2PKH"}],"disclaimerAccepted":true,"checked":{"a8ea9291-1369-4862-90a1-d80a5d4bcc20":true,"f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b":true},"checkedUA":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36"}';  
+  
+  log = {
+    debug: function(s){ console.log(s); },
+    error: function(s){ console.log(s); },
+    info: function(s){ console.log(s); }
+  };
+
+  beforeEach(function(){
+    module('ngLodash');
+    module('bwcModule');
+    module('copayApp.services');
+
+    localStorageServiceMock = {
+      get: jasmine.createSpy(),
+      remove: jasmine.createSpy()
+    };
+
+    platformInfoStub = {
+      isCordova: false,
+      isNW: true
+    };
+    
+    secureStorageServiceMock = {
+      get: jasmine.createSpy(),
+      set: jasmine.createSpy()
+    };
+    
+    module(function($provide) {
+      $provide.value('localStorageService', localStorageServiceMock);
+      //$provide.value('$log', log); // Handy for debugging test failures
+      $provide.value('platformInfo', platformInfoStub);
+      $provide.value('secureStorageService', secureStorageServiceMock);
+    });
+
+    inject(function($injector){
+      appConfig = $injector.get('appConfigService');
+      storageService = $injector.get('storageService');
+    });
+
+    secureProfileFromOldOnly = secureProfileFromOldOnly.replace('${appVersion}', appConfig.version);
+    expectedOldProfileSavedToSecure = expectedOldProfileSavedToSecure.replace('${appVersion}', appConfig.version);
+
+  });
+
+  fit('getProfile() from local storage.', function() {
+    var error, keyLocalGet, profile;
+   
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, oldProfile);
+    });
+
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error).toBeFalsy();
+    expect(profile).toBeTruthy();
+
+    expect(keyLocalGet).toBe('profile');
+
+    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+    expect(secureStorageServiceMock.get.calls.any()).toBe(false);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+
+    expect(profile.appVersion).toBeUndefined();
+    expect(profile.createdOn).toBe(1528363022385);
+    
+    expect(profile.credentials[0].coin).toBe('bch');
+    expect(profile.credentials[0].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
+    expect(profile.credentials[0].walletId).toBe('a8ea9291-1369-4862-90a1-d80a5d4bcc20');
+    
+    expect(profile.credentials[1].coin).toBe('btc');
+    expect(profile.credentials[1].mnemonic).toBe('morning conduct milk catch victory smoke ship little dutch original legal gadget');
+    expect(profile.credentials[1].walletId).toBe('f4ff4629-ff53-4bc7-8c98-e7c8e0149d3b');
+  });
+
+  fit('getProfile() from local storage, get fails.', function() {
+    var error, keyLocalGet, profile;
+   
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(new Error('Local get error.'), null);
+    });
+
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBeFalsy('Local get error.');
+    expect(profile).toBeFalsy();
+
+    expect(keyLocalGet).toBe('profile');
+
+    expect(localStorageServiceMock.remove.calls.any()).toBe(false);
+    expect(secureStorageServiceMock.get.calls.any()).toBe(false);
+    expect(secureStorageServiceMock.set.calls.any()).toBe(false);
+
+    expect(profile.appVersion).toBeUndefined();
+    expect(profile.createdOn).toBe(1528363022385);
+  });
+
+  it('getProfile() from file storage, remove fails.', function() {
+    var error, keySecureGet, keyLocalGet, keySecureSet, keyLocalRemove, profile, profile, savedProfile;
+
+    secureStorageServiceMock.get.and.callFake(function(k, cb){
+      keySecureGet = k;
+      cb(null, null);
+    });
+    
+    localStorageServiceMock.get.and.callFake(function(k, cb){
+      keyLocalGet = k;
+      cb(null, oldProfile);
+    });
+  
+    secureStorageServiceMock.set.and.callFake(function(k, v, cb){
+      keySecureSet = k;
+      savedProfile = v;
+      cb(null);
+    });
+
+    localStorageServiceMock.remove.and.callFake(function(k, cb){
+      keyLocalRemove = k;
+      cb(new Error('Remove error.'));
+    });
+
+    storageService.getProfile(function(err, p){
+      error = err;
+      profile = p;
+    });
+
+    expect(error.message).toBe('Remove error.');
+    expect(profile).toBeFalsy();
+
+    expect(keySecureGet).toBe('profile');
+    expect(keyLocalGet).toBe('profile');
+    expect(keySecureSet).toBe('profile');
+    expect(keyLocalRemove).toBe('profile');
+
+    expect(savedProfile).toBe(expectedOldProfileSavedToSecure);
   });
 
   it('getProfile(), secure get fails.', function() {
