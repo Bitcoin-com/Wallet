@@ -69,6 +69,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
         unitCode: 'btc',
         alternativeName: 'US Dollar',
         alternativeIsoCode: 'USD',
+        priceDisplay: 'fiat', // 'fiat' || 'crypto'
       }
     },
 
@@ -82,10 +83,6 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     recentTransactions: {
       enabled: true,
-    },
-
-    displayBitcoinCore: {
-      enabled: false,
     },
 
     hideNextSteps: {
@@ -119,7 +116,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
     bitcoinAlias: 'btc',
     bitcoinCashAlias: 'bch',
     bitcoinWalletColor: '#fab915', // Observatory
-    bitcoinCashWalletColor: '#26B03C' // Dollar Green
+    bitcoinCashWalletColor: '#26B03C', // Dollar Green
+
+    homeSectionIsHidden: {
+      services: false
+    }
   };
 
   var configCache = null;
@@ -181,6 +182,11 @@ angular.module('copayApp.services').factory('configService', function(storageSer
           configCache.wallet.settings.unitCode = defaultConfig.wallet.settings.unitCode;
         }
 
+        // If display is not configure, take the default value
+        if (!configCache.wallet.settings.priceDisplay) {
+          configCache.wallet.settings.priceDisplay = defaultConfig.wallet.settings.priceDisplay;
+        }
+
         // Convert tarascash wallet to new style cash wallet
         if (configCache.bwsbcc && configCache.bwsbcc.url && configCache.bwsbcc.url.indexOf('bwsbcc') >= 0) {
           configCache.bwsbcc = defaultConfig.bwscash.url;
@@ -192,6 +198,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
               configCache.bwsFor[key] = defaultConfig.bwscash.url;
             }
           }
+        }
+        
+        if (!configCache.homeSectionIsHidden) {
+          configCache.homeSectionIsHidden = defaultConfig.homeSectionIsHidden;
         }
 
       } else {

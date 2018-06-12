@@ -6,7 +6,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   var CONTACTS_SHOW_LIMIT;
   var currentContactsPage;
   $scope.isChromeApp = platformInfo.isChromeApp;
-
+  $scope.sectionDisplay = {
+    transferToWallet: false
+  };
 
   var hasWallets = function() {
     $scope.wallets = profileService.getWallets({
@@ -70,16 +72,22 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           return item.network == 'livenet';
         });
       }
+
       var walletList = [];
       lodash.each(walletsToTransfer, function(v) {
+        var displayBalanceAsFiat = 
+            v.status.alternativeBalanceAvailable &&
+            config.wallet.settings.priceDisplay === 'fiat';
+
         walletList.push({
           color: v.color,
           name: v.name,
           recipientType: 'wallet',
           coin: v.coin,
           network: v.network,
-          balanceString: v.cachedBalance,
-          displayWallet: v.coin == 'btc' ? config.displayBitcoinCore.enabled : true,
+          balanceString: displayBalanceAsFiat ?
+              v.status.totalBalanceAlternative + ' ' + v.status.alternativeIsoCode : 
+              v.cachedBalance,
           getAddress: function(cb) {
             walletService.getAddress(v, false, cb);
           },
@@ -247,4 +255,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       updateList();
     });
   });
+  
+  $scope.toggle = function(section) {
+    $scope.sectionDisplay[section] = !$scope.sectionDisplay[section];
+    $timeout(function() {
+      $ionicScrollDelegate.resize();
+      $scope.$apply();
+    }, 10);
+  };
 });

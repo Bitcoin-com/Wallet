@@ -1,0 +1,3634 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: bitcoincom-wallet\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: bitcoincom-wallet\n"
+"X-Crowdin-Language: fa\n"
+"X-Crowdin-File: template.pot\n"
+"Last-Translator: emilold\n"
+"Language-Team: Persian\n"
+"Language: fa\n"
+"PO-Revision-Date: 2018-05-08 00:44-0400\n"
+
+#: www/views/modals/paypro.html:34
+msgid "(Trusted)"
+msgstr "(قابل اعتماد)"
+
+#: www/views/includes/txp.html:23
+#: www/views/includes/walletHistory.html:64
+msgid "(possible double spend)"
+msgstr "(احتمالا دو بار خرج شده)"
+
+#: www/views/modals/txp-details.html:159
+msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
+msgstr "یک پیشنهاد پرداخت می تواند حذف شود اگر 1) شما ایجاد کننده آن باشید، و هیچ کس دیگه ای از copayer ها آن را امضاء نکرده باشد، و یا 2) 24 ساعت از زمان ایجاد پیشنهاد گذشته باشد."
+
+#: www/views/tx-details.html:82
+msgid "- {{btx.feeRateStr}} of the transaction"
+msgstr "{{btx.feeRateStr}} تراکنش"
+
+#: www/views/modals/txp-details.html:102
+msgid "- {{tx.feeRateStr}} of the transaction"
+msgstr "{{tx.feeRateStr}} تراکنش"
+
+#: www/views/feedback/rateApp.html:7
+msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "پنج ستاره به ما کمک می کند تا {{appName}} را به دست افراد بیشتری برسانیم، و کاربران بیشتر به این معنی است که منابع بیشتری نسبت به برنامه متعهد هستند!"
+
+#: www/views/mercadoLibre.html:18
+#: www/views/mercadoLibre.html:40
+msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
+msgstr "<b>فقط </b> قابل باز پرداخت در Marcado Livre(برزیل)"
+
+#: src/js/controllers/feedback/send.js:27
+#: www/views/feedback/complete.html:21
+msgid "A member of the team will review your feedback as soon as possible."
+msgstr "یک نفر از اعضای تیم در اسرع وقت نظر و باز خورد شما را مرور خواهد کرد."
+
+#: src/js/controllers/confirm.js:401
+msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
+msgstr "در مجموع {{amountAboveMaxSizeStr}} حذف شد. بیش از حداکثر سایز مجاز برای یک تراکنش بوده است."
+
+#: src/js/controllers/confirm.js:395
+msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
+msgstr "در مجموع {{amountBelowFeeStr}} حذف شد. این وجوه از تراکنشهای خرج نشده ای(UTXOs) می آیند که از مبلغ تعیین شده برای کارمزد شبکه کمتر هستند."
+
+#: src/js/controllers/preferencesAbout.js:6
+#: www/views/tab-settings.html:156
+msgid "About"
+msgstr "درباره"
+
+#: src/js/controllers/modals/txpDetails.js:62
+#: src/js/controllers/tx-details.js:79
+msgid "Accepted"
+msgstr "قبول شده"
+
+#: www/views/preferencesInformation.html:72
+msgid "Account"
+msgstr "حساب"
+
+#: www/views/join.html:72
+#: www/views/tab-create-personal.html:45
+#: www/views/tab-create-shared.html:74
+#: www/views/tab-import-hardware.html:19
+msgid "Account Number"
+msgstr "شماره حساب"
+
+#: www/views/preferencesBitpayServices.html:23
+msgid "Accounts"
+msgstr "حساب ها"
+
+#: www/views/bitpayCard.html:56
+msgid "Activity"
+msgstr "فعالیت"
+
+#: src/js/services/bitpayAccountService.js:83
+msgid "Add Account"
+msgstr "اضافه نمودن حساب"
+
+#: src/js/services/bitpayAccountService.js:69
+msgid "Add BitPay Account?"
+msgstr "اضافه نمودن حساب BitPay?"
+
+#: www/views/addressbook.add.html:4
+#: www/views/addressbook.html:22
+msgid "Add Contact"
+msgstr "اضافه نمودن افراد"
+
+#: www/views/bitpayCard.html:28
+msgid "Add Funds"
+msgstr "اضافه نمودن سرمایه"
+
+#: www/views/confirm.html:94
+msgid "Add Memo"
+msgstr "اضافه نمودن یادداشت"
+
+#: www/views/join.html:87
+#: www/views/tab-create-personal.html:59
+#: www/views/tab-create-shared.html:88
+msgid "Add a password"
+msgstr "اضافه کردن رمز عبور"
+
+#: www/views/includes/accountSelector.html:27
+msgid "Add account"
+msgstr "اضافه نمودن حساب"
+
+#: www/views/join.html:90
+#: www/views/tab-create-personal.html:62
+#: www/views/tab-create-shared.html:91
+msgid "Add an optional password to secure the recovery phrase"
+msgstr "یک رمز عبور دلخواه اضافه کنید تا از عبارت بازیابی خود محافظت کنید"
+
+#: www/views/includes/incomingDataMenu.html:41
+msgid "Add as a contact"
+msgstr "به لیست تماس ها اضافه شود"
+
+#: src/js/controllers/confirm.js:424
+msgid "Add description"
+msgstr "اضافه نمودن توضیحات"
+
+#: www/views/topup.html:6
+msgid "Add funds"
+msgstr "اضافه نمودن سرمایه"
+
+#: src/js/services/bitpayAccountService.js:78
+msgid "Add this BitPay account ({{email}})?"
+msgstr "اضافه نمودن حساب BitPay مربوط به ایمیل ({{email}})?"
+
+#: www/views/add.html:3
+msgid "Add wallet"
+msgstr "اضافه نمودن کیف پول"
+
+#: www/views/addressbook.view.html:26
+#: www/views/customAmount.html:28
+#: www/views/modals/paypro.html:24
+msgid "Address"
+msgstr "آدرس"
+
+#: www/views/addressbook.html:6
+#: www/views/tab-settings.html:13
+msgid "Address Book"
+msgstr "دفترچه آدرس"
+
+#: www/views/preferencesInformation.html:41
+msgid "Address Type"
+msgstr "نوع آدرس"
+
+#: www/views/addresses.html:64
+msgid "Addresses With Balance"
+msgstr "آدرس به همراه موجودی"
+
+#: www/views/tab-settings.html:149
+msgid "Advanced"
+msgstr "حالت پیشرفته"
+
+#: www/views/advancedSettings.html:3
+msgid "Advanced Settings"
+msgstr "تنظیمات پیشرفته"
+
+#: www/views/bitpayCard.html:62
+msgid "All"
+msgstr "همه"
+
+#: www/views/allAddresses.html:3
+msgid "All Addresses"
+msgstr "همه آدرس ها"
+
+#: www/views/modals/wallet-balance.html:18
+msgid "All of your bitcoin wallet balance may not be available for immediate spending."
+msgstr "شاید امکان خرج تمامی موجودی کیف پول بیتکوین شما در لحظه وجود نداشته باشد."
+
+#: www/views/tab-receive.html:25
+msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgstr "قبل از اینکه بتوانید آدرس بیتکوینی ایجاد کنید همه تجهیزات امضاء باید به این کیف پول چند امضاعه اضافه شوند."
+
+#: www/views/tab-scan.html:21
+msgid "Allow Camera Access"
+msgstr "اجازه دسترسی به دوربین"
+
+#: www/views/onboarding/notifications.html:7
+msgid "Allow notifications"
+msgstr "اجازه ارسال notification"
+
+#: www/views/onboarding/disclaimer.html:14
+msgid "Almost done! Let's review."
+msgstr "تقریبا به پایان رسیدیم! بیا مروری کنیم."
+
+#: www/views/preferencesAltCurrency.html:4
+#: www/views/tab-settings.html:79
+msgid "Alternative Currency"
+msgstr "ارز دوم"
+
+#: src/js/controllers/buyAmazon.js:98
+msgid "Amazon.com is not available at this moment. Please try back later."
+msgstr "Amazon.com در حال حاضر در دسترس نمی باشد، خواهشمند است در زمان دیگری امتحان کنید."
+
+#: www/views/amount.html:44
+#: www/views/customAmount.html:34
+#: www/views/includes/output.html:7
+msgid "Amount"
+msgstr "مبلغ"
+
+#: src/js/services/bwcError.js:110
+msgid "Amount below minimum allowed"
+msgstr "مبلغ کمتر از حداقل مجاز"
+
+#: src/js/controllers/confirm.js:216
+msgid "Amount too big"
+msgstr "مبلغ بیش از اندازه"
+
+#: www/views/includes/walletHistory.html:31
+msgid "Amount too low to spend"
+msgstr "مبلغ کمتر از آن است که بتوان خرج کرد"
+
+#: src/js/controllers/tab-home.js:147
+msgid "An update to this app is available. For your security, please update to the latest version."
+msgstr "یک به روز رسانی برای این نرم افزار موجود می باشد. برای حفظ امنیت خود، خواهشمند است آخرین ورژن را نصب نمایید."
+
+#: www/views/backupWarning.html:14
+msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgstr "هرکسی با دسترسی به عبارت پشتیبان شما می تواند به بیتکوین های شما دسترسی داشته و آنها را خرج نماید."
+
+#: www/views/addresses.html:94
+msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgstr "کارمزد تقریبی شبکه بیت کوین برای ارسال موحودی کیف پول( با درجه اولویت معمولی)"
+
+#: www/views/backupWarning.html:10
+msgid "Are you being watched?"
+msgstr "آیا شما تحت نظر هستید?"
+
+#: src/js/controllers/preferencesExternal.js:15
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgstr "آیا شما تحت نظر هستید? هرکسی با عبارت پشتیبان شما می تواند بیتکوین های شما را خرج کند و یا به آنها دسترسی پیدا کند."
+
+#: src/js/controllers/copayers.js:56
+msgid "Are you sure you want to cancel and delete this wallet?"
+msgstr "آیا شما از این که می خواهید این کیف پول را کنسل و حذف کنید مطمئن هستید?"
+
+#: src/js/controllers/addressbookView.js:37
+msgid "Are you sure you want to delete this contact?"
+msgstr "آیا شما از این که می خواهید این اطلاعات تماس را حذف کنید مطمئن هستید?"
+
+#: src/js/controllers/preferencesDelete.js:25
+msgid "Are you sure you want to delete this wallet?"
+msgstr "آیا شما از این که می خواهید این کیف پول را حذف کنید مطمئن هستید?"
+
+#: src/js/controllers/modals/txpDetails.js:154
+msgid "Are you sure you want to reject this transaction?"
+msgstr "آیا شما از این که می خواهید این تراکنش را رد کنید مطمئن هستید?"
+
+#: src/js/controllers/modals/txpDetails.js:171
+msgid "Are you sure you want to remove this transaction?"
+msgstr "آیا شما از این که می خواهید این تراکنش را پاک کنید مطمئن هستید?"
+
+#: src/js/controllers/onboarding/backupRequest.js:23
+msgid "Are you sure you want to skip it?"
+msgstr "آیا شما از این که می خواهید از این مرحله بگذرید مطمئن هستید?"
+
+#: www/views/modals/bitpay-card-confirmation.html:4
+msgid "Are you sure you would like to log out of your BitPay Card account?"
+msgstr "آیا شما از این که می خواهید از حساب BitPay خود خارج شوید مطمئن هستید?"
+
+#: src/js/controllers/preferencesBitpayCard.js:7
+#: src/js/controllers/preferencesBitpayServices.js:20
+msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
+msgstr "آیا شما از این که می خواهید کارت BitPay شماره ({{lastFourDigits}}) خود را از این دستگاه پاک کنید مطمئن هستید?"
+
+#: www/views/includes/walletInfo.html:10
+msgid "Auditable"
+msgstr "قابل ویرایش"
+
+#: www/views/modals/wallet-balance.html:42
+msgid "Available"
+msgstr "در دسترس"
+
+#: www/views/includes/available-balance.html:3
+msgid "Available Balance"
+msgstr "موجودی در دسترس"
+
+#: www/views/modals/chooseFeeLevel.html:24
+#: www/views/preferencesFee.html:15
+msgid "Average confirmation time"
+msgstr "زمان متوسط تایید"
+
+#: www/views/join.html:143
+#: www/views/tab-create-personal.html:113
+#: www/views/tab-create-shared.html:142
+#: www/views/tab-import-phrase.html:51
+msgid "BIP32 path for address derivation"
+msgstr "مسیر BIP32 برای استخراج آدرس"
+
+#: www/views/cashScan.html:25
+msgid "BTC wallets"
+msgstr "کیف های پول BTC"
+
+#: www/views/preferences.html:34
+msgid "Backup"
+msgstr "نسخه پشتیبان"
+
+#: www/views/includes/backupNeededPopup.html:7
+msgid "Backup Needed"
+msgstr "نیاز به تهیه نسخه پشتیبان"
+
+#: src/js/controllers/lockSetup.js:87
+msgid "Backup all livenet wallets before using this function"
+msgstr "قبل از استفاده از این تابع از تمامی کیف های محیط عملیاتی نسخه پشتیبان تهیه شود"
+
+#: src/js/controllers/cashScan.js:64
+#: www/views/includes/walletListSettings.html:12
+#: www/views/preferences.html:36
+msgid "Backup needed"
+msgstr "نیاز به تهیه نسخه پشتیبان"
+
+#: www/views/includes/backupNeededPopup.html:9
+msgid "Backup now"
+msgstr "همین آلان نسخه پشتیبان تهیه کنید"
+
+#: www/views/onboarding/backupRequest.html:11
+#: www/views/tab-export-file.html:89
+msgid "Backup wallet"
+msgstr "پشتیبان گیری از کیف پول"
+
+#: src/js/controllers/lockSetup.js:84
+msgid "Backup your wallet before using this function"
+msgstr "قبل از استفاده از این تابع از کیف پول خود نسخه پشتیبان تهیه کنید"
+
+#: src/js/services/profileService.js:446
+msgid "Bad wallet invitation"
+msgstr "دعوت نامه کیف پول بد"
+
+#: www/views/preferencesInformation.html:102
+msgid "Balance By Address"
+msgstr "موجودی بر اساس آدرس"
+
+#: www/views/includes/confirmBackupPopup.html:7
+msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
+msgstr "از اینکه کلمات بازیابی خود را در جای امنی ذخیره کرده اید اطمینان حاصل کنید، پول شما بدون آن قابل بازگشت نمی باشد."
+
+#: www/views/preferencesBitpayServices.html:9
+msgid "BitPay Visa&reg; Cards"
+msgstr "BitPay Visa&reg; کارت ها"
+
+#: www/views/addressbook.add.html:38
+#: www/views/includes/incomingDataMenu.html:29
+msgid "Bitcoin Address"
+msgstr "آدرس بیتکوین"
+
+#: www/views/cashScan.html:4
+msgid "Bitcoin Cash (BCH) Balances"
+msgstr "موجودی های بیتکوین کش(BCH)"
+
+#: www/views/preferencesCash.html:3
+#: www/views/tab-settings.html:47
+msgid "Bitcoin Cash Support"
+msgstr "پشتیبانی بیتکوین کش"
+
+#: www/views/tab-home.html:98
+#: www/views/tab-settings.html:115
+msgid "Bitcoin Cash Wallets"
+msgstr "کیف های پول بیتکوین کش"
+
+#: www/views/modals/chooseFeeLevel.html:4
+#: www/views/preferencesFee.html:4
+#: www/views/tab-settings.html:90
+msgid "Bitcoin Network Fee Policy"
+msgstr "سیاست کارمزد شبکه بیتکوین"
+
+#: www/views/tab-home.html:83
+#: www/views/tab-settings.html:107
+msgid "Bitcoin Core Wallets"
+msgstr "کیف های پول بیتکوین کر(Core)"
+
+#: src/js/services/incomingData.js:151
+msgid "Bitcoin cash Payment"
+msgstr "پرداخت بیتکوین کش"
+
+#: www/views/onboarding/tour.html:31
+msgid "Bitcoin is a currency."
+msgstr "بیتکوین یک ارز است."
+
+#: www/views/onboarding/disclaimer.html:15
+msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
+msgstr "بیتکوین متفاوته&ndash; اون نمی تونه به صورت امن در یک بانک و یا یک وب سرویس نگهداری بشه."
+
+#: www/views/onboarding/tour.html:18
+msgid "Bitcoin is secure,<br>digital money."
+msgstr "بیتکوین امنه، <br> پول دیجیتال."
+
+#: www/views/preferencesFee.html:11
+msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgstr "تراکنش های بیتکوین حاوی یک کارمزدی هستند که توسط استخراج کنندگان در شبکه جمع آوری می شود."
+
+#: www/views/buyAmazon.html:108
+msgid "Bought {{amountUnitStr}}"
+msgstr "{{amountUnitStr}} خریداری شد"
+
+#: www/views/modals/txp-details.html:36
+msgid "Broadcast Payment"
+msgstr "ارسال و پخش پرداخت در شبکه"
+
+#: src/js/controllers/modals/txpDetails.js:64
+#: src/js/controllers/tx-details.js:81
+msgid "Broadcasted"
+msgstr "ارسال و پخش شد"
+
+#: src/js/services/onGoingProcess.js:11
+msgid "Broadcasting transaction"
+msgstr "ارسال و پخش تراکنش"
+
+#: www/views/unsupported.html:6
+msgid "Browser unsupported"
+msgstr "مرورگر پشتیبانی نمی شود"
+
+#: www/views/buyAmazon.html:5
+#: www/views/buyMercadoLibre.html:6
+msgid "Buy"
+msgstr "خرید"
+
+#: www/views/includes/buyAndSellCard.html:3
+msgid "Buy &amp; Sell Bitcoin"
+msgstr "خرید &amp; فروش بیتکوین"
+
+#: www/views/tab-send.html:35
+msgid "Buy Bitcoin"
+msgstr "خرید بیتکوین"
+
+#: www/views/mercadoLibre.html:22
+#: www/views/mercadoLibre.html:50
+msgid "Buy a Gift Card"
+msgstr "خرید یک کارت هدیه"
+
+#: src/js/controllers/buyAmazon.js:334
+msgid "Buy from"
+msgstr "خرید از"
+
+#: src/js/services/onGoingProcess.js:40
+msgid "Buying Bitcoin..."
+msgstr "در حال خرید بیتکوین..."
+
+#: src/js/services/onGoingProcess.js:12
+msgid "Calculating fee"
+msgstr "محاسبه کارمزد"
+
+#: src/js/controllers/buyAmazon.js:313
+#: src/js/controllers/buyMercadoLibre.js:307
+#: src/js/controllers/confirm.js:550
+#: src/js/controllers/topup.js:287
+#: src/js/services/incomingData.js:154
+#: src/js/services/popupService.js:62
+#: src/js/services/popupService.js:73
+#: www/views/addressbook.add.html:10
+#: www/views/feedback/send.html:5
+#: www/views/includes/incomingDataMenu.html:22
+#: www/views/includes/incomingDataMenu.html:54
+#: www/views/includes/incomingDataMenu.html:73
+#: www/views/includes/incomingDataMenu.html:97
+#: www/views/includes/note.html:6
+#: www/views/modals/bitpay-card-confirmation.html:8
+#: www/views/modals/confirmation.html:13
+msgid "Cancel"
+msgstr "لغو"
+
+#: www/views/copayers.html:36
+msgid "Cancel invitation"
+msgstr "لغو دعوت"
+
+#: src/js/controllers/onboarding/tour.js:52
+msgid "Cannot Create Wallet"
+msgstr "قادر به ایجاد کیف پول نیست"
+
+#: src/js/services/profileService.js:442
+msgid "Cannot join the same wallet more that once"
+msgstr "امکان بیش از یک بار پیوستن به یک کیف پول نیست"
+
+#: www/views/includes/bitpayCardsCard.html:2
+msgid "Cards"
+msgstr "کارت ها"
+
+#: www/views/modals/paypro.html:30
+msgid "Certified by"
+msgstr "دارای مجوز از"
+
+#: www/views/preferencesExternal.html:19
+msgid "Check installation and retry."
+msgstr "نصب و راه اندازی را بررسی و مجددا امتحان کنید."
+
+#: www/views/tab-import-file.html:4
+msgid "Choose a backup file from your computer"
+msgstr "انتخاب یک فایل پشتیبان از کامپیوتر خودتان"
+
+#: www/views/modals/wallets.html:9
+msgid "Choose your destination wallet"
+msgstr "کیف پول مقصد را انتخاب کنید"
+
+#: www/views/modals/wallets.html:10
+msgid "Choose your source wallet"
+msgstr "کیف پول مبدا را انتخاب کنید"
+
+#: www/views/backup.html:61
+msgid "Clear"
+msgstr "پاک سازی"
+
+#: www/views/preferencesHistory.html:24
+msgid "Clear cache"
+msgstr "پاک سازی کش"
+
+#: src/js/controllers/confirm.js:373
+#: src/js/controllers/modals/txpDetails.js:49
+msgid "Click to accept"
+msgstr "برای قبول کلیک کنید"
+
+#: src/js/controllers/confirm.js:367
+msgid "Click to pay"
+msgstr "برای پرداخت کلیک کنید"
+
+#: src/js/controllers/confirm.js:379
+#: src/js/controllers/modals/txpDetails.js:42
+msgid "Click to send"
+msgstr "برای ارسال کلیک کنید"
+
+#: www/views/customAmount.html:4
+#: www/views/modals/mercadolibre-card-details.html:3
+#: www/views/modals/paypro.html:4
+#: www/views/modals/pin.html:3
+#: www/views/modals/search.html:3
+#: www/views/modals/wallet-balance.html:3
+#: www/views/modals/wallets.html:5
+msgid "Close"
+msgstr "بستن"
+
+#: www/views/includes/cash.html:2
+#: www/views/preferencesInformation.html:17
+msgid "Coin"
+msgstr "سکه"
+
+#: www/views/preferences.html:22
+msgid "Color"
+msgstr "رنگ"
+
+#: www/views/preferencesAbout.html:21
+msgid "Commit hash"
+msgstr "ثبت هش"
+
+#: www/views/preferences.html:49
+msgid "Complete the backup process to use this option"
+msgstr "برای استفاده از این گزینه فرایند پشتیبان گیری را تکمیل کنید"
+
+#: www/views/bitpayCard.html:93
+msgid "Completed"
+msgstr "تکمیل شده"
+
+#: src/js/controllers/buyAmazon.js:311
+#: src/js/controllers/buyMercadoLibre.js:305
+#: src/js/controllers/confirm.js:549
+#: src/js/controllers/copayers.js:55
+#: src/js/controllers/topup.js:285
+#: www/views/backup.html:60
+#: www/views/backup.html:79
+#: www/views/confirm.html:4
+#: www/views/onboarding/collectEmail.html:32
+msgid "Confirm"
+msgstr "تایید"
+
+#: www/views/modals/terms.html:26
+#: www/views/onboarding/disclaimer.html:44
+msgid "Confirm &amp; Finish"
+msgstr "تایید &amp; پایان"
+
+#: www/views/buyAmazon.html:90
+msgid "Confirm purchase"
+msgstr "تایید خرید"
+
+#: www/views/modals/pin.html:10
+msgid "Confirm your PIN"
+msgstr "کد PIN خود را تأیید کنید"
+
+#: src/js/services/walletService.js:1033
+msgid "Confirm your new spending password"
+msgstr "تایید کلمه عبور جدید جهت خرج دارایی"
+
+#: www/views/tx-details.html:98
+msgid "Confirmations"
+msgstr "تاييديه ها"
+
+#: www/views/bitpayCard.html:68
+#: www/views/modals/wallet-balance.html:61
+msgid "Confirming"
+msgstr "در حال تایید"
+
+#: www/views/bitpayCardIntro.html:37
+msgid "Connect my BitPay Card"
+msgstr "BitPay من را متصل کن"
+
+#: src/js/services/onGoingProcess.js:13
+msgid "Connecting to Coinbase..."
+msgstr "در حال اتصال به Coinbase..."
+
+#: src/js/services/onGoingProcess.js:14
+msgid "Connecting to Glidera..."
+msgstr "در حال اتصال به Glidera..."
+
+#: src/js/services/bwcError.js:53
+msgid "Connection reset by peer"
+msgstr "ریست اتصال توسط همکار"
+
+#: www/views/tab-send.html:45
+msgid "Contacts"
+msgstr "تماسها"
+
+#: www/views/onboarding/notifications.html:9
+msgid "Continue"
+msgstr "ادامه"
+
+#: www/views/preferencesLanguage.html:26
+msgid "Contribute Translations"
+msgstr "مشارکت در ترجمه"
+
+#: src/js/controllers/confirm.js:130
+msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Copay فقط Bitcoi Cash هایی که از آدرس های با شماره جدید استفاده می کنند را پشتیبانی می کند"
+
+#: src/js/services/bwcError.js:62
+msgid "Copayer already in this wallet"
+msgstr "Copayer از قبل در این کیف پول وجود دارد"
+
+#: src/js/services/bwcError.js:77
+msgid "Copayer already voted on this spend proposal"
+msgstr "Copayer در قبلا در مورد این پیشنهاد خرج رای داده است"
+
+#: src/js/services/bwcError.js:107
+msgid "Copayer data mismatch"
+msgstr "عدم تطابق داده های copayer"
+
+#: www/views/includes/walletActivity.html:2
+msgid "Copayer joined"
+msgstr "Copayer پیوست"
+
+#: www/views/preferencesInformation.html:94
+msgid "Copayer {{$index}}"
+msgstr "Copayer {{$index}}"
+
+#: src/js/controllers/copayers.js:79
+#: src/js/controllers/export.js:193
+#: www/views/includes/copyToClipboard.html:4
+msgid "Copied to clipboard"
+msgstr "در کلیپ بورد کپی شد"
+
+#: www/views/tab-export-file.html:94
+msgid "Copy this text as it is to a safe place (notepad or email)"
+msgstr "این متن را همانگونه که هست در یک جای امن کپی کنید (دفترچه یادداشت و یا ایمیل)"
+
+#: www/views/includes/incomingDataMenu.html:51
+#: www/views/includes/incomingDataMenu.html:70
+#: www/views/includes/incomingDataMenu.html:94
+#: www/views/includes/logOptions.html:9
+#: www/views/tab-export-file.html:78
+msgid "Copy to clipboard"
+msgstr "کپی در کلیپ بورد"
+
+#: src/js/controllers/buyMercadoLibre.js:102
+msgid "Could not access Gift Card Service"
+msgstr "نتوانست به خدمات کارت هدیه دسترسی پیدا کند"
+
+#: www/views/tab-import-phrase.html:2
+msgid "Could not access the wallet at the server. Please check:"
+msgstr "نتوانست به کیف پول در سرور دسترسی پیدا کند. لطفا بررسی کنید:"
+
+#: src/js/controllers/buyAmazon.js:102
+msgid "Could not access to Amazon.com"
+msgstr "نتوانست به Amazon.com دسترسی پیدا کند"
+
+#: src/js/services/profileService.js:511
+msgid "Could not access wallet"
+msgstr "نتوانست به کیف پول دسترسی پیدا کند"
+
+#: src/js/controllers/confirm.js:210
+msgid "Could not add message to imported wallet without shared encrypting key"
+msgstr "پیام را به کیف پول وارد شده بدون کلید رمز نگاری اشتراک گذاشته شده نتوانست اضافه نماید"
+
+#: src/js/controllers/modals/txpDetails.js:199
+msgid "Could not broadcast payment"
+msgstr "پرداخت را نتوانست ارسال و پخش کند"
+
+#: src/js/services/bwcError.js:41
+msgid "Could not build transaction"
+msgstr "تراکنش را نتوانست بسازد"
+
+#: src/js/services/walletService.js:854
+msgid "Could not create address"
+msgstr "آدرس را نتوانست ایجاد کند"
+
+#: src/js/controllers/topup.js:92
+msgid "Could not create the invoice"
+msgstr "صورت حساب را نتوانست بسازد"
+
+#: src/js/controllers/buyAmazon.js:164
+#: src/js/controllers/buyMercadoLibre.js:164
+#: src/js/controllers/topup.js:142
+msgid "Could not create transaction"
+msgstr "تراکنش را نتوانست ایجاد کند"
+
+#: src/js/services/profileService.js:350
+msgid "Could not create using the specified extended private key"
+msgstr "با استفاده از کلید خصوصی توسعه یافته اختصاص داده شده نتوانست ایجاد کند"
+
+#: src/js/services/profileService.js:362
+msgid "Could not create using the specified extended public key"
+msgstr "با استفاده از کلید عمومی توسعه یافته اختصاص داده شده نتوانست ایجاد کند"
+
+#: src/js/services/profileService.js:338
+msgid "Could not create: Invalid wallet recovery phrase"
+msgstr "نتوانست ایجاد کند: عبارت بازیابی مربوط به کیف پول غیر معتبر"
+
+#: src/js/controllers/import.js:114
+msgid "Could not decrypt file, check your password"
+msgstr "فایل را نتوانست رمز گشایی کند، رمز عبور خود رابررسی نمایید"
+
+#: src/js/controllers/modals/txpDetails.js:181
+msgid "Could not delete payment proposal"
+msgstr "پیشنهاد پرداخت را نتوانست حدف نماید"
+
+#: src/js/controllers/cashScan.js:117
+msgid "Could not duplicate"
+msgstr "تکراری آن را نتوانست ایجاد کند"
+
+#: src/js/services/feeService.js:73
+msgid "Could not get dynamic fee"
+msgstr "کارمزد را یه صورت اتوماتیک نتوانست اخذ کند"
+
+#: src/js/services/feeService.js:43
+msgid "Could not get dynamic fee for level: {{feeLevel}}"
+msgstr "کارمزد را برای سطح {{feeLevel}} به صورت اتوماتیک نتوانست اخذ کند"
+
+#: src/js/controllers/modals/feeLevels.js:112
+msgid "Could not get fee levels"
+msgstr "سطح کارمزد را نتوانست اخذ کند"
+
+#: src/js/controllers/buyAmazon.js:122
+#: src/js/controllers/buyMercadoLibre.js:122
+#: src/js/controllers/topup.js:100
+msgid "Could not get the invoice"
+msgstr "صورت حساب را نتوانست اخذ کند"
+
+#: src/js/controllers/bitpayCard.js:66
+msgid "Could not get transactions"
+msgstr "تراکنش را نتوانست اخذ کند"
+
+#: src/js/services/profileService.js:615
+#: src/js/services/profileService.js:650
+#: src/js/services/profileService.js:674
+msgid "Could not import"
+msgstr "نتوانست وارد کند"
+
+#: src/js/services/profileService.js:584
+msgid "Could not import. Check input file and spending password"
+msgstr "نتوانست وارد کند. ورودی و رمز عبور برای خرج کردن را بررسی کنید"
+
+#: src/js/services/profileService.js:457
+msgid "Could not join wallet"
+msgstr "نتوانست به کیف پول بپیوندد"
+
+#: src/js/controllers/modals/txpDetails.js:161
+msgid "Could not reject payment"
+msgstr "نتوانست پرداخت را رد کند"
+
+#: src/js/controllers/preferencesBitpayServices.js:33
+msgid "Could not remove account"
+msgstr "حساب را نتوانست حذف کند"
+
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:50
+msgid "Could not remove card"
+msgstr "کارت را نتوانست حذف کند"
+
+#: src/js/services/walletService.js:776
+msgid "Could not save preferences on the server"
+msgstr "تنظیمات را نتوانست بر روی سرور ذخیره کند"
+
+#: src/js/controllers/modals/txpDetails.js:147
+msgid "Could not send payment"
+msgstr "پرداخت را نتوانست ارسال کند"
+
+#: src/js/controllers/buyAmazon.js:325
+#: src/js/controllers/buyMercadoLibre.js:318
+#: src/js/controllers/topup.js:299
+msgid "Could not send transaction"
+msgstr "تراکنش را نتوانست ارسال کند"
+
+#: www/views/walletDetails.html:210
+msgid "Could not update transaction history"
+msgstr "تاریخچه تراکنش را نتوانست به روز رسانی کند"
+
+#: src/js/controllers/addresses.js:29
+#: src/js/controllers/addresses.js:37
+#: src/js/controllers/copayers.js:30
+#: src/js/controllers/walletDetails.js:78
+msgid "Could not update wallet"
+msgstr "کیف پول را نتوانست به روز رسانی کند"
+
+#: www/views/tab-create-personal.html:3
+msgid "Create Personal Wallet"
+msgstr "ایجاد کیف پول شخصی"
+
+#: www/views/tab-create-shared.html:3
+msgid "Create Shared Wallet"
+msgstr "ایجاد کیف پول مشترک"
+
+#: www/views/onboarding/tour.html:51
+#: www/views/tab-home.html:75
+#: www/views/tab-send.html:36
+msgid "Create bitcoin wallet"
+msgstr "ایجاد کیف پول بیتکوین"
+
+#: www/views/tab-create-personal.html:131
+msgid "Create new wallet"
+msgstr "ایجاد کیف پول جدید"
+
+#: www/views/add.html:22
+msgid "Create shared wallet"
+msgstr "ایجاد کیف پول مشترک"
+
+#: www/views/tab-create-shared.html:160
+msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr "ایجاد {{formData.requiredCopayers}} از {{formData.totalCopayers}} کیف پول"
+
+#: www/views/modals/txp-details.html:81
+#: www/views/tx-details.html:60
+msgid "Created by"
+msgstr "ایجاد شده به وسیله"
+
+#: src/js/services/onGoingProcess.js:18
+msgid "Creating Wallet..."
+msgstr "در حال ایجاد کیف پول..."
+
+#: src/js/services/onGoingProcess.js:17
+msgid "Creating transaction"
+msgstr "ایجاد تراکنش"
+
+#: www/views/modals/chooseFeeLevel.html:34
+#: www/views/preferencesFee.html:20
+msgid "Current fee rate for this policy"
+msgstr "نرخ کارمزد فعلی برای این سیاست"
+
+#: src/js/services/feeService.js:15
+msgid "Custom"
+msgstr "سفارشی"
+
+#: www/views/customAmount.html:9
+msgid "Custom Amount"
+msgstr "مبلغ سفارشی"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Custom Fee"
+msgstr "کارمزد سفارشی"
+
+#: www/views/modals/mercadolibre-card-details.html:56
+#: www/views/modals/txp-details.html:87
+#: www/views/tx-details.html:66
+msgid "Date"
+msgstr "تاریخ"
+
+#: www/views/preferencesDeleteWallet.html:21
+msgid "Delete"
+msgstr "حذف"
+
+#: www/views/modals/txp-details.html:164
+msgid "Delete Payment Proposal"
+msgstr "حذف پیشنهاد پرداخت"
+
+#: www/views/preferencesAdvanced.html:33
+#: www/views/preferencesDeleteWallet.html:3
+msgid "Delete Wallet"
+msgstr "حذف کیف پول"
+
+#: www/views/copayers.html:59
+msgid "Delete it and create a new one"
+msgstr "آن را حذف کن و یک جدید ایجاد کن"
+
+#: src/js/services/onGoingProcess.js:19
+msgid "Deleting Wallet..."
+msgstr "در حال حذف کیف پول..."
+
+#: src/js/services/onGoingProcess.js:28
+msgid "Deleting payment proposal"
+msgstr "در حال حذف پیشنهاد پرداخت"
+
+#: www/views/join.html:141
+#: www/views/tab-create-personal.html:111
+#: www/views/tab-create-shared.html:140
+#: www/views/tab-import-phrase.html:49
+msgid "Derivation Path"
+msgstr "مسیر منشاء(ِDerivation Path)"
+
+#: www/views/preferencesInformation.html:47
+msgid "Derivation Strategy"
+msgstr "استراتژی منشاء(ِDerivation Strategy)"
+
+#: www/views/buyAmazon.html:39
+#: www/views/buyMercadoLibre.html:38
+#: www/views/modals/mercadolibre-card-details.html:6
+#: www/views/topup.html:45
+msgid "Details"
+msgstr "جزئیات"
+
+#: src/js/controllers/lockSetup.js:9
+#: src/js/controllers/tab-settings.js:65
+#: www/views/tab-settings.html:50
+msgid "Disabled"
+msgstr "غیر فعال"
+
+#: www/views/includes/backupNeededPopup.html:10
+#: www/views/onboarding/backupRequest.html:12
+msgid "Do it later"
+msgstr "بعدا انجام دهید"
+
+#: www/views/tab-export-file.html:29
+msgid "Do not include private key"
+msgstr "کلید خصوصی را شامل نشود"
+
+#: www/views/preferencesLanguage.html:21
+msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
+msgstr "زبان خود را در Crowdin نمی بینید؟ با صاحب Crowdin تماس بگیرید! ما خیلی دوست دارم زبان شما را پشتیبانی کنیم."
+
+#: www/views/tab-export-file.html:59
+#: www/views/tab-home.html:22
+msgid "Download"
+msgstr "دانلود"
+
+#: www/views/cashScan.html:37
+msgid "Duplicate for BCH"
+msgstr "تکراری برای BCH"
+
+#: src/js/services/onGoingProcess.js:49
+msgid "Duplicating wallet..."
+msgstr "در حال تهیه یک کپی از کیف پول..."
+
+#: www/views/addresses.html:19
+msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgstr "هر کیف پول بیتکوین می تواند میلیاردها آدرس را از 12 کلمه پشتیبان تولید کند. یک آدرس جدید به صورت خودکار تولید شده و هر دفعه که شما پرداختی دریافت می کنید به شما نشان داده می شود."
+
+#: src/js/services/feeService.js:13
+msgid "Economy"
+msgstr "اقتصاد"
+
+#: www/views/onboarding/collectEmail.html:27
+msgid "Edit"
+msgstr "ویرایش"
+
+#: www/views/addressbook.add.html:29
+#: www/views/addressbook.view.html:22
+msgid "Email"
+msgstr "ایمیل"
+
+#: www/views/preferencesNotifications.html:42
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+#: src/js/services/bwcError.js:122
+msgid "Empty addresses limit reached. New addresses cannot be generated."
+msgstr "از حداکثر تعداد آدرس های خالی عبور کرده است. امکان ایجاد آدرس های جدید نمی باشد."
+
+#: www/views/preferencesCash.html:17
+msgid "Enable Bitcoin Cash wallet creation and operation within the App."
+msgstr "فعال سازی امکان ایجاد و بهره برداری از کیف پول بیتکوین کش توسط نرم افزار."
+
+#: www/views/tab-scan.html:19
+msgid "Enable camera access in your device settings to get started."
+msgstr "دسترسی دوربین را در تنظیمات دستگاه خود فعال کنید تا شروع کنید."
+
+#: www/views/preferencesNotifications.html:29
+msgid "Enable email notifications"
+msgstr "اعلان های ایمیل را فعال کنید"
+
+#: www/views/preferencesNotifications.html:12
+msgid "Enable push notifications"
+msgstr "فعال کردن اعلان های با فرمت push"
+
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr ""
+
+#: www/views/tab-scan.html:18
+msgid "Enable the camera to get started."
+msgstr "دوربین را فعال کنید تا شروع کنید."
+
+#: www/views/tab-settings.html:49
+msgid "Enabled"
+msgstr "فعال"
+
+#: src/js/services/walletService.js:1047
+#: src/js/services/walletService.js:1062
+msgid "Enter Spending Password"
+msgstr "رمز عبور مربوط به خرج (Spend) را وارد کنید"
+
+#: src/js/services/bitpayAccountService.js:110
+msgid "Enter Two Factor for your BitPay account"
+msgstr "دو عامل برای حساب BitPay خود وارد کنید"
+
+#: www/views/amount.html:4
+msgid "Enter amount"
+msgstr "مبلغ را وارد کنید"
+
+#: www/views/modals/chooseFeeLevel.html:41
+msgid "Enter custom fee"
+msgstr "کارمزد سفارشی را وارد کنید"
+
+#: src/js/services/walletService.js:1029
+msgid "Enter new spending password"
+msgstr "رمز عبور جدید مربوط به خرج (Spend) را وارد کنید"
+
+#: www/views/join.html:79
+#: www/views/tab-create-personal.html:51
+#: www/views/tab-create-shared.html:80
+msgid "Enter the recovery phrase (BIP39)"
+msgstr "عبارت بازیابی (BIP39) را وارد کنید"
+
+#: www/views/onboarding/collectEmail.html:13
+msgid "Enter your email"
+msgstr "ایمیل خود را وارد کنید"
+
+#: www/views/backup.html:69
+msgid "Enter your password"
+msgstr "رمز عبور خود را وارد کنید"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/addressbookAdd.js:30
+#: src/js/controllers/addressbookView.js:42
+#: src/js/controllers/addresses.js:125
+#: src/js/controllers/addresses.js:126
+#: src/js/controllers/bitpayCard.js:66
+#: src/js/controllers/bitpayCardIntro.js:40
+#: src/js/controllers/bitpayCardIntro.js:81
+#: src/js/controllers/buyAmazon.js:24
+#: src/js/controllers/buyAmazon.js:35
+#: src/js/controllers/buyMercadoLibre.js:24
+#: src/js/controllers/buyMercadoLibre.js:35
+#: src/js/controllers/confirm.js:307
+#: src/js/controllers/copayers.js:67
+#: src/js/controllers/create.js:161
+#: src/js/controllers/create.js:174
+#: src/js/controllers/create.js:180
+#: src/js/controllers/create.js:186
+#: src/js/controllers/create.js:208
+#: src/js/controllers/create.js:215
+#: src/js/controllers/create.js:233
+#: src/js/controllers/export.js:109
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:154
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: src/js/controllers/export.js:47
+#: src/js/controllers/export.js:53
+#: src/js/controllers/feedback/send.js:23
+#: src/js/controllers/import.js:119
+#: src/js/controllers/import.js:131
+#: src/js/controllers/import.js:149
+#: src/js/controllers/import.js:200
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:238
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:266
+#: src/js/controllers/import.js:278
+#: src/js/controllers/import.js:288
+#: src/js/controllers/import.js:312
+#: src/js/controllers/import.js:325
+#: src/js/controllers/import.js:335
+#: src/js/controllers/import.js:345
+#: src/js/controllers/import.js:369
+#: src/js/controllers/import.js:382
+#: src/js/controllers/import.js:85
+#: src/js/controllers/import.js:98
+#: src/js/controllers/join.js:125
+#: src/js/controllers/join.js:139
+#: src/js/controllers/join.js:145
+#: src/js/controllers/join.js:151
+#: src/js/controllers/join.js:174
+#: src/js/controllers/join.js:182
+#: src/js/controllers/join.js:200
+#: src/js/controllers/modals/feeLevels.js:9
+#: src/js/controllers/modals/txpDetails.js:140
+#: src/js/controllers/paperWallet.js:47
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:33
+#: src/js/controllers/preferencesBitpayServices.js:50
+#: src/js/controllers/preferencesDelete.js:36
+#: src/js/controllers/preferencesExternal.js:20
+#: src/js/controllers/tab-home.js:174
+#: src/js/controllers/tab-send.js:143
+#: src/js/controllers/tabsController.js:36
+#: src/js/controllers/tabsController.js:7
+#: src/js/controllers/topup.js:21
+#: src/js/controllers/topup.js:32
+#: src/js/controllers/tx-details.js:119
+#: src/js/services/incomingData.js:101
+#: src/js/services/incomingData.js:125
+#: src/js/services/incomingData.js:168
+#: www/views/mercadoLibreCards.html:19
+#: www/views/modals/mercadolibre-card-details.html:45
+msgid "Error"
+msgstr "خطا"
+
+#: src/js/controllers/confirm.js:502
+msgid "Error at confirm"
+msgstr "خطا در تایید"
+
+#: src/js/controllers/buyAmazon.js:179
+msgid "Error creating gift card"
+msgstr "خطای در ایجاد کارت هدیه"
+
+#: src/js/controllers/buyAmazon.js:94
+#: src/js/controllers/buyMercadoLibre.js:94
+msgid "Error creating the invoice"
+msgstr "خطا در ایجاد صورت حساب"
+
+#: src/js/services/profileService.js:412
+msgid "Error creating wallet"
+msgstr "خطای در ایجاد کیف پول"
+
+#: src/js/controllers/confirm.js:296
+msgid "Error getting SendMax information"
+msgstr "خطا در گرفتن اطلاعات SendMax"
+
+#: src/js/controllers/buyAmazon.js:136
+#: src/js/controllers/buyMercadoLibre.js:136
+#: src/js/controllers/topup.js:114
+msgid "Error in Payment Protocol"
+msgstr "خطا در پروتکل پرداخت"
+
+#: src/js/controllers/bitpayCardIntro.js:14
+msgid "Error pairing BitPay Account"
+msgstr "خطا در جفت کردن(Pairing) حساب BitPay"
+
+#: src/js/controllers/paperWallet.js:41
+msgid "Error scanning funds:"
+msgstr "خطا در اسکن دارایی ها:"
+
+#: src/js/controllers/paperWallet.js:90
+msgid "Error sweeping wallet:"
+msgstr "خطای در sweep نمودن کیف پول:"
+
+#: src/js/controllers/bitpayCardIntro.js:20
+msgid "Error updating Debit Cards"
+msgstr "خطا در به روز رسانی کارت های غیر اعتباری"
+
+#: src/js/services/bwcError.js:143
+msgid "Exceeded daily limit of $500 per user"
+msgstr "از حد روزانه 500 دلار برای هر کاربر عبور کرد"
+
+#: src/js/controllers/confirm.js:461
+#: www/views/confirm.html:27
+#: www/views/mercadoLibreCards.html:25
+#: www/views/modals/mercadolibre-card-details.html:34
+#: www/views/modals/txp-details.html:119
+msgid "Expired"
+msgstr "منقضی شده"
+
+#: www/views/modals/paypro.html:54
+#: www/views/modals/txp-details.html:125
+msgid "Expires"
+msgstr "منقضی می شود"
+
+#: www/views/preferencesAdvanced.html:21
+msgid "Export Wallet"
+msgstr "استخراج کیف پول"
+
+#: www/views/preferencesHistory.html:11
+#: www/views/preferencesHistory.html:14
+msgid "Export to file"
+msgstr "استخراج کردن در فایل"
+
+#: www/views/export.html:3
+msgid "Export wallet"
+msgstr "استخراج کیف پول"
+
+#: src/js/services/walletService.js:1174
+#: www/views/tab-export-qrCode.html:9
+msgid "Exporting via QR not supported for this wallet"
+msgstr "استخراج از طریق کد QR برای این کیف پول پشتیبانی نمی شود"
+
+#: www/views/preferencesInformation.html:89
+msgid "Extended Public Keys"
+msgstr "کلید عمومی تمدید شده"
+
+#: src/js/services/onGoingProcess.js:20
+msgid "Extracting Wallet information..."
+msgstr "استخراج اطلاعات کیف پول..."
+
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: www/views/tab-export-file.html:4
+msgid "Failed to export"
+msgstr "عدم موفقیت در خروجی گرفتن"
+
+#: www/views/tab-create-personal.html:14
+#: www/views/tab-create-shared.html:14
+msgid "Family vacation funds"
+msgstr "بودجه تعطیلات خانواده"
+
+#: www/views/tx-details.html:79
+msgid "Fee"
+msgstr "کارمزد"
+
+#: www/views/modals/chooseFeeLevel.html:75
+msgid "Fee level"
+msgstr "سطح کارمزد"
+
+#: src/js/controllers/modals/feeLevels.js:100
+msgid "Fee level is not defined"
+msgstr "سطح کارمزد تعریف نشده"
+
+#: www/views/confirm.html:79
+#: www/views/modals/txp-details.html:99
+msgid "Fee:"
+msgstr "کارمزد:"
+
+#: src/js/controllers/feedback/send.js:23
+msgid "Feedback could not be submitted. Please try again later."
+msgstr "امکان ثبت نظرات وجود ندارد. لطفا بعدا مجددا امتحان نمایید."
+
+#: src/js/services/onGoingProcess.js:42
+msgid "Fetching BitPay Account..."
+msgstr "در حال دریافت حساب BitPay..."
+
+#: src/js/services/onGoingProcess.js:21
+msgid "Fetching payment information"
+msgstr "در حال دریافت اطلاعات پرداخت"
+
+#: www/views/export.html:14
+#: www/views/import.html:16
+msgid "File/Text"
+msgstr "فایل/متن"
+
+#: www/views/preferencesLogs.html:17
+msgid "Filter setting"
+msgstr "تنظیم فیلتر"
+
+#: src/js/services/fingerprintService.js:43
+#: src/js/services/fingerprintService.js:48
+msgid "Finger Scan Failed"
+msgstr "اسکن اثر انگشت ناموفق بود"
+
+#: src/js/controllers/feedback/send.js:34
+#: www/views/feedback/complete.html:7
+msgid "Finish"
+msgstr "پایان"
+
+#: www/views/tab-create-personal.html:123
+#: www/views/tab-create-shared.html:152
+msgid "For audit purposes"
+msgstr "برای اهداف حسابرسی"
+
+#: src/js/controllers/topup.js:308
+#: www/views/buyAmazon.html:29
+#: www/views/buyMercadoLibre.html:28
+#: www/views/confirm.html:65
+#: www/views/modals/txp-details.html:74
+#: www/views/topup.html:34
+#: www/views/tx-details.html:52
+msgid "From"
+msgstr "از"
+
+#: src/js/controllers/bitpayCardIntro.js:71
+msgid "From BitPay account"
+msgstr "از حساب BitPay"
+
+#: www/views/tab-import-phrase.html:57
+msgid "From Hardware Wallet"
+msgstr "از کیف پول سخت افزاری"
+
+#: www/views/tab-export-qrCode.html:5
+msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
+msgstr "از دستگاه مقصد، برو به قسمت اضافه کردن کیف پول &gt; کیف پول را وارد کن و این کد QR را اسکن کن"
+
+#: src/js/services/bwcError.js:74
+msgid "Funds are locked by pending spend proposals"
+msgstr "وجوه به وسیله پیشنهاد خرج قفل شده است"
+
+#: www/views/paperWallet.html:16
+msgid "Funds found:"
+msgstr "وجوه پیدا شده:"
+
+#: www/views/topup.html:49
+msgid "Funds to be added"
+msgstr "وجوهی که قرار است اصافه شود"
+
+#: www/views/paperWallet.html:51
+msgid "Funds transferred"
+msgstr "وجوه انتقال یافته"
+
+#: www/views/topup.html:103
+msgid "Funds were added to debit card"
+msgstr "وجوه به کارت غیر اعتباری اضافه شد"
+
+#: www/views/paperWallet.html:22
+msgid "Funds will be transferred to"
+msgstr "وجوه ارسال خواهند شد به"
+
+#: www/views/tab-receive.html:51
+msgid "Generate new address"
+msgstr "تولید آدرس جدید"
+
+#: src/js/services/onGoingProcess.js:22
+msgid "Generating .csv file..."
+msgstr "در حال ایجاد فایل .csv ..."
+
+#: src/js/services/onGoingProcess.js:37
+msgid "Generating new address..."
+msgstr "در حال تولید آدرس جدید..."
+
+#: www/views/bitpayCardIntro.html:23
+msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
+msgstr "پول نقد محلی را همه جا همراه خود ببرید، از هر خودپرداز سازگار Visa<sup>&reg;</sup>. ممکن است کارمزد خودپرداز بانک اعمال شود."
+
+#: www/views/onboarding/collectEmail.html:15
+msgid "Get news and updates from BitPay"
+msgstr "دریافت اخبار و به روز رسانی از BitPay"
+
+#: www/views/onboarding/welcome.html:8
+msgctxt "button"
+msgid "Get started"
+msgstr "شروع کنید"
+
+#: www/views/bitpayCard.html:49
+msgid "Get started"
+msgstr "شروع کنید"
+
+#: www/views/addressbook.html:20
+msgid "Get started by adding your first one."
+msgstr "با اضافه کردن اولینتون شروع کنید."
+
+#: src/js/services/onGoingProcess.js:23
+msgid "Getting fee levels..."
+msgstr "دریافت سطوح کارمزد..."
+
+#: www/views/buyAmazon.html:43
+#: www/views/buyMercadoLibre.html:42
+msgid "Gift Card"
+msgstr "کارت هدیه"
+
+#: www/views/modals/mercadolibre-card-details.html:30
+#: www/views/modals/mercadolibre-card-details.html:35
+msgid "Gift Card is not available to use anymore"
+msgstr "کارت هدیه دیگر برای استفاده در دسترس نمی باشد"
+
+#: src/js/controllers/buyAmazon.js:204
+msgid "Gift card expired"
+msgstr "کارت هدیه منقضی شده"
+
+#: www/views/buyAmazon.html:111
+msgid "Gift card generated and ready to use."
+msgstr "کارت هدیه تولید شده و آماده استفاده است."
+
+#: src/js/controllers/bitpayCard.js:114
+#: src/js/controllers/bitpayCard.js:124
+#: src/js/controllers/cashScan.js:20
+#: src/js/controllers/onboarding/terms.js:23
+#: src/js/controllers/preferences.js:67
+#: src/js/controllers/preferencesAbout.js:16
+#: src/js/controllers/preferencesCash.js:34
+#: src/js/controllers/preferencesLanguage.js:14
+#: src/js/controllers/tab-home.js:149
+#: src/js/controllers/tab-settings.js:53
+#: src/js/controllers/tx-details.js:193
+#: src/js/controllers/tx-details.js:56
+msgid "Go Back"
+msgstr "برگرد به عقب"
+
+#: src/js/controllers/confirm.js:131
+#: src/js/controllers/onboarding/backupRequest.js:20
+#: src/js/controllers/onboarding/backupRequest.js:26
+#: src/js/services/bitpayAccountService.js:84
+msgid "Go back"
+msgstr "برگرد به عقب"
+
+#: www/views/backupWarning.html:15
+#: www/views/includes/confirmBackupPopup.html:8
+#: www/views/onboarding/tour.html:23
+msgid "Got it"
+msgstr "متوجه شدم"
+
+#: www/views/preferencesInformation.html:53
+#: www/views/preferencesInformation.html:59
+msgid "Hardware Wallet"
+msgstr "کیف پول سخت افزاری"
+
+#: www/views/preferencesExternal.html:18
+msgid "Hardware not connected."
+msgstr "سخت افزار متصل نیست."
+
+#: www/views/import.html:20
+msgid "Hardware wallet"
+msgstr "کیف پول سخت افزاری"
+
+#: src/js/controllers/create.js:180
+#: src/js/controllers/join.js:145
+msgid "Hardware wallets are not yet supported with Bitcoin Cash"
+msgstr "هنوز کیف پول سخت افزاری به وسیله Bitcoin Cash پشتیبانی نمی شود"
+
+#: www/views/tab-settings.html:20
+msgid "Help & Support"
+msgstr "کمک & پشتیبانی"
+
+#: src/js/controllers/bitpayCard.js:112
+#: src/js/controllers/tab-settings.js:51
+msgid "Help and support information is available at the website."
+msgstr "اطلاعات کمک و پشتیبانی در وب سایت موجود است."
+
+#: www/views/addresses.html:25
+msgid "Hide"
+msgstr "پنهان کردن"
+
+#: www/views/preferences.html:27
+msgid "Hide Balance"
+msgstr "پنهان کردن موجودی"
+
+#: www/views/advancedSettings.html:30
+msgid "Hide Next Steps Card"
+msgstr "پنهان کردن مراحل بعدی کارت"
+
+#: www/views/join.html:49
+#: www/views/tab-create-personal.html:28
+#: www/views/tab-create-shared.html:57
+#: www/views/tab-export-file.html:25
+#: www/views/tab-import-file.html:30
+#: www/views/tab-import-hardware.html:31
+#: www/views/tab-import-phrase.html:36
+msgid "Hide advanced options"
+msgstr "مخفی کردن گزینه های پیشرفته"
+
+#: www/views/tabs.html:3
+msgid "Home"
+msgstr "صفحه اصلی"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+#: src/js/controllers/feedback/send.js:69
+msgid "How could we improve your experience?"
+msgstr "چگونه ما می توانیم تجربه شما را بهبود ببخشیم?"
+
+#: www/views/feedback/rateCard.html:3
+msgid "How do you like {{appName}}?"
+msgstr "چقدر {{appName}} را دوست دارید?"
+
+#: src/js/controllers/feedback/rateCard.js:29
+msgid "I don't like it"
+msgstr "من دوستش ندارم"
+
+#: www/views/onboarding/disclaimer.html:43
+msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
+msgstr "من خوانده ام، درک کردم و موافقت خود را با <a ng-click=\"openTerms()\" translate=\"\"> شرایط استفاده </a> اعلام می دارم."
+
+#: www/views/modals/terms.html:22
+msgid "I have read, understood, and agree with the Terms of use."
+msgstr "من خوانده ام، درک کردم و موافقت خود را با شرایط استفاده اعلام می دارم."
+
+#: www/views/join.html:137
+#: www/views/tab-create-personal.html:107
+#: www/views/tab-create-shared.html:136
+msgid "I have written it down"
+msgstr "من آن را نوشتم"
+
+#: src/js/controllers/feedback/rateCard.js:35
+msgid "I like the app"
+msgstr "من نرم افزار را دوست دارم"
+
+#: src/js/controllers/feedback/rateCard.js:26
+msgid "I think this app is terrible."
+msgstr "من فکر می کنم این برنامه افتضاح است."
+
+#: src/js/controllers/onboarding/backupRequest.js:19
+#: www/views/includes/screenshotWarningModal.html:9
+msgid "I understand"
+msgstr "متوجه شدم"
+
+#: www/views/onboarding/disclaimer.html:21
+msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgstr "من درک می کنم اگر این برنامه به دستگاه دیگر منتقل شود و یا حذف شود، بیتکوین های من تنها با عبارت پشتیبان قابل بازیابی هستند."
+
+#: www/views/onboarding/disclaimer.html:18
+msgid "I understand that my funds are held securely on this device, not by a company."
+msgstr "من درک می کنم که سرمایه من به صورت امن در این دستگاه نگهداری می شود، و نه توسط شرکت."
+
+#: www/views/backup.html:36
+msgid "I've written it down"
+msgstr "من آن را نوشتم"
+
+#: www/views/preferences.html:45
+msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
+msgstr "اگر این گزینه فعال باشد, تمام اطلاعات حساس (خصوصی کلید و عبارت بازیابی) و اقدامات (خرج و استخراج) مرتبط با این کیف پول محافظت خواهند شد."
+
+#: www/views/advancedSettings.html:23
+msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
+msgstr "اگر این گزینه فعال باشد، معاملات اخیر کارت - فهرست معاملات انجام شده در همه کیف های پول - در برگه اصلی ظاهر می شود."
+
+#: www/views/advancedSettings.html:14
+msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgstr "اگر این گزینه فعال باشد, کیف پول ها نیز به خرج سرمایه های تایید نشده می پردازتد. این گزینه ممکن است منجر به تاخیر در انچام تراکنش شود."
+
+#: src/js/controllers/onboarding/backupRequest.js:18
+msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgstr "اگر این دستگاه جایگزین و یا این برنامه حذف شده باشد، نه شما و نه BitPay تمی توانند سرمایه شما را بدون نسخه پشتیبان بازیابی کنند."
+
+#: www/views/feedback/complete.html:23
+msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
+msgstr "اگر نظر بیشتری دارید لطفا با فشردن \"ارسال نظر دوم\" در قسمت \"تنظیمات\" ما را در جریان بگذارید."
+
+#: www/views/includes/screenshotWarningModal.html:8
+msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
+msgstr "اگر شما از صفحه اسکرین شات بگیرید ممکن است کلمات یازیابی شما توسط برنامه های دیگر مشاهده شوتد. شما می توانید به وسیله کاغذ و قلم یک پشتیبان امن تهیه کنید."
+
+#: www/views/tab-import-hardware.html:42
+#: www/views/tab-import-phrase.html:80
+msgid "Import"
+msgstr "وارد کردن"
+
+#: www/views/import.html:3
+msgid "Import Wallet"
+msgstr "وارد کردن کیف پول"
+
+#: www/views/tab-import-file.html:41
+msgid "Import backup"
+msgstr "وارد کردن پشتیبان"
+
+#: www/views/add.html:38
+msgid "Import wallet"
+msgstr "وارد کردن کیف پول"
+
+#: src/js/services/onGoingProcess.js:24
+msgid "Importing Wallet..."
+msgstr "در حال وارد کردن کیف پول..."
+
+#: www/views/backup.html:72
+msgid "In order to verify your wallet backup, please type your password."
+msgstr "به منظور بررسی پشتیبان کیف پول خود ، کلمه عبور خود را تایپ کنید."
+
+#: www/views/mercadoLibreCards.html:24
+#: www/views/modals/mercadolibre-card-details.html:29
+msgid "Inactive"
+msgstr "غیر فعال"
+
+#: www/views/includes/walletItem.html:9
+#: www/views/includes/walletList.html:6
+#: www/views/includes/walletListSettings.html:9
+#: www/views/includes/walletSelector.html:16
+msgid "Incomplete"
+msgstr "کامل نشده"
+
+#: www/views/tab-receive.html:22
+msgid "Incomplete wallet"
+msgstr "کیف پول کامل تشده"
+
+#: www/views/modals/pin.html:12
+msgid "Incorrect PIN, try again."
+msgstr "رمز نادرست، دوباره امتحان کنید."
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/import.js:85
+msgid "Incorrect code format"
+msgstr "فرمت نادرست کد"
+
+#: src/js/services/bwcError.js:113
+msgid "Incorrect network address"
+msgstr "آدرس شبکه نادرست"
+
+#: src/js/controllers/confirm.js:114
+#: src/js/controllers/confirm.js:306
+#: src/js/services/bwcError.js:44
+msgid "Insufficient confirmed funds"
+msgstr ""
+
+#: src/js/controllers/topup.js:165
+#: src/js/controllers/topup.js:177
+#: src/js/services/bwcError.js:71
+msgid "Insufficient funds for fee"
+msgstr "عدم وجود منابع مالی کافی برای کارمزد"
+
+#: www/views/tab-settings.html:123
+msgid "Integrations"
+msgstr "یکپارچگی"
+
+#: www/views/includes/walletHistory.html:49
+msgid "Invalid"
+msgstr "نامعتبر"
+
+#: src/js/controllers/buyAmazon.js:137
+#: src/js/controllers/buyMercadoLibre.js:137
+#: src/js/controllers/topup.js:115
+msgid "Invalid URL"
+msgstr "آدرس وبی نامعتبر"
+
+#: src/js/controllers/create.js:186
+#: src/js/controllers/import.js:345
+#: src/js/controllers/join.js:151
+msgid "Invalid account number"
+msgstr "شماره حساب نامعتبر"
+
+#: src/js/services/bwcError.js:119
+msgid "Invalid address"
+msgstr "آدرس نامعتبر"
+
+#: src/js/controllers/tabsController.js:7
+msgid "Invalid data"
+msgstr "داده نامعتبر"
+
+#: src/js/controllers/create.js:161
+#: src/js/controllers/import.js:266
+#: src/js/controllers/join.js:125
+msgid "Invalid derivation path"
+msgstr "مسیر غیر معتبر منشاء"
+
+#: src/js/controllers/copayers.js:90
+msgid "Invitation to share a {{appName}} Wallet"
+msgstr "دعوت به اشتراک گداری یک کیف پول {{appName}}"
+
+#: www/views/mercadoLibreCards.html:20
+#: www/views/modals/mercadolibre-card-details.html:48
+msgid "Invoice expired"
+msgstr "فاکتور منقضی شده"
+
+#: src/js/controllers/feedback/send.js:79
+msgid "Is there anything we could do better?"
+msgstr "آیا چیزی وجود دارد که ما بهتر انجام دهیم?"
+
+#: www/views/backup.html:54
+msgid "Is this correct?"
+msgstr "آیا این درست است?"
+
+#: www/views/onboarding/collectEmail.html:22
+msgid "Is this email address correct?"
+msgstr "آیا این آدرس ایمیل صحیح است?"
+
+#: www/views/addresses.html:25
+msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
+msgstr "این یک ایده خوب برای جلوگیری از استفاده مجدد آدرس ها است--این هم از حریم خصوصی شما محافظت می کند و هم بیت کوین های شما را در برابر حملات فرضی توسط رایانه های کوانتومی حفظ می کند."
+
+#: src/js/controllers/backup.js:76
+msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
+msgstr "این مهم است که شما عبارت پشتیبان خود را به درستی بنویسید. اگر اتفاقی برای کیف شما بیوفتد، شما برای بازیابی پول خود به این نسخه پشتیبان احتیاج خواهید داشت. لطفا نسخه پشتیبان خود را مرور کنید و دوباره سعی کنید."
+
+#: www/views/join.html:151
+msgid "Join"
+msgstr "عضویت"
+
+#: src/js/controllers/copayers.js:85
+msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
+msgstr "به کیف پول {{appName}} من بپیوند. این کد دعوته: {{secret}} شما می توانید {{appName}} را برای گوشی و یا دسکتاپ از{{appUrl}} دانلود کنید"
+
+#: www/views/add.html:30
+#: www/views/join.html:5
+msgid "Join shared wallet"
+msgstr "پیوستن به کیف پول مشترک"
+
+#: src/js/services/onGoingProcess.js:25
+msgid "Joining Wallet..."
+msgstr "در حال پیوستن به کیف پول..."
+
+#: www/views/onboarding/tour.html:22
+msgid "Just scan the code to pay."
+msgstr "برای پرداخت فقط کد را اسکن کن."
+
+#: src/js/services/bwcError.js:116
+msgid "Key already associated with an existing wallet"
+msgstr "کلید ارقبل با یکی از کیف های پول مرتبط است"
+
+#: www/views/preferencesLanguage.html:4
+#: www/views/tab-settings.html:68
+msgid "Language"
+msgstr "زبان"
+
+#: www/views/bitpayCard.html:61
+msgid "Last Month"
+msgstr "ماه گذشته"
+
+#: src/js/controllers/confirm.js:132
+#: www/views/preferences.html:48
+#: www/views/preferencesCash.html:18
+#: www/views/tx-details.html:94
+msgid "Learn more"
+msgstr "بیشتر بیاموزید"
+
+#: www/views/backup.html:43
+msgid "Let's verify your backup phrase."
+msgstr "بیا عبارت پشتیبانی تو را بررسی کنیم."
+
+#: www/views/addresses.html:45
+#: www/views/allAddresses.html:14
+msgid "Loading addresses..."
+msgstr "در حال بارگذاری آدرس ها..."
+
+#: src/js/services/onGoingProcess.js:35
+msgid "Loading transaction info..."
+msgstr "در حال بارگذاری اطلاعات تراکنش..."
+
+#: www/views/tab-settings.html:100
+msgid "Lock App"
+msgstr "قفل نرم افزار"
+
+#: src/js/controllers/lockSetup.js:23
+msgid "Lock by Fingerprint"
+msgstr "قفل با اثر انگشت"
+
+#: src/js/controllers/lockSetup.js:14
+msgid "Lock by PIN"
+msgstr "قفل با رمز"
+
+#: www/views/modals/wallet-balance.html:80
+msgid "Locked"
+msgstr "قفل شده"
+
+#: src/js/services/bwcError.js:86
+msgid "Locktime in effect. Please wait to create a new spend proposal"
+msgstr "در زمان قفلی می باشید. لطفا صبر کنید تا یک پیشنهاد خرید ایجاد گردد"
+
+#: src/js/services/bwcError.js:89
+msgid "Locktime in effect. Please wait to remove this spend proposal"
+msgstr "در زمان قفلی می باشید. لطفا صبر کنید تا این پیشنهاد خرید حذف گردد"
+
+#: www/views/includes/logOptions.html:3
+msgid "Log options"
+msgstr "گزینه های ورود"
+
+#: www/views/modals/bitpay-card-confirmation.html:14
+msgid "Log out"
+msgstr "خروج"
+
+#: www/views/addresses.html:87
+msgid "Low amount inputs"
+msgstr "مبلغ کم ورودی"
+
+#: www/views/includes/walletHistory.html:27
+msgid "Low fees"
+msgstr "کارمزد های کم"
+
+#: www/views/onboarding/tour.html:38
+msgid "Makes sense"
+msgstr "منطقی به نظر می رسد"
+
+#: src/js/controllers/modals/search.js:61
+msgid "Matches:"
+msgstr "مطابقت دارد:"
+
+#: www/views/includes/copayers.html:4
+#: www/views/preferencesInformation.html:85
+msgid "Me"
+msgstr "من"
+
+#: src/js/controllers/feedback/rateCard.js:32
+msgid "Meh - it's alright"
+msgstr "این اشکالی ندارد"
+
+#: src/js/controllers/tx-details.js:165
+#: www/views/modals/paypro.html:48
+#: www/views/modals/txp-details.html:93
+#: www/views/tx-details.html:72
+msgid "Memo"
+msgstr "یادداشت"
+
+#: www/views/mercadoLibre.html:6
+msgid "Mercado Livre Brazil Gift Cards"
+msgstr "کارت هدیه Mercado Livre برزیل"
+
+#: src/js/controllers/buyMercadoLibre.js:98
+msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
+msgstr "خدمات کارت هدیه Mercadolibre در این لحظه در دسترس نمی باشد. لطفا دوباره بعدا امتحان کنید."
+
+#: www/views/modals/txp-details.html:131
+msgid "Merchant Message"
+msgstr "پیام پذیرنده"
+
+#: www/views/buyAmazon.html:55
+#: www/views/buyMercadoLibre.html:54
+#: www/views/topup.html:63
+msgid "Miner Fee"
+msgstr "کارمزد استخراج کننده"
+
+#: src/js/services/bwcError.js:134
+msgid "Missing parameter"
+msgstr "پارامتر نا موجود"
+
+#: src/js/services/bwcError.js:32
+msgid "Missing private keys to sign"
+msgstr "عدم وجود کلیدهای خصوصی برای امضاء"
+
+#: www/views/preferences.html:61
+#: www/views/preferencesAdvanced.html:3
+msgid "More Options"
+msgstr "گزینه های بیشتر"
+
+#: www/views/includes/walletHistory.html:47
+#: www/views/tx-details.html:19
+msgid "Moved"
+msgstr "انتقال یافت"
+
+#: src/js/controllers/tx-details.js:131
+msgid "Moved Funds"
+msgstr "وجوه انقال یافته"
+
+#: www/views/modals/txp-details.html:57
+msgid "Multiple recipients"
+msgstr "چندین دریافت کننده"
+
+#: www/views/tab-import-phrase.html:8
+msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
+msgstr "توجه: برای وارد کردن کیف پول از نرم افزار سوم شخص، لطفا برو به اضافه کردن کیف پول &gt; کیف پول ایجاد کن، و آنجا عبارت بازیابی را مشخص کنید."
+
+#: www/views/addressbook.add.html:21
+#: www/views/addressbook.view.html:18
+#: www/views/preferences.html:15
+#: www/views/preferencesAlias.html:17
+msgid "Name"
+msgstr "نام"
+
+#: www/views/buyAmazon.html:49
+#: www/views/buyMercadoLibre.html:48
+#: www/views/topup.html:56
+msgid "Network Cost"
+msgstr "هزینه شبکه"
+
+#: src/js/services/bwcError.js:47
+msgid "Network error"
+msgstr "خطای شبکه"
+
+#: www/views/includes/walletActivity.html:43
+msgid "New Proposal"
+msgstr "پیشنهاد جدید"
+
+#: src/js/controllers/addresses.js:126
+msgid "New address could not be generated. Please try again."
+msgstr "آدرس جدید تولید نشد. لطفا دوباره سعی کنید."
+
+#: www/views/add.html:14
+msgid "New personal wallet"
+msgstr "کیف پول شخصی جدید"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Next steps"
+msgstr "مراحل بعدی"
+
+#: www/views/tab-receive.html:16
+msgid "No Wallet"
+msgstr "بدون کیف پول"
+
+#: src/js/controllers/buyAmazon.js:115
+#: src/js/controllers/buyMercadoLibre.js:115
+msgid "No access key defined"
+msgstr "هیچ کلید دسترسی تعریف نشده"
+
+#: www/views/onboarding/backupRequest.html:5
+msgid "No backup, no bitcoin."
+msgstr "بدون نسخه پشتیبان، بدون بیتکوین."
+
+#: www/views/addressbook.html:19
+msgid "No contacts yet"
+msgstr "هنوز هیچ تماسی ثبت نشده است"
+
+#: www/views/preferencesLogs.html:16
+msgid "No entries for this log level"
+msgstr "هیچ ورودی برای این سطح ورود به سیستم وجود ندارد"
+
+#: www/views/preferencesExternal.html:12
+msgid "No hardware information available."
+msgstr "هیچ اطلاعات سخت افزاری موجود نیست."
+
+#: www/views/tab-import-hardware.html:3
+msgid "No hardware wallets supported on this device"
+msgstr "هیچ کیف پول سخت افزاری در این دستگاه پشتیبانی نمی شود"
+
+#: www/views/proposals.html:24
+msgid "No pending proposals"
+msgstr "پیشنهاد در انتظاری وجود ندارد"
+
+#: www/views/activity.html:25
+msgid "No recent transactions"
+msgstr "اخیرا تراکنشی ایجاد نشده است"
+
+#: src/js/controllers/buyAmazon.js:44
+#: src/js/controllers/topup.js:47
+msgid "No signing proposal: No private key"
+msgstr "بدون پیشنهاد امضا: بدون کلید خصوصی"
+
+#: www/views/walletDetails.html:204
+msgid "No transactions yet"
+msgstr "هنوز تراکنشی ایجاد نشده است"
+
+#: src/js/controllers/preferencesDelete.js:15
+msgid "No wallet found"
+msgstr "هیچ کیف پولی پیدا نشد"
+
+#: src/js/controllers/preferencesDelete.js:8
+msgid "No wallet selected"
+msgstr "هیچ کیف پولی انتخاب نشد"
+
+#: src/js/controllers/buyAmazon.js:300
+#: src/js/controllers/buyMercadoLibre.js:292
+#: src/js/controllers/confirm.js:85
+#: src/js/controllers/topup.js:265
+msgid "No wallets available"
+msgstr "هیچ کیف پولی موجود نیست"
+
+#: www/views/paperWallet.html:45
+msgid "No wallets available to receive funds"
+msgstr "هیچ کیف پولی برای دریافت وجه موجود نیست"
+
+#: www/views/cashScan.html:15
+msgid "No wallets eligible for Bitcoin Cash support"
+msgstr "هیچ کیف پول واجد شرایطی برای پشتیبانی بیتکوین کش وجود ندارد"
+
+#: src/js/controllers/cashScan.js:58
+msgid "Non BIP44 wallet"
+msgstr "کیف پول غیر BIP44"
+
+#: www/views/cashScan.html:46
+msgid "Non eligible BTC wallets"
+msgstr "کیف پول BTC غیر واجد شرایط"
+
+#: src/js/services/feeService.js:12
+msgid "Normal"
+msgstr "نرمال"
+
+#: src/js/services/bwcError.js:80
+msgid "Not authorized"
+msgstr "مجاز نیست"
+
+#: src/js/controllers/confirm.js:307
+msgid "Not enough funds for fee"
+msgstr "عدم وجود منابع مالی کافی برای کارمزد"
+
+#: www/views/onboarding/tour.html:50
+msgid "Not even BitPay can access it."
+msgstr "حتی BitPay به آن دسترسی ندارد."
+
+#: src/js/controllers/paperWallet.js:47
+msgid "Not funds found"
+msgstr "سرمایه ای یافت نشد"
+
+#: www/views/feedback/rateApp.html:3
+#: www/views/onboarding/notifications.html:8
+msgid "Not now"
+msgstr "الان نه"
+
+#: www/views/includes/output.html:15
+msgid "Note"
+msgstr "نکته"
+
+#: www/views/backup.html:19
+msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
+msgstr "نکته: اگر این کیف پول BCH از کیف پول BTC کپی برداری شده است،هر دو عبارت بازیابی مشترکی دارند."
+
+#: www/views/modals/wallets.html:25
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgstr "توجه: تنها کیف پول های 1-1 (تک امضا) می توانند برای فروش بیتکوین استفاده گردند"
+
+#: www/views/preferencesNotifications.html:3
+#: www/views/tab-settings.html:61
+msgid "Notifications"
+msgstr "اعلان ها"
+
+#: www/views/onboarding/collectEmail.html:9
+msgid "Notifications by email"
+msgstr "اعلان ها توسط ایمیل"
+
+#: www/views/tx-details.html:117
+msgid "Notify me if confirmed"
+msgstr "در صورت تاییدی به من خبر بده"
+
+#: www/views/preferencesNotifications.html:24
+msgid "Notify me when transactions are confirmed"
+msgstr "هنگامی که تراکنش ها تایید شد مرا مطلع کن"
+
+#: www/views/includes/backupNeededPopup.html:8
+msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
+msgstr "هم اکنون زمان مناسبی برای پشتیبان گیری از کیف پولتان است. اگر این دستگاه گو شود، امکان دسترسی به کیف پول بدون نسخه پشتیبان وجود ندارد."
+
+#: www/views/backupWarning.html:11
+msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
+msgstr "هم اکنون زمان مناسب به اطراف خود نگاهی بیندازید. آیا پنجره ای در نزدیکی شما وجود دارد؟ دوربین مخفی چطور؟ افراد فظول چی?"
+
+#: src/js/controllers/buyAmazon.js:312
+#: src/js/controllers/topup.js:286
+#: src/js/services/incomingData.js:153
+#: src/js/services/popupService.js:16
+#: src/js/services/popupService.js:52
+#: src/js/services/popupService.js:61
+#: src/js/services/popupService.js:72
+#: www/views/modals/chooseFeeLevel.html:6
+msgid "OK"
+msgstr "باشه"
+
+#: www/views/modals/tx-status.html:12
+#: www/views/modals/tx-status.html:24
+#: www/views/modals/tx-status.html:36
+#: www/views/modals/tx-status.html:46
+msgid "OKAY"
+msgstr "باشه"
+
+#: www/views/modals/terms.html:15
+msgid "Official English Disclaimer"
+msgstr "محدوده ی رسمی مسئولیت ها به انگلیسی"
+
+#: src/js/controllers/feedback/send.js:64
+msgid "Oh no!"
+msgstr "ای وای نه!"
+
+#: src/js/controllers/buyMercadoLibre.js:306
+msgid "Ok"
+msgstr "باشه"
+
+#: www/views/tab-home.html:39
+msgid "On this screen you can see all your wallets, accounts, and assets."
+msgstr "در این صفحه شما می توانید تمام کیف های پول، حساب، و دارایی خود را ببینید."
+
+#: src/js/controllers/bitpayCard.js:113
+#: src/js/controllers/cashScan.js:19
+#: src/js/controllers/preferences.js:66
+#: src/js/controllers/preferencesCash.js:33
+#: src/js/controllers/tab-settings.js:52
+#: src/js/controllers/tx-details.js:55
+msgid "Open"
+msgstr "باز"
+
+#: src/js/controllers/preferencesLanguage.js:13
+msgid "Open Crowdin"
+msgstr "باز کردن Crowdin"
+
+#: src/js/controllers/preferencesAbout.js:15
+msgid "Open GitHub"
+msgstr "باز کردن GitHub"
+
+#: src/js/controllers/preferencesAbout.js:13
+msgid "Open GitHub Project"
+msgstr "باز کردن پروژه GitHub"
+
+#: src/js/controllers/bitpayCard.js:123
+#: src/js/controllers/tx-details.js:192
+msgid "Open Explorer"
+msgstr ""
+
+#: www/views/tab-scan.html:22
+msgid "Open Settings"
+msgstr "باز کردن تنظیمات"
+
+#: src/js/controllers/preferencesLanguage.js:11
+msgid "Open Translation Community"
+msgstr "باز کردن جامعه مترجمان"
+
+#: src/js/controllers/onboarding/terms.js:22
+msgid "Open Website"
+msgstr "باز کردن وب سایت"
+
+#: src/js/controllers/preferencesCash.js:32
+msgid "Open bitcoincash.org?"
+msgstr "باز کردن bitcoincash.org?"
+
+#: src/js/controllers/cashScan.js:18
+msgid "Open the recovery tool."
+msgstr "باز کردن ابزار بازیابی."
+
+#: www/views/tab-receive.html:27
+msgid "Open wallet"
+msgstr "باز کردن کیف پول"
+
+#: www/views/includes/incomingDataMenu.html:19
+msgid "Open website"
+msgstr "باز کردن وب سایت"
+
+#: www/views/bitpayCardIntro.html:34
+msgid "Order the BitPay Card"
+msgstr "سفارش کارت BitPay"
+
+#: www/views/join.html:105
+#: www/views/join.html:96
+#: www/views/tab-create-personal.html:69
+#: www/views/tab-create-personal.html:77
+#: www/views/tab-create-shared.html:106
+#: www/views/tab-create-shared.html:98
+#: www/views/tab-import-file.html:18
+#: www/views/tab-import-phrase.html:41
+msgid "Password"
+msgstr "رمز عبور"
+
+#: src/js/controllers/import.js:98
+msgid "Password required. Make sure to enter your password in advanced options"
+msgstr "رمز عبور لازم است. مطمئن شوید که رمز عبور خود را در قسمت گزینه های پیشرفته وارد می کنید"
+
+#: www/views/join.html:33
+msgid "Paste invitation here"
+msgstr "دعوت نامه را اینجا کپی کنید"
+
+#: www/views/tab-import-file.html:13
+msgid "Paste the backup plain text code"
+msgstr "متن کد رمز نشده نسخه پشتیبان را اینجا کپی کنید"
+
+#: www/views/bitpayCardIntro.html:28
+msgid "Pay 0% fees to turn bitcoin into dollars."
+msgstr "برای تبدیل بیتکوین به دلار 0% کارمزد پرداخت کنید."
+
+#: www/views/modals/paypro.html:18
+msgid "Pay To"
+msgstr "پرداخت به"
+
+#: src/js/controllers/modals/txpDetails.js:51
+#: www/views/modals/tx-status.html:33
+msgid "Payment Accepted"
+msgstr "پرداخت پذیرفته شده"
+
+#: www/views/confirm.html:25
+msgid "Payment Expires:"
+msgstr "پرداخت منقضی می شود:"
+
+#: www/views/modals/txp-details.html:6
+msgid "Payment Proposal"
+msgstr "پیشنهاد پرداخت"
+
+#: www/views/modals/tx-status.html:21
+msgid "Payment Proposal Created"
+msgstr "پیشنهاد پرداخت ایجاد شده"
+
+#: www/views/tab-home.html:46
+msgid "Payment Proposals"
+msgstr "پیشنهاد های پرداخت"
+
+#: src/js/services/payproService.js:32
+msgid "Payment Protocol Invalid"
+msgstr "پروتکل پرداخت معتبر نیست"
+
+#: src/js/services/payproService.js:18
+msgid "Payment Protocol not supported on Chrome App"
+msgstr "پروتکل پرداخت در برنامه Chrome پشتیبانی نمی شود"
+
+#: www/views/includes/walletActivity.html:20
+msgid "Payment Received"
+msgstr "پرداخت دریافت شد"
+
+#: www/views/modals/tx-status.html:43
+#: www/views/modals/txp-details.html:43
+msgid "Payment Rejected"
+msgstr "پرداخت رد شد"
+
+#: src/js/controllers/modals/txpDetails.js:44
+#: www/views/confirm.html:124
+#: www/views/includes/walletActivity.html:11
+#: www/views/modals/txp-details.html:42
+msgid "Payment Sent"
+msgstr "پرداخت ارسال شد"
+
+#: www/views/modals/txp-details.html:32
+msgid "Payment accepted, but not yet broadcasted"
+msgstr "پرداخت پذیرفته شده اما هنوز پخش نشده"
+
+#: www/views/modals/txp-details.html:40
+msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
+msgstr "پرداخت پذیرفته شده. این می تواند توسط Glidera پخش شود. در صورتی که مشکلی وجود دارد، آن 6 ساعت پس از ساخته شدن می تواند حذف شود."
+
+#: src/js/services/incomingData.js:152
+msgid "Payment address was translated to new Bitcoin Cash address format:"
+msgstr "آدرس پرداخت به فرمت جدید آدرس بیتکوین کش ترجمه شده است:"
+
+#: www/views/modals/txp-details.html:107
+msgid "Payment details"
+msgstr "جزئیات پرداخت"
+
+#: www/views/modals/paypro.html:6
+msgid "Payment request"
+msgstr "درخواست پرداخت"
+
+#: www/views/mercadoLibreCards.html:22
+#: www/views/modals/mercadolibre-card-details.html:39
+msgid "Pending"
+msgstr "در حالت انتظار"
+
+#: www/views/proposals.html:4
+msgid "Pending Proposals"
+msgstr "پیشنهاد های درانتظار"
+
+#: www/views/preferencesDeleteWallet.html:13
+msgid "Permanently delete this wallet."
+msgstr "حذف این کیف پول به صورت دائم."
+
+#: src/js/services/profileService.js:403
+msgid "Personal Wallet"
+msgstr "کیف پول شخصی"
+
+#: www/views/backup.html:25
+msgid "Please carefully write down this phrase."
+msgstr "لطفا با دقت این عبارت را بنویسید."
+
+#: www/views/tab-scan.html:20
+msgid "Please connect a camera to get started."
+msgstr "لطفا یک دوربین وصل کنید تا شروع کنیم."
+
+#: src/js/controllers/import.js:278
+msgid "Please enter the recovery phrase"
+msgstr "لطفا عبارت بازیابی را وارد نمایید"
+
+#: src/js/controllers/create.js:174
+#: src/js/controllers/join.js:139
+msgid "Please enter the wallet recovery phrase"
+msgstr "لطفا عبارت بازیابی کیف پول را وارد نمایید"
+
+#: www/views/modals/pin.html:9
+msgid "Please enter your PIN"
+msgstr "لطفا کد پین خود را وارد کنید"
+
+#: www/views/backup.html:53
+msgid "Please tap each word in the correct order."
+msgstr "هر کلمات را با ترتیب درست انتخاب کنید."
+
+#: src/js/services/bwcError.js:101
+msgid "Please upgrade Copay to perform this action"
+msgstr "لطفا برای انجام این عمل Copay را ارتقا دهید"
+
+#: www/views/walletDetails.html:142
+#: www/views/walletDetails.html:62
+msgid "Please wait"
+msgstr "لطفاً منتظر بمانید"
+
+#: src/js/controllers/import.js:238
+msgid "Please, select your backup file"
+msgstr "لطفاً فایل نسخه پشتیبان را انتخاب کنید"
+
+#: www/views/bitpayCard.html:81
+msgid "Pre-Auth Holds"
+msgstr "نگهداری های قبل از اتمام"
+
+#: www/views/tab-settings.html:40
+msgid "Preferences"
+msgstr "تنظیمات"
+
+#: src/js/services/onGoingProcess.js:38
+msgid "Preparing addresses..."
+msgstr "در حال بارگذاری آدرس ها..."
+
+#: src/js/controllers/export.js:198
+msgid "Preparing backup..."
+msgstr "در حال آماده سازی نسخه پشتیبان..."
+
+#: src/js/routes.js:1264
+msgid "Press again to exit"
+msgstr "جهت خروج دویاره فشار دهید"
+
+#: src/js/services/feeService.js:11
+msgid "Priority"
+msgstr "اولویت"
+
+#: www/views/includes/incomingDataMenu.html:80
+msgid "Private Key"
+msgstr "کلید خصوصی"
+
+#: src/js/controllers/paperWallet.js:136
+msgid "Private key encrypted. Enter password"
+msgstr "کلید خصوصی رمزنگاری شده است. رمز عبور را وارد کنید"
+
+#: src/js/services/bwcError.js:35
+msgid "Private key is encrypted, cannot sign"
+msgstr "کلید خصوصی رمزگذاری شده است, امکان امضاء وجود ندارد"
+
+#: www/views/includes/walletActivity.html:51
+msgid "Proposal Accepted"
+msgstr "پیشنهاد های پذیرفته شده"
+
+#: src/js/controllers/modals/txpDetails.js:61
+#: src/js/controllers/tx-details.js:78
+#: www/views/confirm.html:125
+msgid "Proposal Created"
+msgstr "پیشنهاد ایجاد شده"
+
+#: www/views/includes/walletActivity.html:27
+msgid "Proposal Deleted"
+msgstr "پیشنهاد های حذف شده"
+
+#: www/views/includes/walletActivity.html:35
+msgid "Proposal Rejected"
+msgstr "پیشنهاد های رد شده"
+
+#: www/views/walletDetails.html:189
+msgid "Proposals"
+msgstr "طرح های پیشنهادی"
+
+#: src/js/controllers/buyAmazon.js:282
+msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
+msgstr "مقدار خرید محدود به {{limitPerDay}}{{currency}} در هر روز است"
+
+#: src/js/controllers/buyMercadoLibre.js:281
+msgid "Purchase amount must be a value between 50 and 2000"
+msgstr "مقدار خرید باید مابین 50 و 1379 باشد"
+
+#: www/views/onboarding/notifications.html:3
+msgid "Push Notifications"
+msgstr "اعلان های با فرمت push"
+
+#: www/views/preferencesNotifications.html:17
+msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
+msgstr "اعلان های با فرمت push برای {{appName}} در حال حاضر غیرفعال هستند. آنها را در تنظیمات برنامه فعال کنید."
+
+#: www/views/export.html:17
+msgid "QR Code"
+msgstr "کد QR"
+
+#: www/views/onboarding/disclaimer.html:13
+msgid "Quick review!"
+msgstr "مرور سریع!"
+
+#: src/js/controllers/create.js:84
+#: src/js/controllers/join.js:68
+msgid "Random"
+msgstr "تصادفی"
+
+#: www/views/feedback/rateApp.html:14
+msgid "Rate on the app store"
+msgstr "امتیاز دهی در app store"
+
+#: www/views/addresses.html:52
+msgid "Read less"
+msgstr "خواندن کمتر"
+
+#: www/views/addresses.html:51
+msgid "Read more"
+msgstr "ادامه مطلب"
+
+#: src/js/controllers/preferences.js:65
+#: src/js/controllers/tx-details.js:54
+msgid "Read more in our Wiki"
+msgstr "اطلاعات بیشتر در ویکی"
+
+#: src/js/controllers/cashScan.js:61
+msgid "Read only wallet"
+msgstr "کبف پول تنها خواندنی"
+
+#: www/views/tab-receive.html:3
+#: www/views/tabs.html:7
+msgid "Receive"
+msgstr "دریافت"
+
+#: www/views/customAmount.html:44
+msgid "Receive in"
+msgstr "دریافت در"
+
+#: www/views/includes/walletHistory.html:24
+#: www/views/tx-details.html:18
+msgid "Received"
+msgstr "دریافت کرد"
+
+#: src/js/controllers/tx-details.js:130
+msgid "Received Funds"
+msgstr "وجوه دریافتی"
+
+#: www/views/includes/walletHistory.html:57
+#: www/views/tx-details.html:24
+msgid "Receiving"
+msgstr "در حال دریافت"
+
+#: www/views/bitpayCard.html:60
+#: www/views/includes/walletHistory.html:3
+msgid "Recent"
+msgstr "اخیر"
+
+#: www/views/advancedSettings.html:21
+msgid "Recent Transaction Card"
+msgstr "کارت تراکنش اخیر"
+
+#: www/views/activity.html:4
+#: www/views/tab-home.html:58
+msgid "Recent Transactions"
+msgstr "تراکنش های اخیر"
+
+#: www/views/amount.html:18
+#: www/views/tab-send.html:9
+msgid "Recipient"
+msgstr "گیرنده"
+
+#: www/views/modals/txp-details.html:62
+msgid "Recipients"
+msgstr "گیرندگان"
+
+#: www/views/import.html:12
+msgid "Recovery phrase"
+msgstr "عبارت بازیابی"
+
+#: src/js/services/onGoingProcess.js:26
+msgid "Recreating Wallet..."
+msgstr "در حال ایجاد مجدد کیف پول..."
+
+#: www/views/modals/mercadolibre-card-details.html:22
+msgid "Redeem now"
+msgstr "الان بازیابی کن"
+
+#: src/js/controllers/modals/txpDetails.js:63
+#: src/js/controllers/tx-details.js:80
+msgid "Rejected"
+msgstr "رد شده"
+
+#: src/js/services/onGoingProcess.js:27
+msgid "Rejecting payment proposal"
+msgstr "در حال رد پیشنهاد پرداخت"
+
+#: www/views/preferencesAbout.html:9
+msgid "Release information"
+msgstr "اطلاعات انتشار"
+
+#: www/views/addressbook.view.html:36
+#: www/views/modals/mercadolibre-card-details.html:69
+msgid "Remove"
+msgstr "حذف"
+
+#: src/js/controllers/preferencesBitpayServices.js:7
+msgid "Remove BitPay Account?"
+msgstr "حساب BitPay حذف شود?"
+
+#: src/js/controllers/preferencesBitpayServices.js:19
+msgid "Remove BitPay Card?"
+msgstr "کارت BitPay حذف شود?"
+
+#: src/js/controllers/preferencesBitpayServices.js:8
+msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
+msgstr "حذف حساب BitPay حذف همه اطلاعات حساب BitPay از این دستگاه را در بر خواهد داشت. آیا مطمئن هستید که می خواهید حساب BitPay l ({{email}}) از این دستگاه حذف شود?"
+
+#: www/views/join.html:116
+#: www/views/join.html:124
+#: www/views/tab-create-personal.html:86
+#: www/views/tab-create-personal.html:94
+#: www/views/tab-create-shared.html:115
+#: www/views/tab-create-shared.html:123
+#: www/views/tab-export-file.html:17
+msgid "Repeat password"
+msgstr "تکرار رمز عبور"
+
+#: www/views/tab-export-file.html:16
+msgid "Repeat the password"
+msgstr "تکرار رمز عبور"
+
+#: www/views/preferences.html:56
+msgid "Request Fingerprint"
+msgstr "درخواست اثر انگشت"
+
+#: www/views/tab-receive.html:45
+msgid "Request Specific amount"
+msgstr "درخواست مقدار مشخص"
+
+#: www/views/preferences.html:42
+msgid "Request Spending Password"
+msgstr "درخواست رمز عبور مربوط به خرج(Spend)"
+
+#: www/views/tab-create-shared.html:44
+msgid "Required number of signatures"
+msgstr "چند امضاء نیاز دارد"
+
+#: www/views/onboarding/welcome.html:9
+msgid "Restore from backup"
+msgstr "بازیابی از نسخه پشتیبان"
+
+#: src/js/services/onGoingProcess.js:29
+msgid "Retrieving inputs information"
+msgstr "بازیابی اطلاعات ورودی"
+
+#: src/js/controllers/onboarding/tour.js:56
+msgid "Retry"
+msgstr "سعی مجدد"
+
+#: www/views/tab-scan.html:23
+msgid "Retry Camera"
+msgstr "دوربین را دوباره امتحان کنید"
+
+#: www/views/addressbook.add.html:56
+#: www/views/includes/note.html:9
+#: www/views/preferencesAlias.html:21
+#: www/views/preferencesBwsUrl.html:25
+#: www/views/preferencesNotifications.html:46
+msgid "Save"
+msgstr "ذخیره"
+
+#: www/views/tab-scan.html:3
+#: www/views/tabs.html:11
+msgid "Scan"
+msgstr "اسکن"
+
+#: www/views/tab-scan.html:15
+msgid "Scan QR Codes"
+msgstr "اسکن کد QR"
+
+#: www/views/addresses.html:31
+msgid "Scan addresses for funds"
+msgstr "اسکن آدرس ها برای به دست آوردن سرمایه ها"
+
+#: www/views/modals/fingerprintCheck.html:11
+msgid "Scan again"
+msgstr "اسکن دوباره"
+
+#: src/js/services/fingerprintService.js:56
+msgid "Scan your fingerprint please"
+msgstr "لطفا اثر انگشت خود را اسکن کنید"
+
+#: www/views/preferencesCash.html:23
+msgid "Scan your wallets for Bitcoin Cash"
+msgstr "کیف پول خود را برای بیتکوین کش اسکن کنید"
+
+#: src/js/services/onGoingProcess.js:30
+msgid "Scanning Wallet funds..."
+msgstr "در حال اسکن سرمایه کیف پول..."
+
+#: www/views/includes/walletList.html:11
+msgid "Scanning funds..."
+msgstr "در حال اسکن سرمایه..."
+
+#: www/views/includes/screenshotWarningModal.html:7
+msgid "Screenshots are not secure"
+msgstr "اسکرین شات ها امن نیستند"
+
+#: www/views/modals/search.html:6
+msgid "Search Transactions"
+msgstr "جستجوی تراکنش ها"
+
+#: www/views/tab-send.html:13
+msgid "Search or enter bitcoin address"
+msgstr "جستجو و یا وارد کردن آدرس بیتکوین"
+
+#: www/views/modals/search.html:16
+msgid "Search transactions"
+msgstr "جستجوی تراکنش ها"
+
+#: www/views/preferencesAltCurrency.html:14
+msgid "Search your currency"
+msgstr "جستجوی ارز خود"
+
+#: www/views/preferences.html:30
+msgid "Security"
+msgstr "امنیت"
+
+#: www/views/modals/mercadolibre-card-details.html:64
+msgid "See invoice"
+msgstr "مشاهده صورت حساب"
+
+#: www/views/tab-import-file.html:7
+msgid "Select a backup file"
+msgstr "انتخاب یک فایل پشتیبان"
+
+#: src/js/controllers/tab-receive.js:139
+msgid "Select a wallet"
+msgstr "انتخاب یک کیف پول"
+
+#: www/views/modals/paypro.html:38
+msgid "Self-signed Certificate"
+msgstr "مجوز تولید شده توسط منبع غیر رسمی"
+
+#: src/js/services/onGoingProcess.js:41
+msgid "Selling Bitcoin..."
+msgstr "در حال فروش بیتکوین..."
+
+#: www/views/feedback/send.html:13
+#: www/views/feedback/send.html:43
+#: www/views/tab-send.html:3
+#: www/views/tabs.html:15
+msgid "Send"
+msgstr "ارسال"
+
+#: www/views/feedback/send.html:3
+#: www/views/tab-settings.html:29
+msgid "Send Feedback"
+msgstr "ارسال بازخورد"
+
+#: www/views/addressbook.view.html:31
+msgid "Send Money"
+msgstr "ارسال پول"
+
+#: www/views/allAddresses.html:19
+msgid "Send addresses by email"
+msgstr "ارسال آدرس ها توسط ایمیل"
+
+#: www/views/includes/logOptions.html:17
+#: www/views/tab-export-file.html:82
+msgid "Send by email"
+msgstr "ارسال توسط ایمیل"
+
+#: src/js/controllers/confirm.js:177
+msgid "Send from"
+msgstr "ارسال از"
+
+#: www/views/includes/itemSelector.html:8
+msgid "Send max amount"
+msgstr "ارسال حداکثر مقدار"
+
+#: www/views/includes/incomingDataMenu.html:46
+msgid "Send payment to this address"
+msgstr "ارسال پرداخت به این آدرس"
+
+#: www/views/feedback/rateApp.html:17
+msgid "Send us feedback instead"
+msgstr "به جاش نظر خود را به ما ارسال کنید"
+
+#: www/views/confirm.html:15
+#: www/views/includes/txp.html:12
+#: www/views/modals/txp-details.html:19
+#: www/views/tx-details.html:23
+msgid "Sending"
+msgstr "در حال ارسال"
+
+#: src/js/services/onGoingProcess.js:39
+msgid "Sending 2FA code..."
+msgstr "ارسال کد 2FA..."
+
+#: src/js/services/onGoingProcess.js:36
+msgid "Sending feedback..."
+msgstr "ارسال بازخورد..."
+
+#: www/views/confirm.html:16
+msgid "Sending maximum amount"
+msgstr "ارسال حداکثر مقدار"
+
+#: src/js/services/onGoingProcess.js:31
+msgid "Sending transaction"
+msgstr "ارسال تراکنش"
+
+#: src/js/controllers/confirm.js:545
+msgid "Sending {{amountStr}} from your {{name}} wallet"
+msgstr "در حال ارسال {{amountStr}} از کیف پول {{name}} شما"
+
+#: www/views/includes/walletHistory.html:42
+#: www/views/modals/tx-status.html:9
+#: www/views/topup.html:100
+#: www/views/tx-details.html:17
+msgid "Sent"
+msgstr "ارسال شد"
+
+#: src/js/controllers/tx-details.js:129
+msgid "Sent Funds"
+msgstr "وجوه ارسال شده"
+
+#: src/js/services/bwcError.js:38
+msgid "Server response could not be verified"
+msgstr "پاسخ سرویس دهنده بررسی نشد"
+
+#: src/js/controllers/buyAmazon.js:97
+#: src/js/controllers/buyMercadoLibre.js:97
+msgid "Service not available"
+msgstr "سرویس در دسترس نیست"
+
+#: www/views/includes/homeIntegrations.html:3
+msgid "Services"
+msgstr "خدمات"
+
+#: www/views/preferencesLogs.html:3
+msgid "Session Log"
+msgstr "لاگ اتصال"
+
+#: www/views/preferencesAbout.html:35
+msgid "Session log"
+msgstr "لاگ اتصال"
+
+#: www/views/tab-export-file.html:10
+msgid "Set up a password"
+msgstr "تنظیم کلمه عبور"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Set your own fee in satoshis/byte"
+msgstr "تنظیم کارمزد خود در ساتوشی ها/بایت"
+
+#: www/views/tab-settings.html:3
+#: www/views/tabs.html:19
+msgid "Settings"
+msgstr "تنظیمات"
+
+#: www/views/feedback/complete.html:17
+#: www/views/feedback/complete.html:26
+msgid "Share the love by inviting your friends."
+msgstr "با دعوت دوستان عشق خود را به اشتراک بگذارید."
+
+#: www/views/copayers.html:20
+msgid "Share this invitation with your copayers"
+msgstr "این دعوت را با copayers خود را به اشتراک بگذارید"
+
+#: src/js/controllers/feedback/complete.js:5
+#: www/views/tab-settings.html:36
+msgid "Share {{appName}}"
+msgstr "اشتراک گذاری {{appName}}"
+
+#: www/views/tab-import-hardware.html:24
+msgid "Shared Wallet"
+msgstr "کیف پول مشترک"
+
+#: www/views/preferencesExternal.html:34
+msgid "Show Recovery Phrase"
+msgstr "نمایش عبارت بازیابی"
+
+#: www/views/tab-receive.html:34
+msgid "Show address"
+msgstr "نمایش آدرس"
+
+#: www/views/join.html:48
+#: www/views/tab-create-personal.html:27
+#: www/views/tab-create-shared.html:56
+#: www/views/tab-export-file.html:24
+#: www/views/tab-import-file.html:29
+#: www/views/tab-import-hardware.html:30
+#: www/views/tab-import-phrase.html:35
+msgid "Show advanced options"
+msgstr "نمایش گزینه های پیشرفته"
+
+#: www/views/tab-send.html:37
+msgid "Show bitcoin address"
+msgstr "نمایش آدرس بیتکوین"
+
+#: www/views/tab-send.html:59
+msgid "Show more"
+msgstr "نمایش بیشتر"
+
+#: src/js/services/bwcError.js:104
+msgid "Signatures rejected by server"
+msgstr "امضاء توسط سرور رد شد"
+
+#: src/js/services/onGoingProcess.js:32
+msgid "Signing transaction"
+msgstr "امضای تراکنش"
+
+#: www/views/onboarding/backupRequest.html:6
+msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
+msgstr "از آنجایی که تنها شما پول خودتان را کنترل می کنید، شما نیاز دارید که عبارت های پشتیبانی خود را ذخیره کنید تا در صورتی که این کیف پول حذف شود بتوانید کیف خود را بازیابی کنید."
+
+#: www/views/tab-create-personal.html:122
+#: www/views/tab-create-shared.html:151
+msgid "Single Address Wallet"
+msgstr "کیف پول تک آدرسه"
+
+#: www/views/onboarding/collectEmail.html:40
+#: www/views/onboarding/tour.html:11
+msgid "Skip"
+msgstr "رد شدن"
+
+#: src/js/controllers/confirm.js:371
+#: src/js/controllers/modals/txpDetails.js:47
+msgid "Slide to accept"
+msgstr "برای قبول بکشید"
+
+#: www/views/buyAmazon.html:96
+msgid "Slide to buy"
+msgstr "برای خرید بکشید"
+
+#: src/js/controllers/confirm.js:365
+msgid "Slide to pay"
+msgstr "برای پرداخت بکشید"
+
+#: src/js/controllers/confirm.js:377
+#: src/js/controllers/modals/txpDetails.js:40
+msgid "Slide to send"
+msgstr "برای ارسال بکشید"
+
+#: www/views/cashScan.html:56
+msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
+msgstr "بعضی از کیف های پول شما برای پشتیبانی بیتکوین کش مناسب نیستند. شما می توانید به سرمایه BCH دسترسی پیدا کنید با استفاده از"
+
+#: src/js/controllers/create.js:88
+#: src/js/controllers/join.js:71
+msgid "Specify Recovery Phrase..."
+msgstr "عبارت پشتیبانی را مشخص کنید..."
+
+#: src/js/services/bwcError.js:92
+msgid "Spend proposal is not accepted"
+msgstr "طرح پیشنهادی خرج قابل قبول نیست"
+
+#: src/js/services/bwcError.js:95
+msgid "Spend proposal not found"
+msgstr "طرح پیشنهادی خرج پیدا نشد"
+
+#: src/js/services/bwcError.js:137
+msgid "Spending Password needed"
+msgstr "رمز عبور خرج مورد نیاز است"
+
+#: www/views/walletDetails.html:173
+msgid "Spending this balance will need significant Bitcoin network fees"
+msgstr "خرج این موجودی به مقدار قابل توجهی کارمزد شبکه بیتکوین نیاز دارد"
+
+#: www/views/tab-send.html:28
+msgid "Start sending bitcoin"
+msgstr "ارسال بیتکوین را آغاز کنید"
+
+#: www/views/lockSetup.html:3
+msgid "Startup Lock"
+msgstr "قفل شروع"
+
+#: www/views/mercadoLibreCards.html:21
+#: www/views/modals/mercadolibre-card-details.html:42
+msgid "Still pending"
+msgstr "هنوز در انتظار"
+
+#: www/views/topup.html:101
+msgid "Success"
+msgstr "موفقیت"
+
+#: src/js/services/feeService.js:14
+msgid "Super Economy"
+msgstr "اقتصاد عالی"
+
+#: www/views/preferencesCash.html:11
+msgid "Support Bitcoin Cash"
+msgstr "بیتکوین کش را پشتیبانی کنید"
+
+#: www/views/paperWallet.html:7
+msgid "Sweep"
+msgstr "وارد کردن و تغییر آدرس به جدید(sweep)"
+
+#: www/views/includes/incomingDataMenu.html:89
+#: www/views/paperWallet.html:3
+msgid "Sweep paper wallet"
+msgstr "وارد کردن والت کاغذی و تغییر آدرس به جدید(sweep)"
+
+#: src/js/services/onGoingProcess.js:33
+msgid "Sweeping Wallet..."
+msgstr "در حال وارد کردن کیف و تغییر آدرس به جدید(sweep)..."
+
+#: www/views/preferencesDeleteWallet.html:16
+msgid "THIS ACTION CANNOT BE REVERSED"
+msgstr "این عمل به هیچ وجه قابل برگشت نیست"
+
+#: www/views/onboarding/welcome.html:5
+msgid "Take control of your money,<br>get started with bitcoin."
+msgstr "کنترل کیف پول خود را در اختیار بگیرید، <br> با بیتکوین شروع کنید."
+
+#: www/views/walletDetails.html:132
+#: www/views/walletDetails.html:52
+msgid "Tap and hold to show"
+msgstr "برای نمایش فشار دهید و نگه دارید"
+
+#: www/views/includes/walletInfo.html:3
+msgid "Tap to recreate"
+msgstr "برای ایجاد کلیک کنید"
+
+#: www/views/includes/walletInfo.html:4
+msgid "Tap to retry"
+msgstr "برای امتحان دوباره کلیک کنید"
+
+#: www/views/termsOfUse.html:3
+msgid "Terms Of Use"
+msgstr "شرایط استفاده"
+
+#: www/views/modals/terms.html:3
+#: www/views/onboarding/disclaimer.html:29
+#: www/views/onboarding/disclaimer.html:43
+#: www/views/preferencesAbout.html:30
+msgid "Terms of Use"
+msgstr "شرایط استفاده"
+
+#: www/views/tab-create-personal.html:118
+#: www/views/tab-import-phrase.html:68
+msgid "Testnet"
+msgstr "شبکه تستی"
+
+#: www/views/includes/incomingDataMenu.html:61
+msgid "Text"
+msgstr "متن"
+
+#: src/js/controllers/feedback/send.js:27
+#: src/js/controllers/feedback/send.js:76
+#: www/views/feedback/complete.html:20
+#: www/views/feedback/rateApp.html:4
+msgid "Thank you!"
+msgstr "متشکرم!"
+
+#: src/js/controllers/feedback/send.js:72
+msgid "Thanks!"
+msgstr "ممنون!"
+
+#: src/js/controllers/feedback/send.js:73
+msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
+msgstr "شنیدن آن هیجان انگیزه. ما مشتاقیم تا ستاره پنجم را از شما دریافت کنیم - چگونه میتونیم تجربه شما را بهبود ببخشیم?"
+
+#: src/js/services/ledger.js:152
+msgid "The Ledger Chrome application is not installed"
+msgstr "برنامه Ledger Chrome نصب نشده است"
+
+#: www/views/modals/wallet-balance.html:55
+msgid "The amount of bitcoin immediately spendable from this wallet."
+msgstr "مقدار بیتکوین قابل خرج در این لحظه از این کیف پول."
+
+#: www/views/modals/wallet-balance.html:93
+msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgstr "مقدار بیتکوین ذخیره شده در این کیف پول به عنوان ورودی محاسبه شده و به طرح های پیشنهادی تراکنش های در انتظار اختصاص دارد. این مقدار با استفاده از تراکنش های خروجی خرج نشده این کیف پول تعیین می شود و ممکن است بیش از مقدار واقعی مربوط به طرح های پیشنهادی تراکنش های در انتظار باشد."
+
+#: www/views/modals/wallet-balance.html:74
+msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgstr "مقدار بیتکوین ذخیره شده در این کیف پول با کمتر از تایید در زنجیره بلاک ها."
+
+#: www/views/tab-import-phrase.html:5
+msgid "The derivation path"
+msgstr "مسیر منبع"
+
+#: www/views/onboarding/tour.html:37
+msgid "The exchange rate changes with the market."
+msgstr "نرخ تبدیل با تغییرات بازار تغییر می کند."
+
+#: www/views/preferencesFee.html:12
+msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
+msgstr "هرچه کارمزد بالا تر باشد، انگیزه بیشتری یک استخراج کننده خواهد داشت تا آن تراکنش را در بلاک قرار بدهد. کارمزد های حال حاضر بر اساس حجم تراکنش ها در شبکه و سیاست موجود پیشبینی شده اند."
+
+#: www/views/addresses.html:51
+msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
+msgstr "به عدد حداکثر تعداد آدرس های متوالی استفاده نشده (20) رسيده اید. وقتی یکی از آدرس های استفاده نشده شما پرداخت را دریافت کند، یک آدرس جدید تولید و در قسمت دریافت نشان داده می شود."
+
+#: src/js/controllers/onboarding/terms.js:21
+msgid "The official English Terms of Service are available on the BitPay website."
+msgstr "شرایط و ظوابط استفاده از خدمات به زبان انگلیسی در وب سایت BitPay موجود است."
+
+#: www/views/tab-import-phrase.html:4
+msgid "The password of the recovery phrase (if set)"
+msgstr "رمز عبور عبارت بازیابی (اگر تنظیم شده است)"
+
+#: src/js/services/walletService.js:1139
+msgid "The payment was created but could not be completed. Please try again from home screen"
+msgstr "پرداخت ایجاد شد اما کامل نشد. لطفا از صفحه اصلی دوباره سعی کنید"
+
+#: www/views/modals/txp-details.html:26
+msgid "The payment was removed by creator"
+msgstr "پرداخت توسط ایجاد کننده حذف شد"
+
+#: www/views/join.html:91
+#: www/views/tab-create-personal.html:63
+#: www/views/tab-create-shared.html:92
+#: www/views/tab-import-phrase.html:43
+msgid "The recovery phrase could require a password to be imported"
+msgstr "عبارت بازیابی ممکن است نیاز به یک کلمه عبور برای وارد کردن داشته باشد"
+
+#: src/js/services/bwcError.js:56
+msgid "The request could not be understood by the server"
+msgstr "سرور متوجه درخواست نشد"
+
+#: www/views/addresses.html:52
+msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
+msgstr "وقتی 20 آدرس پشت سر هم تولید شوند و هیچ وجهی به آنها ارسال نشود پروسه بازگردانی متوقف خواهد شد. برای تولید آدرس های بیشتر به صورت امن، پرداختی در یکی از آدرس های استفاده نشده که قبلا تولید شده انجام دهید."
+
+#: src/js/services/bwcError.js:98
+msgid "The spend proposal is not pending"
+msgstr "طرح پیشنهادی خرج در وضعیت در انتظار نیست"
+
+#: www/views/modals/wallet-balance.html:36
+msgid "The total amount of bitcoin stored in this wallet."
+msgstr "مجموع بیتکوین ذخیره شده در این کیف پول."
+
+#: www/views/preferencesHistory.html:27
+msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
+msgstr "تاریخ تراکنش و هر تراکنش جدید ورودی در این برنامه ذخیره شده است. این ویژگی این اطلاعات را پاک کرده و دوباره از سرور همگام سازی می کند"
+
+#: www/views/tab-import-phrase.html:6
+msgid "The wallet service URL"
+msgstr "URL سرویس کیف پول"
+
+#: src/js/controllers/tab-home.js:38
+msgid "There is a new version of {{appName}} available"
+msgstr "یک نسخه جدید از {{appName}} موجود است"
+
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:335
+msgid "There is an error in the form"
+msgstr "یک خطا در فرم وجود دارد"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+msgid "There's obviously something we're doing wrong."
+msgstr "بدیهی است اینجا چیزی است که ما داریم اشتباه انجام می دهیم."
+
+#: src/js/controllers/feedback/rateCard.js:38
+msgid "This app is fantastic!"
+msgstr "این برنامه فوق العاده است!"
+
+#: www/views/onboarding/tour.html:47
+msgid "This app stores your bitcoin with cutting-edge security."
+msgstr "این نرم افزار بیتکوین های شما را با بالاترین درجه امنیت ذخیره می کند."
+
+#: src/js/controllers/confirm.js:523
+msgid "This bitcoin payment request has expired."
+msgstr "این درخواست پرداخت بیتکوین منقضی شده است."
+
+#: www/views/join.html:133
+#: www/views/tab-create-personal.html:103
+#: www/views/tab-create-shared.html:132
+msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
+msgstr "امکان بازیابی این رمز عبور وجود ندارد. اگر رمز عبور شما از دست برود، هیچ راهی برای بازگرداندن سرمایه شما وجود ندارد."
+
+#: www/views/backup.html:31
+msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
+msgstr "این عبارات بازیابی به وسیله بک رمز عبور ساخته شدند. برای بازیابی این کیف پول شما هم به رمز عبور و هم به عبارات بازیابی نیاز خواهید داشت."
+
+#: www/views/tx-details.html:91
+msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgstr "مبلغ این تراکنش نسبت به کارمزد حال حاضر شبکه بیتکوین بسیار پایین است. خرج این وجوه نیازمند پرداخت کارمزد معادل مبلغ تراکنش خواهد بود."
+
+#: www/views/tx-details.html:87
+msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
+msgstr "ممکن است زمان زیادی برای تایید این تراکنش نیاز باشد و یا حتی تراکنش به دلیل کارمزد بسیار پایین اصلا تایید نشود"
+
+#: www/views/walletDetails.html:109
+#: www/views/walletDetails.html:29
+msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
+msgstr "این کیف پول در سرویس کیف پول بیتکوین داده شده) BWS(ثبت نشده است. شما می توانید از قسمت اطلاعات داخلی آن را محجددا بسازید."
+
+#: www/views/modals/txp-details.html:136
+#: www/views/tx-details.html:121
+msgid "Timeline"
+msgstr "جدول زمانی"
+
+#: www/views/confirm.html:31
+#: www/views/includes/output.html:2
+#: www/views/modals/txp-details.html:109
+#: www/views/modals/txp-details.html:53
+#: www/views/tx-details.html:41
+#: www/views/tx-details.html:53
+msgid "To"
+msgstr "به"
+
+#: www/views/tab-send.html:32
+msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgstr "برای شروع، بیتکوین بخرید و یا آدرس خود را به اشتراک بگذارید. شما می توانید از هر کیف پول یا سرویسی بیتکوین دریافت کنید."
+
+#: www/views/tab-send.html:33
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "برای شروع، شما نیاز دارید که یک کیف پول ایجاد کنید و مقداری بیتکوین تهیه کنید."
+
+#: src/js/services/bitpayAccountService.js:73
+msgid "To {{reason}} you must first add your BitPay account - {{email}}"
+msgstr "برای انجام {{reason}} شما ابتدا باید حساب - {{email}} BitPay خود را اضافه کنید"
+
+#: src/js/services/onGoingProcess.js:48
+msgid "Top up in progress..."
+msgstr "در حال پردازش انتقال به صورت Top Up..."
+
+#: src/js/controllers/topup.js:206
+msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr "در حال انتقال {{amountStr}} به صورت Top Up به کارت اعتباری {{cardLastNumber}}"
+
+#: www/views/buyAmazon.html:61
+#: www/views/buyMercadoLibre.html:60
+#: www/views/modals/wallet-balance.html:23
+#: www/views/topup.html:70
+msgid "Total"
+msgstr "مجموع"
+
+#: www/views/walletDetails.html:196
+msgid "Total Locked Balance"
+msgstr "مجموع موجودی قفل شده"
+
+#: www/views/tab-create-shared.html:35
+msgid "Total number of copayers"
+msgstr "تعداد کل copayer ها"
+
+#: www/views/addresses.html:81
+msgid "Total wallet inputs"
+msgstr "کل ورودی کیف پول"
+
+#: src/js/services/fingerprintService.js:63
+#: src/js/services/fingerprintService.js:68
+msgid "Touch ID Failed"
+msgstr "شناسایی توسط اثر انگشت نا موفق بود"
+
+#: src/js/controllers/tx-details.js:12
+msgid "Transaction"
+msgstr "تراکنش"
+
+#: www/views/confirm.html:126
+msgid "Transaction Created"
+msgstr "تراکنش ایجاد شده"
+
+#: www/views/preferencesAdvanced.html:29
+#: www/views/preferencesHistory.html:3
+msgid "Transaction History"
+msgstr "تاريخچه تراکنش"
+
+#: src/js/services/bwcError.js:83
+msgid "Transaction already broadcasted"
+msgstr "تراکنش قبلا در شبکه پخش شده است"
+
+#: src/js/controllers/buyAmazon.js:308
+#: src/js/controllers/buyMercadoLibre.js:301
+#: src/js/controllers/topup.js:281
+msgid "Transaction has not been created"
+msgstr "تراکنش ایجاد نشده است"
+
+#: www/views/topup.html:104
+msgid "Transaction initiated"
+msgstr "تراکنش آغاز شد"
+
+#: src/js/controllers/tx-details.js:119
+msgid "Transaction not available at this time"
+msgstr "تراکنش در حال حاضر در دسترس نیست"
+
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/tab-home.js:174
+msgid "Transaction not found"
+msgstr "تراکنش پیدا نشد"
+
+#: www/views/modals/chooseFeeLevel.html:55
+msgid "Transactions without fee are not supported."
+msgstr "تراکنش های بدون کارمزد پشتیبانی نمی شوند."
+
+#: src/js/controllers/paperWallet.js:109
+msgid "Transfer to"
+msgstr "انتقال به"
+
+#: www/views/tab-send.html:67
+msgid "Transfer to Wallet"
+msgstr "انتقال به کیف پول"
+
+#: www/views/modals/pin.html:13
+msgid "Try again in {{expires}}"
+msgstr "دوباره سعی کنید در {{expires}}"
+
+#: www/views/bitpayCardIntro.html:18
+msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgstr "بیتکوین را به دلار تبدیل کنید، هر جایی که <sup>&reg;</sup> ویزا کارت مورد قبول است استفاده کنید."
+
+#: www/views/tab-import-phrase.html:17
+msgid "Type the Recovery Phrase (usually 12 words)"
+msgstr "عبارات بازیابی را بنویسید (معمولا 12 کلمه)"
+
+#: src/js/controllers/backup.js:75
+msgid "Uh oh..."
+msgstr "اوه اوه..."
+
+#: www/views/tx-details.html:100
+msgid "Unconfirmed"
+msgstr "تایید نشده"
+
+#: www/views/walletDetails.html:190
+msgid "Unsent transactions"
+msgstr "تراکنش های ارسال نشده"
+
+#: www/views/addresses.html:39
+msgid "Unused Addresses"
+msgstr "آدرس های استفاده نشده"
+
+#: www/views/addresses.html:50
+msgid "Unused Addresses Limit"
+msgstr "محدودیت آدرس استفاده نشده"
+
+#: src/js/controllers/tab-home.js:146
+msgid "Update Available"
+msgstr "به روز رسانی موجود می باشد"
+
+#: www/views/proposals.html:14
+msgid "Updating pending proposals. Please stand by"
+msgstr "در حال به روز رسانی طرح های پیشنهادی در انتظار. لطفا منتظر بمانید"
+
+#: www/views/walletDetails.html:217
+msgid "Updating transaction history. Please stand by."
+msgstr "به روز رسانی تاريخچه تراکنش. لطفا منتظر بمانید."
+
+#: www/views/activity.html:14
+msgid "Updating... Please stand by"
+msgstr "در حال به روز رسانی... لطفا منتظر بمانید"
+
+#: src/js/services/feeService.js:10
+msgid "Urgent"
+msgstr "فوری"
+
+#: www/views/advancedSettings.html:12
+msgid "Use Unconfirmed Funds"
+msgstr "استفاده از دارایی تایید نشده"
+
+#: src/js/services/onGoingProcess.js:34
+msgid "Validating recovery phrase..."
+msgstr "اعتبار سنجی عبارات بازیابی..."
+
+#: www/views/modals/fingerprintCheck.html:4
+msgid "Verify your identity"
+msgstr "هویت خود را تأیید کنید"
+
+#: www/views/preferencesAbout.html:14
+#: www/views/preferencesExternal.html:25
+msgid "Version"
+msgstr "نسخه"
+
+#: www/views/tab-export-file.html:69
+msgid "View"
+msgstr "مشاهده"
+
+#: www/views/addresses.html:34
+msgid "View All Addresses"
+msgstr "مشاهده همه آدرس ها"
+
+#: src/js/controllers/onboarding/terms.js:20
+msgid "View Terms of Service"
+msgstr "مشاهده شرایط و ضوابط خدمات"
+
+#: src/js/controllers/bitpayCard.js:122
+#: src/js/controllers/tx-details.js:191
+msgid "View Transaction on Explorer.Bitcoin.com"
+msgstr ""
+
+#: src/js/controllers/tab-home.js:148
+msgid "View Update"
+msgstr "مشاهده به روز رسانی"
+
+#: www/views/tx-details.html:147
+msgid "View on blockchain"
+msgstr "مشاهده در زنجیره بلاک ها"
+
+#: www/views/mercadoLibre.html:26
+msgid "Visit mercadolivre.com.br &rarr;"
+msgstr "مشاهده mercadolivre.com.br &rarr;"
+
+#: www/views/walletDetails.html:182
+msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
+msgstr "اخطار: اشتقاق کلید در این دستگاه/کیف پول کار نمی کند. این اقدامات در این کیف پول قابل اجرا نمی باشد."
+
+#: www/views/tab-export-file.html:45
+msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "اخطار: قرار ندادن کلید خصوصی به شما اجازه مشاهده تاریخچه تراکنش، موجودی و ایجاد پیشنهاد از قسمت استخراج را می دهد. به هر حال، اجازه تایید(امضاء) پیشنهاد را نخواهید داشت، بنابراین <b> دارایی ها از قسمت export قابل دسترسی نخواهند بود</b>."
+
+#: www/views/tab-export-file.html:36
+msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "اخطار: کلید خصوصی این کیف پول در دسترس نیست. قسمت export به شما اجازه می دهد که موجودی کیف پول و تاریخچه تراکنش را ببینید و امکان پیشنهاد تراکنش را از قسمت export می دهد. به هر حال، اجازه تایید(امضاء) پیشنهاد را نخواهید داشت، بنابراین <b> دارایی ها از قسمت export قابل دسترسی نخواهند بود</b>."
+
+#: www/views/modals/paypro.html:42
+msgid "WARNING: UNTRUSTED CERTIFICATE"
+msgstr "اخطار: صادرکننده مجوز نا معتبر است"
+
+#: src/js/services/onGoingProcess.js:15
+msgid "Waiting for Ledger..."
+msgstr "در حال انتظار برای Ledger..."
+
+#: src/js/services/onGoingProcess.js:16
+msgid "Waiting for Trezor..."
+msgstr "در حال انتظار برای Trezor..."
+
+#: www/views/copayers.html:48
+msgid "Waiting for copayers"
+msgstr "در حال انتظار برای copayers"
+
+#: www/views/copayers.html:53
+msgid "Waiting..."
+msgstr "در حال انتظار..."
+
+#: www/views/addresses.html:3
+#: www/views/preferencesAdvanced.html:17
+msgid "Wallet Addresses"
+msgstr "آدرس های کیف پول"
+
+#: www/views/preferencesColor.html:4
+msgid "Wallet Color"
+msgstr "رنگ کیف پول"
+
+#: www/views/preferencesInformation.html:29
+msgid "Wallet Configuration (m-n)"
+msgstr "پیکربندی کیف پول (m-n)"
+
+#: www/views/onboarding/collectEmail.html:5
+msgid "Wallet Created"
+msgstr "کیف پول ایجاد شده"
+
+#: www/views/preferencesInformation.html:23
+msgid "Wallet Id"
+msgstr "شناسه کیف پول"
+
+#: www/views/preferencesAdvanced.html:13
+#: www/views/preferencesInformation.html:3
+msgid "Wallet Information"
+msgstr "اطلاعات کیف پول"
+
+#: www/views/addresses.html:76
+msgid "Wallet Inputs"
+msgstr "ورودی های کیف پول"
+
+#: www/views/join.html:26
+msgid "Wallet Invitation"
+msgstr "دعوت نامه کیف پول"
+
+#: www/views/join.html:60
+#: www/views/tab-create-personal.html:38
+#: www/views/tab-create-shared.html:67
+msgid "Wallet Key"
+msgstr "کلید کیف پول"
+
+#: www/views/preferencesAlias.html:4
+msgid "Wallet Name"
+msgstr "نام کیف پول"
+
+#: www/views/preferencesInformation.html:11
+msgid "Wallet Name (at creation)"
+msgstr "نام کیف پول (در زمان ایجاد)"
+
+#: www/views/preferencesInformation.html:35
+msgid "Wallet Network"
+msgstr "شبکه کیف پول"
+
+#: www/views/join.html:77
+#: www/views/tab-create-personal.html:50
+#: www/views/tab-create-shared.html:79
+msgid "Wallet Recovery Phrase"
+msgstr "عبارت بازیابی کیف پول"
+
+#: src/js/services/bwcError.js:26
+msgid "Wallet Recovery Phrase is invalid"
+msgstr "عبارت بازیابی کیف پول نامعتبر است"
+
+#: www/views/preferencesAdvanced.html:25
+#: www/views/tab-import-phrase.html:73
+msgid "Wallet Service URL"
+msgstr "URL سرویس کیف پول"
+
+#: www/views/preferences.html:4
+msgid "Wallet Settings"
+msgstr "تنظیمات کیف پول"
+
+#: www/views/tab-import-hardware.html:11
+#: www/views/tab-import-phrase.html:61
+msgid "Wallet Type"
+msgstr "نوع کیف پول"
+
+#: src/js/services/bwcError.js:59
+msgid "Wallet already exists"
+msgstr "کیف پول از قبل وجود دارد"
+
+#: src/js/services/profileService.js:516
+msgid "Wallet already in {{appName}}"
+msgstr "کیف پول در حال حاضر در {{appName}}"
+
+#: www/views/includes/walletActivity.html:6
+msgid "Wallet created"
+msgstr "کیف پول ایجاد شده"
+
+#: www/views/copayers.html:58
+msgid "Wallet incomplete and broken"
+msgstr "کیف پول ناقص و آسیب دیده"
+
+#: src/js/services/bwcError.js:65
+msgid "Wallet is full"
+msgstr "کیف پول پر است"
+
+#: src/js/services/bwcError.js:125
+msgid "Wallet is locked"
+msgstr "کیف پول قفل شده است"
+
+#: src/js/services/bwcError.js:128
+msgid "Wallet is not complete"
+msgstr "کیف پول کامل نشده است"
+
+#: www/views/tab-create-personal.html:12
+#: www/views/tab-create-shared.html:12
+msgid "Wallet name"
+msgstr "نام کیف پول"
+
+#: src/js/services/bwcError.js:131
+msgid "Wallet needs backup"
+msgstr "کیف پول نیاز به پشتیبان گیری دارد"
+
+#: www/views/tab-receive.html:59
+#: www/views/walletDetails.html:169
+msgid "Wallet not backed up"
+msgstr "کیف پول پشتیبان گیری نشده است"
+
+#: src/js/services/bwcError.js:68
+msgid "Wallet not found"
+msgstr "کیف پول یافت نشد"
+
+#: src/js/controllers/cashScan.js:81
+#: src/js/controllers/tab-home.js:230
+msgid "Wallet not registered"
+msgstr "کیف پول ثبت نشده"
+
+#: src/js/services/bwcError.js:29
+msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
+msgstr "کیف پول در سرویس کیف پول ثبت نشده است. برای تنظیم عبارت بازیابی از قسمت \"ایجاد کیف پول\" و با استفاده از \"گزینه های پیشرفته\"آن را دوباره ایجاد نمایید"
+
+#: www/views/backup.html:12
+msgid "Wallet recovery phrase not available"
+msgstr "عبارت بازیابی کیف پول موجود نیست"
+
+#: src/js/services/bwcError.js:50
+msgid "Wallet service not found"
+msgstr "سرویس کیف پول یافت نشد"
+
+#: www/views/tab-home.html:69
+msgid "Wallets"
+msgstr "کیف های پول"
+
+#: src/js/controllers/addressbookView.js:36
+#: src/js/controllers/modals/txpDetails.js:153
+#: src/js/controllers/modals/txpDetails.js:170
+#: src/js/controllers/preferencesDelete.js:24
+#: src/js/controllers/preferencesExternal.js:14
+#: www/views/preferencesDeleteWallet.html:11
+msgid "Warning!"
+msgstr "هشدار!"
+
+#: www/views/modals/txp-details.html:47
+msgid "Warning: this transaction has unconfirmed inputs"
+msgstr "هشدار: این تراکنش ورودی های تأیید نشده دارد"
+
+#: src/js/controllers/onboarding/backupRequest.js:17
+msgid "Watch out!"
+msgstr "مراقب باشید!"
+
+#: src/js/controllers/feedback/send.js:69
+msgid "We'd love to do better."
+msgstr "ما خیلی دوست داریم بهتر باشیم."
+
+#: www/views/backup.html:35
+msgid "We'll confirm on the next screen."
+msgstr "ما در صفحه بعد تایید می کنیم."
+
+#: src/js/controllers/feedback/send.js:77
+msgid "We're always looking for ways to improve {{appName}}."
+msgstr "ما همیشه به دنبال راه هایی برای بهبود {{appName}} هستیم."
+
+#: src/js/controllers/feedback/send.js:83
+msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
+msgstr "ما همیشه به دنبال راه هایی برای بهبود {{appName}} هستیم. چگونه ما می توانیم تجربه شما را بهبود ببخشیم?"
+
+#: www/views/includes/incomingDataMenu.html:6
+msgid "Website"
+msgstr "وب سایت"
+
+#: www/views/preferencesLanguage.html:16
+msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
+msgstr "ما همیشه به دنبال مترجمان هستیم! شما می توانید با ایجاد اصلاحات و یا کمک برای ارائه این برنامه به زمان مادری خود با پیوستن به جامعه ما در Crowdin ما را در این امر یاری کنید."
+
+#: www/views/preferencesAlias.html:11
+msgid "What do you call this wallet?"
+msgstr "شما این کیف پول را به چه اسمی می ششناسید?"
+
+#: www/views/preferencesAlias.html:12
+msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
+msgstr "وقتی که این کیف پول ساخته شد، به اسم &ldquo;{{walletName}}&rdquo; شناخته می شد. شما می توانید اسم نمایش داده شده را در پایین صفحه تغییر دهید."
+
+#: www/views/onboarding/collectEmail.html:10
+msgid "Where would you like to receive email notifications about payments?"
+msgstr "ایمیل های مربوط به پرداخت ها را کجا دوست دارید دریافت نمایید?"
+
+#: www/views/addresses.html:19
+msgid "Why?"
+msgstr "چرا?"
+
+#: www/views/feedback/rateApp.html:10
+msgid "Would you be willing to rate {{appName}} in the app store?"
+msgstr "آیا مایل به امتیاز دهی {{appName}} در app store هستید?"
+
+#: www/views/onboarding/notifications.html:4
+msgid "Would you like to receive push notifications about payments?"
+msgstr "آیا مایل به دریافت اعلان ها به صورت Push Notification برای پرداخت ها هستید?"
+
+#: src/js/controllers/import.js:288
+msgid "Wrong number of recovery words:"
+msgstr "تعداد اشتباه کلمات بازیابی:"
+
+#: src/js/services/bwcError.js:140
+msgid "Wrong spending password"
+msgstr "رمز عبور مربوط به خرج(Spend) اشتباه است"
+
+#: www/views/modals/confirmation.html:7
+msgid "Yes"
+msgstr "بله"
+
+#: src/js/controllers/onboarding/backupRequest.js:25
+msgid "Yes, skip"
+msgstr "بله، رد شو"
+
+#: src/js/controllers/onboarding/backupRequest.js:24
+msgid "You can create a backup later from your wallet settings."
+msgstr "شما می توانید بعدا و در قسمت تنظیمات کیف پول یک نسخه پشتیبان تهیه کنید."
+
+#: src/js/controllers/preferencesLanguage.js:12
+msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
+msgstr "با ثبت نام در سايت Crowdin و جامعه ترجمه ببه ما بپیوندید. ما مشتاقانه منتظرحضور شما هستیم!"
+
+#: www/views/tab-scan.html:16
+msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgstr "شما می توانید آدرس های بیتکوین، درخواست های پرداخت، کیف های کاغذی و موارد دیگه ای را اسکن کنید."
+
+#: src/js/controllers/preferencesAbout.js:14
+msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
+msgstr "شما می توانید آخرین تحولات و مشارکت در این برنامه متن باز را با بازدید از پروژه ما در GitHub مشاهده کنید."
+
+#: www/views/onboarding/tour.html:19
+msgid "You can spend bitcoin at millions of websites and stores worldwide."
+msgstr "شما می توانید بیتکوین را در میلیون ها وب سایت و فروشگاه ها در سراسر جهان خرج کنید."
+
+#: www/views/backup.html:15
+msgid "You can still export it from Advanced &gt; Export."
+msgstr "شما همچنان م توانید از قسمت استخراج &gt; تنظیمات پبشرفته آن را استخراج کنید."
+
+#: www/views/onboarding/tour.html:32
+msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
+msgstr "شما می توانید آن را با ارز های دیگر مثل دلار آمریکا، یورو و یا پوند معاوضه کنید."
+
+#: www/views/onboarding/tour.html:46
+msgid "You control your bitcoin."
+msgstr "شما بیتکوین خود را کنترل می کنید."
+
+#: www/views/modals/chooseFeeLevel.html:64
+msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
+msgstr "شما کارمزدی بیشتر از {{maxFeeRecommended}} ساتوشی/بایت نباید ببینید."
+
+#: www/views/modals/bitpay-card-confirmation.html:5
+msgid "You will need to log back for fill in your BitPay Card."
+msgstr "شما نیاز دارید که برای پر کردن کارت BitPay به عقب برگردید."
+
+#: www/views/preferencesNotifications.html:34
+msgid "You'll receive email notifications about payments sent and received from your wallets."
+msgstr "شما در مورد پرداخت های دریافتی و ارسالی به کیف پول شما ایمیل دریافت خواهید کرد."
+
+#: www/views/bitpayCard.html:50
+msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
+msgstr "کارت BitPay شما آماده است. برای استفاده از آن در فروش گاه ها و دستگاه های خود پرداز وجوهی را به کارت خود اضافه کنید."
+
+#: www/views/mercadoLibre.html:57
+#: www/views/mercadoLibreCards.html:6
+msgid "Your Gift Cards"
+msgstr "کارت های هدیه شما"
+
+#: www/views/includes/confirmBackupPopup.html:6
+msgid "Your bitcoin wallet is backed up!"
+msgstr "نسخه پشتیبان کیف پول شما ایجاد گردیده است!"
+
+#: www/views/tab-home.html:36
+msgid "Your bitcoin wallet is ready!"
+msgstr "کیف پول شما آماده است!"
+
+#: www/views/modals/chooseFeeLevel.html:61
+msgid "Your fee is lower than recommended."
+msgstr "کارمزد شما کمتر از مقدار پیشنهاد شده است."
+
+#: www/views/feedback/send.html:42
+msgid "Your ideas, feedback, or comments"
+msgstr "نظرات، بازخورد و پیام های شما"
+
+#: www/views/tab-create-shared.html:22
+msgid "Your name"
+msgstr "نام شما"
+
+#: www/views/join.html:16
+msgid "Your nickname"
+msgstr "نام مستعار شما"
+
+#: www/views/tab-export-file.html:11
+#: www/views/tab-import-file.html:20
+msgid "Your password"
+msgstr "رمز عبور شما"
+
+#: www/views/buyAmazon.html:102
+msgid "Your purchase could not be completed"
+msgstr "خرید شما کامل نشد"
+
+#: www/views/buyAmazon.html:105
+msgid "Your purchase was added to the list of pending"
+msgstr "خرید شما به لیست در انتظار اضافه شد"
+
+#: www/views/onboarding/backupRequest.html:10
+msgid "Your wallet is never saved to cloud storage or standard device backups."
+msgstr "کیف پول شما هرگز در ذخیره ساز های تحت ابر و یا تجهیزات استاندارد پشتیبان گیری ذخیره نشده است."
+
+#: src/js/services/walletService.js:1030
+msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
+msgstr "کلید کیف پول شما رمزگذاری می شود. رمز عبور خرج(spend) قادر به بازیابی نمی باشد. حتما آن را جایی بنویسید."
+
+#: www/views/includes/walletList.html:13
+#: www/views/includes/walletSelector.html:21
+#: www/views/paperWallet.html:33
+#: www/views/tab-receive.html:72
+#: www/views/walletDetails.html:131
+#: www/views/walletDetails.html:51
+msgid "[Balance Hidden]"
+msgstr "[موجودی پنهان]"
+
+#: www/views/walletDetails.html:141
+#: www/views/walletDetails.html:61
+msgid "[Scanning Funds]"
+msgstr "[در حال اسکن سرمایه...]"
+
+#: src/js/controllers/bitpayCardIntro.js:11
+msgid "add your BitPay Visa card(s)"
+msgstr "اضافه کردن کارت(های) BitPay ویزا"
+
+#: www/views/includes/available-balance.html:8
+msgid "locked by pending payments"
+msgstr "قفل شده با پرداخت های در انتظار"
+
+#: src/js/services/profileService.js:404
+msgid "me"
+msgstr "من"
+
+#: www/views/addressbook.add.html:32
+msgid "name@example.com"
+msgstr "name@example.com"
+
+#: www/views/preferencesHistory.html:15
+msgid "preparing..."
+msgstr "آماده سازی..."
+
+#: www/views/cashScan.html:57
+msgid "recovery tool."
+msgstr "ابزار بازیابی."
+
+#: src/js/controllers/buyAmazon.js:239
+msgid "{{amountStr}} for Amazon.com Gift Card"
+msgstr "{{amountStr}} برای کارت هدیه Amazon.com"
+
+#: src/js/controllers/buyMercadoLibre.js:237
+msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
+msgstr "{{amountStr}} برای کارت هدیه Mercado Livre Brazil"
+
+#: www/views/preferencesBwsUrl.html:21
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgstr "{{appName}} به سرویس کیف پول بیتکوین (BWS) بستگی دارد برای اطلاعات زنجیره بلاک ها، عملیات شبکه و همگامسازی Copayer. تنظیمات پیش فرض به https://bws.bitpay.com اشاره می کند(BitPay's public BWS instance)."
+
+#: src/js/controllers/confirm.js:408
+msgid "{{fee}} will be deducted for bitcoin networking fees."
+msgstr "{{fee}} برای کارمزد شبکه بیتکوین کسر خواهد شد."
+
+#: www/views/confirm.html:85
+msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}} مقدار ارسالی"
+
+#: www/views/walletDetails.html:218
+msgid "{{updatingTxHistoryProgress}} transactions downloaded"
+msgstr "{{updatingTxHistoryProgress}} تراکنش دانلود شد"
+
+#: www/views/cashScan.html:33
+#: www/views/copayers.html:46
+#: www/views/includes/walletInfo.html:18
+msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.m}} از {{wallet.n}}"
+

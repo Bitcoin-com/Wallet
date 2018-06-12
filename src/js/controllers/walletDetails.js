@@ -85,7 +85,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         }
       }
 
-      refreshAmountSection();
       $timeout(function() {
         $scope.$apply();
       });
@@ -367,6 +366,15 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+
+    configService.whenAvailable(function (config) {
+      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+
+      $timeout(function () {
+        $scope.$apply();
+      });
+    });
+
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
     if (!$scope.wallet) return;
@@ -402,8 +410,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.$on("$ionicView.afterLeave", function(event, data) {
     $interval.cancel(refreshInterval);
     if ($window.StatusBar) {
-      var statusBarColor = appConfigService.name == 'copay' ? '#192c3a' : '#1e3186';
-      $window.StatusBar.backgroundColorByHexString(statusBarColor);
+      $window.StatusBar.backgroundColorByHexString('#000000');
     }
   });
 

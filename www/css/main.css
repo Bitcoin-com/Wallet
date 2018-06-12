@@ -10011,6 +10011,36 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     background-size: 103%; }
     .big-icon-svg > .bg.green {
       background: #01d1a2; }
+  .big-icon-svg.theme-circle > .bg {
+    border-radius: 50%;
+    background-size: 85%;
+    background-position: 50%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
+    border: 1px solid #faba13;
+    text-align: center;
+    font-size: 30px; }
+    .big-icon-svg.theme-circle > .bg:before {
+      vertical-align: middle; }
+    .big-icon-svg.theme-circle > .bg.icon-shapeshift {
+      background-color: #263e5c; }
+    .big-icon-svg.theme-circle > .bg.icon-buy-bitcoin2 {
+      border: 1px solid #faba13; }
+    .big-icon-svg.theme-circle > .bg.icon-reddit-white {
+      background-image: url("../img/icon-reddit-white.svg");
+      background-color: #ff4500;
+      background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-twitter-white {
+      background-image: url("../img/icon-twitter-white.svg");
+      background-color: #1da1f2;
+      background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-faucet {
+      background-image: url("../img/icon-faucet.svg");
+      background-size: 70%; }
+  .big-icon-svg.theme-circle-services > .bg {
+    border: 1px solid #191919; }
+  .big-icon-svg.theme-circle-community > .bg {
+    border: 1px solid #FFFFFF; }
 
 .wallet-item {
   padding: 1rem 0 2rem 0; }
@@ -10425,42 +10455,151 @@ textarea.d-block {
         margin-top: 0;
         font-size: 16px; } }
 
-#view-amount .keypad {
-  text-align: center;
-  font-size: 24px;
-  font-weight: lighter;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  color: #667; }
-  #view-amount .keypad .row {
-    padding: 0 !important;
-    margin: 0 !important; }
-  #view-amount .keypad .col {
-    line-height: 45px; }
-  #view-amount .keypad .operator {
-    background-color: #f2f2f2;
-    font-weight: normal;
-    cursor: pointer; }
-    #view-amount .keypad .operator:active {
-      background-color: #9b9bab; }
-  #view-amount .keypad .operator-send {
-    font-weight: bolder;
-    color: #fff;
-    background-color: #494949;
-    font-size: 36px;
-    cursor: pointer; }
-    #view-amount .keypad .operator-send:active {
-      background-color: #eaeaea; }
-  #view-amount .keypad .digit {
-    cursor: pointer;
-    border-top: 1px solid #f2f2f2;
-    border-left: 1px solid #f2f2f2; }
-    #view-amount .keypad .digit:active {
-      background-color: #f2f2f2; }
-  @media (max-height: 480px) {
-    #view-amount .keypad {
-      font-size: 12px; } }
+#view-amount .scroll-content {
+  display: flex;
+  flex-direction: column; }
+  #view-amount .scroll-content .send-amount {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; }
+    #view-amount .scroll-content .send-amount .send-amount-tool {
+      flex: 0 1 auto; }
+      #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input {
+        text-align: center;
+        position: relative;
+        padding: 10px 30px; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .text-selectable {
+          -webkit-user-select: text;
+          -moz-user-select: text;
+          -ms-user-select: text;
+          user-select: text; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+          font-size: 1.8em; }
+          @media (min-width: 375px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+              font-size: 2.1em; } }
+          @media (min-width: 414px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+              font-size: 2.4em; } }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+          font-size: 1.6em; }
+          @media (min-width: 375px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+              font-size: 1.8em; } }
+          @media (min-width: 414px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+              font-size: 2em; } }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+          font-size: 0.9em; }
+          @media (min-width: 375px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+              font-size: 1.3em; } }
+          @media (min-width: 414px) {
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+              font-size: 1.4em; } }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input {
+          border: 0;
+          padding: 0;
+          white-space: normal;
+          background: none;
+          line-height: 1;
+          box-sizing: content-box;
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0;
+          height: 1em;
+          margin-right: 5px;
+          font-family: 'ProximaNova'; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit,
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 1em; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit {
+          font-weight: bold; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+          margin-right: 5px;
+          word-break: break-all; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .switch-currencies {
+          position: absolute;
+          right: 0;
+          top: 50%;
+          transform: translate(0, -50%);
+          padding: 15px; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .switch-currencies img {
+            width: 18px; }
+      #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button {
+          flex: 1 1 auto;
+          line-height: 1.2em; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button + .button {
+            margin-left: 10px; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button span {
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+  #view-amount .scroll-content .button.no-margin {
+    margin: 0; }
+  #view-amount .scroll-content .notification-warning {
+    display: block;
+    padding: .75rem 1.25rem;
+    color: #856404;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    line-height: 1.4em;
+    margin-bottom: 20px; }
+  #view-amount .scroll-content .keypad-container {
+    position: relative; }
+    #view-amount .scroll-content .keypad-container .keypad {
+      text-align: center;
+      font-size: 18px;
+      font-weight: lighter;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: #667; }
+      @media (min-height: 667px) {
+        #view-amount .scroll-content .keypad-container .keypad {
+          font-size: 24px; } }
+      #view-amount .scroll-content .keypad-container .keypad .row {
+        padding: 0 !important;
+        margin: 0 !important; }
+      #view-amount .scroll-content .keypad-container .keypad .col {
+        line-height: 38px; }
+        @media (min-height: 667px) {
+          #view-amount .scroll-content .keypad-container .keypad .col {
+            line-height: 45px; } }
+      #view-amount .scroll-content .keypad-container .keypad .row:last-child .col {
+        padding-bottom: 10px; }
+      #view-amount .scroll-content .keypad-container .keypad .operator {
+        background-color: #f2f2f2;
+        font-weight: normal;
+        cursor: pointer; }
+        #view-amount .scroll-content .keypad-container .keypad .operator:active {
+          background-color: #9b9bab; }
+      #view-amount .scroll-content .keypad-container .keypad .operator-send {
+        font-weight: bolder;
+        color: #fff;
+        background-color: #494949;
+        font-size: 36px;
+        cursor: pointer; }
+        #view-amount .scroll-content .keypad-container .keypad .operator-send:active {
+          background-color: #eaeaea; }
+      #view-amount .scroll-content .keypad-container .keypad .digit {
+        cursor: pointer;
+        border-top: 1px solid #f2f2f2;
+        border-left: 1px solid #f2f2f2;
+        transition: all 0.1s ease; }
+        #view-amount .scroll-content .keypad-container .keypad .digit:active {
+          background-color: #f2f2f2; }
+      @media (max-height: 480px) {
+        #view-amount .scroll-content .keypad-container .keypad {
+          font-size: 12px; } }
 
 #view-confirm {
   background-color: #ffffff; }
@@ -10605,15 +10744,13 @@ textarea.d-block {
 #tab-home .homeTip {
   text-align: center; }
   #tab-home .homeTip > .item-heading {
-    margin-top: 10px;
     background: 0 none; }
   #tab-home .homeTip .item {
     border-style: none; }
-  #tab-home .homeTip > .title {
+  #tab-home .homeTip .title {
     font-size: 20px;
     font-weight: bold;
-    color: #445;
-    margin: 20px 10px; }
+    color: #445; }
   #tab-home .homeTip > .subtitle {
     font-size: 1rem;
     line-height: 1.5em;
@@ -10626,7 +10763,9 @@ textarea.d-block {
 
 #tab-home .icon.close-home-tip {
   color: #666;
-  font-size: 38px; }
+  font-size: 38px;
+  height: auto;
+  top: 8px; }
 
 #tab-home .tab-home__logo {
   height: 18px;

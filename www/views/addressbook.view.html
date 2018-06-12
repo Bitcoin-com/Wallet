@@ -6,7 +6,7 @@
       <span>{{addressbookEntry.name}}</span>
     </ion-nav-title>
   </ion-nav-bar>
-  <ion-content scroll="false">
+  <ion-content>
     <div class="gravatar-content">
       <i class="icon big-icon-svg" ng-if="isChromeApp">
         <img src="img/contact-placeholder.svg" class="bg"/>
@@ -36,7 +36,7 @@
         <i class="icon bp-arrow-right"></i>
       </div>
       <div class="item item-divider"></div>
-      <div class="item has-click" ng-click="remove(addressbookEntry.address)">
+      <div class="item has-click" ng-click="remove(addressbookEntry)">
         <span class="assertive" translate>Remove</span>
       </div>
     </div>

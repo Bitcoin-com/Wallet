@@ -23,20 +23,13 @@
     </div>
 
     <div class="ng-hide" ng-show="showRateCard.value" ng-include="'views/feedback/rateCard.html'"></div>
+
     <div class="list card homeTip" ng-if="homeTip">
       <div class="item item-icon-right item-heading">
+        <div class="title" translate>
+          Your Bitcoin Wallets are ready!
+        </div>
         <a ng-click="hideHomeTip()"><i class="icon ion-ios-close-empty close-home-tip"></i></a>
-      </div>
-      <div>
-        <i class="icon big-icon-svg">
-          <img src="img/check-white.svg" class="bg green"/>
-        </i>
-      </div>
-      <div class="title" translate>
-        Your bitcoin wallet is ready!
-      </div>
-      <div class="subtitle" translate>
-        On this screen you can see all your wallets, accounts, and assets.
       </div>
     </div>
 
@@ -56,7 +49,6 @@
       <a class="item item-icon-right item-heading" ui-sref="tabs.activity">
         <span translate>Recent Transactions</span>
         <i class="icon bp-arrow-right"></i>
-        <span class="badge badge-assertive m5t m10r" ng-show="notificationsN>3"> {{notificationsN}}</span>
       </a>
       <a class="item item-sub activity" ng-repeat="notification in notifications" ng-click="openNotificationModal(notification)">
         <span ng-include="'views/includes/walletActivity.html'"></span>
@@ -78,8 +70,7 @@
       </div>
     </div>
 
-    <div class="list card"
-        ng-show="displayBitcoinCore">
+    <div class="list card">
       <div class="item item-icon-right item-heading">
         <img class="wallet-coin-logo" src="img/icon-bitcoin.svg" width="18">
         <span translate>Bitcoin Core (BTC)</span>
@@ -99,6 +90,13 @@
     <div class="ng-hide list card" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/nextSteps.html'"></div>
     <div class="ng-hide list card" ng-show="showServices && (walletsBch[0] || walletsBtc[0])" ng-include="'views/includes/services.html'"></div>
+
+    <div class="list card card-banner">
+      <a ng-click="openStore()">
+        <img class="card-banner__img" src="img/banner-store.png"/>
+      </a>
+    </div>
+    
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/community.html'"></div>
 
   </ion-content>

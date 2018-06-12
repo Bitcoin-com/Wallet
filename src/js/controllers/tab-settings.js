@@ -16,6 +16,8 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
         isoCode: config.wallet.settings.alternativeIsoCode
       };
 
+      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+
       // TODO move this to a generic service
       bitpayAccountService.getAccounts(function(err, data) {
         if (err) $log.error(err);

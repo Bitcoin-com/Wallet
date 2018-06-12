@@ -60,11 +60,14 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   });
 
   $scope.$on("$ionicView.afterEnter", function() {
-    // try initializing and refreshing status any time the view is entered
-    if(!scannerService.isInitialized()){
-      scannerService.gentleInitialize();
+    var capabilities = scannerService.getCapabilities();
+    if (capabilities.hasPermission) {
+      // try initializing and refreshing status any time the view is entered
+      if(!scannerService.isInitialized()) {
+        scannerService.gentleInitialize();
+      }
+      activate();
     }
-    activate();
   });
 
   function activate(){
@@ -105,6 +108,9 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   function handleSuccessfulScan(contents){
     $log.debug('Scan returned: "' + contents + '"');
     scannerService.pausePreview();
+    // Sometimes (testing in Chrome, when reading QR Code) data is an object
+    // that has a string data.result.
+    contents = contents.result || contents;
     incomingData.redir(contents);
   }
 

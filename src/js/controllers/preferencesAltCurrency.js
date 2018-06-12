@@ -69,7 +69,8 @@ angular.module('copayApp.controllers').controller('preferencesAltCurrencyControl
 
     $scope.findCurrency = function(search) {
       if (!search) init();
-      $scope.altCurrencyList = lodash.filter(completeAlternativeList, function(item) {
+      var list = lodash.unique(lodash.union(completeAlternativeList, lodash.union($scope.lastUsedAltCurrencyList, popularCurrencyList)), 'isoCode');
+      $scope.altCurrencyList = lodash.filter(list, function(item) {
         var val = item.name
         var val2 = item.isoCode;
         return lodash.includes(val.toLowerCase(), search.toLowerCase()) || lodash.includes(val2.toLowerCase(), search.toLowerCase());

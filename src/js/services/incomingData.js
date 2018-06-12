@@ -11,7 +11,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
   root.redir = function(data, shapeshiftData) {
     var originalAddress = null;
     var noPrefixInAddress = 0;
-
+    
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
     }
