@@ -12,6 +12,23 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   var currentAddressSocket = {};
   var paymentSubscriptionObj = { op:"addr_sub" }
+  var config = configService.getSync();
+
+  var soundLoaded = false;
+  var nativeAudioAvailable = (window.plugins && window.plugins.NativeAudio);
+
+  if (nativeAudioAvailable) {
+      window.plugins.NativeAudio.preloadSimple('received', 'misc/coin_received.mp3', function (msg) {
+        $log.debug('Receive sound loaded.');
+        soundLoaded = true;
+      }, function (error) {
+        $log.debug('Error loading receive sound.');
+        $log.debug(error);
+      });
+  } else {
+    $log.debug('isNW: Using HTML5-Audio instead of native audio');
+    soundLoaded = true;
+  }
 
   $scope.displayBalanceAsFiat = true;
 
@@ -129,6 +146,17 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
       $scope.$apply(function () {
+
+        if (config.soundsEnabled && soundLoaded) {
+          $log.debug('Play sound.');
+            if (nativeAudioAvailable) {
+              window.plugins.NativeAudio.play('received');
+          } else {
+            new Audio('misc/coin_received.mp3').play();
+          }
+        } else {
+          $log.debug('Sound is disabled.');
+        }
         $scope.showingPaymentReceived = true;
       });
     }
