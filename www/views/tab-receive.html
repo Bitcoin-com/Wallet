@@ -61,7 +61,8 @@
           </svg>
           <p class="success animated fadeIn">
             <br/>Payment Received!
-            <span class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
+            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
+            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount">{{ paymentReceivedAlternativeAmount }}</span></span>
             Return To Address<br/>
           </p>
         </div>

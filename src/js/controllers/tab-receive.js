@@ -125,6 +125,12 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       for (var i = 0; i < data.x.out.length; i++) {
         if (data.x.out[i].addr == watchAddress) {
           $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
+          $scope.paymentReceivedAlternativeAmount = null;  // For when a subsequent payment is received.
+          txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
+            if (alternativeStr) {
+              $scope.paymentReceivedAlternativeAmount = alternativeStr;
+            }
+          });
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
