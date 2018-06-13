@@ -152,7 +152,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
             if (nativeAudioAvailable) {
               window.plugins.NativeAudio.play('received');
           } else {
-            new Audio('misc/coin_received.mp3').play();
+            new Audio('misc/coin_received.ogg').play(); // NW.js has no mp3 support
           }
         } else {
           $log.debug('Sound is disabled.');
