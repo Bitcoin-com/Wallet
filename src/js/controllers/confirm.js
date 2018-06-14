@@ -288,6 +288,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
       txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
         tx.alternativeAmountStr = v;
+        tx.alternativeAmountValueStr = tx.alternativeAmountStr.split(' ')[0];
+        tx.alternativeAmountUnitStr = tx.alternativeAmountStr.split(' ')[1];
       });
     }
 

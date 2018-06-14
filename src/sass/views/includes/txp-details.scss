@@ -43,6 +43,10 @@
       }
       .alternative {
         font-size: 38px;
+
+        > .unit {
+          font-family: "Roboto-Light";
+        }
       }
     }
   }
