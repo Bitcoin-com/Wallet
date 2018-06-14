@@ -454,7 +454,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         feeAlternative: feeAlternative
       });
     } else {
-      gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
+      msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
         fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
       });
     }
