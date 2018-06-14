@@ -20,7 +20,6 @@ describe('txFormatService', function(){
 
     module(function($provide) {
       $provide.value('configService', configServiceMock);
-      //$provide.value('$log', log); // Handy for debugging test failures
       $provide.value('rateService', rateServiceMock);
     });
 
@@ -46,8 +45,6 @@ describe('txFormatService', function(){
     var formatted = txFormatService.formatAlternativeStr('bch', 123);
 
     expect(formatted).toBe('< 0.01 USD');
-    //expect(formatted).toBe('0.00 USD');
-
   });
 
   it('formatAlternativeStr 0.5 cents.', function() {
