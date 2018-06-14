@@ -426,6 +426,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
 
   function showSendMaxWarning(wallet, sendMaxInfo) {
+    var feeAlternative,
+      msg;
 
     function verifyExcludedUtxos() {
       var warningMsg = [];
@@ -443,9 +445,18 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return warningMsg.join('\n');
     };
 
-    var msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees.", {
-      fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
-    });
+    feeAlternative = txFormatService.formatAlternativeStr(wallet.coin, sendMaxInfo.fee);
+    if (feeAlternative) {
+      msg = gettextCatalog.getString("{{feeAlternative}} will be deducted for bitcoin networking fees ({{fee}}).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee),
+        feeAlternative: feeAlternative
+      });
+    } else {
+      gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
+      });
+    }
+
     var warningMsg = verifyExcludedUtxos();
 
     if (!lodash.isEmpty(warningMsg))

@@ -72,11 +72,19 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
     var config = configService.getSync().wallet.settings;
 
     var val = function() {
-      var v1 = parseFloat((rateService.toFiat(satoshis, config.alternativeIsoCode, coin)).toFixed(2));
-      v1 = $filter('formatFiatAmount')(v1);
+      var fiatAmount = rateService.toFiat(satoshis, config.alternativeIsoCode, coin);
+      var roundedStr = fiatAmount.toFixed(2);
+      var roundedNum = parseFloat(roundedStr);
+      var subcent = roundedNum === 0 && fiatAmount > 0;
+      var lessThanPrefix = '';
+      if (subcent) {
+        roundedNum = 0.01;
+        lessThanPrefix = '< '
+      }
+      var v1 = $filter('formatFiatAmount')(roundedNum);
       if (!v1) return null;
 
-      return v1 + ' ' + config.alternativeIsoCode;
+      return lessThanPrefix + v1 + ' ' + config.alternativeIsoCode;
     };
 
     // Async version
