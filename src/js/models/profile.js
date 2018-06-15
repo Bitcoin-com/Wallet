@@ -76,7 +76,7 @@ Profile.prototype.merge = function(other) {
   other.credentials.forEach(function(otherCredential) {
     var credentialExists = false;
     thisProfile.credentials.forEach(function(thisCredential) {
-      if (otherCredential.walletId === thisCredential.walletId) {
+      if (otherCredential.mnemonic === thisCredential.mnemonic) {
         credentialExists = true;
       }
     });
