@@ -9,12 +9,12 @@ function Profile() {
   this.version = '1.0.0';
 };
 
-Profile.create = function(opts) {
-  opts = opts || {};
+Profile.create = function(appVersion) {
 
   var x = new Profile();
+  x.appVersion = appVersion;
   x.createdOn = Date.now();
-  x.credentials = opts.credentials || [];
+  x.credentials = [];
   x.disclaimerAccepted = true;
   x.checked = {};
   return x;
@@ -23,6 +23,7 @@ Profile.create = function(opts) {
 Profile.fromObj = function(obj) {
   var x = new Profile();
 
+  x.appVersion = obj.appVersion;
   x.createdOn = obj.createdOn;
   x.credentials = obj.credentials;
   x.disclaimerAccepted = obj.disclaimerAccepted;
@@ -62,6 +63,39 @@ Profile.prototype.isDeviceChecked = function(ua) {
   return this.checkedUA == ua;
 };
 
+/**
+ * 
+ * @param {Profile} other 
+ */
+Profile.prototype.merge = function(other) {
+
+  var newCredentials = [];
+  var otherCredentialsLength = other.credentials.length;
+  var thisProfile = this;
+
+  other.credentials.forEach(function(otherCredential) {
+    var credentialExists = false;
+    thisProfile.credentials.forEach(function(thisCredential) {
+      if (otherCredential.mnemonic === thisCredential.mnemonic) {
+        credentialExists = true;
+      }
+    });
+    if (!credentialExists) {
+      newCredentials.push(otherCredential);
+    }
+  });
+
+  Array.prototype.push.apply(this.credentials, newCredentials);
+};
+
+/**
+ * It's a simple operation, but it means that all the profile logic stays
+ * in this file.
+ * @param {string} appVersion  - ie "4.11.0"
+ */
+Profile.prototype.setAppVersion = function(appVersion) {
+  this.appVersion = appVersion;
+}
 
 Profile.prototype.setChecked = function(ua, walletId) {
   if (this.checkedUA != ua) {
