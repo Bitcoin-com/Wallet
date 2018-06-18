@@ -12,7 +12,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   var currentAddressSocket = {};
   var paymentSubscriptionObj = { op:"addr_sub" }
-  var config = configService.getSync();
+
+  var config;
 
   var soundLoaded = false;
   var nativeAudioAvailable = (window.plugins && window.plugins.NativeAudio);
@@ -243,8 +244,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       })
     ];
 
-    configService.whenAvailable(function(config) {
-      $scope.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
+    configService.whenAvailable(function(_config) {
+      $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
+      config = _config;
     });
   });
 
