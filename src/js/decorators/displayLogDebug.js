@@ -1,11 +1,9 @@
  angular.module('copayApp')
  .config(['$provide', '$logProvider', function($provide, $logProvider) {
-   console.log('Config for profileService');
   // expose a provider to reach debugEnabled in $log
   $provide.value('$logProvider', $logProvider);
 }])
 .decorator('$log', ['$logProvider', '$delegate', function($logProvider, $delegate) {
-  console.log('Config for profileService');
   // override $log.debug to display in Chrome
   $delegate.debug = function () {
     if ($logProvider.debugEnabled()) {
