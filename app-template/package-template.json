@@ -110,7 +110,7 @@
     "final:ios":              "npm run final:www && npm run build:ios-release && npm run open:ios",
     "final:android":          "npm run final:www && npm run build:android-release && npm run sign:android && npm run run:android-release",
     "final:windows":          "npm run final:www && npm run build:windows-release",
-    "final:desktop":          "npm run build:desktop && npm run build:osx",
+    "final:desktop":          "grunt desktop-release",
     "run:android":            "cordova run android --device",
     "run:android-release":            "cordova run android --device --release",
     "log:android":            "adb logcat | grep chromium",
