@@ -12,6 +12,14 @@ wallet-selector {
     font-weight: bold;
     padding-bottom: 10px;
     border-bottom: 1px solid #EFEFEF;
+    &.compact-subtitle {
+      padding-bottom: 0;
+    }
+    .subtitle {
+      color: $v-mid-gray;
+        font-size: $font-size-small;
+        font-weight: 300;
+    }
     .wallet-coin-logo {
       vertical-align: middle;
       margin-right: 5px;
