@@ -7,16 +7,22 @@ module.exports = function(grunt) {
 
   // Project Configuration
   grunt.initConfig({
-    curl: {
-      './cache/nwjs.zip': 'https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip',
-    },
-    unzip: {
-      './cache/': './cache/nwjs.zip'
-    },
     pkg: grunt.file.readJSON('package.json'),
     exec: {
-      replaceNWJS: {
-        command: 'rm -R ./cache/0.19.5/osx64/nwjs.app; cp -R ./cache/nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./cache/0.19.5/osx64/'
+      get_nwjs_for_pkg: {
+        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
+      },
+      create_others_dist: {
+        command: 'sh webkitbuilds/create-others-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      create_dmg_dist: {
+        command: 'sh webkitbuilds/create-dmg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      create_pkg_dist: {
+        command: 'sh webkitbuilds/create-pkg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      sign_desktop_dist: {
+        command: 'sh webkitbuilds/sign-desktop-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>"'
       },
       appConfig: {
         command: 'node ./util/buildAppConfig.js'
@@ -29,9 +35,6 @@ module.exports = function(grunt) {
       },
       cordovaclean: {
         command: 'make -C cordova clean'
-      },
-      macos: {
-        command: 'sh webkitbuilds/build-macos.sh sign'
       },
       coveralls: {
         command: 'cat  coverage/report-lcov/lcov.info |./node_modules/coveralls/bin/coveralls.js'
@@ -71,7 +74,7 @@ module.exports = function(grunt) {
         stdin: true,
       },
       desktopsign: {
-        cmd: 'gpg -u E0AE67E7 --output webkitbuilds/<%= pkg.title %>-linux.zip.sig --detach-sig webkitbuilds/<%= pkg.title %>-linux.zip ; gpg -u E0AE67E7 --output webkitbuilds/<%= pkg.title %>.exe.sig --detach-sig webkitbuilds/<%= pkg.title %>.exe'
+        cmd: 'gpg -u E0AE67E7 --output webkitbuilds/others/<%= pkg.title %>-linux.zip.sig --detach-sig webkitbuilds/others/<%= pkg.title %>-linux.zip ; gpg -u E0AE67E7 --output webkitbuilds/others/<%= pkg.title %>.exe.sig --detach-sig webkitbuilds/others/<%= pkg.title %>.exe'
       },
       desktopverify: {
         cmd: 'gpg --verify webkitbuilds/<%= pkg.title %>-linux.zip.sig webkitbuilds/<%= pkg.title %>-linux.zip; gpg --verify webkitbuilds/<%= pkg.title %>.exe.sig webkitbuilds/<%= pkg.title %>.exe'
@@ -232,43 +235,78 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'webkitbuilds/',
           src: ['.desktop', '../www/img/app/favicon.ico', '../resources/<%= pkg.name %>/linux/512x512.png'],
-          dest: 'webkitbuilds/<%= pkg.title %>/linux64/',
+          dest: 'webkitbuilds/others/<%= pkg.title %>/linux64/',
           flatten: true,
           filter: 'isFile'
         }],
       }
     },
     nwjs: {
-      options: {
-        appName: '<%= pkg.title %>',
-        platforms: ['win64', 'osx64', 'linux64'],
-        buildDir: './webkitbuilds',
-        version: '0.19.5',
-        macIcns: './resources/<%= pkg.name %>/mac/app.icns',
-        exeIco: './www/img/app/logo.ico',
-        macPlist: {
-          'CFBundleIdentifier': 'com.bitcoin.mwallet.mac',
-          'CFBundleDisplayName': '<%= pkg.title %>',
-          'CFBundleShortVersionString': '<%= pkg.version %>',
-          'CFBundleVersion': '<%= pkg.androidVersion %>',
-          'LSApplicationCategoryType': 'public.app-category.finance',
-          'CFBundleURLTypes': [
-            {
-              'CFBundleURLName': 'URI Handler',
-              'CFBundleURLSchemes': ['bitcoin', '<%= pkg.name %>']
-            }
-          ]
-        }
+      others: {
+        options: {
+          appName: '<%= pkg.nameCaseNoSpace %>',
+          platforms: ['win64', 'linux64'],
+          buildDir: './webkitbuilds/others',
+          version: '0.19.5',
+          exeIco: './www/img/app/logo.ico'
+        },
+        src: ['./package.json', './www/**/*']
       },
-      src: ['./package.json', './www/**/*']
+      dmg: {
+        options: {
+          appName: '<%= pkg.nameCaseNoSpace %>',
+          platforms: ['osx64'],
+          buildDir: './webkitbuilds/dmg',
+          version: '0.19.5',
+          macIcns: './resources/<%= pkg.name %>/mac/app.icns',
+          exeIco: './www/img/app/logo.ico',
+          macPlist: {
+            'CFBundleDisplayName': '<%= pkg.title %>',
+            'CFBundleShortVersionString': '<%= pkg.version %>',
+            'CFBundleVersion': '<%= pkg.androidVersion %>',
+            'LSApplicationCategoryType': 'public.app-category.finance',
+            'CFBundleURLTypes': [
+              {
+                'CFBundleURLName': 'URI Handler',
+                'CFBundleURLSchemes': ['bitcoin', '<%= pkg.name %>']
+              }
+            ]
+          }
+        },
+        src: ['./package.json', './www/**/*']
+      },
+      pkg: {
+        options: {
+          appName: '<%= pkg.nameCaseNoSpace %>',
+          platforms: ['osx64'],
+          buildDir: './webkitbuilds/pkg',
+          version: '0.19.5',
+          macIcns: './resources/<%= pkg.name %>/mac/pkg/app.icns',
+          exeIco: './www/img/app/logo.ico',
+          macPlist: {
+            'CFBundleIdentifier': 'com.bitcoin.mwallet.mac',
+            'CFBundleDisplayName': '<%= pkg.title %>',
+            'CFBundleShortVersionString': '<%= pkg.version %>',
+            'CFBundleVersion': '<%= pkg.androidVersion %>',
+            'LSApplicationCategoryType': 'public.app-category.finance',
+            'CFBundleURLTypes': [
+              {
+                'CFBundleURLName': 'URI Handler',
+                'CFBundleURLSchemes': ['bitcoin', '<%= pkg.name %>']
+              }
+            ]
+          }
+        },
+        src: ['./package.json', './www/**/*']
+      },
     },
     compress: {
       linux: {
         options: {
-          archive: './webkitbuilds/<%= pkg.title %>-linux.zip'
+          archive: './webkitbuilds/others/<%= pkg.title %>-linux.zip'
         },
         expand: true,
-        cwd: './webkitbuilds/<%= pkg.title %>/linux64/',
+        cwd: './webkitbuilds/others/<%= pkg.title %>/linux64/',
         src: ['**/*'],
         dest: '<%= pkg.title %>-linux/'
       }
@@ -287,9 +325,6 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('prod', ['default', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
-  grunt.registerTask('desktop', ['prod', 'nwjs', 'fix-nwjs-macos', 'nwjs', 'copy:linux', 'compress:linux']);
-  grunt.registerTask('osx', ['prod', 'nwjs', 'exec:macos', 'exec:osxsign']);
-  grunt.registerTask('osx-debug', ['default', 'nwjs']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
   grunt.registerTask('wp', ['prod', 'exec:wp']);
   grunt.registerTask('wp-copy', ['default', 'exec:wpcopy']);
@@ -301,7 +336,23 @@ module.exports = function(grunt) {
   grunt.registerTask('android-debug', ['exec:androiddebug', 'exec:androidrun']);
   grunt.registerTask('android', ['exec:android']);
   grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
-  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']);  
-  grunt.registerTask('fix-nwjs-macos', ['curl', 'unzip', 'exec:replaceNWJS']);  
+  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']); 
 
+  // Build desktop
+  grunt.registerTask('desktop-build', ['desktop-others', 'desktop-osx-dmg', 'desktop-osx-pkg']);
+
+  // Build desktop win64 & linux64
+  grunt.registerTask('desktop-others', ['prod', 'nwjs:others', 'copy:linux', 'exec:create_others_dist']);
+
+  // Build desktop osx pkg
+  grunt.registerTask('desktop-osx-pkg', ['prod', 'exec:get_nwjs_for_pkg', 'nwjs:pkg', 'exec:create_pkg_dist']);
+
+  // Build desktop osx dmg
+  grunt.registerTask('desktop-osx-dmg', ['prod', 'nwjs:dmg', 'exec:create_dmg_dist']);
+
+  // Sign desktop
+  grunt.registerTask('desktop-sign', ['exec:sign_desktop_dist']);
+
+  // Release desktop
+  grunt.registerTask('desktop-release', ['desktop-build', 'desktop-sign']); 
 };
