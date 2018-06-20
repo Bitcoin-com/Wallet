@@ -221,14 +221,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
+    $scope.showingPaymentReceived = false;
     $ionicNavBarDelegate.showBar(true);
   });
 
   $scope.$on("$ionicView.leave", function(event, data) {
-    if ($scope.showingPaymentReceived) {
-      $scope.showingPaymentReceived = false;
-    }
-
     lodash.each(listeners, function(x) {
       x();
     });
