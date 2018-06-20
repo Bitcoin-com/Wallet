@@ -7,7 +7,7 @@
 
   <div class="header" ng-if="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
 
-  <div class="subheader compact-subtitle" ng-if="walletsBch[0] && walletsBtc[0]">
+  <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
     <div translate>Bitcoin Cash (BCH)</div>
     <div translate class="subtitle">Instant transactions with low fees</div>
   </div>
@@ -39,7 +39,7 @@
       </div>
     </a>
 
-  <div class="subheader compact-subtitle" ng-if="walletsBtc[0] && walletsBch[0]" translate>
+  <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0]" translate>
     <div translate>Bitcoin Core (BTC)</div>
     <div translate class="subtitle">Slow transactions with high fees</div>
   </div>
