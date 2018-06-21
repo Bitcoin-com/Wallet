@@ -11,6 +11,10 @@ APP_VERSION=$2
 export DIST_PATH="dist"
 
 ##
+# INIT GPG (YOU NEED THE PRIVATE KEY CONNECTED TO YOUR DESKTOP)
+gpg --card-edit
+
+##
 # LINUX
 
 # Sig tar.gz
