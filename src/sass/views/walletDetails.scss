@@ -131,6 +131,7 @@
   .bp-content {
     position: relative;
     height: 100%;
+    height: calc(100% - env(safe-area-inset-bottom) * 2);
 
     &.status-bar {
       margin-top: 20px;
@@ -157,6 +158,8 @@
 
     padding-top: 0;
     top: 0;
+    margin-bottom: 16px;
+
     .scroll {
       background: rgb(248, 248, 249);
       min-height: 300px;

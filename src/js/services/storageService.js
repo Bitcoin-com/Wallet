@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
+  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -116,34 +116,138 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      storage.create('profile', profile.toObj(), cb);
+      root.storeProfile(profile, cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      storage.set('profile', profile.toObj(), cb);
+      var profileString = profile.toObj();
+      if (platformInfo.isNW) {
+        storage.set('profile', profileString, cb);
+      } else {
+        secureStorageService.set('profile', profileString, cb);
+      }
     };
 
-    root.getProfile = function(cb) {
-      storage.get('profile', function(err, str) {
-        if (err || !str)
-          return cb(err);
+    /**
+     * @callback getProfileCallback
+     * @param {Error} error - falsy if profile not found.
+     * @param {Profile} profile - falsy if error or profile not found.
+     */
 
-        decryptOnMobile(str, function(err, str) {
-          if (err) return cb(err);
-          var p, err;
-          try {
-            p = Profile.fromString(str);
-          } catch (e) {
-            $log.debug('Could not read profile:', e);
-            err = new Error('Could not read profile:' + p);
+
+     /**
+      * @param {Error} error
+      * @param {String} profileStr - containing the profile
+      * @param {getProfileCallback} cb
+      */
+    function _onOldProfileRetrieved(error, profileStr, cb) {
+      if (error) {
+        return cb(error, null);
+      }
+
+      if (!profileStr) {
+        // No profiles found. No errors either.
+        return cb(null, null);
+      }
+
+      decryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
+        if (decryptErr) return cb(decryptErr, null);
+        var profile;
+        try {
+          profile = Profile.fromString(decryptedStr);
+        } catch (e) {
+          $log.debug('Could not read profile:', e);
+          return(new Error('Could not read profile.'), null);
+        }
+        cb(null, profile)
+      });
+    }
+
+    
+
+    /**
+     * 
+     * @param {Profile} oldProfile
+     * @param {Profile} secureProfile - may be falsy if no secure profile found.
+     * @param {getProfileCallback} cb 
+     */
+    function _migrateProfiles(oldProfile, secureProfile, cb) {
+      var newProfile;
+
+      if (secureProfile) {
+        secureProfile.merge(oldProfile);
+        newProfile = secureProfile;
+      } else {
+        newProfile = oldProfile;
+        newProfile.setAppVersion(appConfigService.version);
+      }
+
+      root.storeNewProfile(newProfile, function(storeErr) {
+        if (storeErr) {
+          cb(storeErr, null);
+          return;
+        }
+
+        storage.remove('profile', function(removeErr){
+          if (removeErr) {
+            cb(removeErr, null);
+            return;
           }
-          return cb(err, p);
+
+          cb(null, newProfile);
         });
+
       });
     };
 
-    root.deleteProfile = function(cb) {
-      storage.remove('profile', cb);
+    /**
+     * 
+     * @param {getProfileCallback} cb 
+     */
+    root.getProfile = function(cb) {
+      if (platformInfo.isNW) {
+        storage.get('profile', function(getErr, getStr) {
+          _onOldProfileRetrieved(getErr, getStr, cb);
+          });
+          return
+      }
+
+      secureStorageService.get('profile', function(secureErr, secureStr) {
+        var secureProfile;
+        var oldProfile;
+
+        if (secureErr) {
+          return cb(secureErr, null);
+        }
+
+        if (secureStr) {
+          try {
+            secureProfile = Profile.fromString(secureStr);
+            $log.debug('profile: ' + JSON.stringify(secureProfile));
+          } catch (e) {
+            $log.error(e);
+            return cb(e, null);
+          }
+        }
+
+        storage.get('profile', function(getErr, getStr) {
+          _onOldProfileRetrieved(getErr, getStr, function(oldErr, oldProfile){
+          if (oldErr) {
+            return cb(oldErr, null);
+          }
+
+          if (!oldProfile) {
+            if (secureProfile) {
+              return cb(null, secureProfile);
+            } else {
+              // No profiles found. No errors either.
+              return cb(null, null);
+            }
+          }
+            _migrateProfiles(oldProfile, secureProfile, cb);
+          });
+        });
+      });
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
