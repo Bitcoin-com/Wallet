@@ -11,10 +11,10 @@ qrcode {
       position: absolute;
     }
     &--bch::before {
-      background-image: url('../img/icon-qr-bch.png');
+      background-image: url('../img/qr-overlay-bch.png');
     }
     &--btc::before {
-      background-image: url('../img/icon-qr-btc.png');
+      background-image: url('../img/qr-overlay-btc.png');
     }
   }
 }
