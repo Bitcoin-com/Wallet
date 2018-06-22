@@ -251,6 +251,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
+    $scope.showingPaymentReceived = false;
     $ionicNavBarDelegate.showBar(true);
   });
 
