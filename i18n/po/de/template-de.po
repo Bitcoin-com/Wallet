@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: German\n"
 "Language: de\n"
-"PO-Revision-Date: 2018-05-15 20:18-0400\n"
+"PO-Revision-Date: 2018-06-22T04:02:49+0000\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -32,7 +32,7 @@ msgstr "- {{btx.feeRateStr}}ของธุรกรรม"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
-msgstr ""
+msgstr "- {{tx.feeRateStr}} der Transaktion"
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
@@ -41,7 +41,7 @@ msgstr "Eine 5-Sterne Bewertung hilft uns, {{appName}} unter die Leute zu bringe
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr ""
+msgstr "<b>Nur</b> einlösbar auf Mercado Livre (Brasilien)"
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
@@ -124,7 +124,7 @@ msgstr "Ein optionales Passwort zur Sicherung der Wiederherstellungsphrase hinzu
 
 #: www/views/includes/incomingDataMenu.html:41
 msgid "Add as a contact"
-msgstr ""
+msgstr "Als Kontakt hinzufügen"
 
 #: src/js/controllers/confirm.js:424
 msgid "Add description"
@@ -132,11 +132,11 @@ msgstr "Beschreibung hinzufügen"
 
 #: www/views/topup.html:6
 msgid "Add funds"
-msgstr ""
+msgstr "Guthaben aufladen"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
-msgstr ""
+msgstr "Dieses BitPay Konto hinzufügen ({{email}})?"
 
 #: www/views/add.html:3
 msgid "Add wallet"
@@ -204,7 +204,7 @@ msgstr "Alternative Währung"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr ""
+msgstr "Amazon.com ist zurzeit nicht verfügbar. Bitte versuchen Sie es später nochmal."
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
@@ -222,7 +222,7 @@ msgstr "Betrag zu hoch"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr ""
+msgstr "Betrag ist zu niedrig zum ausgeben"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
@@ -359,12 +359,12 @@ msgstr "Bitcoin-Adresse"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr ""
+msgstr "Bitcoin Cash (BCH) Guthaben"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr ""
+msgstr "Bitcoin Cash Support"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
@@ -380,11 +380,11 @@ msgstr "Bitcoin-Netzwerk Gebührenübersicht"
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr ""
+msgstr "Bitcoin Core Brieftaschen"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr ""
+msgstr "Bitcoin Cash Zahlung"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
@@ -404,7 +404,7 @@ msgstr "Bitcoin Transaktionen enthalten eine Gebühr für die \"Miners\" im Netz
 
 #: www/views/buyAmazon.html:108
 msgid "Bought {{amountUnitStr}}"
-msgstr ""
+msgstr "{{amountUnitStr}} erworben"
 
 #: www/views/modals/txp-details.html:36
 msgid "Broadcast Payment"
@@ -474,7 +474,7 @@ msgstr "Abbruch"
 
 #: www/views/copayers.html:36
 msgid "Cancel invitation"
-msgstr ""
+msgstr "Einladung zurückziehen"
 
 #: src/js/controllers/onboarding/tour.js:52
 msgid "Cannot Create Wallet"
@@ -519,7 +519,7 @@ msgstr "Cache leeren"
 #: src/js/controllers/confirm.js:373
 #: src/js/controllers/modals/txpDetails.js:49
 msgid "Click to accept"
-msgstr ""
+msgstr "Klicken Sie zum Akzeptieren"
 
 #: src/js/controllers/confirm.js:367
 msgid "Click to pay"

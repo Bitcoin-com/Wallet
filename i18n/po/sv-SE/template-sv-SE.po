@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2018-05-08 00:44-0400\n"
+"PO-Revision-Date: 2018-06-22T04:02:58+0000\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -187,11 +187,11 @@ msgstr ""
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
-msgstr ""
+msgstr "Tillåt kameraåtkomst"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
-msgstr ""
+msgstr "Tillåt notificationer"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
@@ -200,149 +200,149 @@ msgstr ""
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
-msgstr ""
+msgstr "Alternativ Valuta"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr ""
+msgstr "Amazon.com är inte tillgängligt för tillfället. Försök igen senare."
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
 #: www/views/includes/output.html:7
 msgid "Amount"
-msgstr ""
+msgstr "Belopp"
 
 #: src/js/services/bwcError.js:110
 msgid "Amount below minimum allowed"
-msgstr ""
+msgstr "Belopp under minsta tillåtna"
 
 #: src/js/controllers/confirm.js:216
 msgid "Amount too big"
-msgstr ""
+msgstr "Beloppet för stort"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr ""
+msgstr "Beloppet för lågt för att spendera"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
-msgstr ""
+msgstr "En uppdatering för appen är tillgänglig. För din säkerhet, var vänlig uppdatera till den senaste versionen."
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
-msgstr ""
+msgstr "Vem som helst med din återhämtnings fras kan kommat åt eller spendera dina bitcoin."
 
 #: www/views/addresses.html:94
 msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
-msgstr ""
+msgstr "Ungefärlig Bitcoin nätverks avgift för att överföra plånbokens saldo (med normal prioritet)"
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
-msgstr ""
+msgstr "Håller någon ögonen på dig?"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
-msgstr ""
+msgstr "Håller någon ögonen på dig? Vem som helst med din återhämtnings fras kan kommat åt eller spendera dina bitcoin."
 
 #: src/js/controllers/copayers.js:56
 msgid "Are you sure you want to cancel and delete this wallet?"
-msgstr ""
+msgstr "Är du säker på att du vill avbryta och ta bort denna plånboken?"
 
 #: src/js/controllers/addressbookView.js:37
 msgid "Are you sure you want to delete this contact?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna kontakten?"
 
 #: src/js/controllers/preferencesDelete.js:25
 msgid "Are you sure you want to delete this wallet?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna plånboken?"
 
 #: src/js/controllers/modals/txpDetails.js:154
 msgid "Are you sure you want to reject this transaction?"
-msgstr ""
+msgstr "Är du säker på att du vill avvisa denna transaktion?"
 
 #: src/js/controllers/modals/txpDetails.js:171
 msgid "Are you sure you want to remove this transaction?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna transaktion?"
 
 #: src/js/controllers/onboarding/backupRequest.js:23
 msgid "Are you sure you want to skip it?"
-msgstr ""
+msgstr "Är du säker på att du vill hoppa över detta?"
 
 #: www/views/modals/bitpay-card-confirmation.html:4
 msgid "Are you sure you would like to log out of your BitPay Card account?"
-msgstr ""
+msgstr "Är du säker på att du vill logga ut från ditt BitPay Card konto?"
 
 #: src/js/controllers/preferencesBitpayCard.js:7
 #: src/js/controllers/preferencesBitpayServices.js:20
 msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort ditt BitPay Card ({{lastFourDigits}}) från denna enheten?"
 
 #: www/views/includes/walletInfo.html:10
 msgid "Auditable"
-msgstr ""
+msgstr "Granskningsbar"
 
 #: www/views/modals/wallet-balance.html:42
 msgid "Available"
-msgstr ""
+msgstr "Tillgänglig"
 
 #: www/views/includes/available-balance.html:3
 msgid "Available Balance"
-msgstr ""
+msgstr "Tillgängligt Saldo"
 
 #: www/views/modals/chooseFeeLevel.html:24
 #: www/views/preferencesFee.html:15
 msgid "Average confirmation time"
-msgstr ""
+msgstr "Genomsnittlig bekräftelsetid"
 
 #: www/views/join.html:143
 #: www/views/tab-create-personal.html:113
 #: www/views/tab-create-shared.html:142
 #: www/views/tab-import-phrase.html:51
 msgid "BIP32 path for address derivation"
-msgstr ""
+msgstr "BIP32 sökväg för adress derivering"
 
 #: www/views/cashScan.html:25
 msgid "BTC wallets"
-msgstr ""
+msgstr "BTC plånböcker"
 
 #: www/views/preferences.html:34
 msgid "Backup"
-msgstr ""
+msgstr "Säkerhetskopiera"
 
 #: www/views/includes/backupNeededPopup.html:7
 msgid "Backup Needed"
-msgstr ""
+msgstr "Säkerhetskopiering Behövs"
 
 #: src/js/controllers/lockSetup.js:87
 msgid "Backup all livenet wallets before using this function"
-msgstr ""
+msgstr "Säkerhetskopiera alla livenet plånböcker innan du använder denna funktion"
 
 #: src/js/controllers/cashScan.js:64
 #: www/views/includes/walletListSettings.html:12
 #: www/views/preferences.html:36
 msgid "Backup needed"
-msgstr ""
+msgstr "Säkerhetskopiering behövs"
 
 #: www/views/includes/backupNeededPopup.html:9
 msgid "Backup now"
-msgstr ""
+msgstr "Säkerhetskopiera nu"
 
 #: www/views/onboarding/backupRequest.html:11
 #: www/views/tab-export-file.html:89
 msgid "Backup wallet"
-msgstr ""
+msgstr "Säkerhetskopiera plånbok"
 
 #: src/js/controllers/lockSetup.js:84
 msgid "Backup your wallet before using this function"
-msgstr ""
+msgstr "Säkerhetskopiera din plånbok innan du använder denna funktion"
 
 #: src/js/services/profileService.js:446
 msgid "Bad wallet invitation"
-msgstr ""
+msgstr "Fel på plånboks inbjudan"
 
 #: www/views/preferencesInformation.html:102
 msgid "Balance By Address"
-msgstr ""
+msgstr "Saldo av Address"
 
 #: www/views/includes/confirmBackupPopup.html:7
 msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
