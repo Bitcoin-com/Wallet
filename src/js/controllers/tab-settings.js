@@ -45,6 +45,18 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
     });
   };
 
+  $scope.sendFeedback = function() {
+    var mailToLink = 'mailto:wallet@bitcoin.com?subject=Feedback%20for%20Bitcoin.com%20Wallet.com';
+    if (platformInfo.isNW) {
+      nw.Shell.openExternal(mailToLink);
+    } else if (platformInfo.isCordova) {
+      var mailWindow = window.open(mailToLink, '_system');
+      mailWindow.close(); // XX SP: bugfix for some browsers in cordova to change the view entirely
+    } else {
+      window.location.href = mailToLink;
+    }
+  };
+
   $scope.openExternalLink = function() {
     var appName = appConfigService.name;
     var url = appName == 'copay' ? 'https://github.com/bitcoin-com/wallet/issues' : 'https://www.bitcoin.com/wallet-support';
