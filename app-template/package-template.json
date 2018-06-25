@@ -84,11 +84,12 @@
     "load-grunt-tasks": "^3.5.0",
     "shelljs": "^0.3.0",
     "android-versions": "^1.2.1",
-    "bitcoincashjs": "^0.1.7"
+    "bitcoincashjs-fork": "^1.0.3"
   },
   "scripts": {
     "postinstall":            "bower install",
     "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
+    "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
     "start:ios":              "npm run build:www && npm run build:ios && npm run open:ios",
     "start:android":          "npm run build:www && npm run build:android && npm run run:android",
     "start:windows":          "npm run build:www && npm run build:windows",
