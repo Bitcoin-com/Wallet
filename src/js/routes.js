@@ -795,22 +795,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           fromOnboarding: null
         },
       })
-
-      /*
-       *
-       * Feedback
-       *
-       */
-
-      .state('tabs.feedback', {
-        url: '/feedback',
-        views: {
-          'tab-settings@tabs': {
-            templateUrl: 'views/feedback/send.html',
-            controller: 'sendController'
-          }
-        }
-      })
       .state('tabs.shareApp', {
         url: '/shareApp/:score/:skipped/:fromSettings',
         views: {
