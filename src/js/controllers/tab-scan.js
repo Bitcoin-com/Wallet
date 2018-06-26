@@ -126,7 +126,6 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
   $scope.attemptToReactivate = function(){
     scannerService.reinitialize(function(){
       $scope.reactivationCount++;
-      activate();
     });
   };
 
