@@ -144,11 +144,16 @@ angular.module('copayApp.services')
     };
 
     root.storeNewProfile = function(profile, cb) {
-      secureStorageService.set('profile', profile.toObj(), cb);
+      root.storeProfile(profile, cb);
     };
 
     root.storeProfile = function(profile, cb) {
-      secureStorageService.set('profile', profile.toObj(), cb);
+      var profileString = profile.toObj();
+      if (platformInfo.isNW) {
+        storage.set('profile', profileString, cb);
+      } else {
+        secureStorageService.set('profile', profileString, cb);
+      }
     };
 
     /**
@@ -156,6 +161,37 @@ angular.module('copayApp.services')
      * @param {Error} error - falsy if profile not found.
      * @param {Profile} profile - falsy if error or profile not found.
      */
+
+
+     /**
+      * @param {Error} error
+      * @param {String} profileStr - containing the profile
+      * @param {getProfileCallback} cb
+      */
+    function _onOldProfileRetrieved(error, profileStr, cb) {
+      if (error) {
+        return cb(error, null);
+      }
+
+      if (!profileStr) {
+        // No profiles found. No errors either.
+        return cb(null, null);
+      }
+
+      decryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
+        if (decryptErr) return cb(decryptErr, null);
+        var profile;
+        try {
+          profile = Profile.fromString(decryptedStr);
+        } catch (e) {
+          $log.debug('Could not read profile:', e);
+          return(new Error('Could not read profile.'), null);
+        }
+        cb(null, profile)
+      });
+    }
+
+    
 
     /**
      * 
@@ -197,6 +233,13 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     root.getProfile = function(cb) {
+      if (platformInfo.isNW) {
+        storage.get('profile', function(getErr, getStr) {
+          _onOldProfileRetrieved(getErr, getStr, cb);
+          });
+          return
+      }
+
       secureStorageService.get('profile', function(secureErr, secureStr) {
         var secureProfile;
         var oldProfile;
@@ -216,11 +259,12 @@ angular.module('copayApp.services')
         }
 
         storage.get('profile', function(getErr, getStr) {
-          if (getErr) {
-            return cb(getErr);
+          _onOldProfileRetrieved(getErr, getStr, function(oldErr, oldProfile){
+          if (oldErr) {
+            return cb(oldErr, null);
           }
 
-          if (!getStr) {
+          if (!oldProfile) {
             if (secureProfile) {
               return cb(null, secureProfile);
             } else {
@@ -228,20 +272,7 @@ angular.module('copayApp.services')
               return cb(null, null);
             }
           }
-
-          decryptOnMobile(getStr, function(err, str) {
-            if (err) return cb(err);
-            var p, err;
-            try {
-              oldProfile = Profile.fromString(str);
-            } catch (e) {
-              $log.debug('Could not read profile:', e);
-              err = new Error('Could not read profile.');
-              return(err, null);
-            }
-
             _migrateProfiles(oldProfile, secureProfile, cb);
-
           });
         });
       });

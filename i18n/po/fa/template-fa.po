@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2018-05-08 00:44-0400\n"
+"PO-Revision-Date: 2018-06-22T04:02:53+0000\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -989,7 +989,7 @@ msgstr "فعال کردن اعلان های با فرمت push"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr ""
+msgstr "فعال کردن صدا"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -1582,7 +1582,7 @@ msgstr "آدرس شبکه نادرست"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr ""
+msgstr "موجودی تائید شذه ناکافی"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -2049,7 +2049,7 @@ msgstr "باز کردن پروژه GitHub"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr ""
+msgstr "باز کردن مرورگر"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -3196,7 +3196,7 @@ msgstr "مشاهده شرایط و ضوابط خدمات"
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr ""
+msgstr "مشاهده تراکنش در Explorer.Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"

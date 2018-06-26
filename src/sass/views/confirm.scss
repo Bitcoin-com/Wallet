@@ -1,5 +1,5 @@
 #view-confirm {
-  background-color: #ffffff;
+  background-color: #494949;
   @extend .deflash-blue;
   .item-note {
     float: none;
@@ -29,5 +29,12 @@
   }
   .toggle {
     cursor: pointer;
+  }
+  ion-content {
+    background-color: #ffffff;
+  }
+  slide-to-accept, slide-to-accept-success {
+    margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+    margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
   }
 }

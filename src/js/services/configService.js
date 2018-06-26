@@ -107,7 +107,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       enabled: false,
     },
 
-    soundsEnabled: false,
+    soundsEnabled: true,
 
     log: {
       filter: 'debug',
@@ -115,8 +115,8 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     bitcoinAlias: 'btc',
     bitcoinCashAlias: 'bch',
-    bitcoinWalletColor: '#fab915', // Observatory
-    bitcoinCashWalletColor: '#26B03C', // Dollar Green
+    bitcoinWalletColor: '#535353', // Dark Grey
+    bitcoinCashWalletColor: '#eeb640', // Observatory
 
     homeSectionIsHidden: {
       services: false

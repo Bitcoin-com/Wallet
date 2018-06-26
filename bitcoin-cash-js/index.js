@@ -1,5 +1,5 @@
 var bitcoinCashJsModule = angular.module('bitcoinCashJsModule', []);
-var bchjs = require('../node_modules/bitcoincashjs');
+var bchjs = require('../node_modules/bitcoincashjs-fork');
 
 bitcoinCashJsModule.constant('MODULE_VERSION', '1.0.0');
 

@@ -86,6 +86,9 @@ slide-to-accept-success {
       transition: transform $duration ease, opacity $duration ease;
       transition-delay: 250ms;
 
+      margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+      margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+
       &.reveal {
         -webkit-transform: translateY(0);
         transform: translateY(0);
