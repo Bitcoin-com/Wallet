@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
+  .factory('storageService', function(appConfigService, encryptionService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -32,7 +32,7 @@ angular.module('copayApp.services')
     // This is only used in Copay, we used to encrypt profile
     // using device's UUID.
 
-    var decryptOnMobile = function(text, cb) {
+    var copayDecryptOnMobile = function(text, cb) {
       var json;
       try {
         json = JSON.parse(text);
@@ -121,11 +121,11 @@ angular.module('copayApp.services')
 
     root.storeProfile = function(profile, cb) {
       var profileString = profile.toObj();
-      if (platformInfo.isNW) {
+      //if (platformInfo.isNW) {
         storage.set('profile', profileString, cb);
-      } else {
-        secureStorageService.set('profile', profileString, cb);
-      }
+      //} else {
+      //  secureStorageService.set('profile', profileString, cb);
+      //}
     };
 
     /**
@@ -150,7 +150,7 @@ angular.module('copayApp.services')
         return cb(null, null);
       }
 
-      decryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
+      copayDecryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
         if (decryptErr) return cb(decryptErr, null);
         var profile;
         try {
@@ -205,6 +205,46 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     root.getProfile = function(cb) {
+      $log.debug('getProfile()');
+      storage.get('profile', function onProfileRetrieved(getErr, profileStr){
+        if (getErr) {
+          $log.error(getErr);
+          return cb(getErr, null);
+        }
+
+        if (!profileStr) {
+          $log.debug('No string loaded, returning nothing.');
+          return cb(null, null);
+        }
+
+        var encryptedProfile = encryptionService.encryptedObjectFromString(profileStr);
+        if (!encryptedProfile) {
+
+          copayDecryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
+            if (decryptErr) return cb(decryptErr, null);
+            var profile;
+            try {
+              profile = Profile.fromString(decryptedStr);
+            } catch (e) {
+              $log.debug('Could not read profile:', e);
+              return cb(new Error('Could not read profile.'), null);
+            }
+
+            encryptedProfile = encryptionService.encrypt(profile);
+            $log.debug('encryptedProfile');
+
+            //cb(null, profile)
+          });
+        } else {
+          $log.debug('profile was encrypted.');
+        }
+
+
+
+      });
+
+      /*
+
       if (platformInfo.isNW) {
         storage.get('profile', function(getErr, getStr) {
           _onOldProfileRetrieved(getErr, getStr, cb);
@@ -248,6 +288,7 @@ angular.module('copayApp.services')
           });
         });
       });
+      */
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {

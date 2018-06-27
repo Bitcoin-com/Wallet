@@ -175,6 +175,16 @@ module.exports = function(grunt) {
           'src/js/trezor-url.js',
           'bower_components/trezor-connect/connect.js',
           'node_modules/bezier-easing/dist/bezier-easing.min.js',
+
+          'bower_components/crypto-js/core.js',
+          'bower_components/crypto-js/enc-base64.js',
+          'bower_components/crypto-js/hmac.js',
+          'bower_components/crypto-js/md5.js',
+          'bower_components/crypto-js/sha1.js',
+          'bower_components/crypto-js/evpkdf.js',
+          'bower_components/crypto-js/cipher-core.js',
+          'bower_components/crypto-js/aes.js',
+          
           'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
         ],
         dest: 'www/js/app.js'
