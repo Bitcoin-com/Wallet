@@ -66,5 +66,11 @@ angular.module('copayApp.services').factory('platformInfo', function($window) {
   ret.versionIntelTEE = getVersionIntelTee();
   ret.supportsIntelTEE = ret.versionIntelTEE.length > 0;
 
+  ret.isMac = typeof process !== 'undefined'?process.platform === 'darwin':false;
+  ret.isWindows = typeof process !== 'undefined'?process.platform === 'win32':false;
+  ret.isLinux = typeof process !== 'undefined'?process.platform === 'linux':false;
+
+  ret.isDesktopApp = ret.isNW && (ret.isMac || ret.isWindows || ret.isLinux);
+
   return ret;
 });
