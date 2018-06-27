@@ -17,34 +17,6 @@ angular.module('copayApp.services')
       storage = localStorageService;
     }
 
-    /* migration script */
-    // var migratingProfile = false;
-    // if (isNW) {
-    //   $log.debug('NW.js app, checking if profile migration is needed..');
-    //   profileStorage = desktopSecureStorageService;
-    //   migratingProfile = true;
-    //   storage.get('profile', function(err, str) {
-    //     if (err || !str)
-    //       $log.warn(err);
-    //
-    //     if (str) {
-    //       $log.debug("Local Storage found.. Migration is needed..");
-    //       $log.debug("Trying to migrate profile!");
-    //       console.log(str);
-    //       profileStorage.set('profile', str, function(err) {
-    //         if (err)
-    //           $log.warn(err);
-    //         //else
-    //           //storage.remove('profile', function() {})
-    //       });
-    //
-    //     } else {
-    //       $log.debug("Local Storage not found.. skipping migration..");
-    //     }
-    //     migratingProfile = false;
-    //   });
-    // }
-
     var getUUID = function(cb) {
       // TO SIMULATE MOBILE
       //return cb('hola');
@@ -149,7 +121,7 @@ angular.module('copayApp.services')
 
     root.storeProfile = function(profile, cb) {
       var profileString = profile.toObj();
-      if (platformInfo.isNW) {
+      if (platformInfo.isNW && !platformInfo.isMac) {
         storage.set('profile', profileString, cb);
       } else {
         secureStorageService.set('profile', profileString, cb);
@@ -233,7 +205,7 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     root.getProfile = function(cb) {
-      if (platformInfo.isNW) {
+      if (platformInfo.isNW && !platformInfo.isMac) {
         storage.get('profile', function(getErr, getStr) {
           _onOldProfileRetrieved(getErr, getStr, cb);
           });
