@@ -87,6 +87,7 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
     
     if (!platformInfo.isMobile) {
       cb(new Error('mobileSecureStorageService is only available on mobile.'));
+      return;
     } 
 
     if (!isReady) {
