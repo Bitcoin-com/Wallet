@@ -1179,12 +1179,13 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           if (signedTxp.status == 'accepted') {
             ongoingProcess.set('broadcastingTx', true, customStatusHandler);
-            function handleBroadcastTx(err, broadcastedTxp) {
+
+            var handleBroadcastTx = function(err, broadcastedTxp) {
               ongoingProcess.set('broadcastingTx', false, customStatusHandler);
-              if (err) return cb(bwcError.msg(err));              
+              if (err) return cb(bwcError.msg(err));
               $rootScope.$emit('Local/TxAction', wallet.id);
               return cb(null, broadcastedTxp);
-            }
+            };
 
             if (signedTxp.payProUrl && signedTxp.coin == 'bch') {
               payproService.broadcastBchTx(signedTxp, handleBroadcastTx);
