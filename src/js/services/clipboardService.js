@@ -4,8 +4,6 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
   var root = {};
 
   root.copyToClipboard = function (data, scope) {
-    var msg = gettextCatalog.getString('Copied to clipboard');
-
     if (!data) return;
 
     if (platformInfo.isCordova) {
@@ -19,9 +17,6 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
       return;
     }
 
-    scope.$apply(function () {
-      ionicToast.show(msg, 'bottom', false, 1000);
-    });
   };
 
   return root;

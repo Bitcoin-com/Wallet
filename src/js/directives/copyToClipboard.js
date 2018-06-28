@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.directives')
-  .directive('copyToClipboard', function(clipboardService) {
+  .directive('copyToClipboard', function(clipboardService, ionicToast, gettextCatalog) {
     return {
       restrict: 'A',
       scope: {
@@ -14,8 +14,13 @@ angular.module('copayApp.directives')
 
         elem.bind('click', function() {
           var data = scope.copyToClipboard;
+          clipboardService.copyToClipboard(data);
 
-          clipboardService.copyToClipboard(data, scope);
+          var msg = gettextCatalog.getString('Copied to clipboard');
+          scope.$apply(function () {
+            ionicToast.show(msg, 'bottom', false, 1000);
+          });
+
         });
       }
     }

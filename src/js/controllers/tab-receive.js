@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -73,6 +73,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
           paymentSubscriptionObj.addr = $scope.addr
       }
+      clipboardService.copyToClipboard(paymentSubscriptionObj.addr);
 
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
