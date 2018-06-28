@@ -10,7 +10,8 @@
 
     var service = {
       decrypt: decrypt,
-      encrypt: encrypt
+      encrypt: encrypt,
+      removeKeyIfExists: removeKeyIfExists
     };
     return service;
 
@@ -140,6 +141,16 @@
         cb(null, encrypted);
       });
     };
+
+    function removeKeyIfExists() {
+      secureStorageService.remove(storageKey, function onKeyRemoved(err){
+        if (err) {
+          $log.Error('Error removing key.', err);
+          return;
+        }
+        $log.debug('Key removed.');
+      });
+    }
 
   });
 })();

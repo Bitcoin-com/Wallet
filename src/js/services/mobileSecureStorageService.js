@@ -57,6 +57,32 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
       key);
   };
 
+  root.remove = function(key, cb) {
+    
+    if (!platformInfo.isMobile) {
+      cb(new Error('mobileSecureStorageService is only available on mobile.'));
+    } 
+
+    if (!isReady) {
+      if (initialisationFailed) {
+        cb(new Error('mobileSecureStorageService initialisation failed.'));
+      } else {
+        pending.push(function(){ root.remove(key, cb); });
+      }
+      return;
+    }
+
+    storage.remove(
+      function (value) { 
+        cb();
+      },
+      function (error) { 
+        cb(new Error(error));
+      },
+      key);
+
+  };
+
   root.set = function(key, value, cb) {
     
     if (!platformInfo.isMobile) {

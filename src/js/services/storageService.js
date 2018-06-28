@@ -269,6 +269,8 @@ angular.module('copayApp.services')
 
         if (!profileStr) {
           $log.debug('No string loaded, returning nothing.');
+          // Don't want to use the same key as a previous installation
+          encryptionService.removeKeyIfExists();
           return cb(null, null);
         }
 
