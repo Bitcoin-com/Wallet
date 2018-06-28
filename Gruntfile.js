@@ -184,6 +184,7 @@ module.exports = function(grunt) {
           'bower_components/crypto-js/evpkdf.js',
           'bower_components/crypto-js/cipher-core.js',
           'bower_components/crypto-js/aes.js',
+          'bower_components/crypto-js/pbkdf2.js',
           
           'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
         ],

@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(appConfigService, encryptionService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
+  .factory('storageService', function(appConfigService, encryptionService, jsonEncryptionService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
 
     var root = {};
     var storage;
@@ -200,6 +200,50 @@ angular.module('copayApp.services')
       });
     };
 
+    function _migrateUnencryptedProfile(profileStr, cb) {
+      copayDecryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
+        if (decryptErr) return cb(decryptErr, null);
+        var profile;
+        try {
+          profile = Profile.fromString(decryptedStr);
+        } catch (e) {
+          $log.error('Could not read profile:', e);
+          return cb(new Error('Could not read profile.'), null);
+        }
+
+        // This is the only change to the contents of the profile.
+        profile.setAppVersion(appConfigService.version);
+        var newProfileStr = profile.toObj();
+
+        encryptionService.encrypt(newProfileStr, function onProfileEncrypted(encryptErr, encryptedProfile){
+          if (encryptErr) {
+            $log.error('Failed to encrypt profile.', encryptErr);
+            cb(encryptErr, null);
+            return;
+          }
+
+          var persistentProfileStr;
+          try {
+            persistentProfileStr = jsonEncryptionService.stringify(encryptedProfile.ciphertext, encryptedProfile.opts);
+          } catch(e) {
+            $log.error('Failed to stringify to encrypted profile.', e);
+            cb(e, null);
+            return;
+          }
+
+          storage.set('profile', persistentProfileStr, function onEncryptedProfileStored(setErr) {
+            if (setErr) {
+              $log.error('Failed to store encrypted profile.', setErr);
+              cb(setErr, null);
+              return; 
+            }
+
+            cb (null, profile);
+          });
+        });
+      });
+    }
+
     /**
      * 
      * @param {getProfileCallback} cb 
@@ -217,26 +261,43 @@ angular.module('copayApp.services')
           return cb(null, null);
         }
 
-        var encryptedProfile = encryptionService.encryptedObjectFromString(profileStr);
-        if (!encryptedProfile) {
+        var isEncrypted = jsonEncryptionService.isEncrypted(profileStr);
+        if (isEncrypted) {
+          $log.debug('profile was encrypted.');
+          
+          var encryptedProfileObject;
+          try {
+            encryptedProfileObject = jsonEncryptionService.parse(profileStr);
+          } catch (e) {
+            $log.error('Failed to parse encrypted profile.', e);
+            cb(e, null);
+            return;
+          }
 
-          copayDecryptOnMobile(profileStr, function(decryptErr, decryptedStr) {
-            if (decryptErr) return cb(decryptErr, null);
-            var profile;
-            try {
-              profile = Profile.fromString(decryptedStr);
-            } catch (e) {
-              $log.debug('Could not read profile:', e);
-              return cb(new Error('Could not read profile.'), null);
+          encryptionService.decrypt(
+            encryptedProfileObject.ciphertext, 
+            encryptedProfileObject.opts, 
+            function onDecrypted(decryptionError, decryptedProfile) {
+              if (decryptionError) {
+                $log.error('Failed to decrypt profile');
+                cb(decryptionError, null);
+                return
+              }
+
+              var profileObj = Profile.fromString(decryptedProfile);
+              cb(null, profileObj);
+          });
+          
+        } else {
+          _migrateUnencryptedProfile(profileStr, function onProfileMigrated(migrationErr, migratedProfile){
+            if (migrationErr) {
+              $log.error('Failed to migrate the profile.', migrationErr);
+              cb(migraionErr, null);
+              return;
             }
 
-            encryptedProfile = encryptionService.encrypt(profile);
-            $log.debug('encryptedProfile');
-
-            //cb(null, profile)
+            cb(null, migratedProfile);
           });
-        } else {
-          $log.debug('profile was encrypted.');
         }
 
 
