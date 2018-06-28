@@ -53,17 +53,54 @@ angular.module('copayApp.services').factory('encryptionService', function($log, 
     });
   };
 
+  /**
+   * 
+   * @param {*} str 
+   * @param {CryptoJS.WordArray} key 
+   * @param {string, hex} iv 
+   */
   function _decryptUsingCryptoJS(str, key, iv) {
-    var plaintext = CryptoJS.AES.decrypt(str, key, { iv: iv});
-    return plaintext;
+    $log.debug('decrypt() str: ' + str);
+    $log.debug('decrypt() using iv:' + iv + ', key: ' + JSON.stringify(key));
+    
+    var ivWords = CryptoJS.enc.Hex.parse(iv);
+    var plaintext = CryptoJS.AES.decrypt(str, key, { iv: ivWords });
+    $log.debug('plaintext', JSON.stringify(plaintext));
+
+    var plaintextWords = CryptoJS.lib.WordArray.create();
+    plaintextWords.init(plaintext.words, plaintext.sigBytes);
+    $log.debug('plaintextWords', JSON.stringify(plaintextWords));
+    var plaintextString = plaintextWords.toString(CryptoJS.enc.Utf8);
+    $log.debug('plaintextString:  ', JSON.stringify(plaintextString));
+
+    return plaintextString;
   }
 
 
   function _encryptUsingCryptoJS(str, key) {
+    $log.debug('encrypt() str: ' + str);
     var iv  = CryptoJS.lib.WordArray.random(16);
 
+    $log.debug('Encrypting profile: ', JSON.stringify(str));
+
     var cipherParams = CryptoJS.AES.encrypt(str, key, { iv: iv });
-    $log.debug('cipherText: ' + cipherParams.ciphertext);
+    var ciphertext = cipherParams.ciphertext.toString(CryptoJS.enc.Base64);
+    var iv = iv.toString(CryptoJS.enc.Hex);
+    $log.debug('ciphertext: ' + ciphertext);
+    $log.debug('iv: ' + iv);
+    
+    
+    root.decrypt(ciphertext, {iv: iv}, function onDecryptionTest(err, decrypted){
+      if (err) {
+        $log.error('Failed to decrypt encrypted.', err);
+        
+      } else {
+        $log.debug('Freshly decrypted:', JSON.stringify(decrypted));
+      }
+
+
+    });
+    
 
     return {
       ciphertext: cipherParams.ciphertext.toString(CryptoJS.enc.Base64),
@@ -87,6 +124,7 @@ angular.module('copayApp.services').factory('encryptionService', function($log, 
   };
 
   root.encrypt = function(str, cb) {
+    $log.debug('encrypt()', JSON.stringify('str'));
     $log.debug('*** crypto   exists: ' + !!crypto);
     $log.debug('*** CryptoJS exists: ' + !!CryptoJS);
 

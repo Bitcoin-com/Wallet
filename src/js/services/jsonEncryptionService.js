@@ -35,11 +35,11 @@
 
       var encryptedData = jsonObj.encryptedData;
       // extract ciphertext from json object, and create cipher params object 
-      var ciphertext = CryptoJS.enc.Base64.parse(encryptedData.ciphertext) 
-      var iv = CryptoJS.enc.Hex.parse(encryptedData.iv);
-      
-      // TODO: Need to convert iv into WordArray?
-      
+      //var ciphertext = CryptoJS.enc.Base64.parse(encryptedData.ciphertext) 
+      //var iv = CryptoJS.enc.Hex.parse(encryptedData.iv);
+      var ciphertext = encryptedData.ciphertext;
+      var iv = encryptedData.iv;
+
       return {
         ciphertext: ciphertext,
         opts: {

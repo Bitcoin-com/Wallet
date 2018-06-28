@@ -121,11 +121,22 @@ angular.module('copayApp.services')
 
     root.storeProfile = function(profile, cb) {
       var profileString = profile.toObj();
-      //if (platformInfo.isNW) {
-        storage.set('profile', profileString, cb);
-      //} else {
-      //  secureStorageService.set('profile', profileString, cb);
-      //}
+      encryptionService.encrypt(profileString, function onProfileEncrypted(encryptionErr, encryptedProfile){
+        if (encryptionErr) {
+          $log.error('Failed to encrypt profile.', enctryptionErr);
+          cb(encryptionErr, null);
+          return;
+        }
+
+        $log.debug('storing profile ciphertext:', JSON.stringify(encryptedProfile.ciphertext));
+        var persistentProfileStr = jsonEncryptionService.stringify(
+          encryptedProfile.ciphertext,
+          encryptedProfile.opts
+        );
+
+        
+        storage.set('profile', persistentProfileStr, cb);
+      });
     };
 
     /**
@@ -264,6 +275,7 @@ angular.module('copayApp.services')
         var isEncrypted = jsonEncryptionService.isEncrypted(profileStr);
         if (isEncrypted) {
           $log.debug('profile was encrypted.');
+          $log.debug('profileStr: ', profileStr);
           
           var encryptedProfileObject;
           try {
@@ -274,6 +286,8 @@ angular.module('copayApp.services')
             return;
           }
 
+          $log.debug('profileStr after JSON: ', JSON.stringify(encryptedProfileObject));
+
           encryptionService.decrypt(
             encryptedProfileObject.ciphertext, 
             encryptedProfileObject.opts, 
@@ -283,6 +297,8 @@ angular.module('copayApp.services')
                 cb(decryptionError, null);
                 return
               }
+
+              $log.debug('Decrypted profile:', JSON.stringify(decryptedProfile));
 
               var profileObj = Profile.fromString(decryptedProfile);
               cb(null, profileObj);
@@ -300,56 +316,7 @@ angular.module('copayApp.services')
           });
         }
 
-
-
       });
-
-      /*
-
-      if (platformInfo.isNW) {
-        storage.get('profile', function(getErr, getStr) {
-          _onOldProfileRetrieved(getErr, getStr, cb);
-          });
-          return
-      }
-
-      secureStorageService.get('profile', function(secureErr, secureStr) {
-        var secureProfile;
-        var oldProfile;
-
-        if (secureErr) {
-          return cb(secureErr, null);
-        }
-
-        if (secureStr) {
-          try {
-            secureProfile = Profile.fromString(secureStr);
-            $log.debug('profile: ' + JSON.stringify(secureProfile));
-          } catch (e) {
-            $log.error(e);
-            return cb(e, null);
-          }
-        }
-
-        storage.get('profile', function(getErr, getStr) {
-          _onOldProfileRetrieved(getErr, getStr, function(oldErr, oldProfile){
-          if (oldErr) {
-            return cb(oldErr, null);
-          }
-
-          if (!oldProfile) {
-            if (secureProfile) {
-              return cb(null, secureProfile);
-            } else {
-              // No profiles found. No errors either.
-              return cb(null, null);
-            }
-          }
-            _migrateProfiles(oldProfile, secureProfile, cb);
-          });
-        });
-      });
-      */
     };
 
     root.setFeedbackInfo = function(feedbackValues, cb) {
