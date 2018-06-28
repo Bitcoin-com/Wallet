@@ -14,6 +14,9 @@
     };
     return service;
 
+    /**
+     * Returns a CryptoJS.WordArray
+     */
     function _generateKey() {
       var salt = CryptoJS.lib.WordArray.random(128/8);
       var passphrase = CryptoJS.lib.WordArray.random(128/8);
@@ -79,36 +82,35 @@
       return plaintextString;
     }
 
-
+    /**
+     * Generates its own Initialization Vector, which is returned.
+     * @param {string, Base64 encoded} str 
+     * @param {CryptoJS.WordArray} key 
+     * @returns {*} The ciphertext created, and the IV used.
+     */
     function _encryptUsingCryptoJS(str, key) {
-      $log.debug('encrypt() str: ' + str);
       var iv  = CryptoJS.lib.WordArray.random(16);
 
-      $log.debug('Encrypting profile: ', JSON.stringify(str));
-
       var cipherParams = CryptoJS.AES.encrypt(str, key, { iv: iv });
-      var ciphertext = cipherParams.ciphertext.toString(CryptoJS.enc.Base64);
-      var iv = iv.toString(CryptoJS.enc.Hex);
-      $log.debug('ciphertext: ' + ciphertext);
-      $log.debug('iv: ' + iv);
+      var ciphertextWords = cipherParams.ciphertext.toString(CryptoJS.enc.Base64);
+      var ivHex = iv.toString(CryptoJS.enc.Hex);
       
       // Just for testing - do we get back what we put in?
-      decrypt(ciphertext, {iv: iv}, function onDecryptionTest(err, decrypted){
+      /*
+      decrypt(ciphertext, {iv: ivHex}, function onDecryptionTest(err, decrypted){
         if (err) {
           $log.error('Failed to decrypt encrypted.', err);
           
         } else {
           $log.debug('Freshly decrypted:', JSON.stringify(decrypted));
         }
-
-
       });
-      
+      */
 
       return {
-        ciphertext: cipherParams.ciphertext.toString(CryptoJS.enc.Base64),
+        ciphertext: ciphertextWords.toString(CryptoJS.enc.Base64),
         opts: { 
-          iv: iv.toString(CryptoJS.enc.Hex)
+          iv: ivHex
         }
       };
     }
@@ -127,9 +129,6 @@
     };
 
     function encrypt(str, cb) {
-      $log.debug('encrypt()', JSON.stringify('str'));
-      $log.debug('*** crypto   exists: ' + !!crypto);
-      $log.debug('*** CryptoJS exists: ' + !!CryptoJS);
 
       _getOrCreateKey(function onKey(err, key){
         if (err) {
