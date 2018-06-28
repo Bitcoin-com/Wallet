@@ -16,7 +16,17 @@ angular.module('copayApp.services').factory('secureStorageService', function(des
     } else { // Browser
       localStorageService.get(alteredKeyIndicatingDesireForSecureStorage(k), cb);
     }
-  }
+  };
+
+  root.remove = function(k, cb) {
+    if (platformInfo.isMobile) {
+      mobileSecureStorageService.remove(k, cb);
+    } else if (platformInfo.isNW) {
+      desktopSecureStorageService.remove(k, cb);
+    } else { // Browser
+      localStorageService.remove(alteredKeyIndicatingDesireForSecureStorage(k), cb);
+    }
+  };
 
   root.set = function(k, v, cb) {
     if (platformInfo.isMobile) {
@@ -26,7 +36,7 @@ angular.module('copayApp.services').factory('secureStorageService', function(des
     } else { // Browser
       localStorageService.set(alteredKeyIndicatingDesireForSecureStorage(k), v, cb);
     }
-  }
+  };
   
   return root;
 });
