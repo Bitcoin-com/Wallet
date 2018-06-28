@@ -35,6 +35,23 @@ angular.module('copayApp.services').factory('desktopSecureStorageService', funct
     });
   };
 
+  root.remove = function(key, cb) {
+    if (!platformInfo.isNW) {
+      cb(new Error('desktopSecureStorageService is only available on NW.js desktop.'));
+      return;
+    }
+
+    if (initialisationFailed)
+      return localStorageService.remove(key, cb);
+
+    storage.removePassword(serviceName, key).then(function (value) {
+      cb();
+    }).catch(function (error) {
+      console.log(error);
+      cb(new Error(error));
+    })
+  };
+
   root.set = function(key, value, cb) {
     if (!platformInfo.isNW) {
       cb(new Error('desktopSecureStorageService is only available on NW.js desktop.'));
