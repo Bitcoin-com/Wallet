@@ -153,7 +153,7 @@
     function removeKeyIfExists() {
       secureStorageService.remove(storageKey, function onKeyRemoved(err){
         if (err) {
-          $log.Error('Error removing key.', err);
+          $log.error('Error removing key.', err);
           return;
         }
         $log.debug('Key removed.');
