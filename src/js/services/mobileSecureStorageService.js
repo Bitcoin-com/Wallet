@@ -47,7 +47,7 @@ angular.module('copayApp.services').factory('mobileSecureStorageService', functi
       function (error) { 
         $log.debug('mss get failed. ' + error);
         if (error.message === 'Failure in SecureStorage.get() - The specified item could not be found in the keychain' || // iOS
-          error.message === 'Key [_SS_profile] not found.') { // Android
+          error.message === 'Key [_SS_' + key + '] not found.') { // Android
           // The callback expects no error, but also no value, if it cannot be found.
           cb(null, null);
         } else {

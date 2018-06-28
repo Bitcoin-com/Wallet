@@ -123,7 +123,7 @@ angular.module('copayApp.services')
       var profileString = profile.toObj();
       encryptionService.encrypt(profileString, function onProfileEncrypted(encryptionErr, encryptedProfile){
         if (encryptionErr) {
-          $log.error('Failed to encrypt profile.', enctryptionErr);
+          $log.error('Failed to encrypt profile.', encryptionErr);
           cb(encryptionErr, null);
           return;
         }
