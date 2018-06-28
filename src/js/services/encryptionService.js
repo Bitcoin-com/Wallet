@@ -124,7 +124,15 @@
           return;
         }
 
-        var decrypted = _decryptUsingCryptoJS(str, key, opts.iv);
+        var decrypted;
+        try {
+          decrypted = _decryptUsingCryptoJS(str, key, opts.iv);
+        } catch (e) {
+          // Can get this when using the wrong key: Malformed UTF-8 data
+          $log.error('Error when decrypting.', e);
+          cb(e, null);
+          return;
+        }
         cb(null, decrypted);
       });
     };
