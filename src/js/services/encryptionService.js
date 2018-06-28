@@ -55,7 +55,7 @@ angular.module('copayApp.services').factory('encryptionService', function($log, 
 
   /**
    * 
-   * @param {*} str 
+   * @param {string, Base64 encoded} str 
    * @param {CryptoJS.WordArray} key 
    * @param {string, hex} iv 
    */
@@ -89,7 +89,7 @@ angular.module('copayApp.services').factory('encryptionService', function($log, 
     $log.debug('ciphertext: ' + ciphertext);
     $log.debug('iv: ' + iv);
     
-    
+    // Just for testing - do we get back what we put in?
     root.decrypt(ciphertext, {iv: iv}, function onDecryptionTest(err, decrypted){
       if (err) {
         $log.error('Failed to decrypt encrypted.', err);
