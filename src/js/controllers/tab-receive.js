@@ -130,8 +130,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
-      $scope.$apply(function () {
+
+      if ($state.current.name === "tabs.receive")
         soundService.play('misc/payment_received.mp3');
+
+      $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
     }

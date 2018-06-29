@@ -13,9 +13,14 @@ angular.module('copayApp.services').service('soundService', function($log, $time
     configService.whenAvailable(function(config) {
       if (config.soundsEnabled) {
         if (platformInfo.isCordova) {
-          var p = window.location.pathname;
-          var device_path = p.substring(0, p.lastIndexOf('/'));
-          var audio = new Media(device_path + '/' + soundFile,
+
+          if (platformInfo.isAndroid) {
+            var p = window.location.pathname;
+            var device_path = p.substring(0, p.lastIndexOf('/'));
+            soundFile = device_path + '/' + soundFile;
+          }
+
+          var audio = new Media(soundFile,
               function () {
                 $log.debug("playAudio(bch_sent):Audio Success");
               },

@@ -624,7 +624,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         (processName == 'sendingTx' && !$scope.wallet.canSign() && !$scope.wallet.isPrivKeyExternal())
       ) && !isOn) {
       $scope.sendStatus = 'success';
-      soundService.play('misc/payment_sent.mp3');
+
+      if ($state.current.name === "tabs.send.confirm") // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
+        soundService.play('misc/payment_sent.mp3');
       firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();
