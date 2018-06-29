@@ -73,7 +73,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
           paymentSubscriptionObj.addr = $scope.addr
       }
-      clipboardService.copyToClipboard(paymentSubscriptionObj.addr);
+
+      clipboardService.copyToClipboard($scope.protocolHandler + ":" + $scope.addr);
 
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
