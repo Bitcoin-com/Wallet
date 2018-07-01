@@ -74,8 +74,12 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           paymentSubscriptionObj.addr = $scope.addr
       }
 
-      clipboardService.copyToClipboard($scope.protocolHandler + ":" + $scope.addr);
-
+      try {
+        clipboardService.copyToClipboard($scope.protocolHandler + ":" + $scope.addr);
+      } catch (error) {
+        $log.debug("Error copying to clipboard:");
+        $log.debug(error);
+      }
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
       currentAddressSocket.onopen = function (event) {
