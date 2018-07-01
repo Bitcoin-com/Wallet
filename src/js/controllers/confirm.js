@@ -287,9 +287,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
       txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
+        var parts = v.split(' ');
         tx.alternativeAmountStr = v;
-        tx.alternativeAmountValueStr = tx.alternativeAmountStr.split(' ')[0];
-        tx.alternativeAmountUnitStr = tx.alternativeAmountStr.split(' ')[1];
+        tx.alternativeAmountValueStr = parts[0];
+        tx.alternativeAmountUnitStr = (parts.length > 0) ? parts[1] : '';
       });
     }
 
@@ -428,8 +429,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
 
   function showSendMaxWarning(wallet, sendMaxInfo) {
-    var feeAlternative,
-      msg;
+    var feeAlternative = '',
+      msg = '';
 
     function verifyExcludedUtxos() {
       var warningMsg = [];

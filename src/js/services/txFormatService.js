@@ -79,7 +79,7 @@ angular.module('copayApp.services').factory('txFormatService', function($filter,
       var lessThanPrefix = '';
       if (subcent) {
         roundedNum = 0.01;
-        lessThanPrefix = '< '
+        lessThanPrefix = '< ';
       }
       var v1 = $filter('formatFiatAmount')(roundedNum);
       if (!v1) return null;
