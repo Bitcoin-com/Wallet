@@ -1,11 +1,5 @@
 #!/bin/bash
 
-SHOULD_SIGN=$1
-if [ "$SHOULD_SIGN" ]
-then
-  echo "Will sign the APP"
-fi
-
 # by Andy Maloney
 # http://asmaloney.com/2013/07/howto/packaging-a-mac-os-x-application-using-a-dmg/
 
@@ -16,21 +10,25 @@ if [ -d "$dir" ]; then
 fi
 
 # set up your app name, architecture, and background image file name
-APP_NAME="*USERVISIBLENAME*"
+APP_PACKAGE=$1
+APP_VERSION=$2
+APP_NAME=$3
+APP_FULLNAME=$4
+
 rm dmg-background.tiff
-ln -s ../resources/*PACKAGENAME*/mac/dmg-background.tiff dmg-background.tiff
+ln -s ../resources/bitcoin.com/mac/dmg-background.tiff dmg-background.tiff
 rm volume-icon.icns
-ln -s ../resources/*PACKAGENAME*/mac/volume-icon.icns volume-icon.icns
+ln -s ../resources/bitcoin.com/mac/volume-icon.icns volume-icon.icns
 DMG_VOLUME_ICON="volume-icon.icns"
 DMG_BACKGROUND_IMG="dmg-background.tiff"
 
-PATH_NAME="${APP_NAME}/osx64/"
+PATH_NAME="dmg/${APP_NAME}/osx64/"
 # you should not need to change these
 APP_EXE="${PATH_NAME}${APP_NAME}.app/Contents/MacOS/nwjs"
 
 VOL_NAME="${APP_NAME}"
-DMG_TMP="${VOL_NAME}-temp.dmg"
-DMG_FINAL="${VOL_NAME}.dmg"
+DMG_TMP="dmg/${VOL_NAME}-temp.dmg"
+DMG_FINAL="dmg/${VOL_NAME}.dmg"
 STAGING_DIR="tmp"
 
 # Check the background image DPI and convert it if it isn't 72x72
@@ -66,25 +64,6 @@ SIZE=250
 if [ $? -ne 0 ]; then
    echo "Error: Cannot compute size of staging dir"
    exit
- fi
-
-# Sign Code (MATIAS)
-if [ $SHOULD_SIGN ]
-then
-  echo "Signing ${APP_NAME} DMG"
-
-  export IDENTITY="3rd Party Mac Developer Application: BitPay, Inc. (884JRH5R93)"
-
-  # not need for 'out of app store' distribution (?)
-#  export PARENT_PLIST=parent.plist
-#  export CHILD_PLIST=child.plist
-  export APP_PATH=${STAGING_DIR}/${APP_NAME}.app
-
-  codesign --deep -s "${IDENTITY}"  $APP_PATH"/Contents/Versions/52.0.2743.82/nwjs Helper.app" && echo "Sign 1"
-  codesign --deep -s "${IDENTITY}"  $APP_PATH"/Contents/Versions/52.0.2743.82/nwjs Framework.framework/Resources/app_mode_loader.app" && echo "Sign 2"
-  codesign --deep -s "${IDENTITY}"  $APP_PATH && echo "Sign 3"
-  echo "Signing Done"
-
 fi
 
 # create the temp DMG file
@@ -174,6 +153,14 @@ hdiutil detach "${DEVICE}"
 # now make the final image a compressed disk image
 echo "Creating compressed image"
 hdiutil convert "${DMG_TMP}" -format UDZO -imagekey zlib-level=9 -o "${DMG_FINAL}"
+
+export DIST_PATH="dist"
+
+if [ ! -d $DIST_PATH ]; then
+  mkdir $DIST_PATH
+fi
+
+cp -vR "${DMG_FINAL}" "$DIST_PATH/${APP_PACKAGE}-wallet-${APP_VERSION}-osx.dmg"
 
 # clean up
 rm -rf "${DMG_TMP}"
