@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, secureStorageService, $timeout) {
+  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
 
     var root = {};
     var storage;
@@ -121,11 +121,7 @@ angular.module('copayApp.services')
 
     root.storeProfile = function(profile, cb) {
       var profileString = profile.toObj();
-      if (platformInfo.isNW) {
-        storage.set('profile', profileString, cb);
-      } else {
-        secureStorageService.set('profile', profileString, cb);
-      }
+      storage.set('profile', profileString, cb);
     };
 
     /**
@@ -205,48 +201,13 @@ angular.module('copayApp.services')
      * @param {getProfileCallback} cb 
      */
     root.getProfile = function(cb) {
-      if (platformInfo.isNW) {
-        storage.get('profile', function(getErr, getStr) {
-          _onOldProfileRetrieved(getErr, getStr, cb);
-          });
-          return
-      }
-
-      secureStorageService.get('profile', function(secureErr, secureStr) {
-        var secureProfile;
-        var oldProfile;
-
-        if (secureErr) {
-          return cb(secureErr, null);
+      storage.get('profile', function(getErr, getStr) {
+        if (getErr) {
+          cb(getErr, null);
+        } else {
+          profile = Profile.fromString(getStr);
+          cb(null, profile);
         }
-
-        if (secureStr) {
-          try {
-            secureProfile = Profile.fromString(secureStr);
-            $log.debug('profile: ' + JSON.stringify(secureProfile));
-          } catch (e) {
-            $log.error(e);
-            return cb(e, null);
-          }
-        }
-
-        storage.get('profile', function(getErr, getStr) {
-          _onOldProfileRetrieved(getErr, getStr, function(oldErr, oldProfile){
-          if (oldErr) {
-            return cb(oldErr, null);
-          }
-
-          if (!oldProfile) {
-            if (secureProfile) {
-              return cb(null, secureProfile);
-            } else {
-              // No profiles found. No errors either.
-              return cb(null, null);
-            }
-          }
-            _migrateProfiles(oldProfile, secureProfile, cb);
-          });
-        });
       });
     };
 
