@@ -203,15 +203,17 @@ angular.module('copayApp.services')
     root.getProfile = function(cb) {
       storage.get('profile', function(getErr, getStr) {
         if (getErr) {
-          return cb(getErr, null);
-        } else {
-          if (!getStr) {
-            return cb(null, null);
-          } else {
-            profile = Profile.fromString(getStr);
-            return cb(null, profile);
-          }  
+          cb(getErr, null);
+          return;
         }
+
+        if (!getStr) {
+          cb(null, null);
+          return;
+        }
+      
+        var profile = Profile.fromString(getStr);
+        cb(null, profile);
       });
     };
 
