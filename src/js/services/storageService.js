@@ -212,7 +212,7 @@ angular.module('copayApp.services')
           return;
         }
       
-        profile = Profile.fromString(getStr);
+        var profile = Profile.fromString(getStr);
         cb(null, profile);
       });
     };
