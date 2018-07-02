@@ -75,7 +75,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
 
       try {
-        clipboardService.copyToClipboard($scope.protocolHandler + ":" + $scope.addr);
+        clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
       } catch (error) {
         $log.debug("Error copying to clipboard:");
         $log.debug(error);
