@@ -287,7 +287,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
       txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
+        var parts = v.split(' ');
         tx.alternativeAmountStr = v;
+        tx.alternativeAmountValueStr = parts[0];
+        tx.alternativeAmountUnitStr = (parts.length > 0) ? parts[1] : '';
       });
     }
 
@@ -426,6 +429,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
 
   function showSendMaxWarning(wallet, sendMaxInfo) {
+    var feeAlternative = '',
+      msg = '';
 
     function verifyExcludedUtxos() {
       var warningMsg = [];
@@ -443,9 +448,18 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return warningMsg.join('\n');
     };
 
-    var msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees.", {
-      fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
-    });
+    feeAlternative = txFormatService.formatAlternativeStr(wallet.coin, sendMaxInfo.fee);
+    if (feeAlternative) {
+      msg = gettextCatalog.getString("{{feeAlternative}} will be deducted for bitcoin networking fees ({{fee}}).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee),
+        feeAlternative: feeAlternative
+      });
+    } else {
+      msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
+      });
+    }
+
     var warningMsg = verifyExcludedUtxos();
 
     if (!lodash.isEmpty(warningMsg))

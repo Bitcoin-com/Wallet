@@ -75,8 +75,6 @@
     <plugin name="cordova-plugin-media" spec="~5.0.2">
         <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
     </plugin>
-    <!-- Changes in error descriptions may break the use of cordova-plugin-secure-storage -->
-    <plugin name="cordova-plugin-secure-storage" spec="2.6.8" />
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.3.0" />

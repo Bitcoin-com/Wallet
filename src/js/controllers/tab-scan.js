@@ -122,8 +122,11 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     scannerService.openSettings();
   };
 
+  $scope.reactivationCount = 0;
   $scope.attemptToReactivate = function(){
-    scannerService.reinitialize();
+    scannerService.reinitialize(function(){
+      $scope.reactivationCount++;
+    });
   };
 
   $scope.toggleLight = function(){
