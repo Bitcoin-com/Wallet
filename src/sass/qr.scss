@@ -1,6 +1,6 @@
 qrcode {
   position: relative;
-  &.qr-icon {
+  &.qr-overlay {
     &::before {
       content: "";
       background-size: 100% 100%;
