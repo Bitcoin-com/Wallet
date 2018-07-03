@@ -625,8 +625,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       ) && !isOn) {
       $scope.sendStatus = 'success';
 
-      if ($state.current.name === "tabs.send.confirm") // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
+      if ($state.current.name === "tabs.send.confirm") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
         soundService.play('misc/payment_sent.mp3');
+      }
+      
       firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();
