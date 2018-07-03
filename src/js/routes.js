@@ -1383,6 +1383,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
     }
 
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      if (document.body.classList.contains('keyboard-open')) {
+        document.body.classList.remove('keyboard-open');
+        $log.debug('Prevented keyboard open bug..');
+      }
+
       $log.debug('Route change from:', fromState.name || '-', ' to:', toState.name);
       $log.debug('            toParams:' + JSON.stringify(toParams || {}));
       $log.debug('            fromParams:' + JSON.stringify(fromParams || {}));

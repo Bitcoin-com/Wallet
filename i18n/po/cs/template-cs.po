@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-05-08 00:44-0400\n"
+"PO-Revision-Date: 2018-06-22T04:02:46+0000\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -989,7 +989,7 @@ msgstr "Povolit push notifikace"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr ""
+msgstr "Povolit zvuky"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -1342,7 +1342,7 @@ msgstr "Začněte"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr "Začněte přidáním své první."
+msgstr "Začněte přidáním prvního."
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
@@ -1582,7 +1582,7 @@ msgstr "Nesprávná síťová adresa"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr ""
+msgstr "Nedostatečné potvrzené prostředky"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -1709,7 +1709,7 @@ msgstr "Načítání informací o transakci..."
 
 #: www/views/tab-settings.html:100
 msgid "Lock App"
-msgstr "Uzamknout aplikaci"
+msgstr "Uzamknutí aplikace"
 
 #: src/js/controllers/lockSetup.js:23
 msgid "Lock by Fingerprint"
@@ -2049,7 +2049,7 @@ msgstr "Otevřít GitHub projekt"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr ""
+msgstr "Otevřít Explorer"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -2256,7 +2256,7 @@ msgstr "Stiskněte znovu pro ukončení"
 
 #: src/js/services/feeService.js:11
 msgid "Priority"
-msgstr "Priorita"
+msgstr "Prioritní"
 
 #: www/views/includes/incomingDataMenu.html:80
 msgid "Private Key"
@@ -3196,7 +3196,7 @@ msgstr "Zobrazit Podmínky použití"
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr ""
+msgstr "Zobrazit transakci na Explorer.Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
