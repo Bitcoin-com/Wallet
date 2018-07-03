@@ -92,9 +92,11 @@
     <div class="ng-hide list card" ng-show="showServices && (walletsBch[0] || walletsBtc[0])" ng-include="'views/includes/services.html'"></div>
 
     <div class="list card card-banner">
-      <a ng-click="openStore()">
-        <img class="card-banner__img" src="img/banner-store.png"/>
+      <ion-spinner ng-if="bannerIsLoading"></ion-spinner>
+      <a ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
+        <img class="card-banner__img" ng-src="{{bannerImageUrl}}"/>
       </a>
+
     </div>
     
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/community.html'"></div>
