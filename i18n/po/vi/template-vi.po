@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-05-15 20:18-0400\n"
+"PO-Revision-Date: 2018-06-22T04:02:59+0000\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -24,7 +24,7 @@ msgstr "(có thể chi tiêu gấp đôi)"
 
 #: www/views/modals/txp-details.html:159
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
-msgstr ""
+msgstr "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
 
 #: www/views/tx-details.html:82
 msgid "- {{btx.feeRateStr}} of the transaction"
@@ -41,16 +41,16 @@ msgstr "Xếp hạng 5 sao giúp chúng tôi để {{appName}} đến tay nhiề
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr ""
+msgstr "<b>Only</b> redeemable on Mercado Livre (Brazil)"
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
 msgid "A member of the team will review your feedback as soon as possible."
-msgstr ""
+msgstr "A member of the team will review your feedback as soon as possible."
 
 #: src/js/controllers/confirm.js:401
 msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
-msgstr ""
+msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
