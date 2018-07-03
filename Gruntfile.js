@@ -136,6 +136,7 @@ module.exports = function(grunt) {
       },
       angular: {
         src: [
+          'src/shim/shim.js',
           'bower_components/qrcode-generator/js/qrcode.js',
           'bower_components/qrcode-generator/js/qrcode_UTF8.js',
           'bower_components/moment/min/moment-with-locales.js',
