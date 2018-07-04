@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2018-06-22T04:02:51+0000\n"
+"PO-Revision-Date: 2018-07-04 09:27\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "ポケット"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "ポケット番号"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "僅かな手数料で即時決済"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -631,7 +635,7 @@ msgstr "翻訳に協力"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
+msgstr "のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
@@ -2225,7 +2229,7 @@ msgstr "正しい順序で各単語をタップしてください。"
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
-msgstr "この操作を実行するにはCopayを最新バージョンに更新してください"
+msgstr "この操作を実行するにはを最新バージョンに更新してください"
 
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62

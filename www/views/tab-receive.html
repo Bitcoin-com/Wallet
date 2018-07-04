@@ -41,7 +41,7 @@
               </button>
             </span>
 
-            <qrcode class="qr-icon qr-icon--{{ wallet.coin }}" ng-if="addr" size="220" data="{{ protocolHandler }}:{{addr}}" color="#334"></qrcode>
+            <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" ng-if="addr" size="220" data="{{ protocolHandler }}:{{addr}}" color="#334"></qrcode>
             <div class="address-label">
               <span class="ellipsis">{{addr}}</span>
               <ion-spinner ng-show="!addr" class="spinner-dark" icon="crescent"></ion-spinner>

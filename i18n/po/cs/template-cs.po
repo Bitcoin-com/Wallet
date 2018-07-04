@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-06-22T04:02:46+0000\n"
+"PO-Revision-Date: 2018-07-04 09:26\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Účet"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Číslo účtu"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Okamžité transakce s nízkou platbou"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2018-06-22T04:02:48+0000\n"
+"PO-Revision-Date: 2018-07-04 09:26\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Account"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Account Nummer"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Directe transacties tegen lage kosten"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
