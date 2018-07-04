@@ -31,7 +31,7 @@ angular.module('copayApp.services').factory('bannerService', function ($http, $l
       banners = response.data;
       return cb(true);
     }, function (error) {
-      $log.error('Get banner settings: ERROR ' + response.statusText);
+      $log.error('Get banner settings: ERROR ' + error.statusText);
       return cb(false);
     });
   };
