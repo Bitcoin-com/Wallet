@@ -20,7 +20,7 @@ angular.module('copayApp.services').factory('bannerService', function ($http, $l
   var fetchSettings = function (cb) {
     var req = {
       method: 'GET',
-      url: marketingApiService+'/settings',
+      url: API_URL+'/settings',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -28,10 +28,10 @@ angular.module('copayApp.services').factory('bannerService', function ($http, $l
     };
     $http(req).then(function (response) {
       $log.info('Get banner settings: SUCCESS');
-      banners = response.data
+      banners = response.data;
       return cb(true);
     }, function (error) {
-      $log.error('Get banner settings: ERROR ' + data.statusText);
+      $log.error('Get banner settings: ERROR ' + response.statusText);
       return cb(false);
     });
   };
@@ -44,7 +44,7 @@ angular.module('copayApp.services').factory('bannerService', function ($http, $l
 
       // If never fetch, lets fetch
       fetchSettings(function (isSuccess) {
-        root.getBannerImage(cb);
+        root.getBanner(cb);
       });
 
     // If fetch, and got banners, lets have a look
@@ -55,14 +55,14 @@ angular.module('copayApp.services').factory('bannerService', function ($http, $l
 
         // Generate the URL for the banner
         var fileName = banner.image.substring(0, banner.image.lastIndexOf('.'));
-        var extension = banner.image.substring(banner.image.lastIndexOf('.'));
+        var extension = banner.image.substring(banner.image.lastIndexOf('.')+1);
         banner.imageURL = API_URL +'/banners/'+fileName+"/"+extension;
 
         // Add the banner
         selectedBanners.push(banners[i]);
       }
 
-      // If no banner activated, I return the default one
+      // If no banner activated, return the default one
       if (selectedBanners.length == 0) {
         return cb(defaultBanner);
       } else {

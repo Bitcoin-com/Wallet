@@ -25,11 +25,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       startupService.ready();
 
       bannerService.getBanner(function (banner) {
-        $scope.$apply(function () {
-          $scope.bannerImageUrl = banner.imageURL;
-          $scope.bannerUrl = banner.url;
-          $scope.bannerIsLoading = false;
-        });
+        $scope.bannerImageUrl = banner.imageURL;
+        $scope.bannerUrl = banner.url;
+        $scope.bannerIsLoading = false;
       });
     });
 
