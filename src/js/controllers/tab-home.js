@@ -23,11 +23,13 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
     $scope.$on("$ionicView.afterEnter", function() {
       startupService.ready();
-      bannerService.fetchBannerSettings(function(banners) {
-        var banner = banners[Math.floor(Math.random()*banners.length)];
-        $scope.bannerImageUrl = bannerService.getBannerImage(banner);
-        $scope.bannerUrl = banner.url;
-        $scope.bannerIsLoading = false;
+
+      bannerService.getBanner(function (banner) {
+        $scope.$apply(function () {
+          $scope.bannerImageUrl = banner.imageURL;
+          $scope.bannerUrl = banner.url;
+          $scope.bannerIsLoading = false;
+        });
       });
     });
 
