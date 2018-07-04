@@ -68,6 +68,10 @@ msgstr ""
 msgid "Account Number"
 msgstr ""
 
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr ""
+
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
 msgstr ""

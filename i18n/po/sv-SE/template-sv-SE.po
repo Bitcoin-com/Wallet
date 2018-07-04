@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2018-06-22T04:02:58+0000\n"
+"PO-Revision-Date: 2018-07-04 03:58\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Konto"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Kontonummer"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr ""
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -369,7 +373,7 @@ msgstr ""
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
 msgid "Bitcoin Cash Wallets"
-msgstr ""
+msgstr "Bitcoin Cash plånböcker"
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
