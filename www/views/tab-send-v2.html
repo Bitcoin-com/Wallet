@@ -1,0 +1,143 @@
+<ion-view id="tab-send2" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>{{'Send' | translate}}</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content>
+    <div ng-if="hasFunds">
+      <div class="send-wrapper item">
+        <div class="row">
+          <div class="input" ng-class="{'focus': searchFocus}">
+            <input type="text" class="search-input" placeholder="{{'Search or enter bitcoin address' | translate}}"
+                   ng-model="formData.search" ng-change="findContact(formData.search)" ng-model-onblur
+                   ng-focus="searchInFocus()" ng-blur="searchBlurred()">
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="row">
+            <div class="col-40">
+              <button class="button button-standard button-primary button-outline button-clipboard-paste" ng-click="pasteClipboard()" ng-class="{'contains-address': clipboardHasAddress}">
+                <span class="icon"></span><br/>
+                <span class="non-address" translate>Paste Clipboard</span>
+                <span class="address" translate>Paste Address</span>
+              </button>
+            </div>
+            <div class="col-60">
+              <button class="button button-standard button-primary button-outline">
+                <img src="img/icon-w2w.svg"/><br/>
+                <span translate>Wallet to Wallet Transfer</span>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <button class="button button-standard button-green button-qr" ui-sref="tabs.scan">
+              <span>
+                <img src="img/icon-scan-qr.svg"/>
+                <span translate>Scan QR Code</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="hasWallets && hasFunds && !hasContacts">
+      <div class="list sendTip">
+        <div class="title" translate>
+          Send Bitcoin faster!
+        </div>
+        <div class="subtitle">
+          <div ng-show="hasWallets" translate>
+            <p>Save frequently used addresses and send them Bitcoin in just one tap</p>
+          </div>
+          <div class="padding buttons">
+            <a class="button-first-contact" ng-click="addContact()">
+              <img src="img/icon-contact-add.svg"/>
+              <span translate>Add your first contact</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="!checkingBalance && (!hasFunds || !hasWallets)">
+      <div class="list card sendTip">
+        <div class="title" translate>
+          Your Bitcoin wallet is empty
+        </div>
+        <div class="subtitle">
+          <div ng-show="hasWallets" translate>
+            <p>To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address.</p>
+            <p>You can receive bitcoin from any wallet or service.</p>
+          </div>
+          <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some
+            bitcoin.
+          </div>
+          <div class="padding buttons">
+            <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="hasWallets" translate>
+              Buy Bitcoin now
+            </button>
+            <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets"
+                    translate>Create bitcoin wallet
+            </button>
+            <button class="button button-standard button-white" ui-sref="tabs.receive" ng-show="hasWallets" translate>
+              Show my address
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card contacts" ng-if="hasContacts && hasWallets && hasFunds">
+
+          <div class="item item-icon-right item-heading">
+            <div translate>Contacts</div>
+            <div translate class="subtitle"><span style="">Saved frequently used addresses</span></div>
+            <a ng-if="hasContacts" ui-sref="tabs.send.addressbook">
+              <i class="icon ion-ios-plus-empty list-add-button"></i>
+            </a>
+          </div>
+          <div class="list">
+            <a class="item item-icon-left item-icon-right" ng-repeat="item in list"
+               ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="goToAmount(item)">
+              <i class="icon big-icon-svg">
+                <gravatar class="send-gravatar" name="{{item.name}}" width="40" email="{{item.email}}"></gravatar>
+              </i>
+              {{item.name}}
+              <p>
+                <span>{{item.displayCoin}}</span>
+              </p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
+            <div class="show-more" ng-if="contactsShowMore" ng-click="showMore()" translate>
+              Show more
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="card" ng-if="showTransferCard && hasFunds">-->
+    <!--<div class="item item-icon-right item-heading" ng-click="toggle('transferToWallet')">-->
+    <!--<span translate>Transfer to Wallet</span>-->
+    <!--<i class="icon bp-arrow-up" ng-show="sectionDisplay.transferToWallet"></i>-->
+    <!--<i class="icon bp-arrow-down" ng-show="!sectionDisplay.transferToWallet"></i>-->
+    <!--</div>-->
+    <!--<div class="list" ng-show="sectionDisplay.transferToWallet">-->
+    <!--<a class="item item-icon-left item-icon-right"-->
+    <!--ng-repeat="item in list"-->
+    <!--ng-if="hasWallets && item.recipientType == 'wallet'"-->
+    <!--ng-click="goToAmount(item)">-->
+    <!--<i class="icon big-icon-svg" ng-if="item.recipientType == 'wallet'" ng-init="wallet = item"-->
+    <!--ng-include="'views/includes/walletIcon.html'"></i>-->
+    <!--{{item.name}}-->
+    <!--<p>-->
+    <!--<span>{{item.balanceString}}</span>-->
+    <!--</p>-->
+    <!--<i class="icon bp-arrow-right"></i>-->
+    <!--</a>-->
+    <!--</div>-->
+    <!--</div>-->
+
+  </ion-content>
+</ion-view>

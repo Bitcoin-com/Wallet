@@ -270,6 +270,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.send2', {
+        url: '/send2',
+        views: {
+          'tab-send': {
+            controller: 'tabSendV2Controller',
+            templateUrl: 'views/tab-send-v2.html',
+          }
+        }
+      })
       .state('tabs.settings', {
         url: '/settings',
         views: {
