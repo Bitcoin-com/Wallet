@@ -1,11 +1,74 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate) {
+angular.module('copayApp.controllers').controller('tabSendV2Controller', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate, clipboardService) {
+  var clipboardHasAddress = false;
+  var clipboardHasContent = false;
+
+  $scope.addContact = function() {
+    $state.go('tabs.settings').then(function() {
+      $state.go('tabs.addressbook').then(function() {
+        $state.go('tabs.addressbook.add');
+      });
+    });
+  };
+
+  $scope.pasteClipboard = function() {
+    if ($scope.clipboardHasAddress || $scope.clipboardHasContent) {
+      clipboardService.readFromClipboard(function(text) {
+        $scope.formData.search = text;
+        $scope.findContact($scope.formData.search);
+      });
+    }
+  };
+
+  $scope.$on("$ionicView.enter", function(event, data) {
+    clipboardService.readFromClipboard(function(text) {
+      if (text.length > 200) {
+        text = text.substring(0, 200);
+      }
+
+      $scope.clipboardHasAddress = false;
+      $scope.clipboardHasContent = false;
+      if ((text.indexOf('bitcoincash:') === 0 || text[0] === 'C' || text[0] === 'H' || text[0] === 'p' || text[0] === 'q') && text.replace('bitcoincash:', '').length === 42) { // CashAddr
+        $scope.clipboardHasAddress = true;
+      } else if ((text[0] === "1" || text[0] === "3" || text.substring(0, 3) === "bc1") && text.length >= 26 && text.length <= 35) { // Legacy Addresses
+        $scope.clipboardHasAddress = true;
+      } else if (text.length > 1) {
+        $scope.clipboardHasContent = true;
+      }
+    });
+
+    $ionicNavBarDelegate.showBar(true);
+    if (!$scope.hasWallets) {
+      $scope.checkingBalance = false;
+      return;
+    }
+    updateHasFunds();
+    updateWalletsList();
+    updateContactsList(function() {
+      updateList();
+    });
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   var originalList;
   var CONTACTS_SHOW_LIMIT;
   var currentContactsPage;
-  $scope.isChromeApp = platformInfo.isChromeApp;
+
   $scope.sectionDisplay = {
     transferToWallet: false
   };
@@ -245,25 +308,4 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     currentContactsPage = 0;
     hasWallets();
   });
-
-  $scope.$on("$ionicView.enter", function(event, data) {
-    $ionicNavBarDelegate.showBar(true);
-    if (!$scope.hasWallets) {
-      $scope.checkingBalance = false;
-      return;
-    }
-    updateHasFunds();
-    updateWalletsList();
-    updateContactsList(function() {
-      updateList();
-    });
-  });
-  
-  $scope.toggle = function(section) {
-    $scope.sectionDisplay[section] = !$scope.sectionDisplay[section];
-    $timeout(function() {
-      $ionicScrollDelegate.resize();
-      $scope.$apply();
-    }, 10);
-  };
 });
