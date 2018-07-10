@@ -3,6 +3,7 @@
 angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
+  var originalList;
 
   $scope.addContact = function() {
     $state.go('tabs.settings').then(function() {
@@ -50,27 +51,26 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   });
 
+  $scope.findContact = function(search) {
 
+    if (incomingData.redir(search)) {
+      return;
+    }
 
+    if (!search || search.length < 1) {
+      $scope.list = originalList;
+      $timeout(function() {
+        $scope.$apply();
+      });
+      return;
+    }
 
+    var result = lodash.filter(originalList, function(item) {
+      var val = item.name;
+      return lodash.startsWith(val.toLowerCase(), search.toLowerCase());
+    });
 
-
-
-
-
-
-
-
-
-
-
-
-  var originalList;
-  var CONTACTS_SHOW_LIMIT;
-  var currentContactsPage;
-
-  $scope.sectionDisplay = {
-    transferToWallet: false
+    $scope.list = result;
   };
 
   var hasWallets = function() {
@@ -79,6 +79,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
     $scope.hasWallets = lodash.isEmpty($scope.wallets) ? false : true;
   };
+
+
 
   // THIS is ONLY to show the 'buy bitcoins' message
   // does not has any other function.
@@ -138,12 +140,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       var walletList = [];
       lodash.each(walletsToTransfer, function(v) {
-        var displayBalanceAsFiat = 
-          // BD got v.status as undefined here once during development, just
-          // after creating a new wallet.
-          v.status && 
-          v.status.alternativeBalanceAvailable &&
-          config.wallet.settings.priceDisplay === 'fiat';
+        var displayBalanceAsFiat =
+            // BD got v.status as undefined here once during development, just
+            // after creating a new wallet.
+            v.status &&
+            v.status.alternativeBalanceAvailable &&
+            config.wallet.settings.priceDisplay === 'fiat';
 
         walletList.push({
           color: v.color,
@@ -152,7 +154,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           coin: v.coin,
           network: v.network,
           balanceString: displayBalanceAsFiat ?
-              v.status.totalBalanceAlternative + ' ' + v.status.alternativeIsoCode : 
+              v.status.totalBalanceAlternative + ' ' + v.status.alternativeIsoCode :
               v.cachedBalance,
           getAddress: function(cb) {
             walletService.getAddress(v, false, cb);
@@ -181,16 +183,14 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           recipientType: 'contact',
           coin: v.coin,
           displayCoin:  (v.coin == 'bch'
-                        ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
-                        : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
+              ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
+              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
           getAddress: function(cb) {
             return cb(null, k);
           },
         });
       });
-      var contacts = completeContacts.slice(0, (currentContactsPage + 1) * CONTACTS_SHOW_LIMIT);
-      $scope.contactsShowMore = completeContacts.length > contacts.length;
-      originalList = originalList.concat(contacts);
+      originalList = completeContacts;
       return cb();
     });
   };
@@ -203,28 +203,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     }, 10);
   };
 
-  $scope.openScanner = function() {
-    var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
-
-    if (!isWindowsPhoneApp) {
-      $state.go('tabs.scan');
-      return;
-    }
-
-    scannerService.useOldScanner(function(err, contents) {
-      if (err) {
-        popupService.showAlert(gettextCatalog.getString('Error'), err);
-        return;
-      }
-      incomingData.redir(contents);
-    });
-  };
-
-  $scope.showMore = function() {
-    currentContactsPage++;
-    updateWalletsList();
-  };
-
   $scope.searchInFocus = function() {
     $scope.searchFocus = true;
   };
@@ -233,28 +211,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     if ($scope.formData.search == null || $scope.formData.search.length == 0) {
       $scope.searchFocus = false;
     }
-  };
-
-  $scope.findContact = function(search) {
-
-    if (incomingData.redir(search)) {
-      return;
-    }
-
-    if (!search || search.length < 2) {
-      $scope.list = originalList;
-      $timeout(function() {
-        $scope.$apply();
-      });
-      return;
-    }
-
-    var result = lodash.filter(originalList, function(item) {
-      var val = item.name;
-      return lodash.includes(val.toLowerCase(), search.toLowerCase());
-    });
-
-    $scope.list = result;
   };
 
   $scope.goToAmount = function(item) {
@@ -304,8 +260,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       search: null
     };
     originalList = [];
-    CONTACTS_SHOW_LIMIT = 10;
-    currentContactsPage = 0;
     hasWallets();
   });
 });
