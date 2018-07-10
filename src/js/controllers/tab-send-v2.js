@@ -2,6 +2,7 @@
 
 angular.module('copayApp.controllers').controller('tabSendV2Controller', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
+  var clipboardHasContent = false;
 
   $scope.addContact = function() {
     $state.go('tabs.settings').then(function() {
@@ -12,19 +13,28 @@ angular.module('copayApp.controllers').controller('tabSendV2Controller', functio
   };
 
   $scope.pasteClipboard = function() {
-    clipboardService.readFromClipboard(function(text) {
-      $scope.formData.search = text;
-      $scope.findContact($scope.formData.search);
-    });
-  }
+    if ($scope.clipboardHasAddress || $scope.clipboardHasContent) {
+      clipboardService.readFromClipboard(function(text) {
+        $scope.formData.search = text;
+        $scope.findContact($scope.formData.search);
+      });
+    }
+  };
 
   $scope.$on("$ionicView.enter", function(event, data) {
     clipboardService.readFromClipboard(function(text) {
+      if (text.length > 200) {
+        text = text.substring(0, 200);
+      }
+
       $scope.clipboardHasAddress = false;
+      $scope.clipboardHasContent = false;
       if ((text.indexOf('bitcoincash:') === 0 || text[0] === 'C' || text[0] === 'H' || text[0] === 'p' || text[0] === 'q') && text.replace('bitcoincash:', '').length === 42) { // CashAddr
         $scope.clipboardHasAddress = true;
       } else if ((text[0] === "1" || text[0] === "3" || text.substring(0, 3) === "bc1") && text.length >= 26 && text.length <= 35) { // Legacy Addresses
         $scope.clipboardHasAddress = true;
+      } else if (text.length > 1) {
+        $scope.clipboardHasContent = true;
       }
     });
 

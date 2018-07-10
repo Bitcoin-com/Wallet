@@ -62,7 +62,10 @@
             display: inline-block;
             margin-bottom: 4px;
           }
-          &.contains-address {
+          &.contains-address, &.contains-content {
+            .address {
+              display: none;
+            }
             background: #FAB915;
             color: #FFF !important;
             border: 0;
@@ -70,11 +73,13 @@
             .icon {
               background: url(../img/icon-clipboard-paste-white.svg);
             }
-            .address {
-              display: inline;
-            }
-            .non-address {
-              display: none;
+            &.contains-address {
+              .address {
+                display: inline;
+              }
+              .non-address {
+                display: none;
+              }
             }
           }
         }
