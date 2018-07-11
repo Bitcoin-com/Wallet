@@ -45,11 +45,41 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       return;
     }
     updateHasFunds();
-    updateWalletsList();
     updateContactsList(function() {
       updateList();
     });
   });
+
+  var walletToWalletFrom = false;
+  var walletToWalletTo = false;
+
+  $scope.onWalletSelect = function(wallet) {
+    if (!$scope.walletToWalletFrom) {
+      $scope.walletToWalletFrom = wallet;
+      $scope.walletSelectorTitle = gettextCatalog.getString('Send to');
+      $timeout(function(){
+        $scope.showWallets = true;
+      }, 200);
+
+    } else {
+      $scope.walletToWalletTo = wallet;
+      walletService.getAddress($scope.walletToWalletFrom, true, function(err, addr) {
+        return $state.transitionTo('tabs.send.amount', {
+          displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
+          fromWalletId: $scope.walletToWalletFrom.walletId,
+          toAddress: addr,
+          coin: $scope.walletToWalletFrom.coin
+        });
+      });
+
+    }
+  };
+
+  $scope.showWalletSelector = function() {
+    $scope.walletToWalletFrom = false;
+    $scope.walletSelectorTitle = gettextCatalog.getString('Send from');
+    $scope.showWallets = true;
+  };
 
   $scope.findContact = function(search) {
 
@@ -79,11 +109,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
     $scope.hasWallets = lodash.isEmpty($scope.wallets) ? false : true;
   };
-
-
-
-  // THIS is ONLY to show the 'buy bitcoins' message
-  // does not has any other function.
 
   var updateHasFunds = function() {
 
@@ -118,52 +143,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       });
     });
   };
-
-  var updateWalletsList = function() {
-    var config = configService.getSync();
-    var networkResult = lodash.countBy($scope.wallets, 'network');
-
-    $scope.showTransferCard = $scope.hasWallets && (networkResult.livenet > 1 || networkResult.testnet > 1);
-
-    if ($scope.showTransferCard) {
-      var walletsToTransfer = $scope.wallets;
-      if (!(networkResult.livenet > 1)) {
-        walletsToTransfer = lodash.filter(walletsToTransfer, function(item) {
-          return item.network == 'testnet';
-        });
-      }
-      if (!(networkResult.testnet > 1)) {
-        walletsToTransfer = lodash.filter(walletsToTransfer, function(item) {
-          return item.network == 'livenet';
-        });
-      }
-
-      var walletList = [];
-      lodash.each(walletsToTransfer, function(v) {
-        var displayBalanceAsFiat =
-            // BD got v.status as undefined here once during development, just
-            // after creating a new wallet.
-            v.status &&
-            v.status.alternativeBalanceAvailable &&
-            config.wallet.settings.priceDisplay === 'fiat';
-
-        walletList.push({
-          color: v.color,
-          name: v.name,
-          recipientType: 'wallet',
-          coin: v.coin,
-          network: v.network,
-          balanceString: displayBalanceAsFiat ?
-              v.status.totalBalanceAlternative + ' ' + v.status.alternativeIsoCode :
-              v.cachedBalance,
-          getAddress: function(cb) {
-            walletService.getAddress(v, false, cb);
-          },
-        });
-      });
-      originalList = originalList.concat(walletList);
-    }
-  }
 
   var updateContactsList = function(cb) {
     var config = configService.getSync();
