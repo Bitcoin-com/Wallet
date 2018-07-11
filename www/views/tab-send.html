@@ -3,7 +3,7 @@
     <ion-nav-title>{{'Send' | translate}}</ion-nav-title>
   </ion-nav-bar>
   <ion-content>
-    <div ng-if="hasFunds">
+    <div id="tab-send-header" ng-if="hasFunds">
       <div class="send-wrapper item">
         <div class="row">
           <div class="input" ng-class="{'focus': searchFocus}">
@@ -86,7 +86,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div id="tab-send-contacts" class="row">
       <div class="col">
         <div class="card contacts" ng-if="hasContacts && hasWallets && hasFunds">
 
@@ -101,7 +101,7 @@
             <a class="item item-icon-left item-icon-right" ng-repeat="item in list"
                ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="goToAmount(item)">
               <i class="icon big-icon-svg">
-                <gravatar class="send-gravatar" name="{{item.name}}" width="40" email="{{item.email}}"></gravatar>
+                <gravatar class="send-gravatar" name="{{item.name}}" width="120" email="{{item.email}}"></gravatar>
               </i>
               {{item.name}}
               <p>

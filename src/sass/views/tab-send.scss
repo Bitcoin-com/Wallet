@@ -1,5 +1,18 @@
 #tab-send {
   @extend .deflash-blue;
+
+  &-header{
+    position: absolute;
+    height: 300px;
+    width: 100%;
+  }
+  &-contacts {
+    position: absolute;
+    top: 300px;
+    height: calc(100vh - 300px - 50px - 44px);
+    overflow: scroll;
+  }
+
   .input {
     width: 100%;
     input {
@@ -31,10 +44,9 @@
       background: #DEDEDE;
       bottom: 0;
       content: '';
-      margin: 20px 6px 0px;
+      margin: 10px 6px 0px;
     }
-    margin: 18px 0 0;
-    padding: 9px;
+    padding: 18px 9px 9px 9px;
     background-color: #f2f2f2;
     border-radius: 3px;
     border: none;
@@ -171,8 +183,6 @@
   .list {
     .item {
       font-weight: 600;
-      padding-top: 12px;
-      padding-bottom: 12px;
       p {
         font-weight: normal;
       }
@@ -181,8 +191,8 @@
       }
       color: #444;
       //border-top: none;
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;;
       .big-icon-svg {
         left: 5px;
         & > .bg {
@@ -230,6 +240,8 @@
     box-shadow: 0px 2px 1px 0 #C1C1C1;
     .gravatar {
       border-radius: 30px;
+      height: 40px;
+      width: 40px;
     }
   }
 
