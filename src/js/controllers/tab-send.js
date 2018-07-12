@@ -258,7 +258,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
     configService.whenAvailable(function(_config) {
       $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
-      config = _config;
     });
 
   });
