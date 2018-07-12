@@ -4,6 +4,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
+  $scope.displayBalanceAsFiat = true;
+  $scope.walletSelectorTitleForce = true;
 
   $scope.addContact = function() {
     $state.go('tabs.settings').then(function() {
@@ -50,22 +52,25 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   });
 
+  var wallets;
+  var walletsBch;
+  var walletsBtc;
   var walletToWalletFrom = false;
-  var walletToWalletTo = false;
 
   $scope.onWalletSelect = function(wallet) {
     if (!$scope.walletToWalletFrom) {
       $scope.walletToWalletFrom = wallet;
-      $scope.walletSelectorTitle = gettextCatalog.getString('Send to');
-      $timeout(function(){
-        $scope.showWallets = true;
-      }, 200);
-
+      if (wallet.coin === 'bch') {
+        $scope.showWalletsBch = true;
+      } else if (wallet.coin === 'btc') {
+        $scope.showWalletsBtc = true;
+      }
+      $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
     } else {
-      $scope.walletToWalletTo = wallet;
-      walletService.getAddress($scope.walletToWalletFrom, true, function(err, addr) {
+      walletService.getAddress(wallet, true, function(err, addr) {
         return $state.transitionTo('tabs.send.amount', {
           displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
+          recipientType: 'wallet',
           fromWalletId: $scope.walletToWalletFrom.walletId,
           toAddress: addr,
           coin: $scope.walletToWalletFrom.coin
@@ -77,7 +82,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.showWalletSelector = function() {
     $scope.walletToWalletFrom = false;
-    $scope.walletSelectorTitle = gettextCatalog.getString('Send from');
+    $scope.walletSelectorTitleFrom = gettextCatalog.getString('Send from');
     $scope.showWallets = true;
   };
 
@@ -106,6 +111,14 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   var hasWallets = function() {
     $scope.wallets = profileService.getWallets({
       onlyComplete: true
+    });
+    $scope.walletsBch = profileService.getWallets({
+      onlyComplete: true,
+      coin: 'bch'
+    });
+    $scope.walletsBtc = profileService.getWallets({
+      onlyComplete: true,
+      coin: 'btc'
     });
     $scope.hasWallets = lodash.isEmpty($scope.wallets) ? false : true;
   };
@@ -234,11 +247,19 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
+
     $scope.checkingBalance = true;
     $scope.formData = {
       search: null
     };
     originalList = [];
     hasWallets();
+
+    configService.whenAvailable(function(_config) {
+      $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
+      config = _config;
+    });
+
   });
 });

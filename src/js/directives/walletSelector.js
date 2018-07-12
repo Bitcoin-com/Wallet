@@ -8,6 +8,7 @@ angular.module('copayApp.directives')
       transclude: true,
       scope: {
         title: '=walletSelectorTitle',
+        forceTitle: '=walletSelectorForceTitle',
         show: '=walletSelectorShow',
         wallets: '=walletSelectorWallets',
         selectedWallet: '=walletSelectorSelectedWallet',
@@ -15,6 +16,7 @@ angular.module('copayApp.directives')
         displayBalanceAsFiat : '=walletSelectorDisplayBalanceAsFiat'
       },
       link: function(scope, element, attrs) {
+        console.log(scope, element, attrs);
         scope.hide = function() {
           scope.show = false;
         };

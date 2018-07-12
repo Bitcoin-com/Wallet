@@ -5,7 +5,7 @@
     ng-init="wallet.coin == 'btc' ? walletsBtc.push(wallet) : walletsBch.push(wallet)">
   </span>
 
-  <div class="header" ng-if="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
+  <div class="header" ng-if="(!walletsBtc[0] || !walletsBch[0]) || forceTitle === true">{{title}}</div>
 
   <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
     <div translate>Bitcoin Cash (BCH)</div>
