@@ -13,12 +13,16 @@ angular.module('copayApp.directives')
         wallets: '=walletSelectorWallets',
         selectedWallet: '=walletSelectorSelectedWallet',
         onSelect: '=walletSelectorOnSelect',
+        onHide: '=walletSelectorOnHide',
         displayBalanceAsFiat : '=walletSelectorDisplayBalanceAsFiat'
       },
       link: function(scope, element, attrs) {
         console.log(scope, element, attrs);
         scope.hide = function() {
           scope.show = false;
+          if (typeof scope.onHide === "function") {
+            scope.onHide()
+          }
         };
         scope.selectWallet = function(wallet) {
           $timeout(function() {

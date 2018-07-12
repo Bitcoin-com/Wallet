@@ -7,6 +7,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   $scope.displayBalanceAsFiat = true;
   $scope.walletSelectorTitleForce = true;
 
+
+
+  $scope.walletHide = function() {
+    console.log("wallet HIDE");
+    alert('test');
+  };
+
   $scope.addContact = function() {
     $state.go('tabs.settings').then(function() {
       $state.go('tabs.addressbook').then(function() {
