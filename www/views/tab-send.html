@@ -46,8 +46,8 @@
           Send Bitcoin faster!
         </div>
         <div class="subtitle">
-          <div ng-show="hasWallets" translate>
-            <p>Save frequently used addresses and send them Bitcoin in just one tap</p>
+          <div ng-show="hasWallets">
+            <p translate>Save frequently used addresses and send them Bitcoin in just one tap</p>
           </div>
           <div class="padding buttons">
             <a class="button-first-contact" ng-click="addContact()">
@@ -65,23 +65,15 @@
           Your Bitcoin wallet is empty
         </div>
         <div class="subtitle">
-          <div ng-show="hasWallets" translate>
-            <p>To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address.</p>
-            <p>You can receive bitcoin from any wallet or service.</p>
+          <div ng-show="hasWallets">
+            <p translate>To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address.</p>
+            <p translate>You can receive bitcoin from any wallet or service.</p>
           </div>
-          <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some
-            bitcoin.
-          </div>
+          <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</div>
           <div class="padding buttons">
-            <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="hasWallets" translate>
-              Buy Bitcoin now
-            </button>
-            <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets"
-                    translate>Create bitcoin wallet
-            </button>
-            <button class="button button-standard button-white" ui-sref="tabs.receive" ng-show="hasWallets" translate>
-              Show my address
-            </button>
+            <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="hasWallets" translate>Buy Bitcoin now</button>
+            <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
+            <button class="button button-standard button-white" ui-sref="tabs.receive" ng-show="hasWallets" translate>Show my address</button>
           </div>
         </div>
       </div>
@@ -91,7 +83,7 @@
         <div class="card contacts">
           <div class="item item-icon-right item-heading">
             <div translate>Contacts</div>
-            <div translate class="subtitle"><span style="">Saved frequently used addresses</span></div>
+            <div class="subtitle"><span translate>Saved frequently used addresses</span></div>
             <a ng-if="hasContacts" ui-sref="tabs.send.addressbook">
               <i class="icon ion-ios-plus-empty list-add-button"></i>
             </a>
