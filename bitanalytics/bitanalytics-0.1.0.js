@@ -6069,10 +6069,225 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+var click_action_1 = __importDefault(require("./actions/click-action"));
+var ActionFactory = /** @class */ (function () {
+    function ActionFactory() {
+    }
+    ActionFactory.createAction = function (type, config) {
+        // Check if the action is available
+        if (ActionFactory.classDictionary[type] == undefined) {
+            throw new Error('[BitAnalytics] ' + type + ' is not available.');
+        }
+        else {
+            // Create a action
+            var action = Object.create(ActionFactory.classDictionary[type].prototype);
+            action.constructor.apply(action, [config]);
+            action = action;
+            return action;
+        }
+    };
+    ActionFactory.classDictionary = {
+        'click': click_action_1.default
+    };
+    return ActionFactory;
+}());
+exports.default = ActionFactory;
+
+},{"./actions/click-action":5}],3:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var ActionHandlers = /** @class */ (function () {
+    function ActionHandlers() {
+        this.actions = [];
+        var self = this;
+        var callback = function () {
+            if (self.timeout) {
+                clearTimeout(self.timeout);
+            }
+            self.timeout = setTimeout(function () {
+                console.log('[BitAnalytics] Content modified, refreshing trackers');
+                self.refreshTrackers();
+                self.timeout = undefined;
+            }, 300);
+        };
+        if (MutationObserver) {
+            var targetNode = document.getElementsByTagName('body');
+            var config = { attributes: true, childList: true, subtree: true };
+            // Create an observer instance linked to the callback function
+            var observer = new MutationObserver(callback);
+            // Start observing the target node for configured mutations
+            observer.observe(targetNode[0], config);
+        }
+        else {
+            window.addEventListener("DOMSubtreeModified", callback);
+        }
+    }
+    /**
+     *
+     * Public methods
+     *
+     */
+    ActionHandlers.prototype.refreshTrackers = function () {
+        this.actions.map(function (action) {
+            try {
+                action.stopTracking();
+            }
+            catch (err) {
+                console.log(err);
+            }
+            try {
+                action.startTracking();
+            }
+            catch (err) {
+                console.log(err);
+            }
+        });
+    };
+    ActionHandlers.prototype.trackAction = function (action) {
+        this.actions.push(action);
+    };
+    return ActionHandlers;
+}());
+exports.default = ActionHandlers;
+
+},{}],4:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Action = /** @class */ (function () {
+    function Action(config) {
+        if (!config.name) {
+            throw new Error('[BitAnalytics] Action should have a name config : { name : ... }');
+        }
+        this.name = config.name;
+        this.isTracking = false;
+    }
+    return Action;
+}());
+exports.default = Action;
+
+},{}],5:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var action_1 = __importDefault(require("../action"));
+var log_event_handlers_1 = __importDefault(require("../log-event-handlers"));
+var log_event_1 = __importDefault(require("../log-event"));
+var ClickAction = /** @class */ (function (_super) {
+    __extends(ClickAction, _super);
+    function ClickAction(config) {
+        var _this = _super.call(this, config) || this;
+        _this.params = [];
+        if (!config.class || !config.channels) {
+            throw new Error('[BitAnalytics] ClickAction should have a config like this : { class : ..., channels: ... }');
+        }
+        if (config.params) {
+            _this.params = config.params;
+        }
+        _this.class = config.class;
+        _this.channels = config.channels;
+        var self = _this;
+        _this.listener = function (event) {
+            /*console.log('on click');
+            console.log(event.target.id);
+            console.log(event.target.outerHTML);
+            console.log(event.target.outerText);*/
+            var params = {};
+            var target = _this.searchTarget(event.srcElement);
+            // If I found my element, that should happen 100%
+            if (target) {
+                self.params.map(function (param) {
+                    var value = target[param];
+                    if (value) {
+                        params[param] = value;
+                    }
+                    else {
+                        var item = target.attributes.getNamedItem(param);
+                        if (item) {
+                            params[param] = item.value;
+                        }
+                    }
+                });
+            }
+            var logEvent = new log_event_1.default(self.name, [params], self.channels);
+            log_event_handlers_1.default.sharedInstance().postEvent(logEvent);
+        };
+        _this.isTracking = false;
+        return _this;
+    }
+    /**
+     *
+     * Private methods
+     *
+     */
+    ClickAction.prototype.searchTarget = function (element) {
+        if (element && element.classList && element.classList.contains(this.class)) {
+            return element;
+        }
+        else if (element.parentElement) {
+            return this.searchTarget(element.parentElement);
+        }
+        else {
+            return undefined;
+        }
+    };
+    /**
+     *
+     * Public methods
+     *
+     */
+    ClickAction.prototype.startTracking = function () {
+        if (this.isTracking) {
+            throw new Error('[BitAnalytics] The tacking is already started');
+        }
+        this.isTracking = true;
+        var elements = document.getElementsByClassName(this.class);
+        // Add event listener to all the elements found
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            console.log('init ' + this.name);
+            element.addEventListener('click', this.listener);
+        }
+    };
+    ClickAction.prototype.stopTracking = function () {
+        if (!this.isTracking) {
+            throw new Error('[BitAnalytics] The tacking is already stopped');
+        }
+        var elements = document.getElementsByClassName(this.class);
+        // Add event listener to all the elements found
+        for (var i = 0; i < elements.length; i++) {
+            var element = elements[i];
+            element.removeEventListener('click', this.listener);
+        }
+        this.isTracking = false;
+    };
+    return ClickAction;
+}(action_1.default));
+exports.default = ClickAction;
+
+},{"../action":4,"../log-event":15,"../log-event-handlers":14}],6:[function(require,module,exports){
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 var log_event_handlers_1 = __importDefault(require("./log-event-handlers"));
 var log_event_1 = __importDefault(require("./log-event"));
+var action_factory_1 = __importDefault(require("./action-factory"));
 var adjust_channel_1 = __importDefault(require("./channels/adjust-channel"));
 var mixpanel_channel_1 = __importDefault(require("./channels/mixpanel-channel"));
+var action_handlers_1 = __importDefault(require("./action-handlers"));
 var channels;
 (function (channels) {
     channels.AdjustChannel = adjust_channel_1.default;
@@ -6082,12 +6297,13 @@ var BitAnalytics = /** @class */ (function () {
     function BitAnalytics() {
     }
     BitAnalytics.initialize = function (os, appVersion, channelConfigs) {
-        if (typeof window === 'undefined') {
-            console.error('BitAnalytics can be used only in a web browser.');
-            return;
+        if (window == undefined) {
+            console.error('[BitAnalytics] BitAnalytics cannot be integrated in window.');
         }
         BitAnalytics.LogEventHandlers = new log_event_handlers_1.default(os, appVersion, channelConfigs);
+        BitAnalytics.ActionHandlers = new action_handlers_1.default();
         BitAnalytics.LogEvent = log_event_1.default;
+        BitAnalytics.ActionFactory = action_factory_1.default;
     };
     BitAnalytics.main = function () {
         if (window) {
@@ -6099,42 +6315,43 @@ var BitAnalytics = /** @class */ (function () {
 exports.default = BitAnalytics;
 BitAnalytics.main();
 
-},{"./channels/adjust-channel":5,"./channels/mixpanel-channel":7,"./log-event":10,"./log-event-handlers":9}],3:[function(require,module,exports){
+},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":12,"./log-event":15,"./log-event-handlers":14}],7:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var mixpanel_channel_1 = __importDefault(require("./channels/mixpanel-channel"));
-var firebase_channel_1 = __importDefault(require("./channels/firebase-channel"));
 var adjust_channel_1 = __importDefault(require("./channels/adjust-channel"));
+var firebase_channel_1 = __importDefault(require("./channels/firebase-channel"));
+var ga_channel_1 = __importDefault(require("./channels/ga-channel"));
+var mixpanel_channel_1 = __importDefault(require("./channels/mixpanel-channel"));
 var ChannelFactory = /** @class */ (function () {
     function ChannelFactory() {
     }
     ChannelFactory.createChannel = function (name, config) {
         // Check if the channel is available
         if (ChannelFactory.classDictionary[name] == undefined) {
-            throw new DOMException(name + ' is not available.');
+            throw new Error('[BitAnalytics] ' + name + ' is not available.');
         }
         else {
             // Create a channel
             var channel = Object.create(ChannelFactory.classDictionary[name].prototype);
             channel.constructor.apply(channel, [name, config]);
             channel = channel;
-            console.log(channel);
             return channel;
         }
     };
     ChannelFactory.classDictionary = {
-        'mixpanel': mixpanel_channel_1.default,
+        'adjust': adjust_channel_1.default,
         'firebase': firebase_channel_1.default,
-        'adjust': adjust_channel_1.default
+        'ga': ga_channel_1.default,
+        'mixpanel': mixpanel_channel_1.default
     };
     return ChannelFactory;
 }());
 exports.default = ChannelFactory;
 
-},{"./channels/adjust-channel":5,"./channels/firebase-channel":6,"./channels/mixpanel-channel":7}],4:[function(require,module,exports){
+},{"./channels/adjust-channel":9,"./channels/firebase-channel":10,"./channels/ga-channel":11,"./channels/mixpanel-channel":12}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Channel = /** @class */ (function () {
@@ -6143,14 +6360,6 @@ var Channel = /** @class */ (function () {
         this.queue = new Array();
         this.name = name;
     }
-    /**
-     *
-     * Public methods
-     *
-     */
-    Channel.prototype.getName = function () {
-        return this.name;
-    };
     /**
      *
      * Protected methods
@@ -6169,7 +6378,7 @@ var Channel = /** @class */ (function () {
 }());
 exports.default = Channel;
 
-},{}],5:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6185,43 +6394,119 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('../lib/adjust');
 var channel_1 = __importDefault(require("../channel"));
+// Loading Adjust websdk
+require('../external-libs/adjust');
 var AdjustChannel = /** @class */ (function (_super) {
     __extends(AdjustChannel, _super);
     function AdjustChannel(name, config) {
         var _this = _super.call(this, name) || this;
-        _this.device_ids = {
-            "gps_adid": "3ea5fac8-cf01-47d5-8aec-9a1354f5e84a"
-        };
-        _this.eventTypes = {
-            "wallet_created": "nd3dg5"
-        };
         if (!config.token) {
-            throw new DOMException('Config incorrect.');
+            throw new Error('[BitAnalytics] Adjust config is missing token.');
         }
-        if (Adjust) {
-            _this.adjust = new Adjust("au1onbhgg5q8", "sandbox", "android");
-            //this.adjust.trackSession(this.device_ids);
-            _this.isReady = true;
-            console.log('Adjust initialised.');
+        if (!config.eventTypes) {
+            throw new Error('[BitAnalytics] Adjust config is missing event types.');
         }
-        else {
-            console.log('Adjust missing.');
+        if (!Adjust) {
+            throw new Error('[BitAnalytics] Adjust cordova plugin is not installed correctly.');
         }
+        _this.eventTypes = config.eventTypes;
+        var os = _this.adjustedOs(config.os);
+        _this.advertisingId = _this.getAdvertisingId(os);
+        console.log('Advertising ID for adjust: ' + _this.advertisingId);
+        // TODO: Different initialisation for Cordova.
+        var sessionParams = {
+            app_version: config.appVersion,
+            app_version_short: config.appVersion,
+            os_name: os
+        };
+        _this.addAdvertisingId(os, sessionParams);
+        var environment = config.environment || 'production';
+        _this.adjustInstance = new Adjust(config.token, environment, os);
+        _this.adjustInstance.trackSession(sessionParams);
+        _this.isReady = true;
         return _this;
     }
+    /**
+     *
+     * Public methods
+     *
+     */
     AdjustChannel.prototype.postEvent = function (name, params) {
-        //var result = this.mixpanelInstance.track(logEvent.name);
         if (this.isReady) {
-            this.adjust.trackEvent('nd3dg5', this.device_ids);
+            var eventType = this.eventTypes[name];
+            // Each event needs to be added on adjust, and config for adjust.
+            if (!eventType) {
+                throw new Error('This event name does not exist on Adjust.');
+            }
+            params.os = this.adjustedOs(params.os);
+            this.addAdvertisingId(params.os, params);
+            this.adjustInstance.trackEvent(eventType, params);
         }
+    };
+    /**
+     *
+     * Private methods
+     *
+     */
+    AdjustChannel.prototype.addAdvertisingId = function (os, params) {
+        if (os === 'ios') {
+            params.idfa = this.advertisingId;
+        }
+        else if (os === 'android') {
+            params.gps_adid = this.advertisingId;
+        }
+        else {
+            params.win_hwid = this.advertisingId;
+            params.win_naid = this.advertisingId;
+            params.win_adid = this.advertisingId;
+        }
+    };
+    // Desktop version will pretend to be Windows
+    AdjustChannel.prototype.adjustedOs = function (os) {
+        if (os === 'ios' || os === 'android') {
+            return os;
+        }
+        else {
+            return 'wstore';
+        }
+    };
+    AdjustChannel.prototype.generateRandomGuid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    // Example: 107e8ea14329d4a2194ebbb6dc0c0fd7
+    AdjustChannel.prototype.generateWindowsAdvertisingId = function () {
+        var id = '';
+        for (var i = 0; i < 32; i++) {
+            id += Math.floor(Math.random() * 16).toString(16);
+        }
+        return id;
+    };
+    // https://docs.adjust.com/en/event-tracking/
+    AdjustChannel.prototype.getAdvertisingId = function (os) {
+        var adid = localStorage.getItem('adid');
+        if (!adid) {
+            if (os === 'ios') {
+                adid = this.generateRandomGuid().toUpperCase();
+            }
+            else if (os === 'android') {
+                adid = this.generateRandomGuid();
+            }
+            else {
+                adid = this.generateWindowsAdvertisingId();
+            }
+            localStorage.setItem('adid', adid);
+        }
+        return adid;
     };
     return AdjustChannel;
 }(channel_1.default));
 exports.default = AdjustChannel;
 
-},{"../channel":4,"../lib/adjust":8}],6:[function(require,module,exports){
+},{"../channel":8,"../external-libs/adjust":13}],10:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6245,16 +6530,21 @@ var FirebaseChannel = /** @class */ (function (_super) {
         /**
          * Firebase available only on ios and android
          */
-        if (config['os'] != 'android' && config['os'] != 'ios') {
-            throw new DOMException('Firebase is not supported on ' + config['os']);
+        if (config.os != 'android' && config.os != 'ios') {
+            throw new Error('[BitAnalytics] Firebase is not supported on ' + config.os);
         }
         if (!window.FirebasePlugin) {
-            throw new DOMException('Firebase cordova plugin is not installed correctly.');
+            throw new Error('[BitAnalytics] Firebase cordova plugin is not installed correctly.');
         }
         _this.firebaseInstance = window.FirebasePlugin;
         _this.isReady = true;
         return _this;
     }
+    /**
+     *
+     * Public methods
+     *
+     */
     FirebaseChannel.prototype.postEvent = function (name, params) {
         var _this = this;
         if (!this.isReady) {
@@ -6268,7 +6558,90 @@ var FirebaseChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = FirebaseChannel;
 
-},{"../channel":4}],7:[function(require,module,exports){
+},{"../channel":8}],11:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var channel_1 = __importDefault(require("../channel"));
+var GoogleAnalyticsChannel = /** @class */ (function (_super) {
+    __extends(GoogleAnalyticsChannel, _super);
+    function GoogleAnalyticsChannel(name, config) {
+        var _this = _super.call(this, name) || this;
+        _this.dataLayer = null;
+        _this.gaInstance = null;
+        _this.trackingId = '';
+        _this.eventLabels = ['id'];
+        if (!config.trackingId) {
+            throw new Error('[BitAnalytics] Google Analytics config is missing tracking ID.');
+        }
+        if (config.eventLabels) {
+            _this.eventLabels = config.eventLabels;
+        }
+        _this.trackingId = config.trackingId;
+        _this.setUpGa();
+        return _this;
+    }
+    /**
+     *
+     * Public methods
+     *
+     */
+    GoogleAnalyticsChannel.prototype.postEvent = function (name, params) {
+        // Default Google Analytics Events
+        // https://developers.google.com/analytics/devguides/collection/gtagjs/events
+        // Useful to convert to these, or start with these?
+        if (this.isReady) {
+            params.event_category = name;
+            for (var _i = 0, _a = this.eventLabels; _i < _a.length; _i++) {
+                var eventLabel = _a[_i];
+                if (params[eventLabel]) {
+                    params.event_label = params[eventLabel];
+                    break;
+                }
+            }
+            this.gtag('event', name, params);
+        }
+    };
+    /**
+     *
+     * Private methods
+     *
+     */
+    /**
+     * Mimics function in the tracking snippet
+     */
+    GoogleAnalyticsChannel.prototype.gtag = function () {
+        var args = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            args[_i] = arguments[_i];
+        }
+        console.log(arguments);
+        window.dataLayer.push(arguments);
+    };
+    GoogleAnalyticsChannel.prototype.setUpGa = function () {
+        // From what GA recommends to insert into page
+        window.dataLayer = window.dataLayer || [];
+        this.gtag('js', new Date());
+        this.gtag('config', this.trackingId);
+        this.isReady = true;
+    };
+    return GoogleAnalyticsChannel;
+}(channel_1.default));
+exports.default = GoogleAnalyticsChannel;
+
+},{"../channel":8}],12:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6291,12 +6664,17 @@ var MixpanelChannel = /** @class */ (function (_super) {
     function MixpanelChannel(name, config) {
         var _this = _super.call(this, name) || this;
         if (!config.token) {
-            throw new DOMException('Config incorrect.');
+            throw new DOMException('[BitAnalytics] Config incorrect.');
         }
         _this.mixpanelInstance = mixpanel;
         mixpanel.init(config.token, config.config);
         return _this;
     }
+    /**
+     *
+     * Public methods
+     *
+     */
     MixpanelChannel.prototype.postEvent = function (name, params) {
         var result = this.mixpanelInstance.track(name);
     };
@@ -6304,7 +6682,7 @@ var MixpanelChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = MixpanelChannel;
 
-},{"../channel":4,"mixpanel-browser":1}],8:[function(require,module,exports){
+},{"../channel":8,"mixpanel-browser":1}],13:[function(require,module,exports){
 "use strict";
 (function (window) {
     var sendRequest = function (method, url, data, success_cb, error_cb) {
@@ -6353,7 +6731,7 @@ exports.default = MixpanelChannel;
     window.Adjust = function (app_token, environment, os_name) { this.trackSession = function (device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/session?" + encodeQueryString(params)); }; this.trackEvent = function (event_token, device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.event_token = event_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/event?" + encodeQueryString(params)); }; };
 })(window);
 
-},{}],9:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6366,7 +6744,7 @@ var LogEventHandlers = /** @class */ (function () {
         this.appVersion = appVersion;
         this.channels = [];
         this.isReady = false; // Ready once all channels are ready or one channel is ready?
-        this.initialize(channelConfigs);
+        this.initializeChannels(channelConfigs);
         LogEventHandlers.instance = this;
     }
     /**
@@ -6379,26 +6757,8 @@ var LogEventHandlers = /** @class */ (function () {
             return LogEventHandlers.instance;
         }
         else {
-            throw new DOMException('LogEventHandlers need to be initialized');
+            throw new Error('[BitAnalytics] LogEventHandlers need to be initialized');
         }
-    };
-    LogEventHandlers.prototype.initialize = function (channelConfigs) {
-        var _this = this;
-        // Get the channel names by the keys
-        var channelNames = Object.keys(channelConfigs);
-        // Iterate to init the several channels given in the config
-        channelNames.map(function (channelName) {
-            var channelConfig = channelConfigs[channelName];
-            // OS shared to check the availability of this channel on this OS.
-            channelConfig['os'] = _this.os;
-            try {
-                var channel = channel_factory_1.default.createChannel(channelName, channelConfig);
-                _this.channels.push(channel);
-            }
-            catch (error) {
-                console.log(error.name + ': ' + error.message);
-            }
-        });
     };
     LogEventHandlers.prototype.postEvent = function (logEvent) {
         var _this = this;
@@ -6408,7 +6768,7 @@ var LogEventHandlers = /** @class */ (function () {
          * 2 is second channel
          * ...
          */
-        var logEventParams = logEvent.getParams();
+        var logEventParams = logEvent.params;
         // params
         var params = {
             'os': this.os,
@@ -6417,10 +6777,10 @@ var LogEventHandlers = /** @class */ (function () {
         // Concat the shared params
         if (logEventParams.length > 0) {
             // concat specific params needed
-            params = Object.assign({}, logEventParams[0], params);
+            params = this.concatObject(logEventParams[0], params);
         }
         // Post event depending of the channel
-        logEvent.getChannelNames().map(function (channelName, i) {
+        logEvent.channelNames.map(function (channelName, i) {
             var channel = _this.getChannelByName(channelName);
             if (channel) {
                 // Real index (first param is shared by all channels)
@@ -6428,14 +6788,21 @@ var LogEventHandlers = /** @class */ (function () {
                 // concat if needed
                 if (logEventParams.length > index) {
                     // concat specific params needed
-                    params = Object.assign({}, logEventParams[index], params);
+                    params = _this.concatObject(logEventParams[index], params);
                 }
-                channel.postEvent(logEvent.getName(), params);
-                console.log('LogEvent "' + logEvent.getName() + '" sent to ' + channelName + '.');
+                console.log('[BitAnalytics] Params: ' + JSON.stringify(params));
+                try {
+                    channel.postEvent(logEvent.name, params);
+                    console.log('[BitAnalytics] LogEvent "' + logEvent.name + '" sent to ' + channelName + '.');
+                }
+                catch (e) {
+                    console.error('[BitAnalytics] LogEvent "' + logEvent.name + '" failed to send with "' + channelName + '. ');
+                    console.log(e);
+                }
             }
             else {
                 // Channel not available
-                console.log('LogEvent "' + logEvent.getName() + '" cannot send to ' + channelName + ', this channel is not available.');
+                console.log('[BitAnalytics] LogEvent "' + logEvent.name + '" cannot send to ' + channelName + ', this channel is not available.');
             }
         });
     };
@@ -6444,10 +6811,17 @@ var LogEventHandlers = /** @class */ (function () {
      * Private methods
      *
      */
+    LogEventHandlers.prototype.concatObject = function (from, to) {
+        var keys = Object.keys(from);
+        keys.map(function (key) {
+            if (!to[key]) {
+                to[key] = from[key];
+            }
+        });
+        return to;
+    };
     LogEventHandlers.prototype.getChannelByName = function (channelName) {
-        console.log(channelName);
-        console.log(this.channels);
-        var channels = this.channels.filter(function (channel) { return channel.getName() == channelName; });
+        var channels = this.channels.filter(function (channel) { return channel.name == channelName; });
         if (channels.length > 0) {
             return channels[0];
         }
@@ -6455,39 +6829,44 @@ var LogEventHandlers = /** @class */ (function () {
             return undefined;
         }
     };
+    LogEventHandlers.prototype.initializeChannels = function (channelConfigs) {
+        var _this = this;
+        // Get the channel names by the keys
+        var channelNames = Object.keys(channelConfigs);
+        // Iterate to init the several channels given in the config
+        channelNames.map(function (channelName) {
+            var channelConfig = channelConfigs[channelName];
+            // OS shared to check the availability of this channel on this OS.
+            channelConfig.os = _this.os;
+            channelConfig.appVersion = _this.appVersion;
+            try {
+                var channel = channel_factory_1.default.createChannel(channelName, channelConfig);
+                _this.channels.push(channel);
+            }
+            catch (error) {
+                console.log('[BitAnalytics] ' + error.name + ': ' + error.message);
+            }
+        });
+    };
     return LogEventHandlers;
 }());
 exports.default = LogEventHandlers;
 
-},{"./channel-factory":3}],10:[function(require,module,exports){
+},{"./channel-factory":7}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogEvent = /** @class */ (function () {
     function LogEvent(name, params, channelNames) {
         if (channelNames.length == 0) {
-            throw new DOMException('Minimum one channel is needed.');
+            throw new Error('[BitAnalytics] Minimum one channel is needed.');
         }
         this.name = name;
         this.params = params;
         this.channelNames = channelNames;
     }
-    /**
-     *
-     * Public methods
-     *
-     */
-    LogEvent.prototype.getName = function () {
-        return this.name;
-    };
-    LogEvent.prototype.getParams = function () {
-        return this.params;
-    };
-    LogEvent.prototype.getChannelNames = function () {
-        return this.channelNames;
-    };
     return LogEvent;
 }());
 exports.default = LogEvent;
 
-},{}]},{},[2])(2)
+},{}]},{},[6])(6)
 });

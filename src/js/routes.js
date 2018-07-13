@@ -1214,8 +1214,65 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       // Init BitAnalytics
       var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-      window.BitAnalytics.initialize(os, $window.fullVersion, {"firebase": {}});
-     
+      window.BitAnalytics.initialize(os, $window.fullVersion, {"firebase": {}, 
+        "ga": {
+          "trackingId": "UA-59964190-23",
+          "eventLabels": ["id", "icon-off"]
+        },
+        "adjust": {
+          "token": "au1onbhgg5q8",
+          "environment" : "production",
+          "eventTypes": {
+            "banner_click": "sc5i8u",
+            "buy_bitcoin_click": "t1vcdz",
+            "transfer_success": "f68evo",
+            "wallet_created": "nd3dg5",
+            "wallet_opened": "4n39l7"
+          }
+        }
+      });
+
+      var channel = "ga";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      
+      // Send a log to test
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'banner_click', 
+        class: 'track_banner_click', 
+        params: ['href-banner', 'id'], 
+        channels: [channel, 'adjust']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBanner);
+
+      var actionBuyBitcoin = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_click', 
+        class: 'track_buy_bitcoin_click', 
+        params: ['href', 'id'], 
+        channels: [channel, 'adjust']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoin);
+
+      var actionLinkClickOut = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'link_click_out', 
+        class: 'track_link_click_out', 
+        params: ['href', 'id'], 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionLinkClickOut);
+
+      var actionTabOpen = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'tab_open', 
+        class: 'track_tab_open', 
+        params: ['href', 'title', 'icon-off'], 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
+
       // Init language
       uxLanguage.init(function (lang) {
 
@@ -1385,7 +1442,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       win.menu = nativeMenuBar;
     }
-
+    
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
       if (document.body.classList.contains('keyboard-open')) {
         document.body.classList.remove('keyboard-open');
