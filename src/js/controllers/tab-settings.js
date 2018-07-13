@@ -46,7 +46,7 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
   };
 
   $scope.sendFeedback = function() {
-    var mailToLink = 'mailto:wallet@bitcoin.com?subject=Feedback%20for%20Bitcoin.com%20Wallet.com';
+    var mailToLink = 'mailto:wallet@bitcoin.com?subject=Feedback%20for%20Bitcoin.com%20Wallet';
     if (platformInfo.isNW) {
       nw.Shell.openExternal(mailToLink);
     } else if (platformInfo.isCordova) {
