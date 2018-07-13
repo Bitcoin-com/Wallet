@@ -143,6 +143,16 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
 
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "incoming"
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
       if ($state.current.name === "tabs.receive") {
         soundService.play('misc/payment_received.mp3');
       } 

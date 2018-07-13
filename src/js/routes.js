@@ -1232,7 +1232,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
 
-      var channel = "ga";
+      var channel = "firebase";
       if (platformInfo.isNW) {
         channel = "ga";
       }
