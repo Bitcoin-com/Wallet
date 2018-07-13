@@ -1,18 +1,11 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
   $scope.displayBalanceAsFiat = true;
   $scope.walletSelectorTitleForce = true;
-
-
-
-  $scope.walletHide = function() {
-    console.log("wallet HIDE");
-    alert('test');
-  };
 
   $scope.addContact = function() {
     $state.go('tabs.settings').then(function() {
@@ -29,6 +22,11 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           $scope.formData.search = text;  
         });
         $scope.findContact($scope.formData.search);
+      });
+    } else {
+      $ionicPopup.alert({
+        title: gettextCatalog.getString('Clipboard'),
+        template: gettextCatalog.getString('Your Clipboard is empty')
       });
     }
   };

@@ -2528,6 +2528,14 @@ msgstr ""
 msgid "Search or enter bitcoin address"
 msgstr ""
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr ""
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr ""
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr ""
