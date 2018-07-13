@@ -76,8 +76,11 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       var walletList = [];
       lodash.each(walletsToTransfer, function(v) {
         var displayBalanceAsFiat = 
-            v.status.alternativeBalanceAvailable &&
-            config.wallet.settings.priceDisplay === 'fiat';
+          // BD got v.status as undefined here once during development, just
+          // after creating a new wallet.
+          v.status && 
+          v.status.alternativeBalanceAvailable &&
+          config.wallet.settings.priceDisplay === 'fiat';
 
         walletList.push({
           color: v.color,

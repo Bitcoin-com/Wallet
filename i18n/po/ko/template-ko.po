@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2018-06-22T04:02:52+0000\n"
+"PO-Revision-Date: 2018-07-04 09:27\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "계정"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "계정 번호"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "낮은 수수료로 빠른 송금을"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"

@@ -41,16 +41,16 @@
               </button>
             </span>
 
-            <qrcode class="qr-icon qr-icon--{{ wallet.coin }}" ng-if="addr" size="220" data="{{ protocolHandler }}:{{addr}}" color="#334"></qrcode>
+            <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" ng-if="addr" size="220" data="{{ protocolHandler }}:{{addr}}" color="#334"></qrcode>
             <div class="address-label">
               <span class="ellipsis">{{addr}}</span>
               <ion-spinner ng-show="!addr" class="spinner-dark" icon="crescent"></ion-spinner>
             </div>
-            <div>
-              <button ng-show="addr" class="button-address" ng-click="setAddress(true)">
-                <span translate>Generate new address</span>
-              </button><br/>
-            </div>
+          </div>
+          <div>
+            <button ng-show="addr" class="button-address" ng-click="setAddress(true)">
+              <span translate>Generate new address</span>
+            </button><br/>
           </div>
         </div>
         <!-- animation for payment received -->
@@ -61,7 +61,8 @@
           </svg>
           <p class="success animated fadeIn">
             <br/>Payment Received!
-            <span class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
+            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
+            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount">{{ paymentReceivedAlternativeAmount }}</span></span>
             Return To Address<br/>
           </p>
         </div>

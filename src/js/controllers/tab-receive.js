@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService, soundService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -14,22 +14,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   var paymentSubscriptionObj = { op:"addr_sub" }
 
   var config;
-
-  var soundLoaded = false;
-  var nativeAudioAvailable = (window.plugins && window.plugins.NativeAudio);
-
-  if (nativeAudioAvailable) {
-      window.plugins.NativeAudio.preloadSimple('received', 'misc/coin_received.mp3', function (msg) {
-        $log.debug('Receive sound loaded.');
-        soundLoaded = true;
-      }, function (error) {
-        $log.debug('Error loading receive sound.');
-        $log.debug(error);
-      });
-  } else {
-    $log.debug('isNW: Using HTML5-Audio instead of native audio');
-    soundLoaded = true;
-  }
 
   $scope.displayBalanceAsFiat = true;
 
@@ -74,6 +58,12 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           paymentSubscriptionObj.addr = $scope.addr
       }
 
+      try {
+        clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
+      } catch (error) {
+        $log.debug("Error copying to clipboard:");
+        $log.debug(error);
+      }
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
       currentAddressSocket.onopen = function (event) {
@@ -143,21 +133,21 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       for (var i = 0; i < data.x.out.length; i++) {
         if (data.x.out[i].addr == watchAddress) {
           $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
+          $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
+          txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
+            if (alternativeStr) {
+              $scope.paymentReceivedAlternativeAmount = alternativeStr;
+            }
+          });
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
-      $scope.$apply(function () {
 
-        if (config.soundsEnabled && soundLoaded) {
-          $log.debug('Play sound.');
-            if (nativeAudioAvailable) {
-              window.plugins.NativeAudio.play('received');
-          } else {
-            new Audio('misc/coin_received.ogg').play(); // NW.js has no mp3 support
-          }
-        } else {
-          $log.debug('Sound is disabled.');
-        }
+      if ($state.current.name === "tabs.receive") {
+        soundService.play('misc/payment_received.mp3');
+      } 
+
+      $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
     }

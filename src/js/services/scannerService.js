@@ -103,6 +103,7 @@ angular.module('copayApp.services').service('scannerService', function($log, $ti
           _completeInitialization(status, callback);
         });
       } else {
+        isAvailable = true; // XX SP: Availability can change after permissions are granted after being denied.
         _completeInitialization(status, callback);
       }
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, feedbackService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -15,9 +15,19 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     $scope.isNW = platformInfo.isNW;
     $scope.showServices = false;
+    $scope.bannerIsLoading = true;
+    $scope.bannerImageUrl = '';
+    $scope.bannerUrl = '';
+
 
     $scope.$on("$ionicView.afterEnter", function() {
       startupService.ready();
+
+      bannerService.getBanner(function (banner) {
+        $scope.bannerImageUrl = banner.imageURL;
+        $scope.bannerUrl = banner.url;
+        $scope.bannerIsLoading = false;
+      });
     });
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
@@ -117,8 +127,8 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       externalLinkService.open(url, optIn, title, message, okText, cancelText);
     };
 
-    $scope.openStore = function() {
-      externalLinkService.open('https://store.bitcoin.com/', false);
+    $scope.openBannerUrl = function() {
+      externalLinkService.open($scope.bannerUrl, false);
     };
 
     $scope.openNotificationModal = function(n) {
