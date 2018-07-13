@@ -86,10 +86,9 @@
         </div>
       </div>
     </div>
-    <div id="tab-send-contacts" class="row" ng-if="hasContacts && hasWallets && hasFunds">
+    <div id="tab-send-contacts" class="row" ng-class="{'ios':isIOS}" ng-if="hasContacts && hasWallets && hasFunds">
       <div class="col">
         <div class="card contacts">
-
           <div class="item item-icon-right item-heading">
             <div translate>Contacts</div>
             <div translate class="subtitle"><span style="">Saved frequently used addresses</span></div>

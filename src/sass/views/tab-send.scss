@@ -6,7 +6,10 @@
     width: 100%;
   }
   &-contacts {
-    height: calc(100vh - 300px - 50px - 44px);
+    height: calc(100vh - 300px /* button container */ - 50px /* bottom-tab-menu */ - 44px /* header top */);
+    &.ios {
+      height: calc(100vh - 300px - 50px - 44px - 20pt); // Remove the notification-bar height on iOS
+    }
     overflow: scroll;
   }
 

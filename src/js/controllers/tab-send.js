@@ -250,6 +250,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    $scope.isIOS = platformInfo.isIOS && platformInfo.isCordova;
     $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
 
     $scope.checkingBalance = true;
