@@ -116,9 +116,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   var hasWallets = function() {
-    $scope.wallets = profileService.getWallets({
+    $scope.walletsWithFunds = profileService.getWallets({
       onlyComplete: true,
       hasFunds: true
+    });
+    $scope.wallets = profileService.getWallets({
+      onlyComplete: true,
     });
     $scope.walletsBch = profileService.getWallets({
       onlyComplete: true,
