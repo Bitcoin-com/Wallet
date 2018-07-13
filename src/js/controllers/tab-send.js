@@ -25,7 +25,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   $scope.pasteClipboard = function() {
     if ($scope.clipboardHasAddress || $scope.clipboardHasContent) {
       clipboardService.readFromClipboard(function(text) {
-        $scope.formData.search = text;
+        $scope.$apply(function() {
+          $scope.formData.search = text;  
+        });
         $scope.findContact($scope.formData.search);
       });
     }
