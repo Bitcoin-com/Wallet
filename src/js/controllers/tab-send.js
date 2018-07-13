@@ -132,11 +132,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   var updateHasFunds = function() {
 
-    if ($rootScope.everHasFunds) {
-      $scope.hasFunds = true;
-      return;
-    }
-
     $scope.hasFunds = false;
     var index = 0;
     lodash.each($scope.wallets, function(w) {
@@ -151,10 +146,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           $scope.hasFunds = true;
         } else if (status.availableBalanceSat > 0) {
           $scope.hasFunds = true;
-          $rootScope.everHasFunds = true;
         }
 
-        if (index == $scope.wallets.length) {
+        if (index === $scope.wallets.length) {
           $scope.checkingBalance = false;
           $timeout(function() {
             $scope.$apply();
