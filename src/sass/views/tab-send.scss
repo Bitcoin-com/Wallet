@@ -2,13 +2,10 @@
   @extend .deflash-blue;
 
   &-header{
-    position: absolute;
     height: 300px;
     width: 100%;
   }
   &-contacts {
-    position: absolute;
-    top: 300px;
     height: calc(100vh - 300px - 50px - 44px);
     overflow: scroll;
   }
