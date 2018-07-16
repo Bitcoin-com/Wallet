@@ -8,11 +8,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   $scope.walletSelectorTitleForce = true;
 
   $scope.addContact = function() {
-    $state.go('tabs.settings').then(function() {
-      $state.go('tabs.addressbook').then(function() {
-        $state.go('tabs.addressbook.add');
-      });
-    });
+      $state.go('tabs.send.addressbook');
   };
 
   $scope.pasteClipboard = function() {
