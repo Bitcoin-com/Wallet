@@ -217,14 +217,6 @@ angular.module('copayApp.services')
       });
     };
 
-    root.setFeedbackInfo = function(feedbackValues, cb) {
-      storage.set('feedback', feedbackValues, cb);
-    };
-
-    root.getFeedbackInfo = function(cb) {
-      storage.get('feedback', cb);
-    };
-
     root.storeFocusedWalletId = function(id, cb) {
       storage.set('focusedWalletId', id || '', cb);
     };

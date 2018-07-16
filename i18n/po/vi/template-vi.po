@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-06-22T04:02:59+0000\n"
+"PO-Revision-Date: 2018-07-04 03:58\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -54,67 +54,71 @@ msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size all
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr ""
+msgstr "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr ""
+msgstr "Accepted"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 #: www/views/join.html:72
 #: www/views/tab-create-personal.html:45
 #: www/views/tab-create-shared.html:74
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
+msgstr "Account Number"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
 msgstr ""
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
-msgstr ""
+msgstr "Accounts"
 
 #: www/views/bitpayCard.html:56
 msgid "Activity"
-msgstr ""
+msgstr "Activity"
 
 #: src/js/services/bitpayAccountService.js:83
 msgid "Add Account"
-msgstr ""
+msgstr "Add Account"
 
 #: src/js/services/bitpayAccountService.js:69
 msgid "Add BitPay Account?"
-msgstr ""
+msgstr "Add BitPay Account?"
 
 #: www/views/addressbook.add.html:4
 #: www/views/addressbook.html:22
 msgid "Add Contact"
-msgstr ""
+msgstr "Add Contact"
 
 #: www/views/bitpayCard.html:28
 msgid "Add Funds"
-msgstr ""
+msgstr "Add Funds"
 
 #: www/views/confirm.html:94
 msgid "Add Memo"
-msgstr ""
+msgstr "Add Memo"
 
 #: www/views/join.html:87
 #: www/views/tab-create-personal.html:59
 #: www/views/tab-create-shared.html:88
 msgid "Add a password"
-msgstr ""
+msgstr "Add a password"
 
 #: www/views/includes/accountSelector.html:27
 msgid "Add account"
-msgstr ""
+msgstr "Add account"
 
 #: www/views/join.html:90
 #: www/views/tab-create-personal.html:62

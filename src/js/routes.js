@@ -795,63 +795,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           fromOnboarding: null
         },
       })
-
-      /*
-       *
-       * Feedback
-       *
-       */
-
-      .state('tabs.feedback', {
-        url: '/feedback',
-        views: {
-          'tab-settings@tabs': {
-            templateUrl: 'views/feedback/send.html',
-            controller: 'sendController'
-          }
-        }
-      })
       .state('tabs.shareApp', {
-        url: '/shareApp/:score/:skipped/:fromSettings',
+        url: '/shareApp',
         views: {
           'tab-settings@tabs': {
-            controller: 'completeController',
-            templateUrl: 'views/feedback/complete.html'
+            controller: 'shareAppController',
+            templateUrl: 'views/shareApp.html'
           }
         }
       })
-      .state('tabs.rate', {
-        url: '/rate',
-        abstract: true
-      })
-      .state('tabs.rate.send', {
-        url: '/send/:score',
-        views: {
-          'tab-home@tabs': {
-            templateUrl: 'views/feedback/send.html',
-            controller: 'sendController'
-          }
-        }
-      })
-      .state('tabs.rate.complete', {
-        url: '/complete/:score/:skipped',
-        views: {
-          'tab-home@tabs': {
-            controller: 'completeController',
-            templateUrl: 'views/feedback/complete.html'
-          }
-        }
-      })
-      .state('tabs.rate.rateApp', {
-        url: '/rateApp/:score',
-        views: {
-          'tab-home@tabs': {
-            controller: 'rateAppController',
-            templateUrl: 'views/feedback/rateApp.html'
-          }
-        }
-      })
-
       /*
        *
        * Buy or Sell Bitcoin
