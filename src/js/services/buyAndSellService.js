@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('buyAndSellService', function($log, servicesService, lodash, $ionicScrollDelegate, $timeout) {
+angular.module('copayApp.services').factory('buyAndSellService', function(gettextCatalog, $log, servicesService, lodash, $ionicScrollDelegate, $timeout) {
   var root = {};
   var services = [];
   var linkedServices = [];
