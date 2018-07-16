@@ -643,6 +643,19 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         soundService.play('misc/payment_sent.mp3');
       }
       
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "outgoing",
+        "amount": $scope.amount,
+        "fees": $scope.fee
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      // Should be removed
       firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();

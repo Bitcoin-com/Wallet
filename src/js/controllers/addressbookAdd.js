@@ -35,6 +35,16 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
       var translated = bitcoinCashJsService.readAddress(addressbook.address);
       addressbook.address = translated.legacy;
     }
+
+    var channel = "firebase";
+    if (platformInfo.isNW) {
+      channel = "ga";
+    }
+    var log = new window.BitAnalytics.LogEvent("contact_created", [{
+      "coin": $scope.addressbookEntry.coin
+    }], [channel]);
+    window.BitAnalytics.LogEventHandlers.postEvent(log);
+
     $timeout(function() {
       addressbookService.add(addressbook, function(err, ab) {
         if (err) {
