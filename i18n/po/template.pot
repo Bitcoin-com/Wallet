@@ -648,6 +648,7 @@ msgstr ""
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr ""
