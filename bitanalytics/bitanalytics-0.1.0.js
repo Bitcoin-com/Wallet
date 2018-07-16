@@ -6547,12 +6547,25 @@ var FirebaseChannel = /** @class */ (function (_super) {
      */
     FirebaseChannel.prototype.postEvent = function (name, params) {
         var _this = this;
+        var sanitizedParams = this.sanitizeParams(params);
         if (!this.isReady) {
-            this.enqueue(function () { _this.postEvent(name, params); });
+            this.enqueue(function () { _this.postEvent(name, sanitizedParams); });
         }
         else {
-            this.firebaseInstance.logEvent(name, params);
+            this.firebaseInstance.logEvent(name, sanitizedParams);
         }
+    };
+    // [Firebase/Analytics][I-ACS013002] Event parameter name must contain only letters, numbers, or underscores
+    FirebaseChannel.prototype.sanitizeParams = function (params) {
+        var keys = Object.keys(params);
+        var keysLength = keys.length;
+        var sanitized = {};
+        for (var i = 0; i < keysLength; i++) {
+            var key = keys[i];
+            var cleanKey = key.replace('-', '_').replace(/[\W]+/g, '');
+            sanitized[cleanKey] = params[key];
+        }
+        return sanitized;
     };
     return FirebaseChannel;
 }(channel_1.default));
