@@ -37,14 +37,14 @@ angular.module('copayApp.services').factory('communityService', function(configS
 
   var bchRedditItem = {
     name: 'bchreddit',
-    title: 'Bitcoin Cash Reddit',
+    title: gettextCatalog.getString('Bitcoin Cash Reddit'),
     icon: 'icon-reddit-white',
     href: 'http://reddit.com/r/btc'
   };
 
   var bitcoincomTwitterItem = {
     name: 'bitcoincomTwitter',
-    title: 'Bitcoin.com Twitter',
+    title: gettextCatalog.getString('Bitcoin.com Twitter'),
     icon: 'icon-twitter-white',
     href: 'https://twitter.com/BTCTN'
   };

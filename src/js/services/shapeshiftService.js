@@ -5,7 +5,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function($http,
 
   var servicesItem = {
     name: 'shapeshift',
-    title: 'Shapeshift',
+    title: gettextCatalog.getString('Shapeshift'),
     icon: 'icon-shapeshift',
     sref: 'tabs.shapeshift',
   };
