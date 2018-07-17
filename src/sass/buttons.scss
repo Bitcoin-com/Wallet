@@ -16,6 +16,8 @@
   &.button-primary,
   &.button-secondary,
   &.button-light,
+  &.button-white,
+  &.button-green,
   &.button-assertive {
     &.button-standard {
       @extend %button-standard;
@@ -33,6 +35,10 @@
   }
 }
 
+@mixin button-shadow() {
+  box-shadow: 0 2px 11px 0 #C1C1C1;;
+}
+
 .button {
   &.button-secondary {
     @include button-style($v-button-secondary-bg, $v-button-secondary-border, $v-button-secondary-active-bg, $v-button-secondary-active-border, $v-button-secondary-color);
@@ -47,7 +53,24 @@
 }
 
 .button {
+  border-radius: 6px;
   &.button-full {
     display: block;
+  }
+  &-green {
+    @include button-style(#719561, #FFF, #606060, #FFF, #FFF);
+    @include button-clear(#FFF);
+    @include button-outline(#C1C1C1);
+    border: 0px;
+    @include button-shadow();
+  }
+  &-white {
+    @include button-style(#FFF, #C1C1C1, #C1C1C1, #FFF, #606060);
+    @include button-clear(#FFF);
+    @include button-outline(#C1C1C1);
+    @include button-shadow();
+    &.activated {
+      color: #FFF;
+    }
   }
 }
