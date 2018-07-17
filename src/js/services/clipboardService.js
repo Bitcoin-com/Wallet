@@ -29,10 +29,10 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
       cb(nodeWebkitService.readFromClipboard());
     } else {
       navigator.clipboard.readText()
-          .then(text => {
+          .then(function (text) {
             cb(text);
           })
-          .catch(err => {
+          .catch(function (err) {
             $log.debug("Clipboard reading is not supported in browser..");
           });
 
