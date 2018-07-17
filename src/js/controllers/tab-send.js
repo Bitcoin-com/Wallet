@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, ongoingProcess, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -70,7 +70,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       }
       $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
     } else {
+      ongoingProcess.set(null, true);
       walletService.getAddress(wallet, true, function(err, addr) {
+        ongoingProcess.set(null, false);
         return $state.transitionTo('tabs.send.amount', {
           displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
           recipientType: 'wallet',
