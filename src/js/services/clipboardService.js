@@ -17,7 +17,27 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
       // No supported
       return;
     }
+  };
 
+  root.readFromClipboard = function (cb) {
+    $log.debug("Read from clipboard");
+    if (platformInfo.isCordova) {
+      cordova.plugins.clipboard.paste(function(text) {
+        cb(text);
+      })
+    } else if (platformInfo.isNW) {
+      cb(nodeWebkitService.readFromClipboard());
+    } else {
+      navigator.clipboard.readText()
+          .then(function (text) {
+            cb(text);
+          })
+          .catch(function (err) {
+            $log.debug("Clipboard reading is not supported in browser..");
+          });
+
+      return;
+    }
   };
 
   return root;

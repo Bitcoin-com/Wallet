@@ -1,6 +1,6 @@
-#complete {
+#share-app {
   background-color: #fff;
-  .complete-layout {
+  .share-app-layout {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -21,17 +21,6 @@
   .share-the-love-illustration {
     width: 5rem;
     margin: 1rem;
-  }
-  .send-feedback-illustration {
-    height: 16rem;
-    margin: 1rem;
-  }
-  .feedback-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: $v-dark-gray;
-    margin: 20px 10px;
-    text-align: center;
   }
   .subtitle {
     padding: 10px 30px 20px;
