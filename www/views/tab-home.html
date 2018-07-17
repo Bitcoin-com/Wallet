@@ -92,7 +92,7 @@
 
     <div class="list card card-banner">
       <ion-spinner ng-if="bannerIsLoading"></ion-spinner>
-      <a ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
+      <a id="home_banner" href-banner="{{bannerImageUrl}}" class="track_banner_click" ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
         <img class="card-banner__img" ng-src="{{bannerImageUrl}}"/>
       </a>
 

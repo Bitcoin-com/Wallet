@@ -161,6 +161,12 @@ module.exports = function(grunt) {
         ],
         dest: 'www/lib/bitcoin-cash-js.js'
       },
+      bitanalytics: {
+        src: [
+          'bitanalytics/bitanalytics-0.1.0.js'
+        ],
+        dest: 'www/lib/bitanalytics.js'
+      },
       js: {
         src: [
           'src/js/app.js',
@@ -202,7 +208,8 @@ module.exports = function(grunt) {
         files: {
           'www/js/app.js': ['www/js/app.js'],
           'www/lib/angular-components.js': ['www/lib/angular-components.js'],
-          'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js']
+          'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js'],
+          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js']
         }
       }
     },

@@ -24,7 +24,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     });
   };
 
-  $scope.setAddress = function(newAddr) {
+  $scope.setAddress = function(newAddr, copyAddress) {
     $scope.addr = null;
     if (!$scope.wallet || $scope.generatingAddress || !$scope.wallet.isComplete()) return;
     $scope.generatingAddress = true;
@@ -58,11 +58,13 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           paymentSubscriptionObj.addr = $scope.addr
       }
 
-      try {
-        clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
-      } catch (error) {
-        $log.debug("Error copying to clipboard:");
-        $log.debug(error);
+      if (copyAddress === true) {
+        try {
+          clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
+        } catch (error) {
+          $log.debug("Error copying to clipboard:");
+          $log.debug(error);
+        }
       }
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
@@ -142,6 +144,16 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
+
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "incoming"
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       if ($state.current.name === "tabs.receive") {
         soundService.play('misc/payment_received.mp3');
