@@ -3744,3 +3744,7 @@ msgstr ""
 #: src/js/services/bitcoincomService.js:56
 msgid "Free Bitcoin Cash"
 msgstr ""
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr ""
