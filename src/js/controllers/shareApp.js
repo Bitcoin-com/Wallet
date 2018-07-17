@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('completeController', function($scope, $stateParams, $timeout, $log, $ionicHistory, $state, $ionicNavBarDelegate, $ionicConfig, platformInfo, configService, storageService, lodash, appConfigService, gettextCatalog) {
+angular.module('copayApp.controllers').controller('shareAppController', function($scope, $stateParams, $timeout, $log, $ionicHistory, $state, $ionicNavBarDelegate, $ionicConfig, platformInfo, configService, storageService, lodash, appConfigService, gettextCatalog) {
   $scope.isCordova = platformInfo.isCordova;
   $scope.title = gettextCatalog.getString("Share {{appName}}", {
     appName: appConfigService.nameCase
@@ -57,28 +57,8 @@ angular.module('copayApp.controllers').controller('completeController', function
     $ionicConfig.views.swipeBackEnabled(true);
   });
 
-  $scope.$on("$ionicView.enter", function() {
-    if (!$scope.fromSettings)
-      $ionicConfig.views.swipeBackEnabled(false);
-  });
-
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    $scope.score = (data.stateParams && data.stateParams.score) ? parseInt(data.stateParams.score) : null;
-    $scope.skipped = (data.stateParams && data.stateParams.skipped) ? true : false;
-    $scope.rated = (data.stateParams && data.stateParams.rated) ? true : false;
-    $scope.fromSettings = (data.stateParams && data.stateParams.fromSettings) ? true : false;
-
-    if (!$scope.fromSettings) {
-      $ionicNavBarDelegate.showBackButton(false);
-    } else {
-      $ionicNavBarDelegate.showBackButton(true);
-    }
-
-    storageService.getFeedbackInfo(function(error, info) {
-      var feedbackInfo = lodash.isString(info) ? JSON.parse(info) : null;
-      feedbackInfo.sent = true;
-      storageService.setFeedbackInfo(JSON.stringify(feedbackInfo), function() {});
-    });
+    $ionicNavBarDelegate.showBackButton(true);
 
     if (!$scope.isCordova) return;
     $scope.animate = true;
@@ -133,13 +113,4 @@ angular.module('copayApp.controllers').controller('completeController', function
       }
     }, 100);
   });
-
-  $scope.close = function() {
-    $ionicHistory.nextViewOptions({
-      disableAnimate: false,
-      historyRoot: true
-    });
-    if ($scope.score == 5) $ionicHistory.goBack(-3);
-    else $ionicHistory.goBack(-2);
-  };
 });
