@@ -6,14 +6,14 @@
   </div>
   <div ng-show="!hide">
     <div ng-repeat="service in services track by $index">
-      <a ng-if="service.sref" ui-sref="{{service.sref}}" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ng-if="service.sref" ui-sref="{{service.sref}}" id="home_{{service.name}}" title="{{service.title ||  service.name}}" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg theme-circle theme-circle-community">
           <div class="bg {{service.icon}}"></div>
         </i>
         <span>{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
-      <a ng-if="!service.sref" ng-click="open('{{service.href}}')" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ng-if="!service.sref" ng-click="open('{{service.href}}')" id="home_{{service.name}}" title="{{service.title ||  service.name}}" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg theme-circle theme-circle-community">
           <div class="bg {{service.icon}}"></div>
         </i>
@@ -22,7 +22,7 @@
       </a>
     </div>
     <div>
-      <a ng-if="isCordova" ng-click="share()" class="item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ng-if="isCordova" ng-click="share()" title="Share the Wallet App" id="home_{{service.name}}" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg theme-circle theme-circle-community">
           <div class="bg icon-share"></div>
         </i>
