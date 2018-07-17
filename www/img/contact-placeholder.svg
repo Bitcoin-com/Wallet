@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 35 35" style="enable-background:new 0 0 35 35;" xml:space="preserve">
-<style type="text/css">
-	.st0{opacity:0.1;}
-</style>
-<path class="st0" d="M17.5,0C7.9,0,0,7.9,0,17.5s7.9,17.5,17.5,17.5S35,27.1,35,17.5S27.1,0,17.5,0L17.5,0z M28.6,26.9
-	c-1-2.3-3.2-3.3-5.4-4.1c-1-0.3-1.6-1.3-1.8-2.2c1.9-1.2,3.4-3.5,3.4-6.1v-1.5c0-4.1-3.2-7.3-7.3-7.3s-7.3,3.2-7.3,7.3v1.5
-	c0,2.6,1.5,4.9,3.5,6.3C13.4,21.7,13,22.5,12,23c-2.2,0.7-4.4,1.7-5.4,4.1c-2.3-2.6-3.6-6-3.6-9.6c0-8,6.6-14.5,14.6-14.5
-	s14.6,6.5,14.6,14.5C32.1,21.1,30.8,24.4,28.6,26.9L28.6,26.9z"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+  <title>Artboard</title>
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Artboard">
+      <g id="Group-155">
+        <g id="Rectangle_3-2">
+          <rect id="Rectangle-path" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="42" height="42" rx="21"></rect>
+          <rect id="Rectangle-path" stroke="#DBA00A" stroke-width="2" x="1" y="1" width="40" height="40" rx="20"></rect>
+        </g>
+        <path d="M21,1 C9.954305,1 1,9.954305 1,21 C1,32.045695 9.954305,41 21,41 C32.045695,41 41,32.045695 41,21 C40.9694556,9.96698168 32.0330183,1.03054442 21,1 Z M21,6.99980143 C24.3134695,7.00034975 26.9991741,9.68679509 26.9988085,13.0002647 C26.998443,16.3137342 24.3121458,18.9995869 20.9986763,18.9994042 C17.6852067,18.9992215 14.9992058,16.3130724 14.9992057,12.9996029 C15.0101065,9.69014257 17.6905379,7.01015459 21,6.99980143 Z M21,35.8838364 C16.1880514,35.8617029 11.6973613,33.4651324 9.00039714,29.4799444 C9.09968229,25.4797458 17.0007943,23.2776013 21,23.2776013 C24.9992057,23.2776013 32.9032963,25.4797458 32.9996029,29.4799444 C30.2996632,33.4618263 25.8108583,35.8573907 21,35.8838364 Z" id="_ionicons_svg_md-contact" fill="#FAB915" fill-rule="nonzero"></path>
+      </g>
+    </g>
+  </g>
 </svg>
