@@ -76,7 +76,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
         return $state.transitionTo('tabs.send.amount', {
           displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
           recipientType: 'wallet',
-          fromWalletId: $scope.walletToWalletFrom.walletId,
+          fromWalletId: $scope.walletToWalletFrom.id,
           toAddress: addr,
           coin: $scope.walletToWalletFrom.coin
         });
