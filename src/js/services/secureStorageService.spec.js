@@ -1,4 +1,4 @@
-describe('secureStorageService in browser', function(){
+xdescribe('secureStorageService in browser', function(){
   var localStorage,
     sss;
 
@@ -100,7 +100,7 @@ describe('secureStorageService in browser', function(){
 });
   
 
-describe('secureStorageService on desktop', function(){
+xdescribe('secureStorageService on desktop', function(){
   var desktopSss,
     sss;
 
@@ -202,7 +202,7 @@ describe('secureStorageService on desktop', function(){
 
 });
 
-describe('secureStorageService on mobile', function(){
+xdescribe('secureStorageService on mobile', function(){
   var mobileSss,
     sss;
 
