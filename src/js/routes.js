@@ -316,6 +316,18 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.send.review', {
+        url: '/review',
+        views: {
+          'tab-send@tabs': {
+            controller: 'reviewController',
+            templateUrl: 'views/review.html'
+          }
+        },
+        params: {
+          paypro: null
+        }
+      })
 
       /*
        *

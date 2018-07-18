@@ -1,0 +1,45 @@
+<ion-view id="view-confirm" hide-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>
+      {{'Review'|translate}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-content class="add-bottom-for-cta">
+    Review
+  </ion-content>
+  <click-to-accept
+    ng-click="approve(tx, wallet, statusChangeHandler)"
+    ng-if="(!isCordova || isWindowsPhoneApp) && wallet"
+    click-send-status="sendStatus"
+    is-disabled="!wallet">
+    {{buttonText}}
+  </click-to-accept>
+  <slide-to-accept
+    ng-if="isCordova && !isWindowsPhoneApp && wallet"
+    slide-on-confirm="approve(tx, wallet, statusChangeHandler)"
+    slide-send-status="sendStatus"
+    is-disabled="!wallet">
+    {{buttonText}}
+  </slide-to-accept>
+  <slide-to-accept-success
+    slide-success-show="sendStatus === 'success'"
+    slide-success-on-confirm="onSuccessConfirm()"
+    slide-success-hide-on-confirm="true">
+    <span ng-show="wallet.m == 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Payment Sent</span>
+    <span ng-show="wallet.m > 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Proposal Created</span>
+    <span ng-show="!wallet.canSign() && !wallet.isPrivKeyExternal()" translate>Transaction Created</span>
+  </slide-to-accept-success>
+
+  <wallet-selector
+    wallet-selector-title="walletSelectorTitle"
+    wallet-selector-wallets="wallets"
+    wallet-selector-selected-wallet="wallet"
+    wallet-selector-show="walletSelector"
+    wallet-selector-on-select="onWalletSelect"
+    wallet-selector-display-balance-as-fiat="displayBalanceAsFiat">
+  </wallet-selector>
+
+</ion-view>
