@@ -10,5 +10,8 @@ angular.module('copayApp.controllers').controller('walletToWalletController', fu
     });
   });
 
+  $scope.useWallet = function(wallet) {
+      // Do something with selected wallet
+  };
 
 });

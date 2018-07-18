@@ -19,7 +19,7 @@
       <div>
         <a ng-repeat="wallet in walletsBch track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
+           ng-click="useWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
