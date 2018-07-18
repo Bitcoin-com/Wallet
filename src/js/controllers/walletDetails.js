@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, currencySymbolService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -11,6 +11,13 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.isCordova = platformInfo.isCordova;
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
+
+  $scope.currencySymbols = {
+    'EUR': '€',
+    'GBP': '£',
+    'USD': '$',
+    'YEN' : ''
+  };
 
   var channel = "firebase";
   if (platformInfo.isNW) {
@@ -256,6 +263,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     return !tx.confirmations || tx.confirmations === 0;
   };
 
+  $scope.currencySymbol = function(code) {
+    var symbol = currencySymbolService.getCurrencySymbol(code);
+    return symbol?symbol:"";
+  };
+
   $scope.showMore = function() {
     $timeout(function() {
       currentTxHistoryPage++;
@@ -315,16 +327,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }
 
     scrollPos = scrollPos || 0;
-    var amountHeight = 210 - scrollPos;
+    var amountHeight = 230 - scrollPos;
     if (amountHeight < 80) {
       amountHeight = 80;
     }
     var contentMargin = amountHeight;
-    if (contentMargin > 210) {
-      contentMargin = 210;
+    if (contentMargin > 230) {
+      contentMargin = 230;
     }
 
-    var amountScale = (amountHeight / 210);
+    var amountScale = (amountHeight / 230);
     if (amountScale < 0.5) {
       amountScale = 0.5;
     }
@@ -342,7 +354,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       top = TOP_BALANCE_BUTTON;
     }
 
-    var amountTop = ((amountScale - 0.7) / 0.7) * top;
+    var amountTop = ((amountScale - 0.85) / 0.85) * top;
     if (amountTop < -10) {
       amountTop = -10;
     }
