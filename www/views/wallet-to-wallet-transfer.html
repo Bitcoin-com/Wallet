@@ -1,0 +1,43 @@
+<ion-view id="wallet-to-wallet-transfer" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="header">
+      <div class="title">
+        Choose your origin wallet
+      </div>
+      <div class="subtitle">
+        This is where the Bitcoin will be taken out from.
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Cash (BCH)</div>
+        <div translate class="subtitle">Instant transactions with low fees</div>
+        <a ui-sref="tabs.add({coin:'bch'})"><i class="icon ion-ios-plus-empty list-add-button"></i></a>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsBch track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="openWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Core (BTC)</div>
+        <a ui-sref="tabs.add"><i class="icon ion-ios-plus-empty list-add-button"></i></a>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsBtc track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="openWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

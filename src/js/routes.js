@@ -295,6 +295,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.send.wallet-to-wallet', {
+        url: '/wallet-to-wallet',
+        views: {
+          'tab-send@tabs': {
+            controller: 'walletToWalletController',
+            templateUrl: 'views/wallet-to-wallet-transfer.html'
+          }
+        }
+      })
       .state('tabs.send.confirm', {
         url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:coin/:useSendMax/:fromWalletId/:displayAddress/:requiredFeeRate',
         views: {
