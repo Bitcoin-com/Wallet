@@ -15066,6 +15066,30 @@ log-options #check-bar .checkbox-icon {
   border-radius: 3px;
   display: inline-block; }
 
+.header {
+  padding: 29px 12px 65px;
+  background-color: #FAB915;
+  color: #FFFFFF; }
+  .header .title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1em;
+    color: #FFFFFF;
+    text-align: center; }
+    .header .title + .content {
+      margin-top: 23px; }
+  .header .content {
+    text-align: center; }
+    .header .content p {
+      margin: 0;
+      line-height: 1em;
+      font-size: 18px; }
+      .header .content p.large {
+        font-size: 29px;
+        font-weight: 600; }
+      .header .content p + p {
+        margin-top: 8px; }
+
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
  */
