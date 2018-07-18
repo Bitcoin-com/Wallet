@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicModal, $ionicScrollDelegate, $ionicHistory, storageService, walletService, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, bwcError, payproService, profileService, bitcore, amazonService, nodeWebkitService) {
+angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicModal, $ionicScrollDelegate, $ionicHistory, walletService, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, profileService, nodeWebkitService) {
 
   var _id;
   var unitToSatoshi;
@@ -46,7 +46,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
     if (data.stateParams.noPrefix) {
       $scope.showWarningMessage = data.stateParams.noPrefix != 0;
       if ($scope.showWarningMessage) {
-        var message = 'Address doesn\'t contain currency information, please make sure you are sending the correct currency.';
+        var message = gettextCatalog.getString('Address doesn\'t contain currency information, please make sure you are sending the correct currency.');
         popupService.showAlert('', message, function() {}, 'Ok');
       }
     }
