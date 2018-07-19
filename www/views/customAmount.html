@@ -34,13 +34,13 @@
       </div>
       <div ng-show="!showingPaymentReceived" class="amount">
         <div ng-show="selectedPriceDisplay=='fiat'">
-          <strong class="size-36">{{amountUnitStr}}</strong>
+          <span class="size-36">{{amountUnitStr}}</span>
           <div class="size-14 amount-alternative">
             {{altAmountStr}}
           </div>
         </div>
         <div ng-show="selectedPriceDisplay=='crypto'">
-          <strong class="size-36">{{altAmountStr}}</strong>
+          <span class="size-36">{{altAmountStr}}</span>
           <div class="size-14 amount-alternative">
             {{amountUnitStr}}
           </div>
