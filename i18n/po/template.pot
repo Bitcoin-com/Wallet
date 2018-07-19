@@ -2159,6 +2159,10 @@ msgstr ""
 msgid "Payment Sent"
 msgstr ""
 
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr ""
+
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
 msgstr ""

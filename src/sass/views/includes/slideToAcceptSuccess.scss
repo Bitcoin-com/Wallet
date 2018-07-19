@@ -70,7 +70,7 @@ slide-to-accept-success {
       }
       &__share {
         transition: transform $duration ease, opacity $duration ease;
-        transition-delay: 1000ms;
+        transition-delay: 600ms;
         opacity: 0;
         margin-top: 15vh;
         span {
