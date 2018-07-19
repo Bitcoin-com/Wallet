@@ -26,6 +26,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIos = platformInfo.isIOS;
 
+  $scope.isRequestingSpecificAmount = false;
+
   $scope.$on('$ionicView.leave', function() {
     angular.element($window).off('keydown');
   });
@@ -50,6 +52,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
         popupService.showAlert('', message, function() {}, 'Ok');
       }
     }
+
+    $scope.isRequestingSpecificAmount = !!data.stateParams.id;
 
     var config = configService.getSync().wallet.settings;
 
