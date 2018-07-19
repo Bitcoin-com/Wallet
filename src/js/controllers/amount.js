@@ -696,5 +696,12 @@ angular.module('copayApp.controllers').controller('amountController', function($
       availableFundsInCrypto = '';
       availableSatoshis = null;
     }
+
+    if (availableUnits[unitIndex].isFiat) {
+      $scope.availableFunds = availableFundsInFiat || availableFundsInCrypto;
+    } else {
+      $scope.availableFunds = availableFundsInCrypto;
+    }
+    
   }
 });
