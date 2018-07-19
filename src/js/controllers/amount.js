@@ -665,11 +665,31 @@ angular.module('copayApp.controllers').controller('amountController', function($
       availableUnits[altUnitIndex].name = newAltCurrency.isoCode;
       availableUnits[altUnitIndex].shortName = newAltCurrency.isoCode;
       fiatCode = newAltCurrency.isoCode;
+      updateAvailableFiatIfNeeded();
       updateUnitUI();
       $scope.close();
     });
   };
   
+
+  function updateAvailableFiatIfNeeded() {
+    if ($scope.fromWalletId && availableSatoshis !== null) {
+      availableFundsInFiat = '';
+      $scope.availableFunds = availableFundsInCrypto;
+      var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
+      txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
+        if (formatted) {
+          availableFundsInFiat = formatted;
+          if (availableUnits[unitIndex].isFiat) {
+            $scope.availableFunds = availableFundsInFiat;
+          } else {
+            $scope.availableFunds = availableFundsInCrypto;
+          }
+        }
+      });
+    }
+  }
+
   function updateAvailableFundsFromWallet(wallet) {
     if (wallet.status && wallet.status.isValid) {
       availableFundsInCrypto = wallet.status.spendableBalanceStr;
