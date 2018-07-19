@@ -7,6 +7,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   var satToUnit;
   var unitDecimals;
   var satToBtc;
+  var spendableAmountInSatoshis = null;
+
   var SMALL_FONT_SIZE_LIMIT = 10;
   var LENGTH_EXPRESSION_LIMIT = 19;
   var LENGTH_BEFORE_COMMA_EXPRESSION_LIMIT = 8;
@@ -21,6 +23,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
   var fixedUnit;
 
   $scope.amountModel = { amount: 0 };
+
+  // Use insufficient for logic, as when the amount is invalid, funds being
+  // either sufficent or insufficient doesn't make sense.
+  $scope.fundsAreInsufficient = false;
 
   $scope.isChromeApp = platformInfo.isChromeApp;
   $scope.isAndroid = platformInfo.isAndroid;
@@ -134,6 +140,12 @@ angular.module('copayApp.controllers').controller('amountController', function($
       });
 
       altUnitIndex = 0;
+
+      if ($scope.fromWalletId) {
+        var fromWallet = profileService.getWallet($scope.fromWalletId);
+        console.log('got fromWallet.');
+        updateSpendableAmountInSatoshisFromWallet(fromWallet);
+      }
     };
 
     // Go to...
@@ -387,24 +399,41 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
         var a = fromFiat(result);
         if (a) {
-          $scope.alternativeAmount = txFormatService.formatAmount(a * unitToSatoshi, true);
-          $scope.allowSend = lodash.isNumber(a) && a > 0
+          var amountInSatoshis = a * unitToSatoshi;
+          $scope.fundsAreInsufficient = !!$scope.fromWalletId 
+          && spendableAmountInSatoshis !== null 
+          && spendableAmountInSatoshis < amountInSatoshis;
+
+          $scope.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
+          $scope.allowSend = lodash.isNumber(a) 
+            && a > 0
             && (!$scope.shapeshiftOrderId
-                || (a >= $scope.minShapeshiftAmount && a <= $scope.maxShapeshiftAmount));
+                || (a >= $scope.minShapeshiftAmount && a <= $scope.maxShapeshiftAmount))
+            && !$scope.fundsAreInsufficient;    
         } else {
           if (result) {
             $scope.alternativeAmount = 'N/A';
           } else {
             $scope.alternativeAmount = null;
           }
+          $scope.fundsAreInsufficient = false;
           $scope.allowSend = false;
         }
       } else {
+        $scope.fundsAreInsufficient = !!$scope.fromWalletId 
+          && spendableAmountInSatoshis !== null 
+          && spendableAmountInSatoshis < result * unitToSatoshi;
+
         $scope.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
-        $scope.allowSend = lodash.isNumber(result) && result > 0
+        $scope.allowSend = lodash.isNumber(result) 
+          && result > 0
           && (!$scope.shapeshiftOrderId
-              || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount));
+              || (result >= $scope.minShapeshiftAmount && result <= $scope.maxShapeshiftAmount))
+          && !$scope.fundsAreInsufficient;    
       }
+
+    } else {
+      $scope.fundsAreInsufficient = false;
     }
   };
 
@@ -584,6 +613,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $timeout(function() {
         $scope.$apply();
       });
+      rateService.updateRates();
     });
   }
 
@@ -632,5 +662,15 @@ angular.module('copayApp.controllers').controller('amountController', function($
       updateUnitUI();
       $scope.close();
     });
-  };  
+  };
+  
+  function updateSpendableAmountInSatoshisFromWallet(wallet) {
+    if (wallet.status) {
+      spendableAmountInSatoshis = wallet.status.spendableAmount;
+    } else if (fromWallet.cachedStatus) {
+      spendableAmountInSatoshis = wallet.cachedStatus.spendableAmount;
+    } else {
+      spendableAmountInSatoshis = null;
+    }
+  }
 });
