@@ -671,7 +671,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
   };
   
   function updateAvailableFundsFromWallet(wallet) {
-    if (wallet.status) {
+    if (wallet.status && wallet.status.isValid) {
       availableFundsInCrypto = wallet.status.spendableBalanceStr;
       availableSatoshis = wallet.status.spendableAmount;
       if (wallet.status.alternativeBalanceAvailable) {
@@ -680,7 +680,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
         availableFundsInFiat = '';
       }
 
-    } else if (wallet.cachedStatus) {
+    } else if (wallet.cachedStatus && wallet.status.isValid) {
 
       if (wallet.cachedStatus.alternativeBalanceAvailable) {
         availableFundsInFiat = wallet.cachedStatus.spendableBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
