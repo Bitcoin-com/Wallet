@@ -1,4 +1,4 @@
-<ion-view id="view-confirm" hide-tabs>
+<ion-view id="view-review" hide-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>
       {{'Review'|translate}}
@@ -7,12 +7,52 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-  <ion-content class="add-bottom-for-cta">
+  <ion-content class="padded-bottom-cta bg-neutral">
     <div class="header">
       <h1 class="title" translate>You are sending</h1>
       <div class="content" translate>
         <p class="large">13.98 USD</p>
         <p>0.014 BCH</p>
+      </div>
+    </div>
+
+    <div class="content-frame negative-top">
+      <div class="card">
+        <div class="item item-compact">From:</div>
+        <div class="item item-gutterless item-complex item-avatar">
+          <div class="item-content item-content-compact">
+            <i class="icon big-icon-svg theme-circle theme-circle-services">
+                <div class="bg icon-wallet"
+                  ng-style="{'background-color': '#eeb640'}"
+                ></div>
+            </i>
+            <h2>Personal Wallet <span class="highlight" ng-style="{'color': '#eeb640'}">(BCH)</span></h2>
+            <p>128.67</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="item item-compact">From:</div>
+        <div class="item item-gutterless item-complex item-avatar">
+          <div class="item-content item-content-compact">
+            <i class="icon big-icon-svg theme-circle theme-circle-services">
+              <div class="bg icon-wallet"
+                ng-style="{'background-color': '#535353'}"></div>
+            </i>
+            <h2>Personal Wallet <span class="highlight" ng-style="{'color': '#535353'}">(BTC)</span></h2>
+            <p>128.67</p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="item item-compact">To:</div>
+        <div class="item item-gutterless item-complex item-avatar">
+          <div class="item-content item-content-compact">
+            <img src="img/contact-placeholder.svg" class="bg">
+            <h2>Satoshi Nakamoto</h2>
+            <p>128.67</p>
+          </div>
+        </div>
       </div>
     </div>
   </ion-content>

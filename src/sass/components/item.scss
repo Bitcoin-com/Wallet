@@ -1,0 +1,39 @@
+/*
+* Extends Ionic v1 item
+*/
+
+.item {
+  &.item-compact {
+    padding: 11px 13px;
+  }
+  &.item-gutterless {
+    padding: 0;
+  }
+
+  .item-content {
+    &.item-content-compact {
+      min-height: 69px;
+      padding: 13px 11px 13px 68px;
+
+      > img,
+      > i {
+        &:first-child {
+          position: absolute;
+          max-width: 40px;
+          max-height: 40px;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          left: 13px;
+          top: 50%;
+          padding: 0;
+          transform: translate(0,-50%);
+        }
+      }
+    }
+
+    .highlight {
+      color: #FAB915;
+    }
+  }
+}

@@ -10037,6 +10037,11 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     .big-icon-svg.theme-circle > .bg.icon-faucet {
       background-image: url("../img/icon-faucet.svg");
       background-size: 70%; }
+    .big-icon-svg.theme-circle > .bg.icon-wallet {
+      background-color: #FAB915;
+      background-image: url("../img/icon-wallet.svg");
+      border: none;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3) inset; }
   .big-icon-svg.theme-circle-services > .bg {
     border: 1px solid #191919; }
   .big-icon-svg.theme-circle-community > .bg {
@@ -15062,6 +15067,14 @@ log-options #check-bar .checkbox-icon {
 #cash-scan a {
   cursor: pointer; }
 
+#view-review {
+  background-color: #494949; }
+  #view-review slide-to-accept, #view-review slide-to-accept-success {
+    margin-bottom: constant(safe-area-inset-bottom);
+    /* iOS 11.0 */
+    margin-bottom: env(safe-area-inset-bottom);
+    /* iOS 11.2 */ }
+
 .gravatar {
   border-radius: 3px;
   display: inline-block; }
@@ -15089,6 +15102,48 @@ log-options #check-bar .checkbox-icon {
         font-weight: 600; }
       .header .content p + p {
         margin-top: 8px; }
+
+.content-frame.negative-top {
+  margin-top: -20px; }
+  .content-frame.negative-top .card:first-child {
+    margin-top: 0; }
+
+/*
+* Extends Ionic v1 item
+*/
+.item.item-compact {
+  padding: 11px 13px; }
+
+.item.item-gutterless {
+  padding: 0; }
+
+.item .item-content.item-content-compact {
+  min-height: 69px;
+  padding: 13px 11px 13px 68px; }
+  .item .item-content.item-content-compact > img:first-child,
+  .item .item-content.item-content-compact > i:first-child {
+    position: absolute;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    left: 13px;
+    top: 50%;
+    padding: 0;
+    transform: translate(0, -50%); }
+
+.item .item-content .highlight {
+  color: #FAB915; }
+
+/*
+* Extends Ionic v1 ion-content
+*/
+ion-content.bg-neutral {
+  background-color: #F2F2F2; }
+
+ion-content.padded-bottom-cta {
+  bottom: 92px; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
