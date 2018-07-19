@@ -201,6 +201,16 @@ msgstr ""
 msgid "Price Display"
 msgstr ""
 
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr ""
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr ""
+
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
 msgstr ""
