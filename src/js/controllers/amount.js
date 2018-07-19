@@ -293,7 +293,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
       $scope.availableFunds = availableFundsInCrypto;
     }
 
-    console.log('availableFunds: ' + $scope.availableFunds);
     updateUnitUI();
   };
 
@@ -697,7 +696,5 @@ angular.module('copayApp.controllers').controller('amountController', function($
       availableFundsInCrypto = '';
       availableSatoshis = null;
     }
-
-    
   }
 });
