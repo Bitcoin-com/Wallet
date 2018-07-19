@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -15,9 +15,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     if ($scope.clipboardHasAddress || $scope.clipboardHasContent) {
       clipboardService.readFromClipboard(function(text) {
         $scope.$apply(function() {
-          $scope.formData.search = text;  
+          $scope.formData.search = text; 
+          $scope.findContact($scope.formData.search); 
         });
-        $scope.findContact($scope.formData.search);
       });
     } else {
       $ionicPopup.alert({
@@ -70,11 +70,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       }
       $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
     } else {
+      $ionicLoading.show();
       walletService.getAddress(wallet, true, function(err, addr) {
+        $ionicLoading.hide();
         return $state.transitionTo('tabs.send.amount', {
           displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
           recipientType: 'wallet',
-          fromWalletId: $scope.walletToWalletFrom.walletId,
+          fromWalletId: $scope.walletToWalletFrom.id,
           toAddress: addr,
           coin: $scope.walletToWalletFrom.coin
         });
