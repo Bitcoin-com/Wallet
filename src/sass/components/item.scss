@@ -11,7 +11,7 @@
   }
 
   .item-content {
-    &.item-content-compact {
+    &.item-content-avatar {
       min-height: 69px;
       padding: 13px 11px 13px 68px;
 
@@ -32,8 +32,17 @@
       }
     }
 
+    &.item-content-compact {
+      min-height: 0;
+      padding: 13px 11px;
+    }
+
     .highlight {
-      color: #FAB915;
+      color: #FAB915
+    }
+
+    + .item-content {
+      padding-top: 0;
     }
   }
 }

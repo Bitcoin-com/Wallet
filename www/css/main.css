@@ -15117,11 +15117,11 @@ log-options #check-bar .checkbox-icon {
 .item.item-gutterless {
   padding: 0; }
 
-.item .item-content.item-content-compact {
+.item .item-content.item-content-avatar {
   min-height: 69px;
   padding: 13px 11px 13px 68px; }
-  .item .item-content.item-content-compact > img:first-child,
-  .item .item-content.item-content-compact > i:first-child {
+  .item .item-content.item-content-avatar > img:first-child,
+  .item .item-content.item-content-avatar > i:first-child {
     position: absolute;
     max-width: 40px;
     max-height: 40px;
@@ -15133,8 +15133,15 @@ log-options #check-bar .checkbox-icon {
     padding: 0;
     transform: translate(0, -50%); }
 
+.item .item-content.item-content-compact {
+  min-height: 0;
+  padding: 13px 11px; }
+
 .item .item-content .highlight {
   color: #FAB915; }
+
+.item .item-content + .item-content {
+  padding-top: 0; }
 
 /*
 * Extends Ionic v1 ion-content
@@ -15144,6 +15151,25 @@ ion-content.bg-neutral {
 
 ion-content.padded-bottom-cta {
   bottom: 92px; }
+
+.address {
+  background-color: #F8F8F8;
+  border: 0.5px solid #EDEBEB;
+  border-radius: 3px;
+  padding: 9px;
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  .address.expanded {
+    white-space: pre-wrap;
+    word-break: break-all; }
+  .address .prefix {
+    color: #000000; }
+  .address .mid {
+    color: #919191; }
+  .address .suffix {
+    color: #000000; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
