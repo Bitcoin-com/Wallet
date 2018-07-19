@@ -3,11 +3,14 @@
 angular.module('copayApp.controllers').controller('amountController', function($scope, $filter, $timeout, $ionicModal, $ionicScrollDelegate, $ionicHistory, walletService, gettextCatalog, platformInfo, lodash, configService, rateService, $stateParams, $window, $state, $log, txFormatService, ongoingProcess, popupService, profileService, nodeWebkitService) {
 
   var _id;
+  var availableFundsInCrypto = '';
+  var availableFundsInFiat = '';
+  var availableSatoshis = null;
   var unitToSatoshi;
   var satToUnit;
   var unitDecimals;
   var satToBtc;
-  var spendableAmountInSatoshis = null;
+  
 
   var SMALL_FONT_SIZE_LIMIT = 10;
   var LENGTH_EXPRESSION_LIMIT = 19;
@@ -23,6 +26,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
   var fixedUnit;
 
   $scope.amountModel = { amount: 0 };
+  $scope.availableFunds = '';
+  
 
   // Use insufficient for logic, as when the amount is invalid, funds being
   // either sufficent or insufficient doesn't make sense.
@@ -143,8 +148,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
       if ($scope.fromWalletId) {
         var fromWallet = profileService.getWallet($scope.fromWalletId);
-        console.log('got fromWallet.');
-        updateSpendableAmountInSatoshisFromWallet(fromWallet);
+        updateAvailableFundsFromWallet(fromWallet);
       }
     };
 
@@ -281,12 +285,15 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     if (availableUnits[unitIndex].isFiat) {
       altUnitIndex = altUnitIndex == 0 && availableUnits.length > 2 ? 1 : 0;
+      $scope.availableFunds = availableFundsInFiat || availableFundsInCrypto;
     } else {
       altUnitIndex = lodash.findIndex(availableUnits, {
         isFiat: true
       });
+      $scope.availableFunds = availableFundsInCrypto;
     }
 
+    console.log('availableFunds: ' + $scope.availableFunds);
     updateUnitUI();
   };
 
@@ -401,8 +408,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
         if (a) {
           var amountInSatoshis = a * unitToSatoshi;
           $scope.fundsAreInsufficient = !!$scope.fromWalletId 
-          && spendableAmountInSatoshis !== null 
-          && spendableAmountInSatoshis < amountInSatoshis;
+          && availableSatoshis !== null 
+          && availableSatoshis < amountInSatoshis;
 
           $scope.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
           $scope.allowSend = lodash.isNumber(a) 
@@ -421,8 +428,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
         }
       } else {
         $scope.fundsAreInsufficient = !!$scope.fromWalletId 
-          && spendableAmountInSatoshis !== null 
-          && spendableAmountInSatoshis < result * unitToSatoshi;
+          && availableSatoshis !== null 
+          && availableSatoshis < result * unitToSatoshi;
 
         $scope.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
         $scope.allowSend = lodash.isNumber(result) 
@@ -664,13 +671,33 @@ angular.module('copayApp.controllers').controller('amountController', function($
     });
   };
   
-  function updateSpendableAmountInSatoshisFromWallet(wallet) {
+  function updateAvailableFundsFromWallet(wallet) {
     if (wallet.status) {
-      spendableAmountInSatoshis = wallet.status.spendableAmount;
-    } else if (fromWallet.cachedStatus) {
-      spendableAmountInSatoshis = wallet.cachedStatus.spendableAmount;
+      availableFundsInCrypto = wallet.status.spendableBalanceStr;
+      availableSatoshis = wallet.status.spendableAmount;
+      if (wallet.status.alternativeBalanceAvailable) {
+        availableFundsInFiat = wallet.status.spendableBalanceAlternative + ' ' + wallet.status.alternativeIsoCode;
+      } else {
+        availableFundsInFiat = '';
+      }
+
+    } else if (wallet.cachedStatus) {
+
+      if (wallet.cachedStatus.alternativeBalanceAvailable) {
+        availableFundsInFiat = wallet.cachedStatus.spendableBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
+      } else {
+        availableFundsInFiat = '';
+      }
+      availableFundsInCrypto = wallet.cachedStatus.spendableBalanceStr;
+      availableSatoshis = wallet.cachedStatus.spendableAmount;
+
     } else {
-      spendableAmountInSatoshis = null;
+
+      availableFundsInFiat = '';
+      availableFundsInCrypto = '';
+      availableSatoshis = null;
     }
+
+    
   }
 });
