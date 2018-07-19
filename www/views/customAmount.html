@@ -36,11 +36,11 @@
         <div ng-show="selectedPriceDisplay=='fiat'">
           <span class="size-36">{{amountUnitStr}}</span>
           <div class="size-14 amount-alternative">
-            {{altAmountStr}}
+            {{altAmountStr | uppercase}}
           </div>
         </div>
         <div ng-show="selectedPriceDisplay=='crypto'">
-          <span class="size-36">{{altAmountStr}}</span>
+          <span class="size-36">{{altAmountStr | uppercase}}</span>
           <div class="size-14 amount-alternative">
             {{amountUnitStr}}
           </div>
@@ -80,7 +80,7 @@
         <div class="item single-line">
           <span class="label" translate>Amount</span>
           <span class="item-note">
-            {{amountUnitStr}} - {{altAmountStr}}
+            {{amountUnitStr}} - {{altAmountStr | uppercase}}
           </span>
         </div>
         <div class="item single-line">
