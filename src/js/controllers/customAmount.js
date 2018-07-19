@@ -64,6 +64,14 @@ angular.module('copayApp.controllers').controller('customAmountController', func
       var currency = parsedAmount.currency;
       $scope.amountUnitStr = parsedAmount.amountUnitStr;
 
+      configService.whenAvailable(function (config) {
+        $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+
+        $timeout(function () {
+          $scope.$apply();
+        });
+      });
+
       if (currency != 'BTC' && currency != 'BCH') {
         // Convert to BTC or BCH
         var config = configService.getSync().wallet.settings;
@@ -71,7 +79,7 @@ angular.module('copayApp.controllers').controller('customAmountController', func
         var btcParsedAmount = txFormatService.parseAmount($scope.wallet.coin, amountUnit, $scope.wallet.coin);
 
         $scope.amountBtc = btcParsedAmount.amount;
-        $scope.altAmountStr = btcParsedAmount.amountUnitStr;
+        $scope.altAmountStr = btcParsedAmount.amountUnitStr.toUpperCase();
       } else {
         $scope.amountBtc = amount; // BTC or BCH
         $scope.altAmountStr = txFormatService.formatAlternativeStr($scope.wallet.coin, parsedAmount.amountSat);

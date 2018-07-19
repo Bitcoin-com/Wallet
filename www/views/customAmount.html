@@ -11,7 +11,7 @@
     <ion-nav-buttons side="secondary">
       <button class="button-share ng-hide" ng-show="showShareButton" ng-click="shareAddress()">
         <i class="icon"
-          ng-class="{
+           ng-class="{
           'ion-ios-upload-outline': showShareButton == 'iOS',
           'ion-android-share-alt': showShareButton != 'iOS'
           }"></i>
@@ -22,36 +22,56 @@
     <div class="address" ng-if="address && amountBtc">
       <div ng-show="showingPaymentReceived" ng-click="showingPaymentReceived = false">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-          <circle class="path circle" fill="none" stroke="#19B234" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-          <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+          <circle class="path circle" fill="none" stroke="#19B234" stroke-width="6" stroke-miterlimit="10" cx="65.1"
+                  cy="65.1" r="62.1"/>
+          <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round"
+                    stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
         </svg>
         <p class="success animated fadeIn" style="text-align: center">
           <br/>Payment Received!<br/>
           <br/>Return To Address<br/>
         </p>
       </div>
+      <div ng-show="!showingPaymentReceived" class="amount">
+        <div ng-show="selectedPriceDisplay=='fiat'">
+          <strong class="size-36">{{amountUnitStr}}</strong>
+          <div class="size-14 amount-alternative">
+            {{altAmountStr}}
+          </div>
+        </div>
+        <div ng-show="selectedPriceDisplay=='crypto'">
+          <strong class="size-36">{{altAmountStr}}</strong>
+          <div class="size-14 amount-alternative">
+            {{amountUnitStr}}
+          </div>
+        </div>
+      </div>
       <div ng-show="!showingPaymentReceived" class="qr-code" copy-to-clipboard="copyToClipboard()">
         <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
       <div ng-show="!showingPaymentReceived" ng-show="address && coin == 'bch'" class="address-types">
         <div>
-          <button ng-show="address && coin == 'bch' && bchAddressType != 'cashaddr'" class="button-address" ng-click="displayAddress('cashaddr')">
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'cashaddr'" class="button-address"
+                  ng-click="displayAddress('cashaddr')">
             <span translate>Display new style address</span>
           </button>
         </div>
         <div>
-          <button ng-show="address && coin == 'bch' && bchAddressType != 'legacy'" class="button-address" ng-click="displayAddress('legacy')">
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'legacy'" class="button-address"
+                  ng-click="displayAddress('legacy')">
             <span translate>Display legacy address</span>
           </button>
         </div>
         <div>
-          <button ng-show="address && coin == 'bch' && bchAddressType != 'bitpay'" class="button-address" ng-click="displayAddress('bitpay')">
+          <button ng-show="address && coin == 'bch' && bchAddressType != 'bitpay'" class="button-address"
+                  ng-click="displayAddress('bitpay')">
             <span translate>Display BitPay address</span>
           </button>
         </div>
       </div>
       <div class="info">
-        <div class="item single-line" copy-to-clipboard="(coin == 'bch' && bchAddressType == 'cashaddr' ? 'bitcoincash:' : '') + address">
+        <div class="item single-line"
+             copy-to-clipboard="(coin == 'bch' && bchAddressType == 'cashaddr' ? 'bitcoincash:' : '') + address">
           <span class="label" translate>Address</span>
           <span class="item-note ellipsis">
             {{address}}
