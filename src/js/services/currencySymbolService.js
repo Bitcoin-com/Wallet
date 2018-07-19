@@ -179,8 +179,8 @@ angular.module('copayApp.services').factory('currencySymbolService', function($l
   };
 
   root.getCurrencySymbol = function(code) {
-    if (!code)
-      return false;
+    if (!code) return false;
+
     code = code.toUpperCase();
 
     if (root.currencySymbols[code]) {
