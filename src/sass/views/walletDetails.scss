@@ -147,13 +147,13 @@
       background-color: transparent;
     }
   }
-  .nav-bar-block, .bar {
-  background-color: inherit !important;
-  }
+  //.nav-bar-block, .bar {
+  //background-color: inherit !important;
+  //}
   ion-content {
 
     &.collapsible {
-      margin-top: 230px;
+      margin-top: 210px;
     }
 
     padding-top: 0;
@@ -193,7 +193,7 @@
 
     .buttons {
       margin-bottom: 0;
-      margin-top: 6px;
+      margin-top: 30px;
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;
@@ -206,8 +206,8 @@
         width: 100%;
         font-size: 19px;
         font-weight: bolder;
-        min-height: 45px;
-        line-height: 45px;
+        min-height: 40px;
+        line-height: 40px;
       }
     }
   }
@@ -215,7 +215,7 @@
     width: 100%;
     text-align: center;
     color: #fff;
-    height: 230px;
+    height: 210px;
     padding-top: 40px;
     display: block;
     align-items: center;

@@ -365,6 +365,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     var t = amountTop;
 
     $scope.altAmountOpacity = (amountHeight - 100) / 80;
+
+    $scope.buttonsOpacity = (amountHeight -  150)/80;
     $window.requestAnimationFrame(function() {
       $scope.amountHeight = amountHeight + 'px';
       $scope.contentMargin = contentMargin + 'px';
