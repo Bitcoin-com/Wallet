@@ -15171,6 +15171,21 @@ ion-content.padded-bottom-cta {
   .address .suffix {
     color: #000000; }
 
+.action-minor {
+  margin: 20px 14px;
+  font-size: 14px; }
+  .action-minor.mt-negative {
+    margin-top: -10px; }
+  .action-minor.right {
+    text-align: right; }
+  .action-minor > .action-icon {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 3px; }
+  .action-minor > .action-text {
+    vertical-align: middle; }
+
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
  */
