@@ -3,12 +3,14 @@
     <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
   </ion-nav-bar>
   <ion-content>
-    <div class="header">
+    <div class="header--request" ng-if="isPaymentRequest">
+      <div class="header--request__title" translate>Paying</div>
+      <div class="header--request__amount" translate>$37.42 USD</div>
+      <div class="header--request__amount-alt" translate>0.04580000 BCH</div>
+    </div>
+    <div class="wallets-header">
       <div class="title">
         {{headerTitle}}
-      </div>
-      <div class="subtitle">
-        {{headerSubtitle}}
       </div>
     </div>
     <div class="list card">
@@ -25,7 +27,7 @@
       </div>
     </div>
 
-    <div class="list card">
+    <div class="list card" ng-if="walletsBtc.length > 0">
       <div class="item item-icon-right item-heading">
         <div translate>Bitcoin Core (BTC)</div>
       </div>
@@ -33,6 +35,18 @@
         <a ng-repeat="wallet in walletsBtc track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
            ng-click="openWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card card-insufficient" ng-if="walletsEmpty.length > 0">
+      <div class="item item-icon-right item-heading">
+        <span class="card-insufficient__dot"></span><div translate>Insufficient funds</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsEmpty track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
