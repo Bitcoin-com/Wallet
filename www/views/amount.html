@@ -27,7 +27,7 @@
               <div class="switch-currencies" ng-click="changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
             <div class="send-amount-actions text-center">
-              <button class="button button-sendmax" ng-if=!"isRequestingSpecificAmount" ng-click="sendMax()">
+              <button class="button button-sendmax" ng-if="!isRequestingSpecificAmount" ng-click="sendMax()">
                 <span>
                   <i class="icon ion-ios-speedometer-outline"></i>&emsp;
                   <span translate>Send max amount</span>
