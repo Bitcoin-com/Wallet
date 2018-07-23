@@ -83,7 +83,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       // Timeout is required to enable the "Back" button
       $timeout(function() {
         if (amount) {
-          $state.transitionTo('tabs.send.confirm', {
+          $state.transitionTo('tabs.send.origin', {
             toAmount: amount,
             toAddress: addr,
             displayAddress: originalAddress ? originalAddress : addr,
@@ -102,8 +102,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             params['minShapeshiftAmount'] = shapeshiftData.minAmount;
             params['maxShapeshiftAmount'] = shapeshiftData.maxAmount;
             params['shapeshiftOrderId'] = shapeshiftData.orderId;
+            $state.transitionTo('tabs.send.amount', params);
+          } else {
+            $state.transitionTo('tabs.send.origin', params);
           }
-          $state.transitionTo('tabs.send.amount', params);
         }
       }, 100);
     }

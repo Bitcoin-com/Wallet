@@ -270,6 +270,24 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.send.origin', {
+        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId',
+        views: {
+          'tab-send@tabs': {
+            controller: 'sendFlowController',
+            templateUrl: 'views/wallet-origin-destination.html',
+          }
+        }
+      })
+      .state('tabs.send.destination', {
+        url: '/destination/:fromWalletId/:thirdParty/:amount',
+        views: {
+          'tab-send@tabs': {
+            controller: 'sendFlowController',
+            templateUrl: 'views/wallet-origin-destination.html',
+          }
+        }
+      })
       .state('tabs.settings', {
         url: '/settings',
         views: {
@@ -299,7 +317,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/wallet-to-wallet',
         views: {
           'tab-send@tabs': {
-            controller: 'walletToWalletController',
+            controller: 'sendFlowController',
             templateUrl: 'views/wallet-to-wallet-transfer.html'
           }
         }
@@ -1273,7 +1291,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (screen.width < 768 && platformInfo.isCordova)
         screen.lockOrientation('portrait');
 
-      if (ionic.Platform.isAndroid() && StatusBar) {
+      if (ionic.Platform.isAndroid() && platformInfo.isCordova && StatusBar) {
         StatusBar.backgroundColorByHexString('#000000');
       }
 

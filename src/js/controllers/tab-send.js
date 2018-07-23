@@ -54,42 +54,42 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       updateList();
     });
   });
-
-  var wallets;
-  var walletsBch;
-  var walletsBtc;
-  var walletToWalletFrom = false;
-
-  $scope.onWalletSelect = function(wallet) {
-    if (!$scope.walletToWalletFrom) {
-      $scope.walletToWalletFrom = wallet;
-      if (wallet.coin === 'bch') {
-        $scope.showWalletsBch = true;
-      } else if (wallet.coin === 'btc') {
-        $scope.showWalletsBtc = true;
-      }
-      $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
-    } else {
-      $ionicLoading.show();
-      walletService.getAddress(wallet, true, function(err, addr) {
-        $ionicLoading.hide();
-        return $state.transitionTo('tabs.send.amount', {
-          displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
-          recipientType: 'wallet',
-          fromWalletId: $scope.walletToWalletFrom.id,
-          toAddress: addr,
-          coin: $scope.walletToWalletFrom.coin
-        });
-      });
-
-    }
-  };
-
-  $scope.showWalletSelector = function() {
-    $scope.walletToWalletFrom = false;
-    $scope.walletSelectorTitleFrom = gettextCatalog.getString('Send from');
-    $scope.showWallets = true;
-  };
+  //
+  // var wallets;
+  // var walletsBch;
+  // var walletsBtc;
+  // var walletToWalletFrom = false;
+  //
+  // $scope.onWalletSelect = function(wallet) {
+  //   if (!$scope.walletToWalletFrom) {
+  //     $scope.walletToWalletFrom = wallet;
+  //     if (wallet.coin === 'bch') {
+  //       $scope.showWalletsBch = true;
+  //     } else if (wallet.coin === 'btc') {
+  //       $scope.showWalletsBtc = true;
+  //     }
+  //     $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
+  //   } else {
+  //     $ionicLoading.show();
+  //     walletService.getAddress(wallet, true, function(err, addr) {
+  //       $ionicLoading.hide();
+  //       return $state.transitionTo('tabs.send.amount', {
+  //         displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
+  //         recipientType: 'wallet',
+  //         fromWalletId: $scope.walletToWalletFrom.id,
+  //         toAddress: addr,
+  //         coin: $scope.walletToWalletFrom.coin
+  //       });
+  //     });
+  //
+  //   }
+  // };
+  //
+  // $scope.showWalletSelector = function() {
+  //   $scope.walletToWalletFrom = false;
+  //   $scope.walletSelectorTitleFrom = gettextCatalog.getString('Send from');
+  //   $scope.showWallets = true;
+  // };
 
   $scope.findContact = function(search) {
 
@@ -133,7 +133,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   var updateHasFunds = function() {
-
     $scope.hasFunds = false;
     var index = 0;
     lodash.each($scope.wallets, function(w) {
