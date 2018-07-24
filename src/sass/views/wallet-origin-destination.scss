@@ -28,7 +28,6 @@
     }
   }
   .wallets-header {
-    font-size: 12px;
     margin: 20px 14px 0px;
 
     .title {
@@ -43,7 +42,11 @@
     margin: 20px 14px 0px;
 
     .item-heading {
+      .subtitle {
+        font-size: 12px;
+      }
       font-weight: 600;
+
     }
 
     &-insufficient {

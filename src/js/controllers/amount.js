@@ -31,7 +31,6 @@ angular.module('copayApp.controllers').controller('amountController', function($
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-
     initCurrencies();
 
     if (data.stateParams.shapeshiftOrderId && data.stateParams.shapeshiftOrderId.length > 0) {
@@ -42,6 +41,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
     // To get the wallet from with the new flow
     $scope.fromWalletId = data.stateParams.fromWalletId;
+    $scope.toWalletId = data.stateParams.toWalletId;
 
     if (data.stateParams.noPrefix) {
       $scope.showWarningMessage = data.stateParams.noPrefix != 0;
@@ -156,10 +156,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.toEmail = data.stateParams.toEmail;
     $scope.toColor = data.stateParams.toColor;
 
-    if (!$scope.nextStep && !data.stateParams.toAddress) {
-      $log.error('Bad params at amount')
-      throw ('bad params');
-    }
+    // if (!$scope.nextStep && !data.stateParams.toAddress) {
+    //   $log.error('Bad params at amount')
+    //   throw ('bad params');
+    // }
 
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
@@ -198,8 +198,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
     $scope.resetAmount();
 
     // in SAT ALWAYS
-    if ($stateParams.toAmount) {
-      $scope.amountModel.amount = (($stateParams.toAmount) * satToUnit).toFixed(unitDecimals);
+    if ($stateParams.amount) {
+      $scope.amountModel.amount = (($stateParams.amount) * satToUnit).toFixed(unitDecimals);
     }
 
     $scope.processAmount();
@@ -461,7 +461,8 @@ angular.module('copayApp.controllers').controller('amountController', function($
           currency: unit.id.toUpperCase(),
           coin: coin,
           useSendMax: $scope.useSendMax,
-          fromWalletId: $scope.fromWalletId
+          fromWalletId: $scope.fromWalletId,
+          toWalletId: $scope.toWalletId
         });
       } else {
         var amount = _amount;
@@ -474,7 +475,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
 
         var confirmData = {
           recipientType: $scope.recipientType,
-          toAmount: amount,
+          amount: amount,
           toAddress: $scope.toAddress,
           displayAddress: $scope.displayAddress || $scope.toAddress,
           toName: $scope.toName,
@@ -482,14 +483,14 @@ angular.module('copayApp.controllers').controller('amountController', function($
           toColor: $scope.toColor,
           coin: coin,
           useSendMax: $scope.useSendMax,
-          fromWalletId: $scope.fromWalletId
+          fromWalletId: $scope.fromWalletId,
+          toWalletId: $scope.toWalletId
         };
 
         if ($scope.shapeshiftOrderId) {
           var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
           shapeshiftOrderUrl += $scope.shapeshiftOrderId;
           confirmData.description = shapeshiftOrderUrl;
-          confirmData.fromWalletId = $scope.fromWalletId;
 
           if (confirmData.useSendMax) {
             var wallet = lodash.find(profileService.getWallets({ coin: coin }),
@@ -500,10 +501,10 @@ angular.module('copayApp.controllers').controller('amountController', function($
             var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
             if (balance < $scope.minShapeshiftAmount * 1.04) {
               confirmData.useSendMax = false;
-              confirmData.toAmount = $scope.minShapeshiftAmount * unitToSatoshi;
+              confirmData.amount = $scope.minShapeshiftAmount * unitToSatoshi;
             } else if (balance > $scope.maxShapeshiftAmount) {
               confirmData.useSendMax = false;
-              confirmData.toAmount = $scope.maxShapeshiftAmount * unitToSatoshi * 0.99;
+              confirmData.amount = $scope.maxShapeshiftAmount * unitToSatoshi * 0.99;
             }
           }
         }

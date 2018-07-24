@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -68,82 +68,95 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     });
   };
 
+  var setWalletSelector = function(coin, network, minAmount, cb) {
+
+    // no min amount? (sendMax) => look for no empty wallets
+    minAmount = minAmount || 1;
+
+    $scope.wallets = profileService.getWallets({
+      onlyComplete: true,
+      network: network,
+      coin: coin
+    });
+
+    if (tx.fromWalletId) {
+      $scope.wallets = lodash.filter($scope.wallets, function (w) {
+        return w.id == tx.fromWalletId;
+      });
+    }
+
+
+    if (!$scope.wallets || !$scope.wallets.length) {
+      setNoWallet(gettextCatalog.getString('No wallets available'), true);
+      return cb();
+    }
+
+    var filteredWallets = [];
+    var index = 0;
+    var walletsUpdated = 0;
+
+    lodash.each($scope.wallets, function (w) {
+      walletService.getStatus(w, {}, function (err, status) {
+        if (err || !status) {
+          $log.error(err);
+        } else {
+          walletsUpdated++;
+          w.status = status;
+
+          if (!status.availableBalanceSat)
+            $log.debug('No balance available in: ' + w.name);
+
+          if (status.availableBalanceSat > minAmount) {
+            filteredWallets.push(w);
+          }
+        }
+
+        if (++index == $scope.wallets.length) {
+          if (!walletsUpdated)
+            return cb('Could not update any wallet');
+
+          if (lodash.isEmpty(filteredWallets)) {
+            setNoWallet(gettextCatalog.getString('Insufficient confirmed funds'), true);
+          }
+          $scope.wallets = lodash.clone(filteredWallets);
+          return cb();
+        }
+      });
+    });
+  };
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-
-    function setWalletSelector(coin, network, minAmount, cb) {
-
-      // no min amount? (sendMax) => look for no empty wallets
-      minAmount = minAmount || 1;
-
-      $scope.wallets = profileService.getWallets({
-        onlyComplete: true,
-        network: network,
-        coin: coin
-      });
-
-      if (tx.fromWalletId) {
-        $scope.wallets = lodash.filter($scope.wallets, function(w) {
-          return w.id == tx.fromWalletId;
-        });
-      }
-
-
-
-      if (!$scope.wallets || !$scope.wallets.length) {
-        setNoWallet(gettextCatalog.getString('No wallets available'), true);
-        return cb();
-      }
-
-      var filteredWallets = [];
-      var index = 0;
-      var walletsUpdated = 0;
-
-      lodash.each($scope.wallets, function(w) {
-        walletService.getStatus(w, {}, function(err, status) {
-          if (err || !status) {
-            $log.error(err);
-          } else {
-            walletsUpdated++;
-            w.status = status;
-
-            if (!status.availableBalanceSat)
-              $log.debug('No balance available in: ' + w.name);
-
-            if (status.availableBalanceSat > minAmount) {
-              filteredWallets.push(w);
-            }
-          }
-
-          if (++index == $scope.wallets.length) {
-            if (!walletsUpdated)
-              return cb('Could not update any wallet');
-
-            if (lodash.isEmpty(filteredWallets)) {
-              setNoWallet(gettextCatalog.getString('Insufficient confirmed funds'), true);
-            }
-            $scope.wallets = lodash.clone(filteredWallets);
-            return cb();
-          }
-        });
-      });
-    };
-
     // Setup $scope
 
     var B = data.stateParams.coin == 'bch' ? bitcoreCash : bitcore;
     var networkName;
+    $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId);
+    $scope.recipientType = null;
+
     try {
-      networkName = (new B.Address(data.stateParams.toAddress)).network.name;
-    } catch(e) {
+      if (data.stateParams.toWalletId) {
+        $scope.recipientType = 'wallet'; // set type to wallet-to-wallet
+        $ionicLoading.show();
+        var wallet = profileService.getWallet(data.stateParams.toWalletId);
+        walletService.getAddress(wallet, true, function (err, addr) {
+          $ionicLoading.hide();
+          data.stateParams.toAddress = addr;
+          networkName = (new B.Address(data.stateParams.toAddress)).network.name;
+          vanityTx(networkName, data);
+        });
+      } else if (data.stateParams.toAddress) {
+        networkName = (new B.Address(data.stateParams.toAddress)).network.name;
+        vanityTx(networkName, data);
+      }
+    } catch (e) {
       var message = gettextCatalog.getString('Invalid address');
       var backText = gettextCatalog.getString('Go back');
       var learnText = gettextCatalog.getString('Learn more');
-      popupService.showConfirm(null, message, backText, learnText, function(back) {
+      popupService.showConfirm(null, message, backText, learnText, function (back) {
         $ionicHistory.nextViewOptions({
           disableAnimate: true,
           historyRoot: true
         });
-        $state.go('tabs.send').then(function() {
+        $state.go('tabs.send').then(function () {
           $ionicHistory.clearHistory();
           if (!back) {
             var url = 'https://support.bitpay.com/hc/en-us/articles/115004671663';
@@ -153,27 +166,24 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       });
       return;
     }
-
+  });
+  var vanityTx = function(networkName, data) {
     // Grab stateParams
     tx = {
-      toAmount: parseInt(data.stateParams.toAmount),
+      amount: parseInt(data.stateParams.amount),
       sendMax: data.stateParams.useSendMax == 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
-      displayAddress: data.stateParams.displayAddress,
-      description: data.stateParams.description,
-      paypro: data.stateParams.paypro,
-
       feeLevel: configFeeLevel,
       spendUnconfirmed: walletConfig.spendUnconfirmed,
 
       // Vanity tx info (not in the real tx)
-      recipientType: data.stateParams.recipientType || null,
+      recipientType: $scope.recipientType || null,
       toName: data.stateParams.toName,
       toEmail: data.stateParams.toEmail,
       toColor: data.stateParams.toColor,
       network: networkName,
-      coin: data.stateParams.coin,
+      coin: $scope.fromWallet.coin,
       txp: {},
     };
 
@@ -188,12 +198,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     // Other Scope vars
     $scope.isCordova = isCordova;
-    $scope.isWindowsPhoneApp = isWindowsPhoneApp;
     $scope.showAddress = false;
-
     $scope.walletSelectorTitle = gettextCatalog.getString('Send from');
 
-    setWalletSelector(tx.coin, tx.network, tx.toAmount, function(err) {
+    setWalletSelector(tx.coin, tx.network, tx.amount, function(err) {
       if (err) {
         return exitWithError('Could not update wallets');
       }
@@ -207,7 +215,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     $scope.displayBalanceAsFiat = walletConfig.settings.priceDisplay === 'fiat';
 
-  });
+  };
 
 
   function getSendMaxInfo(tx, wallet, cb) {
@@ -231,7 +239,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return setSendError(msg);
     }
 
-    if (tx.toAmount > Number.MAX_SAFE_INTEGER) {
+    if (tx.amount > Number.MAX_SAFE_INTEGER) {
       var msg = gettextCatalog.getString('Amount too big');
       $log.warn(msg);
       return setSendError(msg);
@@ -241,7 +249,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     txp.outputs = [{
       'toAddress': tx.toAddress,
-      'amount': tx.toAmount,
+      'amount': tx.amount,
       'message': tx.description
     }];
 
@@ -280,13 +288,13 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     $scope.tx = tx;
 
     function updateAmount() {
-      if (!tx.toAmount) return;
+      if (!tx.amount) return;
 
       // Amount
-      tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.toAmount);
+      tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
-      txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
+      txFormatService.formatAlternativeStr(wallet.coin, tx.amount, function(v) {
         var parts = v.split(' ');
         tx.alternativeAmountStr = v;
         tx.alternativeAmountValueStr = parts[0];
@@ -342,7 +350,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           }
 
           tx.sendMaxInfo = sendMaxInfo;
-          tx.toAmount = tx.sendMaxInfo.amount;
+          tx.amount = tx.sendMaxInfo.amount;
           updateAmount();
           ongoingProcess.set('calculatingFee', false);
           $timeout(function() {
@@ -393,7 +401,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   function useSelectedWallet() {
 
     if (!$scope.useSendMax) {
-      showAmount(tx.toAmount);
+      showAmount(tx.amount);
     }
 
     $scope.onWalletSelect($scope.wallet);

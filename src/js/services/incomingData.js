@@ -84,7 +84,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       $timeout(function() {
         if (amount) {
           $state.transitionTo('tabs.send.origin', {
-            toAmount: amount,
+            amount: amount,
             toAddress: addr,
             displayAddress: originalAddress ? originalAddress : addr,
             description: message,
@@ -409,7 +409,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   function handlePayPro(payProDetails, coin) {
     var stateParams = {
-      toAmount: payProDetails.amount,
+      amount: payProDetails.amount,
       toAddress: payProDetails.toAddress,
       description: payProDetails.memo,
       paypro: payProDetails,

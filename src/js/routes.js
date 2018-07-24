@@ -270,24 +270,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('tabs.send.origin', {
-        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId',
-        views: {
-          'tab-send@tabs': {
-            controller: 'sendFlowController',
-            templateUrl: 'views/wallet-origin-destination.html',
-          }
-        }
-      })
-      .state('tabs.send.destination', {
-        url: '/destination/:fromWalletId/:thirdParty/:amount',
-        views: {
-          'tab-send@tabs': {
-            controller: 'sendFlowController',
-            templateUrl: 'views/wallet-origin-destination.html',
-          }
-        }
-      })
       .state('tabs.settings', {
         url: '/settings',
         views: {
@@ -305,7 +287,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
+        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:toWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
@@ -318,12 +300,30 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'sendFlowController',
-            templateUrl: 'views/wallet-to-wallet-transfer.html'
+            templateUrl: 'views/wallet-origin-destination.html'
+          }
+        }
+      })
+      .state('tabs.send.origin', {
+        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId',
+        views: {
+          'tab-send@tabs': {
+            controller: 'sendFlowController',
+            templateUrl: 'views/wallet-origin-destination.html',
+          }
+        }
+      })
+      .state('tabs.send.destination', {
+        url: '/destination/:thirdParty/:amount/:fromWalletId',
+        views: {
+          'tab-send@tabs': {
+            controller: 'sendFlowController',
+            templateUrl: 'views/wallet-origin-destination.html',
           }
         }
       })
       .state('tabs.send.confirm', {
-        url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:coin/:useSendMax/:fromWalletId/:displayAddress/:requiredFeeRate',
+        url: '/confirm/:thirdParty/:amount/:fromWalletId/:toWalletId/:toAddress',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',
