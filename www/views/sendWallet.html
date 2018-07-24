@@ -3,7 +3,7 @@
     <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
   </ion-nav-bar>
   <ion-content>
-    <div class="header--request" ng-if="isPaymentRequest">
+    <div class="header--request" ng-if="vm.isPaymentRequest">
       <div class="header--request__title" translate>Paying</div>
       <div class="header--request__amount" translate>$37.42 USD</div>
       <div class="header--request__amount-alt" translate>0.04580000 BCH {{requestAmount}}</div>

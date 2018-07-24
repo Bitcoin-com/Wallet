@@ -6,6 +6,7 @@ function sendWalletController(gettextCatalog, configService, $filter, $ionicHist
   var vm = this;
 
   vm.headerTitle = '';
+  vm.isPaymentRequest = false;
   vm.isSendFrom = true;
   vm.walletsBch = [];
   vm.walletsBtc = [];
@@ -25,9 +26,9 @@ function sendWalletController(gettextCatalog, configService, $filter, $ionicHist
     vm.isSendFrom = !!fromWalletId;
 
     if (vm.isSendFrom) {
-      vm.headerTitle = gettextCatalog.getString('From');
+      vm.headerTitle = gettextCatalog.getString('From:');
     } else {
-      vm.headerTitle = gettextCatalog.getString('To');
+      vm.headerTitle = gettextCatalog.getString('To:');
     }
 
     vm.walletsBch = profileService.getWallets({
