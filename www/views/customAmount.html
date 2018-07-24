@@ -45,7 +45,7 @@
         </div>
       </div>
       <div ng-show="!showingPaymentReceived" class="qr-code" copy-to-clipboard="copyToClipboard()">
-        <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
+        <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
       <div ng-show="!showingPaymentReceived" ng-show="address && coin == 'bch'" class="address-types">
         <div>
