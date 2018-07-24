@@ -3,10 +3,10 @@
   font-size: 14px;
 
   &.mt-negative {
-    margin-top: -10px;
+    margin-top: 0;
   }
 
-  &.right {
+  &.text-right {
     text-align: right;
   }
 
@@ -19,5 +19,6 @@
 
   > .action-text {
     vertical-align: middle;
+    color: #444444;
   }
 }
