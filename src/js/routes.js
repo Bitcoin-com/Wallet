@@ -285,7 +285,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        * Send
        *
        */
-
+      .state('tabs.send.wallet', {
+        url: '/send-wallet/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
+        views: {
+          'tab-send@tabs' : {
+            controller: 'sendWalletController',
+            controllerAs: 'vm',
+            templateUrl: 'views/sendWallet.html'
+          }
+        }
+      })
       .state('tabs.send.amount', {
         url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
         views: {

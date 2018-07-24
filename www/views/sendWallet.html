@@ -1,0 +1,55 @@
+<ion-view id="send-wallet" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="header--request" ng-if="isPaymentRequest">
+      <div class="header--request__title" translate>Paying</div>
+      <div class="header--request__amount" translate>$37.42 USD</div>
+      <div class="header--request__amount-alt" translate>0.04580000 BCH {{requestAmount}}</div>
+    </div>
+    <div class="wallets-header">
+      <div class="title">
+        {{vm.headerTitle}}
+      </div>
+    </div>
+    <div class="list card">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Cash (BCH)</div>
+        <div translate class="subtitle">Instant transactions with low fees</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in vm.walletsBch track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="vm.useWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card" ng-if="vm.walletsBtc.length > 0">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Core (BTC)</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in vm.walletsBtc track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="vm.useWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card card-insufficient" ng-if="vm.walletsEmpty.length > 0">
+      <div class="item item-icon-right item-heading">
+        <span class="card-insufficient__dot"></span><div translate>Insufficient funds</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in vm.walletsEmpty track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
