@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('sendFlowController', function($scope, $rootScope, $state, $stateParams, $log, configService, gettextCatalog, profileService) {
+angular.module('copayApp.controllers').controller('sendFlowController', function($scope, $rootScope, $state, $stateParams, $log, $ionicHistory, configService, gettextCatalog, profileService) {
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     var config = configService.getSync().wallet.settings;
@@ -60,4 +60,9 @@ angular.module('copayApp.controllers').controller('sendFlowController', function
     }
     $state.transitionTo(getNextStep(), $scope.params);
   };
+
+  $scope.goBack = function() {
+    $ionicHistory.goBack();
+  }
+
 });

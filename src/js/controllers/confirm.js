@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -173,6 +173,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         setupTx(tx);
       }
     } catch (e) {
+      console.log(e);
       var message = gettextCatalog.getString('Invalid address');
       popupService.showAlert(null, message, function () {
         $ionicHistory.nextViewOptions({
@@ -187,7 +188,12 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     }
   });
 
-  var setupTx = function(networkName, data) {
+  var setupTx = function(tx) {
+    if (tx.coin === 'bch') {
+      tx.displayAddress = bitcoinCashJsService.readAddress(tx.toAddress).cashaddr;
+    } else {
+      tx.displayAddress = entry.address;
+    }
 
     // Other Scope vars
     $scope.isCordova = isCordova;
