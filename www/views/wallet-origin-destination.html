@@ -1,13 +1,13 @@
 <ion-view id="wallet-origin-destination" show-tabs>
   <ion-nav-bar class="bar-royal">
-    <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
+    <ion-nav-title>{{sendFlowTitle}}</ion-nav-title>
     <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
     <div class="header--request" ng-if="isPaymentRequest">
       <div class="header--request__title" translate>Paying</div>
-      <div class="header--request__amount" translate>$37.42 USD</div>
-      <div class="header--request__amount-alt" translate>0.04580000 BCH {{requestAmount}}</div>
+      <div class="header--request__amount" translate>$... USD</div>
+      <div class="header--request__amount-alt" translate>{{requestAmount}} {{coin.toUpperCase()}}</div>
     </div>
     <div class="wallets-header">
       <div class="title">

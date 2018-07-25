@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -116,8 +116,35 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       });
     });
   };
+
+  $scope.getContacts = function(addr) {
+    addressbookService.list(function(err, ab) {
+      if (err) $log.error(err);
+
+      $scope.hasContacts = lodash.isEmpty(ab) ? false : true;
+      if (!$scope.hasContacts) return cb();
+
+      var completeContacts = [];
+      lodash.each(ab, function(v, k) {
+        completeContacts.push({
+          name: lodash.isObject(v) ? v.name : v,
+          address: k,
+          email: lodash.isObject(v) ? v.email : null,
+          recipientType: 'contact',
+          coin: v.coin,
+          displayCoin:  (v.coin == 'bch'
+              ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
+              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase()
+        });
+      });
+
+      return cb();
+    });
+  }
+
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId); // Wallet to send from
+
 
     // Grab stateParams
     tx = {
@@ -173,7 +200,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         setupTx(tx);
       }
     } catch (e) {
-      console.log(e);
       var message = gettextCatalog.getString('Invalid address');
       popupService.showAlert(null, message, function () {
         $ionicHistory.nextViewOptions({
@@ -194,6 +220,14 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     } else {
       tx.displayAddress = entry.address;
     }
+
+    addressbookService.get(tx.coin+tx.toAddress, function(err, addr) { // Check if the recipient is a contact
+      if (!err && addr) {
+        tx.toName = addr.name;
+        tx.toEmail = addr.email;
+        tx.recipientType = 'contact';
+      }
+    });
 
     // Other Scope vars
     $scope.isCordova = isCordova;

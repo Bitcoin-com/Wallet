@@ -4,15 +4,31 @@ angular.module('copayApp.controllers').controller('sendFlowController', function
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     var config = configService.getSync().wallet.settings;
+    $scope.sendFlowTitle = "";
+
+    if ($state.current.name === 'tabs.send.wallet-to-wallet') {
+      $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+    }
+
     $scope.params = $stateParams;
+    $scope.coin = false; // Wallets to show (for destination screen or contacts)
+    $scope.type = data.stateParams && data.stateParams['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
+
+    if ($scope.params.coin) {
+      $scope.coin = $scope.params.coin; // Contacts have a coin embedded
+    }
+
     if ($scope.params.amount) { // There is an amount, so presume that it a payment request
+      $scope.sendFlowTitle = gettextCatalog.getString('Payment request');
       $scope.specificAmount = $scope.specificAlternativeAmount = '';
-      var unitToSatoshi = config.unitToSatoshi;
-      var satToUnit = 1 / unitToSatoshi;
-      var satToBtc = 1 / 100000000;
-      var unitDecimals = config.unitDecimals;
-      $scope.requestAmount = (($stateParams.amount) * satToUnit).toFixed(unitDecimals);
+      $scope.requestAmount = (($stateParams.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
       $scope.isPaymentRequest = true;
+    }
+    if ($scope.params.thirdParty) {
+      // Third Party Service
+      if ($scope.params.thirdParty.id === 'shapeshift') {
+
+      }
     }
   });
 
@@ -21,8 +37,6 @@ angular.module('copayApp.controllers').controller('sendFlowController', function
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
     });
 
-    $scope.type = data.stateParams && data.stateParams['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
-    $scope.coin = false; // Wallets to show (for destination screen)
     $scope.walletsEmpty = []; // empty wallets for origin screen
 
     if ($scope.type === 'origin') {

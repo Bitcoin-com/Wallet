@@ -90,7 +90,7 @@
           </div>
           <div class="list">
             <a class="item item-icon-left item-icon-right" ng-repeat="item in list"
-               ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="goToAmount(item)">
+               ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="sendToContact(item)">
               <i class="icon big-icon-svg">
                 <gravatar class="send-gravatar" name="{{item.name}}" width="120" email="{{item.email}}"></gravatar>
               </i>
