@@ -21,6 +21,9 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
     $timeout(function() {
       var form = addressbookForm;
       if (data && form) {
+        if (data.result) {
+          data = data.result;
+        }
         data = data.replace(/^bitcoin(cash)?:/, '');
         form.address.$setViewValue(data);
         form.address.$isValid = true;
