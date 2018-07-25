@@ -36,9 +36,9 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
       addressbook.address = translated.legacy;
     }
 
-    var channel = "firebase";
-    if (platformInfo.isNW) {
-      channel = "ga";
+    var channel = "ga";
+    if (platformInfo.isCordova) {
+      channel = "firebase";
     }
     var log = new window.BitAnalytics.LogEvent("contact_created", [{
       "coin": $scope.addressbookEntry.coin

@@ -145,9 +145,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
 
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,

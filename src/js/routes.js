@@ -1184,9 +1184,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
 
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       
       // Send a log to test
