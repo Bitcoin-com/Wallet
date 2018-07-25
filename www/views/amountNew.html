@@ -1,0 +1,85 @@
+<ion-view id="view-amount-new" hide-tabs>
+    <ion-nav-bar class="bar-royal">
+      <ion-nav-title>
+        {{'Enter amount (New)' | translate}}
+      </ion-nav-title>
+      <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content scroll="false" style="background: #fff;">
+  
+      <div style="order: 0; position: relative;">
+  
+        <div class="item send-amount">
+          <div ng-if="vm.shapeshiftOrderId">
+            Minimum amount: {{vm.minShapeshiftAmount}} <br/>
+            Maximum amount: {{vm.maxShapeshiftAmount}} <br/>
+          </div>
+          <div class="send-amount-tool">
+            <div class="send-amount-tool-input amount">
+              <div class="primary-amount"
+                ng-class="{long: vm.amountModel.amount.length > 5, 'very-long': vm.amountModel.amount.length > 10}">
+                <span class="primary-amount-display text-selectable">{{ vm.amountModel.amount || 0 }}</span><span class="unit">{{vm.unit}}</span>
+              </div>
+              <span ng-show="vm.globalResult">{{vm.globalResult}} {{vm.unit}}</span>
+              <div class="alternative-amount">
+                <span class="text-selectable">{{vm.alternativeAmount || '0.00'}}</span> <span>{{vm.alternativeUnit}}</span>
+              </div>
+              <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
+            </div>
+            <div class="send-amount-actions text-center">
+              <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
+                <span>
+                  <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+                  <span translate>Send max amount</span>
+                </span>
+              </button>
+              <button class="button button-sendmax" ng-click="vm.openPopup()">
+                <span>
+                  <i class="icon ion-social-usd"></i>&emsp;
+                  <span translate>Change currency</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
+        <div class="keypad" style="position: relative;">
+  
+          <div class="row">
+            <div class="col digit" ng-click="vm.pushDigit('7')">7</div>
+            <div class="col digit" ng-click="vm.pushDigit('8')">8</div>
+            <div class="col digit" ng-click="vm.pushDigit('9')">9</div>
+          </div>
+  
+          <div class="row">
+            <div class="col digit" ng-click="vm.pushDigit('4')">4</div>
+            <div class="col digit" ng-click="vm.pushDigit('5')">5</div>
+            <div class="col digit" ng-click="vm.pushDigit('6')">6</div>
+          </div>
+  
+          <div class="row">
+            <div class="col digit" ng-click="vm.pushDigit('1')">1</div>
+            <div class="col digit" ng-click="vm.pushDigit('2')">2</div>
+            <div class="col digit" ng-click="vm.pushDigit('3')">3</div>
+          </div>
+  
+          <div class="row">
+            <div class="col digit" ng-click="vm.pushDigit('.')">.</div>
+            <div class="col digit" ng-click="vm.pushDigit('0')">0</div>
+            <div class="col digit icon ion-backspace-outline" ng-click="vm.removeDigit()"></div>
+          </div>
+        </div>
+      </div>
+  
+      <button 
+        class="button button-full button-primary no-margin" 
+        ng-disabled="!vm.allowSend" 
+        ng-click="vm.finish()"
+        style="position: absolute; bottom: 0;"
+        translate>
+        Next
+      </button>
+    </ion-content>
+  </ion-view>

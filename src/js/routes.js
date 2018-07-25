@@ -701,7 +701,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-receive@tabs': {
             controller: 'amountController',
             controllerAs: 'vm',
-            templateUrl: 'views/amount.html'
+            templateUrl: 'views/amountNew.html'
           }
         }
       })
