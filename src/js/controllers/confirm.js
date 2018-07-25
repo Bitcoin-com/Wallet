@@ -10,16 +10,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   // Config Related values
   var config = configService.getSync();
   var walletConfig = config.wallet;
-  var unitToSatoshi = walletConfig.settings.unitToSatoshi;
-  var unitDecimals = walletConfig.settings.unitDecimals;
-  var satToUnit = 1 / unitToSatoshi;
   var configFeeLevel = walletConfig.settings.feeLevel ? walletConfig.settings.feeLevel : 'normal';
 
-
   // Platform info
-  var isChromeApp = platformInfo.isChromeApp;
   var isCordova = platformInfo.isCordova;
-  var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
   //custom fee flag
   var usingCustomFee = false;
@@ -30,7 +24,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       $scope.$apply();
     }, 10);
   }
-
 
   $scope.showWalletSelector = function() {
     $scope.walletSelector = true;
@@ -44,7 +37,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   $scope.$on("$ionicView.enter", function(event, data) {
     $ionicConfig.views.swipeBackEnabled(false);
   });
-
 
   function exitWithError(err) {
     $log.info('Error setting wallet selector:' + err);
@@ -125,49 +117,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     });
   };
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    // Setup $scope
+    $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId); // Wallet to send from
 
-    var B = data.stateParams.coin == 'bch' ? bitcoreCash : bitcore;
-    var networkName;
-    $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId);
-    $scope.recipientType = null;
-
-    try {
-      if (data.stateParams.toWalletId) {
-        $scope.recipientType = 'wallet'; // set type to wallet-to-wallet
-        $ionicLoading.show();
-        var wallet = profileService.getWallet(data.stateParams.toWalletId);
-        walletService.getAddress(wallet, true, function (err, addr) {
-          $ionicLoading.hide();
-          data.stateParams.toAddress = addr;
-          networkName = (new B.Address(data.stateParams.toAddress)).network.name;
-          vanityTx(networkName, data);
-        });
-      } else if (data.stateParams.toAddress) {
-        networkName = (new B.Address(data.stateParams.toAddress)).network.name;
-        vanityTx(networkName, data);
-      }
-    } catch (e) {
-      var message = gettextCatalog.getString('Invalid address');
-      var backText = gettextCatalog.getString('Go back');
-      var learnText = gettextCatalog.getString('Learn more');
-      popupService.showConfirm(null, message, backText, learnText, function (back) {
-        $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          historyRoot: true
-        });
-        $state.go('tabs.send').then(function () {
-          $ionicHistory.clearHistory();
-          if (!back) {
-            var url = 'https://support.bitpay.com/hc/en-us/articles/115004671663';
-            externalLinkService.open(url);
-          }
-        });
-      });
-      return;
-    }
-  });
-  var vanityTx = function(networkName, data) {
     // Grab stateParams
     tx = {
       amount: parseInt(data.stateParams.amount),
@@ -179,10 +130,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
       // Vanity tx info (not in the real tx)
       recipientType: $scope.recipientType || null,
-      toName: data.stateParams.toName,
-      toEmail: data.stateParams.toEmail,
-      toColor: data.stateParams.toColor,
-      network: networkName,
+      toName: null,
+      toEmail: null,
+      toColor: null,
+      network: false,
       coin: $scope.fromWallet.coin,
       txp: {},
     };
@@ -192,9 +143,51 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.feeRate = parseInt(data.stateParams.requiredFeeRate);
     }
 
-    if (tx.coin && tx.coin == 'bch') {
+    if (tx.coin && tx.coin === 'bch') {
       tx.feeLevel = 'normal';
     }
+
+    var B = data.stateParams.coin === 'bch' ? bitcoreCash : bitcore;
+    var networkName;
+    $scope.recipientType = null;
+    try {
+      if (data.stateParams.toWalletId) { // There is a toWalletId, so we presume this is a wallet-to-wallet transfer
+        $scope.recipientType = 'wallet'; // set transaction type to wallet-to-wallet
+        $ionicLoading.show();
+
+        var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+        tx.toColor = toWallet.color;
+        tx.toName = toWallet.name;
+
+        // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
+        walletService.getAddress(toWallet, true, function (err, addr) {
+          $ionicLoading.hide();
+          tx.toAddress = addr;
+          networkName = (new B.Address(tx.toAddress)).network.name;
+          tx.network = networkName;
+          setupTx(tx);
+        });
+      } else { // This is a Wallet-to-address transfer
+        networkName = (new B.Address(tx.toAddress)).network.name;
+        tx.network = networkName;
+        setupTx(tx);
+      }
+    } catch (e) {
+      var message = gettextCatalog.getString('Invalid address');
+      popupService.showAlert(null, message, function () {
+        $ionicHistory.nextViewOptions({
+          disableAnimate: true,
+          historyRoot: true
+        });
+        $state.go('tabs.send').then(function () {
+          $ionicHistory.clearHistory();
+        });
+      });
+      return;
+    }
+  });
+
+  var setupTx = function(networkName, data) {
 
     // Other Scope vars
     $scope.isCordova = isCordova;
@@ -410,19 +403,19 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   function setButtonText(isMultisig, isPayPro) {
 
     if (isPayPro) {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to pay');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to pay');
       }
     } else if (isMultisig) {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to accept');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to accept');
       }
     } else {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to send');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to send');

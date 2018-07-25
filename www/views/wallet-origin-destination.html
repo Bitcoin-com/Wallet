@@ -1,6 +1,7 @@
 <ion-view id="wallet-origin-destination" show-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>{{'Wallet to wallet transfer' | translate}}</ion-nav-title>
+    <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
     <div class="header--request" ng-if="isPaymentRequest">

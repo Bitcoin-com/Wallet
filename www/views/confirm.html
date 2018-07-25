@@ -105,13 +105,13 @@
   </ion-content>
   <click-to-accept
     ng-click="approve(tx, wallet, statusChangeHandler)"
-    ng-if="(!isCordova || isWindowsPhoneApp) && wallet"
+    ng-if="(!isCordova) && wallet"
     click-send-status="sendStatus"
     is-disabled="!wallet">
     {{buttonText}}
   </click-to-accept>
   <slide-to-accept
-    ng-if="isCordova && !isWindowsPhoneApp && wallet"
+    ng-if="isCordova && wallet"
     slide-on-confirm="approve(tx, wallet, statusChangeHandler)"
     slide-send-status="sendStatus"
     is-disabled="!wallet">
