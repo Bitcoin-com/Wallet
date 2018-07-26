@@ -378,9 +378,12 @@
       justify-content: space-between;
       margin: 0 14px;
 
+      .availableFunds {
+        color: #6F6F70;
+      }
+
       .extra,
       button.extra {
-        color: #000;
         display: flex;
         flex: 0 1 auto;
       }
@@ -388,6 +391,7 @@
       button.extra {
         background: none; 
         border: none;
+        color: #000;
         font-family: 'ProximaNova';
         font-size: 14px;
         line-height: normal;
@@ -403,7 +407,6 @@
       
 
       .button {
-
         span {
           display: flex;
           align-items: center;
