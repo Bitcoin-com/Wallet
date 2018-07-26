@@ -244,6 +244,15 @@
       flex-direction: column;
       justify-content: center;
 
+      .send-amount-header-footer {
+        flex: 1 1 auto;
+        min-height: 10px;
+
+        .warning {
+          text-align:center;
+        }
+      }
+
       .send-amount-tool {
         flex: 0 1 auto;
 

@@ -1,7 +1,7 @@
 <ion-view id="view-amount-new" hide-tabs>
     <ion-nav-bar class="bar-royal">
       <ion-nav-title>
-        {{'Enter amount (New)' | translate}}
+        {{'Enter Amount' | translate}}
       </ion-nav-title>
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
@@ -9,10 +9,12 @@
   
       <div style="order: 0; position: relative;">
   
-        <div class="item send-amount">
-          <div ng-if="vm.shapeshiftOrderId">
-            Minimum amount: {{vm.minShapeshiftAmount}} <br/>
-            Maximum amount: {{vm.maxShapeshiftAmount}} <br/>
+        <div class="card item send-amount">
+          <div class="send-amount-header-footer">
+              <div ng-if="vm.shapeshiftOrderId">
+                  Minimum amount: {{vm.minShapeshiftAmount}} <br/>
+                  Maximum amount: {{vm.maxShapeshiftAmount}} <br/>
+                </div>
           </div>
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
@@ -26,21 +28,26 @@
               </div>
               <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
-            <div class="send-amount-actions text-center">
-              <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
-                <span>
-                  <i class="icon ion-ios-speedometer-outline"></i>&emsp;
-                  <span translate>Send max amount</span>
-                </span>
-              </button>
-              <button class="button button-sendmax" ng-click="vm.openPopup()">
-                <span>
-                  <i class="icon ion-social-usd"></i>&emsp;
-                  <span translate>Change currency</span>
-                </span>
-              </button>
+            <div class="send-amount-header-footer">
+              <div class="warning">
+                Not enough available funds
+              </div>
             </div>
-          </div>
+          </div>  
+        </div>
+        <div class="send-amount-actions text-center">
+          <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
+            <span>
+              <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+              <span translate>Send max amount</span>
+            </span>
+          </button>
+          <button class="button button-sendmax" ng-click="vm.openPopup()">
+            <span>
+              <i class="icon ion-social-usd"></i>&emsp;
+              <span translate>Change currency</span>
+            </span>
+          </button>
         </div>
       </div>
   
