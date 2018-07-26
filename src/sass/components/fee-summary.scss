@@ -1,0 +1,33 @@
+.fee-summary {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 12px 15px;
+  box-sizing: border-box;
+  background-color: #F2F2F2;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -15px;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(242,242,242,0) 0%,rgba(242,242,242,1) 100%);
+  }
+
+  .fee-fiat {
+    &.positive {
+      color: #70955F;
+    }
+
+    &.negative {
+      color: #C24633;
+    }
+  }
+
+  .fee-crypto {
+    color: #BCBCBC;
+  }
+}

@@ -15074,6 +15074,9 @@ log-options #check-bar .checkbox-icon {
     /* iOS 11.0 */
     margin-bottom: env(safe-area-inset-bottom);
     /* iOS 11.2 */ }
+  #view-review .fee-summary {
+    position: absolute;
+    bottom: 92px; }
 
 .gravatar {
   border-radius: 3px;
@@ -15126,6 +15129,9 @@ ion-content.bg-neutral {
 
 ion-content.padded-bottom-cta {
   bottom: 92px; }
+
+ion-content.padded-bottom-cta-with-summary {
+  bottom: 134px; }
 
 .card.card-gutter-compact {
   margin: 10px 12px; }
@@ -15211,6 +15217,47 @@ ion-content.padded-bottom-cta {
     .expand-content-frame .expand-content.expand-content-revealed {
       opacity: 1;
       transform: scale(1, 1); }
+
+.fee-summary {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 5px 12px 15px;
+  box-sizing: border-box;
+  background-color: #F2F2F2; }
+  .fee-summary:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -15px;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(242, 242, 242, 0) 0%, #f2f2f2 100%); }
+  .fee-summary .fee-fiat.positive {
+    color: #70955F; }
+  .fee-summary .fee-fiat.negative {
+    color: #C24633; }
+  .fee-summary .fee-crypto {
+    color: #BCBCBC; }
+
+.amount .start,
+.amount .middle,
+.amount .end,
+.amount .currency {
+  display: inline-block; }
+
+.amount .start {
+  font-size: 14px; }
+
+.amount .middle {
+  font-size: 11px; }
+
+.amount .end {
+  font-size: 11px; }
+
+.amount .currency {
+  font-size: 14px; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/

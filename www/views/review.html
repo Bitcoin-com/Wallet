@@ -7,7 +7,7 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-  <ion-content class="padded-bottom-cta bg-neutral"
+  <ion-content class="padded-bottom-cta-with-summary bg-neutral"
     ng-init="memoExpanded = false">
     <div class="header">
       <div class="content" translate>
@@ -63,6 +63,17 @@
       </div>
     </div>
   </ion-content>
+
+  <div class="fee-summary">
+    <div class="fee-fiat positive">Fee: Less than 1 cent</div>
+    <div class="fee-crypto"
+      ng-init="fee = {value: '0.00195823', currency: 'BCH'};">
+      <amount
+        value="fee.value"
+        currency="fee.currency"></amount>
+    </div>
+  </div>
+
   <click-to-accept
     ng-click="approve(tx, wallet, statusChangeHandler)"
     ng-if="(!isCordova || isWindowsPhoneApp) && wallet"

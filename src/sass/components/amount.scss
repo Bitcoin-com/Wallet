@@ -1,0 +1,24 @@
+.amount {
+  .start,
+  .middle,
+  .end,
+  .currency {
+    display: inline-block;
+  }
+
+  .start {
+    font-size: 14px;
+  }
+
+  .middle {
+    font-size: 11px;
+  }
+
+  .end {
+    font-size: 11px;
+  }
+
+  .currency {
+    font-size: 14px;
+  }
+}
