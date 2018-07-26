@@ -483,4 +483,15 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
+
+  $scope.goToReceive = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.receive', {
+        walletId: $scope.wallet.id
+      });
+    });
+  };
 });

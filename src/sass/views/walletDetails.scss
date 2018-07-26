@@ -192,8 +192,8 @@
     }
 
     .buttons {
-      margin-bottom: 0;
-      margin-top: 30px;
+      max-width: 600px;
+      margin: 30px auto 0;
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;
