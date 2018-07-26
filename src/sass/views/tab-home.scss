@@ -70,7 +70,7 @@
     }
   }
   .buttons {
-    margin: 6px auto 0px;
+    margin: 6px auto -12px;
     max-width: 600px;
     >.col {
       padding: 5px 10px;
@@ -84,8 +84,8 @@
       width: 100%;
       font-size: 19px;
       font-weight: bolder;
-      min-height: 45px;
-      line-height: 45px;
+      min-height: auto;
+      line-height: 36px;
     }
   }
   .wallet-coin-logo {
