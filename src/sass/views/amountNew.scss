@@ -246,10 +246,14 @@
 
       .send-amount-header-footer {
         flex: 1 1 auto;
-        min-height: 10px;
+        min-height: 20px;
 
         .warning {
-          text-align:center;
+          color: #b7664d;
+          font-family: 'ProximaNova-Semibold';
+          font-size: 12pt;
+          padding: 0 6px 6px 6px;
+          text-align: center;
         }
       }
 
@@ -269,6 +273,8 @@
           }
 
           .primary-amount {
+            color: #333;
+            font-family: 'ProximaNova-Semibold';
             input, .unit, .primary-amount-display {
               font-size: 1.8em;
 
@@ -338,16 +344,15 @@
               line-height: 1em;
             }
 
-            .unit {
-              font-weight: bold;
-            }
-
             .primary-amount-display {
               margin-right: 5px;
               word-break: break-all;
             }
           }
 
+          .alternative-amount {
+            color: #6F6F70;
+          }
           .switch-currencies {
             position: absolute;
             right: 0;
@@ -484,7 +489,7 @@
       }
     }
   }
-  background: #494949;
+  background: #f2f2f2;
 
   ion-content {
     margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
