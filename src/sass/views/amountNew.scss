@@ -251,7 +251,7 @@
         .warning {
           color: #b7664d;
           font-family: 'ProximaNova-Semibold';
-          font-size: 12pt;
+          font-size: 12px;
           padding: 0 6px 6px 6px;
           text-align: center;
         }
@@ -371,24 +371,38 @@
     .send-amount-extras {
       display: flex;
       flex: 0 0 auto;
+      /* So that if only one item is present, it appears on the right. */
       flex-direction: row-reverse;
+      font-size: 12px;
       align-items: center;
       justify-content: space-between;
       margin: 0 14px;
 
-      .extra {
-        display: inline-block;
+      .extra,
+      button.extra {
+        color: #000;
+        display: flex;
         flex: 0 1 auto;
-        font-size: 12pt;
       }
 
-      .button {
-        flex: 0 1 auto;
-        line-height: 1.2em;
+      button.extra {
+        background: none; 
+        border: none;
+        font-family: 'ProximaNova';
+        font-size: 14px;
+        line-height: normal;
+        min-height: auto;
+        min-width: auto;
+        padding: 0;
+      }
 
-        + .button {
-          margin-left: 10px;
-        }
+      .button .icon:before {
+        font-size: 14px;
+        line-height: normal;
+      }
+      
+
+      .button {
 
         span {
           display: flex;

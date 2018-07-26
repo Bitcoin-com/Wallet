@@ -35,18 +35,20 @@
             </div>
           </div>  
         </div>
+
         <div class="send-amount-extras text-center">
-          <button class="extra button button-sendmax" ng-click="vm.openPopup()">
+          <button class="extra button" ng-click="vm.openPopup()">
             <span>
-              <i class="icon ion-social-usd"></i>&emsp;
+              <img src="img/icon-alternative-currency-black.svg"/>
+              &ensp;
               <span translate>Change currency</span>
             </span>
           </button>
           <div class="extra">
             Available Funds: <span>{{vm.availableFunds}}</span>
-          </div>
-          
+          </div>  
         </div>
+
         <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
             <span>
               <i class="icon ion-ios-speedometer-outline"></i>&emsp;
