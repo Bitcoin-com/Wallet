@@ -10,6 +10,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.alternativeAmount = '';
   vm.alternativeUnit = '';
   vm.amountModel = { amount: 0 };
+  vm.availableFunds = '251.00 USD';
   vm.fromWalletId = '';
   vm.globalResult = '';
   vm.isRequestingSpecificAmount = false;
@@ -409,6 +410,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
               || (result >= vm.minShapeshiftAmount && result <= vm.maxShapeshiftAmount));
       }
     }
+    console.log('allowSend: ', vm.allowSend);
   };
 
   function processResult(val) {

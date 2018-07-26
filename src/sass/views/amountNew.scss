@@ -365,27 +365,35 @@
             }
           }
         }
+      }
+    }
 
-        .send-amount-actions {
-          margin-top: 15px;
+    .send-amount-extras {
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 14px;
+
+      .extra {
+        display: inline-block;
+        flex: 0 1 auto;
+        font-size: 12pt;
+      }
+
+      .button {
+        flex: 0 1 auto;
+        line-height: 1.2em;
+
+        + .button {
+          margin-left: 10px;
+        }
+
+        span {
           display: flex;
           align-items: center;
           justify-content: center;
-
-          .button {
-            flex: 1 1 auto;
-            line-height: 1.2em;
-
-            + .button {
-              margin-left: 10px;
-            }
-
-            span {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-          }
         }
       }
     }

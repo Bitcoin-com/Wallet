@@ -35,20 +35,24 @@
             </div>
           </div>  
         </div>
-        <div class="send-amount-actions text-center">
-          <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
-            <span>
-              <i class="icon ion-ios-speedometer-outline"></i>&emsp;
-              <span translate>Send max amount</span>
-            </span>
-          </button>
-          <button class="button button-sendmax" ng-click="vm.openPopup()">
+        <div class="send-amount-extras text-center">
+          <button class="extra button button-sendmax" ng-click="vm.openPopup()">
             <span>
               <i class="icon ion-social-usd"></i>&emsp;
               <span translate>Change currency</span>
             </span>
           </button>
+          <div class="extra">
+            Available Funds: <span>{{vm.availableFunds}}</span>
+          </div>
+          
         </div>
+        <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
+            <span>
+              <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+              <span translate>Send max amount</span>
+            </span>
+          </button>
       </div>
   
       <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
