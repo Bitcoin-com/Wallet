@@ -11,8 +11,8 @@ angular.module('bitcoincom.directives')
     return {
       restrict: 'E',
       scope: {
-        value: '@',
-        currency: '@'
+        value: '=',
+        currency: '='
       },
       templateUrl: 'views/includes/amount.html',
       controller: ['$scope', function($scope) {
