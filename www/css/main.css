@@ -15239,7 +15239,7 @@ ion-content.padded-bottom-cta-with-summary {
   .fee-summary .fee-fiat.negative {
     color: #C24633; }
   .fee-summary .fee-crypto {
-    color: #BCBCBC; }
+    color: #A7A7A7; }
 
 .amount .start,
 .amount .middle,
@@ -15248,16 +15248,16 @@ ion-content.padded-bottom-cta-with-summary {
   display: inline-block; }
 
 .amount .start {
-  font-size: 14px; }
+  font-size: 1em; }
 
 .amount .middle {
-  font-size: 11px; }
+  font-size: 0.7857em; }
 
 .amount .end {
-  font-size: 11px; }
+  font-size: 0.7857em; }
 
 .amount .currency {
-  font-size: 14px; }
+  font-size: 1em; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
