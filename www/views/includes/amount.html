@@ -1,6 +1,3 @@
 <div class="amount">
-  <span class="start">{{start}}</span>
-  <span class="middle">{{middle}}</span>
-  <span class="end">{{end}}</span>
-  <span class="currency">{{currency}}</span>
+  <span ng-if="start.length > 0" class="start">{{start}}</span><span ng-if="middle.length > 0" class="middle">{{middle}}</span><span ng-if="end.length > 0" class="end">{{end}}</span><span ng-if="currency.length > 0" class="currency">{{currency}}</span>
 </div>

@@ -15251,13 +15251,16 @@ ion-content.padded-bottom-cta-with-summary {
   font-size: 1em; }
 
 .amount .middle {
-  font-size: 0.7857em; }
+  font-size: 0.7857em;
+  margin-left: 5px; }
 
 .amount .end {
-  font-size: 0.7857em; }
+  font-size: 0.7857em;
+  margin-left: 5px; }
 
 .amount .currency {
-  font-size: 1em; }
+  font-size: 1em;
+  margin-left: 5px; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
