@@ -249,7 +249,6 @@
         min-height: 20px;
 
         .warning {
-          color: #b7664d;
           font-family: 'ProximaNova-Semibold';
           font-size: 12px;
           padding: 0 6px 6px 6px;
@@ -433,36 +432,58 @@
 
     .keypad-container {
       position: relative;
+      font-size: 18px;
+      line-height: 2em;
       //flex: 0 1 196px;
+
+      @media (min-height: 667px) {
+        font-size: 24px;
+      }
+
+      @media(max-height: 480px) {
+        font-size: 12px;
+      }
 
       @media (min-height: 667px) {
         //flex: 0 1 224px;
       }
 
+      .sendmax {
+        background: $v-off-black;
+
+        .button {
+          color: white;
+          background: black;
+          border: 1px solid $v-off-black;
+          border-radius: 0;
+          font-size: 0.8em;
+          line-height: 2em;
+          margin-bottom: 1.618em;
+          width: 100%;
+
+          .available-funds-amount {
+            color: #C9C9C9;
+          }
+
+          &:active {
+            background-color: $v-dark-gray;
+          }
+        }
+      }
+
       .keypad {
         text-align: center;
-        font-size: 18px;
         font-weight: lighter;
         position: absolute;
         bottom: 0;
         width: 100%;
         color: $v-text-primary-color;
         
-        @media (min-height: 667px) {
-          font-size: 24px;
-        }
+        
     
         .row {
           padding: 0 !important;
           margin: 0 !important;
-        }
-    
-        .col {
-          line-height: 38px;
-        
-          @media (min-height: 667px) {
-            line-height: 45px;
-          }
         }
 
         .row {
@@ -498,23 +519,22 @@
         .digit{
           cursor: pointer;
           background-color: #000;
-          border: 1px solid #262424;
+          border: 1px solid $v-off-black;
           transition: all 0.1s ease;
-          
 
           &:active {
             background-color: $v-dark-gray;
           }
         }
     
-        @media(max-height: 480px) {
-          font-size: 12px;
-    
-        }
       }
     }
   }
-  background: #f2f2f2;
+
+  .warning {
+    color: $v-warning-color-2;
+  }
+  background: $v-background-under-card;
 
   ion-content {
     margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
