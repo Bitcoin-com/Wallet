@@ -292,7 +292,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-send@tabs': {
             controller: 'amountController',
             controllerAs: 'vm',
-            templateUrl: 'views/amount.html'
+            templateUrl: 'views/amountNew.html'
           }
         }
       })
