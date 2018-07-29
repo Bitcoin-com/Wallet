@@ -29,7 +29,7 @@
               <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
             <div class="send-amount-header-footer">
-              <div class="warning">
+              <div class="warning" ng-show="vm.fundsAreInsufficient">
                 Not enough available funds
               </div>
             </div>
@@ -44,15 +44,15 @@
               <span translate>Change Currency</span>
             </span>
           </button>
-          <div class="extra availableFunds" translate>
+          <div class="extra available-funds" ng-class="{warning: vm.fundsAreInsufficient}" translate>
             Available Funds: {{vm.availableFunds}}</span>
           </div>  
         </div>
       </div>
   
       <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
-        <div class="sendmax">
-          <button class="button button-sendmax" ng-if="!vm.isRequestingSpecificAmount" ng-click="vm.sendMax()">
+        <div class="sendmax" ng-if="vm.availableFunds && !vm.isRequestingSpecificAmount">
+          <button class="button button-sendmax" ng-click="vm.sendMax()">
               <span>
                 <span translate>Use All Available Funds</span>&ensp;
                 <span class="available-funds-amount">({{vm.availableFunds}})</span>

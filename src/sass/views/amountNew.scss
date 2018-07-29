@@ -377,8 +377,12 @@
       justify-content: space-between;
       margin: 0 14px;
 
-      .availableFunds {
+      .available-funds {
         color: #6F6F70;
+      }
+
+      .warning {
+        color: $v-warning-color-2;
       }
 
       .extra,

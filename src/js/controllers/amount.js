@@ -12,6 +12,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.amountModel = { amount: 0 };
   vm.availableFunds = '251.00 USD';
   vm.fromWalletId = '';
+  vm.fundsAreInsufficient = true;
   vm.globalResult = '';
   vm.isRequestingSpecificAmount = false;
   vm.listComplete = false;
