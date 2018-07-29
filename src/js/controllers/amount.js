@@ -10,9 +10,11 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.alternativeAmount = '';
   vm.alternativeUnit = '';
   vm.amountModel = { amount: 0 };
-  vm.availableFunds = '251.00 USD';
+  vm.availableFunds = '';
   vm.fromWalletId = '';
-  vm.fundsAreInsufficient = true;
+  // Use insufficient for logic, as when the amount is invalid, funds being
+  // either sufficent or insufficient doesn't make sense.
+  vm.fundsAreInsufficient = false;
   vm.globalResult = '';
   vm.isRequestingSpecificAmount = false;
   vm.listComplete = false;
@@ -44,6 +46,9 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   var _id;
   var altCurrencyModal = null;
   var altUnitIndex = 0;
+  var availableFundsInCrypto = '';
+  var availableFundsInFiat = '';
+  var availableSatoshis = null;
   var availableUnits = [];
   var displayAddress = null;
   var fiatCode;
@@ -244,6 +249,11 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
       });
 
       altUnitIndex = 0;
+
+      if (vm.fromWalletId) {
+        var fromWallet = profileService.getWallet(vm.fromWalletId);
+        updateAvailableFundsFromWallet(fromWallet);
+      }
     };
   };
 
@@ -392,26 +402,42 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
 
         var a = fromFiat(result);
         if (a) {
-          vm.alternativeAmount = txFormatService.formatAmount(a * unitToSatoshi, true);
-          vm.allowSend = lodash.isNumber(a) && a > 0
+          var amountInSatoshis = a * unitToSatoshi;
+          vm.fundsAreInsufficient = !!vm.fromWalletId 
+            && availableSatoshis !== null 
+            && availableSatoshis < amountInSatoshis;
+
+          vm.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
+          vm.allowSend = lodash.isNumber(a) 
+            && a > 0
             && (!vm.shapeshiftOrderId
-                || (a >= vm.minShapeshiftAmount && a <= vm.maxShapeshiftAmount));
+                || (a >= vm.minShapeshiftAmount && a <= vm.maxShapeshiftAmount))
+            && !vm.fundsAreInsufficient;    
         } else {
           if (result) {
             vm.alternativeAmount = 'N/A';
           } else {
             vm.alternativeAmount = null;
           }
+          vm.fundsAreInsufficient = false;
           vm.allowSend = false;
         }
       } else {
+        vm.fundsAreInsufficient = vm.fromWalletId 
+          && availableSatoshis !== null 
+          && availableSatoshis < result * unitToSatoshi;
+
         vm.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
-        vm.allowSend = lodash.isNumber(result) && result > 0
+        vm.allowSend = lodash.isNumber(result) 
+          && result > 0
           && (!vm.shapeshiftOrderId
-              || (result >= vm.minShapeshiftAmount && result <= vm.maxShapeshiftAmount));
+              || (result >= vm.minShapeshiftAmount && result <= vm.maxShapeshiftAmount))
+          && !vm.fundsAreInsufficient;    
       }
+
+    } else {
+      vm.fundsAreInsufficient = false;
     }
-    console.log('allowSend: ', vm.allowSend);
   };
 
   function processResult(val) {
@@ -587,6 +613,8 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
       vm.altCurrencyList = completeAlternativeList.slice(0, 10);
       vm.lastUsedPopularList = lodash.unique(lodash.union(lastUsedAltCurrencyList, popularCurrencyList), 'isoCode');
 
+      rateService.updateRates();
+
       $timeout(function() {
         $scope.$apply();
       });
@@ -635,8 +663,62 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
       availableUnits[altUnitIndex].name = newAltCurrency.isoCode;
       availableUnits[altUnitIndex].shortName = newAltCurrency.isoCode;
       fiatCode = newAltCurrency.isoCode;
+      updateAvailableFiatIfNeeded();
       updateUnitUI();
       close();
     });
-  };  
+  };
+  
+  function updateAvailableFiatIfNeeded() {
+    if (vm.fromWalletId && availableSatoshis !== null) {
+      availableFundsInFiat = '';
+      vm.availableFunds = availableFundsInCrypto;
+      var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
+      txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
+        if (formatted) {
+          availableFundsInFiat = formatted;
+          if (availableUnits[unitIndex].isFiat) {
+            vm.availableFunds = availableFundsInFiat;
+          } else {
+            vm.availableFunds = availableFundsInCrypto;
+          }
+        }
+      });
+    }
+  }
+
+  function updateAvailableFundsFromWallet(wallet) {
+    if (wallet.status && wallet.status.isValid) {
+      availableFundsInCrypto = wallet.status.spendableBalanceStr;
+      availableSatoshis = wallet.status.spendableAmount;
+      if (wallet.status.alternativeBalanceAvailable) {
+        availableFundsInFiat = wallet.status.spendableBalanceAlternative + ' ' + wallet.status.alternativeIsoCode;
+      } else {
+        availableFundsInFiat = '';
+      }
+
+    } else if (wallet.cachedStatus && wallet.status.isValid) {
+
+      if (wallet.cachedStatus.alternativeBalanceAvailable) {
+        availableFundsInFiat = wallet.cachedStatus.spendableBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
+      } else {
+        availableFundsInFiat = '';
+      }
+      availableFundsInCrypto = wallet.cachedStatus.spendableBalanceStr;
+      availableSatoshis = wallet.cachedStatus.spendableAmount;
+
+    } else {
+
+      availableFundsInFiat = '';
+      availableFundsInCrypto = '';
+      availableSatoshis = null;
+    }
+
+    if (availableUnits[unitIndex].isFiat) {
+      vm.availableFunds = availableFundsInFiat || availableFundsInCrypto;
+    } else {
+      vm.availableFunds = availableFundsInCrypto;
+    }
+  }
+
 }
