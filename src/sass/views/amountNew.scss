@@ -529,6 +529,16 @@
     
       }
     }
+
+    .button-primary {
+      background-color: $v-primary-color;
+      border-radius: 0;
+      font-family: 'ProximaNova-Semibold';
+    }
+
+    .button-primary[disabled] {
+      background-color: $v-button-primary-disabled-bg;
+    }
   }
 
   .warning {
