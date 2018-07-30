@@ -13,6 +13,8 @@
     <div class="list card ng-hide" ng-show="fromWallets.length == 0 || toWallets.length == 0">
       <div class="item item-heading">
         <span translate>No available wallets to convert between.</span>
+        <button ui-sref="tabs.buyandsell">Buy Bitcoin Now</button>
+        <button ui-sref="tabs.receive">Show my address</button>
       </div>
     </div>
     <shapeshift-coin-trader class="ng-hide" ng-show="fromWallets.length > 0 && toWallets.length > 0">
