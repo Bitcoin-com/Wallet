@@ -194,7 +194,9 @@
 
     .send-receive-buttons {
       max-width: 600px;
-      margin: 25px auto 0;
+      position: absolute;
+      bottom: 20px;
+
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;

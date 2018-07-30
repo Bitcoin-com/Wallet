@@ -12,13 +12,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
 
-  $scope.currencySymbols = {
-    'EUR': '€',
-    'GBP': '£',
-    'USD': '$',
-    'YEN' : ''
-  };
-
   var channel = "firebase";
   if (platformInfo.isNW) {
     channel = "ga";
@@ -354,7 +347,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       top = TOP_BALANCE_BUTTON;
     }
 
-    var amountTop = ((amountScale - 0.80) / 0.80) * top; //0.85
+    var amountTop = ((amountScale - 0.80) / 0.80) * top;
     if (amountTop < -2) {
       amountTop = -2;
     }
@@ -365,8 +358,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     var t = amountTop;
 
     $scope.altAmountOpacity = (amountHeight - 100) / 80;
-
-    $scope.buttonsOpacity = (amountHeight -  150)/80;
+    $scope.buttonsOpacity = (amountHeight - 140) / 70;
     $window.requestAnimationFrame(function() {
       $scope.amountHeight = amountHeight + 'px';
       $scope.contentMargin = contentMargin + 'px';
