@@ -2,7 +2,13 @@
 
 /**
  * @desc amount directive that can be used to display formatted financial values
- * @example <amount value="12.49382901" currency="BCH"></amount>
+ * size-equal attribute is optional, defaults to false.
+ * @example fee = {
+ *  value: 12.49382901,
+ *  currency: 'BCH'
+ * }
+ * @example <amount value="fee.value" currency="fee.currency"></amount>
+ * @example <amount value="fee.value" currency="fee.currency" size-equal="true"></amount>
  */
 angular.module('bitcoincom.directives')
   .directive('amount', [
@@ -12,10 +18,13 @@ angular.module('bitcoincom.directives')
       restrict: 'E',
       scope: {
         value: '=',
-        currency: '='
+        currency: '=',
+        sizeEqual: '='
       },
       templateUrl: 'views/includes/amount.html',
       controller: ['$scope', function($scope) {
+        if (typeof $scope.sizeEqual != 'undefined') $scope.sizeEqual = false;
+
         var decimalPlaces = {
           '0': ['BIF', 'CLP', 'DJF', 'GNF', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
           '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],

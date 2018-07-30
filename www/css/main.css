@@ -15083,9 +15083,14 @@ log-options #check-bar .checkbox-icon {
   font-size: 0.7857em;
   margin-left: 5px; }
 
+.amount.size-equal .middle,
+.amount.size-equal .end {
+  font-size: 1em; }
+
 .amount .currency {
   font-size: 1em;
-  margin-left: 5px; }
+  margin-left: 5px;
+  text-transform: uppercase; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
