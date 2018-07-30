@@ -15082,164 +15082,17 @@ log-options #check-bar .checkbox-icon {
   border-radius: 3px;
   display: inline-block; }
 
-.elastic {
-  width: 100%;
-  font-size: 14px; }
+(??)
 
-/*
-* Extends Ionic v1 item
-*/
-.item.item-compact {
-  padding: 11px 13px; }
+(??)
 
-.item.item-gutterless {
-  padding: 0; }
+(??)
 
-.item .item-content.item-content-avatar {
-  min-height: 69px;
-  padding: 13px 11px 13px 68px; }
-  .item .item-content.item-content-avatar > img:first-child,
-  .item .item-content.item-content-avatar > i:first-child {
-    position: absolute;
-    max-width: 40px;
-    max-height: 40px;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    left: 13px;
-    top: 50%;
-    padding: 0;
-    transform: translate(0, -50%); }
+(??)
 
-.item .item-content.item-content-compact {
-  min-height: 0;
-  padding: 13px 11px; }
+(??)
 
-.item .item-content .highlight {
-  color: #FAB915; }
-
-.item .item-content + .item-content {
-  padding-top: 0; }
-
-/*
-* Extends Ionic v1 ion-content
-*/
-ion-content.bg-neutral {
-  background-color: #F2F2F2; }
-
-ion-content.padded-bottom-cta {
-  bottom: 92px; }
-
-ion-content.padded-bottom-cta-with-summary {
-  bottom: 134px; }
-
-.card.card-gutter-compact {
-  margin: 10px 12px; }
-
-.header {
-  padding: 29px 12px 61px;
-  background-color: #FAB915;
-  color: #FFFFFF; }
-  .header .title {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1em;
-    color: #FFFFFF;
-    text-align: center; }
-    .header .title + .content {
-      margin-top: 23px; }
-  .header .content {
-    text-align: center; }
-    .header .content p {
-      margin: 0;
-      line-height: 1em;
-      font-size: 18px; }
-      .header .content p.large {
-        font-size: 29px;
-        font-weight: 600; }
-      .header .content p + p {
-        margin-top: 8px; }
-
-.content-frame.negative-top {
-  margin-top: -40px; }
-  .content-frame.negative-top .card:first-child {
-    margin-top: 0; }
-
-.address {
-  background-color: #F8F8F8;
-  border: 0.5px solid #EDEBEB;
-  border-radius: 3px;
-  padding: 9px;
-  text-align: center;
-  font-size: 14px;
-  overflow: hidden;
-  text-overflow: ellipsis; }
-  .address.expanded {
-    white-space: pre-wrap;
-    word-break: break-all; }
-  .address .prefix {
-    color: #000000; }
-  .address .mid {
-    color: #919191; }
-  .address .suffix {
-    color: #000000; }
-
-.action-minor {
-  margin: 20px 14px;
-  font-size: 14px; }
-  .action-minor.mt-negative {
-    margin-top: 0; }
-  .action-minor.text-right {
-    text-align: right; }
-  .action-minor > .action-icon {
-    width: 15px;
-    height: 15px;
-    vertical-align: middle;
-    margin-right: 3px; }
-  .action-minor > .action-text {
-    vertical-align: middle;
-    color: #444444; }
-
-.expand-content-frame {
-  position: relative; }
-  .expand-content-frame .expand-content-trigger {
-    position: absolute;
-    top: 0;
-    transition: opacity 0.3s ease;
-    right: 0; }
-    .expand-content-frame .expand-content-trigger.expand-content-revealed {
-      opacity: 0; }
-  .expand-content-frame .expand-content {
-    opacity: 0;
-    transform-origin: 100% 0%;
-    transform: scale(0, 0);
-    transition: opacity 0.3s ease, transform 0.3s ease; }
-    .expand-content-frame .expand-content.expand-content-revealed {
-      opacity: 1;
-      transform: scale(1, 1); }
-
-.fee-summary {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 5px 12px 15px;
-  box-sizing: border-box;
-  background-color: #F2F2F2; }
-  .fee-summary:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: -15px;
-    width: 100%;
-    height: 15px;
-    background: linear-gradient(to bottom, rgba(242, 242, 242, 0) 0%, #f2f2f2 100%); }
-  .fee-summary .fee-fiat.positive {
-    color: #70955F; }
-  .fee-summary .fee-fiat.negative {
-    color: #C24633; }
-  .fee-summary .fee-crypto {
-    color: #A7A7A7; }
+(??)
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
