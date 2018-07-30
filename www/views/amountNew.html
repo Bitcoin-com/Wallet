@@ -44,8 +44,10 @@
               <span translate>Change Currency</span>
             </span>
           </button>
-          <div class="extra available-funds" ng-class="{warning: vm.fundsAreInsufficient}" translate>
-            Available Funds: {{vm.availableFunds}}</span>
+          <div class="extra available-funds" 
+            ng-class="{warning: vm.fundsAreInsufficient}"
+            ng-if="!vm.isRequestingSpecificAmount" translate>
+            <span>Available Funds:</span>&ensp;<span>{{vm.availableFunds}}</span>
           </div>  
         </div>
       </div>

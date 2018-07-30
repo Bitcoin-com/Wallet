@@ -316,6 +316,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
       });
     }
 
+    updateAvailableFundsStringIfNeeded();
     updateUnitUI();
   };
 
@@ -663,18 +664,21 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
       availableUnits[altUnitIndex].name = newAltCurrency.isoCode;
       availableUnits[altUnitIndex].shortName = newAltCurrency.isoCode;
       fiatCode = newAltCurrency.isoCode;
-      updateAvailableFiatIfNeeded();
+      updateAvailableFundsStringIfNeeded();
       updateUnitUI();
       close();
     });
   };
   
-  function updateAvailableFiatIfNeeded() {
+  function updateAvailableFundsStringIfNeeded() {
+    console.log('updateAvailableFundsStringIfNeeded()');
     if (vm.fromWalletId && availableSatoshis !== null) {
+      console.log('updating');
       availableFundsInFiat = '';
       vm.availableFunds = availableFundsInCrypto;
       var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
       txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
+        console.log('txFormatService returned');
         if (formatted) {
           availableFundsInFiat = formatted;
           if (availableUnits[unitIndex].isFiat) {
