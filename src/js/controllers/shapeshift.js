@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
+  var vm = this;
+
+  //vm.buyBitcion = buyBitcoin;
 
   var walletsBtc = [];
   var walletsBch = [];
@@ -21,6 +24,12 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     $scope.singleToWallet = $scope.toWallets.length == 1;
   }
 
+  function buyBitcoin() {
+    console.log('buyBitcoin()');
+  }
+
+  $scope.buyBitcoin = buyBitcoin;
+
   $scope.onFromWalletSelect = function(wallet) {
     $scope.fromWallet = wallet;
     showToWallets();
@@ -37,12 +46,24 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
   }
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    console.log('beforeEnter()');
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
     $scope.fromWallets = lodash.filter(walletsBtc.concat(walletsBch), function(w) {
       return w.status.balance.availableAmount > 0;
     });
-    if ($scope.fromWallets.length == 0) return;
+    console.log('Checking wallets.');
+    if ($scope.fromWallets.length == 0) {
+      // Need to go to new origin screen here, with parameters
+      var params = {
+        thirdParty: {
+          id: 'shapeshift'
+        }
+      };
+      console.log('Asking for transition');
+      $state.transitionTo('tabs.send', params);
+      return
+    } 
     $scope.onFromWalletSelect($scope.fromWallets[0]);
     $scope.onToWalletSelect($scope.toWallets[0]);
     $scope.singleFromWallet = $scope.fromWallets.length == 1;
