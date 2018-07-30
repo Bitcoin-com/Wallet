@@ -15241,27 +15241,6 @@ ion-content.padded-bottom-cta-with-summary {
   .fee-summary .fee-crypto {
     color: #A7A7A7; }
 
-.amount .start,
-.amount .middle,
-.amount .end,
-.amount .currency {
-  display: inline-block; }
-
-.amount .start {
-  font-size: 1em; }
-
-.amount .middle {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount .end {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount .currency {
-  font-size: 1em;
-  margin-left: 5px; }
-
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
  */
