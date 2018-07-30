@@ -20,6 +20,13 @@
     margin-left: 5px;
   }
 
+  &.size-equal {
+    .middle,
+    .end {
+      font-size: 1em;
+    }
+  }
+
   .currency {
     font-size: 1em;
     margin-left: 5px;
