@@ -132,10 +132,15 @@
     position: relative;
     height: 100%;
     height: calc(100% - env(safe-area-inset-bottom) * 2);
+
+    &.status-bar {
+      margin-top: 20px;
+      margin-top: env(safe-area-inset-top);
+    }
   }
   .bar-header {
     border: 0;
-    background: none;
+    background: rgb(238, 182, 64);
     .title, .button {
       color: #fff;
     }
@@ -143,13 +148,13 @@
       background-color: transparent;
     }
   }
-  //.nav-bar-block, .bar {
-  //background-color: inherit !important;
-  //}
+  .nav-bar-block, .bar {
+  background-color: inherit !important;
+  }
   ion-content {
 
     &.collapsible {
-      margin-top: 210px;
+      margin-top: 230px;
     }
 
     padding-top: 0;
@@ -189,7 +194,7 @@
 
     .send-receive-buttons {
       max-width: 600px;
-      margin: 45px auto 0;
+      margin: 25px auto 0;
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;
@@ -211,7 +216,7 @@
     width: 100%;
     text-align: center;
     color: #fff;
-    height: 210px;
+    height: 230px;
     padding-top: 40px;
     display: block;
     align-items: center;

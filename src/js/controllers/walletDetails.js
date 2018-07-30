@@ -327,16 +327,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }
 
     scrollPos = scrollPos || 0;
-    var amountHeight = 230 - scrollPos;
+    var amountHeight = 210 - scrollPos;
     if (amountHeight < 80) {
       amountHeight = 80;
     }
     var contentMargin = amountHeight;
-    if (contentMargin > 230) {
-      contentMargin = 230;
+    if (contentMargin > 210) {
+      contentMargin = 210;
     }
 
-    var amountScale = (amountHeight / 230);
+    var amountScale = (amountHeight / 210);
     if (amountScale < 0.5) {
       amountScale = 0.5;
     }
@@ -354,9 +354,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       top = TOP_BALANCE_BUTTON;
     }
 
-    var amountTop = ((amountScale - 0.85) / 0.85) * top;
-    if (amountTop < -10) {
-      amountTop = -10;
+    var amountTop = ((amountScale - 0.80) / 0.80) * top; //0.85
+    if (amountTop < -2) {
+      amountTop = -2;
     }
     if (amountTop > top) {
       amountTop = top;
