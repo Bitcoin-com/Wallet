@@ -23,7 +23,7 @@ angular.module('bitcoincom.directives')
       },
       templateUrl: 'views/includes/amount.html',
       controller: ['$scope', function($scope) {
-        if (typeof $scope.sizeEqual != 'undefined') $scope.sizeEqual = false;
+        if (typeof $scope.sizeEqual == 'undefined') $scope.sizeEqual = false;
 
         var decimalPlaces = {
           '0': ['BIF', 'CLP', 'DJF', 'GNF', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
