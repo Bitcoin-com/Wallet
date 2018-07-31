@@ -671,21 +671,21 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   };
   
   function updateAvailableFundsStringIfNeeded() {
-    console.log('updateAvailableFundsStringIfNeeded()');
     if (vm.fromWalletId && availableSatoshis !== null) {
-      console.log('updating');
       availableFundsInFiat = '';
       vm.availableFunds = availableFundsInCrypto;
       var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
       txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
-        console.log('txFormatService returned');
         if (formatted) {
           availableFundsInFiat = formatted;
-          if (availableUnits[unitIndex].isFiat) {
-            vm.availableFunds = availableFundsInFiat;
-          } else {
-            vm.availableFunds = availableFundsInCrypto;
-          }
+
+          $scope.$apply(function() {
+            if (availableUnits[unitIndex].isFiat) {
+              vm.availableFunds = availableFundsInFiat;
+            } else {
+              vm.availableFunds = availableFundsInCrypto;
+            }
+          });
         }
       });
     }
