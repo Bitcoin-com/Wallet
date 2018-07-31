@@ -8,7 +8,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     $rootScope.$broadcast('incomingDataMenu.showMenu', data);
   };
 
-  root.redir = function(data, shapeshiftData) {
+  root.redir = function(data, serviceId, serviceData) {
     var originalAddress = null;
     var noPrefixInAddress = 0;
     
@@ -75,7 +75,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
     }
 
-    function goSend(addr, amount, message, coin, shapeshiftData) {
+    function goSend(addr, amount, message, coin, serviceId, serviceData) {
       $state.go('tabs.send', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.send' ? false : true
@@ -97,11 +97,18 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             displayAddress: originalAddress ? originalAddress : addr,
             noPrefix: noPrefixInAddress
           };
-          if (shapeshiftData) {
-            params['fromWalletId'] = shapeshiftData.fromWalletId;
-            params['minShapeshiftAmount'] = shapeshiftData.minAmount;
-            params['maxShapeshiftAmount'] = shapeshiftData.maxAmount;
-            params['shapeshiftOrderId'] = shapeshiftData.orderId;
+          if (serviceId) {
+            if (!params['thirdParty']) {
+              params['thirdParty'] = [];
+            }
+            params['thirdParty']['id'] = serviceId;
+          }
+
+          if (serviceData) {
+            params['thirdParty']['data'] = serviceData;
+            // params['thirdParty']['minShapeshiftAmount'] = serviceData.minAmount;
+            // params['thirdParty']['maxShapeshiftAmount'] = serviceData.maxAmount;
+            // params['thirdParty']['shapeshiftOrderId'] = serviceData.orderId;
             $state.transitionTo('tabs.send.amount', params);
           } else {
             $state.transitionTo('tabs.send.origin', params);
@@ -148,12 +155,12 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         if (parsed.r) {
           payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
-              if (addr && amount) goSend(addr, amount, message, coin, shapeshiftData);
+              if (addr && amount) goSend(addr, amount, message, coin, serviceId, serviceData);
               else popupService.showAlert(gettextCatalog.getString('Error'), err);
             } else handlePayPro(details, coin);
           });
         } else {
-          goSend(addr, amount, message, coin, shapeshiftData);
+          goSend(addr, amount, message, coin, serviceId, serviceData);
         }
         return true;
     // Cash URI
@@ -171,14 +178,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
               if (addr && amount)
-                goSend(addr, amount, message, coin, shapeshiftData);
+                goSend(addr, amount, message, coin, serviceId, serviceData);
               else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
             handlePayPro(details, coin);
           });
         } else {
-          goSend(addr, amount, message, coin, shapeshiftData);
+          goSend(addr, amount, message, coin, serviceId, serviceData);
         }
         return true;
 
@@ -214,14 +221,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
               payproService.getPayProDetails(parsed.r, coin, function(err, details) {
                 if (err) {
                   if (addr && amount)
-                    goSend(addr, amount, message, coin, shapeshiftData);
+                    goSend(addr, amount, message, coin, serviceId, serviceData);
                   else
                     popupService.showAlert(gettextCatalog.getString('Error'), err);
                 }
                 handlePayPro(details, coin);
               });
             } else {
-              goSend(addr, amount, message, coin, shapeshiftData);
+              goSend(addr, amount, message, coin, serviceId, serviceData);
             }
           }
         );

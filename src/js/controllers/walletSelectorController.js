@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $stateParams, $log, $ionicHistory, configService, gettextCatalog, profileService) {
+angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, configService, gettextCatalog, profileService) {
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     var config = configService.getSync().wallet.settings;
-    $scope.sendFlowTitle = "";
 
+    $scope.sendFlowTitle = "";
     if ($state.current.name === 'tabs.send.wallet-to-wallet') {
       $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
     }
 
-    $scope.params = $stateParams;
+    $scope.params = $state.params;
     $scope.coin = false; // Wallets to show (for destination screen or contacts)
     $scope.type = data.stateParams && data.stateParams['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
 
@@ -21,14 +21,11 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if ($scope.params.amount) { // There is an amount, so presume that it a payment request
       $scope.sendFlowTitle = gettextCatalog.getString('Payment request');
       $scope.specificAmount = $scope.specificAlternativeAmount = '';
-      $scope.requestAmount = (($stateParams.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
+      $scope.requestAmount = (($state.params.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
       $scope.isPaymentRequest = true;
     }
     if ($scope.params.thirdParty) {
-      // Third Party Service
-      if ($scope.params.thirdParty.id === 'shapeshift') {
-
-      }
+      $scope.thirdParty = JSON.parse($scope.params.thirdParty); // Parse stringified JSON-object
     }
   });
 
@@ -48,6 +45,19 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send to');
     }
 
+    if ($scope.thirdParty) {
+
+      // Third party services specific logic
+
+      if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
+        if ($scope.coin === 'bch') {
+          $scope.coin = 'btc';
+        } else {
+          $scope.coin = 'bch';
+        }
+      }
+    }
+
     if (!$scope.coin || $scope.coin === 'bch') { // if no specific coin is set or coin is set to bch
       $scope.walletsBch = profileService.getWallets({coin: 'bch', hasFunds: $scope.type==='origin'});
     }
@@ -57,6 +67,9 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   });
 
   function getNextStep() {
+    if ($scope.thirdParty) {
+      $scope.params.thirdParty = JSON.stringify($scope.thirdParty)  // re-stringify JSON-object
+    }
     if (!$scope.params.toWalletId && !$scope.params.toAddress) { // If we have no toAddress or fromWallet
       return 'tabs.send.destination';
     } else if (!$scope.params.amount) { // If we have no amount

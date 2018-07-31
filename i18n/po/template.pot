@@ -3116,6 +3116,10 @@ msgstr ""
 msgid "Start ShapeShift"
 msgstr ""
 
+#: www/views/shapeshift.html:34
+msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr ""
+
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
 #: www/views/modals/wallet-balance.html:23

@@ -300,7 +300,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
-            templateUrl: 'views/wallet-origin-destination.html'
+            templateUrl: 'views/walletSelector.html'
           }
         }
       })
@@ -309,7 +309,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
-            templateUrl: 'views/wallet-origin-destination.html',
+            templateUrl: 'views/walletSelector.html',
           }
         }
       })
@@ -318,7 +318,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
-            templateUrl: 'views/wallet-origin-destination.html',
+            templateUrl: 'views/walletSelector.html',
           }
         }
       })
@@ -995,7 +995,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /* Shapeshift */
       .state('tabs.shapeshift', {
-        url: '/shapeshift',
+        url: '/shapeshift/:fromWalletId/:toWalletId',
         views: {
           'tab-home@tabs': {
             controller: 'shapeshiftController',

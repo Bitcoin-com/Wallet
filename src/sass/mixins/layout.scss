@@ -19,6 +19,17 @@
   @include absolute-center();
 }
 
+.third-party-notice {
+  font-size: 12px;
+  margin: 0px 14px;
+  font-weight: 600;
+  color: #6F6F70;
+
+  @media (min-width: 768px) {
+    text-align: center;
+  }
+}
+
 @mixin empty-case() {
   padding-top: 5vh;
   text-align: center;

@@ -20,21 +20,6 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     $scope.singleToWallet = $scope.toWallets.length === 1;
   }
 
-  // $scope.onFromWalletSelect = function(wallet) {
-  //   $scope.fromWallet = wallet;
-  //   showToWallets();
-  //   generateAddress(wallet, function(addr) {
-  //     $scope.fromWalletAddress = addr;
-  //   });
-  // };
-  //
-  // $scope.onToWalletSelect = function(wallet) {
-  //   $scope.toWallet = wallet;
-  //   generateAddress(wallet, function(addr) {
-  //     $scope.toWalletAddress = addr;
-  //   });
-  // };
-
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
@@ -42,22 +27,12 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
       return w.status.balance.availableAmount > 0;
     });
 
-    if ($scope.fromWallets.length === 0) {
-      // return
-    // } else {
-    //   $scope.onFromWalletSelect($scope.fromWallets[0]);
-    }
-
-    // $scope.onToWalletSelect($scope.toWallets[0]);
-
     $scope.singleFromWallet = $scope.fromWallets.length === 1;
-    // $scope.singleToWallet = $scope.toWallets.length == 1;
     $scope.fromWalletSelectorTitle = 'From';
     $scope.toWalletSelectorTitle = 'To';
     $scope.showFromWallets = false;
     $scope.showToWallets = false;
     $scope.walletsWithFunds = profileService.getWallets({onlyComplete: true, hasFunds: true});
-    console.log($scope.walletsWithFunds);
     $scope.wallets = profileService.getWallets({onlyComplete: true});
     $scope.hasWallets = !lodash.isEmpty($scope.wallets);
   });
@@ -89,12 +64,10 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
 
   $scope.shapeshift = function() {
     var params = {
-      thirdParty: {
-        id: 'shapeshift'
-      }
+      thirdParty: JSON.stringify({id: 'shapeshift'})
     };
     $state.go('tabs.home').then(function() {
-      $state.transitionTo('tabs.send', params);
+      $state.transitionTo('tabs.send.origin', params);
     });
   }
 });
