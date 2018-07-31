@@ -3699,3 +3699,7 @@ msgstr ""
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr ""
