@@ -321,6 +321,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'reviewController',
+            controllerAs: 'vm',
             templateUrl: 'views/review.html'
           }
         },

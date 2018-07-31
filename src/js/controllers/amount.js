@@ -508,7 +508,7 @@ angular.module('copayApp.controllers').controller('amountController', function($
           }
         }
 
-        $state.transitionTo('tabs.send.confirm', confirmData);
+        $state.transitionTo('tabs.send.review', confirmData);
       }
       $scope.useSendMax = null;
     }
