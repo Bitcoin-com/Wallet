@@ -55,6 +55,7 @@
 .button {
   border-radius: 6px;
   &.button-full {
+    border-radius: 0;
     display: block;
   }
   &-green {
