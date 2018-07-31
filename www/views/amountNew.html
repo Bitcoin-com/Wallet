@@ -19,8 +19,8 @@
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
-                ng-class="{long: vm.amountModel.amount.length > 5, 'very-long': vm.amountModel.amount.length > 10}">
-                <span class="primary-amount-display text-selectable">{{ vm.amountModel.amount || 0 }}</span><span class="unit">{{vm.unit}}</span>
+                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 10}">
+                <span class="primary-amount-display text-selectable">{{vm.amount}} {{vm.unit}}</span>
               </div>
               <span ng-show="vm.globalResult">{{vm.globalResult}} {{vm.unit}}</span>
               <div class="alternative-amount">

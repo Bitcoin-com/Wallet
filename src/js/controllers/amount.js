@@ -9,13 +9,14 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.altCurrencyList = [];
   vm.alternativeAmount = '';
   vm.alternativeUnit = '';
-  vm.amountModel = { amount: 0 };
+  vm.amount = '0';
   vm.availableFunds = '';
   vm.fromWalletId = '';
   // Use insufficient for logic, as when the amount is invalid, funds being
   // either sufficent or insufficient doesn't make sense.
   vm.fundsAreInsufficient = false;
   vm.globalResult = '';
+  vm.hello = 'hi';
   vm.isRequestingSpecificAmount = false;
   vm.listComplete = false;
   vm.lastUsedPopularList = [];
@@ -77,9 +78,9 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   }
 
   function onBeforeEnter(event, data) {
-    
+  
     initCurrencies();
-
+    vm.hello = 'greetings';
     if (data.stateParams.shapeshiftOrderId && data.stateParams.shapeshiftOrderId.length > 0) {
       vm.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
       vm.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
@@ -159,7 +160,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
 
     // in SAT ALWAYS
     if ($stateParams.toAmount) {
-      vm.amountModel.amount = (($stateParams.toAmount) * satToUnit).toFixed(unitDecimals);
+      vm.amount = (($stateParams.toAmount) * satToUnit).toFixed(unitDecimals);
     }
 
     processAmount();
@@ -271,7 +272,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   }
 
   function paste(value) {
-    vm.amountModel.amount = value;
+    vm.amount = value;
     processAmount();
     $timeout(function() {
       $scope.$apply();
@@ -299,7 +300,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
 
   function changeUnit() {
 
-    vm.amountModel.amount = '0';
+    vm.amount = '0';
 
     if (fixedUnit) return;
 
@@ -321,32 +322,32 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   };
 
   function pushDigit(digit) {
-    if (vm.amountModel.amount && digit != '.') {
-      var amountSplitByComma = vm.amountModel.amount.split('.');
+    if (vm.amount && digit != '.') {
+      var amountSplitByComma = vm.amount.split('.');
       if (amountSplitByComma.length > 1 && amountSplitByComma[1].length >= LENGTH_AFTER_COMMA_EXPRESSION_LIMIT) return;
       if (amountSplitByComma.length == 1 && amountSplitByComma[0].length >= LENGTH_BEFORE_COMMA_EXPRESSION_LIMIT) return;
     }
 
-    if (vm.amountModel.amount && vm.amountModel.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
-    if (vm.amountModel.amount.indexOf('.') > -1 && digit == '.') return;
-    if (vm.amountModel.amount == '0' && digit == '0') return;
-    if (availableUnits[unitIndex].isFiat && vm.amountModel.amount.indexOf('.') > -1 && vm.amountModel.amount[vm.amountModel.amount.indexOf('.') + 2]) return;
+    if (vm.amount && vm.amount.length >= LENGTH_EXPRESSION_LIMIT) return;
+    if (vm.amount.indexOf('.') > -1 && digit == '.') return;
+    if (vm.amount == '0' && digit == '0') return;
+    if (availableUnits[unitIndex].isFiat && vm.amount.indexOf('.') > -1 && vm.amount[vm.amount.indexOf('.') + 2]) return;
     
-    if (vm.amountModel.amount == '0' && digit != '.') { 
-      vm.amountModel.amount = '';
+    if (vm.amount == '0' && digit != '.') { 
+      vm.amount = '';
     }
 
-    if (vm.amountModel.amount == '' && digit == '.') { 
-      vm.amountModel.amount = '0';
+    if (vm.amount == '' && digit == '.') { 
+      vm.amount = '0';
     }
 
-    vm.amountModel.amount = (vm.amountModel.amount + digit).replace('..', '.');
+    vm.amount = (vm.amount + digit).replace('..', '.');
     processAmount();
   };
 
   function pushOperator(operator) {
-    if (!vm.amountModel.amount || vm.amountModel.amount.length == 0) return;
-    vm.amountModel.amount = pushOperator(vm.amountModel.amount);
+    if (!vm.amount || vm.amount.length == 0) return;
+    vm.amount = pushOperator(vm.amount);
 
     function pushOperator(val) {
       if (!isOperator(lodash.last(val))) {
@@ -368,12 +369,12 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   };
 
   function removeDigit() {
-    vm.amountModel.amount = (vm.amountModel.amount).toString().slice(0, -1);
+    vm.amount = (vm.amount).toString().slice(0, -1);
     processAmount();
   }
 
   function resetAmount() {
-    vm.amountModel.amount = vm.alternativeAmount = vm.globalResult = '';
+    vm.amount = vm.alternativeAmount = vm.globalResult = '0';
     vm.allowSend = false;
   }
   
@@ -393,11 +394,11 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   };
 
   function processAmount() {
-    var formatedValue = format(vm.amountModel.amount);
+    var formatedValue = format(vm.amount);
     var result = evaluate(formatedValue);
 
     if (lodash.isNumber(result)) {
-      vm.globalResult = isExpression(vm.amountModel.amount) ? '= ' + processResult(result) : '';
+      vm.globalResult = isExpression(vm.amount) ? '= ' + processResult(result) : '';
 
       if (availableUnits[unitIndex].isFiat) {
 
@@ -481,7 +482,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
 
     function finish() {
       var unit = availableUnits[unitIndex];
-      var _amount = evaluate(format(vm.amountModel.amount));
+      var _amount = evaluate(format(vm.amount));
       var coin = unit.id;
       if (unit.isFiat) {
         coin = availableUnits[altUnitIndex].id;
