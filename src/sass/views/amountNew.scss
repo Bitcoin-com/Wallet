@@ -273,7 +273,7 @@
 
           .primary-amount {
             color: #333;
-            font-family: 'ProximaNova-Semibold';
+            font-weight: bold;
             input, .unit, .primary-amount-display {
               font-size: 1.8em;
 
@@ -537,11 +537,12 @@
     .button-primary {
       background-color: $v-primary-color;
       border-radius: 0;
-      font-family: 'ProximaNova-Semibold';
+      font-weight: bold;
     }
 
     .button-primary[disabled] {
       background-color: $v-button-primary-disabled-bg;
+      opacity: 1;
     }
   }
 
