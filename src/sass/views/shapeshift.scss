@@ -1,0 +1,14 @@
+#shapeshift {
+  .empty-case {
+    @include empty-case();
+  }
+  .button-shapeshift {
+    @extend %button-standard;
+
+    @include button-style(#243F5D, #FFF, #606060, #FFF, #FFF);
+    @include button-clear(#FFF);
+    @include button-outline(#C1C1C1);
+    border: 0px;
+    @include button-shadow();
+  }
+}

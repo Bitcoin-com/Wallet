@@ -299,7 +299,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/wallet-to-wallet',
         views: {
           'tab-send@tabs': {
-            controller: 'sendFlowController',
+            controller: 'walletSelectorController',
             templateUrl: 'views/wallet-origin-destination.html'
           }
         }
@@ -308,7 +308,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId/:coin',
         views: {
           'tab-send@tabs': {
-            controller: 'sendFlowController',
+            controller: 'walletSelectorController',
             templateUrl: 'views/wallet-origin-destination.html',
           }
         }
@@ -317,7 +317,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/destination/:thirdParty/:amount/:fromWalletId',
         views: {
           'tab-send@tabs': {
-            controller: 'sendFlowController',
+            controller: 'walletSelectorController',
             templateUrl: 'views/wallet-origin-destination.html',
           }
         }

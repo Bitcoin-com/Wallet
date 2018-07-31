@@ -1,10 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $interval, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
-  var vm = this;
-
-  //vm.buyBitcion = buyBitcoin;
-
+angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $state, $interval, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
   var walletsBtc = [];
   var walletsBch = [];
 
@@ -19,59 +15,51 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
   }
 
   function showToWallets() {
-    $scope.toWallets = $scope.fromWallet.coin == 'btc' ? walletsBch : walletsBtc;
+    $scope.toWallets = $scope.fromWallet.coin === 'btc' ? walletsBch : walletsBtc;
     $scope.onToWalletSelect($scope.toWallets[0]);
-    $scope.singleToWallet = $scope.toWallets.length == 1;
+    $scope.singleToWallet = $scope.toWallets.length === 1;
   }
 
-  function buyBitcoin() {
-    console.log('buyBitcoin()');
-  }
-
-  $scope.buyBitcoin = buyBitcoin;
-
-  $scope.onFromWalletSelect = function(wallet) {
-    $scope.fromWallet = wallet;
-    showToWallets();
-    generateAddress(wallet, function(addr) {
-      $scope.fromWalletAddress = addr;
-    });
-  };
-
-  $scope.onToWalletSelect = function(wallet) {
-    $scope.toWallet = wallet;
-    generateAddress(wallet, function(addr) {
-      $scope.toWalletAddress = addr;
-    });
-  }
+  // $scope.onFromWalletSelect = function(wallet) {
+  //   $scope.fromWallet = wallet;
+  //   showToWallets();
+  //   generateAddress(wallet, function(addr) {
+  //     $scope.fromWalletAddress = addr;
+  //   });
+  // };
+  //
+  // $scope.onToWalletSelect = function(wallet) {
+  //   $scope.toWallet = wallet;
+  //   generateAddress(wallet, function(addr) {
+  //     $scope.toWalletAddress = addr;
+  //   });
+  // };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    console.log('beforeEnter()');
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
     $scope.fromWallets = lodash.filter(walletsBtc.concat(walletsBch), function(w) {
       return w.status.balance.availableAmount > 0;
     });
-    console.log('Checking wallets.');
-    if ($scope.fromWallets.length == 0) {
-      // Need to go to new origin screen here, with parameters
-      var params = {
-        thirdParty: {
-          id: 'shapeshift'
-        }
-      };
-      console.log('Asking for transition');
-      $state.transitionTo('tabs.send', params);
-      return
-    } 
-    $scope.onFromWalletSelect($scope.fromWallets[0]);
-    $scope.onToWalletSelect($scope.toWallets[0]);
-    $scope.singleFromWallet = $scope.fromWallets.length == 1;
-    $scope.singleToWallet = $scope.toWallets.length == 1;
+
+    if ($scope.fromWallets.length === 0) {
+      // return
+    // } else {
+    //   $scope.onFromWalletSelect($scope.fromWallets[0]);
+    }
+
+    // $scope.onToWalletSelect($scope.toWallets[0]);
+
+    $scope.singleFromWallet = $scope.fromWallets.length === 1;
+    // $scope.singleToWallet = $scope.toWallets.length == 1;
     $scope.fromWalletSelectorTitle = 'From';
     $scope.toWalletSelectorTitle = 'To';
     $scope.showFromWallets = false;
     $scope.showToWallets = false;
+    $scope.walletsWithFunds = profileService.getWallets({onlyComplete: true, hasFunds: true});
+    console.log($scope.walletsWithFunds);
+    $scope.wallets = profileService.getWallets({onlyComplete: true});
+    $scope.hasWallets = !lodash.isEmpty($scope.wallets);
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
@@ -80,9 +68,33 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
 
   $scope.showFromWalletSelector = function() {
     $scope.showFromWallets = true;
-  }
+  };
 
   $scope.showToWalletSelector = function() {
     $scope.showToWallets = true;
+  };
+
+  // This could probably be enhanced refactoring the routes abstract states
+  $scope.createWallet = function() {
+    $state.go('tabs.home').then(function() {
+      $state.go('tabs.add.create-personal');
+    });
+  };
+
+  $scope.buyBitcoin = function() {
+    $state.go('tabs.home').then(function() {
+      $state.go('tabs.buyandsell');
+    });
+  };
+
+  $scope.shapeshift = function() {
+    var params = {
+      thirdParty: {
+        id: 'shapeshift'
+      }
+    };
+    $state.go('tabs.home').then(function() {
+      $state.transitionTo('tabs.send', params);
+    });
   }
 });

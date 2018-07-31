@@ -133,42 +133,7 @@
     padding-left: 30px;
   }
   .sendTip {
-    padding-top: 5vh;
-    text-align: center;
-    .item {
-      border-style: none;
-    }
-    & > .title {
-      font-size: 20px;
-      color: $v-dark-gray;
-      margin: 20px 10px;
-    }
-    & > .subtitle {
-      font-size: 1rem;
-      line-height: 1.5em;
-      font-weight: 300;
-      color: #6F6F70;
-      margin: 20px 1em 2.5em;
-    }
-    .big-icon-svg {
-      .bg.green {
-        padding: 0 10px;
-        box-shadow: none;
-      }
-    }
-    .buttons {
-      margin-top: 18px;
-      .button {
-        font-weight: bold;
-        font-size: 19px;
-      }
-    }
-    .button-first-contact img {
-      height: 19px;
-      width: 19px;
-      margin-right: 6px;
-      vertical-align: sub;
-    }
+    @include empty-case();
   }
   .item-heading {
     line-height: 16px;

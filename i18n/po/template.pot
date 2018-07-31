@@ -3112,6 +3112,10 @@ msgstr ""
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr ""
 
+#: www/views/shapeshift.html:30
+msgid "Start ShapeShift"
+msgstr ""
+
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
 #: www/views/modals/wallet-balance.html:23
