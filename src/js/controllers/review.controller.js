@@ -4,68 +4,116 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(configService, $log, $scope, txFormatService) {
+function reviewController(configService, gettextCatalog, profileService, $scope, txFormatService) {
   var vm = this;
   
+  vm.origin = {
+    balanceAmount: '',
+    balanceCurrency: '',
+    color: '',
+    currency: '',
+    name: '',
+  };
   vm.primaryAmount = '';
   vm.primaryCurrency = '';
-
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
 
-
   var coin = '';
-  //var config = null;
+  var originWalletId = '';
+  var priceDisplayIsFiat = true;
   var satoshis = null;
+  var toAddress = '';
+  var toWalletId = '';
 
-  //var priceDisplayIsFiat = true;
+
+  
 
   $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
 
   function onBeforeEnter(event, data) {
 
-    satoshis = parseInt(data.stateParams.amount, 10);
     coin = data.stateParams.coin; 
-
-    updateAmount();
-
-
-    /*
-    //amount.crypto.quantity = ;
-    amount.crypto.currency = data.stateParams.coin.toUpperCase();
-    console.log('crypto:', JSON.stringify(amount.crypto));
-    //vm.amount = cryptoAmount.toFixed(8);
-    console.log('vm.amount:', vm.amount);
-
-    vm.secondaryAmount = amount.crypto.quantity;
-    vm.secondaryCurrency = amount.crypto.currency;
+    originWalletId = data.stateParams.fromWalletId;
+    satoshis = parseInt(data.stateParams.amount, 10);
+    toAddress = data.stateParams.toAddress;
+    
+    var originWallet = profileService.getWallet(originWalletId);
+    vm.origin.currency = originWallet.coin.toUpperCase();
+    vm.origin.color = originWallet.color;
+    vm.origin.name = originWallet.name;
 
     configService.get(function onConfig(err, configCache) {
       if (err) {
         $log.err('Error getting config.', err);
-        return;
       } else {
         console.log('Got config.');
-        config = configCache;
+        //config = configCache;
         // Use this later if have time
-        priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
+        priceDisplayIsFiat = configCache.wallet.settings.priceDisplay === 'fiat';
       }
+      updateSendAmounts();
+      getOriginWalletBalance(originWallet);
     });
-    */
   }  
 
-  function updateAmount() {
+  function getOriginWalletBalance(originWallet) {
+    console.log('origin wallet error:', originWallet.error);
+    var balanceCryptoAmount = '';
+    var balanceCryptoCurrencyCode = '';
+    var balanceFiatAmount = '';
+    var balanceFiatCurrency = ''
+
+    var originWalletStatus = null;
+    if (originWallet.status.isValid) {
+      originWalletStatus = originWallet.status;
+    } else if (originWallet.cachedStatus.isValid) {
+      originWalletStatus = originWallet.cachedStatus;
+    } else {
+      vm.origin.balanceAmount = '';
+      vm.origin.balanceCurrency = '';
+      return;
+    }
+
+    if (originWalletStatus) {
+      var cryptoBalanceParts = originWalletStatus.spendableBalanceStr.split(' ');
+      balanceCryptoAmount = cryptoBalanceParts[0];
+      balanceCryptoCurrencyCode = cryptoBalanceParts.length > 1 ? cryptoBalanceParts[1] : '';
+
+      if (originWalletStatus.alternativeBalanceAvailable) {
+        balanceFiatAmount = originWalletStatus.spendableBalanceAlternative;
+        balanceFiatCurrency = originWalletStatus.alternativeIsoCode;
+      }
+    }
+
+    if (priceDisplayIsFiat) {
+      vm.origin.balanceAmount = balanceFiatAmount ? balanceFiatAmount : balanceCryptoAmount;
+      vm.origin.balanceCurrency = balanceFiatAmount ? balanceFiatCurrency : balanceCryptoCurrencyCode;
+    } else {
+      vm.origin.balanceAmount = balanceCryptoAmount;
+      vm.origin.balanceCurrency = balanceCryptoCurrencyCode;
+    }
+  }
+
+  function updateSendAmounts() {
     if (typeof satoshis !== 'number') {
       return;
     }
 
+    var cryptoAmount = '';
+    var cryptoCurrencyCode = '';
     var amountStr = txFormatService.formatAmountStr(coin, satoshis);
-    var amountParts = amountStr.split(' ');
-    vm.primaryAmount = amountParts[0];
-    vm.primaryCurrency = amountParts[1];
+    if (amountStr) {
+      var amountParts = amountStr.split(' ');
+      cryptoAmount = amountParts[0];
+      cryptoCurrencyCode = amountParts.length > 1 ? amountParts[1] : '';
+    }
+    // Want to avoid flashing of amount strings so do all formatting after this has returned.
     txFormatService.formatAlternativeStr(coin, satoshis, function(v) {
       if (!v) {
+        vm.primaryAmount = cryptoAmount;
+        vm.primaryCurrency = cryptoCurrencyCode;
         vm.secondaryAmount = '';
         vm.secondaryCurrency = '';
         return;
@@ -74,8 +122,20 @@ function reviewController(configService, $log, $scope, txFormatService) {
       vm.secondaryCurrency = vm.primaryCurrency;
 
       var fiatParts = v.split(' ');
-      vm.primaryAmount = fiatParts[0];
-      vm.primaryCurrency = fiatParts[1];
+      var fiatAmount = fiatParts[0];
+      var fiatCurrency = fiatParts.length > 1 ? fiatParts[1] : '';
+
+      if (priceDisplayIsFiat) {
+        vm.primaryAmount = fiatAmount;
+        vm.primaryCurrency = fiatCurrency;
+        vm.secondaryAmount = cryptoAmount;
+        vm.secondaryCurrency = cryptoCurrencyCode;
+      } else {
+        vm.primaryAmount = cryptoAmount;
+        vm.primaryCurrency = cryptoCurrencyCode;
+        vm.secondaryAmount = fiatAmount;
+        vm.secondaryCurrency = fiatCurrency;
+      }
     });
   }
 

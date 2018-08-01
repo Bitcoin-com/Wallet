@@ -10,24 +10,24 @@
   <ion-content class="padded-bottom-cta-with-summary bg-neutral"
     ng-init="memoExpanded = false">
     <div class="header">
-      <div class="content" translate>
-        <p class="large"><amount value="vm.primaryAmount" currency="vm.primaryCurrency"></amount></p>
-        <p ng-show="vm.secondaryAmount"><amount value="vm.secondaryAmount" currency="vm.secondaryCurrency"></p>
+      <div class="content">
+        <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</amount></p>
+        <p ng-show="vm.secondaryAmount">{{vm.secondaryAmount}} {{vm.secondaryCurrency}}</p>
       </div>
     </div>
 
     <div class="content-frame negative-top">
       <div class="card card-gutter-compact">
-        <div class="item item-compact">From:</div>
+        <div class="item item-compact" translate>From:</div>
         <div class="item item-gutterless item-complex item-avatar">
           <div class="item-content item-content-avatar">
             <i class="icon big-icon-svg theme-circle theme-circle-services">
                 <div class="bg icon-wallet"
-                  ng-style="{'background-color': '#eeb640'}"
+                  style="background-color: {{vm.origin.color}}"
                 ></div>
             </i>
-            <h2>Personal Wallet <span class="highlight" ng-style="{'color': '#eeb640'}">(BCH)</span></h2>
-            <p>128.67</p>
+            <h2>{{vm.origin.name}} <span class="highlight" ng-style="{'color': '#eeb640'}">({{vm.origin.currency}})</span></h2>
+            <p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>
           </div>
         </div>
       </div>
