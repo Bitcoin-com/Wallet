@@ -291,6 +291,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -726,6 +727,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-receive@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -872,6 +874,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -937,6 +940,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1056,6 +1060,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1108,6 +1113,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1164,6 +1170,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
