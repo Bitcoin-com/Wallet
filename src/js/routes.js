@@ -317,7 +317,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.review', {
-        url: '/review',
+        url: '/review/:coin/:fromWalletId/:toAmount/:useSendMax',
         views: {
           'tab-send@tabs': {
             controller: 'reviewController',
