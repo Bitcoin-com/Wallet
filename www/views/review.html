@@ -26,7 +26,7 @@
                   style="background-color: {{vm.origin.color}}"
                 ></div>
             </i>
-            <h2>{{vm.origin.name}} <span class="highlight" ng-style="{'color': '#eeb640'}">({{vm.origin.currency}})</span></h2>
+            <h2>{{vm.origin.name}} <span class="highlight" style="color: {{vm.origin.currencyColor}}">({{vm.origin.currency}})</span></h2>
             <p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>
           </div>
         </div>

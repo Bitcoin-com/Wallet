@@ -12,6 +12,7 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
     balanceCurrency: '',
     color: '',
     currency: '',
+    currencyColor: '',
     name: '',
   };
   vm.primaryAmount = '';
@@ -44,14 +45,15 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
     vm.origin.color = originWallet.color;
     vm.origin.name = originWallet.name;
 
-    configService.get(function onConfig(err, configCache) {
+    configService.get(function onConfig(err, config) {
       if (err) {
         $log.err('Error getting config.', err);
       } else {
         console.log('Got config.');
         //config = configCache;
         // Use this later if have time
-        priceDisplayIsFiat = configCache.wallet.settings.priceDisplay === 'fiat';
+        priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
+        vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
       }
       updateSendAmounts();
       getOriginWalletBalance(originWallet);
