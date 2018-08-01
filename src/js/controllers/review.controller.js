@@ -7,6 +7,13 @@ angular
 function reviewController(configService, gettextCatalog, profileService, $scope, txFormatService) {
   var vm = this;
   
+  vm.destination = {
+    address: '',
+    balanceAmount: '',
+    balanceCurrecy: '',
+    color: '',
+    name: ''
+  };
   vm.feeCrypto = '';
   vm.feeFiat = '';
   vm.origin = {
@@ -27,7 +34,7 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
   var priceDisplayIsFiat = true;
   var satoshis = null;
   var toAddress = '';
-  var toWalletId = '';
+  var destinationWalletId = '';
 
 
   
@@ -46,6 +53,14 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
     vm.origin.currency = originWallet.coin.toUpperCase();
     vm.origin.color = originWallet.color;
     vm.origin.name = originWallet.name;
+
+    destinationWalletId = data.stateParams.toWalletId;
+    if (destinationWalletId) {
+      var destinationWallet = profileService.getWallet(destinationWalletId);
+      vm.destination.color = destinationWallet.color;
+      vm.destination.name = destinationWallet.name;
+
+    }
 
     configService.get(function onConfig(err, config) {
       if (err) {
