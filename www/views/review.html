@@ -11,6 +11,7 @@
     ng-init="memoExpanded = false">
     <div class="header">
       <div class="content">
+        <p translate>You are sending</p>
         <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</amount></p>
         <p ng-show="vm.secondaryAmount">{{vm.secondaryAmount}} {{vm.secondaryCurrency}}</p>
       </div>
@@ -49,7 +50,7 @@
           ng-class="{ 'expand-content-revealed': memoExpanded }"
           ng-click="memoExpanded = !memoExpanded">
           <img src="img/icon-bookmark.svg" class="action-icon">
-          <span class="action-text">Add a personal note</span>
+          <span class="action-text">Add personal note</span>
         </div>
         <div class="card card-gutter-compact expand-content"
           ng-class="{ 'expand-content-revealed': memoExpanded }">

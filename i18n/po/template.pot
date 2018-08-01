@@ -3703,3 +3703,28 @@ msgstr ""
 #: www/views/review.html:4
 msgid "Review Transaction"
 msgstr ""
+
+#: www/views/review.html:14
+msgid "You are sending"
+msgstr ""
+
+#: www/views/review.html:22
+msgid "From:"
+msgstr ""
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr ""
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr ""
+
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr ""
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr ""

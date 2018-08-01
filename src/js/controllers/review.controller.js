@@ -7,6 +7,8 @@ angular
 function reviewController(configService, gettextCatalog, profileService, $scope, txFormatService) {
   var vm = this;
   
+  vm.feeCrypto = '';
+  vm.feeFiat = '';
   vm.origin = {
     balanceAmount: '',
     balanceCurrency: '',
@@ -49,9 +51,6 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
       if (err) {
         $log.err('Error getting config.', err);
       } else {
-        console.log('Got config.');
-        //config = configCache;
-        // Use this later if have time
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
         vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
       }
