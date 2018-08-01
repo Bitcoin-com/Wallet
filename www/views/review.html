@@ -11,8 +11,8 @@
     ng-init="memoExpanded = false">
     <div class="header">
       <div class="content" translate>
-        <p class="large">13.98 USD</p>
-        <p>0.014 BCH</p>
+        <p class="large"><amount value="vm.primaryAmount" currency="vm.primaryCurrency"></amount></p>
+        <p ng-show="vm.secondaryAmount"><amount value="vm.secondaryAmount" currency="vm.secondaryCurrency"></p>
       </div>
     </div>
 
