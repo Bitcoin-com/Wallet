@@ -27,7 +27,7 @@
         <div class="padding buttons">
           <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="!walletsWithFunds.length" translate>Buy Bitcoin now</button>
           <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
-          <button class="button button-standard button-shapeshift" ng-click="shapeshift()" ng-show="walletsWithFunds.length" translate>Start ShapeShift</button>
+          <button class="button button-standard button-shapeshift track_shapeshift_start_click" ng-click="shapeshift()" ng-show="walletsWithFunds.length" translate>Start ShapeShift</button>
         </div>
       </div>
     </div>
