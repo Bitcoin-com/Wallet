@@ -35,9 +35,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.save = save;
   vm.sendMax = sendMax;
   vm.errorMessage = '';
-  
+
   $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
-  $scope.$on('$ionicView.leave', onLeave); 
+  $scope.$on('$ionicView.leave', onLeave);
 
   var LENGTH_EXPRESSION_LIMIT = 19;
   var LENGTH_BEFORE_COMMA_EXPRESSION_LIMIT = 8;
@@ -66,7 +66,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function onBeforeEnter(event, data) {
-  
+
     initCurrencies();
 
     passthroughParams = data.stateParams;
@@ -81,7 +81,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     setAvailableUnits();
     updateUnitUI();
-    
+
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
 
@@ -153,7 +153,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       unitIndex = 0;
 
-    
+
       //  currency have preference
       var fiatName;
       if (data.stateParams.currency) {
@@ -260,11 +260,11 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (vm.amount == '0' && digit == '0') return;
     if (availableUnits[unitIndex].isFiat && vm.amount.indexOf('.') > -1 && vm.amount[vm.amount.indexOf('.') + 2]) return;
     
-    if (vm.amount == '0' && digit != '.') { 
+    if (vm.amount == '0' && digit != '.') {
       vm.amount = '';
     }
 
-    if (vm.amount == '' && digit == '.') { 
+    if (vm.amount == '' && digit == '.') {
       vm.amount = '0';
     }
 
@@ -335,16 +335,16 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         if (a) {
           amountInCrypto = a;
           var amountInSatoshis = a * unitToSatoshi;
-          vm.fundsAreInsufficient = !!passthroughParams.fromWalletId 
-            && availableSatoshis !== null 
+          vm.fundsAreInsufficient = !!passthroughParams.fromWalletId
+            && availableSatoshis !== null
             && availableSatoshis < amountInSatoshis;
 
           vm.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
-          vm.allowSend = lodash.isNumber(a) 
+          vm.allowSend = lodash.isNumber(a)
             && a > 0
             && (!vm.shapeshiftOrderId
                 || (a >= vm.minAmount && a <= vm.maxAmount))
-            && !vm.fundsAreInsufficient;    
+            && !vm.fundsAreInsufficient;
         } else {
           if (result) {
             vm.alternativeAmount = 'N/A';
@@ -356,16 +356,16 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
       } else {
         amountInCrypto = result;
-        vm.fundsAreInsufficient = passthroughParams.fromWalletId 
-          && availableSatoshis !== null 
+        vm.fundsAreInsufficient = passthroughParams.fromWalletId
+          && availableSatoshis !== null
           && availableSatoshis < result * unitToSatoshi;
 
         vm.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
-        vm.allowSend = lodash.isNumber(result) 
+        vm.allowSend = lodash.isNumber(result)
           && result > 0
           && (!vm.shapeshiftOrderId
               || (result >= vm.minAmount && result <= vm.maxAmount))
-          && !vm.fundsAreInsufficient;    
+          && !vm.fundsAreInsufficient;
       }
 
     } else {
@@ -381,7 +381,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       } else if (amountInCrypto > vm.maxAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is above maximum');
-        
+
       } else {
         vm.errorMessage = '';
       }
@@ -474,7 +474,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
       }
 
-      $state.transitionTo('tabs.send.confirm', confirmData);      
+        $state.transitionTo('tabs.send.review', confirmData);
+      }
+      $scope.useSendMax = null;
     }
   };
 
@@ -585,7 +587,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       close();
     });
   };
-  
+
   function updateAvailableFundsStringIfNeeded() {
     if (passthroughParams.fromWalletId && availableSatoshis !== null) {
       availableFundsInFiat = '';

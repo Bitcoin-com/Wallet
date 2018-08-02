@@ -1,0 +1,24 @@
+.action-minor {
+  margin: 20px 14px;
+  font-size: 14px;
+
+  &.mt-negative {
+    margin-top: 0;
+  }
+
+  &.text-right {
+    text-align: right;
+  }
+
+  > .action-icon {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+
+  > .action-text {
+    vertical-align: middle;
+    color: #444444;
+  }
+}
