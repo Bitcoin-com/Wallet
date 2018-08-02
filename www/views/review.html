@@ -35,7 +35,8 @@
       <div class="card card-gutter-compact">
         <div class="item item-compact" translate>To:</div>
         <div class="item item-gutterless item-complex item-avatar">
-          <div class="item-content item-content-avatar">
+          <div class="item-content item-content-avatar"
+          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet'">
             <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.destination.kind === 'contact'">
             <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet'">
                 <div class="bg icon-wallet"
