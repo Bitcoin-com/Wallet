@@ -13,7 +13,7 @@
     <div class="header" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
-        <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</amount></p>
+        <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</p>
         <p ng-show="vm.secondaryAmount">{{vm.secondaryAmount}} {{vm.secondaryCurrency}}</p>
       </div>
     </div>
@@ -73,24 +73,22 @@
   </ion-content>
 
   <div class="fee-summary">
-    <div class="fee-fiat positive">Fee: Less than 1 cent</div>
-    <div class="fee-crypto"
-      ng-init="fee = {value: '0.00195823', currency: 'BCH'};">
-      <amount
-        value="fee.value"
-        currency="fee.currency"></amount>
+    <div class="fee-fiat positive" ng-if="vm.feeLessThanACent">Fee: Less than 1 cent</div>
+    <div class="fee-fiat positive" ng-if="!vm.feeLessThanACent">Fee: <amount value="fee.value" currency="fee.currency"></amount></div>
+    <div class="fee-crypto" ng-if="vm.feeCrypto">
+      <amount value="vm.feeCrypto" currency="fee.currency"></amount>
     </div>
   </div>
 
   <click-to-accept
     ng-click="approve(tx, wallet, statusChangeHandler)"
-    ng-if="(!isCordova || isWindowsPhoneApp)"
+    ng-if="(!vm.isCordova)"
     click-send-status="sendStatus"
     is-disabled="!wallet">
     {{buttonText}}
   </click-to-accept>
   <slide-to-accept
-    ng-if="isCordova && !isWindowsPhoneApp"
+    ng-if="vm.isCordova"
     slide-on-confirm="approve(tx, wallet, statusChangeHandler)"
     slide-send-status="sendStatus"
     is-disabled="!wallet">

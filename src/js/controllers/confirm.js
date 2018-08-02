@@ -140,7 +140,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
       return cb();
     });
-  }
+  };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId); // Wallet to send from
@@ -462,7 +462,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       }
     }
   };
-
 
   $scope.toggleAddress = function() {
     $scope.showAddress = !$scope.showAddress;
