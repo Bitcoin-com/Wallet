@@ -69,12 +69,12 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   
     initCurrencies();
 
-    vm.minAmount = parseFloat(data.stateParams.minShapeshiftAmount);
-    vm.maxAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
-    vm.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
-
     passthroughParams = data.stateParams;
     console.log('stateParams:', data.stateParams);
+
+    vm.minAmount = parseFloat(data.stateParams.minAmount);
+    vm.maxAmount = parseFloat(data.stateParams.maxAmount);
+    vm.shapeshiftOrderId = data.stateParams.thirdPartyOrderId;
 
     vm.isRequestingSpecificAmount = !data.stateParams.fromWalletId;
     var config = configService.getSync().wallet.settings;
@@ -324,7 +324,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     var formatedValue = format(vm.amount);
     var result = evaluate(formatedValue);
 
-    var amountInSatoshis = 0;
+    var amountInCrypto = 0;
 
     if (lodash.isNumber(result)) {
       vm.globalResult = isExpression(vm.amount) ? '= ' + processResult(result) : '';
@@ -333,7 +333,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
         var a = fromFiat(result);
         if (a) {
-          amountInSatoshis = a * unitToSatoshi;
+          amountInCrypto = a;
+          var amountInSatoshis = a * unitToSatoshi;
           vm.fundsAreInsufficient = !!passthroughParams.fromWalletId 
             && availableSatoshis !== null 
             && availableSatoshis < amountInSatoshis;
@@ -354,7 +355,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.allowSend = false;
         }
       } else {
-        amountInSatoshis = result;
+        amountInCrypto = result;
         vm.fundsAreInsufficient = passthroughParams.fromWalletId 
           && availableSatoshis !== null 
           && availableSatoshis < result * unitToSatoshi;
@@ -373,11 +374,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     if (vm.fundsAreInsufficient) {
       vm.errorMessage = gettextCatalog.getString('Not enough available funds');
-    } else if (amountInSatoshis && vm.shapeshiftOrderId) {
-      if (amountInSatoshis < (vm.minAmount * unitToSatoshi)) {
+
+    } else if (amountInCrypto && vm.shapeshiftOrderId) {
+      if (amountInCrypto < vm.minAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is below minimum');
-      } else if (amountInSatoshis > (vm.maxAmount * unitToSatoshi)) {
+
+      } else if (amountInCrypto > vm.maxAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is above maximum');
+        
       } else {
         vm.errorMessage = '';
       }
@@ -437,7 +441,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       amount: useSendMax ? undefined : satoshis,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
-      thirdParty: passthroughParams.thirdParty,
+      thirdPartyOrderId: passthroughParams.thirdPartyOrderId,
       toAddr: passthroughParams.toAddress,
       toWalletId: passthroughParams.toWalletId
     };
@@ -456,7 +460,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         if (confirmData.sendMax) {
           var wallet = lodash.find(profileService.getWallets({ coin: coin }),
             function(w) {
-              return w.id == vm.fromWalletId;
+              return w.id == passthroughParams.fromWalletId;
             });
 
           var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
@@ -583,7 +587,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   };
   
   function updateAvailableFundsStringIfNeeded() {
-    if (vm.fromWalletId && availableSatoshis !== null) {
+    if (passthroughParams.fromWalletId && availableSatoshis !== null) {
       availableFundsInFiat = '';
       vm.availableFunds = availableFundsInCrypto;
       var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
