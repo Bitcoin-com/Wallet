@@ -86,7 +86,6 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           $state.transitionTo('tabs.send.origin', {
             amount: amount,
             toAddress: addr,
-            displayAddress: originalAddress ? originalAddress : addr,
             description: message,
             coin: coin
           });
@@ -109,6 +108,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             // params['thirdParty']['minShapeshiftAmount'] = serviceData.minAmount;
             // params['thirdParty']['maxShapeshiftAmount'] = serviceData.maxAmount;
             // params['thirdParty']['shapeshiftOrderId'] = serviceData.orderId;
+            params['thirdParty'] = JSON.stringify(params['thirdParty']);
             $state.transitionTo('tabs.send.amount', params);
           } else {
             $state.transitionTo('tabs.send.origin', params);

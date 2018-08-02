@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, txFormatService, platformInfo, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window) {
   var vm = this;
 
   vm.allowSend = false;
@@ -21,6 +21,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.maxAmount = 0;
   vm.minAmount = 0;
   vm.shapeshiftOrderId = '';
+  vm.thirdParty = false;
   vm.unit = '';
 
   vm.changeUnit = changeUnit;
@@ -72,11 +73,39 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     passthroughParams = data.stateParams;
     console.log('stateParams:', data.stateParams);
 
+    vm.fromWalletId = data.stateParams.fromWalletId;
+    vm.toWalletId = data.stateParams.toWalletId;
     vm.minAmount = parseFloat(data.stateParams.minAmount);
     vm.maxAmount = parseFloat(data.stateParams.maxAmount);
-    vm.shapeshiftOrderId = data.stateParams.thirdPartyOrderId;
+
+    if (passthroughParams.thirdParty) {
+      vm.thirdParty = JSON.parse(passthroughParams.thirdParty); // Parse stringified JSON-object
+      if (vm.thirdParty) {
+        if (vm.thirdParty.id === 'shapeshift') {
+          if (!vm.thirdParty.data) {
+            vm.thirdParty.data = {};
+          }
+          vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
+
+          vm.fromWallet = profileService.getWallet(vm.fromWalletId);
+          vm.toWallet = profileService.getWallet(vm.toWalletId);
+
+          shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
+            console.log(data);
+            vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
+            vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
+          });
+
+          // if (vm.thirdParty.data['shapeshiftOrderId'] && data.stateParams.shapeshiftOrderId.length > 0) {
+          //   vm.shapeshiftOrderId = vm.thirdParty.data['shapeshiftOrderId'];
+          // }
+        }
+      }
+    }
+    // vm.shapeshiftOrderId = data.stateParams.thirdPartyOrderId;
 
     vm.isRequestingSpecificAmount = !data.stateParams.fromWalletId;
+
     var config = configService.getSync().wallet.settings;
 
     setAvailableUnits();
@@ -335,8 +364,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         if (a) {
           amountInCrypto = a;
           var amountInSatoshis = a * unitToSatoshi;
-          vm.fundsAreInsufficient = !!passthroughParams.fromWalletId
-            && availableSatoshis !== null
+          vm.fundsAreInsufficient = !!passthroughParams.fromWalletId 
+            && availableSatoshis !== null 
             && availableSatoshis < amountInSatoshis;
 
           vm.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
@@ -356,8 +385,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
       } else {
         amountInCrypto = result;
-        vm.fundsAreInsufficient = passthroughParams.fromWalletId
-          && availableSatoshis !== null
+        vm.fundsAreInsufficient = passthroughParams.fromWalletId 
+          && availableSatoshis !== null 
           && availableSatoshis < result * unitToSatoshi;
 
         vm.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
@@ -441,10 +470,13 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       amount: useSendMax ? undefined : satoshis,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
-      thirdPartyOrderId: passthroughParams.thirdPartyOrderId,
       toAddr: passthroughParams.toAddress,
       toWalletId: passthroughParams.toWalletId
     };
+
+    if (vm.thirdParty) {
+      confirmData['thirdParty'] = JSON.stringify(this.thirdParty);
+    }
 
     console.log('confirmData:', confirmData);
 

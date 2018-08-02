@@ -6,15 +6,11 @@
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content scroll="false">
-  
+      <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/header-thirdparty.html'"></div>
       <div style="order: 0; position: relative;">
-  
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
-              <div ng-if="vm.shapeshiftOrderId">
-                  Min: {{vm.minAmount}} <br/>
-                  Max: {{vm.maxAmount}} <br/>
-                </div>
+            <span ng-if="vm.minAmount">Min: {{vm.minAmount}}</span> <span ng-if="vm.maxAmount">Max: {{vm.maxAmount}}</span>
           </div>
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
