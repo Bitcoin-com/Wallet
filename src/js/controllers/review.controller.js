@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(configService, gettextCatalog, profileService, $scope, txFormatService) {
+function reviewController(addressbookService, configService, profileService, $log, $scope, txFormatService) {
   var vm = this;
   
   vm.destination = {
@@ -42,22 +42,20 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
   var destinationWalletId = '';
 
 
-  
-
   $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
 
   function onBeforeEnter(event, data) {
 
-    coin = data.stateParams.coin; 
     originWalletId = data.stateParams.fromWalletId;
     satoshis = parseInt(data.stateParams.amount, 10);
-    toAddress = data.stateParams.toAddress;
+    toAddress = data.stateParams.toAddr;
     
     var originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = originWallet.coin.toUpperCase();
     vm.origin.color = originWallet.color;
     vm.origin.name = originWallet.name;
+    coin = originWallet.coin;
 
     configService.get(function onConfig(err, configCache) {
       if (err) {
@@ -69,6 +67,7 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
       }
       updateSendAmounts();
       getOriginWalletBalance(originWallet);
+      handleDestinationAsAddress(toAddress, coin);
       handleDestinationAsWallet(data.stateParams.toWalletId);
     });
   }  
@@ -76,7 +75,7 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
   function getOriginWalletBalance(originWallet) {
     var balanceText = getWalletBalanceDisplayText(originWallet);
     vm.origin.balanceAmount = balanceText.amount;
-    vm.origin.balanceCurrecny = balanceText.currency;
+    vm.origin.balanceCurrency = balanceText.currency;
   }
 
   function getWalletBalanceDisplayText(wallet) {
@@ -119,24 +118,54 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
     };
   }
 
+  function handleDestinationAsAddress(address, originCoin) {
+    if (!address) {
+      return;
+    }
+
+    // Check if the recipient is a contact
+    addressbookService.get(originCoin + address, function(err, contact) { 
+      if (!err && contact) {
+        console.log('destination is contact');
+        handleDestinationAsContact(contact);
+      } else {
+        console.log('destination is address');
+        vm.destination.address = address;
+        vm.destination.kind = 'address';
+      }
+    });
+
+  }
+
+  function handleDestinationAsContact(contact) {
+    vm.destination.kind = 'contact';
+    vm.destination.name = contact.name;
+    vm.destination.color = contact.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
+    vm.destination.currency = contact.coin.toUpperCase();
+    vm.destination.currencyColor = vm.destination.color;
+  }
+
   function handleDestinationAsWallet(walletId) {
     destinationWalletId = walletId;
-    if (destinationWalletId) {
-      var destinationWallet = profileService.getWallet(destinationWalletId);
-      vm.destination.coin = destinationWallet.coin;
-      vm.destination.color = destinationWallet.color;
-      vm.destination.currency = destinationWallet.coin.toUpperCase();
-      vm.destination.kind = 'wallet';
-      vm.destination.name = destinationWallet.name;
-
-      if (config) {
-        vm.destination.currencyColor = vm.destination.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
-      }
-
-      var balanceText = getWalletBalanceDisplayText(destinationWallet);
-      vm.destination.balanceAmount = balanceText.amount;
-      vm.destination.balanceCurrency = balanceText.currency;
+    if (!destinationWalletId) {
+      return;
     }
+
+    console.log('destination is wallet');
+    var destinationWallet = profileService.getWallet(destinationWalletId);
+    vm.destination.coin = destinationWallet.coin;
+    vm.destination.color = destinationWallet.color;
+    vm.destination.currency = destinationWallet.coin.toUpperCase();
+    vm.destination.kind = 'wallet';
+    vm.destination.name = destinationWallet.name;
+
+    if (config) {
+      vm.destination.currencyColor = vm.destination.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
+    }
+
+    var balanceText = getWalletBalanceDisplayText(destinationWallet);
+    vm.destination.balanceAmount = balanceText.amount;
+    vm.destination.balanceCurrency = balanceText.currency;
   }
 
   function updateSendAmounts() {
