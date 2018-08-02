@@ -13,12 +13,11 @@
         <img class="swap-image" src="img/shapeshift_swap.png"/>
       </div>
       <div class="subtitle">
+        <p translate>Exchange your BTC to BCH in minutes.</p>
         <div ng-show="!walletsWithFunds.length">
-          <p translate>Before exchanging your BTC to BCH, you will need to add funds to your wallet.</p>
-          <p translate>You can receive Bitcoin from any wallet or service.</p>
+          <p translate>To start the process you need to add funds to your wallet.</p>
         </div>
         <div ng-show="walletsWithFunds.length">
-          <p translate>Using Shapeshift will allow you to exchange your BTC for BCH.</p>
           <p translate>The process is fast and you will receive the exchanged amount in your wallet.</p>
         </div>
         <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</div>

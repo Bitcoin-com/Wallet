@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, configService, profileService, $log, $scope, txFormatService) {
+function reviewController(addressbookService, configService, gettextCatalog, profileService, $log, $scope, txFormatService) {
   var vm = this;
 
   vm.destination = {
@@ -33,6 +33,7 @@ function reviewController(addressbookService, configService, profileService, $lo
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
   vm.thirdParty = false;
+  vm.sendingTitle = gettextCatalog.getString('You are sending');
 
   var config = null;
   var coin = '';
@@ -62,6 +63,7 @@ function reviewController(addressbookService, configService, profileService, $lo
       vm.thirdParty = JSON.parse(data.stateParams.thirdParty); // Parse stringified JSON-object
       if (vm.thirdParty) {
         if (vm.thirdParty.id === 'shapeshift') {
+          vm.sendingTitle = gettextCatalog.getString('You are shifting');
           if (!vm.thirdParty.data) {
             vm.thirdParty.data = {};
           }

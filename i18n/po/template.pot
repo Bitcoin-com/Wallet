@@ -2651,6 +2651,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr ""
 
 #: www/views/tab-send.html:72
+#: www/views/shapeshift.html:23
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
 
@@ -3114,6 +3115,18 @@ msgstr ""
 
 #: www/views/shapeshift.html:30
 msgid "Start ShapeShift"
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "he process is fast and you will receive the exchanged amount in your wallet."
 msgstr ""
 
 #: www/views/shapeshift.html:34
@@ -3720,8 +3733,12 @@ msgstr ""
 msgid "Review Transaction"
 msgstr ""
 
-#: www/views/review.html:14
+#: src/js/controllers/review.controller.js:36
 msgid "You are sending"
+msgstr ""
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
 msgstr ""
 
 #: www/views/review.html:22

@@ -1,7 +1,8 @@
 #shapeshift {
   .swap-image {
-    width: 70%;
+    width: auto;
     max-width: 400px;
+    max-height: 25vh;
   }
   .empty-case {
     @include empty-case();
@@ -17,5 +18,6 @@
   }
 }
 .header.shapeshift {
-  background: #243F5D;
+  background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
+  opacity: 0.99;
 }
