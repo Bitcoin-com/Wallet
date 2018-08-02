@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, txFormatService, platformInfo, popupService, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, txFormatService, platformInfo, profileService, walletService, $window) {
   var vm = this;
 
   vm.allowSend = false;
@@ -18,8 +18,8 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.isRequestingSpecificAmount = false;
   vm.listComplete = false;
   vm.lastUsedPopularList = [];
-  vm.maxShapeshiftAmount = 0;
-  vm.minShapeshiftAmount = 0;
+  vm.maxAmount = 0;
+  vm.minAmount = 0;
   vm.shapeshiftOrderId = '';
   vm.unit = '';
 
@@ -34,6 +34,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   vm.removeDigit = removeDigit;
   vm.save = save;
   vm.sendMax = sendMax;
+  vm.errorMessage = '';
   
   $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
   $scope.$on('$ionicView.leave', onLeave); 
@@ -49,15 +50,12 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   var availableSatoshis = null;
   var availableUnits = [];
   var fiatCode;
-  var hasMaxAmount = true;
   var isNW = platformInfo.isNW;
   var isAndroid = platformInfo.isAndroid;
   var isIos = platformInfo.isIOS;
   var lastUsedAltCurrencyList = [];
   var passthroughParams = {};
   var satToUnit;
-  var showMenu = false;
-  var showWarningMessage = false;
   var unitDecimals;
   var unitIndex = 0;
   var unitToSatoshi;
@@ -70,26 +68,19 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   function onBeforeEnter(event, data) {
   
     initCurrencies();
-    vm.hello = 'greetings';
-    if (data.stateParams.shapeshiftOrderId && data.stateParams.shapeshiftOrderId.length > 0) {
-      vm.minShapeshiftAmount = parseFloat(data.stateParams.minShapeshiftAmount);
-      vm.maxShapeshiftAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
-      vm.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
-    }
+
+    vm.minAmount = parseFloat(data.stateParams.minShapeshiftAmount);
+    vm.maxAmount = parseFloat(data.stateParams.maxShapeshiftAmount);
+    vm.shapeshiftOrderId = data.stateParams.shapeshiftOrderId;
 
     passthroughParams = data.stateParams;
+    console.log('stateParams:', data.stateParams);
 
     vm.isRequestingSpecificAmount = !data.stateParams.fromWalletId;
     var config = configService.getSync().wallet.settings;
 
     setAvailableUnits();
     updateUnitUI();
-
-    if ($ionicHistory.backView().stateName == 'tabs.receive') {
-      hasMaxAmount = false;
-    }
-
-    showMenu = $ionicHistory.backView() && ($ionicHistory.backView().stateName == 'tabs.send');
     
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
@@ -333,6 +324,8 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
     var formatedValue = format(vm.amount);
     var result = evaluate(formatedValue);
 
+    var amountInSatoshis = 0;
+
     if (lodash.isNumber(result)) {
       vm.globalResult = isExpression(vm.amount) ? '= ' + processResult(result) : '';
 
@@ -340,7 +333,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
 
         var a = fromFiat(result);
         if (a) {
-          var amountInSatoshis = a * unitToSatoshi;
+          amountInSatoshis = a * unitToSatoshi;
           vm.fundsAreInsufficient = !!passthroughParams.fromWalletId 
             && availableSatoshis !== null 
             && availableSatoshis < amountInSatoshis;
@@ -349,7 +342,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
           vm.allowSend = lodash.isNumber(a) 
             && a > 0
             && (!vm.shapeshiftOrderId
-                || (a >= vm.minShapeshiftAmount && a <= vm.maxShapeshiftAmount))
+                || (a >= vm.minAmount && a <= vm.maxAmount))
             && !vm.fundsAreInsufficient;    
         } else {
           if (result) {
@@ -361,6 +354,7 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
           vm.allowSend = false;
         }
       } else {
+        amountInSatoshis = result;
         vm.fundsAreInsufficient = passthroughParams.fromWalletId 
           && availableSatoshis !== null 
           && availableSatoshis < result * unitToSatoshi;
@@ -369,12 +363,26 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
         vm.allowSend = lodash.isNumber(result) 
           && result > 0
           && (!vm.shapeshiftOrderId
-              || (result >= vm.minShapeshiftAmount && result <= vm.maxShapeshiftAmount))
+              || (result >= vm.minAmount && result <= vm.maxAmount))
           && !vm.fundsAreInsufficient;    
       }
 
     } else {
       vm.fundsAreInsufficient = false;
+    }
+
+    if (vm.fundsAreInsufficient) {
+      vm.errorMessage = gettextCatalog.getString('Not enough available funds');
+    } else if (amountInSatoshis && vm.shapeshiftOrderId) {
+      if (amountInSatoshis < (vm.minAmount * unitToSatoshi)) {
+        vm.errorMessage = gettextCatalog.getString('Amount is below minimum');
+      } else if (amountInSatoshis > (vm.maxAmount * unitToSatoshi)) {
+        vm.errorMessage = gettextCatalog.getString('Amount is above maximum');
+      } else {
+        vm.errorMessage = '';
+      }
+    } else {
+      vm.errorMessage = '';
     }
   };
 
@@ -415,109 +423,55 @@ function amountController(configService, $filter, $ionicHistory, $ionicModal, $i
   };
 
   function finish() {
+    var unit = availableUnits[unitIndex];
+    var uiAmount = evaluate(format(vm.amount));
 
-    function finish() {
-      var unit = availableUnits[unitIndex];
-      var uiAmount = evaluate(format(vm.amount));
-
-      var satoshis = 0;
-      if (unit.isFiat) {
-        satoshis = (fromFiat(uiAmount) * unitToSatoshi).toFixed(0);
-      } else {
-        satoshis = (uiAmount * unitToSatoshi).toFixed(0);
-      }
-
-      var confirmData = {
-        amount: useSendMax ? undefined : satoshis,
-        fromWalletId: passthroughParams.fromWalletId,
-        sendMax: useSendMax,
-        thirdParty: passthroughParams.thirdParty,
-        toAddr: passthroughParams.toAddress,
-        toWalletId: passthroughParams.toWalletId
-      };
-
-      console.log('confirmData:', confirmData);
-
-      if (!confirmData.fromWalletId) {
-        $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
-      } else {
-
-
-        var coin = unit.id;
-        if (unit.isFiat) {
-          coin = availableUnits[altUnitIndex].id;
-        }
-
-        if (nextStep) {
-          $state.transitionTo(nextStep, {
-            id: _id,
-            amount: useSendMax ? null : _amount,
-            currency: unit.id.toUpperCase(),
-            coin: coin,
-            useSendMax: useSendMax,
-            fromWalletId: passthroughParams.fromWalletId
-          });
-        } else {
-          var amount = _amount;
-
-          if (unit.isFiat) {
-            amount = (fromFiat(amount) * unitToSatoshi).toFixed(0);
-          } else {
-            amount = (amount * unitToSatoshi).toFixed(0);
-          }
-
-          var confirmData = {
-            amount: useSendMax ? undefined : amount,
-            fromWalletId: passthroughParams.fromWalletId,
-            sendMax: useSendMax,
-            thirdParty: passthroughParams.thirdParty,
-            toAddr: passthroughParams.toAddress,
-            toWalletId: passthroughParams.toWalletId
-          };
-
-          if (vm.shapeshiftOrderId) {
-            var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
-            shapeshiftOrderUrl += vm.shapeshiftOrderId;
-            confirmData.description = shapeshiftOrderUrl;
-
-            if (confirmData.useSendMax) {
-              var wallet = lodash.find(profileService.getWallets({ coin: coin }),
-                function(w) {
-                  return w.id == vm.fromWalletId;
-                });
-
-              var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
-              if (balance < vm.minShapeshiftAmount * 1.04) {
-                confirmData.useSendMax = false;
-                confirmData.amount = vm.minShapeshiftAmount * unitToSatoshi;
-              } else if (balance > vm.maxShapeshiftAmount) {
-                confirmData.useSendMax = false;
-                confirmData.amount = vm.maxShapeshiftAmount * unitToSatoshi * 0.99;
-              }
-            }
-          }
-
-          
-          $state.transitionTo('tabs.send.confirm', confirmData);
-        }
-      }
-      useSendMax = null;
-    }
-
-    if (showWarningMessage) {
-      var u = vm.unit == 'BCH' || vm.unit == 'BTC' ? vm.unit : vm.alternativeUnit;
-      var message = 'Are you sure you want to send ' + u.toUpperCase()  + '?';
-      popupService.showConfirm(message, '', 'Yes', 'No', function(res) {
-        if (!res) {
-          useSendMax = null;
-          return;
-        };
-        finish();
-      });
+    var satoshis = 0;
+    if (unit.isFiat) {
+      satoshis = (fromFiat(uiAmount) * unitToSatoshi).toFixed(0);
     } else {
-      finish();
+      satoshis = (uiAmount * unitToSatoshi).toFixed(0);
     }
 
+    var confirmData = {
+      amount: useSendMax ? undefined : satoshis,
+      fromWalletId: passthroughParams.fromWalletId,
+      sendMax: useSendMax,
+      thirdParty: passthroughParams.thirdParty,
+      toAddr: passthroughParams.toAddress,
+      toWalletId: passthroughParams.toWalletId
+    };
+
+    console.log('confirmData:', confirmData);
+
+    if (!confirmData.fromWalletId) {
+      $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
+    } else {
+
+      if (vm.shapeshiftOrderId) {
+        var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
+        shapeshiftOrderUrl += vm.shapeshiftOrderId;
+        confirmData.description = shapeshiftOrderUrl;
+
+        if (confirmData.sendMax) {
+          var wallet = lodash.find(profileService.getWallets({ coin: coin }),
+            function(w) {
+              return w.id == vm.fromWalletId;
+            });
+
+          var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
+          if (balance < vm.minAmount * 1.04) {
+            confirmData.sendMax = false;
+            confirmData.amount = vm.minAmount * unitToSatoshi;
+          } else if (balance > vm.maxAmount) {
+            confirmData.sendMax = false;
+            confirmData.amount = vm.maxAmount * unitToSatoshi * 0.99;
+          }
+        }
+      }
+
+      $state.transitionTo('tabs.send.confirm', confirmData);      
+    }
   };
 
 
