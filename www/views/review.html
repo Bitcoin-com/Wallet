@@ -73,11 +73,8 @@
 
   <div class="fee-summary">
     <div class="fee-fiat positive">Fee: Less than 1 cent</div>
-    <div class="fee-crypto"
-      ng-init="fee = {value: '0.00195823', currency: 'BCH'};">
-      <amount
-        value="fee.value"
-        currency="fee.currency"></amount>
+    <div class="fee-crypto">
+      {{vm.fee.cryptoAmount}} {{vm.fee.cryptoCurrencyCode}}
     </div>
   </div>
 

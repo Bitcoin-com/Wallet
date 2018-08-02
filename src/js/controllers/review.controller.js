@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, configService, profileService, $log, $scope, txFormatService) {
+function reviewController(addressbookService, configService, $ionicConfig, $log, profileService,  $scope, txFormatService) {
   var vm = this;
   
   vm.destination = {
@@ -18,7 +18,14 @@ function reviewController(addressbookService, configService, profileService, $lo
     kind: '', // 'address', 'contact', 'wallet'
     name: ''
   };
-  vm.feeCrypto = '';
+  vm.fee = {
+    cryptoAmount: '',
+    cryptoCurrencyCode: '',
+    cryptoDescription: '',
+    fiatAmount: '',
+    fiatCurrency: ''
+  };
+  vm.fee
   vm.feeFiat = '';
   vm.origin = {
     balanceAmount: '',
@@ -34,6 +41,7 @@ function reviewController(addressbookService, configService, profileService, $lo
   vm.secondaryCurrency = '';
 
   var config = null;
+  var configFeeLevel = '';
   var coin = '';
   var originWalletId = '';
   var priceDisplayIsFiat = true;
@@ -43,11 +51,25 @@ function reviewController(addressbookService, configService, profileService, $lo
 
 
   $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+  $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
+  $scope.$on("$ionicView.enter", onEnter);
+
 
 
   function onBeforeEnter(event, data) {
 
+    // Dummy values for testing
+    vm.fee = {
+      cryptoAmount: '0.00195823',
+      cryptoCurrencyCode: 'BCH',
+      cryptoDescription: 'Less than 1 cent',
+      fiatAmount: '',
+      fiatCurrency: ''
+    };
+
     originWalletId = data.stateParams.fromWalletId;
+    // For testing only
+    //originWalletId = data.stateParams.fromWalletId || 'bf00af8f-0788-4b57-b30a-0390747407e9';
     satoshis = parseInt(data.stateParams.amount, 10);
     toAddress = data.stateParams.toAddr;
     
@@ -65,12 +87,23 @@ function reviewController(addressbookService, configService, profileService, $lo
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
         vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
       }
+
+      configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
+
       updateSendAmounts();
       getOriginWalletBalance(originWallet);
       handleDestinationAsAddress(toAddress, coin);
       handleDestinationAsWallet(data.stateParams.toWalletId);
     });
-  }  
+  }
+  
+  function onBeforeLeave(event, data) {
+    $ionicConfig.views.swipeBackEnabled(true);
+  }
+
+  function onEnter(event, data) {
+    $ionicConfig.views.swipeBackEnabled(false);
+  };
 
   function getOriginWalletBalance(originWallet) {
     var balanceText = getWalletBalanceDisplayText(originWallet);
