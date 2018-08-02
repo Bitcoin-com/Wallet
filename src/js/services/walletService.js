@@ -345,10 +345,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       if (!txsFromServer.length)
         return cb(null, []);
 
-      /*var res = lodash.takeWhile(txsFromServer, function(tx) {
-        return tx.txid != endingTxid;
-      });*/
-
       return cb(null, txsFromServer);
     });
   };
@@ -459,8 +455,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           }
 
           // Check if new txs are founds, if yes, lets investigate in the 50 next
-          // To be sure we are not missing txs by order (maybe a new tx is after the "endingTxid"
-
+          // To be sure we are not missing txs by sorting (maybe a new tx is after the "endingTxid"
           var newDiscoveredTxs = res.filter(function (x) {
             return confirmedTxs.filter(function (confX) {
               return confX.txid == x.txid;
@@ -468,10 +463,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           });
 
           $log.debug('Discovering TXs. Got:' + newDiscoveredTxs.length);
-
-          /*var newDiscoveredTxs = lodash.uniq(lodash.union(res, newTxs), function(x) {
-            return x.txid;
-          });*/
 
           var shouldContinue = newDiscoveredTxs.length > 0;
 
