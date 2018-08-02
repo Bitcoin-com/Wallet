@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, configService, feeService, gettextCatalog, lodash, ongoingProcess, platformInfo, profileService, walletService, txFormatService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, $timeout, txFormatService, walletService) {
   var vm = this;
 
   vm.destination = {
@@ -21,6 +21,7 @@ function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, ad
   vm.feeCrypto = '';
   vm.feeFiat = '';
   vm.fiatCurrency = '';
+  vm.feeIsHigh = false;
   vm.feeLessThanACent = false;
   vm.origin = {
     balanceAmount: '',
@@ -52,6 +53,7 @@ function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, ad
   var satoshis = null;
   var toAddress = '';
   var tx = {};
+  var unitFromSat = 0;
 
   var FEE_TOO_HIGH_LIMIT_PERCENTAGE = 15;
 
@@ -89,7 +91,8 @@ function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, ad
       } else {
         config = configCache;
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
-        vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
+        vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor;
+        unitFromSat = 1 / config.wallet.settings.unitToSatoshi; 
       }
       updateSendAmounts();
       getOriginWalletBalance(originWallet);
@@ -431,6 +434,14 @@ function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, ad
     }
   }
 
+  function setSendError(msg) {
+    $scope.sendStatus = '';
+    $timeout(function() {
+      $scope.$apply();
+    });
+    popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg));
+  };
+
   function setupTx(tx) {
     if (tx.coin === 'bch') {
       tx.displayAddress = bitcoinCashJsService.readAddress(tx.toAddress).cashaddr;
@@ -593,7 +604,8 @@ function reviewController($log, $scope, $ionicLoading, $ionicModal, $timeout, ad
           var perString = per.toFixed(2);
           txp.feeRatePerStr = (perString == '0.00' ? '< ' : '') + perString + '%';
           txp.feeToHigh = per > FEE_TOO_HIGH_LIMIT_PERCENTAGE;
-          vm.feeCrypto = txp.fee;
+          vm.feeCrypto = (unitFromSat * txp.fee).toFixed(8);
+          vm.feeIsHigh = txp.feeToHigh;
           console.log("crypto", vm.feeCrypto);
 
 

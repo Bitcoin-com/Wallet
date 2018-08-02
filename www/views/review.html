@@ -73,10 +73,10 @@
   </ion-content>
 
   <div class="fee-summary">
-    <div class="fee-fiat positive" ng-if="vm.feeLessThanACent">Fee: Less than 1 cent</div>
-    <div class="fee-fiat positive" ng-if="!vm.feeLessThanACent">Fee: <amount value="fee.value" currency="fee.currency"></amount></div>
+    <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="vm.feeLessThanACent">Fee: Less than 1 cent</div>
+    <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent">Fee: {{vm.feeFiat}} {{vm.feeCurrency}}</div>
     <div class="fee-crypto" ng-if="vm.feeCrypto">
-      <amount value="vm.feeCrypto" currency="fee.currency"></amount>
+      {{vm.feeCrypto}} {{vm.origin.currency}}
     </div>
   </div>
 
