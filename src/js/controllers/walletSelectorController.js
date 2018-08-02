@@ -5,9 +5,17 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     var config = configService.getSync().wallet.settings;
 
-    $scope.sendFlowTitle = "";
-    if ($state.current.name === 'tabs.send.wallet-to-wallet') {
-      $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+    switch($state.current.name) {
+      case 'tabs.send.wallet-to-wallet':
+        $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+        break;
+      case 'tabs.send.destination':
+        if (data.stateParams.fromWalletId) {
+          $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+        }
+        break;
+      default:
+       // nop
     }
 
     $scope.params = $state.params;
