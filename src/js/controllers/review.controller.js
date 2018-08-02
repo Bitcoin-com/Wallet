@@ -6,7 +6,7 @@ angular
 
 function reviewController(addressbookService, configService, profileService, $log, $scope, txFormatService) {
   var vm = this;
-  
+
   vm.destination = {
     address: '',
     balanceAmount: '',
@@ -32,6 +32,7 @@ function reviewController(addressbookService, configService, profileService, $lo
   vm.primaryCurrency = '';
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
+  vm.thirdParty = false;
 
   var config = null;
   var coin = '';
@@ -56,6 +57,20 @@ function reviewController(addressbookService, configService, profileService, $lo
     vm.origin.color = originWallet.color;
     vm.origin.name = originWallet.name;
     coin = originWallet.coin;
+
+    if (data.stateParams.thirdParty) {
+      vm.thirdParty = JSON.parse(data.stateParams.thirdParty); // Parse stringified JSON-object
+      if (vm.thirdParty) {
+        if (vm.thirdParty.id === 'shapeshift') {
+          if (!vm.thirdParty.data) {
+            vm.thirdParty.data = {};
+          }
+          vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
+          vm.fromWallet = profileService.getWallet(vm.fromWalletId);
+          vm.toWallet = profileService.getWallet(vm.toWalletId);
+        }
+      }
+    }
 
     configService.get(function onConfig(err, configCache) {
       if (err) {

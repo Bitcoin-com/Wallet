@@ -4,7 +4,7 @@
     <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <div ng-if="thirdParty && thirdParty.id === 'shapeshift'" ng-include="'views/header-thirdparty.html'"></div>
+    <div ng-if="thirdParty && thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
     <div class="header--request" ng-if="isPaymentRequest">
       <div class="header--request__title" translate>Paying</div>
       <div class="header--request__amount" translate>$... USD</div>

@@ -9,7 +9,8 @@
 
   <ion-content class="padded-bottom-cta-with-summary bg-neutral"
     ng-init="memoExpanded = false">
-    <div class="header">
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div class="header" ng-class="vm.thirdParty.id">
       <div class="content">
         <p translate>You are sending</p>
         <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</amount></p>

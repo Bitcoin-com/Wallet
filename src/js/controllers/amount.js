@@ -506,8 +506,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
       }
 
-        $state.transitionTo('tabs.send.review', confirmData);
-      }
+      $state.transitionTo('tabs.send.review', confirmData);
       $scope.useSendMax = null;
     }
   };
