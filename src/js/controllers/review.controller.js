@@ -21,9 +21,10 @@ function reviewController(addressbookService, configService, $ionicConfig, $log,
   vm.fee = {
     cryptoAmount: '',
     cryptoCurrencyCode: '',
-    cryptoDescription: '',
+    description: '',
     fiatAmount: '',
-    fiatCurrency: ''
+    fiatCurrency: '',
+    high: false
   };
   vm.fee
   vm.feeFiat = '';
@@ -62,9 +63,10 @@ function reviewController(addressbookService, configService, $ionicConfig, $log,
     vm.fee = {
       cryptoAmount: '0.00195823',
       cryptoCurrencyCode: 'BCH',
-      cryptoDescription: 'Less than 1 cent',
+      description: 'Less than 1 cent',
       fiatAmount: '',
-      fiatCurrency: ''
+      fiatCurrency: '',
+      high: false
     };
 
     originWalletId = data.stateParams.fromWalletId;
