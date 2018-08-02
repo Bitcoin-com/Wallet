@@ -36,11 +36,16 @@
         <div class="item item-compact" translate>To:</div>
         <div class="item item-gutterless item-complex item-avatar">
           <div class="item-content item-content-avatar">
-            <img src="img/contact-placeholder.svg" class="bg">
-            <h2>{{vm.destination.name}}</h2>
-            <p>128.67</p>
+            <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.destination.kind === 'contact'">
+            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet'">
+                <div class="bg icon-wallet"
+                  style="background-color: {{vm.destination.color}}"
+                ></div>
+            </i>
+            <h2>{{vm.destination.name}}<span class="highlight" style="color: {{vm.destination.currencyColor}}" ng-if="vm.destination.currency"> ({{vm.destination.currency}})</span></h2></h2>
+            <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
           </div>
-          <div class="item-content item-content-compact" ng-init="addressExpanded = false">
+          <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address'">
             <div class="address" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded"><span class="prefix">qz9cq</span><span class="mid">q5pryv9hnqwa8q8mccmynk9uf4vlu5nxer</span><span class="suffix">pzmc</span></div>
           </div>
         </div>

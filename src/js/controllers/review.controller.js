@@ -10,8 +10,12 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
   vm.destination = {
     address: '',
     balanceAmount: '',
-    balanceCurrecy: '',
+    balanceCurrency: '',
+    coin: '',
     color: '',
+    currency: '',
+    currencyColor: '',
+    kind: '', // 'address', 'contact', 'wallet'
     name: ''
   };
   vm.feeCrypto = '';
@@ -29,6 +33,7 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
 
+  var config = null;
   var coin = '';
   var originWalletId = '';
   var priceDisplayIsFiat = true;
@@ -54,61 +59,83 @@ function reviewController(configService, gettextCatalog, profileService, $scope,
     vm.origin.color = originWallet.color;
     vm.origin.name = originWallet.name;
 
-    destinationWalletId = data.stateParams.toWalletId;
-    if (destinationWalletId) {
-      var destinationWallet = profileService.getWallet(destinationWalletId);
-      vm.destination.color = destinationWallet.color;
-      vm.destination.name = destinationWallet.name;
-
-    }
-
-    configService.get(function onConfig(err, config) {
+    configService.get(function onConfig(err, configCache) {
       if (err) {
         $log.err('Error getting config.', err);
       } else {
+        config = configCache;
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
         vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
       }
       updateSendAmounts();
       getOriginWalletBalance(originWallet);
+      handleDestinationAsWallet(data.stateParams.toWalletId);
     });
   }  
 
   function getOriginWalletBalance(originWallet) {
-    console.log('origin wallet error:', originWallet.error);
+    var balanceText = getWalletBalanceDisplayText(originWallet);
+    vm.origin.balanceAmount = balanceText.amount;
+    vm.origin.balanceCurrecny = balanceText.currency;
+  }
+
+  function getWalletBalanceDisplayText(wallet) {
     var balanceCryptoAmount = '';
     var balanceCryptoCurrencyCode = '';
     var balanceFiatAmount = '';
     var balanceFiatCurrency = ''
+    var displayAmount = '';
+    var displayCurrency = '';
 
-    var originWalletStatus = null;
-    if (originWallet.status.isValid) {
-      originWalletStatus = originWallet.status;
-    } else if (originWallet.cachedStatus.isValid) {
-      originWalletStatus = originWallet.cachedStatus;
-    } else {
-      vm.origin.balanceAmount = '';
-      vm.origin.balanceCurrency = '';
-      return;
+    var walletStatus = null;
+    if (wallet.status.isValid) {
+      walletStatus = wallet.status;
+    } else if (wallet.cachedStatus.isValid) {
+      walletStatus = wallet.cachedStatus;
     }
 
-    if (originWalletStatus) {
-      var cryptoBalanceParts = originWalletStatus.spendableBalanceStr.split(' ');
+    if (walletStatus) {
+      var cryptoBalanceParts = walletStatus.spendableBalanceStr.split(' ');
       balanceCryptoAmount = cryptoBalanceParts[0];
       balanceCryptoCurrencyCode = cryptoBalanceParts.length > 1 ? cryptoBalanceParts[1] : '';
 
-      if (originWalletStatus.alternativeBalanceAvailable) {
-        balanceFiatAmount = originWalletStatus.spendableBalanceAlternative;
-        balanceFiatCurrency = originWalletStatus.alternativeIsoCode;
+      if (walletStatus.alternativeBalanceAvailable) {
+        balanceFiatAmount = walletStatus.spendableBalanceAlternative;
+        balanceFiatCurrency = walletStatus.alternativeIsoCode;
       }
     }
 
     if (priceDisplayIsFiat) {
-      vm.origin.balanceAmount = balanceFiatAmount ? balanceFiatAmount : balanceCryptoAmount;
-      vm.origin.balanceCurrency = balanceFiatAmount ? balanceFiatCurrency : balanceCryptoCurrencyCode;
+      displayAmount = balanceFiatAmount ? balanceFiatAmount : balanceCryptoAmount;
+      displayCurrency = balanceFiatAmount ? balanceFiatCurrency : balanceCryptoCurrencyCode;
     } else {
-      vm.origin.balanceAmount = balanceCryptoAmount;
-      vm.origin.balanceCurrency = balanceCryptoCurrencyCode;
+      displayAmount = balanceCryptoAmount;
+      displayCurrency = balanceCryptoCurrencyCode;
+    }
+
+    return {
+      amount: displayAmount,
+      currency: displayCurrency
+    };
+  }
+
+  function handleDestinationAsWallet(walletId) {
+    destinationWalletId = walletId;
+    if (destinationWalletId) {
+      var destinationWallet = profileService.getWallet(destinationWalletId);
+      vm.destination.coin = destinationWallet.coin;
+      vm.destination.color = destinationWallet.color;
+      vm.destination.currency = destinationWallet.coin.toUpperCase();
+      vm.destination.kind = 'wallet';
+      vm.destination.name = destinationWallet.name;
+
+      if (config) {
+        vm.destination.currencyColor = vm.destination.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
+      }
+
+      var balanceText = getWalletBalanceDisplayText(destinationWallet);
+      vm.destination.balanceAmount = balanceText.amount;
+      vm.destination.balanceCurrency = balanceText.currency;
     }
   }
 
