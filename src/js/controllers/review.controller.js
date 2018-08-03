@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -581,7 +581,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         ((processName === 'signingTx') && vm.originWallet.m > 1) ||
         (processName == 'sendingTx' && !vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal())
       ) && !isOn) {
-      $scope.sendStatus = 'success';
+      vm.sendStatus = 'success';
 
       if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
         soundService.play('misc/payment_sent.mp3');
@@ -605,7 +605,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         $scope.$digest();
       }, 100);
     } else if (showName) {
-      $scope.sendStatus = showName;
+      vm.sendStatus = showName;
     }
   };
 
