@@ -8,6 +8,7 @@ click-to-accept {
   .click-to-accept {
 
     &__button.button.button-primary.button-standard {
+      border-radius: 0;
       height: 100%;
       max-width: 9999px;
       width: 100%;
