@@ -1,5 +1,5 @@
 <ion-view id="view-review" hide-tabs>
-  <ion-nav-bar class="bar-royal">
+  <ion-nav-bar class="bar-royal {{vm.origin.currency.toLowerCase()}}">
     <ion-nav-title>
       {{'Review Transaction' | translate}}
     </ion-nav-title>
@@ -10,7 +10,7 @@
   <ion-content class="padded-bottom-cta-with-summary bg-neutral"
     ng-init="memoExpanded = false">
     <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
-    <div class="header" ng-class="vm.thirdParty.id">
+    <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
         <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</p>

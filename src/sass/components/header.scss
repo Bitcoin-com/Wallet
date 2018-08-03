@@ -1,6 +1,9 @@
 .header {
   padding: 29px 12px 61px;
-  background-color: #FAB915;
+  background-color: $v-bitcoin-orange;
+  &.btc {
+    background-color: $v-bitcoin-core;
+  }
   color: #FFFFFF;
 
   .title {

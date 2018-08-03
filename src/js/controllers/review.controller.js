@@ -45,6 +45,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.wallet = null;
   
   var config = null;
+  var defaults = {};
   var coin = '';
   var countDown = null;
   var usingCustomFee = false;
@@ -63,7 +64,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
-
+    defaults = configService.getDefaults();
     originWalletId = data.stateParams.fromWalletId;
     satoshis = parseInt(data.stateParams.amount, 10);
     toAddress = data.stateParams.toAddr;
@@ -91,7 +92,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       } else {
         config = configCache;
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
-        vm.origin.currencyColor = vm.originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor;
+        vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
+        console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
         unitFromSat = 1 / config.wallet.settings.unitToSatoshi; 
       }
       updateSendAmounts();
@@ -404,7 +406,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.destination.kind = 'contact';
     vm.destination.name = contact.name;
     vm.destination.email = contact.email;
-    vm.destination.color = contact.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor;
+    vm.destination.color = contact.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor;
     vm.destination.currency = contact.coin.toUpperCase();
     vm.destination.currencyColor = vm.destination.color;
   }
@@ -422,8 +424,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.destination.kind = 'wallet';
     vm.destination.name = destinationWallet.name;
 
-    if (config) {
-      vm.destination.currencyColor = vm.destination.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor; 
+    if (defaults) {
+      vm.destination.currencyColor = vm.destination.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor;
     }
 
     var balanceText = getWalletBalanceDisplayText(destinationWallet);
