@@ -15352,7 +15352,7 @@ ion-content.padded-bottom-cta-with-summary {
   .content-frame.negative-top .card:first-child {
     margin-top: 0; }
 
-.address {
+.address-frame {
   background-color: #F8F8F8;
   border: 0.5px solid #EDEBEB;
   border-radius: 3px;
@@ -15361,14 +15361,14 @@ ion-content.padded-bottom-cta-with-summary {
   font-size: 14px;
   overflow: hidden;
   text-overflow: ellipsis; }
-  .address.expanded {
+  .address-frame.expanded {
     white-space: pre-wrap;
     word-break: break-all; }
-  .address .prefix {
+  .address-frame .prefix {
     color: #000000; }
-  .address .mid {
+  .address-frame .mid {
     color: #919191; }
-  .address .suffix {
+  .address-frame .suffix {
     color: #000000; }
 
 .action-minor {
