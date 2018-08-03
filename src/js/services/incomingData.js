@@ -386,7 +386,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     });
     $timeout(function() {
-      $state.transitionTo('tabs.send.amount', {
+      $state.transitionTo('tabs.send.origin', {
         toAddress: toAddress,
         coin: coin,
         noPrefix: 1

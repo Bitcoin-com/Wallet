@@ -48,7 +48,9 @@
             <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
           </div>
           <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address'">
-            <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded"><span class="prefix">qz9cq</span><span class="mid">q5pryv9hnqwa8q8mccmynk9uf4vlu5nxer</span><span class="suffix">pzmc</span></div>
+            <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded">
+              <span class="prefix">{{vm.destination.address.substring(0,5)}}</span><span class="mid">{{vm.destination.address.substring(5,vm.destination.address.length-4)}}</span><span class="suffix">{{vm.destination.address.substring(vm.destination.address.length-4)}}</span>
+            </div>
           </div>
         </div>
       </div>

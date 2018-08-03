@@ -531,7 +531,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     if (tx.coin === 'bch') {
       tx.displayAddress = bitcoinCashJsService.readAddress(tx.toAddress).cashaddr;
     } else {
-      tx.displayAddress = entry.address;
+      tx.displayAddress = tx.toAddress;
     }
 
     addressbookService.get(tx.coin+tx.toAddress, function(err, addr) { // Check if the recipient is a contact
