@@ -88,6 +88,8 @@
             &.contains-address {
               .address {
                 display: inline;
+                border: none;
+                background-color: transparent;
               }
               .non-address {
                 display: none;
