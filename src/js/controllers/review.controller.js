@@ -216,7 +216,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       amount: parseInt(data.stateParams.amount),
       sendMax: data.stateParams.sendMax === 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
-      toAddress: data.stateParams.toAddress,
+      toAddress: data.stateParams.toAddr,
       feeLevel: configFeeLevel,
       spendUnconfirmed: config.wallet.spendUnconfirmed,
 
