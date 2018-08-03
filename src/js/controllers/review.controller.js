@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, $timeout, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -24,16 +24,15 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.fiatCurrency = '';
   vm.feeIsHigh = false;
   vm.feeLessThanACent = false;
+  vm.isCordova = platformInfo.isCordova;
+  vm.notReadyMessage = '';
   vm.origin = {
     balanceAmount: '',
     balanceCurrency: '',
-    color: '',
     currency: '',
     currencyColor: '',
-    name: '',
   };
-  vm.isCordova = platformInfo.isCordova;
-  vm.notReadyMessage = '';
+  vm.originWallet = null;
   vm.primaryAmount = '';
   vm.primaryCurrency = '';
   vm.usingMerchantFee = false;
@@ -41,7 +40,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
   vm.sendingTitle = gettextCatalog.getString('You are sending');
+  vm.sendStatus = '';
   vm.thirdParty = false;
+  vm.wallet = null;
   
   var config = null;
   var coin = '';
@@ -50,7 +51,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   var usingMerchantFee = false;
   var destinationWalletId = '';
   var originWalletId = '';
-  var originWallet;
   var priceDisplayIsFiat = true;
   var satoshis = null;
   var toAddress = '';
@@ -68,11 +68,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     satoshis = parseInt(data.stateParams.amount, 10);
     toAddress = data.stateParams.toAddr;
     
-    originWallet = profileService.getWallet(originWalletId);
-    vm.origin.currency = originWallet.coin.toUpperCase();
-    vm.origin.color = originWallet.color;
-    vm.origin.name = originWallet.name;
-    coin = originWallet.coin;
+    vm.originWallet = profileService.getWallet(originWalletId);
+    vm.origin.currency = vm.originWallet.coin.toUpperCase();
+    coin = vm.originWallet.coin;
 
     if (data.stateParams.thirdParty) {
       vm.thirdParty = JSON.parse(data.stateParams.thirdParty); // Parse stringified JSON-object
@@ -93,20 +91,20 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       } else {
         config = configCache;
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
-        vm.origin.currencyColor = originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor;
+        vm.origin.currencyColor = vm.originWallet.coin === 'btc' ? config.bitcoinWalletColor : config.bitcoinCashWalletColor;
         unitFromSat = 1 / config.wallet.settings.unitToSatoshi; 
       }
       updateSendAmounts();
-      getOriginWalletBalance(originWallet);
+      getOriginWalletBalance(vm.originWallet);
       handleDestinationAsAddress(toAddress, coin);
       handleDestinationAsWallet(data.stateParams.toWalletId);
       createVanityTransaction(data);
     });
   }
 
-  vm.approve = function(onSendStatusChange) {
+  vm.approve = function() {
 
-    if (!tx || !originWallet) return;
+    if (!tx || !vm.originWallet) return;
 
     if ($scope.paymentExpired) {
       popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.'));
@@ -117,42 +115,42 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       return;
     }
 
-    ongoingProcess.set('creatingTx', true, onSendStatusChange);
-    getTxp(lodash.clone(tx), originWallet, false, function(err, txp) {
-      ongoingProcess.set('creatingTx', false, onSendStatusChange);
+    ongoingProcess.set('creatingTx', true, statusChangeHandler);
+    getTxp(lodash.clone(tx), vm.originWallet, false, function(err, txp) {
+      ongoingProcess.set('creatingTx', false, statusChangeHandler);
       if (err) return;
 
       // confirm txs for more that 20usd, if not spending/touchid is enabled
       function confirmTx(cb) {
-        if (walletService.isEncrypted(originWallet))
+        if (walletService.isEncrypted(vm.originWallet))
           return cb();
 
-        var amountUsd = parseFloat(txFormatService.formatToUSD(originWallet.coin, txp.amount));
+        var amountUsd = parseFloat(txFormatService.formatToUSD(vm.originWallet.coin, txp.amount));
         return cb();
       };
 
       function publishAndSign() {
-        if (!originWallet.canSign() && !originWallet.isPrivKeyExternal()) {
+        if (!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()) {
           $log.info('No signing proposal: No private key');
 
-          return walletService.onlyPublish(originWallet, txp, function(err) {
+          return walletService.onlyPublish(vm.originWallet, txp, function(err) {
             if (err) setSendError(err);
-          }, onSendStatusChange);
+          }, statusChangeHandler);
         }
 
-        walletService.publishAndSign(originWallet, txp, function(err, txp) {
+        walletService.publishAndSign(vm.originWallet, txp, function(err, txp) {
           if (err) return setSendError(err);
           if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
-            txConfirmNotification.subscribe(originWallet, {
+            txConfirmNotification.subscribe(vm.originWallet, {
               txid: txp.txid
             });
           }
-        }, onSendStatusChange);
+        }, statusChangeHandler);
       };
 
       confirmTx(function(nok) {
         if (nok) {
-          $scope.sendStatus = '';
+          vm.sendStatus = '';
           $timeout(function() {
             $scope.$apply();
           });
@@ -172,7 +170,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     scope.network = tx.network;
     scope.feeLevel = tx.feeLevel;
     scope.noSave = true;
-    scope.coin = originWallet.coin;
+    scope.coin = vm.originWallet.coin;
 
     if (usingCustomFee) {
       scope.customFeePerKB = tx.feeRate;
@@ -202,7 +200,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       tx.feeLevel = newFeeLevel;
       if (usingCustomFee) tx.feeRate = parseInt(customFeePerKB);
 
-      updateTx(tx, originWallet, {
+      updateTx(tx, vm.originWallet, {
         clearCache: true,
         dryRun: true
       }, function() {});
@@ -228,7 +226,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       toEmail: vm.destination.email || null,
       toColor: vm.destination.color || null,
       network: false,
-      coin: originWallet.coin,
+      coin: vm.originWallet.coin,
       txp: {},
     };
 
@@ -281,7 +279,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     }
   }
   function getOriginWalletBalance(originWallet) {
-    var balanceText = getWalletBalanceDisplayText(originWallet);
+    var balanceText = getWalletBalanceDisplayText(vm.originWallet);
     vm.origin.balanceAmount = balanceText.amount;
     vm.origin.balanceCurrency = balanceText.currency;
   }
@@ -476,6 +474,18 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     });
   }
 
+  vm.onSuccessConfirm = function() {
+    vm.sendStatus = '';
+    $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+      historyRoot: true
+    });
+    $state.go('tabs.send').then(function() {
+      $ionicHistory.clearHistory();
+      $state.transitionTo('tabs.home');
+    });
+  };
+
   function setButtonText(isMultisig, isPayPro) {
     if (isPayPro) {
       if (vm.isCordova) {
@@ -536,12 +546,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.showAddress = false;
 
 
-    setButtonText(originWallet.credentials.m > 1, !!tx.paypro);
+    setButtonText(vm.originWallet.credentials.m > 1, !!tx.paypro);
 
     if (tx.paypro)
       _paymentTimeControl(tx.paypro.expires);
 
-    updateTx(tx, originWallet, {
+    updateTx(tx, vm.originWallet, {
       dryRun: true
     }, function(err) {
       $timeout(function() {
@@ -562,6 +572,43 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     //   }
     // });
   }
+
+  function statusChangeHandler(processName, showName, isOn) {
+    $log.debug('statusChangeHandler: ', processName, showName, isOn);
+    if (
+      (
+        processName === 'broadcastingTx' ||
+        ((processName === 'signingTx') && vm.originWallet.m > 1) ||
+        (processName == 'sendingTx' && !vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal())
+      ) && !isOn) {
+      $scope.sendStatus = 'success';
+
+      if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
+        soundService.play('misc/payment_sent.mp3');
+      }
+      
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
+      var amount = priceDisplayIsFiat ? vm.secondaryAmount || vm.primaryAmount : vm.primaryAmount;
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": vm.originWallet.coin,
+        "type": "outgoing",
+        "amount": amount,
+        "fees": vm.feeCrypto
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      $timeout(function() {
+        $scope.$digest();
+      }, 100);
+    } else if (showName) {
+      $scope.sendStatus = showName;
+    }
+  };
+
   function updateTx(tx, wallet, opts, cb) {
     ongoingProcess.set('calculatingFee', true);
 
@@ -589,8 +636,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // updateAmount();
     // refresh();
 
-    var feeServiceLevel = usingMerchantFee && originWallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
-    feeService.getFeeRate(originWallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
+    var feeServiceLevel = usingMerchantFee && vm.originWallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
+    feeService.getFeeRate(vm.originWallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
       if (err) {
         ongoingProcess.set('calculatingFee', false);
         return cb(err);
