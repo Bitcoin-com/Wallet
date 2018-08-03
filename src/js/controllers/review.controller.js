@@ -7,6 +7,7 @@ angular
 function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, $timeout, txFormatService, walletService) {
   var vm = this;
 
+  vm.buttonText = '';
   vm.destination = {
     address: '',
     balanceAmount: '',
@@ -32,15 +33,16 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     name: '',
   };
   vm.isCordova = platformInfo.isCordova;
+  vm.notReadyMessage = '';
   vm.primaryAmount = '';
   vm.primaryCurrency = '';
   vm.usingMerchantFee = false;
+  vm.readyToSend = false;
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
-  vm.thirdParty = false;
   vm.sendingTitle = gettextCatalog.getString('You are sending');
-  vm.buttonText = '';
-
+  vm.thirdParty = false;
+  
   var config = null;
   var coin = '';
   var countDown = null;
@@ -102,6 +104,65 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     });
   }
 
+  vm.approve = function(onSendStatusChange) {
+
+    if (!tx || !originWallet) return;
+
+    if ($scope.paymentExpired) {
+      popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.'));
+      $scope.sendStatus = '';
+      $timeout(function() {
+        $scope.$apply();
+      });
+      return;
+    }
+
+    ongoingProcess.set('creatingTx', true, onSendStatusChange);
+    getTxp(lodash.clone(tx), originWallet, false, function(err, txp) {
+      ongoingProcess.set('creatingTx', false, onSendStatusChange);
+      if (err) return;
+
+      // confirm txs for more that 20usd, if not spending/touchid is enabled
+      function confirmTx(cb) {
+        if (walletService.isEncrypted(originWallet))
+          return cb();
+
+        var amountUsd = parseFloat(txFormatService.formatToUSD(originWallet.coin, txp.amount));
+        return cb();
+      };
+
+      function publishAndSign() {
+        if (!originWallet.canSign() && !originWallet.isPrivKeyExternal()) {
+          $log.info('No signing proposal: No private key');
+
+          return walletService.onlyPublish(originWallet, txp, function(err) {
+            if (err) setSendError(err);
+          }, onSendStatusChange);
+        }
+
+        walletService.publishAndSign(originWallet, txp, function(err, txp) {
+          if (err) return setSendError(err);
+          if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
+            txConfirmNotification.subscribe(originWallet, {
+              txid: txp.txid
+            });
+          }
+        }, onSendStatusChange);
+      };
+
+      confirmTx(function(nok) {
+        if (nok) {
+          $scope.sendStatus = '';
+          $timeout(function() {
+            $scope.$apply();
+          });
+          return;
+        }
+        publishAndSign();
+      });
+    });
+  };
+
   vm.chooseFeeLevel = function(tx, wallet) {
 
     if (wallet.coin == 'bch') return;
@@ -149,12 +210,13 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   };
 
   function createVanityTransaction(data) {
+    console.log('createVanityTransaction()');
     var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
 
     // Grab stateParams
     tx = {
       amount: parseInt(data.stateParams.amount),
-      sendMax: data.stateParams.useSendMax == 'true' ? true : false,
+      sendMax: data.stateParams.sendMax === 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
       feeLevel: configFeeLevel,
@@ -182,24 +244,29 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     var B = data.stateParams.coin === 'bch' ? bitcoreCash : bitcore;
     var networkName;
     try {
-      if (vm.destination.kind === 'wallet') { // There is a wallet-to-wallet transfer
+      if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
         $ionicLoading.show();
         var toWallet = profileService.getWallet(data.stateParams.toWalletId);
 
         // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
-        walletService.getAddress(toWallet, true, function (err, addr) {
+        console.log('Getting address for wallet...');
+        walletService.getAddress(toWallet, true, function onWalletAddress(err, addr) {
+          console.log('getAddress cb called', err);
           $ionicLoading.hide();
           tx.toAddress = addr;
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
+          console.log('calling setupTx() for wallet.');
           setupTx(tx);
         });
       } else { // This is a Wallet-to-address transfer
         networkName = (new B.Address(tx.toAddress)).network.name;
         tx.network = networkName;
+        console.log('calling setupTx() for address.');
         setupTx(tx);
       }
     } catch (e) {
+      console.error('Error setting up tx', e);
       var message = gettextCatalog.getString('Invalid address');
       popupService.showAlert(null, message, function () {
         $ionicHistory.nextViewOptions({
@@ -326,10 +393,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // Check if the recipient is a contact
     addressbookService.get(originCoin + address, function(err, contact) { 
       if (!err && contact) {
-        console.log('destination is contact');
         handleDestinationAsContact(contact);
       } else {
-        console.log('destination is address');
         vm.destination.address = address;
         vm.destination.kind = 'address';
       }
@@ -352,7 +417,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       return;
     }
 
-    console.log('destination is wallet');
     var destinationWallet = profileService.getWallet(destinationWalletId);
     vm.destination.coin = destinationWallet.coin;
     vm.destination.color = destinationWallet.color;
@@ -434,8 +498,19 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     }
   }
 
+  function setNotReady(msg, criticalError) {
+    vn.readyToSend = false;
+    vm.notReadyMessage = msg;
+    $scope.criticalError = criticalError;
+    $log.warn('Not ready to make the payment:' + msg);
+    $timeout(function() {
+      $scope.$apply();
+    });
+  };
+
   function setSendError(msg) {
     $scope.sendStatus = '';
+    vm.readyToSend = false;
     $timeout(function() {
       $scope.$apply();
     });
@@ -514,12 +589,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // updateAmount();
     // refresh();
 
-    // End of quick refresh, before wallet is selected.
-    if (!wallet) {
-      ongoingProcess.set('calculatingFee', false);
-      return cb();
-    }
-
     var feeServiceLevel = usingMerchantFee && originWallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
     feeService.getFeeRate(originWallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
       if (err) {
@@ -553,7 +622,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
           if (tx.sendMax && sendMaxInfo.amount == 0) {
             ongoingProcess.set('calculatingFee', false);
-            setNoWallet(gettextCatalog.getString('Insufficient confirmed funds'));
+            setNotReady(gettextCatalog.getString('Insufficient confirmed funds'));
             popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'));
             return cb('no_funds');
           }
@@ -570,15 +639,18 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         // txp already generated for this wallet?
         if (tx.txp[wallet.id]) {
           ongoingProcess.set('calculatingFee', false);
+          vm.readyToSend = true;
           updateSendAmounts();
+          $scope.$apply();
           return cb();
         }
 
+        console.log('calling getTxp() from getSendMaxInfo cb.');
         getTxp(lodash.clone(tx), wallet, opts.dryRun, function(err, txp) {
           ongoingProcess.set('calculatingFee', false);
           if (err) {
             if (err.message == 'Insufficient funds') {
-              setNoWallet(gettextCatalog.getString('Insufficient funds'));
+              setNotReady(gettextCatalog.getString('Insufficient funds'));
               popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'));
               return cb('no_funds');
             } else
@@ -611,7 +683,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
           tx.txp[wallet.id] = txp;
           $log.debug('Confirm. TX Fully Updated for wallet:' + wallet.id, tx);
+          vm.readyToSend = true;
           updateSendAmounts();
+          console.log('readyToSend:', vm.readyToSend);
+          $scope.$apply();
 
           return cb();
         });
