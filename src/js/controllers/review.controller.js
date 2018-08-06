@@ -594,7 +594,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         channel = "ga";
       }
       // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
-      var amount = priceDisplayIsFiat ? vm.secondaryAmount || vm.primaryAmount : vm.primaryAmount;
+      var amount = unitFromSat * satoshis;
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": vm.originWallet.coin,
         "type": "outgoing",
@@ -678,7 +678,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
           tx.sendMaxInfo = sendMaxInfo;
           tx.amount = tx.sendMaxInfo.amount;
-          updateAmount();
+          satoshis = tx.amount;
+          updateSendAmounts();
           ongoingProcess.set('calculatingFee', false);
           $timeout(function() {
             showSendMaxWarning(wallet, sendMaxInfo);
