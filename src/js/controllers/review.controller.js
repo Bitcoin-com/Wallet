@@ -67,7 +67,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     defaults = configService.getDefaults();
     originWalletId = data.stateParams.fromWalletId;
     satoshis = parseInt(data.stateParams.amount, 10);
-    toAddress = data.stateParams.toAddr;
+    toAddress = data.stateParams.toAddress;
     
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
@@ -105,6 +105,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   vm.approve = function() {
+    if (vm.thirdParty.id === 'shapeshift') {
+      shapeshiftService.shiftIt();
+      return;
+    }
 
     if (!tx || !vm.originWallet) return;
 
@@ -218,7 +222,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       amount: parseInt(data.stateParams.amount),
       sendMax: data.stateParams.sendMax === 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
-      toAddress: data.stateParams.toAddr,
+      toAddress: data.stateParams.toAddress,
       feeLevel: configFeeLevel,
       spendUnconfirmed: config.wallet.spendUnconfirmed,
 
@@ -594,7 +598,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         channel = "ga";
       }
       // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
-      var amount = priceDisplayIsFiat ? vm.secondaryAmount || vm.primaryAmount : vm.primaryAmount;
+      var amount = unitFromSat * satoshis;
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": vm.originWallet.coin,
         "type": "outgoing",
@@ -678,7 +682,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
           tx.sendMaxInfo = sendMaxInfo;
           tx.amount = tx.sendMaxInfo.amount;
-          updateAmount();
+          satoshis = tx.amount;
+          updateSendAmounts();
           ongoingProcess.set('calculatingFee', false);
           $timeout(function() {
             showSendMaxWarning(wallet, sendMaxInfo);

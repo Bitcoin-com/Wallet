@@ -4,7 +4,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
 
   var fromWalletId = '';
   var priceDisplayAsFiat = false;
-  var requestedSatoshis = 0;
   var unitDecimals = 0;
   var unitsFromSatoshis = 0;
 
@@ -39,8 +38,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if ($scope.params.amount) { // There is an amount, so presume that it is a payment request
       $scope.sendFlowTitle = gettextCatalog.getString('Payment Request');
       $scope.specificAmount = $scope.specificAlternativeAmount = '';
-      //requestedAmountCrypto = (($state.params.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
-      requestedSatoshis = $state.params.amount;
       $scope.isPaymentRequest = true;
     }
     if ($scope.params.thirdParty) {
@@ -55,7 +52,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
 
     if ($scope.thirdParty) {
       // Third party services specific logic
-      handleThirdPartyIfBip70PaymentProtocol();
       handleThirdPartyIfShapeshift();
     }
 
@@ -64,11 +60,11 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   });
 
   function formatRequestedAmount() {
-    if (requestedSatoshis) {
-      var cryptoAmount = (unitsFromSatoshis * requestedSatoshis).toFixed(unitDecimals);
+    if ($scope.params.amount) {
+      var cryptoAmount = (unitsFromSatoshis * $scope.params.amount).toFixed(unitDecimals);
       var cryptoCoin = $scope.coin.toUpperCase();
 
-      txFormatService.formatAlternativeStr($scope.coin, requestedSatoshis, function onFormatAlternativeStr(formatted){
+      txFormatService.formatAlternativeStr($scope.coin, $scope.params.amount, function onFormatAlternativeStr(formatted){
         if (formatted) {
           var fiatParts = formatted.split(' ');
           var fiatAmount = fiatParts[0];
@@ -102,12 +98,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       return 'tabs.send.amount';
     } else { // If we do have them
       return 'tabs.send.review';
-    }
-  }
-
-  function handleThirdPartyIfBip70PaymentProtocol() {
-    if ($scope.thirdParty.id === 'bitpay') {
-      console.log('paypro details:', $scope.thirdParty.details);
     }
   }
 
@@ -169,8 +159,10 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       }
       
     } else if ($scope.type === 'destination') {
-      $scope.fromWallet = profileService.getWallet(fromWalletId);
-      $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
+      if (!$scope.coin) { // Allow for the coin to be set by a third party
+        $scope.fromWallet = profileService.getWallet(fromWalletId);
+        $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
+      }
       $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send to');
 
       if ($scope.coin === 'btc') { // if no specific coin is set or coin is set btc
