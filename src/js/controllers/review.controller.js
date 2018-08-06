@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -82,7 +82,20 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           if (!vm.thirdParty.data) {
             vm.thirdParty.data = {};
           }
-          vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
+
+          var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+          $ionicLoading.show();
+          walletService.getAddress(vm.originWallet, false, function onWalletAddress(err, returnAddr) {
+            walletService.getAddress(toWallet, false, function onWalletAddress(err, withdrawalAddr) {
+              $ionicLoading.hide();
+              shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function(shapeshiftData) {
+                vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/'+shapeshiftData.orderId;
+                toAddress = shapeshiftData.toAddress;
+                vm.destination.address = toAddress;
+                vm.destination.kind = 'shapeshift';
+              });
+            });
+          });
         }
         if (vm.thirdParty.id === 'bip70') {
           if (vm.thirdParty.memo) {
@@ -115,8 +128,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     if (vm.thirdParty.id === 'shapeshift') {
       shapeshiftService.shiftIt();
       return;
-    }
-
     if (!tx || !vm.originWallet) return;
 
     if ($scope.paymentExpired) {

@@ -217,7 +217,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   };
 
   function goBack() {
-    if (vm.shapeshiftOrderId) {
+    if (vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
       $state.go('tabs.send').then(function() {
         $ionicHistory.clearHistory();
         $state.go('tabs.home').then(function() {
@@ -483,29 +483,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
-
-      if (vm.shapeshiftOrderId) {
-        var shapeshiftOrderUrl = 'https://www.shapeshift.io/#/status/';
-        shapeshiftOrderUrl += vm.shapeshiftOrderId;
-        confirmData.description = shapeshiftOrderUrl;
-
-        if (confirmData.sendMax) {
-          var wallet = lodash.find(profileService.getWallets({ coin: coin }),
-            function(w) {
-              return w.id == passthroughParams.fromWalletId;
-            });
-
-          var balance = parseFloat(wallet.cachedBalance.substring(0, wallet.cachedBalance.length-4));
-          if (balance < vm.minAmount * 1.04) {
-            confirmData.sendMax = false;
-            confirmData.amount = vm.minAmount * unitToSatoshi;
-          } else if (balance > vm.maxAmount) {
-            confirmData.sendMax = false;
-            confirmData.amount = vm.maxAmount * unitToSatoshi * 0.99;
-          }
-        }
-      }
-
       $state.transitionTo('tabs.send.review', confirmData);
       $scope.useSendMax = null;
     }

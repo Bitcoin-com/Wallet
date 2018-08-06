@@ -1,48 +1,44 @@
 'use strict';
-angular.module('copayApp.services').factory('shapeshiftService', function($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingData, platformInfo, servicesService) {
+angular.module('copayApp.services').factory('shapeshiftService', function ($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingData, platformInfo, servicesService) {
   var root = {};
   root.ShiftState = 'Shift';
-  root.withdrawalAddress = ''
-  root.returnAddress = ''
+  root.coinIn = '';
+  root.coinOut = '';
+  root.withdrawalAddress = '';
+  root.returnAddress = '';
   root.amount = '';
-  root.marketData = {}
-  root.withdrawalAddress = function(address) {
+  root.marketData = {};
+  root.withdrawalAddress = function (address) {
     root.withdrawalAddress = address;
   };
-  root.returnAddress = function(address) {
+  root.returnAddress = function (address) {
     root.returnAddress = address;
   };
-  root.amount = function(amount) {
+  root.amount = function (amount) {
     root.amount = amount;
   };
-  root.fromWalletId = function(id) {
-    root.fromWalletId = id;
-  };
-  root.toWalletId = function(id) {
-    root.toWalletId = id;
-  };
-  root.coinIn = function(coinIn) {
+  root.coinIn = function (coinIn) {
     root.coinIn = coinIn.toUpperCase();
   };
-  root.coinOut = function(coinOut) {
+  root.coinOut = function (coinOut) {
     root.coinOut = coinOut.toUpperCase();
   };
 
-  root.getMarketDataIn = function(coin) {
-    if(coin === root.coinOut) return root.getMarketData(root.coinOut, root.coinIn);
+  root.getMarketDataIn = function (coin) {
+    if (coin === root.coinOut) return root.getMarketData(root.coinOut, root.coinIn);
     return root.getMarketData(coin, root.coinOut);
   };
-  root.getMarketDataOut = function(coin) {
-    if(coin === root.coinIn) return root.getMarketData(root.coinOut, root.coinIn);
+  root.getMarketDataOut = function (coin) {
+    if (coin === root.coinIn) return root.getMarketData(root.coinOut, root.coinIn);
     return root.getMarketData(root.coinIn, coin);
   };
-  root.getMarketData = function(coinIn, coinOut, cb) {
+  root.getMarketData = function (coinIn, coinOut, cb) {
     root.coinIn = coinIn;
-    root.coinOut= coinOut;
-    if(root.coinIn === undefined || root.coinOut === undefined) return;
+    root.coinOut = coinOut;
+    if (root.coinIn === undefined || root.coinOut === undefined) return;
     shapeshiftApiService
         .marketInfo(root.coinIn, root.coinOut)
-        .then(function(marketData){
+        .then(function (marketData) {
           root.marketData = marketData;
           root.rateString = root.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
           if (cb) {
@@ -59,43 +55,50 @@ angular.module('copayApp.services').factory('shapeshiftService', function($http,
   });*/
 
   root.coins = {
-    'BTC': { name: 'Bitcoin', symbol: 'BTC' },
-    'BCH': { name: 'Bitcoin Cash', symbol: 'BCH' }
+    'BTC': {name: 'Bitcoin', symbol: 'BTC'},
+    'BCH': {name: 'Bitcoin Cash', symbol: 'BCH'}
   };
 
-  function checkForError(data){
-    if(data.error) return true;
+  function checkForError(data) {
+    if (data.error) return true;
     return false;
   }
 
-  root.shiftIt = function(){
+  root.shiftIt = function (coinIn, coinOut, withdrawalAddress, returnAddress, cb) {
     ongoingProcess.set('connectingShapeshift', true);
-    var validate=shapeshiftApiService.ValidateAddress(root.withdrawalAddress, root.coinOut);
-    validate.then(function(valid){
-      //console.log(root.withdrawalAddress)
-      //console.log(valid)
+    root.withdrawalAddress(withdrawalAddress);
+    root.returnAddress(returnAddress);
+    var validate = shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut);
+    validate.then(function (valid) {
       var tx = ShapeShift();
-      tx.then(function(txData){
-        if(txData['fixedTxData']){
+      var coin;
+      console.log("Starting");
+      tx.then(function (txData) {
+        console.log("Got txData", txData);
+        if (txData['fixedTxData']) {
           txData = txData.fixedTxData;
-          if(checkForError(txData)) return;
+          if (checkForError(txData)) return;
           //console.log(txData)
-          var coinPair=txData.pair.split('_');
+          var coinPair = txData.pair.split('_');
           txData.depositType = coinPair[0].toUpperCase();
           txData.withdrawalType = coinPair[1].toUpperCase();
-          var coin = root.coins[txData.depositType].name.toLowerCase();
-          //console.log(coin)
-          txData.depositQR = coin + ":" + txData.deposit + "?amount=" + txData.depositAmount
+          coin = root.coins[txData.depositType].name.toLowerCase();
+
+          txData.depositQR = coin + ":" + txData.deposit + "?amount=" + txData.depositAmount;
+
           root.txFixedPending = true;
-        } else if(txData['normalTxData']){
+
+        } else if (txData['normalTxData']) {
+
           txData = txData.normalTxData;
-          if(checkForError(txData)) return;
-          var coin = root.coins[txData.depositType.toUpperCase()].name.toLowerCase();
+          if (checkForError(txData)) return;
+          coin = root.coins[txData.depositType.toUpperCase()].name.toLowerCase();
           txData.depositQR = coin + ":" + txData.deposit;
-        } else if(txData['cancelTxData']){
-          if(checkForError(txData.cancelTxData)) return;
-          if(root.txFixedPending) {
-            $interval.cancel(root.txInterval);
+
+        } else if (txData['cancelTxData']) {
+
+          if (checkForError(txData.cancelTxData)) return;
+          if (root.txFixedPending) {
             root.txFixedPending = false;
           }
           root.ShiftState = 'Shift';
@@ -108,37 +111,43 @@ angular.module('copayApp.services').factory('shapeshiftService', function($http,
         if (sendAddress && sendAddress.indexOf('bitcoin cash') >= 0)
           sendAddress = sendAddress.replace('bitcoin cash', 'bitcoincash');
 
+        ongoingProcess.set('connectingShapeshift', false);
+
+        root.ShiftState = 'Cancel';
+        root.GetStatus();
+        root.txInterval=$interval(root.GetStatus, 8000);
+
         var shapeshiftData = {
-          fromWalletId: root.fromWalletId,
+          coinIn: coinIn,
+          coinOut: coinOut,
           toWalletId: root.toWalletId,
           minAmount: root.marketData.minimum,
           maxAmount: root.marketData.maxLimit,
-          orderId: root.depositInfo.orderId
+          orderId: root.depositInfo.orderId,
+          toAddress: txData.deposit
         };
-
-        if (incomingData.redir(sendAddress, 'shapeshift', shapeshiftData)) {
+        //
+        // if (incomingData.redir(sendAddress, 'shapeshift', shapeshiftData)) {
           ongoingProcess.set('connectingShapeshift', false);
-          return;
-        }
+          // return;
+        // }
+        cb(shapeshiftData);
 
-        /*root.ShiftState = 'Cancel';
-        root.GetStatus();
-        root.txInterval=$interval(root.GetStatus, 8000);*/
       });
     })
   };
 
   function ShapeShift() {
-    if(root.ShiftState === 'Cancel') return shapeshiftApiService.CancelTx(root);
-    if(parseFloat(root.amount) > 0) return shapeshiftApiService.FixedAmountTx(root);
+    if (root.ShiftState === 'Cancel') return shapeshiftApiService.CancelTx(root);
+    if (parseFloat(root.amount) > 0) return shapeshiftApiService.FixedAmountTx(root);
     return shapeshiftApiService.NormalTx(root);
   }
 
-  root.GetStatus = function(){
+  root.GetStatus = function () {
     var address = root.depositInfo.deposit
-    shapeshiftApiService.GetStatusOfDepositToAddress(address).then(function(data){
+    shapeshiftApiService.GetStatusOfDepositToAddress(address).then(function (data) {
       root.DepositStatus = data;
-      if(root.DepositStatus.status === 'complete'){
+      if (root.DepositStatus.status === 'complete') {
         $interval.cancel(root.txInterval);
         root.depositInfo = null;
         root.ShiftState = 'Shift'
@@ -153,7 +162,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function($http,
     sref: 'tabs.shapeshift',
   };
 
-  var register = function() {
+  var register = function () {
     servicesService.register(servicesItem);
   };
   register();
