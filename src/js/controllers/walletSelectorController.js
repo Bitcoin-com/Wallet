@@ -2,6 +2,7 @@
 
 angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, configService, gettextCatalog, profileService, txFormatService) {
 
+  var fromWalletId = '';
   var priceDisplayAsFiat = false;
   var requestedSatoshis = 0;
   var unitDecimals = 0;
@@ -29,6 +30,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     $scope.params = $state.params;
     $scope.coin = false; // Wallets to show (for destination screen or contacts)
     $scope.type = data.stateParams && data.stateParams['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
+    fromWalletId = data.stateParams && data.stateParams.fromWalletId;
 
     if ($scope.params.coin) {
       $scope.coin = $scope.params.coin; // Contacts have a coin embedded
@@ -51,30 +53,13 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
     });
 
-    $scope.walletsEmpty = []; // empty wallets for origin screen
-
-    if ($scope.type === 'origin') {
-      $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send from');
-      $scope.walletsEmpty = profileService.getWallets({coin: $scope.coin, hasNoFunds: true});
-    } else if ($scope.type === 'destination') {
-      $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId);
-      $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
-      $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send to');
-    }
-
     if ($scope.thirdParty) {
       // Third party services specific logic
       handleThirdPartyIfBip70PaymentProtocol();
       handleThirdPartyIfShapeshift();
     }
 
-    if (!$scope.coin || $scope.coin === 'bch') { // if no specific coin is set or coin is set to bch
-      $scope.walletsBch = profileService.getWallets({coin: 'bch', hasFunds: $scope.type==='origin'});
-    }
-    if (!$scope.coin || $scope.coin === 'btc') { // if no specific coin is set or coin is set btc
-      $scope.walletsBtc = profileService.getWallets({coin: 'btc', hasFunds: $scope.type === 'origin'});
-    }
-
+    prepareWalletLists();
     formatRequestedAmount();
   });
 
@@ -116,14 +101,17 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     } else if (!$scope.params.amount) { // If we have no amount
       return 'tabs.send.amount';
     } else { // If we do have them
-      return 'tabs.send.confirm';
+      return 'tabs.send.review';
     }
   }
 
   function handleThirdPartyIfBip70PaymentProtocol() {
     if ($scope.thirdParty.id === 'bip70PaymentProtocol') {
+      requestedSatoshis = $scope.thirdParty.details.amount;
       $scope.coin = $scope.thirdParty.coin;
-      $scope.requestAmount = unitsFromSatoshis * $scope.thirdParty.details.amount;
+      $scope.requestAmount = unitsFromSatoshis * requestedSatoshis;
+      $scope.params.amount = requestedSatoshis;
+      $scope.params.toAddr = $scope.thirdParty.details.toAddress;
       console.log('paypro details:', $scope.thirdParty.details);
     }
   }
@@ -136,6 +124,66 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         $scope.coin = 'bch';
       }
     } 
+  }
+
+  function prepareWalletLists() {
+    var walletsAll = [];
+    var walletsSufficientFunds = [];
+    $scope.walletsInsufficientFunds = []; // For origin screen
+
+    if ($scope.type === 'origin') {
+      $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send from');
+
+      if ($scope.params.amount) {
+
+        walletsAll = profileService.getWallets({coin: $scope.coin});
+        
+        walletsAll.forEach(function forWallet(wallet){
+          if (wallet.status.availableBalanceSat > $scope.params.amount) {
+            walletsSufficientFunds.push(wallet);
+          } else {
+            $scope.walletsInsufficientFunds.push(wallet);
+          }
+        });
+
+        if ($scope.coin === 'btc') {
+          $scope.walletsBtc = walletsSufficientFunds;
+        } else {
+          $scope.walletsBch = walletsSufficientFunds;
+        }
+
+      } else if ($scope.coin) {
+        walletsAll = profileService.getWallets({coin: $scope.coin});
+        walletsAll.forEach(function forWallet(wallet){
+          if (wallet.status.availableBalanceSat > 0) {
+            walletsSufficientFunds.push(wallet);
+          } else {
+            $scope.walletsInsufficientFunds.push(wallet);
+          }
+        });
+
+        if ($scope.coin === 'btc') {  
+          $scope.walletsBtc = walletsSufficientFunds;
+        } else {
+          $scope.walletsBch = walletsSufficientFunds;
+        }
+      } else {
+        $scope.walletsBch = profileService.getWallets({coin: 'bch', hasFunds: true});
+        $scope.walletsBtc = profileService.getWallets({coin: 'btc', hasFunds: true});
+        $scope.walletsInsufficientFunds = profileService.getWallets({coin: $scope.coin, hasNoFunds: true});
+      }
+      
+    } else if ($scope.type === 'destination') {
+      $scope.fromWallet = profileService.getWallet(fromWalletId);
+      $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
+      $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send to');
+
+      if ($scope.coin === 'btc') { // if no specific coin is set or coin is set btc
+        $scope.walletsBtc = profileService.getWallets({coin: $scope.coin});
+      } else {
+        $scope.walletsBch = profileService.getWallets({coin: $scope.coin});
+      }
+    }
   }
 
   

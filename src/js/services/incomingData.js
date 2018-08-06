@@ -427,7 +427,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     };
     var stateParams = {
       amount: payProDetails.amount,
-      toAddr: payProDetails.toAddress,
+      toAddress: payProDetails.toAddress,
       thirdParty: JSON.stringify(thirdPartyData)
     };
 

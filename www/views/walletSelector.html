@@ -42,12 +42,12 @@
       </div>
     </div>
 
-    <div class="list card card-insufficient" ng-if="walletsEmpty.length > 0">
+    <div class="list card card-insufficient" ng-if="walletsInsufficientFunds.length > 0">
       <div class="item item-icon-right item-heading">
         <span class="card-insufficient__dot"></span><div translate>Insufficient funds</div>
       </div>
       <div>
-        <a ng-repeat="wallet in walletsEmpty track by $index"
+        <a ng-repeat="wallet in walletsInsufficientFunds track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
