@@ -365,7 +365,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
           vm.allowSend = lodash.isNumber(a)
             && a > 0
-            && (a >= vm.minAmount && a <= vm.maxAmount)
+            && (!vm.minAmount || a >= vm.minAmount)
+            && (!vm.maxAmount || a <= vm.maxAmount)
             && !vm.fundsAreInsufficient;
         } else {
           if (result) {
@@ -385,7 +386,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         vm.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
         vm.allowSend = lodash.isNumber(result)
           && result > 0
-          && (result >= vm.minAmount && result <= vm.maxAmount)
+          && (!vm.minAmount || result >= vm.minAmount)
+          && (!vm.maxAmount || result <= vm.maxAmount)
           && !vm.fundsAreInsufficient;
       }
 

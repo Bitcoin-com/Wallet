@@ -110,13 +110,14 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   vm.approve = function() {
+
     if (vm.thirdParty.id === 'shapeshift')
       return;
     if (!tx || !vm.originWallet) return;
 
-    if ($scope.paymentExpired) {
+    if (vm.paymentExpired) {
       popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.'));
-      $scope.sendStatus = '';
+      vm.sendStatus = '';
       $timeout(function() {
         $scope.$apply();
       });
@@ -445,6 +446,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
   function handleThirdPartyInitIfBip70() {
     if (vm.thirdParty.id === 'bip70') {
+      vm.sendingTitle = gettextCatalog.getString('You are paying');
       vm.memo = vm.thirdParty.memo;
       vm.memoExpanded = !!vm.memo;
 
