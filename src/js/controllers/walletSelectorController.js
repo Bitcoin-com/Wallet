@@ -1,9 +1,17 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, configService, gettextCatalog, profileService) {
+angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, configService, gettextCatalog, profileService, txFormatService) {
+
+  var priceDisplayAsFiat = false;
+  var requestedSatoshis = 0;
+  var unitDecimals = 0;
+  var unitsFromSatoshis = 0;
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     var config = configService.getSync().wallet.settings;
+    priceDisplayAsFiat = config.priceDisplay === 'fiat';
+    unitDecimals = config.unitDecimals;
+    unitsFromSatoshis = 1 / config.unitToSatoshi;
 
     switch($state.current.name) {
       case 'tabs.send.wallet-to-wallet':
@@ -29,7 +37,8 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if ($scope.params.amount) { // There is an amount, so presume that it is a payment request
       $scope.sendFlowTitle = gettextCatalog.getString('Payment Request');
       $scope.specificAmount = $scope.specificAlternativeAmount = '';
-      $scope.requestAmount = (($state.params.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
+      //requestedAmountCrypto = (($state.params.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
+      requestedSatoshis = $state.params.amount;
       $scope.isPaymentRequest = true;
     }
     if ($scope.params.thirdParty) {
@@ -65,7 +74,38 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if (!$scope.coin || $scope.coin === 'btc') { // if no specific coin is set or coin is set btc
       $scope.walletsBtc = profileService.getWallets({coin: 'btc', hasFunds: $scope.type === 'origin'});
     }
+
+    formatRequestedAmount();
   });
+
+  function formatRequestedAmount() {
+    if (requestedSatoshis) {
+      var cryptoAmount = (unitsFromSatoshis * requestedSatoshis).toFixed(unitDecimals);
+      var cryptoCoin = $scope.coin.toUpperCase();
+
+      txFormatService.formatAlternativeStr($scope.coin, requestedSatoshis, function onFormatAlternativeStr(formatted){
+        if (formatted) {
+          var fiatParts = formatted.split(' ');
+          var fiatAmount = fiatParts[0];
+          var fiatCurrrency = fiatParts.length > 1 ? fiatParts[1] : '';
+
+          if (priceDisplayAsFiat) {
+            $scope.requestAmount = fiatAmount;
+            $scope.requestCurrency = fiatCurrrency;
+
+            $scope.requestAmountSecondary = cryptoAmount;
+            $scope.requestCurrencySecondary = cryptoCoin;
+          } else {
+            $scope.requestAmount = cryptoAmount;
+            $scope.requestCurrency = cryptoCoin;
+
+            $scope.requestAmountSecondary = fiatAmount;
+            $scope.requestCurrencySecondary = fiatCurrrency;
+          }
+        }
+      }); 
+    }
+  }
 
   function getNextStep() {
     if ($scope.thirdParty) {
@@ -83,7 +123,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   function handleThirdPartyIfBip70PaymentProtocol() {
     if ($scope.thirdParty.id === 'bip70PaymentProtocol') {
       $scope.coin = $scope.thirdParty.coin;
-      $scope.requestAmount = $scope.thirdParty.details.
+      $scope.requestAmount = unitsFromSatoshis * $scope.thirdParty.details.amount;
       console.log('paypro details:', $scope.thirdParty.details);
     }
   }

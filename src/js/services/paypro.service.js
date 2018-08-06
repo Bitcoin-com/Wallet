@@ -1,5 +1,7 @@
 'use strict';
 
+// For BIP70 Payment Protocol
+
 angular
   .module('copayApp.services')
   .factory('payproService', payproService);
