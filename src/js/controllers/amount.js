@@ -20,7 +20,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.lastUsedPopularList = [];
   vm.maxAmount = 0;
   vm.minAmount = 0;
-  vm.shapeshiftOrderId = '';
   vm.thirdParty = false;
   vm.unit = '';
 
@@ -95,14 +94,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
             vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
             vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
           });
-
-          // if (vm.thirdParty.data['shapeshiftOrderId'] && data.stateParams.shapeshiftOrderId.length > 0) {
-          //   vm.shapeshiftOrderId = vm.thirdParty.data['shapeshiftOrderId'];
-          // }
         }
       }
     }
-    // vm.shapeshiftOrderId = data.stateParams.thirdPartyOrderId;
 
     vm.isRequestingSpecificAmount = !data.stateParams.fromWalletId;
 
@@ -371,8 +365,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.alternativeAmount = txFormatService.formatAmount(amountInSatoshis, true);
           vm.allowSend = lodash.isNumber(a)
             && a > 0
-            && (!vm.shapeshiftOrderId
-                || (a >= vm.minAmount && a <= vm.maxAmount))
+            && (a >= vm.minAmount && a <= vm.maxAmount)
             && !vm.fundsAreInsufficient;
         } else {
           if (result) {
@@ -392,8 +385,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         vm.alternativeAmount = $filter('formatFiatAmount')(toFiat(result));
         vm.allowSend = lodash.isNumber(result)
           && result > 0
-          && (!vm.shapeshiftOrderId
-              || (result >= vm.minAmount && result <= vm.maxAmount))
+          && (result >= vm.minAmount && result <= vm.maxAmount)
           && !vm.fundsAreInsufficient;
       }
 
@@ -404,7 +396,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (vm.fundsAreInsufficient) {
       vm.errorMessage = gettextCatalog.getString('Not enough available funds');
 
-    } else if (amountInCrypto && vm.shapeshiftOrderId) {
+    } else if (amountInCrypto && vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
       if (amountInCrypto < vm.minAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is below minimum');
 

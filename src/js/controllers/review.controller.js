@@ -125,8 +125,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   vm.approve = function() {
-    if (vm.thirdParty.id === 'shapeshift') {
-      shapeshiftService.shiftIt();
+    if (vm.thirdParty.id === 'shapeshift')
       return;
     if (!tx || !vm.originWallet) return;
 

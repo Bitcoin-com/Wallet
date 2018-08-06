@@ -102,6 +102,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   }
 
   function handleThirdPartyIfShapeshift() {
+    console.log($scope.thirdParty, $scope.coin);
     if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
       $scope.coin = profileService.getWallet(fromWalletId).coin;
       if ($scope.coin === 'bch') {
