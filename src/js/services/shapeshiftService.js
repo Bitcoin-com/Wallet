@@ -1,25 +1,31 @@
 'use strict';
-angular.module('copayApp.services').factory('shapeshiftService', function($http, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, platformInfo, servicesService) {
+angular.module('copayApp.services').factory('shapeshiftService', function($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingData, platformInfo, servicesService) {
   var root = {};
   root.ShiftState = 'Shift';
   root.withdrawalAddress = ''
   root.returnAddress = ''
   root.amount = '';
   root.marketData = {}
-  this.withdrawalAddress = function(address) {
+  root.withdrawalAddress = function(address) {
     root.withdrawalAddress = address;
   };
-  this.returnAddress = function(address) {
+  root.returnAddress = function(address) {
     root.returnAddress = address;
   };
-  this.amount = function(amount) {
+  root.amount = function(amount) {
     root.amount = amount;
   };
-  this.fromWalletId = function(id) {
+  root.fromWalletId = function(id) {
     root.fromWalletId = id;
   };
-  this.toWalletId = function(id) {
+  root.toWalletId = function(id) {
     root.toWalletId = id;
+  };
+  root.coinIn = function(coinIn) {
+    root.coinIn = coinIn.toUpperCase();
+  };
+  root.coinOut = function(coinOut) {
+    root.coinOut = coinOut.toUpperCase();
   };
 
   root.getMarketDataIn = function(coin) {
@@ -104,6 +110,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function($http,
 
         var shapeshiftData = {
           fromWalletId: root.fromWalletId,
+          toWalletId: root.toWalletId,
           minAmount: root.marketData.minimum,
           maxAmount: root.marketData.maxLimit,
           orderId: root.depositInfo.orderId
