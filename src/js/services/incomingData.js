@@ -428,7 +428,6 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       coin: coin,
       domain: payProDetails.domain,
       expires: payProDetails.expires,
-      id: 'bip70PaymentProtocol',
       memo: payProDetails.memo,
       merchant_data: payProDetails.merchant_data,
       network: payProDetails.network,
