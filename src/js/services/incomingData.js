@@ -405,6 +405,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     return {
       amount: payProData.outputs[0].amount,
       caTrusted: true,
+      name: 'bitpay',
       domain: 'bitpay.com',
       expires: Math.floor(new Date(payProData.expires).getTime() / 1000),
       memo: payProData.memo,
@@ -421,13 +422,13 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   function handlePayPro(payProDetails, coin) {
     var thirdPartyData = {
-      id: 'bip70PaymentProtocol',
-      coin: coin,
+      id: payProDetails.name,
       details: payProDetails
     };
     var stateParams = {
       amount: payProDetails.amount,
-      toAddress: payProDetails.toAddress,
+      toAddr: payProDetails.toAddress,
+      coin: coin,
       thirdParty: JSON.stringify(thirdPartyData)
     };
 

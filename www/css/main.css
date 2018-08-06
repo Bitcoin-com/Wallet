@@ -15262,7 +15262,7 @@ log-options #check-bar .checkbox-icon {
   #view-review .fee-summary {
     position: absolute;
     bottom: 92px; }
-  #view-review .shapeshift-banner {
+  #view-review .shapeshift-banner, #view-review .bitpay-banner {
     box-shadow: none; }
 
 .gravatar {
@@ -15325,8 +15325,10 @@ ion-content.padded-bottom-cta-with-summary {
 
 .header {
   padding: 29px 12px 61px;
-  background-color: #FAB915;
+  background-color: #fab915;
   color: #FFFFFF; }
+  .header.btc {
+    background-color: #535353; }
   .header .title {
     font-size: 18px;
     font-weight: 400;

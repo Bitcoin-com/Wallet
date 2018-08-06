@@ -106,12 +106,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   }
 
   function handleThirdPartyIfBip70PaymentProtocol() {
-    if ($scope.thirdParty.id === 'bip70PaymentProtocol') {
-      requestedSatoshis = $scope.thirdParty.details.amount;
-      $scope.coin = $scope.thirdParty.coin;
-      $scope.requestAmount = unitsFromSatoshis * requestedSatoshis;
-      $scope.params.amount = requestedSatoshis;
-      $scope.params.toAddr = $scope.thirdParty.details.toAddress;
+    if ($scope.thirdParty.id === 'bitpay') {
       console.log('paypro details:', $scope.thirdParty.details);
     }
   }
