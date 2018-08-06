@@ -510,6 +510,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     function setExpiredValues() {
       vm.paymentExpired = true;
       vm.remainingTimeStr = gettextCatalog.getString('Expired');
+      vm.readyToSend = false;
       if (countDown) $interval.cancel(countDown);
       $timeout(function() {
         $scope.$apply();
