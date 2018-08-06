@@ -422,7 +422,8 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   function handlePayPro(payProDetails, coin) {
     var thirdPartyData = {
-      id: payProDetails.name,
+      id: 'bip70',
+      name: payProDetails.name,
       caName: payProDetails.caName,
       caTrusted: payProDetails.caTrusted,
       coin: coin,

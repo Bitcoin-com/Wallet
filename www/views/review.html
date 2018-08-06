@@ -7,8 +7,7 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-  <ion-content class="padded-bottom-cta-with-summary bg-neutral"
-    ng-init="memoExpanded = false">
+  <ion-content class="padded-bottom-cta-with-summary bg-neutral">
     <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
     <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
@@ -47,7 +46,13 @@
             <h2>{{vm.destination.name}}<span class="highlight" style="color: {{vm.destination.currencyColor}}" ng-if="vm.destination.currency"> ({{vm.destination.currency}})</span></h2></h2>
             <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
           </div>
-          <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address'">
+          <div class="item-content item-content-avatar"
+          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70' && vm.thirdParty.name === 'bitpay'">
+            <img src="img/icon-bitpay.svg" class="bg">
+            <h2>BitPay</h2>
+            <p>Payment expired in XX:XX</p>
+          </div>
+          <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address' && !vm.thirdParty">
             <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded">
               <span class="prefix">{{vm.destination.address.substring(0,5)}}</span><span class="mid">{{vm.destination.address.substring(5,vm.destination.address.length-4)}}</span><span class="suffix">{{vm.destination.address.substring(vm.destination.address.length-4)}}</span>
             </div>
@@ -56,17 +61,17 @@
       </div>
       <div class="expand-content-frame">
         <div class="action-minor mt-negative text-right expand-content-trigger"
-          ng-class="{ 'expand-content-revealed': memoExpanded }"
-          ng-click="memoExpanded = !memoExpanded">
+          ng-class="{ 'expand-content-revealed': vm.memoExpanded }"
+          ng-click="vm.memoExpanded = !vm.memoExpanded">
           <img src="img/icon-bookmark.svg" class="action-icon">
           <span class="action-text">Add personal note</span>
         </div>
         <div class="card card-gutter-compact expand-content"
-          ng-class="{ 'expand-content-revealed': memoExpanded }">
+          ng-class="{ 'expand-content-revealed': vm.memoExpanded }">
           <div class="item item-compact" translate>Personal Note:</div>
           <div class="item">
             <div class="item-content">
-              <textarea elastic placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" class="elastic"></textarea>
+              <textarea elastic placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" class="elastic" ng-model="vm.memo"></textarea>
             </div>
           </div>
         </div>

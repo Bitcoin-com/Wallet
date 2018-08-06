@@ -43,6 +43,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.sendStatus = '';
   vm.thirdParty = false;
   vm.wallet = null;
+  vm.memoExpanded = false;
   
   var config = null;
   var defaults = {};
@@ -82,6 +83,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             vm.thirdParty.data = {};
           }
           vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
+        }
+        if (vm.thirdParty.id === 'bip70') {
+          if (vm.thirdParty.memo) {
+            vm.memo = 'Payment request for BitPay invoice.\n' + toAddress + ' for merchant';
+            vm.memoExpanded = true;
+          }
         }
       }
     }
@@ -321,7 +328,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     txp.outputs = [{
       'toAddress': tx.toAddress,
       'amount': tx.amount,
-      'message': tx.description
+      'message': vm.memo
     }];
 
     if (tx.sendMaxInfo) {
@@ -333,7 +340,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       } else txp.feeLevel = tx.feeLevel;
     }
 
-    txp.message = tx.description;
+    txp.message = vm.memo;
 
     if (tx.paypro) {
       txp.payProUrl = tx.paypro.url;

@@ -12093,7 +12093,7 @@ a.item {
       color: #fff; }
 
 .header.shapeshift {
-  background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
+  background: url(../img/shapeshiftbg.jpg) center center repeat #28394d;
   opacity: 0.99; }
 
 #bitpayCard {
