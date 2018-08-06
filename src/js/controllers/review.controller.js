@@ -445,11 +445,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
   function handleThirdPartyInitIfBip70() {
     if (vm.thirdParty.id === 'bip70') {
-      if (vm.thirdParty.memo) {
-        // Why not the whole memo?
-        vm.memo = 'Payment request for BitPay invoice.\n' + toAddress + ' for merchant';
-        vm.memoExpanded = true;
-      }
+      vm.memo = vm.thirdParty.memo;
+      vm.memoExpanded = !!vm.memo;
+
       txPayproData = {
         caTrusted: vm.thirdParty.caTrusted,
         domain: vm.thirdParty.domain,
