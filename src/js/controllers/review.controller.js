@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -33,19 +33,27 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     currencyColor: '',
   };
   vm.originWallet = null;
+  vm.paymentExpired = false;
   vm.primaryAmount = '';
   vm.primaryCurrency = '';
   vm.usingMerchantFee = false;
   vm.readyToSend = false;
+  vm.remainingTimeStr = '';
   vm.secondaryAmount = '';
   vm.secondaryCurrency = '';
   vm.sendingTitle = gettextCatalog.getString('You are sending');
   vm.sendStatus = '';
+  vm.showAddress = true;
   vm.thirdParty = false;
   vm.wallet = null;
   vm.memoExpanded = false;
+
+  // Functions
+  vm.onSuccessConfirm = onSuccessConfirm;
+
   
   var config = null;
+  var countDown = null;
   var defaults = {};
   var coin = '';
   var countDown = null;
@@ -57,6 +65,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   var satoshis = null;
   var toAddress = '';
   var tx = {};
+  var txPayproData = null;
   var unitFromSat = 0;
 
   var FEE_TOO_HIGH_LIMIT_PERCENTAGE = 15;
@@ -77,32 +86,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     if (data.stateParams.thirdParty) {
       vm.thirdParty = JSON.parse(data.stateParams.thirdParty); // Parse stringified JSON-object
       if (vm.thirdParty) {
-        if (vm.thirdParty.id === 'shapeshift') {
-          vm.sendingTitle = gettextCatalog.getString('You are shifting');
-          if (!vm.thirdParty.data) {
-            vm.thirdParty.data = {};
-          }
-
-          var toWallet = profileService.getWallet(data.stateParams.toWalletId);
-          $ionicLoading.show();
-          walletService.getAddress(vm.originWallet, false, function onWalletAddress(err, returnAddr) {
-            walletService.getAddress(toWallet, false, function onWalletAddress(err, withdrawalAddr) {
-              $ionicLoading.hide();
-              shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function(shapeshiftData) {
-                vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/'+shapeshiftData.orderId;
-                toAddress = shapeshiftData.toAddress;
-                vm.destination.address = toAddress;
-                vm.destination.kind = 'shapeshift';
-              });
-            });
-          });
-        }
-        if (vm.thirdParty.id === 'bip70') {
-          if (vm.thirdParty.memo) {
-            vm.memo = 'Payment request for BitPay invoice.\n' + toAddress + ' for merchant';
-            vm.memoExpanded = true;
-          }
-        }
+        handleThirdPartyInitIfBip70();
+        handleThirdPartyInitIfShapeshift();
       }
     }
 
@@ -240,6 +225,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       sendMax: data.stateParams.sendMax === 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
+      paypro: txPayproData,
+
       feeLevel: configFeeLevel,
       spendUnconfirmed: config.wallet.spendUnconfirmed,
 
@@ -252,6 +239,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       coin: vm.originWallet.coin,
       txp: {},
     };
+
+
 
     if (data.stateParams.requiredFeeRate) {
       vm.usingMerchantFee = true;
@@ -454,6 +443,80 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.destination.balanceCurrency = balanceText.currency;
   }
 
+  function handleThirdPartyInitIfBip70() {
+    if (vm.thirdParty.id === 'bip70') {
+      if (vm.thirdParty.memo) {
+        // Why not the whole memo?
+        vm.memo = 'Payment request for BitPay invoice.\n' + toAddress + ' for merchant';
+        vm.memoExpanded = true;
+      }
+      txPayproData = {
+        caTrusted: vm.thirdParty.caTrusted,
+        domain: vm.thirdParty.domain,
+        expires: vm.thirdParty.expires,
+        toAddress: toAddress,
+        url: vm.thirdParty.url,
+        verified: vm.thirdParty.verified,
+      };
+    }
+  }
+
+  function handleThirdPartyInitIfShapeshift() {
+    if (vm.thirdParty.id === 'shapeshift') {
+      vm.sendingTitle = gettextCatalog.getString('You are shifting');
+      if (!vm.thirdParty.data) {
+        vm.thirdParty.data = {};
+      }
+
+      var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+      $ionicLoading.show();
+      walletService.getAddress(vm.originWallet, false, function onWalletAddress(err, returnAddr) {
+        walletService.getAddress(toWallet, false, function onWalletAddress(err, withdrawalAddr) {
+          $ionicLoading.hide();
+          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function(shapeshiftData) {
+            vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
+            toAddress = shapeshiftData.toAddress;
+            vm.destination.address = toAddress;
+            vm.destination.kind = 'shapeshift';
+          });
+        });
+      });
+    }
+  }
+
+  function startExpirationTimer(expirationTime) {
+    vm.paymentExpired = false;
+    setExpirationTime();
+
+    countDown = $interval(function() {
+      setExpirationTime();
+    }, 1000);
+
+    function setExpirationTime() {
+      console.log('setExpirationTime()');
+      var now = Math.floor(Date.now() / 1000);
+
+      if (now > expirationTime) {
+        setExpiredValues();
+        return;
+      }
+
+      var totalSecs = expirationTime - now;
+      var m = Math.floor(totalSecs / 60);
+      var s = totalSecs % 60;
+      vm.remainingTimeStr = m + ":" + ('0' + s).slice(-2);
+    };
+
+    function setExpiredValues() {
+      vm.paymentExpired = true;
+      vm.remainingTimeStr = gettextCatalog.getString('Expired');
+      if (countDown) $interval.cancel(countDown);
+      $timeout(function() {
+        $scope.$apply();
+      });
+    };
+  };
+
   function updateSendAmounts() {
     if (typeof satoshis !== 'number') {
       return;
@@ -497,7 +560,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     });
   }
 
-  vm.onSuccessConfirm = function() {
+  function onSuccessConfirm() {
     vm.sendStatus = '';
     $ionicHistory.nextViewOptions({
       disableAnimate: true,
@@ -565,14 +628,13 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       }
     });
 
-    // Other Scope vars
     vm.showAddress = false;
 
 
     setButtonText(vm.originWallet.credentials.m > 1, !!tx.paypro);
 
     if (tx.paypro)
-      _paymentTimeControl(tx.paypro.expires);
+      startExpirationTimer(tx.paypro.expires);
 
     updateTx(tx, vm.originWallet, {
       dryRun: true
@@ -764,37 +826,5 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       });
     });
   }
-
-  function _paymentTimeControl(expirationTime) {
-    $scope.paymentExpired = false;
-    setExpirationTime();
-
-    countDown = $interval(function() {
-      setExpirationTime();
-    }, 1000);
-
-    function setExpirationTime() {
-      var now = Math.floor(Date.now() / 1000);
-
-      if (now > expirationTime) {
-        setExpiredValues();
-        return;
-      }
-
-      var totalSecs = expirationTime - now;
-      var m = Math.floor(totalSecs / 60);
-      var s = totalSecs % 60;
-      $scope.remainingTimeStr = ('0' + m).slice(-2) + ":" + ('0' + s).slice(-2);
-    };
-
-    function setExpiredValues() {
-      $scope.paymentExpired = true;
-      $scope.remainingTimeStr = gettextCatalog.getString('Expired');
-      if (countDown) $interval.cancel(countDown);
-      $timeout(function() {
-        $scope.$apply();
-      });
-    };
-  };
 
 }

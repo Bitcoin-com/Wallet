@@ -51,7 +51,7 @@
           ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70' && vm.thirdParty.name === 'bitpay'">
             <img src="img/icon-bitpay.svg" class="bg">
             <h2>BitPay</h2>
-            <p>Payment expired in XX:XX</p>
+            <p translate>Payment expires: {{vm.remainingTimeStr}}</p>
           </div>
           <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address' && !vm.thirdParty">
             <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded">

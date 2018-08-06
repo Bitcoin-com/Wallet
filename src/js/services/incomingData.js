@@ -134,7 +134,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           }
         });
       } else {
-        payproService.getPayProDetails(data, coin, function(err, details) {
+        payproService.getPayProDetails(data, coin, function onGetPayProDetails(err, details) {
           if (err) {
             popupService.showAlert(gettextCatalog.getString('Error'), err);
           } else {
