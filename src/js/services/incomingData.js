@@ -121,9 +121,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       var coin = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
       if (coin == 'bch') {
-        payproService.getPayProDetailsViaHttp(data, function(err, details) {
+        payproService.getPayProDetailsViaHttp(data, function onGetPayProDetailsViaHttp(err, details) {
           if (err) {
-            popupService.showAlert(gettextCatalog.getString('Error'), err)
+            var message = err.toString();
+            if (typeof err.data === 'string') {
+              // i.e. 'This invoice is no longer accepting payments'
+              message = gettextCatalog.getString(err.data);
+            }
+            popupService.showAlert(gettextCatalog.getString('Error'), message)
           } else {
             handlePayPro(createBchPayProObject(details), coin);
           }
@@ -415,12 +420,15 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
   }
 
   function handlePayPro(payProDetails, coin) {
+    var thirdPartyData = {
+      id: 'bip70PaymentProtocol',
+      coin: coin,
+      details: payProDetails
+    };
     var stateParams = {
       amount: payProDetails.amount,
-      toAddress: payProDetails.toAddress,
-      description: payProDetails.memo,
-      paypro: payProDetails,
-      coin: coin,
+      toAddr: payProDetails.toAddress,
+      thirdParty: JSON.stringify(thirdPartyData)
     };
 
     // fee
@@ -434,7 +442,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     }).then(function() {
       $timeout(function() {
-        $state.transitionTo('tabs.send.confirm', stateParams);
+        $state.transitionTo('tabs.send.origin', stateParams);
       });
     });
   }

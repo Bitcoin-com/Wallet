@@ -26,8 +26,8 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       $scope.coin = $scope.params.coin; // Contacts have a coin embedded
     }
 
-    if ($scope.params.amount) { // There is an amount, so presume that it a payment request
-      $scope.sendFlowTitle = gettextCatalog.getString('Payment request');
+    if ($scope.params.amount) { // There is an amount, so presume that it is a payment request
+      $scope.sendFlowTitle = gettextCatalog.getString('Payment Request');
       $scope.specificAmount = $scope.specificAlternativeAmount = '';
       $scope.requestAmount = (($state.params.amount) * (1 / config.unitToSatoshi)).toFixed(config.unitDecimals);
       $scope.isPaymentRequest = true;
@@ -54,16 +54,9 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     }
 
     if ($scope.thirdParty) {
-
       // Third party services specific logic
-
-      if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
-        if ($scope.coin === 'bch') {
-          $scope.coin = 'btc';
-        } else {
-          $scope.coin = 'bch';
-        }
-      }
+      handleThirdPartyIfBip70PaymentProtocol();
+      handleThirdPartyIfShapeshift();
     }
 
     if (!$scope.coin || $scope.coin === 'bch') { // if no specific coin is set or coin is set to bch
@@ -86,6 +79,26 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       return 'tabs.send.confirm';
     }
   }
+
+  function handleThirdPartyIfBip70PaymentProtocol() {
+    if ($scope.thirdParty.id === 'bip70PaymentProtocol') {
+      $scope.coin = $scope.thirdParty.coin;
+      $scope.requestAmount = $scope.thirdParty.details.
+      console.log('paypro details:', $scope.thirdParty.details);
+    }
+  }
+
+  function handleThirdPartyIfShapeshift() {
+    if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
+      if ($scope.coin === 'bch') {
+        $scope.coin = 'btc';
+      } else {
+        $scope.coin = 'bch';
+      }
+    } 
+  }
+
+  
 
   $scope.useWallet = function(wallet) {
     if ($scope.type === 'origin') { // we're on the origin screen, set wallet to send from
