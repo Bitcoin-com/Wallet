@@ -1,7 +1,7 @@
 .fee-summary {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
   padding: 5px 12px 15px;
   box-sizing: border-box;
@@ -17,17 +17,23 @@
     background: linear-gradient(to bottom, rgba(242,242,242,0) 0%,rgba(242,242,242,1) 100%);
   }
 
-  .fee-fiat {
-    &.positive {
-      color: #70955F;
+  .amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .fee-fiat {
+      &.positive {
+        color: #70955F;
+      }
+
+      &.negative {
+        color: #C24633;
+      }
     }
 
-    &.negative {
-      color: #C24633;
+    .fee-crypto {
+      color: #A7A7A7;
     }
-  }
-
-  .fee-crypto {
-    color: #A7A7A7;
   }
 }
