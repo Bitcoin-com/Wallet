@@ -470,7 +470,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       amount: useSendMax ? undefined : satoshis,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
-      toAddr: passthroughParams.toAddress,
+      toAddress: passthroughParams.toAddress,
       toWalletId: passthroughParams.toWalletId
     };
 

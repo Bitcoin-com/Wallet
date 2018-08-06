@@ -67,7 +67,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     defaults = configService.getDefaults();
     originWalletId = data.stateParams.fromWalletId;
     satoshis = parseInt(data.stateParams.amount, 10);
-    toAddress = data.stateParams.toAddr;
+    toAddress = data.stateParams.toAddress;
     
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
@@ -218,7 +218,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       amount: parseInt(data.stateParams.amount),
       sendMax: data.stateParams.sendMax === 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
-      toAddress: data.stateParams.toAddr,
+      toAddress: data.stateParams.toAddress,
       feeLevel: configFeeLevel,
       spendUnconfirmed: config.wallet.spendUnconfirmed,
 
