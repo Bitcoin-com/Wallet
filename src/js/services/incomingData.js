@@ -438,10 +438,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       url: payProDetails.url,
       verified: payProDetails.verified
     };
-    
+
     var stateParams = {
       amount: payProDetails.amount,
-      toAddr: payProDetails.toAddress,
+      toAddress: payProDetails.toAddress,
       coin: coin,
       thirdParty: JSON.stringify(thirdPartyData)
     };
