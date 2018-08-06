@@ -168,8 +168,10 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       }
       
     } else if ($scope.type === 'destination') {
-      $scope.fromWallet = profileService.getWallet(fromWalletId);
-      $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
+      if (!$scope.coin) { // Allow for the coin to be set by a third party
+        $scope.fromWallet = profileService.getWallet(fromWalletId);
+        $scope.coin = $scope.fromWallet.coin; // Only show wallets with the select origin wallet coin
+      }
       $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send to');
 
       if ($scope.coin === 'btc') { // if no specific coin is set or coin is set btc
