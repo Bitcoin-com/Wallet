@@ -470,11 +470,26 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       }
 
       var toWallet = profileService.getWallet(destinationWalletId);
+      vm.destination.name = toWallet.name;
+      vm.destination.color = toWallet.color;
+      vm.destination.currency = toWallet.coin.toUpperCase();
+
       $ionicLoading.show();
-      walletService.getAddress(vm.originWallet, false, function onWalletAddress(err, returnAddr) {
-        walletService.getAddress(toWallet, false, function onWalletAddress(err, withdrawalAddr) {
+      walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
+        if (err) {
           $ionicLoading.hide();
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function(shapeshiftData) {
+          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+          return;
+        } 
+        walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
+          if (err) {
+            $ionicLoading.hide();
+            popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+            return;
+          } 
+
+          $ionicLoading.hide();
+          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(shapeshiftData) {
             vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
             toAddress = shapeshiftData.toAddress;
             vm.destination.address = toAddress;
