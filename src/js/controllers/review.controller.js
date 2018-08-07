@@ -487,12 +487,16 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             return;
           } 
 
-          $ionicLoading.hide();
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(shapeshiftData) {
-            vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
-            tx.toAddress = shapeshiftData.toAddress;
-            vm.destination.address = toAddress;
-            vm.destination.kind = 'shapeshift';
+          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
+            if (err && err != null) {
+              $ionicLoading.hide();
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+            } else {
+              vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
+              tx.toAddress = shapeshiftData.toAddress;
+              vm.destination.address = toAddress;
+              vm.destination.kind = 'shapeshift';
+            }
           });
         });
       });

@@ -45,7 +45,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
   };
 
   function checkForError(data) {
-    if (data.error) return true;
+    if (data.err) return true;
     return false;
   }
 
@@ -55,8 +55,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
     root.returnAddress = returnAddress;
     root.coinIn = coinIn;
     root.coinOut = coinOut;
-    var validate = shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut);
-    validate.then(function (valid) {
+    shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut).then(function (valid) {
       var tx = ShapeShift();
       var coin;
       console.log("Starting");
@@ -64,7 +63,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
         console.log("Got txData", txData);
         if (txData['fixedTxData']) {
           txData = txData.fixedTxData;
-          if (checkForError(txData)) return;
+          if (checkForError(txData)) return cb(txData.err);
           //console.log(txData)
           var coinPair = txData.pair.split('_');
           txData.depositType = coinPair[0].toUpperCase();
@@ -76,20 +75,17 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
           root.txFixedPending = true;
 
         } else if (txData['normalTxData']) {
-
           txData = txData.normalTxData;
-          if (checkForError(txData)) return;
+          if (checkForError(txData)) return cb(txData.err);
           coin = root.coins[txData.depositType.toUpperCase()].name.toLowerCase();
           txData.depositQR = coin + ":" + txData.deposit;
-
         } else if (txData['cancelTxData']) {
-
-          if (checkForError(txData.cancelTxData)) return;
+          txData = txData.cancelTxData;
+          if (checkForError(txData)) return cb(txData.err);
           if (root.txFixedPending) {
             root.txFixedPending = false;
           }
           root.ShiftState = 'Shift';
-          return;
         }
         root.depositInfo = txData;
         //console.log(root.marketData);
@@ -101,8 +97,8 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
         ongoingProcess.set('connectingShapeshift', false);
 
         root.ShiftState = 'Cancel';
-        root.GetStatus();
-        root.txInterval=$interval(root.GetStatus, 8000);
+        //root.GetStatus();
+        //root.txInterval=$interval(root.GetStatus, 8000);
 
         var shapeshiftData = {
           coinIn: coinIn,
@@ -118,14 +114,12 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
           ongoingProcess.set('connectingShapeshift', false);
           // return;
         // }
-        cb(shapeshiftData);
-
+        cb(null, shapeshiftData);
       });
     })
   };
 
   function ShapeShift() {
-    if (root.ShiftState === 'Cancel') return shapeshiftApiService.CancelTx(root);
     if (parseFloat(root.amount) > 0) return shapeshiftApiService.FixedAmountTx(root);
     return shapeshiftApiService.NormalTx(root);
   }
