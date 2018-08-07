@@ -48,9 +48,9 @@
             <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
           </div>
           <div class="item-content item-content-avatar"
-          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70' && vm.thirdParty.name === 'bitpay'">
+          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70' && vm.thirdParty.name === 'BitPay'">
             <img src="img/icon-bitpay.svg" class="bg">
-            <h2>BitPay</h2>
+            <h2>{{vm.destination.name}}</h2>
             <p translate ng-if="!vm.paymentExpired">Payment expires: {{vm.remainingTimeStr}}</p>
             <p class="warning" translate ng-if="vm.paymentExpired">Payment request has expired</p>
           </div>
