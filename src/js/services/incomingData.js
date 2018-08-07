@@ -82,37 +82,33 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       });
       // Timeout is required to enable the "Back" button
       $timeout(function() {
+        var params = {};
+        
         if (amount) {
-          $state.transitionTo('tabs.send.origin', {
-            amount: amount,
-            toAddress: addr,
-            description: message,
-            coin: coin
-          });
-        } else {
-          var params = {
-            toAddress: addr,
-            coin: coin,
-            displayAddress: originalAddress ? originalAddress : addr,
-            noPrefix: noPrefixInAddress
-          };
-          if (serviceId) {
-            if (!params['thirdParty']) {
-              params['thirdParty'] = [];
-            }
-            params['thirdParty']['id'] = serviceId;
-          }
+          params.amount = amount;
+        }
 
-          if (serviceData) {
-            params['thirdParty']['data'] = serviceData;
-            // params['thirdParty']['minShapeshiftAmount'] = serviceData.minAmount;
-            // params['thirdParty']['maxShapeshiftAmount'] = serviceData.maxAmount;
-            // params['thirdParty']['shapeshiftOrderId'] = serviceData.orderId;
-            params['thirdParty'] = JSON.stringify(params['thirdParty']);
-            $state.transitionTo('tabs.send.amount', params);
-          } else {
-            $state.transitionTo('tabs.send.origin', params);
-          }
+        if (addr) {
+          params.toAddress = addr;
+          params.displayAddress = originalAddress ? originalAddress : addr;
+        }
+
+        if (coin) {
+          params.coin = coin;
+        }
+
+        if (noPrefixInAddress) {
+          params.noPrefixInAddress = noPrefixInAddress;
+        }
+
+        if (serviceId) {
+          params.thirdParty = [];
+          params.thirdParty.id = serviceId;
+          params.thirdParty.data = serviceData;
+          params.thirdParty = JSON.stringify(params.thirdParty);
+          $state.transitionTo('tabs.send.amount', params);
+        } else {
+          $state.transitionTo('tabs.send.origin', params);
         }
       }, 100);
     }
@@ -130,7 +126,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             }
             popupService.showAlert(gettextCatalog.getString('Error'), message)
           } else {
-            handlePayPro(createBchPayProObject(details), coin);
+            handlePayPro(details, coin);
           }
         });
       } else {
@@ -399,14 +395,30 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     }, 100);
   }
 
-  function createBchPayProObject(payProData) {
-    var displayAddr = payProData.outputs[0].address;
-    var toAddr = bitcoinCashJsService.readAddress('bitcoincash:' + displayAddr).legacy;
-    return {
-      amount: payProData.outputs[0].amount,
+  function handlePayPro(payProData, coin) {
+
+    var toAddr = payProData.toAddress;
+    var amount = payProData.amount;
+    var paymentUrl = payProData.url;
+
+    if (coin === 'bch') {
+      var displayAddr = payProData.outputs[0].address;
+      toAddr = bitcoinCashJsService.readAddress('bitcoincash:' + displayAddr).legacy;
+      amount = payProData.outputs[0].amount;
+      paymentUrl = payProData.paymentUrl;
+    }
+    
+    var name = payProData.domain;
+    if (paymentUrl.indexOf('https://bitpay.com') > -1) {
+      name = 'bitpay';
+    }
+
+    var thirdPartyData = {
+      id: 'bip70',
+      amount: amount,
       caTrusted: true,
-      name: 'bitpay',
-      domain: 'bitpay.com',
+      name: name,
+      domain: payProData.domain,
       expires: Math.floor(new Date(payProData.expires).getTime() / 1000),
       memo: payProData.memo,
       network: 'livenet',
@@ -415,40 +427,20 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       time: Math.ceil(new Date(payProData.time).getTime() / 1000),
       displayAddress: displayAddr,
       toAddress: toAddr,
-      url: payProData.paymentUrl,
+      url: paymentUrl,
       verified: true
-    };
-  }
-
-  function handlePayPro(payProDetails, coin) {
-    var thirdPartyData = {
-      id: 'bip70',
-      name: payProDetails.name,
-      caName: payProDetails.caName,
-      caTrusted: payProDetails.caTrusted,
-      coin: coin,
-      domain: payProDetails.domain,
-      expires: payProDetails.expires,
-      memo: payProDetails.memo,
-      merchant_data: payProDetails.merchant_data,
-      network: payProDetails.network,
-      requiredFeeRate: payProDetails.requiredFeeRate,
-      selfSigned: payProDetails.selfSigned,
-      time: payProDetails.time,
-      url: payProDetails.url,
-      verified: payProDetails.verified
     };
 
     var stateParams = {
-      amount: payProDetails.amount,
-      toAddress: payProDetails.toAddress,
+      amount: thirdPartyData.amount,
+      toAddress: thirdPartyData.toAddress,
       coin: coin,
       thirdParty: JSON.stringify(thirdPartyData)
     };
 
     // fee
-    if (payProDetails.requiredFeeRate) {
-      stateParams.requiredFeeRate = payProDetails.requiredFeeRate * 1024;
+    if (thirdPartyData.requiredFeeRate) {
+      stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
 
     scannerService.pausePreview();
