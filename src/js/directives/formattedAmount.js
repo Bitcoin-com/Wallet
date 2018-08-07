@@ -15,16 +15,27 @@ angular.module('bitcoincom.directives')
     return {
       restrict: 'E',
       scope: {
-        value: '=',
-        currency: '=',
-        sizeEqual: '='
+        value: '@',
+        currency: '@',
+        sizeEqual: '@'
       },
       templateUrl: 'views/includes/formatted-amount.html',
       controller: function($scope, $timeout) {
+        if (!$scope.currency && $scope.value) { // If there is no currency available..
+          // Try to extract currency from value..
+          var currencySplit = $scope.value.split(" ");
+          if (currencySplit.length === 2) {
+            $scope.value = currencySplit[0];
+            $scope.currency = currencySplit[1];
+          }
+        }
+
         $scope.displaySizeEqual = !!$scope.sizeEqual;
 
         configService.whenAvailable(function(config) {
+          console.log("WAIT!!");
           $timeout(function() {
+            console.log("FIRED!!");
             var decimalPlaces = {
               '0': ['BIF', 'CLP', 'DJF', 'GNF', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
               '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],
@@ -44,9 +55,9 @@ angular.module('bitcoincom.directives')
             };
     
             var getDecimalPlaces = function(currency) {
-              if (decimalPlaces['0'].indexOf($scope.currency.toUpperCase()) > -1) return '0';
-              if (decimalPlaces['3'].indexOf($scope.currency.toUpperCase()) > -1) return '3';
-              if (decimalPlaces['8'].indexOf($scope.currency.toUpperCase()) > -1) return '8';
+              if (decimalPlaces['0'].indexOf(currency.toUpperCase()) > -1) return '0';
+              if (decimalPlaces['3'].indexOf(currency.toUpperCase()) > -1) return '3';
+              if (decimalPlaces['8'].indexOf(currency.toUpperCase()) > -1) return '8';
               return '2';
             };
     
@@ -59,7 +70,7 @@ angular.module('bitcoincom.directives')
       
                 case '3':
                   var valueProcessing = parseFloat(parseFloat(value).toFixed(3));
-                  var valueFormatted = localizeNumbers(valueProcessing);
+                  var valueFormatted = localizeNumbers(valueProcessing, 3);
                   buildAmount(valueFormatted, '', '');
                   break;
       
@@ -78,11 +89,11 @@ angular.module('bitcoincom.directives')
       
                 default:
                   var valueProcessing = parseFloat(parseFloat(value).toFixed(2));
-                  var valueFormatted = localizeNumbers(valueProcessing);
+                  var valueFormatted = localizeNumbers(valueProcessing, 2);
                   buildAmount(valueFormatted, '', '');
                   break;
               }
-            }
+            };
     
             formatNumbers($scope.currency, $scope.value);
             $scope.$watchGroup(['currency', 'value'], function() {

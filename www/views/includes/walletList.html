@@ -7,8 +7,12 @@
     Incomplete
   </span>
   <span ng-if="wallet.isComplete()">
-    <span ng-if="selectedPriceDisplay == 'crypto' && !wallet.balanceHidden  && !wallet.scanning"> {{wallet.status.totalBalanceStr ? wallet.status.totalBalanceStr : ( wallet.cachedBalance ? wallet.cachedBalance   + (wallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( wallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }} </span>
-    <span ng-if="selectedPriceDisplay == 'fiat' && !wallet.balanceHidden  && !wallet.scanning"> {{wallet.status.totalBalanceAlternative ? wallet.status.totalBalanceAlternative : ( wallet.cachedBalance ? wallet.cachedBalance   + (wallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( wallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }} {{wallet.status.alternativeIsoCode}}</span>
+    <span ng-if="selectedPriceDisplay == 'crypto' && !wallet.balanceHidden  && !wallet.scanning">
+      <formatted-amount value="{{wallet.status.totalBalanceStr ? wallet.status.totalBalanceStr : ( wallet.cachedBalance ? wallet.cachedBalance   + (wallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( wallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }}"></formatted-amount>
+    </span>
+    <span ng-if="selectedPriceDisplay == 'fiat' && !wallet.balanceHidden  && !wallet.scanning">
+      <formatted-amount value="{{wallet.status.totalBalanceAlternative ? wallet.status.totalBalanceAlternative : ( wallet.cachedBalance ? wallet.cachedBalance   + (wallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( wallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }}" currency="{{wallet.status.alternativeIsoCode}}"></formatted-amount>
+    </span>
     <span ng-if="wallet.scanning" translate> Scanning funds... </span>
 
     <span ng-if="wallet.balanceHidden && !wallet.scanning" translate>[Balance Hidden]</span>
