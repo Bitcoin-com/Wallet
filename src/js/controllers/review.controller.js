@@ -111,9 +111,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   vm.approve = function() {
-
-    if (vm.thirdParty.id === 'shapeshift')
-      return;
+      
     if (!tx || !vm.originWallet) return;
 
     if (vm.paymentExpired) {
@@ -491,7 +489,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           $ionicLoading.hide();
           shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(shapeshiftData) {
             vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
-            toAddress = shapeshiftData.toAddress;
+            tx.toAddress = shapeshiftData.toAddress;
             vm.destination.address = toAddress;
             vm.destination.kind = 'shapeshift';
           });
