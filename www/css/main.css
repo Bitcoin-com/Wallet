@@ -10037,6 +10037,11 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     .big-icon-svg.theme-circle > .bg.icon-faucet {
       background-image: url("../img/icon-faucet.svg");
       background-size: 70%; }
+    .big-icon-svg.theme-circle > .bg.icon-wallet {
+      background-color: #FAB915;
+      background-image: url("../img/icon-wallet.svg");
+      border: none;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3) inset; }
   .big-icon-svg.theme-circle-services > .bg {
     border: 1px solid #191919; }
   .big-icon-svg.theme-circle-community > .bg {
@@ -10077,7 +10082,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 .onboarding .button.button-light.button-standard,
 .onboarding .button.button-white.button-standard,
 .onboarding .button.button-green.button-standard,
-.onboarding .button.button-assertive.button-standard {
+.onboarding .button.button-assertive.button-standard, #shapeshift .button-shapeshift {
   width: 85%;
   max-width: 300px;
   margin-left: auto;
@@ -10287,6 +10292,15 @@ qrcode {
   top: 50%;
   left: 50%; }
 
+.third-party-notice {
+  font-size: 12px;
+  margin: 0px 14px;
+  font-weight: 600;
+  color: #6F6F70; }
+  @media (min-width: 768px) {
+    .third-party-notice {
+      text-align: center; } }
+
 .tabs .tab-item .icon {
   background-repeat: no-repeat;
   background-position: center;
@@ -10344,7 +10358,7 @@ qrcode {
     padding: 10px; }
 
 #view-amount {
-  background: #494949; }
+  background: #f2f2f2; }
   #view-amount .recipient-label {
     font-size: 14px;
     padding-bottom: 0;
@@ -10537,6 +10551,16 @@ qrcode {
       display: flex;
       flex-direction: column;
       justify-content: center; }
+      #view-amount .scroll-content .send-amount .send-amount-header-footer {
+        flex: 1 1 auto;
+        min-height: 20px; }
+        #view-amount .scroll-content .send-amount .send-amount-header-footer .warning {
+          font-weight: bold;
+          font-size: 12px;
+          padding: 0 6px 6px 6px;
+          text-align: center; }
+        #view-amount .scroll-content .send-amount .send-amount-header-footer__max {
+          float: right; }
       #view-amount .scroll-content .send-amount .send-amount-tool {
         flex: 0 1 auto; }
         #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input {
@@ -10548,53 +10572,56 @@ qrcode {
             -moz-user-select: text;
             -ms-user-select: text;
             user-select: text; }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
-            font-size: 1.8em; }
-            @media (min-width: 375px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
-                font-size: 2.1em; } }
-            @media (min-width: 414px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
-                font-size: 2.4em; } }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
-            font-size: 1.6em; }
-            @media (min-width: 375px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
-                font-size: 1.8em; } }
-            @media (min-width: 414px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
-                font-size: 2em; } }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
-            font-size: 0.9em; }
-            @media (min-width: 375px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
-                font-size: 1.3em; } }
-            @media (min-width: 414px) {
-              #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
-                font-size: 1.4em; } }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input {
-            border: 0;
-            padding: 0;
-            white-space: normal;
-            background: none;
-            line-height: 1;
-            box-sizing: content-box;
-            display: inline-block;
-            vertical-align: middle;
-            margin: 0;
-            height: 1em;
-            margin-right: 5px;
-            font-family: 'ProximaNova'; }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit,
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
-            display: inline-block;
-            vertical-align: middle;
-            line-height: 1em; }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit {
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount {
+            color: #333;
             font-weight: bold; }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
-            margin-right: 5px;
-            word-break: break-all; }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+              font-size: 1.8em; }
+              @media (min-width: 375px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+                  font-size: 2.1em; } }
+              @media (min-width: 414px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+                  font-size: 2.4em; } }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+              font-size: 1.6em; }
+              @media (min-width: 375px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+                  font-size: 1.8em; } }
+              @media (min-width: 414px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.long .primary-amount-display {
+                  font-size: 2em; } }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+              font-size: 0.9em; }
+              @media (min-width: 375px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+                  font-size: 1.3em; } }
+              @media (min-width: 414px) {
+                #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount.very-long .primary-amount-display {
+                  font-size: 1.4em; } }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input {
+              border: 0;
+              padding: 0;
+              white-space: normal;
+              background: none;
+              line-height: 1;
+              box-sizing: content-box;
+              display: inline-block;
+              vertical-align: middle;
+              margin: 0;
+              height: 1em;
+              margin-right: 5px;
+              font-family: 'ProximaNova'; }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit,
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+              display: inline-block;
+              vertical-align: middle;
+              line-height: 1em; }
+            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
+              margin-right: 5px;
+              word-break: break-all; }
+          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .alternative-amount {
+            color: #6F6F70; }
           #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .switch-currencies {
             position: absolute;
             right: 0;
@@ -10603,20 +10630,40 @@ qrcode {
             padding: 15px; }
             #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .switch-currencies img {
               width: 18px; }
-        #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions {
-          margin-top: 15px;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
-          #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button {
-            flex: 1 1 auto;
-            line-height: 1.2em; }
-            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button + .button {
-              margin-left: 10px; }
-            #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-actions .button span {
-              display: flex;
-              align-items: center;
-              justify-content: center; }
+    #view-amount .scroll-content .send-amount-extras {
+      display: flex;
+      flex: 0 0 auto;
+      /* So that if only one item is present, it appears on the right. */
+      flex-direction: row-reverse;
+      font-size: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 14px; }
+      #view-amount .scroll-content .send-amount-extras .available-funds {
+        color: #6F6F70; }
+      #view-amount .scroll-content .send-amount-extras .warning {
+        color: #b7664d; }
+      #view-amount .scroll-content .send-amount-extras .extra,
+      #view-amount .scroll-content .send-amount-extras button.extra {
+        /*display: flex;*/
+        flex: 0 1 auto; }
+      #view-amount .scroll-content .send-amount-extras button.extra {
+        background: none;
+        border: none;
+        color: #000;
+        font-family: 'ProximaNova';
+        font-size: 14px;
+        line-height: normal;
+        min-height: auto;
+        min-width: auto;
+        padding: 0; }
+      #view-amount .scroll-content .send-amount-extras .button .icon:before {
+        font-size: 14px;
+        line-height: normal; }
+      #view-amount .scroll-content .send-amount-extras .button span {
+        display: flex;
+        align-items: center;
+        justify-content: center; }
     #view-amount .scroll-content .button.no-margin {
       margin: 0; }
     #view-amount .scroll-content .notification-warning {
@@ -10628,26 +10675,39 @@ qrcode {
       line-height: 1.4em;
       margin-bottom: 20px; }
     #view-amount .scroll-content .keypad-container {
-      position: relative; }
+      position: relative;
+      font-size: 18px;
+      line-height: 2em; }
+      @media (min-height: 667px) {
+        #view-amount .scroll-content .keypad-container {
+          font-size: 24px; } }
+      @media (max-height: 480px) {
+        #view-amount .scroll-content .keypad-container {
+          font-size: 12px; } }
+      #view-amount .scroll-content .keypad-container .sendmax {
+        background: #262424; }
+        #view-amount .scroll-content .keypad-container .sendmax .button {
+          color: white;
+          background: black;
+          border: 1px solid #262424;
+          border-radius: 0;
+          font-size: 0.8em;
+          line-height: 2em;
+          width: 100%; }
+          #view-amount .scroll-content .keypad-container .sendmax .button .available-funds-amount {
+            color: #C9C9C9; }
+          #view-amount .scroll-content .keypad-container .sendmax .button:active {
+            background-color: #445; }
       #view-amount .scroll-content .keypad-container .keypad {
         text-align: center;
-        font-size: 18px;
         font-weight: lighter;
         position: absolute;
         bottom: 0;
         width: 100%;
-        color: #667; }
-        @media (min-height: 667px) {
-          #view-amount .scroll-content .keypad-container .keypad {
-            font-size: 24px; } }
+        color: #fff; }
         #view-amount .scroll-content .keypad-container .keypad .row {
           padding: 0 !important;
           margin: 0 !important; }
-        #view-amount .scroll-content .keypad-container .keypad .col {
-          line-height: 38px; }
-          @media (min-height: 667px) {
-            #view-amount .scroll-content .keypad-container .keypad .col {
-              line-height: 45px; } }
         #view-amount .scroll-content .keypad-container .keypad .row:last-child .col {
           padding-bottom: 10px; }
         #view-amount .scroll-content .keypad-container .keypad .operator {
@@ -10666,14 +10726,20 @@ qrcode {
             background-color: #eaeaea; }
         #view-amount .scroll-content .keypad-container .keypad .digit {
           cursor: pointer;
-          border-top: 1px solid #f2f2f2;
-          border-left: 1px solid #f2f2f2;
+          background-color: #000;
+          border: 1px solid #262424;
           transition: all 0.1s ease; }
           #view-amount .scroll-content .keypad-container .keypad .digit:active {
-            background-color: #f2f2f2; }
-        @media (max-height: 480px) {
-          #view-amount .scroll-content .keypad-container .keypad {
-            font-size: 12px; } }
+            background-color: #445; }
+    #view-amount .scroll-content .button-primary {
+      background-color: #fab915;
+      border-radius: 0;
+      font-weight: bold; }
+    #view-amount .scroll-content .button-primary[disabled] {
+      background-color: #667;
+      opacity: 1; }
+  #view-amount .warning {
+    color: #b7664d; }
   #view-amount ion-content {
     margin-bottom: constant(safe-area-inset-bottom);
     /* iOS 11.0 */
@@ -11113,7 +11179,9 @@ qrcode {
           #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-address .icon, #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-content .icon {
             background: url(../img/icon-clipboard-paste-white.svg); }
           #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-address.contains-address .address, #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-content.contains-address .address {
-            display: inline; }
+            display: inline;
+            border: none;
+            background-color: transparent; }
           #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-address.contains-address .non-address, #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-content.contains-address .non-address {
             display: none; }
       #tab-send .send-wrapper .buttons .button span {
@@ -11236,6 +11304,61 @@ qrcode {
     /* screen size - button container - bottom-tab-menu - header top */ }
     #tab-send #tab-send-contacts.ios {
       height: calc(100vh - 270px - 50px - 44px - 18px); } }
+
+#wallet-origin-destination .header--request {
+  padding: 30px 24px;
+  width: 100%;
+  height: 139px;
+  background-color: #fff; }
+  #wallet-origin-destination .header--request__title {
+    width: 46px;
+    height: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #000000; }
+  #wallet-origin-destination .header--request__amount {
+    font-size: 29px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    color: #000000;
+    margin: 11px 0 2px; }
+  #wallet-origin-destination .header--request__amount-alt {
+    opacity: 0.45;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+    color: #000000; }
+
+#wallet-origin-destination .wallets-header {
+  margin: 20px 14px 0px; }
+  #wallet-origin-destination .wallets-header .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #445;
+    margin-bottom: -12px; }
+
+#wallet-origin-destination .card {
+  font-size: 12px;
+  margin: 20px 14px 0px; }
+  #wallet-origin-destination .card .item-heading {
+    font-weight: 600; }
+    #wallet-origin-destination .card .item-heading .subtitle {
+      font-size: 12px; }
+  #wallet-origin-destination .card-insufficient .wallet {
+    opacity: 0.4; }
+  #wallet-origin-destination .card-insufficient .item-heading {
+    font-size: 12px; }
+    #wallet-origin-destination .card-insufficient .item-heading > div {
+      display: inline-block;
+      vertical-align: text-bottom; }
+  #wallet-origin-destination .card-insufficient__dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #ec5959;
+    border-radius: 8px;
+    margin: 2px 6px 2px 2px; }
 
 .settings .icon-bitpay {
   background-image: url("../img/icon-bitpay.svg"); }
@@ -11905,6 +12028,73 @@ a.item {
   background-color: #fff;
   color: #667;
   font-size: 0.9em; }
+
+#shapeshift .swap-image {
+  width: auto;
+  max-width: 400px;
+  max-height: 25vh; }
+
+#shapeshift .empty-case {
+  padding-top: 5vh;
+  text-align: center; }
+  #shapeshift .empty-case .item {
+    border-style: none; }
+  #shapeshift .empty-case > .title {
+    font-size: 20px;
+    color: #445;
+    margin: 20px 10px; }
+  #shapeshift .empty-case > .subtitle {
+    font-size: 1rem;
+    line-height: 1.5em;
+    font-weight: 300;
+    color: #6F6F70;
+    margin: 20px 1em 2.5em; }
+  #shapeshift .empty-case .big-icon-svg .bg.green {
+    padding: 0 10px;
+    box-shadow: none; }
+  #shapeshift .empty-case .buttons {
+    margin-top: 18px; }
+    #shapeshift .empty-case .buttons .button {
+      font-weight: bold;
+      font-size: 19px; }
+  #shapeshift .empty-case .button-first-contact img {
+    height: 19px;
+    width: 19px;
+    margin-right: 6px;
+    vertical-align: sub; }
+
+#shapeshift .button-shapeshift {
+  border-color: #FFF;
+  background-color: #243F5D;
+  color: #FFF;
+  border: 0px;
+  box-shadow: 0 2px 11px 0 #C1C1C1; }
+  #shapeshift .button-shapeshift:hover {
+    color: #FFF;
+    text-decoration: none; }
+  #shapeshift .button-shapeshift.active, #shapeshift .button-shapeshift.activated {
+    border-color: #FFF;
+    background-color: #606060; }
+  #shapeshift .button-shapeshift.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #FFF; }
+  #shapeshift .button-shapeshift.button-icon {
+    border-color: transparent;
+    background: none; }
+  #shapeshift .button-shapeshift.button-outline {
+    border-color: #C1C1C1;
+    background: transparent;
+    color: #C1C1C1; }
+    #shapeshift .button-shapeshift.button-outline.active, #shapeshift .button-shapeshift.button-outline.activated {
+      background-color: #C1C1C1;
+      box-shadow: none;
+      color: #fff; }
+
+.header.shapeshift {
+  background: url(../img/shapeshiftbg.jpg) center center repeat #28394d;
+  opacity: 0.99; }
 
 #bitpayCard {
   background: white; }
@@ -15062,9 +15252,190 @@ log-options #check-bar .checkbox-icon {
 #cash-scan a {
   cursor: pointer; }
 
+#view-review {
+  background-color: #494949; }
+  #view-review slide-to-accept, #view-review slide-to-accept-success {
+    margin-bottom: constant(safe-area-inset-bottom);
+    /* iOS 11.0 */
+    margin-bottom: env(safe-area-inset-bottom);
+    /* iOS 11.2 */ }
+  #view-review .fee-summary {
+    position: absolute;
+    bottom: 92px; }
+  #view-review .shapeshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
+    box-shadow: none; }
+  #view-review .warning {
+    color: #b7664d; }
+
 .gravatar {
   border-radius: 3px;
   display: inline-block; }
+
+.elastic {
+  width: 100%;
+  font-size: 14px; }
+
+/*
+* Extends Ionic v1 item
+*/
+.item.item-compact {
+  padding: 11px 13px; }
+
+.item.item-gutterless {
+  padding: 0; }
+
+.item .item-content.item-content-avatar {
+  min-height: 69px;
+  padding: 13px 11px 13px 68px; }
+  .item .item-content.item-content-avatar > img:first-child,
+  .item .item-content.item-content-avatar > i:first-child {
+    position: absolute;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    left: 13px;
+    top: 50%;
+    padding: 0;
+    transform: translate(0, -50%); }
+
+.item .item-content.item-content-compact {
+  min-height: 0;
+  padding: 13px 11px; }
+
+.item .item-content .highlight {
+  color: #FAB915; }
+
+.item .item-content + .item-content {
+  padding-top: 0; }
+
+/*
+* Extends Ionic v1 ion-content
+*/
+ion-content.bg-neutral {
+  background-color: #F2F2F2; }
+
+ion-content.padded-bottom-cta {
+  bottom: 92px; }
+
+ion-content.padded-bottom-cta-with-summary {
+  bottom: 134px; }
+
+.card.card-gutter-compact {
+  margin: 10px 12px; }
+
+.header {
+  padding: 29px 12px 61px;
+  background-color: #fab915;
+  color: #FFFFFF; }
+  .header.btc {
+    background-color: #535353; }
+  .header .title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1em;
+    color: #FFFFFF;
+    text-align: center; }
+    .header .title + .content {
+      margin-top: 23px; }
+  .header .content {
+    text-align: center; }
+    .header .content p {
+      margin: 0;
+      line-height: 1em;
+      font-size: 18px; }
+      .header .content p.large {
+        font-size: 29px;
+        font-weight: 600; }
+      .header .content p + p {
+        margin-top: 8px; }
+
+.content-frame.negative-top {
+  margin-top: -40px; }
+  .content-frame.negative-top .card:first-child {
+    margin-top: 0; }
+
+.address-frame {
+  background-color: #F8F8F8;
+  border: 0.5px solid #EDEBEB;
+  border-radius: 3px;
+  padding: 9px;
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+  .address-frame.expanded {
+    white-space: pre-wrap;
+    word-break: break-all; }
+  .address-frame .prefix {
+    color: #000000; }
+  .address-frame .mid {
+    color: #919191; }
+  .address-frame .suffix {
+    color: #000000; }
+
+.action-minor {
+  margin: 20px 14px;
+  font-size: 14px; }
+  .action-minor.mt-negative {
+    margin-top: 0; }
+  .action-minor.text-right {
+    text-align: right; }
+  .action-minor > .action-icon {
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-right: 3px; }
+  .action-minor > .action-text {
+    vertical-align: middle;
+    color: #444444; }
+
+.expand-content-frame {
+  position: relative; }
+  .expand-content-frame .expand-content-trigger {
+    position: absolute;
+    top: 0;
+    transition: opacity 0.3s ease;
+    right: 0; }
+    .expand-content-frame .expand-content-trigger.expand-content-revealed {
+      opacity: 0; }
+  .expand-content-frame .expand-content {
+    opacity: 0;
+    transform-origin: 100% 0%;
+    transform: scale(0, 0);
+    transition: opacity 0.3s ease, transform 0.3s ease; }
+    .expand-content-frame .expand-content.expand-content-revealed {
+      opacity: 1;
+      transform: scale(1, 1); }
+
+.fee-summary {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 5px 12px 15px;
+  box-sizing: border-box;
+  background-color: #F2F2F2; }
+  .fee-summary:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -15px;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(to bottom, rgba(242, 242, 242, 0) 0%, #f2f2f2 100%); }
+  .fee-summary .amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; }
+    .fee-summary .amount .fee-fiat.positive {
+      color: #70955F; }
+    .fee-summary .amount .fee-fiat.negative {
+      color: #C24633; }
+    .fee-summary .amount .fee-crypto {
+      color: #A7A7A7; }
 
 .amount .start,
 .amount .middle,

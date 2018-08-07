@@ -287,16 +287,44 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
+        url: '/amount/:thirdParty/:fromWalletId/:maxAmount/:minAmount/:toWalletId/:toAddress',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
       })
+      .state('tabs.send.wallet-to-wallet', {
+        url: '/wallet-to-wallet',
+        views: {
+          'tab-send@tabs': {
+            controller: 'walletSelectorController',
+            templateUrl: 'views/walletSelector.html'
+          }
+        }
+      })
+      .state('tabs.send.origin', {
+        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId/:coin',
+        views: {
+          'tab-send@tabs': {
+            controller: 'walletSelectorController',
+            templateUrl: 'views/walletSelector.html',
+          }
+        }
+      })
+      .state('tabs.send.destination', {
+        url: '/destination/:thirdParty/:amount/:fromWalletId',
+        views: {
+          'tab-send@tabs': {
+            controller: 'walletSelectorController',
+            templateUrl: 'views/walletSelector.html',
+          }
+        }
+      })
       .state('tabs.send.confirm', {
-        url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:coin/:useSendMax/:fromWalletId/:displayAddress/:requiredFeeRate',
+        url: '/confirm/:thirdParty/:amount/:fromWalletId/:toWalletId/:toAddress',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',
@@ -314,6 +342,19 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             templateUrl: 'views/addressbook.add.html',
             controller: 'addressbookAddController'
           }
+        }
+      })
+      .state('tabs.send.review', {
+        url: '/review/:thirdParty/:amount/:fromWalletId/:sendMax/:toAddress/:toWalletId',
+        views: {
+          'tab-send@tabs': {
+            controller: 'reviewController',
+            controllerAs: 'vm',
+            templateUrl: 'views/review.html'
+          }
+        },
+        params: {
+          paypro: null
         }
       })
 
@@ -695,16 +736,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.paymentRequest.amount', {
-        url: '/amount/:coin',
+        url: '/amount/:toWalletId',
         views: {
           'tab-receive@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
       })
       .state('tabs.paymentRequest.confirm', {
-        url: '/confirm/:amount/:currency/:coin',
+        url: '/confirm/:amount/:toWalletId',
         views: {
           'tab-receive@tabs': {
             controller: 'customAmountController',
@@ -845,6 +887,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -910,6 +953,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -968,7 +1012,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /* Shapeshift */
       .state('tabs.shapeshift', {
-        url: '/shapeshift',
+        url: '/shapeshift/:fromWalletId/:toWalletId',
         views: {
           'tab-home@tabs': {
             controller: 'shapeshiftController',
@@ -1029,6 +1073,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1081,6 +1126,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1137,6 +1183,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1264,7 +1311,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (screen.width < 768 && platformInfo.isCordova)
         screen.lockOrientation('portrait');
 
-      if (ionic.Platform.isAndroid() && StatusBar) {
+      if (ionic.Platform.isAndroid() && platformInfo.isCordova && StatusBar) {
         StatusBar.backgroundColorByHexString('#000000');
       }
 

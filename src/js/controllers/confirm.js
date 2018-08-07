@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -10,16 +10,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   // Config Related values
   var config = configService.getSync();
   var walletConfig = config.wallet;
-  var unitToSatoshi = walletConfig.settings.unitToSatoshi;
-  var unitDecimals = walletConfig.settings.unitDecimals;
-  var satToUnit = 1 / unitToSatoshi;
   var configFeeLevel = walletConfig.settings.feeLevel ? walletConfig.settings.feeLevel : 'normal';
 
-
   // Platform info
-  var isChromeApp = platformInfo.isChromeApp;
   var isCordova = platformInfo.isCordova;
-  var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
   //custom fee flag
   var usingCustomFee = false;
@@ -30,7 +24,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       $scope.$apply();
     }, 10);
   }
-
 
   $scope.showWalletSelector = function() {
     $scope.walletSelector = true;
@@ -44,7 +37,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   $scope.$on("$ionicView.enter", function(event, data) {
     $ionicConfig.views.swipeBackEnabled(false);
   });
-
 
   function exitWithError(err) {
     $log.info('Error setting wallet selector:' + err);
@@ -68,112 +60,108 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     });
   };
 
-  $scope.$on("$ionicView.beforeEnter", function(event, data) {
+  var setWalletSelector = function(coin, network, minAmount, cb) {
 
-    function setWalletSelector(coin, network, minAmount, cb) {
+    // no min amount? (sendMax) => look for no empty wallets
+    minAmount = minAmount || 1;
 
-      // no min amount? (sendMax) => look for no empty wallets
-      minAmount = minAmount || 1;
+    $scope.wallets = profileService.getWallets({
+      onlyComplete: true,
+      network: network,
+      coin: coin
+    });
 
-      $scope.wallets = profileService.getWallets({
-        onlyComplete: true,
-        network: network,
-        coin: coin
+    if (tx.fromWalletId) {
+      $scope.wallets = lodash.filter($scope.wallets, function (w) {
+        return w.id == tx.fromWalletId;
       });
-
-      if (tx.fromWalletId) {
-        $scope.wallets = lodash.filter($scope.wallets, function(w) {
-          return w.id == tx.fromWalletId;
-        });
-      }
-
-
-
-      if (!$scope.wallets || !$scope.wallets.length) {
-        setNoWallet(gettextCatalog.getString('No wallets available'), true);
-        return cb();
-      }
-
-      var filteredWallets = [];
-      var index = 0;
-      var walletsUpdated = 0;
-
-      lodash.each($scope.wallets, function(w) {
-        walletService.getStatus(w, {}, function(err, status) {
-          if (err || !status) {
-            $log.error(err);
-          } else {
-            walletsUpdated++;
-            w.status = status;
-
-            if (!status.availableBalanceSat)
-              $log.debug('No balance available in: ' + w.name);
-
-            if (status.availableBalanceSat > minAmount) {
-              filteredWallets.push(w);
-            }
-          }
-
-          if (++index == $scope.wallets.length) {
-            if (!walletsUpdated)
-              return cb('Could not update any wallet');
-
-            if (lodash.isEmpty(filteredWallets)) {
-              setNoWallet(gettextCatalog.getString('Insufficient confirmed funds'), true);
-            }
-            $scope.wallets = lodash.clone(filteredWallets);
-            return cb();
-          }
-        });
-      });
-    };
-
-    // Setup $scope
-
-    var B = data.stateParams.coin == 'bch' ? bitcoreCash : bitcore;
-    var networkName;
-    try {
-      networkName = (new B.Address(data.stateParams.toAddress)).network.name;
-    } catch(e) {
-      var message = gettextCatalog.getString('Invalid address');
-      var backText = gettextCatalog.getString('Go back');
-      var learnText = gettextCatalog.getString('Learn more');
-      popupService.showConfirm(null, message, backText, learnText, function(back) {
-        $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          historyRoot: true
-        });
-        $state.go('tabs.send').then(function() {
-          $ionicHistory.clearHistory();
-          if (!back) {
-            var url = 'https://support.bitpay.com/hc/en-us/articles/115004671663';
-            externalLinkService.open(url);
-          }
-        });
-      });
-      return;
     }
+
+
+    if (!$scope.wallets || !$scope.wallets.length) {
+      setNoWallet(gettextCatalog.getString('No wallets available'), true);
+      return cb();
+    }
+
+    var filteredWallets = [];
+    var index = 0;
+    var walletsUpdated = 0;
+
+    lodash.each($scope.wallets, function (w) {
+      walletService.getStatus(w, {}, function (err, status) {
+        if (err || !status) {
+          $log.error(err);
+        } else {
+          walletsUpdated++;
+          w.status = status;
+
+          if (!status.availableBalanceSat)
+            $log.debug('No balance available in: ' + w.name);
+
+          if (status.availableBalanceSat > minAmount) {
+            filteredWallets.push(w);
+          }
+        }
+
+        if (++index == $scope.wallets.length) {
+          if (!walletsUpdated)
+            return cb('Could not update any wallet');
+
+          if (lodash.isEmpty(filteredWallets)) {
+            setNoWallet(gettextCatalog.getString('Insufficient confirmed funds'), true);
+          }
+          $scope.wallets = lodash.clone(filteredWallets);
+          return cb();
+        }
+      });
+    });
+  };
+
+  $scope.getContacts = function(addr) {
+    addressbookService.list(function(err, ab) {
+      if (err) $log.error(err);
+
+      $scope.hasContacts = lodash.isEmpty(ab) ? false : true;
+      if (!$scope.hasContacts) return cb();
+
+      var completeContacts = [];
+      lodash.each(ab, function(v, k) {
+        completeContacts.push({
+          name: lodash.isObject(v) ? v.name : v,
+          address: k,
+          email: lodash.isObject(v) ? v.email : null,
+          recipientType: 'contact',
+          coin: v.coin,
+          displayCoin:  (v.coin == 'bch'
+              ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
+              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase()
+        });
+      });
+
+      return cb();
+    });
+  };
+
+  $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    $scope.fromWallet = profileService.getWallet(data.stateParams.fromWalletId); // Wallet to send from
+
 
     // Grab stateParams
     tx = {
-      toAmount: parseInt(data.stateParams.toAmount),
+      amount: parseInt(data.stateParams.amount),
       sendMax: data.stateParams.useSendMax == 'true' ? true : false,
       fromWalletId: data.stateParams.fromWalletId,
       toAddress: data.stateParams.toAddress,
-      displayAddress: data.stateParams.displayAddress,
-      description: data.stateParams.description,
-      paypro: data.stateParams.paypro,
-
       feeLevel: configFeeLevel,
       spendUnconfirmed: walletConfig.spendUnconfirmed,
 
       // Vanity tx info (not in the real tx)
-      recipientType: data.stateParams.recipientType || null,
-      toName: data.stateParams.toName,
-      toEmail: data.stateParams.toEmail,
-      toColor: data.stateParams.toColor,
-      network: networkName,
-      coin: data.stateParams.coin,
+      recipientType: $scope.recipientType || null,
+      toName: null,
+      toEmail: null,
+      toColor: null,
+      network: false,
+      coin: $scope.fromWallet.coin,
       txp: {},
     };
 
@@ -182,18 +170,71 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.feeRate = parseInt(data.stateParams.requiredFeeRate);
     }
 
-    if (tx.coin && tx.coin == 'bch') {
+    if (tx.coin && tx.coin === 'bch') {
       tx.feeLevel = 'normal';
     }
 
+    var B = data.stateParams.coin === 'bch' ? bitcoreCash : bitcore;
+    var networkName;
+    $scope.recipientType = null;
+    try {
+      if (data.stateParams.toWalletId) { // There is a toWalletId, so we presume this is a wallet-to-wallet transfer
+        $scope.recipientType = 'wallet'; // set transaction type to wallet-to-wallet
+        $ionicLoading.show();
+
+        var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+        tx.toColor = toWallet.color;
+        tx.toName = toWallet.name;
+
+        // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
+        walletService.getAddress(toWallet, true, function (err, addr) {
+          $ionicLoading.hide();
+          tx.toAddress = addr;
+          networkName = (new B.Address(tx.toAddress)).network.name;
+          tx.network = networkName;
+          setupTx(tx);
+        });
+      } else { // This is a Wallet-to-address transfer
+        networkName = (new B.Address(tx.toAddress)).network.name;
+        tx.network = networkName;
+        setupTx(tx);
+      }
+    } catch (e) {
+      var message = gettextCatalog.getString('Invalid address');
+      popupService.showAlert(null, message, function () {
+        $ionicHistory.nextViewOptions({
+          disableAnimate: true,
+          historyRoot: true
+        });
+        $state.go('tabs.send').then(function () {
+          $ionicHistory.clearHistory();
+        });
+      });
+      return;
+    }
+  });
+
+  var setupTx = function(tx) {
+    if (tx.coin === 'bch') {
+      tx.displayAddress = bitcoinCashJsService.readAddress(tx.toAddress).cashaddr;
+    } else {
+      tx.displayAddress = entry.address;
+    }
+
+    addressbookService.get(tx.coin+tx.toAddress, function(err, addr) { // Check if the recipient is a contact
+      if (!err && addr) {
+        tx.toName = addr.name;
+        tx.toEmail = addr.email;
+        tx.recipientType = 'contact';
+      }
+    });
+
     // Other Scope vars
     $scope.isCordova = isCordova;
-    $scope.isWindowsPhoneApp = isWindowsPhoneApp;
     $scope.showAddress = false;
-
     $scope.walletSelectorTitle = gettextCatalog.getString('Send from');
 
-    setWalletSelector(tx.coin, tx.network, tx.toAmount, function(err) {
+    setWalletSelector(tx.coin, tx.network, tx.amount, function(err) {
       if (err) {
         return exitWithError('Could not update wallets');
       }
@@ -207,7 +248,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     $scope.displayBalanceAsFiat = walletConfig.settings.priceDisplay === 'fiat';
 
-  });
+  };
 
 
   function getSendMaxInfo(tx, wallet, cb) {
@@ -231,7 +272,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return setSendError(msg);
     }
 
-    if (tx.toAmount > Number.MAX_SAFE_INTEGER) {
+    if (tx.amount > Number.MAX_SAFE_INTEGER) {
       var msg = gettextCatalog.getString('Amount too big');
       $log.warn(msg);
       return setSendError(msg);
@@ -241,7 +282,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
     txp.outputs = [{
       'toAddress': tx.toAddress,
-      'amount': tx.toAmount,
+      'amount': tx.amount,
       'message': tx.description
     }];
 
@@ -280,13 +321,13 @@ angular.module('copayApp.controllers').controller('confirmController', function(
     $scope.tx = tx;
 
     function updateAmount() {
-      if (!tx.toAmount) return;
+      if (!tx.amount) return;
 
       // Amount
-      tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.toAmount);
+      tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
-      txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
+      txFormatService.formatAlternativeStr(wallet.coin, tx.amount, function(v) {
         var parts = v.split(' ');
         tx.alternativeAmountStr = v;
         tx.alternativeAmountValueStr = parts[0];
@@ -342,7 +383,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
           }
 
           tx.sendMaxInfo = sendMaxInfo;
-          tx.toAmount = tx.sendMaxInfo.amount;
+          tx.amount = tx.sendMaxInfo.amount;
           updateAmount();
           ongoingProcess.set('calculatingFee', false);
           $timeout(function() {
@@ -393,7 +434,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   function useSelectedWallet() {
 
     if (!$scope.useSendMax) {
-      showAmount(tx.toAmount);
+      showAmount(tx.amount);
     }
 
     $scope.onWalletSelect($scope.wallet);
@@ -402,26 +443,25 @@ angular.module('copayApp.controllers').controller('confirmController', function(
   function setButtonText(isMultisig, isPayPro) {
 
     if (isPayPro) {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to pay');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to pay');
       }
     } else if (isMultisig) {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to accept');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to accept');
       }
     } else {
-      if (isCordova && !isWindowsPhoneApp) {
+      if (isCordova) {
         $scope.buttonText = gettextCatalog.getString('Slide to send');
       } else {
         $scope.buttonText = gettextCatalog.getString('Click to send');
       }
     }
   };
-
 
   $scope.toggleAddress = function() {
     $scope.showAddress = !$scope.showAddress;
