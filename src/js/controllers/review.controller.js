@@ -448,6 +448,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       vm.sendingTitle = gettextCatalog.getString('You are paying');
       vm.memo = vm.thirdParty.memo;
       vm.memoExpanded = !!vm.memo;
+      vm.destination.name = vm.thirdParty.name;
 
       txPayproData = {
         caTrusted: vm.thirdParty.caTrusted,

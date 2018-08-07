@@ -414,7 +414,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     
     var name = payProData.domain;
     if (paymentUrl.indexOf('https://bitpay.com') > -1) {
-      name = 'bitpay';
+      name = 'BitPay';
     }
 
     var thirdPartyData = {
