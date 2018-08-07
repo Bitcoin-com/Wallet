@@ -492,6 +492,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
               $ionicLoading.hide();
               popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
             } else {
+              vm.memoExpanded = !!vm.memo;
               vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
               tx.toAddress = shapeshiftData.toAddress;
               vm.destination.address = toAddress;
