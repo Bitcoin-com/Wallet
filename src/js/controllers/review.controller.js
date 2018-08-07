@@ -78,6 +78,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     originWalletId = data.stateParams.fromWalletId;
     satoshis = parseInt(data.stateParams.amount, 10);
     toAddress = data.stateParams.toAddress;
+    destinationWalletId = data.stateParams.toWalletId;
     
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
@@ -257,7 +258,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     try {
       if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
         $ionicLoading.show();
-        var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+        var toWallet = profileService.getWallet(destinationWalletId);
 
         // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
         console.log('Getting address for wallet...');
@@ -468,7 +469,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         vm.thirdParty.data = {};
       }
 
-      var toWallet = profileService.getWallet(data.stateParams.toWalletId);
+      var toWallet = profileService.getWallet(destinationWalletId);
       $ionicLoading.show();
       walletService.getAddress(vm.originWallet, false, function onWalletAddress(err, returnAddr) {
         walletService.getAddress(toWallet, false, function onWalletAddress(err, withdrawalAddr) {
