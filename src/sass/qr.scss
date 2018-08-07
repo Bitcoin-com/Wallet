@@ -1,0 +1,21 @@
+qrcode {
+  position: relative;
+  &.qr-overlay {
+    &::before {
+      content: "";
+      background-size: 100% 100%;
+      display: block;
+      left: 88px;
+      margin-top: 88px;
+      width: 44px;
+      height: 44px;
+      position:absolute;
+    }
+    &--bch::before {
+      background-image: url('../img/qr-overlay-bch.png');
+    }
+    &--btc::before {
+      background-image: url('../img/qr-overlay-btc.png');
+    }
+  }
+}

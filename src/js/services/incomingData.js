@@ -228,10 +228,12 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     } else if (/^https?:\/\//.test(data)) {
       payproService.getPayProDetails(data, coin, function(err, details) {
         if (err) {
-          root.showMenu({
-            data: data,
-            type: 'url'
-          });
+          if ($state.includes('tabs.scan')) {
+            root.showMenu({
+              data: data,
+              type: 'url'
+            });
+          }
           return;
         }
         handlePayPro(details);

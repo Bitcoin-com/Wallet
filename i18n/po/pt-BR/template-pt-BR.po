@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt\n"
-"PO-Revision-Date: 2018-05-15 20:18-0400\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Conta"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Número de conta"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Transações instantâneas com taxas baixas"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -433,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "Comprar &amp; Vender Bitcoin"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "Comprar Bitcoin"
 
@@ -615,9 +620,13 @@ msgstr "A conectar ao Glidera..."
 msgid "Connection reset by peer"
 msgstr "Ligação redefinida pelo mesmo nível"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "Contactos"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "Salvou os endereços usados com frequência"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -819,7 +828,7 @@ msgstr "Criar carteira partilhada"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "Criar carteira bitcoin"
 
@@ -2529,6 +2538,14 @@ msgstr "Procurar transações"
 msgid "Search or enter bitcoin address"
 msgstr "Procure ou digite o endereço bitcoin"
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "Área de transferência"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "A sua área de transferência está vazia"
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr "Procurar transações"
@@ -2587,8 +2604,69 @@ msgid "Send by email"
 msgstr "Enviar por E-mail"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "Enviar De"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "Enviar para"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "Colar na área de trabalho"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "Colar endereço"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "Transferência de carteira para carteira"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "Digitalizar o código QR"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Envie Bitcoin mais rápido!"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Envie Bitcoin mais rápido!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Salvar endereços usados com frequência e enviar Bitcoin com apenas um toque"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "Adicionar o seu primeiro contato"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "Sua carteira de Bitcoin está vazia"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "Para começar, compre Bitcoin Cash (BCH) ou Bitcoin Core (BTC) ou compartilhe o seu endereço."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "Você pode receber bitcoin de qualquer carteira ou serviço."
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "Para começar, você precisa criar uma carteira de bitcoins e obter alguns bitcoins."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "Compre Bitcoin agora"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "Mostrar meu endereço"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -3026,7 +3104,7 @@ msgstr "Para começar, compre bitcoins ou compartilhe seu endereço. Você pode 
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "Para começar, você precisa criar uma carteira de bitcoins e obter alguns bitcoins."
+msgstr "Para começar, você precisará criar uma carteira e obter algum bitcoin."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
@@ -3631,4 +3709,52 @@ msgstr "Transações de {{updatingTxHistoryProgress}} transferidas"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-de-{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "Comunidade"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Twitter Bitcoin.com"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Explore Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Jogos Bitcoin Cash"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "Notícias"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "Pool de mineração"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "Ferramentas"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Gráficos de preço do Bitcoin"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "Bitcoin Cash grátis"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "As suas carteiras de Bitcoin estão prontas!"
 

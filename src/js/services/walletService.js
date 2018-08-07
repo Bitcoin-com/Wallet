@@ -343,21 +343,19 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       if (err) return cb(err);
 
       if (!txsFromServer.length)
-        return cb();
+        return cb(null, []);
 
-      var res = lodash.takeWhile(txsFromServer, function(tx) {
-        return tx.txid != endingTxid;
-      });
-
-      return cb(null, res, res.length >= limit);
+      return cb(null, txsFromServer);
     });
   };
 
   var removeAndMarkSoftConfirmedTx = function(txs) {
     return lodash.filter(txs, function(tx) {
-      if (tx.confirmations >= root.SOFT_CONFIRMATION_LIMIT)
-        return tx;
-      tx.recent = true;
+      var isConfirm = (tx.confirmations >= root.SOFT_CONFIRMATION_LIMIT);
+      if (!isConfirm) {
+        tx.recent = true;
+      }
+      return isConfirm;
     });
   }
 
@@ -437,12 +435,14 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       var endingTxid = confirmedTxs[0] ? confirmedTxs[0].txid : null;
       var endingTs = confirmedTxs[0] ? confirmedTxs[0].time : null;
 
+      $log.debug('Confirmed TXs. Got:' + confirmedTxs.length + '/' + txsFromLocal.length);
+
       // First update
       progressFn(txsFromLocal, 0);
       wallet.completeHistory = txsFromLocal;
 
       function getNewTxs(newTxs, skip, next) {
-        getTxsFromServer(wallet, skip, endingTxid, requestLimit, function(err, res, shouldContinue) {
+        getTxsFromServer(wallet, skip, endingTxid, requestLimit, function(err, res) {
           if (err) {
             $log.warn(bwcError.msg(err, 'Server Error')); //TODO
             if (err instanceof errors.CONNECTION_ERROR || (err.message && err.message.match(/5../))) {
@@ -454,7 +454,22 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             return next(err);
           }
 
-          newTxs = newTxs.concat(processNewTxs(wallet, lodash.compact(res)));
+          // Check if new txs are founds, if yes, lets investigate in the 50 next
+          // To be sure we are not missing txs by sorting (maybe a new tx is after the "endingTxid"
+          var newDiscoveredTxs = res.filter(function (x) {
+            return confirmedTxs.filter(function (confX) {
+              return confX.txid == x.txid;
+            }).length == 0;
+          });
+
+          $log.debug('Discovering TXs. Got:' + newDiscoveredTxs.length);
+
+          var shouldContinue = newDiscoveredTxs.length > 0;
+
+          // If no new tx, no need to check
+          if (shouldContinue) {
+            newTxs = newTxs.concat(processNewTxs(wallet, lodash.compact(newDiscoveredTxs)));
+          }
 
           progressFn(newTxs.concat(txsFromLocal), newTxs.length);
 

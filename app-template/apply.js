@@ -11,7 +11,10 @@ var templates = {
   'ionic.config.json': '/',
   '.desktop': 'webkitbuilds/',
   'setup-win.iss': 'webkitbuilds/',
-  'build-macos.sh': 'webkitbuilds/',
+  'create-dmg-dist.sh': 'webkitbuilds/',
+  'create-others-dist.sh': 'webkitbuilds/',
+  'create-pkg-dist.sh': 'webkitbuilds/',
+  'sign-desktop-dist.sh': 'webkitbuilds/',
   'manifest.json': 'chrome-app/',
   //  'bower.json': '/',
 };

@@ -795,63 +795,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           fromOnboarding: null
         },
       })
-
-      /*
-       *
-       * Feedback
-       *
-       */
-
-      .state('tabs.feedback', {
-        url: '/feedback',
-        views: {
-          'tab-settings@tabs': {
-            templateUrl: 'views/feedback/send.html',
-            controller: 'sendController'
-          }
-        }
-      })
       .state('tabs.shareApp', {
-        url: '/shareApp/:score/:skipped/:fromSettings',
+        url: '/shareApp',
         views: {
           'tab-settings@tabs': {
-            controller: 'completeController',
-            templateUrl: 'views/feedback/complete.html'
+            controller: 'shareAppController',
+            templateUrl: 'views/shareApp.html'
           }
         }
       })
-      .state('tabs.rate', {
-        url: '/rate',
-        abstract: true
-      })
-      .state('tabs.rate.send', {
-        url: '/send/:score',
-        views: {
-          'tab-home@tabs': {
-            templateUrl: 'views/feedback/send.html',
-            controller: 'sendController'
-          }
-        }
-      })
-      .state('tabs.rate.complete', {
-        url: '/complete/:score/:skipped',
-        views: {
-          'tab-home@tabs': {
-            controller: 'completeController',
-            templateUrl: 'views/feedback/complete.html'
-          }
-        }
-      })
-      .state('tabs.rate.rateApp', {
-        url: '/rateApp/:score',
-        views: {
-          'tab-home@tabs': {
-            controller: 'rateAppController',
-            templateUrl: 'views/feedback/rateApp.html'
-          }
-        }
-      })
-
       /*
        *
        * Buy or Sell Bitcoin
@@ -1211,7 +1163,68 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
   .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
+
+      // Init BitAnalytics
+      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+      window.BitAnalytics.initialize(os, $window.fullVersion, {"firebase": {}, 
+        "ga": {
+          "trackingId": "UA-59964190-23",
+          "eventLabels": ["id", "icon-off"]
+        },
+        "adjust": {
+          "token": "au1onbhgg5q8",
+          "environment" : "production",
+          "eventTypes": {
+            "banner_click": "sc5i8u",
+            "buy_bitcoin_click": "t1vcdz",
+            "transfer_success": "f68evo",
+            "wallet_created": "nd3dg5",
+            "wallet_opened": "4n39l7"
+          }
+        }
+      });
+
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
       
+      // Send a log to test
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'banner_click', 
+        class: 'track_banner_click', 
+        params: ['href-banner', 'id'], 
+        channels: [channel, 'adjust']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBanner);
+
+      var actionBuyBitcoin = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_click', 
+        class: 'track_buy_bitcoin_click', 
+        params: ['href', 'id'], 
+        channels: [channel, 'adjust']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoin);
+
+      var actionLinkClickOut = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'link_click_out', 
+        class: 'track_link_click_out', 
+        params: ['href', 'id'], 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionLinkClickOut);
+
+      var actionTabOpen = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'tab_open', 
+        class: 'track_tab_open', 
+        params: ['href', 'title', 'icon-off'], 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
+
       // Init language
       uxLanguage.init(function (lang) {
 
@@ -1381,8 +1394,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       win.menu = nativeMenuBar;
     }
-
+    
     $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      if (document.body.classList.contains('keyboard-open')) {
+        document.body.classList.remove('keyboard-open');
+        $log.debug('Prevented keyboard open bug..');
+      }
+
       $log.debug('Route change from:', fromState.name || '-', ' to:', toState.name);
       $log.debug('            toParams:' + JSON.stringify(toParams || {}));
       $log.debug('            fromParams:' + JSON.stringify(fromParams || {}));

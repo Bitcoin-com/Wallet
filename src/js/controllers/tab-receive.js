@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService, soundService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -13,6 +13,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   var currentAddressSocket = {};
   var paymentSubscriptionObj = { op:"addr_sub" }
 
+  var config;
+
   $scope.displayBalanceAsFiat = true;
 
   $scope.requestSpecificAmount = function() {
@@ -22,7 +24,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     });
   };
 
-  $scope.setAddress = function(newAddr) {
+  $scope.setAddress = function(newAddr, copyAddress) {
     $scope.addr = null;
     if (!$scope.wallet || $scope.generatingAddress || !$scope.wallet.isComplete()) return;
     $scope.generatingAddress = true;
@@ -56,6 +58,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           paymentSubscriptionObj.addr = $scope.addr
       }
 
+      if (copyAddress === true) {
+        try {
+          clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
+        } catch (error) {
+          $log.debug("Error copying to clipboard:");
+          $log.debug(error);
+        }
+      }
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
       currentAddressSocket.onopen = function (event) {
@@ -125,9 +135,30 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       for (var i = 0; i < data.x.out.length; i++) {
         if (data.x.out[i].addr == watchAddress) {
           $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
+          $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
+          txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
+            if (alternativeStr) {
+              $scope.paymentReceivedAlternativeAmount = alternativeStr;
+            }
+          });
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
+
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "incoming"
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      if ($state.current.name === "tabs.receive") {
+        soundService.play('misc/payment_received.mp3');
+      } 
+
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
@@ -215,12 +246,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       })
     ];
 
-    configService.whenAvailable(function(config) {
-      $scope.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
+    configService.whenAvailable(function(_config) {
+      $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
+      config = _config;
     });
   });
 
   $scope.$on("$ionicView.enter", function(event, data) {
+    $scope.showingPaymentReceived = false;
     $ionicNavBarDelegate.showBar(true);
   });
 

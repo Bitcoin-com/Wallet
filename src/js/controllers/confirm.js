@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -287,7 +287,10 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       tx.amountValueStr = tx.amountStr.split(' ')[0];
       tx.amountUnitStr = tx.amountStr.split(' ')[1];
       txFormatService.formatAlternativeStr(wallet.coin, tx.toAmount, function(v) {
+        var parts = v.split(' ');
         tx.alternativeAmountStr = v;
+        tx.alternativeAmountValueStr = parts[0];
+        tx.alternativeAmountUnitStr = (parts.length > 0) ? parts[1] : '';
       });
     }
 
@@ -426,6 +429,8 @@ angular.module('copayApp.controllers').controller('confirmController', function(
 
 
   function showSendMaxWarning(wallet, sendMaxInfo) {
+    var feeAlternative = '',
+      msg = '';
 
     function verifyExcludedUtxos() {
       var warningMsg = [];
@@ -443,9 +448,18 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       return warningMsg.join('\n');
     };
 
-    var msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees.", {
-      fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
-    });
+    feeAlternative = txFormatService.formatAlternativeStr(wallet.coin, sendMaxInfo.fee);
+    if (feeAlternative) {
+      msg = gettextCatalog.getString("{{feeAlternative}} will be deducted for bitcoin networking fees ({{fee}}).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee),
+        feeAlternative: feeAlternative
+      });
+    } else {
+      msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
+        fee: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.fee)
+      });
+    }
+
     var warningMsg = verifyExcludedUtxos();
 
     if (!lodash.isEmpty(warningMsg))
@@ -624,10 +638,24 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         (processName == 'sendingTx' && !$scope.wallet.canSign() && !$scope.wallet.isPrivKeyExternal())
       ) && !isOn) {
       $scope.sendStatus = 'success';
-      if (config.soundsEnabled && $scope.wallet.coin == 'bch') {
-        var audio = new Audio('misc/bch_sent.mp3');
-        audio.play();
+
+      if ($state.current.name === "tabs.send.confirm") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
+        soundService.play('misc/payment_sent.mp3');
       }
+      
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "outgoing",
+        "amount": $scope.amount,
+        "fees": $scope.fee
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      // Should be removed
       firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();

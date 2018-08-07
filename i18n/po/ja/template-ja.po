@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2018-05-15 20:18-0400\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "ポケット"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "ポケット番号"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "僅かな手数料で即時決済"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -402,7 +406,7 @@ msgstr "ビットコインは世界で<br>最も安全な仮想通貨。"
 
 #: www/views/preferencesFee.html:11
 msgid "Bitcoin transactions include a fee collected by miners on the network."
-msgstr "ビットコインの取引はネットワークの安全を守る「採掘者」と呼ばれる者達に送る手数料が含まれます。"
+msgstr "ビットコインの取引はネットワークの安全を守る「採掘者」と呼ばれる方達に送る手数料が含まれます。"
 
 #: www/views/buyAmazon.html:108
 msgid "Bought {{amountUnitStr}}"
@@ -435,6 +439,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "ビットコインの購入&amp;売却"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "ビットコインを購入"
 
@@ -617,9 +622,13 @@ msgstr "Glidera に接続中…"
 msgid "Connection reset by peer"
 msgstr "接続がピアによってリセットされました"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "連絡先"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "よく使う保存済みのアドレス"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -631,7 +640,7 @@ msgstr "翻訳に協力"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
+msgstr "のビットコインキャッシュはビットコインと完全に異なる別通貨なので、アドレスの頭文字が異なります。"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
@@ -821,7 +830,7 @@ msgstr "共有ウォレットを作成"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "ビットコインウォレット作成"
 
@@ -991,7 +1000,7 @@ msgstr "プッシュ通知を有効化"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr "音を有効にする"
+msgstr "サウンドを有効にする"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -1344,7 +1353,7 @@ msgstr "始めよう"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr "初めての連絡先を追加しましょう。"
+msgstr "連絡先を追加しましょう。"
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
@@ -1869,7 +1878,7 @@ msgstr "バックアップは非常に重要です！"
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
-msgstr "連絡先が無い"
+msgstr "連絡先はありません"
 
 #: www/views/preferencesLogs.html:16
 msgid "No entries for this log level"
@@ -2002,7 +2011,7 @@ msgstr "今一度周りの環境をよく見てみましょう。隠しカメラ
 #: src/js/services/popupService.js:72
 #: www/views/modals/chooseFeeLevel.html:6
 msgid "OK"
-msgstr "わかりました"
+msgstr "OK"
 
 #: www/views/modals/tx-status.html:12
 #: www/views/modals/tx-status.html:24
@@ -2225,7 +2234,7 @@ msgstr "正しい順序で各単語をタップしてください。"
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
-msgstr "この操作を実行するにはCopayを最新バージョンに更新してください"
+msgstr "この操作を実行するにはを最新バージョンに更新してください"
 
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62
@@ -2531,6 +2540,14 @@ msgstr "取引を検索"
 msgid "Search or enter bitcoin address"
 msgstr "連絡先検索かビットコインアドレスを指定"
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "クリップボード"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "クリップボードは空です"
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr "取引を検索"
@@ -2589,8 +2606,69 @@ msgid "Send by email"
 msgstr "メールで送信"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "ここから送金"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "送金先:"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "クリップボードからペースト"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "アドレスをペースト"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "ウォレット間送金"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "QRコードを読み取る"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "ビットコイン送金をより高速に！"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "ビットコイン送金をより高速に！"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "よく使うアドレスを保存すればワンタップでビットコインを送金できます"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "最初の連絡先を追加"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "ビットコインウォレットが空です"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "始めるには、Bitcoin Cash (BCH) または Bitcoin Core (BTC) を購入するか、あなたのアドレスを共有してください。"
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "どのウォレットやサービスからでもビットコインを受け取ることができます。"
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "はじめに、ビットコインウォレットを作成し、ビットコインを入手する必要があります。"
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "今すぐビットコインを購入"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "自分のアドレスを表示"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -3446,7 +3524,7 @@ msgstr "送金発生時のメール通知はどのメールアドレスで受け
 
 #: www/views/addresses.html:19
 msgid "Why?"
-msgstr "なぜ？"
+msgstr "なぜですか？"
 
 #: www/views/feedback/rateApp.html:10
 msgid "Would you be willing to rate {{appName}} in the app store?"
@@ -3637,4 +3715,52 @@ msgstr "{{updatingTxHistoryProgress}} 個の取引ダウンロード済み"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}} の{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "コミュニティ"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Bitcoin.com Twitter"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Bitcoin.com を参照"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Bitcoin Cash ゲーム"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "ニュース"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "マイニングプール"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "ツール"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "ビットコインの価格チャート"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "無料 Bitcoin Cash"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "ビットコインウォレットが完成しました！"
 

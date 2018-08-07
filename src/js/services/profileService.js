@@ -427,6 +427,15 @@ angular.module('copayApp.services')
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
 
+            var channel = "firebase";
+            if (platformInfo.isNW) {
+              channel = "ga";
+            }
+            var log = new window.BitAnalytics.LogEvent("wallet_created", [{
+              "coin": opts.coin
+            }], [channel]);
+            window.BitAnalytics.LogEventHandlers.postEvent(log);
+
             return cb(null, walletClient, secret);
           });
         });
@@ -706,7 +715,7 @@ angular.module('copayApp.services')
       configService.get(function(err) {
         if (err) $log.debug(err);
 
-        var p = Profile.create();
+        var p = Profile.create(appConfigService.version);
         storageService.storeNewProfile(p, function(err) {
           if (err) return cb(err);
           root.bindProfile(p, function(err) {

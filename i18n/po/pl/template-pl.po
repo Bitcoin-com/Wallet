@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"PO-Revision-Date: 2018-05-08 00:44-0400\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Konto"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Numer konta"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Natychmiastowe transakcje z niskimi prowizjami"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -359,12 +363,12 @@ msgstr "Adres bitcoin"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr ""
+msgstr "Salda Bitcoin Cash (BCH)"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr ""
+msgstr "Wsparcie Bitcoin Cash"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
@@ -380,7 +384,7 @@ msgstr "Polityka prowizji sieci bitcoin"
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr ""
+msgstr "Portfele Bitcoin Core"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
@@ -433,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "Kup &amp; sprzedaj bitcoiny"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "Kup bitcoiny"
 
@@ -615,9 +620,13 @@ msgstr "Łączenie z Gildera..."
 msgid "Connection reset by peer"
 msgstr "Połączenie zostało zresetowane"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "Kontakty"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "Zapisane często używane adresy"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -819,7 +828,7 @@ msgstr "Utwórz współdzielony portfel"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "Utwórz portfel bitcoin"
 
@@ -973,7 +982,7 @@ msgstr "Puste adresy osiągnęły limit. Nowe adresy nie mogą być generowane."
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr ""
+msgstr "Włącz tworzenie i obsługę portfela Bitcoin Cash w aplikacji."
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
@@ -989,7 +998,7 @@ msgstr "Włącz powiadomienia"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr ""
+msgstr "Włącz dźwięk"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -997,7 +1006,7 @@ msgstr "Włącz kamerę aby rozpocząć."
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr ""
+msgstr "Włączono"
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
@@ -1582,7 +1591,7 @@ msgstr "Nieprawidłowy adres"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr ""
+msgstr "Niewystarczające potwierdzone środki"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -1927,7 +1936,7 @@ msgstr "Nie BIP44 portfel"
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr ""
+msgstr "Niewspierane portfele BTC"
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
@@ -2000,7 +2009,7 @@ msgstr "Nadszedł czas, aby sprawdzić swoje otoczenie. Czy jesteś w pobliżu o
 #: src/js/services/popupService.js:72
 #: www/views/modals/chooseFeeLevel.html:6
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: www/views/modals/tx-status.html:12
 #: www/views/modals/tx-status.html:24
@@ -2019,7 +2028,7 @@ msgstr "O nie!"
 
 #: src/js/controllers/buyMercadoLibre.js:306
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: www/views/tab-home.html:39
 msgid "On this screen you can see all your wallets, accounts, and assets."
@@ -2049,7 +2058,7 @@ msgstr "Otwórz projekt GitHub"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr ""
+msgstr "Otwórz Explorer"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -2065,7 +2074,7 @@ msgstr "Otwórz stronę internetową"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr ""
+msgstr "Otworzyć bitcoincash.org?"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
@@ -2236,7 +2245,7 @@ msgstr "Proszę wybrać plik kopii zapasowej"
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr ""
+msgstr "Wstrzymanie przedautoryzacyjne"
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
@@ -2349,7 +2358,7 @@ msgstr "Otrzymaj"
 
 #: www/views/customAmount.html:44
 msgid "Receive in"
-msgstr ""
+msgstr "Otrzymaj w"
 
 #: www/views/includes/walletHistory.html:24
 #: www/views/tx-details.html:18
@@ -2507,7 +2516,7 @@ msgstr "Proszę zeskanować linie papilarne"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr ""
+msgstr "Skanuj portfele w poszukiwaniu Bitcoin Cash"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
@@ -2528,6 +2537,14 @@ msgstr "Szukaj transakcji"
 #: www/views/tab-send.html:13
 msgid "Search or enter bitcoin address"
 msgstr "Wyszukaj lub wpisz adres bitcoin"
+
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "Schowek"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "Schowek jest pusty"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
@@ -2587,8 +2604,69 @@ msgid "Send by email"
 msgstr "Wyślij przez e-mail"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "Wyślij z"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "Wyślij do"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "Wklej ze schowka"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "Wklej adres"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "Transfer z portfela do portfela"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "Zeskanuj kod QR"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Przesyłaj Bitcoiny szybciej!"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Przesyłaj Bitcoiny szybciej!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Zapisz często używane adresy i wyślij im Bitcoin za pomocą jednego dotknięcia"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "Dodaj swój pierwszy kontakt"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "Twój portfel jest pusty"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "Aby zacząć, kup Bitcoin Cash (BCH) lub Bitcoin Core (BTC), albo udostępnij swój adres."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "Bitcoiny można odbierać z dowolnego portfela lub usługi."
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "Aby rozpocząć należy utworzyć portfel i dostać trochę bitcoinów."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "Kup Bitcoin teraz"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "Pokaż mój adres"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -2760,7 +2838,7 @@ msgstr "Przesuń, aby wysłać"
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr ""
+msgstr "Niektóre z twoich portfeli nie kwalifikują się do wsparcia Bitcoin Cash. Dostęp do środków BCH z tych portfeli można spróbować uzyskać, korzystając z"
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
@@ -2781,7 +2859,7 @@ msgstr "Wymagane hasło wypłat"
 
 #: www/views/walletDetails.html:173
 msgid "Spending this balance will need significant Bitcoin network fees"
-msgstr ""
+msgstr "Wydanie tego salda będzie wymagało znacznych opłat sieciowych Bitcoin"
 
 #: www/views/tab-send.html:28
 msgid "Start sending bitcoin"
@@ -2806,7 +2884,7 @@ msgstr "Super Ekonomiczna"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr ""
+msgstr "Wsparcie Bitcoin Cash"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
@@ -2856,7 +2934,7 @@ msgstr "Warunki użytkowania"
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
 msgid "Testnet"
-msgstr ""
+msgstr "Testnet"
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
@@ -2995,7 +3073,7 @@ msgstr "Ta kluczowa fraza został utworzona przy użyciu hasła. Aby odzyskać p
 
 #: www/views/tx-details.html:91
 msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
-msgstr ""
+msgstr "Ta kwota transakcji jest zbyt mała w porównaniu z obecnymi opłatami sieci Bitcoin. Wydanie tych środków będzie wymagało opłaty sieciowej Bitcoin, która jest porównywalna do kosztów samych funduszy."
 
 #: www/views/tx-details.html:87
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
@@ -3030,15 +3108,15 @@ msgstr "Aby rozpocząć należy utworzyć portfel i dostać trochę bitcoinów."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
-msgstr ""
+msgstr "Aby móc wykonać czynność {{reason}}, musisz przedtem dodać swoje konto BitPay – {{email}}"
 
 #: src/js/services/onGoingProcess.js:48
 msgid "Top up in progress..."
-msgstr ""
+msgstr "Doładowanie w trakcie..."
 
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
-msgstr ""
+msgstr "Doładuj o {{amountStr}} kartę debetową ({{cardLastNumber}})"
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3057,7 +3135,7 @@ msgstr "Liczba współwłaścicieli portfela"
 
 #: www/views/addresses.html:81
 msgid "Total wallet inputs"
-msgstr ""
+msgstr "Dane wejściowe portfela łącznie"
 
 #: src/js/services/fingerprintService.js:63
 #: src/js/services/fingerprintService.js:68
@@ -3196,7 +3274,7 @@ msgstr "Zobacz zasady użytkowania"
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr ""
+msgstr "Zobacz transakcję na Explorer.Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
@@ -3208,7 +3286,7 @@ msgstr "Zobacz na blockchainie"
 
 #: www/views/mercadoLibre.html:26
 msgid "Visit mercadolivre.com.br &rarr;"
-msgstr ""
+msgstr "Odwiedź mercadolivre.com.br &rarr;"
 
 #: www/views/walletDetails.html:182
 msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
@@ -3270,7 +3348,7 @@ msgstr "Informacje o portfelu"
 
 #: www/views/addresses.html:76
 msgid "Wallet Inputs"
-msgstr ""
+msgstr "Dane wejściowe portfela"
 
 #: www/views/join.html:26
 msgid "Wallet Invitation"
@@ -3324,7 +3402,7 @@ msgstr "Portfel już istnieje"
 
 #: src/js/services/profileService.js:516
 msgid "Wallet already in {{appName}}"
-msgstr ""
+msgstr "Portfel już w aplikacji {{appName}}"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
@@ -3504,7 +3582,7 @@ msgstr "Nie należy ustawiać opłatę wyższą niż {{maxFeeRecommended}} satos
 
 #: www/views/modals/bitpay-card-confirmation.html:5
 msgid "You will need to log back for fill in your BitPay Card."
-msgstr ""
+msgstr "Musisz zalogować się ponownie, aby wypełnić swoją kartę BitPay."
 
 #: www/views/preferencesNotifications.html:34
 msgid "You'll receive email notifications about payments sent and received from your wallets."
@@ -3576,7 +3654,7 @@ msgstr "[Balans ukryty]"
 #: www/views/walletDetails.html:141
 #: www/views/walletDetails.html:61
 msgid "[Scanning Funds]"
-msgstr ""
+msgstr "[Skanowanie środków]"
 
 #: src/js/controllers/bitpayCardIntro.js:11
 msgid "add your BitPay Visa card(s)"
@@ -3608,7 +3686,7 @@ msgstr "{{amountStr}} dla karty upominkowej Amazon.com"
 
 #: src/js/controllers/buyMercadoLibre.js:237
 msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
-msgstr ""
+msgstr "{{amountStr}} na karcie podarunkowej Mercado Livre Brazil"
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
@@ -3620,7 +3698,7 @@ msgstr "{{fee}} zostanie potrącone jako prowizja sieci bitcoin."
 
 #: www/views/confirm.html:85
 msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
-msgstr ""
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}} wysyłanej kwoty"
 
 #: www/views/walletDetails.html:218
 msgid "{{updatingTxHistoryProgress}} transactions downloaded"
@@ -3631,4 +3709,52 @@ msgstr "{{updatingTxHistoryProgress}} transakcje pobrane"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-z-{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "Społeczność"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Reddit Bitcoin Cash"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Twitter Bitcoin.com"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Poznaj Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Gry Bitcoin Cash"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "Aktualności"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "Pula kopalni"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "Narzędzia"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Wykresy kursu Bitcoin"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "Darmowa Bitcoin Cash"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "Twoje portfele Bitcoin są gotowe!"
 
