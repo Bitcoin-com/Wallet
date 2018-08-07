@@ -397,6 +397,8 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
 
   function handlePayPro(payProData, coin) {
 
+    console.log(payProData);
+
     var toAddr = payProData.toAddress;
     var amount = payProData.amount;
     var paymentUrl = payProData.url;
@@ -413,7 +415,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     }
     
     var name = payProData.domain;
-    if (paymentUrl.indexOf('https://bitpay.com') > -1) {
+    
+    if (payProData.memo.indexOf('eGifter') > -1) {
+      name = 'eGifter'
+    } else if (paymentUrl.indexOf('https://bitpay.com') > -1) {
       name = 'BitPay';
     }
 
