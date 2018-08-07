@@ -400,7 +400,8 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     var toAddr = payProData.toAddress;
     var amount = payProData.amount;
     var paymentUrl = payProData.url;
-    var expires = payProData.expires
+    var expires = payProData.expires;
+    var time = payProData.time;
 
     if (coin === 'bch') {
       var displayAddr = payProData.outputs[0].address;
@@ -408,6 +409,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       amount = payProData.outputs[0].amount;
       paymentUrl = payProData.paymentUrl;
       expires = Math.floor(new Date(expires).getTime() / 1000)
+      time = Math.ceil(new Date(time).getTime() / 1000)
     }
     
     var name = payProData.domain;
@@ -426,7 +428,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       network: 'livenet',
       requiredFeeRate: payProData.requiredFeeRate,
       selfSigned: 0,
-      time: Math.ceil(new Date(payProData.time).getTime() / 1000),
+      time: time,
       displayAddress: displayAddr,
       toAddress: toAddr,
       url: paymentUrl,
