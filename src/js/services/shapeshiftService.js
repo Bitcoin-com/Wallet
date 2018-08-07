@@ -8,21 +8,6 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
   root.returnAddress = '';
   root.amount = '';
   root.marketData = {};
-  root.withdrawalAddress = function (address) {
-    root.withdrawalAddress = address;
-  };
-  root.returnAddress = function (address) {
-    root.returnAddress = address;
-  };
-  root.amount = function (amount) {
-    root.amount = amount;
-  };
-  root.coinIn = function (coinIn) {
-    root.coinIn = coinIn.toUpperCase();
-  };
-  root.coinOut = function (coinOut) {
-    root.coinOut = coinOut.toUpperCase();
-  };
 
   root.getMarketDataIn = function (coin) {
     if (coin === root.coinOut) return root.getMarketData(root.coinOut, root.coinIn);
@@ -66,8 +51,10 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
 
   root.shiftIt = function (coinIn, coinOut, withdrawalAddress, returnAddress, cb) {
     ongoingProcess.set('connectingShapeshift', true);
-    root.withdrawalAddress(withdrawalAddress);
-    root.returnAddress(returnAddress);
+    root.withdrawalAddress = withdrawalAddress;
+    root.returnAddress = returnAddress;
+    root.coinIn = coinIn;
+    root.coinOut = coinOut;
     var validate = shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut);
     validate.then(function (valid) {
       var tx = ShapeShift();
