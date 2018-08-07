@@ -659,6 +659,46 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // });
   }
 
+  function showSendMaxWarning(wallet, sendMaxInfo) {
+    var feeAlternative = '',
+      msg = '';
+
+    function verifyExcludedUtxos() {
+      var warningMsg = [];
+      if (sendMaxInfo.utxosBelowFee > 0) {
+        warningMsg.push(gettextCatalog.getString("A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided.", {
+          amountBelowFeeStr: txFormatService.formatAmountStr(wallet.coin, sendMaxInfo.amountBelowFee)
+        }));
+      }
+
+      if (sendMaxInfo.utxosAboveMaxSize > 0) {
+        warningMsg.push(gettextCatalog.getString("A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded.", {
+          amountAboveMaxSizeStr: txFormatService.formatAmountStr(vm.originWallet.coin, sendMaxInfo.amountAboveMaxSize)
+        }));
+      }
+      return warningMsg.join('\n');
+    };
+
+    feeAlternative = txFormatService.formatAlternativeStr(vm.originWallet.coin, sendMaxInfo.fee);
+    if (feeAlternative) {
+      msg = gettextCatalog.getString("{{feeAlternative}} will be deducted for bitcoin networking fees ({{fee}}).", {
+        fee: txFormatService.formatAmountStr(vm.originWallet.coin, sendMaxInfo.fee),
+        feeAlternative: feeAlternative
+      });
+    } else {
+      msg = gettextCatalog.getString("{{fee}} will be deducted for bitcoin networking fees).", {
+        fee: txFormatService.formatAmountStr(vm.originWallet.coin, sendMaxInfo.fee)
+      });
+    }
+
+    var warningMsg = verifyExcludedUtxos();
+
+    if (!lodash.isEmpty(warningMsg))
+      msg += '\n' + warningMsg;
+
+    popupService.showAlert(null, msg, function() {});
+  };
+
   function statusChangeHandler(processName, showName, isOn) {
     $log.debug('statusChangeHandler: ', processName, showName, isOn);
     if (
