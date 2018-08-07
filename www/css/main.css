@@ -15262,8 +15262,10 @@ log-options #check-bar .checkbox-icon {
   #view-review .fee-summary {
     position: absolute;
     bottom: 92px; }
-  #view-review .shapeshift-banner, #view-review .bitpay-banner {
+  #view-review .shapeshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
     box-shadow: none; }
+  #view-review .warning {
+    color: #b7664d; }
 
 .gravatar {
   border-radius: 3px;
@@ -15410,7 +15412,7 @@ ion-content.padded-bottom-cta-with-summary {
 .fee-summary {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
   padding: 5px 12px 15px;
   box-sizing: border-box;
@@ -15423,12 +15425,17 @@ ion-content.padded-bottom-cta-with-summary {
     width: 100%;
     height: 15px;
     background: linear-gradient(to bottom, rgba(242, 242, 242, 0) 0%, #f2f2f2 100%); }
-  .fee-summary .fee-fiat.positive {
-    color: #70955F; }
-  .fee-summary .fee-fiat.negative {
-    color: #C24633; }
-  .fee-summary .fee-crypto {
-    color: #A7A7A7; }
+  .fee-summary .amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%; }
+    .fee-summary .amount .fee-fiat.positive {
+      color: #70955F; }
+    .fee-summary .amount .fee-fiat.negative {
+      color: #C24633; }
+    .fee-summary .amount .fee-crypto {
+      color: #A7A7A7; }
 
 .amount .start,
 .amount .middle,
