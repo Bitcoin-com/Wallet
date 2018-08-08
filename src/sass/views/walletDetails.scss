@@ -261,6 +261,12 @@
   .no-alternative {
     padding-top: 45px;
   }
+
+  .button-white-outline.button-outline.activated {
+    color: $v-primary-color;
+    border-color: white;
+  }
+
   .item.item-footer {
     font-weight: lighter;
   }
