@@ -3704,3 +3704,7 @@ msgstr ""
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
+
+#: src/js/controllers/amount.js:49
+msgid "Address doesn\'t contain currency information, please make sure you are sending the correct currency."
+msgstr ""
