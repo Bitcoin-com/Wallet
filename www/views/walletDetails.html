@@ -30,7 +30,7 @@
       </div>
 
       <div
-        ng-show="selectedPriceDisplay=='fiat' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
+        ng-show="selectedPriceDisplay=='fiat' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning && status.totalBalanceAlternative"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
@@ -44,7 +44,7 @@
       </div>
 
       <div
-        ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
+        ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning && status.totalBalanceStr"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-if="status.totalBalanceStr"
