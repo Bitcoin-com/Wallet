@@ -12,9 +12,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
 
-  var channel = "firebase";
-  if (platformInfo.isNW) {
-    channel = "ga";
+  var channel = "ga";
+  if (platformInfo.isCordova) {
+    channel = "firebase";
   }
   var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
   window.BitAnalytics.LogEventHandlers.postEvent(log);

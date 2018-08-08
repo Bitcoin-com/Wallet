@@ -655,9 +655,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         soundService.play('misc/payment_sent.mp3');
       }
       
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,
