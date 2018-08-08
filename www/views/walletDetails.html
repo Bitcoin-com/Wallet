@@ -30,11 +30,13 @@
       </div>
 
       <div
-        ng-show="selectedPriceDisplay=='fiat' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning && status.totalBalanceAlternative"
+        ng-show="selectedPriceDisplay=='fiat' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36"><formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount></strong>
+        <strong class="size-36" ng-show="status.totalBalanceAlternative">
+          <formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
+        </strong>
         <div
           class="size-14 amount-alternative"
           ng-if="status.totalBalanceStr && wallet.network == 'livenet'"
@@ -44,12 +46,14 @@
       </div>
 
       <div
-        ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning && status.totalBalanceStr"
+        ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-if="status.totalBalanceStr"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36"><formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount></strong>
+        <strong class="size-36">
+          <formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount>
+        </strong>
         <div
           class="size-14 amount-alternative"
           ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
