@@ -21,6 +21,8 @@ angular.module('bitcoincom.directives')
       },
       templateUrl: 'views/includes/formatted-amount.html',
       controller: function($scope, $timeout) {
+        $scope.canShow = false;
+
         if (!$scope.currency && $scope.value) { // If there is no currency available..
           // Try to extract currency from value..
           var currencySplit = $scope.value.split(" ");
@@ -120,6 +122,7 @@ angular.module('bitcoincom.directives')
                   }
                   break;
               }
+              $scope.canShow = true;
             };
             
             formatNumbers($scope.currency, $scope.value);
