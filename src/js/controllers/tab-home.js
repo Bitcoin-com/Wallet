@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, sendFlowService, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -31,7 +31,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     });
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
-      sendFlowService.clear();
 
       if (!$scope.homeTip) {
         storageService.getHomeTipAccepted(function(error, value) {
@@ -118,6 +117,11 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);
     };
+
+    $scope.startFreshSend = function() {
+      sendFlowService.clear();
+      $state.go('tabs.send');
+    }
 
     $scope.openExternalLink = function() {
       var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';

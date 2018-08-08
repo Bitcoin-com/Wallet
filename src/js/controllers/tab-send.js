@@ -187,6 +187,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   };
 
+  $scope.startWalletToWalletTransfer = function() {
+    console.log('startWalletToWalletTransfer()');
+    $state.transitionTo('tabs.send.wallet-to-wallet', {
+      fromWalletId: sendFlowService.fromWalletId
+    });
+  }
+
   // This could probably be enhanced refactoring the routes abstract states
   $scope.createWallet = function() {
     $state.go('tabs.home').then(function() {

@@ -471,13 +471,20 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
+
   $scope.goToSend = function() {
-    sendFlowService.fromWalletId = $scope.wallet.id;
+    sendFlowService.startSend({
+      fromWalletId: $scope.wallet.id
+    });
+    
+    // Go home first so that the Home tab works properly
     $state.go('tabs.home').then(function () {
       $ionicHistory.clearHistory();
       $state.go('tabs.send');
     });
+    
   };
+
   $scope.goToReceive = function() {
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
@@ -488,6 +495,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     });
   };
+
   $scope.goToBuy = function() {
     $state.go('tabs.home', {
       walletId: $scope.wallet.id

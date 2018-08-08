@@ -1,48 +1,78 @@
 'use strict';
 
-angular.module('copayApp.services').factory('sendFlowService', function ($log) {
-  var vm = this;
+(function(){
 
-  vm.amount = false;
+angular
+  .module('copayApp.services')
+  .factory('sendFlowService', sendFlowService);
+  
+  function sendFlowService($log) {
 
-  vm.fromWalletId = false;
-  vm.previousStates = [];
-  vm.thirdParty = false;
-  vm.sendMax = false;
-  vm.toAddress = false;
-  vm.toWalletId = false;
+    var service = {
+      amount: '',
+      fromWalletId: '',
+      sendMax: false,
+      thirdParty: null,
+      toAddress: '',
+      toWalletId: '',
+      previousStates: [],
 
-  vm.clear = function() {
-    $log.debug("Reinitialize Send Flow variables");
-    vm.amount = false;
-    vm.fromWalletId = false;
-    vm.thirdParty = false;
-    vm.sendMax = false;
-    vm.toAddress = false;
-    vm.toWalletId = false;
-    vm.previousStates = [];
-  };
+      // Functions
+      clear: clear,
+      map: map,
+      previousState: previousState,
+      startSend: startSend
+    };
 
-  vm.map = function(params) {
+    return service;
 
-    var tempState = {};
-    Object.keys(vm).map(function(key, index) {
-      if (typeof vm[key] !== 'function' && key !== 'previousStates') {
-        tempState[key] = vm[key];
-      }
-    });
-    vm.previousStates.push(tempState);
-
-    Object.keys(params).map(function(key, index) {
-      vm[key] = params[key];
-    });
-  };
-
-  vm.previousState = function() {
-    if (vm.previousStates.length) {
-      vm.map(vm.previousStates.pop());
+    function clear() {
+      $log.debug("Reinitialize Send Flow variables with clear()");
+      service.amount = '';
+      service.fromWalletId = '';
+      service.sendMax = false;
+      service.thirdParty = null;
+      service.toAddress = '';
+      service.toWalletId = '';
+      service.previousStates = [];
     }
+
+    /**
+     * Clears all previous state
+     * @param {} params 
+     */
+    function startSend(params) {
+      console.log('startSend()');
+      clear();
+      Object.keys(params).forEach(function forNewParam(key) {
+        service[key] = params[key];
+      });
+    }
+
+    function map(params) {
+
+      var currentState = {};
+      Object.keys(service).forEach(function forCurrentParam(key) {
+        if (typeof service[key] !== 'function' && key !== 'previousStates') {
+          currentState[key] = service[key];
+        }
+      });
+      service.previousStates.push(currentState);
+
+      // Do we want to inherit the previous state here, or clear first before adding new params?
+
+      Object.keys(params).forEach(function forNewParam(key) {
+        service[key] = params[key];
+      });
+    };
+
+    function previousState() {
+      if (service.previousStates.length) {
+        map(service.previousStates.pop());
+      } else {
+        clear();
+      }
+    };
   };
 
-  return vm;
-});
+})();

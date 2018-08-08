@@ -209,6 +209,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function goBack() {
+    sendFlowService.previousState();
     if (vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
       $state.go('tabs.send').then(function() {
         $ionicHistory.clearHistory();
