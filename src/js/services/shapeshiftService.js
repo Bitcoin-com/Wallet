@@ -136,4 +136,6 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
       }
     });
   };
+
+  return root;
 });
