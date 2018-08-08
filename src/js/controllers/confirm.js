@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, ionicToast, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService, clipboardService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
 
   var tx = {};
+  var lastTxId = "";
 
   // Config Related values
   var config = configService.getSync();
@@ -24,6 +25,17 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       $scope.$apply();
     }, 10);
   }
+
+  $scope.shareTransaction = function() {
+    var explorerTxUrl = 'https://explorer.bitcoin.com/'+tx.coin+'/tx/'+lastTxId;
+    if (platformInfo.isCordova) {
+      var text = 'Take a look at this Bitcoin transaction here: '+explorerTxUrl;
+      window.plugins.socialsharing.share(text, null, null, null);
+    } else {
+      ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
+      clipboardService.copyToClipboard(explorerTxUrl);
+    }
+  };
 
   $scope.showWalletSelector = function() {
     $scope.walletSelector = true;
@@ -652,6 +664,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
             txConfirmNotification.subscribe(wallet, {
               txid: txp.txid
             });
+            lastTxId = txp.txid;
           }
         }, onSendStatusChange);
       };
@@ -683,9 +696,9 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         soundService.play('misc/payment_sent.mp3');
       }
       
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,

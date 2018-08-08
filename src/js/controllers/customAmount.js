@@ -65,6 +65,14 @@ angular.module('copayApp.controllers').controller('customAmountController', func
       var currency = parsedAmount.currency;
       $scope.amountUnitStr = parsedAmount.amountUnitStr;
 
+      configService.whenAvailable(function (config) {
+        $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+
+        $timeout(function () {
+          $scope.$apply();
+        });
+      });
+
       if (currency != 'BTC' && currency != 'BCH') {
         // Convert to BTC or BCH
         var config = configService.getSync().wallet.settings;

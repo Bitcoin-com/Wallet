@@ -144,9 +144,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
 
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,
@@ -232,10 +232,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     if (!$scope.wallets[0]) return;
 
-    // select first wallet if no wallet selected previously
-    var selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    var selectedWallet = null;
+    if (data.stateParams.walletId) { // from walletDetails
+      selectedWallet = checkSelectedWallet(profileService.getWallet(data.stateParams.walletId), $scope.wallets);
+    } else {
+      // select first wallet if no wallet selected previously
+      selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    }
     $scope.onWalletSelect(selectedWallet);
-
     $scope.showShareButton = platformInfo.isCordova ? (platformInfo.isIOS ? 'iOS' : 'Android') : null;
 
     listeners = [
