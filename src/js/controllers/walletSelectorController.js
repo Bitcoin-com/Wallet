@@ -191,6 +191,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   };
 
   $scope.goBack = function() {
+    sendFlowService.previousState();
     $ionicHistory.goBack();
   }
 
