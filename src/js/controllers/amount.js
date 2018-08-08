@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window) {
   var vm = this;
 
   vm.allowSend = false;
@@ -69,12 +69,12 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     initCurrencies();
 
-    passthroughParams = data.stateParams;
+    passthroughParams = sendFlowService;
 
-    vm.fromWalletId = data.stateParams.fromWalletId;
-    vm.toWalletId = data.stateParams.toWalletId;
-    vm.minAmount = parseFloat(data.stateParams.minAmount);
-    vm.maxAmount = parseFloat(data.stateParams.maxAmount);
+    vm.fromWalletId = passthroughParams.fromWalletId;
+    vm.toWalletId = passthroughParams.toWalletId;
+    vm.minAmount = parseFloat(passthroughParams.minAmount);
+    vm.maxAmount = parseFloat(passthroughParams.maxAmount);
 
     if (passthroughParams.thirdParty) {
       vm.thirdParty = JSON.parse(passthroughParams.thirdParty); // Parse stringified JSON-object
@@ -96,7 +96,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       }
     }
 
-    vm.isRequestingSpecificAmount = !data.stateParams.fromWalletId;
+    vm.isRequestingSpecificAmount = !passthroughParams.fromWalletId;
 
     var config = configService.getSync().wallet.settings;
 
@@ -177,8 +177,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       //  currency have preference
       var fiatName;
-      if (data.stateParams.currency) {
-        fiatCode = data.stateParams.currency;
+      if (passthroughParams.currency) {
+        fiatCode = passthroughParams.currency;
         altUnitIndex = unitIndex
         unitIndex = availableUnits.length;
       } else {
@@ -205,8 +205,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         var fromWallet = profileService.getWallet(passthroughParams.fromWalletId);
         updateAvailableFundsFromWallet(fromWallet);
       }
-    };
-  };
+    }
+  }
 
   function goBack() {
     if (vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
@@ -227,18 +227,18 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     $timeout(function() {
       $scope.$apply();
     });
-  };
+  }
 
   function processClipboard() {
     if (!isNW) return;
     var value = nodeWebkitService.readFromClipboard();
     if (value && evaluate(value) > 0) paste(evaluate(value));
-  };
+  }
 
   function sendMax() {
     useSendMax = true;
     finish();
-  };
+  }
 
   function updateUnitUI() {
     vm.unit = availableUnits[unitIndex].shortName;
@@ -246,7 +246,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     processAmount();
     $log.debug('Update unit coin @amount unit:' + vm.unit + " alternativeUnit:" + vm.alternativeUnit);
-  };
+  }
 
   function changeUnit() {
 
@@ -267,7 +267,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     updateAvailableFundsStringIfNeeded();
     updateUnitUI();
-  };
+  }
 
   function pushDigit(digit) {
     if (vm.amount && digit != '.') {
@@ -291,7 +291,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     vm.amount = (vm.amount + digit).replace('..', '.');
     processAmount();
-  };
+  }
 
   function pushOperator(operator) {
     if (!vm.amount || vm.amount.length == 0) return;
@@ -303,18 +303,18 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       } else {
         return val.slice(0, -1) + operator;
       }
-    };
-  };
+    }
+  }
 
   function isOperator(val) {
     var regex = /[\/\-\+\x\*]/;
     return regex.test(val);
-  };
+  }
 
   function isExpression(val) {
     var regex = /^\.?\d+(\.?\d+)?([\/\-\+\*x]\d?\.?\d+)+$/;
     return regex.test(val);
-  };
+  }
 
   function removeDigit() {
     vm.amount = (vm.amount).toString().slice(0, -1);
@@ -339,7 +339,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   function close() {
     altCurrencyModal.remove();
     altCurrencyModal = null;
-  };
+  }
 
   function processAmount() {
     var formatedValue = format(vm.amount);
@@ -409,22 +409,22 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     } else {
       vm.errorMessage = '';
     }
-  };
+  }
 
   function processResult(val) {
     if (availableUnits[unitIndex].isFiat) return $filter('formatFiatAmount')(val);
     else return txFormatService.formatAmount(val.toFixed(unitDecimals) * unitToSatoshi, true);
-  };
+  }
 
   function fromFiat(val) {
     return parseFloat((rateService.fromFiat(val, fiatCode, availableUnits[altUnitIndex].id) * satToUnit).toFixed(unitDecimals));
-  };
+  }
 
   function toFiat(val) {
     if (!rateService.getRate(fiatCode)) return;
 
     return parseFloat((rateService.toFiat(val * unitToSatoshi, fiatCode, availableUnits[unitIndex].id)).toFixed(2));
-  };
+  }
 
   function evaluate(val) {
     var result;
@@ -435,7 +435,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
     if (!lodash.isFinite(result)) return 0;
     return result;
-  };
+  }
 
   function format(val) {
     if (!val) return;
@@ -445,7 +445,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (isOperator(lodash.last(val))) result = result.slice(0, -1);
 
     return result.replace('x', '*');
-  };
+  }
 
   function finish() {
     var unit = availableUnits[unitIndex];
@@ -467,8 +467,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     };
 
     if (vm.thirdParty) {
-      confirmData['thirdParty'] = JSON.stringify(this.thirdParty);
+      confirmData['thirdParty'] = this.thirdParty;
     }
+
+    sendFlowService.map(confirmData);
 
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
@@ -476,7 +478,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       $state.transitionTo('tabs.send.review', confirmData);
       $scope.useSendMax = null;
     }
-  };
+  }
 
 
   // Currency
@@ -495,7 +497,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     {isoCode: 'CNY', order: 7},
     {isoCode: 'KRW', order: 8},
     {isoCode: 'HKD', order: 9},
-  ]
+  ];
 
   function initCurrencies() {
     var unusedCurrencyList = [{
@@ -558,7 +560,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     $timeout(function() {
       $scope.$apply();
     });
-  };
+  }
 
   function save(newAltCurrency) {
     var opts = {
@@ -584,7 +586,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       updateUnitUI();
       close();
     });
-  };
+  }
 
   function updateAvailableFundsStringIfNeeded() {
     if (passthroughParams.fromWalletId && availableSatoshis !== null) {
@@ -639,5 +641,4 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.availableFunds = availableFundsInCrypto;
     }
   }
-
 }

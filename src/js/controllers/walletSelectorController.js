@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, configService, gettextCatalog, profileService, txFormatService) {
+angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, sendFlowService, configService, gettextCatalog, profileService, txFormatService) {
 
   var fromWalletId = '';
   var priceDisplayAsFiat = false;
@@ -26,10 +26,14 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
        // nop
     }
 
-    $scope.params = $state.params;
+    $scope.params = sendFlowService;
     $scope.coin = false; // Wallets to show (for destination screen or contacts)
-    $scope.type = data.stateParams && data.stateParams['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
-    fromWalletId = data.stateParams && data.stateParams.fromWalletId;
+    $scope.type = $scope.params['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
+    fromWalletId = $scope.params['fromWalletId'];
+
+    if ($scope.type === 'destination' && $scope.params.toAddress) {
+      $state.transitionTo(getNextStep());
+    }
 
     if ($scope.params.coin) {
       $scope.coin = $scope.params.coin; // Contacts have a coin embedded

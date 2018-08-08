@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
+angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
 
   var root = {};
 
@@ -105,9 +105,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           params.thirdParty = [];
           params.thirdParty.id = serviceId;
           params.thirdParty.data = serviceData;
-          params.thirdParty = JSON.stringify(params.thirdParty);
+          sendFlowService.map(params);
           $state.transitionTo('tabs.send.amount', params);
         } else {
+          sendFlowService.map(params);
           $state.transitionTo('tabs.send.origin', params);
         }
       }, 100);
@@ -458,6 +459,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     }).then(function() {
       $timeout(function() {
+        sendFlowService.map(stateParams);
         $state.transitionTo('tabs.send.origin', stateParams);
       });
     });

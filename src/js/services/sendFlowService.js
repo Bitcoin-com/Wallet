@@ -20,5 +20,12 @@ angular.module('copayApp.services').factory('sendFlowService', function ($log) {
     vm.toWalletId = false;
   };
 
+  vm.map = function(params) {
+    Object.keys(params).map(function(key, index) {
+      vm[key] = params[key];
+    });
+    console.log(vm);
+  };
+
   return vm;
 });

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -471,9 +471,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
   $scope.goToSend = function() {
-    $state.go('tabs.home', {
-      walletId: $scope.wallet.id
-    }).then(function () {
+    sendFlowService.fromWalletId = $scope.wallet.id;
+    $state.go('tabs.home').then(function () {
       $ionicHistory.clearHistory();
       $state.go('tabs.send');
     });
