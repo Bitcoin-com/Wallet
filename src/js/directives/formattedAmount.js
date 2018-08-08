@@ -23,21 +23,12 @@ angular.module('bitcoincom.directives')
       controller: function($scope, $timeout) {
         $scope.canShow = false;
 
-        if (!$scope.currency && $scope.value) { // If there is no currency available..
-          // Try to extract currency from value..
-          var currencySplit = $scope.value.split(" ");
-          if (currencySplit.length === 2) {
-            $scope.value = currencySplit[0];
-            $scope.currency = currencySplit[1];
-          }
-        }
-
         $scope.displaySizeEqual = !!$scope.sizeEqual;
 
-        configService.whenAvailable(function(config) {
-          console.log("WAIT!!");
-          $timeout(function() {
-            console.log("FIRED!!");
+        configService.whenAvailable(function onConfigServiceAvailable(config) {
+
+          $timeout(function onFormattedAmountTimeout() {
+
             var decimalPlaces = {
               '0': ['BIF', 'CLP', 'DJF', 'GNF', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
               '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],
@@ -71,12 +62,20 @@ angular.module('bitcoincom.directives')
               return separator;
             };
     
-            var formatNumbers = function(currency, value) {
+            var formatNumbers = function() {
 
-              var parsed = parseFloat(value);
+              if (!$scope.currency && $scope.value) { // If there is no currency available..
+                // Try to extract currency from value..
+                var currencySplit = $scope.value.split(" ");
+                if (currencySplit.length === 2) {
+                  $scope.currency = currencySplit[1];
+                }
+              }
+
+              var parsed = parseFloat($scope.value);
               var valueFormatted = '';
               var valueProcessing = '';
-              switch (getDecimalPlaces(currency)) {
+              switch (getDecimalPlaces($scope.currency)) {
                 case '0':
                    if (isNaN(parsed)) {
                     buildAmount('-', '', '');
@@ -125,9 +124,9 @@ angular.module('bitcoincom.directives')
               $scope.canShow = true;
             };
             
-            formatNumbers($scope.currency, $scope.value);
-            $scope.$watchGroup(['currency', 'value'], function() {
-              formatNumbers($scope.currency, $scope.value);
+            formatNumbers();
+            $scope.$watchGroup(['currency', 'value'], function onFormattedAmountWatch() {
+              formatNumbers();
             });
           });
         });
