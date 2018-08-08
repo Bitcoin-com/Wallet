@@ -224,6 +224,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
               cb();
             }
           }
+          $scope.walletsWithFunds = profileService.getWallets({hasFunds: true});
         });
       });
     };

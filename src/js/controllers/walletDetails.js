@@ -342,9 +342,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       top = TOP_BALANCE_BUTTON;
     }
 
-    var amountTop = ((amountScale - 0.7) / 0.7) * top;
-    if (amountTop < -10) {
-      amountTop = -10;
+    var amountTop = ((amountScale - 0.80) / 0.80) * top;
+    if (amountTop < -2) {
+      amountTop = -2;
     }
     if (amountTop > top) {
       amountTop = top;
@@ -353,6 +353,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     var t = amountTop;
 
     $scope.altAmountOpacity = (amountHeight - 100) / 80;
+    $scope.buttonsOpacity = (amountHeight - 140) / 70;
     $window.requestAnimationFrame(function() {
       $scope.amountHeight = amountHeight + 'px';
       $scope.contentMargin = contentMargin + 'px';
@@ -469,4 +470,30 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
+  $scope.goToSend = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.send');
+    });
+  };
+  $scope.goToReceive = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.receive', {
+        walletId: $scope.wallet.id
+      });
+    });
+  };
+  $scope.goToBuy = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.buyandsell');
+    });
+  };
 });

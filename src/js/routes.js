@@ -236,7 +236,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.receive', {
-        url: '/receive',
+        url: '/receive/:walletId',
         views: {
           'tab-receive': {
             controller: 'tabReceiveController',
