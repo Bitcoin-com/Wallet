@@ -32,10 +32,10 @@ angular.module('bitcoincom.directives')
             '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],
             '8': ['BCH', 'BTC']
           };
-          var localizeNumbers = function(x, minimumFractionDigits = 0, useGrouping = true) {
+          var localizeNumbers = function(x, minimumFractionDigits) {
             return parseFloat(x).toLocaleString(uxLanguage.getCurrentLanguage(), {
               minimumFractionDigits: minimumFractionDigits,
-              useGrouping: useGrouping
+              useGrouping: true
             });
           };
   
@@ -80,7 +80,7 @@ angular.module('bitcoincom.directives')
                   if (isNaN(parsed)) {
                   buildAmount('-', '', '');
                 } else {
-                  valueFormatted = localizeNumbers(Math.round(parsed));
+                  valueFormatted = localizeNumbers(Math.round(parsed), 0);
                   buildAmount(valueFormatted, '', '');
                 }
                 break;
