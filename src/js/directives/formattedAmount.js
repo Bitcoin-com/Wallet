@@ -60,46 +60,68 @@ angular.module('bitcoincom.directives')
               if (decimalPlaces['8'].indexOf(currency.toUpperCase()) > -1) return '8';
               return '2';
             };
+
+            var getDecimalSeparator = function() {
+              var testNum = 1.5;
+              var testString = testNum.toLocaleString(uxLanguage.getCurrentLanguage());
+              // Some environments let you set decimal separators that are more than one character
+              var separator = /^1(.+)5$/.exec(testString)[1]
+              return separator;
+            };
     
             var formatNumbers = function(currency, value) {
-              if (isNaN(parseFloat($scope.value))) {
-                buildAmount('', '', '');
-                return;
-              }
 
+              var parsed = parseFloat(value);
+              var valueFormatted = '';
+              var valueProcessing = '';
               switch (getDecimalPlaces(currency)) {
                 case '0':
-                  var valueFormatted = localizeNumbers(Math.round(parseFloat(value)));
-                  buildAmount(valueFormatted, '', '');
+                   if (isNaN(parsed)) {
+                    buildAmount('-', '', '');
+                  } else {
+                    valueFormatted = localizeNumbers(Math.round(parsed));
+                    buildAmount(valueFormatted, '', '');
+                  }
                   break;
       
                 case '3':
-                  var valueProcessing = parseFloat(parseFloat(value).toFixed(3));
-                  var valueFormatted = localizeNumbers(valueProcessing, 3);
-                  buildAmount(valueFormatted, '', '');
+                  if (isNaN(parsed)) {
+                    buildAmount('-' + getDecimalSeparator() + '---', '', '');
+                  } else {
+                    valueProcessing = parsed.toFixed(3);
+                    valueFormatted = localizeNumbers(valueProcessing, 3);
+                    buildAmount(valueFormatted, '', '');
+                  }
                   break;
       
                 case '8':
-                  var valueFormatted = parseFloat(value).toFixed(8);
-                  if (parseFloat(value) == 0) {
+                  if (isNaN(parsed)) {
+                    buildAmount('-' + getDecimalSeparator() + '---', '', '');
+                  } else if (parsed === 0) {
                     buildAmount('0', '', '');
                   } else {
-                    var valueFormatted = localizeNumbers(valueFormatted, 8);
+                    valueFormatted = parsed.toFixed(8);
+                    valueFormatted = localizeNumbers(valueFormatted, 8);
                     var start = valueFormatted.slice(0, -5);
                     var middle = valueFormatted.slice(-5, -2);
                     var end = valueFormatted.substr(valueFormatted.length - 2);
                     buildAmount(start, middle, end);
+                  
                   }
                   break;
       
-                default:
-                  var valueProcessing = parseFloat(parseFloat(value).toFixed(2));
-                  var valueFormatted = localizeNumbers(valueProcessing, 2);
-                  buildAmount(valueFormatted, '', '');
+                default: // 2
+                  if (isNaN(parsed)) {
+                    buildAmount('-' + getDecimalSeparator() + '--', '', '');
+                  } else {
+                    valueProcessing = parseFloat(parsed.toFixed(2));
+                    valueFormatted = localizeNumbers(valueProcessing, 2);
+                    buildAmount(valueFormatted, '', '');
+                  }
                   break;
               }
             };
-    
+            
             formatNumbers($scope.currency, $scope.value);
             $scope.$watchGroup(['currency', 'value'], function() {
               formatNumbers($scope.currency, $scope.value);
