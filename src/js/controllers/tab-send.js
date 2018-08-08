@@ -208,13 +208,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    console.log('tab-send.beforeEnter sendFlowService.fromWalletId:', sendFlowService.fromWalletId);
-    var fromWalletId = sendFlowService.fromWalletId;
-    if (fromWalletId) {
-      $scope.fromWallet = profileService.getWallet(fromWalletId);
-    } else {
-      $scope.fromWallet = null; 
-    }
     $scope.isIOS = platformInfo.isIOS && platformInfo.isCordova;
     $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
 
