@@ -652,6 +652,7 @@ msgstr ""
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr ""
@@ -2156,6 +2157,10 @@ msgstr ""
 #: www/views/includes/walletActivity.html:11
 #: www/views/modals/txp-details.html:42
 msgid "Payment Sent"
+msgstr ""
+
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
 msgstr ""
 
 #: www/views/modals/txp-details.html:32
