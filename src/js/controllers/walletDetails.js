@@ -374,6 +374,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    sendFlowService.clear();
 
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
