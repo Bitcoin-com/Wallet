@@ -1,0 +1,11 @@
+.content-frame {
+  &.negative-top {
+    margin-top: -40px;
+
+    .card {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
