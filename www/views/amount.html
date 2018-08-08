@@ -6,21 +6,17 @@
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content scroll="false">
-  
+      <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
       <div style="order: 0; position: relative;">
-  
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
-              <div ng-if="vm.shapeshiftOrderId">
-                  Minimum amount: {{vm.minShapeshiftAmount}} <br/>
-                  Maximum amount: {{vm.maxShapeshiftAmount}} <br/>
-                </div>
+            <span class="send-amount-header-footer__min" ng-if="vm.minAmount">Min: {{vm.minAmount}}</span> <span class="send-amount-header-footer__max" ng-if="vm.maxAmount">Max: {{vm.maxAmount}}</span>
           </div>
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
                 ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 10}">
-                <span class="primary-amount-display text-selectable">{{vm.amount}} {{vm.unit}}</span>
+                <span class="primary-amount-display text-selectable">{{vm.amount || '0'}} {{vm.unit}}</span>
               </div>
               <span ng-show="vm.globalResult">{{vm.globalResult}} {{vm.unit}}</span>
               <div class="alternative-amount">
@@ -29,8 +25,8 @@
               <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
             <div class="send-amount-header-footer">
-              <div class="warning" ng-show="vm.fundsAreInsufficient">
-                Not enough available funds
+              <div class="warning" ng-show="vm.errorMessage">
+                {{vm.errorMessage}}
               </div>
             </div>
           </div>  

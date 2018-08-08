@@ -48,37 +48,44 @@ angular.module('bitcoincom.directives')
           return '2';
         };
 
-        switch (getDecimalPlaces($scope.currency)) {
-          case '0':
-            var valueFormatted = numberWithCommas(Math.round(parseFloat($scope.value)));
-            buildAmount(valueFormatted, '', '');
-            break;
-
-          case '2':
-            var valueProcessing = parseFloat(parseFloat($scope.value).toFixed(2));
-            var valueFormatted = numberWithCommas(valueProcessing);
-            buildAmount(valueFormatted, '', '');
-            break;
-
-          case '3':
-            var valueProcessing = parseFloat(parseFloat($scope.value).toFixed(3));
-            var valueFormatted = numberWithCommas(valueProcessing);
-            buildAmount(valueFormatted, '', '');
-            break;
-
-          case '8':
-            var valueFormatted = parseFloat($scope.value).toFixed(8);
-            if (parseFloat($scope.value) == 0) {
-              buildAmount('0', '', '');
-            } else {
+        var formatNumbers = function(currency, value) {
+          switch (getDecimalPlaces(currency)) {
+            case '0':
+              var valueFormatted = numberWithCommas(Math.round(parseFloat(value)));
               buildAmount(valueFormatted, '', '');
-              var start = numberWithCommas(valueFormatted.slice(0, -5));
-              var middle = valueFormatted.slice(-5, -2);
-              var end = valueFormatted.substr(valueFormatted.length - 2);
-              buildAmount(start, middle, end);
-            }
-            break;
+              break;
+  
+            case '2':
+              var valueProcessing = parseFloat(parseFloat(value).toFixed(2));
+              var valueFormatted = numberWithCommas(valueProcessing);
+              buildAmount(valueFormatted, '', '');
+              break;
+  
+            case '3':
+              var valueProcessing = parseFloat(parseFloat(value).toFixed(3));
+              var valueFormatted = numberWithCommas(valueProcessing);
+              buildAmount(valueFormatted, '', '');
+              break;
+  
+            case '8':
+              var valueFormatted = parseFloat(value).toFixed(8);
+              if (parseFloat(value) == 0) {
+                buildAmount('0', '', '');
+              } else {
+                buildAmount(valueFormatted, '', '');
+                var start = numberWithCommas(valueFormatted.slice(0, -5));
+                var middle = valueFormatted.slice(-5, -2);
+                var end = valueFormatted.substr(valueFormatted.length - 2);
+                buildAmount(start, middle, end);
+              }
+              break;
+          }
         }
+
+        formatNumbers($scope.currency, $scope.value);
+        $scope.$watchGroup(['currency', 'value'], function() {
+          formatNumbers($scope.currency, $scope.value);
+        });
       }]
     };
   }
