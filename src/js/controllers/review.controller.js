@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicLoading, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -255,14 +255,14 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     var networkName;
     try {
       if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
-        $ionicLoading.show();
+        ongoingProcess.set('generatingNewAddress', true);
         var toWallet = profileService.getWallet(destinationWalletId);
 
         // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
         console.log('Getting address for wallet...');
         walletService.getAddress(toWallet, true, function onWalletAddress(err, addr) {
           console.log('getAddress cb called', err);
-          $ionicLoading.hide();
+          ongoingProcess.set('generatingNewAddress', false);
           tx.toAddress = addr;
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
@@ -473,23 +473,24 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       vm.destination.color = toWallet.color;
       vm.destination.currency = toWallet.coin.toUpperCase();
 
-      $ionicLoading.show();
+
+      ongoingProcess.set('connectingShapeshift', true);
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
-          $ionicLoading.hide();
+          ongoingProcess.set('connectingShapeshift', false);
           popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
           return;
         } 
         walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
           if (err) {
-            $ionicLoading.hide();
+            ongoingProcess.set('connectingShapeshift', false);
             popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
             return;
           } 
 
           shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
             if (err && err != null) {
-              $ionicLoading.hide();
+              ongoingProcess.set('connectingShapeshift', false);
               popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
             } else {
               vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
