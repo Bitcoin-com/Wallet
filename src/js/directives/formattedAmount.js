@@ -69,6 +69,7 @@ angular.module('bitcoincom.directives')
             if (currencySplit.length === 2) {
               $scope.currency = currencySplit[1];
             }
+            $scope.currency = $scope.currency || '';
             
 
             var parsed = parseFloat($scope.value);
