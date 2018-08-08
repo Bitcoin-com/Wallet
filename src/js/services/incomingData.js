@@ -8,7 +8,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     $rootScope.$broadcast('incomingDataMenu.showMenu', data);
   };
 
-  root.redir = function(data, shapeshiftData) {
+  root.redir = function(data, serviceId, serviceData) {
     var originalAddress = null;
     var noPrefixInAddress = 0;
     
@@ -75,35 +75,40 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       return true;
     }
 
-    function goSend(addr, amount, message, coin, shapeshiftData) {
+    function goSend(addr, amount, message, coin, serviceId, serviceData) {
       $state.go('tabs.send', {}, {
         'reload': true,
         'notify': $state.current.name == 'tabs.send' ? false : true
       });
       // Timeout is required to enable the "Back" button
       $timeout(function() {
+        var params = {};
+        
         if (amount) {
-          $state.transitionTo('tabs.send.confirm', {
-            toAmount: amount,
-            toAddress: addr,
-            displayAddress: originalAddress ? originalAddress : addr,
-            description: message,
-            coin: coin
-          });
-        } else {
-          var params = {
-            toAddress: addr,
-            coin: coin,
-            displayAddress: originalAddress ? originalAddress : addr,
-            noPrefix: noPrefixInAddress
-          };
-          if (shapeshiftData) {
-            params['fromWalletId'] = shapeshiftData.fromWalletId;
-            params['minShapeshiftAmount'] = shapeshiftData.minAmount;
-            params['maxShapeshiftAmount'] = shapeshiftData.maxAmount;
-            params['shapeshiftOrderId'] = shapeshiftData.orderId;
-          }
+          params.amount = amount;
+        }
+
+        if (addr) {
+          params.toAddress = addr;
+          params.displayAddress = originalAddress ? originalAddress : addr;
+        }
+
+        if (coin) {
+          params.coin = coin;
+        }
+
+        if (noPrefixInAddress) {
+          params.noPrefixInAddress = noPrefixInAddress;
+        }
+
+        if (serviceId) {
+          params.thirdParty = [];
+          params.thirdParty.id = serviceId;
+          params.thirdParty.data = serviceData;
+          params.thirdParty = JSON.stringify(params.thirdParty);
           $state.transitionTo('tabs.send.amount', params);
+        } else {
+          $state.transitionTo('tabs.send.origin', params);
         }
       }, 100);
     }
@@ -112,15 +117,20 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       var coin = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
       data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
       if (coin == 'bch') {
-        payproService.getPayProDetailsViaHttp(data, function(err, details) {
+        payproService.getPayProDetailsViaHttp(data, function onGetPayProDetailsViaHttp(err, details) {
           if (err) {
-            popupService.showAlert(gettextCatalog.getString('Error'), err)
+            var message = err.toString();
+            if (typeof err.data === 'string') {
+              // i.e. 'This invoice is no longer accepting payments'
+              message = gettextCatalog.getString(err.data);
+            }
+            popupService.showAlert(gettextCatalog.getString('Error'), message)
           } else {
-            handlePayPro(createBchPayProObject(details), coin);
+            handlePayPro(details, coin);
           }
         });
       } else {
-        payproService.getPayProDetails(data, coin, function(err, details) {
+        payproService.getPayProDetails(data, coin, function onGetPayProDetails(err, details) {
           if (err) {
             popupService.showAlert(gettextCatalog.getString('Error'), err);
           } else {
@@ -146,12 +156,12 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
         if (parsed.r) {
           payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
-              if (addr && amount) goSend(addr, amount, message, coin, shapeshiftData);
+              if (addr && amount) goSend(addr, amount, message, coin, serviceId, serviceData);
               else popupService.showAlert(gettextCatalog.getString('Error'), err);
             } else handlePayPro(details, coin);
           });
         } else {
-          goSend(addr, amount, message, coin, shapeshiftData);
+          goSend(addr, amount, message, coin, serviceId, serviceData);
         }
         return true;
     // Cash URI
@@ -169,14 +179,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           payproService.getPayProDetails(parsed.r, coin, function(err, details) {
             if (err) {
               if (addr && amount)
-                goSend(addr, amount, message, coin, shapeshiftData);
+                goSend(addr, amount, message, coin, serviceId, serviceData);
               else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
             handlePayPro(details, coin);
           });
         } else {
-          goSend(addr, amount, message, coin, shapeshiftData);
+          goSend(addr, amount, message, coin, serviceId, serviceData);
         }
         return true;
 
@@ -212,14 +222,14 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
               payproService.getPayProDetails(parsed.r, coin, function(err, details) {
                 if (err) {
                   if (addr && amount)
-                    goSend(addr, amount, message, coin, shapeshiftData);
+                    goSend(addr, amount, message, coin, serviceId, serviceData);
                   else
                     popupService.showAlert(gettextCatalog.getString('Error'), err);
                 }
                 handlePayPro(details, coin);
               });
             } else {
-              goSend(addr, amount, message, coin, shapeshiftData);
+              goSend(addr, amount, message, coin, serviceId, serviceData);
             }
           }
         );
@@ -377,7 +387,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     });
     $timeout(function() {
-      $state.transitionTo('tabs.send.amount', {
+      $state.transitionTo('tabs.send.origin', {
         toAddress: toAddress,
         coin: coin,
         noPrefix: 1
@@ -385,38 +395,61 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     }, 100);
   }
 
-  function createBchPayProObject(payProData) {
-    var displayAddr = payProData.outputs[0].address;
-    var toAddr = bitcoinCashJsService.readAddress('bitcoincash:' + displayAddr).legacy;
-    return {
-      amount: payProData.outputs[0].amount,
+  function handlePayPro(payProData, coin) {
+
+    console.log(payProData);
+
+    var toAddr = payProData.toAddress;
+    var amount = payProData.amount;
+    var paymentUrl = payProData.url;
+    var expires = payProData.expires;
+    var time = payProData.time;
+
+    if (coin === 'bch') {
+      var displayAddr = payProData.outputs[0].address;
+      toAddr = bitcoinCashJsService.readAddress('bitcoincash:' + displayAddr).legacy;
+      amount = payProData.outputs[0].amount;
+      paymentUrl = payProData.paymentUrl;
+      expires = Math.floor(new Date(expires).getTime() / 1000)
+      time = Math.ceil(new Date(time).getTime() / 1000)
+    }
+    
+    var name = payProData.domain;
+    
+    if (payProData.memo.indexOf('eGifter') > -1) {
+      name = 'eGifter'
+    } else if (paymentUrl.indexOf('https://bitpay.com') > -1) {
+      name = 'BitPay';
+    }
+
+    var thirdPartyData = {
+      id: 'bip70',
+      amount: amount,
       caTrusted: true,
-      domain: 'bitpay.com',
-      expires: Math.floor(new Date(payProData.expires).getTime() / 1000),
+      name: name,
+      domain: payProData.domain,
+      expires: expires,
       memo: payProData.memo,
       network: 'livenet',
       requiredFeeRate: payProData.requiredFeeRate,
       selfSigned: 0,
-      time: Math.ceil(new Date(payProData.time).getTime() / 1000),
+      time: time,
       displayAddress: displayAddr,
       toAddress: toAddr,
-      url: payProData.paymentUrl,
+      url: paymentUrl,
       verified: true
     };
-  }
 
-  function handlePayPro(payProDetails, coin) {
     var stateParams = {
-      toAmount: payProDetails.amount,
-      toAddress: payProDetails.toAddress,
-      description: payProDetails.memo,
-      paypro: payProDetails,
+      amount: thirdPartyData.amount,
+      toAddress: thirdPartyData.toAddress,
       coin: coin,
+      thirdParty: JSON.stringify(thirdPartyData)
     };
 
     // fee
-    if (payProDetails.requiredFeeRate) {
-      stateParams.requiredFeeRate = payProDetails.requiredFeeRate * 1024;
+    if (thirdPartyData.requiredFeeRate) {
+      stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
 
     scannerService.pausePreview();
@@ -425,7 +458,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     }).then(function() {
       $timeout(function() {
-        $state.transitionTo('tabs.send.confirm', stateParams);
+        $state.transitionTo('tabs.send.origin', stateParams);
       });
     });
   }

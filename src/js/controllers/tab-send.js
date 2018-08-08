@@ -55,42 +55,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   });
 
-  var wallets;
-  var walletsBch;
-  var walletsBtc;
-  var walletToWalletFrom = false;
-
-  $scope.onWalletSelect = function(wallet) {
-    if (!$scope.walletToWalletFrom) {
-      $scope.walletToWalletFrom = wallet;
-      if (wallet.coin === 'bch') {
-        $scope.showWalletsBch = true;
-      } else if (wallet.coin === 'btc') {
-        $scope.showWalletsBtc = true;
-      }
-      $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
-    } else {
-      $ionicLoading.show();
-      walletService.getAddress(wallet, true, function(err, addr) {
-        $ionicLoading.hide();
-        return $state.transitionTo('tabs.send.amount', {
-          displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
-          recipientType: 'wallet',
-          fromWalletId: $scope.walletToWalletFrom.id,
-          toAddress: addr,
-          coin: $scope.walletToWalletFrom.coin
-        });
-      });
-
-    }
-  };
-
-  $scope.showWalletSelector = function() {
-    $scope.walletToWalletFrom = false;
-    $scope.walletSelectorTitleFrom = gettextCatalog.getString('Send from');
-    $scope.showWallets = true;
-  };
-
   $scope.findContact = function(search) {
 
     if (incomingData.redir(search)) {
@@ -133,7 +97,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   var updateHasFunds = function() {
-
     $scope.hasFunds = false;
     var index = 0;
     lodash.each($scope.wallets, function(w) {
@@ -179,10 +142,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           coin: v.coin,
           displayCoin:  (v.coin == 'bch'
               ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
-              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
-          getAddress: function(cb) {
-            return cb(null, k);
-          },
+              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase()
         });
       });
       originalList = completeContacts;
@@ -203,35 +163,26 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.searchBlurred = function() {
-    if ($scope.formData.search == null || $scope.formData.search.length == 0) {
+    if ($scope.formData.search == null || $scope.formData.search.length === 0) {
       $scope.searchFocus = false;
     }
   };
 
-  $scope.goToAmount = function(item) {
-    $timeout(function() {
-      item.getAddress(function(err, addr) {
-        if (err || !addr) {
-          //Error is already formated
-          return popupService.showAlert(err);
-        }
+  $scope.sendToContact = function (item) {
+    $timeout(function () {
+      var toAddress = item.address;
 
-        if (item.recipientType && item.recipientType == 'contact') {
-          if (addr.indexOf('bch') == 0 || addr.indexOf('btc') == 0) {
-            addr = addr.substring(3);
-          }
+      if (item.recipientType && item.recipientType === 'contact') {
+        if (toAddress.indexOf('bch') === 0 || toAddress.indexOf('btc') === 0) {
+          toAddress = toAddress.substring(3);
         }
+      }
 
-        $log.debug('Got toAddress:' + addr + ' | ' + item.name);
-        return $state.transitionTo('tabs.send.amount', {
-          recipientType: item.recipientType,
-          displayAddress: item.coin == 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
-          toAddress: addr,
-          toName: item.name,
-          toEmail: item.email,
-          toColor: item.color,
-          coin: item.coin
-        });
+      $log.debug('Got toAddress:' + toAddress + ' | ' + item.name);
+
+      return $state.transitionTo('tabs.send.origin', {
+        toAddress: toAddress,
+        coin: item.coin
       });
     });
   };
