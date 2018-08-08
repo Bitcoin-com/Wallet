@@ -193,7 +193,10 @@
     }
 
     .send-receive-buttons {
-      max-width: 600px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
       position: absolute;
       bottom: 20px;
 
@@ -207,6 +210,7 @@
         padding: 0 15px 0 15px;
         text-align: center;
         width: 100%;
+        max-width: 300px;
         font-size: 19px;
         font-weight: bolder;
         min-height: auto;
