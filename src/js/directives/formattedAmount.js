@@ -63,14 +63,15 @@ angular.module('bitcoincom.directives')
             };
     
             var formatNumbers = function() {
-
-              if (!$scope.currency && $scope.value) { // If there is no currency available..
-                // Try to extract currency from value..
-                var currencySplit = $scope.value.split(" ");
-                if (currencySplit.length === 2) {
-                  $scope.currency = currencySplit[1];
-                }
+              console.log('formatNumbers("' + $scope.value + '", "' + $scope.currency + '")');
+              // During watch, may be changed from having a separate currency value,
+              // to both being in value. Don't want to use previous currency value.
+              // Try to extract currency from value..
+              var currencySplit = $scope.value.split(" ");
+              if (currencySplit.length === 2) {
+                $scope.currency = currencySplit[1];
               }
+              
 
               var parsed = parseFloat($scope.value);
               var valueFormatted = '';

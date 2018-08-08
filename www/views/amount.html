@@ -44,7 +44,7 @@
           <div class="extra available-funds" 
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-            <span>Available Funds:</span>&ensp;<span><formatted-amount value="{{vm.availableFunds}}"></formatted-amount></span>
+            <span>Available Funds:</span>&ensp;<span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
           </div>  
         </div>
       </div>

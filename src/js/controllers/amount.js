@@ -70,7 +70,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     initCurrencies();
 
     passthroughParams = data.stateParams;
-    console.log('stateParams:', data.stateParams);
 
     vm.fromWalletId = data.stateParams.fromWalletId;
     vm.toWalletId = data.stateParams.toWalletId;
@@ -90,7 +89,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.toWallet = profileService.getWallet(vm.toWalletId);
 
           shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
-            console.log(data);
             vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
             vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
           });
@@ -472,8 +470,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       confirmData['thirdParty'] = JSON.stringify(this.thirdParty);
     }
 
-    console.log('confirmData:', confirmData);
-
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
@@ -594,20 +590,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (passthroughParams.fromWalletId && availableSatoshis !== null) {
       availableFundsInFiat = '';
       vm.availableFunds = availableFundsInCrypto;
-      var coin = availableUnits[altUnitIndex].isFiat ? availableUnits[unitIndex].id : availableUnits[altUnitIndex].id;
-      txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
-        if (formatted) {
-          availableFundsInFiat = formatted;
 
-          $scope.$apply(function() {
-            if (availableUnits[unitIndex].isFiat) {
+      if (availableUnits[unitIndex].isFiat) {
+        var coin = availableUnits[altUnitIndex].id;
+        txFormatService.formatAlternativeStr(coin, availableSatoshis, function formatCallback(formatted){
+          if (formatted) {
+            availableFundsInFiat = formatted;
+
+            $scope.$apply(function() {
               vm.availableFunds = availableFundsInFiat;
-            } else {
-              vm.availableFunds = availableFundsInCrypto;
-            }
-          });
-        }
-      });
+            });
+          }
+        });
+      }
     }
   }
 
