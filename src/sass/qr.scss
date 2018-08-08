@@ -5,8 +5,8 @@ qrcode {
       content: "";
       background-size: 100% 100%;
       display: block;
-      left: 88px;
-      margin-top: 88px;
+      left: calc(50% - 22px);
+      margin-top: calc(50% - 22px);
       width: 44px;
       height: 44px;
       position:absolute;

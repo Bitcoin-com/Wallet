@@ -9,6 +9,7 @@ $v-font-family-light:                                "Roboto-Light", sans-serif-
 /* Colors */
 $v-bitcoin-orange:                                   #fab915 !default;
 
+$v-off-black:                                        #262424;
 $v-dark-gray:                                        #445 !default;
 $v-mid-gray:                                         #667 !default;
 $v-light-gray:                                       #9b9bab !default;
@@ -24,7 +25,10 @@ $v-text-accent-color:                                #647ce8 !default;
 
 $v-success-color:                                    #13e5b6 !default;
 $v-warning-color:                                    #ffa500 !default;
+$v-warning-color-2:                                  #b7664d;
 $v-error-color:                                      #ef473a !default;
+
+$v-background-under-card:                            #f2f2f2;
 
 $v-wallet-color-map: (
    0: (color: #dd4b39, name: 'Cinnabar'),
@@ -77,6 +81,7 @@ $v-button-primary-active-bg:                         darken($v-accent-color, 10%
 $v-button-primary-active-border:                     transparent !default;
 $v-button-primary-clear-bg:                          none !default;
 $v-button-primary-clear-color:                       $v-accent-color !default;
+$v-button-primary-disabled-bg:                       $v-mid-gray;
 $v-button-primary-outline-bg:                        transparent !default;
 $v-button-primary-outline-border:                    $v-accent-color !default;
 $v-button-primary-outline-color:                     $v-accent-color !default;

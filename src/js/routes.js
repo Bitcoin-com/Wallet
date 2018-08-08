@@ -236,7 +236,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.receive', {
-        url: '/receive',
+        url: '/receive/:walletId',
         views: {
           'tab-receive': {
             controller: 'tabReceiveController',
@@ -291,6 +291,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -699,6 +700,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-receive@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -845,6 +847,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -910,6 +913,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1029,6 +1033,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1081,6 +1086,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1137,6 +1143,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
+            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1184,9 +1191,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
 
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       
       // Send a log to test

@@ -197,6 +197,20 @@ msgstr ""
 msgid "Alternative Currency"
 msgstr ""
 
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr ""
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr ""
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr ""
+
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
 msgstr ""
@@ -653,6 +667,7 @@ msgstr ""
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr ""
@@ -2157,6 +2172,10 @@ msgstr ""
 #: www/views/includes/walletActivity.html:11
 #: www/views/modals/txp-details.html:42
 msgid "Payment Sent"
+msgstr ""
+
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
 msgstr ""
 
 #: www/views/modals/txp-details.html:32
@@ -3747,4 +3766,8 @@ msgstr ""
 
 #: www/views/tab-home.html:30
 msgid "Your Bitcoin Wallets are ready!"
+msgstr ""
+
+#: src/js/controllers/amount.js:49
+msgid "Address doesn\'t contain currency information, please make sure you are sending the correct currency."
 msgstr ""

@@ -427,9 +427,9 @@ angular.module('copayApp.services')
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
 
-            var channel = "firebase";
-            if (platformInfo.isNW) {
-              channel = "ga";
+            var channel = "ga";
+            if (platformInfo.isCordova) {
+              channel = "firebase";
             }
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
               "coin": opts.coin
