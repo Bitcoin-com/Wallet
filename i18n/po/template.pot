@@ -442,6 +442,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr ""
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr ""
 
@@ -3717,6 +3718,54 @@ msgstr ""
 #: www/views/copayers.html:46
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr ""
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr ""
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr ""
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr ""
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr ""
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr ""
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
 msgstr ""
 
 #: src/js/controllers/amount.js:49

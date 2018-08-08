@@ -1,11 +1,10 @@
 'use strict';
-angular.module('copayApp.services').factory('shapeshiftService', function($http, $log, lodash, moment, storageService, configService, platformInfo, servicesService) {
+angular.module('copayApp.services').factory('shapeshiftService', function(gettextCatalog, servicesService) {
   var root = {};
-  var credentials = {};
 
   var servicesItem = {
     name: 'shapeshift',
-    title: 'Shapeshift',
+    title: gettextCatalog.getString('Shapeshift'),
     icon: 'icon-shapeshift',
     sref: 'tabs.shapeshift',
   };
