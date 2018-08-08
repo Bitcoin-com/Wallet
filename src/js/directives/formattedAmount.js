@@ -62,6 +62,11 @@ angular.module('bitcoincom.directives')
             };
     
             var formatNumbers = function(currency, value) {
+              if (isNaN(parseFloat($scope.value))) {
+                buildAmount('', '', '');
+                return;
+              }
+
               switch (getDecimalPlaces(currency)) {
                 case '0':
                   var valueFormatted = localizeNumbers(Math.round(parseFloat(value)));
