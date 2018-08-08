@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $state, $interval, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
+angular.module('copayApp.controllers').controller('shapeshiftController', function($scope, $state, $timeout, $ionicHistory, profileService, walletService, popupService, lodash, $ionicNavBarDelegate) {
   var walletsBtc = [];
   var walletsBch = [];
 
@@ -66,8 +66,14 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     var params = {
       thirdParty: JSON.stringify({id: 'shapeshift'})
     };
+
     $state.go('tabs.home').then(function() {
-      $state.transitionTo('tabs.send.origin', params);
+      $ionicHistory.clearHistory();
+      $state.go('tabs.send').then(function() {
+        $timeout(function () {
+          $state.transitionTo('tabs.send.origin', params);
+        }, 60);
+      });
     });
   }
 });
