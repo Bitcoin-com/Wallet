@@ -15359,6 +15359,8 @@ log-options #check-bar .checkbox-icon {
   #view-review .fee-summary {
     position: absolute;
     bottom: 92px; }
+  #view-review .fee-summary-spacer {
+    height: 15px; }
   #view-review .shapeshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
     box-shadow: none; }
   #view-review .warning {
