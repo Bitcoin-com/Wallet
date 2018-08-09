@@ -61,6 +61,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     
     function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
+      updateAllWallets();
 
       addressbookService.list(function(err, ab) {
         if (err) $log.error(err);
