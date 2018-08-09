@@ -66,6 +66,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function onBeforeEnter(event, data) {
+    console.log('amount onBeforeEnter sendflow ', sendFlowService.getState());
 
     initCurrencies();
 
@@ -209,7 +210,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function goBack() {
-    sendFlowService.previousState();
+    sendFlowService.popState();
     if (vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
       $state.go('tabs.send').then(function() {
         $ionicHistory.clearHistory();
@@ -471,7 +472,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       confirmData['thirdParty'] = this.thirdParty;
     }
 
-    sendFlowService.map(confirmData);
+    sendFlowService.pushState(confirmData);
 
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);

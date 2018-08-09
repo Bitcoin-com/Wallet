@@ -8,6 +8,8 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   var unitsFromSatoshis = 0;
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    console.log('walletSelector onBeforeEnter sendflow', sendFlowService.getState());
+
     var config = configService.getSync().wallet.settings;
     priceDisplayAsFiat = config.priceDisplay === 'fiat';
     unitDecimals = config.unitDecimals;
@@ -182,16 +184,18 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   
 
   $scope.useWallet = function(wallet) {
+    var params = sendFlowService.getState();
     if ($scope.type === 'origin') { // we're on the origin screen, set wallet to send from
-      $scope.params['fromWalletId'] = wallet.id;
+      params.fromWalletId = wallet.id;
     } else { // we're on the destination screen, set wallet to send to
-      $scope.params['toWalletId'] = wallet.id;
+      params.toWalletId = wallet.id;
     }
+    sendFlowService.pushState(params);
     $state.transitionTo(getNextStep(), $scope.params);
   };
 
   $scope.goBack = function() {
-    sendFlowService.previousState();
+    sendFlowService.popState();
     $ionicHistory.goBack();
   }
 

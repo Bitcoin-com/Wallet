@@ -105,10 +105,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           params.thirdParty = [];
           params.thirdParty.id = serviceId;
           params.thirdParty.data = serviceData;
-          sendFlowService.map(params);
+          sendFlowService.pushState(params);
           $state.transitionTo('tabs.send.amount', params);
         } else {
-          sendFlowService.map(params);
+          sendFlowService.pushState(params);
           $state.transitionTo('tabs.send.origin', params);
         }
       }, 100);
@@ -459,7 +459,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     }).then(function() {
       $timeout(function() {
-        sendFlowService.map(stateParams);
+        sendFlowService.pushState(stateParams); // Need to do more here
         $state.transitionTo('tabs.send.origin', stateParams);
       });
     });

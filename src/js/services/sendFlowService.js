@@ -19,15 +19,17 @@ angular
 
       // Functions
       clear: clear,
+      getState: getState,
       map: map,
-      previousState: previousState,
+      popState: popState,
+      pushState: pushState,
       startSend: startSend
     };
 
     return service;
 
     function clear() {
-      $log.debug("Reinitialize Send Flow variables with clear()");
+      console.log("sendFlow clear()");
       service.amount = '';
       service.fromWalletId = '';
       service.sendMax = false;
@@ -38,40 +40,50 @@ angular
     }
 
     /**
-     * Clears all previous state
-     * @param {} params 
+     * Handy for debugging
      */
-    function startSend(params) {
-      console.log('startSend()');
-      clear();
-      Object.keys(params).forEach(function forNewParam(key) {
-        service[key] = params[key];
-      });
-    }
-
-    function map(params) {
-
+    function getState() {
       var currentState = {};
       Object.keys(service).forEach(function forCurrentParam(key) {
         if (typeof service[key] !== 'function' && key !== 'previousStates') {
           currentState[key] = service[key];
         }
       });
-      service.previousStates.push(currentState);
+      return currentState;
+    }
 
-      // Do we want to inherit the previous state here, or clear first before adding new params?
+    /**
+     * Clears all previous state
+     */
+    function startSend(params) {
+      console.log('startSend()');
+      clear();
+      map(params);
+    }
 
+    function map(params) {
       Object.keys(params).forEach(function forNewParam(key) {
         service[key] = params[key];
       });
     };
 
-    function previousState() {
+    function popState() {
+      console.log('sendFlow pop');
       if (service.previousStates.length) {
-        map(service.previousStates.pop());
+        var params = service.previousStates.pop();
+        clear();
+        map(params);
       } else {
         clear();
       }
+    };
+
+    function pushState(params) {
+      console.log('sendFlow push');
+      var currentParams = getState();
+      service.previousStates.push(currentParams);
+      clear();
+      map(params);
     };
   };
 

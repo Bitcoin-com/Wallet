@@ -189,6 +189,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.startWalletToWalletTransfer = function() {
     console.log('startWalletToWalletTransfer()');
+    var params = sendFlowService.getState();
+    sendFlowService.pushState(params);
     $state.transitionTo('tabs.send.wallet-to-wallet', {
       fromWalletId: sendFlowService.fromWalletId
     });
@@ -208,6 +210,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    console.log('tab-send onBeforeEnter sendflow ', sendFlowService.getState());
     $scope.isIOS = platformInfo.isIOS && platformInfo.isCordova;
     $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
 
