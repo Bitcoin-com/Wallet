@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, $ionicNavBarDelegate) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -98,8 +98,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         }
 
         $scope.showServices = true;
-        pushNotificationsService.init();
-        firebaseEventsService.init();
 
         $timeout(function() {
           $ionicScrollDelegate.resize();

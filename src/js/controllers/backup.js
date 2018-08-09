@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('backupController',
-  function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, lodash, profileService, bwcService, walletService, ongoingProcess, popupService, gettextCatalog, $ionicModal, firebaseEventsService) {
+  function($scope, $timeout, $log, $state, $stateParams, $ionicHistory, lodash, profileService, bwcService, walletService, ongoingProcess, popupService, gettextCatalog, $ionicModal) {
 
     if ($state.current.name == 'onboarding.backup') {
       $scope.onboarding = true;
@@ -89,7 +89,8 @@ angular.module('copayApp.controllers').controller('backupController',
           $scope.setFlow(2);
         })
       } else {
-        firebaseEventsService.logEvent('backed_up_wallet');
+
+        //firebaseEventsService.logEvent('backed_up_wallet');
         openConfirmBackupModal();
       }
     };
