@@ -403,16 +403,20 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // Check if the recipient is a contact
     addressbookService.get(originCoin + address, function(err, contact) { 
       if (!err && contact) {
-        handleDestinationAsContact(contact);
+        handleDestinationAsAddressOfContact(contact);
       } else {
-        vm.destination.address = address;
+        if (originCoin === 'bch') {
+          vm.destination.address = bitcoinCashJsService.readAddress(address).cashaddr;
+        } else {
+          vm.destination.address = address;
+        }
         vm.destination.kind = 'address';
       }
     });
 
   }
 
-  function handleDestinationAsContact(contact) {
+  function handleDestinationAsAddressOfContact(contact) {
     vm.destination.kind = 'contact';
     vm.destination.name = contact.name;
     vm.destination.email = contact.email;
