@@ -37,14 +37,14 @@
           <button class="extra button" ng-click="vm.openPopup()">
             <span>
               <img src="img/icon-alternative-currency-black.svg"/>
-              &ensp;
+              <pre> </pre>
               <span translate>Change Currency</span>
             </span>
           </button>
           <div class="extra available-funds" 
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-            <span>Available Funds:</span>&ensp;<span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+            <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
           </div>  
         </div>
       </div>
