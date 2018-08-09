@@ -20,7 +20,12 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.bannerUrl = '';
 
 
-    $scope.$on("$ionicView.afterEnter", function() {
+    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on("$ionicView.enter", onEnter);
+    $scope.$on("$ionicView.afterEnter", onAfterEnter);
+    $scope.$on("$ionicView.leave", onLeave);
+
+    function onAfterEnter () {
       startupService.ready();
 
       bannerService.getBanner(function (banner) {
@@ -28,9 +33,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         $scope.bannerUrl = banner.url;
         $scope.bannerIsLoading = false;
       });
-    });
+    };
 
-    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    function onBeforeEnter (event, data) {
 
       if (!$scope.homeTip) {
         storageService.getHomeTipAccepted(function(error, value) {
@@ -52,11 +57,10 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           }
         });
       }
-    });
-
-    $scope.$on("$ionicView.enter", function(event, data) {
+    };
+    
+    function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
-      updateAllWallets();
 
       addressbookService.list(function(err, ab) {
         if (err) $log.error(err);
@@ -104,13 +108,13 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.$apply();
         }, 10);
       });
-    });
+    };
 
-    $scope.$on("$ionicView.leave", function(event, data) {
+    function onLeave (event, data) {
       lodash.each(listeners, function(x) {
         x();
       });
-    });
+    };
 
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);
