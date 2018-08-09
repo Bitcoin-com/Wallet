@@ -30,13 +30,18 @@ angular
 
     function clear() {
       console.log("sendFlow clear()");
+      clearCurrent();
+      service.previousStates = [];
+    }
+
+    function clearCurrent() {
+      console.log("sendFlow clearCurrent()");
       service.amount = '';
       service.fromWalletId = '';
       service.sendMax = false;
       service.thirdParty = null;
       service.toAddress = '';
       service.toWalletId = '';
-      service.previousStates = [];
     }
 
     /**
@@ -71,7 +76,7 @@ angular
       console.log('sendFlow pop');
       if (service.previousStates.length) {
         var params = service.previousStates.pop();
-        clear();
+        clearCurrent();
         map(params);
       } else {
         clear();
@@ -82,7 +87,7 @@ angular
       console.log('sendFlow push');
       var currentParams = getState();
       service.previousStates.push(currentParams);
-      clear();
+      clearCurrent();
       map(params);
     };
   };
