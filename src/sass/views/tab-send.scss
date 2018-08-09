@@ -2,15 +2,15 @@
   @extend .deflash-blue;
 
   &-header{
-    height: 300px;
+    //height: 300px;
     width: 100%;
   }
   &-contacts {
-    height: calc(100vh - 300px - 50px - 44px); /* screen size - button container - bottom-tab-menu - header top */
+    //height: calc(100vh - 300px - 50px - 44px); /* screen size - button container - bottom-tab-menu - header top */
     &.ios {
-      height: calc(100vh - 300px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+      //height: calc(100vh - 300px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
     }
-    overflow: scroll;
+    //overflow: scroll;
   }
 
   .input {
@@ -223,12 +223,12 @@
       }
     }
     #tab-send-header {
-      height: 270px;
+      //height: 270px;
     }
     #tab-send-contacts {
-      height: calc(100vh - 270px - 50px  - 44px);  /* screen size - button container - bottom-tab-menu - header top */
+      //height: calc(100vh - 270px - 50px  - 44px);  /* screen size - button container - bottom-tab-menu - header top */
       &.ios {
-        height: calc(100vh - 270px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+        //height: calc(100vh - 270px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
       }
     }
   }

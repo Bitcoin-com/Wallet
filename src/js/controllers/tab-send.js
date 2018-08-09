@@ -33,6 +33,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
         text = text.substring(0, 200);
       }
 
+      var stateParams = sendFlowService.getState();
+      $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
+
       $scope.clipboardHasAddress = false;
       $scope.clipboardHasContent = false;
       if ((text.indexOf('bitcoincash:') === 0 || text[0] === 'C' || text[0] === 'H' || text[0] === 'p' || text[0] === 'q') && text.replace('bitcoincash:', '').length === 42) { // CashAddr

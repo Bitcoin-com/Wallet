@@ -11168,15 +11168,7 @@ qrcode {
   background-color: #fab915 !important; }
 
 #tab-send-header {
-  height: 300px;
   width: 100%; }
-
-#tab-send-contacts {
-  height: calc(100vh - 300px - 50px - 44px);
-  /* screen size - button container - bottom-tab-menu - header top */
-  overflow: scroll; }
-  #tab-send-contacts.ios {
-    height: calc(100vh - 300px - 50px - 44px - 18px); }
 
 #tab-send .input {
   width: 100%; }
@@ -11358,14 +11350,7 @@ qrcode {
   #tab-send .send-wrapper .buttons .button-qr {
     height: 60px; }
     #tab-send .send-wrapper .buttons .button-qr span {
-      font-size: 16px; }
-  #tab-send #tab-send-header {
-    height: 270px; }
-  #tab-send #tab-send-contacts {
-    height: calc(100vh - 270px - 50px  - 44px);
-    /* screen size - button container - bottom-tab-menu - header top */ }
-    #tab-send #tab-send-contacts.ios {
-      height: calc(100vh - 270px - 50px - 44px - 18px); } }
+      font-size: 16px; } }
 
 #wallet-origin-destination .header--request {
   padding: 30px 24px;
@@ -15374,8 +15359,6 @@ log-options #check-bar .checkbox-icon {
   #view-review .fee-summary {
     position: absolute;
     bottom: 92px; }
-  #view-review .fee-summary-spacer {
-    height: 15px; }
   #view-review .shapeshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
     box-shadow: none; }
   #view-review .warning {
@@ -15551,31 +15534,28 @@ ion-content.padded-bottom-cta-with-summary {
     .fee-summary .amount .fee-crypto {
       color: #A7A7A7; }
 
-.amount .start,
-.amount .middle,
-.amount .end,
-.amount .currency {
+.formatted-amount {
   display: inline-block; }
-
-.amount .start {
-  font-size: 1em; }
-
-.amount .middle {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount .end {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount.size-equal .middle,
-.amount.size-equal .end {
-  font-size: 1em; }
-
-.amount .currency {
-  font-size: 1em;
-  margin-left: 5px;
-  text-transform: uppercase; }
+  .formatted-amount .start,
+  .formatted-amount .middle,
+  .formatted-amount .end,
+  .formatted-amount .currency {
+    display: inline-block; }
+  .formatted-amount .start {
+    font-size: 1em; }
+  .formatted-amount .middle {
+    font-size: 0.7857em;
+    margin-left: 5px; }
+  .formatted-amount .end {
+    font-size: 0.7857em;
+    margin-left: 5px; }
+  .formatted-amount.size-equal .middle,
+  .formatted-amount.size-equal .end {
+    font-size: 1em; }
+  .formatted-amount .currency {
+    font-size: 1em;
+    margin-left: 5px;
+    text-transform: uppercase; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
