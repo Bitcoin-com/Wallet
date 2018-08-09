@@ -1,4 +1,5 @@
 'use strict';
+
 angular.module('copayApp.services').factory('shapeshiftService', function ($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingData, platformInfo, servicesService) {
   var root = {};
   root.ShiftState = 'Shift';
@@ -136,16 +137,5 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
     });
   };
 
-  var servicesItem = {
-    name: 'shapeshift',
-    title: 'Shapeshift',
-    icon: 'icon-shapeshift',
-    sref: 'tabs.shapeshift',
-  };
-
-  var register = function () {
-    servicesService.register(servicesItem);
-  };
-  register();
   return root;
 });

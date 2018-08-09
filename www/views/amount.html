@@ -6,7 +6,6 @@
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content scroll="false">
-      <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
       <div style="order: 0; position: relative;">
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
@@ -38,14 +37,14 @@
           <button class="extra button" ng-click="vm.openPopup()">
             <span>
               <img src="img/icon-alternative-currency-black.svg"/>
-              &ensp;
+              <pre> </pre>
               <span translate>Change Currency</span>
             </span>
           </button>
           <div class="extra available-funds" 
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-            <span>Available Funds:</span>&ensp;<span><formatted-amount value="{{vm.availableFunds}}"></formatted-amount></span>
+            <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
           </div>  
         </div>
       </div>
@@ -91,7 +90,7 @@
       <button 
         class="button button-full button-primary no-margin" 
         ng-disabled="!vm.allowSend" 
-        ng-click="vm.finish()"
+        ng-click="vm.next()"
         style="position: absolute; bottom: 0;"
         translate>
         Next

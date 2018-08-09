@@ -1,10 +1,9 @@
-<ion-view id="view-review" hide-tabs>
+<ion-view id="view-review" can-swipe-back="false" hide-tabs>
   <ion-nav-bar class="bar-royal {{vm.origin.currency.toLowerCase()}}">
     <ion-nav-title>
       {{'Review Transaction' | translate}}
     </ion-nav-title>
-    <ion-nav-back-button>
-    </ion-nav-back-button>
+    <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content class="padded-bottom-cta-with-summary bg-neutral">
@@ -80,6 +79,7 @@
           </div>
         </div>
       </div>
+      <div class="height-spacer"></div>
     </div>
   </ion-content>
 

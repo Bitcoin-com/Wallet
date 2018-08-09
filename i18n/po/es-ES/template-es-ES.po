@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"PO-Revision-Date: 2018-07-04 09:27\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -437,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "Comprar &amp; Vender Bitcoin"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "Comprar Bitcoin"
 
@@ -619,9 +620,13 @@ msgstr "Conectando a Glidera..."
 msgid "Connection reset by peer"
 msgstr "Conexión re establecida"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "Contactos"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "Direcciones frecuentes guardadas"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -823,7 +828,7 @@ msgstr "Crear billetera compartida"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "Crear billetera"
 
@@ -2533,6 +2538,14 @@ msgstr "Buscar transacciones"
 msgid "Search or enter bitcoin address"
 msgstr "Buscar o introducir dirección bitcoin"
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "Portapapeles"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "Portapapeles vacío"
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr "Buscar transacciones"
@@ -2591,8 +2604,69 @@ msgid "Send by email"
 msgstr "Enviar por correo electrónico"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "Enviar desde"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "Enviar a"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "Pegar portapapeles"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "Pegar dirección"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "Billetera a billetera"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "Escanear código QR"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "¡Envía Bitcoin más rápido!"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "¡Envía Bitcoin más rápido!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Guardar las direcciones que usas frecuentemente y envía Bitcoin en un click"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "Añadie tu primer contacto"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "Tu billetera Bitcoin está vacía"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "Para empezar, compra Bitcoin Cash (BCH) o Bitcoin Core (BTC), o comparte tu dirección."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "Puedes recibir bitcoin desde cualquier billetera o servicio."
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "Para empezar, necesitarás crear una billetera y obtener bitcoins."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "Comprar Bitcoin ahora"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "Ver mi dirección"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -3030,7 +3104,7 @@ msgstr "Para empezar, compra bitcoin o comparte tu dirección. Puedes recibir bi
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "Para empezar, necesitarás crear una billetera y obtener bitcoins."
+msgstr "Para empezar, necesitarás crear una billetera y obtener Bitcoins."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
@@ -3635,4 +3709,52 @@ msgstr "{{updatingTxHistoryProgress}} transacciones descargadas"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-de-{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift - Cambia BTC a BCH"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "Comunidad"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Reddit de Bitcoin Cash"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Twitter de Bitcoin.com"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Explora Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Juegos de Bitcoin Cash"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "Noticias"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "Minería en la nube"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "Herramientas"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Gráfica de precios Bitcoin"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "Bitcoin Cash gratis"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "¡Tus billeteras Bitcoin están listas!"
 

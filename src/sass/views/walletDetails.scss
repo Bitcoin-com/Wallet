@@ -135,11 +135,12 @@
 
     &.status-bar {
       margin-top: 20px;
+      margin-top: env(safe-area-inset-top);
     }
   }
   .bar-header {
     border: 0;
-    background: none;
+    background: rgb(238, 182, 64);
     .title, .button {
       color: #fff;
     }
@@ -153,7 +154,7 @@
   ion-content {
 
     &.collapsible {
-      margin-top: 210px;
+      margin-top: 230px;
     }
 
     padding-top: 0;
@@ -190,12 +191,38 @@
         transform: translateY(100px);
       }
     }
+
+    .send-receive-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+
+      >.col {
+        padding: 5px 10px;
+        margin-bottom: 0;
+      }
+      .button {
+        border: 2px solid;
+        border-radius: 47px;
+        padding: 0 15px 0 15px;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        font-size: 19px;
+        font-weight: bolder;
+        min-height: auto;
+        line-height: 36px;
+      }
+    }
   }
   .amount {
     width: 100%;
     text-align: center;
     color: #fff;
-    height: 210px;
+    height: 230px;
     padding-top: 40px;
     display: block;
     align-items: center;
