@@ -223,7 +223,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // Grab stateParams
     tx = {
       amount: parseInt(sendFlowData.amount),
-      sendMax: sendFlowData.sendMax === 'true' ? true : false,
+      sendMax: sendFlowData.sendMax,
       fromWalletId: sendFlowData.fromWalletId,
       toAddress: sendFlowData.toAddress,
       paypro: txPayproData,
