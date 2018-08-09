@@ -287,7 +287,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount/:thirdParty/:fromWalletId/:maxAmount/:minAmount/:toWalletId/:toAddress',
+        url: '/amount',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
@@ -306,7 +306,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.origin', {
-        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId/:coin',
+        url: '/origin',
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
@@ -315,7 +315,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.destination', {
-        url: '/destination/:thirdParty/:amount/:fromWalletId',
+        url: '/destination',
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
@@ -324,7 +324,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.confirm', {
-        url: '/confirm/:thirdParty/:amount/:fromWalletId/:toWalletId/:toAddress',
+        url: '/confirm',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',

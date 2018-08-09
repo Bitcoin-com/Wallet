@@ -78,7 +78,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     vm.maxAmount = parseFloat(passthroughParams.maxAmount);
 
     if (passthroughParams.thirdParty) {
-      vm.thirdParty = JSON.parse(passthroughParams.thirdParty); // Parse stringified JSON-object
+      vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
       if (vm.thirdParty) {
         if (vm.thirdParty.id === 'shapeshift') {
           if (!vm.thirdParty.data) {
@@ -211,16 +211,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   function goBack() {
     sendFlowService.popState();
-    if (vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
-      $state.go('tabs.send').then(function() {
-        $ionicHistory.clearHistory();
-        $state.go('tabs.home').then(function() {
-            $state.transitionTo('tabs.shapeshift');
-        });
-      });
-    } else {
-      $ionicHistory.goBack();
-    }
+    $ionicHistory.goBack();
   }
 
   function paste(value) {

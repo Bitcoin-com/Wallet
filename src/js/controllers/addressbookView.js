@@ -32,12 +32,16 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
       } else {
         to = $scope.addressbookEntry.address;
       }
-      $state.transitionTo('tabs.send.amount', {
+
+      var stateParams = {
         toAddress: to,
         toName: $scope.addressbookEntry.name,
         toEmail: $scope.addressbookEntry.email,
         coin: $scope.addressbookEntry.coin
-      });
+      };
+
+      sendFlowService.pushState(stateParams);
+      $state.transitionTo('tabs.send.origin');
     }, 100);
   };
 

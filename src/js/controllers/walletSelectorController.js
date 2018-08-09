@@ -10,6 +10,8 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     console.log('walletSelector onBeforeEnter sendflow', sendFlowService.getState());
 
+    var stateParams = sendFlowService.getState();
+
     var config = configService.getSync().wallet.settings;
     priceDisplayAsFiat = config.priceDisplay === 'fiat';
     unitDecimals = config.unitDecimals;
@@ -20,7 +22,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
         break;
       case 'tabs.send.destination':
-        if (data.stateParams.fromWalletId) {
+        if (stateParams.fromWalletId) {
           $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
         }
         break;
@@ -47,7 +49,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       $scope.isPaymentRequest = true;
     }
     if ($scope.params.thirdParty) {
-      $scope.thirdParty = JSON.parse($scope.params.thirdParty); // Parse stringified JSON-object
+      $scope.thirdParty = $scope.params.thirdParty;
     }
   });
 
@@ -96,7 +98,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
 
   function getNextStep() {
     if ($scope.thirdParty) {
-      $scope.params.thirdParty = JSON.stringify($scope.thirdParty)  // re-stringify JSON-object
+      $scope.params.thirdParty = $scope.thirdParty
     }
     if (!$scope.params.toWalletId && !$scope.params.toAddress) { // If we have no toAddress or fromWallet
       return 'tabs.send.destination';
