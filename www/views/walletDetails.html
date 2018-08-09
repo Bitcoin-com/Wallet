@@ -34,12 +34,14 @@
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36">{{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}</strong>
+        <strong class="size-36" ng-show="status.totalBalanceAlternative">
+          <formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
+        </strong>
         <div
           class="size-14 amount-alternative"
-          ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
+          ng-if="status.totalBalanceStr && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
-          {{status.totalBalanceStr}}
+          <formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount>
         </div>
       </div>
 
@@ -47,13 +49,16 @@
         ng-show="selectedPriceDisplay=='crypto' && !updateStatusError && !wallet.balanceHidden && !wallet.scanning"
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
+        ng-if="status.totalBalanceStr"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36">{{status.totalBalanceStr}}</strong>
+        <strong class="size-36">
+          <formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount>
+        </strong>
         <div
           class="size-14 amount-alternative"
           ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
-          {{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}
+          <formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
         </div>
       </div>
 
@@ -86,9 +91,25 @@
           </strong>
           &nbsp;
           <span>
-            {{status.spendableBalanceAlternative}} {{status.alternativeIsoCode}}
+            <formatted-amount value="{{status.spendableBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
           </span>
         </button>
+      </div>
+
+      <div class="send-receive-buttons row" ng-if="(status.availableBalanceSat || status.availableBalanceSat === 0) && (buttonsOpacity > 0 || isAndroid)" ng-style="{opacity: buttonsOpacity}">
+        <div class="col">
+          <div class="button button-outline button-white-outline" ng-click="goToReceive()">
+            <span translate>Receive</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="button button-outline button-white-outline" ng-if="!status.availableBalanceSat" ng-click="goToBuy()">
+            <span translate>Buy Bitcoin</span>
+          </div>
+          <div class="button  button-outline button-white-outline" ng-if="status.availableBalanceSat>0" ng-click="goToSend()">
+            <span translate>Send</span>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -127,12 +148,12 @@
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36">{{status.totalBalanceStr}}</strong>
+        <strong ng-if="status.totalBalanceStr" class="size-36"><formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount></strong>
         <div
           class="size-14 amount-alternative"
           ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
-          {{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}
+          <formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
         </div>
       </div>
 
@@ -142,12 +163,12 @@
         on-hold="hideToggle()"
         ng-style="{'transform': amountScale}"
         ng-class="{amount__balance: amountIsCollapsible}">
-        <strong class="size-36">{{status.totalBalanceAlternative}} {{status.alternativeIsoCode}}</strong>
+        <strong class="size-36"><formatted-amount value="{{status.totalBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount></strong>
         <div
           class="size-14 amount-alternative"
-          ng-if="status.totalBalanceAlternative && wallet.network == 'livenet'"
+          ng-if="status.totalBalanceStr && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
-          {{status.totalBalanceStr}}
+          <formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount>
         </div>
       </div>
 
@@ -156,7 +177,7 @@
       ng-show="!updateStatusError && wallet.balanceHidden  && !wallet.scanning"
       on-hold="hideToggle()">
         <strong class="size-24" translate>[Balance Hidden]</strong>
-        <div ng-style="{opacity: altAmountOpacity}" class="size-14 amount-alternative" translate>
+        <div ng-style="{opacity: altAmountOpacity}" class="size-16 amount-alternative" translate>
           Tap and hold to show
         </div>
       </div>
@@ -166,7 +187,7 @@
       class="amount__balance"
       ng-show="!updateStatusError && wallet.scanning">
         <strong class="size-24" translate>[Scanning Funds]</strong>
-        <div ng-style="{opacity: altAmountOpacity}" class="size-14 amount-alternative" translate>
+        <div ng-style="{opacity: altAmountOpacity}" class="size-16 amount-alternative" translate>
           Please wait
         </div>
       </div>
@@ -180,7 +201,7 @@
           </strong>
           &nbsp;
           <span>
-            {{status.spendableBalanceAlternative}} {{status.alternativeIsoCode}}
+            <formatted-amount value="{{status.spendableBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
           </span>
         </button>
       </div>
@@ -189,13 +210,29 @@
         <button class="button button-standard button-primary amount__button-balance size-14" ng-click="openBalanceModal()">
           <i class="icon ion-ios-checkmark-outline"></i>
           <strong>
-            {{status.spendableBalanceAlternative}} {{status.alternativeIsoCode}}
+            <formatted-amount value="{{status.spendableBalanceAlternative}}" currency="{{status.alternativeIsoCode}}"></formatted-amount>
           </strong>
           &nbsp;
           <span>
             {{status.spendableBalanceStr}}
           </span>
         </button>
+      </div>
+
+      <div class="send-receive-buttons row" ng-if="(status.availableBalanceSat || status.availableBalanceSat === 0) && (buttonsOpacity > 0 || isAndroid)" ng-style="{opacity: buttonsOpacity}">
+        <div class="col">
+          <div class="button button-outline button-white-outline" ng-click="goToReceive()">
+            <span translate>Receive</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="button button-outline button-white-outline" ng-if="!status.availableBalanceSat" ng-click="goToBuy()">
+            <span translate>Buy Bitcoin</span>
+          </div>
+          <div class="button  button-outline button-white-outline" ng-if="status.availableBalanceSat>0" ng-click="goToSend()">
+            <span translate>Send</span>
+          </div>
+        </div>
       </div>
 
     </div>

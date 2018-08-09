@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -12,9 +12,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
 
-  var channel = "firebase";
-  if (platformInfo.isNW) {
-    channel = "ga";
+  var channel = "ga";
+  if (platformInfo.isCordova) {
+    channel = "firebase";
   }
   var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
@@ -342,9 +342,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       top = TOP_BALANCE_BUTTON;
     }
 
-    var amountTop = ((amountScale - 0.7) / 0.7) * top;
-    if (amountTop < -10) {
-      amountTop = -10;
+    var amountTop = ((amountScale - 0.80) / 0.80) * top;
+    if (amountTop < -2) {
+      amountTop = -2;
     }
     if (amountTop > top) {
       amountTop = top;
@@ -353,6 +353,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     var t = amountTop;
 
     $scope.altAmountOpacity = (amountHeight - 100) / 80;
+    $scope.buttonsOpacity = (amountHeight - 140) / 70;
     $window.requestAnimationFrame(function() {
       $scope.amountHeight = amountHeight + 'px';
       $scope.contentMargin = contentMargin + 'px';
@@ -373,6 +374,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    sendFlowService.clear();
 
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
@@ -469,4 +471,36 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
+
+  $scope.goToSend = function() {
+    sendFlowService.startSend({
+      fromWalletId: $scope.wallet.id
+    });
+    
+    // Go home first so that the Home tab works properly
+    $state.go('tabs.home').then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.send');
+    });
+    
+  };
+  $scope.goToReceive = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.receive', {
+        walletId: $scope.wallet.id
+      });
+    });
+  };
+  
+  $scope.goToBuy = function() {
+    $state.go('tabs.home', {
+      walletId: $scope.wallet.id
+    }).then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.buyandsell');
+    });
+  };
 });

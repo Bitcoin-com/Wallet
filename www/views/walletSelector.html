@@ -1,0 +1,60 @@
+<ion-view id="wallet-origin-destination" hide-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>{{sendFlowTitle}}</ion-nav-title>
+    <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div ng-if="thirdParty && thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div ng-if="thirdParty && thirdParty.id === 'bip70' && thirdParty.name === 'BitPay'" ng-include="'views/thirdparty/bitpay-header.html'"></div>
+    <div ng-if="thirdParty && thirdParty.id === 'bip70' && thirdParty.name === 'eGifter'" ng-include="'views/thirdparty/egifter-header.html'"></div>
+    <div class="header--request" ng-if="isPaymentRequest">
+      <div class="header--request__title" translate>Paying</div>
+      <div class="header--request__amount" translate>{{requestAmount}} {{requestCurrency}}</div>
+      <div class="header--request__amount-alt" ng-show="requestAmountSecondary" translate>{{requestAmountSecondary}} {{requestCurrencySecondary}}</div>
+    </div>
+    <div class="wallets-header">
+      <div class="title">
+        {{headerTitle}}
+      </div>
+    </div>
+    <div class="list card" ng-if="walletsBch.length > 0">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Cash (BCH)</div>
+        <div translate class="subtitle">Instant transactions with low fees</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsBch track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="useWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card" ng-if="walletsBtc.length > 0">
+      <div class="item item-icon-right item-heading">
+        <div translate>Bitcoin Core (BTC)</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsBtc track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
+           ng-click="useWallet(wallet)">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list card card-insufficient" ng-if="walletsInsufficientFunds.length > 0">
+      <div class="item item-icon-right item-heading">
+        <span class="card-insufficient__dot"></span><div translate>Insufficient funds</div>
+      </div>
+      <div>
+        <a ng-repeat="wallet in walletsInsufficientFunds track by $index"
+           class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet">
+          <span ng-include="'views/includes/walletList.html'"></span>
+        </a>
+      </div>
+    </div>
+    <div class="height-spacer"></div>
+  </ion-content>
+</ion-view>

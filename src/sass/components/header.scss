@@ -1,0 +1,39 @@
+.header {
+  padding: 29px 12px 61px;
+  background-color: $v-bitcoin-orange;
+  &.btc {
+    background-color: $v-bitcoin-core;
+  }
+  color: #FFFFFF;
+
+  .title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1em;
+    color: #FFFFFF;
+    text-align: center;
+
+    + .content {
+      margin-top: 23px;
+    }
+  }
+
+  .content {
+    text-align: center;
+
+    p {
+      margin: 0;
+      line-height: 1em;
+      font-size: 18px;
+
+      &.large {
+        font-size: 29px;
+        font-weight: 600;
+      }
+
+      + p {
+        margin-top: 8px;
+      }
+    }
+  }
+}

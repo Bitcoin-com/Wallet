@@ -73,5 +73,17 @@
     &.activated {
       color: #FFF;
     }
+    &-outline {
+      @include button-style(transparent, #FFFFFF, #FAFAFA, #FFF, #FFFFFF);
+      @include button-outline(#FFFFFF);
+      background: none;
+      box-shadow: none;
+    }
+  }
+  &-grey-outline {
+    @include button-style(transparent, #727272, #FAFAFA, #727272, #727272);
+    @include button-outline(#727272);
+    background: none;
+    box-shadow: none;
   }
 }
