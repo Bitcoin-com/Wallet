@@ -484,7 +484,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
     
   };
-
   $scope.goToReceive = function() {
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
@@ -495,7 +494,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     });
   };
-
+  
   $scope.goToBuy = function() {
     $state.go('tabs.home', {
       walletId: $scope.wallet.id

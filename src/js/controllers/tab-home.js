@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, $ionicNavBarDelegate) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -20,7 +20,12 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.bannerUrl = '';
 
 
-    $scope.$on("$ionicView.afterEnter", function() {
+    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on("$ionicView.enter", onEnter);
+    $scope.$on("$ionicView.afterEnter", onAfterEnter);
+    $scope.$on("$ionicView.leave", onLeave);
+
+    function onAfterEnter () {
       startupService.ready();
 
       bannerService.getBanner(function (banner) {
@@ -28,9 +33,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         $scope.bannerUrl = banner.url;
         $scope.bannerIsLoading = false;
       });
-    });
+    };
 
-    $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    function onBeforeEnter (event, data) {
 
       if (!$scope.homeTip) {
         storageService.getHomeTipAccepted(function(error, value) {
@@ -52,9 +57,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           }
         });
       }
-    });
-
-    $scope.$on("$ionicView.enter", function(event, data) {
+    };
+    
+    function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
       updateAllWallets();
 
@@ -98,21 +103,19 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         }
 
         $scope.showServices = true;
-        pushNotificationsService.init();
-        firebaseEventsService.init();
 
         $timeout(function() {
           $ionicScrollDelegate.resize();
           $scope.$apply();
         }, 10);
       });
-    });
+    };
 
-    $scope.$on("$ionicView.leave", function(event, data) {
+    function onLeave (event, data) {
       lodash.each(listeners, function(x) {
         x();
       });
-    });
+    };
 
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);

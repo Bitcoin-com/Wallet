@@ -467,7 +467,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     sendFlowService.pushState(confirmData);
-
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
