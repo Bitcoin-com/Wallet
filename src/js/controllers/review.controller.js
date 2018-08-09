@@ -398,7 +398,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   function goBack() {
-    sendFlowService.popState();
     $ionicHistory.goBack();
   }
 

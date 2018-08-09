@@ -7,8 +7,15 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   var unitDecimals = 0;
   var unitsFromSatoshis = 0;
 
-  $scope.$on("$ionicView.beforeEnter", function(event, data) {
+  $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+  $scope.$on("$ionicView.enter", onEnter);
+  
+  function onBeforeEnter(event, data) {
     console.log('walletSelector onBeforeEnter sendflow', sendFlowService.getState());
+
+    if (data.direction == "back") {
+      sendFlowService.popState();
+    }
 
     var stateParams = sendFlowService.getState();
 
@@ -51,9 +58,9 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if ($scope.params.thirdParty) {
       $scope.thirdParty = $scope.params.thirdParty;
     }
-  });
+  };
 
-  $scope.$on("$ionicView.enter", function(event, data) {
+  function onEnter (event, data) {
     configService.whenAvailable(function(config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
     });
@@ -65,7 +72,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
 
     prepareWalletLists();
     formatRequestedAmount();
-  });
+  };
 
   function formatRequestedAmount() {
     if ($scope.params.amount) {
@@ -197,7 +204,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   };
 
   $scope.goBack = function() {
-    sendFlowService.popState();
     $ionicHistory.goBack();
   }
 
