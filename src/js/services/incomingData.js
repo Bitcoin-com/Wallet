@@ -82,7 +82,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       });
       // Timeout is required to enable the "Back" button
       $timeout(function() {
-        var params = {};
+        var params = sendFlowService.getState();
         
         if (amount) {
           params.amount = amount;
