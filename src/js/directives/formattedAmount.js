@@ -32,11 +32,16 @@ angular.module('bitcoincom.directives')
             '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],
             '8': ['BCH', 'BTC']
           };
-          var localizeNumbers = function(x, minimumFractionDigits = 0, useGrouping = true) {
-            return parseFloat(x).toLocaleString(uxLanguage.getCurrentLanguage(), {
+          var localizeNumbers = function(x, minimumFractionDigits) {
+            var parsed = parseFloat(x);
+            var opts = {
               minimumFractionDigits: minimumFractionDigits,
-              useGrouping: useGrouping
-            });
+              useGrouping: true
+            };
+            var lang = uxLanguage.getCurrentLanguage();
+            var localized = parsed.toLocaleString(lang, opts);
+            var corrected =  ensureEnoughFractionalDigits(localized, x, minimumFractionDigits);
+            return corrected;
           };
   
           var buildAmount = function(start, middle, end) {
@@ -61,7 +66,6 @@ angular.module('bitcoincom.directives')
           };
   
           var formatNumbers = function() {
-            
             // During watch, may be changed from having a separate currency value,
             // to both being in value. Don't want to use previous currency value.
             // Try to extract currency from value..
@@ -69,6 +73,7 @@ angular.module('bitcoincom.directives')
             if (currencySplit.length === 2) {
               $scope.currency = currencySplit[1];
             }
+            $scope.currency = $scope.currency || '';
             
 
             var parsed = parseFloat($scope.value);
@@ -79,7 +84,7 @@ angular.module('bitcoincom.directives')
                   if (isNaN(parsed)) {
                   buildAmount('-', '', '');
                 } else {
-                  valueFormatted = localizeNumbers(Math.round(parsed));
+                  valueFormatted = localizeNumbers(Math.round(parsed), 0);
                   buildAmount(valueFormatted, '', '');
                 }
                 break;
@@ -127,6 +132,44 @@ angular.module('bitcoincom.directives')
           $scope.$watchGroup(['currency', 'value'], function onFormattedAmountWatch() {
             formatNumbers();
           });
+
+          /**
+           * On Android 4.4, toLocaleString() only returns 3 fractional digits when 8 is specified.
+           */
+          function ensureEnoughFractionalDigits(localizedString, number, desiredFractionDigits) {
+            if (desiredFractionDigits === 0) {
+              // Assume it is OK
+              return localizedString;
+            }
+            var fractionalRe = /^(\d*\D)(\d+)$/;
+            var match = fractionalRe.exec(localizedString);
+            if (match.length !== 3) {
+              // Don't know what's happening, just return what we have
+              return localizedString;
+            }
+
+            var decimals = match[2];
+            var decimalCount = decimals.length;
+            if (decimalCount >= desiredFractionDigits) {
+              // Everything is OK.
+              return localizedString;
+            }
+
+            if (typeof number !== 'number') {
+              number = parseFloat(number);
+            }
+            
+            var fixed = number.toFixed(desiredFractionDigits);
+            var fixedMatch = fractionalRe.exec(fixed);
+            if (fixedMatch.length !== 3) {
+              // Don't know what's happening, just return what we have
+              return localizedString;
+            }
+
+            // Keeps locale decimal separator.
+            var enough = match[1] + fixedMatch[2];
+            return enough;
+          }
         });
       }
     };

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('createController',
-  function($scope, $rootScope, $timeout, $log, lodash, $state, $ionicScrollDelegate, $ionicHistory, profileService, configService, gettextCatalog, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, storageService, popupService, appConfigService, pushNotificationsService, firebaseEventsService, $ionicNavBarDelegate) {
+  function($scope, $timeout, $log, lodash, $state, $ionicScrollDelegate, $ionicHistory, profileService, configService, gettextCatalog, ledger, trezor, intelTEE, derivationPathHelper, ongoingProcess, walletService, popupService, appConfigService, pushNotificationsService, $ionicNavBarDelegate) {
 
     /* For compressed keys, m*73 + n*34 <= 496 */
     var COPAYER_PAIR_LIMITS = {
@@ -268,7 +268,7 @@ angular.module('copayApp.controllers').controller('createController',
               }, 100);
             }
             else {
-              firebaseEventsService.logEvent('wallet_created', { coin: opts.coin });
+              //firebaseEventsService.logEvent('wallet_created', { coin: opts.coin });
               $state.go('tabs.home');
             }
           }

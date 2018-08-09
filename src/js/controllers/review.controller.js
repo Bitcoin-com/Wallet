@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -49,9 +49,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.memoExpanded = false;
 
   // Functions
+  vm.goBack = goBack;
   vm.onSuccessConfirm = onSuccessConfirm;
 
-  
+  var sendFlowData;
   var config = null;
   var countDown = null;
   var defaults = {};
@@ -74,22 +75,22 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
+    console.log('walletSelector onBeforeEnter sendflow ', sendFlowService.getState());
     defaults = configService.getDefaults();
-    originWalletId = data.stateParams.fromWalletId;
-    satoshis = parseInt(data.stateParams.amount, 10);
-    toAddress = data.stateParams.toAddress;
-    destinationWalletId = data.stateParams.toWalletId;
+    sendFlowData = sendFlowService.getState();
+    originWalletId = sendFlowData.fromWalletId;
+    satoshis = parseInt(sendFlowData.amount, 10);
+    toAddress = sendFlowData.toAddress;
+    destinationWalletId = sendFlowData.toWalletId;
     
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
     coin = vm.originWallet.coin;
 
-    if (data.stateParams.thirdParty) {
-      vm.thirdParty = JSON.parse(data.stateParams.thirdParty); // Parse stringified JSON-object
-      if (vm.thirdParty) {
-        handleThirdPartyInitIfBip70();
-        handleThirdPartyInitIfShapeshift();
-      }
+    if (sendFlowData.thirdParty) {
+      vm.thirdParty = sendFlowData.thirdParty;
+      handleThirdPartyInitIfBip70();
+      handleThirdPartyInitIfShapeshift();
     }
 
     configService.get(function onConfig(err, configCache) {
@@ -105,7 +106,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       updateSendAmounts();
       getOriginWalletBalance(vm.originWallet);
       handleDestinationAsAddress(toAddress, coin);
-      handleDestinationAsWallet(data.stateParams.toWalletId);
+      handleDestinationAsWallet(sendFlowData.toWalletId);
       createVanityTransaction(data);
     });
   }
@@ -221,10 +222,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
     // Grab stateParams
     tx = {
-      amount: parseInt(data.stateParams.amount),
-      sendMax: data.stateParams.sendMax === 'true' ? true : false,
-      fromWalletId: data.stateParams.fromWalletId,
-      toAddress: data.stateParams.toAddress,
+      amount: parseInt(sendFlowData.amount),
+      sendMax: sendFlowData.sendMax === 'true' ? true : false,
+      fromWalletId: sendFlowData.fromWalletId,
+      toAddress: sendFlowData.toAddress,
       paypro: txPayproData,
 
       feeLevel: configFeeLevel,
@@ -241,7 +242,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     };
 
 
-
     if (data.stateParams.requiredFeeRate) {
       vm.usingMerchantFee = true;
       tx.feeRate = parseInt(data.stateParams.requiredFeeRate);
@@ -251,7 +251,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       tx.feeLevel = 'normal';
     }
 
-    var B = data.stateParams.coin === 'bch' ? bitcoreCash : bitcore;
+    var B = tx.coin === 'bch' ? bitcoreCash : bitcore;
     var networkName;
     try {
       if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
@@ -395,6 +395,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     };
   }
 
+  function goBack() {
+    $ionicHistory.goBack();
+  }
+
   function handleDestinationAsAddress(address, originCoin) {
     if (!address) {
       return;
@@ -403,16 +407,20 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // Check if the recipient is a contact
     addressbookService.get(originCoin + address, function(err, contact) { 
       if (!err && contact) {
-        handleDestinationAsContact(contact);
+        handleDestinationAsAddressOfContact(contact);
       } else {
-        vm.destination.address = address;
+        if (originCoin === 'bch') {
+          vm.destination.address = bitcoinCashJsService.readAddress(address).cashaddr;
+        } else {
+          vm.destination.address = address;
+        }
         vm.destination.kind = 'address';
       }
     });
 
   }
 
-  function handleDestinationAsContact(contact) {
+  function handleDestinationAsAddressOfContact(contact) {
     vm.destination.kind = 'contact';
     vm.destination.name = contact.name;
     vm.destination.email = contact.email;

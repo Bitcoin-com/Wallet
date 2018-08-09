@@ -34,7 +34,7 @@
           <span translate>Buy Bitcoin</span>
         </div>
         <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
-             ui-sref="tabs.send">
+             ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>
       </div>

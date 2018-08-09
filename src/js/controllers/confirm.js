@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $filter, $timeout, $ionicScrollDelegate, $ionicLoading, ionicToast, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $stateParams, $window, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, payproService, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, externalLinkService, firebaseEventsService, soundService, clipboardService) {
+angular.module('copayApp.controllers').controller('confirmController', function($rootScope, $scope, $interval, $timeout, $ionicScrollDelegate, $ionicLoading, ionicToast, addressbookService, gettextCatalog, walletService, platformInfo, lodash, configService, $state, $log, profileService, bitcore, bitcoreCash, txFormatService, ongoingProcess, $ionicModal, popupService, $ionicHistory, $ionicConfig, feeService, bitcoinCashJsService, bwcError, txConfirmNotification, soundService, clipboardService) {
 
   var countDown = null;
   var FEE_TOO_HIGH_LIMIT_PER = 15;
@@ -708,8 +708,6 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       }], [channel, "adjust"]);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
-      // Should be removed
-      firebaseEventsService.logEvent('sent_bitcoin', { coin: $scope.wallet.coin });
       $timeout(function() {
         $scope.$digest();
       }, 100);
