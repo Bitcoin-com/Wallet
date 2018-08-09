@@ -88,11 +88,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     coin = vm.originWallet.coin;
 
     if (sendFlowData.thirdParty) {
-      // vm.thirdParty = JSON.parse(sendFlowData.thirdParty); // Parse stringified JSON-object
-      if (vm.thirdParty) {
-        handleThirdPartyInitIfBip70();
-        handleThirdPartyInitIfShapeshift();
-      }
+      vm.thirdParty = sendFlowData.thirdParty;
+      handleThirdPartyInitIfBip70();
+      handleThirdPartyInitIfShapeshift();
     }
 
     configService.get(function onConfig(err, configCache) {

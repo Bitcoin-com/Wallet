@@ -69,6 +69,8 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
       }
     };
 
+    // Starting new send flow, so ensure everything is reset
+    sendFlowService.clear();
     $state.go('tabs.home').then(function() {
       $ionicHistory.clearHistory();
       $state.go('tabs.send').then(function() {
