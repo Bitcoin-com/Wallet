@@ -10,6 +10,11 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
+  <style type="text/css">
+    .button-white-outline.button-outline.active, .button-white-outline.button-outline.activated {
+      color: {{ wallet.color }};
+    }
+  </style>
 
   <div class="bp-content" ng-class="{'status-bar': isCordova}">
 
