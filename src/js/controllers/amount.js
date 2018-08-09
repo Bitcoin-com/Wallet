@@ -68,6 +68,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   function onBeforeEnter(event, data) {
     console.log('amount onBeforeEnter sendflow ', sendFlowService.getState());
 
+    if (data.direction == "back") {
+      sendFlowService.popState();
+    }
+    
     initCurrencies();
 
     passthroughParams = sendFlowService;
@@ -210,7 +214,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function goBack() {
-    sendFlowService.popState();
     $ionicHistory.goBack();
   }
 
