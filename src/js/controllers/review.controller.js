@@ -49,6 +49,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.memoExpanded = false;
 
   // Functions
+  vm.goBack = goBack;
   vm.onSuccessConfirm = onSuccessConfirm;
 
   var sendFlowData;
@@ -393,6 +394,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       amount: displayAmount,
       currency: displayCurrency
     };
+  }
+
+  function goBack() {
+    sendFlowService.popState();
+    $ionicHistory.goBack();
   }
 
   function handleDestinationAsAddress(address, originCoin) {
