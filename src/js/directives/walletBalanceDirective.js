@@ -28,37 +28,41 @@
 
     function displayCryptoBalance(wallet) {
       console.log('displayCryptoBalance()');
-      if (wallet.status) {
-        if (wallet.status.totalBalanceStr) {
-          $scope.displayAmount = wallet.status.totalBalanceStr;
-          $scope.cachedBalanceUpdatedOn = '';
-          console.log('Displaying wallet.status.totalBalanceStr');
 
-        } else if (wallet.status.cachedBalance) {
-          $scope.displayAmount = wallet.status.cachedBalance;
-          $scope.cachedBalanceUpdatedOn = wallet.status.cachedBalanceUpdatedOn;
-          console.log('Displaying wallet.status.cachedBalance');
-
-        } else {
-          $scope.displayAmount = '';
-          $scope.cachedBalanceUpdatedOn = '';
-          console.log('Displaying "" from status');
-        }
-      } else if (wallet.cachedBalance) {
-        $scope.displayAmount = cachedBalance;
-        $scope.cachedBalanceUpdatedOn = '';
-        console.log('Displaying cachedBalance');
-
-      } else {
-        $scope.displayAmount = '';
-        $scope.cachedBalanceUpdatedOn = '';
-        console.log('Displaying "" without status');
+      if (wallet.status && wallet.status.totalBalanceStr) {
+        setDisplay(wallet.status.totalBalanceStr, '');
+        cryptoBalanceHasBeenDisplayed = true;
+        return;
       }
-      cryptoBalanceHasBeenDisplayed = true;
+       
+      if (wallet.cachedBalance) {
+        setDisplay(wallet.cachedBalance, wallet.cachedBalanceUpdatedOn);
+        return;
+      }
+
+      if (wallet.cachedStatus && wallet.cachedStatus.totalBalanceStr) {
+        setDisplay(wallet.cachedStatus.totalBalanceStr, '');
+        return;  
+      }
+         
+      setDisplay('', '');
     }
 
     function displayFiatBalance(wallet) {
-    
+      var displayAmount = '';
+      if (wallet.status && wallet.status.alternativeBalanceAvailable) {
+        displayAmount = wallet.status.totalBalanceAlternative + ' ' + wallet.status.alternativeIsoCode;
+        setDisplay(displayAmount, '');
+        return;
+      }
+
+      if (wallet.cachedStatus && wallet.cachedStatus.alternativeBalanceAvailable) {
+        displayAmount = wallet.cachedStatus.totalBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
+        setDisplay(displayAmount, '');
+        return;
+      }
+
+      getFiatBalance(wallet);
     }
 
     function formatBalance() {
@@ -80,8 +84,14 @@
       if ($scope.displayAsFiat) {
         displayFiatBalance(wallet);
       }
+    }
 
+    function getFiatBalance(wallet) {
+    }
 
+    function setDisplay(amount, cachedBalanceUpdatedOn) {
+      $scope.displayAmount = amount;
+      $scope.cachedBalanceUpdatedOn = cachedBalanceUpdatedOn;
     }
   }
 })();
