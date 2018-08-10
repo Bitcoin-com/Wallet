@@ -107,3 +107,7 @@ www/img/app
 ## Firebase
 /GoogleService-Info.plist
 /google-services.json
+
+
+.idea/
+www/external/

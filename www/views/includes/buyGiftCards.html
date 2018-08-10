@@ -1,0 +1,18 @@
+<div ng-controller="buyGiftCardsController">
+  <div class="item item-icon-right item-heading" ng-click="toggle()" >
+    <span translate>Gift Cards</span>
+    <i class="icon bp-arrow-up" ng-show="!hide"></i>
+    <i class="icon bp-arrow-down" ng-show="hide"></i>
+  </div>
+  <div ng-show="!hide">
+    <div>
+      <a href="/external/egifter/index.html" id="home_egifter" title="Buy Gift Cards" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+        <i class="icon big-icon-svg theme-circle theme-circle-services">
+          <div class="bg icon-egifter"></div>
+        </i>
+        <span>Buy Gift Cards</span>
+        <i class="icon bp-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</div>

@@ -207,6 +207,11 @@ div.onboarding-topic {
 	color:#26B03C;
 }
 
+.icon-egifter {
+	background-color: #ffffff;
+	background-image: url('../img/egiftericon.png');
+}
+
 .icon-shapeshift {
 	background-color: #494949;
 	background-image: url('../img/shapeshifticon.png');
