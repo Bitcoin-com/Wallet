@@ -464,7 +464,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     };
 
     if (vm.thirdParty) {
-      confirmData['thirdParty'] = this.thirdParty;
+      confirmData.thirdParty = vm.thirdParty;
     }
 
     sendFlowService.pushState(confirmData);
