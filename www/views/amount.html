@@ -14,14 +14,14 @@
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
-                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 10}">
+                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 8}">
                 <span class="primary-amount-display text-selectable">
-                  <formatted-amount value="{{vm.amount || '0'}}" currency="{{vm.unit}}"></formatted-amount>
+                  {{vm.amount || '0'}} {{vm.unit}}
                 </span>
               </div>
               <span ng-show="vm.globalResult"><formatted-amount value="{{vm.globalResult}}" currency="{{vm.unit}}"></formatted-amount></span>
               <div class="alternative-amount">
-                <span class="text-selectable"><formatted-amount value="{{vm.alternativeAmount || '0.00'}}" currency="{{vm.alternativeUnit}}"></formatted-amount></span>
+                <span class="text-selectable">{{vm.alternativeAmount || '0.00'}} {{vm.alternativeUnit}}</span>
               </div>
               <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
@@ -34,17 +34,20 @@
         </div>
 
         <div class="send-amount-extras text-center">
-          <button class="extra button" ng-click="vm.openPopup()">
-            <span>
-              <img src="img/icon-alternative-currency-black.svg"/>
-              <pre> </pre>
-              <span translate>Change Currency</span>
-            </span>
-          </button>
-          <div class="extra available-funds" 
+          <div class="extra change-currency">
+            <button class="button" ng-click="vm.openPopup()">
+              <span>
+                <img src="img/icon-alternative-currency-black.svg"/>
+                <pre> </pre>
+                <span translate>Change Currency</span>
+              </span>
+            </button>
+          </div>
+          <div class="extra available-funds"
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-            <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+              <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+            </div>
           </div>  
         </div>
       </div>
