@@ -11,8 +11,8 @@
     <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
-        <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</p>
-        <p ng-show="vm.secondaryAmount">{{vm.secondaryAmount}} {{vm.secondaryCurrency}}</p>
+        <p class="large"><formatted-amount value="{{vm.primaryAmount}}" currency="{{vm.primaryCurrency}}"></formatted-amount></p>
+        <p ng-show="vm.secondaryAmount"><formatted-amount value="{{vm.secondaryAmount}}" currency="{{vm.secondaryCurrency}}"></formatted-amount></p>
       </div>
     </div>
 
