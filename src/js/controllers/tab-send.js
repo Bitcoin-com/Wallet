@@ -28,13 +28,14 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.enter", function(event, data) {
+
+    var stateParams = sendFlowService.getState();
+    $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
+
     clipboardService.readFromClipboard(function(text) {
       if (text.length > 200) {
         text = text.substring(0, 200);
       }
-
-      var stateParams = sendFlowService.getState();
-      $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
 
       $scope.clipboardHasAddress = false;
       $scope.clipboardHasContent = false;
