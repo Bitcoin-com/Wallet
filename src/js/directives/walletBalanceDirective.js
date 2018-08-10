@@ -17,8 +17,7 @@
     }
   });
     
-  function walletBalanceController($log, $scope, $timeout, uxLanguage) {
-    console.log('walletBalanceController');
+  function walletBalanceController($log, $scope, txFormatService) {
     var cryptoBalanceHasBeenDisplayed = false;
     
     formatBalance();
@@ -29,7 +28,7 @@
     function displayCryptoBalance(wallet) {
       console.log('displayCryptoBalance()');
 
-      if (wallet.status && wallet.status.totalBalanceStr) {
+      if (wallet.status && wallet.status.isValid && wallet.status.totalBalanceStr) {
         setDisplay(wallet.status.totalBalanceStr, '');
         cryptoBalanceHasBeenDisplayed = true;
         return;
@@ -40,7 +39,7 @@
         return;
       }
 
-      if (wallet.cachedStatus && wallet.cachedStatus.totalBalanceStr) {
+      if (wallet.cachedStatus && wallet.status.isValid && wallet.cachedStatus.totalBalanceStr) {
         setDisplay(wallet.cachedStatus.totalBalanceStr, '');
         return;  
       }
@@ -50,13 +49,13 @@
 
     function displayFiatBalance(wallet) {
       var displayAmount = '';
-      if (wallet.status && wallet.status.alternativeBalanceAvailable) {
+      if (wallet.status && wallet.status.isValid && wallet.status.alternativeBalanceAvailable) {
         displayAmount = wallet.status.totalBalanceAlternative + ' ' + wallet.status.alternativeIsoCode;
         setDisplay(displayAmount, '');
         return;
       }
 
-      if (wallet.cachedStatus && wallet.cachedStatus.alternativeBalanceAvailable) {
+      if (wallet.cachedStatus && wallet.cachedStatus.isValid && wallet.cachedStatus.alternativeBalanceAvailable) {
         displayAmount = wallet.cachedStatus.totalBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
         setDisplay(displayAmount, '');
         return;
@@ -66,15 +65,12 @@
     }
 
     function formatBalance() {
-      //console.log('formatBalance() with wallet:', $scope.wallet,);
-      console.log('formatBalance() with displayAsFiat: "' + $scope.displayAsFiat + '"');
       var wallet = null;
       try {
         wallet = JSON.parse($scope.wallet);
       } catch (e) {
         $log.error('Error parsing wallet to display balance.', e);
-        $scope.displayAmount = '';
-        $scope.cachedBalanceUpdatedOn = '';
+        setDisplay('', '');
       }
 
       if (!$scope.displayAsFiat || $scope.displayAsFiat && !cryptoBalanceHasBeenDisplayed) {
@@ -87,6 +83,16 @@
     }
 
     function getFiatBalance(wallet) {
+      if (!(wallet.status && wallet.status.isValid)) {
+        $log.warn('Abandoning call to get fiat balance, because no valid wallet status.');
+        return;
+      }
+
+      txFormatService.formatAlternativeStr(wallet.coin, wallet.status.totalBalanceSat, function onFormatAlernativeStr(formatted) {
+        if (formatted) {
+          setDisplay(formatted, '');
+        }
+      });
     }
 
     function setDisplay(amount, cachedBalanceUpdatedOn) {
