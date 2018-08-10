@@ -74,7 +74,7 @@
       color: #FFF;
     }
     &-outline {
-      @include button-style(transparent, #FFFFFF, #FAFAFA, #FFF, #FFFFFF);
+      @include button-style(transparent, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF);
       @include button-outline(#FFFFFF);
       background: none;
       box-shadow: none;
