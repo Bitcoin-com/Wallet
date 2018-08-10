@@ -447,13 +447,15 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       amount: thirdPartyData.amount,
       toAddress: thirdPartyData.toAddress,
       coin: coin,
-      thirdParty: JSON.stringify(thirdPartyData)
+      thirdParty: thirdPartyData
     };
 
     // fee
     if (thirdPartyData.requiredFeeRate) {
       stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
+
+    sendFlowService.pushState(thirdPartyData);
 
     scannerService.pausePreview();
     $state.go('tabs.send', {}, {
