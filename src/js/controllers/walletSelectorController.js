@@ -34,6 +34,9 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         }
         break;
       default:
+        if (!stateParams.thirdParty) {
+          $scope.sendFlowTitle = gettextCatalog.getString('Send');
+        }
        // nop
     }
 
