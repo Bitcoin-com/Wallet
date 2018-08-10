@@ -214,6 +214,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       var j = 0;
 
       lodash.each(wallets, function(wallet) {
+        walletService.invalidateCache(wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
         walletService.getStatus(wallet, {}, function(err, status) {
           if (err) {
 

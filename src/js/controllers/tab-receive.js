@@ -158,6 +158,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         soundService.play('misc/payment_received.mp3');
       } 
 
+      // Notify new tx
+      $scope.$emit('bwsEvent', $scope.wallet.id);
+
+
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
