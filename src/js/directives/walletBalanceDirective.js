@@ -65,19 +65,21 @@
     }
 
     function formatBalance() {
+      var displayAsFiat = $scope.displayAsFiat === 'true';
       var wallet = null;
       try {
         wallet = JSON.parse($scope.wallet);
       } catch (e) {
         $log.error('Error parsing wallet to display balance.', e);
         setDisplay('', '');
+        return;
       }
 
-      if (!$scope.displayAsFiat || $scope.displayAsFiat && !cryptoBalanceHasBeenDisplayed) {
+      if (!displayAsFiat || displayAsFiat && !cryptoBalanceHasBeenDisplayed) {
         displayCryptoBalance(wallet);
       }
 
-      if ($scope.displayAsFiat) {
+      if (displayAsFiat) {
         displayFiatBalance(wallet);
       }
     }
