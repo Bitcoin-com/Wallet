@@ -1277,6 +1277,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
+      var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'shapeshift_start_click', 
+        class: 'track_shapeshift_start_click', 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+      
       // Init language
       uxLanguage.init(function (lang) {
 
