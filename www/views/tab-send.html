@@ -16,7 +16,13 @@
                     ></div>
                 </i>
                 <h2>{{fromWallet.name}}</h2>
-                <wallet-balance display-as-fiat="{{displayBalanceAsFiat}}" wallet="{{fromWallet}}" total-balance-sat="{{fromWallet.status.totalBalanceSat}}"></wallet-balance>
+                <wallet-balance
+                 display-as-fiat="{{displayBalanceAsFiat}}" 
+                 wallet-status="{{fromWallet.status}}"
+                 wallet-cached-balance="{{fromWallet.cachedBalance}}"
+                 wallet-cached-balance-updated-on="{{fromWallet.cachedBalanceUpdatedOn}}"
+                 wallet-cached-status="{{fromWallet.cachedStatus}}"
+                 total-balance-sat="{{fromWallet.status.totalBalanceSat}}"></wallet-balance>
                 <!--<p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>-->
                 <!--<formatted-amount value="{{fromWallet.status.totalBalanceStr ? fromWallet.status.totalBalanceStr : ( fromWallet.cachedBalance ? fromWallet.cachedBalance   + (fromWallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( fromWallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }}"></formatted-amount>-->
               </div>
