@@ -10,7 +10,12 @@
       scope: {
         displayAsFiat: '@',
         totalBalanceSat: '@',
-        wallet: '@'
+        // The Wallet object is sometimes not stringify()-able, so not interpolatable,
+        // so can't be passed to a directive.
+        walletStatus: '@',
+        walletCachedBalance: '@',
+        walletCachedBalanceUpdatedOn: '@',
+        walletCachedStatus: '@'
       },
       templateUrl: 'views/includes/wallet-balance.html',
       controller: walletBalanceController
@@ -25,38 +30,38 @@
       formatBalance();
     });
 
-    function displayCryptoBalance(wallet) {
+    function displayCryptoBalance(walletStatus, walletCachedBalance, walletCachedBalanceUpdatedOn, walletCachedStatus) {
       console.log('displayCryptoBalance()');
 
-      if (wallet.status && wallet.status.isValid && wallet.status.totalBalanceStr) {
-        setDisplay(wallet.status.totalBalanceStr, '');
+      if (walletStatus && walletStatus.isValid && walletStatus.totalBalanceStr) {
+        setDisplay(walletStatus.totalBalanceStr, '');
         cryptoBalanceHasBeenDisplayed = true;
         return;
       }
        
-      if (wallet.cachedBalance) {
-        setDisplay(wallet.cachedBalance, wallet.cachedBalanceUpdatedOn);
+      if (walletCachedBalance) {
+        setDisplay(walletCachedBalance, walletCachedBalanceUpdatedOn);
         return;
       }
 
-      if (wallet.cachedStatus && wallet.status.isValid && wallet.cachedStatus.totalBalanceStr) {
-        setDisplay(wallet.cachedStatus.totalBalanceStr, '');
+      if (walletCachedStatus && walletCachedStatus.isValid && walletCachedStatus.totalBalanceStr) {
+        setDisplay(walletCachedStatus.totalBalanceStr, '');
         return;  
       }
          
       setDisplay('', '');
     }
 
-    function displayFiatBalance(wallet) {
+    function displayFiatBalance(walletStatus, walletCachedStatus) {
       var displayAmount = '';
-      if (wallet.status && wallet.status.isValid && wallet.status.alternativeBalanceAvailable) {
-        displayAmount = wallet.status.totalBalanceAlternative + ' ' + wallet.status.alternativeIsoCode;
+      if (walletStatus && walletStatus.isValid && walletStatus.alternativeBalanceAvailable) {
+        displayAmount = walletStatus.totalBalanceAlternative + ' ' + walletStatus.alternativeIsoCode;
         setDisplay(displayAmount, '');
         return;
       }
 
-      if (wallet.cachedStatus && wallet.cachedStatus.isValid && wallet.cachedStatus.alternativeBalanceAvailable) {
-        displayAmount = wallet.cachedStatus.totalBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
+      if (walletCachedStatus && walletCachedStatus.isValid && walletCachedStatus.alternativeBalanceAvailable) {
+        displayAmount = walletCachedStatus.totalBalanceAlternative + ' ' + walletCachedStatus.alternativeIsoCode;
         setDisplay(displayAmount, '');
         return;
       }
@@ -66,26 +71,30 @@
 
     function formatBalance() {
       var displayAsFiat = $scope.displayAsFiat === 'true';
-      if (!$scope.wallet) {
-        setDisplay('', '');
-        return;
+
+      var walletStatusObj = null;
+      var walletCachedBalance = null;
+      var walletCachedBalanceUpdatedOn = null;
+      var walletCachedStatusObj = null;
+
+      try {
+        walletStatusObj = JSON.parse($scope.walletStatus);
+      } catch (e) {
+        $log.warn('Failed to parse walletStatus.', e);
       }
 
-      var wallet = null;
       try {
-        wallet = JSON.parse($scope.wallet);
+        walletCachedStatusObj = JSON.parse($scope.walletCachedStatus);
       } catch (e) {
-        $log.error('Error parsing wallet to display balance.', e);
-        setDisplay('', '');
-        return;
+        $log.warn('Failed to parse walletCachedStatus.', e);
       }
 
       if (!displayAsFiat || displayAsFiat && !cryptoBalanceHasBeenDisplayed) {
-        displayCryptoBalance(wallet);
+        displayCryptoBalance(walletStatusObj, walletCachedBalance, walletCachedBalanceUpdatedOn, walletCachedStatusObj);
       }
 
       if (displayAsFiat) {
-        displayFiatBalance(wallet);
+        displayFiatBalance(walletStatusObj, walletCachedStatusObj);
       }
     }
 
