@@ -305,7 +305,8 @@
 
             &.very-long {
               input, .unit, .primary-amount-display {
-                font-size: 0.9em;
+                font-size: 1.2em; // OK for iPhone 5 / SE with BCH to 8dp
+                
   
                 @media (min-width: 375px) {
                   font-size: 1.3em;
@@ -382,41 +383,46 @@
 
       .available-funds {
         color: #6F6F70;
+        text-align: left;
+      }
+
+      .change-currency {
+        text-align: right;
       }
 
       .warning {
         color: $v-warning-color-2;
       }
 
-      .extra,
-      button.extra {
-        /*display: flex;*/
-        flex: 0 1 auto;
-      }
-
-      button.extra {
-        background: none; 
-        border: none;
-        color: #000;
-        font-family: 'ProximaNova';
-        font-size: 14px;
+      .extra {
+        flex: 1;
         line-height: normal;
-        min-height: auto;
-        min-width: auto;
-        padding: 0;
-      }
 
-      .button .icon:before {
-        font-size: 14px;
-        line-height: normal;
-      }
-      
+        .button {
+          background: none; 
+          border: none;
+          border-radius: 0;
+          color: #000;
+          font-family: 'ProximaNova';
+          font-size: 14px;
+          line-height: normal;
+          min-height: auto;
+          min-width: auto;
+          padding: 0;
+        }
 
-      .button {
-        span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .button .icon:before {
+          font-size: 14px;
+          line-height: normal;
+        }
+        
+
+        .button {
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
         }
       }
     }
