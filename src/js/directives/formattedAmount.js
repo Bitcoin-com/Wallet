@@ -90,7 +90,7 @@
       // to both being in value. Don't want to use previous currency value.
       // Try to extract currency from value..
       var currencySplit = $scope.value.split(" ");
-      if (currencySplit.length === 2) {
+      if (currencySplit.length === 2 && !$scope.currency) {
         $scope.currency = currencySplit[1];
       }
       $scope.currency = $scope.currency || '';

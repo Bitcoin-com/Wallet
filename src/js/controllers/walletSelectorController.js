@@ -17,7 +17,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
       sendFlowService.popState();
     }
 
-    var stateParams = sendFlowService.getState();
+    $scope.params = sendFlowService.getState();
 
     var config = configService.getSync().wallet.settings;
     priceDisplayAsFiat = config.priceDisplay === 'fiat';
@@ -29,18 +29,17 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
         break;
       case 'tabs.send.destination':
-        if (stateParams.fromWalletId) {
+        if ($scope.params.fromWalletId) {
           $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
         }
         break;
       default:
-        if (!stateParams.thirdParty) {
+        if (!$scope.params.thirdParty) {
           $scope.sendFlowTitle = gettextCatalog.getString('Send');
         }
        // nop
     }
 
-    $scope.params = sendFlowService;
     $scope.coin = false; // Wallets to show (for destination screen or contacts)
     $scope.type = $scope.params['fromWalletId'] ? 'destination' : 'origin'; // origin || destination
     fromWalletId = $scope.params['fromWalletId'];
