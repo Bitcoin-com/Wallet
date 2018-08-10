@@ -116,7 +116,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     if (!tx || !vm.originWallet) return;
 
     if (vm.paymentExpired) {
-      popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.'));
+      popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.', function () {
+        $ionicHistory.goBack();
+      }));
       vm.sendStatus = '';
       $timeout(function() {
         $scope.$apply();
@@ -486,20 +488,26 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
           ongoingProcess.set('connectingShapeshift', false);
-          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+            $ionicHistory.goBack();
+          });
           return;
         } 
         walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
           if (err) {
             ongoingProcess.set('connectingShapeshift', false);
-            popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+            popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+              $ionicHistory.goBack();
+            });
             return;
           } 
 
           shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
             if (err && err != null) {
               ongoingProcess.set('connectingShapeshift', false);
-              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString());
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+                $ionicHistory.goBack();
+              });
             } else {
               vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
@@ -640,7 +648,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     $timeout(function() {
       $scope.$apply();
     });
-    popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg));
+    popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg), function () {
+      $ionicHistory.goBack();
+    });
   };
 
   function setupTx(tx) {
@@ -825,7 +835,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           if (tx.sendMax && sendMaxInfo.amount == 0) {
             ongoingProcess.set('calculatingFee', false);
             setNotReady(gettextCatalog.getString('Insufficient confirmed funds'));
-            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'));
+            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'), function () {
+              $ionicHistory.goBack();
+            });
             return cb('no_funds');
           }
 
