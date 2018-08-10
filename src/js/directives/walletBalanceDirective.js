@@ -66,6 +66,11 @@
 
     function formatBalance() {
       var displayAsFiat = $scope.displayAsFiat === 'true';
+      if (!$scope.wallet) {
+        setDisplay('', '');
+        return;
+      }
+
       var wallet = null;
       try {
         wallet = JSON.parse($scope.wallet);
