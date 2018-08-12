@@ -29,7 +29,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.$on("$ionicView.enter", function(event, data) {
 
-    var stateParams = sendFlowService.getState();
+    var stateParams = sendFlowService.getStateClone();
     $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
 
     clipboardService.readFromClipboard(function(text) {
@@ -184,7 +184,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       $log.debug('Got toAddress:' + toAddress + ' | ' + item.name);
       
-      var stateParams = sendFlowService.getState();
+      var stateParams = sendFlowService.getStateClone();
       stateParams.toAddress = toAddress,
       stateParams.coin = item.coin;
       sendFlowService.pushState(stateParams);
@@ -200,7 +200,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.startWalletToWalletTransfer = function() {
     console.log('startWalletToWalletTransfer()');
-    var params = sendFlowService.getState();
+    var params = sendFlowService.getStateClone();
     sendFlowService.pushState(params);
     $state.transitionTo('tabs.send.wallet-to-wallet', {
       fromWalletId: sendFlowService.fromWalletId
@@ -222,7 +222,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     console.log(data);
-    console.log('tab-send onBeforeEnter sendflow ', sendFlowService.getState());
+    console.log('tab-send onBeforeEnter sendflow ', sendFlowService.state);
     $scope.isIOS = platformInfo.isIOS && platformInfo.isCordova;
     $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
 
