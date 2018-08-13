@@ -90,11 +90,12 @@
       // During watch, may be changed from having a separate currency value,
       // to both being in value. Don't want to use previous currency value.
       // Try to extract currency from value..
+      $scope.currency = $scope.currency || '';
+
       var currencySplit = $scope.value.split(" ");
-      if (currencySplit.length >= 2 && !$scope.currency) {
+      if (currencySplit.length >= 2 && $scope.currency.length === 0) {
         $scope.currency = currencySplit[currencySplit.length - 1];
       }
-      $scope.currency = $scope.currency || '';
       
       // Redo this when we have proper formatting for low fees
       if ($scope.value.indexOf("<") === 0) {
