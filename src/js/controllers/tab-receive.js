@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService, soundService, clipboardService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -18,10 +18,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.displayBalanceAsFiat = true;
 
   $scope.requestSpecificAmount = function() {
-    $state.go('tabs.paymentRequest.amount', {
-      id: $scope.wallet.credentials.walletId,
-      coin: $scope.wallet.coin
+    sendFlowService.pushState({
+      toWalletId: $scope.wallet.credentials.walletId
     });
+    $state.go('tabs.paymentRequest.amount');
   };
 
   $scope.setAddress = function(newAddr, copyAddress) {
@@ -145,9 +145,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
 
-      var channel = "firebase";
-      if (platformInfo.isNW) {
-        channel = "ga";
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
       }
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,
@@ -158,6 +158,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       if ($state.current.name === "tabs.receive") {
         soundService.play('misc/payment_received.mp3');
       } 
+
+      // Notify new tx
+      $scope.$emit('bwsEvent', $scope.wallet.id);
+
 
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
@@ -233,10 +237,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     if (!$scope.wallets[0]) return;
 
-    // select first wallet if no wallet selected previously
-    var selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    var selectedWallet = null;
+    if (data.stateParams.walletId) { // from walletDetails
+      selectedWallet = checkSelectedWallet(profileService.getWallet(data.stateParams.walletId), $scope.wallets);
+    } else {
+      // select first wallet if no wallet selected previously
+      selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    }
     $scope.onWalletSelect(selectedWallet);
-
     $scope.showShareButton = platformInfo.isCordova ? (platformInfo.isIOS ? 'iOS' : 'Android') : null;
 
     listeners = [

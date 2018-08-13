@@ -21,6 +21,9 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
     $timeout(function() {
       var form = addressbookForm;
       if (data && form) {
+        if (data.result) {
+          data = data.result;
+        }
         data = data.replace(/^bitcoin(cash)?:/, '');
         form.address.$setViewValue(data);
         form.address.$isValid = true;
@@ -36,9 +39,9 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
       addressbook.address = translated.legacy;
     }
 
-    var channel = "firebase";
-    if (platformInfo.isNW) {
-      channel = "ga";
+    var channel = "ga";
+    if (platformInfo.isCordova) {
+      channel = "firebase";
     }
     var log = new window.BitAnalytics.LogEvent("contact_created", [{
       "coin": $scope.addressbookEntry.coin

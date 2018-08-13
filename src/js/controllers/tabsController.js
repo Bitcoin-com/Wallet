@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingData, lodash, popupService, gettextCatalog, scannerService) {
+angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingData, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
 
   $scope.onScan = function(data) {
     if (!incomingData.redir(data)) {
@@ -15,6 +15,11 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
     };
   };
 
+  $scope.startFreshSend = function() {
+    sendFlowService.clear();
+    $state.go('tabs.send');
+  };
+
   $scope.importInit = function() {
     $scope.fromOnboarding = $stateParams.fromOnboarding;
     $timeout(function() {
@@ -23,7 +28,7 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
   };
 
   $scope.chooseScanner = function() {
-
+    sendFlowService.clear();
     var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
     if (!isWindowsPhoneApp) {

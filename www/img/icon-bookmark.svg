@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.25 15">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #444;
+        opacity: 0.564;
+      }
+    </style>
+  </defs>
+  <path id="_ionicons_svg_md-bookmark" class="cls-1" d="M121.688,64h-8.125A1.567,1.567,0,0,0,112,65.563V79l5.625-2.5L123.25,79V65.563A1.567,1.567,0,0,0,121.688,64Z" transform="translate(-112 -64)"/>
+</svg>

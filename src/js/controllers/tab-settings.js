@@ -16,7 +16,7 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
         isoCode: config.wallet.settings.alternativeIsoCode
       };
 
-      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay === 'crypto' ? gettextCatalog.getString('Cryptocurrency') : gettextCatalog.getString('Fiat');
 
       // TODO move this to a generic service
       bitpayAccountService.getAccounts(function(err, data) {
