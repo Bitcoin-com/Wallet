@@ -1,4 +1,4 @@
-<ion-view id="shapeshift" class="settings" show-tabs>
+<ion-view class="settings" show-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>
       {{'Shapeshift'|translate}}
@@ -7,29 +7,14 @@
     </ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <div ng-include="'views/thirdparty/shapeshift-header.html'"></div>
-    <div class="list card empty-case">
-      <div>
-        <img class="swap-image" src="img/shapeshift_swap.png"/>
-      </div>
-      <div class="subtitle">
-        <p translate>Exchange your BTC to BCH in minutes.</p>
-        <div ng-show="!walletsWithFunds.length">
-          <p translate>To start the process you need to add funds to your wallet.</p>
-        </div>
-        <div ng-show="walletsWithFunds.length">
-          <p translate>The process is fast and you will receive the exchanged amount in your wallet.</p>
-        </div>
-        <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</div>
-        <div class="padding buttons">
-          <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="!walletsWithFunds.length" translate>Buy Bitcoin now</button>
-          <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
-          <button class="button button-standard button-shapeshift track_shapeshift_start_click" ng-click="shapeshift()" ng-show="walletsWithFunds.length" translate>Start ShapeShift</button>
-        </div>
+    <div class="send-header-wrapper shapeshift-banner">
+      <img class="shapeshift-logo" src="img/shapeshiftlogo.svg"/>
+    </div>
+    <div class="list card ng-hide" ng-show="fromWallets.length == 0 || toWallets.length == 0">
+      <div class="item item-heading">
+        <span translate>No available wallets to convert between.</span>
       </div>
     </div>
-    <div class="third-party-notice" translate>This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction.</div>
-
     <shapeshift-coin-trader class="ng-hide" ng-show="fromWallets.length > 0 && toWallets.length > 0">
       <div class="list card">
         <div class="item item-heading">
@@ -109,21 +94,21 @@
 </shapeshift-coin-trader>
 </ion-content>
 
-<!--<wallet-selector-->
-<!--wallet-selector-title="fromWalletSelectorTitle"-->
-<!--wallet-selector-wallets="fromWallets"-->
-<!--wallet-selector-selected-wallet="fromWallet"-->
-<!--wallet-selector-show="showFromWallets"-->
-<!--wallet-selector-on-select="onFromWalletSelect"-->
-<!--wallet-selector-always-display-bitcoin-core="true">-->
-<!--</wallet-selector>-->
+<wallet-selector
+wallet-selector-title="fromWalletSelectorTitle"
+wallet-selector-wallets="fromWallets"
+wallet-selector-selected-wallet="fromWallet"
+wallet-selector-show="showFromWallets"
+wallet-selector-on-select="onFromWalletSelect"
+wallet-selector-always-display-bitcoin-core="true">
+</wallet-selector>
 
-<!--<wallet-selector-->
-<!--wallet-selector-title="toWalletSelectorTitle"-->
-<!--wallet-selector-wallets="toWallets"-->
-<!--wallet-selector-selected-wallet="toWallet"-->
-<!--wallet-selector-show="showToWallets"-->
-<!--wallet-selector-on-select="onToWalletSelect"-->
-<!--wallet-selector-always-display-bitcoin-core="true">-->
-<!--</wallet-selector>-->
-<!--</ion-view>-->
+<wallet-selector
+wallet-selector-title="toWalletSelectorTitle"
+wallet-selector-wallets="toWallets"
+wallet-selector-selected-wallet="toWallet"
+wallet-selector-show="showToWallets"
+wallet-selector-on-select="onToWalletSelect"
+wallet-selector-always-display-bitcoin-core="true">
+</wallet-selector>
+</ion-view>

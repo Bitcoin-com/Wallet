@@ -1,5 +1,5 @@
 'use strict';
-angular.module('copayApp.services').factory('bitcoincomService', function(gettextCatalog, nextStepsService, platformInfo) {
+angular.module('copayApp.services').factory('bitcoincomService', function(platformInfo, nextStepsService) {
   var root = {};
   var credentials = {};
 
@@ -19,42 +19,42 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
 
   var cashGamesItem = {
     name: 'games',
-    title: gettextCatalog.getString('Bitcoin Cash Games'),
+    title: 'Bitcoin Cash Games',
     icon: 'icon-games',
     href: 'https://cashgames.bitcoin.com'
   };
 
   var newsItem = {
     name: 'news',
-    title: gettextCatalog.getString('News'),
+    title: 'News',
     icon: 'icon-news',
     href: 'https://news.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=News'
   };
 
   var poolItem = {
     name: 'pool',
-    title: gettextCatalog.getString('Mining Pool'),
+    title: 'Mining Pool',
     icon: 'icon-mining',
     href: 'https://pool.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
   };
 
   var toolsItem = {
     name: 'tools',
-    title: gettextCatalog.getString('Tools'),
+    title: 'Tools',
     icon: 'icon-tools',
     href: 'https://tools.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Tools'
   };
 
   var priceChartItem = {
     name: 'pricechart',
-    title: gettextCatalog.getString('Bitcoin Price Charts'),
+    title: 'Bitcoin Price Charts',
     icon: 'icon-chart',
     sref: 'tabs.pricechart',
   };
 
   var faucetItem = {
     name: 'faucet',
-    title: gettextCatalog.getString('Free Bitcoin Cash'),
+    title: 'Free Bitcoin Cash',
     icon: 'icon-faucet',
     href: 'https://free.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Faucet'
   };

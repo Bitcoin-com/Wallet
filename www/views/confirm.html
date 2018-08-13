@@ -105,13 +105,13 @@
   </ion-content>
   <click-to-accept
     ng-click="approve(tx, wallet, statusChangeHandler)"
-    ng-if="(!isCordova) && wallet"
+    ng-if="(!isCordova || isWindowsPhoneApp) && wallet"
     click-send-status="sendStatus"
     is-disabled="!wallet">
     {{buttonText}}
   </click-to-accept>
   <slide-to-accept
-    ng-if="isCordova && wallet"
+    ng-if="isCordova && !isWindowsPhoneApp && wallet"
     slide-on-confirm="approve(tx, wallet, statusChangeHandler)"
     slide-send-status="sendStatus"
     is-disabled="!wallet">
@@ -120,7 +120,6 @@
   <slide-to-accept-success
     slide-success-show="sendStatus === 'success'"
     slide-success-on-confirm="onSuccessConfirm()"
-    slide-success-on-share="shareTransaction"
     slide-success-hide-on-confirm="true">
     <span ng-show="wallet.m == 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Payment Sent</span>
     <span ng-show="wallet.m > 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Proposal Created</span>

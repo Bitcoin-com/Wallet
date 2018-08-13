@@ -1,12 +1,7 @@
 'use strict'
 angular.module('copayApp.services').factory('servicesService', function(configService, $log, lodash) {
   var root = {};
-  var services = [{
-    name: 'shapeshift',
-    title: 'Shapeshift',
-    icon: 'icon-shapeshift',
-    sref: 'tabs.shapeshift',
-  }];
+  var services = [];
 
   root.register = function(serviceInfo) {
     $log.info('Adding Services entry:' + serviceInfo.name);

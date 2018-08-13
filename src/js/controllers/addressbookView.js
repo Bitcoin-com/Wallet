@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('addressbookViewController', function($scope, sendFlowService, $state, $timeout, lodash, addressbookService, popupService, $ionicHistory, platformInfo, gettextCatalog, configService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('addressbookViewController', function($scope, $state, $timeout, lodash, addressbookService, popupService, $ionicHistory, platformInfo, gettextCatalog, configService, bitcoinCashJsService) {
 
   var config = configService.getSync();
   var defaults = configService.getDefaults();
@@ -22,7 +22,6 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
 
   $scope.sendTo = function() {
     $ionicHistory.removeBackView();
-    sendFlowService.clear();
     $state.go('tabs.send');
     $timeout(function() {
       var to = '';
@@ -32,16 +31,12 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
       } else {
         to = $scope.addressbookEntry.address;
       }
-
-      var stateParams = {
+      $state.transitionTo('tabs.send.amount', {
         toAddress: to,
         toName: $scope.addressbookEntry.name,
         toEmail: $scope.addressbookEntry.email,
         coin: $scope.addressbookEntry.coin
-      };
-
-      sendFlowService.pushState(stateParams);
-      $state.transitionTo('tabs.send.origin');
+      });
     }, 100);
   };
 

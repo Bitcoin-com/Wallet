@@ -61,8 +61,8 @@
           </svg>
           <p class="success animated fadeIn">
             <br/>Payment Received!
-            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount"><formatted-amount value="{{ paymentReceivedAmount }}" currency="{{paymentReceivedCoin}}"></formatted-amount></span>
-            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount"><formatted-amount value="{{ paymentReceivedAlternativeAmount }}"></formatted-amount></span></span>
+            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
+            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount">{{ paymentReceivedAlternativeAmount }}</span></span>
             Return To Address<br/>
           </p>
         </div>
@@ -95,8 +95,8 @@
           {{wallet.name || wallet.id}}
         </span>
         <p>
-          <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden" translate> <formatted-amount value="{{wallet.status.totalBalanceAlternative}}" currency="{{wallet.status.alternativeIsoCode}}"></formatted-amount></span>
-          <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"> <formatted-amount value="{{wallet.status.totalBalanceStr}}"></formatted-amount> </span>
+          <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden" translate> {{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}} </span>
+          <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"> {{wallet.status.totalBalanceStr}} </span>
 
           <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
           <span class="tab-home__wallet__multisig-number" ng-if="wallet.n > 1">

@@ -427,9 +427,9 @@ angular.module('copayApp.services')
           }, function(err, secret) {
             if (err) return bwcError.cb(err, gettextCatalog.getString('Error creating wallet'), cb);
 
-            var channel = "ga";
-            if (platformInfo.isCordova) {
-              channel = "firebase";
+            var channel = "firebase";
+            if (platformInfo.isNW) {
+              channel = "ga";
             }
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
               "coin": opts.coin
@@ -844,13 +844,6 @@ angular.module('copayApp.services')
         ret = lodash.filter(ret, function(w) {
           if (!w.status) return;
           return (w.status.availableBalanceSat > 0);
-        });
-      }
-
-      if (opts.hasNoFunds) {
-        ret = lodash.filter(ret, function(w) {
-          if (!w.status) return;
-          return (w.status.availableBalanceSat === 0);
         });
       }
 

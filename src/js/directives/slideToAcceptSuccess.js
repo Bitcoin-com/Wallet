@@ -9,12 +9,12 @@ angular.module('copayApp.directives')
       scope: {
         isShown: '=slideSuccessShow',
         onConfirm: '&slideSuccessOnConfirm',
-        hideOnConfirm: '=slideSuccessHideOnConfirm',
-        onShare: '=slideSuccessOnShare',
+        hideOnConfirm: '=slideSuccessHideOnConfirm'
       },
       link: function(scope, element, attrs) {
-        scope.isCordova = platformInfo.isCordova;
-        scope.hasShareFunction = typeof scope.onShare === 'function';
+
+        scope.isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
+
         var elm = element[0];
         elm.style.display = 'none';
         scope.$watch('isShown', function() {
@@ -32,9 +32,6 @@ angular.module('copayApp.directives')
             elm.style.display = 'none';
           }
         };
-        scope.onShareButtonClick = function() {
-          scope.onShare();
-        }
       }
     };
   });

@@ -244,21 +244,6 @@
       flex-direction: column;
       justify-content: center;
 
-      .send-amount-header-footer {
-        flex: 1 1 auto;
-        min-height: 20px;
-
-        .warning {
-          font-weight: bold;
-          font-size: 12px;
-          padding: 0 6px 6px 6px;
-          text-align: center;
-        }
-        &__max {
-          float: right;
-        }
-      }
-
       .send-amount-tool {
         flex: 0 1 auto;
 
@@ -275,8 +260,6 @@
           }
 
           .primary-amount {
-            color: #333;
-            font-weight: bold;
             input, .unit, .primary-amount-display {
               font-size: 1.8em;
 
@@ -305,8 +288,7 @@
 
             &.very-long {
               input, .unit, .primary-amount-display {
-                font-size: 1.2em; // OK for iPhone 5 / SE with BCH to 8dp
-                
+                font-size: 0.9em;
   
                 @media (min-width: 375px) {
                   font-size: 1.3em;
@@ -347,15 +329,16 @@
               line-height: 1em;
             }
 
+            .unit {
+              font-weight: bold;
+            }
+
             .primary-amount-display {
               margin-right: 5px;
               word-break: break-all;
             }
           }
 
-          .alternative-amount {
-            color: #6F6F70;
-          }
           .switch-currencies {
             position: absolute;
             right: 0;
@@ -368,60 +351,26 @@
             }
           }
         }
-      }
-    }
 
-    .send-amount-extras {
-      display: flex;
-      flex: 0 0 auto;
-      /* So that if only one item is present, it appears on the right. */
-      flex-direction: row-reverse;
-      font-size: 12px;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 14px;
+        .send-amount-actions {
+          margin-top: 15px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
-      .available-funds {
-        color: #6F6F70;
-        text-align: left;
-      }
+          .button {
+            flex: 1 1 auto;
+            line-height: 1.2em;
 
-      .change-currency {
-        text-align: right;
-      }
+            + .button {
+              margin-left: 10px;
+            }
 
-      .warning {
-        color: $v-warning-color-2;
-      }
-
-      .extra {
-        flex: 1;
-        line-height: normal;
-
-        .button {
-          background: none; 
-          border: none;
-          border-radius: 0;
-          color: #000;
-          font-family: 'ProximaNova';
-          font-size: 14px;
-          line-height: normal;
-          min-height: auto;
-          min-width: auto;
-          padding: 0;
-        }
-
-        .button .icon:before {
-          font-size: 14px;
-          line-height: normal;
-        }
-        
-
-        .button {
-          span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            span {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
           }
         }
       }
@@ -445,57 +394,36 @@
 
     .keypad-container {
       position: relative;
-      font-size: 18px;
-      line-height: 2em;
       //flex: 0 1 196px;
-
-      @media (min-height: 667px) {
-        font-size: 24px;
-      }
-
-      @media(max-height: 480px) {
-        font-size: 12px;
-      }
 
       @media (min-height: 667px) {
         //flex: 0 1 224px;
       }
 
-      .sendmax {
-        background: $v-off-black;
-
-        .button {
-          color: white;
-          background: black;
-          border: 1px solid $v-off-black;
-          border-radius: 0;
-          font-size: 0.8em;
-          line-height: 2em;
-          width: 100%;
-
-          .available-funds-amount {
-            color: #C9C9C9;
-          }
-
-          &:active {
-            background-color: $v-dark-gray;
-          }
-        }
-      }
-
       .keypad {
         text-align: center;
+        font-size: 18px;
         font-weight: lighter;
         position: absolute;
         bottom: 0;
         width: 100%;
-        color: $v-text-primary-color;
+        color: $v-mid-gray;
         
-        
+        @media (min-height: 667px) {
+          font-size: 24px;
+        }
     
         .row {
           padding: 0 !important;
           margin: 0 !important;
+        }
+    
+        .col {
+          line-height: 38px;
+        
+          @media (min-height: 667px) {
+            line-height: 45px;
+          }
         }
 
         .row {
@@ -530,34 +458,23 @@
     
         .digit{
           cursor: pointer;
-          background-color: #000;
-          border: 1px solid $v-off-black;
+          border-top: 1px solid $v-subtle-gray;
+          border-left: 1px solid $v-subtle-gray;
           transition: all 0.1s ease;
 
           &:active {
-            background-color: $v-dark-gray;
+            background-color: $v-subtle-gray;
           }
         }
     
+        @media(max-height: 480px) {
+          font-size: 12px;
+    
+        }
       }
     }
-
-    .button-primary {
-      background-color: $v-primary-color;
-      border-radius: 0;
-      font-weight: bold;
-    }
-
-    .button-primary[disabled] {
-      background-color: $v-button-primary-disabled-bg;
-      opacity: 1;
-    }
   }
-
-  .warning {
-    color: $v-warning-color-2;
-  }
-  background: $v-background-under-card;
+  background: #494949;
 
   ion-content {
     margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */

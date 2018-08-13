@@ -17,8 +17,6 @@ module.exports = function(config) {
     files: [
       'node_modules/angular/angular.js',
 
-      'bitanalytics/bitanalytics-0.1.0.js',
-
       // From Gruntfile.js
       'bower_components/qrcode-generator/js/qrcode.js',
       'bower_components/qrcode-generator/js/qrcode_UTF8.js',
