@@ -3808,7 +3808,7 @@ msgid "Your Bitcoin Wallets are ready!"
 msgstr ""
 
 #: src/js/controllers/amount.js:49
-msgid "Address doesn't contain currency information, please make sure you are sending the correct currency."
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
 msgstr ""
 
 #: www/views/review.html:4
