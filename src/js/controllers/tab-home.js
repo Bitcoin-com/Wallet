@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, sendFlowService, $timeout, $scope, $state, $stateParams, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, $ionicNavBarDelegate) {
+  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, communityService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, sendFlowService, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -58,7 +58,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         });
       }
     };
-    
+
     function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
       updateAllWallets();
@@ -214,6 +214,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       var j = 0;
 
       lodash.each(wallets, function(wallet) {
+        walletService.invalidateCache(wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
         walletService.getStatus(wallet, {}, function(err, status) {
           if (err) {
 

@@ -82,7 +82,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       });
       // Timeout is required to enable the "Back" button
       $timeout(function() {
-        var params = sendFlowService.getState();
+        var params = sendFlowService.getStateClone();
         
         if (amount) {
           params.amount = amount;
@@ -447,13 +447,16 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       amount: thirdPartyData.amount,
       toAddress: thirdPartyData.toAddress,
       coin: coin,
-      thirdParty: JSON.stringify(thirdPartyData)
+      thirdParty: thirdPartyData
     };
 
     // fee
     if (thirdPartyData.requiredFeeRate) {
       stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
+
+    // This does not make sense, thirdPartyData gets added by stateParams below
+    //sendFlowService.pushState(thirdPartyData); 
 
     scannerService.pausePreview();
     $state.go('tabs.send', {}, {

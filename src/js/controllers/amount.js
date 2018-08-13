@@ -29,6 +29,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.finish = finish;
   vm.goBack = goBack;
   vm.loadMore = loadMore;
+  vm.next = next;
   vm.openPopup = openPopup;
   vm.pushDigit = pushDigit;
   vm.removeDigit = removeDigit;
@@ -66,15 +67,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function onBeforeEnter(event, data) {
-    console.log('amount onBeforeEnter sendflow ', sendFlowService.getState());
-
     if (data.direction == "back") {
       sendFlowService.popState();
     }
+    console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
     
     initCurrencies();
 
-    passthroughParams = sendFlowService;
+    passthroughParams = sendFlowService.getStateClone();
 
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
@@ -463,7 +463,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     };
 
     if (vm.thirdParty) {
-      confirmData['thirdParty'] = this.thirdParty;
+      confirmData.thirdParty = vm.thirdParty;
     }
 
     sendFlowService.pushState(confirmData);
@@ -478,7 +478,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   // Currency
 
-  var next = 10;
+  var nextCurrencies = 10;
   var completeAlternativeList = [];
 
   var popularCurrencyList = [
@@ -537,12 +537,17 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   function loadMore() {
     $timeout(function() {
-      vm.altCurrencyList = completeAlternativeList.slice(0, next);
-      next += 10;
+      vm.altCurrencyList = completeAlternativeList.slice(0, nextCurrencies);
+      nextCurrencies += 10;
       vm.listComplete = vm.altCurrencyList.length >= completeAlternativeList.length;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     }, 100);
-  };
+  }
+
+  function next() {
+    useSendMax = false;
+    vm.finish();
+  }
 
   function findCurrency(search) {
     if (!search) initCurrencies();
