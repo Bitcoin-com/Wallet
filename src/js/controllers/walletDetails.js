@@ -304,6 +304,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   function refreshAmountSection(scrollPos) {
+    var AMOUNT_HEIGHT_BASE = 270;
     $scope.showBalanceButton = false;
     if ($scope.status) {
       $scope.showBalanceButton = ($scope.status.totalBalanceSat != $scope.status.spendableAmount);
@@ -315,16 +316,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }
 
     scrollPos = scrollPos || 0;
-    var amountHeight = 210 - scrollPos;
+    var amountHeight = AMOUNT_HEIGHT_BASE - scrollPos;
     if (amountHeight < 80) {
       amountHeight = 80;
     }
     var contentMargin = amountHeight;
-    if (contentMargin > 210) {
-      contentMargin = 210;
+    if (contentMargin > AMOUNT_HEIGHT_BASE) {
+      contentMargin = AMOUNT_HEIGHT_BASE;
     }
 
-    var amountScale = (amountHeight / 210);
+    var amountScale = (amountHeight / AMOUNT_HEIGHT_BASE);
     if (amountScale < 0.5) {
       amountScale = 0.5;
     }
