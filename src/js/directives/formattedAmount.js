@@ -26,9 +26,14 @@
       }
     });
       
-  function formattedAmountController($scope, $timeout, uxLanguage) {
-    $scope.canShow = false;
+  function formattedAmountController($scope, uxLanguage) {
+    $scope.vm = {};
+    var vm = $scope.vm;
 
+    vm.currency = '';
+    vm.value = '';
+    
+    $scope.canShow = false
     $scope.displaySizeEqual = !!$scope.sizeEqual;
 
     var decimalPlaces = {
@@ -90,16 +95,19 @@
       // During watch, may be changed from having a separate currency value,
       // to both being in value. Don't want to use previous currency value.
       // Try to extract currency from value..
-      var currencySplit = $scope.value.split(" ");
-      if (currencySplit.length >= 2 && !$scope.currency) {
-        $scope.currency = currencySplit[currencySplit.length - 1];
+      if (!$scope.currency || $scope.currency.length === 0) {
+        var currencySplit = $scope.value.split(" ");
+        if (currencySplit.length >= 2) {
+          vm.currency = currencySplit[currencySplit.length - 1];
+        }
+      } else {
+        vm.currency = $scope.currency;
       }
-      $scope.currency = $scope.currency || '';
       
       // Redo this when we have proper formatting for low fees
       if ($scope.value.indexOf("<") === 0) {
         buildAmount($scope.value, '', '');
-        $scope.currency = '';
+        vm.currency = '';
         $scope.canShow = true;
         return;
       }
@@ -110,7 +118,7 @@
       var parsed = parseFloat($scope.value);
       var valueFormatted = '';
       var valueProcessing = '';
-      switch (getDecimalPlaces($scope.currency)) {
+      switch (getDecimalPlaces(vm.currency)) {
         case '0':
             if (isNaN(parsed)) {
             buildAmount('-', '', '');
@@ -157,6 +165,7 @@
           break;
       }
       $scope.canShow = true;
+      $scope.$apply();
     };
 
     function getDecimalPlaces(currency) {
