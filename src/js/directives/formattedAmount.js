@@ -86,7 +86,6 @@
     }
 
     function formatNumbers() {
-      console.log('formatNumbers() "' + $scope.value + '", "' + $scope.currency + '"');
       // Might get "< 0.01 USD" being passed in.
       // During watch, may be changed from having a separate currency value,
       // to both being in value. Don't want to use previous currency value.
