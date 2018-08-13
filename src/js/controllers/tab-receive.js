@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService, soundService, clipboardService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -18,9 +18,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.displayBalanceAsFiat = true;
 
   $scope.requestSpecificAmount = function() {
-    $state.go('tabs.paymentRequest.amount', {
+    sendFlowService.pushState({
       toWalletId: $scope.wallet.credentials.walletId
     });
+    $state.go('tabs.paymentRequest.amount');
   };
 
   $scope.setAddress = function(newAddr, copyAddress) {
@@ -157,6 +158,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       if ($state.current.name === "tabs.receive") {
         soundService.play('misc/payment_received.mp3');
       } 
+
+      // Notify new tx
+      $scope.$emit('bwsEvent', $scope.wallet.id);
+
 
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;

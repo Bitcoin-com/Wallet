@@ -6,7 +6,6 @@
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content scroll="false">
-      <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
       <div style="order: 0; position: relative;">
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
@@ -15,12 +14,14 @@
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
-                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 10}">
-                <span class="primary-amount-display text-selectable">{{vm.amount || '0'}} {{vm.unit}}</span>
+                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 8}">
+                <span class="primary-amount-display text-selectable">
+                  {{vm.amount || '0'}} {{vm.unit}}
+                </span>
               </div>
-              <span ng-show="vm.globalResult">{{vm.globalResult}} {{vm.unit}}</span>
+              <span ng-show="vm.globalResult"><formatted-amount value="{{vm.globalResult}}" currency="{{vm.unit}}"></formatted-amount></span>
               <div class="alternative-amount">
-                <span class="text-selectable">{{vm.alternativeAmount || '0.00'}}</span> <span>{{vm.alternativeUnit}}</span>
+                <span class="text-selectable">{{vm.alternativeAmount || '0.00'}} {{vm.alternativeUnit}}</span>
               </div>
               <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
@@ -33,17 +34,20 @@
         </div>
 
         <div class="send-amount-extras text-center">
-          <button class="extra button" ng-click="vm.openPopup()">
-            <span>
-              <img src="img/icon-alternative-currency-black.svg"/>
-              &ensp;
-              <span translate>Change Currency</span>
-            </span>
-          </button>
-          <div class="extra available-funds" 
+          <div class="extra change-currency">
+            <button class="button" ng-click="vm.openPopup()">
+              <span>
+                <img src="img/icon-alternative-currency-black.svg"/>
+                <pre> </pre>
+                <span translate>Change Currency</span>
+              </span>
+            </button>
+          </div>
+          <div class="extra available-funds"
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-            <span>Available Funds:</span>&ensp;<span>{{vm.availableFunds}}</span>
+              <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+            </div>
           </div>  
         </div>
       </div>
@@ -53,7 +57,7 @@
           <button class="button button-sendmax" ng-click="vm.sendMax()">
               <span>
                 <span translate>Use All Available Funds</span>&ensp;
-                <span class="available-funds-amount">({{vm.availableFunds}})</span>
+                <span class="available-funds-amount">(<formatted-amount value="{{vm.availableFunds}}"></formatted-amount>)</span>
               </span>
             </button>
         </div>
@@ -89,7 +93,7 @@
       <button 
         class="button button-full button-primary no-margin" 
         ng-disabled="!vm.allowSend" 
-        ng-click="vm.finish()"
+        ng-click="vm.next()"
         style="position: absolute; bottom: 0;"
         translate>
         Next

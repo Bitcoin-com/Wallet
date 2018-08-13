@@ -287,7 +287,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount/:thirdParty/:fromWalletId/:maxAmount/:minAmount/:toWalletId/:toAddress',
+        url: '/amount',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
@@ -306,7 +306,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.origin', {
-        url: '/origin/:thirdParty/:amount/:toAddress/:toWalletId/:coin',
+        url: '/origin',
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
@@ -315,7 +315,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.destination', {
-        url: '/destination/:thirdParty/:amount/:fromWalletId',
+        url: '/destination',
         views: {
           'tab-send@tabs': {
             controller: 'walletSelectorController',
@@ -324,7 +324,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.send.confirm', {
-        url: '/confirm/:thirdParty/:amount/:fromWalletId/:toWalletId/:toAddress',
+        url: '/confirm',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',
@@ -1207,7 +1207,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
@@ -1230,6 +1230,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       });
+
+      configService.whenAvailable(function(config) {
+        pushNotificationsService.init();
+      });
+      //firebaseEventsService.init();
 
       var channel = "ga";
       if (platformInfo.isCordova) {
@@ -1272,6 +1277,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
+      var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'shapeshift_start_click', 
+        class: 'track_shapeshift_start_click', 
+        channels: [channel]
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+      
       // Init language
       uxLanguage.init(function (lang) {
 

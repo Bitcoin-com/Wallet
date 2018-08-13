@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
 
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
@@ -374,6 +374,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    sendFlowService.clear();
 
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
@@ -470,13 +471,18 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
   }
+
   $scope.goToSend = function() {
-    $state.go('tabs.home', {
-      walletId: $scope.wallet.id
-    }).then(function () {
+    sendFlowService.startSend({
+      fromWalletId: $scope.wallet.id
+    });
+    
+    // Go home first so that the Home tab works properly
+    $state.go('tabs.home').then(function () {
       $ionicHistory.clearHistory();
       $state.go('tabs.send');
     });
+    
   };
   $scope.goToReceive = function() {
     $state.go('tabs.home', {
@@ -488,6 +494,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     });
   };
+  
   $scope.goToBuy = function() {
     $state.go('tabs.home', {
       walletId: $scope.wallet.id

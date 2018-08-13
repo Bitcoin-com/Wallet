@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
+angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
 
   var root = {};
 
@@ -82,7 +82,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       });
       // Timeout is required to enable the "Back" button
       $timeout(function() {
-        var params = {};
+        var params = sendFlowService.getStateClone();
         
         if (amount) {
           params.amount = amount;
@@ -105,10 +105,11 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
           params.thirdParty = [];
           params.thirdParty.id = serviceId;
           params.thirdParty.data = serviceData;
-          params.thirdParty = JSON.stringify(params.thirdParty);
-          $state.transitionTo('tabs.send.amount', params);
+          sendFlowService.pushState(params);
+          $state.transitionTo('tabs.send.amount');
         } else {
-          $state.transitionTo('tabs.send.origin', params);
+          sendFlowService.pushState(params);
+          $state.transitionTo('tabs.send.origin');
         }
       }, 100);
     }
@@ -387,11 +388,13 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       'notify': $state.current.name == 'tabs.send' ? false : true
     });
     $timeout(function() {
-      $state.transitionTo('tabs.send.origin', {
+      var stateParams = {
         toAddress: toAddress,
         coin: coin,
         noPrefix: 1
-      });
+      };
+      sendFlowService.pushState(stateParams);
+      $state.transitionTo('tabs.send.origin');
     }, 100);
   }
 
@@ -444,7 +447,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       amount: thirdPartyData.amount,
       toAddress: thirdPartyData.toAddress,
       coin: coin,
-      thirdParty: JSON.stringify(thirdPartyData)
+      thirdParty: thirdPartyData
     };
 
     // fee
@@ -452,13 +455,17 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
 
+    // This does not make sense, thirdPartyData gets added by stateParams below
+    //sendFlowService.pushState(thirdPartyData); 
+
     scannerService.pausePreview();
     $state.go('tabs.send', {}, {
       'reload': true,
       'notify': $state.current.name == 'tabs.send' ? false : true
     }).then(function() {
       $timeout(function() {
-        $state.transitionTo('tabs.send.origin', stateParams);
+        sendFlowService.pushState(stateParams); // Need to do more here
+        $state.transitionTo('tabs.send.origin');
       });
     });
   }

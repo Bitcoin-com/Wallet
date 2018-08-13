@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('clipboardService', function ($http, $log, platformInfo, nodeWebkitService, gettextCatalog, ionicToast, clipboard) {
+angular.module('copayApp.services').factory('clipboardService', function ($http, $log, $timeout, platformInfo, nodeWebkitService, gettextCatalog, ionicToast, clipboard) {
   var root = {};
 
   root.copyToClipboard = function (data) {
@@ -13,7 +13,7 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
       nodeWebkitService.writeToClipboard(data);
     } else if (navigator && navigator.clipboard) {
       $log.debug("Use navigator clipboard.")
-      navigator.clipboard.writeText(data).catch(err => {
+      navigator.clipboard.writeText(data).catch(function onClipboardError(err) {
         $log.debug("Clipboard writing is not supported in your browser..");
       });
     } else if (clipboard.supported) {
@@ -31,7 +31,9 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
         cb(text);
       })
     } else if (platformInfo.isNW) {
-      cb(nodeWebkitService.readFromClipboard());
+      $timeout(function() {
+        cb(nodeWebkitService.readFromClipboard());
+      },0);
     } else {
       navigator.clipboard.readText()
           .then(function (text) {

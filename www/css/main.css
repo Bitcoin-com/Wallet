@@ -10253,6 +10253,46 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
         color: #fff; }
     .button-white.activated {
       color: #FFF; }
+    .button-white-outline {
+      border-color: #FFFFFF;
+      background-color: transparent;
+      color: #FFFFFF;
+      background: none;
+      box-shadow: none; }
+      .button-white-outline:hover {
+        color: #FFFFFF;
+        text-decoration: none; }
+      .button-white-outline.active, .button-white-outline.activated {
+        border-color: #FFF;
+        background-color: #FAFAFA; }
+      .button-white-outline.button-outline {
+        border-color: #FFFFFF;
+        background: transparent;
+        color: #FFFFFF; }
+        .button-white-outline.button-outline.active, .button-white-outline.button-outline.activated {
+          background-color: #FFFFFF;
+          box-shadow: none;
+          color: #fff; }
+  .button-grey-outline {
+    border-color: #727272;
+    background-color: transparent;
+    color: #727272;
+    background: none;
+    box-shadow: none; }
+    .button-grey-outline:hover {
+      color: #727272;
+      text-decoration: none; }
+    .button-grey-outline.active, .button-grey-outline.activated {
+      border-color: #727272;
+      background-color: #FAFAFA; }
+    .button-grey-outline.button-outline {
+      border-color: #727272;
+      background: transparent;
+      color: #727272; }
+      .button-grey-outline.button-outline.active, .button-grey-outline.button-outline.activated {
+        background-color: #727272;
+        box-shadow: none;
+        color: #fff; }
 
 .button-clear {
   background: none !important; }
@@ -10271,8 +10311,8 @@ qrcode {
     content: "";
     background-size: 100% 100%;
     display: block;
-    left: 88px;
-    margin-top: 88px;
+    left: calc(50% - 22px);
+    margin-top: calc(50% - 22px);
     width: 44px;
     height: 44px;
     position: absolute; }
@@ -10886,6 +10926,28 @@ qrcode {
     width: 100%;
     display: block; }
 
+#tab-home .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 6px auto -12px;
+  text-align: center;
+  width: 100%; }
+  #tab-home .buttons > .col {
+    padding: 5px 10px;
+    margin-bottom: 0; }
+  #tab-home .buttons .button {
+    border: 2px solid;
+    border-radius: 47px;
+    padding: 0 15px 0 15px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    font-size: 19px;
+    font-weight: bolder;
+    min-height: auto;
+    line-height: 36px; }
+
 #tab-home .wallet-coin-logo {
   vertical-align: middle;
   margin-right: 5px; }
@@ -11106,15 +11168,7 @@ qrcode {
   background-color: #fab915 !important; }
 
 #tab-send-header {
-  height: 300px;
   width: 100%; }
-
-#tab-send-contacts {
-  height: calc(100vh - 300px - 50px - 44px);
-  /* screen size - button container - bottom-tab-menu - header top */
-  overflow: scroll; }
-  #tab-send-contacts.ios {
-    height: calc(100vh - 300px - 50px - 44px - 18px); }
 
 #tab-send .input {
   width: 100%; }
@@ -11296,14 +11350,7 @@ qrcode {
   #tab-send .send-wrapper .buttons .button-qr {
     height: 60px; }
     #tab-send .send-wrapper .buttons .button-qr span {
-      font-size: 16px; }
-  #tab-send #tab-send-header {
-    height: 270px; }
-  #tab-send #tab-send-contacts {
-    height: calc(100vh - 270px - 50px  - 44px);
-    /* screen size - button container - bottom-tab-menu - header top */ }
-    #tab-send #tab-send-contacts.ios {
-      height: calc(100vh - 270px - 50px - 44px - 18px); } }
+      font-size: 16px; } }
 
 #wallet-origin-destination .header--request {
   padding: 30px 24px;
@@ -11871,10 +11918,11 @@ qrcode {
     height: 100%;
     height: calc(100% - env(safe-area-inset-bottom) * 2); }
     #walletDetails .bp-content.status-bar {
-      margin-top: 20px; }
+      margin-top: 20px;
+      margin-top: env(safe-area-inset-top); }
   #walletDetails .bar-header {
     border: 0;
-    background: none; }
+    background: #eeb640; }
     #walletDetails .bar-header .title, #walletDetails .bar-header .button {
       color: #fff; }
     #walletDetails .bar-header .button {
@@ -11886,7 +11934,7 @@ qrcode {
     top: 0;
     margin-bottom: 16px; }
     #walletDetails ion-content.collapsible {
-      margin-top: 210px; }
+      margin-top: 230px; }
     #walletDetails ion-content .scroll {
       background: #f8f8f9;
       min-height: 300px; }
@@ -11911,11 +11959,32 @@ qrcode {
         height: 200px;
         -webkit-transform: translateY(100px);
         transform: translateY(100px); }
+    #walletDetails .amount-wrapper .send-receive-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
+      position: absolute;
+      bottom: 20px; }
+      #walletDetails .amount-wrapper .send-receive-buttons > .col {
+        padding: 5px 10px;
+        margin-bottom: 0; }
+      #walletDetails .amount-wrapper .send-receive-buttons .button {
+        border: 2px solid;
+        border-radius: 47px;
+        padding: 0 15px 0 15px;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        font-size: 19px;
+        font-weight: bolder;
+        min-height: auto;
+        line-height: 36px; }
   #walletDetails .amount {
     width: 100%;
     text-align: center;
     color: #fff;
-    height: 210px;
+    height: 230px;
     padding-top: 40px;
     display: block;
     align-items: center;
@@ -13975,11 +14044,6 @@ slide-to-accept-success {
   display: flex;
   align-items: center;
   justify-content: center; }
-  slide-to-accept-success .slide-success__windows-background {
-    background: #11D1A6;
-    height: 100%;
-    width: 100%;
-    position: fixed; }
   slide-to-accept-success .slide-success__background {
     height: 10vmax;
     width: 10vmax;
@@ -13996,8 +14060,10 @@ slide-to-accept-success {
   slide-to-accept-success .slide-success__content {
     position: relative;
     z-index: 1;
-    margin-top: -20vh; }
+    margin-top: -10vh; }
     slide-to-accept-success .slide-success__content > img {
+      width: 45vw;
+      max-width: 166px;
       margin-bottom: 1.8rem;
       -webkit-transform: translateY(5rem);
       transform: translateY(5rem);
@@ -14010,7 +14076,7 @@ slide-to-accept-success {
         opacity: 1; }
     slide-to-accept-success .slide-success__content__header {
       color: #FFFFFF;
-      font-size: 26px;
+      font-size: 29px;
       -webkit-transform: translateY(5rem);
       transform: translateY(5rem);
       opacity: 0;
@@ -14020,6 +14086,22 @@ slide-to-accept-success {
         -webkit-transform: translateY(0);
         transform: translateY(0);
         opacity: 1; }
+    slide-to-accept-success .slide-success__content__share {
+      transition: transform 400ms ease, opacity 400ms ease;
+      transition-delay: 600ms;
+      opacity: 0;
+      margin-top: 15vh; }
+      slide-to-accept-success .slide-success__content__share span {
+        color: #FFF;
+        font-size: 22px;
+        height: 28px; }
+      slide-to-accept-success .slide-success__content__share img {
+        height: 28px;
+        width: auto;
+        vertical-align: bottom;
+        margin-right: 4px; }
+      slide-to-accept-success .slide-success__content__share.reveal {
+        opacity: 0.79; }
   slide-to-accept-success .slide-success__footer {
     position: absolute;
     left: 0;
@@ -14042,11 +14124,11 @@ slide-to-accept-success {
     slide-to-accept-success .slide-success__footer__btn {
       display: block;
       color: #FFFFFF;
-      font-size: 18px;
+      font-size: 22px;
       font-weight: 600;
       letter-spacing: 2.86px;
-      padding: 1rem 0 1.1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      padding: 2rem 0 2.1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
       cursor: pointer; }
 
 #tx-details .action-created.action-accepted {
@@ -14988,17 +15070,10 @@ account-selector {
   height: 100%; }
   #custom-amount .address .qr-code {
     text-align: center;
-    margin-top: 24vh;
-    margin-bottom: 7vh; }
-    @media (max-height: 800px) {
-      #custom-amount .address .qr-code {
-        margin-top: 18vh; } }
-    @media (max-height: 700px) {
-      #custom-amount .address .qr-code {
-        margin-top: 14vh; } }
-    @media (max-height: 600px) {
-      #custom-amount .address .qr-code {
-        margin-top: 8vh; } }
+    margin-top: 6px; }
+    #custom-amount .address .qr-code qrcode canvas {
+      height: 30vh;
+      max-height: 220px; }
   #custom-amount .address .info {
     position: absolute;
     width: 100%;
@@ -15038,6 +15113,28 @@ account-selector {
           margin-left: 10px; }
   #custom-amount .address .address-types {
     text-align: center; }
+  #custom-amount .address .amount {
+    margin-top: 20vh;
+    margin-bottom: 4vh;
+    width: 100%;
+    text-align: center;
+    display: block;
+    align-items: center;
+    justify-content: center; }
+    @media (max-height: 800px) {
+      #custom-amount .address .amount {
+        margin-top: 12vh;
+        margin-bottom: 6vh; } }
+    @media (max-height: 700px) {
+      #custom-amount .address .amount {
+        margin-top: 10vh;
+        margin-bottom: 4vh; } }
+    @media (max-height: 600px) {
+      #custom-amount .address .amount {
+        margin-top: 6vh;
+        margin-bottom: 2vh; } }
+    #custom-amount .address .amount-alternative {
+      line-height: 36px; }
 
 #pin {
   background-color: #FAFAFA;
@@ -15437,31 +15534,28 @@ ion-content.padded-bottom-cta-with-summary {
     .fee-summary .amount .fee-crypto {
       color: #A7A7A7; }
 
-.amount .start,
-.amount .middle,
-.amount .end,
-.amount .currency {
+.formatted-amount {
   display: inline-block; }
-
-.amount .start {
-  font-size: 1em; }
-
-.amount .middle {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount .end {
-  font-size: 0.7857em;
-  margin-left: 5px; }
-
-.amount.size-equal .middle,
-.amount.size-equal .end {
-  font-size: 1em; }
-
-.amount .currency {
-  font-size: 1em;
-  margin-left: 5px;
-  text-transform: uppercase; }
+  .formatted-amount .start,
+  .formatted-amount .middle,
+  .formatted-amount .end,
+  .formatted-amount .currency {
+    display: inline-block; }
+  .formatted-amount .start {
+    font-size: 1em; }
+  .formatted-amount .middle {
+    font-size: 0.7857em;
+    margin-left: 5px; }
+  .formatted-amount .end {
+    font-size: 0.7857em;
+    margin-left: 5px; }
+  .formatted-amount.size-equal .middle,
+  .formatted-amount.size-equal .end {
+    font-size: 1em; }
+  .formatted-amount .currency {
+    font-size: 1em;
+    margin-left: 5px;
+    text-transform: uppercase; }
 
 /* This is for rules that don't yet have a home.
  * Our goal is to delete this file. Search the regex: /class=".*CLASS.*?"/
@@ -15644,6 +15738,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .size-24 {
   font-size: 24px; }
 
+.size-25 {
+  font-size: 25px; }
+
 .size-28 {
   font-size: 28px; }
 
@@ -15818,3 +15915,6 @@ input[type=file] {
 
 .white-space-initial {
   white-space: initial; }
+
+.height-spacer {
+  height: 15px; }

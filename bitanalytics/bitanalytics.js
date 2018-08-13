@@ -6256,7 +6256,6 @@ var ClickAction = /** @class */ (function (_super) {
         // Add event listener to all the elements found
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            console.log('init ' + this.name);
             element.addEventListener('click', this.listener);
         }
     };
@@ -6413,7 +6412,6 @@ var AdjustChannel = /** @class */ (function (_super) {
         _this.eventTypes = config.eventTypes;
         var os = _this.adjustedOs(config.os);
         _this.advertisingId = _this.getAdvertisingId(os);
-        console.log('Advertising ID for adjust: ' + _this.advertisingId);
         // TODO: Different initialisation for Cordova.
         var sessionParams = {
             app_version: config.appVersion,
@@ -6656,7 +6654,7 @@ var MixpanelChannel = /** @class */ (function (_super) {
     function MixpanelChannel(name, config) {
         var _this = _super.call(this, name) || this;
         if (!config.token) {
-            throw new DOMException('[BitAnalytics] Config incorrect.');
+            throw new Error('[BitAnalytics] Config incorrect.');
         }
         _this.mixpanelInstance = mixpanel;
         mixpanel.init(config.token, config.config);
@@ -7037,7 +7035,7 @@ var LogEventHandlers = /** @class */ (function () {
                 _this.channels.push(channel);
             }
             catch (error) {
-                console.log('[BitAnalytics] ' + error.name + ': ' + error.message);
+                console.log(error.message);
             }
         });
     };
