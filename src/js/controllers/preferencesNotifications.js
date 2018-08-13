@@ -76,9 +76,9 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
 
     emailService.updateEmail(opts);
 
-    var channel = "ga";
-    if (platformInfo.isCordova) {
-      channel = "firebase";
+    var channel = "firebase";
+    if (platformInfo.isNW) {
+      channel = "ga";
     }
     var log = new window.BitAnalytics.LogEvent("settings_email_notification_toggle", [{
       "toggle": $scope.emailNotifications.value

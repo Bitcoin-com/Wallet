@@ -163,7 +163,7 @@ module.exports = function(grunt) {
       },
       bitanalytics: {
         src: [
-          'bitanalytics/bitanalytics.js'
+          'bitanalytics/bitanalytics-0.1.0.js'
         ],
         dest: 'www/lib/bitanalytics.js'
       },

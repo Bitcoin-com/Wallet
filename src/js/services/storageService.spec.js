@@ -414,7 +414,7 @@ xdescribe('storageService on desktop', function(){
 
 });
 
-xdescribe('storageService on desktop using local storage', function(){
+describe('storageService on desktop using local storage', function(){
   var appConfig,
     localStorageServiceMock,
     log, 
@@ -614,7 +614,7 @@ xdescribe('storageService on desktop using local storage', function(){
 
 });
 
-xdescribe('storageService on mobile', function(){
+describe('storageService on mobile', function(){
   var appConfig,
     expectedOldProfileSavedToSecure,
     expectedOldProfileMergedWithSecure,

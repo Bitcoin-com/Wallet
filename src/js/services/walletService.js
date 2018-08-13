@@ -899,7 +899,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   var createAddress = function(wallet, cb) {
     $log.debug('Creating address for wallet:', wallet.id);
 
-    wallet.createAddress({}, function onWalletCreatedAddress(err, addr) {
+    wallet.createAddress({}, function(err, addr) {
       if (err) {
         var prefix = gettextCatalog.getString('Could not create address');
         if (err instanceof errors.CONNECTION_ERROR || (err.message && err.message.match(/5../))) {
@@ -917,7 +917,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             if (err) return cb(err);
             return cb(null, addr[0].address);
           });
-          return;
         }
         return bwcError.cb(err, prefix, cb);
       }

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, sendFlowService, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -28,10 +28,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.enter", function(event, data) {
-
-    var stateParams = sendFlowService.getStateClone();
-    $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
-
     clipboardService.readFromClipboard(function(text) {
       if (text.length > 200) {
         text = text.substring(0, 200);
@@ -58,6 +54,42 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       updateList();
     });
   });
+
+  var wallets;
+  var walletsBch;
+  var walletsBtc;
+  var walletToWalletFrom = false;
+
+  $scope.onWalletSelect = function(wallet) {
+    if (!$scope.walletToWalletFrom) {
+      $scope.walletToWalletFrom = wallet;
+      if (wallet.coin === 'bch') {
+        $scope.showWalletsBch = true;
+      } else if (wallet.coin === 'btc') {
+        $scope.showWalletsBtc = true;
+      }
+      $scope.walletSelectorTitleTo = gettextCatalog.getString('Send to');
+    } else {
+      $ionicLoading.show();
+      walletService.getAddress(wallet, true, function(err, addr) {
+        $ionicLoading.hide();
+        return $state.transitionTo('tabs.send.amount', {
+          displayAddress: $scope.walletToWalletFrom.coin === 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
+          recipientType: 'wallet',
+          fromWalletId: $scope.walletToWalletFrom.id,
+          toAddress: addr,
+          coin: $scope.walletToWalletFrom.coin
+        });
+      });
+
+    }
+  };
+
+  $scope.showWalletSelector = function() {
+    $scope.walletToWalletFrom = false;
+    $scope.walletSelectorTitleFrom = gettextCatalog.getString('Send from');
+    $scope.showWallets = true;
+  };
 
   $scope.findContact = function(search) {
 
@@ -101,6 +133,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   var updateHasFunds = function() {
+
     $scope.hasFunds = false;
     var index = 0;
     lodash.each($scope.wallets, function(w) {
@@ -146,7 +179,10 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           coin: v.coin,
           displayCoin:  (v.coin == 'bch'
               ? (config.bitcoinCashAlias || defaults.bitcoinCashAlias)
-              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase()
+              : (config.bitcoinAlias || defaults.bitcoinAlias)).toUpperCase(),
+          getAddress: function(cb) {
+            return cb(null, k);
+          },
         });
       });
       originalList = completeContacts;
@@ -167,45 +203,38 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.searchBlurred = function() {
-    if ($scope.formData.search == null || $scope.formData.search.length === 0) {
+    if ($scope.formData.search == null || $scope.formData.search.length == 0) {
       $scope.searchFocus = false;
     }
   };
 
-  $scope.sendToContact = function (item) {
-    $timeout(function () {
-      var toAddress = item.address;
-
-      if (item.recipientType && item.recipientType === 'contact') {
-        if (toAddress.indexOf('bch') === 0 || toAddress.indexOf('btc') === 0) {
-          toAddress = toAddress.substring(3);
+  $scope.goToAmount = function(item) {
+    $timeout(function() {
+      item.getAddress(function(err, addr) {
+        if (err || !addr) {
+          //Error is already formated
+          return popupService.showAlert(err);
         }
-      }
 
-      $log.debug('Got toAddress:' + toAddress + ' | ' + item.name);
-      
-      var stateParams = sendFlowService.getStateClone();
-      stateParams.toAddress = toAddress,
-      stateParams.coin = item.coin;
-      sendFlowService.pushState(stateParams);
+        if (item.recipientType && item.recipientType == 'contact') {
+          if (addr.indexOf('bch') == 0 || addr.indexOf('btc') == 0) {
+            addr = addr.substring(3);
+          }
+        }
 
-      if (!stateParams.fromWalletId) { // If we have no toAddress or fromWallet
-        $state.transitionTo('tabs.send.origin');
-      } else {
-        $state.transitionTo('tabs.send.amount');
-      }
-
+        $log.debug('Got toAddress:' + addr + ' | ' + item.name);
+        return $state.transitionTo('tabs.send.amount', {
+          recipientType: item.recipientType,
+          displayAddress: item.coin == 'bch' ? bitcoinCashJsService.translateAddresses(addr).cashaddr : addr,
+          toAddress: addr,
+          toName: item.name,
+          toEmail: item.email,
+          toColor: item.color,
+          coin: item.coin
+        });
+      });
     });
   };
-
-  $scope.startWalletToWalletTransfer = function() {
-    console.log('startWalletToWalletTransfer()');
-    var params = sendFlowService.getStateClone();
-    sendFlowService.pushState(params);
-    $state.transitionTo('tabs.send.wallet-to-wallet', {
-      fromWalletId: sendFlowService.fromWalletId
-    });
-  }
 
   // This could probably be enhanced refactoring the routes abstract states
   $scope.createWallet = function() {
@@ -221,8 +250,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    console.log(data);
-    console.log('tab-send onBeforeEnter sendflow ', sendFlowService.state);
     $scope.isIOS = platformInfo.isIOS && platformInfo.isCordova;
     $scope.showWalletsBch = $scope.showWalletsBtc = $scope.showWallets = false;
 
@@ -236,10 +263,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     configService.whenAvailable(function(_config) {
       $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
     });
-
-    if (data.direction == "back") {
-      sendFlowService.clear();
-    }
 
   });
 });

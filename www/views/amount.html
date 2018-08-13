@@ -1,99 +1,82 @@
 <ion-view id="view-amount" hide-tabs>
     <ion-nav-bar class="bar-royal">
       <ion-nav-title>
-        {{'Enter Amount' | translate}}
+        {{'Enter amount' | translate}}
       </ion-nav-title>
-      <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
+      <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
     </ion-nav-bar>
-    <ion-content scroll="false">
+    <ion-content scroll="false" style="background: #fff;">
+  
       <div style="order: 0; position: relative;">
-        <div class="card item send-amount">
-          <div class="send-amount-header-footer">
-            <span class="send-amount-header-footer__min" ng-if="vm.minAmount">Min: {{vm.minAmount}}</span> <span class="send-amount-header-footer__max" ng-if="vm.maxAmount">Max: {{vm.maxAmount}}</span>
+  
+        <div class="item send-amount">
+          <div ng-if="shapeshiftOrderId">
+            Minimum amount: {{minShapeshiftAmount}} <br/>
+            Maximum amount: {{maxShapeshiftAmount}} <br/>
           </div>
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
               <div class="primary-amount"
-                ng-class="{long: vm.amount.length > 5, 'very-long': vm.amount.length > 8}">
-                <span class="primary-amount-display text-selectable">
-                  {{vm.amount || '0'}} {{vm.unit}}
-                </span>
+                ng-class="{long: amountModel.amount.length > 5, 'very-long': amountModel.amount.length > 10}">
+                <span class="primary-amount-display text-selectable">{{ amountModel.amount || 0 }}</span><span class="unit">{{unit}}</span>
               </div>
-              <span ng-show="vm.globalResult"><formatted-amount value="{{vm.globalResult}}" currency="{{vm.unit}}"></formatted-amount></span>
+              <span ng-show="globalResult">{{globalResult}} {{unit}}</span>
               <div class="alternative-amount">
-                <span class="text-selectable">{{vm.alternativeAmount || '0.00'}} {{vm.alternativeUnit}}</span>
+                <span class="text-selectable">{{alternativeAmount || '0.00'}}</span> <span>{{alternativeUnit}}</span>
               </div>
-              <div class="switch-currencies" ng-click="vm.changeUnit()"><img src="img/icon-convert.svg"></div>
+              <div class="switch-currencies" ng-click="changeUnit()"><img src="img/icon-convert.svg"></div>
             </div>
-            <div class="send-amount-header-footer">
-              <div class="warning" ng-show="vm.errorMessage">
-                {{vm.errorMessage}}
-              </div>
+            <div class="send-amount-actions text-center">
+              <button class="button button-sendmax" ng-click="sendMax()">
+                <span>
+                  <i class="icon ion-ios-speedometer-outline"></i>&emsp;
+                  <span translate>Send max amount</span>
+                </span>
+              </button>
+              <button class="button button-sendmax" ng-click="openPopup()">
+                <span>
+                  <i class="icon ion-social-usd"></i>&emsp;
+                  <span translate>Change currency</span>
+                </span>
+              </button>
             </div>
-          </div>  
-        </div>
-
-        <div class="send-amount-extras text-center">
-          <div class="extra change-currency">
-            <button class="button" ng-click="vm.openPopup()">
-              <span>
-                <img src="img/icon-alternative-currency-black.svg"/>
-                <pre> </pre>
-                <span translate>Change Currency</span>
-              </span>
-            </button>
           </div>
-          <div class="extra available-funds"
-            ng-class="{warning: vm.fundsAreInsufficient}"
-            ng-if="!vm.isRequestingSpecificAmount" translate>
-              <span>Available Funds: </span><span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
-            </div>
-          </div>  
         </div>
       </div>
   
       <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
-        <div class="sendmax" ng-if="vm.availableFunds && !vm.isRequestingSpecificAmount">
-          <button class="button button-sendmax" ng-click="vm.sendMax()">
-              <span>
-                <span translate>Use All Available Funds</span>&ensp;
-                <span class="available-funds-amount">(<formatted-amount value="{{vm.availableFunds}}"></formatted-amount>)</span>
-              </span>
-            </button>
-        </div>
-        
-        <div class="keypad" style="position: relative;">
+        <div class="keypad" style="background: #f2f2f2; position: relative;">
   
           <div class="row">
-            <div class="col digit" ng-click="vm.pushDigit('7')">7</div>
-            <div class="col digit" ng-click="vm.pushDigit('8')">8</div>
-            <div class="col digit" ng-click="vm.pushDigit('9')">9</div>
+            <div class="col digit" ng-click="pushDigit('7')">7</div>
+            <div class="col digit" ng-click="pushDigit('8')">8</div>
+            <div class="col digit" ng-click="pushDigit('9')">9</div>
           </div>
   
           <div class="row">
-            <div class="col digit" ng-click="vm.pushDigit('4')">4</div>
-            <div class="col digit" ng-click="vm.pushDigit('5')">5</div>
-            <div class="col digit" ng-click="vm.pushDigit('6')">6</div>
+            <div class="col digit" ng-click="pushDigit('4')">4</div>
+            <div class="col digit" ng-click="pushDigit('5')">5</div>
+            <div class="col digit" ng-click="pushDigit('6')">6</div>
           </div>
   
           <div class="row">
-            <div class="col digit" ng-click="vm.pushDigit('1')">1</div>
-            <div class="col digit" ng-click="vm.pushDigit('2')">2</div>
-            <div class="col digit" ng-click="vm.pushDigit('3')">3</div>
+            <div class="col digit" ng-click="pushDigit('1')">1</div>
+            <div class="col digit" ng-click="pushDigit('2')">2</div>
+            <div class="col digit" ng-click="pushDigit('3')">3</div>
           </div>
   
           <div class="row">
-            <div class="col digit" ng-click="vm.pushDigit('.')">.</div>
-            <div class="col digit" ng-click="vm.pushDigit('0')">0</div>
-            <div class="col digit icon ion-backspace-outline" ng-click="vm.removeDigit()"></div>
+            <div class="col digit" ng-click="pushDigit('.')">.</div>
+            <div class="col digit" ng-click="pushDigit('0')">0</div>
+            <div class="col digit icon ion-backspace-outline" ng-click="removeDigit()"></div>
           </div>
         </div>
       </div>
   
       <button 
         class="button button-full button-primary no-margin" 
-        ng-disabled="!vm.allowSend" 
-        ng-click="vm.next()"
+        ng-disabled="!allowSend" 
+        ng-click="finish()"
         style="position: absolute; bottom: 0;"
         translate>
         Next

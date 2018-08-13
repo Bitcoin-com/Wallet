@@ -26,10 +26,16 @@
     height: 100%;
     .qr-code {
       text-align: center;
-      margin-top: 6px;
-      qrcode canvas {
-        height: 30vh;
-        max-height: 220px;
+      margin-top: 24vh;
+      margin-bottom: 7vh;
+      @media(max-height: 800px) {
+        margin-top: 18vh;
+      }
+      @media(max-height: 700px) {
+        margin-top: 14vh;
+      }
+      @media(max-height: 600px) {
+        margin-top: 8vh;
       }
     }
     .info {
@@ -85,34 +91,5 @@
     .address-types {
       text-align: center;
     }
-
-    .amount {
-      margin-top: 20vh;
-      margin-bottom: 4vh;
-      @media(max-height: 800px) {
-        margin-top: 12vh;
-        margin-bottom: 6vh;
-      }
-      @media(max-height: 700px) {
-        margin-top: 10vh;
-        margin-bottom: 4vh;
-      }
-      @media(max-height: 600px) {
-        margin-top: 6vh;
-        margin-bottom: 2vh;
-
-      }
-      width: 100%;
-      text-align: center;
-      //padding-top: 30px;
-      display: block;
-      align-items: center;
-      justify-content: center;
-
-      &-alternative {
-        line-height: 36px;
-      }
-    }
-
   }
 }

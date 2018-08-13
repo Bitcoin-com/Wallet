@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, communityService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, sendFlowService, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function($rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -20,12 +20,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.bannerUrl = '';
 
 
-    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
-    $scope.$on("$ionicView.enter", onEnter);
-    $scope.$on("$ionicView.afterEnter", onAfterEnter);
-    $scope.$on("$ionicView.leave", onLeave);
-
-    function onAfterEnter () {
+    $scope.$on("$ionicView.afterEnter", function() {
       startupService.ready();
 
       bannerService.getBanner(function (banner) {
@@ -33,10 +28,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         $scope.bannerUrl = banner.url;
         $scope.bannerIsLoading = false;
       });
-    };
+    });
 
-    function onBeforeEnter (event, data) {
-
+    $scope.$on("$ionicView.beforeEnter", function(event, data) {
       if (!$scope.homeTip) {
         storageService.getHomeTipAccepted(function(error, value) {
           $scope.homeTip = (value == 'accepted') ? false : true;
@@ -57,9 +51,9 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           }
         });
       }
-    };
+    });
 
-    function onEnter(event, data) {
+    $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
       updateAllWallets();
 
@@ -103,28 +97,25 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         }
 
         $scope.showServices = true;
+        pushNotificationsService.init();
+        firebaseEventsService.init();
 
         $timeout(function() {
           $ionicScrollDelegate.resize();
           $scope.$apply();
         }, 10);
       });
-    };
+    });
 
-    function onLeave (event, data) {
+    $scope.$on("$ionicView.leave", function(event, data) {
       lodash.each(listeners, function(x) {
         x();
       });
-    };
+    });
 
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);
     };
-
-    $scope.startFreshSend = function() {
-      sendFlowService.clear();
-      $state.go('tabs.send');
-    }
 
     $scope.openExternalLink = function() {
       var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
@@ -214,7 +205,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
       var j = 0;
 
       lodash.each(wallets, function(wallet) {
-        walletService.invalidateCache(wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
         walletService.getStatus(wallet, {}, function(err, status) {
           if (err) {
 
@@ -234,7 +224,6 @@ angular.module('copayApp.controllers').controller('tabHomeController',
               cb();
             }
           }
-          $scope.walletsWithFunds = profileService.getWallets({hasFunds: true});
         });
       });
     };

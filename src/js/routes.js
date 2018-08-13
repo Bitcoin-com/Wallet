@@ -236,7 +236,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.receive', {
-        url: '/receive/:walletId',
+        url: '/receive',
         views: {
           'tab-receive': {
             controller: 'tabReceiveController',
@@ -287,44 +287,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.send.amount', {
-        url: '/amount',
+        url: '/amount/:recipientType/:toAddress/:toName/:toEmail/:toColor/:coin/:fixedUnit/:fromWalletId/:minShapeshiftAmount/:maxShapeshiftAmount/:shapeshiftOrderId/:displayAddress/:noPrefix',
         views: {
           'tab-send@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
       })
-      .state('tabs.send.wallet-to-wallet', {
-        url: '/wallet-to-wallet',
-        views: {
-          'tab-send@tabs': {
-            controller: 'walletSelectorController',
-            templateUrl: 'views/walletSelector.html'
-          }
-        }
-      })
-      .state('tabs.send.origin', {
-        url: '/origin',
-        views: {
-          'tab-send@tabs': {
-            controller: 'walletSelectorController',
-            templateUrl: 'views/walletSelector.html',
-          }
-        }
-      })
-      .state('tabs.send.destination', {
-        url: '/destination',
-        views: {
-          'tab-send@tabs': {
-            controller: 'walletSelectorController',
-            templateUrl: 'views/walletSelector.html',
-          }
-        }
-      })
       .state('tabs.send.confirm', {
-        url: '/confirm',
+        url: '/confirm/:recipientType/:toAddress/:toName/:toAmount/:toEmail/:toColor/:description/:coin/:useSendMax/:fromWalletId/:displayAddress/:requiredFeeRate',
         views: {
           'tab-send@tabs': {
             controller: 'confirmController',
@@ -342,19 +314,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             templateUrl: 'views/addressbook.add.html',
             controller: 'addressbookAddController'
           }
-        }
-      })
-      .state('tabs.send.review', {
-        url: '/review/:thirdParty/:amount/:fromWalletId/:sendMax/:toAddress/:toWalletId',
-        views: {
-          'tab-send@tabs': {
-            controller: 'reviewController',
-            controllerAs: 'vm',
-            templateUrl: 'views/review.html'
-          }
-        },
-        params: {
-          paypro: null
         }
       })
 
@@ -736,17 +695,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.paymentRequest.amount', {
-        url: '/amount/:toWalletId',
+        url: '/amount/:coin',
         views: {
           'tab-receive@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
       })
       .state('tabs.paymentRequest.confirm', {
-        url: '/confirm/:amount/:toWalletId',
+        url: '/confirm/:amount/:currency/:coin',
         views: {
           'tab-receive@tabs': {
             controller: 'customAmountController',
@@ -887,7 +845,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -953,7 +910,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1012,7 +968,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /* Shapeshift */
       .state('tabs.shapeshift', {
-        url: '/shapeshift/:fromWalletId/:toWalletId',
+        url: '/shapeshift',
         views: {
           'tab-home@tabs': {
             controller: 'shapeshiftController',
@@ -1073,7 +1029,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1126,7 +1081,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         },
@@ -1183,7 +1137,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'amountController',
-            controllerAs: 'vm',
             templateUrl: 'views/amount.html'
           }
         }
@@ -1207,7 +1160,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
@@ -1231,14 +1184,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
 
-      configService.whenAvailable(function(config) {
-        pushNotificationsService.init();
-      });
-      //firebaseEventsService.init();
-
-      var channel = "ga";
-      if (platformInfo.isCordova) {
-        channel = "firebase";
+      var channel = "firebase";
+      if (platformInfo.isNW) {
+        channel = "ga";
       }
       
       // Send a log to test
@@ -1277,13 +1225,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
-      var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'shapeshift_start_click', 
-        class: 'track_shapeshift_start_click', 
-        channels: [channel]
-      });
-      window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
-      
       // Init language
       uxLanguage.init(function (lang) {
 
@@ -1323,7 +1264,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (screen.width < 768 && platformInfo.isCordova)
         screen.lockOrientation('portrait');
 
-      if (ionic.Platform.isAndroid() && platformInfo.isCordova && StatusBar) {
+      if (ionic.Platform.isAndroid() && StatusBar) {
         StatusBar.backgroundColorByHexString('#000000');
       }
 

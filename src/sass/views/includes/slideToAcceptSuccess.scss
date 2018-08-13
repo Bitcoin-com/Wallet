@@ -12,6 +12,12 @@ slide-to-accept-success {
 
   .slide-success {
     $duration: 400ms;
+    &__windows-background {
+      background: $v-success-bg-color;
+      height: 100%;
+      width: 100%;
+      position: fixed;
+    }
     &__background {
       $start-radius: 5;
       $scale-factor: 20;
@@ -34,11 +40,9 @@ slide-to-accept-success {
     &__content {
       position: relative;
       z-index: 1;
-      margin-top: -10vh;
+      margin-top: -20vh;
 
       > img {
-        width: 45vw;
-        max-width: 166px;
         margin-bottom: 1.8rem;
         -webkit-transform: translateY(5rem);
         transform: translateY(5rem);
@@ -55,7 +59,7 @@ slide-to-accept-success {
 
       &__header {
         color: #FFFFFF;
-        font-size: 29px;
+        font-size: 26px;
         -webkit-transform: translateY(5rem);
         transform: translateY(5rem);
         opacity: 0;
@@ -66,26 +70,6 @@ slide-to-accept-success {
           -webkit-transform: translateY(0);
           transform: translateY(0);
           opacity: 1;
-        }
-      }
-      &__share {
-        transition: transform $duration ease, opacity $duration ease;
-        transition-delay: 600ms;
-        opacity: 0;
-        margin-top: 15vh;
-        span {
-          color: #FFF;
-          font-size: 22px;
-          height: 28px;
-        }
-        img {
-          height: 28px;
-          width: auto;
-          vertical-align: bottom;
-          margin-right: 4px;
-        }
-        &.reveal {
-          opacity: 0.79;
         }
       }
     }
@@ -114,11 +98,11 @@ slide-to-accept-success {
       &__btn {
         display: block;
         color: #FFFFFF;
-        font-size: 22px;
+        font-size: 18px;
         font-weight: 600;
         letter-spacing: 2.86px;
-        padding: 2rem 0 2.1rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        padding: 1rem 0 1.1rem;
+        border-top: 1px solid rgba(255, 255, 255, .45);
         cursor: pointer;
       }
     }

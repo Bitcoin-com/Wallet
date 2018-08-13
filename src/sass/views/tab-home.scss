@@ -69,30 +69,6 @@
       }
     }
   }
-  .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin: 6px auto -12px;
-    text-align: center;
-    width: 100%;
-    >.col {
-      padding: 5px 10px;
-      margin-bottom: 0;
-    }
-    .button {
-      border: 2px solid;
-      border-radius: 47px;
-      padding: 0 15px 0 15px;
-      text-align: center;
-      width: 100%;
-      max-width: 300px;
-      font-size: 19px;
-      font-weight: bolder;
-      min-height: auto;
-      line-height: 36px;
-    }
-  }
   .wallet-coin-logo {
     vertical-align: middle;
     margin-right: 5px;
