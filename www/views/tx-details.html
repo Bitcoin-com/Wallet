@@ -24,9 +24,9 @@
           <span ng-if="btx.action == 'received'" translate>Receiving</span>
         </div>
         <div class="amount-label">
-          <div class="amount"><formatted-amount value="{{btx.amountValueStr}}" currency="{{btx.amountUnitStr}}"></formatted-amount></div>
+          <div class="amount"><formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.amountValueStr}}" currency="{{btx.amountUnitStr}}"></formatted-amount></div>
           <div class="alternative" ng-click="showRate = !showRate">
-            <span ng-if="!showRate"><formatted-amount value="{{btx.alternativeAmountStr}}"></formatted-amount></span>
+            <span ng-if="!showRate"><formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.alternativeAmountStr}}"></formatted-amount></span>
             <span ng-if="showRate">
               <span ng-if="!rate">...</span>
               <span ng-if="rate">
