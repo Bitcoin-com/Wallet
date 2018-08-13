@@ -1368,10 +1368,6 @@ msgid "Get news and updates from BitPay"
 msgstr ""
 
 #: www/views/onboarding/welcome.html:8
-msgctxt "button"
-msgid "Get started"
-msgstr ""
-
 #: www/views/bitpayCard.html:49
 msgid "Get started"
 msgstr ""
@@ -2663,10 +2659,6 @@ msgstr ""
 msgid "Send Bitcoin faster!"
 msgstr ""
 
-#: www/views/tab-send.html:46
-msgid "Send Bitcoin faster!"
-msgstr ""
-
 #: www/views/tab-send.html:50
 msgid "Save frequently used addresses and send them Bitcoin in just one tap"
 msgstr ""
@@ -2689,6 +2681,7 @@ msgstr ""
 
 #: www/views/tab-send.html:72
 #: www/views/shapeshift.html:23
+#: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
 
@@ -3140,10 +3133,6 @@ msgstr ""
 
 #: www/views/tab-send.html:32
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr ""
-
-#: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
 
 #: src/js/services/bitpayAccountService.js:73
