@@ -1,5 +1,5 @@
 'use strict';
-angular.module('copayApp.services').factory('firebaseEventsService', function firebaseEventsService($log, $state, $ionicHistory, sjcl, platformInfo, lodash, appConfigService, profileService, configService) {
+angular.module('copayApp.services').factory('firebaseEventsService', function firebaseEventsService($log, platformInfo) {
   var root = {};
   var useEvents = platformInfo.isCordova && !platformInfo.isWP;
 

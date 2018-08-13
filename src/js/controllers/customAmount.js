@@ -17,7 +17,7 @@ angular.module('copayApp.controllers').controller('customAmountController', func
   }
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    var walletId = data.stateParams.id;
+    var walletId = data.stateParams.toWalletId;
 
     if (!walletId) {
       showErrorAndBack('Error', 'No wallet selected');
@@ -53,16 +53,25 @@ angular.module('copayApp.controllers').controller('customAmountController', func
         $scope.address = bchAddresses[$scope.bchAddressType];
       }
 
-      $scope.coin = data.stateParams.coin;
+      $scope.coin = $scope.wallet.coin;
+      var satoshis = parseInt(data.stateParams.amount, 10);
       var parsedAmount = txFormatService.parseAmount(
         $scope.wallet.coin,
-        data.stateParams.amount,
-        data.stateParams.currency);
+        satoshis,
+        'sat');
 
       // Amount in USD or BTC
       var amount = parsedAmount.amount;
       var currency = parsedAmount.currency;
       $scope.amountUnitStr = parsedAmount.amountUnitStr;
+
+      configService.whenAvailable(function (config) {
+        $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+
+        $timeout(function () {
+          $scope.$apply();
+        });
+      });
 
       if (currency != 'BTC' && currency != 'BCH') {
         // Convert to BTC or BCH
