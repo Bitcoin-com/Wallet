@@ -46,7 +46,7 @@
           class="size-14 amount-alternative"
           ng-if="status.totalBalanceStr && wallet.network == 'livenet'"
           ng-style="{opacity: altAmountOpacity}">
-          <formatted-amount value="{{status.totalBalanceStr}}"></formatted-amount>
+          <formatted-amount value="{{status.totalBalanceStr}}" size-equal="true"></formatted-amount>
         </div>
       </div>
 
