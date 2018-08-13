@@ -105,6 +105,9 @@
         return;
       }
 
+      // Remove thousands separators for parseFloat()
+      $scope.value = $scope.value.replace(',', '');
+
       var parsed = parseFloat($scope.value);
       var valueFormatted = '';
       var valueProcessing = '';
