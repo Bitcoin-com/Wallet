@@ -34,6 +34,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   };
   vm.originWallet = null;
   vm.paymentExpired = false;
+  vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
   vm.primaryAmount = '';
   vm.primaryCurrency = '';
   vm.usingMerchantFee = false;
