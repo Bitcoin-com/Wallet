@@ -9,17 +9,21 @@ angular
   function sendFlowService($log) {
 
     var service = {
-      amount: '',
-      fromWalletId: '',
-      sendMax: false,
-      thirdParty: null,
-      toAddress: '',
-      toWalletId: '',
+      // A separate state variable so we can ensure it is cleared of everything,
+      // even other properties added that this service does not know about. (such as "coin")
+      state: {
+        amount: '',
+        fromWalletId: '',
+        sendMax: false,
+        thirdParty: null,
+        toAddress: '',
+        toWalletId: ''
+      },
       previousStates: [],
 
       // Functions
       clear: clear,
-      getState: getState,
+      getStateClone: getStateClone,
       map: map,
       popState: popState,
       pushState: pushState,
@@ -36,22 +40,24 @@ angular
 
     function clearCurrent() {
       console.log("sendFlow clearCurrent()");
-      service.amount = '';
-      service.fromWalletId = '';
-      service.sendMax = false;
-      service.thirdParty = null;
-      service.toAddress = '';
-      service.toWalletId = '';
+      service.state = {
+        amount: '',
+        fromWalletId: '',
+        sendMax: false,
+        thirdParty: null,
+        toAddress: '',
+        toWalletId: ''
+      }
     }
 
     /**
      * Handy for debugging
      */
-    function getState() {
+    function getStateClone() {
       var currentState = {};
-      Object.keys(service).forEach(function forCurrentParam(key) {
-        if (typeof service[key] !== 'function' && key !== 'previousStates') {
-          currentState[key] = service[key];
+      Object.keys(service.state).forEach(function forCurrentParam(key) {
+        if (typeof service.state[key] !== 'function' && key !== 'previousStates') {
+          currentState[key] = service.state[key];
         }
       });
       return currentState;
@@ -68,7 +74,7 @@ angular
 
     function map(params) {
       Object.keys(params).forEach(function forNewParam(key) {
-        service[key] = params[key];
+        service.state[key] = params[key];
       });
     };
 
@@ -85,7 +91,7 @@ angular
 
     function pushState(params) {
       console.log('sendFlow push');
-      var currentParams = getState();
+      var currentParams = getStateClone();
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);

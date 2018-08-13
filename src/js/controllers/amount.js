@@ -67,15 +67,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function onBeforeEnter(event, data) {
-    console.log('amount onBeforeEnter sendflow ', sendFlowService.getState());
-
     if (data.direction == "back") {
       sendFlowService.popState();
     }
+    console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
     
     initCurrencies();
 
-    passthroughParams = sendFlowService;
+    passthroughParams = sendFlowService.getStateClone();
 
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;

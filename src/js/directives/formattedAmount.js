@@ -86,15 +86,24 @@
     }
 
     function formatNumbers() {
+      console.log('formatNumbers() "' + $scope.value + '", "' + $scope.currency + '"');
+      // Might get "< 0.01 USD" being passed in.
       // During watch, may be changed from having a separate currency value,
       // to both being in value. Don't want to use previous currency value.
       // Try to extract currency from value..
       var currencySplit = $scope.value.split(" ");
-      if (currencySplit.length === 2 && !$scope.currency) {
-        $scope.currency = currencySplit[1];
+      if (currencySplit.length >= 2 && !$scope.currency) {
+        $scope.currency = currencySplit[currencySplit.length - 1];
       }
       $scope.currency = $scope.currency || '';
       
+      // Redo this when we have proper formatting for low fees
+      if ($scope.value.indexOf("<") === 0) {
+        buildAmount($scope.value, '', '');
+        $scope.currency = '';
+        $scope.canShow = true;
+        return;
+      }
 
       var parsed = parseFloat($scope.value);
       var valueFormatted = '';
