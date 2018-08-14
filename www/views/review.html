@@ -57,7 +57,12 @@
           </div>
           <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address' && !vm.thirdParty">
             <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded">
-              <span class="prefix">{{vm.destination.address.substring(0,5)}}</span><span class="mid">{{vm.destination.address.substring(5,vm.destination.address.length-4)}}</span><span class="suffix">{{vm.destination.address.substring(vm.destination.address.length-4)}}</span>
+              <span ng-if="!vm.displayAddress">
+                <span class="prefix">{{vm.destination.address.substring(0,5)}}</span><span class="mid">{{vm.destination.address.substring(5,vm.destination.address.length-4)}}</span><span class="suffix">{{vm.destination.address.substring(vm.destination.address.length-4)}}</span>
+              </span>
+              <span ng-if="vm.displayAddress">
+                <span class="prefix">{{vm.displayAddress.substring(0,5)}}</span><span class="mid">{{vm.displayAddress.substring(5,vm.displayAddress.length-4)}}</span><span class="suffix">{{vm.displayAddress.substring(vm.displayAddress.length-4)}}</span>
+              </span>
             </div>
           </div>
         </div>

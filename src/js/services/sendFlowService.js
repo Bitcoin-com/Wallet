@@ -13,6 +13,7 @@ angular
       // even other properties added that this service does not know about. (such as "coin")
       state: {
         amount: '',
+        displayAddress: null,
         fromWalletId: '',
         sendMax: false,
         thirdParty: null,
@@ -42,6 +43,7 @@ angular
       console.log("sendFlow clearCurrent()");
       service.state = {
         amount: '',
+        displayAddress: null,
         fromWalletId: '',
         sendMax: false,
         thirdParty: null,

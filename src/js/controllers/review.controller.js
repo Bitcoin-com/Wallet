@@ -19,6 +19,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     kind: '', // 'address', 'contact', 'wallet'
     name: ''
   };
+  vm.displayAddress = '';
   vm.feeCrypto = '';
   vm.feeFiat = '';
   vm.fiatCurrency = '';
@@ -56,10 +57,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
   var sendFlowData;
   var config = null;
-  var countDown = null;
-  var defaults = {};
   var coin = '';
   var countDown = null;
+  var defaults = {};
   var usingCustomFee = false;
   var usingMerchantFee = false;
   var destinationWalletId = '';
@@ -85,7 +85,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     satoshis = parseInt(sendFlowData.amount, 10);
     toAddress = sendFlowData.toAddress;
     destinationWalletId = sendFlowData.toWalletId;
-    
+
+    vm.displayAddress = sendFlowData.displayAddress;
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
     coin = vm.originWallet.coin;
@@ -104,7 +105,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
         vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
         console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
-        unitFromSat = 1 / config.wallet.settings.unitToSatoshi; 
+        unitFromSat = 1 / config.wallet.settings.unitToSatoshi;
       }
       updateSendAmounts();
       getOriginWalletBalance(vm.originWallet);
