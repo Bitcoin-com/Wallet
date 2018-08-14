@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -52,6 +52,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   // Functions
   vm.goBack = goBack;
   vm.onSuccessConfirm = onSuccessConfirm;
+  vm.onShareTransaction = onShareTransaction;
 
   var sendFlowData;
   var config = null;
@@ -62,6 +63,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   var usingCustomFee = false;
   var usingMerchantFee = false;
   var destinationWalletId = '';
+  var lastTxId = '';
   var originWalletId = '';
   var priceDisplayIsFiat = true;
   var satoshis = null;
@@ -156,6 +158,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             txConfirmNotification.subscribe(vm.originWallet, {
               txid: txp.txid
             });
+            lastTxId = txp.txid;
           }
         }, statusChangeHandler);
       };
@@ -520,6 +523,21 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         });
       });
     }
+  }
+
+  function onShareTransaction() {
+    var explorerTxUrl = 'https://explorer.bitcoin.com/' + tx.coin + '/tx/' + lastTxId;
+    if (platformInfo.isCordova) {
+      var text = gettextCatalog.getString('Take a look at this Bitcoin Cash transaction here: ') + explorerTxUrl;
+      if (coin === 'btc') {
+        text = gettextCatalog.getString('Take a look at this Bitcoin transaction here: ') + explorerTxUrl;
+      }
+      window.plugins.socialsharing.share(text, null, null, null);
+    } else {
+      ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
+      clipboardService.copyToClipboard(explorerTxUrl);
+    }
+  
   }
 
   function startExpirationTimer(expirationTime) {
