@@ -2916,8 +2916,13 @@ msgid "Sweep"
 msgstr ""
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr ""
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr ""
 
 #: src/js/services/onGoingProcess.js:33
@@ -3849,4 +3854,24 @@ msgstr ""
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
+msgstr ""
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr ""
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr ""
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
 msgstr ""
