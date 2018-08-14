@@ -3160,7 +3160,7 @@ msgid "To start the process you need to add funds to your wallet."
 msgstr ""
 
 #: www/views/shapeshift.html:30
-msgid "he process is fast and you will receive the exchanged amount in your wallet."
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr ""
 
 #: www/views/shapeshift.html:34
