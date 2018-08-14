@@ -2648,7 +2648,7 @@ msgid "Paste Address"
 msgstr ""
 
 #: www/views/tab-send.html:27
-msgid "Wallet to Wallet Transfer"
+msgid "Transfer between wallets"
 msgstr ""
 
 #: www/views/tab-send.html:35
