@@ -4,6 +4,32 @@
   </ion-nav-bar>
   <ion-content>
     <div id="tab-send-header" ng-if="hasFunds">
+
+      <div class="content-frame" ng-if="fromWallet">
+          <div class="card card-gutter-compact">
+            <div class="item item-compact"><span translate>From</span>:</div>
+            <div class="item item-gutterless item-complex item-avatar">
+              <div class="item-content item-content-avatar">
+                <i class="icon big-icon-svg theme-circle theme-circle-services">
+                    <div class="bg icon-wallet"
+                      style="background-color: {{fromWallet.color}}"
+                    ></div>
+                </i>
+                <h2>{{fromWallet.name}}</h2>
+                <wallet-balance
+                 display-as-fiat="{{displayBalanceAsFiat}}" 
+                 wallet-status="{{fromWallet.status}}"
+                 wallet-cached-balance="{{fromWallet.cachedBalance}}"
+                 wallet-cached-balance-updated-on="{{fromWallet.cachedBalanceUpdatedOn}}"
+                 wallet-cached-status="{{fromWallet.cachedStatus}}"
+                 total-balance-sat="{{fromWallet.status.totalBalanceSat}}"></wallet-balance>
+                <!--<p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>-->
+                <!--<formatted-amount value="{{fromWallet.status.totalBalanceStr ? fromWallet.status.totalBalanceStr : ( fromWallet.cachedBalance ? fromWallet.cachedBalance   + (fromWallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( fromWallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }}"></formatted-amount>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
       <div class="send-wrapper item">
         <div class="row">
           <div class="input" ng-class="{'focus': searchFocus}">
@@ -22,7 +48,7 @@
               </button>
             </div>
             <div class="col-60">
-              <button class="button button-standard button-primary button-outline" ui-sref="tabs.send.wallet-to-wallet">
+              <button class="button button-standard button-primary button-outline" ng-click="startWalletToWalletTransfer()">
                 <img src="img/icon-w2w.svg"/><br/>
                 <span translate>Transfer between wallets</span>
               </button>

@@ -3,8 +3,7 @@
     <ion-nav-title>
       {{'Review Transaction' | translate}}
     </ion-nav-title>
-    <ion-nav-back-button>
-    </ion-nav-back-button>
+    <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content class="padded-bottom-cta-with-summary bg-neutral">
@@ -12,14 +11,14 @@
     <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
-        <p class="large">{{vm.primaryAmount}} {{vm.primaryCurrency}}</p>
-        <p ng-show="vm.secondaryAmount">{{vm.secondaryAmount}} {{vm.secondaryCurrency}}</p>
+        <p class="large"><formatted-amount value="{{vm.primaryAmount}}" currency="{{vm.primaryCurrency}}"></formatted-amount></p>
+        <p ng-show="vm.secondaryAmount"><formatted-amount value="{{vm.secondaryAmount}}" currency="{{vm.secondaryCurrency}}"></formatted-amount></p>
       </div>
     </div>
 
     <div class="content-frame negative-top">
       <div class="card card-gutter-compact">
-        <div class="item item-compact" translate>From:</div>
+        <div class="item item-compact"><span translate>From</span>:</div>
         <div class="item item-gutterless item-complex item-avatar">
           <div class="item-content item-content-avatar">
             <i class="icon big-icon-svg theme-circle theme-circle-services">
@@ -53,7 +52,7 @@
             <img ng-if="vm.thirdParty.name === 'BitPay'" src="img/icon-bitpay.svg" class="bg">
             <img ng-if="vm.thirdParty.name === 'eGifter'" src="img/icon-egifter.png" class="bg">
             <h2>{{vm.destination.name}}</h2>
-            <p translate ng-if="!vm.paymentExpired">Payment expires: {{vm.remainingTimeStr}}</p>
+            <p translate ng-if="!vm.paymentExpired"><span translate>Payment expires:</span> {{vm.remainingTimeStr}}</p>
             <p class="warning" translate ng-if="vm.paymentExpired">Payment request has expired</p>
           </div>
           <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address' && !vm.thirdParty">
@@ -68,14 +67,14 @@
           ng-class="{ 'expand-content-revealed': vm.memoExpanded }"
           ng-click="vm.memoExpanded = !vm.memoExpanded">
           <img src="img/icon-bookmark.svg" class="action-icon">
-          <span class="action-text">Add personal note</span>
+          <span class="action-text" translate>Add personal note</span>
         </div>
         <div class="card card-gutter-compact expand-content"
           ng-class="{ 'expand-content-revealed': vm.memoExpanded }">
           <div class="item item-compact" translate>Personal Note:</div>
           <div class="item">
             <div class="item-content">
-              <textarea elastic placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" class="elastic" ng-model="vm.memo"></textarea>
+              <textarea elastic placeholder="{{btx.note.body || btx.message || vm.personalNotePlaceholder}}" class="elastic" ng-model="vm.memo"></textarea>
             </div>
           </div>
         </div>
@@ -85,12 +84,12 @@
   </ion-content>
 
   <div class="fee-summary">
-    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'" translate="">Suggested by merchant:</div>
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'" translate>Suggested by merchant:</div>
     <div class="amount">
-      <div class="fee-fiat positive" ng-if="vm.feeLessThanACent">Fee: Less than 1 cent</div>
-      <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent">Fee: {{vm.feeFiat}} {{vm.feeCurrency}}</div>
+      <div class="fee-fiat positive" ng-if="vm.feeLessThanACent"><span translate>Fee:</span> <span translate>Less than 1 cent</span></div>
+      <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent"><span translate>Fee:</span> {{vm.feeFiat}} {{vm.feeCurrency}}</div>
       <div class="fee-crypto" ng-if="vm.feeCrypto">
-        {{vm.feeCrypto}} {{vm.origin.currency}}
+        <formatted-amount value="{{vm.feeCrypto}}" currency="{{vm.origin.currency}}"></formatted-amount>
       </div>
     </div>
   </div>
