@@ -6256,7 +6256,6 @@ var ClickAction = /** @class */ (function (_super) {
         // Add event listener to all the elements found
         for (var i = 0; i < elements.length; i++) {
             var element = elements[i];
-            console.log('init ' + this.name);
             element.addEventListener('click', this.listener);
         }
     };
@@ -6276,7 +6275,7 @@ var ClickAction = /** @class */ (function (_super) {
 }(action_1.default));
 exports.default = ClickAction;
 
-},{"../action":4,"../log-event":15,"../log-event-handlers":14}],6:[function(require,module,exports){
+},{"../action":4,"../log-event":16,"../log-event-handlers":15}],6:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6315,7 +6314,7 @@ var BitAnalytics = /** @class */ (function () {
 exports.default = BitAnalytics;
 BitAnalytics.main();
 
-},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":12,"./log-event":15,"./log-event-handlers":14}],7:[function(require,module,exports){
+},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":12,"./log-event":16,"./log-event-handlers":15}],7:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6413,7 +6412,6 @@ var AdjustChannel = /** @class */ (function (_super) {
         _this.eventTypes = config.eventTypes;
         var os = _this.adjustedOs(config.os);
         _this.advertisingId = _this.getAdvertisingId(os);
-        console.log('Advertising ID for adjust: ' + _this.advertisingId);
         // TODO: Different initialisation for Cordova.
         var sessionParams = {
             app_version: config.appVersion,
@@ -6560,11 +6558,10 @@ var FirebaseChannel = /** @class */ (function (_super) {
         var keys = Object.keys(params);
         var keysLength = keys.length;
         var sanitized = {};
-        for (var i = 0; i < keysLength; i++) {
-            var key = keys[i];
+        keys.map(function (key) {
             var cleanKey = key.replace('-', '_').replace(/[\W]+/g, '');
             sanitized[cleanKey] = params[key];
-        }
+        });
         return sanitized;
     };
     return FirebaseChannel;
@@ -6588,13 +6585,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
+var ga_1 = __importDefault(require("../external-libs/ga"));
 var GoogleAnalyticsChannel = /** @class */ (function (_super) {
     __extends(GoogleAnalyticsChannel, _super);
     function GoogleAnalyticsChannel(name, config) {
         var _this = _super.call(this, name) || this;
-        _this.dataLayer = null;
         _this.gaInstance = null;
-        _this.trackingId = '';
         _this.eventLabels = ['id'];
         if (!config.trackingId) {
             throw new Error('[BitAnalytics] Google Analytics config is missing tracking ID.');
@@ -6602,8 +6598,12 @@ var GoogleAnalyticsChannel = /** @class */ (function (_super) {
         if (config.eventLabels) {
             _this.eventLabels = config.eventLabels;
         }
-        _this.trackingId = config.trackingId;
-        _this.setUpGa();
+        _this.gaInstance = new ga_1.default({
+            trackID: config.trackingId,
+            appVersion: config.appVersion,
+            appName: config.appName || 'App'
+        });
+        _this.isReady = true;
         return _this;
     }
     /**
@@ -6612,49 +6612,26 @@ var GoogleAnalyticsChannel = /** @class */ (function (_super) {
      *
      */
     GoogleAnalyticsChannel.prototype.postEvent = function (name, params) {
-        // Default Google Analytics Events
-        // https://developers.google.com/analytics/devguides/collection/gtagjs/events
-        // Useful to convert to these, or start with these?
         if (this.isReady) {
-            params.event_category = name;
+            var category = name;
+            var action = name;
+            var label = name;
+            var value = params['value'] || '';
             for (var _i = 0, _a = this.eventLabels; _i < _a.length; _i++) {
                 var eventLabel = _a[_i];
                 if (params[eventLabel]) {
-                    params.event_label = params[eventLabel];
+                    label = params[eventLabel];
                     break;
                 }
             }
-            this.gtag('event', name, params);
+            this.gaInstance.event(category, action, label, value);
         }
-    };
-    /**
-     *
-     * Private methods
-     *
-     */
-    /**
-     * Mimics function in the tracking snippet
-     */
-    GoogleAnalyticsChannel.prototype.gtag = function () {
-        var args = [];
-        for (var _i = 0; _i < arguments.length; _i++) {
-            args[_i] = arguments[_i];
-        }
-        console.log(arguments);
-        window.dataLayer.push(arguments);
-    };
-    GoogleAnalyticsChannel.prototype.setUpGa = function () {
-        // From what GA recommends to insert into page
-        window.dataLayer = window.dataLayer || [];
-        this.gtag('js', new Date());
-        this.gtag('config', this.trackingId);
-        this.isReady = true;
     };
     return GoogleAnalyticsChannel;
 }(channel_1.default));
 exports.default = GoogleAnalyticsChannel;
 
-},{"../channel":8}],12:[function(require,module,exports){
+},{"../channel":8,"../external-libs/ga":14}],12:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6677,7 +6654,7 @@ var MixpanelChannel = /** @class */ (function (_super) {
     function MixpanelChannel(name, config) {
         var _this = _super.call(this, name) || this;
         if (!config.token) {
-            throw new DOMException('[BitAnalytics] Config incorrect.');
+            throw new Error('[BitAnalytics] Config incorrect.');
         }
         _this.mixpanelInstance = mixpanel;
         mixpanel.init(config.token, config.config);
@@ -6745,6 +6722,207 @@ exports.default = MixpanelChannel;
 })(window);
 
 },{}],14:[function(require,module,exports){
+"use strict";
+/*
+ * name: nwjs-analytics -Node-Webkit Google Analytics integration
+ * version: 1.0.2
+ * github: https://github.com/Daaru00/nwjs-analytics
+ */
+function GA(opt) {
+    this.apiVersion = opt.apiVersion || '1';
+    this.trackID = opt.trackID || 'UA-XXXXXXXX-X';
+    this.clientID = opt.clientID || null;
+    this.userID = opt.userID || null;
+    this.appName = opt.appName || 'App';
+    this.appVersion = opt.appVersion || '1.0.0';
+    this.debug = opt.debug || false;
+    this.performanceTracking = opt.performanceTracking || true;
+    this.errorTracking = opt.errorTracking || true;
+    this.userLanguage = opt.userLanguage || "en";
+    this.currency = opt.currency || "EUR";
+    this.lastScreenName = opt.lastScreenName || '';
+}
+GA.prototype.sendRequest = function (data, callback) {
+    var ga = this;
+    if (!this.clientID || this.clientID == null)
+        this.clientID = this.generateClientID();
+    if (!this.userID || this.userID == null)
+        this.userID = this.generateClientID();
+    var postData = "v=" + this.apiVersion
+        + "&an=" + this.appName
+        + "&av=" + this.appVersion
+        + "&tid=" + this.trackID
+        + "&cid=" + this.clientID
+        + "&sr=" + this.getScreenResolution()
+        + "&vp=" + this.getViewportSize();
+    Object.keys(data).forEach(function (key) {
+        var val = data[key];
+        if (typeof val != "undefined")
+            postData += "&" + key + "=" + val;
+    });
+    var http = new XMLHttpRequest();
+    var url = "https://www.google-analytics.com";
+    if (!this.debug)
+        url += "/collect";
+    else
+        url += "/debug/collect";
+    http.open("GET", url + "?" + postData, true);
+    http.onreadystatechange = function () {
+        if (ga.debug)
+            console.log(http.response);
+        if (http.readyState == 4 && http.status == 200) {
+            if (callback)
+                callback(true);
+        }
+        else {
+            if (callback)
+                callback(false);
+        }
+    };
+    http.send();
+};
+GA.prototype.generateClientID = function () {
+    var id = "";
+    var possibilities = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 5; i++)
+        id += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
+    return id;
+};
+GA.prototype.getScreenResolution = function () {
+    return screen.width + "x" + screen.height;
+};
+GA.prototype.getColorDept = function () {
+    return screen.colorDepth + "-bits";
+};
+GA.prototype.getUserAgent = function () {
+    return navigator.userAgent;
+};
+GA.prototype.getViewportSize = function () {
+    return window.screen.availWidth + "x" + window.screen.availHeight;
+};
+/*
+ * Measurement Protocol
+ * [https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide]
+ */
+GA.prototype.screenView = function (screename) {
+    var data = {
+        't': 'screenview',
+        'cd': screename
+    };
+    this.sendRequest(data);
+    this.lastScreenName = screename;
+};
+GA.prototype.event = function (category, action, label, value) {
+    var data = {
+        't': 'event',
+        'ec': category,
+        'ea': action,
+    };
+    if (label) {
+        data['el'] = label;
+    }
+    if (value) {
+        data['ev'] = value;
+    }
+    if (this.lastScreenName) {
+        data['cd'] = this.lastScreenName;
+    }
+    this.sendRequest(data);
+};
+GA.prototype.exception = function (msg, fatal) {
+    var data = {
+        't': 'exception',
+        'exd': msg,
+        'exf': fatal || 0
+    };
+    this.sendRequest(data);
+};
+GA.prototype.timing = function (category, variable, time, label) {
+    var data = {
+        't': 'timing',
+        'utc': category,
+        'utv': variable,
+        'utt': time,
+        'utl': label,
+    };
+    this.sendRequest(data);
+},
+    GA.prototype.ecommerce = {
+        transactionID: false,
+        generateTransactionID: function () {
+            var id = "";
+            var possibilities = "0123456789";
+            for (var i = 0; i < 5; i++)
+                id += possibilities.charAt(Math.floor(Math.random() * possibilities.length));
+            return id;
+        },
+        transaction: function (total, items) {
+            var t_id = "";
+            if (!this.ecommerce.transactionID)
+                t_id = this.ecommerce.generateTransactionID();
+            else
+                t_id = this.ecommerce.transactionID;
+            var data = {
+                't': 'transaction',
+                'ti': t_id,
+                'tr': total,
+                'cu': this.currency,
+            };
+            this.sendRequest(data);
+            items.forEach(function (item) {
+                var data = {
+                    't': 'item',
+                    'ti': t_id,
+                    'in': item.name,
+                    'ip': item.price,
+                    'iq': item.qty,
+                    'ic': item.id,
+                    'cu': this.currency
+                };
+                this.sendRequest(data);
+            });
+        }
+    },
+    GA.prototype.custom = function (data) {
+        this.sendRequest(data);
+    };
+module.exports = GA;
+/*
+ * Performance Tracking
+ */
+/*window.addEventListener("load", function() {
+
+  if(ga.performanceTracking) {
+    setTimeout(function() {
+      var timing = window.performance.timing;
+      var userTime = timing.loadEventEnd - timing.navigationStart;
+      ga.timing("performance", "pageload", userTime);
+      }, 0);
+  }
+
+}, false);*/
+/*
+ * Error Reporting
+ */
+/*window.onerror = function (msg, url, lineNo, columnNo, error) {
+    var message = [
+        'Message: ' + msg,
+        'Line: ' + lineNo,
+        'Column: ' + columnNo,
+        'Error object: ' + JSON.stringify(error)
+    ].join(' - ');
+
+    if(ga.errorTracking)
+    {
+        setTimeout(function() {
+            ga.exception(message.toString());
+        }, 0);
+    }
+
+    return false;
+};*/
+
+},{}],15:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6857,7 +7035,7 @@ var LogEventHandlers = /** @class */ (function () {
                 _this.channels.push(channel);
             }
             catch (error) {
-                console.log('[BitAnalytics] ' + error.name + ': ' + error.message);
+                console.log(error.message);
             }
         });
     };
@@ -6865,7 +7043,7 @@ var LogEventHandlers = /** @class */ (function () {
 }());
 exports.default = LogEventHandlers;
 
-},{"./channel-factory":7}],15:[function(require,module,exports){
+},{"./channel-factory":7}],16:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogEvent = /** @class */ (function () {

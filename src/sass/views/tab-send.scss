@@ -2,15 +2,15 @@
   @extend .deflash-blue;
 
   &-header{
-    height: 300px;
+    //height: 300px;
     width: 100%;
   }
   &-contacts {
-    height: calc(100vh - 300px - 50px - 44px); /* screen size - button container - bottom-tab-menu - header top */
+    //height: calc(100vh - 300px - 50px - 44px); /* screen size - button container - bottom-tab-menu - header top */
     &.ios {
-      height: calc(100vh - 300px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+      //height: calc(100vh - 300px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
     }
-    overflow: scroll;
+    //overflow: scroll;
   }
 
   .input {
@@ -88,6 +88,8 @@
             &.contains-address {
               .address {
                 display: inline;
+                border: none;
+                background-color: transparent;
               }
               .non-address {
                 display: none;
@@ -133,42 +135,7 @@
     padding-left: 30px;
   }
   .sendTip {
-    padding-top: 5vh;
-    text-align: center;
-    .item {
-      border-style: none;
-    }
-    & > .title {
-      font-size: 20px;
-      color: $v-dark-gray;
-      margin: 20px 10px;
-    }
-    & > .subtitle {
-      font-size: 1rem;
-      line-height: 1.5em;
-      font-weight: 300;
-      color: #6F6F70;
-      margin: 20px 1em 2.5em;
-    }
-    .big-icon-svg {
-      .bg.green {
-        padding: 0 10px;
-        box-shadow: none;
-      }
-    }
-    .buttons {
-      margin-top: 18px;
-      .button {
-        font-weight: bold;
-        font-size: 19px;
-      }
-    }
-    .button-first-contact img {
-      height: 19px;
-      width: 19px;
-      margin-right: 6px;
-      vertical-align: sub;
-    }
+    @include empty-case();
   }
   .item-heading {
     line-height: 16px;
@@ -256,12 +223,12 @@
       }
     }
     #tab-send-header {
-      height: 270px;
+      //height: 270px;
     }
     #tab-send-contacts {
-      height: calc(100vh - 270px - 50px  - 44px);  /* screen size - button container - bottom-tab-menu - header top */
+      //height: calc(100vh - 270px - 50px  - 44px);  /* screen size - button container - bottom-tab-menu - header top */
       &.ios {
-        height: calc(100vh - 270px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+        //height: calc(100vh - 270px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
       }
     }
   }

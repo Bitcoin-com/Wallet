@@ -4,8 +4,9 @@
 
 @import "header";
 @import "content-frame";
-@import "address";
+@import "address-frame";
 @import "action-minor";
 @import "expand-content";
 @import "fee-summary";
-@import "amount.scss";
+@import "formatted-amount";
+@import "wallet-balance";

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 166 166">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="_ionicons_svg_md-checkmark-circle-outline" class="cls-1" d="M96.969,115.231,85.35,126.85,122.7,164.2l83-83L194.081,69.581,122.7,140.544,96.969,115.231ZM197.4,131a66.116,66.116,0,1,1-48.138-63.91l12.863-12.865A77.206,77.206,0,0,0,131,48a83,83,0,1,0,83,83Z" transform="translate(-48 -48)"/>
+</svg>
