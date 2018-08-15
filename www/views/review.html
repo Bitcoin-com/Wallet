@@ -116,6 +116,7 @@
   <slide-to-accept-success
     slide-success-show="vm.sendStatus === 'success'"
     slide-success-on-confirm="vm.onSuccessConfirm()"
+    slide-success-on-share="vm.onShareTransaction"
     slide-success-hide-on-confirm="true">
     <span ng-show="vm.originWallet.m == 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Payment Sent</span>
     <span ng-show="vm.originWallet.m > 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Proposal Created</span>
