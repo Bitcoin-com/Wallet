@@ -256,11 +256,18 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     return !tx.confirmations || tx.confirmations === 0;
   };
 
+  var loadingTxs = false;
   $scope.showMore = function() {
+    if (loadingTxs)
+      return;
+    loadingTxs = true;
     $timeout(function() {
-      currentTxHistoryPage++;
-      $scope.showHistory();
-      $scope.$broadcast('scroll.infiniteScrollComplete');
+      walletService.getMoreTxs($scope.wallet, function() {
+        currentTxHistoryPage++;
+        $scope.showHistory();
+        $scope.$broadcast('scroll.infiniteScrollComplete');
+        loadingTxs = false;
+      });
     }, 100);
   };
 
