@@ -5,12 +5,39 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var HISTORY_SHOW_LIMIT = 10;
   var currentTxHistoryPage = 0;
   var listeners = [];
-  $scope.txps = [];
+
+  // For gradual migration for doing it properly
+  $scope.vm = {
+    gettingInitialHistory: false,
+    updatingTxHistory: false
+  };
+
+  $scope.amountIsCollapsible = false;
+  $scope.color = '#888888';
   $scope.completeTxHistory = [];
-  $scope.openTxpModal = txpModalService.open;
+  $scope.filteredTxHistory = [];
   $scope.isCordova = platformInfo.isCordova;
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
+  $scope.isSearching = false;
+  $scope.openTxpModal = txpModalService.open;
+  $scope.requiresMultipleSignatures = false;
+  $scope.showBalanceButton = false;
+  $scope.status = null;
+  $scope.txHistory = [];
+  $scope.txHistorySearchResults = [];
+  $scope.txHistoryShowMore = false;
+  $scope.txps = [];
+  $scope.updatingStatus = false;
+  $scope.updateStatusError = null;
+  $scope.updateTxHistoryError = null;
+  $scope.updatingTxHistoryProgress = 0;
+  $scope.wallet = null;
+  $scope.walletId = '';
+  $scope.walletNotRegistered = false;
+
+    
+    
 
   var channel = "ga";
   if (platformInfo.isCordova) {
@@ -172,7 +199,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       walletService.getTxHistory($scope.wallet, {
         feeLevels: levels
       }, function(err, txHistory) {
-        $scope.updatingTxHistory = false;
+        $scope.vm.gettingInitialHistory = false;
         if (err) {
           $scope.txHistory = null;
           $scope.updateTxHistoryError = true;
@@ -256,17 +283,18 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     return !tx.confirmations || tx.confirmations === 0;
   };
 
-  var loadingTxs = false;
+
   $scope.showMore = function() {
-    if (loadingTxs)
+    if ($scope.vm.updatingTxHistory) {
       return;
-    loadingTxs = true;
+    }
+    $scope.vm.updatingTxHistory = true;
     $timeout(function() {
-      walletService.getMoreTxs($scope.wallet, function() {
+      walletService.getMoreTxs($scope.wallet, function onMoreTxs() {
         currentTxHistoryPage++;
         $scope.showHistory();
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        loadingTxs = false;
+        $scope.vm.updatingTxHistory = false;
       });
     }, 100);
   };
@@ -400,7 +428,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     if (!$scope.wallet) return;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
-    $scope.updatingTxHistory = true;
+    $scope.vm.gettingInitialHistory = true;
 
     addressbookService.list(function(err, ab) {
       if (err) $log.error(err);
