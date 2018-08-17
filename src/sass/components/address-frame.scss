@@ -9,8 +9,8 @@
   text-overflow: ellipsis;
 
   &.expanded {
-    white-space: pre-wrap;
-    word-break: break-all;
+    white-space: normal;
+    text-overflow: clip;
   }
 
   .prefix {
