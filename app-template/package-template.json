@@ -142,7 +142,7 @@
   },
   "resolutions": {
     "angular": "1.5.3",
-    "ionic": "1b7414faba"
+    "ionic": "eefba1331b"
   },
   "pre-commit": "unstage-package"
 }
