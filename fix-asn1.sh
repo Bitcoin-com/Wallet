@@ -7,5 +7,5 @@ if [ "$firstLine" = "try {" ]; then
   awk 'NR > 6 {print}' node_modules/asn1.js-rfc5280/index.js >> node_modules/asn1.js-rfc5280/index.new.js
   rm node_modules/asn1.js-rfc5280/index.js
   mv node_modules/asn1.js-rfc5280/index.new.js node_modules/asn1.js-rfc5280/index.js
-  echo "[log] node_modules/asn1.js-rfc5280/index.js fixed"
+  echo "node_modules/asn1.js-rfc5280/index.js fixed"
 fi
