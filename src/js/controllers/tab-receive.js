@@ -138,7 +138,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
           txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
             if (alternativeStr) {
-              $scope.paymentReceivedAlternativeAmount = alternativeStr;
+              $scope.$apply(function () {
+                $scope.paymentReceivedAlternativeAmount = alternativeStr;
+              });
             }
           });
         }
