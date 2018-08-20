@@ -284,13 +284,13 @@
       <!-- Transactions -->
 
       <div class="wallet-details__no-transaction"
-        ng-show="!txHistory[0] && !vm.gettingInitialHistory && !updateTxHistoryError && !updateStatusError" translate>
+        ng-show="!txHistory[0] && !vm.gettingInitialHistory && !vm.updateTxHistoryFailed && !updateStatusError" translate>
         No transactions yet
       </div>
 
 
       <div class="wallet-details__no-update-history"
-        ng-show="!txHistory[0] && !vm.gettingInitialHistory && updateTxHistoryError" translate>
+        ng-show="!txHistory[0] && !vm.gettingInitialHistory && vm.updateTxHistoryFailed" translate>
         Could not update transaction history
       </div>
 
@@ -300,7 +300,7 @@
         <span translate>{{updatingTxHistoryProgress}} transactions downloaded</span>
       </div>
 
-      <div class="wallet-details__list" ng-show="txHistory[0] && !vm.gettingInitialHistory">
+      <div class="wallet-details__list" ng-show="txHistory[0] && !vm.gettingCachedHistory">
         <div ng-repeat="btx in txHistory track by $index" ng-click="openTxModal(btx)">
           <span ng-include="'views/includes/walletHistory.html'"></span>
         </div>

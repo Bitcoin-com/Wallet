@@ -398,6 +398,21 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
   var skipped = 0;
 
+  function fixTxsUnit(txs) {
+    if (!txs || !txs[0] || !txs[0].amountStr) return;
+
+    var cacheCoin = txs[0].amountStr.split(' ')[1];
+
+    if (cacheCoin == 'bits') {
+
+      $log.debug('Fixing Tx Cache Unit to: ' + wallet.coin)
+      lodash.each(txs, function(tx) {
+        tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
+        tx.feeStr = txFormatService.formatAmountStr(wallet.coin, tx.fees);
+      });
+    }
+  };
+
   var updateLocalTxHistory = function(wallet, opts, cb) {
     var FIRST_LIMIT = 5;
     var LIMIT = 50;
@@ -408,25 +423,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     var progressFn = opts.progressFn || function() {};
     var foundLimitTx = false;
 
-
     if (opts.feeLevels) {
       opts.lowAmount = root.getLowAmount(wallet, opts.feeLevels);
     }
 
-    var fixTxsUnit = function(txs) {
-      if (!txs || !txs[0] || !txs[0].amountStr) return;
-
-      var cacheCoin = txs[0].amountStr.split(' ')[1];
-
-      if (cacheCoin == 'bits') {
-
-        $log.debug('Fixing Tx Cache Unit to: ' + wallet.coin)
-        lodash.each(txs, function(tx) {
-          tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
-          tx.feeStr = txFormatService.formatAmountStr(wallet.coin, tx.fees);
-        });
-      }
-    };
 
     getSavedTxs(walletId, function(err, txsFromLocal) {
       if (err) return cb(err);
@@ -437,13 +437,14 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       var endingTxid = confirmedTxs[0] ? confirmedTxs[0].txid : null;
       var endingTs = confirmedTxs[0] ? confirmedTxs[0].time : null;
 
-      $log.debug('Confirmed TXs. Got:' + confirmedTxs.length + '/' + txsFromLocal.length);
+      console.log('pagination Hard confirmed TXs. Got:' + confirmedTxs.length + '/' + txsFromLocal.length);
 
       // First update
       progressFn(txsFromLocal, 0);
       wallet.completeHistory = txsFromLocal;
 
       function getNewTxs(newTxs, skip, next) {
+        console.log('pagination getNewTxs skip: ' + skip);
         getTxsFromServer(wallet, skip, endingTxid, requestLimit, function(err, res) {
           if (err) {
             $log.warn(bwcError.msg(err, 'Server Error')); //TODO
@@ -456,6 +457,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             return next(err);
           }
 
+          console.log('pagination Result count: ' + res.length);
           // Check if new txs are founds, if yes, lets investigate in the 50 next
           // To be sure we are not missing txs by sorting (maybe a new tx is after the "endingTxid"
           var newDiscoveredTxs = res.filter(function (x) {
@@ -464,7 +466,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             }).length == 0;
           });
 
-          $log.debug('Discovering TXs. Got:' + newDiscoveredTxs.length);
+          console.log('pagination Discovering new TXs. Got:' + newDiscoveredTxs.length);
 
           var shouldContinue = newDiscoveredTxs.length > 0;
 
@@ -477,7 +479,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           skip = skip + requestLimit;
 
-          $log.debug('Syncing TXs. Got:' + newTxs.length + ' Skip:' + skip, ' EndingTxid:', endingTxid, ' Continue:', shouldContinue);
+          console.log('pagination Syncing TXs. Got:' + newTxs.length + ' Skip:' + skip, ' EndingTxid:', endingTxid, ' Continue:', shouldContinue);
 
           // TODO Dirty <HACK>
           // do not sync all history, just looking for a single TX.
@@ -499,7 +501,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           skipped = skip;
 
           if (!shouldContinue) {
-            $log.debug('Finished Sync: New / soft confirmed Txs: ' + newTxs.length);
+            console.log('pagination Finished Sync: New / soft confirmed Txs: ' + newTxs.length);
             return next(null, newTxs);
           }
 
@@ -545,6 +547,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         getNewTxs([], skipped, function(err, txs) {
           if (err) return cb(err);
 
+          console.log();
           createReceivedEvents(txs);
 
           var newHistory = lodash.uniq(lodash.compact(txs.concat(confirmedTxs)), function(x) {

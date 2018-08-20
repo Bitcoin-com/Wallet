@@ -5,7 +5,7 @@
 </div>
 <span ng-click="onRefresh()" class="right" ng-show="(!updatingStatus && !vm.updatingTxHistory && !vm.gettingInitialHistory)">&#8635;</span>
 <ion-spinner class="spinner-dark recent right loading-wallet" icon="crescent" ng-show="(updatingStatus || vm.updatingTxHistory || vm.gettingInitialHistory) &&
-  !walletNotRegistered && !updateStatusError && !updateTxHistoryError"></ion-spinner>
+  !walletNotRegistered && !updateStatusError && !vm.updateTxHistoryFailed"></ion-spinner>
 
 <div>
 <span ng-show="wallet.status.wallet.singleAddress" class="size-12"><span translate>Auditable</span></span>
