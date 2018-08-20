@@ -9,6 +9,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   // For gradual migration for doing it properly
   $scope.vm = {
+    allowInfiniteScroll: false,
     gettingCachedHistory: true,
     gettingInitialHistory: true,
     updatingTxHistory: false,
@@ -35,7 +36,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   // of everything we have, not the complete history.
   $scope.txHistory = [];                 // This is what is displayed
   $scope.txHistorySearchResults = [];
-  //$scope.txHistoryShowMore = false; // Is this used anywhere?
   $scope.txps = [];
   $scope.updatingStatus = false;
   $scope.updateStatusError = null;
@@ -258,6 +258,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
   }
 
+
   function updateTxHistoryUsingCachedData() {
     walletHistoryService.getCachedTxHistory($scope.wallet.id, function onGetCachedTxHistory(err, txHistory){
       $scope.vm.gettingCachedHistory = false;
@@ -313,7 +314,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function showHistory() {
     if (completeTxHistory) {
       $scope.txHistory = completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
-      $scope.txHistoryShowMore = completeTxHistory.length > $scope.txHistory.length;
+      $scope.vm.allowInfiniteScroll = completeTxHistory.length > $scope.txHistory.length || !$scope.vm.gettingInitialHistory;
+    } else {
+      $scope.vm.allowInfiniteScroll = false;
     }
   }
   
