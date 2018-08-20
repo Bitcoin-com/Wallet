@@ -306,7 +306,7 @@
         </div>
       </div>
       <ion-infinite-scroll
-        ng-if="txHistory[0] && !vm.gettingInitialHistory"
+        ng-if="txHistory[0]"
         on-infinite="showMore()"
         distance="1%">
       </ion-infinite-scroll>
