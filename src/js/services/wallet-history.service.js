@@ -18,11 +18,45 @@
 
       var SAFE_CONFIRMATIONS = 6;
 
+      var allTransactionsFetched = false;
       var service = {
         getCachedTxHistory: getCachedTxHistory,
         updateLocalTxHistoryByPage: updateLocalTxHistoryByPage,
       };
       return service;
+
+/*
+      function hasAllTransactionsFetched(walletId, cachedTxs, newTxs) {
+        var cachedTxIds = {};
+        cachedTxs.forEach(function forCachedTx(tx){
+          cachedTxIds[tx.txid] = true;
+        });
+
+        var someTransactionWereNew = false;
+        var overlappingTxsCount = 0;
+
+        newTxs.forEach(function forNewTx(tx){
+          if (cachedTxIds[tx.txid]) {
+            overlappingTxsCount++;
+          } else {
+            someTransactionWereNew = true;
+          }
+        });
+
+        console.log('pagination Overlapping transactions:', overlappingTxsCount);
+        if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
+          if (!someTransactionWereNew && overlappingTxsCount === newTxs.length) {
+            console.log("We probably have all of the transactions fetched!!")
+            return true;
+          }
+        } else {
+          console.log("Something went wrong")
+          return true; // Something went wrong, so stop fetching..
+        }
+        return false;
+
+      }
+*/
 
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
 
@@ -48,6 +82,9 @@
           if (someTransactionWereNew) {
             console.log('pagination someTransactionsWereNew');
             saveTxHistory(walletId, cachedTxs);
+          } else if (overlappingTxsCount === newTxs.length) {
+            console.log('We probably have all transactions now');
+            allTransactionsFetched = true;
           }
           return cachedTxs;
         } else {
@@ -60,7 +97,26 @@
 
       }
 
-      function addLatestTransactions(cachedTxs, newTxs) {
+      function addLatestTransactions(walletId, cachedTxs, newTxs) {
+        var cachedTxIds = {};
+        var someTransactionWereNew = false;
+        cachedTxs.forEach(function forCachedTx(tx){
+          cachedTxIds[tx.txid] = true;
+        });
+
+        newTxs.forEach(function forNewTx(tx){
+          if (!cachedTxIds[tx.txid]) {
+            console.log("Brand new transactions pushed to top of the cache.")
+            someTransactionWereNew = true;
+            cachedTxs.unshift(tx);
+          }
+        });
+
+        if (someTransactionWereNew) {
+          saveTxHistory(walletId, cachedTxs);
+        }
+
+        return cachedTxs;
       }
 
       // Only clear the cache once we have received new transactions from the server.
@@ -199,7 +255,7 @@
                 }
 
                 if (fetchedTxs.length === 0) {
-                  return cb(null, cachedTxs);
+                  return cb(null, cachedTxs, true /*fetchedAllTransactions*/);
                 }
 
                 var txs = [];
@@ -207,11 +263,12 @@
                   txs = addLatestTransactions(wallet.id, cachedTxs, fetchedTxs);
                 } else {
                   txs = addEarlyTransactions(wallet.id, cachedTxs, fetchedTxs);
+                  return cb(null, txs, allTransactionsFetched/*, hasAllTransactionsFetched(wallet.id, cachedTxs, fetchedTxs)*/);
                 }
                 return cb(null, txs);
             });
 
-             
+
           });
         }
       }

@@ -13,6 +13,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     gettingCachedHistory: true,
     gettingInitialHistory: true,
     updatingTxHistory: false,
+    fetchedAllTxHistory: false,
     //updateTxHistoryError: false
     updateTxHistoryFailed: false
   };
@@ -108,6 +109,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.updatingStatus = true;
     $scope.updateStatusError = null;
     $scope.walletNotRegistered = false;
+    $scope.vm.fetchedAllTxHistory = false;
 
     walletService.getStatus($scope.wallet, {
       force: !!force,
@@ -198,44 +200,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
   };
 
-  
-  var updateTxHistory = function(cb) {
-    if (!cb) cb = function() {};
-    $scope.vm.updateTxHistoryFailed = false;
-    $scope.updatingTxHistoryProgress = 0;
-
-    feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
-      walletService.getTxHistory($scope.wallet, {
-        feeLevels: levels
-      }, function(err, txHistory) {
-        $scope.vm.gettingInitialHistory = false;
-        if (err) {
-          $scope.txHistory = null;
-          $scope.vm.updateTxHistoryFailed = true;
-          return;
-        }
-        
-        applyCurrencyAliases(txHistory);
-
-        var config = configService.getSync();
-        var fiatCode = config.wallet.settings.alternativeIsoCode;
-        lodash.each(txHistory, function(t) {
-          var r = rateService.toFiat(t.amount, fiatCode, $scope.wallet.coin);
-          t.alternativeAmountStr = r.toFixed(2) + ' ' + fiatCode;
-        });
-        console.log('pagination Got tx history old way');
-        completeTxHistory = txHistory;
-
-        //$scope.showHistory();
-        $timeout(function() {
-          $scope.$apply();
-        });
-        return cb();
-      });
-    });
-  };
-  
-
   function applyCurrencyAliases(txHistory) {
     var defaults = configService.getDefaults();
     var configCache = configService.getSync();
@@ -289,7 +253,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function fetchAndShowTxHistory(getLatest, flushCacheOnNew) {
     $scope.vm.updatingTxHistory = true;
 
-    walletHistoryService.updateLocalTxHistoryByPage($scope.wallet, getLatest, flushCacheOnNew, function onUpdateLocalTxHistoryByPage(err, txHistory) {
+    walletHistoryService.updateLocalTxHistoryByPage($scope.wallet, getLatest, flushCacheOnNew, function onUpdateLocalTxHistoryByPage(err, txHistory, fetchedAllTransactions) {
       console.log('pagination returned');
       $scope.vm.gettingInitialHistory = false;
       $scope.vm.updatingTxHistory = false;
@@ -300,6 +264,12 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
+
+      if (fetchedAllTransactions) {
+        console.log("All transactions seem to be fetched..");
+        $scope.vm.fetchedAllTxHistory = true;
+      }
+
       console.log('pagination txs returned in history: ' + txHistory.length);
       formatTxHistoryForDisplay(txHistory);
 
@@ -313,7 +283,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function showHistory(showAll) {
     if (completeTxHistory) {
       $scope.txHistory = showAll ? completeTxHistory : completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
-      $scope.vm.allowInfiniteScroll = completeTxHistory.length > $scope.txHistory.length || !$scope.vm.gettingInitialHistory;
+      $scope.vm.allowInfiniteScroll = !$scope.vm.fetchedAllTxHistory;//(completeTxHistory.length > $scope.txHistory.length || !$scope.vm.gettingInitialHistory) || (!$scope.vm.gettingInitialHistory && !$scope.vm.fetchedAllTxHistory);
       console.log('pagination Showing txs: ', $scope.txHistory.length);
     } else {
       $scope.vm.allowInfiniteScroll = false;
@@ -392,7 +362,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $timeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
     }, 300);
-    $scope.updateAll(true);
+    $scope.updateAll(true, true, false);
   };
 
   $scope.updateAll = function(forceStatusUpdate, getLatestTx, flushTxCacheOnNew)  {
@@ -544,7 +514,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     updateTxHistoryFromCachedData();
     $scope.updateAll(false, true, true);
     refreshAmountSection();
-    //refreshInterval = $interval($scope.onRefresh, 10 * 1000);
+    refreshInterval = $interval($scope.onRefresh, 10 * 1000);
     //refreshInterval = $interval($scope.onRefresh, 120 * 1000); // For testing
   });
 
