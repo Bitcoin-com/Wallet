@@ -11,7 +11,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
   root.redir = function(data, serviceId, serviceData) {
     var originalAddress = null;
     var noPrefixInAddress = 0;
-    
+
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
     }
@@ -83,7 +83,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       // Timeout is required to enable the "Back" button
       $timeout(function() {
         var params = sendFlowService.getStateClone();
-        
+
         if (amount) {
           params.amount = amount;
         }
@@ -390,6 +390,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
     $timeout(function() {
       var stateParams = {
         toAddress: toAddress,
+        displayAddress: toAddress,
         coin: coin,
         noPrefix: 1
       };

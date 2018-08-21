@@ -1368,10 +1368,6 @@ msgid "Get news and updates from BitPay"
 msgstr ""
 
 #: www/views/onboarding/welcome.html:8
-msgctxt "button"
-msgid "Get started"
-msgstr ""
-
 #: www/views/bitpayCard.html:49
 msgid "Get started"
 msgstr ""
@@ -2652,15 +2648,11 @@ msgid "Paste Address"
 msgstr ""
 
 #: www/views/tab-send.html:27
-msgid "Wallet to Wallet Transfer"
+msgid "Transfer between wallets"
 msgstr ""
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
-msgstr ""
-
-#: www/views/tab-send.html:46
-msgid "Send Bitcoin faster!"
 msgstr ""
 
 #: www/views/tab-send.html:46
@@ -2689,6 +2681,7 @@ msgstr ""
 
 #: www/views/tab-send.html:72
 #: www/views/shapeshift.html:23
+#: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
 
@@ -3142,10 +3135,6 @@ msgstr ""
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
 msgstr ""
 
-#: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr ""
-
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
 msgstr ""
@@ -3171,7 +3160,7 @@ msgid "To start the process you need to add funds to your wallet."
 msgstr ""
 
 #: www/views/shapeshift.html:30
-msgid "he process is fast and you will receive the exchanged amount in your wallet."
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr ""
 
 #: www/views/shapeshift.html:34
@@ -3819,7 +3808,7 @@ msgid "Your Bitcoin Wallets are ready!"
 msgstr ""
 
 #: src/js/controllers/amount.js:49
-msgid "Address doesn\'t contain currency information, please make sure you are sending the correct currency."
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
 msgstr ""
 
 #: www/views/review.html:4

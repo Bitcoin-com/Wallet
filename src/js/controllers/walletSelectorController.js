@@ -25,11 +25,11 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
 
     switch($state.current.name) {
       case 'tabs.send.wallet-to-wallet':
-        $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+        $scope.sendFlowTitle = gettextCatalog.getString('Transfer between wallets');
         break;
       case 'tabs.send.destination':
         if ($scope.params.fromWalletId && !$scope.params.thirdParty) {
-          $scope.sendFlowTitle = gettextCatalog.getString('Wallet to Wallet Transfer');
+          $scope.sendFlowTitle = gettextCatalog.getString('Transfer between wallets');
         }
         break;
       default:
