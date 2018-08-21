@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-07-27 08:43\n"
+"PO-Revision-Date: 2018-08-21 03:39\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -79,7 +79,27 @@ msgstr "Číslo účtu"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr "Okamžité transakce s nízkou platbou"
+msgstr "Okamžité transakce s nízkými poplatky"
+
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr "Nedostatek prostředků"
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr "Změnit měnu"
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr "Dostupné prostředky"
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr "Použít všechny dostupné prostředky"
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr "Další"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -205,6 +225,20 @@ msgstr "Téměř hotovo! Podívejme se."
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
 msgstr "Alternativní měna"
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr "Zobrazení cen"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr "Nucený oběh"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr "Kryptoměna"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
@@ -662,6 +696,7 @@ msgstr "Spoluplátce {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr "Zkopírováno do schránky"
@@ -903,7 +938,7 @@ msgstr "Mazání peněženky..."
 
 #: src/js/services/onGoingProcess.js:28
 msgid "Deleting payment proposal"
-msgstr "Mázání návrhu platby"
+msgstr "Mazání návrhu platby"
 
 #: www/views/join.html:141
 #: www/views/tab-create-personal.html:111
@@ -957,7 +992,7 @@ msgstr "Duplikování peněženky..."
 
 #: www/views/addresses.html:19
 msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
-msgstr "Každá Bitcoin peněženka může z 12-ti slov zálohovací fráze vygenerovat miliardy adres. Vždy, když přijímáté platbu, je automaticky vygenerována nová adresa."
+msgstr "Každá Bitcoin peněženka může z 12-ti slov zálohovací fráze vygenerovat miliardy adres. Vždy, když přijímáte platbu, je automaticky vygenerována nová adresa."
 
 #: src/js/services/feeService.js:13
 msgid "Economy"
@@ -1281,6 +1316,7 @@ msgstr "Pro účely auditu"
 #: www/views/modals/txp-details.html:74
 #: www/views/topup.html:34
 #: www/views/tx-details.html:52
+#: www/views/review.html:22
 msgid "From"
 msgstr "Od"
 
@@ -1341,10 +1377,6 @@ msgid "Get news and updates from BitPay"
 msgstr "Získávejte novinky a aktualizace z BitPay"
 
 #: www/views/onboarding/welcome.html:8
-msgctxt "button"
-msgid "Get started"
-msgstr "Začněte"
-
 #: www/views/bitpayCard.html:49
 msgid "Get started"
 msgstr "Začněte"
@@ -1515,7 +1547,7 @@ msgstr "Je-li povoleno, budou chráněny veškeré citlivé informace (privátn�
 
 #: www/views/advancedSettings.html:23
 msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
-msgstr "Je-li povoleno, zobrazí se na kartě Domů karta Nadávné transakce - seznam posledních transakcí napříč všemi peněženkami."
+msgstr "Je-li povoleno, zobrazí se na kartě Domů karta Nedávné transakce - seznam posledních transakcí napříč všemi peněženkami."
 
 #: www/views/advancedSettings.html:14
 msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
@@ -1660,7 +1692,7 @@ msgstr "Je vhodné vyvarovat se opakovanému použití adres - chrání to jak V
 
 #: src/js/controllers/backup.js:76
 msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
-msgstr "Je důležité si správně napsat zálohovací frázi. Stane-li se něco Vaší peněžence, budete tuto zálohu potřebovat ke znovuzprístupnění peněz. Zkontrolujte prosím Vaši zálohu a zkuste to znovu."
+msgstr "Je důležité si správně napsat zálohovací frázi. Stane-li se něco Vaší peněžence, budete tuto zálohu potřebovat ke zpřístupnění peněz. Zkontrolujte prosím Vaši zálohu a zkuste to znovu."
 
 #: www/views/join.html:151
 msgid "Join"
@@ -1928,7 +1960,7 @@ msgstr "Žádné peněženky k příjmu peněz"
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr "Žádné peněženky poporující Bitcoin Cash"
+msgstr "Žádné peněženky podporující Bitcoin Cash"
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
@@ -1936,7 +1968,7 @@ msgstr "Jiná než BIP44 peněženka"
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr "Peněženky nezpůsobilé k BTC"
+msgstr "Peněženky nezpůsobilé pro BTC"
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
@@ -2168,6 +2200,10 @@ msgstr "Platba odmítnuta"
 msgid "Payment Sent"
 msgstr "Platba odeslána"
 
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr "Sdílet tuto transakci"
+
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
 msgstr "Platba přijata, ale zatím nerozeslána"
@@ -2185,7 +2221,7 @@ msgid "Payment details"
 msgstr "Detaily platby"
 
 #: www/views/modals/paypro.html:6
-msgid "Payment request"
+msgid "Payment Request"
 msgstr "Žádost o platbu"
 
 #: www/views/mercadoLibreCards.html:22
@@ -2621,16 +2657,12 @@ msgid "Paste Address"
 msgstr "Vložit adresu"
 
 #: www/views/tab-send.html:27
-msgid "Wallet to Wallet Transfer"
-msgstr "Převod mezi peněženkami"
+msgid "Transfer between wallets"
+msgstr "Přenos mezi peněženkami"
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
 msgstr "Skenovat QR kód"
-
-#: www/views/tab-send.html:46
-msgid "Send Bitcoin faster!"
-msgstr "Odesílejte Bitcoin rychleji!"
 
 #: www/views/tab-send.html:46
 msgid "Send Bitcoin faster!"
@@ -2657,6 +2689,8 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "Můžete přijímat Bitcoin z jakékoliv peněženky nebo služby."
 
 #: www/views/tab-send.html:72
+#: www/views/shapeshift.html:23
+#: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Chcete-li začít, budete muset vytvořit Bitcoin peněženku a Bitcoin získat."
 
@@ -3061,6 +3095,14 @@ msgstr "Tato aplikace k držení Vašich Bitcoinů používá nejmodernější z
 msgid "This bitcoin payment request has expired."
 msgstr "Tato platba vypršela."
 
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr "Platba vyprší:"
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr "Platnost žádosti o platbu vypršela"
+
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
@@ -3102,10 +3144,6 @@ msgstr "Na"
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
 msgstr "Chcete-li začít, nakupte Bitcoin nebo sdílejte svou adresu. Můžete přijímat Bitcoin z jakékoliv jiné peněženky nebo služby."
 
-#: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "Chcete-li začít, budete potřebovat vytvořit Bitcoin peněženku a získat Bitcoin."
-
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
 msgstr "Pro {{reason}} musíte nejprve přidat Váš účet BitPay - {{email}}"
@@ -3117,6 +3155,26 @@ msgstr "Navyšování v průběhu..."
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Navýšit debetní kartu ({{cardLastNumber}}) o {{amountStr}}"
+
+#: www/views/shapeshift.html:30
+msgid "Start ShapeShift"
+msgstr "Spustit ShapeShift"
+
+#: www/views/shapeshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr "Vyměňte BTC za BCH za několik minut."
+
+#: www/views/shapeshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr "Ke spuštění procesu musíte do peněženky přidat prostředky."
+
+#: www/views/shapeshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "Tento proces je rychlý a vyměněnou částku dostanete do peněženky."
+
+#: www/views/shapeshift.html:34
+msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Tuto službu poskytuje nezávislý poskytovatel ShapeShift, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3302,7 +3360,7 @@ msgstr "Upozornění: Soukromý klíč této peněženky není k dispozici. Expo
 
 #: www/views/modals/paypro.html:42
 msgid "WARNING: UNTRUSTED CERTIFICATE"
-msgstr "Upozornění: Nedůveryhodný certifikát"
+msgstr "Upozornění: Nedůvěryhodný certifikát"
 
 #: src/js/services/onGoingProcess.js:15
 msgid "Waiting for Ledger..."
@@ -3550,7 +3608,7 @@ msgstr "Zálohu můžete vytvořit později v nastavení peněženky."
 
 #: src/js/controllers/preferencesLanguage.js:12
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
-msgstr "Můžete přispívat příhlášením k webovým stránkám Crowdin komunity pro překlady. Těšíme se na Váše příspěvky!"
+msgstr "Můžete přispívat přihlášením k webovým stránkám Crowdin komunity pro překlady. Těšíme se na Vaše příspěvky!"
 
 #: www/views/tab-scan.html:16
 msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
@@ -3757,4 +3815,48 @@ msgstr "Bitcoin Cash zdarma"
 #: www/views/tab-home.html:30
 msgid "Your Bitcoin Wallets are ready!"
 msgstr "Vaše Bitcoin peněženka je připravena!"
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "Adresa neobsahuje žádné údaje o měně. Zkontrolujte, zda posíláte správnou měnu."
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr "Zkontrolovat transakci"
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr "Posíláte"
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr "Vyměňujete"
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr "Příjemce:"
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr "Přidat osobní poznámku"
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr "Doporučeno obchodníkem:"
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr "Sem zadejte text"
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr "Osobní poznámka:"
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr "Méně než 1 koruna"
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
+msgstr "Tato faktura již nepřijímá platby"
 
