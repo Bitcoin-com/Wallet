@@ -198,6 +198,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
   };
 
+  
   var updateTxHistory = function(cb) {
     if (!cb) cb = function() {};
     $scope.vm.updateTxHistoryFailed = false;
@@ -233,6 +234,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       });
     });
   };
+  
 
   function applyCurrencyAliases(txHistory) {
     var defaults = configService.getDefaults();
@@ -259,7 +261,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
 
-  function updateTxHistoryUsingCachedData() {
+  function updateTxHistoryFromCachedData() {
     walletHistoryService.getCachedTxHistory($scope.wallet.id, function onGetCachedTxHistory(err, txHistory){
       $scope.vm.gettingCachedHistory = false;
       if (err) {
@@ -277,27 +279,24 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       formatTxHistoryForDisplay(txHistory);
 
       completeTxHistory = txHistory;
-      showHistory();
+      showHistory(false);
       console.log('pagination Showing tx history items:', $scope.txHistory.length);
       $scope.$apply();
       console.log('pagination displayed cached history.');
     });
   }
 
-  function updateTxHistoryFromSmallCache(getLatest) {
-    if (completeTxHistory.length > $scope.txHistory.length) {
-      console.log('pagination Showing history we already have.');
-      currentTxHistoryDisplayPage++;
-      showHistory();
-      return
-    }
+  function fetchAndShowTxHistory(getLatest, flushCacheOnNew) {
+    $scope.vm.updatingTxHistory = true;
 
-    walletHistoryService.updateTxHistoryByPage($scope.wallet, getLatest, true, function onUpdateTxHistoryByPage(err, txHistory) {
+    walletHistoryService.updateLocalTxHistoryByPage($scope.wallet, getLatest, flushCacheOnNew, function onUpdateLocalTxHistoryByPage(err, txHistory) {
       console.log('pagination returned');
       $scope.vm.gettingInitialHistory = false;
+      $scope.vm.updatingTxHistory = false;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+
       if (err) {
         console.error('pagination Failed to get history.', err);
-        $scope.txHistory = null;
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
@@ -305,16 +304,17 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       formatTxHistoryForDisplay(txHistory);
 
       completeTxHistory = txHistory;
-      showHistory();
+      showHistory(true);
       $scope.$apply();
     });
   }
 
   
-  function showHistory() {
+  function showHistory(showAll) {
     if (completeTxHistory) {
-      $scope.txHistory = completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
+      $scope.txHistory = showAll ? completeTxHistory : completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
       $scope.vm.allowInfiniteScroll = completeTxHistory.length > $scope.txHistory.length || !$scope.vm.gettingInitialHistory;
+      console.log('pagination Showing txs: ', $scope.txHistory.length);
     } else {
       $scope.vm.allowInfiniteScroll = false;
     }
@@ -372,6 +372,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.$broadcast('scroll.infiniteScrollComplete');
       return;
     }
+
+    fetchAndShowTxHistory(false, false);
     /*
     $scope.vm.updatingTxHistory = true;
     $timeout(function() {
@@ -393,10 +395,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.updateAll(true);
   };
 
-  $scope.updateAll = function(force, cb)  {
-    updateStatus(force);
+  $scope.updateAll = function(forceStatusUpdate, getLatestTx, flushTxCacheOnNew)  {
+    console.log('pagination updateAll()');
+    updateStatus(forceStatusUpdate);
     //updateTxHistory(cb);
-    //updateTxHistoryFromSmallCache();
+    fetchAndShowTxHistory(getLatestTx, flushTxCacheOnNew);
   };
 
   $scope.hideToggle = function() {
@@ -538,10 +541,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var refreshInterval;
 
   $scope.$on("$ionicView.afterEnter", function(event, data) {
-    updateTxHistoryUsingCachedData();
-    $scope.updateAll();
+    updateTxHistoryFromCachedData();
+    $scope.updateAll(false, true, true);
     refreshAmountSection();
-    refreshInterval = $interval($scope.onRefresh, 10 * 1000);
+    //refreshInterval = $interval($scope.onRefresh, 10 * 1000);
+    //refreshInterval = $interval($scope.onRefresh, 120 * 1000); // For testing
   });
 
   $scope.$on("$ionicView.afterLeave", function(event, data) {
