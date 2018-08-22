@@ -69,7 +69,10 @@ module.exports = function(grunt) {
         command: 'cd cordova/project && cordova build android --release',
       },
       androidsign: {
-        command: 'rm -f cordova/project/platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar cordova/project/platforms/android/build/outputs/apk/android-release-signed.apk  cordova/project/platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && ../android-sdk-macosx/build-tools/27.0.1/zipalign -v 4 cordova/project/platforms/android/build/outputs/apk/android-release-signed.apk cordova/project/platforms/android/build/outputs/apk/android-release-signed-aligned.apk ',
+        // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
+        // It looks like it simply lists all apk files starting with "android-release" so I have added that prefix to the final apk
+        // so that its filename shows up in the log output.
+        command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned-bitcoin-com-wallet-<%= pkg.fullVersion %>-android.apk',
         stdin: true,
       },
       desktopsign: {

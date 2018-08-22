@@ -119,7 +119,7 @@
     "run:android":            "cordova run android --device",
     "run:android-release":            "cordova run android --device --release",
     "log:android":            "adb logcat | grep chromium",
-    "sign:android":           "rm -f platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned.apk",
+    "sign:android":           "grunt android-release",
     "apply:copay":            "npm i fs-extra && cd app-template && node apply.js copay && npm i && cordova prepare",
     "apply:bitpay":           "npm i fs-extra && cd app-template && node apply.js bitpay && npm i && cordova prepare",
     "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
