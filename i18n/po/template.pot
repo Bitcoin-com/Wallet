@@ -3783,6 +3783,10 @@ msgstr ""
 msgid "Bitcoin Cash Games"
 msgstr ""
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr ""
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr ""
