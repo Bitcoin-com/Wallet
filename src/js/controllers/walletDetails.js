@@ -267,7 +267,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       }
 
       if (fetchedAllTransactions) {
-        console.log("All transactions seem to be fetched..");
+        console.log("pagination Fetched all transactions.");
         $scope.vm.fetchedAllTxHistory = true;
       }
 
@@ -284,7 +284,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   function showHistory(showAll) {
     if (completeTxHistory) {
       $scope.txHistory = showAll ? completeTxHistory : completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
-      $scope.vm.allowInfiniteScroll = !$scope.vm.fetchedAllTxHistory;//(completeTxHistory.length > $scope.txHistory.length || !$scope.vm.gettingInitialHistory) || (!$scope.vm.gettingInitialHistory && !$scope.vm.fetchedAllTxHistory);
+      $scope.vm.allowInfiniteScroll = !$scope.vm.fetchedAllTxHistory && !(completeTxHistory.length === $scope.txHistory.length && $scope.vm.gettingInitialHistory);
       console.log('pagination Showing txs: ', $scope.txHistory.length);
     } else {
       $scope.vm.allowInfiniteScroll = false;
@@ -332,15 +332,16 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   // on-infinite="showMore()"
   $scope.showMore = function() {
     console.log('pagination showMore()');
-    if ($scope.vm.updatingTxHistory) {
-      return;
-    }
-
     // Check if we have more than we are displaying
     if (completeTxHistory.length > $scope.txHistory.length) {
+      console.log('pagination We have more data than we are displaying.');
       currentTxHistoryDisplayPage++;
       showHistory(false);
       $scope.$broadcast('scroll.infiniteScrollComplete');
+      return;
+    }
+
+    if ($scope.vm.updatingTxHistory) {
       return;
     }
 
