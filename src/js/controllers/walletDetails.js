@@ -339,7 +339,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     // Check if we have more than we are displaying
     if (completeTxHistory.length > $scope.txHistory.length) {
       currentTxHistoryDisplayPage++;
-      showHistory();
+      showHistory(false);
       $scope.$broadcast('scroll.infiniteScrollComplete');
       return;
     }
