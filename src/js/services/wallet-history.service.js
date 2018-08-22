@@ -25,39 +25,6 @@
       };
       return service;
 
-/*
-      function hasAllTransactionsFetched(walletId, cachedTxs, newTxs) {
-        var cachedTxIds = {};
-        cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIds[tx.txid] = true;
-        });
-
-        var someTransactionWereNew = false;
-        var overlappingTxsCount = 0;
-
-        newTxs.forEach(function forNewTx(tx){
-          if (cachedTxIds[tx.txid]) {
-            overlappingTxsCount++;
-          } else {
-            someTransactionWereNew = true;
-          }
-        });
-
-        console.log('pagination Overlapping transactions:', overlappingTxsCount);
-        if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
-          if (!someTransactionWereNew && overlappingTxsCount === newTxs.length) {
-            console.log("We probably have all of the transactions fetched!!")
-            return true;
-          }
-        } else {
-          console.log("Something went wrong")
-          return true; // Something went wrong, so stop fetching..
-        }
-        return false;
-
-      }
-*/
-
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
 
         var cachedTxIds = {};
@@ -77,13 +44,10 @@
           }
         });
 
-        console.log('pagination Early transactions overlapping:', overlappingTxsCount);
         if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
           if (someTransactionsWereNew) {
-            console.log('pagination someTransactionsWereNew');
             saveTxHistory(walletId, cachedTxs);
           } else if (overlappingTxsCount === newTxs.length) {
-            console.log('We probably have all transactions now');
             allTransactionsFetched = true;
           }
           return cachedTxs;
@@ -111,15 +75,13 @@
           if (cachedTxIds[tx.txid]) {
             overlappingTxsCount++;
           } else {
-            someTransactionWereNew = true;
+            someTransactionsWereNew = true;
             uniqueNewTxs.push(tx);
           }
         });
 
-        console.log('pagination Latest transactions overlapping:', overlappingTxsCount);
         if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
           if (someTransactionsWereNew) {
-            console.log('pagination someTransactionsWereNew');
             var allTxs = uniqueNewTxs.concat(cachedTxs);
             saveTxHistory(walletId, allTxs);
             return allTxs;
@@ -155,8 +117,7 @@
           if (txsFromServer.length === 0) {
             return cb(null, []);
           }
-          console.log('pagination Transactions fetched:', txsFromServer.length);
-          
+
           var processedTxs = processNewTxs(wallet, txsFromServer);
 
           return cb(null, processedTxs);
@@ -224,12 +185,9 @@
       };
 
       function saveTxHistory(walletId, processedTxs) {
-        console.log('pagination Saving transactions:', processedTxs.length);
         storageService.setTxHistory(processedTxs, walletId, function onSetTxHistory(error){
           if (error) {
             $log.error('pagination Failed to save tx history.', error);
-          } else {
-            console.log('pagination Save successful.');
           }
         });
       }
@@ -238,7 +196,6 @@
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
 
         if (flushCacheOnNew) {
-          console.log('pagination Getting latest txs, will then flush cache.');
           fetchTxHistoryByPage(wallet, 0, function onFetchTxHistory(err, txs){
             if (err) {
               return cb(err, txs);
@@ -247,7 +204,6 @@
             return cb(null, txs);
           });
         } else {
-          console.log('pagination Getting txs to add to cache.');
           getCachedTxHistory(wallet.id, function onCachedHistory(err, cachedTxs){
             if (err) {
               $log.error('Failed to get cached tx history.', err);
@@ -255,7 +211,6 @@
             }
 
             var start = getLatest ? 0 : cachedTxs.length;
-            console.log('pagination Transaction fetch start:', start);
             fetchTxHistoryByPage(wallet, start, function onFetchHistory(err, fetchedTxs){
                 if (err) {
                   return cb(err);
@@ -271,7 +226,7 @@
                 } else {
                   allTransactionsFetched = false;
                   txs = addEarlyTransactions(wallet.id, cachedTxs, fetchedTxs);
-                  return cb(null, txs, allTransactionsFetched/*, hasAllTransactionsFetched(wallet.id, cachedTxs, fetchedTxs)*/);
+                  return cb(null, txs, allTransactionsFetched);
                 }
                 return cb(null, txs);
             });
