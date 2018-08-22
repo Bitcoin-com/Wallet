@@ -269,6 +269,7 @@
                 if (getLatest) {
                   txs = addLatestTransactions(wallet.id, cachedTxs, fetchedTxs);
                 } else {
+                  allTransactionsFetched = false;
                   txs = addEarlyTransactions(wallet.id, cachedTxs, fetchedTxs);
                   return cb(null, txs, allTransactionsFetched/*, hasAllTransactionsFetched(wallet.id, cachedTxs, fetchedTxs)*/);
                 }
