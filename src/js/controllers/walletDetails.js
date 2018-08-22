@@ -191,7 +191,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       if (err) return;
       $timeout(function() {
         walletService.startScan($scope.wallet, function() {
-          $scope.updateAll();
+          $scope.updateAll(true, true);
           $scope.$apply();
         });
       });
@@ -287,6 +287,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   function fetchAndShowTxHistory(getLatest, flushCacheOnNew) {
+    console.log('pagination fetchAndShowTxHistory() getLatest:', getLatest, ', flushCacheOnNew:', flushCacheOnNew);
     $scope.vm.updatingTxHistory = true;
 
     walletHistoryService.updateLocalTxHistoryByPage($scope.wallet, getLatest, flushCacheOnNew, function onUpdateLocalTxHistoryByPage(err, txHistory) {
@@ -374,17 +375,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }
 
     fetchAndShowTxHistory(false, false);
-    /*
-    $scope.vm.updatingTxHistory = true;
-    $timeout(function() {
-      walletService.getMoreTxs($scope.wallet, function onMoreTxs() {
-        currentTxHistoryDisplayPage++;
-        //$scope.showHistory();
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-        $scope.vm.updatingTxHistory = false;
-      });
-    }, 100);
-    */
   };
 
   // on-refresh="onRefresh()"
@@ -392,14 +382,14 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $timeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
     }, 300);
-    $scope.updateAll(true);
+    $scope.updateAll(true, false);
   };
 
-  $scope.updateAll = function(forceStatusUpdate, getLatestTx, flushTxCacheOnNew)  {
+  $scope.updateAll = function(forceStatusUpdate, flushTxCacheOnNew)  {
     console.log('pagination updateAll()');
     updateStatus(forceStatusUpdate);
     //updateTxHistory(cb);
-    fetchAndShowTxHistory(getLatestTx, flushTxCacheOnNew);
+    fetchAndShowTxHistory(true, flushTxCacheOnNew);
   };
 
   $scope.hideToggle = function() {
@@ -529,11 +519,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     listeners = [
       $rootScope.$on('bwsEvent', function(e, walletId) {
         if (walletId == $scope.wallet.id && e.type != 'NewAddress')
-          $scope.updateAll();
+          $scope.updateAll(false, false);
       }),
       $rootScope.$on('Local/TxAction', function(e, walletId) {
         if (walletId == $scope.wallet.id)
-          $scope.updateAll();
+          $scope.updateAll(false, false);
       }),
     ];
   });
@@ -542,7 +532,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   $scope.$on("$ionicView.afterEnter", function(event, data) {
     updateTxHistoryFromCachedData();
-    $scope.updateAll(false, true, true);
+    $scope.updateAll(false, true);
     refreshAmountSection();
     //refreshInterval = $interval($scope.onRefresh, 10 * 1000);
     //refreshInterval = $interval($scope.onRefresh, 120 * 1000); // For testing
