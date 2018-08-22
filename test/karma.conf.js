@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       'node_modules/angular/angular.js',
 
-      'bitanalytics/bitanalytics-0.1.0.js',
+      'bitanalytics/bitanalytics.js',
 
       // From Gruntfile.js
       'bower_components/qrcode-generator/js/qrcode.js',
@@ -70,7 +70,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes

@@ -1,4 +1,4 @@
-describe('rateService', function() {
+xdescribe('rateService', function() {
   var $httpBackend, rateService, requestHandler;
 
   beforeEach(function() {
