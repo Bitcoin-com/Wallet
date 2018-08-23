@@ -6,12 +6,15 @@
     .module('bitcoincom.services')
     .factory('bitcoinUriService', bitcoinUriService);
     
-  function bitcoinUriService(bitcoinCashJsService) {
+  function bitcoinUriService(bitcoinCashJsService, bwcService) {
+    var bitcore = bwcService.getBitcore();
     var service = {
      parse: parse 
     };
 
     return service;
+
+    
 
     /*
     For parsing:
@@ -152,12 +155,12 @@
         var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
 
-        if (legacyRe.test(address)) {
+        if (legacyRe.test(address) && bitcore.Address.isValid(address, 'livenet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = false;
 
-        } else if (legacyTestnetRe.test(address)) {
+        } else if (legacyTestnetRe.test(address) && bitcore.Address.isValid(address, 'testnet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = true;

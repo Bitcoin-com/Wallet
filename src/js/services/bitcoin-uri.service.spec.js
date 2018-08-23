@@ -4,6 +4,7 @@ fdescribe('bitcoinUriService', function() {
   beforeEach(function() {
     module('bitcoinCashJsModule');
     module('bitcoincom.services');
+    module('bwcModule');
 
     inject(function($injector){
       bitcoinUriService = $injector.get('bitcoinUriService');
