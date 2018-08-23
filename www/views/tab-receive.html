@@ -31,7 +31,7 @@
         <div ng-show="!showingPaymentReceived">
           <div>
             <button ng-show="addr" class="button button-standard button-small" ng-click="requestSpecificAmount()">
-              <span translate>Request Specific Amount</span>
+              <span translate>Request Specific amount</span>
             </button><br/><br/>
           </div>
           <div copy-to-clipboard="wallet.coin == 'bch' && bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + addr : addr">
@@ -69,8 +69,8 @@
         <!-- end of animation -->
         <div ng-show="addr && wallet.coin == 'bch' && !showingPaymentReceived">
           <label class="item-input item-select">
-            <div class="input-label" translate>
-              Address Type:
+            <div class="input-label">
+              <span translate>Address Type</span>:
             </div>
             <select ng-model="bchAddressType.type" ng-change="displayAddress(bchAddressType.type)">
               <option value="cashaddr">Cash Address</option>
