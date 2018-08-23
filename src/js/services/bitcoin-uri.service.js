@@ -152,10 +152,11 @@
           parsed.legacyAddress = address;
 
         } else if (cashAddrRe.test(address)) {
-          parsed.address = address;
+          var cashAddr = 'bitcoincash:' + address.toLowerCase();
+          parsed.address = cashAddr;
           parsed.coin = 'bch';
 
-          var bchAddresses = bitcoinCashJsService.readAddress('bitcoincash:' + address);
+          var bchAddresses = bitcoinCashJsService.readAddress(cashAddr);
           parsed.legacyAddress = bchAddresses['legacy'];
 
         } // TODO: Check for private key
