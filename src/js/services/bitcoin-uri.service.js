@@ -34,9 +34,13 @@
         "req-param0": "",
         "req-param1": ""
       },
+      testnet: false,
       url: ''
 
     }
+
+    // Need to do testnet, and copay too
+
     */
    // bitcoincash:?r=https://bitpay.com/i/GLRoZMZxaWBqLqpoXexzoD
     function parse(uri) {
@@ -146,10 +150,17 @@
         // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
         var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
         var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
 
         if (legacyRe.test(address)) {
           parsed.address = address;
           parsed.legacyAddress = address;
+          parsed.testnet = false;
+
+        } else if (legacyTestnetRe.test(address)) {
+          parsed.address = address;
+          parsed.legacyAddress = address;
+          parsed.testnet = true;
 
         } else if (cashAddrRe.test(address)) {
           var cashAddr = 'bitcoincash:' + address.toLowerCase();
@@ -158,6 +169,8 @@
 
           var bchAddresses = bitcoinCashJsService.readAddress(cashAddr);
           parsed.legacyAddress = bchAddresses['legacy'];
+
+          parsed.testnet = false;  
 
         } // TODO: Check for private key
 
