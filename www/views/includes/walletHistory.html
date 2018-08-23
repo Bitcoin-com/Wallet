@@ -64,17 +64,16 @@
 
     <span class="item-note text-right wallet-details__tx-amount">
       <span class="wallet-details__tx-amount" ng-class="{'wallet-details__tx-amount--recent': btx.recent, 'wallet-details__tx-amount--received': btx.action == 'received', 'wallet-details__tx-amount--sent': btx.action == 'sent'}">
-        <span ng-if="btx.action == 'sent'">–</span>
         <span  class="size-12" ng-if="btx.action == 'invalid'" translate>
         (possible double spend)
         </span>
         <span ng-if="btx.action != 'invalid'">
-          {{btx.amountValueStr}} {{btx.amountUnitStr}}
+          <formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.amountValueStr}}" currency="{{btx.amountUnitStr}}"></formatted-amount>
         </span>
       </span>
       <div>
         <span class="size-12 wallet-details__tx-amount" ng-class="{'wallet-details__tx-amount--recent': btx.recent, 'wallet-details__tx-amount--received': btx.action == 'received', 'wallet-details__tx-amount--sent': btx.action == 'sent'}">
-          {{btx.alternativeAmountStr}}
+          <formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.alternativeAmountStr}}"></formatted-amount>
         </span>
       </div>
     </span>

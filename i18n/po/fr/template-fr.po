@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: French\n"
 "Language: fr\n"
-"PO-Revision-Date: 2018-06-22T04:02:48+0000\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "Compte"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "Numéro de compte"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Instant transactions with low fees"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -433,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "Acheter &amp; vendre des bitcoins"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "Acheter des bitcoins"
 
@@ -615,9 +620,13 @@ msgstr "Connexion à Glidera..."
 msgid "Connection reset by peer"
 msgstr "Connexion réinitialisée par un pair"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "Contacts"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "Adresses fréquemment utilisées enregistrées"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -819,7 +828,7 @@ msgstr "Créer un portefeuille partagé"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "Créer un portefeuille bitcoin"
 
@@ -989,7 +998,7 @@ msgstr "Autoriser les notifications"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr "Activer le son"
+msgstr "Malayu"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -2529,6 +2538,14 @@ msgstr "Rechercher des transactions"
 msgid "Search or enter bitcoin address"
 msgstr "Recherchez ou saisissez une adresse bitcoin"
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "Presse-papiers"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "Votre presse-papiers est vide"
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr "Rechercher des transactions"
@@ -2587,8 +2604,69 @@ msgid "Send by email"
 msgstr "Envoyer par e-mail"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "Envoyer à partir de"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "Envoyer à"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "Coller le contenu du presse-papiers"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "Coller l'adresse"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "Transfert de portefeuille à portefeuille"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "Numérisez le code QR"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Envoyez des Bitcoin plus vite !"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Envoyez des Bitcoin plus vite !"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Enregistrez les adresses fréquemment utilisées et envoyez-leurs des Bitcoins en un seul geste"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "Ajoutez votre premier contact"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "Votre portefeuille Bitcoin est vide"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "Pour commencer, achetez des Bitcoins Cash (BCH) ou des Bitcoins Core (BTC), ou partagez votre adresse."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "Vous pouvez recevoir des Bitcoins de n'importe quel portefeuille ou service."
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "Pour commencer, vous aurez besoin de créer un portefeuille bitcoin et d'obtenir quelques bitcoins."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "Acheter des Bitcoins maintenant"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "Afficher mon adresse"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -3026,7 +3104,7 @@ msgstr "Pour commencer, achetez des bitcoins ou partagez votre adresse. Vous pou
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "Pour commencer, vous aurez besoin de créer un portefeuille bitcoin et d'obtenir quelques bitcoins."
+msgstr "Pour commencer, vous aurez besoin de créer un portefeuille Bitcoin et d'obtenir quelques bitcoins."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
@@ -3631,4 +3709,52 @@ msgstr "{{updatingTxHistoryProgress}} transactions téléchargées"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-sur-{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "Communauté"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Reddit Bitcoin Cash"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Twitter Bitcoin.com"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Explorez Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Jeux Bitcoin Cash"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "Nouvelles"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "Coopératives de mineurs"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "Outils"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Graphiques du prix du Bitcoin"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "Bitcoin Cash Gratuit"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "Vos portefeuilles bitcoin sont prêts !"
 

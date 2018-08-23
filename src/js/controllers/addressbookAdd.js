@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('addressbookAddController', function($scope, $state, $stateParams, $timeout, $ionicHistory, gettextCatalog, addressbookService, popupService, configService, bitcoinCashJsService) {
+angular.module('copayApp.controllers').controller('addressbookAddController', function($scope, $state, $stateParams, $timeout, $ionicHistory, gettextCatalog, addressbookService, popupService, configService, bitcoinCashJsService, platformInfo) {
 
   var config = configService.getSync();
   var defaults = configService.getDefaults();
@@ -21,6 +21,9 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
     $timeout(function() {
       var form = addressbookForm;
       if (data && form) {
+        if (data.result) {
+          data = data.result;
+        }
         data = data.replace(/^bitcoin(cash)?:/, '');
         form.address.$setViewValue(data);
         form.address.$isValid = true;
@@ -35,6 +38,16 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
       var translated = bitcoinCashJsService.readAddress(addressbook.address);
       addressbook.address = translated.legacy;
     }
+
+    var channel = "ga";
+    if (platformInfo.isCordova) {
+      channel = "firebase";
+    }
+    var log = new window.BitAnalytics.LogEvent("contact_created", [{
+      "coin": $scope.addressbookEntry.coin
+    }], [channel]);
+    window.BitAnalytics.LogEventHandlers.postEvent(log);
+
     $timeout(function() {
       addressbookService.add(addressbook, function(err, ab) {
         if (err) {

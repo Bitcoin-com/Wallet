@@ -136,6 +136,7 @@ module.exports = function(grunt) {
       },
       angular: {
         src: [
+          'src/shim/shim.js',
           'bower_components/qrcode-generator/js/qrcode.js',
           'bower_components/qrcode-generator/js/qrcode_UTF8.js',
           'bower_components/moment/min/moment-with-locales.js',
@@ -160,10 +161,17 @@ module.exports = function(grunt) {
         ],
         dest: 'www/lib/bitcoin-cash-js.js'
       },
+      bitanalytics: {
+        src: [
+          'bitanalytics/bitanalytics.js'
+        ],
+        dest: 'www/lib/bitanalytics.js'
+      },
       js: {
         src: [
           'src/js/app.js',
           'src/js/routes.js',
+          'src/js/decorators/*.js',
 
           'src/js/directives/*.js',
           '!src/js/directives/*.spec.js',
@@ -200,7 +208,8 @@ module.exports = function(grunt) {
         files: {
           'www/js/app.js': ['www/js/app.js'],
           'www/lib/angular-components.js': ['www/lib/angular-components.js'],
-          'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js']
+          'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js'],
+          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js']
         }
       }
     },

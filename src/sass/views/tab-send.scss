@@ -1,12 +1,28 @@
 #tab-send {
   @extend .deflash-blue;
+
+  &-header{
+    //height: 300px;
+    width: 100%;
+  }
+  &-contacts {
+    //height: calc(100vh - 300px - 50px - 44px); /* screen size - button container - bottom-tab-menu - header top */
+    &.ios {
+      //height: calc(100vh - 300px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+    }
+    //overflow: scroll;
+  }
+
   .input {
+    width: 100%;
     input {
       width: 100%;
-      height: auto;
-    }
-    &.item {
-      height: 55px;
+      height: 57px;
+      background: #FFF;
+      border: 1px #D9D9D9 solid;
+      &::placeholder {
+        color: #DCDCDC;
+      }
     }
     i {
       &.left {
@@ -19,45 +35,22 @@
       }
     }
   }
-  .qr-scan-icon {
-    cursor: pointer;
-    cursor: hand;
-    border-left: 1px solid rgb(228, 228, 228);
-    padding-left: 10px;
-  }
-  .qr-icon {
-    line-height: 20px;
-  }
-  .zero-state-cta {
-    padding-bottom: 3vh;
-    left: 0;
-  }
-  .send-heading {
-    font-size: 14px;
-    font-weight: bold;
-    padding: 0 0 16px 0;
-    border: none;
-  }
-  .send-header-wrapper {
-    padding: 10px;
-    background-color: white;
-    box-shadow: 0px 5px 10px 0px #cccccc;
-  }
-  .search-wrapper {
+
+  .send-wrapper {
+    &:after {
+      display: block;
+      position: relative;
+      height: 1px;
+      background: #DEDEDE;
+      bottom: 0;
+      content: '';
+      margin: 10px 6px 0px;
+    }
+    padding: 18px 9px 9px 9px;
     background-color: #f2f2f2;
     border-radius: 3px;
     border: none;
-    .svg#Bitcoin_Symbol {
-      width: 14px;
-      .st0 {
-        fill: #cccccc;
-      }
-    }
     &.focus {
-      background: none;
-      .svg#Bitcoin_Symbol {
-        display: none;
-      }
       .search-input {
         padding-left: 30px;
         &:focus::-webkit-input-placeholder {
@@ -65,92 +58,120 @@
         }
       }
     }
+    .buttons {
+      margin: auto;
+      margin-top: 18px;
+      .button {
+        &-clipboard-paste {
+          margin-left: 0;
+          .address {
+            display: none;
+          }
+          .icon {
+            background: url(../img/icon-clipboard-paste.svg);
+            width: 15px;
+            height: 19px;
+            display: inline-block;
+            margin-bottom: 4px;
+          }
+          &.contains-address, &.contains-content {
+            .address {
+              display: none;
+            }
+            background: #FAB915;
+            color: #FFF !important;
+            border: 0;
+            @include button-shadow();
+            .icon {
+              background: url(../img/icon-clipboard-paste-white.svg);
+            }
+            &.contains-address {
+              .address {
+                display: inline;
+                border: none;
+                background-color: transparent;
+              }
+              .non-address {
+                display: none;
+              }
+            }
+          }
+        }
+        span {
+          font-size: 14px;
+        }
+        img {
+          height: 16px;
+          width: auto;
+          margin: 2px 0 4px;
+        }
+        height: 60px;
+        line-height: 16px;
+        margin-right: 0px;
+        width: 95%;
+        max-width: none;
+        padding: 2px;
+        &-qr {
+          font-weight: bold;
+          max-width: none;
+          width: 100%;
+          height: 95px;
+          margin-top: 20px;
+          img {
+            vertical-align: middle;
+            margin-right: 12px;
+            width: 43px;
+            height: 43px;
+          }
+          span {
+            font-size: 19px;
+          }
+        }
+      }
+    }
   }
-  .abs-v-center {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-   }
   .search-input {
     background-color: transparent;
     padding-left: 30px;
   }
-  .separator-left {
-    border-left: 1px solid #d9d9df;
-    padding-left: 10px;
-    height: 70%;
-  }
-  .bitcoin-address {
-    border-top: none;
-    padding-bottom: .5rem;
-    @media(max-width: 480px) {
-      input {
-        font-size: 14px;
-      }
-    }
-    .icon {
-      line-height: 31px;
-        padding-top: 2px;
-        padding-bottom: 1px;
-    }
-  }
-  .show-more {
-    text-align: center;
-    padding: 20px;
-    font-size: 16px;
-    color: #387ef5;
-    font-weight: bold;
-  }
   .sendTip {
-    text-align: center;
-    & > .item-heading {
-      margin-top: 10px;
-      background: 0 none;
-    }
-    img {
-      content: $v-tab-send-selected-icon;
-    }
-    .item {
-      border-style: none;
-    }
-    & > .title {
-      font-size: 20px;
-      font-weight: bold;
-      color: $v-dark-gray;
-      margin: 20px 10px;
-    }
-    & > .subtitle {
-      font-size: 1rem;
-      line-height: 1.5em;
+    @include empty-case();
+  }
+  .item-heading {
+    line-height: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    .subtitle {
+      color: #B5B2B2;
+      font-size: 12px;
       font-weight: 300;
-      color: $v-dark-gray;
-      margin: 20px 1em 2.5em;
-    }
-    .big-icon-svg{
-      .bg.green{
-        padding: 0 10px;
-        box-shadow: none;
-      }
     }
   }
   .list {
     .item {
+      font-weight: 600;
+      p {
+        font-weight: normal;
+      }
+      &.item-icon-left {
+        padding-left: 64px;
+      }
       color: #444;
-      border-top: none;
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      //border-top: none;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;;
       .big-icon-svg {
-        left:5px;
-       & > .bg{
-        width:30px;
-        height:30px;
-        box-shadow: none;
-       }
+        left: 5px;
+        & > .bg {
+          width: 30px;
+          height: 30px;
+          box-shadow: none;
+        }
       }
       &:before {
         display: block;
         position: absolute;
-        width: 80%;
+        width: 100%;
         height: 1px;
         background: rgba(221, 221, 221, 0.3);
         top: 0;
@@ -163,7 +184,7 @@
       &.item-heading {
         &:before {
           top: 99%;
-          width:100%;
+          width: 100%;
         }
       }
       &:nth-child(2) {
@@ -176,5 +197,40 @@
       }
     }
   }
-  .scroll{height: 100%;}
+  .scroll {
+    height: 100%;
+  }
+
+  .card.contacts {
+    margin: 4px 4px 16px 4px;
+
+    border-radius: 6px;
+    box-shadow: 0px 2px 1px 0 #C1C1C1;
+    .gravatar {
+      border-radius: 30px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+
+  ///* iPhone 5/SE and other small screen devices */
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
+    .send-wrapper .buttons .button-qr {
+      height: 60px;
+      span {
+        font-size: 16px;
+      }
+    }
+    #tab-send-header {
+      //height: 270px;
+    }
+    #tab-send-contacts {
+      //height: calc(100vh - 270px - 50px  - 44px);  /* screen size - button container - bottom-tab-menu - header top */
+      &.ios {
+        //height: calc(100vh - 270px - 50px - 44px - 18px); // Remove the notification-bar height on iOS
+      }
+    }
+  }
+
 }

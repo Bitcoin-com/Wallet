@@ -16,7 +16,7 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
         isoCode: config.wallet.settings.alternativeIsoCode
       };
 
-      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+      $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay === 'crypto' ? gettextCatalog.getString('Cryptocurrency') : gettextCatalog.getString('Fiat');
 
       // TODO move this to a generic service
       bitpayAccountService.getAccounts(function(err, data) {
@@ -43,6 +43,18 @@ angular.module('copayApp.controllers').controller('tabSettingsController', funct
         }, 10);
       });
     });
+  };
+
+  $scope.sendFeedback = function() {
+    var mailToLink = 'mailto:wallet@bitcoin.com?subject=Feedback%20for%20Bitcoin.com%20Wallet';
+    if (platformInfo.isNW) {
+      nw.Shell.openExternal(mailToLink);
+    } else if (platformInfo.isCordova) {
+      var mailWindow = window.open(mailToLink, '_system');
+      mailWindow.close(); // XX SP: bugfix for some browsers in cordova to change the view entirely
+    } else {
+      window.location.href = mailToLink;
+    }
   };
 
   $scope.openExternalLink = function() {

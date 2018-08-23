@@ -16,8 +16,8 @@
           <span translate ng-if="tx.sendMax">Sending maximum amount</span>
         </div>
         <div class="amount-label">
+          <div class="alternative">{{tx.alternativeAmountValueStr || '...'}} <span class="unit">{{tx.alternativeAmountUnitStr}}</span></div>
           <div class="amount">{{tx.amountValueStr || '...'}} <span class="unit">{{tx.amountUnitStr}}</span></div>
-          <div class="alternative">{{tx.alternativeAmountStr || '...'}}</div>
         </div>
       </div>
       <div class="info">
@@ -77,9 +77,9 @@
         </a>
         <div class="item item-icon-right" ng-if="wallet" ng-click="chooseFeeLevel(tx, wallet)">
           <span class="label">{{'Fee:' | translate}} {{tx.feeLevelName | translate}}</span>
-            <span class="m10l">{{tx.txp[wallet.id].feeStr || '...'}}</span>
+            <span class="m10l">{{tx.txp[wallet.id].alternativeFeeStr || '...'}}</span>
             <span class="item-note m10l">
-              <span>{{tx.txp[wallet.id].alternativeFeeStr || '...'}}&nbsp;
+              <span>{{tx.txp[wallet.id].feeStr || '...'}}&nbsp;
               <span class="fee-rate" ng-if="tx.txp[wallet.id].feeRatePerStr"> &middot;
                   <i class="ion-alert-circled warn" ng-show="tx.txp[wallet.id].feeToHigh"></i> &nbsp;
                   <span class="fee-rate" ng-class="{'warn':tx.txp[wallet.id].feeToHigh}" translate> {{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount </span>
@@ -105,13 +105,13 @@
   </ion-content>
   <click-to-accept
     ng-click="approve(tx, wallet, statusChangeHandler)"
-    ng-if="(!isCordova || isWindowsPhoneApp) && wallet"
+    ng-if="(!isCordova) && wallet"
     click-send-status="sendStatus"
     is-disabled="!wallet">
     {{buttonText}}
   </click-to-accept>
   <slide-to-accept
-    ng-if="isCordova && !isWindowsPhoneApp && wallet"
+    ng-if="isCordova && wallet"
     slide-on-confirm="approve(tx, wallet, statusChangeHandler)"
     slide-send-status="sendStatus"
     is-disabled="!wallet">
@@ -120,6 +120,7 @@
   <slide-to-accept-success
     slide-success-show="sendStatus === 'success'"
     slide-success-on-confirm="onSuccessConfirm()"
+    slide-success-on-share="shareTransaction"
     slide-success-hide-on-confirm="true">
     <span ng-show="wallet.m == 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Payment Sent</span>
     <span ng-show="wallet.m > 1 && (wallet.canSign() || wallet.isPrivKeyExternal())" translate>Proposal Created</span>

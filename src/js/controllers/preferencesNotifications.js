@@ -75,6 +75,15 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
     };
 
     emailService.updateEmail(opts);
+
+    var channel = "ga";
+    if (platformInfo.isCordova) {
+      channel = "firebase";
+    }
+    var log = new window.BitAnalytics.LogEvent("settings_email_notification_toggle", [{
+      "toggle": $scope.emailNotifications.value
+    }], [channel]);
+    window.BitAnalytics.LogEventHandlers.postEvent(log);
   };
 
   $scope.soundNotificationsChange = function() {

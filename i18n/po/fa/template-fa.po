@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2018-06-22T04:02:53+0000\n"
+"PO-Revision-Date: 2018-07-27 08:44\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "حساب"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "شماره حساب"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "معاملات فوری با پرداخت کم"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -433,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "خرید &amp; فروش بیتکوین"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "خرید بیتکوین"
 
@@ -615,9 +620,13 @@ msgstr "در حال اتصال به Glidera..."
 msgid "Connection reset by peer"
 msgstr "ریست اتصال توسط همکار"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "تماسها"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "آدرس های ذخیره شده که اغلب مورد استفاده قرار گرفته اند"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -819,7 +828,7 @@ msgstr "ایجاد کیف پول مشترک"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "ایجاد کیف پول بیتکوین"
 
@@ -2529,6 +2538,14 @@ msgstr "جستجوی تراکنش ها"
 msgid "Search or enter bitcoin address"
 msgstr "جستجو و یا وارد کردن آدرس بیتکوین"
 
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "کلیپ بورد"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "کلیپ بورد شما خالی است"
+
 #: www/views/modals/search.html:16
 msgid "Search transactions"
 msgstr "جستجوی تراکنش ها"
@@ -2587,8 +2604,69 @@ msgid "Send by email"
 msgstr "ارسال توسط ایمیل"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "ارسال از"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "ارسال به"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "جای گذاری کلیپ برد"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "جای گذاری آدرس"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "انتقال پول از کیف پول به کیف پول"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "اسکن کد QR"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "ارسال سریع تر بیت کوین!"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "ارسال سریع تر بیت کوین!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "ذخیره آدرس های اغلب استفاده شده و ارسال بیت کوین به آنها تنها با یک ضربه"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "اولین تماس خود اضافه کنید"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "کیف پول بیت کوین شما خالی است"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "برای شروع، Bitcoin Cash (BCH) یا Bitcoin Core (BTC) بخرید و یا آدرس خود را به اشتراک بگذارید."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "شما می توانید از هر کیف پول و یا خدمات بیت کوین دریافت کنید."
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "برای شروع، شما نیاز دارید که یک کیف پول ایجاد کنید و مقداری بیتکوین تهیه کنید."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "خرید بیت کوین همین الان"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "نمایش آدرس من"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -3026,7 +3104,7 @@ msgstr "برای شروع، بیتکوین بخرید و یا آدرس خود ر
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "برای شروع، شما نیاز دارید که یک کیف پول ایجاد کنید و مقداری بیتکوین تهیه کنید."
+msgstr "برای شروع، شما نیاز دارید که یک کیف پول بیت کوین ایجاد کرده و مقداری بیت کوین تهیه کنید."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
@@ -3631,4 +3709,52 @@ msgstr "{{updatingTxHistoryProgress}} تراکنش دانلود شد"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}} از {{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "جامعه"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "توییتر Bitcoin.com"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "کاوش Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Bitcoin Cash Games"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "اخبار"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "استخر استخراج"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "ابزارها"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "نمودارهای قیمت بیت کوین"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "رایگان Bitcoin Cash"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "کیف پول بیت کوین شما آماده است!"
 

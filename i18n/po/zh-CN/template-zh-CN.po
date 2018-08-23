@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2018-06-22T04:02:44+0000\n"
+"PO-Revision-Date: 2018-07-27 08:43\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -76,6 +76,10 @@ msgstr "帐户"
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
 msgstr "帐号"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "以较低费用进行即时交易"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -359,12 +363,12 @@ msgstr "比特币地址"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr ""
+msgstr "Bitcoin Cash (BCH) 余额"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr ""
+msgstr "Bitcoin Cash 支持"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
@@ -380,7 +384,7 @@ msgstr "比特币网络手续费策略"
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr ""
+msgstr "Bitcoin Core 钱包"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
@@ -433,6 +437,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr "购买或出售比特币"
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr "购买比特币"
 
@@ -615,9 +620,13 @@ msgstr "正在连接 Glidera..."
 msgid "Connection reset by peer"
 msgstr "连接被对方重置"
 
-#: www/views/tab-send.html:45
+#: www/views/tab-send.html:85
 msgid "Contacts"
 msgstr "联系人"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "保存的常用地址"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
@@ -649,7 +658,7 @@ msgstr "Copayer 加入"
 
 #: www/views/preferencesInformation.html:94
 msgid "Copayer {{$index}}"
-msgstr ""
+msgstr "Copayer {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
@@ -819,7 +828,7 @@ msgstr "创建自己的免费钱包"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
-#: www/views/tab-send.html:36
+#: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
 msgstr "创建比特币的钱包"
 
@@ -973,7 +982,7 @@ msgstr "已达到空地址限制。无法生成新的地址。"
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr ""
+msgstr "在应用内启用 Bitcoin Cash 创建和操作。"
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
@@ -989,7 +998,7 @@ msgstr "启用推式通知"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr ""
+msgstr "启用声音"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -997,7 +1006,7 @@ msgstr "使该摄像机开始。"
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr ""
+msgstr "已启用"
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
@@ -1582,7 +1591,7 @@ msgstr "网络地址不正确"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr ""
+msgstr "确认的资金不足"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -2007,7 +2016,7 @@ msgstr "好的"
 #: www/views/modals/tx-status.html:36
 #: www/views/modals/tx-status.html:46
 msgid "OKAY"
-msgstr ""
+msgstr "确定"
 
 #: www/views/modals/terms.html:15
 msgid "Official English Disclaimer"
@@ -2049,7 +2058,7 @@ msgstr "打开 GitHub 项目"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr ""
+msgstr "打开浏览器"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -2065,7 +2074,7 @@ msgstr "打开网站"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr ""
+msgstr "打开 bitcoincash.org？"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
@@ -2507,7 +2516,7 @@ msgstr "请扫描你的指纹"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr ""
+msgstr "扫描您的 Bitcoin Cash 钱包"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
@@ -2528,6 +2537,14 @@ msgstr "搜索交易"
 #: www/views/tab-send.html:13
 msgid "Search or enter bitcoin address"
 msgstr "搜索或输入比特币地址"
+
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "剪贴板"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "您的剪贴板为空"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
@@ -2587,8 +2604,69 @@ msgid "Send by email"
 msgstr "通过电邮发送"
 
 #: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
 msgid "Send from"
 msgstr "从发送"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "发送到"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "粘贴剪贴板"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "粘贴地址"
+
+#: www/views/tab-send.html:27
+msgid "Wallet to Wallet Transfer"
+msgstr "钱包转账"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "扫描二维码"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "更快地发送比特币！"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "更快地发送比特币！"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "保存常用地址，只需点击一下即可将比特币发送到这些地址"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "添加您的第一个联系人"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "您的比特币钱包为空"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "首先，购买 Bitcoin Cash (BCH) 或 Bitcoin Core (BTC)，或者共享您的地址。"
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "您可以从任何钱包或服务接收比特币。"
+
+#: www/views/tab-send.html:72
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "若要开始，您将需要创建一个比特币的钱包，并获得一些比特币。"
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "立即购买比特币"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "显示我的地址"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
@@ -2806,7 +2884,7 @@ msgstr "超级经济"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr ""
+msgstr "支持 Bitcoin Cash"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
@@ -2856,7 +2934,7 @@ msgstr "使用条款"
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
 msgid "Testnet"
-msgstr ""
+msgstr "测试网"
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
@@ -3026,7 +3104,7 @@ msgstr "若要开始，请买比特币或共享您的地址。你可以从任何
 
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "若要开始，您将需要创建一个比特币的钱包，并获得一些比特币。"
+msgstr "首先，您需要创建一个比特币钱包，并获得一些比特币。"
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
@@ -3196,7 +3274,7 @@ msgstr "查看服务条款"
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr ""
+msgstr "在 Explorer.Bitcoin.com 上查看交易"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
@@ -3592,7 +3670,7 @@ msgstr "我"
 
 #: www/views/addressbook.add.html:32
 msgid "name@example.com"
-msgstr ""
+msgstr "name@example.com"
 
 #: www/views/preferencesHistory.html:15
 msgid "preparing..."
@@ -3631,4 +3709,52 @@ msgstr "下载的 {{updatingTxHistoryProgress}} 交易"
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}{{wallet.n}}"
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr "Shapeshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "社区"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Bitcoin.com Twitter"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "探索 Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Bitcoin Cash 游戏"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "新闻"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr "矿池"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "工具"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "比特币价格图表"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "免费的 Bitcoin Cash"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "您的比特币钱包已就绪！"
 

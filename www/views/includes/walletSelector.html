@@ -5,7 +5,7 @@
     ng-init="wallet.coin == 'btc' ? walletsBtc.push(wallet) : walletsBch.push(wallet)">
   </span>
 
-  <div class="header" ng-if="!walletsBtc[0] || !walletsBch[0]">{{title}}</div>
+  <div class="header" ng-if="(!walletsBtc[0] || !walletsBch[0]) || forceTitle === true">{{title}}</div>
 
   <div class="subheader" ng-if="walletsBch[0] && walletsBtc[0]">
     <div translate>Bitcoin Cash (BCH)</div>
@@ -27,8 +27,8 @@
               Incomplete
             </span>
             <span ng-if="wallet.isComplete()">
-              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
-              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden"><formatted-amount value="{{wallet.status.totalBalanceAlternative}}" currency="{{wallet.status.alternativeIsoCode}}"></formatted-amount></span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"><formatted-amount value="{{wallet.status.availableBalanceStr}}"></formatted-amount></span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>
@@ -41,7 +41,6 @@
 
   <div class="subheader" ng-if="walletsBtc[0] && walletsBch[0]" translate>
     <div translate>Bitcoin Core (BTC)</div>
-    <div translate class="subtitle">Slow transactions with high fees</div>
   </div>
   <a
     ng-repeat="wallet in walletsBtc track by $index"
@@ -59,8 +58,8 @@
               Incomplete
             </span>
             <span ng-if="wallet.isComplete()">
-              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}}</span>
-              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden">{{wallet.status.availableBalanceStr}}</span>
+              <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden"><formatted-amount value="{{wallet.status.totalBalanceAlternative}}" currency="{{wallet.status.alternativeIsoCode}}"></formatted-amount></span>
+              <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"><formatted-amount value="{{wallet.status.availableBalanceStr}}"></formatted-amount></span>
               <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
             </span>
           </span>

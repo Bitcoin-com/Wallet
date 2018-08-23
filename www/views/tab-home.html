@@ -22,7 +22,23 @@
       </div>
     </div>
 
-    <div class="ng-hide" ng-show="showRateCard.value" ng-include="'views/feedback/rateCard.html'"></div>
+    <div class="buttons row">
+      <div class="col">
+        <div class="button button-outline button-grey-outline" ui-sref="tabs.receive">
+          <span translate>Receive</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="button button-outline button-grey-outline" ng-class="{'ng-hide': walletsWithFunds.length}"
+             ui-sref="tabs.buyandsell">
+          <span translate>Buy Bitcoin</span>
+        </div>
+        <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
+             ng-click="startFreshSend()">
+          <span translate>Send</span>
+        </div>
+      </div>
+    </div>
 
     <div class="list card homeTip" ng-if="homeTip">
       <div class="item item-icon-right item-heading">
@@ -73,7 +89,6 @@
     <div class="list card">
       <div class="item item-icon-right item-heading">
         <div translate>Bitcoin Core (BTC)</div>
-        <div translate class="subtitle">Slow transactions with high fees</div>
         <a ui-sref="tabs.add"><i class="icon ion-ios-plus-empty list-add-button"></i></a>
       </div>
       <div>
@@ -92,9 +107,11 @@
     <div class="ng-hide list card" ng-show="showServices && (walletsBch[0] || walletsBtc[0])" ng-include="'views/includes/services.html'"></div>
 
     <div class="list card card-banner">
-      <a ng-click="openStore()">
-        <img class="card-banner__img" src="img/banner-store.png"/>
+      <ion-spinner ng-if="bannerIsLoading"></ion-spinner>
+      <a id="home_banner" href-banner="{{bannerImageUrl}}" class="track_banner_click" ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
+        <img class="card-banner__img" ng-src="{{bannerImageUrl}}"/>
       </a>
+
     </div>
     
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/community.html'"></div>

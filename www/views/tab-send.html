@@ -3,15 +3,83 @@
     <ion-nav-title>{{'Send' | translate}}</ion-nav-title>
   </ion-nav-bar>
   <ion-content>
+    <div id="tab-send-header" ng-if="hasFunds">
 
-    <div ng-if="hasFunds">
-      <div class="send-header-wrapper">
-        <div class="item item-heading send-heading"><span translate>Recipient</span></div>
-        <div class="item input search-wrapper" ng-class="{'focus': searchFocus}">
-          <i class="icon icon-svg abs-v-center icon-bitcoinlogoplain"></i>
-          <div class="item-icon-right">
-            <input type="text" class="search-input" placeholder="{{'Search or enter bitcoin address' | translate}}" ng-model="formData.search" ng-change="findContact(formData.search)" ng-model-onblur ng-focus="searchInFocus()" ng-blur="searchBlurred()">
-            <i class="icon icon-svg qr abs-v-center separator-left" on-tap="openScanner()"><img src="img/scan-ico.svg"></i>
+      <div class="content-frame" ng-if="fromWallet">
+          <div class="card card-gutter-compact">
+            <div class="item item-compact"><span translate>From</span>:</div>
+            <div class="item item-gutterless item-complex item-avatar">
+              <div class="item-content item-content-avatar">
+                <i class="icon big-icon-svg theme-circle theme-circle-services">
+                    <div class="bg icon-wallet"
+                      style="background-color: {{fromWallet.color}}"
+                    ></div>
+                </i>
+                <h2>{{fromWallet.name}}</h2>
+                <wallet-balance
+                 display-as-fiat="{{displayBalanceAsFiat}}" 
+                 wallet-status="{{fromWallet.status}}"
+                 wallet-cached-balance="{{fromWallet.cachedBalance}}"
+                 wallet-cached-balance-updated-on="{{fromWallet.cachedBalanceUpdatedOn}}"
+                 wallet-cached-status="{{fromWallet.cachedStatus}}"
+                 total-balance-sat="{{fromWallet.status.totalBalanceSat}}"></wallet-balance>
+                <!--<p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>-->
+                <!--<formatted-amount value="{{fromWallet.status.totalBalanceStr ? fromWallet.status.totalBalanceStr : ( fromWallet.cachedBalance ? fromWallet.cachedBalance   + (fromWallet.cachedBalanceUpdatedOn ? ' &middot; ' + ( fromWallet.cachedBalanceUpdatedOn  * 1000 | amTimeAgo) : '') : ''  ) }}"></formatted-amount>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <div class="send-wrapper item">
+        <div class="row">
+          <div class="input" ng-class="{'focus': searchFocus}">
+            <input type="text" class="search-input" placeholder="{{'Search or enter bitcoin address' | translate}}"
+                   ng-model="formData.search" ng-change="findContact(formData.search)" ng-model-onblur
+                   ng-focus="searchInFocus()" ng-blur="searchBlurred()">
+          </div>
+        </div>
+        <div class="buttons">
+          <div class="row">
+            <div class="col-40">
+              <button class="button button-standard button-primary button-outline button-clipboard-paste" ng-click="pasteClipboard()" ng-class="{'contains-address': clipboardHasAddress}">
+                <span class="icon"></span><br/>
+                <span class="non-address" translate>Paste Clipboard</span>
+                <span class="address" translate>Paste Address</span>
+              </button>
+            </div>
+            <div class="col-60">
+              <button class="button button-standard button-primary button-outline" ng-click="startWalletToWalletTransfer()">
+                <img src="img/icon-w2w.svg"/><br/>
+                <span translate>Transfer between wallets</span>
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <button class="button button-standard button-green button-qr" ui-sref="tabs.scan">
+              <span>
+                <img src="img/icon-scan-qr.svg"/>
+                <span translate>Scan QR Code</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="hasWallets && hasFunds && !hasContacts">
+      <div class="list sendTip">
+        <div class="title" translate>
+          Send Bitcoin faster!
+        </div>
+        <div class="subtitle">
+          <div ng-show="hasWallets">
+            <p translate>Save frequently used addresses and send them Bitcoin in just one tap</p>
+          </div>
+          <div class="padding buttons">
+            <a class="button-first-contact" ng-click="addContact()">
+              <img src="img/icon-contact-add.svg"/>
+              <span translate>Add your first contact</span>
+            </a>
           </div>
         </div>
       </div>
@@ -19,72 +87,75 @@
 
     <div ng-if="!checkingBalance && (!hasFunds || !hasWallets)">
       <div class="list card sendTip">
-        <div class="item item-icon-right item-heading"></div>
-        <div>
-          <i class="icon zero-state-icon">
-            <img src="img/tab-icons/ico-send-selected.svg"/>
-          </i>
-        </div>
         <div class="title" translate>
-          Start sending bitcoin
+          Your Bitcoin wallet is empty
         </div>
         <div class="subtitle">
-          <span ng-show="hasWallets" translate>To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service.</span>
-          <span ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</span>
-          <div class="padding">
-            <button class="button button-standard button-primary" ng-click="buyBitcoin()" ng-show="hasWallets" translate>Buy Bitcoin</button>
-            <button class="button button-standard button-primary" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
-            <button class="button button-standard button-secondary" ui-sref="tabs.receive" ng-show="hasWallets" translate>Show bitcoin address</button>
+          <div ng-show="hasWallets">
+            <p translate>To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address.</p>
+            <p translate>You can receive bitcoin from any wallet or service.</p>
+          </div>
+          <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</div>
+          <div class="padding buttons">
+            <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="hasWallets" translate>Buy Bitcoin now</button>
+            <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
+            <button class="button button-standard button-white" ui-sref="tabs.receive" ng-show="hasWallets" translate>Show my address</button>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="card" ng-if="hasContacts && hasWallets && hasFunds">
-      <div class="item item-icon-right item-heading">
-        <span translate>Contacts</span>
-        <a ng-if="hasContacts" ui-sref="tabs.send.addressbook">
-          <i class="icon ion-ios-plus-empty list-add-button"></i>
-        </a>
-      </div>
-      <div class="list">
-        <a class="item item-icon-left item-icon-right" ng-repeat="item in list" ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="goToAmount(item)">
-          <i class="icon big-icon-svg">
-            <img src="img/contact-placeholder.svg" class="bg" ng-if="isChromeApp">
-            <gravatar class="send-gravatar" name="{{item.name}}" width="30" email="{{item.email}}" ng-if="!isChromeApp"></gravatar>
-          </i>
-          {{item.name}}
-          <p>
-            <span>{{item.displayCoin}}</span>
-          </p>
-          <i class="icon bp-arrow-right"></i>
-        </a>
-        <div class="show-more" ng-if="contactsShowMore" ng-click="showMore()" translate>
-          Show more
+    <div id="tab-send-contacts" class="row" ng-class="{'ios':isIOS}" ng-if="hasContacts && hasWallets && hasFunds">
+      <div class="col">
+        <div class="card contacts">
+          <div class="item item-icon-right item-heading">
+            <div translate>Contacts</div>
+            <div class="subtitle"><span translate>Saved frequently used addresses</span></div>
+            <a ng-if="hasContacts" ui-sref="tabs.send.addressbook">
+              <i class="icon ion-ios-plus-empty list-add-button"></i>
+            </a>
+          </div>
+          <div class="list">
+            <a class="item item-icon-left item-icon-right" ng-repeat="item in list"
+               ng-if="!item.isWallet && item.recipientType != 'wallet'" ng-click="sendToContact(item)">
+              <i class="icon big-icon-svg">
+                <gravatar class="send-gravatar" name="{{item.name}}" width="120" email="{{item.email}}"></gravatar>
+              </i>
+              {{item.name}}
+              <p>
+                <span>{{item.displayCoin}}</span>
+              </p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-
-    <div class="card" ng-if="showTransferCard && hasFunds">
-      <div class="item item-icon-right item-heading" ng-click="toggle('transferToWallet')">
-        <span translate>Transfer to Wallet</span>
-        <i class="icon bp-arrow-up" ng-show="sectionDisplay.transferToWallet"></i>
-        <i class="icon bp-arrow-down" ng-show="!sectionDisplay.transferToWallet"></i>
-      </div>
-      <div class="list" ng-show="sectionDisplay.transferToWallet">
-        <a class="item item-icon-left item-icon-right"
-          ng-repeat="item in list"
-          ng-if="hasWallets && item.recipientType == 'wallet'"
-          ng-click="goToAmount(item)">
-          <i class="icon big-icon-svg" ng-if="item.recipientType == 'wallet'" ng-init="wallet = item" ng-include="'views/includes/walletIcon.html'"></i>
-          {{item.name}}
-          <p>
-            <span>{{item.balanceString}}</span>
-          </p>
-          <i class="icon bp-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-
   </ion-content>
+  <!--<wallet-selector-->
+          <!--wallet-selector-title="walletSelectorTitleFrom"-->
+          <!--wallet-selector-force-title="walletSelectorTitleForce"-->
+          <!--wallet-selector-wallets="walletsWithFunds"-->
+          <!--wallet-selector-selected-wallet="wallet"-->
+          <!--wallet-selector-show="showWallets"-->
+          <!--wallet-selector-on-select="onWalletSelect"-->
+          <!--wallet-selector-display-balance-as-fiat="displayBalanceAsFiat">-->
+  <!--</wallet-selector>-->
+  <!--<wallet-selector-->
+          <!--wallet-selector-on-hide=""-->
+          <!--wallet-selector-title="walletSelectorTitleTo"-->
+          <!--wallet-selector-wallets="walletsBch"-->
+          <!--wallet-selector-selected-wallet="wallet"-->
+          <!--wallet-selector-show="showWalletsBch"-->
+          <!--wallet-selector-on-select="onWalletSelect"-->
+          <!--wallet-selector-display-balance-as-fiat="displayBalanceAsFiat">-->
+  <!--</wallet-selector>-->
+  <!--<wallet-selector-->
+          <!--wallet-selector-on-hide=""-->
+          <!--wallet-selector-title="walletSelectorTitleTo"-->
+          <!--wallet-selector-wallets="walletsBtc"-->
+          <!--wallet-selector-selected-wallet="wallet"-->
+          <!--wallet-selector-show="showWalletsBtc"-->
+          <!--wallet-selector-on-select="onWalletSelect"-->
+          <!--wallet-selector-display-balance-as-fiat="displayBalanceAsFiat">-->
+  <!--</wallet-selector>-->
 </ion-view>

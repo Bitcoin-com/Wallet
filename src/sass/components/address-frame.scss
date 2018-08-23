@@ -1,0 +1,27 @@
+.address-frame {
+  background-color: #F8F8F8;
+  border: 0.5px solid #EDEBEB;
+  border-radius: 3px;
+  padding: 9px;
+  text-align: center;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.expanded {
+    white-space: normal;
+    text-overflow: clip;
+  }
+
+  .prefix {
+    color: #000000;
+  }
+
+  .mid {
+    color: #919191;
+  }
+
+  .suffix {
+    color: #000000;
+  }
+}

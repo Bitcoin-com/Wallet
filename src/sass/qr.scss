@@ -1,14 +1,15 @@
 qrcode {
-  &.qr-icon {
+  position: relative;
+  &.qr-overlay {
     &::before {
       content: "";
       background-size: 100% 100%;
       display: block;
-      margin-left: calc(50% - 22px);
-      margin-top: 88px;
+      left: calc(50% - 22px);
+      margin-top: calc(50% - 22px);
       width: 44px;
       height: 44px;
-      position: absolute;
+      position:absolute;
     }
     &--bch::before {
       background-image: url('../img/qr-overlay-bch.png');

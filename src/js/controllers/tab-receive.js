@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, txFormatService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -15,32 +15,16 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   var config;
 
-  var soundLoaded = false;
-  var nativeAudioAvailable = (window.plugins && window.plugins.NativeAudio);
-
-  if (nativeAudioAvailable) {
-      window.plugins.NativeAudio.preloadSimple('received', 'misc/coin_received.mp3', function (msg) {
-        $log.debug('Receive sound loaded.');
-        soundLoaded = true;
-      }, function (error) {
-        $log.debug('Error loading receive sound.');
-        $log.debug(error);
-      });
-  } else {
-    $log.debug('isNW: Using HTML5-Audio instead of native audio');
-    soundLoaded = true;
-  }
-
   $scope.displayBalanceAsFiat = true;
 
   $scope.requestSpecificAmount = function() {
-    $state.go('tabs.paymentRequest.amount', {
-      id: $scope.wallet.credentials.walletId,
-      coin: $scope.wallet.coin
+    sendFlowService.pushState({
+      toWalletId: $scope.wallet.credentials.walletId
     });
+    $state.go('tabs.paymentRequest.amount');
   };
 
-  $scope.setAddress = function(newAddr) {
+  $scope.setAddress = function(newAddr, copyAddress) {
     $scope.addr = null;
     if (!$scope.wallet || $scope.generatingAddress || !$scope.wallet.isComplete()) return;
     $scope.generatingAddress = true;
@@ -74,6 +58,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           paymentSubscriptionObj.addr = $scope.addr
       }
 
+      if (copyAddress === true) {
+        try {
+          clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
+        } catch (error) {
+          $log.debug("Error copying to clipboard:");
+          $log.debug(error);
+        }
+      }
       // create subscription
       var msg = JSON.stringify(paymentSubscriptionObj);
       currentAddressSocket.onopen = function (event) {
@@ -143,21 +135,37 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       for (var i = 0; i < data.x.out.length; i++) {
         if (data.x.out[i].addr == watchAddress) {
           $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
+          $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
+          txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
+            if (alternativeStr) {
+              $scope.$apply(function () {
+                $scope.paymentReceivedAlternativeAmount = alternativeStr;
+              });
+            }
+          });
         }
       }
       $scope.paymentReceivedCoin = $scope.wallet.coin;
-      $scope.$apply(function () {
 
-        if (config.soundsEnabled && soundLoaded) {
-          $log.debug('Play sound.');
-            if (nativeAudioAvailable) {
-              window.plugins.NativeAudio.play('received');
-          } else {
-            new Audio('misc/coin_received.ogg').play(); // NW.js has no mp3 support
-          }
-        } else {
-          $log.debug('Sound is disabled.');
-        }
+      var channel = "ga";
+      if (platformInfo.isCordova) {
+        channel = "firebase";
+      }
+      var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+        "coin": $scope.wallet.coin,
+        "type": "incoming"
+      }], [channel, "adjust"]);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      if ($state.current.name === "tabs.receive") {
+        soundService.play('misc/payment_received.mp3');
+      } 
+
+      // Notify new tx
+      $scope.$emit('bwsEvent', $scope.wallet.id);
+
+
+      $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
     }
@@ -231,10 +239,14 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     if (!$scope.wallets[0]) return;
 
-    // select first wallet if no wallet selected previously
-    var selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    var selectedWallet = null;
+    if (data.stateParams.walletId) { // from walletDetails
+      selectedWallet = checkSelectedWallet(profileService.getWallet(data.stateParams.walletId), $scope.wallets);
+    } else {
+      // select first wallet if no wallet selected previously
+      selectedWallet = checkSelectedWallet($scope.wallet, $scope.wallets);
+    }
     $scope.onWalletSelect(selectedWallet);
-
     $scope.showShareButton = platformInfo.isCordova ? (platformInfo.isIOS ? 'iOS' : 'Android') : null;
 
     listeners = [

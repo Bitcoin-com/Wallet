@@ -1,12 +1,13 @@
 'use strict';
-angular.module('copayApp.services').factory('bitcoincomService', function($http, $log, lodash, moment, storageService, configService, platformInfo, nextStepsService, homeIntegrationsService) {
+angular.module('copayApp.services').factory('bitcoincomService', function(gettextCatalog, nextStepsService, platformInfo) {
   var root = {};
   var credentials = {};
 
   /*
    * Development: 'testnet'
    * Production: 'livenet'
-   */
+   */      
+  var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
   credentials.NETWORK = 'livenet';
   //credentials.NETWORK = 'testnet';
 
@@ -18,44 +19,44 @@ angular.module('copayApp.services').factory('bitcoincomService', function($http,
 
   var cashGamesItem = {
     name: 'games',
-    title: 'Bitcoin Cash Games',
+    title: gettextCatalog.getString('Bitcoin Cash Games'),
     icon: 'icon-games',
-    href: 'http://cashgames.bitcoin.com'
+    href: 'https://cashgames.bitcoin.com'
   };
 
   var newsItem = {
     name: 'news',
-    title: 'News',
+    title: gettextCatalog.getString('News'),
     icon: 'icon-news',
-    href: 'http://news.bitcoin.com'
+    href: 'https://news.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=News'
   };
 
   var poolItem = {
     name: 'pool',
-    title: 'Mining Pool',
+    title: gettextCatalog.getString('Mining Pool'),
     icon: 'icon-mining',
-    href: 'http://pool.bitcoin.com'
+    href: 'https://pool.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
   };
 
   var toolsItem = {
     name: 'tools',
-    title: 'Tools',
+    title: gettextCatalog.getString('Tools'),
     icon: 'icon-tools',
-    href: 'http://tools.bitcoin.com'
+    href: 'https://tools.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Tools'
   };
 
   var priceChartItem = {
     name: 'pricechart',
-    title: 'Bitcoin Price Charts',
+    title: gettextCatalog.getString('Bitcoin Price Charts'),
     icon: 'icon-chart',
     sref: 'tabs.pricechart',
   };
 
   var faucetItem = {
     name: 'faucet',
-    title: 'Free Bitcoin Cash',
+    title: gettextCatalog.getString('Free Bitcoin Cash'),
     icon: 'icon-faucet',
-    href: 'https://free.bitcoin.com/'
+    href: 'https://free.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Faucet'
   };
 
   var _getBitPay = function(endpoint) {

@@ -30,8 +30,22 @@
           <br/>Return To Address<br/>
         </p>
       </div>
+      <div ng-show="!showingPaymentReceived" class="amount">
+        <div ng-show="selectedPriceDisplay=='crypto'">
+          <span class="size-36"><formatted-amount value="{{amountUnitStr}}"></formatted-amount></span>
+          <div class="size-14 amount-alternative">
+            <formatted-amount value="{{altAmountStr | uppercase}}"></formatted-amount>
+          </div>
+        </div>
+        <div ng-show="selectedPriceDisplay=='fiat'">
+          <span class="size-36"><formatted-amount value="{{altAmountStr | uppercase}}"></formatted-amount></span>
+          <div class="size-14 amount-alternative">
+            <formatted-amount value="{{amountUnitStr}}"></formatted-amount>
+          </div>
+        </div>
+      </div>
       <div ng-show="!showingPaymentReceived" class="qr-code" copy-to-clipboard="copyToClipboard()">
-        <qrcode size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
+        <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" size="220" data="{{ protocolHandler }}:{{address + '?amount=' + amountBtc}}" color="#334"></qrcode>
       </div>
       <div ng-show="!showingPaymentReceived" ng-show="address && coin == 'bch'" class="address-types">
         <div>
@@ -55,12 +69,6 @@
           <span class="label" translate>Address</span>
           <span class="item-note ellipsis">
             {{address}}
-          </span>
-        </div>
-        <div class="item single-line">
-          <span class="label" translate>Amount</span>
-          <span class="item-note">
-            {{amountUnitStr}} - {{altAmountStr}}
           </span>
         </div>
         <div class="item single-line">
