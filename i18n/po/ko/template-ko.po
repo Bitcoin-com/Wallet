@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2018-07-27 08:44\n"
+"PO-Revision-Date: 2018-08-21 03:39\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -80,6 +80,26 @@ msgstr "계정 번호"
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
 msgstr "낮은 수수료로 빠른 송금을"
+
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr "펀드 부족"
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr "통화 변경"
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr "보유 펀드"
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr "전체 펀드 사용"
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr "다음"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -205,6 +225,20 @@ msgstr "거의 끝났습니다! 복습해보도록 하겠습니다."
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
 msgstr "알트 코인"
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr "가격 표시"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr "고정비"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr "가상화폐"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
@@ -662,6 +696,7 @@ msgstr "공동지불인 {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr "클립보드에 복사 완료"
@@ -1281,6 +1316,7 @@ msgstr "계좌 검토 용도"
 #: www/views/modals/txp-details.html:74
 #: www/views/topup.html:34
 #: www/views/tx-details.html:52
+#: www/views/review.html:22
 msgid "From"
 msgstr "출처"
 
@@ -1341,10 +1377,6 @@ msgid "Get news and updates from BitPay"
 msgstr "BitPay에서 최신 소식을 받아보세요"
 
 #: www/views/onboarding/welcome.html:8
-msgctxt "button"
-msgid "Get started"
-msgstr "시작하기"
-
 #: www/views/bitpayCard.html:49
 msgid "Get started"
 msgstr "시작하기"
@@ -2168,6 +2200,10 @@ msgstr "송금 거부"
 msgid "Payment Sent"
 msgstr "송금 완료"
 
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr "거래 공유"
+
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
 msgstr "송금을 수락했으나 아직 브로드캐스트되지 않았습니다"
@@ -2185,7 +2221,7 @@ msgid "Payment details"
 msgstr "결제 디테일"
 
 #: www/views/modals/paypro.html:6
-msgid "Payment request"
+msgid "Payment Request"
 msgstr "결제 요구"
 
 #: www/views/mercadoLibreCards.html:22
@@ -2621,16 +2657,12 @@ msgid "Paste Address"
 msgstr "주소 붙여넣기"
 
 #: www/views/tab-send.html:27
-msgid "Wallet to Wallet Transfer"
-msgstr "지갑 간 전송"
+msgid "Transfer between wallets"
+msgstr "월릿 간 전송"
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
 msgstr "QR 코드 스캔"
-
-#: www/views/tab-send.html:46
-msgid "Send Bitcoin faster!"
-msgstr "비트코인 속성 전송!"
 
 #: www/views/tab-send.html:46
 msgid "Send Bitcoin faster!"
@@ -2657,6 +2689,8 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "지갑 또는 서비스에서 비트코인을 받을 수 있습니다."
 
 #: www/views/tab-send.html:72
+#: www/views/shapeshift.html:23
+#: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "시작하시기 위해선 비트코인 지갑을 생성하시거나 비트코인을 구매하세요."
 
@@ -3061,6 +3095,14 @@ msgstr "이 앱은 귀하의 비트코인을 최첨단 보안 서비스로 보�
 msgid "This bitcoin payment request has expired."
 msgstr "비트코인 결제 요구가 만료되었습니다."
 
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr "송금 만료:"
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr "결제 요청 만료"
+
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
@@ -3102,10 +3144,6 @@ msgstr "보내는 대상"
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
 msgstr "시작하시려면 비트코인을 구매하시거나 주소를 등록해주세요. 어디에서든 비트코인을 받을 수 있습니다."
 
-#: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "시작하려면 비트코인 지갑을 만들고 비트코인을 구매하십시오."
-
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
 msgstr "{{reason}}하기 위해선 BitPay 계정 - {{email}}을 먼저 추가하셔야 합니다."
@@ -3117,6 +3155,26 @@ msgstr "추가 지불(Top up) 진행 중..."
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "체크 카드 ({{cardLastNumber}})에 {{amountStr}} 추가 지불(Top up)하기"
+
+#: www/views/shapeshift.html:30
+msgid "Start ShapeShift"
+msgstr "ShapeShift 시작"
+
+#: www/views/shapeshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr "BTC를 몇 분 내에 BCH로 교환"
+
+#: www/views/shapeshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr "과정을 시작하려면 월릿에 펀드를 적립해야 합니다."
+
+#: www/views/shapeshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "과정은 빠르며 월릿에 교환 금액이 전송됩니다."
+
+#: www/views/shapeshift.html:34
+msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "제3자 회사 Shapeshift는 소액의 수수료를 받고 서비스를 제공합니다. 수수료 금액은 거래 시작 전에 표시됩니다."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3757,4 +3815,48 @@ msgstr "무료 BCH"
 #: www/views/tab-home.html:30
 msgid "Your Bitcoin Wallets are ready!"
 msgstr "비트코인 지갑이 완료되었습니다!"
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "주소는 통화 정보를 포함하지 않으므로, 전송 금액을 확인해야 합니다."
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr "거래 확인"
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr "전송"
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr "전환"
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr "대상:"
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr "개인 메모 작성"
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr "회사/업소 제안:"
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr "텍스트 입력"
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr "개인 메모:"
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr "1센트 미만"
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
+msgstr "이 청구서는 더 이상 결제를 수락하지 않습니다"
 
