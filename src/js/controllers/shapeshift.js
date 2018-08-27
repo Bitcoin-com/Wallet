@@ -4,6 +4,8 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
   var walletsBtc = [];
   var walletsBch = [];
 
+  $scope.showMyAddress = showMyAddress;
+
   function generateAddress(wallet, cb) {
     if (!wallet) return;
     walletService.getAddress(wallet, false, function(err, addr) {
@@ -41,14 +43,6 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     $ionicNavBarDelegate.showBar(true);
   });
 
-  $scope.showFromWalletSelector = function() {
-    $scope.showFromWallets = true;
-  };
-
-  $scope.showToWalletSelector = function() {
-    $scope.showToWallets = true;
-  };
-
   // This could probably be enhanced refactoring the routes abstract states
   $scope.createWallet = function() {
     $state.go('tabs.home').then(function() {
@@ -81,4 +75,11 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
       });
     });
   }
+
+  function showMyAddress() {
+    $state.go('tabs.home').then(function() {
+      $state.go('tabs.receive');
+    });
+  }
+
 });
