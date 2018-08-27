@@ -6,14 +6,50 @@
     .module('bitcoincom.services')
     .factory('bitcoinUriService', bitcoinUriService);
     
-  function bitcoinUriService(bitcoinCashJsService, bwcService) {
+  function bitcoinUriService(bitcoinCashJsService, bwcService, $log) {
+    var bch = bitcoinCashJsService.getBitcoinCashJs();
     var bitcore = bwcService.getBitcore();
+    var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
+
     var service = {
      parse: parse 
     };
 
     return service;
 
+    
+
+    function isValidCashAddr(address, network) {
+      var privateKey = new bch.PrivateKey('testnet');
+      var address1 = privateKey.toAddress();
+      console.log('legacy pub:', address1.toString());
+      //var addrss = bitcoinCashJsService.readAddress(address1);
+      //console.log('generated:', addrss.cashaddr);
+      //bch.Address.fromString(address1, 'testnet');
+      console.log('generated:', address1.toString('cashaddr'));
+      
+      var isValid = false;
+
+      var prefix = network === 'testnet' ? 'bchtest:' : 'bitcoincash:';
+
+      try {
+        if (cashAddrRe.test(address)) {
+          // bitcoinCashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
+          var bchAddresses = bitcoinCashJsService.readAddress(address.toLowerCase());
+          if (bchAddresses) {
+            var legacyAddress = bchAddresses.legacy;
+            if (bch.Address.isValid(legacyAddress, network)) {
+              isValid = true;
+            }
+          }
+        }
+      } catch (e) {
+        // Nop - Must not be a valid cashAddr.
+        $log.error('Error validating address.', e);
+      }
+      console.log(address,'isValidCashAddr:', isValid);
+      return isValid;
+    }
     
 
     /*
@@ -67,6 +103,13 @@
 
       } else if (/^(?:bitcoincash)|(?:bitcoin-cash)$/.test(preColonLower)) {
         parsed.coin = 'bch';
+        parsed.test = false;
+        addressAndParams = colonSplit[2];
+        console.log('Is bch');
+
+      } else if (/^(?:bchtest)$/.test(preColonLower)) {
+        parsed.coin = 'bch';
+        parsed.testnet = true;
         addressAndParams = colonSplit[2];
         console.log('Is bch');
 
@@ -125,7 +168,7 @@
 
           case 'r':
             // Could use a more comprehesive regex to test URL validity, but then how would we know
-            // which part of the validatiion it failed?
+            // which part of the validation it failed?
             if (value.startsWith('https://')) {
               parsed.url = value;
             } else {
@@ -147,26 +190,38 @@
 
       parsed.others = others;
       parsed.req = req;
-        
+      
+      
       // Need to do bitpay format as well? Probably
       if (address) {
+        var addressLowerCase = address.toLowerCase();
+        var bch = bitcoinCashJsService.getBitcoinCashJs();
         // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
         var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
-        var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
-        var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        
+        //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
 
-        if (legacyRe.test(address) && bitcore.Address.isValid(address, 'livenet')) {
+        if (bitcore.Address.isValid(address, 'livenet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = false;
 
-        } else if (legacyTestnetRe.test(address) && bitcore.Address.isValid(address, 'testnet')) {
+        } else if (bitcore.Address.isValid(address, 'testnet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = true;
 
+          // bitcoinCaashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
+       // } else if (isValidCashAddr(addressLowerCase, 'livenet')) {
+        } else if (cashAddrRe.test(address) && parsed.testnet) {
+          var cashAddr = 'bchtest:' + addressLowerCase;
+          parsed.address = cashAddr;
+          parsed.coin = 'bch';
+          // TODO: Get legacy address
+          
         } else if (cashAddrRe.test(address)) {
-          var cashAddr = 'bitcoincash:' + address.toLowerCase();
+          var cashAddr = 'bitcoincash:' + addressLowerCase;
           parsed.address = cashAddr;
           parsed.coin = 'bch';
 
@@ -175,13 +230,14 @@
 
           parsed.testnet = false;  
 
-        } // TODO: Check for private key
+        } 
+          
+      }
 
 
-        // TODO: identify different types of addresses
 
         // TODO: Check for a private key here too
-      }
+      
 
       // If has no address, must have Url.
       parsed.isValid = !!(parsed.address || parsed.url);
