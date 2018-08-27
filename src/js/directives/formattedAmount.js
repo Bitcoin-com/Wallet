@@ -165,7 +165,6 @@
           break;
       }
       $scope.canShow = true;
-      $scope.$apply();
     };
 
     function getDecimalPlaces(currency) {

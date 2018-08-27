@@ -304,10 +304,13 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   function refreshAmountSection(scrollPos) {
-    var AMOUNT_HEIGHT_BASE = 270;
+    var AMOUNT_HEIGHT_BASE = 210;
     $scope.showBalanceButton = false;
     if ($scope.status) {
       $scope.showBalanceButton = ($scope.status.totalBalanceSat != $scope.status.spendableAmount);
+      if ($scope.showBalanceButton) {
+        AMOUNT_HEIGHT_BASE = 270;
+      }
     }
     if (!$scope.amountIsCollapsible) {
       var t = ($scope.showBalanceButton ? 15 : 45);
