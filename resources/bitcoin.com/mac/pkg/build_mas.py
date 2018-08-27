@@ -178,11 +178,22 @@ def codesign_app(config, args):
 
   plistlib.writePlist(child_entitlements, tmp_child_entitlements)
   info('Child entitlements: %s' % tmp_child_entitlements)
-  framework = glob(args.output, 'nwjs Framework.framework', returnOnFound=True)
-  system('codesign -f --verbose -s "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, framework))
-  helperApp = glob(args.output, 'nwjs Helper.app', returnOnFound=True)
-  system('codesign -f --verbose -s "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, helperApp))
+  appModeLoader = glob(args.output, 'app_mode_loader', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, appModeLoader))
+  
+  crashpadHandler = glob(os.path.join(args.output, 'Contents/Versions/55.0.2883.87/nwjs Framework.framework/Versions/A'), 'crashpad_handler', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, crashpadHandler))
+  
+  libffmpeg = glob(os.path.join(args.output, 'Contents/Versions/55.0.2883.87/nwjs Framework.framework/Versions/A'), 'libffmpeg.dylib', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, libffmpeg))
+  libnode = glob(os.path.join(args.output, 'Contents/Versions/55.0.2883.87/nwjs Framework.framework/Versions/A'), 'libnode.dylib', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, libnode))
 
+  helperApp = glob(args.output, 'nwjs Helper.app', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, helperApp))
+  framework = glob(args.output, 'nwjs Framework.framework', returnOnFound=True)
+  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, framework))
+  
   ## sign parent app
   (_, tmp_parent_entitlements) = tempfile.mkstemp()
   if config.has_option('Sign', 'ParentEntitlements'):

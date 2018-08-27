@@ -8,9 +8,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     exec: {
-      get_nwjs_for_pkg: {
-        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
-      },
       create_others_dist: {
         command: 'sh webkitbuilds/create-others-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
       },
@@ -364,7 +361,7 @@ module.exports = function(grunt) {
   grunt.registerTask('desktop-others', ['prod', 'nwjs:others', 'copy:linux', 'exec:create_others_dist']);
 
   // Build desktop osx pkg
-  grunt.registerTask('desktop-osx-pkg', ['prod', 'exec:get_nwjs_for_pkg', 'nwjs:pkg', 'exec:create_pkg_dist']);
+  grunt.registerTask('desktop-osx-pkg', ['prod', 'nwjs:pkg', 'exec:create_pkg_dist']);
 
   // Build desktop osx dmg
   grunt.registerTask('desktop-osx-dmg', ['prod', 'nwjs:dmg', 'exec:create_dmg_dist']);
