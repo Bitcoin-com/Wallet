@@ -43,20 +43,19 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         });
       }
 
-      if ($scope.isNW) {
-        latestReleaseService.checkLatestRelease(function(err, newRelease) {
-          if (err) {
-            $log.warn(err);
-            return;
-          }
-          if (newRelease) {
-            $scope.newRelease = true;
-            $scope.updateText = gettextCatalog.getString('There is a new version of {{appName}} available', {
-              appName: $scope.name
-            });
-          }
-        });
-      }
+      latestReleaseService.checkLatestRelease(function(err, newReleaseData) {
+        if (err) {
+          $log.warn(err);
+          return;
+        }
+        if (newReleaseData) {
+          $scope.newRelease = true;
+          $scope.newReleaseText = gettextCatalog.getString('There is a new version of {{appName}} available', {
+            appName: $scope.name
+          });
+          $scope.newReleaseNotes = newReleaseData.releaseNotes;
+        }
+      });
     };
 
     function onEnter(event, data) {
