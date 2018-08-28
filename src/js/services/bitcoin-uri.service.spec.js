@@ -240,36 +240,68 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
-  it('private key compressed mainnet', function() {
+  it('private key for compressed pubkey mainnet', function() {
 
     var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.wifPrivateKey).toBe('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
+    expect(parsed.testnet).toBe(false);
   });
 
-  it('private key compressed mainnet with wrong checksum', function() {
+  it('private key for compressed pubkey mainnet with wrong checksum', function() {
 
     var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTu');
 
     expect(parsed.isValid).toBe(false);
   });
 
-  it('private key uncompressed mainnet', function() {
+  it('private key for compressed pubkey testnet', function() {
+
+    var parsed = bitcoinUriService.parse('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.wifPrivateKey).toBe('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm');
+    expect(parsed.testnet).toBe(true);
+  });
+
+  it('private key for compressed pubkey testnet with wrong checksum', function() {
+
+    var parsed = bitcoinUriService.parse('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMM');
+
+    expect(parsed.isValid).toBe(false);
+  });
+
+  it('private key for uncompressed pubkey mainnet', function() {
 
     var parsed = bitcoinUriService.parse('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.wifPrivateKey).toBe('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
+    expect(parsed.testnet).toBe(false);
   });
 
-  it('private key uncompressed mainnet with wrong checksum', function() {
+  it('private key for uncompressed pubkey mainnet with wrong checksum', function() {
 
     var parsed = bitcoinUriService.parse('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTTwx');
 
     expect(parsed.isValid).toBe(false);
   });
 
-  // TODO: Tests for private key variations. (testnet)
+  it('private key for uncompressed pubkey testnet', function() {
+
+    var parsed = bitcoinUriService.parse('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcc');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.wifPrivateKey).toBe('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcc');
+    expect(parsed.testnet).toBe(true);
+  });
+
+  it('private key for uncompressed pubkey testnet with wrong checksum', function() {
+
+    var parsed = bitcoinUriService.parse('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcC');
+
+    expect(parsed.isValid).toBe(false);
+  });
 
 });
