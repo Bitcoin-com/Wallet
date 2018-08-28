@@ -372,4 +372,11 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
+  it('URL only', function() {
+
+    var parsed = bitcoinUriService.parse('https://www.google.com');
+
+    expect(parsed.isValid).toBe(false);
+  });
+
 });
