@@ -140,6 +140,17 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.testnet).toBe(false);
   });
 
+  it('Bitpay without prefix', function() {
+
+    var parsed = bitcoinUriService.parse('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.legacyAddress).toBe('13LYEsnPqogE2SqJ325u1ZfiWxSWEo6uyo');
+    expect(parsed.testnet).toBe(false);
+  });
+
   it('legacy address', function() {
 
     var parsed = bitcoinUriService.parse('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
@@ -195,19 +206,13 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.testnet).toBe(false);
   });
 
+  it('copay invitation', function() {
 
-  it('Bitpay without prefix', function() {
-
-    var parsed = bitcoinUriService.parse('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
+    var parsed = bitcoinUriService.parse('PD5B7rEEj72st9d5nFszyuKxJP6FAGS7idVC2SMqiMxUcWVd8JifZDJw1UgjUctxefUFE3Sz6qLbch');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
-    expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('13LYEsnPqogE2SqJ325u1ZfiWxSWEo6uyo');
-    expect(parsed.testnet).toBe(false);
+    expect(parsed.copayInvitation).toBe('PD5B7rEEj72st9d5nFszyuKxJP6FAGS7idVC2SMqiMxUcWVd8JifZDJw1UgjUctxefUFE3Sz6qLbch');
   });
-
-
 
   // Invalid addresses from https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md
   it('invalid cashAddr style 1', function() {
@@ -234,4 +239,20 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bchreg:555555555555555555555555555555555555555555555udxmlmrz');
     expect(parsed.isValid).toBe(false);
   });
+
+  it('private key compressed mainnet', function() {
+
+    var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.wifPrivateKey).toBe('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
+  });
+
+  it('private key compressed mainnet with wrong checksum', function() {
+
+    var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTu');
+
+    expect(parsed.isValid).toBe(false);
+  });
+
 });

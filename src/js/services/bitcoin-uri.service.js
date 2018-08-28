@@ -108,6 +108,7 @@
       address: '',
       amount: '',
       coin: '',
+      copayInvitation: '',
       isValid: false,
       label: '',
       legacyAddress: '',
@@ -120,7 +121,8 @@
         "req-param1": ""
       },
       testnet: false,
-      url: ''
+      url: '',
+      wifPrivateKey: ''
 
     }
 
@@ -244,18 +246,22 @@
       parsed.req = req;
       
       
-      // Need to do bitpay format as well? Probably
       if (address) {
         var addressLowerCase = address.toLowerCase();
-        var bch = bitcoinCashJsService.getBitcoinCashJs();
         // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
-        var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
-        
+        //var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
+        var copayRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        var privateKeyUncompressedRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyUncompressedTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyCompressedRe = /^[KL][1-9A-HJ-NP-Za-km-z]{51}$/;
+        var privateKeyCompressedTestnetRe = /^[c][1-9A-HJ-NP-Za-km-z]{51}$/;
+      
         var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
         var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
         var cashAddrMainnet = cashAddrOnMainnet(addressLowerCase);
+        var privateKey = '';
 
         if (parsed.testnet && cashAddrTestnet) {
           parsed.address = addressLowerCase;
@@ -282,18 +288,32 @@
           parsed.address = address;
           parsed.coin = 'bch';
           parsed.legacyAddress = bitpayAddrMainnet.toString();
-          parsed.testnet = false;  
+          parsed.testnet = false;
+
+        } else if (copayRe.test(address) ) {
+          parsed.copayInvitation = address;
+
+        } else if (privateKeyUncompressedRe.test(address) || privateKeyCompressedRe.test(address)) {
+          privateKey = address;
+          try {
+            new bitcore.PrivateKey(privateKey, 'livenet');
+            parsed.wifPrivateKey = privateKey;
+            parsed.testnet = false;
+          } catch (e) {}
+
+        } else if (privateKeyUncompressedTestnetRe.test(address) || privateKeyCompressedTestnetRe.test(address)) {
+          privateKey = address;
+          try {
+            new bitcore.PrivateKey(privateKey, 'testnet');
+            parsed.wifPrivateKey = privateKey;
+            parsed.testnet = true;
+          } catch (e) {}
         }
           
       }
 
-
-
-      // TODO: Check for a private key here too, including WIF format, etc.
-      
-
       // If has no address, must have Url.
-      parsed.isValid = !!(parsed.address || parsed.url);
+      parsed.isValid = !!(parsed.address || parsed.url || parsed.copayInvitation || parsed.wifPrivateKey);
 
       return parsed;
     }
