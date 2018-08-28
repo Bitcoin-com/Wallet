@@ -178,11 +178,6 @@ def codesign_app(config, args):
 
   plistlib.writePlist(child_entitlements, tmp_child_entitlements)
   info('Child entitlements: %s' % tmp_child_entitlements)
-  appModeLoader = glob(args.output, 'app_mode_loader', returnOnFound=True)
-  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, appModeLoader))
-  
-  crashpadHandler = glob(os.path.join(args.output, 'Contents/Versions/55.0.2883.87/nwjs Framework.framework/Versions/A'), 'crashpad_handler', returnOnFound=True)
-  system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, crashpadHandler))
   
   libffmpeg = glob(os.path.join(args.output, 'Contents/Versions/55.0.2883.87/nwjs Framework.framework/Versions/A'), 'libffmpeg.dylib', returnOnFound=True)
   system('codesign --deep --force --verbose --verify --sign "%s" --entitlements %s --deep "%s"' % (identity, tmp_child_entitlements, libffmpeg))
