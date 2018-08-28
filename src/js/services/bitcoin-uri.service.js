@@ -12,24 +12,12 @@
   function bitcoinUriService(bitcoinCashJsService, bwcService, $log) {
     var bch = bitcoinCashJsService.getBitcoinCashJs();
     var bitcore = bwcService.getBitcore();
-    var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
 
     var service = {
      parse: parse 
     };
 
     return service;
-
-    function generateTestData() {
-      var privateKey = new bch.PrivateKey('testnet');
-      var address1 = privateKey.toAddress();
-      console.log('legacy pub:', address1.toString());
-      //var addrss = bitcoinCashJsService.readAddress(address1);
-      //console.log('generated:', addrss.cashaddr);
-      //bch.Address.fromString(address1, 'testnet');
-      console.log('generated:', address1.toString('cashaddr'));
-     
-    }
     
     function bitpayAddrOnMainnet(address) {
       var Address = bch.Address;
@@ -51,7 +39,6 @@
       }
       return result;
     }
-
 
     function cashAddrOnMainnet(address) {
       var Address = bch.Address;

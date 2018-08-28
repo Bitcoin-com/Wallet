@@ -138,6 +138,17 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.testnet).toBe(false);
   });
 
+  it('Bitcoin uri with slash', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoin:/1GhpYmbRaf73AZRxDwAGr6653iZBGzdgeA');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('btc');
+    expect(parsed.publicAddress.asReceived).toBe('1GhpYmbRaf73AZRxDwAGr6653iZBGzdgeA');
+    expect(parsed.publicAddress.legacy).toBe('1GhpYmbRaf73AZRxDwAGr6653iZBGzdgeA');
+    expect(parsed.testnet).toBe(false);
+  });
+
   it('Bitcoin uri with slashes', function() {
 
     var parsed = bitcoinUriService.parse('bitcoin://18PCPhgZJjLxe9g3Q1BXLpL5aVut1fW3aX');
@@ -212,6 +223,17 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress.asReceived).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
     expect(parsed.publicAddress.legacy).toBe('1JXsK3HSFqoMnwh4Mevf5bTgqPcgNWX7ic');
+    expect(parsed.testnet).toBe(false);
+  });
+
+  it('cashAddr with slash', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash:/qzdectfmuw0xxztfx7mh045830dqcshj85hr44l35a');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.asReceived).toBe('qzdectfmuw0xxztfx7mh045830dqcshj85hr44l35a');
+    expect(parsed.publicAddress.legacy).toBe('1FBnq5gZhzTvvcJBjA7C2P3bKQZCiJaG1x');
     expect(parsed.testnet).toBe(false);
   });
 
