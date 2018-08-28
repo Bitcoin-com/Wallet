@@ -293,6 +293,13 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
+  it('non-string', function() {
+
+    var parsed = bitcoinUriService.parse([1, 2, 3, 4]);
+
+    expect(parsed.isValid).toBe(false);
+  });
+
   it('private key encrypted with BIP38', function() {
 
     var parsed = bitcoinUriService.parse('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');

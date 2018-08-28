@@ -126,6 +126,10 @@
         isValid: false
       };
 
+      if (typeof data !== 'string') {
+        return parsed;
+      }
+
       // Identify prefix
       var trimmed = data.trim();
       var colonSplit = /^([\w-]*):?(.*)$/.exec(trimmed);
