@@ -162,10 +162,20 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.testnet).toBe(true);
   });
 
+  it('cashAddr uppercase', function() {
+
+    var parsed = bitcoinUriService.parse('BITCOINCASH:QZZG9NMC5VX8GAP6XFATX3TWNSDN2YRMCSSULSMY44');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.legacyAddress).toBe('1D5euC1yUbHiNpXreQrUUYt7LNevD3cviR');
+    expect(parsed.testnet).toBe(false);
+  });
+
   it('cashAddr with prefix', function() {
 
     var parsed = bitcoinUriService.parse('bitcoincash:qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
-    console.log('parsed:', JSON.stringify(parsed));
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.address).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');

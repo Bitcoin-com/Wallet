@@ -96,49 +96,6 @@
       }
       return result;
     }
-
-    function isValidCashAddr(address, network) {
-      
-      var a = address.replace('bitcoincash:', '');
-      var result = {};
-      if (a[0] == '1') {
-        result = Address.fromString(a, 'livenet', 'pubkeyhash');
-      } else if (a[0] == '3') {
-        result = Address.fromString(a, 'livenet', 'scripthash');
-      } else if (a[0] == 'C') {
-        result = Address.fromString(a, 'livenet', 'pubkeyhash', BitpayFormat);
-      } else if (a[0] == 'H') {
-        result = Address.fromString(a, 'livenet', 'scripthash', BitpayFormat);
-      } else if (a[0] == 'q') {
-        result = Address.fromString(address, 'livenet', 'pubkeyhash', CashAddrFormat);
-      } else if (a[0] == 'p') {
-        result = Address.fromString(address, 'livenet', 'scripthash', CashAddrFormat);
-      } else {
-        return null;
-      }
-
-      var isValid = false;
-
-      var prefix = network === 'testnet' ? 'bchtest:' : 'bitcoincash:';
-
-      try {
-        if (cashAddrRe.test(address)) {
-          // bitcoinCashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
-          var bchAddresses = bitcoinCashJsService.readAddress(address.toLowerCase());
-          if (bchAddresses) {
-            var legacyAddress = bchAddresses.legacy;
-            if (bch.Address.isValid(legacyAddress, network)) {
-              isValid = true;
-            }
-          }
-        }
-      } catch (e) {
-        // Nop - Must not be a valid cashAddr.
-        $log.error('Error validating address.', e);
-      }
-      console.log(address,'isValidCashAddr:', isValid);
-      return isValid;
-    }
     
 
     /*
@@ -170,7 +127,7 @@
     // Need to do testnet, and copay too
 
     */
-   // bitcoincash:?r=https://bitpay.com/i/GLRoZMZxaWBqLqpoXexzoD
+
     function parse(uri) {
       var parsed = {
         isValid: false
