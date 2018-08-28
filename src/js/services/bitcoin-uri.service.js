@@ -311,12 +311,12 @@
           parsed.legacyAddress = cashAddrMainnet.toString();
           parsed.testnet = false;  
 
-        } else if (bitcore.Address.isValid(address, 'livenet') && parsed.coin !== 'bch') {
+        } else if (bitcore.Address.isValid(address, 'livenet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = false;
 
-        } else if (bitcore.Address.isValid(address, 'testnet')  && parsed.coin !== 'bch') {
+        } else if (bitcore.Address.isValid(address, 'testnet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = true;

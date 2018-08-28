@@ -17,7 +17,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoin:?r=https://bitpay.com/i/CwzbKP3k3JNgXJBfuoerDr');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBeUndefined()
+    expect(parsed.address).toBeUndefined();
     expect(parsed.coin).toBe('btc');
     expect(parsed.legacyAddress).toBeUndefined();
     expect(parsed.testnet).toBeUndefined();
@@ -29,7 +29,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:?r=https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBeUndefined()
+    expect(parsed.address).toBeUndefined();
     expect(parsed.coin).toBe('bch');
     expect(parsed.legacyAddress).toBeUndefined();
     expect(parsed.testnet).toBeUndefined();
@@ -40,7 +40,22 @@ fdescribe('bitcoinUriService', function() {
 
     var parsed = bitcoinUriService.parse('bitcoincash:1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
 
-    expect(parsed.isValid).toBe(false);
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.legacyAddress).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
+    expect(parsed.testnet).toBe(false);
+  });
+
+  it('Bitcoin Cash prefix with legacy address on testnet', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash:mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.legacyAddress).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
+    expect(parsed.testnet).toBe(true);
   });
 
   it('Bitcoin Cash uri with extended params', function() {
