@@ -121,13 +121,13 @@
 
     */
 
-    function parse(uri) {
+    function parse(data) {
       var parsed = {
         isValid: false
       };
 
       // Identify prefix
-      var trimmed = uri.trim();
+      var trimmed = data.trim();
       var colonSplit = /^([\w-]*):?(.*)$/.exec(trimmed);
       if (!colonSplit) {
         return parsed;
