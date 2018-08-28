@@ -1,6 +1,7 @@
 'use strict';
 
-// https://en.bitcoin.it/wiki/BIP_0072
+// https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki
+// https://github.com/bitcoin/bips/blob/master/bip-0072.mediawiki
 
 (function(){
 
@@ -30,9 +31,91 @@
      
     }
     
+    function bitpayAddrOnMainnet(address) {
+      var Address = bch.Address;
+      var BitpayFormat = Address.BitpayFormat;
+
+      var mainnet = bch.Networks.mainnet;
+
+      var result = null;
+      if (address[0] == 'C') {
+        try {
+          result = Address.fromString(address, mainnet, 'pubkeyhash', BitpayFormat);
+        } catch (e) {};
+
+      } else if (address[0] == 'H') {
+        try {
+          result = Address.fromString(address, mainnet, 'scripthash', BitpayFormat);
+        } catch (e) {};
+
+      }
+      return result;
+    }
+
+
+    function cashAddrOnMainnet(address) {
+      var Address = bch.Address;
+      var CashAddrFormat = Address.CashAddrFormat;
+
+      var mainnet = bch.Networks.mainnet;
+
+      var prefixed = 'bitcoincash:' + address;
+      var result = null;
+      if (address[0] == 'q') {
+        try {
+          result = Address.fromString(prefixed, mainnet, 'pubkeyhash', CashAddrFormat);
+        } catch (e) {};
+
+      } else if (address[0] == 'p') {
+        try {
+          result = Address.fromString(prefixed, mainnet, 'scripthash', CashAddrFormat);
+        } catch (e) {};
+
+      }
+      return result;
+    }
+
+    function cashAddrOnTestnet(address) {
+      var Address = bch.Address;
+      var CashAddrFormat = Address.CashAddrFormat;
+
+      var testnet = bch.Networks.testnet;
+
+      var prefixed = 'bchtest:' + address;
+      var result = null;
+      if (address[0] == 'q') {
+        try {
+          result = Address.fromString(prefixed, testnet, 'pubkeyhash', CashAddrFormat);
+        } catch (e) {};
+
+      } else if (address[0] == 'p') {
+        try {
+          result = Address.fromString(prefixed, testnet, 'scripthash', CashAddrFormat);
+        } catch (e) {};
+
+      }
+      return result;
+    }
 
     function isValidCashAddr(address, network) {
       
+      var a = address.replace('bitcoincash:', '');
+      var result = {};
+      if (a[0] == '1') {
+        result = Address.fromString(a, 'livenet', 'pubkeyhash');
+      } else if (a[0] == '3') {
+        result = Address.fromString(a, 'livenet', 'scripthash');
+      } else if (a[0] == 'C') {
+        result = Address.fromString(a, 'livenet', 'pubkeyhash', BitpayFormat);
+      } else if (a[0] == 'H') {
+        result = Address.fromString(a, 'livenet', 'scripthash', BitpayFormat);
+      } else if (a[0] == 'q') {
+        result = Address.fromString(address, 'livenet', 'pubkeyhash', CashAddrFormat);
+      } else if (a[0] == 'p') {
+        result = Address.fromString(address, 'livenet', 'scripthash', CashAddrFormat);
+      } else {
+        return null;
+      }
 
       var isValid = false;
 
@@ -144,55 +227,61 @@
       var address = questionMarkSplit[1];
       var params = questionMarkSplit[2];
   
-      var paramsSplit = params.split('&');
-      var others;
-      var req;
-      paramsSplit.forEach(function onParam(param){
-        var valueSplit = param.split('=');
-        if (valueSplit.length !== 2) {
-          return parsed;
-        }
+      if (params.length > 0) {
+        var paramsSplit = params.split('&');
+        var others;
+        var req;
+        var paramCount = paramsSplit.length;
+        for(var i = 0; i < paramCount; i++) {
+          var param = paramsSplit[i];
+          var valueSplit = param.split('=');
+          if (valueSplit.length !== 2) {
+            return parsed;
+          }
 
-        var key = valueSplit[0];
-        var value = valueSplit[1];
-        switch(key) {
-          case 'amount':
-            if (parseFloat(value)) {
-              parsed.amount = value;
-            } else {
-              return parsed;
-            }  
-          break;
+          var key = valueSplit[0];
+          var value = valueSplit[1];
+          var decodedValue = decodeURIComponent(value);
+          switch(key) {
+            case 'amount':
+            var amount = parseFloat(decodedValue);
+              if (amount) { // Checking for NaN, or no numbers at all etc.
+                parsed.amount = decodedValue;
+              } else {
+                return parsed;
+              }  
+            break;
 
-          case 'label':
-            parsed.label = value;
-          break;
+            case 'label':
+              parsed.label = decodedValue;
+            break;
 
-          case 'message':
-            parsed.message = value;
-          break;
+            case 'message':
+              parsed.message = decodedValue;
+            break;
 
-          case 'r':
-            // Could use a more comprehesive regex to test URL validity, but then how would we know
-            // which part of the validation it failed?
-            if (value.startsWith('https://')) {
-              parsed.url = value;
-            } else {
-              return parsed;
-            }
-          break;
+            case 'r':
+              // Could use a more comprehesive regex to test URL validity, but then how would we know
+              // which part of the validation it failed?
+              if (decodedValue.startsWith('https://')) {
+                parsed.url = decodedValue;
+              } else {
+                return parsed;
+              }
+            break;
 
-          default:
-            if (key.startsWith('req-')) {
-              req = req || {};
-              req[key] = value;
-            } else {
-              others = others || {};
-              others[key] = value;
-            }
-        }
+            default:
+              if (key.startsWith('req-')) {
+                req = req || {};
+                req[key] = decodedValue;
+              } else {
+                others = others || {};
+                others[key] = decodedValue;
+              }
+          }
 
-      });
+        };
+      }
 
       parsed.others = others;
       parsed.req = req;
@@ -207,43 +296,43 @@
         
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
+        var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
+        var cashAddrMainnet = cashAddrOnMainnet(addressLowerCase);
 
-        if (bitcore.Address.isValid(address, 'livenet')) {
+        if (parsed.testnet && cashAddrTestnet) {
+          parsed.address = addressLowerCase;
+          parsed.coin = 'bch';
+          parsed.legacyAddress = cashAddrTestnet.toString();
+          
+        } else if (cashAddrMainnet) {
+          parsed.address = addressLowerCase;
+          parsed.coin = 'bch';
+          parsed.legacyAddress = cashAddrMainnet.toString();
+          parsed.testnet = false;  
+
+        } else if (bitcore.Address.isValid(address, 'livenet') && parsed.coin !== 'bch') {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = false;
 
-        } else if (bitcore.Address.isValid(address, 'testnet')) {
+        } else if (bitcore.Address.isValid(address, 'testnet')  && parsed.coin !== 'bch') {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = true;
 
-          // bitcoinCaashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
-       // } else if (isValidCashAddr(addressLowerCase, 'livenet')) {
-        } else if (cashAddrRe.test(address) && parsed.testnet) {
-          var cashAddr = 'bchtest:' + addressLowerCase;
-          parsed.address = cashAddr;
+        } else if (bitpayAddrMainnet) {
+          parsed.address = address;
           parsed.coin = 'bch';
-          // TODO: Get legacy address
-
-          
-        } else if (cashAddrRe.test(address)) {
-          var cashAddr = 'bitcoincash:' + addressLowerCase;
-          parsed.address = cashAddr;
-          parsed.coin = 'bch';
-
-          var bchAddresses = bitcoinCashJsService.readAddress(cashAddr);
-          parsed.legacyAddress = bchAddresses['legacy'];
-
+          parsed.legacyAddress = bitpayAddrMainnet.toString();
           parsed.testnet = false;  
-
-        } 
+        }
           
       }
 
 
 
-        // TODO: Check for a private key here too
+      // TODO: Check for a private key here too, including WIF format, etc.
       
 
       // If has no address, must have Url.
