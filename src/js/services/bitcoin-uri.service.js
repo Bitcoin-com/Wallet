@@ -105,26 +105,29 @@
 
     returns: 
     {
-      address: '',
       amount: '',
       coin: '',
       copayInvitation: '',
-      encryptedPrivateKey: '',
       isValid: false,
       label: '',
-      legacyAddress: '',
       message: '',
       other: {
         somethingIDontUnderstand: 'Its value'
       },
+      privateKey: {
+        encrypted: '',
+        wif: ''
+      }'',
+      publicAddress: {
+        asReceived: '',
+        legacy: '',
+      },
       req: {
-        "req-param0": "",
-        "req-param1": ""
+        "req-param0": '',
+        "req-param1": ''
       },
       testnet: false,
-      url: '',
-      wifPrivateKey: ''
-
+      url: '' // For BIP70 
     }
 
     // Need to do testnet, and copay too
@@ -249,8 +252,6 @@
       
       if (address) {
         var addressLowerCase = address.toLowerCase();
-        // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
-        //var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
         var copayInvitationRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
@@ -268,32 +269,43 @@
         if (parsed.testnet && cashAddrTestnet) {
           parsed.address = addressLowerCase;
           parsed.coin = 'bch';
-          parsed.legacyAddress = cashAddrTestnet.toString();
+          parsed.publicAddress = {
+            asReceived: addressLowerCase,
+            legacy: cashAddrTestnet.toString()
+          };
           parsed.isValid = true;
           
         } else if (cashAddrMainnet) {
-          parsed.address = addressLowerCase;
           parsed.coin = 'bch';
-          parsed.legacyAddress = cashAddrMainnet.toString();
+          parsed.publicAddress = {
+            asReceived: addressLowerCase,
+            legacy: cashAddrMainnet.toString()
+          };
           parsed.testnet = false;
           parsed.isValid = true;  
 
         } else if (bitcore.Address.isValid(address, 'livenet')) {
-          parsed.address = address;
-          parsed.legacyAddress = address;
+          parsed.publicAddress = {
+            asReceived: address,
+            legacy: address
+          };
           parsed.testnet = false;
           parsed.isValid = true;
 
         } else if (bitcore.Address.isValid(address, 'testnet')) {
-          parsed.address = address;
-          parsed.legacyAddress = address;
+          parsed.publicAddress = {
+            asReceived: address,
+            legacy: address
+          };
           parsed.testnet = true;
           parsed.isValid = true;
 
         } else if (bitpayAddrMainnet) {
-          parsed.address = address;
           parsed.coin = 'bch';
-          parsed.legacyAddress = bitpayAddrMainnet.toString();
+          parsed.publicAddress = {
+            asReceived: address,
+            legacy: bitpayAddrMainnet.toString()
+          };
           parsed.testnet = false;
           parsed.isValid = true;
 
@@ -305,7 +317,7 @@
           privateKey = address;
           try {
             new bitcore.PrivateKey(privateKey, 'livenet');
-            parsed.wifPrivateKey = privateKey;
+            parsed.privateKey = { wif: privateKey };
             parsed.testnet = false;
             parsed.isValid = true;
           } catch (e) {}
@@ -314,13 +326,13 @@
           privateKey = address;
           try {
             new bitcore.PrivateKey(privateKey, 'testnet');
-            parsed.wifPrivateKey = privateKey;
+            parsed.privateKey = { wif: privateKey };
             parsed.testnet = true;
             parsed.isValid = true;
           } catch (e) {}
 
         } else if (privateKeyEncryptedRe.test(address)) {
-          parsed.encryptedPrivateKey = address;
+          parsed.privateKey = { encrypted: address };
           parsed.isValid = true;
         }
           

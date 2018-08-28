@@ -17,10 +17,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoin:?r=https://bitpay.com/i/CwzbKP3k3JNgXJBfuoerDr');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBeUndefined();
     expect(parsed.coin).toBe('btc');
-    expect(parsed.legacyAddress).toBeUndefined();
     expect(parsed.testnet).toBeUndefined();
+    expect(parsed.publicAddress).toBeUndefined();
     expect(parsed.url).toBe('https://bitpay.com/i/CwzbKP3k3JNgXJBfuoerDr');
   });
 
@@ -29,9 +28,8 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:?r=https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBeUndefined();
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBeUndefined();
+    expect(parsed.publicAddress).toBeUndefined();
     expect(parsed.testnet).toBeUndefined();
     expect(parsed.url).toBe('https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
   });
@@ -41,9 +39,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
+    expect(parsed.publicAddress.asReceived).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
+    expect(parsed.publicAddress.legacy).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -52,9 +50,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
+    expect(parsed.publicAddress.asReceived).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
+    expect(parsed.publicAddress.legacy).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -63,11 +61,11 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc?unknown=something&mystery=Melton%20probang&req-one=ichi&req-beta=Ni%20san');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('1KrJRNApaAKRvHL5kDtL69nwmAJ31apAnu');
     expect(parsed.others.mystery).toBe('Melton probang');
     expect(parsed.others.unknown).toBe('something');
+    expect(parsed.publicAddress.asReceived).toBe('qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc');
+    expect(parsed.publicAddress.legacy).toBe('1KrJRNApaAKRvHL5kDtL69nwmAJ31apAnu');
     expect(parsed.req['req-beta']).toBe('Ni san');
     expect(parsed.req['req-one']).toBe('ichi');
     expect(parsed.testnet).toBe(false);
@@ -86,9 +84,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.coin).toBeUndefined();
-    expect(parsed.legacyAddress).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.publicAddress.asReceived).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.publicAddress.legacy).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -97,9 +95,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.coin).toBeUndefined();
-    expect(parsed.legacyAddress).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.publicAddress.asReceived).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.publicAddress.legacy).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -108,9 +106,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoin:15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
     expect(parsed.coin).toBe('btc');
-    expect(parsed.legacyAddress).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
+    expect(parsed.publicAddress.asReceived).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
+    expect(parsed.publicAddress.legacy).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -119,10 +117,10 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoin:1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT?label=Mr.%20Smith');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
     expect(parsed.coin).toBe('btc');
     expect(parsed.label).toBe('Mr. Smith');
-    expect(parsed.legacyAddress).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
+    expect(parsed.publicAddress.asReceived).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
+    expect(parsed.publicAddress.legacy).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -132,10 +130,10 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.amount).toBe('20.3');
-    expect(parsed.address).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
     expect(parsed.coin).toBe('btc');
     expect(parsed.label).toBe('Luke-Jr');
-    expect(parsed.legacyAddress).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
+    expect(parsed.publicAddress.asReceived).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
+    expect(parsed.publicAddress.legacy).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
     expect(parsed.message).toBe('Donation for project xyz');
     expect(parsed.testnet).toBe(false);
   });
@@ -145,9 +143,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('13LYEsnPqogE2SqJ325u1ZfiWxSWEo6uyo');
+    expect(parsed.publicAddress.asReceived).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
+    expect(parsed.publicAddress.legacy).toBe('13LYEsnPqogE2SqJ325u1ZfiWxSWEo6uyo');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -156,9 +154,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
     expect(parsed.coin).toBeUndefined();
-    expect(parsed.legacyAddress).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
+    expect(parsed.publicAddress.asReceived).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
+    expect(parsed.publicAddress.legacy).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -167,9 +165,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bchtest:qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('mqk5vE278ytt6LUZqd97wi8c3FHsSYREX4');
+    expect(parsed.publicAddress.asReceived).toBe('qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
+    expect(parsed.publicAddress.legacy).toBe('mqk5vE278ytt6LUZqd97wi8c3FHsSYREX4');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -178,9 +176,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('BITCOINCASH:QZZG9NMC5VX8GAP6XFATX3TWNSDN2YRMCSSULSMY44');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('1D5euC1yUbHiNpXreQrUUYt7LNevD3cviR');
+    expect(parsed.publicAddress.asReceived).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
+    expect(parsed.publicAddress.legacy).toBe('1D5euC1yUbHiNpXreQrUUYt7LNevD3cviR');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -189,9 +187,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('bitcoincash:qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('1JXsK3HSFqoMnwh4Mevf5bTgqPcgNWX7ic');
+    expect(parsed.publicAddress.asReceived).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
+    expect(parsed.publicAddress.legacy).toBe('1JXsK3HSFqoMnwh4Mevf5bTgqPcgNWX7ic');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -200,9 +198,9 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('qqen2y3l28dpk0dzsag8w027ds96u7z4pc0uxtl0nq');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.address).toBe('qqen2y3l28dpk0dzsag8w027ds96u7z4pc0uxtl0nq');
     expect(parsed.coin).toBe('bch');
-    expect(parsed.legacyAddress).toBe('15fm3EwqgBYcxkndALBfforueps5yWKReJ');
+    expect(parsed.publicAddress.asReceived).toBe('qqen2y3l28dpk0dzsag8w027ds96u7z4pc0uxtl0nq');
+    expect(parsed.publicAddress.legacy).toBe('15fm3EwqgBYcxkndALBfforueps5yWKReJ');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -245,7 +243,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.encryptedPrivateKey).toBe('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');
+    expect(parsed.privateKey.encrypted).toBe('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');
   });
 
   it('private key for compressed pubkey mainnet', function() {
@@ -253,7 +251,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.wifPrivateKey).toBe('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
+    expect(parsed.privateKey.wif).toBe('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -269,7 +267,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.wifPrivateKey).toBe('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm');
+    expect(parsed.privateKey.wif).toBe('cNJFgo1driFnPcBdBX8BrJrpxchBWXwXCvNH5SoSkdcF6JXXwHMm');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -285,7 +283,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.wifPrivateKey).toBe('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
+    expect(parsed.privateKey.wif).toBe('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -301,7 +299,7 @@ fdescribe('bitcoinUriService', function() {
     var parsed = bitcoinUriService.parse('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcc');
 
     expect(parsed.isValid).toBe(true);
-    expect(parsed.wifPrivateKey).toBe('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcc');
+    expect(parsed.privateKey.wif).toBe('92Pg46rUhgTT7romnV7iGW6W1gbGdeezqdbJCzShkCsYNzyyNcc');
     expect(parsed.testnet).toBe(true);
   });
 
