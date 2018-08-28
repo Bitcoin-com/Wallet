@@ -11,6 +11,42 @@ fdescribe('bitcoinUriService', function() {
     });
   });
   
+  
+
+  it('Bitcoin Cash BIP72', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash:?r=https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBeUndefined()
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.legacyAddress).toBeUndefined();
+    expect(parsed.testnet).toBeUndefined();
+    expect(parsed.url).toBe('https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
+  });
+
+  it('Bitcoin BIP72', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoin:?r=https://bitpay.com/i/CwzbKP3k3JNgXJBfuoerDr');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBeUndefined()
+    expect(parsed.coin).toBe('btc');
+    expect(parsed.legacyAddress).toBeUndefined();
+    expect(parsed.testnet).toBeUndefined();
+    expect(parsed.url).toBe('https://bitpay.com/i/CwzbKP3k3JNgXJBfuoerDr');
+  });
+
+  it('Bitcoin testnet address', function() {
+
+    var parsed = bitcoinUriService.parse('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.address).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.coin).toBeUndefined();
+    expect(parsed.legacyAddress).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
+    expect(parsed.testnet).toBe(true);
+  });
 
   it('Bitcoin testnet address', function() {
 

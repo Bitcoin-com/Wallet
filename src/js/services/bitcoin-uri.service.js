@@ -1,5 +1,7 @@
 'use strict';
 
+// https://en.bitcoin.it/wiki/BIP_0072
+
 (function(){
 
   angular
@@ -17,9 +19,7 @@
 
     return service;
 
-    
-
-    function isValidCashAddr(address, network) {
+    function generateTestData() {
       var privateKey = new bch.PrivateKey('testnet');
       var address1 = privateKey.toAddress();
       console.log('legacy pub:', address1.toString());
@@ -27,7 +27,13 @@
       //console.log('generated:', addrss.cashaddr);
       //bch.Address.fromString(address1, 'testnet');
       console.log('generated:', address1.toString('cashaddr'));
+     
+    }
+    
+
+    function isValidCashAddr(address, network) {
       
+
       var isValid = false;
 
       var prefix = network === 'testnet' ? 'bchtest:' : 'bitcoincash:';
@@ -219,6 +225,7 @@
           parsed.address = cashAddr;
           parsed.coin = 'bch';
           // TODO: Get legacy address
+
           
         } else if (cashAddrRe.test(address)) {
           var cashAddr = 'bitcoincash:' + addressLowerCase;
