@@ -109,6 +109,7 @@
       amount: '',
       coin: '',
       copayInvitation: '',
+      encryptedPrivateKey: '',
       isValid: false,
       label: '',
       legacyAddress: '',
@@ -250,13 +251,14 @@
         var addressLowerCase = address.toLowerCase();
         // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
         //var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
-        var copayRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
+        var copayInvitationRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
-        var privateKeyUncompressedRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
-        var privateKeyUncompressedTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
-        var privateKeyCompressedRe = /^[KL][1-9A-HJ-NP-Za-km-z]{51}$/;
-        var privateKeyCompressedTestnetRe = /^[c][1-9A-HJ-NP-Za-km-z]{51}$/;
+        var privateKeyEncryptedRe = /^6P[1-9A-HJ-NP-Za-km-z]{56}$/;
+        var privateKeyForUncompressedPublicKeyRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyForUncompressedPublicKeyTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyForCompressedPublicKeyRe = /^[KL][1-9A-HJ-NP-Za-km-z]{51}$/;
+        var privateKeyForCompressedPublicKeyTestnetRe = /^[c][1-9A-HJ-NP-Za-km-z]{51}$/;
       
         var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
         var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
@@ -267,53 +269,64 @@
           parsed.address = addressLowerCase;
           parsed.coin = 'bch';
           parsed.legacyAddress = cashAddrTestnet.toString();
+          parsed.isValid = true;
           
         } else if (cashAddrMainnet) {
           parsed.address = addressLowerCase;
           parsed.coin = 'bch';
           parsed.legacyAddress = cashAddrMainnet.toString();
-          parsed.testnet = false;  
+          parsed.testnet = false;
+          parsed.isValid = true;  
 
         } else if (bitcore.Address.isValid(address, 'livenet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = false;
+          parsed.isValid = true;
 
         } else if (bitcore.Address.isValid(address, 'testnet')) {
           parsed.address = address;
           parsed.legacyAddress = address;
           parsed.testnet = true;
+          parsed.isValid = true;
 
         } else if (bitpayAddrMainnet) {
           parsed.address = address;
           parsed.coin = 'bch';
           parsed.legacyAddress = bitpayAddrMainnet.toString();
           parsed.testnet = false;
+          parsed.isValid = true;
 
-        } else if (copayRe.test(address) ) {
+        } else if (copayInvitationRe.test(address) ) {
           parsed.copayInvitation = address;
+          parsed.isValid = true;
 
-        } else if (privateKeyUncompressedRe.test(address) || privateKeyCompressedRe.test(address)) {
+        } else if (privateKeyForUncompressedPublicKeyRe.test(address) || privateKeyForCompressedPublicKeyRe.test(address)) {
           privateKey = address;
           try {
             new bitcore.PrivateKey(privateKey, 'livenet');
             parsed.wifPrivateKey = privateKey;
             parsed.testnet = false;
+            parsed.isValid = true;
           } catch (e) {}
 
-        } else if (privateKeyUncompressedTestnetRe.test(address) || privateKeyCompressedTestnetRe.test(address)) {
+        } else if (privateKeyForUncompressedPublicKeyTestnetRe.test(address) || privateKeyForCompressedPublicKeyTestnetRe.test(address)) {
           privateKey = address;
           try {
             new bitcore.PrivateKey(privateKey, 'testnet');
             parsed.wifPrivateKey = privateKey;
             parsed.testnet = true;
+            parsed.isValid = true;
           } catch (e) {}
+
+        } else if (privateKeyEncryptedRe.test(address)) {
+          parsed.encryptedPrivateKey = address;
+          parsed.isValid = true;
         }
           
+      } else {
+        parsed.isValid = !!parsed.url; // BIP72
       }
-
-      // If has no address, must have Url.
-      parsed.isValid = !!(parsed.address || parsed.url || parsed.copayInvitation || parsed.wifPrivateKey);
 
       return parsed;
     }

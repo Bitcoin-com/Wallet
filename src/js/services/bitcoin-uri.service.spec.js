@@ -240,6 +240,14 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
+  it('private key encrypted with BIP38', function() {
+
+    var parsed = bitcoinUriService.parse('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.encryptedPrivateKey).toBe('6PRN5nEDmX842gsBzJryPu8Tw5kcsaQq1GPLcjVQPcEStvbFAtz11JX9pX');
+  });
+
   it('private key for compressed pubkey mainnet', function() {
 
     var parsed = bitcoinUriService.parse('5HueCGU8rMjxEXxiPuD5BDku4MkFqeZyd4dZ1jvhTVqvbTLvyTJ');
