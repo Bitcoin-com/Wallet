@@ -255,4 +255,21 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
+  it('private key uncompressed mainnet', function() {
+
+    var parsed = bitcoinUriService.parse('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.wifPrivateKey).toBe('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTMwx');
+  });
+
+  it('private key uncompressed mainnet with wrong checksum', function() {
+
+    var parsed = bitcoinUriService.parse('L18V3rAhCKEioPnJ4BHLCCsaYa8eSNFrMjNQ2EdwgeAdmBSnTTwx');
+
+    expect(parsed.isValid).toBe(false);
+  });
+
+  // TODO: Tests for private key variations. (testnet)
+
 });
