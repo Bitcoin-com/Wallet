@@ -168,14 +168,21 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         }
         return true;
     // Cash URI
-    } else if (allParsed.isValid && allParsed.publicAddress && allParsed.publicAddress.cashAddr) {
+    } else if (allParsed.isValid && allParsed.publicAddress && (allParsed.publicAddress.cashAddr || allParsed.publicAddress.bitpay)) {
         var coin = 'bch';
-        
-        var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
-        addr = bitcoinCashJsService.readAddress(prefix + allParsed.publicAddress.cashAddr).legacy;
-        var message = parsed.message;
 
-        var amount = parsed.amount ? parsed.amount : '';
+        var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
+        var addrIn = prefix + allParsed.publicAddress.cashAddr;
+
+        if (allParsed.publicAddress.bitpay) {
+          addrIn = allParsed.publicAddress.bitpay;
+          originalAddress = allParsed.publicAddress.bitpay;
+        }
+
+        addr = bitcoinCashJsService.readAddress(addrIn).legacy;
+        var message = allParsed.message;
+
+        var amount = allParsed.amount ? allParsed.amount : '';
 
         // paypro not yet supported on cash
         if (allParsed.url) {
