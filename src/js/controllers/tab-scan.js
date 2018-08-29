@@ -113,7 +113,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     contents = contents.result || contents;
 
     var parsed = bitcoinUriService.parse(contents);
-    if (parsed.isValid) {
+    if (parsed.isValid && !parsed.testnet) {
       incomingData.redir(contents);
     } else {
       var title = gettextCatalog.getString('Scan Failed');

@@ -115,7 +115,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
       }, 100);
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
-    if (allParsed.isValid && allParsed.coin && allParsed.url) {  
+    if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.testnet) {  
       var coin = allParsed.coin;
       data = allParsed.url;
       if (allParsed.coin == 'bch') {
@@ -168,12 +168,16 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         }
         return true;
     // Cash URI
-    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress) {
+    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress && !allParsed.testnet) {
         var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
         var addrIn = allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay || prefix + allParsed.publicAddress.cashAddr;
         originalAddress = allParsed.publicAddress.cashAddr ? null : allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
 
-        addr = bitcoinCashJsService.readAddress(addrIn).legacy;
+        var addresses = bitcoinCashJsService.readAddress(addrIn);
+        if (!addresses) {
+          return false;
+        } 
+        addr = addresses.legacy;
         var message = allParsed.message;
 
         var amount = allParsed.amount ? allParsed.amount : '';
