@@ -16,8 +16,7 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
   };
 
   $scope.startFreshSend = function() {
-    sendFlowService.clear();
-    $state.go('tabs.send');
+    sendFlowService.start();
   };
 
   $scope.importInit = function() {

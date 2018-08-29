@@ -4,9 +4,9 @@
 
 angular
   .module('copayApp.services')
-  .factory('sendFlowService', sendFlowService);
+  .factory('sendFlowStateService', sendFlowStateService);
   
-  function sendFlowService($log) {
+  function sendFlowStateService() {
 
     var service = {
       // A separate state variable so we can ensure it is cleared of everything,
@@ -23,15 +23,20 @@ angular
       previousStates: [],
 
       // Functions
+      init: init,
       clear: clear,
-      getStateClone: getStateClone,
+      getClone: getClone,
       map: map,
-      popState: popState,
-      pushState: pushState,
-      startSend: startSend
+      pop: pop,
+      push: push,
     };
 
     return service;
+
+    function init(params) {
+      clear();
+      map(params);
+    }
 
     function clear() {
       console.log("sendFlow clear()");
@@ -55,7 +60,7 @@ angular
     /**
      * Handy for debugging
      */
-    function getStateClone() {
+    function getClone() {
       var currentState = {};
       Object.keys(service.state).forEach(function forCurrentParam(key) {
         if (typeof service.state[key] !== 'function' && key !== 'previousStates') {
@@ -65,22 +70,13 @@ angular
       return currentState;
     }
 
-    /**
-     * Clears all previous state
-     */
-    function startSend(params) {
-      console.log('startSend()');
-      clear();
-      map(params);
-    }
-
     function map(params) {
       Object.keys(params).forEach(function forNewParam(key) {
         service.state[key] = params[key];
       });
     };
 
-    function popState() {
+    function pop() {
       console.log('sendFlow pop');
       if (service.previousStates.length) {
         var params = service.previousStates.pop();
@@ -91,9 +87,9 @@ angular
       }
     };
 
-    function pushState(params) {
+    function push(params) {
       console.log('sendFlow push');
-      var currentParams = getStateClone();
+      var currentParams = getClone();
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);
