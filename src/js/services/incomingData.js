@@ -168,16 +168,10 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         }
         return true;
     // Cash URI
-    } else if (allParsed.isValid && allParsed.publicAddress && (allParsed.publicAddress.cashAddr || allParsed.publicAddress.bitpay)) {
-        var coin = 'bch';
-
+    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress) {
         var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
-        var addrIn = prefix + allParsed.publicAddress.cashAddr;
-
-        if (allParsed.publicAddress.bitpay) {
-          addrIn = allParsed.publicAddress.bitpay;
-          originalAddress = allParsed.publicAddress.bitpay;
-        }
+        var addrIn = allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay || prefix + allParsed.publicAddress.cashAddr;
+        originalAddress = allParsed.publicAddress.cashAddr ? null : allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
 
         addr = bitcoinCashJsService.readAddress(addrIn).legacy;
         var message = allParsed.message;
@@ -186,17 +180,17 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
 
         // paypro not yet supported on cash
         if (allParsed.url) {
-          payproService.getPayProDetails(allParsed.url, coin, function(err, details) {
+          payproService.getPayProDetails(allParsed.url, allParsed.coin, function(err, details) {
             if (err) {
               if (addr && amount)
-                goSend(addr, amount, message, coin, serviceId, serviceData);
+                goSend(addr, amount, message, allParsed.coin, serviceId, serviceData);
               else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
-            handlePayPro(details, coin);
+            handlePayPro(details, allParsed.coin);
           });
         } else {
-          goSend(addr, amount, message, coin, serviceId, serviceData);
+          goSend(addr, amount, message, allParsed.coin, serviceId, serviceData);
         }
         return true;
 
