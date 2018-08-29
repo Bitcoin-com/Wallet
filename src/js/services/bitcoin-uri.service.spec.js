@@ -40,7 +40,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
     expect(parsed.publicAddress.legacy).toBe('1G9FA9fFnHfTYxvmXeAbBD9FwzPAVMbd3j');
     expect(parsed.testnet).toBe(false);
   });
@@ -51,7 +50,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
     expect(parsed.publicAddress.legacy).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
     expect(parsed.testnet).toBe(true);
   });
@@ -64,8 +62,7 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.coin).toBe('bch');
     expect(parsed.others.mystery).toBe('Melton probang');
     expect(parsed.others.unknown).toBe('something');
-    expect(parsed.publicAddress.asReceived).toBe('qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc');
-    expect(parsed.publicAddress.legacy).toBe('1KrJRNApaAKRvHL5kDtL69nwmAJ31apAnu');
+    expect(parsed.publicAddress.cashAddr).toBe('qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc');
     expect(parsed.req['req-beta']).toBe('Ni san');
     expect(parsed.req['req-one']).toBe('ichi');
     expect(parsed.testnet).toBe(false);
@@ -85,18 +82,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBeUndefined();
-    expect(parsed.publicAddress.asReceived).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
-    expect(parsed.publicAddress.legacy).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
-    expect(parsed.testnet).toBe(true);
-  });
-
-  it('Bitcoin testnet address', function() {
-
-    var parsed = bitcoinUriService.parse('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
-
-    expect(parsed.isValid).toBe(true);
-    expect(parsed.coin).toBeUndefined();
-    expect(parsed.publicAddress.asReceived).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.publicAddress.legacy).toBe('mtWcoToWhbtPoCby5fvs8xdBujT5GGenD4');
     expect(parsed.testnet).toBe(true);
   });
@@ -107,7 +92,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('btc');
-    expect(parsed.publicAddress.asReceived).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
     expect(parsed.publicAddress.legacy).toBe('15yCdKWVKRvfXMJpPYZBqMhiGKwjKzZdLN');
     expect(parsed.testnet).toBe(false);
   });
@@ -119,7 +103,6 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('btc');
     expect(parsed.label).toBe('Mr. Smith');
-    expect(parsed.publicAddress.asReceived).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
     expect(parsed.publicAddress.legacy).toBe('1MxudKDEBWZ1yjizUSf6htacenNtb3DWbT');
     expect(parsed.testnet).toBe(false);
   });
@@ -132,7 +115,6 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.amount).toBe('20.3');
     expect(parsed.coin).toBe('btc');
     expect(parsed.label).toBe('Luke-Jr');
-    expect(parsed.publicAddress.asReceived).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
     expect(parsed.publicAddress.legacy).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');
     expect(parsed.message).toBe('Donation for project xyz');
     expect(parsed.testnet).toBe(false);
@@ -144,7 +126,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('btc');
-    expect(parsed.publicAddress.asReceived).toBe('1GhpYmbRaf73AZRxDwAGr6653iZBGzdgeA');
     expect(parsed.publicAddress.legacy).toBe('1GhpYmbRaf73AZRxDwAGr6653iZBGzdgeA');
     expect(parsed.testnet).toBe(false);
   });
@@ -155,7 +136,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('btc');
-    expect(parsed.publicAddress.asReceived).toBe('18PCPhgZJjLxe9g3Q1BXLpL5aVut1fW3aX');
     expect(parsed.publicAddress.legacy).toBe('18PCPhgZJjLxe9g3Q1BXLpL5aVut1fW3aX');
     expect(parsed.testnet).toBe(false);
   });
@@ -166,8 +146,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
-    expect(parsed.publicAddress.legacy).toBe('13LYEsnPqogE2SqJ325u1ZfiWxSWEo6uyo');
+    expect(parsed.publicAddress.bitpay).toBe('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -177,7 +156,6 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBeUndefined();
-    expect(parsed.publicAddress.asReceived).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
     expect(parsed.publicAddress.legacy).toBe('1JXeGEu7bNEAYu6URT6dU6g1Ys6ffSAWYW');
     expect(parsed.testnet).toBe(false);
   });
@@ -188,8 +166,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
-    expect(parsed.publicAddress.legacy).toBe('mqk5vE278ytt6LUZqd97wi8c3FHsSYREX4');
+    expect(parsed.publicAddress.cashAddr).toBe('qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
     expect(parsed.testnet).toBe(true);
   });
 
@@ -199,8 +176,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
-    expect(parsed.publicAddress.legacy).toBe('1D5euC1yUbHiNpXreQrUUYt7LNevD3cviR');
+    expect(parsed.publicAddress.cashAddr).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -210,8 +186,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qpshfu3dk5s3e7zdcgdcun6xgxtra6uyxs7g580js0');
-    expect(parsed.publicAddress.legacy).toBe('19tJeAD7JwkarE6hgviqHKqUYVgtPAfMbb');
+    expect(parsed.publicAddress.cashAddr).toBe('qpshfu3dk5s3e7zdcgdcun6xgxtra6uyxs7g580js0');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -221,8 +196,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
-    expect(parsed.publicAddress.legacy).toBe('1JXsK3HSFqoMnwh4Mevf5bTgqPcgNWX7ic');
+    expect(parsed.publicAddress.cashAddr).toBe('qrq9p82a247lecv08ldk5p5h6ahtnjzpqcnh8yhq92');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -232,8 +206,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qzdectfmuw0xxztfx7mh045830dqcshj85hr44l35a');
-    expect(parsed.publicAddress.legacy).toBe('1FBnq5gZhzTvvcJBjA7C2P3bKQZCiJaG1x');
+    expect(parsed.publicAddress.cashAddr).toBe('qzdectfmuw0xxztfx7mh045830dqcshj85hr44l35a');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -243,8 +216,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qpj966w8utue75lqqq3rlgh20zkz3rmydqpq8syv9c');
-    expect(parsed.publicAddress.legacy).toBe('1A9gUeVVKcJtbbHfAPjUHmLSWJrD5YEc7k');
+    expect(parsed.publicAddress.cashAddr).toBe('qpj966w8utue75lqqq3rlgh20zkz3rmydqpq8syv9c');
     expect(parsed.testnet).toBe(false);
   });
 
@@ -254,8 +226,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
-    expect(parsed.publicAddress.asReceived).toBe('qqen2y3l28dpk0dzsag8w027ds96u7z4pc0uxtl0nq');
-    expect(parsed.publicAddress.legacy).toBe('15fm3EwqgBYcxkndALBfforueps5yWKReJ');
+    expect(parsed.publicAddress.cashAddr).toBe('qqen2y3l28dpk0dzsag8w027ds96u7z4pc0uxtl0nq');
     expect(parsed.testnet).toBe(false);
   });
 

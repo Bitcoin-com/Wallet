@@ -261,23 +261,20 @@
           parsed.address = addressLowerCase;
           parsed.coin = 'bch';
           parsed.publicAddress = {
-            asReceived: addressLowerCase,
-            legacy: cashAddrTestnet.toString()
+            cashAddr: addressLowerCase
           };
           parsed.isValid = true;
           
         } else if (cashAddrMainnet) {
           parsed.coin = 'bch';
           parsed.publicAddress = {
-            asReceived: addressLowerCase,
-            legacy: cashAddrMainnet.toString()
+            cashAddr: addressLowerCase
           };
           parsed.testnet = false;
           parsed.isValid = true;  
 
         } else if (bitcore.Address.isValid(address, 'livenet')) {
           parsed.publicAddress = {
-            asReceived: address,
             legacy: address
           };
           parsed.testnet = false;
@@ -285,7 +282,6 @@
 
         } else if (bitcore.Address.isValid(address, 'testnet')) {
           parsed.publicAddress = {
-            asReceived: address,
             legacy: address
           };
           parsed.testnet = true;
@@ -294,8 +290,7 @@
         } else if (bitpayAddrMainnet) {
           parsed.coin = 'bch';
           parsed.publicAddress = {
-            asReceived: address,
-            legacy: bitpayAddrMainnet.toString()
+            bitpay: address
           };
           parsed.testnet = false;
           parsed.isValid = true;
