@@ -106,7 +106,8 @@
         wif: ''
       }'',
       publicAddress: {
-        asReceived: '',
+        bitpay: '',
+        cashAddr: '',
         legacy: '',
       },
       req: {
@@ -117,7 +118,8 @@
       url: '' // For BIP70 
     }
 
-    // Need to do testnet, and copay too
+    Only fields that are present in the data are defined in the returned object. Both privateKey and publicAddress only have 1 field defined, if they exist at all.
+    The exception to this is the coin property, which is determined from other data, such as the prefix or address type.
 
     */
 
