@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('incomingData', function($log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
+angular.module('copayApp.services').factory('incomingData', function(bitcoinUriService, $log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
 
   var root = {};
 
@@ -11,6 +11,7 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
   root.redir = function(data, serviceId, serviceData) {
     var originalAddress = null;
     var noPrefixInAddress = 0;
+    var allParsed = bitcoinUriService.parse(data);
 
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
@@ -114,10 +115,10 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
       }, 100);
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
-    if ((/^bitcoin(cash)?:\?r=[\w+]/).exec(data)) {
-      var coin = data.indexOf('bitcoincash') >= 0 ? 'bch' : 'btc';
-      data = decodeURIComponent(data.replace(/bitcoin(cash)?:\?r=/, ''));
-      if (coin == 'bch') {
+    if (allParsed.isValid && allParsed.coin && allParsed.url) {  
+      var coin = allParsed.coin;
+      data = allParsed.url;
+      if (allParsed.coin == 'bch') {
         payproService.getPayProDetailsViaHttp(data, function onGetPayProDetailsViaHttp(err, details) {
           if (err) {
             var message = err.toString();
@@ -127,15 +128,15 @@ angular.module('copayApp.services').factory('incomingData', function($log, $stat
             }
             popupService.showAlert(gettextCatalog.getString('Error'), message)
           } else {
-            handlePayPro(details, coin);
+            handlePayPro(details, allParsed.coin);
           }
         });
       } else {
-        payproService.getPayProDetails(data, coin, function onGetPayProDetails(err, details) {
+        payproService.getPayProDetails(data, allParsed.coin, function onGetPayProDetails(err, details) {
           if (err) {
             popupService.showAlert(gettextCatalog.getString('Error'), err);
           } else {
-            handlePayPro(details, coin);
+            handlePayPro(details, allParsed.coin);
           }
         });
       }
