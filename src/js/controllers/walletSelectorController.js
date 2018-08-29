@@ -99,6 +99,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
             $scope.requestAmountSecondary = fiatAmount;
             $scope.requestCurrencySecondary = fiatCurrrency;
           }
+          $scope.$apply();
         }
       }); 
     }

@@ -1,5 +1,8 @@
 'use strict';
 
+// https://github.com/bitcoin/bips/blob/master/bip-0021.mediawiki
+// https://github.com/bitcoin/bips/blob/master/bip-0072.mediawiki
+
 (function(){
 
   angular
@@ -9,46 +12,76 @@
   function bitcoinUriService(bitcoinCashJsService, bwcService, $log) {
     var bch = bitcoinCashJsService.getBitcoinCashJs();
     var bitcore = bwcService.getBitcore();
-    var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
 
     var service = {
      parse: parse 
     };
 
     return service;
-
     
+    function bitpayAddrOnMainnet(address) {
+      var Address = bch.Address;
+      var BitpayFormat = Address.BitpayFormat;
 
-    function isValidCashAddr(address, network) {
-      var privateKey = new bch.PrivateKey('testnet');
-      var address1 = privateKey.toAddress();
-      console.log('legacy pub:', address1.toString());
-      //var addrss = bitcoinCashJsService.readAddress(address1);
-      //console.log('generated:', addrss.cashaddr);
-      //bch.Address.fromString(address1, 'testnet');
-      console.log('generated:', address1.toString('cashaddr'));
-      
-      var isValid = false;
+      var mainnet = bch.Networks.mainnet;
 
-      var prefix = network === 'testnet' ? 'bchtest:' : 'bitcoincash:';
+      var result = null;
+      if (address[0] == 'C') {
+        try {
+          result = Address.fromString(address, mainnet, 'pubkeyhash', BitpayFormat);
+        } catch (e) {};
 
-      try {
-        if (cashAddrRe.test(address)) {
-          // bitcoinCashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
-          var bchAddresses = bitcoinCashJsService.readAddress(address.toLowerCase());
-          if (bchAddresses) {
-            var legacyAddress = bchAddresses.legacy;
-            if (bch.Address.isValid(legacyAddress, network)) {
-              isValid = true;
-            }
-          }
-        }
-      } catch (e) {
-        // Nop - Must not be a valid cashAddr.
-        $log.error('Error validating address.', e);
+      } else if (address[0] == 'H') {
+        try {
+          result = Address.fromString(address, mainnet, 'scripthash', BitpayFormat);
+        } catch (e) {};
+
       }
-      console.log(address,'isValidCashAddr:', isValid);
-      return isValid;
+      return result;
+    }
+
+    function cashAddrOnMainnet(address) {
+      var Address = bch.Address;
+      var CashAddrFormat = Address.CashAddrFormat;
+
+      var mainnet = bch.Networks.mainnet;
+
+      var prefixed = 'bitcoincash:' + address;
+      var result = null;
+      if (address[0] == 'q') {
+        try {
+          result = Address.fromString(prefixed, mainnet, 'pubkeyhash', CashAddrFormat);
+        } catch (e) {};
+
+      } else if (address[0] == 'p') {
+        try {
+          result = Address.fromString(prefixed, mainnet, 'scripthash', CashAddrFormat);
+        } catch (e) {};
+
+      }
+      return result;
+    }
+
+    function cashAddrOnTestnet(address) {
+      var Address = bch.Address;
+      var CashAddrFormat = Address.CashAddrFormat;
+
+      var testnet = bch.Networks.testnet;
+
+      var prefixed = 'bchtest:' + address;
+      var result = null;
+      if (address[0] == 'q') {
+        try {
+          result = Address.fromString(prefixed, testnet, 'pubkeyhash', CashAddrFormat);
+        } catch (e) {};
+
+      } else if (address[0] == 'p') {
+        try {
+          result = Address.fromString(prefixed, testnet, 'scripthash', CashAddrFormat);
+        } catch (e) {};
+
+      }
+      return result;
     }
     
 
@@ -59,36 +92,48 @@
 
     returns: 
     {
-      address: '',
       amount: '',
       coin: '',
+      copayInvitation: '',
       isValid: false,
       label: '',
-      legacyAddress: '',
       message: '',
       other: {
         somethingIDontUnderstand: 'Its value'
       },
+      privateKey: {
+        encrypted: '',
+        wif: ''
+      }'',
+      publicAddress: {
+        bitpay: '',
+        cashAddr: '',
+        legacy: '',
+      },
       req: {
-        "req-param0": "",
-        "req-param1": ""
+        "req-param0": '',
+        "req-param1": ''
       },
       testnet: false,
-      url: ''
-
+      url: '' // For BIP70 
     }
 
-    // Need to do testnet, and copay too
+    Only fields that are present in the data are defined in the returned object. Both privateKey and publicAddress only have 1 field defined, if they exist at all.
+    The exception to this is the coin property, which is determined from other data, such as the prefix or address type.
 
     */
-   // bitcoincash:?r=https://bitpay.com/i/GLRoZMZxaWBqLqpoXexzoD
-    function parse(uri) {
+
+    function parse(data) {
       var parsed = {
         isValid: false
       };
 
+      if (typeof data !== 'string') {
+        return parsed;
+      }
+
       // Identify prefix
-      var trimmed = uri.trim();
+      var trimmed = data.trim();
       var colonSplit = /^([\w-]*):?(.*)$/.exec(trimmed);
       if (!colonSplit) {
         return parsed;
@@ -138,109 +183,150 @@
       var address = questionMarkSplit[1];
       var params = questionMarkSplit[2];
   
-      var paramsSplit = params.split('&');
-      var others;
-      var req;
-      paramsSplit.forEach(function onParam(param){
-        var valueSplit = param.split('=');
-        if (valueSplit.length !== 2) {
-          return parsed;
-        }
+      if (params.length > 0) {
+        var paramsSplit = params.split('&');
+        var others;
+        var req;
+        var paramCount = paramsSplit.length;
+        for(var i = 0; i < paramCount; i++) {
+          var param = paramsSplit[i];
+          var valueSplit = param.split('=');
+          if (valueSplit.length !== 2) {
+            return parsed;
+          }
 
-        var key = valueSplit[0];
-        var value = valueSplit[1];
-        switch(key) {
-          case 'amount':
-            if (parseFloat(value)) {
-              parsed.amount = value;
-            } else {
-              return parsed;
-            }  
-          break;
+          var key = valueSplit[0];
+          var value = valueSplit[1];
+          var decodedValue = decodeURIComponent(value);
+          switch(key) {
+            case 'amount':
+            var amount = parseFloat(decodedValue);
+              if (amount) { // Checking for NaN, or no numbers at all etc.
+                parsed.amount = decodedValue;
+              } else {
+                return parsed;
+              }  
+            break;
 
-          case 'label':
-            parsed.label = value;
-          break;
+            case 'label':
+              parsed.label = decodedValue;
+            break;
 
-          case 'message':
-            parsed.message = value;
-          break;
+            case 'message':
+              parsed.message = decodedValue;
+            break;
 
-          case 'r':
-            // Could use a more comprehesive regex to test URL validity, but then how would we know
-            // which part of the validation it failed?
-            if (value.startsWith('https://')) {
-              parsed.url = value;
-            } else {
-              return parsed;
-            }
-          break;
+            case 'r':
+              // Could use a more comprehesive regex to test URL validity, but then how would we know
+              // which part of the validation it failed?
+              if (decodedValue.startsWith('https://')) {
+                parsed.url = decodedValue;
+              } else {
+                return parsed;
+              }
+            break;
 
-          default:
-            if (key.startsWith('req-')) {
-              req = req || {};
-              req[key] = value;
-            } else {
-              others = others || {};
-              others[key] = value;
-            }
-        }
+            default:
+              if (key.startsWith('req-')) {
+                req = req || {};
+                req[key] = decodedValue;
+              } else {
+                others = others || {};
+                others[key] = decodedValue;
+              }
+          }
 
-      });
+        };
+      }
 
       parsed.others = others;
       parsed.req = req;
       
       
-      // Need to do bitpay format as well? Probably
       if (address) {
         var addressLowerCase = address.toLowerCase();
-        var bch = bitcoinCashJsService.getBitcoinCashJs();
-        // Just a rough validation to exclude half-pasted addresses, or things obviously not bitcoin addresses
-        var cashAddrRe = /^((?:q|p)[a-z0-9]{41})|((?:Q|P)[A-Z0-9]{41})$/;
-        
+        var copayInvitationRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        var privateKeyEncryptedRe = /^6P[1-9A-HJ-NP-Za-km-z]{56}$/;
+        var privateKeyForUncompressedPublicKeyRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyForUncompressedPublicKeyTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
+        var privateKeyForCompressedPublicKeyRe = /^[KL][1-9A-HJ-NP-Za-km-z]{51}$/;
+        var privateKeyForCompressedPublicKeyTestnetRe = /^[c][1-9A-HJ-NP-Za-km-z]{51}$/;
+      
+        var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
+        var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
+        var cashAddrMainnet = cashAddrOnMainnet(addressLowerCase);
+        var privateKey = '';
 
-        if (bitcore.Address.isValid(address, 'livenet')) {
-          parsed.address = address;
-          parsed.legacyAddress = address;
+        if (parsed.testnet && cashAddrTestnet) {
+          parsed.address = addressLowerCase;
+          parsed.coin = 'bch';
+          parsed.publicAddress = {
+            cashAddr: addressLowerCase
+          };
+          parsed.isValid = true;
+          
+        } else if (cashAddrMainnet) {
+          parsed.coin = 'bch';
+          parsed.publicAddress = {
+            cashAddr: addressLowerCase
+          };
           parsed.testnet = false;
+          parsed.isValid = true;  
+
+        } else if (bitcore.Address.isValid(address, 'livenet')) {
+          parsed.publicAddress = {
+            legacy: address
+          };
+          parsed.testnet = false;
+          parsed.isValid = true;
 
         } else if (bitcore.Address.isValid(address, 'testnet')) {
-          parsed.address = address;
-          parsed.legacyAddress = address;
+          parsed.publicAddress = {
+            legacy: address
+          };
           parsed.testnet = true;
+          parsed.isValid = true;
 
-          // bitcoinCaashJs.Address.isValid() assumes legacy address for string data, so does not work with cashaddr.
-       // } else if (isValidCashAddr(addressLowerCase, 'livenet')) {
-        } else if (cashAddrRe.test(address) && parsed.testnet) {
-          var cashAddr = 'bchtest:' + addressLowerCase;
-          parsed.address = cashAddr;
+        } else if (bitpayAddrMainnet) {
           parsed.coin = 'bch';
-          // TODO: Get legacy address
+          parsed.publicAddress = {
+            bitpay: address
+          };
+          parsed.testnet = false;
+          parsed.isValid = true;
+
+        } else if (copayInvitationRe.test(address) ) {
+          parsed.copayInvitation = address;
+          parsed.isValid = true;
+
+        } else if (privateKeyForUncompressedPublicKeyRe.test(address) || privateKeyForCompressedPublicKeyRe.test(address)) {
+          privateKey = address;
+          try {
+            new bitcore.PrivateKey(privateKey, 'livenet');
+            parsed.privateKey = { wif: privateKey };
+            parsed.testnet = false;
+            parsed.isValid = true;
+          } catch (e) {}
+
+        } else if (privateKeyForUncompressedPublicKeyTestnetRe.test(address) || privateKeyForCompressedPublicKeyTestnetRe.test(address)) {
+          privateKey = address;
+          try {
+            new bitcore.PrivateKey(privateKey, 'testnet');
+            parsed.privateKey = { wif: privateKey };
+            parsed.testnet = true;
+            parsed.isValid = true;
+          } catch (e) {}
+
+        } else if (privateKeyEncryptedRe.test(address)) {
+          parsed.privateKey = { encrypted: address };
+          parsed.isValid = true;
+        }
           
-        } else if (cashAddrRe.test(address)) {
-          var cashAddr = 'bitcoincash:' + addressLowerCase;
-          parsed.address = cashAddr;
-          parsed.coin = 'bch';
-
-          var bchAddresses = bitcoinCashJsService.readAddress(cashAddr);
-          parsed.legacyAddress = bchAddresses['legacy'];
-
-          parsed.testnet = false;  
-
-        } 
-          
+      } else {
+        parsed.isValid = !!parsed.url; // BIP72
       }
-
-
-
-        // TODO: Check for a private key here too
-      
-
-      // If has no address, must have Url.
-      parsed.isValid = !!(parsed.address || parsed.url);
 
       return parsed;
     }
