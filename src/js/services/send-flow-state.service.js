@@ -35,7 +35,7 @@ angular
 
     function init(params) {
       clear();
-      map(params);
+      push(params);
     }
 
     function clear() {

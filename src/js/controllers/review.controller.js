@@ -80,7 +80,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   function onBeforeEnter(event, data) {
     console.log('walletSelector onBeforeEnter sendflow ', sendFlowService.state);
     defaults = configService.getDefaults();
-    sendFlowData = sendFlowService.getStateClone();
+    sendFlowData = sendFlowService.state.getClone();
     originWalletId = sendFlowData.fromWalletId;
     satoshis = parseInt(sendFlowData.amount, 10);
     toAddress = sendFlowData.toAddress;
@@ -403,7 +403,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   function goBack() {
-    $ionicHistory.goBack();
+    sendFlowService.router.goBack();
   }
 
   function handleDestinationAsAddress(address, originCoin) {

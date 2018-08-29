@@ -29,7 +29,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
   $scope.$on("$ionicView.enter", function(event, data) {
 
-    var stateParams = sendFlowService.getStateClone();
+    var stateParams = sendFlowService.state.getClone();
     $scope.fromWallet = profileService.getWallet(stateParams.fromWalletId);
 
     clipboardService.readFromClipboard(function(text) {
@@ -60,10 +60,13 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   });
 
   $scope.findContact = function(search) {
-
-    if (incomingData.redir(search)) {
-      return;
-    }
+    sendFlowService.start({ 
+      data: search
+    });
+    return;
+    //if (incomingData.redir(search)) {
+      //return;
+    //}
 
     if (!search || search.length < 1) {
       $scope.list = originalList;
@@ -184,26 +187,26 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       $log.debug('Got toAddress:' + toAddress + ' | ' + item.name);
       
-      var stateParams = sendFlowService.getStateClone();
+      var stateParams = sendFlowService.state.getClone();
       stateParams.toAddress = toAddress,
       stateParams.coin = item.coin;
-      sendFlowService.pushState(stateParams);
+      sendFlowService.goNext(stateParams);
 
-      if (!stateParams.fromWalletId) { // If we have no toAddress or fromWallet
+      /*if (!stateParams.fromWalletId) { // If we have no toAddress or fromWallet
         $state.transitionTo('tabs.send.origin');
       } else {
         $state.transitionTo('tabs.send.amount');
-      }
+      }*/
 
     });
   };
 
   $scope.startWalletToWalletTransfer = function() {
     console.log('startWalletToWalletTransfer()');
-    var params = sendFlowService.getStateClone();
-    sendFlowService.pushState(params);
-    $state.transitionTo('tabs.send.wallet-to-wallet', {
-      fromWalletId: sendFlowService.fromWalletId
+    var params = sendFlowService.state.getClone();
+    sendFlowService.goNext({
+      isWalletTransfer: true,
+      fromWalletId: params.fromWalletId
     });
   }
 
@@ -238,7 +241,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
 
     if (data.direction == "back") {
-      sendFlowService.clear();
+      sendFlowService.state.clear();
     }
 
   });

@@ -10,17 +10,19 @@ angular
     sendFlowStateService, sendFlowRouterService
     , bitcoinUriService, payproService
     , popupService
+    , $state
   ) {
 
     var service = {
       // A separate state variable so we can ensure it is cleared of everything,
       // even other properties added that this service does not know about. (such as "coin")
+      state: sendFlowStateService,
+      router: sendFlowRouterService,
 
       // Functions
       start: start,
       goNext: goNext,
-      goBack: goBack,
-      getStateClone: getStateClone
+      goBack: goBack
     };
 
     return service;
@@ -37,7 +39,9 @@ angular
   
           if (res.isValid) {
 
-            // If BIP70
+            /**
+             * If BIP70
+             */
             if (res.url) {
               var url = res.url;
               var coin = res.coin || '';
@@ -79,14 +83,18 @@ angular
                       verified: true
                     };
 
-                    // Fill in params
+                    /**
+                     * Fill in params
+                     */
                     params.amount = thirdPartyData.amount,
                     params.toAddress = thirdPartyData.toAddress,
                     params.coin = coin,
                     params.thirdParty = thirdPartyData
                   }
                   
-                  // Resolve
+                  /**
+                   *  Resolve
+                   */
                   resolve();
                 });
               });
@@ -94,9 +102,10 @@ angular
           }
         }
 
-        // Init the state if params is defined
+        /**
+         *  Init the state if params is defined
+         */
         sendFlowStateService.init(params);
-        console.log(params);
       }
             
       /**
@@ -106,23 +115,32 @@ angular
     }
 
     function goNext(state) {
-      // Push the new state
+      /**
+       * Save the current route before leaving
+       */
+      state.route = $state.current.name;
+
+      /**
+       * Push the new state
+       */
       sendFlowStateService.push(state);
 
-      // Go next
-      sendFlowRouterService.goNext(state);
+      /**
+       * Go next
+       */
+      sendFlowRouterService.goNext();
     }
 
     function goBack() {
-      // Pop the current state
-      sendFlowStateService.pop();
+        /**
+         * Pop the current state
+         */
+        sendFlowStateService.pop();
 
-      // Go back
-      sendFlowRouterService.goBack();
-    }
-
-    function getStateClone () {
-      return sendFlowStateService.getClone();
+        /**
+         * Go back
+         */
+        sendFlowRouterService.goBack();
     }
   };
 
