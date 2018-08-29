@@ -3850,3 +3850,11 @@ msgstr ""
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr ""
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr ""
