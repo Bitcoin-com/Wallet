@@ -145,6 +145,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
 
     data = sanitizeUri(data);
 
+    var addr = '';
     // Bitcoin  URL
     if (bitcore.URI.isValid(data)) {
         var coin = 'btc';
@@ -167,18 +168,18 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         }
         return true;
     // Cash URI
-    } else if (bitcoreCash.URI.isValid(data)) {
+    } else if (allParsed.isValid && allParsed.publicAddress && allParsed.publicAddress.cashAddr) {
         var coin = 'bch';
-        var parsed = new bitcoreCash.URI(data);
-
-        var addr = parsed.address ? parsed.address.toString() : '';
+        
+        var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
+        addr = bitcoinCashJsService.readAddress(prefix + allParsed.publicAddress.cashAddr).legacy;
         var message = parsed.message;
 
         var amount = parsed.amount ? parsed.amount : '';
 
         // paypro not yet supported on cash
-        if (parsed.r) {
-          payproService.getPayProDetails(parsed.r, coin, function(err, details) {
+        if (allParsed.url) {
+          payproService.getPayProDetails(allParsed.url, coin, function(err, details) {
             if (err) {
               if (addr && amount)
                 goSend(addr, amount, message, coin, serviceId, serviceData);
@@ -402,7 +403,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
 
   function handlePayPro(payProData, coin) {
 
-    console.log(payProData);
+    console.log('payProData', payProData);
 
     var toAddr = payProData.toAddress;
     var amount = payProData.amount;
@@ -456,9 +457,6 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     if (thirdPartyData.requiredFeeRate) {
       stateParams.requiredFeeRate = thirdPartyData.requiredFeeRate * 1024;
     }
-
-    // This does not make sense, thirdPartyData gets added by stateParams below
-    //sendFlowService.pushState(thirdPartyData); 
 
     scannerService.pausePreview();
     $state.go('tabs.send', {}, {
