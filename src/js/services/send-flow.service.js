@@ -7,7 +7,8 @@ angular
   .factory('sendFlowService', sendFlowService);
   
   function sendFlowService(
-    sendFlowStateService, sendFlowRouterService
+    gettextCatalog
+    , sendFlowStateService, sendFlowRouterService
     , bitcoinUriService, payproService
     , popupService
     , $state
