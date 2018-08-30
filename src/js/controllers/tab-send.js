@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function($scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, sendFlowService, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, sendFlowService, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -39,7 +39,9 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
 
       $scope.clipboardHasAddress = false;
       $scope.clipboardHasContent = false;
-      if ((text.indexOf('bitcoincash:') === 0 || text[0] === 'C' || text[0] === 'H' || text[0] === 'p' || text[0] === 'q') && text.replace('bitcoincash:', '').length === 42) { // CashAddr
+      var parsed = bitcoinUriService.parse(text);
+      console.log('parsed', parsed);
+      if (parsed.isValid && parsed.publicAddress && parsed.coin === 'bch' && !parsed.testnet) { // CashAddr
         $scope.clipboardHasAddress = true;
       } else if ((text[0] === "1" || text[0] === "3" || text.substring(0, 3) === "bc1") && text.length >= 26 && text.length <= 35) { // Legacy Addresses
         $scope.clipboardHasAddress = true;

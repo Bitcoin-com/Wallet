@@ -13,6 +13,14 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     var noPrefixInAddress = 0;
     var allParsed = bitcoinUriService.parse(data);
 
+    if (allParsed.isValid && allParsed.testnet) {
+      popupService.showAlert(
+        gettextCatalog.getString('Unsupported'), 
+        gettextCatalog.getString('Testnet is not supported.')
+      );
+      return false;
+    }
+
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
     }
@@ -115,7 +123,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
       }, 100);
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
-    if (allParsed.isValid && allParsed.coin && allParsed.url) {  
+    if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.testnet) {  
       var coin = allParsed.coin;
       data = allParsed.url;
       if (allParsed.coin == 'bch') {
@@ -168,28 +176,33 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         }
         return true;
     // Cash URI
-    } else if (allParsed.isValid && allParsed.publicAddress && allParsed.publicAddress.cashAddr) {
-        var coin = 'bch';
-        
+    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress && !allParsed.testnet) {
         var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
-        addr = bitcoinCashJsService.readAddress(prefix + allParsed.publicAddress.cashAddr).legacy;
-        var message = parsed.message;
+        var addrIn = allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay || prefix + allParsed.publicAddress.cashAddr;
+        originalAddress = allParsed.publicAddress.cashAddr || allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
 
-        var amount = parsed.amount ? parsed.amount : '';
+        var addresses = bitcoinCashJsService.readAddress(addrIn);
+        if (!addresses) {
+          return false;
+        } 
+        addr = addresses.legacy;
+        var message = allParsed.message;
+
+        var amount = allParsed.amount ? allParsed.amount : '';
 
         // paypro not yet supported on cash
         if (allParsed.url) {
-          payproService.getPayProDetails(allParsed.url, coin, function(err, details) {
+          payproService.getPayProDetails(allParsed.url, allParsed.coin, function(err, details) {
             if (err) {
               if (addr && amount)
-                goSend(addr, amount, message, coin, serviceId, serviceData);
+                goSend(addr, amount, message, allParsed.coin, serviceId, serviceData);
               else
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
             }
-            handlePayPro(details, coin);
+            handlePayPro(details, allParsed.coin);
           });
         } else {
-          goSend(addr, amount, message, coin, serviceId, serviceData);
+          goSend(addr, amount, message, allParsed.coin, serviceId, serviceData);
         }
         return true;
 
