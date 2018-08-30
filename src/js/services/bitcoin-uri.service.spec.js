@@ -343,11 +343,20 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
-  it('URL only', function() {
+  it('URL only, http', function() {
 
-    var parsed = bitcoinUriService.parse('https://www.google.com');
+    var parsed = bitcoinUriService.parse('http://paperwallet.bitcoin.com');
 
-    expect(parsed.isValid).toBe(false);
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.bareUrl).toBe('http://paperwallet.bitcoin.com');
+  });
+
+  it('URL only, https with query', function() {
+
+    var parsed = bitcoinUriService.parse('https://purse.io/?one=two&three=four');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.bareUrl).toBe('https://purse.io/?one=two&three=four');
   });
 
 });

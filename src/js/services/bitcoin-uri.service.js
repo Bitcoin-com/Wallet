@@ -93,6 +93,7 @@
     returns: 
     {
       amount: '',
+      bareUrl: '',
       coin: '',
       copayInvitation: '',
       isValid: false,
@@ -162,6 +163,9 @@
         // No colon and no coin specifier.
         addressAndParams = colonSplit[1];
         console.log('No prefix.');
+
+      } else if (/^https?$/.test(colonSplit[1])) {
+        addressAndParams = trimmed;
 
       } else {
         // Something with a colon in the middle that we don't recognise
@@ -253,6 +257,7 @@
         var privateKeyForUncompressedPublicKeyTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
         var privateKeyForCompressedPublicKeyRe = /^[KL][1-9A-HJ-NP-Za-km-z]{51}$/;
         var privateKeyForCompressedPublicKeyTestnetRe = /^[c][1-9A-HJ-NP-Za-km-z]{51}$/;
+        var urlRe = /^https?:\/\/.+/;
       
         var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
         var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
@@ -321,6 +326,10 @@
 
         } else if (privateKeyEncryptedRe.test(address)) {
           parsed.privateKey = { encrypted: address };
+          parsed.isValid = true;
+
+        } else if (urlRe.test(address)) {
+          parsed.bareUrl = trimmed;
           parsed.isValid = true;
         }
           
