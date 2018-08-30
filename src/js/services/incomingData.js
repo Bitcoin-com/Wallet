@@ -13,6 +13,14 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     var noPrefixInAddress = 0;
     var allParsed = bitcoinUriService.parse(data);
 
+    if (allParsed.isValid && allParsed.testnet) {
+      popupService.showAlert(
+        gettextCatalog.getString('Unsupported'), 
+        gettextCatalog.getString('Testnet is not supported.')
+      );
+      return false;
+    }
+
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;
     }
