@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabScanController', function($scope, $log, $timeout, scannerService, incomingData, $state, $ionicHistory, $rootScope, $ionicNavBarDelegate) {
+angular.module('copayApp.controllers').controller('tabScanController', function(bitcoinUriService, gettextCatalog, popupService, $scope, $log, $timeout, scannerService, incomingData, $state, $ionicHistory, $rootScope, $ionicNavBarDelegate) {
 
   var scannerStates = {
     unauthorized: 'unauthorized',
@@ -111,7 +111,27 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     // Sometimes (testing in Chrome, when reading QR Code) data is an object
     // that has a string data.result.
     contents = contents.result || contents;
-    incomingData.redir(contents);
+
+    var parsed = bitcoinUriService.parse(contents);
+    var title = '';
+    var msg = '';
+    if (parsed.isValid) {
+      if (parsed.testnet) {
+        title = gettextCatalog.getString('Unsupported');
+        msg = gettextCatalog.getString('Testnet is not supported.');
+        popupService.showAlert(title, msg, function onAlertShown() {
+          scannerService.resumePreview();
+        });
+      } else {
+        incomingData.redir(contents);
+      }
+    } else {
+      title = gettextCatalog.getString('Scan Failed');
+      msg = gettextCatalog.getString('Data not recognised.');
+      popupService.showAlert(title, msg, function onAlertShown() {
+        scannerService.resumePreview();
+      });
+    }
   }
 
   $rootScope.$on('incomingDataMenu.menuHidden', function() {
