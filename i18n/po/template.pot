@@ -3866,3 +3866,11 @@ msgstr ""
 #: src/js/controllers/tab-scan.js:121
 msgid "Testnet is not supported."
 msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr ""
