@@ -3858,3 +3858,11 @@ msgstr ""
 #: src/js/controllers/tab-scan.js:121
 msgid "Data not recognised."
 msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr ""

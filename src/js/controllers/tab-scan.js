@@ -113,15 +113,24 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     contents = contents.result || contents;
 
     var parsed = bitcoinUriService.parse(contents);
-    if (parsed.isValid && !parsed.testnet) {
-      incomingData.redir(contents);
+    var title = '';
+    var msg = '';
+    if (parsed.isValid) {
+      if (parsed.testnet) {
+        title = gettextCatalog.getString('Unsupported');
+        msg = gettextCatalog.getString('Testnet is not supported.');
+        popupService.showAlert(title, msg, function onAlertShown() {
+          scannerService.resumePreview();
+        });
+      } else {
+        incomingData.redir(contents);
+      }
     } else {
-      var title = gettextCatalog.getString('Scan Failed');
-      var msg = gettextCatalog.getString('Data not recognised.');
-      var okText = gettextCatalog.getString('OK');
+      title = gettextCatalog.getString('Scan Failed');
+      msg = gettextCatalog.getString('Data not recognised.');
       popupService.showAlert(title, msg, function onAlertShown() {
         scannerService.resumePreview();
-      }, okText);
+      });
     }
   }
 
