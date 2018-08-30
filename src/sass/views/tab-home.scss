@@ -195,3 +195,13 @@
     top:11px;
   }
 }
+.popup-update {
+  .popup-buttons {
+    display: block;
+  }
+  .popup-buttons .button{
+    display:block;
+    min-width: 100% !important;
+    margin-top: 4px;
+  }
+}

@@ -56,7 +56,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.newReleaseNotes = newReleaseData.releaseNotes;
         }
       });
-    };
+    }
 
     function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
@@ -108,13 +108,13 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.$apply();
         }, 10);
       });
-    };
+    }
 
     function onLeave (event, data) {
       lodash.each(listeners, function(x) {
         x();
       });
-    };
+    }
 
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);
@@ -123,16 +123,10 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     $scope.startFreshSend = function() {
       sendFlowService.clear();
       $state.go('tabs.send');
-    }
+    };
 
-    $scope.openExternalLink = function() {
-      var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
-      var optIn = true;
-      var title = gettextCatalog.getString('Update Available');
-      var message = gettextCatalog.getString('An update to this app is available. For your security, please update to the latest version.');
-      var okText = gettextCatalog.getString('View Update');
-      var cancelText = gettextCatalog.getString('Go Back');
-      externalLinkService.open(url, optIn, title, message, okText, cancelText);
+    $scope.showUpdatePopup = function() {
+      latestReleaseService.showUpdatePopup();
     };
 
     $scope.openBannerUrl = function() {

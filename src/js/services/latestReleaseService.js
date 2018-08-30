@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('latestReleaseService', function latestReleaseServiceFactory($log, $http, configService, platformInfo) {
+  .factory('latestReleaseService', function latestReleaseServiceFactory($log, $http, $ionicPopup, configService, externalLinkService, gettextCatalog, platformInfo) {
 
     var root = {};
 
@@ -65,7 +65,7 @@ angular.module('copayApp.services')
       function verifyTagFormat(tag) {
         var regex = /^v?\d+\.\d+(\.\d+)?(-rc\d)?$/i;
         return regex.exec(tag);
-      };
+      }
 
       function formatTagNumber(tag) {
         var label = false;
@@ -79,9 +79,9 @@ angular.module('copayApp.services')
           major: +(formattedNumber[0]?+formattedNumber[0]:0),
           minor: +(formattedNumber[1]?+formattedNumber[1]:0),
           patch: +(formattedNumber[2]?+formattedNumber[2]:0),
-          label: label /* XX SP: we can use this in a later stage (with for example 1.0.0-rc2 the value will be "rc2" and false if there is no label) */
+          label: label /* XX SP: Maybe we can use this in a later stage (with for example 1.0.0-rc2 the value will be "rc2" and false if there is no label) */
         };
-      };
+      }
     };
 
     function requestLatestRelease(releaseURL, cb) {
@@ -99,6 +99,56 @@ angular.module('copayApp.services')
       }, function(err) {
         return cb('Cannot get the release information: ' + err);
       });
+    }
+
+    root.showUpdatePopup = function () {
+      var buttons = [{
+        text: "GitHub",
+        type: 'button-positive',
+        onTap: function () {
+          var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
+          externalLinkService.open(url, false);
+        }
+      }];
+
+      if (platformInfo.isAndroid) {
+        buttons.unshift({
+          text: "Google Play Store",
+          type: 'button-positive',
+          onTap: function () {
+            var url = 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet';
+            externalLinkService.open(url, false);
+          }
+        });
+      }
+      if (platformInfo.isIOS) {
+        buttons.unshift({
+          text: "App Store",
+          type: 'button-positive',
+          onTap: function () {
+            var url = 'https://itunes.apple.com/app/bitcoin-com-wallet/id1383072453';
+            externalLinkService.open(url, false);
+          }
+        });
+      }
+
+      if (buttons.length === 1) { // There is only one source to download (probably on desktop, so open GitHub release page..)
+        buttons[0].onTap();
+      } else {
+        buttons.push({
+          text: gettextCatalog.getString('Go Back'),
+          type: 'button-positive',
+          onTap: function () {
+            return true;
+          }
+        });
+        $ionicPopup.show({
+          title: gettextCatalog.getString('Update Available'),
+          subTitle: gettextCatalog.getString('An update to this app is available. For your security, please update to the latest version.'),
+          cssClass: 'popup-update',
+          buttons: buttons
+        });
+      }
     };
 
     return root;
