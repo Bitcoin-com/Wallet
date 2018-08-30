@@ -144,24 +144,24 @@
       var preColonLower = colonSplit[1].toLowerCase();
       if (preColonLower === 'bitcoin') {
         parsed.coin = 'btc';
-        addressAndParams = colonSplit[2];
+        addressAndParams = colonSplit[2].trim();
         console.log('Is btc');
 
       } else if (/^(?:bitcoincash)|(?:bitcoin-cash)$/.test(preColonLower)) {
         parsed.coin = 'bch';
         parsed.test = false;
-        addressAndParams = colonSplit[2];
+        addressAndParams = colonSplit[2].trim();
         console.log('Is bch');
 
       } else if (/^(?:bchtest)$/.test(preColonLower)) {
         parsed.coin = 'bch';
         parsed.testnet = true;
-        addressAndParams = colonSplit[2];
+        addressAndParams = colonSplit[2].trim();
         console.log('Is bch');
 
       } else if (colonSplit[2] === '') {
         // No colon and no coin specifier.
-        addressAndParams = colonSplit[1];
+        addressAndParams = colonSplit[1].trim();
         console.log('No prefix.');
 
       } else if (/^https?$/.test(colonSplit[1])) {
