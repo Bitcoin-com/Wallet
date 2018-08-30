@@ -378,8 +378,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    sendFlowService.clear();
-
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
@@ -477,15 +475,15 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
-    sendFlowService.startSend({
+    sendFlowService.start({
       fromWalletId: $scope.wallet.id
     });
     
     // Go home first so that the Home tab works properly
-    $state.go('tabs.home').then(function () {
+    /*$state.go('tabs.home').then(function () {
       $ionicHistory.clearHistory();
       $state.go('tabs.send');
-    });
+    });*/
     
   };
   $scope.goToReceive = function() {

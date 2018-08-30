@@ -62,18 +62,7 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
         id: 'shapeshift'
       }
     };
-
-    // Starting new send flow, so ensure everything is reset
-    sendFlowService.clear();
-    $state.go('tabs.home').then(function() {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.send').then(function() {
-        $timeout(function () {
-          sendFlowService.pushState(stateParams);
-          $state.transitionTo('tabs.send.origin');
-        }, 60);
-      });
-    });
+    sendFlowService.start(stateParams);
   }
 
   function showMyAddress() {

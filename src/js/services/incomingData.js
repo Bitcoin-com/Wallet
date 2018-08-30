@@ -85,69 +85,44 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     }
 
     function goSend(addr, amount, message, coin, serviceId, serviceData) {
-      $state.go('tabs.send', {}, {
-        'reload': true,
-        'notify': $state.current.name == 'tabs.send' ? false : true
-      });
-      // Timeout is required to enable the "Back" button
-      $timeout(function() {
-        var params = sendFlowService.getStateClone();
+      var params = sendFlowService.state.getClone();
 
-        if (amount) {
-          params.amount = amount;
-        }
+      if (amount) {
+        params.amount = amount;
+      }
 
-        if (addr) {
-          params.toAddress = addr;
-          params.displayAddress = originalAddress ? originalAddress : addr;
-        }
+      if (addr) {
+        params.toAddress = addr;
+        params.displayAddress = originalAddress ? originalAddress : addr;
+      }
 
-        if (coin) {
-          params.coin = coin;
-        }
+      if (coin) {
+        params.coin = coin;
+      }
 
-        if (noPrefixInAddress) {
-          params.noPrefixInAddress = noPrefixInAddress;
-        }
+      if (noPrefixInAddress) {
+        params.noPrefixInAddress = noPrefixInAddress;
+      }
 
-        if (serviceId) {
-          params.thirdParty = [];
-          params.thirdParty.id = serviceId;
-          params.thirdParty.data = serviceData;
-          sendFlowService.pushState(params);
-          $state.transitionTo('tabs.send.amount');
-        } else {
-          sendFlowService.pushState(params);
-          $state.transitionTo('tabs.send.origin');
-        }
-      }, 100);
+      if (serviceId) {
+        params.thirdParty = [];
+        params.thirdParty.id = serviceId;
+        params.thirdParty.data = serviceData;
+      }
+
+      sendFlowService.start(params);
     }
     // data extensions for Payment Protocol with non-backwards-compatible request
     if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.testnet) {  
       var coin = allParsed.coin;
       data = allParsed.url;
-      if (allParsed.coin == 'bch') {
-        payproService.getPayProDetailsViaHttp(data, function onGetPayProDetailsViaHttp(err, details) {
-          if (err) {
-            var message = err.toString();
-            if (typeof err.data === 'string') {
-              // i.e. 'This invoice is no longer accepting payments'
-              message = gettextCatalog.getString(err.data);
-            }
-            popupService.showAlert(gettextCatalog.getString('Error'), message)
-          } else {
-            handlePayPro(details, allParsed.coin);
-          }
-        });
-      } else {
-        payproService.getPayProDetails(data, allParsed.coin, function onGetPayProDetails(err, details) {
-          if (err) {
-            popupService.showAlert(gettextCatalog.getString('Error'), err);
-          } else {
-            handlePayPro(details, allParsed.coin);
-          }
-        });
-      }
+      payproService.getPayProDetails(data, allParsed.coin, function onGetPayProDetails(err, details) {
+        if (err) {
+          popupService.showAlert(gettextCatalog.getString('Error'), err);
+        } else {
+          handlePayPro(details, allParsed.coin);
+        }
+      });
       return true;
     }
 

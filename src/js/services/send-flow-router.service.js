@@ -8,7 +8,7 @@ angular
   
   function sendFlowRouterService(
     sendFlowStateService
-    , $state, $ionicHistory
+    , $state, $ionicHistory, $timeout
   ) {
 
     var service = {
@@ -30,8 +30,11 @@ angular
       if ($state.current.name != 'tabs.send') {
         $state.go('tabs.home').then(function () {
           $ionicHistory.clearHistory();
-          $state.go('tabs.send');
-          goNext();
+          $state.go('tabs.send').then(function () {
+            $timeout(function () {
+              goNext();
+            }, 60);
+          });
         });
       } else {
         goNext();
@@ -39,22 +42,32 @@ angular
     }
 
     /**
-     * 
+     * Strategy
+     * https://bitcoindotcom.atlassian.net/wiki/x/BQDWKQ
      */
     function goNext() {
       var state = sendFlowStateService.state;
 
-      /**
-       * Strategy
-       */
-      if (!state.fromWalletId && (state.isWalletTransfer || (state.toWalletId || state.toAddress))) {
-        $state.transitionTo('tabs.send.origin');
-      } else if (state.fromWalletId && !state.toWalletId && !state.toAddress) {
-        $state.transitionTo('tabs.send.destination');
-      } else if (state.fromWalletId && (state.toWalletId || state.toAddress) && !state.amount) {
-        $state.transitionTo('tabs.send.amount');
-      } else if (state.fromWalletId && (state.toWalletId || state.toAddress) && state.amount) {
-        $state.transitionTo('tabs.send.review');
+      var needsDestination = !state.toWalletId && !state.toAddress;
+      var needsOrigin = !state.fromWalletId;
+      var needsAmount = !state.amount && !state.sendMax;
+
+      if (needsDestination) {
+        if (!state.isWalletTransfer && !state.thirdParty) {
+          $state.go('tabs.send');
+          return;
+        } else if (!needsOrigin) {
+          $state.go('tabs.send.destination');
+          return;
+        }
+      }
+      
+      if (needsOrigin) {
+        $state.go('tabs.send.origin');
+      } else if (needsAmount) {
+        $state.go('tabs.send.amount');
+      } else {
+        $state.go('tabs.send.review');
       }
     }
 
