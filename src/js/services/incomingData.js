@@ -179,7 +179,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress && !allParsed.testnet) {
         var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
         var addrIn = allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay || prefix + allParsed.publicAddress.cashAddr;
-        originalAddress = allParsed.publicAddress.cashAddr ? null : allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
+        originalAddress = allParsed.publicAddress.cashAddr || allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
 
         var addresses = bitcoinCashJsService.readAddress(addrIn);
         if (!addresses) {
