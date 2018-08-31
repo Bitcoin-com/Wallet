@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('incomingData', function(bitcoinUriService, $log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
+angular.module('copayApp.services').factory('incomingData', function(externalLinkService, bitcoinUriService, $log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
 
   var root = {};
 
@@ -227,20 +227,23 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
         );
       return true;
       // Plain URL
-    } else if (/^https?:\/\//.test(data)) {
-      payproService.getPayProDetails(data, coin, function(err, details) {
-        if (err) {
-          if ($state.includes('tabs.scan')) {
-            root.showMenu({
-              data: data,
-              type: 'url'
-            });
-          }
-          return;
-        }
-        handlePayPro(details);
-        return true;
-      });
+    } else if (allParsed.bareUrl) {
+
+      if ($state.includes('tabs.scan')) {
+        root.showMenu({
+          data: allParsed.bareUrl,
+          type: 'url'
+        });
+      } else {
+        externalLinkService.open(
+          allParsed.bareUrl,
+          true,
+          gettextCatalog.getString('Open in web browser'),
+          allParsed.bareUrl
+        );
+      }
+      return true;
+
       // Plain Address
     } else if (bitcore.Address.isValid(data, 'livenet') || bitcore.Address.isValid(data, 'testnet')) {
       if ($state.includes('tabs.scan')) {

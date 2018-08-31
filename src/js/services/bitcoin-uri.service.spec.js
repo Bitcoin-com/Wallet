@@ -140,6 +140,16 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.testnet).toBe(false);
   });
 
+  it('Bitcoin uri with space', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoin: 19cPoKU5ZazY8NkLEsxK7drBqJnpGkax3d');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('btc');
+    expect(parsed.publicAddress.legacy).toBe('19cPoKU5ZazY8NkLEsxK7drBqJnpGkax3d');
+    expect(parsed.testnet).toBe(false);
+  });
+
   it('Bitpay without prefix', function() {
 
     var parsed = bitcoinUriService.parse('CJoRov8TirekvajiimQpb5Hk95evA7H2Yz');
@@ -218,6 +228,27 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress.cashAddr).toBe('qpj966w8utue75lqqq3rlgh20zkz3rmydqpq8syv9c');
     expect(parsed.testnet).toBe(false);
+  });
+
+  it('cashAddr with space', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash: qpar9ldle8z6alcwgclejdhc24ha2xrg0szs5802ce');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qpar9ldle8z6alcwgclejdhc24ha2xrg0szs5802ce');
+    expect(parsed.testnet).toBe(false);
+  });
+
+
+  it('cashAddr with space on testnet', function() {
+
+    var parsed = bitcoinUriService.parse('bchtest: qqjxkmtaxk4nv6w9h5ht2fjcj9c7ruh0fu7cnxsx5j');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qqjxkmtaxk4nv6w9h5ht2fjcj9c7ruh0fu7cnxsx5j');
+    expect(parsed.testnet).toBe(true);
   });
 
   it('cashAddr without prefix', function() {
@@ -343,11 +374,20 @@ fdescribe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(false);
   });
 
-  it('URL only', function() {
+  it('URL only, http', function() {
 
-    var parsed = bitcoinUriService.parse('https://www.google.com');
+    var parsed = bitcoinUriService.parse('http://paperwallet.bitcoin.com');
 
-    expect(parsed.isValid).toBe(false);
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.bareUrl).toBe('http://paperwallet.bitcoin.com');
+  });
+
+  it('URL only, https with query', function() {
+
+    var parsed = bitcoinUriService.parse('https://purse.io/?one=two&three=four');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.bareUrl).toBe('https://purse.io/?one=two&three=four');
   });
 
 });

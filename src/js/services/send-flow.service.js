@@ -9,7 +9,7 @@ angular
   function sendFlowService(
     sendFlowStateService, sendFlowRouterService
     , bitcoinUriService, payproService, bitcoinCashJsService
-    , popupService
+    , popupService, gettextCatalog
     , $state
   ) {
 
