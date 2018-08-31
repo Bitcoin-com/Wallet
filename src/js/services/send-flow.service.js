@@ -109,8 +109,8 @@ angular
 
             if (res.publicAddress) {
               var prefix = res.isTestnet ? 'bchtest:' : 'bitcoincash:';
-              params.displayAddress = (prefix + res.publicAddress.cashAddr) || res.publicAddress.legacy || res.publicAddress.bitpay;
-              params.toAddress = bitcoinCashJsService.readAddress(params.displayAddress).legacy;
+              params.displayAddress = res.publicAddress.cashAddr || res.publicAddress.legacy || res.publicAddress.bitpay;
+              params.toAddress = bitcoinCashJsService.readAddress((prefix + res.publicAddress.cashAddr) || res.publicAddress.legacy || res.publicAddress.bitpay).legacy;
             }
             
             _next();
