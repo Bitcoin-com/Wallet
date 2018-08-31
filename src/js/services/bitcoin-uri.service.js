@@ -205,8 +205,8 @@
           switch(key) {
             case 'amount':
             var amount = parseFloat(decodedValue);
-              if (amount) { // Checking for NaN, or no numbers at all etc.
-                parsed.amount = decodedValue;
+              if (amount) { // Checking for NaN, or no numbers at all etc. & convert to satoshi
+                parsed.amount = decodedValue * 100000000; // Need to check if a currency is precised
               } else {
                 return parsed;
               }  
