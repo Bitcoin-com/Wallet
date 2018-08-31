@@ -112,6 +112,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
 
       sendFlowService.start(params);
     }
+    
     // data extensions for Payment Protocol with non-backwards-compatible request
     if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.testnet) {  
       var coin = allParsed.coin;
@@ -373,20 +374,12 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
   };
 
   function goToAmountPage(toAddress, coin) {
-    $state.go('tabs.send', {}, {
-      'reload': true,
-      'notify': $state.current.name == 'tabs.send' ? false : true
-    });
-    $timeout(function() {
-      var stateParams = {
-        toAddress: toAddress,
-        displayAddress: toAddress,
-        coin: coin,
-        noPrefix: 1
-      };
-      sendFlowService.pushState(stateParams);
-      $state.transitionTo('tabs.send.origin');
-    }, 100);
+    var stateParams = {
+      toAddress: toAddress,
+      displayAddress: toAddress,
+      coin: coin,
+    };
+    sendFlowService.start(stateParams);
   }
 
   function handlePayPro(payProData, coin) {
@@ -447,15 +440,7 @@ angular.module('copayApp.services').factory('incomingData', function(bitcoinUriS
     }
 
     scannerService.pausePreview();
-    $state.go('tabs.send', {}, {
-      'reload': true,
-      'notify': $state.current.name == 'tabs.send' ? false : true
-    }).then(function() {
-      $timeout(function() {
-        sendFlowService.pushState(stateParams); // Need to do more here
-        $state.transitionTo('tabs.send.origin');
-      });
-    });
+    sendFlowService.start(stateParams);
   }
 
   return root;

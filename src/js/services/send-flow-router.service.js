@@ -26,18 +26,24 @@ angular
     /**
      * 
      */
-    function start() {
-      if ($state.current.name != 'tabs.send') {
-        $state.go('tabs.home').then(function () {
-          $ionicHistory.clearHistory();
-          $state.go('tabs.send').then(function () {
-            $timeout(function () {
-              goNext();
-            }, 60);
-          });
-        });
+    function start() {     
+      var state = sendFlowStateService.state;
+      
+      if (state.isRequestAmount) {
+        $state.go('tabs.paymentRequest.amount');
       } else {
-        goNext();
+        if ($state.current.name != 'tabs.send') {
+          $state.go('tabs.home').then(function () {
+            $ionicHistory.clearHistory();
+            $state.go('tabs.send').then(function () {
+              $timeout(function () {
+                goNext();
+              }, 60);
+            });
+          });
+        } else {
+          goNext();
+        }
       }
     }
 

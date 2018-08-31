@@ -18,10 +18,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.displayBalanceAsFiat = true;
 
   $scope.requestSpecificAmount = function() {
-    sendFlowService.pushState({
-      toWalletId: $scope.wallet.credentials.walletId
+    sendFlowService.start({
+      toWalletId: $scope.wallet.credentials.walletId,
+      isRequestAmount: true
     });
-    $state.go('tabs.paymentRequest.amount');
   };
 
   $scope.setAddress = function(newAddr, copyAddress) {
