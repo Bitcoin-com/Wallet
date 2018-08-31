@@ -7,8 +7,6 @@ angular.module('copayApp.controllers').controller('buyGiftCardsController', func
     $scope.hide = config.homeSectionIsHidden&&config.homeSectionIsHidden['buyGiftCards']?config.homeSectionIsHidden['buyGiftCards']:false;
   });
 
-  $scope.services = servicesService.get();
-
   $scope.toggle = function() {
     $scope.hide = !$scope.hide;
     $timeout(function() {

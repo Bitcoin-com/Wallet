@@ -207,7 +207,8 @@ div.onboarding-topic {
 	color:#26B03C;
 }
 
-.icon-egifter {
+.bg.icon-egifter {
+  border: 1px solid #086EAA;
 	background-color: #ffffff;
 	background-image: url('../img/egiftericon.png');
 }
