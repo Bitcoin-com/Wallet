@@ -29,13 +29,17 @@ angular
       map: map,
       pop: pop,
       push: push,
+      isEmpty: isEmpty
     };
 
     return service;
 
     function init(params) {
       clear();
-      push(params);
+
+      if (params) {
+        push(params);
+      }
     }
 
     function clear() {
@@ -93,6 +97,10 @@ angular
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);
+    };
+
+    function isEmpty() {
+      return service.previousStates.length == 0;
     };
   };
 

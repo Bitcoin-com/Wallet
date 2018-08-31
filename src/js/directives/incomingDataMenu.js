@@ -1,23 +1,28 @@
 'use strict';
 
 angular.module('copayApp.directives')
-  .directive('incomingDataMenu', function($timeout, $rootScope, $state, externalLinkService) {
+  .directive('incomingDataMenu', function($timeout, $rootScope, $state, externalLinkService, sendFlowService, bitcoinCashJsService) {
     return {
       restrict: 'E',
       templateUrl: 'views/includes/incomingDataMenu.html',
       link: function(scope, element, attrs) {
         $rootScope.$on('incomingDataMenu.showMenu', function(event, data) {
           $timeout(function() {
-            scope.data = data.data;
-            scope.type = data.type;
-            scope.showMenu = true;
-            scope.https = false;
+            scope.data = data;
 
-            if (scope.type === 'url') {
-              if (scope.data.indexOf('https://') === 0) {
-                scope.https = true;
-              }
+            if (scope.data.parsed.privateKey) {
+              scope.type = "privateKey";
+            } else if (scope.data.parsed.url) {
+              scope.type = "url";
+            } else if (scope.data.parsed.publicAddress) {
+              scope.type = "bitcoinAddress";
+              var prefix = scope.data.parsed.isTestnet ? 'bchtest:' : 'bitcoincash:';
+              scope.data.toAddress = (prefix + scope.data.parsed.publicAddress.cashAddr) || scope.data.parsed.publicAddress.legacy || scope.data.parsed.publicAddress.bitpay;
+            } else {
+              scope.type = "text";
             }
+
+            scope.showMenu = true;
           });
         });
         scope.hide = function() {
@@ -28,18 +33,9 @@ angular.module('copayApp.directives')
           externalLinkService.open(url);
         };
         scope.sendPaymentToAddress = function(bitcoinAddress) {
-          var noPrefixInAddress = 0;
-          if (bitcoinAddress.toLowerCase().indexOf('bitcoin') < 0) {
-            noPrefixInAddress = 1;
-          }
           scope.showMenu = false;
-          $state.go('tabs.send').then(function() {
-            $timeout(function() {
-              $state.transitionTo('tabs.send.amount', {
-                toAddress: bitcoinAddress,
-                noPrefix: noPrefixInAddress
-              });
-            }, 50);
+          sendFlowService.start({
+            data: bitcoinAddress
           });
         };
         scope.addToAddressBook = function(bitcoinAddress) {

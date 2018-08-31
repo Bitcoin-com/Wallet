@@ -30,7 +30,7 @@ angular
     /**
      * Clears all previous state
      */
-    function start(params) {
+    function start(params, onError) {
       console.log('start()');
 
       if (params && params.data) {
@@ -101,11 +101,14 @@ angular
             }
 
             if (res.amount) {
+              if (res.currency) {
+                params.currency = res.currency;
+              }
               params.amount = res.amount;
             }
 
             if (res.publicAddress) {
-              var prefix = res.testnet ? 'bchtest:' : 'bitcoincash:';
+              var prefix = res.isTestnet ? 'bchtest:' : 'bitcoincash:';
               params.displayAddress = (prefix + res.publicAddress.cashAddr) || res.publicAddress.legacy || res.publicAddress.bitpay;
               params.toAddress = bitcoinCashJsService.readAddress(params.displayAddress).legacy;
             }
@@ -113,7 +116,9 @@ angular
             _next();
           }
         } else {
-          _next();
+          if (onError) {
+            onError();
+          }
         }
       } else {
         _next();
@@ -122,13 +127,7 @@ angular
 
       // Next used for sync the async task
       function _next() {
-
-        /**
-         *  Init the state if params is defined
-         */
-        if (params) {
-          sendFlowStateService.init(params);
-        }
+        sendFlowStateService.init(params);
 
         /**
          * Routing strategy to -> send-flow-router.service

@@ -8,9 +8,7 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
     $rootScope.$broadcast('incomingDataMenu.showMenu', data);
   };
 
-  root.redir = function(data, serviceId, serviceData) {
-    var originalAddress = null;
-    var noPrefixInAddress = 0;
+  root.redir = function(data) {
     var allParsed = bitcoinUriService.parse(data);
 
     if (allParsed.isValid && allParsed.isTestnet) {
@@ -19,7 +17,49 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
         gettextCatalog.getString('Testnet is not supported.')
       );
       return false;
+    } else {
+      /**
+       * Hardcore fix, but the legacy code in the bottom needs to be removed.
+       * BitcoinUriService is making the job of this.
+       * incomingData should be an intermediate to redirect either to the sendFlow
+       * or to import a wallet for example.
+       */
+      scannerService.pausePreview();
+
+      /**
+       * Strategy for the action
+       */
+      if (
+        !allParsed.isValid
+        || allParsed.privateKey
+        || (sendFlowService.state.isEmpty() && !allParsed.url && !allParsed.amount)
+      ) {
+        root.showMenu({
+          original: data,
+          parsed: allParsed
+        });
+      } else {
+        var state = sendFlowService.state.getClone();
+        state.data = data;
+        
+        sendFlowService.start(state, function onError(err) {
+          /**
+           * OnError, open the menu (link not validated)
+           */
+          root.showMenu({
+            original: data,
+            parsed: allParsed
+          });
+        });
+      }
     }
+    
+    // No need to go more far
+    return;
+
+    /**
+     * The legacy code in the bottom needs to be checked and removed if any case is forgotten.
+     */
 
     if (data.toLowerCase().indexOf('bitcoin') < 0) {
       noPrefixInAddress = 1;

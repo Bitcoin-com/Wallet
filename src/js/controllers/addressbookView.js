@@ -21,16 +21,8 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
   });
 
   $scope.sendTo = function() {
-    var to = '';
-    if ($scope.addressbookEntry.coin == 'bch') {
-      var a = 'bitcoincash:' + $scope.addressbookEntry.address;
-      to = bitcoinCashJsService.readAddress(a).legacy;
-    } else {
-      to = $scope.addressbookEntry.address;
-    }
-
     var stateParams = {
-      toAddress: to,
+      data: $scope.addressbookEntry.address,
       toName: $scope.addressbookEntry.name,
       toEmail: $scope.addressbookEntry.email,
       coin: $scope.addressbookEntry.coin
