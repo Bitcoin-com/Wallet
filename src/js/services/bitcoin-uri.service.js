@@ -155,7 +155,7 @@
 
       } else if (/^(?:bchtest)$/.test(preColonLower)) {
         parsed.coin = 'bch';
-        parsed.testnet = true;
+        parsed.isTestnet = true;
         addressAndParams = colonSplit[2].trim();
         console.log('Is bch');
 
@@ -264,7 +264,7 @@
         var cashAddrMainnet = cashAddrOnMainnet(addressLowerCase);
         var privateKey = '';
 
-        if (parsed.testnet && cashAddrTestnet) {
+        if (parsed.isTestnet && cashAddrTestnet) {
           parsed.address = addressLowerCase;
           parsed.coin = 'bch';
           parsed.publicAddress = {
@@ -277,21 +277,21 @@
           parsed.publicAddress = {
             cashAddr: addressLowerCase
           };
-          parsed.testnet = false;
+          parsed.isTestnet = false;
           parsed.isValid = true;  
 
         } else if (bitcore.Address.isValid(address, 'livenet')) {
           parsed.publicAddress = {
             legacy: address
           };
-          parsed.testnet = false;
+          parsed.isTestnet = false;
           parsed.isValid = true;
 
         } else if (bitcore.Address.isValid(address, 'testnet')) {
           parsed.publicAddress = {
             legacy: address
           };
-          parsed.testnet = true;
+          parsed.isTestnet = true;
           parsed.isValid = true;
 
         } else if (bitpayAddrMainnet) {
@@ -299,7 +299,7 @@
           parsed.publicAddress = {
             bitpay: address
           };
-          parsed.testnet = false;
+          parsed.isTestnet = false;
           parsed.isValid = true;
 
         } else if (copayInvitationRe.test(address) ) {
@@ -311,7 +311,7 @@
           try {
             new bitcore.PrivateKey(privateKey, 'livenet');
             parsed.privateKey = { wif: privateKey };
-            parsed.testnet = false;
+            parsed.isTestnet = false;
             parsed.isValid = true;
           } catch (e) {}
 
@@ -320,7 +320,7 @@
           try {
             new bitcore.PrivateKey(privateKey, 'testnet');
             parsed.privateKey = { wif: privateKey };
-            parsed.testnet = true;
+            parsed.isTestnet = true;
             parsed.isValid = true;
           } catch (e) {}
 

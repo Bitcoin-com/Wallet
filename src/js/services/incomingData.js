@@ -13,7 +13,7 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
     var noPrefixInAddress = 0;
     var allParsed = bitcoinUriService.parse(data);
 
-    if (allParsed.isValid && allParsed.testnet) {
+    if (allParsed.isValid && allParsed.isTestnet) {
       popupService.showAlert(
         gettextCatalog.getString('Unsupported'), 
         gettextCatalog.getString('Testnet is not supported.')
@@ -114,7 +114,7 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
     }
     
     // data extensions for Payment Protocol with non-backwards-compatible request
-    if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.testnet) {  
+    if (allParsed.isValid && allParsed.coin && allParsed.url && !allParsed.isTestnet) {  
       var coin = allParsed.coin;
       data = allParsed.url;
       payproService.getPayProDetails(data, allParsed.coin, function onGetPayProDetails(err, details) {
@@ -152,8 +152,8 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
         }
         return true;
     // Cash URI
-    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress && !allParsed.testnet) {
-        var prefix = allParsed.testnet ? 'bchtest:' : 'bitcoincash:';
+    } else if (allParsed.isValid && allParsed.coin === 'bch' && allParsed.publicAddress && !allParsed.isTestnet) {
+        var prefix = allParsed.isTestnet ? 'bchtest:' : 'bitcoincash:';
         var addrIn = allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay || prefix + allParsed.publicAddress.cashAddr;
         originalAddress = allParsed.publicAddress.cashAddr || allParsed.publicAddress.legacy || allParsed.publicAddress.bitpay;
 

@@ -116,7 +116,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     var title = '';
     var msg = '';
     if (parsed.isValid) {
-      if (parsed.testnet) {
+      if (parsed.isTestnet) {
         title = gettextCatalog.getString('Unsupported');
         msg = gettextCatalog.getString('Testnet is not supported.');
         popupService.showAlert(title, msg, function onAlertShown() {
