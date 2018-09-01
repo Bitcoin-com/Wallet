@@ -53,7 +53,7 @@
       </div>
   
       <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
-        <div class="sendmax" ng-if="vm.availableFunds && !vm.isRequestingSpecificAmount">
+        <div class="sendmax" ng-if="vm.availableFunds && !vm.isRequestingSpecificAmount && vm.canSendAllAvailableFunds">
           <button class="button button-sendmax" ng-click="vm.sendMax()">
               <span>
                 <span translate>Use All Available Funds</span>&ensp;

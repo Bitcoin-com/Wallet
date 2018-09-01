@@ -11,6 +11,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.alternativeUnit = '';
   vm.amount = '0';
   vm.availableFunds = '';
+  vm.canSendAllAvailableFunds = true;
   // Use insufficient for logic, as when the amount is invalid, funds being
   // either sufficent or insufficient doesn't make sense.
   vm.fundsAreInsufficient = false;
@@ -23,6 +24,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.thirdParty = false;
   vm.unit = '';
 
+  // Functions
   vm.changeUnit = changeUnit;
   vm.close = close;
   vm.findCurrency = findCurrency;
@@ -97,6 +99,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
             vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
             vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
           });
+          vm.canSendAllAvailableFunds = false;
         }
       }
     }
