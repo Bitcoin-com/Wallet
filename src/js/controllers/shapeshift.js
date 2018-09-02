@@ -6,22 +6,6 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
 
   $scope.showMyAddress = showMyAddress;
 
-  function generateAddress(wallet, cb) {
-    if (!wallet) return;
-    walletService.getAddress(wallet, false, function(err, addr) {
-      if (err) {
-        popupService.showAlert(err);
-      }
-      return cb(addr);
-    });
-  }
-
-  function showToWallets() {
-    $scope.toWallets = $scope.fromWallet.coin === 'btc' ? walletsBch : walletsBtc;
-    $scope.onToWalletSelect($scope.toWallets[0]);
-    $scope.singleToWallet = $scope.toWallets.length === 1;
-  }
-
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
