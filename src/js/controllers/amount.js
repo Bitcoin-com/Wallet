@@ -620,7 +620,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       availableUnits[altUnitIndex].shortName = newAltCurrency.isoCode;
       fiatCode = newAltCurrency.isoCode;
       updateAvailableFundsStringIfNeeded();
-      updateMaximumButtonIfNeeded();
       updateUnitUI();
       close();
     });
@@ -641,6 +640,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           }
         });
       }
+      updateMaximumButtonIfNeeded();
     }
   }
 
@@ -681,6 +681,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function updateMaximumButtonIfNeeded() {
+    console.log('sendmax updateMaximumButtonIfNeeded()');
     if (vm.showSendMaxButton || vm.showSendLimitMaxButton) {
       transactionSendableAmount.fiat = '';
       vm.sendableFunds = transactionSendableAmount.crypto;
