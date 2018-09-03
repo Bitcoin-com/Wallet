@@ -3850,3 +3850,7 @@ msgstr ""
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr ""
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr ""
