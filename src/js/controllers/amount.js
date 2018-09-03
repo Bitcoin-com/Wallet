@@ -81,11 +81,12 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (data.direction == "back") {
       sendFlowService.popState();
     }
-    console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
+    //console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
     
     initCurrencies();
 
     passthroughParams = sendFlowService.getStateClone();
+    console.log('sendflow Amount on BeforeEnter after back', passthroughParams);
 
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
@@ -95,6 +96,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     vm.isRequestingSpecificAmount = !passthroughParams.fromWalletId;
     vm.showSendMaxButton = !vm.isRequestingSpecificAmount;
 
+    var config = configService.getSync().wallet.settings;
+    unitToSatoshi = config.unitToSatoshi;
+    satToUnit = 1 / unitToSatoshi;
+    unitDecimals = config.unitDecimals;
+
+    setAvailableUnits();
+    updateUnitUI();
+
     if (passthroughParams.thirdParty) {
       vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
       if (vm.thirdParty) {
@@ -102,12 +111,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       }
     }
 
-    
-
-    var config = configService.getSync().wallet.settings;
-
-    setAvailableUnits();
-    updateUnitUI();
 
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
@@ -136,10 +139,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       });
     }
 
-    unitToSatoshi = config.unitToSatoshi;
-    satToUnit = 1 / unitToSatoshi;
-    unitDecimals = config.unitDecimals;
-
+  
     resetAmount();
 
     processAmount();
@@ -220,9 +220,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   function initForShapeshift() {
     if (vm.thirdParty.id === 'shapeshift') {
-      if (!vm.thirdParty.data) {
-        vm.thirdParty.data = {};
-      }
+      vm.thirdParty.data = vm.thirdParty.data || {};
+
       vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
 
       vm.fromWallet = profileService.getWallet(vm.fromWalletId);
@@ -232,12 +231,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.showSendLimitMaxButton = false;
       vm.canSendAllAvailableFunds = false;
 
+      
       shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
         vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
         vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
 
         setMaximumButtonFromWallet(vm.fromWallet);
       });
+      
       
     }
   }  
