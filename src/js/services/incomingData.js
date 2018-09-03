@@ -29,7 +29,13 @@ angular.module('copayApp.services').factory('incomingData', function(externalLin
       /**
        * Strategy for the action
        */
-      if (
+      if (parsed.copayInvitation) {
+        $state.go('tabs.home').then(function() {
+          $state.transitionTo('tabs.add.join', {
+            url: data
+          });
+        });
+      } else if (
         !parsed.isValid
         || parsed.privateKey
         || (sendFlowService.state.isEmpty() && !parsed.url && !parsed.amount)
