@@ -100,11 +100,8 @@ angular
               params.coin = res.coin;
             }
 
-            if (res.amount) {
-              if (res.currency) {
-                params.currency = res.currency;
-              }
-              params.amount = res.amount;
+            if (res.amountInSatoshis) {
+              params.amount = res.amountInSatoshis;
             }
 
             if (res.publicAddress) {

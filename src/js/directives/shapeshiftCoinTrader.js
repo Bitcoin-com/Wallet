@@ -111,6 +111,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                       orderId: $scope.depositInfo.orderId
                     };
 
+                    // How to handle this
                     if (incomingData.redir(sendAddress, 'shapeshift', shapeshiftData)) {
                         ongoingProcess.set('connectingShapeshift', false);
                         return;

@@ -23,9 +23,12 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
 
     document.addEventListener('handleopenurl', handleOpenURL, false);
 
-    if (!incomingData.redir(url)) {
-      $log.warn('Unknown URL! : ' + url);
-    }
+    incomingData.redir(url, function onError(err) {
+      if (err) {
+        $log.warn('Unknown URL! : ' + url);
+        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+      }
+    });
   };
 
   var handleResume = function() {
