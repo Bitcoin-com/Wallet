@@ -102,15 +102,18 @@ angular.module('copayApp.services')
     }
 
     root.showUpdatePopup = function () {
-      var buttons = [{
-        text: "GitHub",
-        type: 'button-positive',
-        onTap: function () {
-          var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
-          externalLinkService.open(url, false);
-        }
-      }];
+      var buttons = [];
 
+      if (!platformInfo.isIOS) { // There is no GitHub-release for iPhone
+        buttons.push({
+          text: "GitHub",
+          type: 'button-positive',
+          onTap: function () {
+            var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
+            externalLinkService.open(url, false);
+          }
+        });
+      }
       if (platformInfo.isAndroid) {
         buttons.unshift({
           text: "Google Play Store",
@@ -126,10 +129,21 @@ angular.module('copayApp.services')
           text: "App Store",
           type: 'button-positive',
           onTap: function () {
-            var url = 'https://itunes.apple.com/app/bitcoin-com-wallet/id1383072453';
+            var url = 'https://itunes.apple.com/app/id1252903728';
             externalLinkService.open(url, false);
           }
         });
+      } else if (platformInfo.isNW) {
+        if (process.platform === 'darwin') {
+          buttons.unshift({
+            text: "Mac App Store",
+            type: 'button-positive',
+            onTap: function () {
+              var url = 'https://itunes.apple.com/app/bitcoin-com-wallet/id1383072453';
+              externalLinkService.open(url, false);
+            }
+          });
+        }
       }
 
       if (buttons.length === 1) { // There is only one source to download (probably on desktop, so open GitHub release page..)
