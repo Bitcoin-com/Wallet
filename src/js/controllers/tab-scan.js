@@ -115,7 +115,8 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
       if (err) {
         var title = gettextCatalog.getString('Scan Failed');
         popupService.showAlert(title, err.message, function onAlertShown() {
-          scannerService.resumePreview();
+          // Enable another scan since we won't receive incomingDataMenu.menuHidden
+          activate();
         });
       } else {
         scannerService.resumePreview();
