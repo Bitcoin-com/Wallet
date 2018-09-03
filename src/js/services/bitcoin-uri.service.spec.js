@@ -1,4 +1,4 @@
-fdescribe('bitcoinUriService', function() {
+describe('bitcoinUriService', function() {
   var bitcoinUriService;
 
   beforeEach(function() {
@@ -113,6 +113,7 @@ fdescribe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.amount).toBe('20.3');
+    expect(parsed.amountInSatoshis).toBe(2030000000);
     expect(parsed.coin).toBe('btc');
     expect(parsed.label).toBe('Luke-Jr');
     expect(parsed.publicAddress.legacy).toBe('12nCRhMDfxVnuF3uYMXv2fNxBohNmacfWu');

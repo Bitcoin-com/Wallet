@@ -84,6 +84,14 @@
       return result;
     }
     
+    function infoFromImport(data) {
+      var split = data.split('|');
+      // Copay seems to use extra parameter for coin.
+      if (split.length < 5 || split.length > 6) {
+        return null;
+      }
+
+    }
 
     /*
     For parsing:
@@ -93,6 +101,7 @@
     returns: 
     {
       amount: '',
+      amountInSatoshis: 0,
       bareUrl: '',
       coin: '',
       copayInvitation: '',
@@ -205,8 +214,9 @@
           switch(key) {
             case 'amount':
             var amount = parseFloat(decodedValue);
-              if (amount) { // Checking for NaN, or no numbers at all etc.
-                parsed.amount = decodedValue;
+              if (amount) { // Checking for NaN, or no numbers at all etc. & convert to satoshi
+                parsed.amount = decodedValue; // Need to check if a currency is precised
+                parsed.amountInSatoshis = amount * 100000000
               } else {
                 return parsed;
               }  
@@ -252,6 +262,7 @@
         var copayInvitationRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
+        var importRe = /^[123]|$/;
         var privateKeyEncryptedRe = /^6P[1-9A-HJ-NP-Za-km-z]{56}$/;
         var privateKeyForUncompressedPublicKeyRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
         var privateKeyForUncompressedPublicKeyTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
