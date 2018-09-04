@@ -78,11 +78,15 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
-    console.log('walletSelector onBeforeEnter sendflow ', sendFlowService.state);
+    console.log('review onBeforeEnter sendflow ', sendFlowService.state);
     defaults = configService.getDefaults();
     sendFlowData = sendFlowService.getStateClone();
     originWalletId = sendFlowData.fromWalletId;
-    satoshis = parseInt(sendFlowData.amount, 10);
+    if (typeof sendFlowData.amount === 'string') {
+      satoshis = parseInt(sendFlowData.amount, 10);
+    } else {
+      satoshis = sendFlowData.amount;
+    }
     toAddress = sendFlowData.toAddress;
     destinationWalletId = sendFlowData.toWalletId;
 

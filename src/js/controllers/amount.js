@@ -269,7 +269,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         altUnitIndex = unitIndex;
         unitIndex = tempIndex;
       }
-      vm.amount = (transactionSendableAmount.satoshis * unitToSatoshi).toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
+      vm.amount = (transactionSendableAmount.satoshis * satToUnit).toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
     }
     finish();
   }
@@ -487,9 +487,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     var satoshis = 0;
     if (unit.isFiat) {
-      satoshis = (fromFiat(uiAmount) * unitToSatoshi).toFixed(0);
+      satoshis = Math.floor(fromFiat(uiAmount) * unitToSatoshi);
     } else {
-      satoshis = (uiAmount * unitToSatoshi).toFixed(0);
+      satoshis = Math.floor(uiAmount * unitToSatoshi);
     }
 
     var confirmData = {

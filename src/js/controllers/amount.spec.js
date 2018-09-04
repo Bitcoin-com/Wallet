@@ -4,6 +4,7 @@ describe('amountController', function(){
     $controller,
     $ionicHistory, 
     $rootScope,
+    ongoingProcess,
     platformInfo,
     profileService,
     rateService,
@@ -11,6 +12,7 @@ describe('amountController', function(){
     shapeshiftService,
     txFormatService,
     $scope,
+    $state,
     $stateParams;
 
 
@@ -37,6 +39,8 @@ describe('amountController', function(){
 
     $ionicHistory = jasmine.createSpyObj(['backView']);
 
+    ongoingProcess = jasmine.createSpyObj(['set']);
+
     platformInfo = {
       isChromeApp: false,
       isAndroid: false,
@@ -46,10 +50,10 @@ describe('amountController', function(){
     profileService = jasmine.createSpyObj(['getWallet', 'getWallets']);
     
     rateService = jasmine.createSpyObj(['fromFiat', 'listAlternatives', 'updateRates', 'whenAvailable']);
-    sendFlowService = jasmine.createSpyObj(['getStateClone']);
+    sendFlowService = jasmine.createSpyObj(['getStateClone', 'pushState']);
     shapeshiftService = jasmine.createSpyObj(['getMarketData']);
     txFormatService = jasmine.createSpyObj(['formatAlternativeStr', 'formatAmountStr']);
-
+    $state = jasmine.createSpyObj(['transitionTo']);
     $stateParams = {};
 
     inject(function(_$controller_, _$rootScope_){
@@ -86,7 +90,7 @@ describe('amountController', function(){
       $ionicModal: {},
       $ionicScrollDelegate: {},
       nodeWebkitService: {},
-      ongoingProcess: {},
+      ongoingProcess: ongoingProcess,
       platformInfo: platformInfo,
       profileService: profileService,
       popupService: {},
@@ -159,7 +163,7 @@ describe('amountController', function(){
         $ionicModal: {},
         $ionicScrollDelegate: {},
         nodeWebkitService: {},
-        ongoingProcess: {},
+        ongoingProcess: ongoingProcess,
         platformInfo: platformInfo,
         profileService: profileService,
         popupService: {},
@@ -167,7 +171,7 @@ describe('amountController', function(){
         $scope: $scope,
         sendFlowService: sendFlowService,
         shapeshiftService: shapeshiftService,
-        $state: {},
+        $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
         walletService: {}
@@ -218,8 +222,25 @@ describe('amountController', function(){
       expect(amountController.showSendMaxButton).toEqual(false);
       expect(amountController.showSendLimitMaxButton).toEqual(true);
 
+      // Now hit the Send Max button
+      var pushedState = null;
+      sendFlowService.pushState.and.callFake(function (sendFlowState){
+        pushedState = sendFlowState;
+      });
       
+      amountController.sendMax();
 
+      expect(pushedState.amount).toEqual(68462390);
+      expect(pushedState.fromWalletId).toEqual('4cd7673e-7320-4dfa-86e5-d4edb51d460a');
+      expect(pushedState.sendMax).toEqual(false);
+      expect(pushedState.toWalletId).toEqual('bf00af8f-0788-4b57-b30a-0390747407e9');
+      
+      expect(pushedState.thirdParty.id).toEqual('shapeshift');
+      expect(pushedState.thirdParty.data.maxAmount).toEqual(0.6846239);
+      expect(pushedState.thirdParty.data.minAmount).toEqual(0.00013692);
+
+      expect($state.transitionTo.calls.count()).toEqual(1);
+      expect($state.transitionTo.calls.argsFor(0)[0]).toEqual('tabs.send.review');
     });
   });
 

@@ -12,7 +12,7 @@ angular
       // A separate state variable so we can ensure it is cleared of everything,
       // even other properties added that this service does not know about. (such as "coin")
       state: {
-        amount: '',
+        amount: 0,
         displayAddress: null,
         fromWalletId: '',
         sendMax: false,
@@ -42,7 +42,7 @@ angular
     function clearCurrent() {
       console.log("sendFlow clearCurrent()");
       service.state = {
-        amount: '',
+        amount: 0,
         displayAddress: null,
         fromWalletId: '',
         sendMax: false,
