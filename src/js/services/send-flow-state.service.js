@@ -3,14 +3,13 @@
 (function(){
 
 angular
-  .module('copayApp.services')
-  .factory('sendFlowService', sendFlowService);
+  .module('bitcoincom.services')
+  .factory('sendFlowStateService', sendFlowStateService);
   
-  function sendFlowService($log) {
+  function sendFlowStateService($log) {
 
     var service = {
-      // A separate state variable so we can ensure it is cleared of everything,
-      // even other properties added that this service does not know about. (such as "coin")
+      // Variables
       state: {
         amount: '',
         displayAddress: null,
@@ -18,29 +17,55 @@ angular
         sendMax: false,
         thirdParty: null,
         toAddress: '',
-        toWalletId: ''
+        toWalletId: '',
+        coin: '',
+        isRequestAmount: false,
+        isWalletTransfer: false
       },
       previousStates: [],
 
       // Functions
+      init: init,
       clear: clear,
-      getStateClone: getStateClone,
+      getClone: getClone,
       map: map,
-      popState: popState,
-      pushState: pushState,
-      startSend: startSend
+      pop: pop,
+      push: push,
+      isEmpty: isEmpty
     };
 
     return service;
 
+    /**
+     * Init state & stack
+     * @param {Object} params 
+     */
+    function init(params) {
+      $log.debug("send-flow-state init()");
+
+      clear();
+
+      if (params) {
+        push(params);
+      }
+    }
+
+    /**
+     * Clear a state & stack
+     */
     function clear() {
-      console.log("sendFlow clear()");
+      $log.debug("send-flow-state clear()");
+
       clearCurrent();
       service.previousStates = [];
     }
 
+    /**
+     * Clear current state only
+     */
     function clearCurrent() {
-      console.log("sendFlow clearCurrent()");
+      $log.debug("send-flow-state clearCurrent()");
+
       service.state = {
         amount: '',
         displayAddress: null,
@@ -48,14 +73,17 @@ angular
         sendMax: false,
         thirdParty: null,
         toAddress: '',
-        toWalletId: ''
+        toWalletId: '',
+        coin: '',
+        isRequestAmount: false,
+        isWalletTransfer: false
       }
     }
 
     /**
-     * Handy for debugging
+     * Get a clone of the current state
      */
-    function getStateClone() {
+    function getClone() {
       var currentState = {};
       Object.keys(service.state).forEach(function forCurrentParam(key) {
         if (typeof service.state[key] !== 'function' && key !== 'previousStates') {
@@ -66,22 +94,21 @@ angular
     }
 
     /**
-     * Clears all previous state
+     * Fill in the current state from the params
+     * @param {Object} params 
      */
-    function startSend(params) {
-      console.log('startSend()');
-      clear();
-      map(params);
-    }
-
     function map(params) {
       Object.keys(params).forEach(function forNewParam(key) {
         service.state[key] = params[key];
       });
     };
 
-    function popState() {
-      console.log('sendFlow pop');
+    /**
+     * Pop state
+     */
+    function pop() {
+      $log.debug('send-flow-state pop');
+
       if (service.previousStates.length) {
         var params = service.previousStates.pop();
         clearCurrent();
@@ -91,12 +118,24 @@ angular
       }
     };
 
-    function pushState(params) {
-      console.log('sendFlow push');
-      var currentParams = getStateClone();
+    /**
+     * Push state
+     * @param {Object} params 
+     */
+    function push(params) {
+      $log.debug('send-flow-state push');
+
+      var currentParams = getClone();
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);
+    };
+
+    /**
+     * Is empty stack
+     */
+    function isEmpty() {
+      return service.previousStates.length == 0;
     };
   };
 

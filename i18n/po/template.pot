@@ -3850,3 +3850,27 @@ msgstr ""
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr ""
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr ""

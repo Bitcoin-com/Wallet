@@ -21,28 +21,14 @@ angular.module('copayApp.controllers').controller('addressbookViewController', f
   });
 
   $scope.sendTo = function() {
-    $ionicHistory.removeBackView();
-    sendFlowService.clear();
-    $state.go('tabs.send');
-    $timeout(function() {
-      var to = '';
-      if ($scope.addressbookEntry.coin == 'bch') {
-        var a = 'bitcoincash:' + $scope.addressbookEntry.address;
-        to = bitcoinCashJsService.readAddress(a).legacy;
-      } else {
-        to = $scope.addressbookEntry.address;
-      }
+    var stateParams = {
+      data: $scope.addressbookEntry.address,
+      toName: $scope.addressbookEntry.name,
+      toEmail: $scope.addressbookEntry.email,
+      coin: $scope.addressbookEntry.coin
+    };
 
-      var stateParams = {
-        toAddress: to,
-        toName: $scope.addressbookEntry.name,
-        toEmail: $scope.addressbookEntry.email,
-        coin: $scope.addressbookEntry.coin
-      };
-
-      sendFlowService.pushState(stateParams);
-      $state.transitionTo('tabs.send.origin');
-    }, 100);
+    sendFlowService.start(stateParams);
   };
 
   $scope.remove = function(addressbookEntry) {
