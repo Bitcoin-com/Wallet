@@ -1,11 +1,13 @@
 describe('amountController', function(){
   var configCache,
-    configService, 
+    configService,
+    gettextCatalog,
     $controller,
     $ionicHistory, 
     $rootScope,
     ongoingProcess,
     platformInfo,
+    popupService,
     profileService,
     rateService,
     sendFlowService,
@@ -37,6 +39,8 @@ describe('amountController', function(){
     });
     configService.getSync.and.returnValue(configCache);
 
+    gettextCatalog = jasmine.createSpyObj(['getString']);
+    gettextCatalog.getString.and.callFake(function(str){ return str; });
     $ionicHistory = jasmine.createSpyObj(['backView']);
 
     ongoingProcess = jasmine.createSpyObj(['set']);
@@ -46,13 +50,21 @@ describe('amountController', function(){
       isAndroid: false,
       isIos: true
     };
-
+    popupService = jasmine.createSpyObj(['showAlert']);
     profileService = jasmine.createSpyObj(['getWallet', 'getWallets']);
     
     rateService = jasmine.createSpyObj(['fromFiat', 'listAlternatives', 'updateRates', 'whenAvailable']);
     sendFlowService = jasmine.createSpyObj(['getStateClone', 'pushState']);
     shapeshiftService = jasmine.createSpyObj(['getMarketData']);
     txFormatService = jasmine.createSpyObj(['formatAlternativeStr', 'formatAmountStr']);
+    txFormatService.formatAlternativeStr.and.callFake(function(coin, satoshis, cb) {
+      var units = satoshis / 100000000;
+      var formatted = (units * 10000).toFixed(2) + ' USD';
+      cb(formatted);
+    });
+    txFormatService.formatAmountStr.and.callFake(function(coin, satoshis) {
+      return (satoshis * 100000000).toFixed(8) + ' ' + (coin || 'bch').toUpperCase();
+    });
     $state = jasmine.createSpyObj(['transitionTo']);
     $stateParams = {};
 
@@ -74,7 +86,7 @@ describe('amountController', function(){
     $ionicHistory.backView.and.returnValue(backView);
     
     var wallet = {
-
+      
     };
     profileService.getWallet.and.returnValue(wallet);
     profileService.getWallets.and.returnValue([{}]);
@@ -85,7 +97,7 @@ describe('amountController', function(){
 
     var amountController = $controller('amountController', { 
       configService: configService,
-      gettextCatalog: {},
+      gettextCatalog: gettextCatalog,
       $ionicHistory: $ionicHistory,
       $ionicModal: {},
       $ionicScrollDelegate: {},
@@ -93,7 +105,7 @@ describe('amountController', function(){
       ongoingProcess: ongoingProcess,
       platformInfo: platformInfo,
       profileService: profileService,
-      popupService: {},
+      popupService: popupService,
       rateService: rateService,
       $scope: $scope,
       sendFlowService: sendFlowService,
@@ -142,7 +154,195 @@ describe('amountController', function(){
 
     });
 
-    fit ('with available balance higher than max does not allow sendMax', function() {
+    it ('with available balance below limit, shows sendMax for triggering alert', function() {
+
+      walletFrom.coin = 'btc';
+      walletFrom.status = {
+        isValid: true,
+        spendableAmount: 789
+      };
+      walletTo.coin = 'bch';
+      
+      profileService.getWallets.and.returnValue([{}]);
+      rateService.fromFiat.and.returnValue(12); 
+
+      var $scope = $rootScope.$new();
+
+      var amountController = $controller('amountController', { 
+        configService: configService,
+        gettextCatalog: gettextCatalog,
+        $ionicHistory: $ionicHistory,
+        $ionicModal: {},
+        $ionicScrollDelegate: {},
+        nodeWebkitService: {},
+        ongoingProcess: ongoingProcess,
+        platformInfo: platformInfo,
+        profileService: profileService,
+        popupService: popupService,
+        rateService: rateService,
+        $scope: $scope,
+        sendFlowService: sendFlowService,
+        shapeshiftService: shapeshiftService,
+        $state: $state,
+        $stateParams: $stateParams,
+        txFormatService: txFormatService,
+        walletService: {}
+      });
+
+      rateService.whenAvailable.and.callFake(function(cb){
+        cb();
+      });
+
+      var sendFlowState = {
+        amount: '', 
+        displayAddress: null, 
+        fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a', 
+        sendMax: false, 
+        thirdParty: {
+          id: 'shapeshift',
+          data: {},
+        },
+        toAddress: '',
+        toWalletId: 'bf00af8f-0788-4b57-b30a-0390747407e9'
+      };
+
+      sendFlowService.getStateClone.and.returnValue(sendFlowState);
+
+      var reqCoinIn = '';
+      var reqCoinOut = '';
+      shapeshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
+        reqCoinIn = coinIn;
+        reqCoinOut = coinOut;
+        cb({
+          maxLimit: '0.6846239',
+          minimum: '0.00013692'
+        });
+      });
+
+      $scope.$emit('$ionicView.beforeEnter', {});
+
+      expect(rateService.updateRates.calls.any()).toEqual(true);
+
+      expect(reqCoinIn).toBe('btc');
+      expect(reqCoinOut).toBe('bch');
+
+      expect(amountController.maxAmount).toBe(0.68462390);
+      expect(amountController.minAmount).toBe(0.00013692);
+
+      expect(amountController.showSendMaxButton).toEqual(true);
+      expect(amountController.showSendLimitMaxButton).toEqual(false);
+
+      expect(amountController.sendableFunds).toEqual('0.08 USD');
+
+      // Now hit the Send Max button    
+      amountController.sendMax();
+
+      expect(popupService.showAlert.calls.argsFor(0)[0]).toEqual('Insufficient funds');
+      expect(popupService.showAlert.calls.argsFor(0)[1]).toEqual('Amount below minimum allowed');
+      expect(sendFlowService.pushState.calls.any()).toEqual(false);
+      expect($state.transitionTo.calls.any()).toEqual(false);
+    });
+
+    it ('with available balance between limits, uses sendMax', function() {
+
+      walletFrom.coin = 'btc';
+      walletFrom.status = {
+        isValid: true,
+        spendableAmount: 456789
+      };
+      walletTo.coin = 'bch';
+      
+      profileService.getWallets.and.returnValue([{}]);
+      rateService.fromFiat.and.returnValue(12); 
+
+      var $scope = $rootScope.$new();
+
+      var amountController = $controller('amountController', { 
+        configService: configService,
+        gettextCatalog: {},
+        $ionicHistory: $ionicHistory,
+        $ionicModal: {},
+        $ionicScrollDelegate: {},
+        nodeWebkitService: {},
+        ongoingProcess: ongoingProcess,
+        platformInfo: platformInfo,
+        profileService: profileService,
+        popupService: {},
+        rateService: rateService,
+        $scope: $scope,
+        sendFlowService: sendFlowService,
+        shapeshiftService: shapeshiftService,
+        $state: $state,
+        $stateParams: $stateParams,
+        txFormatService: txFormatService,
+        walletService: {}
+      });
+
+      rateService.whenAvailable.and.callFake(function(cb){
+        cb();
+      });
+
+      var sendFlowState = {
+        amount: '', 
+        displayAddress: null, 
+        fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a', 
+        sendMax: false, 
+        thirdParty: {
+          id: 'shapeshift',
+          data: {},
+        },
+        toAddress: '',
+        toWalletId: 'bf00af8f-0788-4b57-b30a-0390747407e9'
+      };
+
+      sendFlowService.getStateClone.and.returnValue(sendFlowState);
+
+      var reqCoinIn = '';
+      var reqCoinOut = '';
+      shapeshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
+        reqCoinIn = coinIn;
+        reqCoinOut = coinOut;
+        cb({
+          maxLimit: '0.6846239',
+          minimum: '0.00013692'
+        });
+      });
+
+      $scope.$emit('$ionicView.beforeEnter', {});
+
+      expect(rateService.updateRates.calls.any()).toEqual(true);
+
+      expect(reqCoinIn).toBe('btc');
+      expect(reqCoinOut).toBe('bch');
+
+      expect(amountController.maxAmount).toBe(0.68462390);
+      expect(amountController.minAmount).toBe(0.00013692);
+
+      expect(amountController.showSendMaxButton).toEqual(true);
+      expect(amountController.showSendLimitMaxButton).toEqual(false);
+
+      // Now hit the Send Max button
+      var pushedState = null;
+      sendFlowService.pushState.and.callFake(function (sendFlowState){
+        pushedState = sendFlowState;
+      });
+      
+      amountController.sendMax();
+
+      expect(pushedState.amount).toBeUndefined();
+      expect(pushedState.fromWalletId).toEqual('4cd7673e-7320-4dfa-86e5-d4edb51d460a');
+      expect(pushedState.sendMax).toEqual(true);
+      expect(pushedState.toWalletId).toEqual('bf00af8f-0788-4b57-b30a-0390747407e9');
+      
+      expect(pushedState.thirdParty.id).toEqual('shapeshift');
+      expect(pushedState.thirdParty.data.maxAmount).toEqual(0.6846239);
+      expect(pushedState.thirdParty.data.minAmount).toEqual(0.00013692);
+
+      expect($state.transitionTo.calls.count()).toEqual(1);
+      expect($state.transitionTo.calls.argsFor(0)[0]).toEqual('tabs.send.review');
+    });
+
+    it ('with available balance higher than max, uses send limit max instead of sendMax', function() {
 
       walletFrom.coin = 'btc';
       walletFrom.status = {
@@ -188,9 +388,7 @@ describe('amountController', function(){
         sendMax: false, 
         thirdParty: {
           id: 'shapeshift',
-          data: { 
-            fromWalletId: "4cd7673e-7320-4dfa-86e5-d4edb51d460a"
-          },
+          data: {},
         },
         toAddress: '',
         toWalletId: 'bf00af8f-0788-4b57-b30a-0390747407e9'

@@ -2,9 +2,10 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
   var vm = this;
 
+  // Variables
   vm.allowSend = false;
   vm.altCurrencyList = [];
   vm.alternativeAmount = '';
@@ -12,6 +13,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.amount = '0';
   vm.availableFunds = '';
   vm.canSendAllAvailableFunds = true;
+  vm.errorMessage = '';
   // Use insufficient for logic, as when the amount is invalid, funds being
   // either sufficent or insufficient doesn't make sense.
   vm.fundsAreInsufficient = false;
@@ -21,6 +23,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.lastUsedPopularList = [];
   vm.maxAmount = 0;
   vm.minAmount = 0;
+  vm.sendableFunds = '';
   vm.showSendMaxButton = false;
   vm.showSendLimitMaxButton = false;
   vm.thirdParty = false;
@@ -38,9 +41,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.pushDigit = pushDigit;
   vm.removeDigit = removeDigit;
   vm.save = save;
-  vm.sendableFunds = '';
   vm.sendMax = sendMax;
-  vm.errorMessage = '';
+  
 
   $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
   $scope.$on('$ionicView.leave', onLeave);
@@ -219,10 +221,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function initForShapeshift() {
+    console.log('initForShapeshift()');
     if (vm.thirdParty.id === 'shapeshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
-
-      vm.thirdParty.data['fromWalletId'] = vm.fromWalletId;
 
       vm.fromWallet = profileService.getWallet(vm.fromWalletId);
       vm.toWallet = profileService.getWallet(vm.toWalletId);
@@ -233,6 +234,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       ongoingProcess.set('connectingShapeshift', true);
       shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(data) {
+        console.log('sendmax onMarketData()');
         ongoingProcess.set('connectingShapeshift', false);
         vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
         vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
@@ -261,17 +263,27 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   function sendMax() {
     if (canSendMax) {
       useSendMax = true;
-      
+      finish();
+
     } else {
-      // Need to be precise, so use crypto directly rather than fiat with exchange rate
-      if (availableUnits[unitIndex].isFiat) {
-        var tempIndex = altUnitIndex;
-        altUnitIndex = unitIndex;
-        unitIndex = tempIndex;
+      var transactionSendableAmountInUnits = transactionSendableAmount.satoshis * satToUnit;
+      if (vm.minAmount && transactionSendableAmountInUnits < vm.minAmount) {
+        popupService.showAlert(
+          gettextCatalog.getString('Insufficient funds'),
+          gettextCatalog.getString('Amount below minimum allowed')
+        );
+      } else {
+        // Need to be precise, so use crypto directly rather than fiat with exchange rate
+        if (availableUnits[unitIndex].isFiat) {
+          var tempIndex = altUnitIndex;
+          altUnitIndex = unitIndex;
+          unitIndex = tempIndex;
+        }
+        vm.amount = transactionSendableAmountInUnits.toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
+        finish();
+
       }
-      vm.amount = (transactionSendableAmount.satoshis * satToUnit).toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
     }
-    finish();
   }
 
   function updateUnitUI() {
@@ -647,6 +659,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function updateAvailableFundsFromWallet(wallet) {
+    console.log('amount updateAvailableFundsFromWallet()');
     var availableFundsInFiat = '';
     if (wallet.status && wallet.status.isValid) {
       walletSpendableAmount.crypto = wallet.status.spendableBalanceStr;
@@ -702,15 +715,16 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function setMaximumButtonFromWallet(wallet) {
+    console.log('sendmax setMaximumButtonFromWallet()');
     var minSatoshis = vm.minAmount * unitToSatoshi;
     var maxSatoshis = vm.maxAmount * unitToSatoshi;
 
     if (minSatoshis > walletSpendableAmount.satoshis) {
       console.log('sendmax Hiding max buttons as minimum is too high.');
       canSendMax = false;
-      vm.showSendMaxButton = false;
+      vm.showSendMaxButton = true;
       vm.showSendLimitMaxButton = false;
-      transactionSendableAmount.satoshis = 0;
+      transactionSendableAmount.satoshis = walletSpendableAmount.satoshis;
 
     } else if (maxSatoshis) {
       if (walletSpendableAmount.satoshis > maxSatoshis) {
