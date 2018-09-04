@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, profileService, walletService, $window) {
   var vm = this;
 
   vm.allowSend = false;
@@ -231,8 +231,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.showSendLimitMaxButton = false;
       vm.canSendAllAvailableFunds = false;
 
-      
-      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
+      ongoingProcess.set('connectingShapeshift', true);
+      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(data) {
+        ongoingProcess.set('connectingShapeshift', false);
         vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
         vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
 
@@ -740,7 +741,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       console.log('sendmax Setting max button text');
       transactionSendableAmount.crypto = txFormatService.formatAmountStr(wallet.coin, transactionSendableAmount.satoshis);
       vm.sendableFunds = transactionSendableAmount.crypto;
-
+      
       if (availableUnits[unitIndex].isFiat) {
         txFormatService.formatAlternativeStr(wallet.coin, transactionSendableAmount.satoshis, function onFormat(formatted){
           if (formatted) {
