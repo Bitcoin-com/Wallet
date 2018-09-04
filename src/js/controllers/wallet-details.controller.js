@@ -26,27 +26,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   var setPendingTxps = function(txps) {
-
-    /* Uncomment to test multiple outputs */
-
-    // var txp = {
-    //   message: 'test multi-output',
-    //   fee: 1000,
-    //   createdOn: new Date() / 1000,
-    //   outputs: [],
-    //   wallet: $scope.wallet
-    // };
-    //
-    // function addOutput(n) {
-    //   txp.outputs.push({
-    //     amount: 600,
-    //     toAddress: '2N8bhEwbKtMvR2jqMRcTCQqzHP6zXGToXcK',
-    //     message: 'output #' + (Number(n) + 1)
-    //   });
-    // };
-    // lodash.times(15, addOutput);
-    // txps.push(txp);
-
     if (!txps) {
       $scope.txps = [];
       return;
@@ -378,8 +357,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    sendFlowService.clear();
-
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
@@ -477,14 +454,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
-    sendFlowService.startSend({
+    sendFlowService.start({
       fromWalletId: $scope.wallet.id
-    });
-    
-    // Go home first so that the Home tab works properly
-    $state.go('tabs.home').then(function () {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.send');
     });
     
   };

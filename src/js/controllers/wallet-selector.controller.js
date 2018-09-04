@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $rootScope, $state, $log, $ionicHistory, sendFlowService, configService, gettextCatalog, profileService, txFormatService) {
+angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $state, sendFlowService, configService, gettextCatalog, profileService, txFormatService) {
 
   var fromWalletId = '';
   var priceDisplayAsFiat = false;
@@ -12,31 +12,22 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   
   function onBeforeEnter(event, data) {
     if (data.direction == "back") {
-      sendFlowService.popState();
+      sendFlowService.state.pop();
     }
-    console.log('walletSelector onBeforeEnter after back sendflow', sendFlowService.state);
 
-    $scope.params = sendFlowService.getStateClone();
+    $scope.params = sendFlowService.state.getClone();
+
+    console.log('walletSelector onBeforeEnter after back sendflow', $scope.params);
 
     var config = configService.getSync().wallet.settings;
     priceDisplayAsFiat = config.priceDisplay === 'fiat';
     unitDecimals = config.unitDecimals;
     unitsFromSatoshis = 1 / config.unitToSatoshi;
 
-    switch($state.current.name) {
-      case 'tabs.send.wallet-to-wallet':
-        $scope.sendFlowTitle = gettextCatalog.getString('Transfer between wallets');
-        break;
-      case 'tabs.send.destination':
-        if ($scope.params.fromWalletId && !$scope.params.thirdParty) {
-          $scope.sendFlowTitle = gettextCatalog.getString('Transfer between wallets');
-        }
-        break;
-      default:
-        if (!$scope.params.thirdParty) {
-          $scope.sendFlowTitle = gettextCatalog.getString('Send');
-        }
-       // nop
+    if ($scope.params.isWalletTransfer) {
+      $scope.sendFlowTitle = gettextCatalog.getString('Transfer between wallets');
+    } else if (!$scope.params.thirdParty) {
+      $scope.sendFlowTitle = gettextCatalog.getString('Send');
     }
 
     $scope.coin = false; // Wallets to show (for destination screen or contacts)
@@ -102,16 +93,6 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
           $scope.$apply();
         }
       }); 
-    }
-  }
-
-  function getNextStep(params) {
-    if (!params.toWalletId && !params.toAddress) { // If we have no toAddress or fromWallet
-      return 'tabs.send.destination';
-    } else if (!params.amount) { // If we have no amount
-      return 'tabs.send.amount';
-    } else { // If we do have them
-      return 'tabs.send.review';
     }
   }
 
@@ -192,20 +173,17 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
   
 
   $scope.useWallet = function(wallet) {
-    var params = sendFlowService.getStateClone();
+    var params = sendFlowService.state.getClone();
     if ($scope.type === 'origin') { // we're on the origin screen, set wallet to send from
       params.fromWalletId = wallet.id;
     } else { // we're on the destination screen, set wallet to send to
       params.toWalletId = wallet.id;
     }
-    sendFlowService.pushState(params);
-    var nextStep = getNextStep(params);
-    console.log('walletSelector nextStep', nextStep);
-    $state.transitionTo(nextStep, $scope.params);
+    sendFlowService.goNext(params);
   };
 
   $scope.goBack = function() {
-    $ionicHistory.goBack();
+    sendFlowService.router.goBack();
   }
 
 });
