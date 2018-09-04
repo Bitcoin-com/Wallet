@@ -3,7 +3,7 @@
 (function(){
 
 angular
-  .module('copayApp.services')
+  .module('bitcoincom.services')
   .factory('sendFlowStateService', sendFlowStateService);
   
   function sendFlowStateService($log) {

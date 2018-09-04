@@ -3,7 +3,7 @@
 (function(){
 
 angular
-  .module('copayApp.services')
+  .module('bitcoincom.services')
   .factory('sendFlowService', sendFlowService);
   
   function sendFlowService(
@@ -47,12 +47,6 @@ angular
               if (err) {
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
               } else {
-                // Fill in the params
-                var toAddr = payProData.toAddress;
-                var amount = payProData.amount;
-                var paymentUrl = payProData.url;
-                var expires = payProData.expires;
-                var time = payProData.time;
                 var name = payProData.domain;
                 
                 // Detect some merchant that we know
@@ -65,18 +59,18 @@ angular
                 // Init thirdParty
                 var thirdPartyData = {
                   id: 'bip70',
-                  amount: amount,
+                  amount: payProData.amount,
                   caTrusted: true,
                   name: name,
                   domain: payProData.domain,
-                  expires: expires,
+                  expires: payProData.expires,
                   memo: payProData.memo,
                   network: 'livenet',
                   requiredFeeRate: payProData.requiredFeeRate,
                   selfSigned: 0,
-                  time: time,
-                  toAddress: toAddr,
-                  url: paymentUrl,
+                  time: payProData.time,
+                  toAddress: payProData.toAddress,
+                  url: payProData.url,
                   verified: true
                 };
 
