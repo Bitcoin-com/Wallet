@@ -511,7 +511,7 @@ msgid "Cannot Create Wallet"
 msgstr ""
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr ""
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -3874,4 +3874,27 @@ msgstr ""
 
 #: www/views/paperWallet.html:104
 msgid "No Bitcoin Core found."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
 msgstr ""

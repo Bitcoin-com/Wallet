@@ -68,13 +68,14 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   function onBeforeEnter(event, data) {
     if (data.direction == "back") {
-      sendFlowService.popState();
+      sendFlowService.state.pop();
     }
-    console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
     
     initCurrencies();
 
-    passthroughParams = sendFlowService.getStateClone();
+    passthroughParams = sendFlowService.state.getClone();
+
+    console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
@@ -214,7 +215,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function goBack() {
-    $ionicHistory.goBack();
+    sendFlowService.router.goBack();
   }
 
   function paste(value) {
@@ -467,11 +468,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       confirmData.thirdParty = vm.thirdParty;
     }
 
-    sendFlowService.pushState(confirmData);
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
-      $state.transitionTo('tabs.send.review', confirmData);
+      sendFlowService.goNext(confirmData);
       $scope.useSendMax = null;
     }
   }
