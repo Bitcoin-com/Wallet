@@ -66,7 +66,7 @@ module.exports = function(grunt) {
         command: 'cordova prepare android && cordova build android --release',
       },
       run_android: {
-        command: 'cordova run android --device && npm run log:android',
+        command: 'cordova run android --device',
       },
       log_android: {
         command: 'adb logcat | grep chromium',
@@ -363,7 +363,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-ios-release', ['prod', 'exec:build_ios_release']);
 
   // Build android
-  grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android', 'exec:log_android']);
+  grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android']);
   grunt.registerTask('build-android-debug', ['exec:build_android_debug']);
   grunt.registerTask('build-android-release', ['prod', 'exec:build_android_release', 'sign-android']);
   grunt.registerTask('sign-android', ['exec:sign_android']);

@@ -127,6 +127,7 @@
     "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
     "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
     "start:android":          "grunt start-android",
+    "start:android-log":      "grunt start-android && npm run log:android",
     "start:ios":              "grunt start-ios",
     "start:windows":          "npm run build:www && npm run build:windows",
 
