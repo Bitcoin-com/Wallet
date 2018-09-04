@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         command: 'npm run build:ios',
       },
       ios: {
-        command: 'npm run build:ios-release',
+        command: 'cordova prepare ios && cordova build ios --release',
       },
       xcode: {
         command: 'npm run open:ios',
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
         command: 'npm run build:android',
       },
       android: {
-        command: 'npm run build:android-release',
+        command: 'cordova prepare android && cordova build android --release',
       },
       androidrun: {
         command: 'npm run run:android && npm run log:android',
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release" so I have added that prefix to the final apk
         // so that its filename shows up in the log output.
-        command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned-bitcoin-com-wallet-<%= pkg.fullVersion %>-android.apk',
+        command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
         stdin: true,
       },
       desktopsign: {
@@ -357,8 +357,27 @@ module.exports = function(grunt) {
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
   grunt.registerTask('android-debug', ['exec:androiddebug', 'exec:androidrun']);
   grunt.registerTask('android', ['exec:android']);
-  grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
   grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']); 
+
+  // Build all
+  grunt.registerTask('app-release', ['mobile-release', 'desktop-release']);
+
+  /**
+   * Mobile app
+   */
+
+  // Build mobile app
+  grunt.registerTask('mobile-release', ['ios-release', 'android-release']);
+
+  // Build ios
+  grunt.registerTask('ios-release', ['prod', 'exec:ios']);
+
+  // Build android
+  grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
+
+  /**
+   * Desktop app
+   */
 
   // Build desktop
   grunt.registerTask('desktop-build', ['desktop-others', 'desktop-osx-dmg', 'desktop-osx-pkg']);
