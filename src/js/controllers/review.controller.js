@@ -766,7 +766,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         ((processName === 'signingTx') && vm.originWallet.m > 1) ||
         (processName == 'sendingTx' && !vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal())
       ) && !isOn) {
+      // Show the popup
       vm.sendStatus = 'success';
+
+      // Clear the send flow service state
+      sendFlowService.state.clear();
 
       if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
         soundService.play('misc/payment_sent.mp3');
