@@ -82,6 +82,7 @@
     "grunt-nw-builder": "^2.0.3",
     "grunt-sass": "^3.0.0",
     "load-grunt-tasks": "^3.5.0",
+    "node-sass": "^4.9.3",
     "shelljs": "^0.3.0",
     "android-versions": "^1.2.1",
     "bitcoincashjs-fork": "^1.0.3"
