@@ -59,7 +59,6 @@ angular
                 // Init thirdParty
                 var thirdPartyData = {
                   id: 'bip70',
-                  amount: payProData.amount,
                   caTrusted: true,
                   name: name,
                   domain: payProData.domain,
@@ -69,14 +68,13 @@ angular
                   requiredFeeRate: payProData.requiredFeeRate,
                   selfSigned: 0,
                   time: payProData.time,
-                  toAddress: payProData.toAddress,
                   url: payProData.url,
                   verified: true
                 };
 
                 // Fill in params
-                params.amount = thirdPartyData.amount,
-                params.toAddress = thirdPartyData.toAddress,
+                params.amount = payProData.amount,
+                params.toAddress = payProData.toAddress,
                 params.coin = coin,
                 params.thirdParty = thirdPartyData
               }
