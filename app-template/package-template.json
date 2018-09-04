@@ -87,44 +87,24 @@
     "bitcoincashjs-fork": "^1.0.3"
   },
   "scripts": {
-    "postinstall":            "bower install",
-    "watch":                  "grunt watch",
-    "log:android":            "adb logcat | grep chromium",
-    "test":                   "karma start test/karma.conf.js --single-run",
-    "clean":                  "trash platforms && trash plugins && cordova prepare",
-    "unstage-package":        "git reset package.json",
-    "clean-all":              "git clean -dfx",
-
     "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
     
-    "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
-    "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
-    "start:windows":          "npm run build:www && npm run build:windows",
-
-    "open:ios":               "grunt exec:xcode",
-    "open:android":           "grunt exec:android_studio",
-
+    "build:android-debug":    "grunt build-android-debug",
+    "build:android-release":  "grunt build-android-release",
+    "build:desktop-release":  "grunt build-desktop-release",
+    "build:desktop":          "grunt build-desktop",
+    "build:ios-debug":        "grunt build-ios-debug",
+    "build:ios-release":      "grunt build-ios-release",
+    "build:osx-pkg":          "grunt build-desktop-osx-pkg",
+    "build:osx-dmg":          "grunt build-desktop-osx-dmg",
+    "build:others":           "grunt build-desktop-others",
     "build:www":              "grunt",
     "build:www-release":      "grunt prod",
     "build:windows":          "cordova prepare windows && cordova build windows -- --arch=\"ARM\"",
     "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
 
-    "start:ios":              "grunt start-ios",
-    "build:ios-debug":        "grunt build-ios-debug",
-    "build:ios-release":      "grunt build-ios-release",
-
-    "start:android":          "grunt start-android",
-    "build:android-debug":    "grunt build-android-debug",
-    "build:android-release":  "grunt build-android-release",
-
-    "build:desktop-release":  "grunt build-desktop-release",
-    "build:desktop":          "grunt build-desktop",
-    "build:osx-pkg":          "grunt build-desktop-osx-pkg",
-    "build:osx-dmg":          "grunt build-desktop-osx-dmg",
-    "build:others":           "grunt build-desktop-others",
-    
-    "sign:desktop":           "grunt sign-desktop",
-    "sign:android":           "grunt sign-android",
+    "clean":                  "trash platforms && trash plugins && cordova prepare",
+    "clean-all":              "git clean -dfx",
     
     "final:www":              "npm run build:www-release",
     "final:ios":              "npm run build:ios-release",
@@ -132,7 +112,27 @@
     "final:windows":          "npm run build:windows-release",
     "final:desktop":          "npm run build:build-desktop-release",
     "final:mobile":           "npm run build:mobile-release",
-    "final:app":              "npm run build:app-release"
+    "final:app":              "npm run build:app-release",
+
+    "log:android":            "adb logcat | grep chromium",
+
+    "open:android":           "grunt exec:android_studio",
+    "open:ios":               "grunt exec:xcode",
+
+    "postinstall":            "bower install",
+
+    "sign:android":           "grunt sign-android",
+    "sign:desktop":           "grunt sign-desktop",
+
+    "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
+    "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
+    "start:android":          "grunt start-android",
+    "start:ios":              "grunt start-ios",
+    "start:windows":          "npm run build:www && npm run build:windows",
+
+    "test":                   "karma start test/karma.conf.js --single-run",
+    "unstage-package":        "git reset package.json",
+    "watch":                  "grunt watch"
   },
   "devDependencies": {
     "cordova": "^6.3.1",
