@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingData, ongoingProcess) {
+angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingDataService, ongoingProcess) {
   return {
     restrict: 'E',
     transclude: true,
@@ -112,7 +112,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                     };
 
                     // How to handle this
-                    if (incomingData.redir(sendAddress, 'shapeshift', shapeshiftData)) {
+                    if (incomingDataService.redir(sendAddress, 'shapeshift', shapeshiftData)) {
                         ongoingProcess.set('connectingShapeshift', false);
                         return;
                     }

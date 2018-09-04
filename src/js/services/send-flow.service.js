@@ -10,12 +10,11 @@ angular
     sendFlowStateService, sendFlowRouterService
     , bitcoinUriService, payproService, bitcoinCashJsService
     , popupService, gettextCatalog
-    , $state
+    , $state, $log
   ) {
 
     var service = {
-      // A separate state variable so we can ensure it is cleared of everything,
-      // even other properties added that this service does not know about. (such as "coin")
+      // Variables
       state: sendFlowStateService,
       router: sendFlowRouterService,
 
@@ -28,19 +27,19 @@ angular
     return service;
 
     /**
-     * Clears all previous state
+     * Start a new send flow
+     * @param {Object} params 
+     * @param {Function} onError 
      */
     function start(params, onError) {
-      console.log('start()');
+      $log.debug('send-flow start()');
 
       if (params && params.data) {
         var res = bitcoinUriService.parse(params.data);
 
         if (res.isValid) {
 
-          /**
-           * If BIP70
-           */
+          // If BIP70 (url)
           if (res.url) {
             var url = res.url;
             var coin = res.coin || '';
@@ -81,18 +80,14 @@ angular
                   verified: true
                 };
 
-                /**
-                 * Fill in params
-                 */
+                // Fill in params
                 params.amount = thirdPartyData.amount,
                 params.toAddress = thirdPartyData.toAddress,
                 params.coin = coin,
                 params.thirdParty = thirdPartyData
               }
 
-              /**
-               *  Resolve
-               */
+              // Resolve
               _next();
             });
           } else {
@@ -107,7 +102,8 @@ angular
             if (res.publicAddress) {
               var prefix = res.isTestnet ? 'bchtest:' : 'bitcoincash:';
               params.displayAddress = res.publicAddress.cashAddr || res.publicAddress.legacy || res.publicAddress.bitpay;
-              params.toAddress = bitcoinCashJsService.readAddress((prefix + res.publicAddress.cashAddr) || res.publicAddress.legacy || res.publicAddress.bitpay).legacy;
+              var formatAddress = res.publicAddress.cashAddr ? prefix + params.displayAddress : params.displayAddress;
+              params.toAddress = bitcoinCashJsService.readAddress(formatAddress).legacy;
             }
             
             _next();
@@ -126,32 +122,35 @@ angular
       function _next() {
         sendFlowStateService.init(params);
 
-        /**
-         * Routing strategy to -> send-flow-router.service
-         */
+        // Routing strategy to -> send-flow-router.service
         sendFlowRouterService.start();
       }
     }
 
+    /**
+     * Go to the next step
+     * @param {Object} state 
+     */
     function goNext(state) {
-      /**
-       * Save the current route before leaving
-       */
+      $log.debug('send-flow goNext()');
+
+      // Save the current route before leaving
       state.route = $state.current.name;
 
-      /**
-       * Save the state and redirect the user
-       */
+      // Save the state and redirect the user
       sendFlowStateService.push(state);
       sendFlowRouterService.goNext();
     }
 
+    /**
+     * Go to the previous step
+     */
     function goBack() {
-        /**
-         * Remove the state on top and redirect the user
-         */
-        sendFlowStateService.pop();
-        sendFlowRouterService.goBack();
+      $log.debug('send-flow goBack()');
+
+      // Remove the state on top and redirect the user
+      sendFlowStateService.pop();
+      sendFlowRouterService.goBack();
     }
   };
 

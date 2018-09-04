@@ -1,10 +1,10 @@
 'use strict';
 
 /**
- * incomingData is an intermediate to redirect either to the sendFlow
+ * incomingDataService is an intermediate to redirect either to the sendFlow
  * or to import/join a wallet.
  */
-angular.module('copayApp.services').factory('incomingData', function(externalLinkService, bitcoinUriService, $log, $state, $timeout, $ionicHistory, bitcore, bitcoreCash, $rootScope, payproService, scannerService, sendFlowService, appConfigService, popupService, gettextCatalog, bitcoinCashJsService) {
+angular.module('copayApp.services').factory('incomingDataService', function(bitcoinUriService, $log, $state, $rootScope, scannerService, sendFlowService, gettextCatalog) {
 
   var root = {};
 

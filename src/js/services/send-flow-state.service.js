@@ -6,11 +6,10 @@ angular
   .module('copayApp.services')
   .factory('sendFlowStateService', sendFlowStateService);
   
-  function sendFlowStateService() {
+  function sendFlowStateService($log) {
 
     var service = {
-      // A separate state variable so we can ensure it is cleared of everything,
-      // even other properties added that this service does not know about. (such as "coin")
+      // Variables
       state: {
         amount: '',
         displayAddress: null,
@@ -34,7 +33,13 @@ angular
 
     return service;
 
+    /**
+     * Init state & stack
+     * @param {Object} params 
+     */
     function init(params) {
+      $log.debug("send-flow-state init()");
+
       clear();
 
       if (params) {
@@ -42,14 +47,22 @@ angular
       }
     }
 
+    /**
+     * Clear a state & stack
+     */
     function clear() {
-      console.log("sendFlow clear()");
+      $log.debug("send-flow-state clear()");
+
       clearCurrent();
       service.previousStates = [];
     }
 
+    /**
+     * Clear current state only
+     */
     function clearCurrent() {
-      console.log("sendFlow clearCurrent()");
+      $log.debug("send-flow-state clearCurrent()");
+
       service.state = {
         amount: '',
         displayAddress: null,
@@ -62,7 +75,7 @@ angular
     }
 
     /**
-     * Handy for debugging
+     * Get a clone of the current state
      */
     function getClone() {
       var currentState = {};
@@ -74,14 +87,22 @@ angular
       return currentState;
     }
 
+    /**
+     * Fill in the current state from the params
+     * @param {Object} params 
+     */
     function map(params) {
       Object.keys(params).forEach(function forNewParam(key) {
         service.state[key] = params[key];
       });
     };
 
+    /**
+     * Pop state
+     */
     function pop() {
-      console.log('sendFlow pop');
+      $log.debug('send-flow-state pop');
+
       if (service.previousStates.length) {
         var params = service.previousStates.pop();
         clearCurrent();
@@ -91,14 +112,22 @@ angular
       }
     };
 
+    /**
+     * Push state
+     * @param {Object} params 
+     */
     function push(params) {
-      console.log('sendFlow push');
+      $log.debug('send-flow-state push');
+
       var currentParams = getClone();
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);
     };
 
+    /**
+     * Is empty stack
+     */
     function isEmpty() {
       return service.previousStates.length == 0;
     };

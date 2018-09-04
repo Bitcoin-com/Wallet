@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingData, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
+angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingDataService, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
 
   $scope.onScan = function(data) {
-    incomingData.redir(data, function onError(err) {
+    incomingDataService.redir(data, function onError(err) {
       if (err) {
         popupService.showAlert(gettextCatalog.getString('Error'), err.message);
       }
@@ -40,7 +40,7 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
       if (err) {
         popupService.showAlert(gettextCatalog.getString('Error'), err.message);
       } else {
-        incomingData.redir(contents, function onError(err) {
+        incomingDataService.redir(contents, function onError(err) {
           if (err) {
             popupService.showAlert(gettextCatalog.getString('Error'), err.message);
           }

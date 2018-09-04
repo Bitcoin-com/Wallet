@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $rootScope, $log, $timeout, $ionicScrollDelegate, $ionicLoading, addressbookService, profileService, lodash, $state, walletService, incomingData, popupService, platformInfo, sendFlowService, bwcError, gettextCatalog, scannerService, configService, bitcoinCashJsService, $ionicPopup, $ionicNavBarDelegate, clipboardService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -62,14 +62,6 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   });
 
   $scope.findContact = function(search) {
-    sendFlowService.start({ 
-      data: search
-    });
-    return;
-    //if (incomingData.redir(search)) {
-      //return;
-    //}
-
     if (!search || search.length < 1) {
       $scope.list = originalList;
       $timeout(function() {
@@ -78,12 +70,16 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       return;
     }
 
-    var result = lodash.filter(originalList, function(item) {
-      var val = item.name;
-      return lodash.startsWith(val.toLowerCase(), search.toLowerCase());
+    var params = sendFlowService.state.getClone();
+    params.data = search;
+    sendFlowService.start(params, function onError() {
+      var result = lodash.filter(originalList, function(item) {
+        var val = item.name;
+        return lodash.startsWith(val.toLowerCase(), search.toLowerCase());
+      });
+  
+      $scope.list = result;
     });
-
-    $scope.list = result;
   };
 
   var hasWallets = function() {
@@ -190,26 +186,17 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       $log.debug('Got toAddress:' + toAddress + ' | ' + item.name);
       
       var stateParams = sendFlowService.state.getClone();
-      stateParams.toAddress = toAddress,
+      stateParams.toAddress = toAddress;
       stateParams.coin = item.coin;
-      sendFlowService.goNext(stateParams);
-
-      /*if (!stateParams.fromWalletId) { // If we have no toAddress or fromWallet
-        $state.transitionTo('tabs.send.origin');
-      } else {
-        $state.transitionTo('tabs.send.amount');
-      }*/
-
+      sendFlowService.start(stateParams);
     });
   };
 
   $scope.startWalletToWalletTransfer = function() {
     console.log('startWalletToWalletTransfer()');
     var params = sendFlowService.state.getClone();
-    sendFlowService.goNext({
-      isWalletTransfer: true,
-      fromWalletId: params.fromWalletId
-    });
+    params.isWalletTransfer = true;
+    sendFlowService.start(params);
   }
 
   // This could probably be enhanced refactoring the routes abstract states

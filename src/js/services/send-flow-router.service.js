@@ -12,9 +12,6 @@ angular
   ) {
 
     var service = {
-      // A separate state variable so we can ensure it is cleared of everything,
-      // even other properties added that this service does not know about. (such as "coin")
-
       // Functions
       start: start,
       goNext: goNext,
@@ -24,7 +21,7 @@ angular
     return service;
 
     /**
-     * 
+     * Start new send flow
      */
     function start() {     
       var state = sendFlowStateService.state;
@@ -48,8 +45,8 @@ angular
     }
 
     /**
-     * Strategy
-     * https://bitcoindotcom.atlassian.net/wiki/x/BQDWKQ
+     * Go to the next page
+     * Routing strategy : https://bitcoindotcom.atlassian.net/wiki/x/BQDWKQ
      */
     function goNext() {
       var state = sendFlowStateService.state;
@@ -77,11 +74,10 @@ angular
       }
     }
 
+    /**
+     * Go to the previous page
+     */
     function goBack() {
-
-      /**
-       * Strategy
-       */
       $ionicHistory.goBack();
     }
   };

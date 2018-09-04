@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabScanController', function(bitcoinUriService, gettextCatalog, popupService, $scope, $log, $timeout, scannerService, incomingData, $state, $ionicHistory, $rootScope, $ionicNavBarDelegate) {
+angular.module('copayApp.controllers').controller('tabScanController', function(gettextCatalog, popupService, $scope, $log, $timeout, scannerService, incomingDataService, $state, $ionicHistory, $rootScope, $ionicNavBarDelegate) {
 
   var scannerStates = {
     unauthorized: 'unauthorized',
@@ -111,7 +111,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     // Sometimes (testing in Chrome, when reading QR Code) data is an object
     // that has a string data.result.
     contents = contents.result || contents;
-    incomingData.redir(contents, function onError(err) {
+    incomingDataService.redir(contents, function onError(err) {
       if (err) {
         var title = gettextCatalog.getString('Scan Failed');
         popupService.showAlert(title, err.message, function onAlertShown() {
