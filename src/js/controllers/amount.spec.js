@@ -57,14 +57,23 @@ describe('amountController', function(){
     sendFlowService = jasmine.createSpyObj(['getStateClone', 'pushState']);
     shapeshiftService = jasmine.createSpyObj(['getMarketData']);
     txFormatService = jasmine.createSpyObj(['formatAlternativeStr', 'formatAmountStr']);
+
     txFormatService.formatAlternativeStr.and.callFake(function(coin, satoshis, cb) {
+      if (typeof satoshis !== "number") {
+        throw "satoshis in formatAlternativeStr() is not a number."
+      }
       var units = satoshis / 100000000;
       var formatted = (units * 10000).toFixed(2) + ' USD';
       cb(formatted);
     });
+
     txFormatService.formatAmountStr.and.callFake(function(coin, satoshis) {
+      if (typeof satoshis !== "number") {
+        throw "satoshis in formatAmountStr() is not a number."
+      }
       return (satoshis * 100000000).toFixed(8) + ' ' + (coin || 'bch').toUpperCase();
     });
+
     $state = jasmine.createSpyObj(['transitionTo']);
     $stateParams = {};
 
@@ -86,7 +95,10 @@ describe('amountController', function(){
     $ionicHistory.backView.and.returnValue(backView);
     
     var wallet = {
-      
+      status: {
+        isValid: true,
+        spendableAmount: 123456
+      }
     };
     profileService.getWallet.and.returnValue(wallet);
     profileService.getWallets.and.returnValue([{}]);
@@ -128,6 +140,8 @@ describe('amountController', function(){
     //expect($scope.fromWalletId).toBe('fd56c1e7-e3ac-4fd9-8afc-27b9c1b3718b');
     //expect($scope.toAddress).toBe('qrup46avn8t466xxwlzs4qelht7cnwvesv2e29wf7s');
   });
+
+  
 
   describe('Shapeshift', function() {
     var walletFrom;
@@ -440,6 +454,151 @@ describe('amountController', function(){
       expect($state.transitionTo.calls.count()).toEqual(1);
       expect($state.transitionTo.calls.argsFor(0)[0]).toEqual('tabs.send.review');
     });
+  });
+
+
+  describe('Wallet transfer', function() {
+    var walletFrom;
+    var walletTo;
+
+    beforeEach(function(){
+      walletFrom = {};
+      walletTo = {};
+
+      profileService.getWallet.and.callFake(function(walletId){
+        if (walletId === '4cd7673e-7320-4dfa-86e5-d4edb51d460a') {
+          return walletFrom;
+        } else if (walletId === 'bf00af8f-0788-4b57-b30a-0390747407e9') {
+          return walletTo;
+        } else {
+          return null;
+        }
+      });
+
+      rateService.listAlternatives.and.returnValue([
+        {name: "Australian Dollar", isoCode: "AUD"},
+        {name: "United States Dollar", isoCode: "USD"}
+      ]);
+
+    });
+
+    it('wallet transfer send max.', function() {
+    
+      walletFrom.coin = 'btc';
+      walletFrom.status = {
+        isValid: true,
+        spendableAmount: 123456789
+      };
+      
+      profileService.getWallets.and.returnValue([{}]);
+ 
+      var $scope = $rootScope.$new();
+   
+      var amountController = $controller('amountController', { 
+        configService: configService,
+        gettextCatalog: gettextCatalog,
+        $ionicHistory: $ionicHistory,
+        $ionicModal: {},
+        $ionicScrollDelegate: {},
+        nodeWebkitService: {},
+        ongoingProcess: ongoingProcess,
+        platformInfo: platformInfo,
+        profileService: profileService,
+        popupService: popupService,
+        rateService: rateService,
+        $scope: $scope,
+        sendFlowService: sendFlowService,
+        shapeshiftService: shapeshiftService,
+        $state: $state,
+        $stateParams: $stateParams,
+        txFormatService: txFormatService,
+        walletService: {}
+      });
+  
+      var sendFlowState = {
+        fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a',
+        toWalletId: 'bf00af8f-0788-4b57-b30a-0390747407e9'
+      };
+  
+      sendFlowService.getStateClone.and.returnValue(sendFlowState);
+  
+      $scope.$emit('$ionicView.beforeEnter', {});
+
+      expect(amountController.showSendMaxButton).toEqual(true);
+      expect(amountController.showSendLimitMaxButton).toEqual(false);
+
+      expect(amountController.sendableFunds).toEqual('12345.68 USD');
+
+      // Now hit the Send Max button
+      var pushedState = null;
+      sendFlowService.pushState.and.callFake(function (sendFlowState){
+        pushedState = sendFlowState;
+      });
+
+      amountController.sendMax();
+  
+      expect(pushedState.amount).toBeUndefined();
+      expect(pushedState.fromWalletId).toEqual('4cd7673e-7320-4dfa-86e5-d4edb51d460a');
+      expect(pushedState.sendMax).toEqual(true);
+      expect(pushedState.toWalletId).toEqual('bf00af8f-0788-4b57-b30a-0390747407e9');
+      
+      expect($state.transitionTo.calls.count()).toEqual(1);
+      expect($state.transitionTo.calls.argsFor(0)[0]).toEqual('tabs.send.review');
+    });
+
+
+    // This situation was seen in real life
+    it('wallet transfer with valid cached status only.', function() {
+    
+      walletFrom.coin = 'btc';
+      walletFrom.status = {
+        isValid: false,
+      };
+      walletFrom.cachedStatus = {
+        isValid: true,
+        spendableAmount: 5678
+      };
+      
+      profileService.getWallets.and.returnValue([{}]);
+ 
+      var $scope = $rootScope.$new();
+   
+      var amountController = $controller('amountController', { 
+        configService: configService,
+        gettextCatalog: gettextCatalog,
+        $ionicHistory: $ionicHistory,
+        $ionicModal: {},
+        $ionicScrollDelegate: {},
+        nodeWebkitService: {},
+        ongoingProcess: ongoingProcess,
+        platformInfo: platformInfo,
+        profileService: profileService,
+        popupService: popupService,
+        rateService: rateService,
+        $scope: $scope,
+        sendFlowService: sendFlowService,
+        shapeshiftService: shapeshiftService,
+        $state: $state,
+        $stateParams: $stateParams,
+        txFormatService: txFormatService,
+        walletService: {}
+      });
+  
+      var sendFlowState = {
+        fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a',
+        toWalletId: 'bf00af8f-0788-4b57-b30a-0390747407e9'
+      };
+  
+      sendFlowService.getStateClone.and.returnValue(sendFlowState);
+  
+      $scope.$emit('$ionicView.beforeEnter', {});
+
+      expect(amountController.showSendMaxButton).toEqual(true);
+      expect(amountController.showSendLimitMaxButton).toEqual(false);
+
+      expect(amountController.sendableFunds).toEqual('0.57 USD');
+    });
+
   });
 
 });

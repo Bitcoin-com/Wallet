@@ -670,7 +670,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         availableFundsInFiat = '';
       }
 
-    } else if (wallet.cachedStatus && wallet.status.isValid) {
+    } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) {
 
       if (wallet.cachedStatus.alternativeBalanceAvailable) {
         availableFundsInFiat = wallet.cachedStatus.spendableBalanceAlternative + ' ' + wallet.cachedStatus.alternativeIsoCode;
