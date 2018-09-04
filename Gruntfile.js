@@ -73,8 +73,7 @@ module.exports = function(grunt) {
       },
       sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
-        // It looks like it simply lists all apk files starting with "android-release" so I have added that prefix to the final apk
-        // so that its filename shows up in the log output.
+        // It looks like it simply lists all apk files starting with "android-release"
         command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
         stdin: true,
       }
