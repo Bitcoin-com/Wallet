@@ -47,43 +47,37 @@ module.exports = function(grunt) {
       wpcopy: {
         command: 'make -C cordova wp-copy',
       },
-      iosdebug: {
-        command: 'npm run build:ios',
-      },
-      ios: {
-        command: 'cordova prepare ios && cordova build ios --release',
-      },
       xcode: {
         command: 'npm run open:ios',
       },
-      androiddebug: {
-        command: 'npm run build:android',
+      build_ios_debug: {
+        command: 'npm run build:ios',
       },
-      android: {
+      build_ios_release: {
+        command: 'cordova prepare ios && cordova build ios --release',
+      },
+      android_studio: {
+        command: ' open -a open -a /Applications/Android\\ Studio.app platforms/android',
+      },
+      build_android_debug: {
+        command: 'cordova prepare android && cordova build android --debug',
+      },
+      build_android_release: {
         command: 'cordova prepare android && cordova build android --release',
       },
-      androidrun: {
-        command: 'npm run run:android && npm run log:android',
+      run_android: {
+        command: 'cordova run android --device && npm run log:android',
       },
-      androidbuild: {
-        command: 'cd cordova/project && cordova build android --release',
+      log_android: {
+        command: 'adb logcat | grep chromium',
       },
-      androidsign: {
+      sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release" so I have added that prefix to the final apk
         // so that its filename shows up in the log output.
         command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
         stdin: true,
-      },
-      desktopsign: {
-        cmd: 'gpg -u E0AE67E7 --output webkitbuilds/others/<%= pkg.title %>-linux.zip.sig --detach-sig webkitbuilds/others/<%= pkg.title %>-linux.zip ; gpg -u E0AE67E7 --output webkitbuilds/others/<%= pkg.title %>.exe.sig --detach-sig webkitbuilds/others/<%= pkg.title %>.exe'
-      },
-      desktopverify: {
-        cmd: 'gpg --verify webkitbuilds/<%= pkg.title %>-linux.zip.sig webkitbuilds/<%= pkg.title %>-linux.zip; gpg --verify webkitbuilds/<%= pkg.title %>.exe.sig webkitbuilds/<%= pkg.title %>.exe'
-      },
-      osxsign: {
-        cmd: 'gpg -u E0AE67E7 --output webkitbuilds/<%= pkg.title %>.dmg.sig --detach-sig webkitbuilds/<%= pkg.title %>.dmg'
-      },
+      }
     },
     watch: {
       options: {
@@ -351,49 +345,48 @@ module.exports = function(grunt) {
   grunt.registerTask('wp', ['prod', 'exec:wp']);
   grunt.registerTask('wp-copy', ['default', 'exec:wpcopy']);
   grunt.registerTask('wp-init', ['default', 'exec:wpinit']);
-  grunt.registerTask('ios', ['exec:ios']);
-  grunt.registerTask('ios-debug', ['exec:iosdebug']);
-  grunt.registerTask('ios-run', ['exec:xcode']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
-  grunt.registerTask('android-debug', ['exec:androiddebug', 'exec:androidrun']);
-  grunt.registerTask('android', ['exec:android']);
-  grunt.registerTask('desktopsign', ['exec:desktopsign', 'exec:desktopverify']); 
 
   // Build all
-  grunt.registerTask('app-release', ['mobile-release', 'desktop-release']);
+  grunt.registerTask('build-app-release', ['build-mobile-release', 'build-desktop-release']);
 
   /**
    * Mobile app
    */
 
   // Build mobile app
-  grunt.registerTask('mobile-release', ['ios-release', 'android-release']);
+  grunt.registerTask('build-mobile-release', ['build-ios-release', 'build-android-release']);
 
   // Build ios
-  grunt.registerTask('ios-release', ['prod', 'exec:ios']);
+  grunt.registerTask('start-ios', ['ios-debug', 'exec:xcode']);
+  grunt.registerTask('build-ios-debug', ['exec:build_ios_debug']);
+  grunt.registerTask('build-ios-release', ['prod', 'exec:build_ios_release']);
 
   // Build android
-  grunt.registerTask('android-release', ['prod', 'exec:android', 'exec:androidsign']);
+  grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android', 'exec:log_android']);
+  grunt.registerTask('build-android-debug', ['exec:build_android_debug']);
+  grunt.registerTask('build-android-release', ['prod', 'exec:build_android_release', 'sign-android']);
+  grunt.registerTask('sign-android', ['exec:sign_android']);
 
   /**
    * Desktop app
    */
 
   // Build desktop
-  grunt.registerTask('desktop-build', ['desktop-others', 'desktop-osx-dmg', 'desktop-osx-pkg']);
+  grunt.registerTask('build-desktop', ['build-desktop-others', 'build-desktop-osx-dmg', 'build-desktop-osx-pkg']);
 
   // Build desktop win64 & linux64
-  grunt.registerTask('desktop-others', ['prod', 'nwjs:others', 'copy:linux', 'exec:create_others_dist']);
+  grunt.registerTask('build-desktop-others', ['prod', 'nwjs:others', 'copy:linux', 'exec:create_others_dist']);
 
   // Build desktop osx pkg
-  grunt.registerTask('desktop-osx-pkg', ['prod', 'exec:get_nwjs_for_pkg', 'nwjs:pkg', 'exec:create_pkg_dist']);
+  grunt.registerTask('build-desktop-osx-pkg', ['prod', 'exec:get_nwjs_for_pkg', 'nwjs:pkg', 'exec:create_pkg_dist']);
 
   // Build desktop osx dmg
-  grunt.registerTask('desktop-osx-dmg', ['prod', 'nwjs:dmg', 'exec:create_dmg_dist']);
+  grunt.registerTask('build-desktop-osx-dmg', ['prod', 'nwjs:dmg', 'exec:create_dmg_dist']);
 
   // Sign desktop
-  grunt.registerTask('desktop-sign', ['exec:sign_desktop_dist']);
+  grunt.registerTask('sign-desktop', ['exec:sign_desktop_dist']);
 
   // Release desktop
-  grunt.registerTask('desktop-release', ['desktop-build', 'desktop-sign']); 
+  grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']); 
 };
