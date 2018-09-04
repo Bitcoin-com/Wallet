@@ -17,7 +17,10 @@ angular
         sendMax: false,
         thirdParty: null,
         toAddress: '',
-        toWalletId: ''
+        toWalletId: '',
+        coin: '',
+        isRequestAmount: false,
+        isWalletTransfer: false
       },
       previousStates: [],
 
@@ -70,7 +73,10 @@ angular
         sendMax: false,
         thirdParty: null,
         toAddress: '',
-        toWalletId: ''
+        toWalletId: '',
+        coin: '',
+        isRequestAmount: false,
+        isWalletTransfer: false
       }
     }
 
