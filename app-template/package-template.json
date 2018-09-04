@@ -98,21 +98,21 @@
     "build:osx-pkg":          "grunt build-desktop-osx-pkg",
     "build:osx-dmg":          "grunt build-desktop-osx-dmg",
     "build:others":           "grunt build-desktop-others",
-    "build:www":              "grunt",
-    "build:www-release":      "grunt prod",
     "build:windows":          "cordova prepare windows && cordova build windows -- --arch=\"ARM\"",
     "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
-
+    "build:www":              "grunt",
+    "build:www-release":      "grunt prod",
+    
     "clean":                  "trash platforms && trash plugins && cordova prepare",
     "clean-all":              "git clean -dfx",
     
-    "final:www":              "npm run build:www-release",
-    "final:ios":              "npm run build:ios-release",
     "final:android":          "npm run build:android-release",
-    "final:windows":          "npm run build:windows-release",
-    "final:desktop":          "npm run build:build-desktop-release",
-    "final:mobile":           "npm run build:mobile-release",
     "final:app":              "npm run build:app-release",
+    "final:desktop":          "npm run build:build-desktop-release",
+    "final:ios":              "npm run build:ios-release",
+    "final:mobile":           "npm run build:mobile-release",
+    "final:windows":          "npm run build:windows-release",
+    "final:www":              "npm run build:www-release",
 
     "log:android":            "adb logcat | grep chromium",
 

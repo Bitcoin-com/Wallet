@@ -8,53 +8,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     exec: {
-      get_nwjs_for_pkg: {
-        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
-      },
-      create_others_dist: {
-        command: 'sh webkitbuilds/create-others-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
-      },
-      create_dmg_dist: {
-        command: 'sh webkitbuilds/create-dmg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
-      },
-      create_pkg_dist: {
-        command: 'sh webkitbuilds/create-pkg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
-      },
-      sign_desktop_dist: {
-        command: 'sh webkitbuilds/sign-desktop-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>"'
-      },
       appConfig: {
         command: 'node ./util/buildAppConfig.js'
-      },
-      externalServices: {
-        command: 'node ./util/buildExternalServices.js'
-      },
-      clean: {
-        command: 'rm -Rf bower_components node_modules'
-      },
-      cordovaclean: {
-        command: 'make -C cordova clean'
-      },
-      coveralls: {
-        command: 'cat  coverage/report-lcov/lcov.info |./node_modules/coveralls/bin/coveralls.js'
-      },
-      chrome: {
-        command: 'make -C chrome-app '
-      },
-      wpinit: {
-        command: 'make -C cordova wp-init',
-      },
-      wpcopy: {
-        command: 'make -C cordova wp-copy',
-      },
-      xcode: {
-        command: 'npm run open:ios',
-      },
-      build_ios_debug: {
-        command: 'npm run build:ios',
-      },
-      build_ios_release: {
-        command: 'cordova prepare ios && cordova build ios --release',
       },
       android_studio: {
         command: ' open -a open -a /Applications/Android\\ Studio.app platforms/android',
@@ -65,18 +20,69 @@ module.exports = function(grunt) {
       build_android_release: {
         command: 'cordova prepare android && cordova build android --release',
       },
-      run_android: {
-        command: 'cordova run android --device',
+      build_ios_debug: {
+        command: 'cordova prepare ios && cordova build ios --debug',
+        options: {
+          maxBuffer: 3200 * 1024
+        }
+      },
+      build_ios_release: {
+        command: 'cordova prepare ios && cordova build ios --release',
+        options: {
+          maxBuffer: 1600 * 1024
+        }
+      },
+      chrome: {
+        command: 'make -C chrome-app '
+      },
+      clean: {
+        command: 'rm -Rf bower_components node_modules'
+      },
+      cordovaclean: {
+        command: 'make -C cordova clean'
+      },
+      coveralls: {
+        command: 'cat  coverage/report-lcov/lcov.info |./node_modules/coveralls/bin/coveralls.js'
+      },
+      create_dmg_dist: {
+        command: 'sh webkitbuilds/create-dmg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      create_others_dist: {
+        command: 'sh webkitbuilds/create-others-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      create_pkg_dist: {
+        command: 'sh webkitbuilds/create-pkg-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>" "<%= pkg.nameCaseNoSpace %>" "<%= pkg.title %>"'
+      },
+      externalServices: {
+        command: 'node ./util/buildExternalServices.js'
+      },
+      get_nwjs_for_pkg: {
+        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
       },
       log_android: {
         command: 'adb logcat | grep chromium',
+      },
+      run_android: {
+        command: 'cordova run android --device',
       },
       sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release"
         command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
         stdin: true,
-      }
+      },
+      sign_desktop_dist: {
+        command: 'sh webkitbuilds/sign-desktop-dist.sh "<%= pkg.name %>" "<%= pkg.fullVersion %>"'
+      },
+      wpinit: {
+        command: 'make -C cordova wp-init',
+      },
+      wpcopy: {
+        command: 'make -C cordova wp-copy',
+      },
+      xcode: {
+        command: 'open platforms/ios/*.xcodeproj',
+      } 
     },
     watch: {
       options: {
@@ -357,7 +363,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build-mobile-release', ['build-ios-release', 'build-android-release']);
 
   // Build ios
-  grunt.registerTask('start-ios', ['ios-debug', 'exec:xcode']);
+  grunt.registerTask('start-ios', ['exec:build_ios_debug', 'exec:xcode']);
   grunt.registerTask('build-ios-debug', ['exec:build_ios_debug']);
   grunt.registerTask('build-ios-release', ['prod', 'exec:build_ios_release']);
 
