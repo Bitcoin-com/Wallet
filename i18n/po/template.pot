@@ -511,7 +511,7 @@ msgid "Cannot Create Wallet"
 msgstr ""
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr ""
 
 #: www/views/includes/bitpayCardsCard.html:2
