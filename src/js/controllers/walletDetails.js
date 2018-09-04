@@ -283,25 +283,28 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   var prevPos;
-
+  $scope.txHistoryPaddingBottom = 0;
   function getScrollPosition() {
     var scrollPosition = $ionicScrollDelegate.getScrollPosition();
     if (!scrollPosition) {
-      $window.requestAnimationFrame(function() {
+      $timeout(function() {
         getScrollPosition();
-      });
+      }, 25);
       return;
     }
     var pos = scrollPosition.top;
+    if (pos > 0) {
+      $scope.txHistoryPaddingBottom = "200px";
+    }
     if (pos === prevPos) {
-      $window.requestAnimationFrame(function() {
+      $timeout(function() {
         getScrollPosition();
-      });
+      }, 25);
       return;
     }
     prevPos = pos;
     refreshAmountSection(pos);
-  };
+  }
 
   function refreshAmountSection(scrollPos) {
     var AMOUNT_HEIGHT_BASE = 210;
@@ -355,18 +358,23 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }
 
     var t = amountTop;
-
-    $scope.altAmountOpacity = (amountHeight - 100) / 80;
-    $scope.buttonsOpacity = (amountHeight - 140) / 70;
-    $window.requestAnimationFrame(function() {
-      $scope.amountHeight = amountHeight + 'px';
-      $scope.contentMargin = contentMargin + 'px';
-      $scope.amountScale = 'scale3d(' + s + ',' + s + ',' + s + ') translateY(' + t + 'px)';
-      $scope.$digest();
-      getScrollPosition();
-    });
+    if (scrollPos > 50) {
+      contentMargin = amountHeight = 80;
+      $scope.altAmountOpacity = 0.01;
+      $scope.buttonsOpacity = 0.01;
+    } else {
+      contentMargin = amountHeight = 210;
+      $scope.altAmountOpacity = 1;
+      $scope.buttonsOpacity = 1;
+    }
+    $scope.amountHeight = amountHeight + 'px';
+    $scope.contentMargin = contentMargin + 'px';
+    $scope.amountScale = 'scale3d(' + s + ',' + s + ',' + s + ') translateY(' + t + 'px)';
+    $scope.$digest();
+    getScrollPosition();
   }
 
+  var scrollEffectTimeout;
   var scrollWatcherInitialized;
 
   $scope.$on("$ionicView.enter", function(event, data) {

@@ -300,7 +300,7 @@
         <span translate>{{updatingTxHistoryProgress}} transactions downloaded</span>
       </div>
 
-      <div class="wallet-details__list" ng-show="txHistory[0] && !updatingTxHistory">
+      <div ng-style="{'padding-bottom': txHistoryPaddingBottom}" class="wallet-details__list" ng-show="txHistory[0] && !updatingTxHistory">
         <div ng-repeat="btx in txHistory track by $index" ng-click="openTxModal(btx)">
           <span ng-include="'views/includes/walletHistory.html'"></span>
         </div>

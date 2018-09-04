@@ -159,6 +159,7 @@
 
     padding-top: 0;
     top: 0;
+    transition: margin-top 0.5s ease-in-out;
     margin-bottom: 16px;
 
     .scroll {
@@ -199,7 +200,8 @@
       width: 100%;
       position: absolute;
       bottom: 20px;
-
+      transition-delay: 0.25s;
+      transition: opacity 0.4s ease-in-out;
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;
@@ -219,14 +221,15 @@
     }
   }
   .amount {
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    height: 230px;
-    padding-top: 40px;
-    display: block;
     align-items: center;
+    color: #fff;
+    display: block;
+    height: 230px;
     justify-content: center;
+    padding-top: 40px;
+    text-align: center;
+    transition: height 0.5s ease-in-out;
+    width: 100%;
 
     &__balance {
       -webkit-transform: scale3d(1, 1, 1) translateY(45px);
