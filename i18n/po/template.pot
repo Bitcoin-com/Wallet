@@ -72,6 +72,26 @@ msgstr ""
 msgid "Instant transactions with low fees"
 msgstr ""
 
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr ""
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr ""
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr ""
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr ""
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr ""
+
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
 msgstr ""
@@ -195,6 +215,20 @@ msgstr ""
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
+msgstr ""
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr ""
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr ""
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
 msgstr ""
 
 #: src/js/controllers/buyAmazon.js:98
@@ -428,6 +462,7 @@ msgid "Buy &amp; Sell Bitcoin"
 msgstr ""
 
 #: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
 msgstr ""
 
@@ -652,6 +687,7 @@ msgstr ""
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
 msgstr ""
@@ -1271,6 +1307,7 @@ msgstr ""
 #: www/views/modals/txp-details.html:74
 #: www/views/topup.html:34
 #: www/views/tx-details.html:52
+#: www/views/review.html:22
 msgid "From"
 msgstr ""
 
@@ -1331,10 +1368,6 @@ msgid "Get news and updates from BitPay"
 msgstr ""
 
 #: www/views/onboarding/welcome.html:8
-msgctxt "button"
-msgid "Get started"
-msgstr ""
-
 #: www/views/bitpayCard.html:49
 msgid "Get started"
 msgstr ""
@@ -2158,6 +2191,10 @@ msgstr ""
 msgid "Payment Sent"
 msgstr ""
 
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr ""
+
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
 msgstr ""
@@ -2175,7 +2212,7 @@ msgid "Payment details"
 msgstr ""
 
 #: www/views/modals/paypro.html:6
-msgid "Payment request"
+msgid "Payment Request"
 msgstr ""
 
 #: www/views/mercadoLibreCards.html:22
@@ -2611,15 +2648,11 @@ msgid "Paste Address"
 msgstr ""
 
 #: www/views/tab-send.html:27
-msgid "Wallet to Wallet Transfer"
+msgid "Transfer between wallets"
 msgstr ""
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
-msgstr ""
-
-#: www/views/tab-send.html:46
-msgid "Send Bitcoin faster!"
 msgstr ""
 
 #: www/views/tab-send.html:46
@@ -2647,6 +2680,8 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr ""
 
 #: www/views/tab-send.html:72
+#: www/views/shapeshift.html:23
+#: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
 
@@ -3051,6 +3086,14 @@ msgstr ""
 msgid "This bitcoin payment request has expired."
 msgstr ""
 
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr ""
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr ""
+
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
@@ -3092,10 +3135,6 @@ msgstr ""
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
 msgstr ""
 
-#: www/views/tab-send.html:33
-msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr ""
-
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
 msgstr ""
@@ -3106,6 +3145,26 @@ msgstr ""
 
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "Start ShapeShift"
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr ""
+
+#: www/views/shapeshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr ""
+
+#: www/views/shapeshift.html:34
+msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr ""
 
 #: www/views/buyAmazon.html:61
@@ -3698,4 +3757,96 @@ msgstr ""
 #: www/views/copayers.html:46
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr ""
+
+#: src/js/services/shapeshiftService.js:8
+msgid "Shapeshift"
+msgstr ""
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr ""
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr ""
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr ""
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Mining Pool"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr ""
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr ""
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr ""
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr ""
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr ""
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr ""
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr ""
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr ""
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr ""
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr ""
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr ""
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr ""
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr ""
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
 msgstr ""

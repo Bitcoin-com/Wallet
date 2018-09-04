@@ -1,0 +1,23 @@
+#shapeshift {
+  .swap-image {
+    width: auto;
+    max-width: 400px;
+    max-height: 25vh;
+  }
+  .empty-case {
+    @include empty-case();
+  }
+  .button-shapeshift {
+    @extend %button-standard;
+
+    @include button-style(#243F5D, #FFF, #606060, #FFF, #FFF);
+    @include button-clear(#FFF);
+    @include button-outline(#C1C1C1);
+    border: 0px;
+    @include button-shadow();
+  }
+}
+.header.shapeshift {
+  background: url(../img/shapeshiftbg.jpg) center center repeat #28394d;
+  opacity: 0.99;
+}

@@ -31,7 +31,7 @@
         <div ng-show="!showingPaymentReceived">
           <div>
             <button ng-show="addr" class="button button-standard button-small" ng-click="requestSpecificAmount()">
-              <span translate>Request Specific Amount</span>
+              <span translate>Request Specific amount</span>
             </button><br/><br/>
           </div>
           <div copy-to-clipboard="wallet.coin == 'bch' && bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + addr : addr">
@@ -61,16 +61,16 @@
           </svg>
           <p class="success animated fadeIn">
             <br/>Payment Received!
-            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount">{{ paymentReceivedAmount }} <span class="payment-received-currency">{{ paymentReceivedCoin }}</span></span>
-            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount">{{ paymentReceivedAlternativeAmount }}</span></span>
+            <span ng-if="!(displayBalanceAsFiat && paymentReceivedAlternativeAmount)" class="payment-received-amount"><formatted-amount value="{{ paymentReceivedAmount }}" currency="{{paymentReceivedCoin}}"></formatted-amount></span>
+            <span ng-if="displayBalanceAsFiat && paymentReceivedAlternativeAmount" class="payment-received-amount"><formatted-amount value="{{ paymentReceivedAlternativeAmount }}"></formatted-amount></span></span>
             Return To Address<br/>
           </p>
         </div>
         <!-- end of animation -->
         <div ng-show="addr && wallet.coin == 'bch' && !showingPaymentReceived">
           <label class="item-input item-select">
-            <div class="input-label" translate>
-              Address Type:
+            <div class="input-label">
+              <span translate>Address Type</span>:
             </div>
             <select ng-model="bchAddressType.type" ng-change="displayAddress(bchAddressType.type)">
               <option value="cashaddr">Cash Address</option>
@@ -95,8 +95,8 @@
           {{wallet.name || wallet.id}}
         </span>
         <p>
-          <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden" translate> {{wallet.status.totalBalanceAlternative}} {{wallet.status.alternativeIsoCode}} </span>
-          <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"> {{wallet.status.totalBalanceStr}} </span>
+          <span ng-if="displayBalanceAsFiat && !wallet.balanceHidden" translate> <formatted-amount value="{{wallet.status.totalBalanceAlternative}}" currency="{{wallet.status.alternativeIsoCode}}"></formatted-amount></span>
+          <span ng-if="!displayBalanceAsFiat && !wallet.balanceHidden"> <formatted-amount value="{{wallet.status.totalBalanceStr}}"></formatted-amount> </span>
 
           <span ng-if="wallet.balanceHidden" translate>[Balance Hidden]</span>
           <span class="tab-home__wallet__multisig-number" ng-if="wallet.n > 1">

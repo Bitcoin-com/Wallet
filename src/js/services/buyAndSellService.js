@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('buyAndSellService', function($log, servicesService, lodash, $ionicScrollDelegate, $timeout) {
+angular.module('copayApp.services').factory('buyAndSellService', function(gettextCatalog, $log, servicesService, lodash, $ionicScrollDelegate, $timeout) {
   var root = {};
   var services = [];
   var linkedServices = [];
@@ -23,7 +23,7 @@ angular.module('copayApp.services').factory('buyAndSellService', function($log, 
 
     if (linkedServices.length == 0) {
       servicesService.register({
-        title: 'Buy Bitcoin',
+        title: gettextCatalog.getString('Buy Bitcoin'),
         name: 'buyandsell',
         icon: 'icon-buy-bitcoin2',
         sref: 'tabs.buyandsell',

@@ -1,0 +1,125 @@
+<ion-view id="view-review" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar class="bar-royal {{vm.origin.currency.toLowerCase()}}">
+    <ion-nav-title>
+      {{'Review Transaction' | translate}}
+    </ion-nav-title>
+    <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-content class="padded-bottom-cta-with-summary bg-neutral">
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
+      <div class="content">
+        <p>{{vm.sendingTitle}}</p>
+        <p class="large"><formatted-amount value="{{vm.primaryAmount}}" currency="{{vm.primaryCurrency}}"></formatted-amount></p>
+        <p ng-show="vm.secondaryAmount"><formatted-amount value="{{vm.secondaryAmount}}" currency="{{vm.secondaryCurrency}}"></formatted-amount></p>
+      </div>
+    </div>
+
+    <div class="content-frame negative-top">
+      <div class="card card-gutter-compact">
+        <div class="item item-compact"><span translate>From</span>:</div>
+        <div class="item item-gutterless item-complex item-avatar">
+          <div class="item-content item-content-avatar">
+            <i class="icon big-icon-svg theme-circle theme-circle-services">
+                <div class="bg icon-wallet"
+                  style="background-color: {{vm.originWallet.color}}"
+                ></div>
+            </i>
+            <h2>{{vm.originWallet.name}} <span class="highlight" style="color: {{vm.origin.currencyColor}}">({{vm.origin.currency}})</span></h2>
+            <p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-gutter-compact">
+        <div class="item item-compact" translate>To:</div>
+        <div class="item item-gutterless item-complex item-avatar">
+          <div class="item-content item-content-avatar"
+          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet' || vm.destination.kind == 'shapeshift'">
+            <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.destination.kind === 'contact'">
+            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet' || vm.destination.kind === 'shapeshift'">
+                <div class="bg icon-wallet"
+                  style="background-color: {{vm.destination.color}}"
+                ></div>
+            </i>
+            <h2>{{vm.destination.name}}<span class="highlight" style="color: {{vm.destination.currencyColor}}" ng-if="vm.destination.currency"> ({{vm.destination.currency}})</span></h2></h2>
+            <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
+          </div>
+          <div class="item-content item-content-avatar"
+          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'
+           && (vm.thirdParty.name === 'BitPay' || vm.thirdParty.name === 'eGifter')">
+            <img ng-if="vm.thirdParty.name === 'BitPay'" src="img/icon-bitpay.svg" class="bg">
+            <img ng-if="vm.thirdParty.name === 'eGifter'" src="img/icon-egifter.png" class="bg">
+            <h2>{{vm.destination.name}}</h2>
+            <p translate ng-if="!vm.paymentExpired"><span translate>Payment expires:</span> {{vm.remainingTimeStr}}</p>
+            <p class="warning" translate ng-if="vm.paymentExpired">Payment request has expired</p>
+          </div>
+          <div class="item-content item-content-compact" ng-init="addressExpanded = false" ng-if="vm.destination.kind === 'address' && !vm.thirdParty">
+            <div class="address-frame" ng-class="{ 'expanded': addressExpanded }" ng-click="addressExpanded = !addressExpanded">
+              <span ng-if="!vm.displayAddress">
+                <span class="prefix">{{vm.destination.address.substring(0,5)}}</span><span class="mid">{{vm.destination.address.substring(5,vm.destination.address.length-4)}}</span><span class="suffix">{{vm.destination.address.substring(vm.destination.address.length-4)}}</span>
+              </span>
+              <span ng-if="vm.displayAddress">
+                <span class="prefix">{{vm.displayAddress.substring(0,5)}}</span><span class="mid">{{vm.displayAddress.substring(5,vm.displayAddress.length-4)}}</span><span class="suffix">{{vm.displayAddress.substring(vm.displayAddress.length-4)}}</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="expand-content-frame">
+        <div class="action-minor mt-negative text-right expand-content-trigger"
+          ng-class="{ 'expand-content-revealed': vm.memoExpanded }"
+          ng-click="vm.memoExpanded = !vm.memoExpanded">
+          <img src="img/icon-bookmark.svg" class="action-icon">
+          <span class="action-text" translate>Add personal note</span>
+        </div>
+        <div class="card card-gutter-compact expand-content"
+          ng-class="{ 'expand-content-revealed': vm.memoExpanded }">
+          <div class="item item-compact" translate>Personal Note:</div>
+          <div class="item">
+            <div class="item-content">
+              <textarea elastic placeholder="{{btx.note.body || btx.message || vm.personalNotePlaceholder}}" class="elastic" ng-model="vm.memo"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="height-spacer"></div>
+    </div>
+  </ion-content>
+
+  <div class="fee-summary">
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'" translate>Suggested by merchant:</div>
+    <div class="amount">
+      <div class="fee-fiat positive" ng-if="vm.feeLessThanACent"><span translate>Fee:</span> <span translate>Less than 1 cent</span></div>
+      <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent"><span translate>Fee:</span> {{vm.feeFiat}} {{vm.feeCurrency}}</div>
+      <div class="fee-crypto" ng-if="vm.feeCrypto">
+        <formatted-amount value="{{vm.feeCrypto}}" currency="{{vm.origin.currency}}"></formatted-amount>
+      </div>
+    </div>
+  </div>
+
+  <click-to-accept
+    ng-click="vm.approve()"
+    ng-if="!vm.isCordova"
+    click-send-status="vm.sendStatus"
+    is-disabled="!vm.readyToSend">
+    {{vm.buttonText}}
+  </click-to-accept>
+  <slide-to-accept
+    ng-if="vm.isCordova"
+    slide-on-confirm="vm.approve()"
+    slide-send-status="vm.sendStatus"
+    is-disabled="!vm.readyToSend">
+    {{vm.buttonText}}
+  </slide-to-accept>
+  <slide-to-accept-success
+    slide-success-show="vm.sendStatus === 'success'"
+    slide-success-on-confirm="vm.onSuccessConfirm()"
+    slide-success-on-share="vm.onShareTransaction"
+    slide-success-hide-on-confirm="true">
+    <span ng-show="vm.originWallet.m == 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Payment Sent</span>
+    <span ng-show="vm.originWallet.m > 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Proposal Created</span>
+    <span ng-show="!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()" translate>Transaction Created</span>
+  </slide-to-accept-success>
+</ion-view>

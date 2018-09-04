@@ -1,0 +1,37 @@
+.formatted-amount {
+  display: inline-block;
+
+  .start,
+  .middle,
+  .end,
+  .currency {
+    display: inline-block;
+  }
+
+  .start {
+    font-size: 1em;
+  }
+
+  .middle {
+    font-size: 0.7857em;
+    margin-left: 5px;
+  }
+
+  .end {
+    font-size: 0.7857em;
+    margin-left: 5px;
+  }
+
+  &.size-equal {
+    .middle,
+    .end {
+      font-size: 1em;
+    }
+  }
+
+  .currency {
+    font-size: 1em;
+    margin-left: 5px;
+    text-transform: uppercase;
+  }
+}

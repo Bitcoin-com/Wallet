@@ -22,6 +22,24 @@
       </div>
     </div>
 
+    <div class="buttons row">
+      <div class="col">
+        <div class="button button-outline button-grey-outline" ui-sref="tabs.receive">
+          <span translate>Receive</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="button button-outline button-grey-outline" ng-class="{'ng-hide': walletsWithFunds.length}"
+             ui-sref="tabs.buyandsell">
+          <span translate>Buy Bitcoin</span>
+        </div>
+        <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
+             ng-click="startFreshSend()">
+          <span translate>Send</span>
+        </div>
+      </div>
+    </div>
+
     <div class="list card homeTip" ng-if="homeTip">
       <div class="item item-icon-right item-heading">
         <div class="title" translate>
