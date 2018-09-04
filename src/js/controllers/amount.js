@@ -236,6 +236,13 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(data) {
         console.log('sendmax onMarketData()');
         ongoingProcess.set('connectingShapeshift', false);
+
+        if (data.error) {
+          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), typeof data.error === 'string'?data.error:(data.error.message?data.error.message:''), function () {
+            $ionicHistory.goBack();
+          });
+        }
+
         vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
         vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
 
