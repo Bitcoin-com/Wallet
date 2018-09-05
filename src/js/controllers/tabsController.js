@@ -1,11 +1,13 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingData, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
+angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingDataService, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
 
   $scope.onScan = function(data) {
-    if (!incomingData.redir(data)) {
-      popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid data'));
-    }
+    incomingDataService.redir(data, function onError(err) {
+      if (err) {
+        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+      }
+    });
   };
 
   $scope.setScanFn = function(scanFn) {
@@ -16,8 +18,7 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
   };
 
   $scope.startFreshSend = function() {
-    sendFlowService.clear();
-    $state.go('tabs.send');
+    sendFlowService.start();
   };
 
   $scope.importInit = function() {
@@ -28,7 +29,6 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
   };
 
   $scope.chooseScanner = function() {
-    sendFlowService.clear();
     var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
     if (!isWindowsPhoneApp) {
@@ -38,10 +38,14 @@ angular.module('copayApp.controllers').controller('tabsController', function($ro
 
     scannerService.useOldScanner(function(err, contents) {
       if (err) {
-        popupService.showAlert(gettextCatalog.getString('Error'), err);
-        return;
+        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+      } else {
+        incomingDataService.redir(contents, function onError(err) {
+          if (err) {
+            popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+          }
+        });
       }
-      incomingData.redir(contents);
     });
 
   };

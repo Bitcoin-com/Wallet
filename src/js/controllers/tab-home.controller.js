@@ -121,9 +121,8 @@ angular.module('copayApp.controllers').controller('tabHomeController',
     };
 
     $scope.startFreshSend = function() {
-      sendFlowService.clear();
-      $state.go('tabs.send');
-    };
+      sendFlowService.start();
+    }
 
     $scope.showUpdatePopup = function() {
       latestReleaseService.showUpdatePopup();
