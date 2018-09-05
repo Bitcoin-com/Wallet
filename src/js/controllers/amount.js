@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window, ongoingProcess) {
+function amountController(configService, $filter, gettextCatalog, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window, ongoingProcess, popupService) {
   var vm = this;
 
   vm.allowSend = false;
@@ -94,10 +94,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicModal, $
           vm.toWallet = profileService.getWallet(vm.toWalletId);
 
           ongoingProcess.set('connectingShapeshift', true);
-          shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
-            vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
-            vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
-            ongoingProcess.set('connectingShapeshift', false);
+          shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(err, data) {
+            
+            if (err) {
+              // Error stop here
+              ongoingProcess.set('connectingShapeshift', false);
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+                $ionicHistory.goBack();
+              });
+            } else {
+              vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
+              vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
+              ongoingProcess.set('connectingShapeshift', false);
+            }
           });
         }
       }
