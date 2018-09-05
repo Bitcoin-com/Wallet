@@ -44,7 +44,7 @@ angular
 
     function shiftIt(coinIn, coinOut, withdrawalAddress, returnAddress, amount, cb) {
       // Test if the amount is correct depending on the min and max
-      if (typeof amount !== 'number' || amount < service.marketData.minimum || amount > service.marketData.maxLimit) {
+      if (!amount || typeof amount !== 'number' || amount < service.marketData.minimum || amount > service.marketData.maxLimit) {
         var err = new Error('Invalid amount');
         cb(err);
       } else {
