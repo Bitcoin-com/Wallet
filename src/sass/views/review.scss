@@ -19,4 +19,9 @@
   .warning {
     color: $v-warning-color-2;
   }
+
+  .item .item-content.item-content-avatar > img:first-child, .item .item-content.item-content-avatar > i:first-child {
+    top: calc(50% - 20px); // XX SP: Icons are 40px
+    transform: none;
+  }
 }
