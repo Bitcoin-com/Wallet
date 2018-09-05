@@ -332,17 +332,19 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
           console.log(fixedTx);
           SSA.FixedAmountTx(fixedTx, function (data) {
             console.log(data);
-            promise.resolve(data.success);
-          }, function (err) {
-            promise.reject(err);
+            promise.resolve(data);
           });
           return promise.promise;
       },
       NormalTx : function($scope){
           var promise = $q.defer();
           var normalTx = SSA.CreateNormalTx($scope.withdrawalAddress, $scope.coinIn, $scope.coinOut);
+
+          console.log('shapeshiftApiService.NormalTx()');
+          console.log(normalTx);
           SSA.NormalTx(normalTx, function (data) {
-              promise.resolve({ normalTxData : data });
+            console.log(data);
+            promise.resolve(data);
           });
           return promise.promise;
       },
@@ -363,13 +365,12 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
           return promise.promise;
       },
       ValidateAddress : function(address, coin) {
-          var promise = $q.defer();
-          SSA.ValidateAdddress(address, coin, function onSuccess(data){
-            promise.resolve(data);
-          }, function onError(err) {
-            promise.reject(err);
-          });
-          return promise.promise;
+        var promise = $q.defer();
+        SSA.ValidateAdddress(address, coin, function onRequest(data){
+          console.log(data);
+          promise.resolve(data);
+        });
+        return promise.promise;
       }
   };
 });

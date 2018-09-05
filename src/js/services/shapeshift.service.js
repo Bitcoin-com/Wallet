@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('bitcoincom.services').factory('shapeshiftService', function ($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingDataService, platformInfo, servicesService) {
+angular.module('bitcoincom.services').factory('shapeshiftService', function (shapeshiftApiService) {
   var root = {};
   root.ShiftState = 'Shift';
   root.coinIn = '';
@@ -29,45 +29,43 @@ angular.module('bitcoincom.services').factory('shapeshiftService', function ($ht
     'BCH': {name: 'Bitcoin Cash', symbol: 'BCH'}
   };
 
-  root.shiftIt = function (coinIn, coinOut, withdrawalAddress, returnAddress, cb) {
-    root.withdrawalAddress = withdrawalAddress;
-    root.returnAddress = returnAddress;
-    root.coinIn = coinIn;
-    root.coinOut = coinOut;
-    shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut).then(function onSuccess(data) {
-      shapeshiftApiService.FixedAmountTx(root).then(function onSuccess(txData) {
-        if (txData.err) {
-          cb(txData.err);
-        } else {
-          if (!txData.orderId || !txData.deposit) {
-            cb(new Error('Invalid response'));
-          } else {
-            var coinPair = txData.pair.split('_');
-            txData.depositType = coinPair[0].toUpperCase();
-            txData.withdrawalType = coinPair[1].toUpperCase();
-            coin = root.coins[txData.depositType].name.toLowerCase();
-            txData.depositQR = coin + ":" + txData.deposit + "?amount=" + txData.depositAmount;
-            root.txFixedPending = true;
-            root.depositInfo = txData;
-            var shapeshiftData = {
-              coinIn: coinIn,
-              coinOut: coinOut,
-              toWalletId: root.toWalletId,
-              minAmount: root.marketData.minimum,
-              maxAmount: root.marketData.maxLimit,
-              orderId: txData.orderId,
-              toAddress: txData.deposit
-            };
-
-            cb(null, shapeshiftData);
-          }
-        }
-      }, function onError(err) {
-        cb(err);
-      });
-    }, function onError(err) {
+  root.shiftIt = function (coinIn, coinOut, withdrawalAddress, returnAddress, amount, cb) {
+    if (typeof amount !== 'number' || amount < root.marketData.minimum || amount > root.marketData.maxLimit) {
+      var err = new Error('Invalid amount');
       cb(err);
-    });
+    } else {
+      root.withdrawalAddress = withdrawalAddress;
+      root.returnAddress = returnAddress;
+      root.coinIn = coinIn;
+      root.coinOut = coinOut;
+      root.amount = amount;
+      shapeshiftApiService.ValidateAddress(withdrawalAddress, coinOut).then(function onSuccess(data) {
+        if (data && data.isvalid) {
+          shapeshiftApiService.NormalTx(root).then(function onResponse(data) {
+            var txData = data;
+            if (!txData || !txData.orderId || !txData.deposit) {
+              cb(new Error('Invalid response'));
+            } else {
+              root.depositInfo = txData;
+              var shapeshiftData = {
+                coinIn: coinIn,
+                coinOut: coinOut,
+                toWalletId: root.toWalletId,
+                minAmount: root.marketData.minimum,
+                maxAmount: root.marketData.maxLimit,
+                orderId: txData.orderId,
+                toAddress: txData.deposit
+              };
+
+              cb(null, shapeshiftData);
+            }
+          });
+        } else {
+          var err = new Error('Invalid address or coin');
+          cb(err);
+        }
+      });
+    }
   };
   return root;
 });

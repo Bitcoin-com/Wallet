@@ -507,10 +507,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             return;
           } 
 
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
+          // Need to use the correct service to do it.
+          var amount = parseFloat(satoshis / 100000000);
+
+          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, shapeshiftData) {
             if (err) {
-              ongoingProcess.set('connectingShapeshift', false);
-              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err, function () {
                 $ionicHistory.goBack();
               });
             } else {
@@ -520,6 +522,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
               vm.destination.address = toAddress;
               vm.destination.kind = 'shapeshift';
             }
+            ongoingProcess.set('connectingShapeshift', false);
           });
         });
       });
