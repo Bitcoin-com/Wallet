@@ -221,7 +221,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function initForShapeshift() {
-    console.log('initForShapeshift()');
     if (vm.thirdParty.id === 'shapeshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
 
@@ -234,17 +233,17 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       ongoingProcess.set('connectingShapeshift', true);
       shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(data) {
-        console.log('sendmax onMarketData()');
         ongoingProcess.set('connectingShapeshift', false);
 
         if (data.error) {
-          // TODO: translatable string. use goBack(), don't execute the code beyond.
+          var defaultErrorMessage = gettextCatalog.getString('Unknown error.');
           popupService.showAlert(
             gettextCatalog.getString('Shapeshift Error'), 
-            typeof data.error === 'string' ? data.error : (data.error.message ? data.error.message : ''),
+            typeof data.error === 'string' ? data.error : (data.error.message ? data.error.message : defaultErrorMessage),
             function () {
               goBack();
-          });
+            }
+          );
         } else {
 
           vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);

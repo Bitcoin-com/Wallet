@@ -3854,3 +3854,7 @@ msgstr ""
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
 msgstr ""
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr ""
