@@ -508,7 +508,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           } 
 
           shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
-            if (err && err != null) {
+            if (err) {
               ongoingProcess.set('connectingShapeshift', false);
               popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
                 $ionicHistory.goBack();

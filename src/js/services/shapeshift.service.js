@@ -32,7 +32,6 @@ angular.module('bitcoincom.services').factory('shapeshiftService', function ($ht
   };
 
   root.shiftIt = function (coinIn, coinOut, withdrawalAddress, returnAddress, cb) {
-    ongoingProcess.set('connectingShapeshift', true);
     root.withdrawalAddress = withdrawalAddress;
     root.returnAddress = returnAddress;
     root.coinIn = coinIn;
