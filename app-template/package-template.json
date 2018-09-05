@@ -90,7 +90,8 @@
     "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
     
     "build:app-release":      "grunt build-app-release",
-    "build:mobile-release":  "grunt build-mobile-release",
+    
+    "build:mobile-release":   "grunt build-mobile-release",
     "build:desktop-release":  "grunt build-desktop-release",
 
     "build:android-debug":    "grunt build-android-debug",
