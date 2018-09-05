@@ -13,17 +13,15 @@ angular.module('bitcoincom.services').factory('shapeshiftService', function ($ht
   root.getMarketData = function (coinIn, coinOut, cb) {
     root.coinIn = coinIn;
     root.coinOut = coinOut;
-    if (root.coinIn !== undefined && root.coinOut !== undefined){
-      shapeshiftApiService
-        .marketInfo(root.coinIn, root.coinOut)
-        .then(function (marketData) {
-          root.marketData = marketData;
-          root.rateString = root.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
-          if (cb) {
-            cb(marketData);
-          }
-        });
-    }
+    shapeshiftApiService
+      .marketInfo(root.coinIn, root.coinOut)
+      .then(function (marketData) {
+        root.marketData = marketData;
+        root.rateString = root.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
+        if (cb) {
+          cb(marketData);
+        }
+      });
   };
 
   root.coins = {
