@@ -89,15 +89,21 @@
   "scripts": {
     "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
     
+    "build:app-release":      "grunt build-app-release",
+    "build:mobile-release":  "grunt build-mobile-release",
+    "build:desktop-release":  "grunt build-desktop-release",
+
     "build:android-debug":    "grunt build-android-debug",
     "build:android-release":  "grunt build-android-release",
-    "build:desktop-release":  "grunt build-desktop-release",
-    "build:desktop":          "grunt build-desktop",
+
     "build:ios-debug":        "grunt build-ios-debug",
     "build:ios-release":      "grunt build-ios-release",
+
+    "build:desktop":          "grunt build-desktop",
     "build:osx-pkg":          "grunt build-desktop-osx-pkg",
     "build:osx-dmg":          "grunt build-desktop-osx-dmg",
     "build:others":           "grunt build-desktop-others",
+
     "build:windows":          "cordova prepare windows && cordova build windows -- --arch=\"ARM\"",
     "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
     "build:www":              "grunt",
@@ -106,14 +112,6 @@
     "clean":                  "trash platforms && trash plugins && cordova prepare",
     "clean-all":              "git clean -dfx",
     
-    "final:android":          "npm run build:android-release",
-    "final:app":              "npm run build:app-release",
-    "final:desktop":          "npm run build:build-desktop-release",
-    "final:ios":              "npm run build:ios-release",
-    "final:mobile":           "npm run build:mobile-release",
-    "final:windows":          "npm run build:windows-release",
-    "final:www":              "npm run build:www-release",
-
     "log:android":            "adb logcat | grep chromium",
 
     "open:android":           "grunt exec:android_studio",
