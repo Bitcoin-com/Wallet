@@ -238,15 +238,20 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         ongoingProcess.set('connectingShapeshift', false);
 
         if (data.error) {
-          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), typeof data.error === 'string'?data.error:(data.error.message?data.error.message:''), function () {
-            $ionicHistory.goBack();
+          // TODO: translatable string. use goBack(), don't execute the code beyond.
+          popupService.showAlert(
+            gettextCatalog.getString('Shapeshift Error'), 
+            typeof data.error === 'string' ? data.error : (data.error.message ? data.error.message : ''),
+            function () {
+              goBack();
           });
+        } else {
+
+          vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);
+          vm.thirdParty.data.maxAmount = vm.maxAmount = parseFloat(data.maxLimit);
+
+          setMaximumButtonFromWallet(vm.fromWallet);
         }
-
-        vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
-        vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
-
-        setMaximumButtonFromWallet(vm.fromWallet);
       });
       
       
