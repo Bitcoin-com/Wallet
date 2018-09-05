@@ -52,11 +52,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
 
   root.clear = function() {
     ongoingProcess = {};
-    if (isCordova && !isWindowsPhoneApp) {
-      window.plugins.spinnerDialog.hide();
-    } else {
-      $ionicLoading.hide();
-    }
+    $ionicLoading.hide();
   };
 
   root.get = function(processName) {
@@ -89,11 +85,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
         template: tmpl,
       });
     } else {
-      if (isCordova && !isWindowsPhoneApp) {
-        window.plugins.spinnerDialog.hide();
-      } else {
-        $ionicLoading.hide();
-      }
+      $ionicLoading.hide();
     }
   };
 
