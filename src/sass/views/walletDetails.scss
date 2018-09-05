@@ -1,3 +1,4 @@
+$wallet-details-transition: all 0.25s ease-in-out;
 .wallet-details {
   &__tx-amount {
     font-size: 16px;
@@ -137,6 +138,20 @@
       margin-top: 20px;
       margin-top: env(safe-area-inset-top);
     }
+    &.collapse {
+      ion-content {
+        margin-top: 40px;
+      }
+      .amount {
+        &__scale, &__error {
+          -webkit-transform: scale3d(0.5, 0.5, 0.5) translateY(0px);
+          transform: scale3d(0.5, 0.5, 0.5) translateY(0px);
+        }
+      }
+      .amount-alternative, .send-receive-buttons, .wallet-details-wallet-info {
+        opacity: 0;
+      }
+    }
   }
   .bar-header {
     border: 0;
@@ -152,14 +167,14 @@
   background-color: inherit !important;
   }
   ion-content {
-
-    &.collapsible {
-      margin-top: 230px;
-    }
-
     padding-top: 0;
     top: 0;
-    transition: margin-top 0.5s ease-in-out;
+    transition: $wallet-details-transition;
+
+    margin-top: 185px;
+    @media only screen and (max-height:500px) {
+      margin-top: 165px;
+    }
     margin-bottom: 16px;
 
     .scroll {
@@ -200,8 +215,7 @@
       width: 100%;
       position: absolute;
       bottom: 20px;
-      transition-delay: 0.25s;
-      transition: opacity 0.4s ease-in-out;
+      transition: $wallet-details-transition;
       >.col {
         padding: 5px 10px;
         margin-bottom: 0;
@@ -224,16 +238,22 @@
     align-items: center;
     color: #fff;
     display: block;
+
     height: 230px;
+    @media only screen and (max-height:500px) {
+      height: 210px;
+    }
+
     justify-content: center;
     padding-top: 40px;
     text-align: center;
-    transition: height 0.5s ease-in-out;
+    transition: $wallet-details-transition;
     width: 100%;
 
     &__balance {
       -webkit-transform: scale3d(1, 1, 1) translateY(45px);
       transform: scale3d(1, 1, 1) translateY(45px);
+      transition: $wallet-details-transition;
     }
 
     &__updating {
@@ -243,6 +263,7 @@
 
     &-alternative {
       line-height: 36px;
+      transition: $wallet-details-transition;
     }
 
     &__button-balance {
@@ -258,6 +279,7 @@
     &__error {
       font-size: 14px;
       padding: 35px 20px;
+      opacity: 1;
     }
 
   }
