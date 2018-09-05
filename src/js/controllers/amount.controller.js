@@ -1,6 +1,10 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('amountController', amountController);
+(function(){
+
+angular
+  .module('bitcoincom.controllers')
+  .controller('amountController', amountController);
 
 function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
   var vm = this;
@@ -780,3 +784,4 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   }
 }
+})();
