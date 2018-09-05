@@ -328,10 +328,13 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
               $scope.amount, $scope.withdrawalAddress,
               $scope.coinIn, $scope.coinOut
           );
+          console.log('shapeshiftApiService.FixedAmountTx()');
           console.log(fixedTx);
           SSA.FixedAmountTx(fixedTx, function (data) {
-              console.log(data)
-              return promise.resolve({ fixedTxData : data.success });
+            console.log(data);
+            promise.resolve(data.success);
+          }, function (err) {
+            promise.reject(err);
           });
           return promise.promise;
       },
@@ -361,8 +364,10 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
       },
       ValidateAddress : function(address, coin) {
           var promise = $q.defer();
-          SSA.ValidateAdddress(address, coin, function(data){
-              promise.resolve(data);
+          SSA.ValidateAdddress(address, coin, function onSuccess(data){
+            promise.resolve(data);
+          }, function onError(err) {
+            promise.reject(err);
           });
           return promise.promise;
       }
