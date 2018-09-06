@@ -116,7 +116,8 @@ angular.module('copayApp.directives')
 
         function getTransformStyle(translatePct) {
           return {
-            'transform': 'translateX(' + translatePct + '%)'
+            'transform': 'translateX(' + translatePct + '%)',
+            '-webkit-transform': 'translateX(' + translatePct + '%)'
           };
         }
 
