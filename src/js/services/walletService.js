@@ -613,8 +613,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
             return storageService.setTxHistory(historyToSave, walletId, function() {
               $log.debug('Tx History saved.');
-
-              return cb();
+              return cb(null, newHistory);
             });
           });
         });
@@ -691,8 +690,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           return storageService.setTxHistory(historyToSave, walletId, function() {
             $log.debug('Tx History saved.');
-
-            return cb();
+            return cb(null, newHistory);
           });
         });
       });
@@ -728,7 +726,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   };
 
   root.getTx = function(wallet, txid, cb) {
-
     function finish(list) {
       var tx = lodash.find(list, {
         txid: txid
@@ -745,7 +742,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         limitTx: txid
       }, function(err, txHistory) {
         if (err) return cb(err);
-
         finish(txHistory);
       });
     }
