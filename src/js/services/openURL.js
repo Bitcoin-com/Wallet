@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('openURLService', function($rootScope, $ionicHistory, $document, $log, $state, platformInfo, lodash, profileService, incomingData, appConfigService) {
+angular.module('copayApp.services').factory('openURLService', function($rootScope, $ionicHistory, $document, $log, $state, platformInfo, lodash, profileService, incomingDataService, appConfigService) {
   var root = {};
 
   var handleOpenURL = function(args) {
@@ -23,9 +23,12 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
 
     document.addEventListener('handleopenurl', handleOpenURL, false);
 
-    if (!incomingData.redir(url)) {
-      $log.warn('Unknown URL! : ' + url);
-    }
+    incomingDataService.redir(url, function onError(err) {
+      if (err) {
+        $log.warn('Unknown URL! : ' + url);
+        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+      }
+    });
   };
 
   var handleResume = function() {

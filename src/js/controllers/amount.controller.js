@@ -85,14 +85,13 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
   function onBeforeEnter(event, data) {
     if (data.direction == "back") {
-      sendFlowService.popState();
+      sendFlowService.state.pop();
     }
-    //console.log('amount onBeforeEnter after back sendflow ', sendFlowService.state);
     
     initCurrencies();
 
-    passthroughParams = sendFlowService.getStateClone();
-    console.log('sendflow Amount on BeforeEnter after back', passthroughParams);
+    passthroughParams = sendFlowService.state.getClone();
+    console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
@@ -113,7 +112,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (passthroughParams.thirdParty) {
       vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
       if (vm.thirdParty) {
-        initForShapeshift();
+        initShapeshift();
       }
     }
 
@@ -122,7 +121,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     var reOp = /^[\*\+\-\/]$/;
 
     if (!isAndroid && !isIos) {
-      var disableKeys = angular.element($window).on('keydown', function(e) {
+      angular.element($window).on('keydown', function(e) {
         if (!e.key) return;
         if (e.which === 8) { // you can add others here inside brackets.
           if (!altCurrencyModal) {
@@ -221,10 +220,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function goBack() {
-    $ionicHistory.goBack();
+    sendFlowService.router.goBack();
   }
 
-  function initForShapeshift() {
+  function initShapeshift() {
     if (vm.thirdParty.id === 'shapeshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
 
@@ -236,28 +235,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.canSendAllAvailableFunds = false;
 
       ongoingProcess.set('connectingShapeshift', true);
-      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(data) {
+      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
         ongoingProcess.set('connectingShapeshift', false);
-
-        if (data.error) {
-          var defaultErrorMessage = gettextCatalog.getString('Unknown error.');
-          popupService.showAlert(
-            gettextCatalog.getString('Shapeshift Error'), 
-            typeof data.error === 'string' ? data.error : (data.error.message ? data.error.message : defaultErrorMessage),
-            function () {
-              goBack();
-            }
-          );
+        if (err) {
+          // Error stop here
+          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.message, function () {
+            goBack();
+          });
         } else {
-
           vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);
           vm.thirdParty.data.maxAmount = vm.maxAmount = parseFloat(data.maxLimit);
-
           setMaximumButtonFromWallet(vm.fromWallet);
         }
       });
-      
-      
     }
   }  
 
@@ -532,11 +522,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       confirmData.thirdParty = vm.thirdParty;
     }
 
-    sendFlowService.pushState(confirmData);
     if (!confirmData.fromWalletId) {
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
-      $state.transitionTo('tabs.send.review', confirmData);
+      sendFlowService.goNext(confirmData);
       $scope.useSendMax = null;
     }
   }
