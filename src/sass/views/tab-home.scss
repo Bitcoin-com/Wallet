@@ -83,14 +83,14 @@
     .button {
       border: 2px solid;
       border-radius: 47px;
-      padding: 0 15px 0 15px;
+      padding: 8px 2px 8px 2px;
       text-align: center;
       width: 100%;
       max-width: 300px;
       font-size: 19px;
       font-weight: bolder;
-      min-height: auto;
-      line-height: 36px;
+      min-height: 0;
+      line-height: 19px;
     }
   }
   .wallet-coin-logo {
@@ -173,6 +173,11 @@
       font-weight: 700;
       color: #444;
     }
+    .release-notes {
+      white-space: pre;
+      white-space: pre-line;
+      text-align: left;
+    }
     .button {
       width: 100%;
       border: none;
@@ -188,5 +193,15 @@
 
   .badge {
     top:11px;
+  }
+}
+.popup-update {
+  .popup-buttons {
+    display: block;
+  }
+  .popup-buttons .button{
+    display:block;
+    min-width: 100% !important;
+    margin-top: 4px;
   }
 }

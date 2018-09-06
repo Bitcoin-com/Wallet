@@ -43,21 +43,20 @@ angular.module('copayApp.controllers').controller('tabHomeController',
         });
       }
 
-      if ($scope.isNW) {
-        latestReleaseService.checkLatestRelease(function(err, newRelease) {
-          if (err) {
-            $log.warn(err);
-            return;
-          }
-          if (newRelease) {
-            $scope.newRelease = true;
-            $scope.updateText = gettextCatalog.getString('There is a new version of {{appName}} available', {
-              appName: $scope.name
-            });
-          }
-        });
-      }
-    };
+      latestReleaseService.checkLatestRelease(function(err, newReleaseData) {
+        if (err) {
+          $log.warn(err);
+          return;
+        }
+        if (newReleaseData) {
+          $scope.newRelease = true;
+          $scope.newReleaseText = gettextCatalog.getString('There is a new version of {{appName}} available', {
+            appName: $scope.name
+          });
+          $scope.newReleaseNotes = newReleaseData.releaseNotes;
+        }
+      });
+    }
 
     function onEnter(event, data) {
       $ionicNavBarDelegate.showBar(true);
@@ -109,31 +108,24 @@ angular.module('copayApp.controllers').controller('tabHomeController',
           $scope.$apply();
         }, 10);
       });
-    };
+    }
 
     function onLeave (event, data) {
       lodash.each(listeners, function(x) {
         x();
       });
-    };
+    }
 
     $scope.createdWithinPastDay = function(time) {
       return timeService.withinPastDay(time);
     };
 
     $scope.startFreshSend = function() {
-      sendFlowService.clear();
-      $state.go('tabs.send');
+      sendFlowService.start();
     }
 
-    $scope.openExternalLink = function() {
-      var url = 'https://github.com/Bitcoin-com/Wallet/releases/latest';
-      var optIn = true;
-      var title = gettextCatalog.getString('Update Available');
-      var message = gettextCatalog.getString('An update to this app is available. For your security, please update to the latest version.');
-      var okText = gettextCatalog.getString('View Update');
-      var cancelText = gettextCatalog.getString('Go Back');
-      externalLinkService.open(url, optIn, title, message, okText, cancelText);
+    $scope.showUpdatePopup = function() {
+      latestReleaseService.showUpdatePopup();
     };
 
     $scope.openBannerUrl = function() {

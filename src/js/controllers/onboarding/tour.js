@@ -1,6 +1,6 @@
 'use strict';
 angular.module('copayApp.controllers').controller('tourController',
-  function($scope, $state, $log, $timeout, $filter, ongoingProcess, profileService, rateService, popupService, gettextCatalog, startupService, storageService, walletService, $q) {
+    function ($scope, $state, $log, $timeout, $filter, ongoingProcess, configService, profileService, rateService, popupService, gettextCatalog, lodash, startupService, storageService, uxLanguage, walletService, $q) {
 
     $scope.data = {
       index: 0
@@ -46,62 +46,90 @@ angular.module('copayApp.controllers').controller('tourController',
       creatingWallet = true;
       ongoingProcess.set('creatingWallet', true);
       $timeout(function() {
-        profileService.createDefaultWallet(function(err, walletClients) {
-          if (err) {
-            $log.warn(err);
+          uxLanguage.init(function(lang) {
+            var rateCode = uxLanguage.getRateCode(lang);
+            console.log("When Available: rateService");
+            rateService.whenAvailable(function() {
+              var alternatives = rateService.listAlternatives(true);
 
-            return $timeout(function() {
-              $log.warn('Retrying to create default wallet.....:' + ++retryCount);
-              if (retryCount > 3) {
-                ongoingProcess.set('creatingWallet', false);
-                popupService.showAlert(
-                  gettextCatalog.getString('Cannot Create Wallet'), err,
-                  function() {
-                    retryCount = 0;
-                    return $scope.createDefaultWallet();
-                  }, gettextCatalog.getString('Retry'));
-              } else {
-                return $scope.createDefaultWallet();
-              }
-            }, 2000);
-          };
-
-          ongoingProcess.set('creatingWallet', false);
-          var bchWallet = walletClients[0];
-          var btcWallet = walletClients[1];
-          var bchWalletId = bchWallet.credentials.walletId;
-          var btcWalletId = btcWallet.credentials.walletId;
-
-          function createAddressPromise(wallet) {
-            return $q(function(resolve, reject) {
-              walletService.getAddress(wallet, true, function(e, addr) {
-                if (e) reject(e);
-                resolve(addr);
+              var newAltCurrency = lodash.find(alternatives, {
+                'isoCode': rateCode
               });
+
+              configService.whenAvailable(function(config) {
+                var opts = {
+                  wallet: {
+                    settings: {
+                      alternativeName: newAltCurrency.name,
+                      alternativeIsoCode: newAltCurrency.isoCode,
+                    }
+                  }
+                };
+                configService.set(opts, function(err) {
+                  if (err) $log.warn(err);
+
+                  profileService.createDefaultWallet(function(err, walletClients) {
+                    if (err) {
+                      $log.warn(err);
+
+                      return $timeout(function() {
+                        $log.warn('Retrying to create default wallet.....:' + ++retryCount);
+                        if (retryCount > 3) {
+                          ongoingProcess.set('creatingWallet', false);
+                          popupService.showAlert(
+                              gettextCatalog.getString('Cannot Create Wallet'), err,
+                              function() {
+                                retryCount = 0;
+                                return $scope.createDefaultWallet();
+                              }, gettextCatalog.getString('Retry'));
+                        } else {
+                          return $scope.createDefaultWallet();
+                        }
+                      }, 2000);
+                    }
+                    ;
+
+                    ongoingProcess.set('creatingWallet', false);
+                    var bchWallet = walletClients[0];
+                    var btcWallet = walletClients[1];
+                    var bchWalletId = bchWallet.credentials.walletId;
+                    var btcWalletId = btcWallet.credentials.walletId;
+
+                    function createAddressPromise(wallet) {
+                      return $q(function (resolve, reject) {
+                        walletService.getAddress(wallet, true, function (e, addr) {
+                          if (e) reject(e);
+                          resolve(addr);
+                        });
+                      });
+                    }
+
+                    function goToCollectEmail() {
+                      $state.go('onboarding.collectEmail', {
+                        bchWalletId: bchWalletId,
+                        btcWalletId: btcWalletId
+                      });
+                    }
+
+                    var bchAddressPromise = createAddressPromise(bchWallet);
+                    var btcAddressPromise = createAddressPromise(btcWallet);
+                    ongoingProcess.set('generatingNewAddress', true);
+
+                    $q.all([bchAddressPromise, btcAddressPromise]).then(function (addresses) {
+                      ongoingProcess.set('generatingNewAddress', false);
+                      $state.go('tabs.home');
+                    }, function (e) {
+                      ongoingProcess.set('generatingNewAddress', false);
+                      $log.warn(e);
+                      popupService.showAlert(gettextCatalog.getString('Error'), e);
+                      $state.go('tabs.home');
+                    });
+                  });
+                });
+              });
+              $log.debug('Setting default currency : ' + newAltCurrency);
             });
-          }
-
-          function goToCollectEmail() {
-            $state.go('onboarding.collectEmail', {
-              bchWalletId: bchWalletId,
-              btcWalletId: btcWalletId
-            });
-          }
-
-          var bchAddressPromise = createAddressPromise(bchWallet);
-          var btcAddressPromise = createAddressPromise(btcWallet);
-          ongoingProcess.set('generatingNewAddress', true);
-
-          $q.all([bchAddressPromise, btcAddressPromise]).then(function(addresses) {
-            ongoingProcess.set('generatingNewAddress', false);
-            $state.go('tabs.home');
-          }, function(e) {
-            ongoingProcess.set('generatingNewAddress', false);
-            $log.warn(e);
-            popupService.showAlert(gettextCatalog.getString('Error'), e);
-            $state.go('tabs.home');
-          });
-        });
-      }, 300);
-    };
-  });
+          })
+        }, 300);
+      };
+    });

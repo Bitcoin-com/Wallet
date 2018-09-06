@@ -113,14 +113,14 @@ npm run start:desktop
 
 Before building the release version for a platform, run the `clean-all` command to delete any untracked files in your current working directory. (Be sure to stash any uncommited changes you've made.) This guarantees consistency across builds for the current state of this repository.
 
-The `final` commands build the production version of the app, and bundle it with the release version of the platform being built.
+The `build:*-release` commands build the production version of the app, and bundle it with the release version of the platform being built.
 
 ### Android
 
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:android
+npm run build:android-release
 ```
 
 ### iOS
@@ -128,7 +128,7 @@ npm run final:android
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:ios
+npm run build:ios-release
 ```
 
 ### Desktop (Linux, macOS, and Windows)
@@ -136,7 +136,7 @@ npm run final:ios
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:desktop
+npm run build:desktop-release
 ```
 
 ## About The Bitcoin.com Wallet
