@@ -101,7 +101,7 @@ angular
       Object.keys(params).forEach(function forNewParam(key) {
         service.state[key] = params[key];
       });
-    };
+    }
 
     /**
      * Pop state
@@ -116,7 +116,7 @@ angular
       } else {
         clear();
       }
-    };
+    }
 
     /**
      * Push state
@@ -129,14 +129,14 @@ angular
       service.previousStates.push(currentParams);
       clearCurrent();
       map(params);
-    };
+    }
 
     /**
      * Is empty stack
      */
     function isEmpty() {
       return service.previousStates.length == 0;
-    };
+    }
   };
 
 })();

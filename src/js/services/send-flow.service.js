@@ -144,6 +144,5 @@ angular
       sendFlowStateService.pop();
       sendFlowRouterService.goBack();
     }
-  };
-
+  }
 })();

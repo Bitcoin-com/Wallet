@@ -2,7 +2,7 @@
 
 angular.module('copayApp.controllers').controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, profileService, walletService, $window, ongoingProcess, popupService) {
   var vm = this;
 
   vm.allowSend = false;
@@ -74,7 +74,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     initCurrencies();
 
     passthroughParams = sendFlowService.state.getClone();
-
     console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
     vm.fromWalletId = passthroughParams.fromWalletId;
@@ -94,9 +93,20 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.fromWallet = profileService.getWallet(vm.fromWalletId);
           vm.toWallet = profileService.getWallet(vm.toWalletId);
 
-          shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(data) {
-            vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
-            vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
+          ongoingProcess.set('connectingShapeshift', true);
+          shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function(err, data) {
+            
+            if (err) {
+              // Error stop here
+              ongoingProcess.set('connectingShapeshift', false);
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+                $ionicHistory.goBack();
+              });
+            } else {
+              vm.thirdParty.data['minAmount'] = vm.minAmount = parseFloat(data.minimum);
+              vm.thirdParty.data['maxAmount'] = vm.maxAmount = parseFloat(data.maxLimit);
+              ongoingProcess.set('connectingShapeshift', false);
+            }
           });
         }
       }
@@ -113,7 +123,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     var reOp = /^[\*\+\-\/]$/;
 
     if (!isAndroid && !isIos) {
-      var disableKeys = angular.element($window).on('keydown', function(e) {
+      angular.element($window).on('keydown', function(e) {
         if (!e.key) return;
         if (e.which === 8) { // you can add others here inside brackets.
           if (!altCurrencyModal) {

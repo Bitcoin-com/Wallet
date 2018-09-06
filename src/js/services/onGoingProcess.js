@@ -52,11 +52,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
 
   root.clear = function() {
     ongoingProcess = {};
-    if (isCordova && !isWindowsPhoneApp) {
-      window.plugins.spinnerDialog.hide();
-    } else {
-      $ionicLoading.hide();
-    }
+    $ionicLoading.hide();
   };
 
   root.get = function(processName) {
@@ -82,23 +78,14 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     if (customHandler) {
       customHandler(processName, showName, isOn);
     } else if (root.onGoingProcessName) {
-      if (isCordova && !isWindowsPhoneApp) {
-        window.plugins.spinnerDialog.show(null, showName, root.clear);
-      } else {
-
-        var tmpl;
-        if (isWindowsPhoneApp) tmpl = '<div>' + showName + '</div>';
-        else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
-        $ionicLoading.show({
-          template: tmpl
-        });
-      }
+      var tmpl;
+      if (isWindowsPhoneApp) tmpl = '<div>' + showName + '</div>';
+      else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
+      $ionicLoading.show({
+        template: tmpl,
+      });
     } else {
-      if (isCordova && !isWindowsPhoneApp) {
-        window.plugins.spinnerDialog.hide();
-      } else {
-        $ionicLoading.hide();
-      }
+      $ionicLoading.hide();
     }
   };
 
