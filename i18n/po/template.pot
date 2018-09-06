@@ -3860,6 +3860,14 @@ msgstr ""
 msgid "This invoice is no longer accepting payments"
 msgstr ""
 
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr ""
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr ""
+
 #: www/views/paperWallet.html:48
 msgid "No Bitcoin Cash wallet to transfer funds to found."
 msgstr ""
@@ -3878,6 +3886,7 @@ msgstr ""
 
 #: www/views/paperWallet.html:104
 msgid "No Bitcoin Core found."
+msgstr ""
 
 #: src/js/controllers/tab-scan.js:120
 msgid "Scan Failed"

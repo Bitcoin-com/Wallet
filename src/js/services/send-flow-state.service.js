@@ -11,7 +11,7 @@ angular
     var service = {
       // Variables
       state: {
-        amount: '',
+        amount: 0,
         displayAddress: null,
         fromWalletId: '',
         sendMax: false,
@@ -67,7 +67,7 @@ angular
       $log.debug("send-flow-state clearCurrent()");
 
       service.state = {
-        amount: '',
+        amount: 0,
         displayAddress: null,
         fromWalletId: '',
         sendMax: false,
