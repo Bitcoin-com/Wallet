@@ -396,6 +396,23 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     return ret;
   };
 
+  var skipped = 0;
+
+  function fixTxsUnit(txs) {
+    if (!txs || !txs[0] || !txs[0].amountStr) return;
+
+    var cacheCoin = txs[0].amountStr.split(' ')[1];
+
+    if (cacheCoin == 'bits') {
+
+      $log.debug('Fixing Tx Cache Unit to: ' + wallet.coin)
+      lodash.each(txs, function(tx) {
+        tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
+        tx.feeStr = txFormatService.formatAmountStr(wallet.coin, tx.fees);
+      });
+    }
+  };
+
   var updateLocalTxHistory = function(wallet, opts, cb) {
     var FIRST_LIMIT = 5;
     var LIMIT = 50;
@@ -406,25 +423,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     var progressFn = opts.progressFn || function() {};
     var foundLimitTx = false;
 
-
     if (opts.feeLevels) {
       opts.lowAmount = root.getLowAmount(wallet, opts.feeLevels);
     }
 
-    var fixTxsUnit = function(txs) {
-      if (!txs || !txs[0] || !txs[0].amountStr) return;
-
-      var cacheCoin = txs[0].amountStr.split(' ')[1];
-
-      if (cacheCoin == 'bits') {
-
-        $log.debug('Fixing Tx Cache Unit to: ' + wallet.coin)
-        lodash.each(txs, function(tx) {
-          tx.amountStr = txFormatService.formatAmountStr(wallet.coin, tx.amount);
-          tx.feeStr = txFormatService.formatAmountStr(wallet.coin, tx.fees);
-        });
-      }
-    };
 
     getSavedTxs(walletId, function(err, txsFromLocal) {
       if (err) return cb(err);
@@ -435,13 +437,14 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       var endingTxid = confirmedTxs[0] ? confirmedTxs[0].txid : null;
       var endingTs = confirmedTxs[0] ? confirmedTxs[0].time : null;
 
-      $log.debug('Confirmed TXs. Got:' + confirmedTxs.length + '/' + txsFromLocal.length);
+      console.log('pagination Hard confirmed TXs. Got:' + confirmedTxs.length + '/' + txsFromLocal.length);
 
       // First update
       progressFn(txsFromLocal, 0);
       wallet.completeHistory = txsFromLocal;
 
       function getNewTxs(newTxs, skip, next) {
+        console.log('pagination getNewTxs skip: ' + skip);
         getTxsFromServer(wallet, skip, endingTxid, requestLimit, function(err, res) {
           if (err) {
             $log.warn(bwcError.msg(err, 'Server Error')); //TODO
@@ -454,6 +457,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             return next(err);
           }
 
+          console.log('pagination Result count: ' + res.length);
           // Check if new txs are founds, if yes, lets investigate in the 50 next
           // To be sure we are not missing txs by sorting (maybe a new tx is after the "endingTxid"
           var newDiscoveredTxs = res.filter(function (x) {
@@ -462,7 +466,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
             }).length == 0;
           });
 
-          $log.debug('Discovering TXs. Got:' + newDiscoveredTxs.length);
+          console.log('pagination Discovering new TXs. Got:' + newDiscoveredTxs.length);
 
           var shouldContinue = newDiscoveredTxs.length > 0;
 
@@ -475,7 +479,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           skip = skip + requestLimit;
 
-          $log.debug('Syncing TXs. Got:' + newTxs.length + ' Skip:' + skip, ' EndingTxid:', endingTxid, ' Continue:', shouldContinue);
+          console.log('pagination Syncing TXs. Got:' + newTxs.length + ' Skip:' + skip, ' EndingTxid:', endingTxid, ' Continue:', shouldContinue);
 
           // TODO Dirty <HACK>
           // do not sync all history, just looking for a single TX.
@@ -492,14 +496,16 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           }
           // </HACK>
 
+          shouldContinue = false;
+
+          skipped = skip;
 
           if (!shouldContinue) {
-            $log.debug('Finished Sync: New / soft confirmed Txs: ' + newTxs.length);
+            console.log('pagination Finished Sync: New / soft confirmed Txs: ' + newTxs.length);
             return next(null, newTxs);
           }
 
           requestLimit = LIMIT;
-          getNewTxs(newTxs, skip, next);
         });
       };
 
@@ -534,6 +540,87 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           });
         });
       }
+
+
+      if (opts.getMoreTxs) {
+        var requestLimit = LIMIT;
+        getNewTxs([], skipped, function(err, txs) {
+          if (err) return cb(err);
+
+          console.log();
+          createReceivedEvents(txs);
+
+          var newHistory = lodash.uniq(lodash.compact(txs.concat(confirmedTxs)), function(x) {
+            return x.txid;
+          });
+
+
+          function updateNotes(cb2) {
+            if (!endingTs) return cb2();
+
+            $log.debug('Syncing notes from: ' + endingTs);
+            wallet.getTxNotes({
+              minTs: endingTs
+            }, function(err, notes) {
+              if (err) {
+                $log.warn(err);
+                return cb2();
+              };
+              lodash.each(notes, function(note) {
+                $log.debug('Note for ' + note.txid);
+                lodash.each(newHistory, function(tx) {
+                  if (tx.txid == note.txid) {
+                    $log.debug('...updating note for ' + note.txid);
+                    tx.note = note;
+                  }
+                });
+              });
+              return cb2();
+            });
+          }
+
+          function updateLowAmount(txs) {
+            if (!opts.lowAmount) return;
+
+            lodash.each(txs, function(tx) {
+              tx.lowAmount = tx.amount < opts.lowAmount;
+            });
+          };
+
+          updateLowAmount(txs);
+
+          updateNotes(function() {
+
+            // <HACK>
+            if (foundLimitTx) {
+              $log.debug('Tx history read until limitTx: ' + opts.limitTx);
+              return cb(null, newHistory);
+            }
+            // </HACK>
+
+            var historyToSave = JSON.stringify(newHistory);
+
+            lodash.each(txs, function(tx) {
+              tx.recent = true;
+            })
+
+            $log.debug('Tx History synced. Total Txs: ' + newHistory.length);
+
+            // Final update
+            if (walletId == wallet.credentials.walletId) {
+              wallet.completeHistory = newHistory;
+            }
+
+            return storageService.setTxHistory(historyToSave, walletId, function() {
+              $log.debug('Tx History saved.');
+              return cb(null, newHistory);
+            });
+          });
+        });
+        return;
+      }
+
+      skipped = 0;
 
       getNewTxs([], 0, function(err, txs) {
         if (err) return cb(err);
@@ -603,12 +690,17 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
           return storageService.setTxHistory(historyToSave, walletId, function() {
             $log.debug('Tx History saved.');
-
-            return cb();
+            return cb(null, newHistory);
           });
         });
       });
     });
+  };
+
+  root.getMoreTxs = function(wallet, cb) {
+    var opts = {};
+    opts.getMoreTxs = true;
+    updateLocalTxHistory(wallet, opts, cb);
   };
 
   root.getTxNote = function(wallet, txid, cb) {
@@ -634,7 +726,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   };
 
   root.getTx = function(wallet, txid, cb) {
-
     function finish(list) {
       var tx = lodash.find(list, {
         txid: txid
@@ -651,7 +742,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         limitTx: txid
       }, function(err, txHistory) {
         if (err) return cb(err);
-
         finish(txHistory);
       });
     }
@@ -675,16 +765,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
   root.getTxHistory = function(wallet, opts, cb) {
     opts = opts || {};
 
-    var walletId = wallet.credentials.walletId;
-
     if (!wallet.isComplete()) return cb();
 
-    function isHistoryCached() {
-      return wallet.completeHistory && wallet.completeHistory.isValid;
-    };
-
-    // disable caching
-    //if (isHistoryCached() && !opts.force) return cb(null, wallet.completeHistory);
+    // var historyIsCached = wallet.completeHistory && wallet.completeHistory.isValid;
+    // if (historyIsCached && !opts.force) return cb(null, wallet.completeHistory);
 
     $log.debug('Updating Transaction History');
 
