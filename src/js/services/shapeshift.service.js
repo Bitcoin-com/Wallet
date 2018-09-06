@@ -57,7 +57,7 @@ angular
     function shiftIt(coinIn, coinOut, withdrawalAddress, returnAddress, amount, cb) {
       // Test if the amount is correct depending on the min and max
       if (!amount || typeof amount !== 'number') {
-        cb(new Error(gettextCatalog.getString('Amount is not defined'))));
+        cb(new Error(gettextCatalog.getString('Amount is not defined')));
       } else if (amount < service.marketData.minimum) {
         cb(new Error(gettextCatalog.getString('Amount is below the minimun')));
       } else if (amount > service.marketData.maxLimit) {
