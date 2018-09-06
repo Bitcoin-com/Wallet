@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('shapeshiftService', function ($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingData, platformInfo, servicesService) {
+angular.module('copayApp.services').factory('shapeshiftService', function ($http, $interval, $log, lodash, moment, ongoingProcess, shapeshiftApiService, storageService, configService, incomingDataService, platformInfo, servicesService) {
   var root = {};
   root.ShiftState = 'Shift';
   root.coinIn = '';
@@ -111,7 +111,7 @@ angular.module('copayApp.services').factory('shapeshiftService', function ($http
           toAddress: txData.deposit
         };
         //
-        // if (incomingData.redir(sendAddress, 'shapeshift', shapeshiftData)) {
+        // if (incomingDataService.redir(sendAddress, 'shapeshift', shapeshiftData)) {
           ongoingProcess.set('connectingShapeshift', false);
           // return;
         // }

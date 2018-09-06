@@ -298,10 +298,10 @@ module.exports = function(grunt) {
       },
       pkg: {
         options: {
-          appName: '<%= pkg.nameCaseNoSpace %>',
+          appName: '<%= pkg.title %>',
           platforms: ['osx64'],
           buildDir: './webkitbuilds/pkg',
-          version: '0.19.5',
+          version: '0.19.4',
           macIcns: './resources/<%= pkg.name %>/mac/pkg/app.icns',
           exeIco: './www/img/app/logo.ico',
           macPlist: {

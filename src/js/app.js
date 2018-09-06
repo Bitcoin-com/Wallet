@@ -19,7 +19,8 @@ var modules = [
   'copayApp.controllers',
   'copayApp.directives',
   'copayApp.addons',
-  'bitcoincom.directives'
+  'bitcoincom.directives',
+  'bitcoincom.services'
 ];
 
 var copayApp = window.copayApp = angular.module('copayApp', modules);
@@ -30,3 +31,4 @@ angular.module('copayApp.controllers', []);
 angular.module('copayApp.directives', []);
 angular.module('copayApp.addons', []);
 angular.module('bitcoincom.directives', []);
+angular.module('bitcoincom.services', []);
