@@ -3874,3 +3874,23 @@ msgstr ""
 #: www/views/includes/incomingDataMenu.html:90
 msgid "Open in web browser"
 msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr ""

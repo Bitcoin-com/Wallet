@@ -6,7 +6,7 @@ angular
   .module('bitcoincom.services')
   .factory('shapeshiftService', shapeshiftService);
   
-  function shapeshiftService(shapeshiftApiService) {
+  function shapeshiftService(shapeshiftApiService, gettext) {
 
     var service = {
       // Variables
@@ -30,13 +30,9 @@ angular
 
     function handleError(response, defaultMessage, cb) {
       if (!response || !response.error || !response.error.message) {
-        if (cb) {
-          cb(new Error(defaultMessage));
-        }
+        cb(new Error(defaultMessage));
       } else {
-        if (cb) {
-          cb(new Error(response.error.message));
-        }
+        cb(new Error(response.error.message));
       }
     }
 
@@ -51,17 +47,19 @@ angular
           } else {
             service.marketData = response;
             service.rateString = service.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
-            if (cb) {
-              cb(null, response);
-            }
+            cb(null, response);
           }
         });
     }
 
     function shiftIt(coinIn, coinOut, withdrawalAddress, returnAddress, amount, cb) {
       // Test if the amount is correct depending on the min and max
-      if (!amount || typeof amount !== 'number' || amount < service.marketData.minimum || amount > service.marketData.maxLimit) {
-        cb(new Error('Invalid amount'));
+      if (!amount || typeof amount !== 'number') {
+        cb(new Error(gettext('Amount is not defined'))));
+      } else if (amount < service.marketData.minimum) {
+        cb(new Error(gettext('Amount is below the minimun')));
+      } else if (amount > service.marketData.maxLimit) {
+        cb(new Error(gettext('Amount is above the limit')));
       } else {
         // Init service data
         service.withdrawalAddress = withdrawalAddress;
@@ -75,20 +73,17 @@ angular
           .ValidateAddress(withdrawalAddress, coinOut)
           .then(function onSuccess(response) {
             if (response && response.isvalid) {
-
               // Prepare the transaction shapeshift side
               shapeshiftApiService.NormalTx(service).then(function onResponse(response) {
                 // If error, return it
                 if (!response || response.error) {
-                  handleError(response, 'Invalid response', cb);
+                  handleError(response, gettext('Invalid response from Shapeshift'), cb);
                 } else {
                   var txData = response;
   
                   // If the content is not that it was expected, get back an error
                   if (!txData || !txData.orderId || !txData.deposit) {
-                    if (cb) {
-                      cb(new Error('Invalid response'));
-                    }
+                    cb(new Error(gettext('Invalid response from Shapeshift')));
                   } else {
                     // Get back the data
                     service.depositInfo = txData;
@@ -105,8 +100,8 @@ angular
                   }
                 }
               });
-            } else if (cb) {
-              cb(new Error('Invalid address or coin'));
+            } else {
+              cb(new Error(gettext('Invalid address')));
             }
           });
       }

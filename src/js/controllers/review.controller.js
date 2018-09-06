@@ -525,11 +525,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           if (err) {
             return cb(err);
           } else {
+            vm.destination.kind = 'shapeshift';
+            vm.destination.address = toAddress;
+            tx.toAddress = shapeshiftData.toAddress;
             vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
             vm.memoExpanded = !!vm.memo;
-            tx.toAddress = shapeshiftData.toAddress;
-            vm.destination.address = toAddress;
-            vm.destination.kind = 'shapeshift';
             ongoingProcess.set('connectingShapeshift', false);
             cb();
           }
