@@ -29,8 +29,10 @@ angular
     return service;
 
     function handleError(response, defaultMessage, cb) {
-      if (!response || !response.error || !response.error.message) {
+      if (!response) {
         cb(new Error(defaultMessage));
+      } else if (response.error && !response.error.message) {
+        cb(new Error(response.error));
       } else {
         cb(new Error(response.error.message));
       }
