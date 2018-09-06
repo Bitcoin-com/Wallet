@@ -55,34 +55,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
 
-  $scope.amountIsCollapsible = !$scope.isAndroid;
-
   $scope.openExternalLink = function(url, target) {
     externalLinkService.open(url, target);
   };
 
   var setPendingTxps = function(txps) {
-
-    /* Uncomment to test multiple outputs */
-
-    // var txp = {
-    //   message: 'test multi-output',
-    //   fee: 1000,
-    //   createdOn: new Date() / 1000,
-    //   outputs: [],
-    //   wallet: $scope.wallet
-    // };
-    //
-    // function addOutput(n) {
-    //   txp.outputs.push({
-    //     amount: 600,
-    //     toAddress: '2N8bhEwbKtMvR2jqMRcTCQqzHP6zXGToXcK',
-    //     message: 'output #' + (Number(n) + 1)
-    //   });
-    // };
-    // lodash.times(15, addOutput);
-    // txps.push(txp);
-
     if (!txps) {
       $scope.txps = [];
       return;
@@ -359,103 +336,36 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   var prevPos;
-
+  $scope.txHistoryPaddingBottom = 0;
   function getScrollPosition() {
     var scrollPosition = $ionicScrollDelegate.getScrollPosition();
+
+    $timeout(function() {
+      getScrollPosition();
+    }, 200);
+
     if (!scrollPosition) {
-      $window.requestAnimationFrame(function() {
-        getScrollPosition();
-      });
       return;
     }
     var pos = scrollPosition.top;
+    if (pos > 0) {
+      $scope.txHistoryPaddingBottom = "200px";
+    }
     if (pos === prevPos) {
-      $window.requestAnimationFrame(function() {
-        getScrollPosition();
-      });
       return;
     }
     prevPos = pos;
-    refreshAmountSection(pos);
-  };
-
-  function refreshAmountSection(scrollPos) {
-    var AMOUNT_HEIGHT_BASE = 210;
-    $scope.showBalanceButton = false;
-    if ($scope.status) {
-      $scope.showBalanceButton = ($scope.status.totalBalanceSat != $scope.status.spendableAmount);
-      if ($scope.showBalanceButton) {
-        AMOUNT_HEIGHT_BASE = 270;
-      }
-    }
-    if (!$scope.amountIsCollapsible) {
-      var t = ($scope.showBalanceButton ? 15 : 45);
-      $scope.amountScale = 'translateY(' + t + 'px)';
-      return;
-    }
-
-    scrollPos = scrollPos || 0;
-    var amountHeight = AMOUNT_HEIGHT_BASE - scrollPos;
-    if (amountHeight < 80) {
-      amountHeight = 80;
-    }
-    var contentMargin = amountHeight;
-    if (contentMargin > AMOUNT_HEIGHT_BASE) {
-      contentMargin = AMOUNT_HEIGHT_BASE;
-    }
-
-    var amountScale = (amountHeight / AMOUNT_HEIGHT_BASE);
-    if (amountScale < 0.5) {
-      amountScale = 0.5;
-    }
-    if (amountScale > 1.1) {
-      amountScale = 1.1;
-    }
-
-    var s = amountScale;
-
-    // Make space for the balance button when it needs to display.
-    var TOP_NO_BALANCE_BUTTON = 115;
-    var TOP_BALANCE_BUTTON = 30;
-    var top = TOP_NO_BALANCE_BUTTON;
-    if ($scope.showBalanceButton) {
-      top = TOP_BALANCE_BUTTON;
-    }
-
-    var amountTop = ((amountScale - 0.80) / 0.80) * top;
-    if (amountTop < -2) {
-      amountTop = -2;
-    }
-    if (amountTop > top) {
-      amountTop = top;
-    }
-
-    var t = amountTop;
-
-    $scope.altAmountOpacity = (amountHeight - 100) / 80;
-    $scope.buttonsOpacity = (amountHeight - 140) / 70;
-    $window.requestAnimationFrame(function() {
-      $scope.amountHeight = amountHeight + 'px';
-      $scope.contentMargin = contentMargin + 'px';
-      $scope.amountScale = 'scale3d(' + s + ',' + s + ',' + s + ') translateY(' + t + 'px)';
-      $scope.$digest();
-      getScrollPosition();
-    });
+    $scope.scrollPosition = pos;
   }
 
   var scrollWatcherInitialized;
 
   $scope.$on("$ionicView.enter", function(event, data) {
     if ($scope.isCordova && $scope.isAndroid) setAndroidStatusBarColor();
-    if (scrollWatcherInitialized || !$scope.amountIsCollapsible) {
-      return;
-    }
     scrollWatcherInitialized = true;
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    sendFlowService.clear();
-
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
@@ -491,11 +401,12 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var refreshInterval;
 
   $scope.$on("$ionicView.afterEnter", function(event, data) {
-    updateTxHistoryFromCachedData();
-    $scope.updateAll(false, true);
-    refreshAmountSection();
+    $scope.updateAll();
+    // refreshAmountSection();
     refreshInterval = $interval($scope.onRefresh, 10 * 1000);
-    //refreshInterval = $interval($scope.onRefresh, 120 * 1000); // For testing
+    $timeout(function() {
+      getScrollPosition();
+    }, 1000);
   });
 
   $scope.$on("$ionicView.afterLeave", function(event, data) {
@@ -555,14 +466,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
-    sendFlowService.startSend({
+    sendFlowService.start({
       fromWalletId: $scope.wallet.id
-    });
-    
-    // Go home first so that the Home tab works properly
-    $state.go('tabs.home').then(function () {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.send');
     });
     
   };

@@ -78,11 +78,15 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
-    console.log('walletSelector onBeforeEnter sendflow ', sendFlowService.state);
+    console.log('review onBeforeEnter sendflow ', sendFlowService.state);
     defaults = configService.getDefaults();
-    sendFlowData = sendFlowService.getStateClone();
+    sendFlowData = sendFlowService.state.getClone();
     originWalletId = sendFlowData.fromWalletId;
-    satoshis = parseInt(sendFlowData.amount, 10);
+    if (typeof sendFlowData.amount === 'string') {
+      satoshis = parseInt(sendFlowData.amount, 10);
+    } else {
+      satoshis = sendFlowData.amount;
+    }
     toAddress = sendFlowData.toAddress;
     destinationWalletId = sendFlowData.toWalletId;
 
@@ -93,26 +97,48 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
     if (sendFlowData.thirdParty) {
       vm.thirdParty = sendFlowData.thirdParty;
-      handleThirdPartyInitIfBip70();
-      handleThirdPartyInitIfShapeshift();
+      switch (vm.thirdParty.id) {
+        case 'shapeshift':
+          initShapeshift(function (err) {
+            if (err) {
+              // Error stop here
+              ongoingProcess.set('connectingShapeshift', false);
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+                $ionicHistory.goBack();
+              });
+            } else {
+              _next(data);
+            }
+          });
+          break;
+        case 'bip70':
+          initBip70();
+        default:
+          _next(data);
+          break;
+      }
+    } else {
+      _next(data);
     }
 
-    configService.get(function onConfig(err, configCache) {
-      if (err) {
-        $log.err('Error getting config.', err);
-      } else {
-        config = configCache;
-        priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
-        vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
-        console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
-        unitFromSat = 1 / config.wallet.settings.unitToSatoshi;
-      }
-      updateSendAmounts();
-      getOriginWalletBalance(vm.originWallet);
-      handleDestinationAsAddress(toAddress, coin);
-      handleDestinationAsWallet(sendFlowData.toWalletId);
-      createVanityTransaction(data);
-    });
+    function _next() {
+      configService.get(function onConfig(err, configCache) {
+        if (err) {
+          $log.err('Error getting config.', err);
+        } else {
+          config = configCache;
+          priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
+          vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
+          console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
+          unitFromSat = 1 / config.wallet.settings.unitToSatoshi;
+        }
+        updateSendAmounts();
+        getOriginWalletBalance(vm.originWallet);
+        handleDestinationAsAddress(toAddress, coin);
+        handleDestinationAsWallet(sendFlowData.toWalletId);
+        createVanityTransaction(data);
+      });
+    }
   }
 
   vm.approve = function() {
@@ -403,7 +429,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   }
 
   function goBack() {
-    $ionicHistory.goBack();
+    sendFlowService.router.goBack();
   }
 
   function handleDestinationAsAddress(address, originCoin) {
@@ -458,72 +484,62 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.destination.balanceCurrency = balanceText.currency;
   }
 
-  function handleThirdPartyInitIfBip70() {
-    if (vm.thirdParty.id === 'bip70') {
-      vm.sendingTitle = gettextCatalog.getString('You are paying');
-      vm.memo = vm.thirdParty.memo;
-      vm.memoExpanded = !!vm.memo;
-      vm.destination.name = vm.thirdParty.name;
+  function initBip70() {
+    vm.sendingTitle = gettextCatalog.getString('You are paying');
+    vm.memo = vm.thirdParty.memo;
+    vm.memoExpanded = !!vm.memo;
+    vm.destination.name = vm.thirdParty.name;
 
-      txPayproData = {
-        caTrusted: vm.thirdParty.caTrusted,
-        domain: vm.thirdParty.domain,
-        expires: vm.thirdParty.expires,
-        toAddress: toAddress,
-        url: vm.thirdParty.url,
-        verified: vm.thirdParty.verified,
-      };
-    }
+    txPayproData = {
+      caTrusted: vm.thirdParty.caTrusted,
+      domain: vm.thirdParty.domain,
+      expires: vm.thirdParty.expires,
+      toAddress: toAddress,
+      url: vm.thirdParty.url,
+      verified: vm.thirdParty.verified,
+    };
   }
 
-  function handleThirdPartyInitIfShapeshift() {
-    if (vm.thirdParty.id === 'shapeshift') {
-      vm.sendingTitle = gettextCatalog.getString('You are shifting');
-      if (!vm.thirdParty.data) {
-        vm.thirdParty.data = {};
-      }
+  function initShapeshift(cb) {
+    vm.sendingTitle = gettextCatalog.getString('You are shifting');
+    if (!vm.thirdParty.data) {
+      vm.thirdParty.data = {};
+    }
 
-      var toWallet = profileService.getWallet(destinationWalletId);
-      vm.destination.name = toWallet.name;
-      vm.destination.color = toWallet.color;
-      vm.destination.currency = toWallet.coin.toUpperCase();
+    var toWallet = profileService.getWallet(destinationWalletId);
+    vm.destination.name = toWallet.name;
+    vm.destination.color = toWallet.color;
+    vm.destination.currency = toWallet.coin.toUpperCase();
 
 
-      ongoingProcess.set('connectingShapeshift', true);
-      walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
+    ongoingProcess.set('connectingShapeshift', true);
+    walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
+      if (err) {
+        return cb(err);
+      } 
+      walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
         if (err) {
-          ongoingProcess.set('connectingShapeshift', false);
-          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
-            $ionicHistory.goBack();
-          });
-          return;
+          return cb(err);
         } 
-        walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
-          if (err) {
-            ongoingProcess.set('connectingShapeshift', false);
-            popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
-              $ionicHistory.goBack();
-            });
-            return;
-          } 
 
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, function onShiftIt(err, shapeshiftData) {
-            if (err && err != null) {
-              ongoingProcess.set('connectingShapeshift', false);
-              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
-                $ionicHistory.goBack();
-              });
-            } else {
-              vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
-              vm.memoExpanded = !!vm.memo;
-              tx.toAddress = shapeshiftData.toAddress;
-              vm.destination.address = toAddress;
-              vm.destination.kind = 'shapeshift';
-            }
-          });
+        // Need to use the correct service to do it.
+        var amount = parseFloat(satoshis / 100000000);
+
+        shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, shapeshiftData) {
+          if (err) {
+            return cb(err);
+          } else {
+            vm.destination.kind = 'shapeshift';
+            vm.destination.address = toAddress;
+            tx.toAddress = shapeshiftData.toAddress;
+            vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
+            vm.memoExpanded = !!vm.memo;
+            ongoingProcess.set('connectingShapeshift', false);
+            cb();
+          }
         });
       });
-    }
+    });
   }
 
   function onShareTransaction() {
@@ -766,7 +782,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         ((processName === 'signingTx') && vm.originWallet.m > 1) ||
         (processName == 'sendingTx' && !vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal())
       ) && !isOn) {
+      // Show the popup
       vm.sendStatus = 'success';
+
+      // Clear the send flow service state
+      sendFlowService.state.clear();
 
       if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
         soundService.play('misc/payment_sent.mp3');
