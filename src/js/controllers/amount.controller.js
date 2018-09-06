@@ -109,14 +109,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     setAvailableUnits();
     updateUnitUI();
 
-    if (passthroughParams.thirdParty) {
-      vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
-      if (vm.thirdParty) {
-        initShapeshift();
-      }
-    }
-
-
     var reNr = /^[1234567890\.]$/;
     var reOp = /^[\*\+\-\/]$/;
 
@@ -216,6 +208,13 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         var fromWallet = profileService.getWallet(passthroughParams.fromWalletId);
         updateAvailableFundsFromWallet(fromWallet);
       }
+
+      if (passthroughParams.thirdParty) {
+        vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
+        if (vm.thirdParty) {
+          initShapeshift();
+        }
+      }
     }
   }
 
@@ -269,7 +268,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (canSendMax) {
       useSendMax = true;
       finish();
-
     } else {
       var transactionSendableAmountInUnits = transactionSendableAmount.satoshis * satToUnit;
       if (vm.minAmount && transactionSendableAmountInUnits < vm.minAmount) {
@@ -286,7 +284,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
         vm.amount = transactionSendableAmountInUnits.toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
         finish();
-
       }
     }
   }
@@ -526,7 +523,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       $state.transitionTo('tabs.paymentRequest.confirm', confirmData);
     } else {
       sendFlowService.goNext(confirmData);
-      $scope.useSendMax = null;
+      useSendMax = false;
     }
   }
 
@@ -741,7 +738,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         console.log('sendmax Showing sendmax as all available as less than max limit.');
         // Enabling send max here is a little dangerous, if they receive funds between pressing
         // this and the calculation in the Review screen.
-        canSendMax = true;
+        canSendMax = false;
         vm.showSendMaxButton = true;
         vm.showSendLimitMaxButton = false;
         transactionSendableAmount.satoshis = walletSpendableAmount.satoshis;
