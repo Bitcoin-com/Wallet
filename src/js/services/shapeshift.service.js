@@ -29,12 +29,12 @@ angular
     return service;
 
     function handleError(response, defaultMessage, cb) {
-      if (!response) {
-        cb(new Error(defaultMessage));
-      } else if (response.error && !response.error.message) {
+      if (response && typeof response.error === "string") {
         cb(new Error(response.error));
-      } else {
+      } else if (response && response.error && response.error.message) {
         cb(new Error(response.error.message));
+      } else {
+        cb(new Error(defaultMessage));
       }
     }
 
