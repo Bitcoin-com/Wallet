@@ -173,6 +173,11 @@
       font-weight: 700;
       color: #444;
     }
+    .release-notes {
+      white-space: pre;
+      white-space: pre-line;
+      text-align: left;
+    }
     .button {
       width: 100%;
       border: none;
@@ -188,5 +193,15 @@
 
   .badge {
     top:11px;
+  }
+}
+.popup-update {
+  .popup-buttons {
+    display: block;
+  }
+  .popup-buttons .button{
+    display:block;
+    min-width: 100% !important;
+    margin-top: 4px;
   }
 }

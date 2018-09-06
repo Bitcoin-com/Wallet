@@ -15,9 +15,11 @@
         <img src="img/icon-update.svg" class="bg"/>
       </i>
 
-      <div class="item title">{{updateText}}</div>
+      <div class="item title">{{newReleaseText}}</div>
+      <div class="item release-notes" ng-if="newReleaseNotes"><span ng-bind-html="newReleaseNotes"></span></div>
 
-      <div class="button" ng-click="openExternalLink()">
+
+      <div class="button" ng-click="showUpdatePopup()">
         <span translate>Download</span>
       </div>
     </div>
