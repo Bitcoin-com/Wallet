@@ -1,13 +1,26 @@
 'use strict';
-angular.module('copayApp.services')
-  .factory('latestReleaseService', function latestReleaseServiceFactory($log, $http, $ionicPopup, configService, externalLinkService, gettextCatalog, platformInfo) {
 
-    var root = {};
+(function() {
 
-    root.checkLatestRelease = function(cb) {
+  angular
+      .module('bitcoincom.services')
+      .factory('latestReleaseService', latestReleaseService);
+
+  function latestReleaseService($log, $http, $ionicPopup, configService, externalLinkService, gettextCatalog, platformInfo) {
+
+    var service = {
+      // Functions
+      checkLatestRelease: checkLatestRelease,
+      requestLatestRelease: requestLatestRelease,
+      showUpdatePopup: showUpdatePopup
+    };
+
+    return service;
+
+    function checkLatestRelease(cb) {
       var releaseURL = configService.getDefaults().release.url;
 
-      requestLatestRelease(releaseURL, function(err, releaseData) {
+      requestLatestRelease(releaseURL, function (err, releaseData) {
         if (err) return cb(err);
         var currentVersion = window.version;
         var latestVersion = releaseData.tag_name;
@@ -45,15 +58,14 @@ angular.module('copayApp.services')
 
         $log.debug('A new version is available: ' + latestVersion);
 
-        //
         var releaseNotes = false;
         if (releaseData.body) {
           var releaseLines = releaseData.body.split('\n');
           for (var lineNum in releaseLines) {
             if (releaseLines[lineNum].substring(0, 2) === "# ") {
-              releaseLines[lineNum] = "<strong>"+releaseLines[lineNum].substring(2)+"</strong>";
+              releaseLines[lineNum] = "<strong>" + releaseLines[lineNum].substring(2) + "</strong>";
             } else if (releaseLines[lineNum].substring(0, 2) === "- ") {
-              releaseLines[lineNum] = "&bull; "+releaseLines[lineNum].substring(2);
+              releaseLines[lineNum] = "&bull; " + releaseLines[lineNum].substring(2);
             }
           }
           releaseNotes = releaseLines.join('\n');
@@ -76,13 +88,13 @@ angular.module('copayApp.services')
 
         var formattedNumber = tag.replace(/^v/i, '').split('.');
         return {
-          major: +(formattedNumber[0]?+formattedNumber[0]:0),
-          minor: +(formattedNumber[1]?+formattedNumber[1]:0),
-          patch: +(formattedNumber[2]?+formattedNumber[2]:0),
+          major: +(formattedNumber[0] ? +formattedNumber[0] : 0),
+          minor: +(formattedNumber[1] ? +formattedNumber[1] : 0),
+          patch: +(formattedNumber[2] ? +formattedNumber[2] : 0),
           label: label /* XX SP: Maybe we can use this in a later stage (with for example 1.0.0-rc2 the value will be "rc2" and false if there is no label) */
         };
       }
-    };
+    }
 
     function requestLatestRelease(releaseURL, cb) {
       $log.debug('Retrieving latest release information...');
@@ -93,15 +105,15 @@ angular.module('copayApp.services')
         json: true
       };
 
-      $http(request).then(function(release) {
+      $http(request).then(function (release) {
         $log.debug('Latest release: ' + release.data.name);
         return cb(null, release.data);
-      }, function(err) {
+      }, function (err) {
         return cb('Cannot get the release information: ' + err);
       });
     }
 
-    root.showUpdatePopup = function () {
+    function showUpdatePopup() {
       var buttons = [];
 
       if (!platformInfo.isIOS) { // There is no GitHub-release for iPhone
@@ -163,7 +175,6 @@ angular.module('copayApp.services')
           buttons: buttons
         });
       }
-    };
-
-    return root;
-  });
+    }
+  }
+})();
