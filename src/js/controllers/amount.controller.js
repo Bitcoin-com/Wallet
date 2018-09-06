@@ -283,6 +283,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           unitIndex = tempIndex;
         }
         vm.amount = transactionSendableAmountInUnits.toFixed(LENGTH_AFTER_COMMA_EXPRESSION_LIMIT);
+        useSendMax = true;
         finish();
       }
     }
@@ -507,7 +508,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     var confirmData = {
-      amount: useSendMax ? undefined : satoshis,
+      amount: (useSendMax && canSendMax) ? undefined : satoshis,
       displayAddress: passthroughParams.displayAddress,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
