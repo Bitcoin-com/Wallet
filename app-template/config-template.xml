@@ -47,7 +47,7 @@
     <plugin name="cordova-plugin-inappbrowser" spec="https://github.com/apache/cordova-plugin-inappbrowser.git" />
     <plugin name="cordova-plugin-x-toast" spec="https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin.git" />
     <plugin name="com.verso.cordova.clipboard" spec="https://github.com/Visigo/CordovaClipboard" />
-    <plugin name="cordova-plugin-x-socialsharing" spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
+    <plugin name="cordova-plugin-x-socialsharing-fork" spec="~5.4.2" />
     <plugin name="cordova-plugin-spinner-dialog" spec="~1.3.1" />
     <plugin name="cordova-plugin-dialogs" spec="https://github.com/apache/cordova-plugin-dialogs.git" />
     <plugin name="cordova-plugin-network-information" spec="https://github.com/apache/cordova-plugin-network-information.git" />
@@ -78,7 +78,6 @@
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.3.0" />
-    <engine name="windows" spec="~5.0.0" />
 
     <!-- Platform Specific Settings -->
     <platform name="ios">
