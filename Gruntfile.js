@@ -65,6 +65,9 @@ module.exports = function(grunt) {
       run_android: {
         command: 'cordova run android --device',
       },
+      run_android_emulator: {
+        command: 'cordova run android --emulator',
+      },
       sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release"
@@ -370,6 +373,7 @@ module.exports = function(grunt) {
   // Build android
   grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android']);
   grunt.registerTask('build-android-debug', ['exec:build_android_debug']);
+  grunt.registerTask('start-android-emulator', ['build-android-debug', 'exec:run_android_emulator']);
   grunt.registerTask('build-android-release', ['prod', 'exec:build_android_release', 'sign-android']);
   grunt.registerTask('sign-android', ['exec:sign_android']);
 
