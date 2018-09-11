@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $state, sendFlowService, configService, gettextCatalog, profileService, txFormatService) {
+angular.module('copayApp.controllers').controller('walletSelectorController', function($scope, $state, sendFlowService, configService, gettextCatalog, ongoingProcess, profileService, walletService, txFormatService) {
 
   var fromWalletId = '';
   var priceDisplayAsFiat = false;
@@ -116,35 +116,31 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
     if ($scope.type === 'origin') {
       $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send from');
 
-      if ($scope.params.amount) {
+      if ($scope.params.amount || $scope.coin) {
 
         walletsAll = profileService.getWallets({coin: $scope.coin});
-        
-        walletsAll.forEach(function forWallet(wallet){
-          if (wallet.status.availableBalanceSat > $scope.params.amount) {
-            walletsSufficientFunds.push(wallet);
+        ongoingProcess.set('scanning', true);
+        walletsAll.forEach(function forWallet(wallet) {
+          if (!wallet.status) {
+            walletService.getStatus(wallet, {}, function(err, status) {
+              if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
+                walletsSufficientFunds.push(wallet);
+              } else {
+                $scope.walletsInsufficientFunds.push(wallet);
+              }
+              ongoingProcess.set('scanning', false);
+            });
           } else {
-            $scope.walletsInsufficientFunds.push(wallet);
+            if (wallet.status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
+              walletsSufficientFunds.push(wallet);
+            } else {
+              $scope.walletsInsufficientFunds.push(wallet);
+            }
+            ongoingProcess.set('scanning', false);
           }
         });
 
         if ($scope.coin === 'btc') {
-          $scope.walletsBtc = walletsSufficientFunds;
-        } else {
-          $scope.walletsBch = walletsSufficientFunds;
-        }
-
-      } else if ($scope.coin) {
-        walletsAll = profileService.getWallets({coin: $scope.coin});
-        walletsAll.forEach(function forWallet(wallet){
-          if (wallet.status.availableBalanceSat > 0) {
-            walletsSufficientFunds.push(wallet);
-          } else {
-            $scope.walletsInsufficientFunds.push(wallet);
-          }
-        });
-
-        if ($scope.coin === 'btc') {  
           $scope.walletsBtc = walletsSufficientFunds;
         } else {
           $scope.walletsBch = walletsSufficientFunds;
