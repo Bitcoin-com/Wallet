@@ -6433,9 +6433,15 @@ var AdjustChannel = /** @class */ (function (_super) {
             if (!eventType) {
                 throw new Error('This event name does not exist on Adjust.');
             }
-            params.os = this.adjustedOs(params.os);
-            this.addAdvertisingId(params.os, params);
-            this.adjustInstance.trackEvent(eventType, params);
+            // Don't want adjust-specfic changes to affect the passed-in params.
+            var adjustParams_1 = {};
+            var keys = params.keys();
+            keys.array.forEach(function (key) {
+                adjustParams_1[key] = params[key];
+            });
+            adjustParams_1.os = this.adjustedOs(adjustParams_1.os);
+            this.addAdvertisingId(adjustParams_1.os, adjustParams_1);
+            this.adjustInstance.trackEvent(eventType, adjustParams_1);
         }
     };
     /**
@@ -7410,7 +7416,7 @@ var LogEventHandlers = /** @class */ (function () {
             params = this.concatObject(logEventParams[0], params);
         }
         // Post event depending of the channel
-        logEvent.channelNames.map(function (channelName, i) {
+        logEvent.channelNames.forEach(function (channelName, i) {
             var channel = _this.getChannelByName(channelName);
             if (channel) {
                 // Real index (first param is shared by all channels)
@@ -7443,7 +7449,7 @@ var LogEventHandlers = /** @class */ (function () {
      */
     LogEventHandlers.prototype.concatObject = function (from, to) {
         var keys = Object.keys(from);
-        keys.map(function (key) {
+        keys.forEach(function (key) {
             if (!to[key]) {
                 to[key] = from[key];
             }
@@ -7464,7 +7470,7 @@ var LogEventHandlers = /** @class */ (function () {
         // Get the channel names by the keys
         var channelNames = Object.keys(channelConfigs);
         // Iterate to init the several channels given in the config
-        channelNames.map(function (channelName) {
+        channelNames.forEach(function (channelName) {
             var channelConfig = channelConfigs[channelName];
             // OS shared to check the availability of this channel on this OS.
             channelConfig.os = _this.os;
