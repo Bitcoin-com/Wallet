@@ -123,6 +123,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         walletsAll.forEach(function forWallet(wallet) {
           if (!wallet.status) {
             walletService.getStatus(wallet, {}, function(err, status) {
+              wallet.status = status;
               if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
                 walletsSufficientFunds.push(wallet);
               } else {
