@@ -40,7 +40,7 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     });
   };
 
-  $scope.shapeshift = function() {
+  $scope.shapeshift = function() {    
     var stateParams = {
       thirdParty: {
         id: 'shapeshift'

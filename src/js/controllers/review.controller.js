@@ -4,7 +4,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+function reviewController(addressbookService, bitAnalyticsService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
   var vm = this;
 
   vm.buttonText = '';
@@ -65,6 +65,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   var destinationWalletId = '';
   var lastTxId = '';
   var originWalletId = '';
+  var personalNoteWasBlank = true;
   var priceDisplayIsFiat = true;
   var satoshis = null;
   var toAddress = '';
@@ -154,6 +155,10 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         $scope.$apply();
       });
       return;
+    }
+
+    if (personalNoteWasBlank && vm.memo && vm.memo.length > 0) {
+      bitAnalyticsService.postEvent('transfer_adds_memo', [], ['leanplum']);
     }
 
     ongoingProcess.set('creatingTx', true, statusChangeHandler);
@@ -534,6 +539,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             tx.toAddress = shapeshiftData.toAddress;
             vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
             vm.memoExpanded = !!vm.memo;
+            personalNoteWasBlank = !vm.memo;
             ongoingProcess.set('connectingShapeshift', false);
             cb();
           }
@@ -803,7 +809,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         "type": "outgoing",
         "amount": amount,
         "fees": vm.feeCrypto
-      }], [channel, "adjust"]);
+      }], [channel, "adjust", 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       $timeout(function() {

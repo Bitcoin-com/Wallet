@@ -154,7 +154,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       var log = new window.BitAnalytics.LogEvent("transfer_success", [{
         "coin": $scope.wallet.coin,
         "type": "incoming"
-      }], [channel, "adjust"]);
+      }], [channel, "adjust", 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       if ($state.current.name === "tabs.receive") {
