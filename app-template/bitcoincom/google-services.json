@@ -42,8 +42,47 @@
             {
               "client_id": "432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "432300239540-qfr4lk43b0134fgijqp7mk138lifjnki.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bitcoin.mwallet",
+                "app_store_id": "1252903728"
+              }
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432300239540:android:3be699f352c30a45",
+        "android_client_info": {
+          "package_name": "com.bitcoin.wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDphC3flCVFFOENAy9tMgOUFxC6_H8JWMs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
