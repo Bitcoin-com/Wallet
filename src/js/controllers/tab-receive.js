@@ -24,6 +24,52 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     });
   };
 
+
+  function connectSocket() {
+    //close existing socket if not connected with current address
+    if (currentAddressSocket && typeof currentAddressSocket.close === 'function') {
+      currentAddressSocket.onclose = function(e) {}; // Overwrite onclose-function to prevent reconnecting old address socket.
+      currentAddressSocket.close();
+    }
+    if ($scope.wallet.coin === 'bch') {
+      // listen to bch address
+      currentAddressSocket = new WebSocket("wss://ws.blockchain.info/bch/inv");
+      paymentSubscriptionObj.addr = $scope.addrBchLegacy;
+    } else {
+      // listen to btc address
+      currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
+      paymentSubscriptionObj.addr = $scope.addr;
+    }
+
+    // create subscription to address
+    var msg = JSON.stringify(paymentSubscriptionObj);
+    currentAddressSocket.onopen = function (event) {
+      currentAddressSocket.send(msg);
+    };
+
+    // listen for response
+    currentAddressSocket.onmessage = function (event) {
+      //console.log("message received:" + event.data);
+      receivedPayment(event.data);
+    };
+
+    currentAddressSocket.onclose = function(e) {
+      console.log('Socket is closed. Reconnect will be attempted in 1 second.');
+      $timeout(function() {
+        connectSocket();
+      }, 1000);
+    };
+
+    currentAddressSocket.onerror = function(err) {
+      console.error('Socket encountered error: ', err, 'Closing socket');
+      currentAddressSocket.close();
+    };
+
+    $timeout(function() {
+      $scope.$apply();
+    }, 10);
+  }
+
   $scope.setAddress = function(newAddr, copyAddress) {
     $scope.addr = null;
     if (!$scope.wallet || $scope.generatingAddress || !$scope.wallet.isComplete()) return;
@@ -36,27 +82,15 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         popupService.showAlert(err);
       }
 
-      //close existing socket
-      if (currentAddressSocket.close === 'function') {
-        currentAddressSocket.close();
-      }
-
-      if ($scope.wallet.coin == 'bch') {
-          bchAddresses = bitcoinCashJsService.translateAddresses(addr);
-          $scope.addr = bchAddresses[$scope.bchAddressType.type];
-          $scope.addrBchLegacy = bchAddresses['legacy'];
-
-          // listen to bch address
-          currentAddressSocket = new WebSocket("wss://ws.blockchain.info/bch/inv");
-          paymentSubscriptionObj.addr = bchAddresses['legacy'];
-
+      if ($scope.wallet.coin === 'bch') {
+        bchAddresses = bitcoinCashJsService.translateAddresses(addr);
+        $scope.addr = bchAddresses[$scope.bchAddressType.type];
+        $scope.addrBchLegacy = bchAddresses['legacy'];
       } else {
-          $scope.addr = addr;
-
-          // listen to btc address
-          currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
-          paymentSubscriptionObj.addr = $scope.addr
+        $scope.addr = addr;
       }
+
+      connectSocket();
 
       if (copyAddress === true) {
         try {
@@ -65,19 +99,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           $log.debug("Error copying to clipboard:");
           $log.debug(error);
         }
-      }
-      // create subscription
-      var msg = JSON.stringify(paymentSubscriptionObj);
-      currentAddressSocket.onopen = function (event) {
-        //console.log("message sent: " + msg); 
-        currentAddressSocket.send(msg);
-      }
-      
-
-      // listen for response
-      currentAddressSocket.onmessage = function (event) {
-        //console.log("message received:" + event.data);
-        receivedPayment(event.data);
       }
 
       $timeout(function() {
@@ -232,6 +253,16 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       walletService.showReceiveAddressFromHardware(wallet, $scope.addr, function() {});
     }
   };
+
+  $scope.$on("$ionicView.beforeLeave", function() {
+    // Close the old connection!
+    if (currentAddressSocket && typeof currentAddressSocket.close === 'function') {
+      console.log("Close open websocket address connection.");
+      currentAddressSocket.onclose = function(e) {}; // Overwrite onclose-function to prevent reconnecting old address socket.
+      currentAddressSocket.close();
+    }
+
+  });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.wallets = profileService.getWallets();
