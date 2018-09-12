@@ -6435,8 +6435,8 @@ var AdjustChannel = /** @class */ (function (_super) {
             }
             // Don't want adjust-specfic changes to affect the passed-in params.
             var adjustParams_1 = {};
-            var keys = params.keys();
-            keys.array.forEach(function (key) {
+            var keys = Object.keys(params);
+            keys.forEach(function (key) {
                 adjustParams_1[key] = params[key];
             });
             adjustParams_1.os = this.adjustedOs(adjustParams_1.os);
