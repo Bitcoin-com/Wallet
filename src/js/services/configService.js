@@ -51,7 +51,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       },
       bitcoincom: {
         ios: 'http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1252903728&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8',
-        android: 'https://play.google.com/store/apps/details?id=com.bitcoin.wallet',
+        android: 'https://play.google.com/store/apps/details?id=com.bitcoin.mobilewallet',
         wp: ''
       }
     },
