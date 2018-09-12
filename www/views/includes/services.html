@@ -6,7 +6,7 @@
   </div>
   <div ng-show="!hide">
     <div ng-repeat="service in services track by $index">
-      <a ui-sref="{{service.sref}}" id="home_{{service.name}}" title="{{service.title ||  service.name}}" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
+      <a ui-sref="{{service.sref}}" id="home_{{service.name}}" title="{{service.title ||  service.name}}" class="{{service.trackingClass}} item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg theme-circle theme-circle-services">
           <div class="bg {{service.icon}}"></div>
         </i>

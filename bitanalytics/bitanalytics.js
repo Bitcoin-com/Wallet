@@ -6199,10 +6199,6 @@ var ClickAction = /** @class */ (function (_super) {
         _this.channels = config.channels;
         var self = _this;
         _this.listener = function (event) {
-            /*console.log('on click');
-            console.log(event.target.id);
-            console.log(event.target.outerHTML);
-            console.log(event.target.outerText);*/
             var params = {};
             var target = _this.searchTarget(event.srcElement);
             // If I found my element, that should happen 100%
@@ -6249,7 +6245,7 @@ var ClickAction = /** @class */ (function (_super) {
      */
     ClickAction.prototype.startTracking = function () {
         if (this.isTracking) {
-            throw new Error('[BitAnalytics] The tacking is already started');
+            throw new Error('[BitAnalytics] Tracking already started.');
         }
         this.isTracking = true;
         var elements = document.getElementsByClassName(this.class);
@@ -6261,7 +6257,7 @@ var ClickAction = /** @class */ (function (_super) {
     };
     ClickAction.prototype.stopTracking = function () {
         if (!this.isTracking) {
-            throw new Error('[BitAnalytics] The tacking is already stopped');
+            throw new Error('[BitAnalytics] Tracking already stopped.');
         }
         var elements = document.getElementsByClassName(this.class);
         // Add event listener to all the elements found
@@ -6275,7 +6271,7 @@ var ClickAction = /** @class */ (function (_super) {
 }(action_1.default));
 exports.default = ClickAction;
 
-},{"../action":4,"../log-event":16,"../log-event-handlers":15}],6:[function(require,module,exports){
+},{"../action":4,"../log-event":18,"../log-event-handlers":17}],6:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6314,7 +6310,7 @@ var BitAnalytics = /** @class */ (function () {
 exports.default = BitAnalytics;
 BitAnalytics.main();
 
-},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":12,"./log-event":16,"./log-event-handlers":15}],7:[function(require,module,exports){
+},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":13,"./log-event":18,"./log-event-handlers":17}],7:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6323,7 +6319,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var adjust_channel_1 = __importDefault(require("./channels/adjust-channel"));
 var firebase_channel_1 = __importDefault(require("./channels/firebase-channel"));
 var ga_channel_1 = __importDefault(require("./channels/ga-channel"));
-var mixpanel_channel_1 = __importDefault(require("./channels/mixpanel-channel"));
+var leanplum_channel_1 = __importDefault(require("./channels/leanplum-channel"));
 var ChannelFactory = /** @class */ (function () {
     function ChannelFactory() {
     }
@@ -6344,13 +6340,13 @@ var ChannelFactory = /** @class */ (function () {
         'adjust': adjust_channel_1.default,
         'firebase': firebase_channel_1.default,
         'ga': ga_channel_1.default,
-        'mixpanel': mixpanel_channel_1.default
+        'leanplum': leanplum_channel_1.default
     };
     return ChannelFactory;
 }());
 exports.default = ChannelFactory;
 
-},{"./channels/adjust-channel":9,"./channels/firebase-channel":10,"./channels/ga-channel":11,"./channels/mixpanel-channel":12}],8:[function(require,module,exports){
+},{"./channels/adjust-channel":9,"./channels/firebase-channel":10,"./channels/ga-channel":11,"./channels/leanplum-channel":12}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Channel = /** @class */ (function () {
@@ -6504,7 +6500,7 @@ var AdjustChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = AdjustChannel;
 
-},{"../channel":8,"../external-libs/adjust":13}],10:[function(require,module,exports){
+},{"../channel":8,"../external-libs/adjust":14}],10:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6631,7 +6627,68 @@ var GoogleAnalyticsChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = GoogleAnalyticsChannel;
 
-},{"../channel":8,"../external-libs/ga":14}],12:[function(require,module,exports){
+},{"../channel":8,"../external-libs/ga":15}],12:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var channel_1 = __importDefault(require("../channel"));
+var leanplum_min_js_1 = __importDefault(require("../external-libs/leanplum.min.js"));
+var LeanplumChannel = /** @class */ (function (_super) {
+    __extends(LeanplumChannel, _super);
+    function LeanplumChannel(name, config) {
+        var _this = _super.call(this, name) || this;
+        if (!config.appId) {
+            throw new Error('[BitAnalytics] Leanplum config is missing app ID.');
+        }
+        if (!config.key) {
+            throw new Error('[BitAnalytics] Leanplum config is missing key.');
+        }
+        leanplum_min_js_1.default.setAppIdForDevelopmentMode(config.appId, config.key);
+        leanplum_min_js_1.default.setAppVersion(config.appVersion);
+        leanplum_min_js_1.default.start(function (success) {
+            //console.log('Success: ' + success);
+            //console.log('Variables', Leanplum.getVariables());
+            if (success) {
+                _this.isReady = true;
+                _this.flush();
+            }
+            else {
+                console.error('Leanplum failed to start.');
+            }
+        });
+        return _this;
+    }
+    /**
+     *
+     * Public methods
+     *
+     */
+    LeanplumChannel.prototype.postEvent = function (name, params) {
+        var _this = this;
+        if (this.isReady) {
+            leanplum_min_js_1.default.track(name, params);
+        }
+        else {
+            this.enqueue(function () { _this.postEvent(name, params); });
+        }
+    };
+    return LeanplumChannel;
+}(channel_1.default));
+exports.default = LeanplumChannel;
+
+},{"../channel":8,"../external-libs/leanplum.min.js":16}],13:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6672,7 +6729,7 @@ var MixpanelChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = MixpanelChannel;
 
-},{"../channel":8,"mixpanel-browser":1}],13:[function(require,module,exports){
+},{"../channel":8,"mixpanel-browser":1}],14:[function(require,module,exports){
 "use strict";
 (function (window) {
     var sendRequest = function (method, url, data, success_cb, error_cb) {
@@ -6721,7 +6778,7 @@ exports.default = MixpanelChannel;
     window.Adjust = function (app_token, environment, os_name) { this.trackSession = function (device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/session?" + encodeQueryString(params)); }; this.trackEvent = function (event_token, device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.event_token = event_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/event?" + encodeQueryString(params)); }; };
 })(window);
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 /*
  * name: nwjs-analytics -Node-Webkit Google Analytics integration
@@ -6887,42 +6944,424 @@ GA.prototype.timing = function (category, variable, time, label) {
         this.sendRequest(data);
     };
 module.exports = GA;
-/*
- * Performance Tracking
- */
-/*window.addEventListener("load", function() {
 
-  if(ga.performanceTracking) {
-    setTimeout(function() {
-      var timing = window.performance.timing;
-      var userTime = timing.loadEventEnd - timing.navigationStart;
-      ga.timing("performance", "pageload", userTime);
-      }, 0);
-  }
+},{}],16:[function(require,module,exports){
+"use strict";
+!function (a, b) { "object" == typeof exports && "object" == typeof module ? module.exports = b() : "function" == typeof define && define.amd ? define([], b) : "object" == typeof exports ? exports.Leanplum = b() : a.Leanplum = b(); }(this, function () {
+    return function (a) { function b(d) { if (c[d])
+        return c[d].exports; var e = c[d] = { i: d, l: !1, exports: {} }; return a[d].call(e.exports, e, e.exports, b), e.l = !0, e.exports; } var c = {}; return b.m = a, b.c = c, b.i = function (a) { return a; }, b.d = function (a, c, d) { b.o(a, c) || Object.defineProperty(a, c, { configurable: !1, enumerable: !0, get: d }); }, b.n = function (a) { var c = a && a.__esModule ? function () { return a.default; } : function () { return a; }; return b.d(c, "a", c), c; }, b.o = function (a, b) { return Object.prototype.hasOwnProperty.call(a, b); }, b.p = "", b(b.s = 33); }([function (a, b, c) { var d = c(20), e = "object" == typeof self && self && self.Object === Object && self, f = d || e || Function("return this")(); a.exports = f; }, function (a, b, c) { var d, e, f; !function (c, g) { e = [a, b], d = g, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b) {
+            "use strict";
+            Object.defineProperty(b, "__esModule", { value: !0 }), b.default = { METHODS: { START: "start", STOP: "stop", ADVANCE: "advance", TRACK: "track", PAUSE_SESSION: "pauseSession", RESUME_SESSION: "resumeSession", PAUSE_STATE: "pauseState", RESUME_STATE: "resumeState", DOWNLOAD_FILE: "downloadFile", MULTI: "multi", SET_VARS: "setVars", GET_VARS: "getVars", SET_USER_ATTRIBUTES: "setUserAttributes", SET_DEVICE_ATTRIBUTES: "setDeviceAttributes", UPLOAD_FILE: "uploadFile", REGISTER_DEVICE: "registerDevice" }, SDK_VERSION: "1.3.0", CLIENT: "js", PARAMS: { ACTION: "action", APP_ID: "appId", CLIENT: "client", CLIENT_KEY: "clientKey", DEVICE_ID: "deviceId", SDK_VERSION: "sdkVersion", USER_ID: "userId", NEW_USER_ID: "newUserId", DEV_MODE: "devMode", VERSION_NAME: "versionName", SYSTEM_NAME: "systemName", SYSTEM_VERSION: "systemVersion", BROWSER_NAME: "browserName", BROWSER_VERSION: "browserVersion", DEVICE_NAME: "deviceName", DEVICE_MODEL: "deviceModel", USER_ATTRIBUTES: "userAttributes", LOCALE: "locale", COUNTRY: "country", REGION: "region", CITY: "city", LOCATION: "location", STATE: "state", INFO: "info", EVENT: "event", VALUE: "value", FILENAME: "filename", TIME: "time", DATA: "data", VARS: "vars", FILE: "file", SIZE: "size", VARIATION: "variation", HASH: "hash", EMAIL: "email", VARIABLES: "vars", PARAMS: "params", INCLUDE_DEFAULTS: "includeDefaults", INCLUDE_VARIANT_DEBUG_INFO: "includeVariantDebugInfo", WEB_PUSH_SUBSCRIPTION: "webPushSubscription" }, KEYS: { IS_REGISTERED: "isRegistered", LATEST_VERSION: "latestVersion", VARS: "vars", VARIANTS: "variants", VARIANT_DEBUG_INFO: "variantDebugInfo", ACTION_METADATA: "actionMetadata", TOKEN: "token" }, DEFAULT_KEYS: { COUNT: "__leanplum_unsynced", ITEM: "__leanplum_unsynced_", VARIABLES: "__leanplum_variables", VARIANTS: "__leanplum_variants", VARIANT_DEBUG_INFO: "__leanplum_variant_debug_info", ACTION_METADATA: "__leanplum_action_metadata", TOKEN: "__leanplum_token", DEVICE_ID: "__leanplum_device_id", USER_ID: "__leanplum_user_id", PUSH_SUBSCRIPTION: "__leanplum_push_subscription" }, VALUES: { DETECT: "(detect)" } }, a.exports = b.default;
+        }); }, function (a, b, c) { function d(a, b) { var c = f(a, b); return e(c) ? c : void 0; } var e = c(51), f = c(64); a.exports = d; }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(1)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c) {
+            "use strict";
+            function d(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var e = function (a) { return a && a.__esModule ? a : { default: a }; }(c), f = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), g = function () { function a() { d(this, a), this.argString = "", this.argValues = {}; } return f(a, [{ key: "add", value: function (a, b) { if (void 0 === b)
+                        return this; this.argString && (this.argString += "&"); var c = encodeURIComponent(b); return this.argString += a + "=" + c, this.argValues[a] = b, this; } }, { key: "body", value: function (a) { return a ? (this._body = a, this) : this._body; } }, { key: "attachApiKeys", value: function (a, b) { return this.add(e.default.PARAMS.APP_ID, a).add(e.default.PARAMS.CLIENT, e.default.CLIENT).add(e.default.PARAMS.CLIENT_KEY, b); } }, { key: "build", value: function () { return this.argString; } }, { key: "buildDict", value: function () { return this.argValues; } }]), a; }();
+            b.default = g, a.exports = b.default;
+        }); }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(1), c(3), c(12), c(17), c(5)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c, d, e, f, g) {
+            "use strict";
+            function h(a) { return a && a.__esModule ? a : { default: a }; }
+            function i(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var j = h(c), k = h(d), l = h(e), m = h(f), n = h(g), o = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), p = void 0, q = null, r = function () { function a() { i(this, a); } return o(a, null, [{ key: "request", value: function (b, c, d) { if (d = d || {}, c = c || new k.default, a.deviceId || (a.deviceId = n.default.getFromLocalStorage(j.default.DEFAULT_KEYS.DEVICE_ID)), !a.deviceId) {
+                        for (var e = "", f = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789", g = 0; g < 16; g++)
+                            e += f.charAt(Math.floor(Math.random() * f.length));
+                        a.deviceId = e, n.default.saveToLocalStorage(j.default.DEFAULT_KEYS.DEVICE_ID, e);
+                    } a.userId || (a.userId = n.default.getFromLocalStorage(j.default.DEFAULT_KEYS.USER_ID), a.userId || (a.userId = a.deviceId)), n.default.saveToLocalStorage(j.default.DEFAULT_KEYS.USER_ID, a.userId); var h = c.attachApiKeys(a.appId, a.clientKey).add(j.default.PARAMS.SDK_VERSION, j.default.SDK_VERSION).add(j.default.PARAMS.DEVICE_ID, a.deviceId).add(j.default.PARAMS.USER_ID, a.userId).add(j.default.PARAMS.ACTION, b).add(j.default.PARAMS.VERSION_NAME, a.versionName).add(j.default.PARAMS.DEV_MODE, l.default.devMode).add(j.default.PARAMS.TIME, ((new Date).getTime() / 1e3).toString()), i = d.success || d.response, o = d.error || d.response; if (!a.appId || !a.clientKey) {
+                        var r = "Leanplum App ID and client key are not set. Make sure you are calling setAppIdForDevelopmentMode or setAppIdForProductionMode before issuing API calls.";
+                        return console.error(r), void (o && o(r));
+                    } if (c.body())
+                        return void m.default.ajax("POST", a.apiPath + "?" + h.build(), c.body(), i, o, d.queued); var s = l.default.devMode || d.sendNow || !a.batchEnabled, t = function () { var b = a.popUnsentRequests(); if (b.length > 0) {
+                        var c = JSON.stringify({ data: b }), e = (new k.default).attachApiKeys(a.appId, a.clientKey).add(j.default.PARAMS.SDK_VERSION, j.default.SDK_VERSION).add(j.default.PARAMS.ACTION, j.default.METHODS.MULTI).add(j.default.PARAMS.TIME, ((new Date).getTime() / 1e3).toString().toString()).build();
+                        m.default.ajax("POST", a.apiPath + "?" + e, c, i, o, d.queued);
+                    } }; if (!s && a.batchCooldown) {
+                        var u = (new Date).getTime() / 1e3;
+                        !p || u - p >= a.batchCooldown ? (s = !0, p = u) : q || (q = setTimeout(function () { q = null, p = (new Date).getTime() / 1e3, t(); }, 1e3 * (a.batchCooldown - (u - p))));
+                    } a.saveRequestForLater(h.buildDict()), s && t(); } }, { key: "setNetworkTimeout", value: function (a) { m.default.setNetworkTimeout(a); } }, { key: "saveRequestForLater", value: function (a) { var b = n.default.getFromLocalStorage(j.default.DEFAULT_KEYS.COUNT) || 0, c = j.default.DEFAULT_KEYS.ITEM + b; n.default.saveToLocalStorage(c, JSON.stringify(a)), b++, n.default.saveToLocalStorage(j.default.DEFAULT_KEYS.COUNT, b); } }, { key: "popUnsentRequests", value: function () { var a = [], b = n.default.getFromLocalStorage(j.default.DEFAULT_KEYS.COUNT) || 0; n.default.removeFromLocalStorage(j.default.DEFAULT_KEYS.COUNT); for (var c = 0; c < b; c++) {
+                        var d = j.default.DEFAULT_KEYS.ITEM + c;
+                        try {
+                            var e = JSON.parse(n.default.getFromLocalStorage(d));
+                            a.push(e);
+                        }
+                        catch (a) { }
+                        n.default.removeFromLocalStorage(d);
+                    } return a; } }, { key: "numResponses", value: function (a) { return a && a.response ? a.response.length : 0; } }, { key: "getResponseAt", value: function (a, b) { return a && a.response ? a.response[b] : null; } }, { key: "getLastResponse", value: function (b) { var c = a.numResponses(b); return c > 0 ? a.getResponseAt(b, c - 1) : null; } }, { key: "isResponseSuccess", value: function (a) { return !!a && !!a.success; } }, { key: "getResponseError", value: function (a) { if (!a)
+                        return null; var b = a.error; return b ? b.message : null; } }]), a; }();
+            r.apiPath = "https://www.leanplum.com/api", r.batchEnabled = !0, r.batchCooldown = 5, b.default = r, a.exports = b.default;
+        }); }, function (a, b, c) { var d, e, f; !function (c, g) { e = [a, b], d = g, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b) {
+            "use strict";
+            function c(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var d = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), e = void 0, f = {}, g = function () { function a() { c(this, a); } return d(a, null, [{ key: "getFromLocalStorage", value: function (a) { return !1 === e ? f[a] : localStorage[a]; } }, { key: "saveToLocalStorage", value: function (a, b) { if (!1 === e)
+                        return void (f[a] = b); try {
+                        localStorage[a] = b;
+                    }
+                    catch (c) {
+                        e = !1, f[a] = b;
+                    } } }, { key: "removeFromLocalStorage", value: function (a) { if (!1 === e)
+                        return void delete f[a]; try {
+                        localStorage.removeItem(a);
+                    }
+                    catch (b) {
+                        e = !1, delete f[a];
+                    } } }]), a; }();
+            b.default = g, a.exports = b.default;
+        }); }, function (a, b, c) { function d(a) { var b = -1, c = null == a ? 0 : a.length; for (this.clear(); ++b < c;) {
+            var d = a[b];
+            this.set(d[0], d[1]);
+        } } var e = c(74), f = c(75), g = c(76), h = c(77), i = c(78); d.prototype.clear = e, d.prototype.delete = f, d.prototype.get = g, d.prototype.has = h, d.prototype.set = i, a.exports = d; }, function (a, b, c) { function d(a, b) { for (var c = a.length; c--;)
+            if (e(a[c][0], b))
+                return c; return -1; } var e = c(22); a.exports = d; }, function (a, b, c) { function d(a) { return null == a ? void 0 === a ? i : h : j && j in Object(a) ? f(a) : g(a); } var e = c(14), f = c(61), g = c(87), h = "[object Null]", i = "[object Undefined]", j = e ? e.toStringTag : void 0; a.exports = d; }, function (a, b, c) { function d(a, b) { var c = a.__data__; return e(b) ? c["string" == typeof b ? "string" : "hash"] : c.map; } var e = c(71); a.exports = d; }, function (a, b, c) { var d = c(2), e = d(Object, "create"); a.exports = e; }, function (a, b) { function c(a) { return null != a && "object" == typeof a; } a.exports = c; }, function (a, b, c) { var d, e, f; !function (c, g) { e = [a, b], d = g, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b) {
+            "use strict";
+            function c(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var d = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), e = function () { function a() { c(this, a); } return d(a, null, [{ key: "addStartResponseHandler", value: function (b) { a.startHandlers.push(b), a.hasStarted && b(a.startSuccessful); } }, { key: "removeStartResponseHandler", value: function (b) { var c = a.startHandlers.indexOf(b); c >= 0 && a.startHandlers.splice(c, 1); } }, { key: "triggerStartHandlers", value: function () { for (var b = 0; b < a.startHandlers.length; b++)
+                        a.startHandlers[b](a.startSuccessful); } }, { key: "addVariablesChangedHandler", value: function (b) { a.variablesChangedHandlers.push(b), a.hasReceivedDiffs && b(); } }, { key: "removeVariablesChangedHandler", value: function (b) { var c = a.variablesChangedHandlers.indexOf(b); c >= 0 && a.variablesChangedHandlers.splice(c, 1); } }, { key: "triggerVariablesChangedHandlers", value: function () { for (var b = 0; b < a.variablesChangedHandlers.length; b++)
+                        a.variablesChangedHandlers[b](); } }, { key: "setVariantDebugInfoEnabled", value: function (b) { a.variantDebugInfoEnabled = b; } }]), a; }();
+            e.devMode = !1, e.variablesChangedHandlers = [], e.hasReceivedDiffs = !1, e.startHandlers = [], e.hasStarted = !1, e.startSuccessful = !1, e.variantDebugInfoEnabled = !1, b.default = e, a.exports = b.default;
+        }); }, function (a, b, c) { var d = c(2), e = c(0), f = d(e, "Map"); a.exports = f; }, function (a, b, c) { var d = c(0), e = d.Symbol; a.exports = e; }, function (a, b) { var c = Array.isArray; a.exports = c; }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(1), c(12), c(3), c(5), c(4)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c, d, e, f, g) {
+            "use strict";
+            function h(a) { return a && a.__esModule ? a : { default: a }; }
+            function i(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var j = h(c), k = h(d), l = h(e), m = h(f), n = h(g), o = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), p = function () { function a() { i(this, a); } return o(a, null, [{ key: "applyDiffs", value: function (b, c, d) { a.diffs = b, a.variants = c, a.actionMetadata = d, k.default.hasReceivedDiffs = !0, a.merged = a.mergeHelper(a.variables, b), a.saveDiffs(), a.onUpdate && a.onUpdate(); } }, { key: "loadDiffs", value: function () { try {
+                        a.applyDiffs(JSON.parse(m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.VARIABLES) || null), JSON.parse(m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.VARIANTS) || null), JSON.parse(m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.ACTION_METADATA) || null)), a.token = m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.TOKEN), a.variantDebugInfo = m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.VARIANT_DEBUG_INFO);
+                    }
+                    catch (a) {
+                        console.log("Leanplum: Invalid diffs: " + a);
+                    } } }, { key: "saveDiffs", value: function () { m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.VARIABLES, JSON.stringify(a.diffs || {})), m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.VARIANTS, JSON.stringify(a.variants || [])), m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.ACTION_METADATA, JSON.stringify(a.actionMetadata || {})), m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.VARIANT_DEBUG_INFO, JSON.stringify(a.variantDebugInfo || {})), m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.TOKEN, a.token); } }, { key: "setVariables", value: function (b) { a.variables = b; } }, { key: "getVariables", value: function () { return void 0 !== a.merged ? a.merged : a.variables; } }, { key: "getVariantDebugInfo", value: function () { return a.variantDebugInfo; } }, { key: "sendVariables", value: function () { var b = {}; b[j.default.PARAMS.VARIABLES] = a.variables, n.default.request(j.default.METHODS.SET_VARS, (new l.default).body(JSON.stringify(b)), { sendNow: !0 }); } }, { key: "mergeHelper", value: function (b, c) { if ("number" == typeof c || "boolean" == typeof c || "string" == typeof c)
+                        return c; if (null === c || void 0 === c)
+                        return b; var d = function (a) { return function (b) { if (a instanceof Array)
+                        for (var c = 0; c < a.length; c++)
+                            b(a[c]);
+                    else
+                        for (var d in a)
+                            ({}).hasOwnProperty.call(a, d) && b(d); }; }, e = d(b), f = d(c), g = !1; if (null === b && !(c instanceof Array)) {
+                        g = null;
+                        for (var h in c)
+                            if (c.hasOwnProperty(h)) {
+                                if (null === g && (g = !0), "string" != typeof h) {
+                                    g = !1;
+                                    break;
+                                }
+                                if (h.length < 3 || "[" !== h.charAt(0) || "]" !== h.charAt(h.length - 1)) {
+                                    g = !1;
+                                    break;
+                                }
+                                var i = h.substring(1, h.length - 1);
+                                if (!parseInt(i).toString() === i) {
+                                    g = !1;
+                                    break;
+                                }
+                            }
+                    } if (b instanceof Array || g) {
+                        var j = [];
+                        return e(function (a) { j.push(a); }), f(function (b) { for (var d = parseInt(b.substring(1, b.length - 1)), e = c[b]; d >= j.length;)
+                            j.push(null); j[d] = a.mergeHelper(j[d], e); }), j;
+                    } var k = {}; return e(function (a) { null !== c[a] && void 0 !== c[a] || (k[a] = b[a]); }), f(function (d) { k[d] = a.mergeHelper(null !== b ? b[d] : null, c[d]); }), k; } }]), a; }();
+            p.diffs = void 0, p.variables = null, p.variants = [], p.variantDebugInfo = {}, p.merged = void 0, p.onUpdate = void 0, p.token = "", p.actionMetadata = {}, b.default = p, a.exports = b.default;
+        }); }, function (a, b, c) { var d, e, f; !function (c, g) { e = [a, b], d = g, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b) {
+            "use strict";
+            function c(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var d = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), e = [], f = 10, g = function () { function a() { c(this, a); } return d(a, null, [{ key: "setNetworkTimeout", value: function (a) { f = a; } }, { key: "ajax", value: function (b, c, d, e, g, h, i) { if (h) {
+                        if (a.runningRequest)
+                            return a.enqueueRequest(arguments);
+                        a.runningRequest = !0;
+                    } if ("undefined" != typeof XDomainRequest)
+                        return "http:" === location.protocol && 0 === c.indexOf("https:") && (c = "http:" + c.substring(6)), Reflect.apply(a.ajaxIE8, null, arguments); var j = !1, k = new XMLHttpRequest; k.onreadystatechange = function () { if (4 === k.readyState) {
+                        if (j)
+                            return;
+                        j = !0;
+                        var b = void 0, c = !1;
+                        if (i)
+                            b = k.responseText;
+                        else
+                            try {
+                                b = JSON.parse(k.responseText);
+                            }
+                            catch (a) {
+                                setTimeout(function () { g && g(null, k); }, 0), c = !0;
+                            }
+                        c || (k.status >= 200 && k.status < 300 ? setTimeout(function () { e && e(b, k); }, 0) : setTimeout(function () { g && g(b, k); }, 0)), h && (a.runningRequest = !1, a.dequeueRequest());
+                    } }, k.open(b, c, !0), k.setRequestHeader("Content-Type", "text/plain"), k.send(d), setTimeout(function () { j || k.abort(); }, 1e3 * f); } }, { key: "ajaxIE8", value: function (b, c, d, e, g, h, i) { var j = new XDomainRequest; j.onload = function () { var b = void 0, c = !1; if (i)
+                        b = j.responseText;
+                    else
+                        try {
+                            b = JSON.parse(j.responseText);
+                        }
+                        catch (a) {
+                            setTimeout(function () { g && g(null, j); }, 0), c = !0;
+                        } c || setTimeout(function () { e && e(b, j); }, 0), h && (a.runningRequest = !1, a.dequeueRequest()); }, j.onerror = j.ontimeout = function () { setTimeout(function () { g && g(null, j); }, 0), h && (a.runningRequest = !1, a.dequeueRequest()); }, j.onprogress = function () { }, j.open(b, c), j.timeout = 1e3 * f, j.send(d); } }, { key: "enqueueRequest", value: function (a) { e.push(a); } }, { key: "dequeueRequest", value: function () { var b = e.shift(); b && Reflect.apply(a.ajax, null, b); } }]), a; }();
+            b.default = g, a.exports = b.default;
+        }); }, function (a, b, c) { function d(a) { var b = -1, c = null == a ? 0 : a.length; for (this.clear(); ++b < c;) {
+            var d = a[b];
+            this.set(d[0], d[1]);
+        } } var e = c(79), f = c(80), g = c(81), h = c(82), i = c(83); d.prototype.clear = e, d.prototype.delete = f, d.prototype.get = g, d.prototype.has = h, d.prototype.set = i, a.exports = d; }, function (a, b, c) { function d(a, b, c, d, j, k) { var l = c & h, m = a.length, n = b.length; if (m != n && !(l && n > m))
+            return !1; var o = k.get(a); if (o && k.get(b))
+            return o == b; var p = -1, q = !0, r = c & i ? new e : void 0; for (k.set(a, b), k.set(b, a); ++p < m;) {
+            var s = a[p], t = b[p];
+            if (d)
+                var u = l ? d(t, s, p, b, a, k) : d(s, t, p, a, b, k);
+            if (void 0 !== u) {
+                if (u)
+                    continue;
+                q = !1;
+                break;
+            }
+            if (r) {
+                if (!f(b, function (a, b) { if (!g(r, b) && (s === a || j(s, a, c, d, k)))
+                    return r.push(b); })) {
+                    q = !1;
+                    break;
+                }
+            }
+            else if (s !== t && !j(s, t, c, d, k)) {
+                q = !1;
+                break;
+            }
+        } return k.delete(a), k.delete(b), q; } var e = c(39), f = c(46), g = c(56), h = 1, i = 2; a.exports = d; }, function (a, b, c) { (function (b) { var c = "object" == typeof b && b && b.Object === Object && b; a.exports = c; }).call(b, c(102)); }, function (a, b) { function c(a) { if (null != a) {
+            try {
+                return e.call(a);
+            }
+            catch (a) { }
+            try {
+                return a + "";
+            }
+            catch (a) { }
+        } return ""; } var d = Function.prototype, e = d.toString; a.exports = c; }, function (a, b) { function c(a, b) { return a === b || a !== a && b !== b; } a.exports = c; }, function (a, b, c) { (function (a) { var d = c(0), e = c(101), f = "object" == typeof b && b && !b.nodeType && b, g = f && "object" == typeof a && a && !a.nodeType && a, h = g && g.exports === f, i = h ? d.Buffer : void 0, j = i ? i.isBuffer : void 0, k = j || e; a.exports = k; }).call(b, c(29)(a)); }, function (a, b, c) { function d(a, b) { return e(a, b); } var e = c(49); a.exports = d; }, function (a, b, c) { function d(a) { if (!f(a))
+            return !1; var b = e(a); return b == h || b == i || b == g || b == j; } var e = c(8), f = c(27), g = "[object AsyncFunction]", h = "[object Function]", i = "[object GeneratorFunction]", j = "[object Proxy]"; a.exports = d; }, function (a, b) { function c(a) { return "number" == typeof a && a > -1 && a % 1 == 0 && a <= d; } var d = 9007199254740991; a.exports = c; }, function (a, b) { function c(a) { var b = typeof a; return null != a && ("object" == b || "function" == b); } a.exports = c; }, function (a, b, c) { var d = c(52), e = c(55), f = c(86), g = f && f.isTypedArray, h = g ? e(g) : d; a.exports = h; }, function (a, b) { a.exports = function (a) { return a.webpackPolyfill || (a.deprecate = function () { }, a.paths = [], a.children || (a.children = []), Object.defineProperty(a, "loaded", { enumerable: !0, get: function () { return a.l; } }), Object.defineProperty(a, "id", { enumerable: !0, get: function () { return a.i; } }), a.webpackPolyfill = 1), a; }; }, function (a, b, c) { var d, e, f; !function (c, g) { e = [a, b], d = g, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b) {
+            "use strict";
+            function c(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var d = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), e = [{ string: navigator.userAgent, subString: "Chrome", identity: "Chrome" }, { string: navigator.userAgent, subString: "OmniWeb", versionSearch: "OmniWeb/", identity: "OmniWeb" }, { string: navigator.vendor, subString: "Apple", identity: "Safari", versionSearch: "Version" }, { prop: window.opera, identity: "Opera", versionSearch: "Version" }, { string: navigator.vendor, subString: "iCab", identity: "iCab" }, { string: navigator.vendor, subString: "KDE", identity: "Konqueror" }, { string: navigator.userAgent, subString: "Firefox", identity: "Firefox" }, { string: navigator.vendor, subString: "Camino", identity: "Camino" }, { string: navigator.userAgent, subString: "Netscape", identity: "Netscape" }, { string: navigator.userAgent, subString: "MSIE", identity: "Explorer", versionSearch: "MSIE" }, { string: navigator.userAgent, subString: "Gecko", identity: "Mozilla", versionSearch: "rv" }, { string: navigator.userAgent, subString: "Mozilla", identity: "Netscape", versionSearch: "Mozilla" }], f = [{ string: navigator.platform, subString: "Win", identity: "Windows" }, { string: navigator.platform, subString: "Mac", identity: "Mac OS" }, { string: navigator.userAgent, subString: "iPhone", identity: "iOS" }, { string: navigator.platform, subString: "Linux", identity: "Linux" }], g = function () { function a() { c(this, a), this.browser = this._searchString(e) || "Unknown Browser", this.version = this._searchVersion(navigator.userAgent) || this._searchVersion(navigator.appVersion) || "Unknown Version", this.OS = this._searchString(f) || "Unknown OS"; } return d(a, [{ key: "_searchString", value: function (a) { for (var b = 0; b < a.length; b++) {
+                        var c = a[b].string, d = a[b].prop;
+                        if (this.versionSearchString = a[b].versionSearch || a[b].identity, c) {
+                            if (-1 !== c.indexOf(a[b].subString))
+                                return a[b].identity;
+                        }
+                        else if (d)
+                            return a[b].identity;
+                    } } }, { key: "_searchVersion", value: function (a) { if (!a)
+                        return -1; var b = a.indexOf(this.versionSearchString); return -1 === b ? -1 : parseFloat(a.substring(b + this.versionSearchString.length + 1)); } }]), a; }();
+            b.default = g, a.exports = b.default;
+        }); }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(1), c(3), c(34), c(16), c(4), c(24)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c, d, e, f, g, h) {
+            "use strict";
+            function i(a) { return a && a.__esModule ? a : { default: a }; }
+            function j(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var k = i(c), l = i(d), m = i(e), n = i(f), o = i(g), p = i(h), q = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), r = function () { function a() { j(this, a); } return q(a, null, [{ key: "connect", value: function () { if (!WebSocket)
+                        return void console.log("Your browser doesn't support WebSockets."); var b = new m.default, c = !1; b.onopen = function () { if (!c) {
+                        console.log("Leanplum: Connected to development server.");
+                        var a = {};
+                        a[k.default.PARAMS.APP_ID] = o.default.appId, a[k.default.PARAMS.DEVICE_ID] = o.default.deviceId, b.send("auth", a), c = !0;
+                    } }, b.onerror = function (a) { console.log("Leanplum: Socket error", a); }, b.onmessage = function (a, c) { "updateVars" === a ? o.default.request(k.default.METHODS.GET_VARS, (new l.default).add(k.default.PARAMS.INCLUDE_DEFAULTS, !1), { queued: !1, sendNow: !0, response: function (a) { var b = o.default.getLastResponse(a), c = b[k.default.KEYS.VARS], d = b[k.default.KEYS.VARIANTS], e = b[k.default.KEYS.ACTION_METADATA]; (0, p.default)(c, n.default.diffs) || n.default.applyDiffs(c, d, e); } }) : "getVariables" === a ? (n.default.sendVariables(), b.send("getContentResponse", { updated: !0 })) : "getActions" === a ? b.send("getContentResponse", { updated: !1 }) : "registerDevice" === a && alert("Your device has been registered to " + c[0].email + "."); }, b.onclose = function () { console.log("Leanplum: Disconnected to development server."), c = !1; }, b.connect(a.socketHost), setInterval(function () { b.connected || b.connecting || b.connect(a.socketHost); }, 5e3); } }]), a; }();
+            r.socketHost = "dev.leanplum.com", b.default = r, a.exports = b.default;
+        }); }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(1), c(3), c(24), c(5), c(4)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c, d, e, f, g) {
+            "use strict";
+            function h(a) { return a && a.__esModule ? a : { default: a }; }
+            function i(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var j = h(c), k = h(d), l = h(e), m = h(f), n = h(g), o = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), p = !1, q = null, r = function () { function a() { i(this, a); } return o(a, null, [{ key: "isWebPushSupported", value: function () { return navigator && navigator.serviceWorker && "serviceWorker" in navigator && "PushManager" in window; } }, { key: "isWebPushSubscribed", value: function () { return a.isWebPushSupported() ? a.getServiceWorkerRegistration().then(function (b) { return new Promise(function (c) { b ? b.pushManager.getSubscription().then(function (b) { p = null !== b, p && a.updateNewSubscriptionOnServer(b), c(p); }) : c(!1); }); }) : new Promise(function (a) { a(!1); }); } }, { key: "register", value: function (b, c) { if (!a.isWebPushSupported())
+                        return console.log("Leanplum: Push messaging is not supported."), c(!1); navigator.serviceWorker.register(b || "/sw.min.js", null).then(function (b) { q = b, q.pushManager.getSubscription().then(function (b) { if (p = !(null === b), p && a.updateNewSubscriptionOnServer(b), c)
+                        return c(p); }); }).catch(function (a) { console.log("Leanplum: Service Worker Error: ", a); }); } }, { key: "subscribeUser", value: function () { var b = a.urlB64ToUint8Array("BInWPpWntfR39rgXSP04pqdmEdDGa50z6zqbMvxyxJCwzXIuSpSh8C888-CfJ82WELl7Xe8cjAnfCt-3vK0Ci68"); return new Promise(function (c, d) { return q.pushManager.subscribe({ userVisibleOnly: !0, applicationServerKey: b }).then(function (b) { return b ? (a.updateNewSubscriptionOnServer(b), p = !0, c(p)) : (p = !1, d()); }).catch(function (a) { return d("Leanplum: Failed to subscribe the user: " + a); }); }); } }, { key: "unsubscribeUser", value: function () { return new Promise(function (b, c) { a.isWebPushSubscribed().then(function (a) { if (!a)
+                        return b(); q.pushManager.getSubscription().then(function (a) { return a ? a.unsubscribe() : c(); }).catch(function (a) { c("Leanplum: Error unsubscribing: " + a); }).then(function (a) { return a ? (p = !1, b()) : c(); }); }, function (a) { return c(); }); }); } }, { key: "getServiceWorkerRegistration", value: function () { return new Promise(function (a) { q ? a(q) : navigator.serviceWorker.getRegistration().then(function (b) { q = b, a(b); }); }); } }, { key: "urlB64ToUint8Array", value: function (a) { for (var b = "=".repeat((4 - a.length % 4) % 4), c = (a + b).replace(/-/g, "+").replace(/_/g, "/"), d = window.atob(c), e = new Uint8Array(d.length), f = 0; f < d.length; ++f)
+                        e[f] = d.charCodeAt(f); return e; } }, { key: "prepareSubscription", value: function (a) { var b = a.getKey ? a.getKey("p256dh") : "", c = a.getKey ? a.getKey("auth") : "", d = btoa(Reflect.apply(String.fromCharCode, null, new Uint8Array(b))), e = btoa(Reflect.apply(String.fromCharCode, null, new Uint8Array(c))); return { endpoint: a.endpoint, key: d, auth: e }; } }, { key: "updateNewSubscriptionOnServer", value: function (b) { if (b) {
+                        var c = a.prepareSubscription(b), d = JSON.stringify(c), e = m.default.getFromLocalStorage(j.default.DEFAULT_KEYS.PUSH_SUBSCRIPTION);
+                        (0, l.default)(e, d) || (m.default.saveToLocalStorage(j.default.DEFAULT_KEYS.PUSH_SUBSCRIPTION, d), a.setSubscription(d));
+                    } } }, { key: "setSubscription", value: function (a) { a && n.default.request(j.default.METHODS.SET_DEVICE_ATTRIBUTES, (new k.default).add(j.default.PARAMS.WEB_PUSH_SUBSCRIPTION, a), { queued: !1, sendNow: !0 }); } }]), a; }();
+            b.default = r, a.exports = b.default;
+        }); }, function (a, b, c) {
+            var d, e, f;
+            !function (g, h) { e = [a, b, c(1), c(12), c(3), c(30), c(32), c(5), c(16), c(4), c(31)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c, d, e, f, g, h, i, j, k) {
+                "use strict";
+                function l(a) { return a && a.__esModule ? a : { default: a }; }
+                function m(a, b) { if (!(a instanceof b))
+                    throw new TypeError("Cannot call a class as a function"); }
+                Object.defineProperty(b, "__esModule", { value: !0 });
+                var n = l(c), o = l(d), p = l(e), q = l(f), r = l(g), s = l(h), t = l(i), u = l(j), v = l(k), w = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (a) { return typeof a; } : function (a) { return a && "function" == typeof Symbol && a.constructor === Symbol && a !== Symbol.prototype ? "symbol" : typeof a; }, x = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                    var d = b[c];
+                    d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+                } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), y = new q.default, z = function () {
+                    function a() { m(this, a); }
+                    return x(a, null, [{ key: "setApiPath", value: function (a) { u.default.apiPath && (u.default.apiPath = a); } }, { key: "setEmail", value: function (b) { a._email = b; } }, { key: "setNetworkTimeout", value: function (a) { u.default.setNetworkTimeout(a); } }, { key: "setVariantDebugInfoEnabled", value: function (a) { o.default.setVariantDebugInfoEnabled(a); } }, { key: "getVariantDebugInfo", value: function () { return t.default.getVariantDebugInfo(); } }, { key: "setAppIdForDevelopmentMode", value: function (a, b) { u.default.appId = a, u.default.clientKey = b, o.default.devMode = !0; } }, { key: "setAppIdForProductionMode", value: function (a, b) { u.default.appId = a, u.default.clientKey = b, o.default.devMode = !1; } }, { key: "setSocketHost", value: function (a) { v.default.socketHost = a; } }, { key: "setDeviceId", value: function (a) { u.default.deviceId = a; } }, { key: "setAppVersion", value: function (a) { u.default.versionName = a; } }, { key: "setDeviceName", value: function (b) { a._deviceName = b; } }, { key: "setDeviceModel", value: function (b) { a._deviceModel = b; } }, { key: "setSystemName", value: function (b) { a._systemName = b; } }, { key: "setSystemVersion", value: function (b) { a._systemVersion = b; } }, { key: "setVariables", value: function (a) { t.default.setVariables(a); } }, { key: "setRequestBatching", value: function (a, b) { u.default.batchEnabled = a, u.default.batchCooldown = b; } }, { key: "getVariables", value: function () { return t.default.getVariables(); } }, { key: "getVariable", value: function () { for (var b = a.getVariables(), c = arguments.length, d = Array(c), e = 0; e < c; e++)
+                                d[e] = arguments[e]; for (var f = 0; f < d.length; f++)
+                                b = b[d[f]]; return b; } }, { key: "getVariants", value: function () { return t.default.variants || []; } }, { key: "addStartResponseHandler", value: function (a) { o.default.addStartResponseHandler(a); } }, { key: "addVariablesChangedHandler", value: function (a) { o.default.addVariablesChangedHandler(a); } }, { key: "removeStartResponseHandler", value: function (a) { o.default.removeStartResponseHandler(a); } }, { key: "removeVariablesChangedHandler", value: function (a) { o.default.removeVariablesChangedHandler(a); } }, { key: "forceContentUpdate", value: function (a) { u.default.request(n.default.METHODS.GET_VARS, (new p.default).add(n.default.PARAMS.INCLUDE_DEFAULTS, !1).add(n.default.PARAMS.INCLUDE_VARIANT_DEBUG_INFO, o.default.variantDebugInfoEnabled), { queued: !1, sendNow: !0, response: function (b) { var c = u.default.getLastResponse(b), d = u.default.isResponseSuccess(c); d && (t.default.applyDiffs(c[n.default.KEYS.VARS], c[n.default.KEYS.VARIANTS], c[n.default.KEYS.ACTION_METADATA]), t.default.variantDebugInfo = c[n.default.KEYS.VARIANT_DEBUG_INFO]), a && a(d); } }); } }, { key: "start", value: function (b, c, d) {
+                                "function" == typeof b ? (d = b, c = {}, b = null) : "object" === (void 0 === b ? "undefined" : w(b)) && null !== b && void 0 !== b ? (d = c, c = b, b = null) : "function" == typeof c && (d = c, c = {}), u.default.userId = b, d && a.addStartResponseHandler(d), t.default.onUpdate = function () { o.default.triggerVariablesChangedHandlers(); };
+                                var e = (new p.default).add(n.default.PARAMS.USER_ATTRIBUTES, JSON.stringify(c)).add(n.default.PARAMS.COUNTRY, n.default.VALUES.DETECT).add(n.default.PARAMS.REGION, n.default.VALUES.DETECT).add(n.default.PARAMS.CITY, n.default.VALUES.DETECT).add(n.default.PARAMS.LOCATION, n.default.VALUES.DETECT).add(n.default.PARAMS.SYSTEM_NAME, a._systemName || y.OS).add(n.default.PARAMS.SYSTEM_VERSION, (a._systemVersion || "").toString()).add(n.default.PARAMS.BROWSER_NAME, y.browser).add(n.default.PARAMS.BROWSER_VERSION, y.version.toString()).add(n.default.PARAMS.LOCALE, n.default.VALUES.DETECT).add(n.default.PARAMS.DEVICE_NAME, a._deviceName || y.browser + " " + y.version).add(n.default.PARAMS.DEVICE_MODEL, a._deviceModel || "Web Browser").add(n.default.PARAMS.INCLUDE_DEFAULTS, !1).add(n.default.PARAMS.INCLUDE_VARIANT_DEBUG_INFO, o.default.variantDebugInfoEnabled);
+                                u.default.request(n.default.METHODS.START, e, { queued: !0, sendNow: !0, response: function (a) { o.default.hasStarted = !0; var b = u.default.getLastResponse(a); if (u.default.isResponseSuccess(b)) {
+                                        if (o.default.startSuccessful = !0, o.default.devMode) {
+                                            var c = b[n.default.KEYS.LATEST_VERSION];
+                                            c && console.log("A newer version of Leanplum, " + c + ", is available. Go toleanplum.com to download it."), v.default.connect();
+                                        }
+                                        t.default.applyDiffs(b[n.default.KEYS.VARS], b[n.default.KEYS.VARIANTS], b[n.default.KEYS.ACTION_METADATA]), t.default.variantDebugInfo = b[n.default.KEYS.VARIANT_DEBUG_INFO], t.default.token = b[n.default.KEYS.TOKEN];
+                                    }
+                                    else
+                                        o.default.startSuccessful = !1, t.default.loadDiffs(); o.default.triggerStartHandlers(); } });
+                            } }, { key: "startFromCache", value: function (b, c, d) { "function" == typeof b ? (d = b, c = {}, b = null) : "object" === (void 0 === b ? "undefined" : w(b)) && null !== b && void 0 !== b ? (d = c, c = b, b = null) : "function" == typeof c && (d = c, c = {}), u.default.userId = b, d && a.addStartResponseHandler(d), o.default.hasStarted = !0, o.default.startSuccessful = !0, o.default.devMode && v.default.connect(), t.default.loadDiffs(), o.default.triggerStartHandlers(); } }, { key: "stop", value: function () { u.default.request(n.default.METHODS.STOP, void 0, { sendNow: !0, queued: !0 }); } }, { key: "pauseSession", value: function () { u.default.request(n.default.METHODS.PAUSE_SESSION, void 0, { sendNow: !0, queued: !0 }); } }, { key: "resumeSession", value: function () { u.default.request(n.default.METHODS.RESUME_SESSION, void 0, { sendNow: !0, queued: !0 }); } }, { key: "pauseState", value: function () { u.default.request(n.default.METHODS.PAUSE_STATE, void 0, { queued: !0 }); } }, { key: "resumeState", value: function () { u.default.request(n.default.METHODS.RESUME_STATE, void 0, { queued: !0 }); } }, { key: "setUserId", value: function (b) { a.setUserAttributes(b); } }, { key: "setUserAttributes", value: function (a, b) { if (void 0 === b)
+                                if ("object" === (void 0 === a ? "undefined" : w(a)))
+                                    b = a, a = void 0;
+                                else if ("string" != typeof a)
+                                    return void console.log("Leanplum: setUserAttributes expects a string or an object"); u.default.request(n.default.METHODS.SET_USER_ATTRIBUTES, (new p.default).add(n.default.PARAMS.USER_ATTRIBUTES, b ? JSON.stringify(b) : void 0).add(n.default.PARAMS.NEW_USER_ID, a), { queued: !0 }), a && (u.default.userId = a, s.default.saveToLocalStorage(n.default.DEFAULT_KEYS.USER_ID, u.default.userId)); } }, { key: "track", value: function (a, b, c, d) { "object" === (void 0 === b ? "undefined" : w(b)) && null !== b && void 0 !== b ? (d = b, c = void 0, b = void 0) : "string" == typeof b ? (d = c, c = b, b = void 0) : "object" === (void 0 === c ? "undefined" : w(c)) && null !== c && void 0 !== c && (d = c, c = void 0), u.default.request(n.default.METHODS.TRACK, (new p.default).add(n.default.PARAMS.EVENT, a).add(n.default.PARAMS.VALUE, b || 0).add(n.default.PARAMS.INFO, c).add(n.default.PARAMS.PARAMS, JSON.stringify(d)), { queued: !0 }); } }, { key: "advanceTo", value: function (a, b, c) { "object" === (void 0 === b ? "undefined" : w(b)) && null !== b && void 0 !== b && (c = b, b = void 0), u.default.request(n.default.METHODS.ADVANCE, (new p.default).add(n.default.PARAMS.STATE, a).add(n.default.PARAMS.INFO, b).add(n.default.PARAMS.PARAMS, JSON.stringify(c)), { queued: !0 }); } }, { key: "isWebPushSupported", value: function () { return r.default.isWebPushSupported(); } }, { key: "isWebPushSubscribed", value: function () { return r.default.isWebPushSubscribed(); } }, { key: "registerForWebPush", value: function (a) { return new Promise(function (b, c) { return r.default.isWebPushSupported() ? r.default.register(a, function (a) { return a ? b(!0) : r.default.subscribeUser(); }) : c("Leanplum: WebPush is not supported."); }); } }, { key: "unregisterFromWebPush", value: function () { return r.default.unsubscribeUser(); } }]), a;
+                }();
+                b.default = z, a.exports = b.default;
+            });
+        }, function (a, b, c) { var d, e, f; !function (g, h) { e = [a, b, c(17)], d = h, void 0 !== (f = "function" == typeof d ? d.apply(b, e) : d) && (a.exports = f); }(0, function (a, b, c) {
+            "use strict";
+            function d(a, b) { if (!(a instanceof b))
+                throw new TypeError("Cannot call a class as a function"); }
+            Object.defineProperty(b, "__esModule", { value: !0 });
+            var e = function (a) { return a && a.__esModule ? a : { default: a }; }(c), f = function () { function a(a, b) { for (var c = 0; c < b.length; c++) {
+                var d = b[c];
+                d.enumerable = d.enumerable || !1, d.configurable = !0, "value" in d && (d.writable = !0), Object.defineProperty(a, d.key, d);
+            } } return function (b, c, d) { return c && a(b.prototype, c), d && a(b, d), b; }; }(), g = function () { function a() { d(this, a), this.connected = !1, this.connecting = !1; } return f(a, [{ key: "connect", value: function (a) { var b = this; b.connecting = !0, e.default.ajax("POST", "https://" + a + "/socket.io/1", "", function (c) { var d = c.split(":"), e = d[0], f = parseInt(d[1]) / 2 * 1e3; b.socket = new WebSocket("wss://" + a + "/socket.io/1/websocket/" + e); var g = null; b.socket.onopen = function () { b.connected = !0, b.connecting = !1, b.onopen && b.onopen(), g = setInterval(function () { b.socket.send("2:::"); }, f); }, b.socket.onclose = function () { b.connected = !1, clearInterval(g), b.onclose && b.onclose(); }, b.socket.onmessage = function (a) { var c = a.data.split(":"), d = parseInt(c[0]); if (2 === d)
+                        b.socket.send("2::");
+                    else if (5 === d) {
+                        var e = c[1], f = JSON.parse(c.slice(3).join(":")), g = f.name, h = f.args;
+                        e && b.socket.send("6:::" + e), b.onmessage && b.onmessage(g, h);
+                    }
+                    else
+                        7 === d && console.log("Socket error: " + a.data); }, b.socket.onerror = function (a) { b.socket.close(), b.onerror && b.onerror(a); }; }, null, !1, !0); } }, { key: "send", value: function (a, b) { if (!this.connected)
+                        return void console.log("Leanplum: Socket is not connected."); var c = JSON.stringify({ name: a, args: b }); this.socket.send("5:::" + c); } }]), a; }();
+            b.default = g, a.exports = b.default;
+        }); }, function (a, b, c) { var d = c(2), e = c(0), f = d(e, "DataView"); a.exports = f; }, function (a, b, c) { function d(a) { var b = -1, c = null == a ? 0 : a.length; for (this.clear(); ++b < c;) {
+            var d = a[b];
+            this.set(d[0], d[1]);
+        } } var e = c(65), f = c(66), g = c(67), h = c(68), i = c(69); d.prototype.clear = e, d.prototype.delete = f, d.prototype.get = g, d.prototype.has = h, d.prototype.set = i, a.exports = d; }, function (a, b, c) { var d = c(2), e = c(0), f = d(e, "Promise"); a.exports = f; }, function (a, b, c) { var d = c(2), e = c(0), f = d(e, "Set"); a.exports = f; }, function (a, b, c) { function d(a) { var b = -1, c = null == a ? 0 : a.length; for (this.__data__ = new e; ++b < c;)
+            this.add(a[b]); } var e = c(18), f = c(89), g = c(90); d.prototype.add = d.prototype.push = f, d.prototype.has = g, a.exports = d; }, function (a, b, c) { function d(a) { var b = this.__data__ = new e(a); this.size = b.size; } var e = c(6), f = c(92), g = c(93), h = c(94), i = c(95), j = c(96); d.prototype.clear = f, d.prototype.delete = g, d.prototype.get = h, d.prototype.has = i, d.prototype.set = j, a.exports = d; }, function (a, b, c) { var d = c(0), e = d.Uint8Array; a.exports = e; }, function (a, b, c) { var d = c(2), e = c(0), f = d(e, "WeakMap"); a.exports = f; }, function (a, b) { function c(a, b) { for (var c = -1, d = null == a ? 0 : a.length, e = 0, f = []; ++c < d;) {
+            var g = a[c];
+            b(g, c, a) && (f[e++] = g);
+        } return f; } a.exports = c; }, function (a, b, c) { function d(a, b) { var c = g(a), d = !c && f(a), k = !c && !d && h(a), m = !c && !d && !k && j(a), n = c || d || k || m, o = n ? e(a.length, String) : [], p = o.length; for (var q in a)
+            !b && !l.call(a, q) || n && ("length" == q || k && ("offset" == q || "parent" == q) || m && ("buffer" == q || "byteLength" == q || "byteOffset" == q) || i(q, p)) || o.push(q); return o; } var e = c(54), f = c(97), g = c(15), h = c(23), i = c(70), j = c(28), k = Object.prototype, l = k.hasOwnProperty; a.exports = d; }, function (a, b) { function c(a, b) { for (var c = -1, d = b.length, e = a.length; ++c < d;)
+            a[e + c] = b[c]; return a; } a.exports = c; }, function (a, b) { function c(a, b) { for (var c = -1, d = null == a ? 0 : a.length; ++c < d;)
+            if (b(a[c], c, a))
+                return !0; return !1; } a.exports = c; }, function (a, b, c) { function d(a, b, c) { var d = b(a); return f(a) ? d : e(d, c(a)); } var e = c(45), f = c(15); a.exports = d; }, function (a, b, c) { function d(a) { return f(a) && e(a) == g; } var e = c(8), f = c(11), g = "[object Arguments]"; a.exports = d; }, function (a, b, c) { function d(a, b, c, g, h) { return a === b || (null == a || null == b || !f(a) && !f(b) ? a !== a && b !== b : e(a, b, c, g, d, h)); } var e = c(50), f = c(11); a.exports = d; }, function (a, b, c) { function d(a, b, c, d, q, s) { var t = j(a), u = j(b), v = t ? o : i(a), w = u ? o : i(b); v = v == n ? p : v, w = w == n ? p : w; var x = v == p, y = w == p, z = v == w; if (z && k(a)) {
+            if (!k(b))
+                return !1;
+            t = !0, x = !1;
+        } if (z && !x)
+            return s || (s = new e), t || l(a) ? f(a, b, c, d, q, s) : g(a, b, v, c, d, q, s); if (!(c & m)) {
+            var A = x && r.call(a, "__wrapped__"), B = y && r.call(b, "__wrapped__");
+            if (A || B) {
+                var C = A ? a.value() : a, D = B ? b.value() : b;
+                return s || (s = new e), q(C, D, c, d, s);
+            }
+        } return !!z && (s || (s = new e), h(a, b, c, d, q, s)); } var e = c(40), f = c(19), g = c(58), h = c(59), i = c(63), j = c(15), k = c(23), l = c(28), m = 1, n = "[object Arguments]", o = "[object Array]", p = "[object Object]", q = Object.prototype, r = q.hasOwnProperty; a.exports = d; }, function (a, b, c) { function d(a) { return !(!g(a) || f(a)) && (e(a) ? o : j).test(h(a)); } var e = c(25), f = c(72), g = c(27), h = c(21), i = /[\\^$.*+?()[\]{}|]/g, j = /^\[object .+?Constructor\]$/, k = Function.prototype, l = Object.prototype, m = k.toString, n = l.hasOwnProperty, o = RegExp("^" + m.call(n).replace(i, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"); a.exports = d; }, function (a, b, c) { function d(a) { return g(a) && f(a.length) && !!h[e(a)]; } var e = c(8), f = c(26), g = c(11), h = {}; h["[object Float32Array]"] = h["[object Float64Array]"] = h["[object Int8Array]"] = h["[object Int16Array]"] = h["[object Int32Array]"] = h["[object Uint8Array]"] = h["[object Uint8ClampedArray]"] = h["[object Uint16Array]"] = h["[object Uint32Array]"] = !0, h["[object Arguments]"] = h["[object Array]"] = h["[object ArrayBuffer]"] = h["[object Boolean]"] = h["[object DataView]"] = h["[object Date]"] = h["[object Error]"] = h["[object Function]"] = h["[object Map]"] = h["[object Number]"] = h["[object Object]"] = h["[object RegExp]"] = h["[object Set]"] = h["[object String]"] = h["[object WeakMap]"] = !1, a.exports = d; }, function (a, b, c) { function d(a) { if (!e(a))
+            return f(a); var b = []; for (var c in Object(a))
+            h.call(a, c) && "constructor" != c && b.push(c); return b; } var e = c(73), f = c(85), g = Object.prototype, h = g.hasOwnProperty; a.exports = d; }, function (a, b) { function c(a, b) { for (var c = -1, d = Array(a); ++c < a;)
+            d[c] = b(c); return d; } a.exports = c; }, function (a, b) { function c(a) { return function (b) { return a(b); }; } a.exports = c; }, function (a, b) { function c(a, b) { return a.has(b); } a.exports = c; }, function (a, b, c) { var d = c(0), e = d["__core-js_shared__"]; a.exports = e; }, function (a, b, c) { function d(a, b, c, d, e, x, z) { switch (c) {
+            case w:
+                if (a.byteLength != b.byteLength || a.byteOffset != b.byteOffset)
+                    return !1;
+                a = a.buffer, b = b.buffer;
+            case v: return !(a.byteLength != b.byteLength || !x(new f(a), new f(b)));
+            case m:
+            case n:
+            case q: return g(+a, +b);
+            case o: return a.name == b.name && a.message == b.message;
+            case r:
+            case t: return a == b + "";
+            case p: var A = i;
+            case s:
+                var B = d & k;
+                if (A || (A = j), a.size != b.size && !B)
+                    return !1;
+                var C = z.get(a);
+                if (C)
+                    return C == b;
+                d |= l, z.set(a, b);
+                var D = h(A(a), A(b), d, e, x, z);
+                return z.delete(a), D;
+            case u: if (y)
+                return y.call(a) == y.call(b);
+        } return !1; } var e = c(14), f = c(41), g = c(22), h = c(19), i = c(84), j = c(91), k = 1, l = 2, m = "[object Boolean]", n = "[object Date]", o = "[object Error]", p = "[object Map]", q = "[object Number]", r = "[object RegExp]", s = "[object Set]", t = "[object String]", u = "[object Symbol]", v = "[object ArrayBuffer]", w = "[object DataView]", x = e ? e.prototype : void 0, y = x ? x.valueOf : void 0; a.exports = d; }, function (a, b, c) { function d(a, b, c, d, g, i) { var j = c & f, k = e(a), l = k.length; if (l != e(b).length && !j)
+            return !1; for (var m = l; m--;) {
+            var n = k[m];
+            if (!(j ? n in b : h.call(b, n)))
+                return !1;
+        } var o = i.get(a); if (o && i.get(b))
+            return o == b; var p = !0; i.set(a, b), i.set(b, a); for (var q = j; ++m < l;) {
+            n = k[m];
+            var r = a[n], s = b[n];
+            if (d)
+                var t = j ? d(s, r, n, b, a, i) : d(r, s, n, a, b, i);
+            if (!(void 0 === t ? r === s || g(r, s, c, d, i) : t)) {
+                p = !1;
+                break;
+            }
+            q || (q = "constructor" == n);
+        } if (p && !q) {
+            var u = a.constructor, v = b.constructor;
+            u != v && "constructor" in a && "constructor" in b && !("function" == typeof u && u instanceof u && "function" == typeof v && v instanceof v) && (p = !1);
+        } return i.delete(a), i.delete(b), p; } var e = c(60), f = 1, g = Object.prototype, h = g.hasOwnProperty; a.exports = d; }, function (a, b, c) { function d(a) { return e(a, g, f); } var e = c(47), f = c(62), g = c(99); a.exports = d; }, function (a, b, c) { function d(a) { var b = g.call(a, i), c = a[i]; try {
+            a[i] = void 0;
+            var d = !0;
+        }
+        catch (a) { } var e = h.call(a); return d && (b ? a[i] = c : delete a[i]), e; } var e = c(14), f = Object.prototype, g = f.hasOwnProperty, h = f.toString, i = e ? e.toStringTag : void 0; a.exports = d; }, function (a, b, c) { var d = c(43), e = c(100), f = Object.prototype, g = f.propertyIsEnumerable, h = Object.getOwnPropertySymbols, i = h ? function (a) { return null == a ? [] : (a = Object(a), d(h(a), function (b) { return g.call(a, b); })); } : e; a.exports = i; }, function (a, b, c) { var d = c(35), e = c(13), f = c(37), g = c(38), h = c(42), i = c(8), j = c(21), k = j(d), l = j(e), m = j(f), n = j(g), o = j(h), p = i; (d && "[object DataView]" != p(new d(new ArrayBuffer(1))) || e && "[object Map]" != p(new e) || f && "[object Promise]" != p(f.resolve()) || g && "[object Set]" != p(new g) || h && "[object WeakMap]" != p(new h)) && (p = function (a) { var b = i(a), c = "[object Object]" == b ? a.constructor : void 0, d = c ? j(c) : ""; if (d)
+            switch (d) {
+                case k: return "[object DataView]";
+                case l: return "[object Map]";
+                case m: return "[object Promise]";
+                case n: return "[object Set]";
+                case o: return "[object WeakMap]";
+            } return b; }), a.exports = p; }, function (a, b) { function c(a, b) { return null == a ? void 0 : a[b]; } a.exports = c; }, function (a, b, c) { function d() { this.__data__ = e ? e(null) : {}, this.size = 0; } var e = c(10); a.exports = d; }, function (a, b) { function c(a) { var b = this.has(a) && delete this.__data__[a]; return this.size -= b ? 1 : 0, b; } a.exports = c; }, function (a, b, c) { function d(a) { var b = this.__data__; if (e) {
+            var c = b[a];
+            return c === f ? void 0 : c;
+        } return h.call(b, a) ? b[a] : void 0; } var e = c(10), f = "__lodash_hash_undefined__", g = Object.prototype, h = g.hasOwnProperty; a.exports = d; }, function (a, b, c) { function d(a) { var b = this.__data__; return e ? void 0 !== b[a] : g.call(b, a); } var e = c(10), f = Object.prototype, g = f.hasOwnProperty; a.exports = d; }, function (a, b, c) { function d(a, b) { var c = this.__data__; return this.size += this.has(a) ? 0 : 1, c[a] = e && void 0 === b ? f : b, this; } var e = c(10), f = "__lodash_hash_undefined__"; a.exports = d; }, function (a, b) { function c(a, b) { var c = typeof a; return !!(b = null == b ? d : b) && ("number" == c || "symbol" != c && e.test(a)) && a > -1 && a % 1 == 0 && a < b; } var d = 9007199254740991, e = /^(?:0|[1-9]\d*)$/; a.exports = c; }, function (a, b) { function c(a) { var b = typeof a; return "string" == b || "number" == b || "symbol" == b || "boolean" == b ? "__proto__" !== a : null === a; } a.exports = c; }, function (a, b, c) { function d(a) { return !!f && f in a; } var e = c(57), f = function () { var a = /[^.]+$/.exec(e && e.keys && e.keys.IE_PROTO || ""); return a ? "Symbol(src)_1." + a : ""; }(); a.exports = d; }, function (a, b) { function c(a) { var b = a && a.constructor; return a === ("function" == typeof b && b.prototype || d); } var d = Object.prototype; a.exports = c; }, function (a, b) { function c() { this.__data__ = [], this.size = 0; } a.exports = c; }, function (a, b, c) { function d(a) { var b = this.__data__, c = e(b, a); return !(c < 0) && (c == b.length - 1 ? b.pop() : g.call(b, c, 1), --this.size, !0); } var e = c(7), f = Array.prototype, g = f.splice; a.exports = d; }, function (a, b, c) { function d(a) { var b = this.__data__, c = e(b, a); return c < 0 ? void 0 : b[c][1]; } var e = c(7); a.exports = d; }, function (a, b, c) { function d(a) { return e(this.__data__, a) > -1; } var e = c(7); a.exports = d; }, function (a, b, c) { function d(a, b) { var c = this.__data__, d = e(c, a); return d < 0 ? (++this.size, c.push([a, b])) : c[d][1] = b, this; } var e = c(7); a.exports = d; }, function (a, b, c) { function d() { this.size = 0, this.__data__ = { hash: new e, map: new (g || f), string: new e }; } var e = c(36), f = c(6), g = c(13); a.exports = d; }, function (a, b, c) { function d(a) { var b = e(this, a).delete(a); return this.size -= b ? 1 : 0, b; } var e = c(9); a.exports = d; }, function (a, b, c) { function d(a) { return e(this, a).get(a); } var e = c(9); a.exports = d; }, function (a, b, c) { function d(a) { return e(this, a).has(a); } var e = c(9); a.exports = d; }, function (a, b, c) { function d(a, b) { var c = e(this, a), d = c.size; return c.set(a, b), this.size += c.size == d ? 0 : 1, this; } var e = c(9); a.exports = d; }, function (a, b) { function c(a) { var b = -1, c = Array(a.size); return a.forEach(function (a, d) { c[++b] = [d, a]; }), c; } a.exports = c; }, function (a, b, c) { var d = c(88), e = d(Object.keys, Object); a.exports = e; }, function (a, b, c) { (function (a) { var d = c(20), e = "object" == typeof b && b && !b.nodeType && b, f = e && "object" == typeof a && a && !a.nodeType && a, g = f && f.exports === e, h = g && d.process, i = function () { try {
+            var a = f && f.require && f.require("util").types;
+            return a || h && h.binding && h.binding("util");
+        }
+        catch (a) { } }(); a.exports = i; }).call(b, c(29)(a)); }, function (a, b) { function c(a) { return e.call(a); } var d = Object.prototype, e = d.toString; a.exports = c; }, function (a, b) { function c(a, b) { return function (c) { return a(b(c)); }; } a.exports = c; }, function (a, b) { function c(a) { return this.__data__.set(a, d), this; } var d = "__lodash_hash_undefined__"; a.exports = c; }, function (a, b) { function c(a) { return this.__data__.has(a); } a.exports = c; }, function (a, b) { function c(a) { var b = -1, c = Array(a.size); return a.forEach(function (a) { c[++b] = a; }), c; } a.exports = c; }, function (a, b, c) { function d() { this.__data__ = new e, this.size = 0; } var e = c(6); a.exports = d; }, function (a, b) { function c(a) { var b = this.__data__, c = b.delete(a); return this.size = b.size, c; } a.exports = c; }, function (a, b) { function c(a) { return this.__data__.get(a); } a.exports = c; }, function (a, b) { function c(a) { return this.__data__.has(a); } a.exports = c; }, function (a, b, c) { function d(a, b) { var c = this.__data__; if (c instanceof e) {
+            var d = c.__data__;
+            if (!f || d.length < h - 1)
+                return d.push([a, b]), this.size = ++c.size, this;
+            c = this.__data__ = new g(d);
+        } return c.set(a, b), this.size = c.size, this; } var e = c(6), f = c(13), g = c(18), h = 200; a.exports = d; }, function (a, b, c) { var d = c(48), e = c(11), f = Object.prototype, g = f.hasOwnProperty, h = f.propertyIsEnumerable, i = d(function () { return arguments; }()) ? d : function (a) { return e(a) && g.call(a, "callee") && !h.call(a, "callee"); }; a.exports = i; }, function (a, b, c) { function d(a) { return null != a && f(a.length) && !e(a); } var e = c(25), f = c(26); a.exports = d; }, function (a, b, c) { function d(a) { return g(a) ? e(a) : f(a); } var e = c(44), f = c(53), g = c(98); a.exports = d; }, function (a, b) { function c() { return []; } a.exports = c; }, function (a, b) { function c() { return !1; } a.exports = c; }, function (a, b) { var c; c = function () { return this; }(); try {
+            c = c || Function("return this")() || (0, eval)("this");
+        }
+        catch (a) {
+            "object" == typeof window && (c = window);
+        } a.exports = c; }]);
+});
 
-}, false);*/
-/*
- * Error Reporting
- */
-/*window.onerror = function (msg, url, lineNo, columnNo, error) {
-    var message = [
-        'Message: ' + msg,
-        'Line: ' + lineNo,
-        'Column: ' + columnNo,
-        'Error object: ' + JSON.stringify(error)
-    ].join(' - ');
-
-    if(ga.errorTracking)
-    {
-        setTimeout(function() {
-            ga.exception(message.toString());
-        }, 0);
-    }
-
-    return false;
-};*/
-
-},{}],15:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -7043,7 +7482,7 @@ var LogEventHandlers = /** @class */ (function () {
 }());
 exports.default = LogEventHandlers;
 
-},{"./channel-factory":7}],16:[function(require,module,exports){
+},{"./channel-factory":7}],18:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var LogEvent = /** @class */ (function () {

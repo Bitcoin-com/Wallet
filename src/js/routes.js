@@ -1242,14 +1242,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       
       // Send a log to test
-      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust"]);
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust", 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'banner_click', 
         class: 'track_banner_click', 
         params: ['href-banner', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBanner);
 
@@ -1257,7 +1257,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'buy_bitcoin_click', 
         class: 'track_buy_bitcoin_click', 
         params: ['href', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoin);
 
@@ -1265,7 +1265,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'link_click_out', 
         class: 'track_link_click_out', 
         params: ['href', 'id'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionLinkClickOut);
 

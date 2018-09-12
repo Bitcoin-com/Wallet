@@ -27,6 +27,7 @@ angular.module('copayApp.services').factory('buyAndSellService', function(gettex
         name: 'buyandsell',
         icon: 'icon-buy-bitcoin2',
         sref: 'tabs.buyandsell',
+        trackingClass: 'track_buy_bitcoin_click'
       });
     } else {
       servicesService.unregister({
