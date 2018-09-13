@@ -1070,7 +1070,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr ""
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr ""
 
 #: www/views/modals/chooseFeeLevel.html:41
