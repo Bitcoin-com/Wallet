@@ -434,10 +434,14 @@ module.exports = function(grunt) {
     }
 
     var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
+    var appId = leanplumForEnv.appId;
+    var key = leanplumForEnv.key;
+    console.log('Leanplum app ID: "' + appId + '"');
+    console.log('Leanplum key:    "' + key + '"');
 
     var newContent = '// Generated\n' + content
-      .replace("appId: ''","appId: '" + leanplumForEnv.appId + "'")
-      .replace("key: ''", "key: '" + leanplumForEnv.key + "'");
+      .replace("appId: ''","appId: '" + appId + "'")
+      .replace("key: ''", "key: '" + key + "'");
     return newContent;
   }
 };
