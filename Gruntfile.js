@@ -389,9 +389,9 @@ module.exports = function(grunt) {
   grunt.registerTask('build-ios-release', ['prod', 'exec:build_ios_release']);
 
   // Build android
-  grunt.registerTask('start-android', ['pre-dev', 'build-android-debug', 'exec:run_android']);
+  grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android']);
   grunt.registerTask('build-android-debug', ['pre-dev', 'exec:build_android_debug']);
-  grunt.registerTask('start-android-emulator', ['pre-dev', 'build-android-debug', 'exec:run_android_emulator']);
+  grunt.registerTask('start-android-emulator', ['build-android-debug', 'exec:run_android_emulator']);
   grunt.registerTask('build-android-release', ['prod', 'exec:build_android_release', 'sign-android']);
   grunt.registerTask('sign-android', ['exec:sign_android']);
 
