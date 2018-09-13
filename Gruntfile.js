@@ -417,15 +417,20 @@ module.exports = function(grunt) {
   // Release desktop
   grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']);
 
-  
+
   function processLeanplumConfig(content, env) {
     var leanplumConfig = {};
     try {
       leanplumConfig = grunt.file.readJSON('../leanplum-config.json');
     } catch (e) {
-       // Without this, there is no clue on the console about what happened.
-      console.error('Error reading JSON', e);
-      throw e;
+      // Without this, there is no clue on the console about what happened.
+      if (env === 'prod') {
+        console.error('Error reading JSON', e);
+        throw e;
+      } else { // Allow people to build if they don't care about Leanplum
+        console.warn('Failed to read Leanplum config JSON', e);
+        return content;
+      }
     }
 
     var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
