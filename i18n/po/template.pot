@@ -476,6 +476,22 @@ msgstr ""
 msgid "Buy Bitcoin"
 msgstr ""
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr ""
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr ""
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr ""
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr ""
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
