@@ -169,8 +169,18 @@ msgid "Address Book"
 msgstr ""
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr ""
+
+#www/views/tab-receive.html:76
+msgid "Cash Address"
+msgstr ""
+
+#: www/views/tab-receive.html:77
+msgid "Legacy"
+msgstr ""
+
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
