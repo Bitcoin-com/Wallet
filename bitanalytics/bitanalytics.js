@@ -6661,17 +6661,22 @@ var LeanplumChannel = /** @class */ (function (_super) {
         if (!config.key) {
             throw new Error('[BitAnalytics] Leanplum config is missing key.');
         }
-        leanplum_min_js_1.default.setAppIdForDevelopmentMode(config.appId, config.key);
+        if (config.key.indexOf('prod_') === 0) {
+            leanplum_min_js_1.default.setAppIdForProductionMode(config.appId, config.key);
+        }
+        else {
+            leanplum_min_js_1.default.setAppIdForDevelopmentMode(config.appId, config.key);
+        }
         leanplum_min_js_1.default.setAppVersion(config.appVersion);
         leanplum_min_js_1.default.start(function (success) {
-            //console.log('Success: ' + success);
-            //console.log('Variables', Leanplum.getVariables());
+            console.log('[BitAnalytics] Leanplum start() returned with success: "' + success + '"');
+            //console.log('[BitAnalytics] Leanplum variables', Leanplum.getVariables());
             if (success) {
                 _this.isReady = true;
                 _this.flush();
             }
             else {
-                console.error('Leanplum failed to start.');
+                console.error('[BitAnalytics] Leanplum failed to start.');
             }
         });
         return _this;
