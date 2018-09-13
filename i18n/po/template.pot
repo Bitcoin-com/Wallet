@@ -173,11 +173,13 @@ msgstr ""
 msgid "Address Type"
 msgstr ""
 
-#www/views/tab-receive.html:76
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
 msgid "Cash Address"
 msgstr ""
 
 #: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
 msgid "Legacy"
 msgstr ""
 
