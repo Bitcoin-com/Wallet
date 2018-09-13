@@ -595,6 +595,7 @@ msgstr ""
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr ""
 
@@ -896,6 +897,10 @@ msgstr ""
 
 #: www/views/tab-create-shared.html:160
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr ""
+
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
 msgstr ""
 
 #: www/views/modals/txp-details.html:81
@@ -1236,6 +1241,14 @@ msgstr ""
 msgid "Expires"
 msgstr ""
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr ""
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr ""
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr ""
@@ -1574,7 +1587,7 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr ""
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
 msgstr ""
 
 #: src/js/controllers/onboarding/backupRequest.js:18
