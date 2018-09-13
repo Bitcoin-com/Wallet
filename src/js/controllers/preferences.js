@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesController',
-  function($scope, $rootScope, $timeout, $log, $ionicHistory, configService, profileService, fingerprintService, walletService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
+  function($scope, $rootScope, $state, $timeout, $log, $ionicHistory, configService, profileService, fingerprintService, walletService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
     var wallet;
     var walletId;
+    var backToDetails = false;
 
     $scope.hiddenBalanceChange = function() {
       var opts = {
@@ -83,6 +84,7 @@ angular.module('copayApp.controllers').controller('preferencesController',
     };
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
+      backToDetails = data.stateParams.backToDetails;
       wallet = profileService.getWallet(data.stateParams.walletId);
       walletId = wallet.credentials.walletId;
       $scope.wallet = wallet;
@@ -116,4 +118,15 @@ angular.module('copayApp.controllers').controller('preferencesController',
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
     });
+
+    $scope.goBack = function() {
+      if (backToDetails) {
+        $state.go('tabs.home').then(function () {
+          $ionicHistory.clearHistory();
+          $state.go('tabs.wallet', {'walletId': wallet.id});
+        });
+      } else {
+        $ionicHistory.goBack();
+      }
+    };
   });

@@ -526,7 +526,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        */
 
       .state('tabs.preferences', {
-        url: '/preferences/:walletId',
+        url: '/preferences/:walletId/:backToDetails',
         views: {
           'tab-settings@tabs': {
             controller: 'preferencesController',

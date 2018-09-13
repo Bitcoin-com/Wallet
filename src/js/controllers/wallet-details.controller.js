@@ -115,6 +115,13 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
   };
 
+  $scope.openSettings = function() {
+    $state.go('tabs.settings').then(function () {
+      $ionicHistory.clearHistory();
+      $state.go('tabs.preferences', {'walletId': $scope.wallet.id, 'backToDetails': true});
+    });
+  };
+
   $scope.openSearchModal = function() {
     $scope.color = $scope.wallet.color;
     $scope.isSearching = true;
