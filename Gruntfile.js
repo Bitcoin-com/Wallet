@@ -175,6 +175,7 @@ module.exports = function(grunt) {
       js: {
         src: [
           'src/js/app.js',
+          'src/js/generated/constants/*.js',
           'src/js/routes.js',
           'src/js/decorators/*.js',
 
@@ -242,6 +243,26 @@ module.exports = function(grunt) {
       },
     },
     copy: {
+      gen_constant_leanplum: {
+        src: 'src/js/templates/constants/leanplum-config.constant.js',
+        dest: 'src/js/generated/constants/leanplum-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            var leanplumConfig = {};
+            try {
+              leanplumConfig = grunt.file.readJSON('../leanplum-config.json');
+            } catch (e) {
+               // Without this, there is no clue on the console about what happened.
+              console.error('Error reading JSON', e);
+              throw e;
+            }
+            var newContent = '// Generated\n' + content
+              .replace("appId: ''","appId: '" + leanplumConfig.dev.appId + "'")
+              .replace("key: ''", "key: '" + leanplumConfig.dev.key + "'");
+            return newContent;
+          },
+        },
+      },
       ionic_fonts: {
         expand: true,
         flatten: true,
@@ -345,8 +366,8 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
+  
+  grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'copy:gen_constant_leanplum', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('prod', ['default', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);

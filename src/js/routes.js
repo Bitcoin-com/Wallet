@@ -1207,7 +1207,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
@@ -1228,7 +1228,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             "wallet_created": "nd3dg5",
             "wallet_opened": "4n39l7"
           }
-        }
+        },
+        leanplum: leanplumConfig
       });
 
       configService.whenAvailable(function(config) {
@@ -1273,14 +1274,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'tab_open', 
         class: 'track_tab_open', 
         params: ['href', 'title', 'icon-off'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
       var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'shapeshift_start_click', 
         class: 'track_shapeshift_start_click', 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
       
