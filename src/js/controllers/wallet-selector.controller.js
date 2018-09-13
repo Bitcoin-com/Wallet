@@ -121,7 +121,7 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
         walletsAll = profileService.getWallets({coin: $scope.coin});
         ongoingProcess.set('scanning', true);
         walletsAll.forEach(function forWallet(wallet) {
-          if (!wallet.status) {
+          if (!wallet.status && !wallet.cachedStatus) {
             walletService.getStatus(wallet, {}, function(err, status) {
               wallet.status = status;
               if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
@@ -132,7 +132,14 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
               ongoingProcess.set('scanning', false);
             });
           } else {
-            if (wallet.status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
+            var walletStatus = null;
+            if (wallet.status && wallet.status.isValid) {
+              walletStatus = wallet.status;
+            } else if (wallet.cachedStatus) {
+              walletStatus = wallet.cachedStatus;
+            }
+
+            if (walletStatus.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
               walletsSufficientFunds.push(wallet);
             } else {
               $scope.walletsInsufficientFunds.push(wallet);

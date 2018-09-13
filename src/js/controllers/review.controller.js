@@ -392,12 +392,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     var balanceCryptoAmount = '';
     var balanceCryptoCurrencyCode = '';
     var balanceFiatAmount = '';
-    var balanceFiatCurrency = ''
+    var balanceFiatCurrency = '';
     var displayAmount = '';
     var displayCurrency = '';
 
     var walletStatus = null;
-    if (wallet.status.isValid) {
+    if (wallet.status && wallet.status.isValid) {
       walletStatus = wallet.status;
     } else if (wallet.cachedStatus.isValid) {
       walletStatus = wallet.cachedStatus;
