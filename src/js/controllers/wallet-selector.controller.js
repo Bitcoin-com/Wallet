@@ -129,6 +129,11 @@ angular.module('copayApp.controllers').controller('walletSelectorController', fu
               } else {
                 $scope.walletsInsufficientFunds.push(wallet);
               }
+              if ($scope.coin === 'btc') { // As this is a promise
+                $scope.walletsBtc = walletsSufficientFunds;
+              } else {
+                $scope.walletsBch = walletsSufficientFunds;
+              }
               ongoingProcess.set('scanning', false);
             });
           } else {
