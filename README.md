@@ -72,6 +72,22 @@ A watch task is also available to rebuild components of the app as changes are m
 npm run watch
 ```
 
+### External Config
+When creating the production version, the build scripts expect a configuration file called `leanplum-config.json` to be in the directory that contains the project folder, with contents in the following format:
+
+```json
+{
+  "dev": {
+    "appId": "",
+    "key": ""
+  },
+  "prod": {
+    "appId": "",
+    "key": ""
+  }
+}
+```
+
 ## Testing on Real Devices
 
 It's recommended that all final testing be done on a real device – both to assess performance and to enable features that are unavailable to the emulator (e.g. a device camera).
