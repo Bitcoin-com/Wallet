@@ -135,6 +135,13 @@
     <platform name="android">
       <preference name="android-manifest/application/@android:allowBackup" value="false" />
 
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-ldpi/fcm_push_icon.png" density="ldpi" />
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-mdpi/fcm_push_icon.png" density="mdpi" />
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-hdpi/fcm_push_icon.png" density="hdpi" />
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-xhdpi/fcm_push_icon.png" density="xhdpi" />
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-xxhdpi/fcm_push_icon.png" density="xxhdpi" />
+      <icon src="resources/bitcoin.com/android/fcm_push_icon/drawable-xxxhdpi/fcm_push_icon.png" density="xxxhdpi" />
+
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-ldpi-icon.png" density="ldpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-mdpi-icon.png" density="mdpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-hdpi-icon.png" density="hdpi" />
