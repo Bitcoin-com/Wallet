@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,8 +520,8 @@ msgid "Cannot Create Wallet"
 msgstr "Kan Portemonnee Niet Aanmaken"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
-msgstr "Kan niet meerdere keren tegelijk deelnemen aan een portemonnee"
+msgid "Cannot join the same wallet more than once"
+msgstr "Je kan niet meerdere keren tegelijk aan een portemonnee deelnemen"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -2925,9 +2925,14 @@ msgid "Sweep"
 msgstr "Saldo opnemen"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "Saldo papieren portemonnee opnemen"
+msgstr "Paper wallet leeghalen"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "Paper wallet leeghalen"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3792,6 +3797,10 @@ msgstr "Bitcoin.com verkennen"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash spellen"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Wallet app delen"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Nieuws"
@@ -3859,4 +3868,76 @@ msgstr "Minder dan 1 cent"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Deze factuur accepteert geen betalingen meer"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Alles versturen"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Onbekende fout."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Geen Bitcoin Cash portemonnee gevonden om bedrag naartoe over te maken."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Geen Bitcoin Cash gevonden."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Bitcoin Core gevonden:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Geen Bitcoin Core portemonnee gevonden om waarde naartoe te versturen."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Geen Bitcoin Core gevonden."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Scannen mislukt"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Gegevens niet herkend."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Niet ondersteund"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet wordt niet ondersteund."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Open in webbrowser"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Ongeldig adres"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Bedrag is niet gespecificeerd"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Bedrag lager is dan het minimum"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Bedrag is boven het limiet"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Ongeldig respons van Shapeshift"
 

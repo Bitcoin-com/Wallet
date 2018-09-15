@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,7 +520,7 @@ msgid "Cannot Create Wallet"
 msgstr "不能创建钱包"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "无法重复加入同一个钱包"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2925,9 +2925,14 @@ msgid "Sweep"
 msgstr "扫描"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "Sweep 纸钱包"
+msgstr "清空纸钱包"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "清空纸钱包"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3792,6 +3797,10 @@ msgstr "探索 Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash 游戏"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "分享钱包应用"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "新闻"
@@ -3859,4 +3868,76 @@ msgstr "少于 1 美分"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "此发票不再接受付款"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "发送最大金额"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "未知错误。"
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "未找到可以转入资金的 Bitcoin Cash 钱包。"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "未找到 Bitcoin Cash。"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "已找到 Bitcoin Core："
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "未找到可以转入资金的 Bitcoin Core 钱包。"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "未找到 Bitcoin Core。"
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "扫描失败"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "数据未被识别。"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "不受支持"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "不支持测试网。"
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "网址"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "在网络浏览器中打开"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "地址无效"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "未定义金额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "金额低于最低金额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "金额高于限额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Shapeshift 的响应无效"
 

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,7 +520,7 @@ msgid "Cannot Create Wallet"
 msgstr "No es pot crear la cartera"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "No us podeu unir a la mateixa cartera més d'un cop"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2925,8 +2925,13 @@ msgid "Sweep"
 msgstr "Escombratge"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Escombra la cartera de paper"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Escombra la cartera de paper"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3792,6 +3797,10 @@ msgstr "Explora Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Jocs de Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Comparteix l'aplicació de la cartera"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Notícies"
@@ -3859,4 +3868,76 @@ msgstr "Menys d'1 cèntim"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Aquesta factura ja no accepta pagaments"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Envia la quantitat màxima"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Error desconegut."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "No hi ha cap cartera de Bitcoin Cash per transferir els fons trobats."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "No s'ha trobat cap Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "S'ha trobat Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "No hi ha cap cartera de Bitcoin Core per transferir els fons trobats."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "No s'ha trobat cap Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "L'escaneig ha fallat"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "No s'han reconegut les dades."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "No compatible"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet no és compatible."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Obre a l'explorador web"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Adreça no vàlida"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "No s'ha definit l'import"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "L'import és inferior al mínim"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "L'import supera el límit"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Resposta no vàlida de Shapeshift"
 
