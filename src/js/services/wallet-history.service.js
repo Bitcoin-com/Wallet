@@ -12,9 +12,9 @@
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
       var PAGE_OVERLAP_FRACTION = 0.2;
       var PAGE_OVERLAP = Math.floor(PAGE_SIZE * PAGE_OVERLAP_FRACTION);
-      // The amount of transactions in the new overlapping resultset that we already know about.
+      // The fraction of transactions in the new overlapping resultset that we already know about.
       // If we know about at least this many, then there are probably no gaps.
-      var MIN_KNOWN_TX_OVERLAP = Math.floor(PAGE_OVERLAP * 0.5);
+      var MIN_KNOWN_TX_OVERLAP_FRACTION = 0.5;
 
       var SAFE_CONFIRMATIONS = 6;
 
@@ -44,7 +44,10 @@
           }
         });
 
-        if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
+        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+        console.log('overlappingTxFraction:', overlappingTxFraction);
+
+        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
           if (someTransactionsWereNew) {
             saveTxHistory(walletId, cachedTxs);
           } else if (overlappingTxsCount === newTxs.length) {
@@ -80,7 +83,9 @@
           }
         });
 
-        if (overlappingTxsCount >= MIN_KNOWN_TX_OVERLAP) { // We are good
+        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+
+        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
           if (someTransactionsWereNew) {
             var allTxs = uniqueNewTxs.concat(cachedTxs);
             saveTxHistory(walletId, allTxs);
