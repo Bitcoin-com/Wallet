@@ -366,13 +366,13 @@ module.exports = function(grunt) {
   grunt.registerTask('build-mobile-release', ['build-ios-release', 'build-android-release']);
 
   // Build ios
-  grunt.registerTask('start-ios', ['exec:build_ios_debug', 'exec:xcode']);
-  grunt.registerTask('build-ios-debug', ['exec:build_ios_debug']);
+  grunt.registerTask('start-ios', ['default', 'exec:build_ios_debug', 'exec:xcode']);
+  grunt.registerTask('build-ios-debug', ['default', 'exec:build_ios_debug']);
   grunt.registerTask('build-ios-release', ['prod', 'exec:build_ios_release']);
 
   // Build android
   grunt.registerTask('start-android', ['build-android-debug', 'exec:run_android']);
-  grunt.registerTask('build-android-debug', ['exec:build_android_debug']);
+  grunt.registerTask('build-android-debug', ['default', 'exec:build_android_debug']);
   grunt.registerTask('start-android-emulator', ['build-android-debug', 'exec:run_android_emulator']);
   grunt.registerTask('build-android-release', ['prod', 'exec:build_android_release', 'sign-android']);
   grunt.registerTask('sign-android', ['exec:sign_android']);
