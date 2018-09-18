@@ -26,6 +26,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.feeIsHigh = false;
   vm.feeLessThanACent = false;
   vm.isCordova = platformInfo.isCordova;
+  vm.memo = '';
   vm.notReadyMessage = '';
   vm.origin = {
     balanceAmount: '',
@@ -76,9 +77,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
   $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
-
+  
   function onBeforeEnter(event, data) {
     console.log('review onBeforeEnter sendflow ', sendFlowService.state);
+    // Reset from last time
+    vm.memo = '';
+
     defaults = configService.getDefaults();
     sendFlowData = sendFlowService.state.getClone();
     originWalletId = sendFlowData.fromWalletId;
@@ -94,7 +98,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     vm.originWallet = profileService.getWallet(originWalletId);
     vm.origin.currency = vm.originWallet.coin.toUpperCase();
     coin = vm.originWallet.coin;
-
+    
     if (sendFlowData.thirdParty) {
       vm.thirdParty = sendFlowData.thirdParty;
       switch (vm.thirdParty.id) {
