@@ -116,8 +116,14 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   $scope.openSettings = function() {
+    $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+    });
     $state.go('tabs.settings').then(function () {
       $ionicHistory.clearHistory();
+      $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+      });
       $state.go('tabs.preferences', {'walletId': $scope.wallet.id, 'backToDetails': true});
     });
   };

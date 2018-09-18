@@ -123,6 +123,9 @@ angular.module('copayApp.controllers').controller('preferencesController',
       if (backToDetails) {
         $state.go('tabs.home').then(function () {
           $ionicHistory.clearHistory();
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true
+          });
           $state.go('tabs.wallet', {'walletId': wallet.id});
         });
       } else {
