@@ -66,16 +66,21 @@
 
       function addLatestTransactions(walletId, cachedTxs, newTxs) {
         var cachedTxIds = {};
-        cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIds[tx.txid] = true;
+        cachedTxs.forEach(function forCachedTx(tx, txIndex){
+          cachedTxIds[tx.txid] = txIndex;
         });
 
         var someTransactionsWereNew = false;
+        var confirmationsUpdated = false;
         var overlappingTxsCount = 0;
         var uniqueNewTxs = [];
 
         newTxs.forEach(function forNewTx(tx){
-          if (cachedTxIds[tx.txid]) {
+          if (typeof cachedTxIds[tx.txid] !== "undefined") {
+            if (cachedTxs[cachedTxIds[tx.txid]].confirmations < SAFE_CONFIRMATIONS && tx.confirmations >= SAFE_CONFIRMATIONS) {
+              cachedTxs[cachedTxIds[tx.txid]].confirmations = tx.confirmations;
+              confirmationsUpdated = true;
+            }
             overlappingTxsCount++;
           } else {
             someTransactionsWereNew = true;
@@ -91,6 +96,9 @@
             saveTxHistory(walletId, allTxs);
             return allTxs;
           } else {
+            if (confirmationsUpdated) {
+              saveTxHistory(walletId, cachedTxs);
+            }
             return cachedTxs;
           }
         } else {
@@ -104,6 +112,8 @@
 
       // Only clear the cache once we have received new transactions from the server.
       /**
+       * @param wallet
+       * @param start
        * @param {function(err, txs)} cb - transactions is always an array, may be empty
        */
       function fetchTxHistoryByPage(wallet, start, cb) {
@@ -187,7 +197,7 @@
         });
     
         return processedTxs;
-      };
+      }
 
       function saveTxHistory(walletId, processedTxs) {
         storageService.setTxHistory(processedTxs, walletId, function onSetTxHistory(error){
@@ -196,7 +206,6 @@
           }
         });
       }
-
 
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
 
@@ -240,10 +249,5 @@
           });
         }
       }
-
-      
-
     }
-
-
 })();
