@@ -400,8 +400,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   var refreshInterval;
 
-  $scope.$on("$ionicView.afterEnter", function(event, data) {
-    $scope.updateAll();
+  $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
+    $scope.updateAll(true, true);
     // refreshAmountSection();
     refreshInterval = $interval($scope.onRefresh, 10 * 1000);
     $timeout(function() {

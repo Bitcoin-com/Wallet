@@ -85,7 +85,9 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
   };
 
   var register = function() {
-    nextStepsService.register(cashGamesItem);
+    if (!platformInfo.isAndroid) { // To comply with Google Play policies
+      nextStepsService.register(cashGamesItem);
+    }
     nextStepsService.register(newsItem);
     nextStepsService.register(poolItem);
     nextStepsService.register(toolsItem);
