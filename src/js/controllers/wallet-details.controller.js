@@ -203,6 +203,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
 
   function updateTxHistoryFromCachedData() {
+    $scope.vm.gettingCachedHistory = true;
     walletHistoryService.getCachedTxHistory($scope.wallet.id, function onGetCachedTxHistory(err, txHistory){
       $scope.vm.gettingCachedHistory = false;
       if (err) {
@@ -401,6 +402,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var refreshInterval;
 
   $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
+    updateTxHistoryFromCachedData();
     $scope.updateAll(true, true);
     // refreshAmountSection();
     refreshInterval = $interval($scope.onRefresh, 10 * 1000);
