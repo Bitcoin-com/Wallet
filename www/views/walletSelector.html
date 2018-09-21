@@ -13,7 +13,7 @@
       <div class="header--request__amount-alt" ng-show="requestAmountSecondary" translate>{{requestAmountSecondary}} {{requestCurrencySecondary}}</div>
     </div>
     <div class="wallets-header">
-      <div class="title">
+      <div class="title" ng-if="walletsBch.length > 0 || walletsBtc.length > 0 || walletsInsufficientFunds.length > 0">
         {{headerTitle}}
       </div>
     </div>
