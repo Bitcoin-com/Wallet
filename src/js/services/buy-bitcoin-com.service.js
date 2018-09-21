@@ -6,10 +6,16 @@
       .module('bitcoincom.services')
       .factory('buyBitcoinComService', buyBitcoinComService);
 
-  function buyBitcoinComService($http, $log, $window, $filter, platformInfo, storageService, buyAndSellService, gettextCatalog) {
-    var service = {};
+  function buyBitcoinComService(buyAndSellService, gettextCatalog) {
+    var service = {
 
-    service.register = function() {
+      // Functions
+      register: register
+    };
+
+    return service;
+
+    function register() {
       buyAndSellService.register({
         name: 'buydotbitcoindotcom',
         logo: 'img/bitcoin-com-logo-grey.png',
@@ -17,9 +23,5 @@
         sref: 'tabs.buyandsell.bitcoindotcom'
       });
     };
-
-    service.register();
-
-    return service;
   }
 })();
