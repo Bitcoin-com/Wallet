@@ -145,7 +145,7 @@ angular
               var walletStatus = null;
               if (wallet.status && wallet.status.isValid) {
                 walletStatus = wallet.status;
-              } else if (wallet.cachedStatus) {
+              } else if (wallet.cachedStatus && wallet.status.isValid) {
                 walletStatus = wallet.cachedStatus;
               }
 
