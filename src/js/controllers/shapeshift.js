@@ -10,7 +10,7 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
     $scope.fromWallets = lodash.filter(walletsBtc.concat(walletsBch), function(w) {
-      return w.status.balance.availableAmount > 0;
+      return (w.status && w.status.balance && w.status.balance.availableAmount > 0);
     });
 
     $scope.singleFromWallet = $scope.fromWallets.length === 1;
