@@ -2,6 +2,7 @@
 
 angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
+  var CLOSE_NORMAL = 1000;
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
   var bchAddresses = {};
@@ -10,12 +11,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.isCordova = platformInfo.isCordova;
   $scope.isNW = platformInfo.isNW;
 
-  var currentAddressSocket = {};
-  var paymentSubscriptionObj = { op:"addr_sub" }
-
-  var config;
+  var currentAddressSocket = null;
+  var paymentSubscriptionObj = { op:'addr_sub' };
 
   $scope.displayBalanceAsFiat = true;
+  $scope.$on('$ionicView.beforeLeave', onBeforeLeave);
 
   $scope.requestSpecificAmount = function() {
     sendFlowService.start({
@@ -23,6 +23,50 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       isRequestAmount: true
     });
   };
+
+
+  function connectSocket() {
+    // Close existing socket if not connected with current address
+    if (currentAddressSocket) {
+      currentAddressSocket.close([CLOSE_NORMAL]);
+    }
+
+    if ($scope.wallet.coin === 'bch') {
+      // listen to bch address
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/bch/inv');
+      paymentSubscriptionObj.addr = $scope.addrBchLegacy;
+    } else {
+      // listen to btc address
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv');
+      paymentSubscriptionObj.addr = $scope.addr;
+    }
+
+    // create subscription to address
+    var msg = JSON.stringify(paymentSubscriptionObj);
+    currentAddressSocket.onopen = function (event) {
+      currentAddressSocket.send(msg);
+    };
+
+    // listen for response
+    currentAddressSocket.onmessage = function (event) {
+      //console.log("message received:" + event.data);
+      receivedPayment(event.data);
+    };
+
+    currentAddressSocket.onclose = function(event) {
+      if (event.code !== CLOSE_NORMAL) {
+        $log.debug('Socket was closed abnormally. Reconnect will be attempted in 1 second.');
+        $timeout(function() {
+          connectSocket();
+        }, 1000);
+      }
+    };
+
+    currentAddressSocket.onerror = function(err) {
+      console.error('Socket encountered error: ', err, 'Closing socket');
+      currentAddressSocket.close();
+    };
+  }
 
   $scope.setAddress = function(newAddr, copyAddress) {
     $scope.addr = null;
@@ -36,48 +80,23 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         popupService.showAlert(err);
       }
 
-      //close existing socket
-      if (currentAddressSocket.close === 'function') {
-        currentAddressSocket.close();
-      }
-
-      if ($scope.wallet.coin == 'bch') {
-          bchAddresses = bitcoinCashJsService.translateAddresses(addr);
-          $scope.addr = bchAddresses[$scope.bchAddressType.type];
-          $scope.addrBchLegacy = bchAddresses['legacy'];
-
-          // listen to bch address
-          currentAddressSocket = new WebSocket("wss://ws.blockchain.info/bch/inv");
-          paymentSubscriptionObj.addr = bchAddresses['legacy'];
-
+      if ($scope.wallet.coin === 'bch') {
+        bchAddresses = bitcoinCashJsService.translateAddresses(addr);
+        $scope.addr = bchAddresses[$scope.bchAddressType.type];
+        $scope.addrBchLegacy = bchAddresses['legacy'];
       } else {
-          $scope.addr = addr;
-
-          // listen to btc address
-          currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
-          paymentSubscriptionObj.addr = $scope.addr
+        $scope.addr = addr;
       }
+
+      connectSocket();
 
       if (copyAddress === true) {
         try {
           clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
         } catch (error) {
-          $log.debug("Error copying to clipboard:");
+          $log.debug('Error copying to clipboard:');
           $log.debug(error);
         }
-      }
-      // create subscription
-      var msg = JSON.stringify(paymentSubscriptionObj);
-      currentAddressSocket.onopen = function (event) {
-        //console.log("message sent: " + msg); 
-        currentAddressSocket.send(msg);
-      }
-      
-
-      // listen for response
-      currentAddressSocket.onmessage = function (event) {
-        //console.log("message received:" + event.data);
-        receivedPayment(event.data);
       }
 
       $timeout(function() {
@@ -164,7 +183,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       // Notify new tx
       $scope.$emit('bwsEvent', $scope.wallet.id);
 
-
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
@@ -233,6 +251,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }
   };
 
+  function onBeforeLeave() {
+    currentAddressSocket.close([CLOSE_NORMAL]);
+  }
+ 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.wallets = profileService.getWallets();
     $scope.singleWallet = $scope.wallets.length == 1;
@@ -258,7 +280,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     configService.whenAvailable(function(_config) {
       $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
-      config = _config;
     });
   });
 
