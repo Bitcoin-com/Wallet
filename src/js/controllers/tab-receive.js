@@ -2,6 +2,7 @@
 
 angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
+  var CLOSE_NORMAL = 1000;
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
   var bchAddresses = {};
@@ -10,12 +11,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.isCordova = platformInfo.isCordova;
   $scope.isNW = platformInfo.isNW;
 
-  var currentAddressSocket = {};
-  var paymentSubscriptionObj = { op:"addr_sub" }
-
-  var config;
+  var currentAddressSocket = null;
+  var paymentSubscriptionObj = { op:'addr_sub' };
 
   $scope.displayBalanceAsFiat = true;
+  $scope.$on('$ionicView.beforeLeave', onBeforeLeave);
 
   $scope.requestSpecificAmount = function() {
     sendFlowService.start({
@@ -26,18 +26,18 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
 
   function connectSocket() {
-    //close existing socket if not connected with current address
-    if (currentAddressSocket && typeof currentAddressSocket.close === 'function') {
-      currentAddressSocket.onclose = function(e) {}; // Overwrite onclose-function to prevent reconnecting old address socket.
-      currentAddressSocket.close();
+    // Close existing socket if not connected with current address
+    if (currentAddressSocket) {
+      currentAddressSocket.close([CLOSE_NORMAL]);
     }
+
     if ($scope.wallet.coin === 'bch') {
       // listen to bch address
-      currentAddressSocket = new WebSocket("wss://ws.blockchain.info/bch/inv");
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/bch/inv');
       paymentSubscriptionObj.addr = $scope.addrBchLegacy;
     } else {
       // listen to btc address
-      currentAddressSocket = new WebSocket("wss://ws.blockchain.info/inv");
+      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv');
       paymentSubscriptionObj.addr = $scope.addr;
     }
 
@@ -53,21 +53,19 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       receivedPayment(event.data);
     };
 
-    currentAddressSocket.onclose = function(e) {
-      console.log('Socket is closed. Reconnect will be attempted in 1 second.');
-      $timeout(function() {
-        connectSocket();
-      }, 1000);
+    currentAddressSocket.onclose = function(event) {
+      if (event.code !== CLOSE_NORMAL) {
+        $log.debug('Socket was closed abnormally. Reconnect will be attempted in 1 second.');
+        $timeout(function() {
+          connectSocket();
+        }, 1000);
+      }
     };
 
     currentAddressSocket.onerror = function(err) {
       console.error('Socket encountered error: ', err, 'Closing socket');
       currentAddressSocket.close();
     };
-
-    $timeout(function() {
-      $scope.$apply();
-    }, 10);
   }
 
   $scope.setAddress = function(newAddr, copyAddress) {
@@ -96,7 +94,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         try {
           clipboardService.copyToClipboard($scope.wallet.coin == 'bch' && $scope.bchAddressType.type == 'cashaddr' ? 'bitcoincash:' + $scope.addr : $scope.addr);
         } catch (error) {
-          $log.debug("Error copying to clipboard:");
+          $log.debug('Error copying to clipboard:');
           $log.debug(error);
         }
       }
@@ -185,7 +183,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       // Notify new tx
       $scope.$emit('bwsEvent', $scope.wallet.id);
 
-
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
@@ -254,16 +251,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }
   };
 
-  $scope.$on("$ionicView.beforeLeave", function() {
-    // Close the old connection!
-    if (currentAddressSocket && typeof currentAddressSocket.close === 'function') {
-      console.log("Close open websocket address connection.");
-      currentAddressSocket.onclose = function(e) {}; // Overwrite onclose-function to prevent reconnecting old address socket.
-      currentAddressSocket.close();
-    }
-
-  });
-
+  function onBeforeLeave() {
+    currentAddressSocket.close([CLOSE_NORMAL]);
+  }
+ 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     $scope.wallets = profileService.getWallets();
     $scope.singleWallet = $scope.wallets.length == 1;
@@ -289,7 +280,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     configService.whenAvailable(function(_config) {
       $scope.displayBalanceAsFiat = _config.wallet.settings.priceDisplay === 'fiat';
-      config = _config;
     });
   });
 
