@@ -147,7 +147,6 @@
        * @param {function(error, txs)} cb - txs is always an array, may be empty
        */
       function getCachedTxHistory(walletId, cb) {
-        console.log('txhistory getCachedTxHistory()');
         storageService.getTxHistory(walletId, function onGetTxHistory(err, txHistoryString){
           if (err) {
             return cb(err, []);
@@ -230,7 +229,6 @@
       }
 
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
-        console.log('txhistory updateLocalTxHistoryByPage()');
         if (flushCacheOnNew) {
           fetchTxHistoryByPage(wallet, 0, function onFetchTxHistory(err, txs){
             if (err) {
