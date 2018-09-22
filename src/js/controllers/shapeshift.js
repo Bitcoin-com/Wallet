@@ -6,27 +6,11 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
 
   $scope.showMyAddress = showMyAddress;
 
-  function generateAddress(wallet, cb) {
-    if (!wallet) return;
-    walletService.getAddress(wallet, false, function(err, addr) {
-      if (err) {
-        popupService.showAlert(err);
-      }
-      return cb(addr);
-    });
-  }
-
-  function showToWallets() {
-    $scope.toWallets = $scope.fromWallet.coin === 'btc' ? walletsBch : walletsBtc;
-    $scope.onToWalletSelect($scope.toWallets[0]);
-    $scope.singleToWallet = $scope.toWallets.length === 1;
-  }
-
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     walletsBtc = profileService.getWallets({coin: 'btc'});
     walletsBch = profileService.getWallets({coin: 'bch'});
     $scope.fromWallets = lodash.filter(walletsBtc.concat(walletsBch), function(w) {
-      return w.status.balance.availableAmount > 0;
+      return (w.status && w.status.balance && w.status.balance.availableAmount > 0);
     });
 
     $scope.singleFromWallet = $scope.fromWallets.length === 1;
@@ -62,18 +46,7 @@ angular.module('copayApp.controllers').controller('shapeshiftController', functi
         id: 'shapeshift'
       }
     };
-
-    // Starting new send flow, so ensure everything is reset
-    sendFlowService.clear();
-    $state.go('tabs.home').then(function() {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.send').then(function() {
-        $timeout(function () {
-          sendFlowService.pushState(stateParams);
-          $state.transitionTo('tabs.send.origin');
-        }, 60);
-      });
-    });
+    sendFlowService.start(stateParams);
   }
 
   function showMyAddress() {

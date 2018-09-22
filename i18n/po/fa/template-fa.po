@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,7 +520,7 @@ msgid "Cannot Create Wallet"
 msgstr "قادر به ایجاد کیف پول نیست"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "امکان بیش از یک بار پیوستن به یک کیف پول نیست"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2925,9 +2925,14 @@ msgid "Sweep"
 msgstr "وارد کردن و تغییر آدرس به جدید(sweep)"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "وارد کردن والت کاغذی و تغییر آدرس به جدید(sweep)"
+msgstr "جاروب کردن کیف پول کاغذی"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "جاروب کردن کیف پول کاغذی"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3792,6 +3797,10 @@ msgstr "کاوش Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash Games"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "اشتراک گذاری نرم افزار کیف پول"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "اخبار"
@@ -3859,4 +3868,76 @@ msgstr "کمتر از 1 سنت"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "این صورت حساب دیگر پرداخت ها را نمی پذیرد"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "ارسال حداکثر مقدار"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "خطای ناشناخته."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "هیچ کیف پولی از نوع Bitcoin Cash برای انتقال وجه یافت نشد."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Bitcoin Cash یافت نشد."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Bitcoin Core یافت شده:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "هیچ کیف پولی از نوع Bitcoin Core برای انتقال وجه یافت نشد."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Bitcoin Core یافت نشد."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "اسکن انجام نشد"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "داده ها شناسایی نشد."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "پشتیبانی نشده"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet پشتیبانی نمی شود."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "آدرس"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "باز کردن در مرورگر"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "آدرس نامعتبر"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "مبلغ تعریف نشده است"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "مقدار زیر مقدار حداقل است"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "مقدار بالاتر از حد است"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "پاسخ نامعتبر از Shapeshift"
 

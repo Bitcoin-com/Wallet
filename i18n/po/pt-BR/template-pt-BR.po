@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,8 +520,8 @@ msgid "Cannot Create Wallet"
 msgstr "Não é possível criar a carteira"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
-msgstr "Não pode juntar-se a mesma carteira mais que uma vez"
+msgid "Cannot join the same wallet more than once"
+msgstr "Não pode juntar-se à mesma carteira mais que uma vez"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -1623,7 +1623,7 @@ msgstr "Endereço de rede incorreto"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr "Insuficiência de fundos confirmados"
+msgstr "Insuficiência de fundos confirmada"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -2090,7 +2090,7 @@ msgstr "Abrir Projeto no GitHub"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr "Abra o Explorer"
+msgstr "Abrir o Explorer"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -2222,7 +2222,7 @@ msgstr "Detalhes do pagamento"
 
 #: www/views/modals/paypro.html:6
 msgid "Payment Request"
-msgstr "Pedido de pagamento"
+msgstr "Solicitação de pagamento"
 
 #: www/views/mercadoLibreCards.html:22
 #: www/views/modals/mercadolibre-card-details.html:39
@@ -2696,7 +2696,7 @@ msgstr "Para começar, você precisa criar uma carteira de bitcoins e obter algu
 
 #: www/views/tab-send.html:74
 msgid "Buy Bitcoin now"
-msgstr "Compre Bitcoin agora"
+msgstr "Comprar Bitcoin agora"
 
 #: www/views/tab-send.html:76
 msgid "Show my address"
@@ -2925,8 +2925,13 @@ msgid "Sweep"
 msgstr "Limpar"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Varrer a carteira de papel"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Varrer a carteira de papel"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3792,6 +3797,10 @@ msgstr "Explore Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Jogos Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Compartilhar o app de carteira"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Notícias"
@@ -3859,4 +3868,76 @@ msgstr "Menos de 1 centavo"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Essa fatura não aceita mais pagamentos"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Enviar montante máximo"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Erro desconhecido."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Nenhuma carteira de Bitcoin Cash para transferir fundos encontrada."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Bitcoin Cash não encontrado."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Bitcoin Core encontrado:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Nenhuma carteira de Bitcoin Core para transferir fundos encontrada."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Nenhum Bitcoin Core encontrado."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Falha de verificação"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Dados não reconhecidos."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Não suportado"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet não suportado."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Abrir no navegador da Web"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Endereço inválido"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Montante não definido"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Montante abaixo do mínimo"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Montante acima do limite"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Resposta inválida do Shapeshift"
 

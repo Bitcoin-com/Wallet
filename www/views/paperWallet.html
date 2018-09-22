@@ -1,6 +1,6 @@
 <ion-view hide-tabs>
   <ion-nav-bar class="bar-royal">
-    <ion-nav-title>{{'Sweep paper wallet' | translate}}</ion-nav-title>
+    <ion-nav-title>{{'Sweep Paper Wallet' | translate}}</ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
   </ion-nav-bar>
@@ -45,19 +45,19 @@
       </div>
       <div ng-class="ng-hide" ng-show="noMatchingBchWallet">
         <div class="text-center size-12 text-gray">
-          <span>No Bitcoin Cash wallet to transfer funds to found.</span>
+          <span translate>No Bitcoin Cash wallet to transfer funds to found.</span>
         </div>
       </div>
     </div>
     <div ng-class="ng-hide" ng-show="!bchBalance && readyToShow">
       <div class="text-center">
-        <h4 class="text-bold" translate>No Bitcoin Cash found</h4>
+        <h4 class="text-bold" translate>No Bitcoin Cash found.</h4>
       </div>
     </div>
     <div ng-class="ng-hide" ng-show="btcBalance">
       <div class="row">
         <div class="col text-center">
-          <h4 class="text-bold" translate>Bitcoin found:</h4>
+          <h4 class="text-bold" translate>Bitcoin Core found:</h4>
           <div class="size-24">
             <span>{{btcBalanceText}}</span>
             <div class="size-14 amount-alternative">
@@ -95,13 +95,13 @@
       </div>
       <div ng-class="ng-hide" ng-show="noMatchingBtcWallet">
         <div class="text-center size-12 text-gray">
-          <span>No Bitcoin wallet to transfer funds to found.</span>
+          <span translate>No Bitcoin Core wallet to transfer funds to found.</span>
         </div>
       </div>
     </div>
     <div ng-class="ng-hide" ng-show="!btcBalance && readyToShow">
       <div class="text-center">
-        <h4 class="text-bold" translate>No Bitcoin found</h4>
+        <h4 class="text-bold" translate>No Bitcoin Core found.</h4>
       </div>
     </div>
     <slide-to-accept-success
