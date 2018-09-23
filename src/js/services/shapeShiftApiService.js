@@ -23,6 +23,13 @@ var ShapeShift = (function() {
                 if (xmlhttp.status == 200) {
                     var parsedResponse = JP(xmlhttp.responseText);
                     cb.apply(null, [parsedResponse]);
+                } else if (xmlhttp.status === 500) {
+                    var parsedResponse = JP(xmlhttp.responseText);
+                    if (typeof parsedResponse.error === 'string') {
+                        cb.apply(null, [parsedResponse]);
+                    } else {
+                        cb.apply(null, [new Error('Request Failed')]);
+                    }
                 } else {
                     cb.apply(null, [new Error('Request Failed')])
                 }
