@@ -24,7 +24,7 @@ var ShapeShift = (function() {
                     var parsedResponse = JP(xmlhttp.responseText);
                     cb.apply(null, [parsedResponse]);
                 } else {
-                    cb.apply(null, [new Error('Request Failed')])
+                    cb.apply(null, [new Error('Request Failed')]);
                 }
             }
         };
