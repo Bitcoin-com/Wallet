@@ -1,5 +1,6 @@
 ext {
   ANDROID_SUPPORT_V4_VERSION = '26.1.0'
+  ANDROID_SUPPORT_ANNOTATIONS_VERSION = '26.1.0'
 }
 
 configurations.all {
