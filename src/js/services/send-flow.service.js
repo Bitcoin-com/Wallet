@@ -52,7 +52,7 @@ angular
                 // Detect some merchant that we know
                 if (payProData.memo.indexOf('eGifter') > -1) {
                   name = 'eGifter'
-                } else if (paymentUrl.indexOf('https://bitpay.com') > -1) {
+                } else if (payProData.url.indexOf('https://bitpay.com') > -1) {
                   name = 'BitPay';
                 }
 
