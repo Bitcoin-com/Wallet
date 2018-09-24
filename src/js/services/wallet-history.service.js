@@ -94,7 +94,7 @@
 
         var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
 
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
+        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION  || (someTransactionsWereNew && overlappingTxsCount === 0)) { // We are good
           if (someTransactionsWereNew) {
             var allTxs = uniqueNewTxs.concat(cachedTxs);
             saveTxHistory(walletId, allTxs);
