@@ -7,8 +7,8 @@
     .factory('walletHistoryService', walletHistoryService);
     
     function walletHistoryService(configService, storageService, lodash, $log, txFormatService) {
-      //var PAGE_SIZE = 50;
-      var PAGE_SIZE = 20; // For dev only
+      var PAGE_SIZE = 50;
+      //var PAGE_SIZE = 20; // For dev only
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
       var PAGE_OVERLAP_FRACTION = 0.2;
       var PAGE_OVERLAP = Math.floor(PAGE_SIZE * PAGE_OVERLAP_FRACTION);
