@@ -49,8 +49,9 @@
 
         var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
         console.log('overlappingTxFraction:', overlappingTxFraction);
+        console.log('overlappingTxsCount:', overlappingTxsCount);
 
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
+        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION || (someTransactionsWereNew && overlappingTxsCount === 0)) { // We are good
           if (someTransactionsWereNew) {
             saveTxHistory(walletId, cachedTxs);
           } else if (confirmationsUpdated) {
