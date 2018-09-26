@@ -100,10 +100,49 @@ fdescribe('walletHistoryService', function(){
     expect(returnedHistory.length).toBe(50);
   });
 
+  it('updateLocalTxHistoryByPage, 2 in cache, getEarlier, keep cache, same 2 returned, so all transactions received.', function(){
+    var fetchLimit;
+    var fetchSkip;
+    var returnedAllFetched;
+    var returnedErr;
+    var returnedHistory;
+    var walletIdForStorageGet;
+    walletMock.id = 'wallet456';
+
+    storageServiceMock.getTxHistory.and.callFake(function(walletId, cb){
+      walletIdForStorageGet = walletId;
+
+      cb(null, JSON.stringify(history.slice(0, 2)));
+    });
+
+    walletMock.getTxHistory.and.callFake(function(opts, cb){
+      fetchSkip = opts.skip;
+      fetchLimit = opts.limit;
+
+      cb(null, history.slice(0, 2));
+    });
+
+    walletHistoryService.updateLocalTxHistoryByPage(walletMock, false, false, function(err, txs, allFetched){
+      returnedErr = err;
+      returnedHistory = txs;
+      returnedAllFetched = allFetched;
+    });
+
+    expect(walletIdForStorageGet).toBe('wallet456');
+    expect(fetchSkip).toBe(0);
+    expect(fetchLimit).toBe(50);
+    expect(returnedErr).toBeNull();
+    expect(returnedHistory.length).toBe(2);
+    expect(returnedAllFetched).toBe(true);
+    expect(storageServiceMock.setTxHistory.calls.any()).toBe(false);
+  });
+
   it('updateLocalTxHistoryByPage, getEarlier, keep cache, sufficient overlap so saved.', function(){
     var fetchLimit;
     var fetchSkip;
+    var returnedErr;
     var returnedHistory;
+    var returnedAllFetched;
     var savedTxs;
     var walletIdForStorageGet;
     var walletIdForStorageSet;
@@ -128,9 +167,10 @@ fdescribe('walletHistoryService', function(){
       cb(null);
     });
 
-    walletHistoryService.updateLocalTxHistoryByPage(walletMock, false, false, function(err, txs){
+    walletHistoryService.updateLocalTxHistoryByPage(walletMock, false, false, function(err, txs, allFetched){
       returnedErr = err;
       returnedHistory = txs;
+      returnedAllFetched = allFetched;
     });
 
     expect(walletIdForStorageGet).toBe('wallet67890');
@@ -140,6 +180,48 @@ fdescribe('walletHistoryService', function(){
     expect(savedTxs.length).toBe(80);
     expect(returnedErr).toBeNull();
     expect(returnedHistory.length).toBe(80);
+    expect(returnedAllFetched).toBe(false);
+  });
+
+  it('updateLocalTxHistoryByPage, cache empty, getLatest, do not flush cache, one new so saved.', function(){
+    var fetchLimit;
+    var fetchSkip;
+    var returnedHistory;
+    var savedTxs;
+    var walletIdForStorageGet;
+    var walletIdForStorageSet;
+    walletMock.id = 'wallet789';
+
+    storageServiceMock.getTxHistory.and.callFake(function(walletId, cb){
+      walletIdForStorageGet = walletId;
+      cb(null, "[]");
+    });
+
+    walletMock.getTxHistory.and.callFake(function(opts, cb){
+      fetchSkip = opts.skip;
+      fetchLimit = opts.limit;
+
+      cb(null, history.slice(0, 1));
+    });
+
+    storageServiceMock.setTxHistory.and.callFake(function(txs, walletId, cb){
+      savedTxs = txs;
+      walletIdForStorageSet = walletId;
+      cb(null);
+    });
+
+    walletHistoryService.updateLocalTxHistoryByPage(walletMock, true, false, function(err, txs){
+      returnedErr = err;
+      returnedHistory = txs;
+    });
+
+    expect(walletIdForStorageGet).toBe('wallet789');
+    expect(fetchSkip).toBe(0);
+    expect(fetchLimit).toBe(50);
+    expect(savedTxs.length).toBe(1);
+    expect(walletIdForStorageSet).toBe('wallet789');
+    expect(returnedErr).toBeNull();
+    expect(returnedHistory.length).toBe(1);
   });
 
   it('updateLocalTxHistoryByPage, cache empty, getLatest, do not flush cache, some new so saved.', function(){
@@ -178,6 +260,7 @@ fdescribe('walletHistoryService', function(){
     expect(fetchSkip).toBe(0);
     expect(fetchLimit).toBe(50);
     expect(savedTxs.length).toBe(10);
+    expect(walletIdForStorageSet).toBe('wallet789');
     expect(returnedErr).toBeNull();
     expect(returnedHistory.length).toBe(10);
   });
