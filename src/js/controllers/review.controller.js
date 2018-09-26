@@ -79,9 +79,12 @@ angular
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
-
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
+
+      // Reset from last time
+      vm.thirdParty = null;
+
       defaults = configService.getDefaults();
       sendFlowData = sendFlowService.state.getClone();
       originWalletId = sendFlowData.fromWalletId;
