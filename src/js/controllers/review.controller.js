@@ -78,7 +78,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
-    console.log('reviewController onBeforeEnter sendflow ', sendFlowService.state);
+    $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
     defaults = configService.getDefaults();
     sendFlowData = sendFlowService.state.getClone();
     originWalletId = sendFlowData.fromWalletId;
@@ -125,7 +125,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           config = configCache;
           priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
           vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
-          console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
           unitFromSat = 1 / config.wallet.settings.unitToSatoshi;
         }
         updateSendAmounts();
@@ -246,7 +245,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   };
 
   function createVanityTransaction(data) {
-    console.log('createVanityTransaction()');
     var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
 
     // Grab stateParams
@@ -290,7 +288,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'shapeshift') {
         networkName = (new B.Address(tx.toAddress)).network.name;
         tx.network = networkName;
-        console.log('calling setupTx() for shapeshift.');
         setupTx(tx);
 
       } else if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
@@ -298,24 +295,24 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         var toWallet = profileService.getWallet(destinationWalletId);
 
         // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
-        console.log('Getting address for wallet...');
         walletService.getAddress(toWallet, true, function onWalletAddress(err, addr) {
-          console.log('getAddress cb called', err);
+          if (err) {
+            $log.error('Error getting address for wallet.', err);
+            throw new Error(err.message);
+          }
           ongoingProcess.set('generatingNewAddress', false);
           tx.toAddress = addr;
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
-          console.log('calling setupTx() for wallet.');
           setupTx(tx);
         });
       } else { // This is a Wallet-to-address transfer
         networkName = (new B.Address(tx.toAddress)).network.name;
         tx.network = networkName;
-        console.log('calling setupTx() for address.');
         setupTx(tx);
       }
     } catch (e) {
-      console.error('Error setting up tx', e);
+      $log.error('Error setting up tx', e);
       var message = gettextCatalog.getString('Invalid address');
       popupService.showAlert(null, message, function () {
         $ionicHistory.nextViewOptions({
@@ -568,7 +565,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     }, 1000);
 
     function setExpirationTime() {
-      console.log('setExpirationTime()');
       var now = Math.floor(Date.now() / 1000);
 
       if (now > expirationTime) {
@@ -902,7 +898,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           return cb();
         }
 
-        console.log('calling getTxp() from getSendMaxInfo cb.');
         getTxp(lodash.clone(tx), wallet, opts.dryRun, function onGetTxp(err, txp) {
           ongoingProcess.set('calculatingFee', false);
           if (err) {
@@ -924,8 +919,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
             if (v.substring(0, 1) === "<") {
               vm.feeLessThanACent = true;
             }
-            
-            console.log("fiat", vm.feeFiat);
 
           });
 
@@ -935,14 +928,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           txp.feeToHigh = per > FEE_TOO_HIGH_LIMIT_PERCENTAGE;
           vm.feeCrypto = (unitFromSat * txp.fee).toFixed(8);
           vm.feeIsHigh = txp.feeToHigh;
-          console.log("crypto", vm.feeCrypto);
-
 
           tx.txp[wallet.id] = txp;
           $log.debug('Confirm. TX Fully Updated for wallet:' + wallet.id, tx);
           vm.readyToSend = true;
           updateSendAmounts();
-          console.log('readyToSend:', vm.readyToSend);
           $scope.$apply();
 
           return cb();
