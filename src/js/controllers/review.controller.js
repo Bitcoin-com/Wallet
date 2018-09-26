@@ -46,7 +46,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
   vm.sendingTitle = gettextCatalog.getString('You are sending');
   vm.sendStatus = '';
   vm.showAddress = true;
-  vm.thirdParty = false;
+  vm.thirdParty = null;
   vm.wallet = null;
   vm.memoExpanded = false;
 
@@ -270,6 +270,9 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       txp: {},
     };
 
+    if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
+      tx.toAddress = vm.thirdParty.toAddress;
+    }
 
     if (data.stateParams.requiredFeeRate) {
       vm.usingMerchantFee = true;
@@ -283,7 +286,14 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     var B = tx.coin === 'bch' ? bitcoreCash : bitcore;
     var networkName;
     try {
-      if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
+      // Final destination is a wallet, but this transaction must go to an address for the first stage of the exchange.
+      if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'shapeshift') {
+        networkName = (new B.Address(tx.toAddress)).network.name;
+        tx.network = networkName;
+        console.log('calling setupTx() for shapeshift.');
+        setupTx(tx);
+
+      } else if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
         ongoingProcess.set('generatingNewAddress', true);
         var toWallet = profileService.getWallet(destinationWalletId);
 
@@ -498,9 +508,6 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
   function initShapeshift(cb) {
     vm.sendingTitle = gettextCatalog.getString('You are shifting');
-    if (!vm.thirdParty.data) {
-      vm.thirdParty.data = {};
-    }
 
     var toWallet = profileService.getWallet(destinationWalletId);
     vm.destination.name = toWallet.name;
@@ -525,9 +532,8 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           if (err) {
             return cb(err);
           } else {
-            vm.destination.kind = 'shapeshift';
-            vm.destination.address = toAddress;
-            tx.toAddress = shapeshiftData.toAddress;
+            // Want it to appear like a wallet-to-wallet transfer, so don't set the main toAddress.
+            vm.thirdParty.toAddress = shapeshiftData.toAddress;
             vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
             vm.memoExpanded = !!vm.memo;
             ongoingProcess.set('connectingShapeshift', false);
