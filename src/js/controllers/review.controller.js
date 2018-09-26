@@ -78,7 +78,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
 
 
   function onBeforeEnter(event, data) {
-    console.log('walletSelector onBeforeEnter sendflow ', sendFlowService.state);
+    console.log('reviewController onBeforeEnter sendflow ', sendFlowService.state);
     defaults = configService.getDefaults();
     sendFlowData = sendFlowService.state.getClone();
     originWalletId = sendFlowData.fromWalletId;
@@ -95,11 +95,11 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       vm.thirdParty = sendFlowData.thirdParty;
       switch (vm.thirdParty.id) {
         case 'shapeshift':
-          initShapeshift(function (err) {
+          initShapeshift(function onInitShapeshift(err) {
             if (err) {
               // Error stop here
               ongoingProcess.set('connectingShapeshift', false);
-              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+              popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function onAlert() {
                 $ionicHistory.goBack();
               });
             } else {
@@ -142,18 +142,18 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     if (!tx || !vm.originWallet) return;
 
     if (vm.paymentExpired) {
-      popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.', function () {
+      popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.', function onAlert() {
         $ionicHistory.goBack();
       }));
       vm.sendStatus = '';
-      $timeout(function() {
+      $timeout(function onTimeout() {
         $scope.$apply();
       });
       return;
     }
 
     ongoingProcess.set('creatingTx', true, statusChangeHandler);
-    getTxp(lodash.clone(tx), vm.originWallet, false, function(err, txp) {
+    getTxp(lodash.clone(tx), vm.originWallet, false, function onGetTxp(err, txp) {
       ongoingProcess.set('creatingTx', false, statusChangeHandler);
       if (err) return;
 
@@ -170,12 +170,12 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         if (!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()) {
           $log.info('No signing proposal: No private key');
 
-          return walletService.onlyPublish(vm.originWallet, txp, function(err) {
+          return walletService.onlyPublish(vm.originWallet, txp, function onOnlyPublish(err) {
             if (err) setSendError(err);
           }, statusChangeHandler);
         }
 
-        walletService.publishAndSign(vm.originWallet, txp, function(err, txp) {
+        walletService.publishAndSign(vm.originWallet, txp, function onPublishAndSign(err, txp) {
           if (err) return setSendError(err);
           if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
             txConfirmNotification.subscribe(vm.originWallet, {
@@ -189,7 +189,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       confirmTx(function(nok) {
         if (nok) {
           vm.sendStatus = '';
-          $timeout(function() {
+          $timeout(function onTimeout() {
             $scope.$apply();
           });
           return;
@@ -375,7 +375,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     }
     txp.excludeUnconfirmedUtxos = !tx.spendUnconfirmed;
     txp.dryRun = dryRun;
-    walletService.createTx(wallet, txp, function(err, ctxp) {
+    walletService.createTx(wallet, txp, function onCreateTx(err, ctxp) {
       if (err) {
         setSendError(err);
         return cb(err);
@@ -434,7 +434,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     }
 
     // Check if the recipient is a contact
-    addressbookService.get(originCoin + address, function(err, contact) { 
+    addressbookService.get(originCoin + address, function onGetContact(err, contact) { 
       if (!err && contact) {
         handleDestinationAsAddressOfContact(contact);
       } else {
@@ -680,7 +680,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     $timeout(function() {
       $scope.$apply();
     });
-    popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg), function () {
+    popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg), function onAlert() {
       $ionicHistory.goBack();
     });
   };
@@ -692,7 +692,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
       tx.displayAddress = tx.toAddress;
     }
 
-    addressbookService.get(tx.coin+tx.toAddress, function(err, addr) { // Check if the recipient is a contact
+    addressbookService.get(tx.coin+tx.toAddress, function onGetContact(err, addr) { // Check if the recipient is a contact
       if (!err && addr) {
         tx.toName = addr.name;
         tx.toEmail = addr.email;
@@ -711,7 +711,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     updateTx(tx, vm.originWallet, {
       dryRun: true
     }, function(err) {
-      $timeout(function() {
+      $timeout(function onTimeout() {
         $scope.$apply();
       }, 10);
 
@@ -838,7 +838,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
     // refresh();
 
     var feeServiceLevel = usingMerchantFee && vm.originWallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
-    feeService.getFeeRate(vm.originWallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
+    feeService.getFeeRate(vm.originWallet.coin, tx.network, feeServiceLevel, function onGetFeeRate(err, feeRate) {
       if (err) {
         ongoingProcess.set('calculatingFee', false);
         return cb(err);
@@ -857,7 +857,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         tx.feeRate = feeRate;
       }
 
-      getSendMaxInfo(lodash.clone(tx), wallet, function(err, sendMaxInfo) {
+      getSendMaxInfo(lodash.clone(tx), wallet, function onGetSendmaxInfo(err, sendMaxInfo) {
         if (err) {
           ongoingProcess.set('calculatingFee', false);
           var msg = gettextCatalog.getString('Error getting SendMax information');
@@ -871,7 +871,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           if (tx.sendMax && sendMaxInfo.amount == 0) {
             ongoingProcess.set('calculatingFee', false);
             setNotReady(gettextCatalog.getString('Insufficient confirmed funds'));
-            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'), function () {
+            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'), function onAlert() {
               $ionicHistory.goBack();
             });
             return cb('no_funds');
@@ -897,7 +897,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
         }
 
         console.log('calling getTxp() from getSendMaxInfo cb.');
-        getTxp(lodash.clone(tx), wallet, opts.dryRun, function(err, txp) {
+        getTxp(lodash.clone(tx), wallet, opts.dryRun, function onGetTxp(err, txp) {
           ongoingProcess.set('calculatingFee', false);
           if (err) {
             if (err.message == 'Insufficient funds') {
@@ -909,7 +909,7 @@ function reviewController(addressbookService, bitcoinCashJsService, bitcore, bit
           }
 
           txp.feeStr = txFormatService.formatAmountStr(wallet.coin, txp.fee);
-          txFormatService.formatAlternativeStr(wallet.coin, txp.fee, function(v) {
+          txFormatService.formatAlternativeStr(wallet.coin, txp.fee, function onFormatAlternativeStr(v) {
             // txp.alternativeFeeStr = v;
             // if (txp.alternativeFeeStr.substring(0, 4) == '0.00')
             //   txp.alternativeFeeStr = '< ' + txp.alternativeFeeStr;
