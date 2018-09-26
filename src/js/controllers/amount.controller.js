@@ -30,7 +30,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.sendableFunds = '';
   vm.showSendMaxButton = false;
   vm.showSendLimitMaxButton = false;
-  vm.thirdParty = false;
+  vm.thirdParty = null;
   vm.unit = '';
 
   // Functions
@@ -88,11 +88,16 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       sendFlowService.state.pop();
     }
     
+
+    
     initCurrencies();
 
     passthroughParams = sendFlowService.state.getClone();
     console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
+    // Init thirdParty, should be done for all the variable
+    vm.thirdParty = null;
+    
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
     vm.minAmount = parseFloat(passthroughParams.minAmount);
