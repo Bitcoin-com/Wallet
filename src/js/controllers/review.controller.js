@@ -6,7 +6,7 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-  function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+  function reviewController(addressbookService, externalLinkService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
     var vm = this;
 
     vm.buttonText = '';
@@ -105,8 +105,12 @@ angular
               if (err) {
                 // Error stop here
                 ongoingProcess.set('connectingShapeshift', false);
-                popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function onAlert() {
-                  $ionicHistory.goBack();
+                popupService.showConfirm(gettextCatalog.getString('Shapeshift Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
+                  if (hasConfirm) {
+                    externalLinkService.open("https://shapeshift.io");
+                  } else {
+                    $ionicHistory.goBack();
+                  }
                 });
               } else {
                 _next(data);
