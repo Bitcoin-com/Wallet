@@ -151,6 +151,7 @@
         hasPassphrase: false,
         type: 1,
       },
+      isTestnet: false,
       isValid: false,
       label: '',
       message: '',
@@ -170,7 +171,6 @@
         "req-param0": '',
         "req-param1": ''
       },
-      testnet: false,
       url: '' // For BIP70 
     }
 
@@ -204,7 +204,13 @@
 
       } else if (/^(?:bitcoincash)|(?:bitcoin-cash)$/.test(preColonLower)) {
         parsed.coin = 'bch';
-        parsed.test = false;
+        parsed.isTestnet = false;
+        addressAndParams = colonSplit[2].trim();
+        console.log('Is bch');
+
+      } else if (/^(?:bch)$/.test(preColonLower)) {
+        parsed.coin = 'bch';
+        parsed.isTestnet = false;
         addressAndParams = colonSplit[2].trim();
         console.log('Is bch');
 
