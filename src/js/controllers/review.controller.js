@@ -9,6 +9,50 @@ angular
   function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
     var vm = this;
 
+    vm.buttonText = '';
+    vm.destination = {
+      address: '',
+      balanceAmount: '',
+      balanceCurrency: '',
+      coin: '',
+      color: '',
+      currency: '',
+      currencyColor: '',
+      kind: '', // 'address', 'contact', 'wallet'
+      name: ''
+    };
+    vm.displayAddress = '';
+    vm.feeCrypto = '';
+    vm.feeFiat = '';
+    vm.fiatCurrency = '';
+    vm.feeIsHigh = false;
+    vm.feeLessThanACent = false;
+    vm.isCordova = platformInfo.isCordova;
+    vm.memo = '';
+    vm.notReadyMessage = '';
+    vm.origin = {
+      balanceAmount: '',
+      balanceCurrency: '',
+      currency: '',
+      currencyColor: '',
+    };
+    vm.originWallet = null;
+    vm.paymentExpired = false;
+    vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
+    vm.primaryAmount = '';
+    vm.primaryCurrency = '';
+    vm.usingMerchantFee = false;
+    vm.readyToSend = false;
+    vm.remainingTimeStr = '';
+    vm.secondaryAmount = '';
+    vm.secondaryCurrency = '';
+    vm.sendingTitle = gettextCatalog.getString('You are sending');
+    vm.sendStatus = '';
+    vm.showAddress = true;
+    vm.thirdParty = null;
+    vm.wallet = null;
+    vm.memoExpanded = false;
+
     // Functions
     vm.goBack = goBack;
     vm.onSuccessConfirm = onSuccessConfirm;
@@ -35,57 +79,11 @@ angular
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
-    function initVariables() {
-      vm.buttonText = '';
-      vm.destination = {
-        address: '',
-        balanceAmount: '',
-        balanceCurrency: '',
-        coin: '',
-        color: '',
-        currency: '',
-        currencyColor: '',
-        kind: '', // 'address', 'contact', 'wallet'
-        name: ''
-      };
-      vm.displayAddress = '';
-      vm.feeCrypto = '';
-      vm.feeFiat = '';
-      vm.fiatCurrency = '';
-      vm.feeIsHigh = false;
-      vm.feeLessThanACent = false;
-      vm.isCordova = platformInfo.isCordova;
-      vm.memo = '';
-      vm.notReadyMessage = '';
-      vm.origin = {
-        balanceAmount: '',
-        balanceCurrency: '',
-        currency: '',
-        currencyColor: '',
-      };
-      vm.originWallet = null;
-      vm.paymentExpired = false;
-      vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
-      vm.primaryAmount = '';
-      vm.primaryCurrency = '';
-      vm.usingMerchantFee = false;
-      vm.readyToSend = false;
-      vm.remainingTimeStr = '';
-      vm.secondaryAmount = '';
-      vm.secondaryCurrency = '';
-      vm.sendingTitle = gettextCatalog.getString('You are sending');
-      vm.sendStatus = '';
-      vm.showAddress = true;
-      vm.thirdParty = null;
-      vm.wallet = null;
-      vm.memoExpanded = false;
-    }
-
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
 
       // Reset from last time
-      initVariables();
+      vm.thirdParty = null;
 
       defaults = configService.getDefaults();
       sendFlowData = sendFlowService.state.getClone();

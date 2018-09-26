@@ -52,9 +52,6 @@ angular
         $scope.specificAmount = $scope.specificAlternativeAmount = '';
         $scope.isPaymentRequest = true;
       }
-      if ($scope.params.thirdParty) {
-        $scope.thirdParty = $scope.params.thirdParty;
-      }
     };
 
     function onEnter (event, data) {
@@ -62,7 +59,7 @@ angular
         $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
       });
 
-      if ($scope.thirdParty) {
+      if ($scope.params.thirdParty) {
         // Third party services specific logic
         handleThirdPartyIfShapeshift();
       }
@@ -102,8 +99,8 @@ angular
     }
 
     function handleThirdPartyIfShapeshift() {
-      console.log($scope.thirdParty, $scope.coin);
-      if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
+      console.log($scope.params.thirdParty, $scope.coin);
+      if ($scope.params.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
         $scope.coin = profileService.getWallet(fromWalletId).coin;
         if ($scope.coin === 'bch') {
           $scope.coin = 'btc';
