@@ -30,7 +30,7 @@ describe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress).toBeUndefined();
-    expect(parsed.isTestnet).toBeUndefined();
+    expect(parsed.isTestnet).toBe(false);
     expect(parsed.url).toBe('https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
   });
 
@@ -171,6 +171,16 @@ describe('bitcoinUriService', function() {
     expect(parsed.isTestnet).toBe(false);
   });
 
+  it('legacy address with bch prefix', function() {
+
+    var parsed = bitcoinUriService.parse('bch:19yUdM2H7sADrabR6Afu9zTpmwqr6WYprX');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.legacy).toBe('19yUdM2H7sADrabR6Afu9zTpmwqr6WYprX');
+    expect(parsed.isTestnet).toBe(false);
+  });
+
   it('cashAddr testnet with prefix', function() {
 
     var parsed = bitcoinUriService.parse('bchtest:qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
@@ -188,6 +198,16 @@ describe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress.cashAddr).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
+    expect(parsed.isTestnet).toBe(false);
+  });
+
+  it('cashAddr with bch prefix', function() {
+
+    var parsed = bitcoinUriService.parse('bch:qpqzqtjqqc00nsxj0e3kevz65ujg4yt5z5w99jap5f');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qpqzqtjqqc00nsxj0e3kevz65ujg4yt5z5w99jap5f');
     expect(parsed.isTestnet).toBe(false);
   });
 
@@ -268,6 +288,41 @@ describe('bitcoinUriService', function() {
 
     expect(parsed.isValid).toBe(true);
     expect(parsed.copayInvitation).toBe('PD5B7rEEj72st9d5nFszyuKxJP6FAGS7idVC2SMqiMxUcWVd8JifZDJw1UgjUctxefUFE3Sz6qLbch');
+  });
+
+
+  it ('import BCH wallet no password', function() {
+    var parsed = bitcoinUriService.parse("1|suggest route obvious broccoli good position hidden tone history around final lobster|livenet|m/44'/0'/0'|false");
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.import.type).toBe(1);
+    expect(parsed.import.data).toBe('suggest route obvious broccoli good position hidden tone history around final lobster');
+    expect(parsed.isTestnet).toBe(false); 
+    expect(parsed.import.derivationPath).toBe("m/44'/0'/0'");
+    expect(parsed.import.hasPassphrase).toBe(false);
+  });
+
+  it ('import BCH wallet with passphrase', function() {
+    var parsed = bitcoinUriService.parse("1|fringe hazard all hobby trap myth fire stand sock empty soon east|livenet|m/44'/0'/0'|true");
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.import.type).toBe(1);
+    expect(parsed.import.data).toBe('fringe hazard all hobby trap myth fire stand sock empty soon east');
+    expect(parsed.isTestnet).toBe(false); 
+    expect(parsed.import.derivationPath).toBe("m/44'/0'/0'");
+    expect(parsed.import.hasPassphrase).toBe(true);
+  });
+
+  it ('import BTC wallet testnet', function() {
+    // From copay
+    var parsed = bitcoinUriService.parse("1|cat wealth column firm wet sauce tornado era feature monster click eyebrow|testnet|m/44'/1'/0'|false|btc");
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.import.type).toBe(1);
+    expect(parsed.import.data).toBe('cat wealth column firm wet sauce tornado era feature monster click eyebrow');
+    expect(parsed.isTestnet).toBe(true); 
+    expect(parsed.import.derivationPath).toBe("m/44'/1'/0'");
+    expect(parsed.import.hasPassphrase).toBe(false);
   });
 
   // Invalid addresses from https://github.com/bitcoincashorg/bitcoincash.org/blob/master/spec/cashaddr.md

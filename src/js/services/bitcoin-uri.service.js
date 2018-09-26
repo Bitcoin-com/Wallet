@@ -84,13 +84,53 @@
       return result;
     }
     
-    function infoFromImport(data) {
+    function infoFromWalletImportText(data) {
       var split = data.split('|');
       // Copay seems to use extra parameter for coin.
       if (split.length < 5 || split.length > 6) {
         return null;
       }
 
+      var type = parseInt(split[0], 10);
+      if (isNaN(type)) {
+        return  null;
+      }
+
+      var data = split[1];
+      var network = split[2];
+      if (!(network === 'livenet' || network === 'testnet')) {
+        return null;
+      }
+      var isTestnet = network === 'testnet';
+
+      var derivationPath = split[3];
+      if (!/^m\/\d+'\/\d+'\/\d+'$/.test(derivationPath)) {
+        return null;
+      }
+
+      var hasPassphraseText = split[4];
+      if (!(hasPassphraseText === 'true' || hasPassphraseText === 'false')) {
+        return null;
+      }
+      var hasPassphrase = hasPassphraseText === 'true';
+
+      var coin; // Intentionally undefined as may not be present
+      if (split.length > 5) {
+        var coinText = split[5];
+        if (!(coinText === 'bch' || coinText === 'btc')) {
+          return null;
+        }
+        coin = coinText;
+      }
+
+      return {
+        type: type,
+        data: data,
+        isTestnet: isTestnet,
+        derivationPath: derivationPath,
+        hasPassphrase: hasPassphrase,
+        coin: coin
+      };
     }
 
     /*
@@ -105,6 +145,13 @@
       bareUrl: '',
       coin: '',
       copayInvitation: '',
+      import: { // testnet info in root, coin info in root if available
+        data: '',
+        derivationPath: '',
+        hasPassphrase: false,
+        type: 1,
+      },
+      isTestnet: false,
       isValid: false,
       label: '',
       message: '',
@@ -124,7 +171,6 @@
         "req-param0": '',
         "req-param1": ''
       },
-      testnet: false,
       url: '' // For BIP70 
     }
 
@@ -158,7 +204,13 @@
 
       } else if (/^(?:bitcoincash)|(?:bitcoin-cash)$/.test(preColonLower)) {
         parsed.coin = 'bch';
-        parsed.test = false;
+        parsed.isTestnet = false;
+        addressAndParams = colonSplit[2].trim();
+        console.log('Is bch');
+
+      } else if (/^(?:bch)$/.test(preColonLower)) {
+        parsed.coin = 'bch';
+        parsed.isTestnet = false;
         addressAndParams = colonSplit[2].trim();
         console.log('Is bch');
 
@@ -173,16 +225,19 @@
         addressAndParams = colonSplit[1].trim();
         console.log('No prefix.');
 
-      } else if (/^https?$/.test(colonSplit[1])) {
+      } else if (/^https?$/.test(colonSplit[1])) { // Plain URL
         addressAndParams = trimmed;
 
+      } else if (colonSplit[2].indexOf('|') == 0) { // Import
+        addressAndParams = trimmed
       } else {
-        // Something with a colon in the middle that we don't recognise
+        // Something we don't recognise
         return parsed;
       }
 
       // Remove erroneous leading slashes
-      var leadingSlashes = /^\/*([^\/]+(?:.*))$/.exec(addressAndParams);
+      //var leadingSlashes = /^\/*([^\/]+(?:.*))$/.exec(addressAndParams);
+      var leadingSlashes = /^\/*(.*)$/.exec(addressAndParams);
       if (!leadingSlashes) {
         return parsed;
       }
@@ -262,7 +317,6 @@
         var copayInvitationRe = /^[0-9A-HJ-NP-Za-km-z]{70,80}$/;
         //var legacyRe = /^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
         //var legacyTestnetRe = /^[mn][a-km-zA-HJ-NP-Z1-9]{25,34}$/;
-        var importRe = /^[123]|$/;
         var privateKeyEncryptedRe = /^6P[1-9A-HJ-NP-Za-km-z]{56}$/;
         var privateKeyForUncompressedPublicKeyRe = /^5[1-9A-HJ-NP-Za-km-z]{50}$/;
         var privateKeyForUncompressedPublicKeyTestnetRe = /^9[1-9A-HJ-NP-Za-km-z]{50}$/;
@@ -273,6 +327,7 @@
         var bitpayAddrMainnet = bitpayAddrOnMainnet(address);
         var cashAddrTestnet = cashAddrOnTestnet(addressLowerCase);
         var cashAddrMainnet = cashAddrOnMainnet(addressLowerCase);
+        var importInfo = infoFromWalletImportText(address);
         var privateKey = '';
 
         if (parsed.isTestnet && cashAddrTestnet) {
@@ -341,6 +396,17 @@
 
         } else if (urlRe.test(address)) {
           parsed.bareUrl = trimmed;
+          parsed.isValid = true;
+
+        } else if (importInfo) {
+          parsed.import = {
+            type: importInfo.type,
+            data: importInfo.data,
+            derivationPath: importInfo.derivationPath,
+            hasPassphrase: importInfo.hasPassphrase
+          };
+          parsed.coin = importInfo.coin;
+          parsed.isTestnet = importInfo.isTestnet;
           parsed.isValid = true;
         }
           

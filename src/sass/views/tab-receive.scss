@@ -84,6 +84,9 @@
     width: 100%;
   }
   .payment-received-container {
+    svg {
+      max-height: 400px;
+    }
     margin: 0 20px;
     .payment-received-amount {
       font-size: 1.8em;

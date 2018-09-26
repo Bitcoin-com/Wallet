@@ -1,16 +1,52 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService) {
-
-  var HISTORY_SHOW_LIMIT = 10;
-  var currentTxHistoryPage = 0;
+angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService, walletHistoryService) {
+  // Desktop can display 13 rows of transactions, bump it up to a nice round 15.
+  var DISPLAY_PAGE_SIZE = 15;
+  var currentTxHistoryDisplayPage = 0;
+  var completeTxHistory = []
   var listeners = [];
-  $scope.txps = [];
-  $scope.completeTxHistory = [];
-  $scope.openTxpModal = txpModalService.open;
+
+  // For gradual migration for doing it properly
+  $scope.vm = {
+    allowInfiniteScroll: false,
+    gettingCachedHistory: true,
+    gettingInitialHistory: true,
+    updatingTxHistory: false,
+    fetchedAllTxHistory: false,
+    //updateTxHistoryError: false
+    updateTxHistoryFailed: false
+  };
+
+  // Need flag for when to allow infinite scroll at bottom
+  // - ie not when loading initial data and there is no more cached data
+
+  $scope.amountIsCollapsible = false;
+  $scope.color = '#888888';
+  
+  $scope.filteredTxHistory = [];
   $scope.isCordova = platformInfo.isCordova;
   $scope.isAndroid = platformInfo.isAndroid;
   $scope.isIOS = platformInfo.isIOS;
+  $scope.isSearching = false;
+  $scope.openTxpModal = txpModalService.open;
+  $scope.requiresMultipleSignatures = false;
+  $scope.showBalanceButton = false;
+  $scope.status = null;
+  // Displaying 50 transactions when entering the screen takes a while, so only display a subset
+  // of everything we have, not the complete history.
+  $scope.txHistory = [];                 // This is what is displayed
+  $scope.txHistorySearchResults = [];
+  $scope.txps = [];
+  $scope.updatingStatus = false;
+  $scope.updateStatusError = null;
+  $scope.updatingTxHistoryProgress = 0;
+  $scope.wallet = null;
+  $scope.walletId = '';
+  $scope.walletNotRegistered = false;
+
+    
+    
 
   var channel = "ga";
   if (platformInfo.isCordova) {
@@ -18,8 +54,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
   var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
-
-  $scope.amountIsCollapsible = !$scope.isAndroid;
 
   $scope.openExternalLink = function(url, target) {
     externalLinkService.open(url, target);
@@ -52,6 +86,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.updatingStatus = true;
     $scope.updateStatusError = null;
     $scope.walletNotRegistered = false;
+    $scope.vm.fetchedAllTxHistory = false;
 
     walletService.getStatus($scope.wallet, {
       force: !!force,
@@ -135,45 +170,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       if (err) return;
       $timeout(function() {
         walletService.startScan($scope.wallet, function() {
-          $scope.updateAll();
+          $scope.updateAll(true, true);
           $scope.$apply();
         });
-      });
-    });
-  };
-
-  var updateTxHistory = function(cb) {
-    if (!cb) cb = function() {};
-    $scope.updateTxHistoryError = false;
-    $scope.updatingTxHistoryProgress = 0;
-
-    feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
-      walletService.getTxHistory($scope.wallet, {
-        feeLevels: levels
-      }, function(err, txHistory) {
-        $scope.updatingTxHistory = false;
-        if (err) {
-          $scope.txHistory = null;
-          $scope.updateTxHistoryError = true;
-          return;
-        }
-
-        applyCurrencyAliases(txHistory);
-
-        var config = configService.getSync();
-        var fiatCode = config.wallet.settings.alternativeIsoCode;
-        lodash.each(txHistory, function(t) {
-          var r = rateService.toFiat(t.amount, fiatCode, $scope.wallet.coin);
-          t.alternativeAmountStr = r.toFixed(2) + ' ' + fiatCode;
-        });
-
-        $scope.completeTxHistory = txHistory;
-
-        $scope.showHistory();
-        $timeout(function() {
-          $scope.$apply();
-        });
-        return cb();
       });
     });
   };
@@ -182,21 +181,86 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     var defaults = configService.getDefaults();
     var configCache = configService.getSync();
 
-    lodash.each(txHistory, function(t) {
-      t.amountUnitStr = $scope.wallet.coin == 'btc'
+    lodash.each(txHistory, function onTx(tx) {
+      tx.amountUnitStr = $scope.wallet.coin == 'btc'
                         ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
                         : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
 
-      t.amountUnitStr = t.amountUnitStr.toUpperCase();
+      tx.amountUnitStr = tx.amountUnitStr.toUpperCase();
     });
   }
 
-  $scope.showHistory = function() {
-    if ($scope.completeTxHistory) {
-      $scope.txHistory = $scope.completeTxHistory.slice(0, (currentTxHistoryPage + 1) * HISTORY_SHOW_LIMIT);
-      $scope.txHistoryShowMore = $scope.completeTxHistory.length > $scope.txHistory.length;
+  function formatTxHistoryForDisplay(txHistory) {
+    applyCurrencyAliases(txHistory);
+
+    var config = configService.getSync();
+    var fiatCode = config.wallet.settings.alternativeIsoCode;
+    lodash.each(txHistory, function(t) {
+      var r = rateService.toFiat(t.amount, fiatCode, $scope.wallet.coin);
+      t.alternativeAmountStr = r.toFixed(2) + ' ' + fiatCode;
+    });
+  }
+
+
+  function updateTxHistoryFromCachedData() {
+    $scope.vm.gettingCachedHistory = true;
+    walletHistoryService.getCachedTxHistory($scope.wallet.id, function onGetCachedTxHistory(err, txHistory){
+      $scope.vm.gettingCachedHistory = false;
+      if (err) {
+        // Don't display an error because we are also requesting the history.
+        $log.error('Error getting cached tx history.', err);
+        return;
+      }
+
+      if (!txHistory) {
+        $log.debug('No cached tx history.');
+        return;
+      }
+
+      formatTxHistoryForDisplay(txHistory);
+
+      completeTxHistory = txHistory;
+      showHistory(false);
+      $scope.$apply();
+    });
+  }
+
+  function fetchAndShowTxHistory(getLatest, flushCacheOnNew) {
+    $scope.vm.updatingTxHistory = true;
+
+    walletHistoryService.updateLocalTxHistoryByPage($scope.wallet, getLatest, flushCacheOnNew, function onUpdateLocalTxHistoryByPage(err, txHistory, fetchedAllTransactions) {
+      $scope.vm.gettingInitialHistory = false;
+      $scope.vm.updatingTxHistory = false;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+
+      if (err) {
+        console.error('pagination Failed to get history.', err);
+        $scope.vm.updateTxHistoryFailed = true;
+        return;
+      }
+
+      if (fetchedAllTransactions) {
+        $scope.vm.fetchedAllTxHistory = true;
+      }
+
+      formatTxHistoryForDisplay(txHistory);
+
+      completeTxHistory = txHistory;
+      showHistory(true);
+      $scope.$apply();
+    });
+  }
+
+  
+  function showHistory(showAll) {
+    if (completeTxHistory) {
+      $scope.txHistory = showAll ? completeTxHistory : completeTxHistory.slice(0, (currentTxHistoryDisplayPage + 1) * DISPLAY_PAGE_SIZE);
+      $scope.vm.allowInfiniteScroll = !$scope.vm.fetchedAllTxHistory && !(completeTxHistory.length === $scope.txHistory.length && $scope.vm.gettingInitialHistory);
+    } else {
+      $scope.vm.allowInfiniteScroll = false;
     }
-  };
+  }
+  
 
   $scope.getDate = function(txCreated) {
     var date = new Date(txCreated * 1000);
@@ -235,24 +299,35 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     return !tx.confirmations || tx.confirmations === 0;
   };
 
+  // on-infinite="showMore()"
   $scope.showMore = function() {
-    $timeout(function() {
-      currentTxHistoryPage++;
-      $scope.showHistory();
+    // Check if we have more than we are displaying
+    if (completeTxHistory.length > $scope.txHistory.length) {
+      currentTxHistoryDisplayPage++;
+      showHistory(false);
       $scope.$broadcast('scroll.infiniteScrollComplete');
-    }, 100);
+      return;
+    }
+
+    if ($scope.vm.updatingTxHistory) {
+      return;
+    }
+
+    fetchAndShowTxHistory(false, false);
   };
 
+  // on-refresh="onRefresh()"
   $scope.onRefresh = function() {
     $timeout(function() {
       $scope.$broadcast('scroll.refreshComplete');
     }, 300);
-    $scope.updateAll(true);
+    $scope.updateAll(true, false);
   };
 
-  $scope.updateAll = function(force, cb)  {
-    updateStatus(force);
-    updateTxHistory(cb);
+  $scope.updateAll = function(forceStatusUpdate, flushTxCacheOnNew)  {
+    updateStatus(forceStatusUpdate);
+    //updateTxHistory(cb);
+    fetchAndShowTxHistory(true, flushTxCacheOnNew);
   };
 
   $scope.hideToggle = function() {
@@ -262,97 +337,32 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
 
   var prevPos;
-
+  $scope.txHistoryPaddingBottom = 0;
   function getScrollPosition() {
     var scrollPosition = $ionicScrollDelegate.getScrollPosition();
+
+    $timeout(function() {
+      getScrollPosition();
+    }, 200);
+
     if (!scrollPosition) {
-      $window.requestAnimationFrame(function() {
-        getScrollPosition();
-      });
       return;
     }
     var pos = scrollPosition.top;
+    if (pos > 0) {
+      $scope.txHistoryPaddingBottom = "200px";
+    }
     if (pos === prevPos) {
-      $window.requestAnimationFrame(function() {
-        getScrollPosition();
-      });
       return;
     }
     prevPos = pos;
-    refreshAmountSection(pos);
-  };
-
-  function refreshAmountSection(scrollPos) {
-    var AMOUNT_HEIGHT_BASE = 210;
-    $scope.showBalanceButton = false;
-    if ($scope.status) {
-      $scope.showBalanceButton = ($scope.status.totalBalanceSat != $scope.status.spendableAmount);
-      if ($scope.showBalanceButton) {
-        AMOUNT_HEIGHT_BASE = 270;
-      }
-    }
-    if (!$scope.amountIsCollapsible) {
-      var t = ($scope.showBalanceButton ? 15 : 45);
-      $scope.amountScale = 'translateY(' + t + 'px)';
-      return;
-    }
-
-    scrollPos = scrollPos || 0;
-    var amountHeight = AMOUNT_HEIGHT_BASE - scrollPos;
-    if (amountHeight < 80) {
-      amountHeight = 80;
-    }
-    var contentMargin = amountHeight;
-    if (contentMargin > AMOUNT_HEIGHT_BASE) {
-      contentMargin = AMOUNT_HEIGHT_BASE;
-    }
-
-    var amountScale = (amountHeight / AMOUNT_HEIGHT_BASE);
-    if (amountScale < 0.5) {
-      amountScale = 0.5;
-    }
-    if (amountScale > 1.1) {
-      amountScale = 1.1;
-    }
-
-    var s = amountScale;
-
-    // Make space for the balance button when it needs to display.
-    var TOP_NO_BALANCE_BUTTON = 115;
-    var TOP_BALANCE_BUTTON = 30;
-    var top = TOP_NO_BALANCE_BUTTON;
-    if ($scope.showBalanceButton) {
-      top = TOP_BALANCE_BUTTON;
-    }
-
-    var amountTop = ((amountScale - 0.80) / 0.80) * top;
-    if (amountTop < -2) {
-      amountTop = -2;
-    }
-    if (amountTop > top) {
-      amountTop = top;
-    }
-
-    var t = amountTop;
-
-    $scope.altAmountOpacity = (amountHeight - 100) / 80;
-    $scope.buttonsOpacity = (amountHeight - 140) / 70;
-    $window.requestAnimationFrame(function() {
-      $scope.amountHeight = amountHeight + 'px';
-      $scope.contentMargin = contentMargin + 'px';
-      $scope.amountScale = 'scale3d(' + s + ',' + s + ',' + s + ') translateY(' + t + 'px)';
-      $scope.$digest();
-      getScrollPosition();
-    });
+    $scope.scrollPosition = pos;
   }
 
   var scrollWatcherInitialized;
 
   $scope.$on("$ionicView.enter", function(event, data) {
     if ($scope.isCordova && $scope.isAndroid) setAndroidStatusBarColor();
-    if (scrollWatcherInitialized || !$scope.amountIsCollapsible) {
-      return;
-    }
     scrollWatcherInitialized = true;
   });
 
@@ -370,7 +380,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     if (!$scope.wallet) return;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
-    $scope.updatingTxHistory = true;
+    $scope.vm.gettingInitialHistory = true;
 
     addressbookService.list(function(err, ab) {
       if (err) $log.error(err);
@@ -380,21 +390,25 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     listeners = [
       $rootScope.$on('bwsEvent', function(e, walletId) {
         if (walletId == $scope.wallet.id && e.type != 'NewAddress')
-          $scope.updateAll();
+          $scope.updateAll(false, false);
       }),
       $rootScope.$on('Local/TxAction', function(e, walletId) {
         if (walletId == $scope.wallet.id)
-          $scope.updateAll();
+          $scope.updateAll(false, false);
       }),
     ];
   });
 
   var refreshInterval;
 
-  $scope.$on("$ionicView.afterEnter", function(event, data) {
-    $scope.updateAll();
-    refreshAmountSection();
+  $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
+    updateTxHistoryFromCachedData();
+    $scope.updateAll(true, true);
+    // refreshAmountSection();
     refreshInterval = $interval($scope.onRefresh, 10 * 1000);
+    $timeout(function() {
+      getScrollPosition();
+    }, 1000);
   });
 
   $scope.$on("$ionicView.afterLeave", function(event, data) {

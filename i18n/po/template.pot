@@ -511,7 +511,7 @@ msgid "Cannot Create Wallet"
 msgstr ""
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr ""
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2916,8 +2916,13 @@ msgid "Sweep"
 msgstr ""
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr ""
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr ""
 
 #: src/js/services/onGoingProcess.js:33
@@ -3783,6 +3788,10 @@ msgstr ""
 msgid "Bitcoin Cash Games"
 msgstr ""
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr ""
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr ""
@@ -3849,6 +3858,34 @@ msgstr ""
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
+msgstr ""
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr ""
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr ""
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr ""
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr ""
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
 msgstr ""
 
 #: src/js/controllers/tab-scan.js:120

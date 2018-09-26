@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -522,8 +522,8 @@ msgid "Cannot Create Wallet"
 msgstr "ウォレットを作成できません。"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
-msgstr "同じ端末で同じウォレットに複数回参加することができません。"
+msgid "Cannot join the same wallet more than once"
+msgstr "同じ端末で同じウォレットに複数回参加することはできません。"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -2929,8 +2929,13 @@ msgid "Sweep"
 msgstr "全残高インポート"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "ペーパーウォレットの全残高インポート"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "ペーパーウォレットの全残高インポート"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3798,6 +3803,10 @@ msgstr "Bitcoin.com を参照"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash ゲーム"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "ウォレットアプリを共有"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "ニュース"
@@ -3865,4 +3874,76 @@ msgstr "１セント以下"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "この請求書はもう支払を受け付けていません"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "全残高を送金"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "不明なエラーです。"
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "資金を送金できるビットコインキャッシュウォレットが見つかりません。"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "ビットコインキャッシュが見つかりません。"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "ビットコインが見つかりました:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "資金を送金できるビットコインウォレットが見つかりません。"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "ビットコインが見つかりません。"
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "スキャンできませんでした"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "データが認識されていません。"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "未対応"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet には対応していません。"
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "ウェブブラウザで開く"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "無効なアドレス"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "金額が定義されていません"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "金額が最少額を下回っています"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "金額が上限を超えています"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Shapeshift から無効な応答がありました"
 
