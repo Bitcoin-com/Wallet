@@ -114,6 +114,8 @@ angular
       var walletsAll = [];
       var walletsSufficientFunds = [];
       $scope.walletsInsufficientFunds = []; // For origin screen
+      $scope.walletsBtc = [];
+      $scope.walletsBch = [];
 
       if ($scope.type === 'origin') {
         $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send from');
