@@ -108,9 +108,8 @@ angular
                 popupService.showConfirm(gettextCatalog.getString('Shapeshift Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
                   if (hasConfirm) {
                     externalLinkService.open("https://shapeshift.io");
-                  } else {
-                    $ionicHistory.goBack();
                   }
+                  $ionicHistory.goBack();
                 });
               } else {
                 _next(data);
