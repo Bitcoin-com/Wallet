@@ -12,6 +12,17 @@ angular
     var unitDecimals = 0;
     var unitsFromSatoshis = 0;
 
+    //
+    // Needs to migrate $scope to vm.
+    //
+    function initVariables() {
+      // Private variables
+      fromWalletId = '';
+      priceDisplayAsFiat = false;
+      unitDecimals = 0;
+      unitsFromSatoshis = 0;
+    }
+
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.enter", onEnter);
     
@@ -19,6 +30,10 @@ angular
       if (data.direction == "back") {
         sendFlowService.state.pop();
       }
+
+      // Init before entering on this screen
+      initVariables();
+      // Then start
 
       $scope.params = sendFlowService.state.getClone();
 
