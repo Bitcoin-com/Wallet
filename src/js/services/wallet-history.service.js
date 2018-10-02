@@ -27,20 +27,23 @@
 
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
 
-        var cachedTxIds = {};
+        var cachedTxIndexFromId = {};
         cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIds[tx.txid] = true;
+          cachedTxIndexFromId[tx.txid] = true;
         });
 
+        var confirmationsUpdated = false;
         var someTransactionsWereNew = false;
         var overlappingTxsCount = 0;
 
         newTxs.forEach(function forNewTx(tx){
-          if (cachedTxIds[tx.txid]) {
-            overlappingTxsCount++;
-          } else {
+          if (typeof cachedTxIndexFromId[tx.txid] === "undefined") {
             someTransactionsWereNew = true;
             cachedTxs.push(tx);
+          } else {
+            var txUpdated = updateCachedTx(cachedTxs, cachedTxIndexFromId, tx);
+            confirmationsUpdated = confirmationsUpdated || txUpdated;
+            overlappingTxsCount++;
           }
         });
 
@@ -49,6 +52,8 @@
 
         if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
           if (someTransactionsWereNew) {
+            saveTxHistory(walletId, cachedTxs);
+          } else if (confirmationsUpdated) {
             saveTxHistory(walletId, cachedTxs);
           } else if (overlappingTxsCount === newTxs.length) {
             allTransactionsFetched = true;
@@ -65,21 +70,24 @@
       }
 
       function addLatestTransactions(walletId, cachedTxs, newTxs) {
-        var cachedTxIds = {};
-        cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIds[tx.txid] = true;
+        var cachedTxIndexFromId = {};
+        cachedTxs.forEach(function forCachedTx(tx, txIndex){
+          cachedTxIndexFromId[tx.txid] = txIndex;
         });
 
         var someTransactionsWereNew = false;
+        var confirmationsUpdated = false;
         var overlappingTxsCount = 0;
         var uniqueNewTxs = [];
 
         newTxs.forEach(function forNewTx(tx){
-          if (cachedTxIds[tx.txid]) {
-            overlappingTxsCount++;
-          } else {
+          if (typeof cachedTxIndexFromId[tx.txid] === "undefined") {
             someTransactionsWereNew = true;
             uniqueNewTxs.push(tx);
+          } else {
+            var txUpdated = updateCachedTx(cachedTxs, cachedTxIndexFromId, tx);
+            confirmationsUpdated = confirmationsUpdated || txUpdated;
+            overlappingTxsCount++;
           }
         });
 
@@ -91,6 +99,9 @@
             saveTxHistory(walletId, allTxs);
             return allTxs;
           } else {
+            if (confirmationsUpdated) {
+              saveTxHistory(walletId, cachedTxs);
+            }
             return cachedTxs;
           }
         } else {
@@ -104,6 +115,8 @@
 
       // Only clear the cache once we have received new transactions from the server.
       /**
+       * @param wallet
+       * @param start
        * @param {function(err, txs)} cb - transactions is always an array, may be empty
        */
       function fetchTxHistoryByPage(wallet, start, cb) {
@@ -134,6 +147,7 @@
        * @param {function(error, txs)} cb - txs is always an array, may be empty
        */
       function getCachedTxHistory(walletId, cb) {
+        console.log('txhistory updateLocalTxHistoryByPage()');
         storageService.getTxHistory(walletId, function onGetTxHistory(err, txHistoryString){
           if (err) {
             return cb(err, []);
@@ -187,7 +201,7 @@
         });
     
         return processedTxs;
-      };
+      }
 
       function saveTxHistory(walletId, processedTxs) {
         storageService.setTxHistory(processedTxs, walletId, function onSetTxHistory(error){
@@ -197,9 +211,26 @@
         });
       }
 
+      /**
+       * Returns true if the cached tx was updated
+       * @param {*} cachedTxs 
+       * @param {*} cachedTxIndexFromId - Indices for cachedTxs, based on txid
+       * @param {*} tx - The most recent tx info
+       */
+      function updateCachedTx(cachedTxs, cachedTxIndexFromId, tx) {
+        var updated = false;
+        var txIndex = cachedTxIndexFromId[tx.txid];
+        var cachedTx = cachedTxs[txIndex];
+
+        if (cachedTx.confirmations < SAFE_CONFIRMATIONS && tx.confirmations > cachedTx.confirmations) {
+          cachedTxs[txIndex].confirmations = tx.confirmations;
+          updated = true;
+        }
+        return updated;
+      }
 
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
-
+        console.log('txhistory updaetLocalTxHistoryByPage()');
         if (flushCacheOnNew) {
           fetchTxHistoryByPage(wallet, 0, function onFetchTxHistory(err, txs){
             if (err) {
@@ -240,10 +271,5 @@
           });
         }
       }
-
-      
-
     }
-
-
 })();

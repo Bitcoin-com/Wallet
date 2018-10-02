@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,7 +520,7 @@ msgid "Cannot Create Wallet"
 msgstr "Не удаётся создать кошелёк"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "Нельзя присоединиться к одному и тому же кошельку более одного раза"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2925,8 +2925,13 @@ msgid "Sweep"
 msgstr "Считать"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Пополнить с бумажного кошелька"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Пополнить с бумажного кошелька"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3792,6 +3797,10 @@ msgstr "Обзор Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Игры Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Поделиться программой «Кошелёк»"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Новости"
@@ -3859,4 +3868,76 @@ msgstr "менее 1 копейки"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "По этому инвойсу платежи больше не принимаются"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Отправить максимальную сумму"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Неизвестная ошибка."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Не найден кошелек Bitcoin Cash для перевода средств."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Не найден Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Найден Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Не найден кошелек Bitcoin Core для перевода средств."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Не найден Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Ошибка сканирования"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Данные не распознаны."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Не поддерживается"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet не поддерживается."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL-адрес"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Открыть в веб-браузере"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Неверный адрес"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Сумма не задана"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Сумма ниже минимума"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Сумма больше ограничения"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Неправильный ответ от Shapeshift"
 

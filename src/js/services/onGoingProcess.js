@@ -74,10 +74,8 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     root.onGoingProcessName = name;
 
     var showName = $filter('translate')(processNames[name] || name);
-
-    if (customHandler) {
-      customHandler(processName, showName, isOn);
-    } else if (root.onGoingProcessName) {
+    
+    if (root.onGoingProcessName) {
       var tmpl;
       if (isWindowsPhoneApp) tmpl = '<div>' + showName + '</div>';
       else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
@@ -87,6 +85,10 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     } else {
       $ionicLoading.hide();
     }
+
+    if (customHandler) {
+      customHandler(processName, showName, isOn);
+    } 
   };
 
   return root;

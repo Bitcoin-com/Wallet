@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,7 +520,7 @@ msgid "Cannot Create Wallet"
 msgstr "No se pudo crear la billetera"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "No puede unirse a la misma billetera más de una vez"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -2674,7 +2674,7 @@ msgstr "Guardar las direcciones que usas frecuentemente y envía Bitcoin en un c
 
 #: www/views/tab-send.html:55
 msgid "Add your first contact"
-msgstr "Añadie tu primer contacto"
+msgstr "Añade tu primer contacto"
 
 #: www/views/tab-send.html:65
 msgid "Your Bitcoin wallet is empty"
@@ -2925,9 +2925,14 @@ msgid "Sweep"
 msgstr "Importar"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "Importar billetera en papel"
+msgstr "Importar billetera de papel"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "Importar billetera de papel"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3792,6 +3797,10 @@ msgstr "Explora Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Juegos de Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Comparte esta app"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Noticias"
@@ -3859,4 +3868,76 @@ msgstr "Menos de 1 centavo"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Esta factura ya no está aceptando pagos"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Enviar cantidad máxima"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Error desconocido."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "No se encontró billetera BCH para transferir estos fondos."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "No se encontró Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Bitcoin Core encontrado:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "No se encontró billetera BTC para transferir estos fondos."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "No se encontró Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Falló el escaneado"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Datos no reconocidos."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "No compatible"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet no es compatible."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Abrir en navegador web"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Dirección inválida"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Cantidad no definida"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Cantidad por debajo del mínimo"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Cantidad por encima del límite"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Respuesta inválida de Shapeshift"
 
