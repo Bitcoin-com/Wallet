@@ -116,8 +116,4 @@ angular.module('copayApp.controllers').controller('preferencesController',
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
     });
-
-    $scope.goBack = function() {
-      $ionicHistory.goBack();
-    };
 });
