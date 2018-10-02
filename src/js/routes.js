@@ -194,16 +194,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-
-      .state('tabs.wallet.addresses', {
-        url: '/addresses/:walletId/:toAddress',
-        views: {
-          'tab-home@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/addresses.html'
-          }
-        }
-      })
       .state('tabs.wallet.allAddresses', {
         url: '/allAddresses/:walletId',
         views: {
@@ -588,6 +578,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.preferences.addresses', { /* Addresses */
+        url: '/addresses/:walletId/:toAddress',
+        views: {
+          'tab-home@tabs': {
+            controller: 'addressesController',
+            templateUrl: 'views/addresses.html'
+          }
+        }
+      })
       .state('tabs.preferences.export', {
         url: '/export',
         views: {
@@ -690,31 +689,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home': {
             templateUrl: 'views/copayers.html',
             controller: 'copayersController'
-          }
-        }
-      })
-
-      /*
-       *
-       * Addresses
-       *
-       */
-
-      .state('tabs.settings.addresses', {
-        url: '/addresses/:walletId/:toAddress',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/addresses.html'
-          }
-        }
-      })
-      .state('tabs.settings.allAddresses', {
-        url: '/allAddresses/:walletId',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/allAddresses.html'
           }
         }
       })
