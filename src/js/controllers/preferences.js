@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('preferencesController',
-  function($scope, $rootScope, $state, $timeout, $log, $ionicHistory, $ionicPlatform, configService, profileService, fingerprintService, walletService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
+  function($scope, $rootScope, $timeout, $log, $ionicHistory, configService, profileService, fingerprintService, walletService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
     var wallet;
     var walletId;
 

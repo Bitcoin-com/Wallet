@@ -115,10 +115,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     });
   };
 
-  $scope.openWalletSettings = function() {
-    $state.go('tabs.preferences', {'walletId': $scope.wallet.id, 'backToDetails': true});
-  };
-
   $scope.openSearchModal = function() {
     $scope.color = $scope.wallet.color;
     $scope.isSearching = true;
