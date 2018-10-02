@@ -4,7 +4,6 @@ angular.module('copayApp.controllers').controller('preferencesController',
   function($scope, $rootScope, $state, $timeout, $log, $ionicHistory, $ionicPlatform, configService, profileService, fingerprintService, walletService, platformInfo, externalLinkService, gettextCatalog, $ionicNavBarDelegate) {
     var wallet;
     var walletId;
-    var backToDetails = false;
 
     $scope.hiddenBalanceChange = function() {
       var opts = {
@@ -84,7 +83,6 @@ angular.module('copayApp.controllers').controller('preferencesController',
     };
 
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
-      backToDetails = data.stateParams.backToDetails;
       wallet = profileService.getWallet(data.stateParams.walletId);
       walletId = wallet.credentials.walletId;
       $scope.wallet = wallet;
@@ -120,19 +118,6 @@ angular.module('copayApp.controllers').controller('preferencesController',
     });
 
     $scope.goBack = function() {
-      if (backToDetails) {
-        $ionicHistory.nextViewOptions({disableAnimate: true});
-        $state.go('tabs.home').then(function () {
-          $ionicHistory.clearHistory();
-          $state.go('tabs.wallet', {'walletId': wallet.id});
-        });
-      } else {
-        $ionicHistory.goBack();
-      }
+      $ionicHistory.goBack();
     };
-
-    $ionicPlatform.registerBackButtonAction(function (event) {
-      event.preventDefault();
-      $scope.goBack()
-    }, 1000);
-  });
+});
