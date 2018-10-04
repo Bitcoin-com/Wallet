@@ -3797,7 +3797,7 @@ msgid "News"
 msgstr ""
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
+msgid "Start mining Bitcoin"
 msgstr ""
 
 #: src/js/services/bitcoincomService.js:42
