@@ -357,7 +357,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   }
 
   function setPreviousBalanceFromWallet() {
-    console.log('setPreviousBalanceFromWallet()');
     var wallet = $scope.wallet; // For convenience
 
     if (wallet.status && wallet.status.isValid) {
@@ -386,7 +385,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
             var balanceChanged = totalBalanceSat !== previousTotalBalanceSat;
             previousTotalBalanceSat = totalBalanceSat;
             console.log('totalBalanceSat: ' + totalBalanceSat + ', changed: ' + balanceChanged);
-            $scope.wallet.status = status;
+            if (balanceChanged) {
+              $scope.wallet.status = status;
+              $interval.cancel(balanceChecker);
+            }
           }
         });
       
