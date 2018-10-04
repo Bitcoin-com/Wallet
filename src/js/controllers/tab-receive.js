@@ -387,6 +387,10 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
             console.log('totalBalanceSat: ' + totalBalanceSat + ', changed: ' + balanceChanged);
             if (balanceChanged) {
               $scope.wallet.status = status;
+              $scope.wallets = profileService.getWallets();
+              $timeout(function () {
+                $scope.$apply();
+              }, 10);
               $interval.cancel(balanceChecker);
             }
           }
