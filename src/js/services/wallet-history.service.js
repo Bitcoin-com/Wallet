@@ -26,7 +26,7 @@
       return service;
 
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
-
+        var cachedTxCountBeforeMerging = cachedTxs.length;
         var cachedTxIndexFromId = {};
         cachedTxs.forEach(function forCachedTx(tx, txIndex){
           cachedTxIndexFromId[tx.txid] = txIndex;
@@ -48,10 +48,8 @@
         });
 
         var txsAreContinuous = false;
-        if (cachedTxs.length > 0) {
-          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
-          console.log('overlappingTxsCount:', overlappingTxsCount);
-          console.log('overlappingTxFraction:', overlappingTxFraction);
+        if (cachedTxCountBeforeMerging.length > 0) {
+          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxCountBeforeMerging, PAGE_OVERLAP);
           txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
         } else {
           txsAreContinuous = true;
@@ -68,7 +66,7 @@
           return cachedTxs;
         } else {
           // We might be missing some txs.
-          $log.error('We might be missing some txs in the history.');
+          $log.error('We might be missing some txs in the history. Overlapping txs count: ' + overlappingTxsCount + ', txs in cache before merging: ' + cachedTxCountBeforeMerging);
           // Our history is wrong, so remove it - we could instead, try to fetch data that was not so early.
           storageService.removeTxHistory(walletId, function onRemoveTxHistory(){});
           return [];
@@ -101,8 +99,6 @@
         var txsAreContinuous = false;
         if (cachedTxs.length > 0) {
           var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
-          console.log('overlappingTxsCount:', overlappingTxsCount);
-          console.log('overlappingTxFraction:', overlappingTxFraction);
           txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
         } else {
           txsAreContinuous = true;
@@ -121,7 +117,7 @@
           }
         } else {
           // We might be missing some txs.
-          $log.error('We might be missing some txs in the history.');
+          $log.error('We might be missing some txs in the history. OverlappingTxsCount: ' + overlappingTxsCount + ', txs in cache: ' + cachedTxs.length);
           // Our history is wrong, so just include the latest ones
           saveTxHistory(walletId, newTxs);
           return newTxs;
