@@ -5,7 +5,7 @@ angular.module('copayApp.services').factory('servicesService', function(configSe
     name: 'shapeshift',
     title: 'Shapeshift',
     icon: 'icon-shapeshift',
-    sref: 'tabs.shapeshift',
+    sref: 'tabs.shapeshift'
   }];
 
   root.register = function(serviceInfo) {

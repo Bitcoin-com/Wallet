@@ -107,3 +107,4 @@ www/img/app
 ## Firebase
 /GoogleService-Info.plist
 /google-services.json
+src/js/generated

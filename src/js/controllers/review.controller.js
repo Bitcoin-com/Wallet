@@ -809,7 +809,7 @@ angular
           "type": "outgoing",
           "amount": amount,
           "fees": vm.feeCrypto
-        }], [channel, "adjust"]);
+        }], [channel, "adjust", "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
         $timeout(function() {

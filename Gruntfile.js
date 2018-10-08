@@ -29,7 +29,7 @@ module.exports = function(grunt) {
       build_ios_release: {
         command: 'cordova prepare ios && cordova build ios --release',
         options: {
-          maxBuffer: 1600 * 1024
+          maxBuffer: 3200 * 1024
         }
       },
       chrome: {
@@ -71,7 +71,11 @@ module.exports = function(grunt) {
       sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release"
+<<<<<<< HEAD
         command: 'rm -f platforms/android/build/outputs/apk/release/*-android-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/release/android-release-signed.apk  platforms/android/build/outputs/apk/release/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/release/android-release-signed.apk platforms/android/build/outputs/apk/release/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
+=======
+        command: 'rm -f platforms/android/build/outputs/apk/*-android-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
+>>>>>>> wallet/task/462
         stdin: true,
       },
       sign_desktop_dist: {
@@ -175,6 +179,7 @@ module.exports = function(grunt) {
       js: {
         src: [
           'src/js/app.js',
+          'src/js/generated/constants/*.js',
           'src/js/routes.js',
           'src/js/decorators/*.js',
 
@@ -242,6 +247,24 @@ module.exports = function(grunt) {
       },
     },
     copy: {
+      gen_constant_leanplum_dev: {
+        src: 'src/js/templates/constants/leanplum-config.constant.js',
+        dest: 'src/js/generated/constants/leanplum-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processLeanplumConfig(content, 'dev');
+          },
+        },
+      },
+      gen_constant_leanplum_prod: {
+        src: 'src/js/templates/constants/leanplum-config.constant.js',
+        dest: 'src/js/generated/constants/leanplum-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processLeanplumConfig(content, 'prod');
+          },
+        },
+      },
       ionic_fonts: {
         expand: true,
         flatten: true,
@@ -345,14 +368,13 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
-  grunt.registerTask('prod', ['default', 'uglify']);
+  
+  grunt.registerTask('default', ['pre-dev', 'main']);
+  grunt.registerTask('main', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
+  grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev']);
+  grunt.registerTask('prod', ['copy:gen_constant_leanplum_prod', 'main', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
-  grunt.registerTask('wp', ['prod', 'exec:wp']);
-  grunt.registerTask('wp-copy', ['default', 'exec:wpcopy']);
-  grunt.registerTask('wp-init', ['default', 'exec:wpinit']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
 
   // Build all
@@ -397,5 +419,33 @@ module.exports = function(grunt) {
   grunt.registerTask('sign-desktop', ['exec:sign_desktop_dist']);
 
   // Release desktop
-  grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']); 
+  grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']);
+
+
+  function processLeanplumConfig(content, env) {
+    var leanplumConfig = {};
+    try {
+      leanplumConfig = grunt.file.readJSON('../leanplum-config.json');
+    } catch (e) {
+      // Without this, there is no clue on the console about what happened.
+      if (env === 'prod') {
+        console.error('Error reading JSON', e);
+        throw e;
+      } else { // Allow people to build if they don't care about Leanplum
+        console.warn('Failed to read Leanplum config JSON', e);
+        return content;
+      }
+    }
+
+    var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
+    var appId = leanplumForEnv.appId;
+    var key = leanplumForEnv.key;
+    console.log('Leanplum app ID: "' + appId + '"');
+    console.log('Leanplum key:    "' + key + '"');
+
+    var newContent = '// Generated\n' + content
+      .replace("appId: ''","appId: '" + appId + "'")
+      .replace("key: ''", "key: '" + key + "'");
+    return newContent;
+  }
 };

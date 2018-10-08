@@ -433,7 +433,7 @@ angular.module('copayApp.services')
             }
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
               "coin": opts.coin
-            }], [channel]);
+            }], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);

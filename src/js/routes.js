@@ -1180,7 +1180,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinComService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
@@ -1201,7 +1201,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             "wallet_created": "nd3dg5",
             "wallet_opened": "4n39l7"
           }
-        }
+        },
+        leanplum: leanplumConfig
       });
 
       configService.whenAvailable(function(config) {
@@ -1215,14 +1216,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       
       // Send a log to test
-      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust"]);
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust", 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'banner_click', 
         class: 'track_banner_click', 
         params: ['href-banner', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBanner);
 
@@ -1230,7 +1231,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'buy_bitcoin_click', 
         class: 'track_buy_bitcoin_click', 
         params: ['href', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoin);
 
@@ -1238,7 +1239,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'link_click_out', 
         class: 'track_link_click_out', 
         params: ['href', 'id'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionLinkClickOut);
 
@@ -1246,14 +1247,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'tab_open', 
         class: 'track_tab_open', 
         params: ['href', 'title', 'icon-off'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
       var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'shapeshift_start_click', 
         class: 'track_shapeshift_start_click', 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
       
