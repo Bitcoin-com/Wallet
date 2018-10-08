@@ -6,7 +6,7 @@
     .module('bitcoincom.services')
     .factory('walletHistoryService', walletHistoryService);
     
-    function walletHistoryService(configService, storageService, lodash, $log, txFormatService) {
+    function walletHistoryService(storageService, lodash, $log, txFormatService) {
       var PAGE_SIZE = 50;
       //var PAGE_SIZE = 20; // For dev only
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
@@ -26,7 +26,7 @@
       return service;
 
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
-
+        var cachedTxCountBeforeMerging = cachedTxs.length;
         var cachedTxIndexFromId = {};
         cachedTxs.forEach(function forCachedTx(tx, txIndex){
           cachedTxIndexFromId[tx.txid] = txIndex;
@@ -47,11 +47,15 @@
           }
         });
 
-        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
-        console.log('overlappingTxFraction:', overlappingTxFraction);
-        console.log('overlappingTxsCount:', overlappingTxsCount);
-
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION || (someTransactionsWereNew && overlappingTxsCount === 0)) { // We are good
+        var txsAreContinuous = false;
+        if (cachedTxCountBeforeMerging.length > 0) {
+          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxCountBeforeMerging, PAGE_OVERLAP);
+          txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
+        } else {
+          txsAreContinuous = true;
+        }        
+        
+        if (txsAreContinuous) {
           if (someTransactionsWereNew) {
             saveTxHistory(walletId, cachedTxs);
           } else if (confirmationsUpdated) {
@@ -62,7 +66,7 @@
           return cachedTxs;
         } else {
           // We might be missing some txs.
-          console.error('We might be missing some txs in the history.');
+          $log.error('We might be missing some txs in the history. Overlapping txs count: ' + overlappingTxsCount + ', txs in cache before merging: ' + cachedTxCountBeforeMerging);
           // Our history is wrong, so remove it - we could instead, try to fetch data that was not so early.
           storageService.removeTxHistory(walletId, function onRemoveTxHistory(){});
           return [];
@@ -92,9 +96,15 @@
           }
         });
 
-        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+        var txsAreContinuous = false;
+        if (cachedTxs.length > 0) {
+          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+          txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
+        } else {
+          txsAreContinuous = true;
+        } 
 
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION  || (someTransactionsWereNew && overlappingTxsCount === 0)) { // We are good
+        if (txsAreContinuous) {
           if (someTransactionsWereNew) {
             var allTxs = uniqueNewTxs.concat(cachedTxs);
             saveTxHistory(walletId, allTxs);
@@ -107,6 +117,7 @@
           }
         } else {
           // We might be missing some txs.
+          $log.error('We might be missing some txs in the history. OverlappingTxsCount: ' + overlappingTxsCount + ', txs in cache: ' + cachedTxs.length);
           // Our history is wrong, so just include the latest ones
           saveTxHistory(walletId, newTxs);
           return newTxs;
