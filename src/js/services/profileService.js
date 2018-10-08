@@ -416,7 +416,7 @@ angular.module('copayApp.services')
         seedWallet(opts, function(err, walletClient) {
           if (err) return cb(err);
 
-          var name = opts.name || gettextCatalog.getString('Personal Wallet');
+          var name = opts.name || gettextCatalog.getString('My {{coin}} Wallet', {coin: opts.coin.toUpperCase()});
           var myName = opts.myName || gettextCatalog.getString('me');
 
           walletClient.createWallet(name, myName, opts.m, opts.n, {
@@ -433,7 +433,7 @@ angular.module('copayApp.services')
             }
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
               "coin": opts.coin
-            }], [channel]);
+            }], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);

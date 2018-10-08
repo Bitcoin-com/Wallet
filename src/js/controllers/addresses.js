@@ -158,14 +158,7 @@ angular.module('copayApp.controllers').controller('addressesController', functio
   };
 
   $scope.viewAllAddresses = function() {
-    var fromView = $ionicHistory.currentStateName();
-    var path;
-    if (fromView.indexOf('settings') !== -1) {
-      path = 'tabs.settings.allAddresses';
-    } else {
-      path = 'tabs.wallet.allAddresses';
-    }
-    $state.go(path, {
+    $state.go('tabs.wallet.allAddresses', {
       walletId: $scope.wallet.id
     });
   };
@@ -209,7 +202,7 @@ angular.module('copayApp.controllers').controller('addressesController', functio
         return '';
       }
       return dateObj.toJSON();
-    };
+    }
 
     ongoingProcess.set('sendingByEmail', true);
     $timeout(function() {
@@ -240,7 +233,7 @@ angular.module('copayApp.controllers').controller('addressesController', functio
   };
 
   $scope.$on("$ionicView.afterEnter", function(event, data) {
-    $scope.allAddressesView = data.stateName == 'tabs.receive.allAddresses' ? true : false;
+    $scope.allAddressesView = data.stateName === 'tabs.wallet.allAddresses';
     if (!isCachedWallet($stateParams.walletId)) $scope.init();
     else $log.debug('Addresses cached for Wallet:', $stateParams.walletId);
   });

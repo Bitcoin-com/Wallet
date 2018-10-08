@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -36,7 +36,7 @@ msgstr "{{tx.feeRateStr}} của giao dịch"
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
-msgstr "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "{{appName}} 5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
 
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
@@ -56,8 +56,8 @@ msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size all
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "Tổng cộng {{amountBelowFeeStr}} đã bị loại trừ. Số tiền này đến từ UTXOs nhỏ hơn chi phí mạng cung cấp.#\n"
-"1"
+msgstr "{{amountBelowFeeStr}} Tổng cộng {{amountBelowFeeStr}} đã bị loại trừ. Số tiền này đến từ UTXOs nhỏ hơn chi phí mạng cung cấp.#\n"
+"1."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -67,7 +67,7 @@ msgstr "About"
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr "Accepted"
+msgstr "Chấp nhận"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
@@ -78,7 +78,7 @@ msgstr "Account"
 #: www/views/tab-create-shared.html:74
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
-msgstr "Account Number"
+msgstr "Account Number0941162662"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
@@ -241,7 +241,7 @@ msgstr "Fiat"
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
 msgid "Cryptocurrency"
-msgstr "Cryptocurrency"
+msgstr "Cryptocurrencyg"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
@@ -523,8 +523,8 @@ msgid "Cannot Create Wallet"
 msgstr "Cannot Create Wallet"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
-msgstr "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
+msgstr ""
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -2928,9 +2928,14 @@ msgid "Sweep"
 msgstr "Sweep"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "Sweep paper wallet"
+msgstr ""
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "Sweep Paper Wallet"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3795,6 +3800,10 @@ msgstr "Explore Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash Games"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr ""
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "News"
@@ -3862,4 +3871,76 @@ msgstr "Less than 1 cent"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "This invoice is no longer accepting payments"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr ""
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr ""
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr ""
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr ""
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr ""
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr ""
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr ""
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr ""
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr ""
 

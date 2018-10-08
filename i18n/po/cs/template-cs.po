@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-09-15 05:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -520,8 +520,8 @@ msgid "Cannot Create Wallet"
 msgstr "Není možné vytvořit peněženku"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
-msgstr "Není možné několikrát sloučit stejnou peněženku"
+msgid "Cannot join the same wallet more than once"
+msgstr "Nelze se připojit vícekrát ke stejné peněžence"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -1297,7 +1297,7 @@ msgstr "Nastavení filtru"
 #: src/js/services/fingerprintService.js:43
 #: src/js/services/fingerprintService.js:48
 msgid "Finger Scan Failed"
-msgstr "Scan otisku prstu se nezdařil"
+msgstr "Sken otisku prstu se nezdařil"
 
 #: src/js/controllers/feedback/send.js:34
 #: www/views/feedback/complete.html:7
@@ -1667,7 +1667,7 @@ msgstr "Neplatná odvozovací cesta"
 
 #: src/js/controllers/copayers.js:90
 msgid "Invitation to share a {{appName}} Wallet"
-msgstr "Pozvání ke sdílení {{appName}} peněženky"
+msgstr "Pozvánka ke sdílení {{appName}} peněženky"
 
 #: www/views/mercadoLibreCards.html:20
 #: www/views/modals/mercadolibre-card-details.html:48
@@ -2925,8 +2925,13 @@ msgid "Sweep"
 msgstr "Sweep"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Sweep papírové peněženky"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Sweep papírové peněženky"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3792,6 +3797,10 @@ msgstr "Prohlédnout Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash hry"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Sdílet aplikaci peněženky"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Novinky"
@@ -3859,4 +3868,76 @@ msgstr "Méně než 1 koruna"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Tato faktura již nepřijímá platby"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Odeslat maximální částku"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Neznámá chyba."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Žádná Bitcoin Cash peněženka pro transfer nalezených prostředků."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Žádný Bitcoin Cash nenalezen."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Nalezen Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Žádná Bitcoin Core peněženka pro transfer nalezených prostředků."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Žádný Bitcoin Core nenalezen."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Sken selhal"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Data nebyla rozpoznána."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Nepodporováno"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet není podporován."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Otevřít ve webovém prohlížeči"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Neplatná adresa"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Částka nedefinována"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Nižší než minimální částka"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Nadlimitní částka"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Neplatná odpověď z Shapeshift"
 

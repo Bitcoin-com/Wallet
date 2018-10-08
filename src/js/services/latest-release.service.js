@@ -75,7 +75,7 @@
       });
 
       function verifyTagFormat(tag) {
-        var regex = /^v?\d+\.\d+(\.\d+)?(-rc\d)?$/i;
+        var regex = /^v?\d+\.\d+(\.\d+)?(-([a-z]+))?(\d+)?$/i;
         return regex.exec(tag);
       }
 

@@ -8,31 +8,7 @@ angular
 
 function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
   var vm = this;
-
-  // Variables
-  vm.allowSend = false;
-  vm.altCurrencyList = [];
-  vm.alternativeAmount = '';
-  vm.alternativeUnit = '';
-  vm.amount = '0';
-  vm.availableFunds = '';
-  vm.canSendAllAvailableFunds = true;
-  vm.errorMessage = '';
-  // Use insufficient for logic, as when the amount is invalid, funds being
-  // either sufficent or insufficient doesn't make sense.
-  vm.fundsAreInsufficient = false;
-  vm.globalResult = '';
-  vm.isRequestingSpecificAmount = false;
-  vm.listComplete = false;
-  vm.lastUsedPopularList = [];
-  vm.maxAmount = 0;
-  vm.minAmount = 0;
-  vm.sendableFunds = '';
-  vm.showSendMaxButton = false;
-  vm.showSendLimitMaxButton = false;
-  vm.thirdParty = false;
-  vm.unit = '';
-
+  
   // Functions
   vm.changeUnit = changeUnit;
   vm.close = close;
@@ -46,7 +22,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.removeDigit = removeDigit;
   vm.save = save;
   vm.sendMax = sendMax;
-  
 
   $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
   $scope.$on('$ionicView.leave', onLeave);
@@ -79,8 +54,55 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     satoshis: null
   };
 
-  function onLeave() {
-    angular.element($window).off('keydown');
+  function initVariables() {
+    // Private variables
+    altCurrencyModal = null;
+    altUnitIndex = 0;
+    availableUnits = [];
+    canSendMax = true;
+    fiatCode;
+    isNW = platformInfo.isNW;
+    isAndroid = platformInfo.isAndroid;
+    isIos = platformInfo.isIOS;
+    lastUsedAltCurrencyList = [];
+    passthroughParams = {};
+    satToUnit;
+    transactionSendableAmount = {
+      crypto: '',
+      satoshis: null
+    };
+    unitDecimals;
+    unitIndex = 0;
+    unitToSatoshi;
+    useSendMax = false;
+    walletSpendableAmount = {
+      crypto: '',
+      satoshis: null
+    };
+
+    // Public variables
+    vm.allowSend = false;
+    vm.altCurrencyList = [];
+    vm.alternativeAmount = '';
+    vm.alternativeUnit = '';
+    vm.amount = '0';
+    vm.availableFunds = '';
+    vm.canSendAllAvailableFunds = true;
+    vm.errorMessage = '';
+    // Use insufficient for logic, as when the amount is invalid, funds being
+    // either sufficent or insufficient doesn't make sense.
+    vm.fundsAreInsufficient = false;
+    vm.globalResult = '';
+    vm.isRequestingSpecificAmount = false;
+    vm.listComplete = false;
+    vm.lastUsedPopularList = [];
+    vm.maxAmount = 0;
+    vm.minAmount = 0;
+    vm.sendableFunds = '';
+    vm.showSendMaxButton = false;
+    vm.showSendLimitMaxButton = false;
+    vm.thirdParty = null;
+    vm.unit = '';
   }
 
   function onBeforeEnter(event, data) {
@@ -88,11 +110,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       sendFlowService.state.pop();
     }
     
+
+    // Init before entering on this screen
+    initVariables();
     initCurrencies();
+    // Then start
 
     passthroughParams = sendFlowService.state.getClone();
     console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
+
+    // Init thirdParty, should be done for all the variable
+    vm.thirdParty = null;
+    
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
     vm.minAmount = parseFloat(passthroughParams.minAmount);
@@ -216,6 +246,10 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         }
       }
     }
+  }
+
+  function onLeave() {
+    angular.element($window).off('keydown');
   }
 
   function goBack() {

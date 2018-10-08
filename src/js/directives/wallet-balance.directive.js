@@ -12,6 +12,7 @@
         totalBalanceSat: '@',
         // The Wallet object is sometimes not stringify()-able, so not interpolatable,
         // so can't be passed to a directive.
+        walletCoin: '@',
         walletStatus: '@',
         walletCachedBalance: '@',
         walletCachedBalanceUpdatedOn: '@',
@@ -31,7 +32,6 @@
     });
 
     function displayCryptoBalance(walletStatus, walletCachedBalance, walletCachedBalanceUpdatedOn, walletCachedStatus) {
-      console.log('displayCryptoBalance()');
 
       if (walletStatus && walletStatus.isValid && walletStatus.totalBalanceStr) {
         setDisplay(walletStatus.totalBalanceStr, '');
@@ -52,7 +52,7 @@
       setDisplay('', '');
     }
 
-    function displayFiatBalance(walletStatus, walletCachedStatus) {
+    function displayFiatBalance(walletStatus, walletCachedStatus, walletCoin) {
       var displayAmount = '';
       if (walletStatus && walletStatus.isValid && walletStatus.alternativeBalanceAvailable) {
         displayAmount = walletStatus.totalBalanceAlternative + ' ' + walletStatus.alternativeIsoCode;
@@ -66,7 +66,7 @@
         return;
       }
 
-      getFiatBalance(wallet);
+      getFiatBalance(walletStatus, walletCachedStatus, walletCoin);
     }
 
     function formatBalance() {
@@ -94,19 +94,30 @@
       }
 
       if (displayAsFiat) {
-        displayFiatBalance(walletStatusObj, walletCachedStatusObj);
+        displayFiatBalance(walletStatusObj, walletCachedStatusObj, $scope.walletCoin);
       }
     }
 
-    function getFiatBalance(wallet) {
-      if (!(wallet.status && wallet.status.isValid)) {
-        $log.warn('Abandoning call to get fiat balance, because no valid wallet status.');
+    function getFiatBalance(walletStatus, walletCachedStatus, walletCoin) {
+      var totalBalanceSat = null;
+
+      if (walletStatus && walletStatus.isValid) {
+        totalBalanceSat = walletStatus.totalBalanceSat
+      } else if (walletCachedStatus && walletCachedStatus.isValid) {
+        totalBalanceSat = walletCachedStatus.totalBalanceSat
+      }
+
+      // 0 is valid
+      if (totalBalanceSat === null) {
+        $log.warn('Abandoning call to get fiat balance, because no valid wallet status (cached or otherwise).');
         return;
       }
 
-      txFormatService.formatAlternativeStr(wallet.coin, wallet.status.totalBalanceSat, function onFormatAlernativeStr(formatted) {
+      txFormatService.formatAlternativeStr(walletCoin, totalBalanceSat, function onFormatAlernativeStr(formatted) {
         if (formatted) {
           setDisplay(formatted, '');
+        } else {
+          $log.error('Failed to format fiat balance of wallet.');
         }
       });
     }
