@@ -7,8 +7,8 @@
     .factory('walletHistoryService', walletHistoryService);
     
     function walletHistoryService(configService, storageService, lodash, $log, txFormatService) {
-      //var PAGE_SIZE = 50;
-      var PAGE_SIZE = 20; // For dev only
+      var PAGE_SIZE = 50;
+      //var PAGE_SIZE = 20; // For dev only
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
       var PAGE_OVERLAP_FRACTION = 0.2;
       var PAGE_OVERLAP = Math.floor(PAGE_SIZE * PAGE_OVERLAP_FRACTION);
@@ -28,8 +28,8 @@
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
 
         var cachedTxIndexFromId = {};
-        cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIndexFromId[tx.txid] = true;
+        cachedTxs.forEach(function forCachedTx(tx, txIndex){
+          cachedTxIndexFromId[tx.txid] = txIndex;
         });
 
         var confirmationsUpdated = false;
@@ -147,7 +147,6 @@
        * @param {function(error, txs)} cb - txs is always an array, may be empty
        */
       function getCachedTxHistory(walletId, cb) {
-        console.log('txhistory updateLocalTxHistoryByPage()');
         storageService.getTxHistory(walletId, function onGetTxHistory(err, txHistoryString){
           if (err) {
             return cb(err, []);
@@ -230,7 +229,6 @@
       }
 
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
-        console.log('txhistory updaetLocalTxHistoryByPage()');
         if (flushCacheOnNew) {
           fetchTxHistoryByPage(wallet, 0, function onFetchTxHistory(err, txs){
             if (err) {
