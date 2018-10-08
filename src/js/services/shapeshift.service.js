@@ -63,6 +63,7 @@ angular
       } else if (amount > service.marketData.maxLimit) {
         cb(new Error(gettextCatalog.getString('Amount is above the limit')));
       } else {
+        
         // Init service data
         service.withdrawalAddress = withdrawalAddress;
         service.returnAddress = returnAddress;
@@ -72,7 +73,7 @@ angular
 
         // Check the address
         shapeshiftApiService
-          .ValidateAddress(withdrawalAddress, coinOut)
+          .ValidateAddress(returnAddress, coinOut)
           .then(function onSuccess(response) {
             if (response && response.isvalid) {
               // Prepare the transaction shapeshift side
