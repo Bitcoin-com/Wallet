@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         command: 'node ./util/buildExternalServices.js'
       },
       get_nwjs_for_pkg: {
-        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
+        command: 'if [ ! -d ./cache/0.19.4/osx64/nwjs.app ]; then mkdir -p ./cache/0.19.4/osx64; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output ./cache/nwjs.zip; unzip ./cache/nwjs.zip -d ./cache; cp -R ./cache/nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./cache/0.19.4/osx64/; fi'
       },
       log_android: {
         command: 'adb logcat | grep chromium',
