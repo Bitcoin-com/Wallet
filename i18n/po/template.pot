@@ -169,8 +169,20 @@ msgid "Address Book"
 msgstr ""
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr ""
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr ""
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr ""
+
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -466,6 +478,22 @@ msgstr ""
 msgid "Buy Bitcoin"
 msgstr ""
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr ""
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr ""
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr ""
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr ""
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -567,6 +595,7 @@ msgstr ""
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr ""
 
@@ -870,6 +899,10 @@ msgstr ""
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr ""
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr ""
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1044,7 +1077,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr ""
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr ""
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1208,6 +1241,14 @@ msgstr ""
 msgid "Expires"
 msgstr ""
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr ""
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr ""
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr ""
@@ -1219,6 +1260,11 @@ msgstr ""
 
 #: www/views/export.html:3
 msgid "Export wallet"
+msgstr ""
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
 msgstr ""
 
 #: src/js/services/walletService.js:1174
@@ -1541,7 +1587,7 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr ""
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
 msgstr ""
 
 #: src/js/controllers/onboarding/backupRequest.js:18
@@ -3743,7 +3789,7 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr ""
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
 msgstr ""
 
 #: src/js/controllers/confirm.js:408
