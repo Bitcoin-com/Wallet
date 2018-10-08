@@ -2278,6 +2278,10 @@ msgstr ""
 msgid "Personal Wallet"
 msgstr ""
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr ""
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr ""
