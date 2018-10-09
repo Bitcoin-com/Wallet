@@ -183,9 +183,31 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       // Notify new tx
       $scope.$emit('bwsEvent', $scope.wallet.id);
 
+
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
+
+      var currentBalance = $scope.wallet.status.totalBalanceSat;
+
+      var interval = setInterval(function () {
+        $timeout(function () {
+          $scope.$apply(function () {
+            walletService.invalidateCache($scope.wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
+            walletService.getStatus($scope.wallet, {}, function(err, status) {
+              if (!err && status) {
+                $scope.wallet.status = status;
+
+                // TODO service refactor? not in profile service
+                profileService.setLastKnownBalance($scope.wallet.id, $scope.wallet.status.totalBalanceStr, function() {});
+                if (currentBalance != $scope.wallet.status.totalBalanceSat) {
+                  clearInterval(interval);
+                }
+              }
+            });
+          });
+        }, 60);
+      }, 1000);
     }
   }
 
