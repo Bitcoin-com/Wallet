@@ -9,8 +9,8 @@
 </div>
 
 <a class="wallet-details__item item">
-  <img class="wallet-details__tx-icon" src="img/icon-confirming.svg" width="40" ng-if="isUnconfirmed(btx)">
-  <span ng-if="!isUnconfirmed(btx)">
+  <img ng-if="isUnconfirmed(btx) && wallet.coin != 'bch'" class="wallet-details__tx-icon" src="img/icon-confirming.svg" width="40">
+  <span ng-if="!(isUnconfirmed(btx) && wallet.coin != 'bch')">
     <img class="wallet-details__tx-icon" src="img/icon-tx-received-outline.svg" width="40" ng-if="btx.action == 'received'">
     <img class="wallet-details__tx-icon" src="img/icon-tx-sent-outline.svg" width="40" ng-if="btx.action == 'sent'">
     <img class="wallet-details__tx-icon" src="img/icon-tx-moved-outline.svg" width="40" ng-if="btx.action == 'moved'">
@@ -53,7 +53,15 @@
     </div>
 
     <div class="wallet-details__tx-title" ng-if="isUnconfirmed(btx)">
-      <div class="ellipsis" style="color: #B4B4B4;">
+      <div ng-if="wallet.coin == 'bch'" class="ellipsis">
+        <span ng-if="btx.action == 'sent' || btx.action == 'moved'">
+          {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Sent'|translate}}
+        </span>
+        <div ng-if="btx.note.body" class="wallet-details__tx-message ellipsis">{{btx.note.body}}</div>
+        <span ng-if="btx.action == 'received' && wallet.coin == 'bch'" translate>Received</span>
+      </div>
+
+      <div ng-if="wallet.coin != 'bch'" class="ellipsis" style="color: #B4B4B4;">
         <span ng-if="btx.action == 'sent' || btx.action == 'moved'">
           {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Sending'|translate}}
         </span>
