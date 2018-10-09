@@ -191,22 +191,20 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       var currentBalance = $scope.wallet.status.totalBalanceSat;
 
       var interval = setInterval(function () {
-        $timeout(function () {
-          $scope.$apply(function () {
-            walletService.invalidateCache($scope.wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
-            walletService.getStatus($scope.wallet, {}, function(err, status) {
-              if (!err && status) {
-                $scope.wallet.status = status;
+        $scope.$apply(function () {
+          walletService.invalidateCache($scope.wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
+          walletService.getStatus($scope.wallet, {}, function(err, status) {
+            if (!err && status) {
+              $scope.wallet.status = status;
 
-                // TODO service refactor? not in profile service
-                profileService.setLastKnownBalance($scope.wallet.id, $scope.wallet.status.totalBalanceStr, function() {});
-                if (currentBalance != $scope.wallet.status.totalBalanceSat) {
-                  clearInterval(interval);
-                }
+              // TODO service refactor? not in profile service
+              profileService.setLastKnownBalance($scope.wallet.id, $scope.wallet.status.totalBalanceStr, function() {});
+              if (currentBalance != $scope.wallet.status.totalBalanceSat) {
+                clearInterval(interval);
               }
-            });
+            }
           });
-        }, 60);
+        });
       }, 1000);
     }
   }
