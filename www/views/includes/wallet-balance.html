@@ -1,3 +1,4 @@
 <div class="wallet-balance-directive">
-  <formatted-amount value="{{displayAmount}}"></formatted-amount><span ng-if="age">{{&middot; (cachedBalanceUpdatedOn  * 1000 | amTimeAgo)}}</span>
+  <formatted-amount ng-if="!balanceHidden" value="{{displayAmount}}"></formatted-amount><span ng-if="age">{{&middot; (cachedBalanceUpdatedOn * 1000 | amTimeAgo)}}</span>
+  <span ng-if="balanceHidden" translate>[Balance Hidden]</span>
 </div>
