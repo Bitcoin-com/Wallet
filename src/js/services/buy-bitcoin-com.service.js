@@ -7,12 +7,9 @@
       .factory('buyBitcoinComService', buyBitcoinComService);
 
   function buyBitcoinComService(buyAndSellService, gettextCatalog) {
-    var service = {
+    var service = {};
 
-      // Functions
-      register: register
-    };
-
+    register();
     return service;
 
     function register() {
