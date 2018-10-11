@@ -12,7 +12,7 @@ angular.module('copayApp.directives')
 
             if (scope.data.parsed.privateKey) {
               scope.type = "privateKey";
-            } else if (scope.data.parsed.url) {
+            } else if (scope.data.parsed.url || scope.data.parsed.bareUrl) {
               scope.type = "url";
             } else if (scope.data.parsed.publicAddress) {
               scope.type = "bitcoinAddress";
