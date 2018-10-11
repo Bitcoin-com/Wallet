@@ -136,6 +136,24 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
+       * Buy Bitcoin
+       *
+       */
+      
+      .state('tabs.get-verified', {
+        url: '/get-verified',
+        views: {
+          'tab-home@tabs': {
+            controller: 'kycGetVerifiedController',
+            controllerAs: 'vm',
+            templateUrl: 'views/kyc-get-verified.html'
+          }
+        }
+      })
+
+
+      /*
+       *
        * Wallet
        *
        */
