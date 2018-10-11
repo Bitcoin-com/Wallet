@@ -139,14 +139,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        * Buy Bitcoin
        *
        */
-      
-      .state('tabs.get-verified', {
-        url: '/get-verified',
+
+      .state('tabs.new-customer', {
+        url: '/new-customer',
         views: {
           'tab-home@tabs': {
-            controller: 'kycGetVerifiedController',
+            controller: 'kycNewCustomerController',
             controllerAs: 'vm',
-            templateUrl: 'views/kyc-get-verified.html'
+            templateUrl: 'views/kyc-new-customer.html'
           }
         }
       })
