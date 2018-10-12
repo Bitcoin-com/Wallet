@@ -6,9 +6,9 @@
     .module('bitcoincom.services')
     .factory('walletHistoryService', walletHistoryService);
     
-    function walletHistoryService(configService, storageService, lodash, $log, txFormatService) {
-      //var PAGE_SIZE = 50;
-      var PAGE_SIZE = 20; // For dev only
+    function walletHistoryService(storageService, lodash, $log, txFormatService) {
+      var PAGE_SIZE = 50;
+      //var PAGE_SIZE = 20; // For dev only
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
       var PAGE_OVERLAP_FRACTION = 0.2;
       var PAGE_OVERLAP = Math.floor(PAGE_SIZE * PAGE_OVERLAP_FRACTION);
@@ -26,10 +26,10 @@
       return service;
 
       function addEarlyTransactions(walletId, cachedTxs, newTxs) {
-
+        var cachedTxCountBeforeMerging = cachedTxs.length;
         var cachedTxIndexFromId = {};
-        cachedTxs.forEach(function forCachedTx(tx){
-          cachedTxIndexFromId[tx.txid] = true;
+        cachedTxs.forEach(function forCachedTx(tx, txIndex){
+          cachedTxIndexFromId[tx.txid] = txIndex;
         });
 
         var confirmationsUpdated = false;
@@ -47,10 +47,15 @@
           }
         });
 
-        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
-        console.log('overlappingTxFraction:', overlappingTxFraction);
-
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
+        var txsAreContinuous = false;
+        if (cachedTxCountBeforeMerging.length > 0) {
+          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxCountBeforeMerging, PAGE_OVERLAP);
+          txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
+        } else {
+          txsAreContinuous = true;
+        }        
+        
+        if (txsAreContinuous) {
           if (someTransactionsWereNew) {
             saveTxHistory(walletId, cachedTxs);
           } else if (confirmationsUpdated) {
@@ -61,7 +66,7 @@
           return cachedTxs;
         } else {
           // We might be missing some txs.
-          console.error('We might be missing some txs in the history.');
+          $log.error('We might be missing some txs in the history. Overlapping txs count: ' + overlappingTxsCount + ', txs in cache before merging: ' + cachedTxCountBeforeMerging);
           // Our history is wrong, so remove it - we could instead, try to fetch data that was not so early.
           storageService.removeTxHistory(walletId, function onRemoveTxHistory(){});
           return [];
@@ -91,9 +96,15 @@
           }
         });
 
-        var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+        var txsAreContinuous = false;
+        if (cachedTxs.length > 0) {
+          var overlappingTxFraction = overlappingTxsCount / Math.min(cachedTxs.length, PAGE_OVERLAP);
+          txsAreContinuous = overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION;
+        } else {
+          txsAreContinuous = true;
+        } 
 
-        if (overlappingTxFraction >= MIN_KNOWN_TX_OVERLAP_FRACTION) { // We are good
+        if (txsAreContinuous) {
           if (someTransactionsWereNew) {
             var allTxs = uniqueNewTxs.concat(cachedTxs);
             saveTxHistory(walletId, allTxs);
@@ -106,6 +117,7 @@
           }
         } else {
           // We might be missing some txs.
+          $log.error('We might be missing some txs in the history. OverlappingTxsCount: ' + overlappingTxsCount + ', txs in cache: ' + cachedTxs.length);
           // Our history is wrong, so just include the latest ones
           saveTxHistory(walletId, newTxs);
           return newTxs;
@@ -147,7 +159,6 @@
        * @param {function(error, txs)} cb - txs is always an array, may be empty
        */
       function getCachedTxHistory(walletId, cb) {
-        console.log('txhistory updateLocalTxHistoryByPage()');
         storageService.getTxHistory(walletId, function onGetTxHistory(err, txHistoryString){
           if (err) {
             return cb(err, []);
@@ -230,7 +241,6 @@
       }
 
       function updateLocalTxHistoryByPage(wallet, getLatest, flushCacheOnNew, cb) {
-        console.log('txhistory updaetLocalTxHistoryByPage()');
         if (flushCacheOnNew) {
           fetchTxHistoryByPage(wallet, 0, function onFetchTxHistory(err, txs){
             if (err) {

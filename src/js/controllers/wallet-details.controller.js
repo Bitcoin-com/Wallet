@@ -15,7 +15,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     updatingTxHistory: false,
     fetchedAllTxHistory: false,
     //updateTxHistoryError: false
-    updateTxHistoryFailed: false
+    updateTxHistoryFailed: false,
+
+    openWalletSettings: openWalletSettings
   };
 
   // Need flag for when to allow infinite scroll at bottom
@@ -52,7 +54,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   if (platformInfo.isCordova) {
     channel = "firebase";
   }
-  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
+  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel, 'leanplum']);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
 
   $scope.openExternalLink = function(url, target) {
@@ -114,6 +116,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     });
   };
+
+  function openWalletSettings() {
+    $state.go('tabs.preferences', {'walletId': $scope.wallet.id, 'backToDetails': true});
+  }
 
   $scope.openSearchModal = function() {
     $scope.color = $scope.wallet.color;
