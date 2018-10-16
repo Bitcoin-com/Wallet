@@ -7,16 +7,16 @@ angular
   .factory('kycFlowService', kycFlowService);
   
   function kycFlowService(
-    kycFlowStateService, kycFlowRouterService
+    kycFlowStateService
+    , kycFlowRouterService
+    , moonpayService
+    , ongoingProcess
     , bitcoinUriService, payproService, bitcoinCashJsService
     , popupService, gettextCatalog
     , $state, $log
   ) {
 
     var service = {
-      // Variables
-      state: kycFlowStateService,
-      router: kycFlowRouterService,
 
       // Functions
       start: start,
@@ -27,27 +27,28 @@ angular
     return service;
 
     /**
-     * Start a new send flow
-     * @param {Object} params 
-     * @param {Function} onError 
+     * Start the Buy Bitcoin flow
      */
-    function start(params, onError) {
-      $log.debug('send-flow start()');
+    function start() {
+      $log.debug('buy bitcoin start()');
 
-      if (params && params.data) {
-        _next();
-      } else {
-        _next();
-      }
+      ongoingProcess.set('gettingKycCustomerId', true);
+      moonpayService.getCustomerId(function onCustomerId(err, customerId){
+        ongoingProcess.set('gettingKycCustomerId', false);
 
+        if (err) {
+          $log.error('Error getting Moonpay customer ID. ' + err);
+          return;
+        }
 
-      // Next used for sync the async task
-      function _next() {
-        kycFlowStateService.init(params);
+        $log.debug('Moonpay customer ID: ' + customerId);
 
-        // Routing strategy to -> kyc-flow-router.service
-        kycFlowRouterService.start();
-      }
+        kycFlowStateService.init({
+          customerId: customerId
+        });
+
+        kycFlowRouterService.start(kycFlowStateService.getClone());
+      });
     }
 
     /**
@@ -55,7 +56,7 @@ angular
      * @param {Object} state 
      */
     function goNext(state) {
-      $log.debug('send-flow goNext()');
+      $log.debug('kyc-flow goNext()');
 
       // Save the current route before leaving
       state.route = $state.current.name;

@@ -7,8 +7,7 @@ angular
   .factory('kycFlowRouterService', kycFlowRouterService);
   
   function kycFlowRouterService(
-    kycFlowStateService
-    , $state, $ionicHistory, $timeout
+    $state, $ionicHistory, $timeout
   ) {
 
     var service = {
@@ -23,17 +22,23 @@ angular
     /**
      * Start new send flow
      */
-    function start() {     
-      var state = kycFlowStateService.state;
+    function start(state) {     
+      if (state.customerId) {
       
+      } else {
+        $state.go('tabs.home').then(function () {
+          $ionicHistory.clearHistory();
+          $state.go('tabs.buy-bitcoin-welcome');
+        }); 
+      }
     }
 
     /**
      * Go to the next page
      * Routing strategy : https://bitcoindotcom.atlassian.net/wiki/spaces/BW/pages/757596161/Buy+bitcoin
      */
-    function goNext() {
-      var state = kycFlowStateService.state;
+    function goNext(state) {
+      
 
       // $state.go('');
     }

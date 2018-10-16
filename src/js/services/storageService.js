@@ -2,7 +2,9 @@
 angular.module('copayApp.services')
   .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
 
-    var root = {};
+    var root = {
+      getItem: getItem
+    };
     var storage;
 
     // File storage is not supported for writing according to
@@ -707,6 +709,15 @@ angular.module('copayApp.services')
           }
         });
       });
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error, string)} cb 
+     */
+    function getItem(keyName, cb) {
+      storage.get(keyName, cb);
     }
     
     return root;

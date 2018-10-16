@@ -22,6 +22,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'fetchingPayPro': gettext('Fetching payment information'),
     'generatingCSV': gettext('Generating .csv file...'),
     'gettingFeeLevels': gettext('Getting fee levels...'),
+    'gettingKycCustomerId': gettext('Getting customer ID...'),
     'importingWallet': gettext('Importing Wallet...'),
     'joiningWallet': gettext('Joining Wallet...'),
     'recreating': gettext('Recreating Wallet...'),

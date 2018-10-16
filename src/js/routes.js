@@ -140,6 +140,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        *
        */
 
+      .state('tabs.buy-bitcoin-welcome', {
+        url: '/buy-bitcoin-welcome',
+        views: {
+          'tab-home@tabs': {
+            controller: 'buyBitcoinWelcomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin-welcome.html'
+          }
+        }
+      }) 
       .state('tabs.new-customer', {
         url: '/new-customer',
         views: {
@@ -1198,7 +1208,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinComService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
