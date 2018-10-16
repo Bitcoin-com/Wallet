@@ -4,5 +4,18 @@
   </ion-nav-bar>
 
   <ion-content class="">
+    <h1>Buy Bitcoin Cash</h1>
+    <p>Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+    <small>You will only receive emails related to your purchases.</small>
+    <form name="" ng-submit="vm.getStarted()" novalidate>
+        <input type="text"
+        placeholder="satoshi@bitcoin.com"
+        ng-required="true"
+        required>
+        <button type="submit" class=""
+        ng-disabled="">
+        <span translate>Get Started</span>
+      </button>
+    </form>
   </ion-content>
 </ion-view>

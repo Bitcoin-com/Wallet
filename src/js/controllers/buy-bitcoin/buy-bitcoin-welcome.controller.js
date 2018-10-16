@@ -9,7 +9,12 @@ angular
   function buyBitcoinWelcomeController(kycFlowService) {
     var vm = this;
 
+    vm.getStarted = getStarted;
     vm.goBack = goBack;
+
+    function getStarted() {
+      
+    }
 
     function goBack() {
       kycFlowService.goBack();
