@@ -1,0 +1,93 @@
+.apl {
+  padding: 40px 18px;
+  background-color: #FFF;
+  h1, h2 {
+    width: 244px;
+    height: 28px;
+    color: #000000;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
+    letter-spacing: 0.35px;
+    line-height: 28px;
+  }
+
+  &-card {
+    background: #FFFFFF;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 0 5px 34px 0 rgba(0, 0, 0, 0.11);
+    height: 77px;
+    .item {
+      background: transparent;
+      border: 0;
+      padding: 20px;
+      &.item-big-icon-left {
+        padding-left: 72px;
+      }
+    }
+    &__icon {
+      background: #FA5B5B;
+      border-radius: 10px 10px 10px 10px;
+      height: 40px;
+      width: 40px;
+      &.c1 { background: #4DCBC3; }
+      &.c2 { background: #5B97FA; }
+      &.c2 { background: #FAAB5B; }
+
+
+    }
+    &__title {
+      color: #000000;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: left;
+      letter-spacing: -0.23px;
+    }
+    &__subtitle {
+      width: 166px;
+      height: 15px;
+      color: #808080;
+      font-size: 13px;
+      font-weight: 500;
+      text-align: left;
+      letter-spacing: -0.2px;
+    }
+  }
+
+  &-list {
+    .item {
+      border: 0;
+      padding-left: 2px;
+      p {
+        color: #000000;
+        font-size: 17px;
+        font-weight: 600;
+        text-align: left;
+        letter-spacing: -0.41px;
+        line-height: 22px;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        border-bottom: 1px solid #e5e5e5;
+        bottom: 1px;
+        width: 100%;
+      }
+
+      &.item-big-icon-left {
+        padding-left: 54px;
+        .big-icon-svg {
+          padding: 0;
+        }
+        &:after {
+          width: calc(100% - 54px);
+          left: 54px;
+        }
+      }
+
+    }
+    .item-icon-left .icon {
+      left: 0;
+    }
+  }
+}
