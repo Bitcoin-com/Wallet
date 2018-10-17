@@ -1,0 +1,73 @@
+<ion-view id="tab-buy-bitcoin-amount" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="secondary">
+      <button class="button apl-close-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-close"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl">
+    <h1 translate>
+      Purchasing
+    </h1>
+    <div class="apl-amount">
+      <div class="apl-amount-title">Amount</div>
+      <span class="apl-amount-currency">$</span>
+      <input type="number" class="apl-amount-input" min="0" value="0" step=".01" placeholder="{{'Amount' | translate}}">
+    </div>
+    <div class="apl-amount-totals">
+      <div class="apl-amount-totals-item">
+        <span class="apl-amount-totals-title">0.192 BCH @ USD$650</span>
+        <span class="apl-amount-totals-price">$125.00</span>
+      </div>
+      <div class="apl-amount-totals-item">
+        <span class="apl-amount-totals-title">Processing Fee</span>
+        <span class="apl-amount-totals-price">$10.00</span>
+      </div>
+      <div class="apl-amount-totals-item total">
+        <span class="apl-amount-totals-title">Total</span>
+        <span class="apl-amount-totals-price">$135.00</span>
+      </div>
+    </div>
+    <div class="apl-divider"></div>
+    <div class="apl-list">
+      <div class="apl-list-title">
+        Deposit to
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item">
+        <i class="icon big-icon-svg">
+          <span class="apl-icon"></span>
+        </i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" translate>
+            Business Wallet
+          </div>
+          <div class="apl-card__subtitle" translate>
+            USD$12,294 (1.0393 BCH)
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title">
+        Payment Method
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item">
+        <i class="icon big-icon-svg">
+          <span class="apl-icon"></span>
+        </i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" translate>
+            Visa
+          </div>
+          <div class="apl-card__subtitle" translate>
+            *** 2244 12/21
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="apl-button-bottom-container">
+    <a class="apl-button">Buy 2.285 BCH</a>
+  </div>
+</ion-view>
