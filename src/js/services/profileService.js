@@ -431,8 +431,14 @@ angular.module('copayApp.services')
             if (platformInfo.isCordova) {
               channel = "firebase";
             }
+
+            var type = opts.n == 1 ? "regular" : "shared"
+
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
-              "coin": opts.coin
+              "coin": opts.coin,
+              "type": type,
+              "num_of_copayers": opts.n,
+              "num_of_signatures": opts.m
             }], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
