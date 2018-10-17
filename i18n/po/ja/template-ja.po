@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-17 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "アドレス帳"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "アドレスの種類"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "キャッシュアドレス"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "従来の形式"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -477,6 +488,22 @@ msgstr "ビットコインの購入&amp;売却"
 msgid "Buy Bitcoin"
 msgstr "ビットコインを購入"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "ビットコインの売買"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "取引所に接続"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "取引所のアカウントを接続すると、ウォレットからビットコインを直接売買できます。"
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "クレジットカードでビットコインを購入"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -578,6 +605,7 @@ msgstr "クリックして送る"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "閉じる"
 
@@ -881,6 +909,10 @@ msgstr "共有ウォレットを作成"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "{{formData.requiredCopayers}}-of-{{formData.totalCopayers}} ウォレットを作成"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "ウォレット参加者"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1055,7 +1087,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "BitPay アカウントの2段階認証コードを入力して下さい"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "金額を入力"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1219,6 +1251,14 @@ msgstr "期限切れ"
 msgid "Expires"
 msgstr "有効期限："
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "従来のアドレスを表示"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "新形式のアドレスを表示"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "ウォレットをエクスポート"
@@ -1231,6 +1271,11 @@ msgstr "ファイルへのエクスポート"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "ウォレットをエクスポート"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "ウォレットサービスのURL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1552,8 +1597,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "有効にした場合、「最近の取引」カードがホームのメニューに表示されます。アプリに含まれる全ウォレットの取引が一覧できるカードです。"
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "有効にした場合、ウォレットは未承認ビットコインも送金時の候補に含めます。これを有効にした場合、承認に時間がかかることがあります。"
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "有効にした場合、ウォレットは未承認ビットコインも送金時の候補に含めます。これを無効にした場合、承認に時間がかかることがあります。"
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2242,6 +2287,10 @@ msgstr "ウォレットを完全に削除する"
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "個人用ウォレット"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "自分の{{coin}}ウォレット"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -3758,8 +3807,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} を Mercado Livre Brazil ギフトカードに"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}}はブロックチェーンの情報を取得したり参加者を同期させたりするためにBitcore Wallet Service (BWS)に依存します。初期値としてBitPay社が提供する https://bws.bitpay.com (BitPay公式のBWSサーバー)を設定していますが、独自で運用してウォレットをそちらに接続しても構いません。"
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}}はブロックチェーンの情報を取得したりウォレットを同期させたりするためにBitcore Wallet Service (BWS)に依存します。初期値としてBitcoin.com社が提供する https://bws.bitcoin.com (Bitcoin.com公式のBWSサーバー)を設定していますが、独自で運用してウォレットをそちらに接続しても構いません。"
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3812,8 +3861,8 @@ msgid "News"
 msgstr "ニュース"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "マイニングプール"
+msgid "Start mining Bitcoin"
+msgstr "ビットコインのマイニングを始めましょう"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
