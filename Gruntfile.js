@@ -21,13 +21,13 @@ module.exports = function(grunt) {
         command: 'cordova prepare android && cordova build android --release',
       },
       build_ios_debug: {
-        command: 'cordova prepare ios && cordova build ios --debug',
+        command: 'cordova prepare ios && cordova build ios --debug --buildFlag="-UseModernBuildSystem=0"',
         options: {
           maxBuffer: 3200 * 1024
         }
       },
       build_ios_release: {
-        command: 'cordova prepare ios && cordova build ios --release',
+        command: 'cordova prepare ios && cordova build ios --release --buildFlag="-UseModernBuildSystem=0"',
         options: {
           maxBuffer: 3200 * 1024
         }
