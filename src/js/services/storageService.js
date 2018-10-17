@@ -3,7 +3,9 @@ angular.module('copayApp.services')
   .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
 
     var root = {
-      getItem: getItem
+      getItem: getItem,
+      removeItem: removeItem,
+      setItem: setItem
     };
     var storage;
 
@@ -718,6 +720,25 @@ angular.module('copayApp.services')
      */
     function getItem(keyName, cb) {
       storage.get(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error)} cb 
+     */
+    function removeItem(keyName, cb) {
+      storage.remove(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {string} keyValue 
+     * @param {function(Error)} cb 
+     */
+    function setItem(keyName, keyValue, cb) {
+      storage.set(keyName, keyValue, cb);
     }
     
     return root;
