@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2018-09-06 16:45\n"
+"PO-Revision-Date: 2018-10-08 08:38\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -46,15 +46,15 @@ msgstr "<b>Only</b> redeemable on Mercado Livre (Brazil)"
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
 msgid "A member of the team will review your feedback as soon as possible."
-msgstr ""
+msgstr "En medlem från vårt team kommer granska din feedback och återkoppla till dig så fort vi kan."
 
 #: src/js/controllers/confirm.js:401
 msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
-msgstr ""
+msgstr "En total av {{amountAboveMaxSizeStr}} togs bort då detta överskred den maximala transaktionen som är tillåten."
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr ""
+msgstr "En total av {{amountBelowFeeStr}} togs bort. Dessa tillgångar kommer från UTXOs, dessa är mindre värda än vad nätverket kräver."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -124,7 +124,7 @@ msgstr "Lägg till kontakt"
 
 #: www/views/bitpayCard.html:28
 msgid "Add Funds"
-msgstr "Deponera"
+msgstr "Lägg till pengar"
 
 #: www/views/confirm.html:94
 msgid "Add Memo"
@@ -156,7 +156,7 @@ msgstr "Lägg till beskrivning"
 
 #: www/views/topup.html:6
 msgid "Add funds"
-msgstr "Deponera"
+msgstr "Lägg till pengar"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
@@ -164,7 +164,7 @@ msgstr "Lägg till BitPay-konto ({{email}})?"
 
 #: www/views/add.html:3
 msgid "Add wallet"
-msgstr "Lägg till wallet"
+msgstr "Lägg till plånbok"
 
 #: www/views/addressbook.view.html:26
 #: www/views/customAmount.html:28
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Adressbok"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Adresstyp"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr ""
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr ""
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -203,7 +214,7 @@ msgstr "Alla adresser"
 
 #: www/views/modals/wallet-balance.html:18
 msgid "All of your bitcoin wallet balance may not be available for immediate spending."
-msgstr ""
+msgstr "All din Bitcoin kommer inte att vara tillgänglig för användning omedelbart."
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
@@ -215,7 +226,7 @@ msgstr "Tillåt kameraåtkomst"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
-msgstr "Tillåt notificationer"
+msgstr "Tillåt notifieringar"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
@@ -268,11 +279,11 @@ msgstr "En uppdatering för appen är tillgänglig. För din säkerhet, var vän
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
-msgstr "Vem som helst med din återhämtnings fras kan kommat åt eller spendera dina bitcoin."
+msgstr "Vem som helst med din återhämtningsfras kan komma åt eller spendera dina bitcoin."
 
 #: www/views/addresses.html:94
 msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
-msgstr "Ungefärlig Bitcoin nätverks avgift för att överföra plånbokens saldo (med normal prioritet)"
+msgstr "Ungefärlig Bitcoin nätverksavgift för att överföra plånbokens saldo (med normal prioritet)"
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
@@ -280,7 +291,7 @@ msgstr "Håller någon ögonen på dig?"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
-msgstr "Håller någon ögonen på dig? Vem som helst med din återhämtnings fras kan kommat åt eller spendera dina bitcoin."
+msgstr "Håller någon ögonen på dig? Vem som helst med din återhämtningsfras kan kommat åt eller spendera dina bitcoin."
 
 #: src/js/controllers/copayers.js:56
 msgid "Are you sure you want to cancel and delete this wallet?"
@@ -475,6 +486,22 @@ msgstr ""
 msgid "Buy Bitcoin"
 msgstr "Köp Bitcoin"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr ""
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr ""
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr ""
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr ""
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr ""
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr ""
 
@@ -879,6 +907,10 @@ msgstr ""
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr ""
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr ""
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr ""
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr ""
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr ""
 msgid "Expires"
 msgstr ""
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr ""
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr ""
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr ""
@@ -1228,6 +1268,11 @@ msgstr ""
 
 #: www/views/export.html:3
 msgid "Export wallet"
+msgstr ""
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
 msgstr ""
 
 #: src/js/services/walletService.js:1174
@@ -1550,7 +1595,7 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr ""
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
 msgstr ""
 
 #: src/js/controllers/onboarding/backupRequest.js:18
@@ -2239,6 +2284,10 @@ msgstr ""
 
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
+msgstr ""
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
 msgstr ""
 
 #: www/views/backup.html:25
@@ -3752,7 +3801,7 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr ""
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
 msgstr ""
 
 #: src/js/controllers/confirm.js:408
@@ -3806,7 +3855,7 @@ msgid "News"
 msgstr ""
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
+msgid "Start mining Bitcoin"
 msgstr ""
 
 #: src/js/services/bitcoincomService.js:42

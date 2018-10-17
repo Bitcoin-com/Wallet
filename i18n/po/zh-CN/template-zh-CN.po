@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-17 08:33\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "地址簿"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "地址类型"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Cash 地址"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "旧"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "购买或出售比特币"
 msgid "Buy Bitcoin"
 msgstr "购买比特币"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "购买或出售比特币"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "连接交易所"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "通过连接您的交易所账户，直接从您的钱包购买或出售比特币。"
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "使用信用卡购买比特币"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr "点击这里发送"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "关闭"
 
@@ -879,6 +907,10 @@ msgstr "创建共享的钱包"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "创建 {{formData.requiredCopayers}} 的{{formData.totalCopayers}} 钱包"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copayer"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "为您的 BitPay 帐户输入两个因素"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "输入金额"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "已过期"
 msgid "Expires"
 msgstr "到期"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "显示旧地址"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "显示新地址"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "导出钱包"
@@ -1229,6 +1269,11 @@ msgstr "导出到文件"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "导出钱包"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "钱包服务 URL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "如果启用，最近的交易卡-交易发生跨所有钱包名单-将出现在主页选项卡。"
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "如果启用了，钱包也尝试使用未经证实的资金。此选项可能会导致事务延迟。"
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "如果启用，钱包还将尝试使用未确认的资金。关闭此选项可能会导致交易延迟。"
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2240,6 +2285,10 @@ msgstr "永久删除这个钱包。"
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "个人钱包"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "我的 {{coin}} 钱包"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -3752,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "梅尔卡多里弗巴西礼品卡 {{amountStr}}"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} 中的区块链信息依赖于 Bitcore Wallet Service (BWS)、网络和 Copayer synchronization。默认配置指向 https://bws.bitpay.com (BitPay 的公共 BWS 实例)。"
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} 依赖于 Bitcore 钱包服务 (BWS) 获取区块链信息，以及进行联网和钱包同步。默认配置指向 https://bws.bitcoin.com（Bitcoin.com 的公开 BWS 实例）。"
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3806,8 +3855,8 @@ msgid "News"
 msgstr "新闻"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "矿池"
+msgid "Start mining Bitcoin"
+msgstr "开始挖掘比特币"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"

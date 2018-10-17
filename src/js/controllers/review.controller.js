@@ -81,6 +81,7 @@ angular
         currencyColor: '',
       };
       vm.originWallet = null;
+      vm.destinationWallet = null;
       vm.paymentExpired = false;
       vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
       vm.primaryAmount = '';
@@ -503,6 +504,7 @@ angular
       }
 
       var destinationWallet = profileService.getWallet(destinationWalletId);
+      vm.destinationWallet = destinationWallet
       vm.destination.coin = destinationWallet.coin;
       vm.destination.color = destinationWallet.color;
       vm.destination.currency = destinationWallet.coin.toUpperCase();
@@ -821,7 +823,7 @@ angular
           "type": "outgoing",
           "amount": amount,
           "fees": vm.feeCrypto
-        }], [channel, "adjust"]);
+        }], [channel, "adjust", "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
         $timeout(function() {

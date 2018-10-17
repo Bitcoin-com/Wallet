@@ -12,6 +12,7 @@
         totalBalanceSat: '@',
         // The Wallet object is sometimes not stringify()-able, so not interpolatable,
         // so can't be passed to a directive.
+        walletBalanceHidden: '@',
         walletCoin: '@',
         walletStatus: '@',
         walletCachedBalance: '@',
@@ -71,6 +72,7 @@
 
     function formatBalance() {
       var displayAsFiat = $scope.displayAsFiat === 'true';
+      $scope.balanceHidden = $scope.walletBalanceHidden === 'true';
 
       var walletStatusObj = null;
       var walletCachedBalance = null;
