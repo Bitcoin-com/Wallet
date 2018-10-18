@@ -139,24 +139,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        * Buy Bitcoin
        *
        */
-
-      .state('tabs.buy-bitcoin-welcome', {
-        url: '/buy-bitcoin-welcome',
-        views: {
-          'tab-home@tabs': {
-            controller: 'buyBitcoinWelcomeController',
-            controllerAs: 'vm',
-            templateUrl: 'views/buy-bitcoin-welcome.html'
-          }
-        }
-      }) 
-      .state('tabs.new-customer', {
-        url: '/new-customer',
+ 
+      .state('tabs.buy-bitcoin-new-customer', {
+        url: '/buy-bitcoin-new-customer',
         views: {
           'tab-home@tabs': {
             controller: 'kycNewCustomerController',
             controllerAs: 'vm',
-            templateUrl: 'views/kyc-new-customer.html'
+            templateUrl: 'views/buy-bitcoin/kyc-new-customer.html'
           }
         }
       })

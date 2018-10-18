@@ -28,7 +28,7 @@ angular
       } else {
         $state.go('tabs.home').then(function () {
           $ionicHistory.clearHistory();
-          $state.go('tabs.buy-bitcoin-welcome');
+          $state.go('tabs.buy-bitcoin-new-customer');
         }); 
       }
     }
