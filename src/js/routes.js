@@ -835,6 +835,25 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin', {
+        url: '/buy-bitcoin',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinController',
+            templateUrl: 'views/buy-bitcoin.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-amount', {
+        url: '/buy-bitcoin/amount',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinController',
+            templateUrl: 'views/buy-bitcoin-amount.html'
+          }
+        }
+      })
       /*
        *
        * Glidera

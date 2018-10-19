@@ -75,6 +75,46 @@
         text-align: right;
       }
     }
+    &-switcher {
+
+      .apl-amount-currency {
+        font-size: 28px;
+      }
+
+      &:after {
+        content: '';
+        border-bottom: 1px solid #FF9B00;
+        display: none;
+        height: 1px;
+        width: 100%;
+      }
+      &-left, &-right {
+        width: 48%;
+        display: inline-block;
+        input {
+          font-size: 28px;
+          width: 75%;
+        }
+      }
+      &-left {
+        &:after {
+          content: '';
+          border-bottom: 1px solid #FF9B00;
+          display: block;
+          height: 1px;
+          width: 100%;
+        }
+      }
+      &-right {
+        &:after {
+          content: '';
+          border-bottom: 1px solid #FF9B00;
+          display: block;
+          height: 1px;
+          width: 100%;
+        }
+      }
+    }
   }
   &-icon {
     background: #FA5B5B;
@@ -91,6 +131,7 @@
       background: #FAAB5B;
     }
   }
+
   .item {
     background: transparent;
     border: 0;
