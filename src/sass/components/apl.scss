@@ -26,12 +26,14 @@
       color: #000000;
       display: inline-block !important;
       font-size: 50px;
+      line-height: 50px;
       font-weight: bold;
-      height: 60px;
+      min-height: 60px;
       letter-spacing: 0.29px;
       margin: 8px 0;
       text-align: left;
       width: 80vw;
+      padding: 0;
 
       &::placeholder {
         color: #444;
@@ -41,14 +43,17 @@
       display: inline-block;
       font-size: 50px;
       margin-top: 2px;
+      transition: all 0.4s ease-in-out;
       vertical-align: text-top;
     }
-    &:after {
-      content: '';
-      border-bottom: 1px solid #FF9B00;
-      display: block;
-      height: 1px;
-      width: 100%;
+    &:not(.apl-amount-switcher) {
+      &:after {
+        border-bottom: 1px solid #FF9B00;
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+      }
     }
     &-totals {
       margin-top: 14px;
@@ -76,22 +81,25 @@
       }
     }
     &-switcher {
-
+      margin-top: 12px;
+      min-height: 100px;
+      position: relative;
       .apl-amount-currency {
         font-size: 28px;
       }
-
-      &:after {
-        content: '';
-        border-bottom: 1px solid #FF9B00;
-        display: none;
-        height: 1px;
-        width: 100%;
-      }
       &-left, &-right {
-        width: 48%;
         display: inline-block;
+        margin-bottom: 0;
+        opacity: 1;
+        position: absolute;
+        transition: all 0.4s ease-in-out;
+        white-space: nowrap;
+        width: 48%;
+        .apl-amount-currency {
+          margin-top: 1px;
+        }
         input {
+          transition: all 0.4s ease-in-out;
           font-size: 28px;
           width: 75%;
         }
@@ -106,11 +114,37 @@
         }
       }
       &-right {
+        right: 0;
         &:after {
           content: '';
           border-bottom: 1px solid #FF9B00;
           display: block;
           height: 1px;
+          width: 100%;
+        }
+      }
+      &.right-active {
+        .apl-amount-switcher-left {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        .apl-amount-switcher-right {
+          * {
+            font-size: 50px;
+          }
+          width: 100%;
+        }
+      }
+      &.left-active {
+        .apl-amount-switcher-right {
+          opacity: 0;
+          height: 0;
+        }
+        .apl-amount-switcher-left {
+          * {
+            font-size: 50px;
+          }
           width: 100%;
         }
       }

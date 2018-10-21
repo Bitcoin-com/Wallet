@@ -5,7 +5,10 @@
       .module('bitcoincom.controllers')
       .controller('buyBitcoinController', buyBitcoinController);
 
-  function buyBitcoinController() {
+  function buyBitcoinController($scope) {
+
+    $scope.focussedEl = false;
+
     var controller = {
       // Functions
     };

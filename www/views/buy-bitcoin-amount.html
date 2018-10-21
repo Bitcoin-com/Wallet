@@ -13,17 +13,17 @@
     <div class="apl-amount">
       <div class="apl-amount-title">Amount</div>
       <span class="apl-amount-currency">$</span>
-      <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'Amount' | translate}}">
+      <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'0.00' | translate}}">
     </div>
-    <div class="apl-amount apl-amount-switcher">
+    <div class="apl-amount apl-amount-switcher" ng-class="focussedEl?focussedEl+'-active':''">
       <div class="apl-amount-title">Amount</div>
       <div class="apl-amount-switcher-left">
         <span class="apl-amount-currency">$</span>
-        <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'Amount' | translate}}">
+        <input ng-focus="focussedEl = 'left'" ng-blur="focussedEl = false" type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'0.00' | translate}}">
       </div>
       <div class="apl-amount-switcher-right">
         <span class="apl-amount-currency">$</span>
-        <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'Amount' | translate}}">
+        <input ng-focus="focussedEl = 'right'"  ng-blur="focussedEl = false" type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'0.00' | translate}}">
       </div>
     </div>
     <div class="apl-amount-totals">
