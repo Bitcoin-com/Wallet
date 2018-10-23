@@ -840,6 +840,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home': {
             controller: 'buyBitcoinAccountStatusController',
+            controllerAs: 'vm',
             templateUrl: 'views/buy-bitcoin.html'
           }
         }

@@ -6,18 +6,19 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinAccountStatusController', accountStatusController);
 
-  function accountStatusController(gettextCatalog, $log, popupService, $scope) {
+  function accountStatusController(gettextCatalog, $log, popupService, $scope, $state) {
     var vm = this;
 
     // Functions
     vm.getStarted = getStarted;
     vm.goBack = goBack;
+    vm.onBuyInstantly = onBuyInstantly;
 
-    function initVariables() {
+    function _initVariables() {
       
     }
 
-    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
 
 
     function getStarted() {
@@ -30,8 +31,13 @@ angular
 
     
 
-    function onBeforeEnter(event, data) {
-      initVariables();
+    function _onBeforeEnter(event, data) {
+      _initVariables();
+    }
+
+    function onBuyInstantly() {
+      // TODO: Check if have a payment method set up etc
+      $state.go('tabs.buybitcoin-amount');
     }
   }
 
