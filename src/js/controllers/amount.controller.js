@@ -87,6 +87,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     vm.alternativeUnit = '';
     vm.amount = '0';
     vm.availableFunds = '';
+    vm.balanceHidden = true;
     vm.canSendAllAvailableFunds = true;
     vm.errorMessage = '';
     // Use insufficient for logic, as when the amount is invalid, funds being
@@ -236,6 +237,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       if (passthroughParams.fromWalletId) {
         var fromWallet = profileService.getWallet(passthroughParams.fromWalletId);
+        vm.balanceHidden = fromWallet.balanceHidden;
         updateAvailableFundsFromWallet(fromWallet);
       }
 

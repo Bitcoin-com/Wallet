@@ -1199,7 +1199,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinComService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
