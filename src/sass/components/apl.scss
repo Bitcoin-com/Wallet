@@ -173,6 +173,9 @@
     &.item-big-icon-left {
       padding-left: 72px;
     }
+    &.activated {
+      background: #F2F2F2;
+    }
   }
   &-card {
     background: #FFFFFF;
