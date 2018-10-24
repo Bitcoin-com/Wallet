@@ -3981,3 +3981,84 @@ msgstr ""
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
+
+# Enter Card details
+
+msgid "Back"
+msgstr ""
+
+msgid "Card Details"
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Card Number"
+msgstr ""
+
+# Purchasing
+
+msgid "Purchasing"
+msgstr ""
+
+msgid "Processing Fee"
+msgstr ""
+
+msgid "Deposit to"
+msgstr ""
+
+msgid "Add a payment method"
+msgstr ""
+
+msgid "Price Per BCH"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+# Purchase History
+
+msgid "Purchase History"
+msgstr ""
+
+msgid "Pending Orders"
+msgstr ""
+
+# Payment Method
+
+msgid "Pay"
+msgstr ""
+
+msgid "Payment Method"
+msgstr ""
+
+msgid "Add Credit or Debit Card"
+msgstr ""
+
+
+msgid "This amount exceeds your monthly limit"
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
+
+msgid ""
+msgstr ""
