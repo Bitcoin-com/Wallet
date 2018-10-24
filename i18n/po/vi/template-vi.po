@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-08 08:38\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -56,8 +56,7 @@ msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size all
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "{{amountBelowFeeStr}} Tổng cộng {{amountBelowFeeStr}} đã bị loại trừ. Số tiền này đến từ UTXOs nhỏ hơn chi phí mạng cung cấp.#\n"
-"1."
+msgstr "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -67,7 +66,7 @@ msgstr "About"
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr "Chấp nhận"
+msgstr "Accepted"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
@@ -86,7 +85,7 @@ msgstr "Instant transactions with low fees"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
-msgstr "Not enough money"
+msgstr "Insufficient funds"
 
 #: www/views/amount.html:42
 msgid "Change Currency"
@@ -94,7 +93,7 @@ msgstr "Change Currency"
 
 #: www/views/amount.html:49
 msgid "Available Funds"
-msgstr "Available Fund"
+msgstr "Available Funds"
 
 #: www/views/amount.html:59
 msgid "Use All Available Funds"
@@ -102,7 +101,7 @@ msgstr "Use All Available Funds"
 
 #: www/views/amount.html:99
 msgid "Next"
-msgstr "Tiếp theo"
+msgstr "Next"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -151,7 +150,7 @@ msgstr "Add an optional password to secure the recovery phrase"
 
 #: www/views/includes/incomingDataMenu.html:41
 msgid "Add as a contact"
-msgstr "Thêm như một liên hệ"
+msgstr "Add as a contact"
 
 #: src/js/controllers/confirm.js:424
 msgid "Add description"
@@ -159,7 +158,7 @@ msgstr "Add description"
 
 #: www/views/topup.html:6
 msgid "Add funds"
-msgstr "Nạp tiền"
+msgstr "Add funds"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
@@ -167,7 +166,7 @@ msgstr "Add this BitPay account ({{email}})?"
 
 #: www/views/add.html:3
 msgid "Add wallet"
-msgstr "Thêm ví"
+msgstr "Add wallet"
 
 #: www/views/addressbook.view.html:26
 #: www/views/customAmount.html:28
@@ -181,8 +180,19 @@ msgid "Address Book"
 msgstr "Sổ địa chỉ"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Address Type"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr ""
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr ""
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -478,6 +488,22 @@ msgstr "Buy &amp; Sell Bitcoin"
 msgid "Buy Bitcoin"
 msgstr "Buy Bitcoin"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr ""
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr ""
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr ""
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr ""
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -524,7 +550,7 @@ msgstr "Cannot Create Wallet"
 
 #: src/js/services/profileService.js:442
 msgid "Cannot join the same wallet more than once"
-msgstr ""
+msgstr "Cannot join the same wallet more than once"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
@@ -579,6 +605,7 @@ msgstr "Click to send"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Close"
 
@@ -882,6 +909,10 @@ msgstr "Create shared wallet"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr ""
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1056,8 +1087,8 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Enter Two Factor for your BitPay account"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
-msgstr "Enter amount"
+msgid "Enter Amount"
+msgstr ""
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
@@ -1220,6 +1251,14 @@ msgstr "Expired"
 msgid "Expires"
 msgstr "Expires"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr ""
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr ""
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Export Wallet"
@@ -1232,6 +1271,11 @@ msgstr "Export Wallet"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Export wallet"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "Wallet Service URL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1553,8 +1597,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr ""
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2244,6 +2288,10 @@ msgstr "Permanently delete this wallet."
 msgid "Personal Wallet"
 msgstr "Personal Wallet"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr ""
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "Please carefully write down this phrase."
@@ -2930,7 +2978,7 @@ msgstr "Sweep"
 #: www/views/includes/incomingDataMenu.html:89
 msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr ""
+msgstr "Sweep paper wallet"
 
 #: www/views/paperWallet.html:3
 msgctxt "Page title"
@@ -3451,7 +3499,7 @@ msgstr "Wallet Recovery Phrase is invalid"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "Wallet Service URL"
+msgstr ""
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3755,8 +3803,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} for Mercado Livre Brazil Gift Card"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr ""
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3802,15 +3850,15 @@ msgstr "Bitcoin Cash Games"
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
-msgstr ""
+msgstr "Share the Wallet App"
 
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "News"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Mining Pool"
+msgid "Start mining Bitcoin"
+msgstr ""
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3874,73 +3922,73 @@ msgstr "This invoice is no longer accepting payments"
 
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
-msgstr ""
+msgstr "Send Maximum Amount"
 
 #: src/js/controllers/amount.controller.js:239
 msgid "Unknown error."
-msgstr ""
+msgstr "Unknown error."
 
 #: www/views/paperWallet.html:48
 msgid "No Bitcoin Cash wallet to transfer funds to found."
-msgstr ""
+msgstr "No Bitcoin Cash wallet to transfer funds to found."
 
 #: www/views/paperWallet.html:54
 msgid "No Bitcoin Cash found."
-msgstr ""
+msgstr "No Bitcoin Cash found."
 
 #: www/views/paperWallet.html:60
 msgid "Bitcoin Core found:"
-msgstr ""
+msgstr "Bitcoin Core found:"
 
 #: www/views/paperWallet.html:98
 msgid "No Bitcoin Core wallet to transfer funds to found."
-msgstr ""
+msgstr "No Bitcoin Core wallet to transfer funds to found."
 
 #: www/views/paperWallet.html:104
 msgid "No Bitcoin Core found."
-msgstr ""
+msgstr "No Bitcoin Core found."
 
 #: src/js/controllers/tab-scan.js:120
 msgid "Scan Failed"
-msgstr ""
+msgstr "Scan Failed"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Data not recognised."
-msgstr ""
+msgstr "Data not recognised."
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Unsupported"
-msgstr ""
+msgstr "Unsupported"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Testnet is not supported."
-msgstr ""
+msgstr "Testnet is not supported."
 
 #: www/views/includes/incomingDataMenu.html:81
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: www/views/includes/incomingDataMenu.html:90
 msgid "Open in web browser"
-msgstr ""
+msgstr "Open in web browser"
 
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid address"
-msgstr ""
+msgstr "Invalid address"
 
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Amount is not defined"
-msgstr ""
+msgstr "Amount is not defined"
 
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Amount is below the minimun"
-msgstr ""
+msgstr "Amount is below the minimun"
 
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Amount is above the limit"
-msgstr ""
+msgstr "Amount is above the limit"
 
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
-msgstr ""
+msgstr "Invalid response from Shapeshift"
 

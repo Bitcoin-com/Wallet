@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-17 08:33\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Adresář"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Typ adresy"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Adresa Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Starý typ"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Koupit &amp; prodat Bitcoin"
 msgid "Buy Bitcoin"
 msgstr "Koupit Bitcoin"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Koupit nebo prodat Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Připojit server Exchange"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Kupujte nebo prodávejte bitcoin přímo z vaší peněženky propojením účtů serveru Exchange."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Koupit Bitcoin pomocí kreditní karty"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr "Kliknutím odešlete"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Zavřít"
 
@@ -879,6 +907,10 @@ msgstr "Vytvořit sdílenou peněženku"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Vytvořit peněženku {{formData.requiredCopayers}}-z-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Spoluplátci"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Zadejte dvoufázové ověření Vašeho BitPay účtu"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Zadejte částku"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Vypršela platnost"
 msgid "Expires"
 msgstr "Vypršení platnosti"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Zobrazit starý typ adresy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Zobrazit nový typ adresy"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Exportovat peněženku"
@@ -1229,6 +1269,11 @@ msgstr "Exportovat do souboru"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Exportovat peněženku"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL služby pro peněženky"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Je-li povoleno, zobrazí se na kartě Domů karta Nedávné transakce - seznam posledních transakcí napříč všemi peněženkami."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Je-li povoleno, peněženky se také pokusí utratit peníze z doposud nepotvrzených transakcí. Tato možnost může způsobit zpoždění následujících transakcí."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Je-li povoleno, peněženky se také pokusí utratit peníze z doposud nepotvrzených transakcí. Vypnutí této možnosti může způsobit zpoždění transakcí."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2240,6 +2285,10 @@ msgstr "Trvale odstranit tuto peněženku."
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "Osobní peněženka"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Moje peněženka {{coin}}"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -3448,7 +3497,7 @@ msgstr "Neplatná fráze k obnovení peněženky"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "URL služby pro peněženky"
+msgstr "URL Peněženky"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3752,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} pro Mercado Livre Brazil dárkovou kartu"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} závisí na službě Bitcore Wallet Service (BWS) pro zajištění komunikace se sítí, zjišťování blockchain informací a synchronizaci spoluplátců. Výchozí konfigurace odkazuje na https://bws.bitpay.com (veřejná instance BitPay BWS)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "Zajištění komunikace se sítí, zjišťování blockchain informací a synchronizace peněženky v {{appName}} závisí na službě Bitcore Wallet Service (BWS). Výchozí konfigurace odkazuje na https://bws.bitcoin.com (veřejná instance Bitcoin.com BWS)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3806,8 +3855,8 @@ msgid "News"
 msgstr "Novinky"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Těžební pool"
+msgid "Start mining Bitcoin"
+msgstr "Začněte těžit Bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
