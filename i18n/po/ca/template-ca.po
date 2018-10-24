@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-17 08:33\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Llibreta d'adreces"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Tipus d'adreça"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Adreça Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Legacy"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Compra &amp; ven bitcoins"
 msgid "Buy Bitcoin"
 msgstr "Compra bitcoins"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Compra o ven bitcoins"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Connecta un Exchange"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Compreu o veneu bitcoins directament des de la vostra cartera connectant els vostres comptes d'Exchange."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Compreu bitcoins amb targeta de crèdit"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr "Feu clic per enviar"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Tanca"
 
@@ -879,6 +907,10 @@ msgstr "Crea una cartera compartida"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Crea una cartera {{formData.requiredCopayers}}-de-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copayers"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Introduïu l'autenticació de doble factor per al vostre compte BitPay"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Introduïu la quantitat"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Caducada"
 msgid "Expires"
 msgstr "Caduca el"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Mostra l'adreça Legacy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Mostra nou estil d'adreça"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Exporta la cartera"
@@ -1229,6 +1269,11 @@ msgstr "Exporta a un fitxer"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Exporta la cartera"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL del servei de la cartera"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Si s'habilita aquesta opció, la targeta de transaccions recents (una llista de les transaccions efectuades en totes les carteres) apareixerà a la pestanya d'Inici."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Si s'habilita aquesta opció, les carteres també intentaran gastar fons no confirmats. Aquesta opció pot provocar retards en la transacció."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Si s'habilita aquesta opció, les carteres també intentaran gastar fons no confirmats. Desactivar aquesta opció pot provocar retards en la transacció."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2240,6 +2285,10 @@ msgstr "Suprimeix definitivament aquesta cartera."
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "Cartera personal"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "La meva cartera {{coin}}"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -3448,7 +3497,7 @@ msgstr "La frase de recuperació de la cartera no és vàlida"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "URL del servei de la cartera"
+msgstr "URL de Wallet Service"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3752,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} per a la targeta regal Mercado Livre Brazil"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depèn de Bitcore Wallet Service (BWS) per a la informació blockchain, la gestió de xarxes i la sincronització de Copayer. La configuració per defecte apunta a https://bws.bitpay.com (instància BWS pública de BitPay)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} depèn de Bitcore Wallet Service (BWS) per a la informació blockchain, la gestió de xarxes i la sincronització de la cartera. La configuració per defecte apunta a https://bws.bitcoin.com (instància BWS pública de Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3799,15 +3848,15 @@ msgstr "Jocs de Bitcoin Cash"
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
-msgstr "Comparteix l'aplicació de la cartera"
+msgstr "Comparteix l'aplicació Wallet"
 
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Notícies"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Xarxa minera"
+msgid "Start mining Bitcoin"
+msgstr "Comença a minar bitcoins"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"

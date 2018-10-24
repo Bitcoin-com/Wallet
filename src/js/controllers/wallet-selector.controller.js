@@ -12,6 +12,17 @@ angular
     var unitDecimals = 0;
     var unitsFromSatoshis = 0;
 
+    //
+    // Needs to migrate $scope to vm.
+    //
+    function initVariables() {
+      // Private variables
+      fromWalletId = '';
+      priceDisplayAsFiat = false;
+      unitDecimals = 0;
+      unitsFromSatoshis = 0;
+    }
+
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.enter", onEnter);
     
@@ -19,6 +30,10 @@ angular
       if (data.direction == "back") {
         sendFlowService.state.pop();
       }
+
+      // Init before entering on this screen
+      initVariables();
+      // Then start
 
       $scope.params = sendFlowService.state.getClone();
 
@@ -52,9 +67,6 @@ angular
         $scope.specificAmount = $scope.specificAlternativeAmount = '';
         $scope.isPaymentRequest = true;
       }
-      if ($scope.params.thirdParty) {
-        $scope.thirdParty = $scope.params.thirdParty;
-      }
     };
 
     function onEnter (event, data) {
@@ -62,7 +74,7 @@ angular
         $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
       });
 
-      if ($scope.thirdParty) {
+      if ($scope.params.thirdParty) {
         // Third party services specific logic
         handleThirdPartyIfShapeshift();
       }
@@ -102,8 +114,8 @@ angular
     }
 
     function handleThirdPartyIfShapeshift() {
-      console.log($scope.thirdParty, $scope.coin);
-      if ($scope.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
+      console.log($scope.params.thirdParty, $scope.coin);
+      if ($scope.params.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
         $scope.coin = profileService.getWallet(fromWalletId).coin;
         if ($scope.coin === 'bch') {
           $scope.coin = 'btc';
@@ -117,6 +129,8 @@ angular
       var walletsAll = [];
       var walletsSufficientFunds = [];
       $scope.walletsInsufficientFunds = []; // For origin screen
+      $scope.walletsBtc = [];
+      $scope.walletsBch = [];
 
       if ($scope.type === 'origin') {
         $scope.headerTitle = gettextCatalog.getString('Choose a wallet to send from');

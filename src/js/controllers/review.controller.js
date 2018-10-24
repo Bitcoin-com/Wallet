@@ -6,57 +6,8 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-  function reviewController(addressbookService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+  function reviewController(addressbookService, externalLinkService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
     var vm = this;
-
-    vm.buttonText = '';
-    vm.destination = {
-      address: '',
-      balanceAmount: '',
-      balanceCurrency: '',
-      coin: '',
-      color: '',
-      currency: '',
-      currencyColor: '',
-      kind: '', // 'address', 'contact', 'wallet'
-      name: ''
-    };
-    vm.displayAddress = '';
-    vm.feeCrypto = '';
-    vm.feeFiat = '';
-    vm.fiatCurrency = '';
-    vm.feeIsHigh = false;
-    vm.feeLessThanACent = false;
-    vm.isCordova = platformInfo.isCordova;
-    vm.memo = '';
-    vm.notReadyMessage = '';
-    vm.origin = {
-      balanceAmount: '',
-      balanceCurrency: '',
-      currency: '',
-      currencyColor: '',
-    };
-    vm.originWallet = null;
-    vm.paymentExpired = false;
-    vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
-    vm.primaryAmount = '';
-    vm.primaryCurrency = '';
-    vm.usingMerchantFee = false;
-    vm.readyToSend = false;
-    vm.remainingTimeStr = '';
-    vm.secondaryAmount = '';
-    vm.secondaryCurrency = '';
-    vm.sendingTitle = gettextCatalog.getString('You are sending');
-    vm.sendStatus = '';
-    vm.showAddress = true;
-    vm.thirdParty = false;
-    vm.wallet = null;
-    vm.memoExpanded = false;
-
-    // Functions
-    vm.goBack = goBack;
-    vm.onSuccessConfirm = onSuccessConfirm;
-    vm.onShareTransaction = onShareTransaction;
 
     var sendFlowData;
     var config = null;
@@ -76,23 +27,91 @@ angular
     var unitFromSat = 0;
 
     var FEE_TOO_HIGH_LIMIT_PERCENTAGE = 15;
+  
+    // Functions
+    vm.goBack = goBack;
+    vm.onSuccessConfirm = onSuccessConfirm;
+    vm.onShareTransaction = onShareTransaction;
+
+    function initVariables() {
+      // Private variables
+      sendFlowData;
+      config = null;
+      coin = '';
+      countDown = null;
+      defaults = {};
+      usingCustomFee = false;
+      usingMerchantFee = false;
+      destinationWalletId = '';
+      lastTxId = '';
+      originWalletId = '';
+      priceDisplayIsFiat = true;
+      satoshis = null;
+      toAddress = '';
+      tx = {};
+      txPayproData = null;
+      unitFromSat = 0;
+
+      // Public variables
+      vm.buttonText = '';
+      vm.destination = {
+        address: '',
+        balanceAmount: '',
+        balanceCurrency: '',
+        coin: '',
+        color: '',
+        currency: '',
+        currencyColor: '',
+        kind: '', // 'address', 'contact', 'wallet'
+        name: ''
+      };
+      vm.displayAddress = '';
+      vm.feeCrypto = '';
+      vm.feeFiat = '';
+      vm.fiatCurrency = '';
+      vm.feeIsHigh = false;
+      vm.feeLessThanACent = false;
+      vm.isCordova = platformInfo.isCordova;
+      vm.memo = '';
+      vm.notReadyMessage = '';
+      vm.origin = {
+        balanceAmount: '',
+        balanceCurrency: '',
+        currency: '',
+        currencyColor: '',
+      };
+      vm.originWallet = null;
+      vm.destinationWallet = null;
+      vm.paymentExpired = false;
+      vm.personalNotePlaceholder = gettextCatalog.getString('Enter text here');
+      vm.primaryAmount = '';
+      vm.primaryCurrency = '';
+      vm.usingMerchantFee = false;
+      vm.readyToSend = false;
+      vm.remainingTimeStr = '';
+      vm.secondaryAmount = '';
+      vm.secondaryCurrency = '';
+      vm.sendingTitle = gettextCatalog.getString('You are sending');
+      vm.sendStatus = '';
+      vm.showAddress = true;
+      vm.thirdParty = null;
+      vm.wallet = null;
+      vm.memoExpanded = false;
+    }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
-
     function onBeforeEnter(event, data) {
-      console.log('review onBeforeEnter sendflow ', sendFlowService.state);
-      // Reset from last time
-      vm.memo = '';
+      $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
+
+      // Init before entering on this screen
+      initVariables();
+      // Then start
 
       defaults = configService.getDefaults();
       sendFlowData = sendFlowService.state.getClone();
       originWalletId = sendFlowData.fromWalletId;
-      if (typeof sendFlowData.amount === 'string') {
-        satoshis = parseInt(sendFlowData.amount, 10);
-      } else {
-        satoshis = sendFlowData.amount;
-      }
+      satoshis = parseInt(sendFlowData.amount, 10);
       toAddress = sendFlowData.toAddress;
       destinationWalletId = sendFlowData.toWalletId;
 
@@ -105,11 +124,14 @@ angular
         vm.thirdParty = sendFlowData.thirdParty;
         switch (vm.thirdParty.id) {
           case 'shapeshift':
-            initShapeshift(function (err) {
+            initShapeshift(function onInitShapeshift(err) {
               if (err) {
                 // Error stop here
                 ongoingProcess.set('connectingShapeshift', false);
-                popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.toString(), function () {
+                popupService.showConfirm(gettextCatalog.getString('Shapeshift Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
+                  if (hasConfirm) {
+                    externalLinkService.open("https://shapeshift.io");
+                  }
                   $ionicHistory.goBack();
                 });
               } else {
@@ -135,7 +157,6 @@ angular
             config = configCache;
             priceDisplayIsFiat = config.wallet.settings.priceDisplay === 'fiat';
             vm.origin.currencyColor = (vm.originWallet.coin === 'btc' ? defaults.bitcoinWalletColor : defaults.bitcoinCashWalletColor);
-            console.log("coin", vm.originWallet.coin, vm.origin.currencyColor, config.bitcoinWalletColor, vm.originWallet.coin === 'btc');
             unitFromSat = 1 / config.wallet.settings.unitToSatoshi;
           }
           updateSendAmounts();
@@ -152,18 +173,18 @@ angular
       if (!tx || !vm.originWallet) return;
 
       if (vm.paymentExpired) {
-        popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.', function () {
+        popupService.showAlert(null, gettextCatalog.getString('This bitcoin payment request has expired.', function onAlert() {
           $ionicHistory.goBack();
         }));
         vm.sendStatus = '';
-        $timeout(function() {
+        $timeout(function onTimeout() {
           $scope.$apply();
         });
         return;
       }
 
       ongoingProcess.set('creatingTx', true, statusChangeHandler);
-      getTxp(lodash.clone(tx), vm.originWallet, false, function(err, txp) {
+      getTxp(lodash.clone(tx), vm.originWallet, false, function onGetTxp(err, txp) {
         ongoingProcess.set('creatingTx', false, statusChangeHandler);
         if (err) return;
 
@@ -180,12 +201,12 @@ angular
           if (!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()) {
             $log.info('No signing proposal: No private key');
 
-            return walletService.onlyPublish(vm.originWallet, txp, function(err) {
+            return walletService.onlyPublish(vm.originWallet, txp, function onOnlyPublish(err) {
               if (err) setSendError(err);
             }, statusChangeHandler);
           }
 
-          walletService.publishAndSign(vm.originWallet, txp, function(err, txp) {
+          walletService.publishAndSign(vm.originWallet, txp, function onPublishAndSign(err, txp) {
             if (err) return setSendError(err);
             if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
               txConfirmNotification.subscribe(vm.originWallet, {
@@ -199,7 +220,7 @@ angular
         confirmTx(function(nok) {
           if (nok) {
             vm.sendStatus = '';
-            $timeout(function() {
+            $timeout(function onTimeout() {
               $scope.$apply();
             });
             return;
@@ -256,7 +277,6 @@ angular
     };
 
     function createVanityTransaction(data) {
-      console.log('createVanityTransaction()');
       var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
 
       // Grab stateParams
@@ -280,6 +300,9 @@ angular
         txp: {},
       };
 
+      if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
+        tx.toAddress = vm.thirdParty.toAddress;
+      }
 
       if (data.stateParams.requiredFeeRate) {
         vm.usingMerchantFee = true;
@@ -293,29 +316,35 @@ angular
       var B = tx.coin === 'bch' ? bitcoreCash : bitcore;
       var networkName;
       try {
-        if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
+        // Final destination is a wallet, but this transaction must go to an address for the first stage of the exchange.
+        if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'shapeshift') {
+          networkName = (new B.Address(tx.toAddress)).network.name;
+          tx.network = networkName;
+          setupTx(tx);
+
+        } else if (vm.destination.kind === 'wallet') { // This is a wallet-to-wallet transfer
           ongoingProcess.set('generatingNewAddress', true);
           var toWallet = profileService.getWallet(destinationWalletId);
 
           // We need an address to send to, so we ask the walletService to create a new address for the toWallet.
-          console.log('Getting address for wallet...');
           walletService.getAddress(toWallet, true, function onWalletAddress(err, addr) {
-            console.log('getAddress cb called', err);
+            if (err) {
+              $log.error('Error getting address for wallet.', err);
+              throw new Error(err.message);
+            }
             ongoingProcess.set('generatingNewAddress', false);
             tx.toAddress = addr;
             networkName = (new B.Address(tx.toAddress)).network.name;
             tx.network = networkName;
-            console.log('calling setupTx() for wallet.');
             setupTx(tx);
           });
         } else { // This is a Wallet-to-address transfer
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
-          console.log('calling setupTx() for address.');
           setupTx(tx);
         }
       } catch (e) {
-        console.error('Error setting up tx', e);
+        $log.error('Error setting up tx', e);
         var message = gettextCatalog.getString('Invalid address');
         popupService.showAlert(null, message, function () {
           $ionicHistory.nextViewOptions({
@@ -385,7 +414,7 @@ angular
       }
       txp.excludeUnconfirmedUtxos = !tx.spendUnconfirmed;
       txp.dryRun = dryRun;
-      walletService.createTx(wallet, txp, function(err, ctxp) {
+      walletService.createTx(wallet, txp, function onCreateTx(err, ctxp) {
         if (err) {
           setSendError(err);
           return cb(err);
@@ -405,7 +434,7 @@ angular
       var walletStatus = null;
       if (wallet.status && wallet.status.isValid) {
         walletStatus = wallet.status;
-      } else if (wallet.cachedStatus.isValid) {
+      } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) {
         walletStatus = wallet.cachedStatus;
       }
 
@@ -444,7 +473,7 @@ angular
       }
 
       // Check if the recipient is a contact
-      addressbookService.get(originCoin + address, function(err, contact) { 
+      addressbookService.get(originCoin + address, function onGetContact(err, contact) { 
         if (!err && contact) {
           handleDestinationAsAddressOfContact(contact);
         } else {
@@ -475,6 +504,7 @@ angular
       }
 
       var destinationWallet = profileService.getWallet(destinationWalletId);
+      vm.destinationWallet = destinationWallet
       vm.destination.coin = destinationWallet.coin;
       vm.destination.color = destinationWallet.color;
       vm.destination.currency = destinationWallet.coin.toUpperCase();
@@ -517,7 +547,6 @@ angular
       vm.destination.color = toWallet.color;
       vm.destination.currency = toWallet.coin.toUpperCase();
 
-
       ongoingProcess.set('connectingShapeshift', true);
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
@@ -535,9 +564,8 @@ angular
             if (err) {
               return cb(err);
             } else {
-              vm.destination.kind = 'shapeshift';
-              vm.destination.address = toAddress;
-              tx.toAddress = shapeshiftData.toAddress;
+              // Want it to appear like a wallet-to-wallet transfer, so don't set the main toAddress.
+              vm.thirdParty.toAddress = shapeshiftData.toAddress;
               vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
               ongoingProcess.set('connectingShapeshift', false);
@@ -572,7 +600,6 @@ angular
       }, 1000);
 
       function setExpirationTime() {
-        console.log('setExpirationTime()');
         var now = Math.floor(Date.now() / 1000);
 
         if (now > expirationTime) {
@@ -690,7 +717,7 @@ angular
       $timeout(function() {
         $scope.$apply();
       });
-      popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg), function () {
+      popupService.showAlert(gettextCatalog.getString('Error at confirm'), bwcError.msg(msg), function onAlert() {
         $ionicHistory.goBack();
       });
     };
@@ -702,7 +729,7 @@ angular
         tx.displayAddress = tx.toAddress;
       }
 
-      addressbookService.get(tx.coin+tx.toAddress, function(err, addr) { // Check if the recipient is a contact
+      addressbookService.get(tx.coin+tx.toAddress, function onGetContact(err, addr) { // Check if the recipient is a contact
         if (!err && addr) {
           tx.toName = addr.name;
           tx.toEmail = addr.email;
@@ -721,23 +748,10 @@ angular
       updateTx(tx, vm.originWallet, {
         dryRun: true
       }, function(err) {
-        $timeout(function() {
+        $timeout(function onTimeout() {
           $scope.$apply();
         }, 10);
-
       });
-
-      // setWalletSelector(tx.coin, tx.network, tx.amount, function(err) {
-      //   if (err) {
-      //     return exitWithError('Could not update wallets');
-      //   }
-      //
-      //   if (vm.wallets.length > 1) {
-      //     vm.showWalletSelector();
-      //   } else if (vm.wallets.length) {
-      //     setWallet(vm.wallets[0], tx);
-      //   }
-      // });
     }
 
     function showSendMaxWarning(wallet, sendMaxInfo) {
@@ -809,7 +823,7 @@ angular
           "type": "outgoing",
           "amount": amount,
           "fees": vm.feeCrypto
-        }], [channel, "adjust"]);
+        }], [channel, "adjust", "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
         $timeout(function() {
@@ -848,7 +862,7 @@ angular
       // refresh();
 
       var feeServiceLevel = usingMerchantFee && vm.originWallet.coin == 'btc' ? 'urgent' : tx.feeLevel;
-      feeService.getFeeRate(vm.originWallet.coin, tx.network, feeServiceLevel, function(err, feeRate) {
+      feeService.getFeeRate(vm.originWallet.coin, tx.network, feeServiceLevel, function onGetFeeRate(err, feeRate) {
         if (err) {
           ongoingProcess.set('calculatingFee', false);
           return cb(err);
@@ -867,7 +881,7 @@ angular
           tx.feeRate = feeRate;
         }
 
-        getSendMaxInfo(lodash.clone(tx), wallet, function(err, sendMaxInfo) {
+        getSendMaxInfo(lodash.clone(tx), wallet, function onGetSendmaxInfo(err, sendMaxInfo) {
           if (err) {
             ongoingProcess.set('calculatingFee', false);
             var msg = gettextCatalog.getString('Error getting SendMax information');
@@ -881,7 +895,7 @@ angular
             if (tx.sendMax && sendMaxInfo.amount == 0) {
               ongoingProcess.set('calculatingFee', false);
               setNotReady(gettextCatalog.getString('Insufficient confirmed funds'));
-              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'), function () {
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Not enough funds for fee'), function onAlert() {
                 $ionicHistory.goBack();
               });
               return cb('no_funds');
@@ -906,8 +920,7 @@ angular
             return cb();
           }
 
-          console.log('calling getTxp() from getSendMaxInfo cb.');
-          getTxp(lodash.clone(tx), wallet, opts.dryRun, function(err, txp) {
+          getTxp(lodash.clone(tx), wallet, opts.dryRun, function onGetTxp(err, txp) {
             ongoingProcess.set('calculatingFee', false);
             if (err) {
               if (err.message == 'Insufficient funds') {
@@ -919,7 +932,7 @@ angular
             }
 
             txp.feeStr = txFormatService.formatAmountStr(wallet.coin, txp.fee);
-            txFormatService.formatAlternativeStr(wallet.coin, txp.fee, function(v) {
+            txFormatService.formatAlternativeStr(wallet.coin, txp.fee, function onFormatAlternativeStr(v) {
               // txp.alternativeFeeStr = v;
               // if (txp.alternativeFeeStr.substring(0, 4) == '0.00')
               //   txp.alternativeFeeStr = '< ' + txp.alternativeFeeStr;
@@ -928,8 +941,6 @@ angular
               if (v.substring(0, 1) === "<") {
                 vm.feeLessThanACent = true;
               }
-              
-              console.log("fiat", vm.feeFiat);
 
             });
 
@@ -939,14 +950,11 @@ angular
             txp.feeToHigh = per > FEE_TOO_HIGH_LIMIT_PERCENTAGE;
             vm.feeCrypto = (unitFromSat * txp.fee).toFixed(8);
             vm.feeIsHigh = txp.feeToHigh;
-            console.log("crypto", vm.feeCrypto);
-
 
             tx.txp[wallet.id] = txp;
             $log.debug('Confirm. TX Fully Updated for wallet:' + wallet.id, tx);
             vm.readyToSend = true;
             updateSendAmounts();
-            console.log('readyToSend:', vm.readyToSend);
             $scope.$apply();
 
             return cb();

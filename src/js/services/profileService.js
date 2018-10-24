@@ -416,7 +416,7 @@ angular.module('copayApp.services')
         seedWallet(opts, function(err, walletClient) {
           if (err) return cb(err);
 
-          var name = opts.name || gettextCatalog.getString('Personal Wallet');
+          var name = opts.name || gettextCatalog.getString('My {{coin}} Wallet', {coin: opts.coin.toUpperCase()});
           var myName = opts.myName || gettextCatalog.getString('me');
 
           walletClient.createWallet(name, myName, opts.m, opts.n, {
@@ -431,9 +431,15 @@ angular.module('copayApp.services')
             if (platformInfo.isCordova) {
               channel = "firebase";
             }
+
+            var type = opts.n == 1 ? "regular" : "shared"
+
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
-              "coin": opts.coin
-            }], [channel]);
+              "coin": opts.coin,
+              "type": type,
+              "num_of_copayers": opts.n,
+              "num_of_signatures": opts.m
+            }], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);
