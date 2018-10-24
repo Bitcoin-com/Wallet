@@ -1,15 +1,15 @@
 .apl {
   background-color: #FFF;
   color: #000;
-  padding: 40px 18px;
+  padding: 40px 0px;
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
     height: 28px;
     letter-spacing: 0.35px;
     line-height: 28px;
+    padding: 0 16px;
     text-align: left;
-    width: 244px;
   }
 
   &-amount {
@@ -182,6 +182,8 @@
     border-radius: 9px 9px 9px 9px;
     box-shadow: 0 5px 34px 0 rgba(0, 0, 0, 0.11);
     height: 77px;
+    margin: 0 16px;
+
     &__title {
       color: #000000;
       font-size: 15px;
@@ -228,7 +230,7 @@
     }
     .item {
       border: 0;
-      padding-left: 2px;
+      padding-left: 18px;
       p {
         color: #000000;
         font-size: 17px;
@@ -242,17 +244,19 @@
         content: '';
         border-bottom: 1px solid #e5e5e5;
         bottom: 1px;
-        width: 100%;
+        left: 16px;
+        right: 16px;
       }
 
       &.item-big-icon-left {
-        padding-left: 54px;
+        padding-left: 68px;
         .big-icon-svg {
-          padding: 0;
+          padding: 0 0 0 16px;
         }
         &:after {
-          width: calc(100% - 54px);
-          left: 54px;
+          position: absolute;
+          left: 68px;
+          right: 16px;
         }
       }
 
