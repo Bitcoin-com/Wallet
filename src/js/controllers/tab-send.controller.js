@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService, ionicToast, opencapService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -60,6 +60,29 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       updateList();
     });
   });
+
+  $scope.sendToAlias = function(alias) {
+    opencapService.get(alias)
+    .then(result => {
+      let msg = 'Address found! Address is secure';
+      if(!result.dnssec){
+        msg = 'Address found! Address doesn\'t have maximum DNS security';
+      }
+
+      let msgTime = 1000;
+      $scope.$apply(function () {
+        ionicToast.show(msg, 'bottom', false, msgTime);
+      });
+      setTimeout(function(){ 
+        $scope.findContact(result.address);
+      }, msgTime);  
+    })
+    .catch(status => {
+      $scope.$apply(function () {
+        ionicToast.show(status, 'bottom', false, 1500);
+      });
+    });
+  }
 
   $scope.findContact = function(search) {
     if (!search || search.length < 1) {

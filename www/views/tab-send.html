@@ -63,6 +63,20 @@
             </button>
           </div>
         </div>
+        <br/>
+        <div class="row">
+          <div class="col-80">
+            <div class="input" ng-class="{'focus': searchFocus}">
+              <input type="text" class="search-input" placeholder="{{'Or send to an alias' | translate}}" ng-model="formData.alias"
+                ng-model-onblur>
+            </div>
+          </div>
+          <div class="col-20">
+            <button class="button button-standard button-primary button-outline" ng-click="sendToAlias(formData.alias)">
+              <span class="non-address" translate>Send to Alias</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
