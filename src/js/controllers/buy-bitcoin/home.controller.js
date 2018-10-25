@@ -4,9 +4,9 @@
 
 angular
   .module('bitcoincom.controllers')
-  .controller('buyBitcoinAccountStatusController', accountStatusController);
+  .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
-  function accountStatusController(gettextCatalog, $log, popupService, $scope, $state) {
+  function buyBitcoinHomeController(gettextCatalog, $log, popupService, $scope, $state) {
     var vm = this;
 
     // Functions

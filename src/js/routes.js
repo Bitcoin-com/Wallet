@@ -839,9 +839,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/buy-bitcoin',
         views: {
           'tab-home': {
-            controller: 'buyBitcoinAccountStatusController',
+            controller: 'buyBitcoinHomeController',
             controllerAs: 'vm',
-            templateUrl: 'views/buy-bitcoin.html'
+            templateUrl: 'views/buy-bitcoin/home.html'
           }
         }
       })
@@ -851,7 +851,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home': {
             controller: 'buyBitcoinController',
-            templateUrl: 'views/buy-bitcoin-amount.html'
+            templateUrl: 'views/buy-bitcoin/amount.html'
           }
         }
       })
