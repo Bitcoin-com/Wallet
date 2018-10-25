@@ -62,11 +62,11 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   });
 
   $scope.sendToAlias = function(alias) {
-    opencapService.get(alias)
+    opencapService.get(alias, $scope.fromWallet.coin)
     .then(result => {
-      let msg = 'Address found! Address is secure';
+      let msg = `${$scope.fromWallet.coin} address found! Address is secure`;
       if(!result.dnssec){
-        msg = 'Address found! Address doesn\'t have maximum DNS security';
+        msg = `${$scope.fromWallet.coin} address found! Address doesn\'t have maximum DNS security`;
       }
 
       let msgTime = 1000;

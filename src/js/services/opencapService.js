@@ -2,7 +2,7 @@
 
 angular.module('copayApp.services').service('opencapService', function () {
 
-    function getAddressCall(host, alias, dnssec) {
+    function getAddressCall(host, alias, dnssec, coin) {
         var callback = function () {
             return fetch(
                 `https://${host}/v1/addresses?alias=${alias}`,
@@ -26,11 +26,18 @@ angular.module('copayApp.services').service('opencapService', function () {
                             if (response.body[i].address_type === "undefined") {
                                 continue
                             }
-                            if (response.body[i].address_type !== 200 && response.body[i].address_type !== 201) {
+                            if (response.body[i].address === "undefined") {
                                 continue
                             }
-                            if (response.body[i].address !== "undefined") {
-                                return resolve({ address: response.body[i].address, dnssec })
+                            if (coin == 'bch' && 
+                                (response.body[i].address_type == 200 ||
+                                 response.body[i].address_type == 201)) {
+                                    return resolve({ address: response.body[i].address, dnssec })
+                            }
+                            if (coin == 'btc' && 
+                                (response.body[i].address_type == 100 ||
+                                 response.body[i].address_type == 101)) {
+                                    return resolve({ address: response.body[i].address, dnssec })
                             }
                         }
 
@@ -45,7 +52,7 @@ angular.module('copayApp.services').service('opencapService', function () {
         });
     }
 
-    function getAliasData(domain, alias) {
+    function getAliasData(domain, alias, coin) {
         var callback = function () {
             return fetch(
                 `https://dns.google.com/resolve?name=_opencap._tcp.${domain}&type=SRV`,
@@ -89,7 +96,7 @@ angular.module('copayApp.services').service('opencapService', function () {
                 });
             })
             .then(args =>
-                getAddressCall(args.target, args.alias, args.dnssec)
+                getAddressCall(args.target, args.alias, args.dnssec, coin)
             )
             .catch(function (error) {
                 return new Promise((resolve, reject) => {
@@ -136,7 +143,7 @@ angular.module('copayApp.services').service('opencapService', function () {
         return { username, domain }
     }
 
-    function get(alias) {
+    function get(alias, coin) {
         let aliasData = validateAlias(alias)
         if (aliasData.username === '' || aliasData.domain === '') {
             return new Promise((resolve, reject) => {
@@ -144,7 +151,7 @@ angular.module('copayApp.services').service('opencapService', function () {
             })
         }
 
-        return getAliasData(aliasData.domain, alias)
+        return getAliasData(aliasData.domain, alias, coin)
     }
 
     return {

@@ -64,7 +64,7 @@
           </div>
         </div>
         <br/>
-        <div class="row">
+        <div class="row" ng-if="fromWallet">
           <div class="col-80">
             <div class="input" ng-class="{'focus': searchFocus}">
               <input type="text" class="search-input" placeholder="{{'Or send to an alias' | translate}}" ng-model="formData.alias"
