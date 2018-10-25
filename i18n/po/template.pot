@@ -4042,23 +4042,47 @@ msgstr ""
 msgid "This amount exceeds your monthly limit"
 msgstr ""
 
-msgid ""
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
 msgstr ""
 
-msgid ""
+msgid "Verify Identity"
 msgstr ""
 
-msgid ""
+# Purchase history item
+
+msgid "Deposited to"
 msgstr ""
 
-msgid ""
+msgid "See on Blockchain"
 msgstr ""
 
-msgid ""
+msgid "Wallet address"
 msgstr ""
 
-msgid ""
+# Pending Order
+
+msgid "Pending Order"
 msgstr ""
 
-msgid ""
+msgid "Edit Order"
+msgstr ""
+
+msgid "Cancel Order"
+msgstr ""
+
+# Success
+
+msgid "Success!"
+msgstr ""
+
+
+msgid "Your purchase has been processed."
+msgstr ""
+
+
+msgid "See Receipt"
+msgstr ""
+
+
+msgid "Make Another Purchase"
 msgstr ""
