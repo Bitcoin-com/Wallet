@@ -266,6 +266,24 @@
         }
       }
 
+      & .coming-soon {
+        background: rgba(255, 255, 255, 0.5);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        text-align: right;
+
+        &-contents {
+          flex: 0;
+          padding-right: 16px;
+        }
+      }
+
     }
     .item-icon-left .icon {
       left: 0;
