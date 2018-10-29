@@ -6,8 +6,9 @@
       .controller('buyBitcoinAmountController', amountController);
 
   function amountController($scope) {
+    var vm = this;
 
-    $scope.focussedEl = false;
+    vm.focussedEl = false;
 
     var controller = {
       // Functions
