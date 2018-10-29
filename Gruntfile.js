@@ -105,7 +105,7 @@ module.exports = function(grunt) {
           'src/js/directives/*.js',
           'src/js/filters/*.js',
           'src/js/routes.js',
-          'src/js/services/*.js',
+          'src/js/services/**/*.js',
           'src/js/models/*.js',
           'src/js/controllers/**/*.js'
         ],

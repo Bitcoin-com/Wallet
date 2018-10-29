@@ -835,6 +835,37 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin', {
+        url: '/buy-bitcoin',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinHomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/home.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-amount', {
+        url: '/buy-bitcoin/amount',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinController',
+            templateUrl: 'views/buy-bitcoin/amount.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-paymentmethods', {
+        url: '/buy-bitcoin/payment-methods',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPaymentMethodsController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/payment-methods.html'
+          }
+        }
+      })
       /*
        *
        * Glidera
@@ -1180,7 +1211,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinComService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 

@@ -2,7 +2,11 @@
 angular.module('copayApp.services')
   .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
 
-    var root = {};
+    var root = {
+      getItem: getItem,
+      removeItem: removeItem,
+      setItem: setItem
+    };
     var storage;
 
     // File storage is not supported for writing according to
@@ -708,6 +712,35 @@ angular.module('copayApp.services')
         });
       });
     }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error, string)} cb 
+     */
+    function getItem(keyName, cb) {
+      storage.get(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error)} cb 
+     */
+    function removeItem(keyName, cb) {
+      storage.remove(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {string} keyValue 
+     * @param {function(Error)} cb 
+     */
+    function setItem(keyName, keyValue, cb) {
+      storage.set(keyName, keyValue, cb);
+    }
+    
     
     return root;
   });
