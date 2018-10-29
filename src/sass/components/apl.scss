@@ -290,6 +290,16 @@
     .item-icon-left .icon {
       left: 0;
     }
+
+    .item-icon-right.icon {
+      left: auto;
+      padding-right: 16px;
+      right: 0px;
+      
+      &.selected {
+        color: #27C792;
+      }
+    }
   }
   &-button {
     background: #FF9B00;
