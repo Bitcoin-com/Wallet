@@ -11,9 +11,11 @@ angular
 
     // Functions
     vm.addCard = addCard;
+    vm.choice = 'B';
     vm.selectPaymentMethod = selectPaymentMethod;
 
     // Variables
+    vm.defaultPaymentMethod = '••• 2244';
     vm.paymentMethods = [
       {
         name: 'Visa',

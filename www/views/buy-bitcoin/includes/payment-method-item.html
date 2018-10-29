@@ -1,14 +1,13 @@
-<div class="item item-icon-left item-big-icon-left apl-list-item">
-    <i class="icon big-icon-svg">
-      <span class="apl-icon"></span>
-    </i>
-    <div class="apl-card__title__container">
-      <div class="apl-card__title">
-        {{pm.name}}
-      </div>
-      <div class="apl-card__subtitle">
-        {{pm.partialCardNumber}} {{pm.expiryDate}}
-      </div>
-      <i ng-if="pm.isDefault" class="icon ion-ios-checkmark-empty item-icon-right selected"></i>
+<ion-radio class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">
+  <i class="icon big-icon-svg">
+    <span class="apl-icon"></span>
+  </i>
+  <div class="apl-card__title__container">
+    <div class="apl-card__title">
+      {{pm.name}}
+    </div>
+    <div class="apl-card__subtitle">
+      {{pm.partialCardNumber}} {{pm.expiryDate}}
     </div>
   </div>
+</ion-radio>

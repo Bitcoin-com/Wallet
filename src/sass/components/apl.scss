@@ -300,6 +300,27 @@
         color: #27C792;
       }
     }
+
+    .item-radio {
+      padding: 0;
+
+      .item {
+        padding-top: 20;
+        padding-bottom: 20;
+      }
+
+      .item-content {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+      }
+
+      .radio-icon {
+        height: auto;
+        padding-top: 20px;
+      }
+    }
+
   }
   &-button {
     background: #FF9B00;
@@ -325,17 +346,21 @@
       width: 100%;
     }
   }
+
+  .bar .buttons {
+  
+    & span {
+      display: inline;
+      font-size: 17px;
+      letter-spacing: -0.41px;
+    }
+    
+    & .apl-back-button span {
+      margin-left: 2px;
+    }
+  }
+
 }
 
-.bar .buttons {
-  
-  & span {
-    display: inline;
-    font-size: 17px;
-    letter-spacing: -0.41px;
-  }
-  
-  & .apl-back-button span {
-    margin-left: 2px;
-  }
-}
+
+

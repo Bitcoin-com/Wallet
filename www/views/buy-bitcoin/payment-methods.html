@@ -1,4 +1,4 @@
-<ion-view id="tab-buy-bitcoin-amount" hide-tabs>
+<ion-view id="tab-buy-bitcoin-amount" class="apl" hide-tabs>
   <ion-nav-bar>
     <ion-nav-buttons side="primary">
       <button class="button apl-back-button" ng-click="$ionicGoBack()">
@@ -9,7 +9,7 @@
       <button translate>Edit</button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content class="apl">
+  <ion-content>
     <h1 translate>
       Payment Methods
     </h1>
@@ -17,9 +17,41 @@
       <div ng-repeat="pm in vm.paymentMethods" ng-click="selectPaymentMethod(pm)">
         <a class="" ng-include="'views/buy-bitcoin/includes/payment-method-item.html'"></a>
       </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">
+          <i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              Fake
+            </div>
+            <div class="apl-card__subtitle">
+              ••• 1234 56/78
+            </div>
+          </div>
+        </div>
       <a class="item apl-list-item" ng-click="vm.addCard()">
         <p>+ <span translate>Add Credit ot Debit Card</span></p>
       </a>
+      <ion-radio ng-model="choice" ng-value="'A'">
+        <div class="item item-big-icon-left">
+          <!--<i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>-->
+          <div class="apl-card__title">
+            Fake
+          </div>
+          <div class="apl-card__subtitle">
+            ••• 1234 56/78
+          </div>
+        </div> 
+      </ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>
     </div>
+
+
+
+
   </ion-content>
 </ion-view>
