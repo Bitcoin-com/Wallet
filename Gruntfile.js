@@ -439,7 +439,7 @@ module.exports = function(grunt) {
   function processLeanplumConfig(content, env) {
     var leanplumConfig = {};
     try {
-      leanplumConfig = grunt.file.readJSON('../leanplum-config.json');
+      leanplumConfig = grunt.file.readJSON('../wallet-configs/app-v1/leanplum-config.json');
     } catch (e) {
       // Without this, there is no clue on the console about what happened.
       if (env === 'prod') {
@@ -466,7 +466,7 @@ module.exports = function(grunt) {
   function processMoonPayConfig(content, env) {
     var moonPayConfig = {};
     try {
-      moonPayConfig = grunt.file.readJSON('../moonpay-config.json');
+      moonPayConfig = grunt.file.readJSON('../wallet-configs/app-v1/moonpay-config.json');
     } catch (e) {
       // Without this, there is no clue on the console about what happened.
       if (env === 'prod') {
