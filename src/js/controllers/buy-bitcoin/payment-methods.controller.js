@@ -9,6 +9,34 @@ angular
   function paymentMethodsController($scope) {
     var vm = this;
 
+    // Functions
+    vm.addCard = addCard;
+    vm.selectPaymentMethod = selectPaymentMethod;
+
+    // Variables
+    vm.paymentMethods = [
+      {
+        name: 'Visa',
+        partialCardNumber: '••• 2244',
+        expiryDate: '12/21'
+      },
+      {
+        name: 'Visa',
+        partialCardNumber: '••• 2144',
+        expiryDate: '08/17',
+        isDefault: true
+      },
+      {
+        name: 'Mastercard',
+        partialCardNumber: '••• 8743',
+        expiryDate: '09/22'
+      }
+    ];
+
+    function addCard() {
+      console.log('addCard()');
+    }
+
     function _initVariables() { 
     }
 
@@ -19,6 +47,10 @@ angular
       _initVariables();
     }
 
+
+    function selectPaymentMethod(pm) {
+      console.log('selectPaymentMethod');
+    }
   }
 
 
