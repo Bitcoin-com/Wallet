@@ -216,11 +216,7 @@
       margin: 8px 0;
     }
   }
-  &-back-button {
-    border: 0;
-    background: #FFF;
-    color: #000;
-  }
+  &-back-button,
   &-close-button {
     border: 0;
     background: #FFF;
@@ -321,9 +317,15 @@
   }
 }
 
-.bar .buttons-left .apl-back-button span {
-  display: inline;
-  font-size: 17px;
-  letter-spacing: -0.41px;
-  margin-left: 5px;
+.bar .buttons {
+  
+  & span {
+    display: inline;
+    font-size: 17px;
+    letter-spacing: -0.41px;
+  }
+  
+  & .apl-back-button span {
+    margin-left: 5px;
+  }
 }
