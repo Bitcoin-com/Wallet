@@ -304,6 +304,11 @@
     .item-radio {
       padding: 0;
 
+      .big-icon-svg {
+        padding: 16px 0 16px 16px;
+        
+      }
+
       .item {
         padding-top: 20;
         padding-bottom: 20;
@@ -318,6 +323,21 @@
       .radio-icon {
         height: auto;
         padding-top: 20px;
+        padding-right: 16px;
+        color: #27C792;
+      }
+
+      .radio-content {
+        &:after {
+          background-color: blue;
+          position: absolute;
+          content: 'Hello';
+          border-bottom: 2px solid #000;// #e5e5e5;
+          height: 20px;
+          bottom: 2px;
+          left: 16px;
+          right: 16px;
+        }
       }
     }
 
@@ -346,6 +366,19 @@
       width: 100%;
     }
   }
+
+  /*
+  .apl-radio {
+    &:after {
+      position: absolute;
+      content: '';
+      border-bottom: 1px solid #000;// #e5e5e5;
+      height: 1px;
+      bottom: 1px;
+      left: 16px;
+      right: 16px;
+    }
+  }*/
 
   .bar .buttons {
   

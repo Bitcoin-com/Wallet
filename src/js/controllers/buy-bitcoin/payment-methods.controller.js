@@ -10,49 +10,57 @@ angular
     var vm = this;
 
     // Functions
-    vm.addCard = addCard;
-    vm.choice = 'B';
-    vm.selectPaymentMethod = selectPaymentMethod;
-
+    vm.addPaymentMethod = addPaymentMethod;
+    
+    
     // Variables
-    vm.defaultPaymentMethod = '••• 2244';
+    vm.defaultPaymentMethod = 'abc';
+
     vm.paymentMethods = [
       {
+        id: 'abc',
         name: 'Visa',
         partialCardNumber: '••• 2244',
         expiryDate: '12/21'
       },
       {
+        id: 'def',
         name: 'Visa',
         partialCardNumber: '••• 2144',
         expiryDate: '08/17',
         isDefault: true
       },
       {
+        id: 'ghi',
         name: 'Mastercard',
         partialCardNumber: '••• 8743',
         expiryDate: '09/22'
       }
     ];
 
-    function addCard() {
-      console.log('addCard()');
+    var initialDefaultPaymentMethod = '';
+
+    function addPaymentMethod() {
+      console.log('addPaymentMethod()');
     }
 
-    function _initVariables() { 
+    function _initVariables() {
+      vm.defaultPaymentMethod = 'def';
+      initialDefaultPaymentMethod = vm.defaultPaymentMethod;
     }
 
-    $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
-    
+    $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     function _onBeforeEnter(event, data) {
       _initVariables();
     }
 
-
-    function selectPaymentMethod(pm) {
-      console.log('selectPaymentMethod');
+    function _onBeforeLeave(event, data) {
+      var defaultWasChanged = initialDefaultPaymentMethod !== vm.defaultPaymentMethod;
+      console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
+
   }
 
 
