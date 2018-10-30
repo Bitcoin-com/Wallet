@@ -11,13 +11,9 @@ angular
     $http, $q, $log
   ) {
 
+    var tokenKey = 'moonPayToken';
+    var currentToken = null;
     var baseUrl = moonPayConfig.baseUrl
-    var config = {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Api-Key ' + moonPayConfig.apiKey
-      }
-    };
 
     var service = {
       // Variables
@@ -28,41 +24,111 @@ angular
       updateCustomer: updateCustomer,
       uploadPassport: uploadPassport,
       uploadNationalIdentityCard: uploadNationalIdentityCard,
-      uploadSelfie: uploadSelfie
+      uploadSelfie: uploadSelfie,
+      createCard: createCard,
+      getCards: getCards
     };
 
     return service;
 
+    /**
+     * Create customer
+     * @param {String} email 
+     */
     function createCustomer(email) {
       var deferred = $q.defer();
-      $http.post(baseUrl + '/customers', {
-        'email': email
-      }, config).then(function (response) {
-        var client = response.data;
-        deferred.resolve(client);
+      getConfig(false).then(function(config) {
+        $http.post(baseUrl + '/v2/customers?apiKey=' + moonPayConfig.pubKey, {
+          'email': email
+        }, config).then(function (response) {
+          var data = response.data;
+          currentToken = data.token;
+          localStorageService.set(tokenKey, data.token, function (err) {
+            if (err) {
+              $log.debug('Error setting moonpay customer token in the local storage');
+              deferred.reject(err);
+            } else {
+              deferred.resolve(data.customer);
+            }
+          });
+        }, function (err) {
+          deferred.reject(err);
+        });
       }, function (err) {
         deferred.reject(err);
       });
       return deferred.promise;
     }
 
-    function getCustomer(customerId) {
-      var deferred = $q.defer(); 
-      $http.get(baseUrl + '/customers/' + customerId, config).then(function (response) {
-        var client = response.data;
-        deferred.resolve(client);
+    /**
+     * Get customer
+     */
+    function getCustomer() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/customers/me', config).then(function (response) {
+          var customer = response.data;
+          deferred.resolve(customer);
+        }, function (err) {
+          deferred.reject(err);
+        });
       }, function (err) {
         deferred.reject(err);
       });
       return deferred.promise;
     }
 
+    /**
+     * Update a customer
+     * @param {Object} customer 
+     */
     function updateCustomer(customer) {
       var deferred = $q.defer();
-      $http.patch(baseUrl + '/customers/' + customer.id, customer, config).then(function (response) {
-        var client = response.data;
-        // Store customerId = client.id
-        deferred.resolve(client);
+      getConfig(true).then(function(config) {
+        $http.patch(baseUrl + '/v2/customers/' + customer.id, customer, config).then(function (response) {
+          var customer = response.data;
+          // Store customerId = client.id
+          deferred.resolve(customer);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get cards
+     */
+    function getCards() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/cards', config).then(function (response) {
+          var cards = response.data;
+          deferred.resolve(cards);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Create a card
+     * @param {Object} card 
+     */
+    function createCard(card) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.post(baseUrl + '/v2/cards', card, config).then(function (response) {
+          var card = response.data;
+          deferred.resolve(card);
+        }, function (err) {
+          deferred.reject(err);
+        });
       }, function (err) {
         deferred.reject(err);
       });
@@ -88,6 +154,43 @@ angular
     function uploadFile(customerId, file) {
       // Needs to be completed
       // Post request
+    }
+
+    //
+    // Private methods
+    //
+
+    /**
+     * Get config for the http request
+     * @param {Boolean} tokenIsNeeded 
+     */
+    function getConfig(tokenIsNeeded) {
+      var deferred = $q.defer();
+      var config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      if (!tokenIsNeeded) {
+        deferred.resolve(config);
+      } else {
+        if (currentToken) {
+          config.headers['Authorization'] = 'Bearer ' + currentToken;
+        } else {
+          localStorageService.get(tokenKey, function (err, token) {
+            if (err) {
+              $log.debug('Error getting moonpay customer token in the local storage');
+              deferred.reject(err);
+            } else {
+              currentToken = token
+              config.headers['Authorization'] = 'Bearer ' + currentToken;
+              deferred.resolve(config);
+            }
+          });
+        }
+      }
+      return deferred.promise;
     }
   }
 })();
