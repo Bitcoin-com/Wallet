@@ -39,7 +39,6 @@ angular
         'email': email
       }, config).then(function (response) {
         var client = response.data;
-        // Store customerId = client.id
         deferred.resolve(client);
       }, function (err) {
         deferred.reject(err);
@@ -48,7 +47,7 @@ angular
     }
 
     function getCustomer(customerId) {
-      var deferred = $q.defer();
+      var deferred = $q.defer(); 
       $http.get(baseUrl + '/customers/' + customerId, config).then(function (response) {
         var client = response.data;
         deferred.resolve(client);
