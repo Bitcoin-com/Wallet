@@ -33,7 +33,7 @@
       letter-spacing: 0.29px;
       margin: 8px 0;
       text-align: left;
-      width: 80vw;
+      width: 75vw;
       padding: 0;
 
       &::placeholder {
@@ -60,6 +60,7 @@
       margin-top: 14px;
       padding: 0 16px;
       &-item {
+        clear: both;
         margin: 4px 0;
         color: #787878;
         font-size: 15px;
@@ -74,10 +75,8 @@
       }
       &-title {
         display: inline-block;
-        width: 75vw;
       }
       &-price {
-        display: inline-block;
         float: right;
         text-align: right;
       }
