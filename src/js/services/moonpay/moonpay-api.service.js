@@ -196,7 +196,7 @@ angular
       if (!tokenIsNeeded) {
         deferred.resolve(config);
       } else {
-        if (currentToken) {
+        if (currentToken != null) {
           config.headers['Authorization'] = 'Bearer ' + currentToken;
         } else {
           localStorageService.get(tokenKey, function (err, token) {
