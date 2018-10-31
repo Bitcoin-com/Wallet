@@ -8,6 +8,7 @@ angular
   
   function moonPayApiService(
     moonPayConfig,
+    localStorageService,
     $http, $q, $log
   ) {
 
@@ -26,7 +27,8 @@ angular
       uploadNationalIdentityCard: uploadNationalIdentityCard,
       uploadSelfie: uploadSelfie,
       createCard: createCard,
-      getCards: getCards
+      getCards: getCards,
+      getRates: getRates
     };
 
     return service;
@@ -126,6 +128,25 @@ angular
         $http.post(baseUrl + '/v2/cards', card, config).then(function (response) {
           var card = response.data;
           deferred.resolve(card);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get rates
+     * @param {String} code 
+     */
+    function getRates(code) {
+      var deferred = $q.defer();
+      getConfig(false).then(function(config) {
+        $http.get(baseUrl + '/v2/currencies/' + code + '/price', config).then(function (response) {
+          var rates = response.data;
+          deferred.resolve(rates);
         }, function (err) {
           deferred.reject(err);
         });
