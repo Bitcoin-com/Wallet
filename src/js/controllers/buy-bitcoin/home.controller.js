@@ -7,7 +7,8 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
-    gettextCatalog, 
+    gettextCatalog,
+    $ionicHistory, 
     $log, 
     moonPayService,
     popupService, 
@@ -48,6 +49,8 @@ angular
             console.log('Found customer ID: ' + customer.id);
           } else {
             console.log('No customer ID.');
+
+            $state.go('tabs.buybitcoin-welcome'); // TODO: Change back stack
           }
         },
         function onCustomerIdError(err) {

@@ -1,13 +1,13 @@
-<ion-view class="apl-view" can-swipe-back="false" hide-tabs>
+<ion-view class="apl" can-swipe-back="false" hide-tabs>
   <ion-nav-bar class="bar-royal">
-    <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
+    <ion-nav-back-button ng-click="$ionicGoBack(-2)"></ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content class="">
     <h1>Buy Bitcoin Cash</h1>
     <p>Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
     <small>You will only receive emails related to your purchases.</small>
-    <form ng-submit="vm.getStarted()" novalidate>
+    <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
         <input type="email"
         placeholder="satoshi@bitcoin.com"
         ng-required="true"
@@ -15,7 +15,7 @@
         required>
         <button type="submit" class=""
         ng-disabled="">
-        <span translate>Get Started</span>
+          <span translate>Get Started</span>
       </button>
     </form>
   </ion-content>

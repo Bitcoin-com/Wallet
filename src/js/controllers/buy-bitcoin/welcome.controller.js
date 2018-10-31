@@ -6,7 +6,14 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinWelcomeController', buyBitcoinWelcomeController);
 
-  function buyBitcoinWelcomeController(gettextCatalog, moonPayService, $log, popupService, $scope) {
+  function buyBitcoinWelcomeController(
+    gettextCatalog, 
+    $ionicHistory,
+    $log, 
+    moonPayService, 
+    popupService, 
+    $scope
+    ) {
     var vm = this;
 
     // Functions
@@ -23,18 +30,17 @@ angular
     function getStarted() {
       $log.debug('getStarted() with email: ' + vm.email);
 
+      
+      
+      /*
       if (!vm.email) {
         var title = 'Title';
         var msg = gettextCatalog('Enter an email address.');
         popupService.showAlert(title, msg, function onAlertShown(){});
         return;
       }
+      */
     }
-
-    function goBack() {
-      kycFlowService.goBack();
-    }
-
     
 
     function onBeforeEnter(event, data) {
