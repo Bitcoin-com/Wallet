@@ -10,7 +10,8 @@ angular
     gettextCatalog, 
     $ionicHistory,
     $log, 
-    moonPayService, 
+    moonPayService,
+    ongoingProcess, 
     popupService, 
     $scope
     ) {
@@ -18,7 +19,6 @@ angular
 
     // Functions
     vm.getStarted = getStarted;
-    vm.goBack = goBack;
 
     function initVariables() {
       vm.email = 'bla';
@@ -30,7 +30,16 @@ angular
     function getStarted() {
       $log.debug('getStarted() with email: ' + vm.email);
 
-      
+      ongoingProcess.set('creatingCustomerId', true);
+      // TODO: Some validation of email.
+      moonPayService.createCustomer(vm.email).then(
+        function onCustomerCreated(customer) {
+          console.log('Created customer.', customer);
+        },
+        function onCustomerCreationFailed(err) {
+          console.error('Error creating customer.', err);
+        }
+      );
       
       /*
       if (!vm.email) {
