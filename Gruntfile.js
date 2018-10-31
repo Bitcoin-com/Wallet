@@ -480,13 +480,16 @@ module.exports = function(grunt) {
 
     var moonPayForEnv = env === 'prod' ? moonPayConfig.prod : moonPayConfig.dev;
     var baseUrl = moonPayForEnv.baseUrl;
-    var apiKey = moonPayForEnv.apiKey;
+    var pubKey = moonPayForEnv.pubKey;
+    var secretKey = moonPayForEnv.secretKey;
     console.log('MoonPay baseUrl: "' + baseUrl + '"');
-    console.log('MoonPay apiKey:    "' + apiKey + '"');
+    console.log('MoonPay pubKey:    "' + pubKey + '"');
+    console.log('MoonPay secretKey:    "' + secretKey + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
-      .replace("apiKey: ''", "apiKey: '" + apiKey + "'");
+      .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'");
     return newContent;
   }
 };
