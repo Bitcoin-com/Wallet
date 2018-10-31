@@ -1,18 +1,19 @@
 .apl {
   background-color: #FFF;
   color: #000;
-  padding: 40px 18px;
+  padding: 40px 0px;
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
     height: 28px;
     letter-spacing: 0.35px;
     line-height: 28px;
+    padding: 0 16px;
     text-align: left;
-    width: 244px;
   }
 
   &-amount {
+    padding: 0 16px;
     &-title {
       color: rgba(0, 0, 0, 0.40);
       font-size: 13px;
@@ -32,7 +33,7 @@
       letter-spacing: 0.29px;
       margin: 8px 0;
       text-align: left;
-      width: 80vw;
+      width: 75vw;
       padding: 0;
 
       &::placeholder {
@@ -57,7 +58,9 @@
     }
     &-totals {
       margin-top: 14px;
+      padding: 0 16px;
       &-item {
+        clear: both;
         margin: 4px 0;
         color: #787878;
         font-size: 15px;
@@ -72,10 +75,8 @@
       }
       &-title {
         display: inline-block;
-        width: 75vw;
       }
       &-price {
-        display: inline-block;
         float: right;
         text-align: right;
       }
@@ -110,7 +111,9 @@
           border-bottom: 1px solid #FF9B00;
           display: block;
           height: 1px;
-          width: 100%;
+          position: absolute;
+          left: 0;
+          right: 16px;
         }
       }
       &-right {
@@ -120,7 +123,9 @@
           border-bottom: 1px solid #FF9B00;
           display: block;
           height: 1px;
-          width: 100%;
+          position: absolute;
+          left: 0;
+          right: 16px;
         }
       }
       &.right-active {
@@ -173,18 +178,23 @@
     &.item-big-icon-left {
       padding-left: 72px;
     }
+    &.activated {
+      background: #F2F2F2;
+    }
   }
   &-card {
     background: #FFFFFF;
     border-radius: 9px 9px 9px 9px;
     box-shadow: 0 5px 34px 0 rgba(0, 0, 0, 0.11);
     height: 77px;
+    margin: 0 16px;
+
     &__title {
       color: #000000;
-      font-size: 15px;
+      font-size: 17px;
       font-weight: bold;
       text-align: left;
-      letter-spacing: -0.23px;
+      letter-spacing: -0.41px;
     }
     &__subtitle {
       height: 15px;
@@ -205,6 +215,7 @@
       margin: 8px 0;
     }
   }
+  &-back-button,
   &-close-button {
     border: 0;
     background: #FFF;
@@ -221,11 +232,11 @@
       text-transform: uppercase;
       letter-spacing: -0.08px;
       line-height: 18px;
-      margin: 18px 0 -12px;
+      margin: 18px 0 -12px 16px;
     }
     .item {
       border: 0;
-      padding-left: 2px;
+      padding-left: 18px;
       p {
         color: #000000;
         font-size: 17px;
@@ -239,17 +250,38 @@
         content: '';
         border-bottom: 1px solid #e5e5e5;
         bottom: 1px;
-        width: 100%;
+        left: 16px;
+        right: 16px;
       }
 
       &.item-big-icon-left {
-        padding-left: 54px;
+        padding-left: 68px;
         .big-icon-svg {
-          padding: 0;
+          padding: 0 0 0 16px;
         }
         &:after {
-          width: calc(100% - 54px);
-          left: 54px;
+          position: absolute;
+          left: 68px;
+          right: 16px;
+        }
+      }
+
+      & .coming-soon {
+        background: rgba(255, 255, 255, 0.5);
+        color: #445;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        text-align: right;
+
+        &-contents {
+          flex: 0;
+          padding-right: 16px;
         }
       }
 
@@ -257,6 +289,57 @@
     .item-icon-left .icon {
       left: 0;
     }
+
+    .item-icon-right.icon {
+      left: auto;
+      padding-right: 16px;
+      right: 0px;
+      
+      &.selected {
+        color: #27C792;
+      }
+    }
+
+    .item-radio {
+      padding: 0;
+
+      .big-icon-svg {
+        padding: 16px 0 16px 16px;
+        
+      }
+
+      .item {
+        padding-top: 20;
+        padding-bottom: 20;
+      }
+
+      .item-content {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+      }
+
+      .radio-icon {
+        height: auto;
+        padding-top: 20px;
+        padding-right: 16px;
+        color: #27C792;
+      }
+
+      .radio-content {
+        &:after {
+          background-color: blue;
+          position: absolute;
+          content: 'Hello';
+          border-bottom: 2px solid #000;// #e5e5e5;
+          height: 20px;
+          bottom: 2px;
+          left: 16px;
+          right: 16px;
+        }
+      }
+    }
+
   }
   &-button {
     background: #FF9B00;
@@ -282,4 +365,34 @@
       width: 100%;
     }
   }
+
+  /*
+  .apl-radio {
+    &:after {
+      position: absolute;
+      content: '';
+      border-bottom: 1px solid #000;// #e5e5e5;
+      height: 1px;
+      bottom: 1px;
+      left: 16px;
+      right: 16px;
+    }
+  }*/
+
+  .bar .buttons {
+  
+    & span {
+      display: inline;
+      font-size: 17px;
+      letter-spacing: -0.41px;
+    }
+    
+    & .apl-back-button span {
+      margin-left: 2px;
+    }
+  }
+
 }
+
+
+

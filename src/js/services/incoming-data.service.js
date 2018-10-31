@@ -46,7 +46,7 @@ angular.module('copayApp.services').factory('incomingDataService', function(bitc
         } else if (
           !parsed.isValid
           || parsed.privateKey
-          || (sendFlowService.state.isEmpty() && !parsed.url && !parsed.amount)
+          || (sendFlowService.state.isEmpty() && !parsed.url && !parsed.publicAddress)
         ) {
           root.showMenu({
             original: data,

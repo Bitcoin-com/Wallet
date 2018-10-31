@@ -1,0 +1,13 @@
+<ion-radio ng-value="pm.id" ng-model="vm.defaultPaymentMethod">
+  <div class="item item-icon-left item-big-icon-left">
+    <i class="icon big-icon-svg">
+      <span class="apl-icon"></span>
+    </i>
+    <div class="apl-card__title">
+        {{pm.name}} {{vm.name}}
+    </div>
+    <div class="apl-card__subtitle">
+        {{pm.partialCardNumber}} {{pm.expiryDate}}
+    </div>
+  </div> 
+</ion-radio>

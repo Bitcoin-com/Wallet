@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2018-10-17 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Agenda de contactos"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Tipo de dirección"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Dirección Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Dirección Legacy"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Comprar &amp; Vender Bitcoin"
 msgid "Buy Bitcoin"
 msgstr "Comprar Bitcoin"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Compra o vende Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Conectar con un exchange"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Compra o vende Bitcoin directamente desde tu billetera conectándote a algún exchange."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Compra Bitcoin con tarjeta de crédito"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr "Click para enviar"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Cerrar"
 
@@ -879,6 +907,10 @@ msgstr "Crear billetera compartida"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Crear billetera {{formData.requiredCopayers}}-de-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copagadores"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,8 +1085,8 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Ingrese Autenticación de Dos Pasos para su cuenta de BitPay"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
-msgstr "Ingrese el monto"
+msgid "Enter Amount"
+msgstr "Introduce cantidad"
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
@@ -1217,6 +1249,14 @@ msgstr "Expirada"
 msgid "Expires"
 msgstr "Expira"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Mostrar dirección legacy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Mostrar nuevo estilo de dirección"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Exportar billetera"
@@ -1229,6 +1269,11 @@ msgstr "Exportar a archivo"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Exportar billetera"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL de Servicio de Billetera"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Si se habilita, aparecerá una lista de las transacciones recientes de las billeteras en el inicio."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Si se habilita, las billeteras podrán gastar los fondos sin confirmar. Esta opción puede causar demoras en la transacción."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Si está activado, la billetera también gastará fondos no confirmados. Apagar esta opción puede causar retrasos en tus transacciones."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2240,6 +2285,10 @@ msgstr "Eliminar esta billetera de forma permanente."
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "Billetera Personal"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Mi billetera {{coin}}"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -3448,7 +3497,7 @@ msgstr "La frase de recuperación no es válida"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "URL de Servicio de Billetera"
+msgstr "URL de Servicio"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3752,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} en Tarjeta de Regalo Mercado Livre Brasil"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para obtener información sobre blockchain y sincronización del Copayer. La configuración por defecto apunta a https://bws.bitpay.com (instancia pública de BitPay)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para la información del blockchain, acceso a redes y sincronización de la billetera. La configuración por defecto apunta a https://bws.bitcoin.com (La instancia BWS pública de Bitcoin.com)"
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3775,7 +3824,7 @@ msgstr "{{wallet.m}}-de-{{wallet.n}}"
 
 #: src/js/services/shapeshiftService.js:8
 msgid "Shapeshift"
-msgstr "Shapeshift - Cambia BTC a BCH"
+msgstr "Shapeshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3806,8 +3855,8 @@ msgid "News"
 msgstr "Noticias"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Minería en la nube"
+msgid "Start mining Bitcoin"
+msgstr "Empieza a minar Bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"

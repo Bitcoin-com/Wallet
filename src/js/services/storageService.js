@@ -741,5 +741,6 @@ angular.module('copayApp.services')
       storage.set(keyName, keyValue, cb);
     }
     
+    
     return root;
   });

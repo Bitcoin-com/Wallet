@@ -136,34 +136,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
-       * Buy Bitcoin
-       *
-       */
-
-      .state('tabs.buy-bitcoin-welcome', {
-        url: '/buy-bitcoin-welcome',
-        views: {
-          'tab-home@tabs': {
-            controller: 'buyBitcoinWelcomeController',
-            controllerAs: 'vm',
-            templateUrl: 'views/buy-bitcoin-welcome.html'
-          }
-        }
-      }) 
-      .state('tabs.new-customer', {
-        url: '/new-customer',
-        views: {
-          'tab-home@tabs': {
-            controller: 'kycNewCustomerController',
-            controllerAs: 'vm',
-            templateUrl: 'views/kyc-new-customer.html'
-          }
-        }
-      })
-
-
-      /*
-       *
        * Wallet
        *
        */
@@ -867,8 +839,9 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/buy-bitcoin',
         views: {
           'tab-home': {
-            controller: 'buyBitcoinController',
-            templateUrl: 'views/buy-bitcoin.html'
+            controller: 'buyBitcoinHomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/home.html'
           }
         }
       })
@@ -877,8 +850,20 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/buy-bitcoin/amount',
         views: {
           'tab-home': {
-            controller: 'buyBitcoinController',
-            templateUrl: 'views/buy-bitcoin-amount.html'
+            controller: 'buyBitcoinAmountController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/amount.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-paymentmethods', {
+        url: '/buy-bitcoin/payment-methods',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPaymentMethodsController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/payment-methods.html'
           }
         }
       })
@@ -1227,7 +1212,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 

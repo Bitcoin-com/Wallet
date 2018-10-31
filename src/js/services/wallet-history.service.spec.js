@@ -1,4 +1,4 @@
-fdescribe('walletHistoryService', function(){
+describe('walletHistoryService', function(){
   var history = [];
   var historyStringFull;
   var storageServiceMock;

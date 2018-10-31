@@ -1,0 +1,80 @@
+<ion-view id="tab-buy-bitcoin-amount" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl">
+    <h1 translate>
+      Purchasing
+    </h1>
+    
+    <div class="apl-amount">
+      <div class="apl-amount-title" translate>Amount</div>
+      <span class="apl-amount-currency">$</span>
+      <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'0.00' | translate}}" ng-value="vm.inputValue"/>
+    </div>
+    <div class="apl-amount-totals">
+      <div class="apl-amount-totals-item">
+        <span class="apl-amount-totals-title">0.192 BCH @ USD$650</span>
+        <span class="apl-amount-totals-price">{{vm.lineItems.cost | currency:USD:2}}</span>
+      </div>
+      <div class="apl-amount-totals-item">
+        <span class="apl-amount-totals-title" translate>Processing Fee</span>
+        <span class="apl-amount-totals-price">{{vm.lineItems.processingFee | currency:USD:2}}</span>
+      </div>
+      <div class="apl-amount-totals-item total">
+        <span class="apl-amount-totals-title" translate>Total</span>
+        <span class="apl-amount-totals-price">{{vm.lineItems.total | currency:USD:2}}</span>
+      </div>
+    </div>
+    <div class="apl-divider"></div>
+    <div class="apl-list">
+      <div class="apl-list-title" translate>
+        Deposit to
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item">
+        <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">
+            {{vm.wallet.name}}
+          </div>
+          <div class="apl-card__subtitle">
+            <wallet-balance
+              display-as-fiat="{{vm.displayBalanceAsFiat}}"
+              wallet-balance-hidden="{{vm.wallet.balanceHidden}}"
+              wallet-coin="{{vm.wallet.coin}}"
+              wallet-status="{{vm.wallet.status}}"
+              wallet-cached-balance="{{vm.wallet.cachedBalance}}"
+              wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
+              wallet-cached-status="{{vm.wallet.cachedStatus}}"
+              total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title" translate>
+        Payment Method
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item">
+        <i class="icon big-icon-svg">
+          <span class="apl-icon"></span>
+        </i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">
+            {{vm.paymentMethod.name}}
+          </div>
+          <div class="apl-card__subtitle">
+            {{vm.paymentMethod.partialCardNumber}} {{vm.paymentMethod.expiryDate}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <div class="apl-button-bottom-container">
+    <a class="apl-button">Buy 2.285 BCH</a>
+  </div>
+</ion-view>
