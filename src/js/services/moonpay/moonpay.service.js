@@ -45,6 +45,7 @@ angular
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
           } else {
+            currentCustomer = customer;
             deferred.resolve(customer);
           }
         });
@@ -65,7 +66,7 @@ angular
       var deferred = $q.defer();
 
       // Get the customer in the localStorageService if we didn't do it yet
-      if (currentCustomer) {
+      if (currentCustomer != null) {
         deferred.resolve(currentCustomer);
       } else {
         localStorageService.get(customerKey, function (err, customer) {
@@ -131,7 +132,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      if (currentCards) {
+      if (currentCards != null) {
         deferred.resolve(currentCards);
       } else {
         moonPayApiService.getCards().then(function (cards) {
