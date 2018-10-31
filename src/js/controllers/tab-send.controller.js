@@ -61,26 +61,32 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   });
 
-  $scope.sendToAlias = function(alias) {
-    opencapService.get(alias, $scope.fromWallet.coin)
+  $scope.sendToAlias = function(alias, coinType) {
+    let coin = coinType;
+    if (coin === ''){
+      coin = $scope.fromWallet.coin
+    }
+
+    opencapService.getAddress(alias, coin)
     .then(result => {
-      let msg = `${$scope.fromWallet.coin} address found! Address is secure`;
+      let msg = `${coin} address found! Address is secure`;
       if(!result.dnssec){
-        msg = `${$scope.fromWallet.coin} address found! Address doesn\'t have maximum DNS security`;
+        msg = `${coin} address found! Address doesn\'t have maximum DNS security`;
       }
 
       let msgTime = 1000;
-      $scope.$apply(function () {
-        ionicToast.show(msg, 'bottom', false, msgTime);
-      });
+      ionicToast.show(msg, 'bottom', false, msgTime);
       setTimeout(function(){ 
-        $scope.findContact(result.address);
+        var params = sendFlowService.state.getClone();
+        params.data = result.address;
+        params.coin = coin;
+        sendFlowService.start(params, function onError() {
+          return
+        });
       }, msgTime);  
     })
     .catch(status => {
-      $scope.$apply(function () {
-        ionicToast.show(status, 'bottom', false, 1500);
-      });
+      ionicToast.show(status, 'bottom', false, 1500);
     });
   }
 

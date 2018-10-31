@@ -65,15 +65,33 @@
         </div>
         <br/>
         <div class="row" ng-if="fromWallet">
-          <div class="col-80">
-            <div class="input" ng-class="{'focus': searchFocus}">
+          <div class="col-75">
+            <div class="input">
               <input type="text" class="search-input" placeholder="{{'Or send to an alias' | translate}}" ng-model="formData.alias"
                 ng-model-onblur>
             </div>
           </div>
-          <div class="col-20">
-            <button class="button button-standard button-primary button-outline" ng-click="sendToAlias(formData.alias)">
-              <span class="non-address" translate>Send to Alias</span>
+          <div class="col-25">
+            <button class="button button-standard button-primary button-outline" ng-click="sendToAlias(formData.alias, '')">
+              <span translate>Send</span>
+            </button>
+          </div>
+        </div>
+        <div class="row" ng-if="!fromWallet">
+          <div class="col-50">
+            <div class="input">
+              <input type="text" class="search-input" placeholder="{{'Or send to an alias' | translate}}" ng-model="formData.alias"
+                ng-model-onblur>
+            </div>
+          </div>
+          <div class="col-25">
+            <button class="button button-standard button-primary button-outline" ng-click="sendToAlias(formData.alias, 'bch')">
+              <span translate>Send BCH</span>
+            </button>
+          </div>
+          <div class="col-25">
+            <button class="button button-standard button-primary button-outline" ng-click="sendToAlias(formData.alias, 'btc')">
+              <span translate>Send BTC</span>
             </button>
           </div>
         </div>
