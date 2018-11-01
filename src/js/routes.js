@@ -867,6 +867,28 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+
+      .state('tabs.buybitcoin-terms', {
+        url: '/buy-bitcoin/terms',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/terms.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-privacypolicy', {
+        url: '/buy-bitcoin/privacy-policy',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/privacy-policy.html'
+          }
+        }
+      })
       /*
        *
        * Glidera
