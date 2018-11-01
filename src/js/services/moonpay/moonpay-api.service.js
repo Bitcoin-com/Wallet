@@ -89,7 +89,6 @@ angular
       getConfig(true).then(function(config) {
         $http.patch(baseUrl + '/v2/customers/' + customer.id, customer, config).then(function (response) {
           var customer = response.data;
-          // Store customerId = client.id
           deferred.resolve(customer);
         }, function (err) {
           deferred.reject(err);
