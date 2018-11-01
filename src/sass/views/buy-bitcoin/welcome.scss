@@ -3,7 +3,7 @@
   height: 100%;
   flex-direction: column;
 
-  padding-top: 16px;
+  padding-top: 8px;
   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
   padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
 
@@ -12,31 +12,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    
+    overflow-y: auto;
   
     img {
       flex-shrink: 1;
-      min-height: 0;
+      min-height: 16px;
     }
-
-    /*
-    .img-container {
-      flex-shrink: 10;
-      max-height: 200px;
-
-      img {
-        height: auto;
-        width: auto;
-        max-height: 100%;
-        max-width: 100%;
-      }
-    }
-    */
 
     form {
 
       .error {
-        color: #B52E31;
+        color: $v-warning-color-2;
         margin: 0 16px;
       }
 
@@ -71,10 +57,3 @@
   }
 }
 
-/*
-.keyboard-up {
-  #bottom-button {
-    display: none;
-  }
-}
-*/
