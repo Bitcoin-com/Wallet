@@ -353,6 +353,9 @@
     padding: 15px;
     text-align: center;
     width: 100%;
+
+    
+
     &-bottom-container {
       background: #FFFFFF;
       bottom: 0px;
@@ -363,21 +366,20 @@
       padding: 18px 16px;
       position: fixed;
       width: 100%;
+      
+      &.no-shadow {
+        box-shadow: none;
+      }
+
     }
   }
 
-  /*
-  .apl-radio {
-    &:after {
-      position: absolute;
-      content: '';
-      border-bottom: 1px solid #000;// #e5e5e5;
-      height: 1px;
-      bottom: 1px;
-      left: 16px;
-      right: 16px;
+  &-button-bottom-container {
+    button {
+      font-family: 'ProximaNova';
+      line-height: normal;
     }
-  }*/
+  }
 
   .bar .buttons {
   
@@ -390,6 +392,13 @@
     & .apl-back-button span {
       margin-left: 2px;
     }
+  }
+
+  .center {
+    text-align: center;
+    margin-left: 16px;
+    margin-right: 16px;
+
   }
 
 }

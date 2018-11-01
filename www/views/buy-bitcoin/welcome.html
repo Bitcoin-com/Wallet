@@ -1,22 +1,34 @@
 <ion-view class="apl" can-swipe-back="false" hide-tabs>
-  <ion-nav-bar class="bar-royal">
-    <ion-nav-back-button ng-click="$ionicGoBack(-2)"></ion-nav-back-button>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack(-2)">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content class="">
-    <h1>Buy Bitcoin Cash</h1>
-    <p>Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
-    <small>You will only receive emails related to your purchases.</small>
-    <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
-        <input type="email"
-        placeholder="satoshi@bitcoin.com"
-        ng-required="true"
-        ng-model="vm.email"
-        required>
-        <button type="submit" class=""
-        ng-disabled="">
-          <span translate>Get Started</span>
-      </button>
-    </form>
+  <ion-content class="apl">
+    <div id="buy-bitcoin-welcome">
+      <div id="main-content">
+        <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
+        <h1 class="center" translate>Buy Bitcoin Cash</h1>
+        <p class="center">Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+        <small class="center">You will only receive emails related to your purchases.</small>
+        <div>
+          <div class="apl-divider"></div>
+          <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
+            <input type="email"
+            placeholder="satoshi@bitcoin.com"
+            ng-required="true"
+            ng-model="vm.email"
+            required>
+          </form>
+          <div class="apl-divider"></div>
+        </div>
+      </div>
+      <div id="bottom-button" class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.getStarted()" translate>Get Started</a>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

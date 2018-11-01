@@ -35,9 +35,15 @@ angular
       moonPayService.createCustomer(vm.email).then(
         function onCustomerCreated(customer) {
           console.log('Created customer.', customer);
+          ongoingProcess.set('creatingCustomerId', false);
+          $ionicHistory.goBack();
         },
         function onCustomerCreationFailed(err) {
           console.error('Error creating customer.', err);
+          ongoingProcess.set('creatingCustomerId', false);
+          // TODO: Show a descriptive error message.
+          popupService.showAlert(gettextCatalog.getString('Error Creating Customer'));
+          
         }
       );
       
