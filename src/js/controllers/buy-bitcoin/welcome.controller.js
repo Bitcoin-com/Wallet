@@ -21,7 +21,7 @@ angular
     vm.getStarted = getStarted;
 
     function initVariables() {
-      vm.email = 'bla';
+      vm.email = '';
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
@@ -30,8 +30,15 @@ angular
     function getStarted() {
       $log.debug('getStarted() with email: ' + vm.email);
 
+      if (!vm.email) {
+        var title = gettextCatalog.getString('Unable to Create Customer');
+        var message = gettextCatalog.getString('Enter a valid email address.');
+        popupService.showAlert(title, message);
+        return;
+      }
+
       ongoingProcess.set('creatingCustomerId', true);
-      // TODO: Some validation of email.
+
       moonPayService.createCustomer(vm.email).then(
         function onCustomerCreated(customer) {
           console.log('Created customer.', customer);
@@ -41,27 +48,18 @@ angular
         function onCustomerCreationFailed(err) {
           console.error('Error creating customer.', err);
           ongoingProcess.set('creatingCustomerId', false);
-          // TODO: Show a descriptive error message.
-          popupService.showAlert(gettextCatalog.getString('Error Creating Customer'));
-          
+       
+          var title = gettextCatalog.getString('Error Creating Customer');
+          var message = err.message || '';
+          popupService.showAlert(title, message);
         }
       );
-      
-      /*
-      if (!vm.email) {
-        var title = 'Title';
-        var msg = gettextCatalog('Enter an email address.');
-        popupService.showAlert(title, msg, function onAlertShown(){});
-        return;
-      }
-      */
+
     }
     
 
     function onBeforeEnter(event, data) {
       initVariables();
-
-      //moonPayService.
     }
   }
 
