@@ -159,14 +159,12 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCard(card).then(function (theCard) {
-        getCards().then(function (cards) {
-          cards.push(theCard);
-          deferred.resolve(card);
-        }, function (err) {
-          $log.debug('Error getting moonpay cards from the api');
-          deferred.resolve(card);
-        });
+      moonPayApiService.createCard(card).then(function (newCard) {
+        if (currentCards != null) {
+          currentCards.push(newCard);
+        }
+
+        deferred.resolve(newCard);
       }, function (err) {
         $log.debug('Error creating moonpay card from the api');
         deferred.reject(err);
