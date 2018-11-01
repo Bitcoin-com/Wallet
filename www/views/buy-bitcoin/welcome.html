@@ -17,11 +17,14 @@
         <div>
           <div class="apl-divider"></div>
           <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
-            <input type="email"
-            placeholder="satoshi@bitcoin.com"
-            ng-required="true"
-            ng-model="vm.email"
-            required>
+            <div class="row">
+              <span>satoshi@bitcoin.com</span>
+              <input id="emailEntry" type="email"
+              placeholder="satoshi@bitcoin.com"
+              ng-required="true"
+              ng-model="vm.email"
+              required>
+            </div>
           </form>
           <div class="apl-divider"></div>
         </div>
