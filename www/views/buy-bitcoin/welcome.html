@@ -7,7 +7,7 @@
     </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content class="apl">
+  <ion-content class="apl fullscreen">
     <div id="buy-bitcoin-welcome">
       <div id="main-content">
         <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
@@ -18,13 +18,17 @@
           <div class="apl-divider"></div>
           <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
             <div class="row">
-              <span>satoshi@bitcoin.com</span>
-              <input id="emailEntry" type="email"
+              <label for="email-entry" translate>Email</label>
+              <input id="email-entry"
+              name="email"
+              type="email"
               placeholder="satoshi@bitcoin.com"
               ng-required="true"
               ng-model="vm.email"
+              ng-model-options="{ debounce: 1000 }"
               required>
             </div>
+            <div class="error" ng-show="emailForm.email.$error.email" translate>Must be a valid email address.</div>
           </form>
           <div class="apl-divider"></div>
         </div>
