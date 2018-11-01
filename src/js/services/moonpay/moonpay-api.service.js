@@ -28,6 +28,8 @@ angular
       uploadSelfie: uploadSelfie,
       createCard: createCard,
       getCards: getCards,
+      createTransaction: createTransaction,
+      getTransactions: getTransactions,
       getRates: getRates
     };
 
@@ -137,6 +139,43 @@ angular
     }
 
     /**
+     * Get transactions
+     */
+    function getTransactions() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/transactions', config).then(function (response) {
+          var transactions = response.data;
+          deferred.resolve(transactions);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Create a transaction
+     * @param {Object} transaction 
+     */
+    function createTransaction(transaction) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.post(baseUrl + '/v2/transactions', transaction, config).then(function (response) {
+          var transaction = response.data;
+          deferred.resolve(transaction);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
      * Get rates
      * @param {String} code 
      */
@@ -197,6 +236,7 @@ angular
       } else {
         if (currentToken != null) {
           config.headers['Authorization'] = 'Bearer ' + currentToken;
+          deferred.resolve(config);
         } else {
           localStorageService.get(tokenKey, function (err, token) {
             if (err) {
