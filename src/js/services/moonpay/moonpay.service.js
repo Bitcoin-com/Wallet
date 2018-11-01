@@ -74,12 +74,8 @@ angular
             $log.debug('Error getting moonpay customer in the local storage');
             deferred.reject(err);
           } else {
-            if (!customer) {
-              deferred.reject(Error('No customer found in the local storage'));
-            } else {
-              currentCustomer = JSON.parse(customer);
-              deferred.resolve(currentCustomer);
-            }
+            currentCustomer = JSON.parse(customer);
+            deferred.resolve(currentCustomer);
           }
         });
       }
@@ -95,7 +91,11 @@ angular
       var deferred = $q.defer();
 
       getCustomer().then(function (customer) {
-        deferred.resolve(customer.id);
+        if (customer != null && customer.id) {
+          deferred.resolve(customer.id);
+        } else {
+          deferred.resolve(null);
+        }
       }, function (err) {
         deferred.reject(err);
       });
