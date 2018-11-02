@@ -6,7 +6,7 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinPaymentMethodsController', paymentMethodsController);
 
-  function paymentMethodsController($scope) {
+  function paymentMethodsController($scope, $state) {
     var vm = this;
 
     // Functions
@@ -42,7 +42,7 @@ angular
     var initialDefaultPaymentMethod = '';
 
     function addPaymentMethod() {
-      console.log('addPaymentMethod()');
+      $state.go('tabs.buybitcoin-add-card-form');
     }
 
     function getIconPathFromName(name) {
