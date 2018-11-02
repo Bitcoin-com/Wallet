@@ -11,6 +11,7 @@ angular
 
     // Functions
     vm.addPaymentMethod = addPaymentMethod;
+    vm.getIconPathFromName = getIconPathFromName;
     
     
     // Variables
@@ -42,6 +43,17 @@ angular
 
     function addPaymentMethod() {
       console.log('addPaymentMethod()');
+    }
+
+    function getIconPathFromName(name) {
+      switch(name.toUpperCase()) {
+        case "VISA": 
+          return "img/buy-bitcoin/icon-visa.svg"
+        case "MASTERCARD": 
+          return "img/buy-bitcoin/icon-mastercard.svg"
+        default:
+          return "img/buy-bitcoin/icon-generic-card.svg";
+      }
     }
 
     function _initVariables() {
