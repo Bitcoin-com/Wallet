@@ -7,6 +7,8 @@
   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
   padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
 
+  
+
   #main-content {
     align-items: stretch;
     flex-grow: 1;
@@ -61,6 +63,13 @@
     box-shadow: none;
     position: static;
     flex-grow: 0;
+  }
+}
+
+.keyboard-up,
+.keyboard-open {
+  #buy-bitcoin-welcome {
+    padding-top: 0;
   }
 }
 
