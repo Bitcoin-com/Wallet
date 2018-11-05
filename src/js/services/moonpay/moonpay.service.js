@@ -42,8 +42,8 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCustomer(email).then(function (customer) {
-        localStorageService.set(customerKey, customer, function (err) {
+      moonPayApiService.createCustomer(email).then(function onCreateCustomerSucceeded(customer) {
+        localStorageService.set(customerKey, customer, function onSaveCustomer(err) {
           if (err) {
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
@@ -53,7 +53,7 @@ angular
           }
         });
 
-      }, function (err) {
+      }, function onCreateCustomeFailed(err) {
         $log.debug('Error creating moonpay customer from the api');
         deferred.reject(err);
       });
@@ -72,7 +72,7 @@ angular
       if (currentCustomer != null) {
         deferred.resolve(currentCustomer);
       } else {
-        localStorageService.get(customerKey, function (err, customer) {
+        localStorageService.get(customerKey, function onGetCustomerFromStorage(err, customer) {
           if (err) {
             $log.debug('Error getting moonpay customer in the local storage');
             deferred.reject(err);
@@ -93,7 +93,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      getCustomer().then(function (customer) {
+      getCustomer().then(function onGetCustomer(customer) {
         if (customer != null && customer.id) {
           deferred.resolve(customer.id);
         } else {
@@ -114,8 +114,8 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.updateCustomer(customer).then(function (customer) {
-        localStorageService.set(customerKey, customer, function (err) {
+      moonPayApiService.updateCustomer(customer).then(function onUpdateCustomer(customer) {
+        localStorageService.set(customerKey, customer, function onSaveCustomer(err) {
           if (err) {
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
@@ -142,7 +142,7 @@ angular
       if (currentCards != null) {
         deferred.resolve(currentCards);
       } else {
-        moonPayApiService.getCards().then(function (cards) {
+        moonPayApiService.getCards().then(function onGetCards(cards) {
           currentCards = cards
           deferred.resolve(currentCards);
         }, function (err) {
@@ -162,7 +162,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCard(card).then(function (newCard) {
+      moonPayApiService.createCard(card).then(function onCreateCard(newCard) {
         if (currentCards != null) {
           currentCards.push(newCard);
         }
@@ -186,7 +186,7 @@ angular
       if (currentTransactions != null) {
         deferred.resolve(currentTransactions);
       } else {
-        moonPayApiService.getTransactions().then(function (transactions) {
+        moonPayApiService.getTransactions().then(function onGetTransactions(transactions) {
           currentTransactions = transactions
           deferred.resolve(currentTransactions);
         }, function (err) {
@@ -206,7 +206,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createTransaction(transaction).then(function (newTransaction) {
+      moonPayApiService.createTransaction(transaction).then(function onCreateTransaction(newTransaction) {
         if (currentTransactions != null) {
           currentTransactions.push(newTransaction);
         }
@@ -228,7 +228,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.getRates(code).then(function (rates) {
+      moonPayApiService.getRates(code).then(function onGetRates(rates) {
         deferred.resolve(rates);
       }, function (err) {
         $log.debug('Error getting moonpay rates from the api');
