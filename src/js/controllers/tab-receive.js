@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($interval, $rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
   var CLOSE_NORMAL = 1000;
   var listeners = [];
@@ -11,10 +11,8 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
   $scope.isCordova = platformInfo.isCordova;
   $scope.isNW = platformInfo.isNW;
 
-  var balanceChecker = null;
   var currentAddressSocket = null;
   var paymentSubscriptionObj = { op:'addr_sub' };
-  var previousTotalBalanceSat = 0;
 
   $scope.displayBalanceAsFiat = true;
   $scope.$on('$ionicView.beforeLeave', onBeforeLeave);
@@ -188,8 +186,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
-
-      updateWallet();
     }
   }
 
@@ -211,7 +207,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }, 100);
   };
 
-  
   $scope.openBackupNeededModal = function() {
     $ionicModal.fromTemplateUrl('views/includes/backupNeededPopup.html', {
       scope: $scope,
@@ -258,14 +253,9 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   function onBeforeLeave() {
     currentAddressSocket.close([CLOSE_NORMAL]);
-    if (balanceChecker) {
-      $interval.cancel(balanceChecker);
-      balanceChecker = null;
-    }
   }
  
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
-    initVariables();
     $scope.wallets = profileService.getWallets();
     $scope.singleWallet = $scope.wallets.length == 1;
 
@@ -325,8 +315,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   $scope.onWalletSelect = function(wallet) {
     $scope.wallet = wallet;
-    initVariables();
-    setPreviousBalanceFromWallet();
     setProtocolHandler();
     $scope.setAddress();
   };
@@ -346,59 +334,5 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     var protocol = 'bitcoin';
     if ($scope.wallet.coin == 'bch') protocol += 'cash';
     window.plugins.socialsharing.share(protocol + ':' + $scope.addr, null, null, null);
-  }
-
-  function initVariables() {
-    if (balanceChecker) {
-      $internval.cancel(balanceChecker);
-      balanceChecker = null;
-    }
-    previousTotalBalanceSat = 0;
-  }
-
-  function setPreviousBalanceFromWallet() {
-    var wallet = $scope.wallet; // For convenience
-
-    if (wallet.status && wallet.status.isValid) {
-      previousTotalBalanceSat = wallet.status.totalBalanceSat;
-    } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) {
-      previousTotalBalanceSat = wallet.cachedStatus.totalBalanceSat;
-    } else {
-      $log.warn('Wallet balance not available when receiving.');
-    }
-  }
-
-  function updateWallet() {
-    if ($scope.wallet) {
-      $log.debug('Updating wallet:' + $scope.wallet.name);
-
-      balanceChecker = $interval(function onInterval() {
-        walletService.invalidateCache($scope.wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
-        walletService.getStatus($scope.wallet, {}, function onGetStatus(err, status) {
-          if (err) {
-            $log.error(err);
-            return;
-          }
-  
-          if (status && status.isValid) {
-            var totalBalanceSat = status.totalBalanceSat;
-            var balanceChanged = totalBalanceSat !== previousTotalBalanceSat;
-            previousTotalBalanceSat = totalBalanceSat;
-            console.log('totalBalanceSat: ' + totalBalanceSat + ', changed: ' + balanceChanged);
-            if (balanceChanged) {
-              $scope.wallet.status = status;
-              $scope.wallets = profileService.getWallets();
-              $timeout(function () {
-                $scope.$apply();
-              }, 10);
-              $interval.cancel(balanceChecker);
-            }
-          }
-        });
-      
-      }, 1000);
-
-    }
-  
   }
 });
