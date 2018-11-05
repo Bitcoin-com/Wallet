@@ -6,7 +6,10 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinPaymentMethodsController', paymentMethodsController);
 
-  function paymentMethodsController($scope, $state) {
+  function paymentMethodsController(
+    moonPayService
+    , $scope, $state
+  ) {
     var vm = this;
 
     // Functions
@@ -16,28 +19,7 @@ angular
     
     // Variables
     vm.defaultPaymentMethod = 'abc';
-
-    vm.paymentMethods = [
-      {
-        id: 'abc',
-        name: 'Visa',
-        partialCardNumber: '••• 2244',
-        expiryDate: '12/21'
-      },
-      {
-        id: 'def',
-        name: 'Visa',
-        partialCardNumber: '••• 2144',
-        expiryDate: '08/17',
-        isDefault: true
-      },
-      {
-        id: 'ghi',
-        name: 'Mastercard',
-        partialCardNumber: '••• 8743',
-        expiryDate: '09/22'
-      }
-    ];
+    vm.paymentMethods = [];
 
     var initialDefaultPaymentMethod = '';
 
@@ -57,8 +39,14 @@ angular
     }
 
     function _initVariables() {
-      vm.defaultPaymentMethod = 'def';
-      initialDefaultPaymentMethod = vm.defaultPaymentMethod;
+      
+      // Get the default payment from moon pay service
+      // Here
+      // Update the default payment somewhere else by watching the defaultPayment variable.
+      
+      moonPayService.getCards().then(function(cards) {
+        vm.paymentMethods = cards;
+      });
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);

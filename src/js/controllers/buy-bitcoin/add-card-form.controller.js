@@ -6,85 +6,64 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinAddCardFormController', addCardFormController);
 
-  function addCardFormController($scope) {
+  function addCardFormController(
+    moonPayService
+    , $scope
+  ) {
     var vm = this;
 
     // Functions
-    vm.backButtonPressed = backButtonPressed;
-    vm.nextPressed = nextPressed;
-    vm.nextIsActive = nextIsActive;
-    vm.validateCardNumber = validateCardNumber;
-    vm.validateExpirationDate = validateExpirationDate;
+    vm.didPushBack = didPushBack;
+    vm.didPushAdd = didPushAdd;
     
     // Variables
-    vm.currentPage = 0;
-    vm.subtext = ""
+    vm.subtext = "Enter your card information."
     vm.card = {};
 
+    function didPushAdd() {
 
-    var verifyNameText = "Verify and complete your card information.";
-    var verifyExpirationText = "Enter your card information.";
-    var initialCurrentPage = 0;
-    var initialSubtext = verifyNameText;
-
-    function backButtonPressed() {
-      if (this.currentPage === 0) {
-        $scope.$ionicGoBack();
+      var splitExpirationDate = vm.card.expiration.trim().split('/');
+      var card = {
+        number: vm.card.number.trim(),
+        expiryMonth: parseInt(splitExpirationDate[0]),
+        expiryYear: parseInt(splitExpirationDate[1]),
+        cvc: vm.card.cvc.trim()
+      }
+     
+      // Check if the card is valid
+      if (!isValidCard(card)) {
+        // Handle error message
+        console.log('not valid')
+        return;
       } else {
-        this.currentPage = this.currentPage - 1;
-        this.subtext = this.verifyNameText;
-      }
-    }
-    
-    function nextPressed() {
-      if(this.currentPage === 0) {
-        this.currentPage = 1;
-        this.subtext = this.verifyExpirationText;
-      } else {
-        // Submit to Page
-        console.log('nextPressed(), submit form');
+
+        // Send to moon pay
+        moonPayService.createCard(card).then(function(card) {
+          console.log(card)
+          $scope.$ionicGoBack();
+        }, function (err) {
+          // Handle the error
+          console.log(err);
+        });
       }
     }
 
-    function nextIsActive() {
-      if(this.currentPage === 0) {
-        return validatePage0()
-      }
-      return validatePage1();
+    function didPushBack() {
+      $scope.$ionicGoBack();
     }
 
-    function validatePage0() {
-      return validateCardNumber() && vm.card.name.length > 0;
-    }
-
-    function validatePage1() {
-      return validateExpirationDate() && vm.card.security.length >= 3;
-    }
-
-    function validateCardNumber() {
-      return vm.card.number.length === 19;
-    }
-
-    function validateExpirationDate() {
-      console.log('validateExpirationDate');
-      return true;
+    function isValidCard(card) {
+      return card.number.length === 16 && card.cvc.length === 3 && card.expiration.length === 7;
     }
 
     function _initVariables() {
-      vm.currentPage = initialCurrentPage;
-      vm.subtext = initialSubtext;
+      vm.subtext = "Enter your card information.";
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
-    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     function _onBeforeEnter(event, data) {
       _initVariables();
-    }
-
-    function _onBeforeLeave(event, data) {
-      var defaultWasChanged = initialDefaultPaymentMethod !== vm.defaultPaymentMethod;
-      console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
 
   }

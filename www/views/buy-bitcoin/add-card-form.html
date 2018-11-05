@@ -1,12 +1,12 @@
 <ion-view id="tab-buy-bitcoin-add-card-form" class="apl" hide-tabs>
     <ion-nav-bar>
       <ion-nav-buttons side="primary">
-        <button class="button apl-back-button" ng-click="vm.backButtonPressed()">
+        <button class="button apl-back-button" ng-click="vm.didPushBack()">
           <i class="icon ion-chevron-left"></i><span translate>Back</span>
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="secondary">
-        <button isenabled="vm.nextIsActive()" translate>Next</button>
+        <button ng-click="vm.didPushAdd()" translate>Add</button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content id="add-card-form">
@@ -21,13 +21,7 @@
       
       <hr/>
       <form class="apl-list">
-        <div ng-if="vm.currentPage === 0">
-          <ion-item class="apl-list-item">
-              <label translate>
-                Name:
-              </label>
-              <input required type="text" placeholder="Required" ng-model="vm.card.name"/>
-          </ion-item>
+        <div>
           <ion-item >
               <label translate>
                 Card Number: 
@@ -35,7 +29,7 @@
               <input required type="text" placeholder="Required" ng-model="vm.card.number"/>
           </ion-item>
         </div>
-        <div ng-if="vm.currentPage !== 0">
+        <div>
             <ion-item class="apl-list-item">
             <label translate>
               Expiration Date: 
@@ -44,9 +38,9 @@
           </ion-item>
           <ion-item >
             <label translate>
-              Security Code: 
+              CVC: 
             </label>
-            <input required type="text" placeholder="Required" ng-model="vm.card.security" />
+            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" />
           </ion-item>
         </div>
       </form>
