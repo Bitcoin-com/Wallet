@@ -26,7 +26,6 @@ angular
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
 
-
     function getStarted() {
       $log.debug('getStarted() with email: ' + vm.email);
 
@@ -40,12 +39,14 @@ angular
       ongoingProcess.set('creatingCustomerId', true);
 
       moonPayService.createCustomer(vm.email).then(
-        function onCustomerCreated(customer) {
+      
+        function onCreateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
           $ionicHistory.goBack();
         },
-        function onCustomerCreationFailed(err) {
+        
+        function onCreateCustomerError(err) {
           console.error('Error creating customer.', err);
           ongoingProcess.set('creatingCustomerId', false);
        

@@ -43,16 +43,11 @@ angular
     function _onBeforeEnter(event, data) {
       _initVariables();
 
-      console.log('Getting customer ID...');
-
-      $state.go('tabs.buybitcoin-welcome');
-
-      /*
       moonPayService.getCustomerId().then(
-        function onCustomerIdSuccess(customer) {
-          console.log('moonpay onCustomerIdSuccess with: ' + customer);
-          if (customer && customer.id) {
-            console.log('Found customer ID: ' + customer.id);
+        function onCustomerIdSuccess(customerId) {
+          console.log('moonpay onCustomerIdSuccess with: ' + customerId);
+          if (customerId) {
+            console.log('Found customer ID: ' + customerId);
           } else {
             console.log('No customer ID.');
             $state.go('tabs.buybitcoin-welcome');
@@ -64,7 +59,7 @@ angular
           
         }
       );
-      */
+      
     }
 
     function onBuyInstantly() {
