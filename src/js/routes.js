@@ -1301,6 +1301,36 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+
+      // Buy Bitcoin Main Screen
+
+      var actionBuyBitcoinScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_close', 
+        class: 'track_buy_bitcoin_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinScreenClose);
+
+      var actionBuyBitcoinTapOnBuyInstantly = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_buy_instantly', 
+        class: 'track_buy_bitcoin_tap_on_buy_instantly', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnBuyInstantly);
+
+      var actionBuyBitcoinTapOnPurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_purchase_history', 
+        class: 'track_buy_bitcoin_tap_on_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPurchaseHistory);
+
+      var actionBuyBitcoinTapOnPaymentMethods = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_payment_methods', 
+        class: 'track_buy_bitcoin_tap_on_payment_methods', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPaymentMethods);
       
       // Init language
       uxLanguage.init(function (lang) {

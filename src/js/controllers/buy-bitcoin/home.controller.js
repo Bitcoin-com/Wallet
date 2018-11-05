@@ -7,6 +7,7 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
+    bitAnalyticsService,
     $filter,
     gettextCatalog,
     $ionicHistory, 
@@ -49,7 +50,7 @@ angular
             var title = gettextCatalog.getString("Error Getting Customer Information");
             var message = gettextCatalog.getString("Customer information was missing.");
             popupService.showAlert(title, message, function onAlert(){
-              $ionicHistory.goBack();
+              _goBack();
             });
           }
         },
@@ -57,14 +58,19 @@ angular
           var title = gettextCatalog.getString("Error Getting Customer Information");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
           popupService.showAlert(title, message, function onAlert(){
-            $ionicHistory.goBack();
+            _goBack();
           });
         }
       );
     }
 
+    function _goBack() {
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
+      $ionicHistory.goBack();
+    }
 
     function _onBeforeEnter(event, data) {
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
       _initVariables();
 
       //$state.go('tabs.buybitcoin-welcome');
@@ -85,7 +91,7 @@ angular
           var title = gettextCatalog.getString("Error Getting Customer ID");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
           popupService.showAlert(title, message, function onAlert(){
-            $ionicHistory.goBack();
+            _goBack();
           });
           
         }
@@ -99,10 +105,12 @@ angular
     }
 
     function onPrivacyPolicy() {
+      bitAnalyticsService.postEvent('buy_bitcoin_tap_on_privacy_policy', [], ['leanplum']);
       console.log('pp');
     }
 
     function onTermsOfService() {
+      bitAnalyticsService.postEvent('buy_bitcoin_tap_on_terms_of_service', [], ['leanplum']);
       console.log('tos');
     }
   }
