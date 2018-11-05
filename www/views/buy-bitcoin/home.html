@@ -1,4 +1,4 @@
-<ion-view class="apl" id="tab-buy-bitcoin" hide-tabs>
+<ion-view id="tab-buy-bitcoin" class="apl" hide-tabs>
   <ion-nav-bar >
     <ion-nav-buttons side="primary">
       <button class="button apl-back-button" ng-click="$ionicGoBack()">
@@ -6,84 +6,36 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-  <ion-content class="apl">
-    <h1 translate>
-      Account Status
-    </h1>
-    <div class="apl-card">
-        <a class="item item-icon-left item-big-icon-left item-icon-right">
-          <i class="icon big-icon-svg">
-            <span class="apl-icon"></span>
-          </i>
-          <div class="apl-card__title__container">
-            <div class="apl-card__title" translate>
-              Weekly Purchase Limit
-            </div>
-            <div class="apl-card__subtitle" translate>
-              Monthly limit $300 / $1500
-            </div>
-          </div>
-          <i class="icon bp-arrow-right"></i>
-        </a>
-    </div>
-
-    <h1 translate>
-      Buy Bitcoin Cash (BCH)
-    </h1>
-    <div class="apl-list">
-      <a class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.onBuyInstantly()">
-        <i class="icon big-icon-svg">
-          <span class="apl-icon c1"></span>
-        </i>
-        <p translate>Buy Instantly</p>
-      </a>
-      <div class="item item-icon-left item-big-icon-left apl-list-item">
-        <i class="icon big-icon-svg">
-          <span class="apl-icon c2"></span>
-        </i>
-        <p translate>Advanced Order</p>
-        <div class="coming-soon">
-          <div class="coming-soon-contents" translate>Coming soon
-          </div>  
+  <ion-content class="apl fullscreen">
+    <div id="apl-content">
+      <div class="image-container">
+        <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
+      </div>
+      <h1 class="center" translate>
+        Buy Bitcoin Cash (BCH)
+      </h1>
+      <p class="center" translate>You have purchased {{vm.purchasedAmount}} of your {{vm.weeklyLimit}} weekly limit.</p>
+      <div class="apl-button-container">
+        <a class="apl-button" ui-sref="tabs.buybitcoin-amount" translate>Buy Bitcoin Cash</a>
+      </div>
+      <div>
+        <h1 translate>
+          Quick Links
+        </h1>
+        <div class="apl-list">
+          <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-paymentmethods">
+              <p translate>Purchase History</p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
+            <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-paymentmethods">
+              <p translate>Payment Methods</p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
         </div>
       </div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item">
-        <i class="icon big-icon-svg">
-          <span class="apl-icon c3"></span>
-        </i>
-        <p translate>Auto Top Up</p>
-        <div class="coming-soon">
-          <div class="coming-soon-contents" translate>Coming soon
-          </div>  
-        </div>
-      </div>
+      <small class="center" translate>See our <a href ng-click="vm.onTos()">Terms of Service</a> & <a href ng-click="vm.onPp()">Privacy Policy</a></small>
     </div>
-    <h1 translate>
-      Quick Links
-    </h1>
-    <div class="apl-list">
-      <a class="item item-icon-right apl-list-item">
-        <p translate>Pending Orders</p>
-        <i class="icon bp-arrow-right"></i>
-        <div class="coming-soon">
-            <div class="coming-soon-contents" translate>Coming soon
-            </div>  
-          </div>
-      </a>
-      <a class="item item-icon-right apl-list-item">
-        <p translate>Purchase History</p>
-        <i class="icon bp-arrow-right"></i>
-      </a>
-      <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-paymentmethods">
-        <p translate>Payment Methods</p>
-        <i class="icon bp-arrow-right"></i>
-      </a>
-      <a class="item apl-list-item">
-        <p translate>Terms of Service</p>
-      </a>
-      <a class="item apl-list-item">
-        <p translate>Privacy Policy</p>
-      </a>
-    </div>
+    
+    
   </ion-content>
 </ion-view>

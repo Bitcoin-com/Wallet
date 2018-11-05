@@ -359,7 +359,11 @@
     padding: 15px;
     text-align: center;
     width: 100%;
+    text-decoration: none;
 
+    &-container {
+      padding: 16px;
+    }
 
     &-bottom-container {
       background: #FFFFFF;

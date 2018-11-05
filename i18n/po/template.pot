@@ -3994,3 +3994,13 @@ msgstr ""
 
 msgid "Unable to Create Customer"
 msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr ""
+
+msgid "You have purchased {{vm.purchasedAmount}} of your {{vm.weeklyLimit}} weekly limit."
+msgstr ""
+
+msgid "Buy Bitcoin Cash"
+msgstr ""
