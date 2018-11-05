@@ -27,9 +27,8 @@ angular
     vm.onTos = onTermsOfService;
 
     function _initVariables() {
-      console.log('home _initVariables()');
-      vm.purchasedAmount = '-';
       vm.monthlyLimit = '-';
+      vm.monthlyPurchased = '-';
 
       vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
       vm.termsOfService = 'tabs.buybitcoin-tos'
@@ -42,8 +41,8 @@ angular
         function onGetCustomerSuccess(customer) {
           if (customer) {
             console.log('Moonpay customer:', customer);
-            var purchasedAmount = 0; // TODO: How to get this information?
-            vm.purchasedAmount = $filter('currency')(purchasedAmount, '$', 2)
+            var monthlyPurchased = 0; // TODO: How to get this information?
+            vm.monthlyPurchased = $filter('currency')(monthlyPurchased, '$', 2)
             vm.monthlyLimit = $filter('currency')(customer.monthlyLimit, '$', 2)
           } else {
             $state.go('tabs.buybitcoin-welcome');
