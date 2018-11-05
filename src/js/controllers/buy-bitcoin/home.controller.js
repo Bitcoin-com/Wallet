@@ -7,6 +7,7 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
+    $filter,
     gettextCatalog,
     $ionicHistory, 
     $log, 
@@ -19,8 +20,6 @@ angular
     var vm = this;
 
     // Functions
-    vm.getStarted = getStarted;
-    vm.goBack = goBack;
     vm.onBuyInstantly = onBuyInstantly;
 
     // Functions - Short because the appear in translatable strings
@@ -29,8 +28,8 @@ angular
 
     function _initVariables() {
       console.log('home _initVariables()');
-      vm.purchasedAmount = '$100';
-      vm.weeklyLimit = '$1000';
+      vm.purchasedAmount = '-';
+      vm.monthlyLimit = '-';
 
       vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
       vm.termsOfService = 'tabs.buybitcoin-tos'
@@ -38,16 +37,33 @@ angular
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
-
-    function getStarted() {
-      $log.debug('getStarted() with email: ' + vm.email);
-
+    function _getAndPopulateCustomerInfo() {
+      moonPayService.getCustomer().then(
+        function onGetCustomerSuccess(customer) {
+          if (customer) {
+            console.log('Moonpay customer:', customer);
+            var purchasedAmount = 0; // TODO: How to get this information?
+            vm.purchasedAmount = $filter('currency')(purchasedAmount, '$', 2)
+            vm.monthlyLimit = $filter('currency')(customer.monthlyLimit, '$', 2)
+          } else {
+            $state.go('tabs.buybitcoin-welcome');
+            var title = gettextCatalog.getString("Error Getting Customer Information");
+            var message = gettextCatalog.getString("Customer information was missing.");
+            popupService.showAlert(title, message, function onAlert(){
+              $ionicHistory.goBack();
+            });
+          }
+        },
+        function onGetCustomerError(err) {
+          var title = gettextCatalog.getString("Error Getting Customer Information");
+          var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
+          popupService.showAlert(title, message, function onAlert(){
+            $ionicHistory.goBack();
+          });
+        }
+      );
     }
 
-    function goBack() {
-    }
-
-    
 
     function _onBeforeEnter(event, data) {
       _initVariables();
@@ -57,17 +73,21 @@ angular
 
       moonPayService.getCustomerId().then(
         function onCustomerIdSuccess(customerId) {
-          console.log('moonpay onCustomerIdSuccess with: 1 ' + customerId);
+          console.log('moonpay onCustomerIdSuccess with: ' + customerId);
           if (customerId) {
             console.log('Found customer ID: ' + customerId);
+            _getAndPopulateCustomerInfo();
           } else {
             console.log('No customer ID.');
             $state.go('tabs.buybitcoin-welcome');
           }
         },
-        function onCustomerIdError(err) {
-          console.error('Error getting Moonpay customer ID.', err);
-          // Put up an alert, or get a new one?
+        function onCustomerIdError(err) {          
+          var title = gettextCatalog.getString("Error Getting Customer ID");
+          var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
+          popupService.showAlert(title, message, function onAlert(){
+            $ionicHistory.goBack();
+          });
           
         }
       );

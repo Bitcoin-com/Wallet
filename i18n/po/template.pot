@@ -3999,8 +3999,20 @@ msgstr ""
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr ""
 
-msgid "You have purchased {{vm.purchasedAmount}} of your {{vm.weeklyLimit}} weekly limit."
+msgid "You have purchased {{vm.purchasedAmount}} of your {{vm.monthlyLimit}} monthly limit."
 msgstr ""
 
 msgid "Buy Bitcoin Cash"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr ""
+
+msgid "Error Getting Customer Information"
+msgstr ""
+
+msgid "An error occurred when getting your customer information."
+msgstr ""
+
+msgid "Customer information was missing."
 msgstr ""
