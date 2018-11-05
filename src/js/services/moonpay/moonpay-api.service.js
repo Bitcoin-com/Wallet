@@ -8,6 +8,7 @@ angular
   
   function moonPayApiService(
     moonPayConfig,
+    localStorageService,
     $http, $q, $log
   ) {
 
@@ -26,7 +27,8 @@ angular
       uploadNationalIdentityCard: uploadNationalIdentityCard,
       uploadSelfie: uploadSelfie,
       createCard: createCard,
-      getCards: getCards
+      getCards: getCards,
+      getRates: getRates
     };
 
     return service;
@@ -135,6 +137,25 @@ angular
       return deferred.promise;
     }
 
+    /**
+     * Get rates
+     * @param {String} code 
+     */
+    function getRates(code) {
+      var deferred = $q.defer();
+      getConfig(false).then(function(config) {
+        $http.get(baseUrl + '/v2/currencies/' + code + '/price', config).then(function (response) {
+          var rates = response.data;
+          deferred.resolve(rates);
+        }, function (err) {
+          deferred.reject(err);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
 
     function uploadPassport(customerId, file) {
       // Needs to be completed
@@ -175,7 +196,7 @@ angular
       if (!tokenIsNeeded) {
         deferred.resolve(config);
       } else {
-        if (currentToken) {
+        if (currentToken != null) {
           config.headers['Authorization'] = 'Bearer ' + currentToken;
         } else {
           localStorageService.get(tokenKey, function (err, token) {

@@ -7,9 +7,9 @@ angular
   .factory('moonPayService', moonPayService);
   
   function moonPayService(
-    moonPayApiService
-    , localStorageService
-    , $log, $q
+    moonPayApiService,
+    localStorageService,
+    $log, $q
   ) {
 
     var customerKey = 'moonPayCustomer'
@@ -25,7 +25,8 @@ angular
       getCustomerId: getCustomerId,
       updateCustomer: updateCustomer,
       createCard: createCard,
-      getCards: getCards
+      getCards: getCards,
+      getRates: getRates
     };
 
     return service;
@@ -44,6 +45,7 @@ angular
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
           } else {
+            currentCustomer = customer;
             deferred.resolve(customer);
           }
         });
@@ -64,7 +66,7 @@ angular
       var deferred = $q.defer();
 
       // Get the customer in the localStorageService if we didn't do it yet
-      if (currentCustomer) {
+      if (currentCustomer != null) {
         deferred.resolve(currentCustomer);
       } else {
         localStorageService.get(customerKey, function (err, customer) {
@@ -130,7 +132,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      if (currentCards) {
+      if (currentCards != null) {
         deferred.resolve(currentCards);
       } else {
         moonPayApiService.getCards().then(function (cards) {
@@ -166,6 +168,24 @@ angular
         deferred.reject(err);
       });
 
+      return deferred.promise;
+    }
+
+    /**
+     * Get rates
+     * @param {String} code 
+     */
+    function getRates(code) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getRates(code).then(function (rates) {
+        deferred.resolve(rates);
+      }, function (err) {
+        $log.debug('Error getting moonpay rates from the api');
+        deferred.reject(err);
+      });
+      
       return deferred.promise;
     }
   }
