@@ -44,10 +44,10 @@ angular
       getConfig(false).then(function onGetConfig(config) {
         $http.post(baseUrl + '/v2/customers?apiKey=' + moonPayConfig.pubKey, {
           'email': email
-        }, config).then(function onPostEmail(response) {
+        }, config).then(function onPostEmailSuccess(response) {
           var data = response.data;
           currentToken = data.token;
-          localStorageService.set(tokenKey, data.token, function (err) {
+          localStorageService.set(tokenKey, data.token, function onTokenSaved(err) {
             if (err) {
               $log.debug('Error setting moonpay customer token in the local storage');
               deferred.reject(err);
@@ -55,8 +55,8 @@ angular
               deferred.resolve(data.customer);
             }
           });
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onPostEmailError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -70,13 +70,21 @@ angular
      * @param {Object} response
      * @returns {Error}
      */
-    function _errorFromReponse(response) {
-      if (response.data && response.data.message) {
-        return new Error(response.data.message)
-      } else if (Math.floor(response.status / 100) === 2) { // 2xx HTTP Status code, considered success.
-        return null
+    function _errorFromResponse(response) {
+      
+      var message = '';
+      try {
+        message = Object.values(response.data.errors[0].constraints)[0];
+      } catch(e) {
+        if (Math.floor(response.status / 100) !== 2) { // 2xx HTTP Status code, considered success.
+          message = response.statusText;
+        } 
+      }
+
+      if (message) {
+        return new Error(message);
       } else {
-        return new Error(response.statusText);
+        return null;
       }
     }
 
@@ -86,11 +94,11 @@ angular
     function getCustomer() {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.get(baseUrl + '/v2/customers/me', config).then(function onGetMe(response) {
+        $http.get(baseUrl + '/v2/customers/me', config).then(function onGetMeSuccess(response) {
           var customer = response.data;
           deferred.resolve(customer);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onGetMeError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -106,11 +114,11 @@ angular
     function updateCustomer(customer) {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.patch(baseUrl + '/v2/customers/' + customer.id, customer, config).then(function onPatchCustomer(response) {
+        $http.patch(baseUrl + '/v2/customers/' + customer.id, customer, config).then(function onPatchCustomerSuccess(response) {
           var customer = response.data;
           deferred.resolve(customer);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onPatchCustomerError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -125,11 +133,11 @@ angular
     function getCards() {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.get(baseUrl + '/v2/cards', config).then(function onGetCards(response) {
+        $http.get(baseUrl + '/v2/cards', config).then(function onGetCardsSuccess(response) {
           var cards = response.data;
           deferred.resolve(cards);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onGetCardsError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -145,11 +153,11 @@ angular
     function createCard(card) {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.post(baseUrl + '/v2/cards', card, config).then(function onPostCard(response) {
+        $http.post(baseUrl + '/v2/cards', card, config).then(function onPostCardSuccess(response) {
           var card = response.data;
           deferred.resolve(errResponse);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onPostCardError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -164,11 +172,11 @@ angular
     function getTransactions() {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.get(baseUrl + '/v2/transactions', config).then(function onGetTransactions(response) {
+        $http.get(baseUrl + '/v2/transactions', config).then(function onGetTransactionsSuccess(response) {
           var transactions = response.data;
           deferred.resolve(transactions);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onGetTransactionsError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -184,11 +192,11 @@ angular
     function createTransaction(transaction) {
       var deferred = $q.defer();
       getConfig(true).then(function getConfig(config) {
-        $http.post(baseUrl + '/v2/transactions', transaction, config).then(function onPostTransaction(response) {
+        $http.post(baseUrl + '/v2/transactions', transaction, config).then(function onPostTransactionSuccess(response) {
           var transaction = response.data;
           deferred.resolve(transaction);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onPostTransactionError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
@@ -204,11 +212,11 @@ angular
     function getRates(code) {
       var deferred = $q.defer();
       getConfig(false).then(function(config) {
-        $http.get(baseUrl + '/v2/currencies/' + code + '/price', config).then(function onGetRates(response) {
+        $http.get(baseUrl + '/v2/currencies/' + code + '/price', config).then(function onGetRatesSuccess(response) {
           var rates = response.data;
           deferred.resolve(rates);
-        }, function (errResponse) {
-          var httpErr = _errorFromReponse(errResponse);
+        }, function onGetRatesError(errResponse) {
+          var httpErr = _errorFromResponse(errResponse);
           deferred.reject(httpErr);
         });
       }, function (err) {
