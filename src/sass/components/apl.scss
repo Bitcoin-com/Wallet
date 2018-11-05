@@ -3,11 +3,6 @@
   color: #000;
   padding: 40px 0px;
 
-  &.fullscreen {
-    overflow-y: hidden;
-    padding: 0;    
-  }
-
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -360,7 +355,6 @@
     text-align: center;
     width: 100%;
 
-    
 
     &-bottom-container {
       background: #FFFFFF;
