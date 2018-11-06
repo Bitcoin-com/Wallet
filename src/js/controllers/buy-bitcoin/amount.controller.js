@@ -11,7 +11,7 @@
     $ionicHistory,
     $log,
     moonPayService, 
-    onGoingService,
+    ongoingProcess,
     popupService,
     profileService, 
     $scope
@@ -184,16 +184,16 @@
         return;
       }
 
-      onGoingService.set('buyingBch', true);
+      ongoingProcess.set('buyingBch', true);
       // TODO: Create transaction
       var transaction = {};
       moonPayService.createTransaction(transaction).then(
         function onCreateTransactionSuccess(newTransaction) {
-          onGoingService.set('buyingBch', false);
+          ongoingProcess.set('buyingBch', false);
           // TODO: Redirect to success screen
         },
         function onCreateTransactionError(err) {
-          onGoingService.set('buyingBch', false);
+          ongoingProcess.set('buyingBch', false);
 
           title = gettextCatalog.getString('Purchase Failed');
           message = err.message || gettextCatalog.getString('Failed to create transaction.');
