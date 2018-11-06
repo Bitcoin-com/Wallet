@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('copayApp.controllers').controller('tabHomeController',
-  function(kycFlowService, $rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, communityService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, sendFlowService, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
+  function(moonPayService, $rootScope, $timeout, $scope, $state, $stateParams, $ionicModal, $ionicScrollDelegate, $window, gettextCatalog, lodash, popupService, ongoingProcess, bannerService, communityService, externalLinkService, latestReleaseService, profileService, walletService, configService, $log, platformInfo, sendFlowService, storageService, txpModalService, appConfigService, startupService, addressbookService, bwcError, nextStepsService, buyAndSellService, homeIntegrationsService, bitpayCardService, pushNotificationsService, timeService, bitcoincomService, pricechartService, firebaseEventsService, servicesService, shapeshiftService, $ionicNavBarDelegate, signVerifyMessageService) {
     var wallet;
     var listeners = [];
     var notifications = [];
@@ -115,7 +115,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
     function buyBitcoin() {
       console.log('buyBitcoin()');
-      kycFlowService.start();
+      moonPayService.start();
     }
 
     function onLeave (event, data) {

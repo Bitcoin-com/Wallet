@@ -7,9 +7,10 @@ angular
   .factory('moonPayService', moonPayService);
   
   function moonPayService(
-    moonPayApiService,
-    localStorageService,
-    $log, $q
+    moonPayApiService
+    , localStorageService
+    , moonPayRouterService
+    , $log, $q
   ) {
 
     var customerKey = 'moonPayCustomer'
@@ -18,21 +19,44 @@ angular
     var currentTransactions = null;
 
     var service = {
-      // Variables
 
       // Functions
-      createCustomer: createCustomer,
-      getCustomer: getCustomer,
-      getCustomerId: getCustomerId,
-      updateCustomer: updateCustomer,
-      createCard: createCard,
-      getCards: getCards,
-      createTransaction: createTransaction,
-      getTransactions: getTransactions,
-      getRates: getRates
+      createCustomer: createCustomer
+      , getCustomer: getCustomer
+      , getCustomerId: getCustomerId
+      , updateCustomer: updateCustomer
+      , createCard: createCard
+      , getCards: getCards
+      , createTransaction: createTransaction
+      , getTransactions: getTransactions
+      , getRates: getRates
+      , start: start
     };
 
     return service;
+
+    function start() {
+      $log.debug('buy bitcoin start()');
+
+      ongoingProcess.set('gettingKycCustomerId', true);
+      getCustomerId(function onCustomerId(err, customerId){
+        ongoingProcess.set('gettingKycCustomerId', false);
+
+        if (err) {
+          $log.error('Error getting Moonpay customer ID. ' + err);
+          return;
+        }
+
+        $log.debug('Moonpay customer ID: ' + customerId);
+
+        if (customerId != null) {
+          moonPayRouterService.startFromHome();
+        } else {
+          moonPayRouterService.startFromWelcome();
+        }
+
+      });
+    }
 
     /**
      * Create a customer
