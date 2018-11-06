@@ -201,6 +201,12 @@
       font-weight: bold;
       text-align: left;
       letter-spacing: -0.41px;
+
+      &.add {
+        ::before {
+          content: "+ ";
+        }
+      }
     }
     &__subtitle {
       height: 15px;
@@ -360,6 +366,11 @@
     text-align: center;
     width: 100%;
     text-decoration: none;
+
+    &.unready {
+      background: rgba(255, 155, 0, 0.5);
+    }
+
 
     &-container {
       padding: 16px;

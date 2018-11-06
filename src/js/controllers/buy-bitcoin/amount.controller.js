@@ -5,24 +5,41 @@
       .module('bitcoincom.controllers')
       .controller('buyBitcoinAmountController', amountController);
 
-  function amountController(configService, profileService, $scope) {
-    var vm = this;
+  function amountController(
+    configService, 
+    gettextCatalog,
+    $ionicHistory,
+    $log,
+    moonPayService, 
+    popupService,
+    profileService, 
+    $scope
+    ) {
 
-    vm.focussedEl = false;
+    var vm = this;
+    vm.onAmountChanged = onAmountChanged;
+    vm.onBuy = onBuy;
+
+    
 
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
-      vm.inputValue = 1;
+      vm.inputAmount = 0;
       vm.lineItems = {
+        bchQty: 0.192,
         cost: 125,
         processingFee: 10,
         total: 13511
       };
+      vm.paymentMethodsAreLoading = true;
+      vm.rateUsd = 0;
+      /*
       vm.paymentMethod = {
         name: 'Visa',
         partialCardNumber: '••• 2244',
         expiryDate: '12/21'
       };
+      */
       vm.wallet = null;
     }
 
@@ -31,8 +48,58 @@
     //var walletId = '693923fb-0554-45a5-838f-6efa26ca917e'; // Backed Up Dev
     var walletId = '98ada868-82bd-44cb-a334-61d0192b7a81'; // Backed Up Dev Other
 
+    function _getPaymentMethods() {
+      moonPayService.getCards().then(
+        function onGetCardsSuccess(cards) {
+          vm.paymentMethodsAreLoading = false;
+          console.log('cards:', cards);
+          if (cards && cards.length > 0) {
+
+            
+
+          }
+          
+          // else case is handled in view
+            /*vm.paymentMethod = {
+              name: 'Visa',
+              partialCardNumber: '••• 2244',
+              expiryDate: '12/21'
+            };
+            return;*/
+
+        },
+        function onGetCardsError(err) {
+          var title = gettextCatalog.getString('Error Getting Payment Methods');
+          var message = err.message || gettextCatalog.getString('An error occurred when getting your payment methods.');
+          var okText = gettextCatalog.getString('Go Back');
+          popupService.showAlert(title, message, 
+            function onAlertDismissed() {
+              $ionicHistory.goBack();
+            }, 
+            okText
+          );
+        }
+      );
+    }
+
+    function _getRates() {
+      console.warn('_getRates()');
+
+      moonPayService.getRates('bch').then(
+        function onGetRatesSuccess(rates) {
+          console.log('Rates:', rates);
+          vm.rateUsd = rates.USD;
+          _updateAmount();
+          
+        },
+        function onGetRatesError(err) {
+          console.error('Rates error.', err);
+        }
+      );
+    }
+
     function _onBeforeEnter() {
-      console.log('_onBeforeEnter()');
+      console.info('_onBeforeEnter()');
       _initVariables();
 
       configService.whenAvailable(function onConfigService(config){
@@ -57,15 +124,56 @@
           vm.wallet = null;
         }
       }
+
+      $scope.wallet = vm.wallet;
+
+      _getPaymentMethods();
+      _getRates();
+
     }
 
-    $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    function _updateAmount() {
+      console.log('_updateAmount()');
+      var amount = Math.max(vm.inputAmount, 0);
 
-    var walletId = '693923fb-0554-45a5-838f-6efa26ca917e';
+      if (vm.rateUsd) {
+        vm.lineItems.bchQty = amount / vm.rateUsd;
+        vm.lineItems.cost = amount;
+        vm.lineItems.processingFee = 10; // TODO: Update this with the correct amount
+        vm.lineItems.total = amount + vm.lineItems.processingFee;
+      }
 
-    function _onBeforeEnter() {
-      console.log('_onBeforeEnter()');
-      _initVariables();
+    }
+
+    function onAmountChanged() {
+      _updateAmount();
+    }
+
+    function onBuy() {
+      var title = gettextCatalog.getString('Unable to Purchase');
+      var message = '';
+      var okText = '';
+      var cancelText = '';
+
+      if (!vm.paymentMethod) {
+        message = gettextCatalog.getString('You must add a credit or debit card to buy Bitcoin Cash (BCH).');
+        okText = gettextCatalog.getString('Add Card');
+        cancelText = gettextCatalog.getString('Cancel');
+        popupService.showConfirm(title, message, okText, cancelText,
+          function onDismissed(ok) {
+            if (ok) {
+              // TODO: Go to add card screen.
+            }
+          }
+        );
+        return;
+      }
+
+      if (!vm.rateUsd) {
+        message = gettextCatalog.getString("Waiting for exchange rate.");
+        popupService.showAlert(title, message);
+        return;
+      }
 
     }
 
