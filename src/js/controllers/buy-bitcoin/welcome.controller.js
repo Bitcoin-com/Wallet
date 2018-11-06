@@ -44,7 +44,7 @@ angular
         function onCreateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
-          bitAnalyticsService.postEvent('buy_bitcoin_welcome_get_started', [], ['leanplum']);
+          bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_get_started', [], ['leanplum']);
           $ionicHistory.goBack();
         },
         
