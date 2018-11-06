@@ -1,0 +1,41 @@
+<ion-view class="apl" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button track_buy_bitcoin_welcome_screen_close" ng-click="$ionicGoBack(-2)">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="apl fullscreen">
+    <div id="buy-bitcoin-welcome">
+      <div class="image-container">
+        <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
+      </div>
+      <h1 class="center" translate>Buy Bitcoin Cash</h1>
+      <p class="center">Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+      <small class="center">You will only receive emails related to your purchases.</small>
+      <div>
+        <div class="apl-divider"></div>
+        <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
+          <div class="row">
+            <label for="email-entry" translate>Email</label>
+            <input id="email-entry"
+            name="email"
+            type="email"
+            placeholder="satoshi@bitcoin.com"
+            ng-required="true"
+            ng-model="vm.email"
+            ng-model-options="{ debounce: 1000 }"
+            required>
+          </div>
+          <div class="error" ng-show="emailForm.email.$error.email" translate>Must be a valid email address.</div>
+        </form>
+        <div class="apl-divider"></div>
+      </div>
+      <div id="bottom-button" class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.getStarted()" translate>Get Started</a>
+      </div>
+  </div>
+  </ion-content>
+</ion-view>

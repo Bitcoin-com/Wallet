@@ -3981,3 +3981,16 @@ msgstr ""
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr ""
+
+msgid "Enter an email address."
+msgstr ""
+
+msgid "Must be a valid email address."
+msgstr ""
+
+msgid "Unable to Create Customer"
+msgstr ""
