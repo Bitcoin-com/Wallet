@@ -11,6 +11,7 @@
     $ionicHistory,
     $log,
     moonPayService, 
+    onGoingService,
     popupService,
     profileService, 
     $scope
@@ -100,7 +101,7 @@
     }
 
     function _getWallet() {
-      // TODO: What if no wallet available?
+      
       if (walletId) {
         console.log('walletId: "' + walletId +'"');
         vm.wallet = profileService.getWallet(walletId);
@@ -182,6 +183,24 @@
         );
         return;
       }
+
+      onGoingService.set('buyingBch', true);
+      // TODO: Create transaction
+      var transaction = {};
+      moonPayService.createTransaction(transaction).then(
+        function onCreateTransactionSuccess(newTransaction) {
+          onGoingService.set('buyingBch', false);
+          // TODO: Redirect to success screen
+        },
+        function onCreateTransactionError(err) {
+          onGoingService.set('buyingBch', false);
+
+          title = gettextCatalog.getString('Purchase Failed');
+          message = err.message || gettextCatalog.getString('Failed to create transaction.');
+          popupService.showAlert(title, message);
+        }
+      );
+
 
     }
   }

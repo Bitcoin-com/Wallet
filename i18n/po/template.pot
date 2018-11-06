@@ -4044,3 +4044,12 @@ msgstr ""
 
 msgid "Select a BCH Wallet"
 msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr ""
+
+msgid "Failed to create transaction."
+msgstr ""
