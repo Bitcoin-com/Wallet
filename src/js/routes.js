@@ -1301,6 +1301,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+
+      // Buy Bitcoin Welcome Screen
+
+      var actionBuyBitcoinWelcomeScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_welcome_screen_close', 
+        class: 'track_buy_bitcoin_welcome_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinWelcomeScreenClose);
       
       // Init language
       uxLanguage.init(function (lang) {

@@ -7,6 +7,7 @@ angular
   .controller('buyBitcoinWelcomeController', buyBitcoinWelcomeController);
 
   function buyBitcoinWelcomeController(
+    bitAnalyticsService,
     gettextCatalog, 
     $ionicHistory,
     $log, 
@@ -43,6 +44,7 @@ angular
         function onCreateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
+          bitAnalyticsService.postEvent('buy_bitcoin_welcome_get_started', [], ['leanplum']);
           $ionicHistory.goBack();
         },
         
@@ -60,6 +62,7 @@ angular
     
 
     function onBeforeEnter(event, data) {
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[], ['leanplum']);
       initVariables();
     }
   }
