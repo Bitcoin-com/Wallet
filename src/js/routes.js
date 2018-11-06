@@ -867,6 +867,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      
+      .state('tabs.buybitcoin-add-card-form', {
+        url: '/buy-bitcoin/add-card-form',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAddCardFormController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/add-card-form.html'
+          }
+        }
+      })
 
       .state('tabs.buybitcoin-terms', {
         url: '/buy-bitcoin/terms',
@@ -900,7 +911,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      
+
       /*
        *
        * Glidera
