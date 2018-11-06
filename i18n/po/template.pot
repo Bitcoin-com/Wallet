@@ -3994,3 +3994,47 @@ msgstr ""
 
 msgid "Unable to Create Customer"
 msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr ""
+
+msgid "You have purchased {{vm.monthlyPurchased}} of your {{vm.monthlyLimit}} monthly limit."
+msgstr ""
+
+msgid "Buy Bitcoin Cash"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr ""
+
+msgid "Error Getting Customer Information"
+msgstr ""
+
+msgid "An error occurred when getting your customer information."
+msgstr ""
+
+msgid "Customer information was missing."
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr ""
+
+msgid "An error occurred when getting your payment methods."
+msgstr ""
+
+msgid "No Payment Methods"
+msgstr ""
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr ""
+
+msgid "Add Card"
+msgstr ""
+
+msgid "Getting rate..."
+msgstr ""
+
+msgid "Waiting for exchange rate."
+msgstr ""
