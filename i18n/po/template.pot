@@ -4016,3 +4016,25 @@ msgstr ""
 
 msgid "Customer information was missing."
 msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr ""
+
+msgid "An error occurred when getting your payment methods."
+msgstr ""
+
+msgid "No Payment Methods"
+msgstr ""
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr ""
+
+msgid "Add Card"
+msgstr ""
+
+msgid "Getting rate..."
+msgstr ""
+
+msgid "Waiting for exchange rate."
+msgstr ""
