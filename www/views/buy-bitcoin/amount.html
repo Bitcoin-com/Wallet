@@ -36,11 +36,11 @@
       <div class="apl-list-title" translate>
         Deposit to
       </div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item">
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.wallet">
         <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
         <div class="apl-card__title__container">
-          <div class="apl-card__title">
-            {{vm.wallet.name}}
+          <div class="apl-card__title"ng-if="vm.wallet">
+            {{vm.wallet.name }}
           </div>
           <div class="apl-card__subtitle">
             <wallet-balance
@@ -51,10 +51,19 @@
               wallet-cached-balance="{{vm.wallet.cachedBalance}}"
               wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
               wallet-cached-status="{{vm.wallet.cachedStatus}}"
-              total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"/>
+              total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"
+              ng-if="vm.wallet"
+              />
           </div>
         </div>
       </div>
+      <div class="item item-icon-left apl-list-item" ng-if="!vm.wallet">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title"ng-if="!vm.wallet" translate>
+            Select a BCH wallet
+          </div>
+          <div class="apl-card__subtitle"></div>
+      </div>  
     </div>
     <div class="apl-list">
       <div class="apl-list-title" translate>

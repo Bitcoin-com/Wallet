@@ -20,7 +20,7 @@
     vm.onAmountChanged = onAmountChanged;
     vm.onBuy = onBuy;
 
-    
+    var walletId = '';
 
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
@@ -45,8 +45,9 @@
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
+    // Override for testing
     //var walletId = '693923fb-0554-45a5-838f-6efa26ca917e'; // Backed Up Dev
-    var walletId = '98ada868-82bd-44cb-a334-61d0192b7a81'; // Backed Up Dev Other
+    //var walletId = '98ada868-82bd-44cb-a334-61d0192b7a81'; // Backed Up Dev Other
 
     function _getPaymentMethods() {
       moonPayService.getCards().then(
@@ -98,16 +99,7 @@
       );
     }
 
-    function _onBeforeEnter() {
-      console.info('_onBeforeEnter()');
-      _initVariables();
-
-      configService.whenAvailable(function onConfigService(config){
-
-        vm.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
-        console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
-      });
-
+    function _getWallet() {
       // TODO: What if no wallet available?
       if (walletId) {
         console.log('walletId: "' + walletId +'"');
@@ -124,12 +116,22 @@
           vm.wallet = null;
         }
       }
-
       $scope.wallet = vm.wallet;
+    }
 
+    function _onBeforeEnter() {
+      console.info('_onBeforeEnter()');
+      _initVariables();
+
+      configService.whenAvailable(function onConfigService(config){
+
+        vm.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
+        console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
+      });
+
+      _getWallet();
       _getPaymentMethods();
       _getRates();
-
     }
 
     function _updateAmount() {
@@ -155,6 +157,18 @@
       var okText = '';
       var cancelText = '';
 
+      if (!vm.rateUsd) {
+        message = gettextCatalog.getString("Waiting for exchange rate.");
+        popupService.showAlert(title, message);
+        return;
+      }
+
+      if (!vm.wallet) {
+        message = gettextCatalog.getString('You must have a Bitcoin Cash (BCH) wallet to deposit in to.');
+        popupService.showAlert(title, message);
+        return;
+      }
+
       if (!vm.paymentMethod) {
         message = gettextCatalog.getString('You must add a credit or debit card to buy Bitcoin Cash (BCH).');
         okText = gettextCatalog.getString('Add Card');
@@ -169,13 +183,6 @@
         return;
       }
 
-      if (!vm.rateUsd) {
-        message = gettextCatalog.getString("Waiting for exchange rate.");
-        popupService.showAlert(title, message);
-        return;
-      }
-
     }
-
   }
 })();
