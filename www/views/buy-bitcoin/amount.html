@@ -19,7 +19,7 @@
     <div class="apl-amount-totals">
       <div class="apl-amount-totals-item">
         <span class="apl-amount-totals-title" ng-if="!vm.rateUsd">Getting rate...</span>
-        <span class="apl-amount-totals-title" ng-if="vm.rateUsd">{{vm.lineItems.bchQty}} BCH @ {{vm.rateUsd | currency:'': 2}} USD</span>
+        <span class="apl-amount-totals-title" ng-if="vm.rateUsd"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</span>
         <span class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.cost | currency:'':2}} USD</span>
       </div>
       <div class="apl-amount-totals-item">
@@ -90,6 +90,6 @@
     </div>
   </ion-content>
   <div class="apl-button-bottom-container">
-    <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy 2.285 BCH</a>
+    <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy <formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></a>
   </div>
 </ion-view>

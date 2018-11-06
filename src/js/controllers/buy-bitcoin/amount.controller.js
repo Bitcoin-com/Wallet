@@ -26,10 +26,10 @@
       vm.displayBalanceAsFiat = true;
       vm.inputAmount = 0;
       vm.lineItems = {
-        bchQty: 0.192,
-        cost: 125,
+        bchQty: 0,
+        cost: 0,
         processingFee: 10,
-        total: 13511
+        total: 0
       };
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
