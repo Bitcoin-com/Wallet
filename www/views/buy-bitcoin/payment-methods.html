@@ -15,7 +15,9 @@
     </h1>
     <div class="apl-list">
       <div ng-repeat="pm in vm.paymentMethods">
-        <div class="" ng-include="'views/buy-bitcoin/includes/payment-method-item.html'"></div>
+        <ion-radio ng-value="pm.id" ng-model="vm.defaultPaymentMethod">
+            <payment-method-item pm="pm"></payment-method-item>
+        </ion-radio>
       </div>
       <div ng-If="vm.paymentMethods.length === 0" class="item apl-list-item">
         <p><span translate>No stored debit or credit cards.</span></p>

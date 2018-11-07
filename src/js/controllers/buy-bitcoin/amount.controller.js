@@ -34,6 +34,7 @@
         processingFee: 10,
         total: 0
       };
+      vm.paymentMethod = null;
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
       /*
@@ -64,8 +65,17 @@
           moonPayService.getDefaultCardId().then(
             function onGetDefaultCardIdSuccess(cardId) {
               if (cardId == null && cards && cards.length > 0) {
-                vm.paymentMethod = card[0];
-                moonPayService.setDefaultCardId(card[0].id);
+                vm.paymentMethod = cards[0];
+                moonPayService.setDefaultCardId(cards[0].id);
+                console.log(cards[0].id)
+              } else {
+                console.log(cardId)
+                for (var i=0; i<cards.length; ++i) {
+                  if (cards[i].id == cardId) {
+                    vm.paymentMethod = cards[i];
+                    break;
+                  }
+                }
               }
             }
           );

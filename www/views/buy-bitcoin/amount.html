@@ -71,19 +71,9 @@
       <div class="apl-list-title" translate>
         Payment Method
       </div>
-      <a ui-sref="tabs.buybitcoin-paymentmethods" class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethod">
-        <i class="icon big-icon-svg">
-          <span class="apl-icon"></span>
-        </i>
-        <div class="apl-card__title__container">
-          <div class="apl-card__title">
-            {{vm.paymentMethod.name}}
-          </div>
-          <div class="apl-card__subtitle">
-            {{vm.paymentMethod.partialCardNumber}} {{vm.paymentMethod.expiryDate}}
-          </div>
-        </div>
-      </a>
+      <div ui-sref="tabs.buybitcoin-paymentmethods" ng-if="vm.paymentMethod">
+        <payment-method-item pm="vm.paymentMethod"></payment-method-item>
+      </div>
       <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodsAreLoading">
         <div class="apl-card__title__container">
           <div class="apl-card__title">&nbsp;</div>
