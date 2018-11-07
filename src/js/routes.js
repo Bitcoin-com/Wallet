@@ -921,6 +921,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.buybitcoin-success', {
+        url: '/buy-bitcoin/success',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinSuccessController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/success.html'
+          }
+        }
+      })
 
       /*
        *
