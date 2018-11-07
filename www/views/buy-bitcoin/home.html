@@ -16,7 +16,7 @@
       </h1>
       <p class="center" translate>You have purchased {{vm.monthlyPurchased}} of your {{vm.monthlyLimit}} monthly limit.</p>
       <div class="apl-button-container">
-        <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" ng-click="vm.onBuyInstantly()" translate>Buy Bitcoin Cash</div>
+        <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" ng-click="vm.didPushBuyInstantly()" translate>Buy Bitcoin Cash</div>
       </div>
       <div>
         <h1 translate>
@@ -33,7 +33,7 @@
             </a>
         </div>
       </div>
-      <small class="center" translate>See our <a ui-sref="tabs.buybitcoin-terms">Terms of Service</a> & <a ui-sref="tabs.buybitcoin-privacypolicy">Privacy Policy</a></small>
+      <small class="center" translate>See our <a class="track_buy_bitcoin_tap_on_terms_of_service" ui-sref="tabs.buybitcoin-terms">Terms of Service</a> & <a class="track_buy_bitcoin_tap_on_privacy_policy" ui-sref="tabs.buybitcoin-privacypolicy">Privacy Policy</a></small>
     </div>
   </ion-content>
 </ion-view>

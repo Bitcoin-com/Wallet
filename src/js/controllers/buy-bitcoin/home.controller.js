@@ -20,6 +20,9 @@ angular
 
     var vm = this;
 
+    // Functions
+    vm.didPushBuyInstantly = didPushBuyInstantly;
+
     function _initVariables() {
       vm.monthlyLimit = '-';
       vm.monthlyPurchased = '-';
@@ -90,6 +93,10 @@ angular
         }
       );
       
+    }
+
+    function didPushBuyInstantly() {
+      $state.go('tabs.buybitcoin-amount');
     }
   }
 
