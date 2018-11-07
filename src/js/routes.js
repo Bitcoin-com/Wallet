@@ -911,6 +911,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.buybitcoin-purchasehistory', {
+        url: '/buy-bitcoin/purchase-history',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPurchaseHistoryController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/purchase-history.html'
+          }
+        }
+      })
 
       /*
        *
