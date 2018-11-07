@@ -82,12 +82,9 @@
           </div>
         </div>
       </div>
-      <a ui-sref="tabs.buybitcoin-paymentmethods" class="item item-icon-left apl-list-item" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
-        <div class="apl-card__title__container">
-          <div class="apl-card__title add" translate>Add a payment method</div>
-          <div class="apl-card__subtitle" translate></div>
-        </div>
-      </a>
+      <div ui-sref="tabs.buybitcoin-paymentmethods" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
+        <div>+ <span translate>Add a payment method</span></div>
+      </div>
     </div>
     <div class="bottom-button-shadow-spacer"></div>
   </ion-content>
