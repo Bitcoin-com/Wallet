@@ -61,7 +61,7 @@ angular
 
     function _goBack() {
       $ionicHistory.goBack();
-      //bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
     }
 
     function _onBeforeEnter(event, data) {
@@ -90,7 +90,7 @@ angular
           
         }
       );
-      //bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
     }
 
     function didPushBuyInstantly() {
