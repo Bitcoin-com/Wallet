@@ -6,47 +6,47 @@ angular
   .module('bitcoincom.controllers')
   .controller('buyBitcoinPaymentMethodsController', paymentMethodsController);
 
-  function paymentMethodsController($scope) {
+  function paymentMethodsController(
+    moonPayService
+    , $scope, $state
+  ) {
     var vm = this;
 
     // Functions
     vm.addPaymentMethod = addPaymentMethod;
+    vm.getIconPathFromName = getIconPathFromName;
     
     
     // Variables
     vm.defaultPaymentMethod = 'abc';
-
-    vm.paymentMethods = [
-      {
-        id: 'abc',
-        name: 'Visa',
-        partialCardNumber: '••• 2244',
-        expiryDate: '12/21'
-      },
-      {
-        id: 'def',
-        name: 'Visa',
-        partialCardNumber: '••• 2144',
-        expiryDate: '08/17',
-        isDefault: true
-      },
-      {
-        id: 'ghi',
-        name: 'Mastercard',
-        partialCardNumber: '••• 8743',
-        expiryDate: '09/22'
-      }
-    ];
+    vm.paymentMethods = [];
 
     var initialDefaultPaymentMethod = '';
 
     function addPaymentMethod() {
-      console.log('addPaymentMethod()');
+      $state.go('tabs.buybitcoin-add-card-form');
+    }
+
+    function getIconPathFromName(name) {
+      switch(name.toUpperCase()) {
+        case "VISA": 
+          return "img/buy-bitcoin/icon-visa.svg"
+        case "MASTERCARD": 
+          return "img/buy-bitcoin/icon-mastercard.svg"
+        default:
+          return "img/buy-bitcoin/icon-generic-card.svg";
+      }
     }
 
     function _initVariables() {
-      vm.defaultPaymentMethod = 'def';
-      initialDefaultPaymentMethod = vm.defaultPaymentMethod;
+      
+      // Get the default payment from moon pay service
+      // Here
+      // Update the default payment somewhere else by watching the defaultPayment variable.
+      
+      moonPayService.getCards().then(function(cards) {
+        vm.paymentMethods = cards;
+      });
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);

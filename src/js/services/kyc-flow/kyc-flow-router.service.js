@@ -24,7 +24,7 @@ angular
      */
     function start(state) {     
       if (state.customerId) {
-      
+        
       } else {
         $state.go('tabs.home').then(function () {
           $ionicHistory.clearHistory();
