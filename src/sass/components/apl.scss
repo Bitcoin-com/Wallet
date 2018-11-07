@@ -8,6 +8,15 @@
     padding: 0;
   }
 
+  .has-bottom-button {
+    // 86px for bottom button container
+    bottom: 86px;
+    // constant(safe-area-inset-bottom); /* iOS 11.0 */
+    bottom: calc(86px + constant(safe-area-inset-bottom));
+    // env(safe-area-inset-bottom));     /* iOS 11.2 */
+    bottom: calc(86px + env(safe-area-inset-bottom));
+  }
+
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -71,7 +80,7 @@
         color: #787878;
         font-size: 15px;
         font-weight: 500;
-        height: 20px;
+        //height: 20px;
         letter-spacing: -0.24px;
         line-height: 20px;
         text-align: left;
@@ -414,6 +423,10 @@
     & .apl-back-button span {
       margin-left: 2px;
     }
+  }
+
+  .bottom-button-shadow-spacer {
+    height: 20px;
   }
 
   .center {

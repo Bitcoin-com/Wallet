@@ -4038,3 +4038,18 @@ msgstr ""
 
 msgid "Waiting for exchange rate."
 msgstr ""
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr ""
+
+msgid "Select a BCH Wallet"
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr ""
+
+msgid "Failed to create transaction."
+msgstr ""
