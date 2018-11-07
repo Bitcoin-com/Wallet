@@ -25,8 +25,8 @@
             <label translate>
               Card Number
             </label>
-            <input required  type="text" placeholder="Required" ng-model="vm.card.number" name="number" maxlength="16"  ng-change="vm.handleCardNumberChange()" min="16"/>
-            <span class="val-err" ng-show="cardForm.number.$error.min" translate>
+            <input required type="text" placeholder="Required" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="16" ng-maxlength="16" maxlength="16"/>
+            <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
               Invalid card number
             </span>
         </div>
@@ -35,20 +35,23 @@
             <label translate>
               Expiration Date
             </label>
-            <input required type="text" placeholder="MM/YYYY" ng-model="vm.card.expiration" name="expiration" maxlength="7" ng-change="vm.handleExpirationChange()" ng-pattern="/\d{2}\/\d{4}/g"/>
-            <span class="val-err" ng-show="cardForm.expiration.$error.validExpiration" translate>
+            <input required type="text" placeholder="MM/YYYY" ng-model="vm.card.expiration" name="expiration" maxlength="7"  ng-pattern="/\d{2}\/\d{4}/"/>
+            <span class="validation-error" ng-show="cardForm.expiration.$error.pattern" translate>
+                Follow expected date format MM/YYYY
+            </span>
+            <span class="validation-error" ng-show="cardForm.expiration.$error.validExpiration" translate>
                 Invalid date
-            <span>
+            </span>
         </div>
         <div class="apl-divider"></div>
         <div class="apl-field apl-list-item">
             <label translate>
               CVC
             </label>
-            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" name="cvc" maxlength="3" ng-change="vm.handleSecurityChange()" min="3" max="4"/>
-            <span class="val-err" ng-show="cardForm.cvc.$error.min" translate>
+            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" name="cvc" ng-maxlength="3" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="3"/>
+            <span class="val-err" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
               Invalid security code
-            <span>
+            </span>
         </div>
       </form>
       <hr/>
