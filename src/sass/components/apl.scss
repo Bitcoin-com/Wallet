@@ -173,6 +173,25 @@
       }
     }
   }
+  &-field {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      caret-color: #FF9B00;
+      &::placeholder {
+        color: #D8D8D8;
+      }
+    }
+    .val-err {
+      color: #FA5B5B;
+      font-size: 12px;
+    }
+  }
+
   &-icon {
     background: #FA5B5B;
     border-radius: 10px 10px 10px 10px;

@@ -15,13 +15,15 @@ angular
     // Functions
     vm.didPushBack = didPushBack;
     vm.didPushAdd = didPushAdd;
-    
-    // Variables
-    vm.subtext = "Enter your card information."
-    vm.card = {};
+
+    vm.handleCardNumberChange = handleCardNumberChange;
+    vm.handleSecurityChange = handleSecurityChange;
+    vm.handleExpirationChange = handleExpirationChange;
+
+    var addCardInfoText = "Verify and complete your card information.";
+    var contactingText = "Contacting the card issuer.";
 
     function didPushAdd() {
-
       var splitExpirationDate = vm.card.expiration.trim().split('/');
       var card = {
         number: vm.card.number.trim(),
@@ -33,10 +35,9 @@ angular
       // Check if the card is valid
       if (!isValidCard(card)) {
         // Handle error message
-        console.log('not valid')
         return;
       } else {
-
+        vm.subtext = contactingText;
         // Send to moon pay
         moonPayService.createCard(card).then(function(card) {
           console.log(card)
@@ -52,12 +53,77 @@ angular
       $scope.$ionicGoBack();
     }
 
+    function handleCardNumberChange() {
+      // Clean up string
+      if(!vm.card.number) {
+        return;
+      }
+      vm.card.number = vm.card.number.replace(/\D/g,'');
+      if (isValidCardNumber() &&
+        isValidForm()) {
+          didPushAdd();
+        }
+    }
+
+    function handleSecurityChange() {
+      // Clean up string
+      if(!vm.card.cvc) {
+        return;
+      }
+      vm.card.cvc = vm.card.cvc.replace(/\D/g,'');
+      if (isValidSecurityCode() &&
+        isValidForm()) {
+          didPushAdd();
+      }
+    }
+
+    function handleExpirationChange() {
+      if (isValidExpiration() &&
+        isValidForm()) {
+          didPushAdd();
+      }
+    }
+
+    function isValidCardNumber() {
+      return vm.card.number && vm.card.number.length === 16;
+    }
+
+    function isValidSecurityCode() {
+      return vm.card.cvc && vm.card.cvc.length === 3;
+    }
+
+    function isValidExpiration() {
+      var now = new Date();
+      if (vm.card.expiration && vm.card.expiration.match(/\d{2}\/\d{4}/g,'')) {
+        var split = vm.card.expiration.split(/\//g);
+        return split[0].match(/[0-1]\d/) && 
+          parseInt(split[0]) <= 12 &&
+          parseInt(split[1]) >= now.getFullYear();
+      }
+      return false;
+    }
+
+    function isValidForm() {
+      return isValidCardNumber() &&
+        isValidSecurityCode() &&
+        isValidExpiration()
+    }
+
     function isValidCard(card) {
-      return card.number.length === 16 && card.cvc.length === 3 && card.expiration.length === 7;
+      var now = new Date();
+      return card.number.length === 16 && 
+      card.cvc.length === 3 && 
+      card.expiryMonth <= 12 &&
+      card.expiryYear >= now.getFullYear();
     }
 
     function _initVariables() {
-      vm.subtext = "Enter your card information.";
+      vm.subtext = addCardInfoText;
+      vm.card = { 
+        number: '',
+        expiration: '',
+        cvc: '',
+      };
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
@@ -65,8 +131,5 @@ angular
     function _onBeforeEnter(event, data) {
       _initVariables();
     }
-
   }
-
-
 })();
