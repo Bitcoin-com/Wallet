@@ -8,7 +8,8 @@ angular
 
   function paymentMethodsController(
     moonPayService
-    , $scope, $state
+    , gettextCatalog, popupService
+    , $scope, $state, $ionicHistory
   ) {
     var vm = this;
 
@@ -31,7 +32,8 @@ angular
       // Here
       // Update the default payment somewhere else by watching the defaultPayment variable.
       
-      moonPayService.getCards().then(function(cards) {
+      moonPayService.getCards().then(
+        function onGetCardsSuccess(cards) {
         vm.paymentMethods = cards;
         moonPayService.getDefaultCardId().then(
           function onGetDefaultCardIdSuccess(cardId) {
@@ -48,6 +50,17 @@ angular
             }
             initialPaymentMethod = vm.paymentMethod
           }
+        );
+      },
+      function onGetCardsError(err) {
+        var title = gettextCatalog.getString('Error Getting Payment Methods');
+        var message = err.message || gettextCatalog.getString('An error occurred when getting your payment methods.');
+        var okText = gettextCatalog.getString('Go Back');
+        popupService.showAlert(title, message, 
+          function onAlertDismissed() {
+            $ionicHistory.goBack();
+          }, 
+          okText
         );
       });
     }
