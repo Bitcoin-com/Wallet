@@ -13,7 +13,7 @@
 
     var defaultChannels = ['ga'];
     if (platformInfo.isCordova) {
-      defaultChannels = 'firebase';
+      defaultChannels = ['firebase'];
     }
 
     return service;
