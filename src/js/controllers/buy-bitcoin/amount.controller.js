@@ -60,22 +60,16 @@
     function _getPaymentMethods() {
       moonPayService.getCards().then(
         function onGetCardsSuccess(cards) {
-          vm.paymentMethodsAreLoading = false;
           console.log('cards:', cards);
-          if (cards && cards.length > 0) {
-
-            
-
-          }
-          
-          // else case is handled in view
-            /*vm.paymentMethod = {
-              name: 'Visa',
-              partialCardNumber: '••• 2244',
-              expiryDate: '12/21'
-            };
-            return;*/
-
+          moonPayService.getDefaultCardId().then(
+            function onGetDefaultCardIdSuccess(cardId) {
+              if (cardId == null && cards && cards.length > 0) {
+                vm.paymentMethod = card[0];
+                moonPayService.setDefaultCardId(card[0].id);
+              }
+            }
+          );
+          vm.paymentMethodsAreLoading = false;
         },
         function onGetCardsError(err) {
           var title = gettextCatalog.getString('Error Getting Payment Methods');
