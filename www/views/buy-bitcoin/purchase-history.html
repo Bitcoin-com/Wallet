@@ -10,6 +10,23 @@
   <ion-content class="apl ">
     <div id="buy-bitcoin-purchase-history">
       <h1 translate>Purchase History</h1>
+      <div class="apl-list">
+        <div ng-repeat="tx in vm.history">
+          <div class="item item-icon-left item-big-icon-left apl-list-item">
+              <i class="icon big-icon-svg">
+                <span class="apl-icon"></span>
+              </i>
+              <div class="apl-card__title__container">
+                <div class="apl-card__title">
+                  {{tx.walletName}}
+                </div>
+                <div class="apl-card__subtitle">
+                  {{tx.subtitle}}
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
   </div>
   </ion-content>
 </ion-view>
