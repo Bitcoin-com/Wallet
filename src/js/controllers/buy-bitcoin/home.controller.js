@@ -11,7 +11,6 @@ angular
     $filter,
     gettextCatalog,
     $ionicHistory, 
-    $log, 
     moonPayService,
     popupService, 
     $scope, 
@@ -61,12 +60,11 @@ angular
     }
 
     function _goBack() {
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
       $ionicHistory.goBack();
+      //bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
     }
 
     function _onBeforeEnter(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
       _initVariables();
 
       //$state.go('tabs.buybitcoin-welcome');
@@ -92,7 +90,7 @@ angular
           
         }
       );
-      
+      //bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
     }
 
     function didPushBuyInstantly() {
