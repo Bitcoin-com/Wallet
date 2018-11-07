@@ -269,10 +269,12 @@
       &:after {
         position: absolute;
         content: '';
-        // Color declaration using rgb() was required for Safari, including iOS.
-        // Tested in Safari 12.0.1
-        border-bottom: 1px solid rgb(229, 229, 229);
-        bottom: 1px;
+        // Setting the border does not work in Safari 12.0.1 or iOS.
+        // Sometimes the border gets rendered as black, regardless of the specified
+        //border-bottom: 1px solid rgb(229, 229, 229);
+        background-color: rgb(229, 229, 229);
+        height: 1px;
+        bottom: 0px;
         left: 16px;
         right: 16px;
       }
