@@ -1,0 +1,49 @@
+<ion-view id="tab-buy-bitcoin-add-card-form" class="apl" hide-tabs>
+    <ion-nav-bar>
+      <ion-nav-buttons side="primary">
+        <button class="button apl-back-button" ng-click="vm.didPushBack()">
+          <i class="icon ion-chevron-left"></i><span translate>Back</span>
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="secondary">
+        <button ng-click="vm.didPushAdd()" translate>Add</button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content id="add-card-form">
+      <div class="form-header">
+        <h1 translate>
+          Card Details
+        </h1>
+        <h5>
+          {{vm.subtext}}
+        </h1>
+      </div>
+      
+      <hr/>
+      <form class="apl-list">
+        <div>
+          <ion-item >
+              <label translate>
+                Card Number: 
+              </label>
+              <input required type="text" placeholder="Required" ng-model="vm.card.number"/>
+          </ion-item>
+        </div>
+        <div>
+            <ion-item class="apl-list-item">
+            <label translate>
+              Expiration Date: 
+            </label>
+            <input required type="text" placeholder="Required" ng-model="vm.card.expiration" />
+          </ion-item>
+          <ion-item >
+            <label translate>
+              CVC: 
+            </label>
+            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" />
+          </ion-item>
+        </div>
+      </form>
+      <hr/>
+    </ion-content>
+  </ion-view>

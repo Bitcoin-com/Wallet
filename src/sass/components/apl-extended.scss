@@ -1,0 +1,30 @@
+.apl {
+  &.terms {
+    .heading {
+      font-weight: bold;
+      color: $v-dark-gray;
+    }
+    ion-content{
+      padding-top: 1.5rem;
+      color: $v-dark-gray;
+      p {
+        padding: 0 2.5%;
+        margin: 2rem auto;
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+      ul {
+        padding: 0 2.5%;
+      }
+      li {
+        padding-left: 2.5%;
+
+        &::before{
+          content: "•";
+          padding-right: 2.5%;
+        }
+      }
+    }
+  }
+}

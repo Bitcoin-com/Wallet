@@ -7,35 +7,74 @@ angular
   .factory('kycFlowService', kycFlowService);
   
   function kycFlowService(
-    moonPayService
+    kycFlowStateService
     , kycFlowRouterService
-    , kycFlowStateService
-    , $log
+    , moonpayService
+    , ongoingProcess
+    , bitcoinUriService, payproService, bitcoinCashJsService
+    , popupService, gettextCatalog
+    , $state, $log
   ) {
 
     var service = {
-      // Variables
-      router: kycFlowRouterService,
-      state: kycFlowStateService,
 
       // Functions
       start: start,
-      nextStep: nextStep,
-      previousStep: previousStep,
+      goNext: goNext,
+      goBack: goBack
     };
 
     return service;
 
-    function start () {
-      
+    /**
+     * Start the Buy Bitcoin flow
+     */
+    function start() {
+      $log.debug('buy bitcoin start()');
+
+      ongoingProcess.set('gettingKycCustomerId', true);
+      moonpayService.getCustomerId(function onCustomerId(err, customerId){
+        ongoingProcess.set('gettingKycCustomerId', false);
+
+        if (err) {
+          $log.error('Error getting Moonpay customer ID. ' + err);
+          return;
+        }
+
+        $log.debug('Moonpay customer ID: ' + customerId);
+
+        kycFlowStateService.init({
+          customerId: customerId
+        });
+
+        kycFlowRouterService.start(kycFlowStateService.getClone());
+      });
     }
 
-    function nextStep () {
-      
+    /**
+     * Go to the next step
+     * @param {Object} state 
+     */
+    function goNext(state) {
+      $log.debug('kyc-flow goNext()');
+
+      // Save the current route before leaving
+      state.route = $state.current.name;
+
+      // Save the state and redirect the user
+      kycFlowStateService.push(state);
+      kycFlowRouterService.goNext();
     }
 
-    function previousStep () {
-      
+    /**
+     * Go to the previous step
+     */
+    function goBack() {
+      $log.debug('kyc-flow goBack()');
+
+      // Remove the state on top and redirect the user
+      kycFlowStateService.pop();
+      kycFlowRouterService.goBack();
     }
   }
 })();

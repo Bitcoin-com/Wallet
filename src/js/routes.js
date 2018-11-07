@@ -867,6 +867,28 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      
+      .state('tabs.buybitcoin-add-card-form', {
+        url: '/buy-bitcoin/add-card-form',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAddCardFormController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/add-card-form.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-terms', {
+        url: '/buy-bitcoin/terms',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/terms.html'
+          }
+        }
+      })
 
       .state('tabs.buybitcoin-welcome', {
         url: '/buy-bitcoin/welcome',
@@ -875,6 +897,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             controller: 'buyBitcoinWelcomeController',
             controllerAs: 'vm',
             templateUrl: 'views/buy-bitcoin/welcome.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-privacypolicy', {
+        url: '/buy-bitcoin/privacy-policy',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/privacy-policy.html'
           }
         }
       })
@@ -1301,6 +1334,59 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+
+      // Buy Bitcoin Welcome Screen
+
+      var actionBuyBitcoinWelcomeScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_welcome_screen_close', 
+        class: 'track_buy_bitcoin_welcome_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinWelcomeScreenClose);
+
+      // Buy Bitcoin Main Screen
+
+      var actionBuyBitcoinScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_close', 
+        class: 'track_buy_bitcoin_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinScreenClose);
+
+      var actionBuyBitcoinTapOnBuyInstantly = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_buy_instantly', 
+        class: 'track_buy_bitcoin_tap_on_buy_instantly',
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnBuyInstantly);
+
+      var actionBuyBitcoinTapOnPurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_purchase_history', 
+        class: 'track_buy_bitcoin_tap_on_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPurchaseHistory);
+
+      var actionBuyBitcoinTapOnPaymentMethods = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_payment_methods', 
+        class: 'track_buy_bitcoin_tap_on_payment_methods', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPaymentMethods);
+
+      var actionBuyBitcoinTapOnPrivacyPolicy = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_privacy_policy', 
+        class: 'track_buy_bitcoin_tap_on_privacy_policy', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPrivacyPolicy);
+
+      var actionBuyBitcoinTapOnTermsOfService = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_terms_of_service', 
+        class: 'track_buy_bitcoin_tap_on_terms_of_service', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnTermsOfService);
       
       // Init language
       uxLanguage.init(function (lang) {
