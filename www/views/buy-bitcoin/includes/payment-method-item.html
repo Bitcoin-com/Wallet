@@ -1,13 +1,13 @@
 <ion-radio ng-value="pm.id" ng-model="vm.defaultPaymentMethod">
   <div class="item item-icon-left item-big-icon-left">
     <i class="icon big-icon-svg">
-      <img src="{{vm.getIconPathFromName(pm.name)}}" />
+      <img src="{{vm.getIconPathFromName(pm.brand)}}" />
     </i>
     <div class="apl-card__title">
-        {{pm.name}} {{vm.name}}
+        {{pm.brand}} ••• {{pm.lastDigits}} 
     </div>
     <div class="apl-card__subtitle">
-        {{pm.partialCardNumber}} {{pm.expiryDate}}
+      {{pm.expiryMonth}}/{{pm.expiryYear}}
     </div>
   </div> 
 </ion-radio>
