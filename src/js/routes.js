@@ -1343,6 +1343,50 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinWelcomeScreenClose);
+
+      // Buy Bitcoin Main Screen
+
+      var actionBuyBitcoinScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_close', 
+        class: 'track_buy_bitcoin_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinScreenClose);
+
+      var actionBuyBitcoinTapOnBuyInstantly = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_buy_instantly', 
+        class: 'track_buy_bitcoin_tap_on_buy_instantly',
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnBuyInstantly);
+
+      var actionBuyBitcoinTapOnPurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_purchase_history', 
+        class: 'track_buy_bitcoin_tap_on_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPurchaseHistory);
+
+      var actionBuyBitcoinTapOnPaymentMethods = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_payment_methods', 
+        class: 'track_buy_bitcoin_tap_on_payment_methods', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPaymentMethods);
+
+      var actionBuyBitcoinTapOnPrivacyPolicy = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_privacy_policy', 
+        class: 'track_buy_bitcoin_tap_on_privacy_policy', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPrivacyPolicy);
+
+      var actionBuyBitcoinTapOnTermsOfService = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_tap_on_terms_of_service', 
+        class: 'track_buy_bitcoin_tap_on_terms_of_service', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnTermsOfService);
       
       // Init language
       uxLanguage.init(function (lang) {
