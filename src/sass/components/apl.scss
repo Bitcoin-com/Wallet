@@ -9,9 +9,12 @@
   }
 
   .has-bottom-button {
-    // 86px for button container + 20 for shadow
-    bottom: 86px;// + constant(safe-area-inset-bottom); /* iOS 11.0 */
-    bottom: 86px;// + env(safe-area-inset-bottom); /* iOS 11.2 */
+    // 86px for bottom button container
+    bottom: 86px;
+    // constant(safe-area-inset-bottom); /* iOS 11.0 */
+    bottom: calc(86px + constant(safe-area-inset-bottom));
+    // env(safe-area-inset-bottom));     /* iOS 11.2 */
+    bottom: calc(86px + env(safe-area-inset-bottom));
   }
 
   h1, h2 {
@@ -418,6 +421,10 @@
     & .apl-back-button span {
       margin-left: 2px;
     }
+  }
+
+  .bottom-button-shadow-spacer {
+    height: 20px;
   }
 
   .center {
