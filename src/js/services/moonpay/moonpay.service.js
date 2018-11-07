@@ -14,9 +14,14 @@ angular
   ) {
 
     var customerKey = 'moonPayCustomer'
+    var defaultWalletIdKey = 'moonPayDefaultWalletId'
+    var defaultCardIdKey = 'moonPayDefaultCardId'
     var currentCustomer = null;
     var currentCards = null;
     var currentTransactions = null;
+
+    var defaultWalletId = null;
+    var defaultCardId = null;
 
     var service = {
 
@@ -30,11 +35,18 @@ angular
       , createTransaction: createTransaction
       , getTransactions: getTransactions
       , getRates: getRates
+      , setDefaultWalletId: setDefaultWalletId
+      , getDefaultWalletId: getDefaultWalletId
+      , setDefaultCardId: setDefaultCardId
+      , getDefaultCardId: getDefaultCardId
       , start: start
     };
 
     return service;
 
+    /**
+     * Start the flow moonpay
+     */
     function start() {
       $log.debug('buy bitcoin start()');
 
@@ -56,6 +68,84 @@ angular
         }
 
       });
+    }
+
+    /**
+     * Set the default wallet id
+     * @param {String} walletId 
+     */
+    function setDefaultWalletId(walletId) {
+      localStorageService.set(defaultWalletIdKey, walletId, function onSaveWalletId(err) {
+        if (err) {
+          $log.debug('Error setting moonpay selected wallet id in the local storage');
+          deferred.reject(err);
+        } else {
+          defaultWalletId = walletId
+          deferred.resolve();
+        }
+      });
+    }
+
+    /**
+     * Get the default wallet id
+     * @param {String} walletId 
+     */
+    function getDefaultWalletId() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      if (defaultWalletId != null) {
+        deferred.resolve(defaultWalletId);
+      } else {
+        localStorageService.get(defaultWalletIdKey, function onGetWalletId(err, walletId) {
+          if (err) {
+            $log.debug('Error getting moonpay selected wallet id in the local storage');
+            deferred.reject(err);
+          } else {
+            defaultWalletId = walletId
+            deferred.resolve(defaultWalletId);
+          }
+        });
+      }
+    }
+
+    /**
+     * Set the default card id
+     * @param {String} cardId 
+     */
+    function setDefaultCardId(cardId) {
+      localStorageService.set(defaultCardIdKey, cardId, function onSaveCardId(err) {
+        if (err) {
+          $log.debug('Error setting moonpay selected card id in the local storage');
+          deferred.reject(err);
+        } else {
+          defaultCardId = cardId
+          deferred.resolve();
+        }
+      });
+    }
+
+    /**
+     * Get the default card id
+     * @param {String} cardId 
+     */
+    function getDefaultCardId() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      if (defaultCardId != null) {
+        deferred.resolve(defaultCardId);
+      } else {
+        localStorageService.get(defaultCardIdKey, function onGetCardId(err, cardId) {
+          if (err) {
+            $log.debug('Error getting moonpay selected card id in the local storage');
+            deferred.reject(err);
+          } else {
+            defaultCardId = cardId
+            deferred.resolve(defaultCardId);
+          }
+        });
+      }
     }
 
     /**
