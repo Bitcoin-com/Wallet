@@ -3981,3 +3981,75 @@ msgstr ""
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr ""
+
+msgid "Enter an email address."
+msgstr ""
+
+msgid "Must be a valid email address."
+msgstr ""
+
+msgid "Unable to Create Customer"
+msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr ""
+
+msgid "You have purchased {{vm.monthlyPurchased}} of your {{vm.monthlyLimit}} monthly limit."
+msgstr ""
+
+msgid "Buy Bitcoin Cash"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr ""
+
+msgid "Error Getting Customer Information"
+msgstr ""
+
+msgid "An error occurred when getting your customer information."
+msgstr ""
+
+msgid "Customer information was missing."
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr ""
+
+msgid "An error occurred when getting your payment methods."
+msgstr ""
+
+msgid "No Payment Methods"
+msgstr ""
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr ""
+
+msgid "Add Card"
+msgstr ""
+
+msgid "Getting rate..."
+msgstr ""
+
+msgid "Waiting for exchange rate."
+msgstr ""
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr ""
+
+msgid "Select a BCH Wallet"
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr ""
+
+msgid "Failed to create transaction."
+msgstr ""

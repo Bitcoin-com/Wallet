@@ -2,6 +2,21 @@
   background-color: #FFF;
   color: #000;
   padding: 40px 0px;
+
+  .fullscreen {
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  .has-bottom-button {
+    // 86px for bottom button container
+    bottom: 86px;
+    // constant(safe-area-inset-bottom); /* iOS 11.0 */
+    bottom: calc(86px + constant(safe-area-inset-bottom));
+    // env(safe-area-inset-bottom));     /* iOS 11.2 */
+    bottom: calc(86px + env(safe-area-inset-bottom));
+  }
+
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -65,7 +80,7 @@
         color: #787878;
         font-size: 15px;
         font-weight: 500;
-        height: 20px;
+        //height: 20px;
         letter-spacing: -0.24px;
         line-height: 20px;
         text-align: left;
@@ -214,6 +229,12 @@
       font-weight: bold;
       text-align: left;
       letter-spacing: -0.41px;
+
+      &.add {
+        ::before {
+          content: "+ ";
+        }
+      }
     }
     &__subtitle {
       height: 15px;
@@ -267,7 +288,9 @@
       &:after {
         position: absolute;
         content: '';
-        border-bottom: 1px solid #e5e5e5;
+        // Color declaration using rgb() was required for Safari, including iOS.
+        // Tested in Safari 12.0.1
+        border-bottom: 1px solid rgb(229, 229, 229);
         bottom: 1px;
         left: 16px;
         right: 16px;
@@ -372,6 +395,17 @@
     padding: 15px;
     text-align: center;
     width: 100%;
+    text-decoration: none;
+
+    &.unready {
+      background: rgba(255, 155, 0, 0.5);
+    }
+
+
+    &-container {
+      padding: 16px;
+    }
+
     &-bottom-container {
       background: #FFFFFF;
       bottom: 0px;
@@ -382,21 +416,20 @@
       padding: 18px 16px;
       position: fixed;
       width: 100%;
+      
+      &.no-shadow {
+        box-shadow: none;
+      }
+
     }
   }
 
-  /*
-  .apl-radio {
-    &:after {
-      position: absolute;
-      content: '';
-      border-bottom: 1px solid #000;// #e5e5e5;
-      height: 1px;
-      bottom: 1px;
-      left: 16px;
-      right: 16px;
+  &-button-bottom-container {
+    button {
+      font-family: 'ProximaNova';
+      line-height: normal;
     }
-  }*/
+  }
 
   .bar .buttons {
   
@@ -410,6 +443,30 @@
       margin-left: 2px;
     }
   }
+
+  .bottom-button-shadow-spacer {
+    height: 20px;
+  }
+
+  .center {
+    text-align: center;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .center-container {
+    text-align: center;
+
+    .center {
+      display: inline-block;
+    }
+  }
+
+  small {
+    color: rgba(0, 0, 0, 0.32);
+  }
+
+  
 
 }
 

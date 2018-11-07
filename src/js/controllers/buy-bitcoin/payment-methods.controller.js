@@ -14,28 +14,15 @@ angular
 
     // Functions
     vm.addPaymentMethod = addPaymentMethod;
-    vm.getIconPathFromName = getIconPathFromName;
-    
     
     // Variables
-    vm.defaultPaymentMethod = 'abc';
+    vm.paymentMethod = null;
     vm.paymentMethods = [];
 
-    var initialDefaultPaymentMethod = '';
+    var initialPaymentMethod = null;
 
     function addPaymentMethod() {
       $state.go('tabs.buybitcoin-add-card-form');
-    }
-
-    function getIconPathFromName(name) {
-      switch(name.toUpperCase()) {
-        case "VISA": 
-          return "img/buy-bitcoin/icon-visa.svg"
-        case "MASTERCARD": 
-          return "img/buy-bitcoin/icon-mastercard.svg"
-        default:
-          return "img/buy-bitcoin/icon-generic-card.svg";
-      }
     }
 
     function _initVariables() {
@@ -46,6 +33,22 @@ angular
       
       moonPayService.getCards().then(function(cards) {
         vm.paymentMethods = cards;
+        moonPayService.getDefaultCardId().then(
+          function onGetDefaultCardIdSuccess(cardId) {
+            if (cardId == null && cards && cards.length > 0) {
+              vm.paymentMethod = cards[0];
+              moonPayService.setDefaultCardId(cards[0].id);
+            } else {
+              for (var i=0; i<cards.length; ++i) {
+                if (cards[i].id == cardId) {
+                  vm.paymentMethod = cards[i].id;
+                  break;
+                }
+              }
+            }
+            initialPaymentMethod = vm.paymentMethod
+          }
+        );
       });
     }
 
@@ -57,7 +60,10 @@ angular
     }
 
     function _onBeforeLeave(event, data) {
-      var defaultWasChanged = initialDefaultPaymentMethod !== vm.defaultPaymentMethod;
+      var defaultWasChanged = initialPaymentMethod !== vm.paymentMethod;
+      if (defaultWasChanged) {
+        moonPayService.setDefaultCardId(vm.paymentMethod)
+      }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
 
