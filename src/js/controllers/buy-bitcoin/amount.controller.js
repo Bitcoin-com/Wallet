@@ -8,6 +8,7 @@
   function amountController(
     configService, 
     gettextCatalog,
+    $interval,
     $ionicHistory,
     $log,
     moonPayService, 
@@ -21,6 +22,7 @@
     vm.onAmountChanged = onAmountChanged;
     vm.onBuy = onBuy;
 
+    var exchangeRateRefreshInterval = null;
     var walletId = '';
 
     function _initVariables() {
@@ -41,10 +43,15 @@
         expiryDate: '12/21'
       };
       */
+      if (exchangeRateRefreshInterval) {
+        $interval.cancel(exchangeRateRefreshInterval);
+      }
+      exchangeRateRefreshInterval = $interval(_refreshTheExchangeRate, 5000);
       vm.wallet = null;
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     // Override for testing
     //var walletId = '693923fb-0554-45a5-838f-6efa26ca917e'; // Backed Up Dev
@@ -85,7 +92,6 @@
     }
 
     function _getRates() {
-      console.warn('_getRates()');
 
       moonPayService.getRates('bch').then(
         function onGetRatesSuccess(rates) {
@@ -96,6 +102,8 @@
         },
         function onGetRatesError(err) {
           console.error('Rates error.', err);
+          vm.rateUsd = 0;
+          // TODO: Display error
         }
       );
     }
@@ -118,6 +126,10 @@
         }
       }
       $scope.wallet = vm.wallet;
+    }
+
+    function onAmountChanged() {
+      _updateAmount();
     }
 
     function _onBeforeEnter() {
@@ -148,9 +160,12 @@
 
     }
 
-    function onAmountChanged() {
-      _updateAmount();
+    function _onBeforeLeave() {
+      if (exchangeRateRefreshInterval) {
+        $interval.cancel(exchangeRateRefreshInterval);
+      }
     }
+    
 
     function onBuy() {
       var title = gettextCatalog.getString('Unable to Purchase');
@@ -200,8 +215,10 @@
           popupService.showAlert(title, message);
         }
       );
+    }
 
-
+    function _refreshTheExchangeRate(intervalCount) {
+      _getRates();
     }
   }
 })();
