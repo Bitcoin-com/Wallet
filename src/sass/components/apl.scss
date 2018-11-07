@@ -186,9 +186,8 @@
         color: #D8D8D8;
       }
     }
-    .val-err {
-      color: #FA5B5B;
-      font-size: 12px;
+    .validation-error {
+      color: $v-warning-color-2;;
     }
   }
 

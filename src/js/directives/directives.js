@@ -170,14 +170,16 @@ angular.module('copayApp.directives')
     return {
       require: 'ngModel',
       link: function(scope, elem, attr, ctrl) {
-        var now = new Date();
-        if (attr.expiration && attr.expiration.match(/\d{2}\/\d{4}/g,'')) {
-          var split = attr.expiration.split(/\//g);
-          return split[0].match(/[0-1]\d/) &&
-            parseInt(split[0]) <= 12 &&
-            parseInt(split[1]) >= now.getFullYear();
-        }
-        return false;
+        ctrl.$validators.validExpiration = function(modelValue, viewValue) {
+          var now = new Date();
+          if (attr.expiration && attr.expiration.match(/\d{2}\/\d{4}/,'')) {
+            var split = attr.expiration.split(/\//);
+            return parseInt(split[0]) <= 12 &&
+              parseInt(split[0]) > 0 &&
+              parseInt(split[1]) >= now.getFullYear();
+          }
+          return false;
+        };
       }
     }
   });

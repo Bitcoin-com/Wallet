@@ -7,8 +7,9 @@ angular
   .controller('buyBitcoinAddCardFormController', addCardFormController);
 
   function addCardFormController(
-    moonPayService
-    , $scope
+    moonPayService,
+    popupService,
+    $scope,
   ) {
     var vm = this;
 
@@ -18,12 +19,19 @@ angular
 
     vm.handleCardNumberChange = handleCardNumberChange;
     vm.handleSecurityChange = handleSecurityChange;
-    vm.handleExpirationChange = handleExpirationChange;
 
     var addCardInfoText = "Verify and complete your card information.";
     var contactingText = "Contacting the card issuer.";
 
     function didPushAdd() {
+      // Check if the card is valid
+      if (!isValidForm()) {
+        var title = "Unable to Add Card";
+        var message = getFormErrors();
+        popupService.showAlert(title, message);
+        return;
+      }
+
       var splitExpirationDate = vm.card.expiration.trim().split('/');
       var card = {
         number: vm.card.number.trim(),
@@ -31,22 +39,19 @@ angular
         expiryYear: parseInt(splitExpirationDate[1]),
         cvc: vm.card.cvc.trim()
       }
-     
-      // Check if the card is valid
-      if (!isValidCard(card)) {
-        // Handle error message
+
+      vm.subtext = contactingText;
+      // Send to moon pay
+      moonPayService.createCard(card).then(function(card) {
+        $scope.$ionicGoBack();
+      }, function (err) {
+        // Handle the error
+        var title = "Unable to Add card";
+        var message = err;
+        popupService.showAlert(title, message);
+        console.log(err);
         return;
-      } else {
-        vm.subtext = contactingText;
-        // Send to moon pay
-        moonPayService.createCard(card).then(function(card) {
-          console.log(card)
-          $scope.$ionicGoBack();
-        }, function (err) {
-          // Handle the error
-          console.log(err);
-        });
-      }
+      });
     }
 
     function didPushBack() {
@@ -54,34 +59,19 @@ angular
     }
 
     function handleCardNumberChange() {
-      // Clean up string
       if(!vm.card.number) {
         return;
       }
+      // Clean up string
       vm.card.number = vm.card.number.replace(/\D/g,'');
-      if (isValidCardNumber() &&
-        isValidForm()) {
-          didPushAdd();
-        }
     }
 
     function handleSecurityChange() {
-      // Clean up string
       if(!vm.card.cvc) {
         return;
       }
+      // Clean up string
       vm.card.cvc = vm.card.cvc.replace(/\D/g,'');
-      if (isValidSecurityCode() &&
-        isValidForm()) {
-          didPushAdd();
-      }
-    }
-
-    function handleExpirationChange() {
-      if (isValidExpiration() &&
-        isValidForm()) {
-          didPushAdd();
-      }
     }
 
     function isValidCardNumber() {
@@ -94,10 +84,10 @@ angular
 
     function isValidExpiration() {
       var now = new Date();
-      if (vm.card.expiration && vm.card.expiration.match(/\d{2}\/\d{4}/g,'')) {
-        var split = vm.card.expiration.split(/\//g);
-        return split[0].match(/[0-1]\d/) && 
-          parseInt(split[0]) <= 12 &&
+      if (vm.card.expiration && vm.card.expiration.match(/\d{2}\/\d{4}/,'')) {
+        var split = vm.card.expiration.split(/\//);
+        return parseInt(split[0]) <= 12 &&
+          parseInt(split[0]) > 0 &&
           parseInt(split[1]) >= now.getFullYear();
       }
       return false;
@@ -106,13 +96,27 @@ angular
     function isValidForm() {
       return isValidCardNumber() &&
         isValidSecurityCode() &&
-        isValidExpiration()
+        isValidExpiration();
+    }
+
+    function getFormErrors() {
+      if(!isValidCardNumber()) {
+        return "Card number is invalid. Check your card and try again."
+      }
+      if(!isValidSecurityCode()) {
+        return "CVC number is invalid. Check your card and try again."
+      }
+      if(!isValidExpiration()) {
+        return "Expiration date is invalid. Check your card and try again."
+      }
+      return false;
     }
 
     function isValidCard(card) {
       var now = new Date();
       return card.number.length === 16 && 
       card.cvc.length === 3 && 
+      card.expiryMonth > 0 &&
       card.expiryMonth <= 12 &&
       card.expiryYear >= now.getFullYear();
     }
