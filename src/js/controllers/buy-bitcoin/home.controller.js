@@ -22,10 +22,6 @@ angular
     // Functions
     vm.onBuyInstantly = onBuyInstantly;
 
-    // Functions - Short because the appear in translatable strings
-    vm.onPp = onPrivacyPolicy;
-    vm.onTos = onTermsOfService;
-
     function _initVariables() {
       vm.monthlyLimit = '-';
       vm.monthlyPurchased = '-';
