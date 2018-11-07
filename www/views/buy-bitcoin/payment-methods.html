@@ -1,0 +1,60 @@
+<ion-view id="tab-buy-bitcoin-amount" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button translate>Edit</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <h1 translate>
+      Payment Methods
+    </h1>
+    <div class="apl-list">
+      <div ng-repeat="pm in vm.paymentMethods">
+        <div class="" ng-include="'views/buy-bitcoin/includes/payment-method-item.html'"></div>
+      </div>
+      <div ng-If="vm.paymentMethods.length === 0" class="item apl-list-item">
+        <p><span translate>No stored debit or credit cards.</span></p>
+      </div>
+      <!--<div class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">
+          <i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              Fake
+            </div>
+            <div class="apl-card__subtitle">
+              ••• 1234 56/78
+            </div>
+          </div>
+        </div>-->
+      <a class="item apl-list-item" ng-click="vm.addPaymentMethod()">
+        <p>+ <span translate>Add Credit or Debit Card</span></p>
+      </a>
+      <!--<ion-radio ng-model="choice" ng-value="'A'">
+        <div class="item item-icon-left item-big-icon-left">
+          <i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>
+          <div class="apl-card__title">
+            Fake
+          </div>
+          <div class="apl-card__subtitle">
+            ••• 1234 56/78
+          </div>
+        </div> 
+      </ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>-->
+    </div>
+
+
+
+
+  </ion-content>
+</ion-view>

@@ -835,6 +835,83 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin', {
+        url: '/buy-bitcoin',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinHomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/home.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-amount', {
+        url: '/buy-bitcoin/amount',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAmountController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/amount.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-paymentmethods', {
+        url: '/buy-bitcoin/payment-methods',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPaymentMethodsController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/payment-methods.html'
+          }
+        }
+      })
+      
+      .state('tabs.buybitcoin-add-card-form', {
+        url: '/buy-bitcoin/add-card-form',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAddCardFormController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/add-card-form.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-terms', {
+        url: '/buy-bitcoin/terms',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/terms.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-welcome', {
+        url: '/buy-bitcoin/welcome',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinWelcomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/welcome.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-privacypolicy', {
+        url: '/buy-bitcoin/privacy-policy',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/privacy-policy.html'
+          }
+        }
+      })
+
       /*
        *
        * Glidera
@@ -1180,7 +1257,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buyBitcoinComService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
     $ionicPlatform.ready(function() { 
 
@@ -1257,6 +1334,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+
+      // Buy Bitcoin Welcome Screen
+
+      var actionBuyBitcoinWelcomeScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_welcome_screen_close', 
+        class: 'track_buy_bitcoin_welcome_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinWelcomeScreenClose);
       
       // Init language
       uxLanguage.init(function (lang) {
