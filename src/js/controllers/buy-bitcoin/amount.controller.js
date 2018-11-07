@@ -10,12 +10,11 @@
     gettextCatalog,
     $interval,
     $ionicHistory,
-    $log,
     moonPayService, 
     ongoingProcess,
     popupService,
     profileService, 
-    $scope
+    $scope, $timeout
     ) {
 
     var vm = this;
@@ -23,7 +22,6 @@
     vm.onBuy = onBuy;
 
     var exchangeRateRefreshInterval = null;
-    var walletId = '';
 
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
@@ -61,15 +59,12 @@
     function _getPaymentMethods() {
       moonPayService.getCards().then(
         function onGetCardsSuccess(cards) {
-          console.log('cards:', cards);
           moonPayService.getDefaultCardId().then(
             function onGetDefaultCardIdSuccess(cardId) {
               if (cardId == null && cards && cards.length > 0) {
                 vm.paymentMethod = cards[0];
                 moonPayService.setDefaultCardId(cards[0].id);
-                console.log(cards[0].id)
               } else {
-                console.log(cardId)
                 for (var i=0; i<cards.length; ++i) {
                   if (cards[i].id == cardId) {
                     vm.paymentMethod = cards[i];
@@ -113,23 +108,22 @@
     }
 
     function _getWallet() {
-      
-      if (walletId) {
-        console.log('walletId: "' + walletId +'"');
-        vm.wallet = profileService.getWallet(walletId);
-      } else {
-        var walletOpts = {
-          coin: 'bch'
-        };
-        var wallets = profileService.getWallets(walletOpts);
-        console.log('wallet count: ' + wallets.length);
-        if (wallets.length > 0) {
-          vm.wallet = wallets[0];
-        } else {
-          vm.wallet = null;
+      moonPayService.getDefaultWalletId().then(
+        function onGetDefaultWalletIdSuccess(walletId) {
+          if (walletId == null && wallets && wallets.length > 0) {
+            var wallets = profileService.getWallets({
+              coin: 'bch'
+            });
+            vm.wallet = wallets[0];
+            moonPayService.setDefaultWalletId(wallets[0].id);
+          } else {
+            vm.wallet = profileService.getWallet(walletId);
+          }
+          $scope.wallet = vm.wallet;
+          console.log('wallets:', vm.wallet);
+          console.log('walletId:', walletId);
         }
-      }
-      $scope.wallet = vm.wallet;
+      );
     }
 
     function onAmountChanged() {
@@ -146,9 +140,11 @@
         console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
       });
 
-      _getWallet();
-      _getPaymentMethods();
-      _getRates();
+      $timeout(function () {
+        _getPaymentMethods();
+        _getWallet();
+        _getRates();
+      }, 200);
     }
 
     function _updateAmount() {
