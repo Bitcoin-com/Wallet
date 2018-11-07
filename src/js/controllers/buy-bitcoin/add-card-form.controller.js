@@ -7,8 +7,9 @@ angular
   .controller('buyBitcoinAddCardFormController', addCardFormController);
 
   function addCardFormController(
-    moonPayService
-    , $scope
+    moonPayService,
+    popupService,
+    $scope,
   ) {
     var vm = this;
 
@@ -23,6 +24,14 @@ angular
     var contactingText = "Contacting the card issuer.";
 
     function didPushAdd() {
+      // Check if the card is valid
+      if (!isValidForm()) {
+        var title = "Unable to Add Card";
+        var message = getFormErrors();
+        popupService.showAlert(title, message);
+        return;
+      }
+
       var splitExpirationDate = vm.card.expiration.trim().split('/');
       var card = {
         number: vm.card.number.trim(),
@@ -30,22 +39,19 @@ angular
         expiryYear: parseInt(splitExpirationDate[1]),
         cvc: vm.card.cvc.trim()
       }
-     
-      // Check if the card is valid
-      if (!isValidCard(card)) {
-        // Handle error message
+
+      vm.subtext = contactingText;
+      // Send to moon pay
+      moonPayService.createCard(card).then(function(card) {
+        $scope.$ionicGoBack();
+      }, function (err) {
+        // Handle the error
+        var title = "Unable to Add card";
+        var message = err;
+        popupService.showAlert(title, message);
+        console.log(err);
         return;
-      } else {
-        vm.subtext = contactingText;
-        // Send to moon pay
-        moonPayService.createCard(card).then(function(card) {
-          console.log(card)
-          $scope.$ionicGoBack();
-        }, function (err) {
-          // Handle the error
-          console.log(err);
-        });
-      }
+      });
     }
 
     function didPushBack() {
@@ -53,18 +59,18 @@ angular
     }
 
     function handleCardNumberChange() {
-      // Clean up string
       if(!vm.card.number) {
         return;
       }
+      // Clean up string
       vm.card.number = vm.card.number.replace(/\D/g,'');
     }
 
     function handleSecurityChange() {
-      // Clean up string
       if(!vm.card.cvc) {
         return;
       }
+      // Clean up string
       vm.card.cvc = vm.card.cvc.replace(/\D/g,'');
     }
 
@@ -83,6 +89,25 @@ angular
         return parseInt(split[0]) <= 12 &&
           parseInt(split[0]) > 0 &&
           parseInt(split[1]) >= now.getFullYear();
+      }
+      return false;
+    }
+
+    function isValidForm() {
+      return isValidCardNumber() &&
+        isValidSecurityCode() &&
+        isValidExpiration();
+    }
+
+    function getFormErrors() {
+      if(!isValidCardNumber()) {
+        return "Card number is invalid. Check your card and try again."
+      }
+      if(!isValidSecurityCode()) {
+        return "CVC number is invalid. Check your card and try again."
+      }
+      if(!isValidExpiration()) {
+        return "Expiration date is invalid. Check your card and try again."
       }
       return false;
     }

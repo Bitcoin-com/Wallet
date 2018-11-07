@@ -49,7 +49,7 @@
               CVC
             </label>
             <input required type="text" placeholder="Required" ng-model="vm.card.cvc" name="cvc" ng-maxlength="3" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="3"/>
-            <span class="val-err" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
+            <span class="validation-error" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
               Invalid security code
             </span>
         </div>
