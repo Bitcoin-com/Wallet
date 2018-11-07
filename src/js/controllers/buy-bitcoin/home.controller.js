@@ -7,11 +7,9 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
-    bitAnalyticsService,
     $filter,
     gettextCatalog,
     $ionicHistory, 
-    $log, 
     moonPayService,
     popupService, 
     $scope, 
@@ -26,9 +24,6 @@ angular
     function _initVariables() {
       vm.monthlyLimit = '-';
       vm.monthlyPurchased = '-';
-
-      vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
-      vm.termsOfService = 'tabs.buybitcoin-tos'
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
@@ -61,16 +56,13 @@ angular
     }
 
     function _goBack() {
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
+      var log = new window.BitAnalytics.LogEvent("buy_bitcoin_screen_close", [], ['leanplum']);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
       $ionicHistory.goBack();
     }
 
     function _onBeforeEnter(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
       _initVariables();
-
-      //$state.go('tabs.buybitcoin-welcome');
-      //return;
 
       moonPayService.getCustomerId().then(
         function onCustomerIdSuccess(customerId) {
@@ -89,10 +81,11 @@ angular
           popupService.showAlert(title, message, function onAlert(){
             _goBack();
           });
-          
         }
       );
-      
+
+      var log = new window.BitAnalytics.LogEvent("buy_bitcoin_screen_open", [], ['leanplum']);
+      window.BitAnalytics.LogEventHandlers.postEvent(log);
     }
 
     function didPushBuyInstantly() {
