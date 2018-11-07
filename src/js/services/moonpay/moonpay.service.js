@@ -48,6 +48,9 @@ angular
      * @param {String} walletId 
      */
     function setDefaultWalletId(walletId) {
+      // Create the promise
+      var deferred = $q.defer();
+
       localStorageService.set(defaultWalletIdKey, walletId, function onSaveWalletId(err) {
         if (err) {
           $log.debug('Error setting moonpay selected wallet id in the local storage');
@@ -57,6 +60,8 @@ angular
           deferred.resolve();
         }
       });
+
+      return deferred.promise;
     }
 
     /**
@@ -80,6 +85,8 @@ angular
           }
         });
       }
+
+      return deferred.promise;
     }
 
     /**
@@ -87,6 +94,9 @@ angular
      * @param {String} cardId 
      */
     function setDefaultCardId(cardId) {
+      // Create the promise
+      var deferred = $q.defer();
+
       localStorageService.set(defaultCardIdKey, cardId, function onSaveCardId(err) {
         if (err) {
           $log.debug('Error setting moonpay selected card id in the local storage');
@@ -96,6 +106,8 @@ angular
           deferred.resolve();
         }
       });
+
+      return deferred.promise;
     }
 
     /**
@@ -119,6 +131,8 @@ angular
           }
         });
       }
+
+      return deferred.promise;
     }
 
     /**
