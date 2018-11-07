@@ -43,10 +43,10 @@
         <div class="apl-divider"></div>
         <div class="apl-field apl-list-item">
             <label translate>
-              Security Code
+              CVC
             </label>
-            <input required type="text" placeholder="Required" ng-model="vm.card.security" name="security" maxlength="3" ng-change="vm.handleSecurityChange()" min="3" max="4"/>
-            <span class="val-err" ng-show="cardForm.security.$error.min" translate>
+            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" name="cvc" maxlength="3" ng-change="vm.handleSecurityChange()" min="3" max="4"/>
+            <span class="val-err" ng-show="cardForm.cvc.$error.min" translate>
               Invalid security code
             <span>
         </div>

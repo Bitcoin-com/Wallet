@@ -175,7 +175,6 @@ angular.module('copayApp.directives')
           var split = attr.expiration.split(/\//g);
           return split[0].match(/[0-1]\d/) &&
             parseInt(split[0]) <= 12 &&
-            parseInt(split[0]) >= now.getMonth() &&
             parseInt(split[1]) >= now.getFullYear();
         }
         return false;
