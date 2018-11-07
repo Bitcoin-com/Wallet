@@ -433,7 +433,14 @@
     text-align: center;
     margin-left: 16px;
     margin-right: 16px;
+  }
 
+  .center-container {
+    text-align: center;
+
+    .center {
+      display: inline-block;
+    }
   }
 
   small {
