@@ -11,68 +11,100 @@ angular
 
     // Functions
     vm.backButtonPressed = backButtonPressed;
-    vm.nextPressed = nextPressed;
-    vm.nextIsActive = nextIsActive;
     vm.validateCardNumber = validateCardNumber;
-    vm.validateExpirationDate = validateExpirationDate;
-    
-    // Variables
-    vm.currentPage = 0;
-    vm.subtext = ""
-    vm.card = {};
+    vm.validateExpiration = validateExpiration;
+    vm.validateSecurityCode = validateSecurityCode;
 
+    vm.handleCardNumberChange = handleCardNumberChange;//.bind(this);
+    vm.handleSecurityChange = handleSecurityChange;//.bind(this);
+    vm.handleExpirationChange = handleExpirationChange;//.bind(this);
+    vm.submitCard = submitCard;
+    vm.validatePage = validatePage;
 
     var verifyNameText = "Verify and complete your card information.";
-    var verifyExpirationText = "Enter your card information.";
-    var initialCurrentPage = 0;
+    var contactingText = "Contacting the card issuer.";
     var initialSubtext = verifyNameText;
 
     function backButtonPressed() {
-      if (this.currentPage === 0) {
         $scope.$ionicGoBack();
-      } else {
-        this.currentPage = this.currentPage - 1;
-        this.subtext = this.verifyNameText;
-      }
     }
     
-    function nextPressed() {
-      if(this.currentPage === 0) {
-        this.currentPage = 1;
-        this.subtext = this.verifyExpirationText;
-      } else {
-        // Submit to Page
-        console.log('nextPressed(), submit form');
+    function submitCard() {
+      vm.subtext = contactingText;
+      // TODO - Implement MoonPay Card Verification
+      // TODO - Implement MoonPay Card Add
+      // TODO - Implement MoonPay Card Selection
+      return new Promise(function(resolve, reject) {
+        $scope.$ionicGoBack();
+        resolve();
+      });
+
+    }
+
+    function handleCardNumberChange() {
+      // Clean up string
+      if(!vm.card.number) {
+        return;
+      }
+      vm.card.number = vm.card.number.replace(/\D/g,'');
+      if (vm.validateCardNumber() &&
+        vm.validatePage()) {
+          vm.submitCard();
+        }
+    }
+
+    function handleSecurityChange() {
+      // Clean up string
+      if(!vm.card.security) {
+        return;
+      }
+      vm.card.security = vm.card.security.replace(/\D/g,'');
+      if (vm.validateSecurityCode() &&
+        vm.validatePage()) {
+          vm.submitCard();
       }
     }
 
-    function nextIsActive() {
-      if(this.currentPage === 0) {
-        return validatePage0()
+    function handleExpirationChange() {
+      if (vm.validateExpiration() &&
+        vm.validatePage()) {
+          vm.submitCard();
       }
-      return validatePage1();
-    }
-
-    function validatePage0() {
-      return validateCardNumber() && vm.card.name.length > 0;
-    }
-
-    function validatePage1() {
-      return validateExpirationDate() && vm.card.security.length >= 3;
     }
 
     function validateCardNumber() {
-      return vm.card.number.length === 19;
+      return vm.card.number && vm.card.number.length === 16;
     }
 
-    function validateExpirationDate() {
-      console.log('validateExpirationDate');
-      return true;
+    function validateSecurityCode() {
+      return vm.card.security && vm.card.security.length === 3;
+    }
+
+    function validateExpiration() {
+      var now = new Date();
+      if (vm.card.expiration && vm.card.expiration.match(/\d{2}\/\d{4}/g,'')) {
+        var split = vm.card.expiration.split(/\//g);
+        return split[0].match(/[0-1]\d/) && 
+          parseInt(split[0]) <= 12 &&
+          parseInt(split[0]) >= now.getMonth() &&
+          parseInt(split[1]) >= now.getFullYear();
+      }
+      return false;
+    }
+
+    function validatePage() {
+      return vm.validateCardNumber() &&
+        vm.validateSecurityCode() &&
+        vm.validateExpiration()
     }
 
     function _initVariables() {
-      vm.currentPage = initialCurrentPage;
       vm.subtext = initialSubtext;
+      vm.card = { 
+        number: '',
+        expiration: '',
+        security: '',
+      };
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
@@ -86,8 +118,5 @@ angular
       var defaultWasChanged = initialDefaultPaymentMethod !== vm.defaultPaymentMethod;
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
-
   }
-
-
 })();
