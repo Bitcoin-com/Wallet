@@ -8,6 +8,12 @@
     padding: 0;
   }
 
+  .has-bottom-button {
+    // 86px for button container + 20 for shadow
+    bottom: 86px;// + constant(safe-area-inset-bottom); /* iOS 11.0 */
+    bottom: 86px;// + env(safe-area-inset-bottom); /* iOS 11.2 */
+  }
+
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -71,7 +77,7 @@
         color: #787878;
         font-size: 15px;
         font-weight: 500;
-        height: 20px;
+        //height: 20px;
         letter-spacing: -0.24px;
         line-height: 20px;
         text-align: left;

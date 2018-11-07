@@ -1,20 +1,13 @@
-#buy-bitcoin-amount {
-  color: red;
 
-  & .scroll-content {
-    margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-    margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
-    overflow-y: auto;
+//#buy-bitcoin-amount {
 
-    padding-bottom: 0;
-  }
+ // & .scroll-content {
+    //margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+    //margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+    //overflow-y: auto;
 
-  #apl-content {
-    align-items: stretch;
-    display: flex;
-    height: 99%;
-    flex-direction: column;
-    justify-content: space-between;
-  }
+    //padding-bottom: 0;
+  //}
 
-}
+
+//}
