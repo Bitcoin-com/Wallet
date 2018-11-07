@@ -15,14 +15,11 @@
 
     function _initVariables() {
       vm.history = [];
-      vm.history.push({
-        walletName: 'sdfd',
-        subtitle: 'subdfd'
-      });
-      vm.history.push({
-        walletName: 'sdfd2',
-        subtitle: 'subdfd2'
-      });
+      moonPayService.getTransactions().then(
+        function onGetTransactionsSuccess(transactions) {
+          vm.history = transactions;
+        }
+      );
     }
 
     function _onBeforeEnter() {

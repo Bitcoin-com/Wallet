@@ -19,7 +19,7 @@
             <payment-method-item pm="pm"></payment-method-item>
         </ion-radio>
       </div>
-      <div ng-If="vm.paymentMethods.length === 0" class="item apl-list-item">
+      <div ng-if="vm.paymentMethods.length === 0" class="item apl-list-item">
         <p><span translate>No stored debit or credit cards.</span></p>
       </div>
       <!--<div class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">

@@ -11,6 +11,9 @@
     <div id="buy-bitcoin-purchase-history">
       <h1 translate>Purchase History</h1>
       <div class="apl-list">
+        <div ng-if="vm.history.length === 0" class="item apl-list-item">
+          <p><span translate>No transactions.</span></p>
+        </div>
         <div ng-repeat="tx in vm.history">
           <div class="item item-icon-left item-big-icon-left apl-list-item">
               <i class="icon big-icon-svg">
