@@ -15,7 +15,7 @@
     </h1>
     <div class="apl-list">
       <div ng-repeat="pm in vm.paymentMethods">
-        <ion-radio ng-value="pm.id" ng-model="vm.defaultPaymentMethod">
+        <ion-radio ng-value="pm.id" ng-model="vm.paymentMethod">
             <payment-method-item pm="pm"></payment-method-item>
         </ion-radio>
       </div>
