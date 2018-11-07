@@ -7,9 +7,10 @@ angular
   .factory('moonPayService', moonPayService);
   
   function moonPayService(
-    moonPayApiService,
-    localStorageService,
-    $log, $q
+    moonPayApiService
+    , localStorageService
+    , moonPayRouterService
+    , $log, $q
   ) {
 
     var customerKey = 'moonPayCustomer'
@@ -23,7 +24,6 @@ angular
     var defaultCardId = null;
 
     var service = {
-      // Variables
 
       // Functions
       createCustomer: createCustomer
@@ -39,9 +39,36 @@ angular
       , getDefaultWalletId: getDefaultWalletId
       , setDefaultCardId: setDefaultCardId
       , getDefaultCardId: getDefaultCardId
+      , start: start
     };
 
     return service;
+
+    /**
+     * Start the flow moonpay
+     */
+    function start() {
+      $log.debug('buy bitcoin start()');
+
+      ongoingProcess.set('gettingKycCustomerId', true);
+      getCustomerId(function onCustomerId(err, customerId){
+        ongoingProcess.set('gettingKycCustomerId', false);
+
+        if (err) {
+          $log.error('Error getting Moonpay customer ID. ' + err);
+          return;
+        }
+
+        $log.debug('Moonpay customer ID: ' + customerId);
+
+        if (customerId != null) {
+          moonPayRouterService.startFromHome();
+        } else {
+          moonPayRouterService.startFromWelcome();
+        }
+
+      });
+    }
 
     /**
      * Set the default wallet id

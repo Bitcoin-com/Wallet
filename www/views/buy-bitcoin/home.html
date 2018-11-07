@@ -1,0 +1,39 @@
+<ion-view id="tab-buy-bitcoin" class="apl" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl fullscreen">
+    <div id="apl-content">
+      <div class="image-container">
+        <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
+      </div>
+      <h1 class="center" translate>
+        Buy Bitcoin Cash (BCH)
+      </h1>
+      <p class="center" translate>You have purchased {{vm.monthlyPurchased}} of your {{vm.monthlyLimit}} monthly limit.</p>
+      <div class="apl-button-container">
+        <div class="apl-button" ng-click="vm.onBuyInstantly()" translate>Buy Bitcoin Cash</div>
+      </div>
+      <div>
+        <h1 translate>
+          Quick Links
+        </h1>
+        <div class="apl-list">
+          <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-paymentmethods">
+              <p translate>Purchase History</p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
+            <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-paymentmethods">
+              <p translate>Payment Methods</p>
+              <i class="icon bp-arrow-right"></i>
+            </a>
+        </div>
+      </div>
+      <small class="center" translate>See our <a ui-sref="tabs.buybitcoin-terms">Terms of Service</a> & <a ui-sref="tabs.buybitcoin-privacypolicy">Privacy Policy</a></small>
+    </div>
+  </ion-content>
+</ion-view>
