@@ -260,7 +260,9 @@
       &:after {
         position: absolute;
         content: '';
-        border-bottom: 1px solid #e5e5e5;
+        // Color declaration using rgb() was required for Safari, including iOS.
+        // Tested in Safari 12.0.1
+        border-bottom: 1px solid rgb(229, 229, 229);
         bottom: 1px;
         left: 16px;
         right: 16px;
@@ -418,7 +420,14 @@
     text-align: center;
     margin-left: 16px;
     margin-right: 16px;
+  }
 
+  .center-container {
+    text-align: center;
+
+    .center {
+      display: inline-block;
+    }
   }
 
   small {
