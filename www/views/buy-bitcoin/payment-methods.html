@@ -16,12 +16,20 @@
       Payment Methods
     </h1>
     <div class="apl-list">
-      <div ng-repeat="pm in vm.paymentMethods">
+      <div ng-repeat="pm in vm.paymentMethods" ng-if="!vm.paymentMethodsAreLoading">
         <ion-radio ng-value="pm.id" ng-model="vm.paymentMethod">
             <payment-method-item pm="pm"></payment-method-item>
         </ion-radio>
       </div>
-      <div ng-if="vm.paymentMethods.length === 0" class="item apl-list-item">
+      <div class="item apl-list-item" ng-if="vm.paymentMethodsAreLoading">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">&nbsp;</div>
+          <div class="apl-card__subtitle" translate>
+            Loading...
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.paymentMethods.length === 0 && !vm.paymentMethodsAreLoading" class="item apl-list-item">
         <p><span translate>No stored debit or credit cards.</span></p>
       </div>
       <!--<div class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">

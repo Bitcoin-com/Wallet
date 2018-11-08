@@ -31,7 +31,8 @@ angular
       // Get the default payment from moon pay service
       // Here
       // Update the default payment somewhere else by watching the defaultPayment variable.
-      
+      vm.paymentMethodsAreLoading = true;
+
       moonPayService.getCards().then(
         function onGetCardsSuccess(cards) {
         vm.paymentMethods = cards;
@@ -49,6 +50,10 @@ angular
               }
             }
             initialPaymentMethod = vm.paymentMethod
+            vm.paymentMethodsAreLoading = false;
+          },
+          function onGetDefaultCardIdError() {
+            vm.paymentMethodsAreLoading = false;
           }
         );
       },
@@ -62,6 +67,7 @@ angular
           }, 
           okText
         );
+        vm.paymentMethodsAreLoading = false;
       });
     }
 
