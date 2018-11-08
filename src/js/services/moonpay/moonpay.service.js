@@ -8,7 +8,7 @@ angular
   
   function moonPayService(
     moonPayApiService
-    , localStorageService
+    , storageService
     , moonPayRouterService
     , $log, $q
   ) {
@@ -78,7 +78,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      localStorageService.set(defaultWalletIdKey, walletId, function onSaveWalletId(err) {
+      storageService.setItem(defaultWalletIdKey, walletId, function onSaveWalletId(err) {
         if (err) {
           $log.debug('Error setting moonpay selected wallet id in the local storage');
           deferred.reject(err);
@@ -102,7 +102,7 @@ angular
       if (defaultWalletId != null) {
         deferred.resolve(defaultWalletId);
       } else {
-        localStorageService.get(defaultWalletIdKey, function onGetWalletId(err, walletId) {
+        storageService.getItem(defaultWalletIdKey, function onGetWalletId(err, walletId) {
           if (err) {
             $log.debug('Error getting moonpay selected wallet id in the local storage');
             deferred.reject(err);
@@ -124,7 +124,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      localStorageService.set(defaultCardIdKey, cardId, function onSaveCardId(err) {
+      storageService.setItem(defaultCardIdKey, cardId, function onSaveCardId(err) {
         if (err) {
           $log.debug('Error setting moonpay selected card id in the local storage');
           deferred.reject(err);
@@ -148,7 +148,7 @@ angular
       if (defaultCardId != null) {
         deferred.resolve(defaultCardId);
       } else {
-        localStorageService.get(defaultCardIdKey, function onGetCardId(err, cardId) {
+        storageService.getItem(defaultCardIdKey, function onGetCardId(err, cardId) {
           if (err) {
             $log.debug('Error getting moonpay selected card id in the local storage');
             deferred.reject(err);
@@ -171,7 +171,7 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.createCustomer(email).then(function onCreateCustomerSuccess(customer) {
-        localStorageService.set(customerKey, customer, function onSaveCustomer(err) {
+        storageService.setItem(customerKey, customer, function onSaveCustomer(err) {
           if (err) {
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
@@ -196,11 +196,11 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      // Get the customer in the localStorageService if we didn't do it yet
+      // Get the customer in the storageService if we didn't do it yet
       if (currentCustomer != null) {
         deferred.resolve(currentCustomer);
       } else {
-        localStorageService.get(customerKey, function onGetCustomerFromStorage(err, customer) {
+        storageService.getItem(customerKey, function onGetCustomerFromStorage(err, customer) {
           if (err) {
             $log.debug('Error getting moonpay customer in the local storage');
             deferred.reject(err);
@@ -243,7 +243,7 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.updateCustomer(customer).then(function onUpdateCustomerSuccess(customer) {
-        localStorageService.set(customerKey, customer, function onSaveCustomer(err) {
+        storageService.setItem(customerKey, customer, function onSaveCustomer(err) {
           if (err) {
             $log.debug('Error setting moonpay customer in the local storage');
             deferred.reject(err);
