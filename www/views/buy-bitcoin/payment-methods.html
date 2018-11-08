@@ -6,7 +6,7 @@
       </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="secondary">
-      <button class="button apl-back-button" ng-click="vm.didPushAdd()">
+      <button class="button apl-back-button" ng-click="vm.onEdit()">
         <span translate>Edit</span>
       </button>
     </ion-nav-buttons>
@@ -18,7 +18,7 @@
     <div class="apl-list">
       <div ng-repeat="pm in vm.paymentMethods" ng-if="!vm.paymentMethodsAreLoading">
         <ion-radio ng-value="pm.id" ng-model="vm.paymentMethod">
-            <payment-method-item pm="pm"></payment-method-item>
+            <payment-method-item editing="vm.editing" pm="pm"></payment-method-item>
         </ion-radio>
       </div>
       <div class="item apl-list-item" ng-if="vm.paymentMethodsAreLoading">

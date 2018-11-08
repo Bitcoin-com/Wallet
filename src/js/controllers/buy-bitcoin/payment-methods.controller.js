@@ -15,8 +15,10 @@ angular
 
     // Functions
     vm.addPaymentMethod = addPaymentMethod;
+    vm.onEdit = onEdit;
     
     // Variables
+    vm.editing = true;
     vm.paymentMethod = null;
     vm.paymentMethods = [];
     vm.paymentMethodsAreLoading = true;
@@ -84,6 +86,11 @@ angular
         moonPayService.setDefaultCardId(vm.paymentMethod)
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
+    }
+
+    function onEdit() {
+      vm.editing = !vm.editing;
+      console.log('vm.editing:', vm.editing);
     }
 
   }

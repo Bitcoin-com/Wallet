@@ -310,6 +310,35 @@
           left: 68px;
           right: 16px;
         }
+
+        &.editing {
+          padding-left: 112px;
+
+          .big-icon-svg {
+            padding: 0 0 0 60px;
+
+            &.delete {
+              padding: 0 0 0 16px;
+
+              img {
+                height: 22px;
+                width: 22px;
+              }
+            }
+          }
+
+          &:after {
+            left: 112px;
+          }
+
+          /*
+          .delete {
+            .big-icon-svg {
+              padding: 0 0 0 16px;
+            }
+          }*/
+        }
+
       }
 
       & .coming-soon {

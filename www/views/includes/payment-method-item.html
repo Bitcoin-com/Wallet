@@ -1,6 +1,9 @@
-<div class="item item-icon-left item-big-icon-left">
+<div class="item item-icon-left item-big-icon-left" ng-class="{ 'editing' : vm.editing }">
   <i class="icon big-icon-svg">
     <img src="{{vm.getIconPathFromName(pm.brand)}}" />
+  </i>
+  <i class="icon big-icon-svg delete" ng-if="vm.editing">
+      <img src="img/buy-bitcoin/icon-delete.svg" />
   </i>
   <div class="apl-card__title">
       {{pm.brand}} ••• {{pm.lastDigits}} 

@@ -3,7 +3,9 @@
 (function(){
 /**
  * @desc payment method directive for buy bitcoin with moonpay
- * @example <payment-method-item value="fee.value" pm="pm"></payment-method-item>
+ * editing attribute is optional, defaults to false.
+ * 
+ * @example <payment-method-item editing="vm.editing" pm="pm"></payment-method-item>
  */
   angular
     .module('bitcoincom.directives')
@@ -11,6 +13,7 @@
       return {
         restrict: 'E',
         scope: {
+          editing: '=editing',
           pm: '=pm'
         },
         templateUrl: 'views/includes/payment-method-item.html',
@@ -22,7 +25,15 @@
     $scope.vm = {};
     var vm = $scope.vm;
 
+    vm.editing = !!$scope.editing;
+    console.log('vm.editing: ', vm.editing);
+    console.log('$scope.editing: ', $scope.editing);
     vm.getIconPathFromName = getIconPathFromName;
+
+    $scope.$watch('editing', function onWatchEditing(){
+      console.log('Updating editing.');
+      vm.editing = $scope.editing;
+    });
 
     function getIconPathFromName(name) {
       switch(name.toUpperCase()) {
