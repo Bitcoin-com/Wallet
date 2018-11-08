@@ -195,10 +195,14 @@
 
       ongoingProcess.set('buyingBch', true);
 
-      walletService.getAddress(vm.wallet, true, function (err, toAddress) {
+      walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
         if (err) {
+          ongoingProcess.set('buyingBch', false);
           console.log(err);
-          // Handle the error
+
+          message = err.message || gettext.getString('Could not create address');
+          popupService.showAlert(title, message);
+          return;
         }
 
         var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
