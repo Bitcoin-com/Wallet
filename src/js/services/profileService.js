@@ -1114,7 +1114,7 @@ angular.module('copayApp.services')
             };
             
             if (addressFound) {
-              cb(wallet);
+              cb(null, wallet);
             } else {
               getAddressesForNextWallet(walletIndex + 1);
             }

@@ -29,10 +29,10 @@
             </i>
             <div class="apl-card__title__container">
               <div class="apl-card__title">
+                  <div class="right">
+                      {{ tx.baseCurrencyAmount | currency:'USD ':2}}
+                    </div>
                 {{tx.walletName || tx.walletAddress}}
-                <div class="right">
-                  {{ tx.baseCurrencyAmount | currency:'USD ':2}}
-                </div>
               </div>
               <div></div>
               <div class="apl-card__subtitle">

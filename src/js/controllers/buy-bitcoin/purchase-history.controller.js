@@ -54,7 +54,12 @@
 
         //tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
         
-        profileService.getWalletFromAddress(tx.walletAddress, 'bch', function onWallet(wallet) {
+        profileService.getWalletFromAddress(tx.walletAddress, 'bch', function onWallet(err, wallet) {
+          if (err) {
+            $log.error('Error getting wallet from address. ' + err.message || '');
+            return;
+          }
+
           if (wallet) {
             console.log('wallet found, name:', wallet.name);
             $scope.$apply(function(){
@@ -68,13 +73,9 @@
 
       });
 
-      
       transactions.sort(function compare(a, b){
-        return a.createdTime < b.createdTime;
+        return b.createdTime - a.createdTime;
       });
-      
-
-      
 
       vm.history = transactions;
     }
