@@ -218,7 +218,6 @@
             ongoingProcess.set('buyingBch', false);
 
             console.log('Transaction', newTransaction);
-            _submitTransactionStats(newTransaction);
 
             $ionicHistory.nextViewOptions({
               disableAnimation: true,
@@ -248,10 +247,6 @@
 
     function _refreshTheExchangeRate(intervalCount) {
       _getRates();
-    }
-
-    function _submitTransactionStats(transaction) {
-      // TODO
     }
   }
 })();
