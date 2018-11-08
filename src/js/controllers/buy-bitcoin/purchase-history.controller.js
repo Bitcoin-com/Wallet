@@ -7,8 +7,9 @@
       .controller('buyBitcoinPurchaseHistoryController', purchaseHistoryController);
 
   function purchaseHistoryController(
-    popupService,
-    $scope, $ionicHistory
+    moonPayService
+    , popupService
+    , $scope, $ionicHistory
   ) {
     var vm = this;
 

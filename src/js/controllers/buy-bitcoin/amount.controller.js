@@ -6,15 +6,9 @@
       .controller('buyBitcoinAmountController', amountController);
 
   function amountController(
-    configService, 
-    gettextCatalog,
-    $interval,
-    $ionicHistory,
-    moonPayService, 
-    ongoingProcess,
-    popupService,
-    profileService, 
-    $scope, $timeout
+    configService , gettextCatalog, ongoingProcess, popupService, bitcoinCashJsService
+    , moonPayService, profileService, walletService
+    , $interval, $ionicHistory, $scope, $timeout
     ) {
 
     var vm = this;
@@ -200,21 +194,36 @@
       }
 
       ongoingProcess.set('buyingBch', true);
-      // TODO: Create transaction
-      var transaction = {};
-      moonPayService.createTransaction(transaction).then(
-        function onCreateTransactionSuccess(newTransaction) {
-          ongoingProcess.set('buyingBch', false);
-          // TODO: Redirect to success screen
-        },
-        function onCreateTransactionError(err) {
-          ongoingProcess.set('buyingBch', false);
 
-          title = gettextCatalog.getString('Purchase Failed');
-          message = err.message || gettextCatalog.getString('Failed to create transaction.');
-          popupService.showAlert(title, message);
+      walletService.getAddress(vm.wallet, true, function (err, toAddress) {
+        if (err) {
+          console.log(err);
+          // Handle the error
         }
-      );
+
+        var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+
+        // TODO: Create transaction
+        var transaction = {
+          baseCurrencyAmount: vm.inputAmount
+          , currencyCode: 'bch'
+          , cardId: vm.paymentMethod.id
+          , walletAddress: 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy'
+        };
+        moonPayService.createTransaction(transaction).then(
+          function onCreateTransactionSuccess(newTransaction) {
+            ongoingProcess.set('buyingBch', false);
+            // TODO: Redirect to success screen
+          },
+          function onCreateTransactionError(err) {
+            ongoingProcess.set('buyingBch', false);
+
+            title = gettextCatalog.getString('Purchase Failed');
+            message = err.message || gettextCatalog.getString('Failed to create transaction.');
+            popupService.showAlert(title, message);
+          }
+        );
+      });
     }
 
     function _refreshTheExchangeRate(intervalCount) {

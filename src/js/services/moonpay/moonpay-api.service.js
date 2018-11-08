@@ -76,9 +76,11 @@ angular
       try {
         message = Object.values(response.data.errors[0].constraints)[0];
       } catch(e) {
-        if (Math.floor(response.status / 100) !== 2) { // 2xx HTTP Status code, considered success.
+        if (response.data.message) {
+          message = response.data.message;
+        } else if (Math.floor(response.status / 100) !== 2) { // 2xx HTTP Status code, considered success.
           message = response.statusText;
-        } 
+        }
       }
 
       if (message) {
