@@ -7,8 +7,10 @@
       .controller('buyBitcoinPurchaseHistoryController', purchaseHistoryController);
 
   function purchaseHistoryController(
-    moonPayService
+    bitcoinCashJsService
+    , moonPayService
     , popupService
+    , profileService
     , $scope, $ionicHistory
   ) {
     var vm = this;
@@ -46,15 +48,31 @@
 
     function _prepareTransactionsForDisplay(transactions) {
       console.log('transaction: ', transactions[0]);
-      /*
-      transactions.sort(function compare(a, b){
-
-      });
-      */
+      
       transactions.forEach(function onTransaction(tx){
         tx.createdTime = Date.parse(tx.createdAt);
 
+        //tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
+        
+        profileService.getWalletFromAddress(tx.walletAddress, 'bch', function onWallet(wallet) {
+          if (wallet) {
+            console.log('wallet found, name:', wallet.name);
+            $scope.$apply(function(){
+              tx.walletColor = wallet.color;
+              tx.walletName = wallet.name;
+            });
+          } else {
+            console.log('wallet missing');
+          }
+        });
+
       });
+
+      
+      transactions.sort(function compare(a, b){
+        return a.createdTime < b.createdTime;
+      });
+      
 
       
 

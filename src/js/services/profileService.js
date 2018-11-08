@@ -8,7 +8,9 @@ angular.module('copayApp.services')
     var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     var isIOS = platformInfo.isIOS;
 
-    var root = {};
+    var root = {
+      getWalletFromAddress: getWalletFromAddress
+    };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
 
@@ -1085,6 +1087,43 @@ angular.module('copayApp.services')
           });
         });
       });
+    }
+
+    function getWalletFromAddress(legacyAddress, coin, cb) {
+      var wallets = root.getWallets({ coin: coin });
+
+      getAddressesForNextWallet(0);
+
+      function getAddressesForNextWallet(walletIndex) {
+        if (walletIndex < wallets.length) {
+          var wallet = wallets[walletIndex];
+          var addressFound = false;
+          wallet.getMainAddresses({}, function onAddresses(err, addresses) {
+            if (err) {
+              $log.error('Error getting addresses.', err.message);
+              return cb(err);
+            }
+
+            console.log('Addresses: ', addresses);
+            var addressCount = addresses.length;
+            for (var i = 0; i < addressCount; i++) {
+              if (addresses[i].address === legacyAddress) {
+                addressFound = true;
+                break;
+              }
+            };
+            
+            if (addressFound) {
+              cb(wallet);
+            } else {
+              getAddressesForNextWallet(walletIndex + 1);
+            }
+          });
+        } else {
+          cb(null);
+        }
+      }
+
     }
 
     return root;

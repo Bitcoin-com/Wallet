@@ -207,11 +207,14 @@
 
         var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
 
+        // override for testing
+        //toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
+
         var transaction = {
           baseCurrencyAmount: vm.inputAmount
           , currencyCode: 'bch'
           , cardId: vm.paymentMethod.id
-          , walletAddress: 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy'
+          , walletAddress: toAddress
         };
         moonPayService.createTransaction(transaction).then(
           function onCreateTransactionSuccess(newTransaction) {

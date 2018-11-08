@@ -24,25 +24,25 @@
         </div>
         <div ng-repeat="tx in vm.history" ng-if="!vm.transactionsAreLoading">
           <div class="item item-icon-left item-big-icon-left apl-list-item">
-              <i class="icon big-icon-svg">
-                <span class="apl-icon"></span>
-              </i>
-              <div class="apl-card__title__container">
-                <div class="apl-card__title">
-                  {{tx.walletAddress}}
-                  <div class="right">
-                    {{ tx.baseCurrencyAmount | currency:'USD ':2}}
-                  </div>
+            <i class="icon big-icon-svg">
+              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !tx.walletColor}" ng-style="{'background-color': tx.walletColor}" class="bg"/>
+            </i>
+            <div class="apl-card__title__container">
+              <div class="apl-card__title">
+                {{tx.walletName || tx.walletAddress}}
+                <div class="right">
+                  {{ tx.baseCurrencyAmount | currency:'USD ':2}}
                 </div>
-                <div></div>
-                <div class="apl-card__subtitle">
-                  {{ tx.createdTime | date:'medium' }}
-                  <div class="right">
-                    <formatted-amount value="{tx.quoteCurrencyAmount}" currency="bch"></formatted-amount>
-                  </div>
+              </div>
+              <div></div>
+              <div class="apl-card__subtitle">
+                {{ tx.createdTime | date:'medium' }}
+                <div class="right">
+                  <formatted-amount value="{{tx.quoteCurrencyAmount}}" currency="bch"></formatted-amount>
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
   </div>
