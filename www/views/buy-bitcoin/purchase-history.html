@@ -11,10 +11,18 @@
     <div id="buy-bitcoin-purchase-history">
       <h1 translate>Purchase History</h1>
       <div class="apl-list">
-        <div ng-if="vm.history.length === 0" class="item apl-list-item">
+        <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.transactionsAreLoading">
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">&nbsp;</div>
+            <div class="apl-card__subtitle" translate>
+              Loading...
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.history.length === 0 && !vm.transactionsAreLoading" class="item apl-list-item">
           <p><span translate>No transactions.</span></p>
         </div>
-        <div ng-repeat="tx in vm.history">
+        <div ng-repeat="tx in vm.history" ng-if="!vm.transactionsAreLoading">
           <div class="item item-icon-left item-big-icon-left apl-list-item">
               <i class="icon big-icon-svg">
                 <span class="apl-icon"></span>

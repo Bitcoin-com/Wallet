@@ -14,6 +14,7 @@
     var vm = this;
 
     vm.history = [];
+    vm.transactionsAreLoading = true;
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
@@ -22,6 +23,7 @@
       moonPayService.getTransactions().then(
         function onGetTransactionsSuccess(transactions) {
           vm.history = transactions;
+          vm.transactionsAreLoading = false;
         },
         function onGetTransactionsError(err) {
           var title = gettextCatalog.getString('Error Getting Transaction History');
@@ -33,6 +35,7 @@
             }, 
             okText
           );
+          vm.transactionsAreLoading = false;
         }
       );
     }
