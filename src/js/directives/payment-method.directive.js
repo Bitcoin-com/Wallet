@@ -25,14 +25,14 @@
     $scope.vm = {};
     var vm = $scope.vm;
 
-    vm.editing = !!$scope.editing;
-    console.log('vm.editing: ', vm.editing);
-    console.log('$scope.editing: ', $scope.editing);
+    vm.isEditing = !!$scope.editing;
     vm.getIconPathFromName = getIconPathFromName;
+    vm.onDeleteClicked = onDeleteClicked;
+
+    $scope.onDeleteClicked = onDeleteClicked;
 
     $scope.$watch('editing', function onWatchEditing(){
-      console.log('Updating editing.');
-      vm.editing = $scope.editing;
+      vm.isEditing = $scope.editing;
     });
 
     function getIconPathFromName(name) {
@@ -44,6 +44,10 @@
         default:
           return "img/buy-bitcoin/icon-generic-card.svg";
       }
+    }
+
+    function onDeleteClicked() {
+      console.log('onDeleteClicked()');
     }
   }
 })();

@@ -18,7 +18,7 @@ angular
     vm.onEdit = onEdit;
     
     // Variables
-    vm.editing = true;
+    vm.editing = false;
     vm.paymentMethod = null;
     vm.paymentMethods = [];
     vm.paymentMethodsAreLoading = true;
@@ -90,7 +90,6 @@ angular
 
     function onEdit() {
       vm.editing = !vm.editing;
-      console.log('vm.editing:', vm.editing);
     }
 
   }

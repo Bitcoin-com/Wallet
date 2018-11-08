@@ -1,8 +1,8 @@
-<div class="item item-icon-left item-big-icon-left" ng-class="{ 'editing' : vm.editing }">
+<div class="item item-icon-left item-big-icon-left" ng-class="{ 'editing' : vm.isEditing }">
   <i class="icon big-icon-svg">
     <img src="{{vm.getIconPathFromName(pm.brand)}}" />
   </i>
-  <i class="icon big-icon-svg delete" ng-if="vm.editing">
+  <i class="icon big-icon-svg delete" ng-click="vm.onDeleteClicked()" ng-if="vm.isEditing">
       <img src="img/buy-bitcoin/icon-delete.svg" />
   </i>
   <div class="apl-card__title">
