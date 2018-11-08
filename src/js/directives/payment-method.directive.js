@@ -14,7 +14,7 @@
         restrict: 'E',
         scope: {
           editing: '=editing',
-          pm: '=pm'
+          pm: '=pm',
         },
         templateUrl: 'views/includes/payment-method-item.html',
         controller: paymentMethodItemController
@@ -25,8 +25,9 @@
     $scope.vm = {};
     var vm = $scope.vm;
 
+    vm.iconPath = getIconPathFromName($scope.pm.brand);
     vm.isEditing = !!$scope.editing;
-    vm.getIconPathFromName = getIconPathFromName;
+    //vm.getIconPathFromName = getIconPathFromName;
     vm.onDeleteClicked = onDeleteClicked;
 
     $scope.onDeleteClicked = onDeleteClicked;
@@ -48,6 +49,7 @@
 
     function onDeleteClicked() {
       console.log('onDeleteClicked()');
+      $scope.$emit('paymentMethodDelete', { id: $scope.pm.id });
     }
   }
 })();
