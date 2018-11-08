@@ -231,6 +231,7 @@
       font-weight: bold;
       text-align: left;
       letter-spacing: -0.41px;
+      text-overflow: ellipsis;
 
       &.add {
         ::before {
