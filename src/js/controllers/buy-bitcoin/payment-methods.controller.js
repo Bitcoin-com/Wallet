@@ -25,7 +25,7 @@ angular
     vm.paymentMethodsAreLoading = true;
 
     var defaultCardId = '';
-    var initialPaymentMethod = null;
+    var initialPaymentMethodId = '';
 
     function addPaymentMethod() {
       $state.go('tabs.buybitcoin-add-card-form');
@@ -60,7 +60,7 @@ angular
                 }
               }
             }
-            initialPaymentMethod = vm.paymentMethod
+            initialPaymentMethodId = vm.paymentMethod.id
             vm.paymentMethodsAreLoading = false;
           },
           function onGetDefaultCardIdError() {
@@ -89,9 +89,9 @@ angular
     }
 
     function _onBeforeLeave(event, data) {
-      var defaultWasChanged = initialPaymentMethod !== vm.paymentMethod;
+      var defaultWasChanged = vm.paymentMethod && initialPaymentMethodId !== vm.paymentMethod.id;
       if (defaultWasChanged) {
-        moonPayService.setDefaultCardId(vm.paymentMethod)
+        moonPayService.setDefaultCardId(vm.paymentMethod.id)
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
