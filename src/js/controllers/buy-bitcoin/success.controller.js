@@ -7,6 +7,7 @@
 
   function successController(
     $ionicHistory,
+    moonPayService,
     $scope,
     $state,
     ) {
@@ -25,6 +26,15 @@
     function _onBeforeEnter() {
       console.log('_onBeforeEnter()');
       _initVariables();
+
+      moonPayService.getDefaultWalletId().then(
+        function onGetDefaultWalletIdSuccess(walletId) {
+
+        },
+        function onGetDefaultWalletIdError(err) {
+
+        }
+      );
     }
 
     function onDone() {
