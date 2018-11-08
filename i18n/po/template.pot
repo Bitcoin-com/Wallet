@@ -4053,3 +4053,12 @@ msgstr ""
 
 msgid "Failed to create transaction."
 msgstr ""
+
+# Success
+
+msgid "Go to Wallet"
+msgstr ""
+
+msgid "Go to {{vm.walletName}}"
+msgstr ""
+

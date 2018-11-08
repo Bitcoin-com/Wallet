@@ -331,6 +331,12 @@
         }
       }
 
+      &.unready {
+        p {
+          color: #7f7f7f;
+        }
+      }
+
     }
     .item-icon-left .icon {
       left: 0;
