@@ -8,7 +8,7 @@
   function amountController(
     configService , gettextCatalog, ongoingProcess, popupService, bitcoinCashJsService
     , moonPayService, profileService, walletService
-    , $interval, $ionicHistory, $scope, $timeout
+    , $interval, $ionicHistory, $scope, $state, $timeout
     ) {
 
     var vm = this;
@@ -23,7 +23,7 @@
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
-        processingFee: 10,
+        processingFee: 10, // TODO: Use correct amount for this
         total: 0
       };
       vm.paymentMethod = null;
@@ -207,7 +207,6 @@
 
         var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
 
-        // TODO: Create transaction
         var transaction = {
           baseCurrencyAmount: vm.inputAmount
           , currencyCode: 'bch'
@@ -217,7 +216,24 @@
         moonPayService.createTransaction(transaction).then(
           function onCreateTransactionSuccess(newTransaction) {
             ongoingProcess.set('buyingBch', false);
-            // TODO: Redirect to success screen
+
+            console.log('Transaction', newTransaction);
+            _submitTransactionStats(newTransaction);
+
+            $ionicHistory.nextViewOptions({
+              disableAnimation: true,
+              historyRoot: true
+            });
+            $state.go('tabs.home').then(
+              function() {
+                $state.go('tabs.buybitcoin').then(
+                  function () {
+                    $state.go('tabs.buybitcoin-success');
+                  }
+                );
+              }
+            );
+
           },
           function onCreateTransactionError(err) {
             ongoingProcess.set('buyingBch', false);
@@ -232,6 +248,10 @@
 
     function _refreshTheExchangeRate(intervalCount) {
       _getRates();
+    }
+
+    function _submitTransactionStats(transaction) {
+      // TODO
     }
   }
 })();
