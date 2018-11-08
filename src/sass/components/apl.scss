@@ -237,14 +237,23 @@
           content: "+ ";
         }
       }
+
+      & .right {
+        float: right;
+      }
     }
     &__subtitle {
+      clear: both;
       height: 15px;
       color: #808080;
       font-size: 13px;
       font-weight: 500;
       text-align: left;
       letter-spacing: -0.2px;
+
+      & .right {
+        float: right;
+      }
     }
   }
   &-divider {

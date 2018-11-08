@@ -30,9 +30,16 @@
               <div class="apl-card__title__container">
                 <div class="apl-card__title">
                   {{tx.walletAddress}}
+                  <div class="right">
+                    {{ tx.baseCurrencyAmount | currency:'USD ':2}}
+                  </div>
                 </div>
+                <div></div>
                 <div class="apl-card__subtitle">
-                  {{tx.baseCurrencyAmount}} USD
+                  {{ tx.createdTime | date:'medium' }}
+                  <div class="right">
+                    <formatted-amount value="{tx.quoteCurrencyAmount}" currency="bch"></formatted-amount>
+                  </div>
                 </div>
               </div>
             </div>

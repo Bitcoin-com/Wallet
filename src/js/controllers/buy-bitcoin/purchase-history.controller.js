@@ -22,8 +22,8 @@
       vm.history = [];
       moonPayService.getTransactions().then(
         function onGetTransactionsSuccess(transactions) {
-          vm.history = transactions;
           vm.transactionsAreLoading = false;
+          _prepareTransactionsForDisplay(transactions);
         },
         function onGetTransactionsError(err) {
           var title = gettextCatalog.getString('Error Getting Transaction History');
@@ -42,6 +42,23 @@
 
     function _onBeforeEnter() {
       _initVariables();
+    }
+
+    function _prepareTransactionsForDisplay(transactions) {
+      console.log('transaction: ', transactions[0]);
+      /*
+      transactions.sort(function compare(a, b){
+
+      });
+      */
+      transactions.forEach(function onTransaction(tx){
+        tx.createdTime = Date.parse(tx.createdAt);
+
+      });
+
+      
+
+      vm.history = transactions;
     }
 
   }
