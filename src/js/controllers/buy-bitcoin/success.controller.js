@@ -50,6 +50,8 @@
           // Can't do much, leave in unknown wallet state
         }
       );
+
+      console.log('moonpay tx id: ',  $state.params.moonpayTxId);
     }
 
     function onDone() {

@@ -933,7 +933,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
       .state('tabs.buybitcoin-success', {
-        url: '/buy-bitcoin/success',
+        url: '/buy-bitcoin/success/:moonpayTxId',
         views: {
           'tab-home': {
             controller: 'buyBitcoinSuccessController',
