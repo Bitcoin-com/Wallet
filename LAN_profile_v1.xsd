@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema targetNamespace="http://www.microsoft.com/networking/LAN/profile/v1"
+    xmlns="http://www.microsoft.com/networking/LAN/profile/v1" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" >
+
+  <!-- element definitions -->
+  <xs:element name="LANProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- LAN network settings -->
+        <xs:element name="MSM">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="security">
+                <xs:complexType>
+                  <xs:sequence>
+                    <!-- 
+                         Flag to indicate whether 802.1X shall be used for security 
+                    -->
+                    <xs:element name="OneXEnforced" type="xs:boolean" />
+                    <!--
+                        Flag to indicate whether 802.1X shall be tried before
+                        falling back to no security. 
+                    -->
+                    <xs:element name="OneXEnabled" type="xs:boolean" />		
+                    
+                    <!--
+                        Extension point for other namespaces, including the OneX
+                        namespace currently used for optional IEEE802.1X configuration.
+                        The OneX configuration parameters must be present if the 
+                        <OneXEnforced> flag is set to "true" or
+                        the <OneXEnabled> flag is set to "true" 
+                    -->
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- extension point for other namespaces -->
+              <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- extension point for other namespaces -->
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

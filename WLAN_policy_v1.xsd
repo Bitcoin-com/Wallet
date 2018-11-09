@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://www.microsoft.com/networking/WLAN/policy/v1"
+   xmlns="http://www.microsoft.com/networking/WLAN/policy/v1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified">
+
+  <!-- 
+  ##################################################################
+  #                    type definitions section                    #
+  ##################################################################
+  -->
+  <!-- type definition for policy name and description -->
+  <xs:simpleType name="nameType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- type definition for SSID -->
+  <xs:simpleType name="networkNameType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="32" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- type definition for 802.11 network types, adhoc (IBSS) vs infrastructure (ESS) -->
+  <xs:simpleType name="networkTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IBSS" />
+      <xs:enumeration value="ESS" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- type definition for a list item in either allow or block list -->
+  <xs:complexType name="networkItemType">
+    <xs:sequence>
+      <xs:element name="networkName" type="networkNameType" />
+      <xs:element name="networkType" type="networkTypeType" />
+      
+      <!-- extension point for other namespaces -->
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+  
+  <!-- 
+  ##################################################################
+  #                  element definitions section                   #
+  ##################################################################
+  -->
+  <xs:element name="WLANPolicy">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- this is the name of the policy -->
+        <xs:element name="name" type="nameType" />
+        <!-- brief description of the policy, optional -->
+        <xs:element name="description" type="nameType" minOccurs="0" />
+
+        <!-- Wireless LAN global settings -->
+        <!-- A/C flags -->
+        <xs:element name="globalFlags">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- flag to indicate whether A/C is used or not -->
+              <xs:element name="enableAutoConfig" type="xs:boolean" />
+              <!-- flag to indicate whether A/C shall show denied network in VAN UI -->
+              <xs:element name="showDeniedNetwork" type="xs:boolean" />
+              <!-- flag to indicate whether A/C shall allow everyone to create all user profiles -->
+              <xs:element name="allowEveryoneToCreateAllUserProfiles" type="xs:boolean" />               
+
+              <!-- flag to indicate whether to restrict networks configured by GP to use GP profiles only (namespace: http://www.microsoft.com/networking/WLAN/policy/v2) -->
+              <xs:element name="onlyUseGPProfilesForAllowedNetworks" type="xs:boolean" minOccurs="0"  maxOccurs="1"/>
+
+              <!-- flag to indicate whether to enable software access point (namespace: http://www.microsoft.com/networking/WLAN/policy/v3) -->
+              <xs:element name="enbleSoftAP" type="xs:boolean" minOccurs="0"  maxOccurs="1"/>
+
+              <!-- flag to indicate whether to enable explicit credentials (namespace: http://www.microsoft.com/networking/WLAN/policy/v3) -->
+              <xs:element name="enableExplicitCreds" type="xs:boolean" minOccurs="0"  maxOccurs="1"/>
+
+              <!-- value of block timeout period (namespace: http://www.microsoft.com/networking/WLAN/policy/v3) -->
+              <!-- the default value is 20 minutes when element not present -->
+              <xs:element name="blockPeriod" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="0" />
+                    <xs:maxInclusive value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- extension point for other namespaces -->
+              <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- network filter list specification, could be empty -->
+        <xs:element name="networkFilter" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- Allow list of networks, always take precedence over block list or deny all -->
+              <xs:element name="allowList" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="network" type="networkItemType" maxOccurs="unbounded" />
+
+                    <!-- extension point for future namespaces -->
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- Block list of networks, specified one by one -->
+              <xs:element name="blockList" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="network" type="networkItemType" maxOccurs="unbounded" />
+
+                    <!-- extension point for future namespaces -->
+                    <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+
+              <!-- flag for denying access to any adhoc network, default is "false" -->
+              <xs:element name="denyAllIBSS" type="xs:boolean" minOccurs="0" />
+
+              <!-- flag for denying access to any infrastructure network, default is "false" -->
+              <xs:element name="denyAllESS" type="xs:boolean" minOccurs="0" />
+
+              <!-- extension point for other namespaces -->
+              <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!--
+            List of profiles within the policy. It is optional. 
+            When present, it shall contain at least one profile.
+        -->
+        <xs:element name="profileList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <!--
+                  Placeholder to hook in profile namespace, code must enforce only the profile
+                  namespace is imported here. All other namespaces shall be ignored.
+              -->
+              <xs:any namespace="##other" processContents="lax" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- extension point for other namespaces -->
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
