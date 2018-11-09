@@ -27,6 +27,7 @@ angular
       uploadNationalIdentityCard: uploadNationalIdentityCard,
       uploadSelfie: uploadSelfie,
       createCard: createCard,
+      removeCard: removeCard,
       getCards: getCards,
       createTransaction: createTransaction,
       getTransactions: getTransactions,
@@ -159,6 +160,25 @@ angular
           var card = response.data;
           deferred.resolve(card);
         }, function onPostCardError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Remove a card
+     * @param {String} cardId 
+     */
+    function removeCard(cardId) {
+      var deferred = $q.defer();
+      getConfig(true).then(function onGetConfig(config) {
+        $http.delete(baseUrl + '/v2/cards/' + cardId, config).then(function onDeleteCardSuccess() {
+          deferred.resolve();
+        }, function onDeleteCardError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
         });

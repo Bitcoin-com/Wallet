@@ -31,6 +31,7 @@ angular
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
       , createCard: createCard
+      , removeCard: removeCard
       , getCards: getCards
       , createTransaction: createTransaction
       , getTransactions: getTransactions
@@ -304,6 +305,30 @@ angular
       return deferred.promise;
     }
 
+    /**
+     * Remove a card
+     * @param {String} cardId 
+     */
+    function removeCard(cardId) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.removeCard(card).then(function onRemoveCardSuccess() {
+        if (currentCards != null) {
+          currentCards = currentCards.filter(function(card) {
+            return card.id != cardId
+          });
+        }
+
+        deferred.resolve(currentCards);
+      }, function onRemoveCardError(err) {
+        $log.debug('Error removing moonpay card from the api');
+        deferred.reject(err);
+      });
+
+      return deferred.promise;
+    }
+    
     /**
      * Get transactions
      */
