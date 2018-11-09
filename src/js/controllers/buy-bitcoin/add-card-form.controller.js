@@ -9,7 +9,7 @@ angular
   function addCardFormController(
     moonPayService,
     popupService,
-    $scope,
+    $scope
   ) {
     var vm = this;
 
