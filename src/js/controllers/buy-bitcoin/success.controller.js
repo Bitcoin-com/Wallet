@@ -35,11 +35,8 @@
       vm.purchasedAmount = purchasedAmount;
       vm.purchasedCurrency = 'USD';
       vm.walletName = '';
-
-      
-
+      vm.status = 'pending';
       console.log(moonpayTxId, purchasedAmount);
-
     }
 
     function _onBeforeEnter() {
@@ -65,7 +62,15 @@
         }
       );
 
-      
+      moonPayService.getTransaction(moonpayTxId).then(
+        function onGetTransactionSuccess(transaction) {
+          vm.purchasedAmount = transaction.baseCurrencyAmount
+          vm.status = transaction.status
+        }, function onGetTransactionError(err) {
+          $log.error(err);
+          // Can't do much, leave in unknown wallet state
+        }
+      )
     }
 
     function onDone() {
