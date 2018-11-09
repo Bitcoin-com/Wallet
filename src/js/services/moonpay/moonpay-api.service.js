@@ -31,6 +31,7 @@ angular
       getCards: getCards,
       createTransaction: createTransaction,
       getTransactions: getTransactions,
+      getTransaction: getTransaction,
       getRates: getRates
     };
 
@@ -198,6 +199,26 @@ angular
           var transactions = response.data;
           deferred.resolve(transactions);
         }, function onGetTransactionsError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get transaction
+     * @param {String} transactionId 
+     */
+    function getTransaction(transactionId) {
+      var deferred = $q.defer();
+      getConfig(true).then(function onGetConfig(config) {
+        $http.get(baseUrl + '/v2/transactions/' + transactionId, config).then(function onGetTransactionSuccess(response) {
+          var transaction = response.data;
+          deferred.resolve(transaction);
+        }, function onGetTransactionError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
         });

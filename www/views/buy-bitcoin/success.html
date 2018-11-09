@@ -11,7 +11,7 @@
       <img id="checkmark" src="img/buy-bitcoin/checkmark.svg"/>
       <h1 translate>Success!</h1>
       <div class="clear"></div>
-      <p id="message" translate>Your purchase is pending.</p>
+      <p id="message" translate>Your purchase is {{vm.status}}.</p>
       <div id="amount-container">
         <formatted-amount value="{{vm.purchasedAmount}}" currency="{{vm.purchasedCurrency}}"></formatted-amount>
       </div>
