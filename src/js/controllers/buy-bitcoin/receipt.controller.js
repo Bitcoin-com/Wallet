@@ -31,13 +31,13 @@
       console.log('moonpayTxId:', moonpayTxId);
 
       // Change this to crypto later when the transaction is complete.
-      vm.purchasedAmount = purchasedAmount;
+      vm.purchasedAmount = 0;
       vm.purchasedCurrency = 'USD';
       vm.walletName = '';
 
       
 
-      console.log(moonpayTxId, purchasedAmount);
+      console.log(moonpayTxId);
 
     }
 
