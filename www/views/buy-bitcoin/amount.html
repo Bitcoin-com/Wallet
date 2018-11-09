@@ -14,7 +14,7 @@
       <div class="apl-amount">
         <div class="apl-amount-title" translate>Amount</div>
         <span class="apl-amount-currency">$</span>
-        <input type="number" class="apl-amount-input" min="0" step=".01" placeholder="{{'0.00' | translate}}" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()"/>
+        <input type="number" class="apl-amount-input" min="0" step="1" placeholder="0" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()"/>
       </div>
       <div class="apl-amount-totals">
         <div class="apl-amount-totals-item">
