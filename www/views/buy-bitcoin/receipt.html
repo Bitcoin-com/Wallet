@@ -89,9 +89,5 @@
         </div>
       </a>
     </div>
-    <div class="bottom-button-shadow-spacer"></div>
   </ion-content>
-  <div class="apl-button-bottom-container">
-      <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy <formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></a>
-    </div>
 </ion-view>
