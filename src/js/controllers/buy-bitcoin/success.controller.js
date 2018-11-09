@@ -14,18 +14,32 @@
     , $state
     ) {
     var vm = this;
+
+    // Functions
     vm.onDone = onDone;
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
 
+    var moonpayTxId = '';
+    var purchasedAmount = 0;
     var walletId = '';
+    
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
     function _initVariables() {
-      vm.purchasedAmount = 0.15384976;
-      vm.purchasedCurrency = 'bch';
+      moonpayTxId = $state.params.moonpayTxId;
+      purchasedAmount = $state.params.purchasedAmount;
+
+      // Change this to crypto later when the transaction is complete.
+      vm.purchasedAmount = purchasedAmount;
+      vm.purchasedCurrency = 'USD';
       vm.walletName = '';
+
+      
+
+      console.log(moonpayTxId, purchasedAmount);
+
     }
 
     function _onBeforeEnter() {
@@ -51,7 +65,7 @@
         }
       );
 
-      console.log('moonpay tx id: ',  $state.params.moonpayTxId);
+      
     }
 
     function onDone() {

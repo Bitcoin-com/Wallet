@@ -8,7 +8,9 @@ angular.module('copayApp.services')
     var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     var isIOS = platformInfo.isIOS;
 
-    var root = {};
+    var root = {
+      getWalletFromAddresses: getWalletFromAddresses
+    };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
 
@@ -1085,6 +1087,60 @@ angular.module('copayApp.services')
           });
         });
       });
+    }
+
+    /**
+     * 
+     * @param {*} legacyAddresses 
+     * @param {*} coin 
+     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
+     */
+    function getWalletFromAddresses(legacyAddresses, coin, cb) {
+      var wallets = root.getWallets({ coin: coin });
+
+      getAddressesForNextWallet(0);
+
+      var addressesFound = 0;
+      var legacyAddressesCount = legacyAddresses.length;
+      var walletsForAddresses = {};
+
+      function getAddressesForNextWallet(walletIndex) {
+
+        if (walletIndex < wallets.length) {
+          var wallet = wallets[walletIndex];
+          var addressFound = false;
+          wallet.getMainAddresses({}, function onAddresses(err, walletAddresses) {
+            if (err) {
+              $log.error('Error getting addresses.', err.message);
+              return cb(err);
+            }
+
+            console.log('Addresses: ', walletAddresses);
+            var walletAddressCount = walletAddresses.length;
+            var walletAddress = '';
+            for (var i = 0; i < walletAddressCount; i++) {
+              walletAddress = walletAddresses[i].address;
+
+              legacyAddresses.forEach(function (legacyAddress) {
+                if (walletAddress === legacyAddress) {
+                  //walletsForAddresses[legacyAddress] = wallet;
+                  cb(null, {
+                    address: legacyAddress,
+                    wallet: wallet
+                  });
+                }
+              });
+
+            };
+            
+            getAddressesForNextWallet(walletIndex + 1);
+            
+          });
+        } else {
+          cb(null, walletsForAddresses);
+        }
+      }
+
     }
 
     return root;

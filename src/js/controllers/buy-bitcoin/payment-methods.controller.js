@@ -16,18 +16,25 @@ angular
     // Functions
     vm.addPaymentMethod = addPaymentMethod;
     vm.onEdit = onEdit;
-    
+    vm.onDone = onDone;
+
     // Variables
     vm.editing = false;
-    vm.paymentMethod = null;
+    vm.paymentMethodId = null;
     vm.paymentMethods = [];
     vm.paymentMethodsAreLoading = true;
 
-    var initialPaymentMethod = null;
+    var defaultCardId = '';
+    var initialPaymentMethodId = '';
 
     function addPaymentMethod() {
       $state.go('tabs.buybitcoin-add-card-form');
     }
+
+    $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
+
+    $scope.$on('paymentMethodDelete', _paymentMethodDelete);
 
     function _initVariables() {
       
@@ -41,17 +48,19 @@ angular
         moonPayService.getDefaultCardId().then(
           function onGetDefaultCardIdSuccess(cardId) {
             if (cardId == null && cards && cards.length > 0) {
-              vm.paymentMethod = cards[0];
-              moonPayService.setDefaultCardId(cards[0].id);
+              vm.paymentMethodId = cards[0];
+              defaultCardId = cards[0].id;
+              moonPayService.setDefaultCardId(defaultCardId);
             } else {
               for (var i=0; i<cards.length; ++i) {
                 if (cards[i].id == cardId) {
-                  vm.paymentMethod = cards[i].id;
+                  vm.paymentMethodId = cards[i].id;
+                  defaultCardId = cardId;
                   break;
                 }
               }
             }
-            initialPaymentMethod = vm.paymentMethod
+            initialPaymentMethodId = vm.paymentMethodId
             vm.paymentMethodsAreLoading = false;
           },
           function onGetDefaultCardIdError() {
@@ -73,23 +82,54 @@ angular
       });
     }
 
-    $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
-    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
+   
 
     function _onBeforeEnter(event, data) {
       _initVariables();
     }
 
     function _onBeforeLeave(event, data) {
-      var defaultWasChanged = initialPaymentMethod !== vm.paymentMethod;
+      var defaultWasChanged = vm.paymentMethodId && initialPaymentMethodId !== vm.paymentMethodId;
       if (defaultWasChanged) {
-        moonPayService.setDefaultCardId(vm.paymentMethod)
+        moonPayService.setDefaultCardId(vm.paymentMethodId)
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
 
+    function onDone() {
+      vm.editing = false;
+    }
+
     function onEdit() {
-      vm.editing = !vm.editing;
+      vm.editing = true;
+    }
+
+    function _paymentMethodDelete(event, data) {
+      var deletedCardId = data.id;
+      console.log('_paymentMethodDelete() with id: ' + deletedCardId);
+
+      // Remove from scope variable first
+      var deletedCardIndex = -1;
+      var paymentMethodCount = vm.paymentMethods.length;
+      for (var i = 0; i < paymentMethodCount; i++) {
+        if (vm.paymentMethods[i].id === deletedCardId) {
+          deletedCardIndex = i;
+          break;
+        }
+      }
+
+      if (deletedCardIndex >= 0) {
+        vm.paymentMethods.splice(deletedCardIndex, 1);
+      }
+
+      if (deletedCardId === defaultCardId && vm.paymentMethods.length > 0) {
+        defaultCardId = vm.paymentMethods[0].id;
+        moonPayService.setDefaultCardId(defaultCardId);
+        vm.paymentMethodId = vm.paymentMethods[0].id;
+      }
+
+      // TODO: Remove from Moonpay using moonPayService
+      
     }
 
   }
