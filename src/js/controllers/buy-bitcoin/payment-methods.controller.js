@@ -108,25 +108,19 @@ angular
       var deletedCardId = data.id;
       console.log('_paymentMethodDelete() with id: ' + deletedCardId);
 
-      // Remove from scope variable first
-      var deletedCardIndex = -1;
-      var paymentMethodCount = vm.paymentMethods.length;
-      for (var i = 0; i < paymentMethodCount; i++) {
-        if (vm.paymentMethods[i].id === deletedCardId) {
-          deletedCardIndex = i;
-          break;
+      moonPayService.removeCard(deletedCardId).then(
+        function onRemoveCardSuccess(cards) {
+          vm.paymentMethods = cards;
+    
+          if (deletedCardId === defaultCardId && vm.paymentMethods.length > 0) {
+            defaultCardId = vm.paymentMethods[0].id;
+            moonPayService.setDefaultCardId(defaultCardId);
+            vm.paymentMethodId = vm.paymentMethods[0].id;
+          }
+        },
+        function onRemoveCardError(cards) {
         }
-      }
-
-      if (deletedCardIndex >= 0) {
-        vm.paymentMethods.splice(deletedCardIndex, 1);
-      }
-
-      if (deletedCardId === defaultCardId && vm.paymentMethods.length > 0) {
-        defaultCardId = vm.paymentMethods[0].id;
-        moonPayService.setDefaultCardId(defaultCardId);
-        vm.paymentMethodId = vm.paymentMethods[0].id;
-      }
+      )
 
       // TODO: Remove from Moonpay using moonPayService
       

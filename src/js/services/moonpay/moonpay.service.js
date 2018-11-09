@@ -313,7 +313,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.removeCard(card).then(function onRemoveCardSuccess() {
+      moonPayApiService.removeCard(cardId).then(function onRemoveCardSuccess() {
         if (currentCards != null) {
           currentCards = currentCards.filter(function(card) {
             return card.id != cardId
