@@ -20,7 +20,6 @@
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
 
-    var moonpayTxId = '';
     var purchasedAmount = 0;
     var walletId = '';
     
@@ -28,7 +27,7 @@
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
     function _initVariables() {
-      moonpayTxId = $state.params.moonpayTxId;
+      vm.moonpayTxId = $state.params.moonpayTxId;
       purchasedAmount = $state.params.purchasedAmount;
 
       // Change this to crypto later when the transaction is complete.
@@ -38,7 +37,7 @@
 
       
 
-      console.log(moonpayTxId, purchasedAmount);
+      console.log(vm.moonpayTxId, purchasedAmount);
 
     }
 
