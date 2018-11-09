@@ -9,7 +9,7 @@ angular.module('copayApp.services')
     var isIOS = platformInfo.isIOS;
 
     var root = {
-      getWalletFromAddress: getWalletFromAddress
+      getWalletFromAddresses: getWalletFromAddresses
     };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
@@ -1089,28 +1089,38 @@ angular.module('copayApp.services')
       });
     }
 
-    function getWalletFromAddress(legacyAddress, coin, cb) {
+    function getWalletFromAddresses(legacyAddresses, coin, cb) {
       var wallets = root.getWallets({ coin: coin });
 
       getAddressesForNextWallet(0);
 
+      var addressesFound = 0;
+      var legacyAddressesCount = legacyAddresses.length;
+      var walletsForAddresses = {};
+
       function getAddressesForNextWallet(walletIndex) {
+
         if (walletIndex < wallets.length) {
           var wallet = wallets[walletIndex];
           var addressFound = false;
-          wallet.getMainAddresses({}, function onAddresses(err, addresses) {
+          wallet.getMainAddresses({}, function onAddresses(err, walletAddresses) {
             if (err) {
               $log.error('Error getting addresses.', err.message);
               return cb(err);
             }
 
-            console.log('Addresses: ', addresses);
-            var addressCount = addresses.length;
-            for (var i = 0; i < addressCount; i++) {
-              if (addresses[i].address === legacyAddress) {
-                addressFound = true;
-                break;
-              }
+            console.log('Addresses: ', walletAddresses);
+            var walletAddressCount = walletAddresses.length;
+            var walletAddress = '';
+            for (var i = 0; i < walletAddressCount; i++) {
+              walletAddress = walletAddresses[i].address;
+
+              legacyAddresses.forEach(function (legacyAddress) {
+                if (walletAddress === legacyAddress) {
+                  walletsForAddresses[legacyAddress] = wallet;
+                }
+              });
+
             };
             
             if (addressFound) {
@@ -1120,7 +1130,7 @@ angular.module('copayApp.services')
             }
           });
         } else {
-          cb(null);
+          cb(null, walletsForAddresses);
         }
       }
 
