@@ -4062,9 +4062,9 @@ msgstr ""
 msgid "Go to {{vm.walletName}}"
 msgstr ""
 
-msgid "Your purchase is pending."
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
 msgstr ""
 
-msgid "Your purchase has been processed."
+msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr ""
 
