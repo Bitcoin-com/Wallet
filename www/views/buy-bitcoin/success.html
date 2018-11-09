@@ -23,7 +23,7 @@
             <p ng-if="vm.walletName" translate>Go to {{vm.walletName}}</p>
             <i class="icon bp-arrow-right"></i>
           </a>
-        <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-receipt">
+        <a class="item item-icon-right apl-list-item" ui-sref="tabs.buybitcoin-receipt({ moonpayTxId: {{vm.moonpayTxId}} })">
             <p translate>See Receipt</p>
             <i class="icon bp-arrow-right"></i>
           </a>

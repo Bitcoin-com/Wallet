@@ -1,0 +1,97 @@
+<ion-view id="buy-bitcoin-amount" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl has-bottom-button">
+    <h1 translate>
+      Purchasing
+    </h1>
+    <div>
+      <div class="apl-amount">
+        <div class="apl-amount-title" translate>Amount</div>
+        <span class="apl-amount-currency">$</span>
+        <input type="number" class="apl-amount-input" min="0" step="1" placeholder="0" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()"/>
+      </div>
+      <div class="apl-amount-totals">
+        <div class="apl-amount-totals-item">
+          <span class="apl-amount-totals-title" ng-if="!vm.rateUsd">Getting rate...</span>
+          <span class="apl-amount-totals-title" ng-if="vm.rateUsd"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</span>
+          <span class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.cost | currency:'':2}} USD</span>
+        </div>
+        <div class="apl-amount-totals-item">
+          <span class="apl-amount-totals-title" translate>Processing Fee</span>
+          <span class="apl-amount-totals-price">{{vm.lineItems.processingFee | currency:'':2}} USD</span>
+        </div>
+        <div class="apl-amount-totals-item total">
+          <span class="apl-amount-totals-title" translate>Total</span>
+          <span class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.total | currency:'':2}} USD</span>
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title" translate>
+        Deposit to
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="vm.wallet">
+        <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" ng-if="vm.wallet">
+            {{vm.wallet.name}}
+          </div>
+          <div class="apl-card__subtitle">
+            <wallet-balance
+              display-as-fiat="{{vm.displayBalanceAsFiat}}"
+              wallet-balance-hidden="{{vm.wallet.balanceHidden}}"
+              wallet-coin="{{vm.wallet.coin}}"
+              wallet-status="{{vm.wallet.status}}"
+              wallet-cached-balance="{{vm.wallet.cachedBalance}}"
+              wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
+              wallet-cached-status="{{vm.wallet.cachedStatus}}"
+              total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"
+              ng-if="vm.wallet"
+              />
+          </div>
+        </div>
+      </div>
+      <div class="item item-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="!vm.wallet">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title"ng-if="!vm.wallet" translate>
+            Select a BCH wallet
+          </div>
+          <div class="apl-card__subtitle"></div>
+        </div>  
+      </div>  
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title" translate>
+        Payment Method
+      </div>
+      <div ui-sref="tabs.buybitcoin-paymentmethods" ng-if="vm.paymentMethod">
+        <payment-method-item pm="vm.paymentMethod"></payment-method-item>
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodsAreLoading">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">&nbsp;</div>
+          <div class="apl-card__subtitle" translate>
+            Loading...
+          </div>
+        </div>
+      </div>
+      <a ui-sref="tabs.buybitcoin-paymentmethods" class="item item-icon-left apl-list-item" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title add" translate>Add a payment method</div>
+          <div class="apl-card__subtitle" translate></div>
+        </div>
+      </a>
+    </div>
+    <div class="bottom-button-shadow-spacer"></div>
+  </ion-content>
+  <div class="apl-button-bottom-container">
+      <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy <formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></a>
+    </div>
+</ion-view>

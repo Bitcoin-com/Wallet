@@ -932,8 +932,18 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.buybitcoin-receipt', {
+        url: '/buy-bitcoin/receipt/:moonpayTxId',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinReceiptController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/receipt.html'
+          }
+        }
+      })
       .state('tabs.buybitcoin-success', {
-        url: '/buy-bitcoin/success/:moonpayTxId',
+        url: '/buy-bitcoin/success/:moonpayTxId/:purchasedAmount',
         views: {
           'tab-home': {
             controller: 'buyBitcoinSuccessController',
