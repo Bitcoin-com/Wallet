@@ -365,7 +365,7 @@ angular
           var transaction = currentTransactions[i];
           if (transaction.id == transactionId) {
             deferred.resolve(transaction);
-            return;
+            return deferred.promise;
           }
         }
       }
