@@ -1098,48 +1098,29 @@ angular.module('copayApp.services')
     function getWalletFromAddresses(legacyAddresses, coin, cb) {
       var wallets = root.getWallets({ coin: coin });
 
-      getAddressesForNextWallet(0);
+      wallets.forEach(function onWallet(wallet){
 
-      var addressesFound = 0;
-      var legacyAddressesCount = legacyAddresses.length;
-      var walletsForAddresses = {};
+        wallet.getMainAddresses({}, function onAddresses(err, walletAddresses) {
+          if (err) {
+            $log.error('Error getting addresses.', err.message);
+            return cb(err);
+          }
 
-      function getAddressesForNextWallet(walletIndex) {
+          walletAddresses.forEach(function onWalletAddress(walletAddressObject){
+            var walletAddress = walletAddressObject.address;
 
-        if (walletIndex < wallets.length) {
-          var wallet = wallets[walletIndex];
-          var addressFound = false;
-          wallet.getMainAddresses({}, function onAddresses(err, walletAddresses) {
-            if (err) {
-              $log.error('Error getting addresses.', err.message);
-              return cb(err);
-            }
+            legacyAddresses.forEach(function onLegacyAddress(legacyAddress) {
 
-            console.log('Addresses: ', walletAddresses);
-            var walletAddressCount = walletAddresses.length;
-            var walletAddress = '';
-            for (var i = 0; i < walletAddressCount; i++) {
-              walletAddress = walletAddresses[i].address;
-
-              legacyAddresses.forEach(function (legacyAddress) {
-                if (walletAddress === legacyAddress) {
-                  //walletsForAddresses[legacyAddress] = wallet;
-                  cb(null, {
-                    address: legacyAddress,
-                    wallet: wallet
-                  });
-                }
-              });
-
-            };
-            
-            getAddressesForNextWallet(walletIndex + 1);
-            
-          });
-        } else {
-          cb(null, walletsForAddresses);
-        }
-      }
+              if (walletAddress === legacyAddress) {
+                cb(null, {
+                  address: legacyAddress,
+                  wallet: wallet
+                });
+              }
+            });
+          });          
+        });
+      }); 
 
     }
 
