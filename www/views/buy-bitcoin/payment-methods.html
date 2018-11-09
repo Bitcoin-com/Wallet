@@ -20,7 +20,7 @@
     </h1>
     <div class="apl-list">
       <div ng-repeat="pm in vm.paymentMethods" ng-if="!vm.paymentMethodsAreLoading">
-        <ion-radio ng-value="pm.id" ng-model="vm.paymentMethod" ng-if="!vm.editing">
+        <ion-radio ng-value="pm.id" ng-model="vm.paymentMethodId" ng-if="!vm.editing">
             <payment-method-item editing="vm.editing" pm="pm"></payment-method-item>
         </ion-radio>
         <payment-method-item editing="vm.editing" pm="pm" ng-if="vm.editing"></payment-method-item>

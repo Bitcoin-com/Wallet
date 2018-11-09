@@ -20,7 +20,7 @@ angular
 
     // Variables
     vm.editing = false;
-    vm.paymentMethod = null;
+    vm.paymentMethodId = null;
     vm.paymentMethods = [];
     vm.paymentMethodsAreLoading = true;
 
@@ -48,19 +48,19 @@ angular
         moonPayService.getDefaultCardId().then(
           function onGetDefaultCardIdSuccess(cardId) {
             if (cardId == null && cards && cards.length > 0) {
-              vm.paymentMethod = cards[0];
+              vm.paymentMethodId = cards[0];
               defaultCardId = cards[0].id;
               moonPayService.setDefaultCardId(defaultCardId);
             } else {
               for (var i=0; i<cards.length; ++i) {
                 if (cards[i].id == cardId) {
-                  vm.paymentMethod = cards[i].id;
+                  vm.paymentMethodId = cards[i].id;
                   defaultCardId = cardId;
                   break;
                 }
               }
             }
-            initialPaymentMethodId = vm.paymentMethod.id
+            initialPaymentMethodId = vm.paymentMethodId
             vm.paymentMethodsAreLoading = false;
           },
           function onGetDefaultCardIdError() {
@@ -89,9 +89,9 @@ angular
     }
 
     function _onBeforeLeave(event, data) {
-      var defaultWasChanged = vm.paymentMethod && initialPaymentMethodId !== vm.paymentMethod.id;
+      var defaultWasChanged = vm.paymentMethodId && initialPaymentMethodId !== vm.paymentMethodId;
       if (defaultWasChanged) {
-        moonPayService.setDefaultCardId(vm.paymentMethod.id)
+        moonPayService.setDefaultCardId(vm.paymentMethodId)
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
     }
@@ -125,7 +125,7 @@ angular
       if (deletedCardId === defaultCardId && vm.paymentMethods.length > 0) {
         defaultCardId = vm.paymentMethods[0].id;
         moonPayService.setDefaultCardId(defaultCardId);
-        vm.paymentMethod = vm.paymentMethods[0];
+        vm.paymentMethodId = vm.paymentMethods[0].id;
       }
 
       // TODO: Remove from Moonpay using moonPayService
