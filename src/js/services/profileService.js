@@ -1089,6 +1089,12 @@ angular.module('copayApp.services')
       });
     }
 
+    /**
+     * 
+     * @param {*} legacyAddresses 
+     * @param {*} coin 
+     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
+     */
     function getWalletFromAddresses(legacyAddresses, coin, cb) {
       var wallets = root.getWallets({ coin: coin });
 
@@ -1117,17 +1123,18 @@ angular.module('copayApp.services')
 
               legacyAddresses.forEach(function (legacyAddress) {
                 if (walletAddress === legacyAddress) {
-                  walletsForAddresses[legacyAddress] = wallet;
+                  //walletsForAddresses[legacyAddress] = wallet;
+                  cb(null, {
+                    address: legacyAddress,
+                    wallet: wallet
+                  });
                 }
               });
 
             };
             
-            if (addressFound) {
-              cb(null, wallet);
-            } else {
-              getAddressesForNextWallet(walletIndex + 1);
-            }
+            getAddressesForNextWallet(walletIndex + 1);
+            
           });
         } else {
           cb(null, walletsForAddresses);

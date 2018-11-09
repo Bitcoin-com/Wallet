@@ -49,7 +49,6 @@
     function _prepareTransactionsForDisplay(transactions) {
       console.log('transaction: ', transactions[0]);
       
-      var txsForAddress = {};
       var addresses = [];
 
       transactions.forEach(function onTransaction(tx){
@@ -58,8 +57,6 @@
         tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
 
         addresses.push(tx.walletAddress);
-        txsForAddress[tx.walletAddress] = tx;
-        
       });
 
       transactions.sort(function compare(a, b){
@@ -68,40 +65,21 @@
 
       vm.history = transactions;
 
-      profileService.getWalletFromAddresses(addresses, 'bch', function onWallet(err, walletsForAddresses) {
+      profileService.getWalletFromAddresses(addresses, 'bch', function onWallet(err, walletAndAddress) {
         if (err) {
           $log.error('Error getting wallet from address. ' + err.message || '');
           return;
         }
 
-        console.log('walletsForAddresses:', walletsForAddresses);
-
         transactions.forEach(function onTransaction(tx) {
-          var wallet = walletsForAddresses[tx.walletAddress];
-          if (wallet) {
+          if (tx.walletAddress === walletAndAddress.address) {
+            var wallet = walletAndAddress.wallet;
             tx.walletColor = wallet.color;
             tx.walletName = wallet.name;
           }
         });
 
         $scope.$apply();
-
-        
-
-        /*
-        walletsForAddresses.forEach(function onWalletAndAddress(walletForAddress) {
-          var wallet = walletForAddress.wallet;
-          var address = walletForAddress.address;
-          var tx = txsForAddress[address];
-
-          console.log('wallet found for ' + address + ', name:', wallet.name);
-          $scope.$apply(function(){
-            tx.walletColor = wallet.color;
-            tx.walletName = wallet.name;
-          });
-
-        });
-        */
 
       });
     }
