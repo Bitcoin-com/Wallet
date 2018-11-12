@@ -38,8 +38,8 @@ angular
           if (customer) {
             console.log('Moonpay customer:', customer);
             var monthlyPurchased = 0; // TODO: How to get this information?
-            vm.monthlyPurchased = $filter('currency')(monthlyPurchased, '$', 2)
-            vm.monthlyLimit = $filter('currency')(customer.monthlyLimit, '$', 2)
+            vm.monthlyPurchased = $filter('currency')(monthlyPurchased, '$', 2);
+            vm.monthlyLimit = $filter('currency')(customer.monthlyLimit, '$', 2);
           } else {
             $state.go('tabs.buybitcoin-welcome');
             var title = gettextCatalog.getString("Error Getting Customer Information");
