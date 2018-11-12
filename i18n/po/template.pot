@@ -4033,7 +4033,7 @@ msgstr ""
 msgid "Add Card"
 msgstr ""
 
-msgid "Getting rate..."
+msgid "Getting exchange rate..."
 msgstr ""
 
 msgid "Waiting for exchange rate."

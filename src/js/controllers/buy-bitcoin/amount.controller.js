@@ -29,6 +29,7 @@
       vm.paymentMethod = null;
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
+      vm.ratesError = '';
       /*
       vm.paymentMethod = {
         name: 'Visa',
@@ -90,13 +91,14 @@
         function onGetRatesSuccess(rates) {
           console.log('Rates:', rates);
           vm.rateUsd = rates.USD;
+          vm.ratesError = '';
           _updateAmount();
           
         },
         function onGetRatesError(err) {
           console.error('Rates error.', err);
           vm.rateUsd = 0;
-          // TODO: Display error
+          vm.ratesError = err.message || '';
         }
       );
     }
@@ -155,7 +157,6 @@
         vm.lineItems.processingFee = 10; // TODO: Update this with the correct amount
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
-
     }
 
     function _onBeforeLeave() {
