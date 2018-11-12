@@ -29,6 +29,7 @@
       vm.paymentMethod = null;
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
+      vm.ratesError = '';
       /*
       vm.paymentMethod = {
         name: 'Visa',
@@ -90,13 +91,14 @@
         function onGetRatesSuccess(rates) {
           console.log('Rates:', rates);
           vm.rateUsd = rates.USD;
+          vm.ratesError = '';
           _updateAmount();
           
         },
         function onGetRatesError(err) {
           console.error('Rates error.', err);
           vm.rateUsd = 0;
-          // TODO: Display error
+          vm.ratesError = err.message || '';
         }
       );
     }
@@ -104,18 +106,22 @@
     function _getWallet() {
       moonPayService.getDefaultWalletId().then(
         function onGetDefaultWalletIdSuccess(walletId) {
-          if (walletId == null && wallets && wallets.length > 0) {
+          console.log('default walletId:', walletId);
+          if (walletId === null) {
             var wallets = profileService.getWallets({
               coin: 'bch'
             });
-            vm.wallet = wallets[0];
-            moonPayService.setDefaultWalletId(wallets[0].id);
+            console.log('wallets:', vm.wallet);
+            if (wallets && wallets.length > 0) {
+              vm.wallet = wallets[0];
+              moonPayService.setDefaultWalletId(wallets[0].id);
+            }
           } else {
             vm.wallet = profileService.getWallet(walletId);
           }
           $scope.wallet = vm.wallet;
-          console.log('wallets:', vm.wallet);
-          console.log('walletId:', walletId);
+          console.log('wallet:', $scope.wallet);
+          
         }
       );
     }
@@ -151,7 +157,6 @@
         vm.lineItems.processingFee = 10; // TODO: Update this with the correct amount
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
-
     }
 
     function _onBeforeLeave() {
