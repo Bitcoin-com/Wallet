@@ -35,8 +35,6 @@
       vm.purchasedCurrency = 'USD';
       vm.walletName = '';
 
-      
-
       console.log(moonpayTxId);
 
     }
@@ -45,20 +43,22 @@
       console.log('_onBeforeEnter()');
       _initVariables();
 
-      moonPayService.getDefaultWalletId().then(
-        function onGetDefaultWalletIdSuccess(id) {
-          if (id) {
-            walletId = id;
-            var wallet = profileService.getWallet(walletId);
-            vm.walletName = wallet.name;
+      moonPayService.getTransaction(moonpayTxId).then(
+        function onGetTransactionSuccess(transaction) {
+          vm.purchasedAmount = transaction.baseCurrencyAmount
 
-          } else {
-            $log.error('Success screen: Default wallet ID not found.');
-            // Can't do much, leave in unknown wallet state
-          }
+          profileService.getWalletFromAddresses([transaction.walletAddress], 'bch', function onWallet(err, walletAndAddress) {
+            if (err) {
+              $log.error('Error getting wallet from address. ' + err.message || '');
+              return;
+            }
 
+            vm.wallet = walletAndAddress.wallet;
+
+            $scope.$apply();
+          });
         },
-        function onGetDefaultWalletIdError(err) {
+        function onGetTransactionError(err) {
           $log.error(err);
           // Can't do much, leave in unknown wallet state
         }
