@@ -229,16 +229,22 @@
             return;
           }
 
-          //var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+          var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
           // override for testing
-          toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
+          //toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
+          // testnet without prefix
+          //toAddress = 'qqyla5lq3e3ykg7mhtx80aaj5wvesdg6dq5yaeper6';
+          //toAddress = 'qpd2k95d8har236mmze78zgatkhu7y6zny4wgtajdm';
+          var addressParts = toCashAddress.split(':');
+          var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
           var transaction = {
             baseCurrencyAmount: vm.inputAmount
             , currencyCode: 'bch'
             , cardCvc: csc
             , cardId: vm.paymentMethod.id
-            , walletAddress: toAddress
+            , extraFeePercentage: 1
+            , walletAddress: toAddressForTransaction
           };
           moonPayService.createTransaction(transaction).then(
             function onCreateTransactionSuccess(newTransaction) {
