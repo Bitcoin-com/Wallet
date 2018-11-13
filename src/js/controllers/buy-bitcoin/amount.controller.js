@@ -56,14 +56,22 @@
         function onGetCardsSuccess(cards) {
           moonPayService.getDefaultCardId().then(
             function onGetDefaultCardIdSuccess(cardId) {
-              if (cardId == null && cards && cards.length > 0) {
-                vm.paymentMethod = cards[0];
-                moonPayService.setDefaultCardId(cards[0].id);
-              } else {
-                for (var i=0; i<cards.length; ++i) {
-                  if (cards[i].id == cardId) {
-                    vm.paymentMethod = cards[i];
-                    break;
+              if (cards && cards.length > 0) {
+                if (cardId == null) {
+                  vm.paymentMethod = cards[0];
+                  moonPayService.setDefaultCardId(cards[0].id);
+                } else {
+                  var cardWasFound = false;
+                  for (var i = 0; i < cards.length; ++i) {
+                    if (cards[i].id === cardId) {
+                      cardWasFound = true;
+                      vm.paymentMethod = cards[i];
+                      break;
+                    }
+                  }
+                  if (!cardWasFound) {
+                    vm.paymentMethod = cards[0];
+                    moonPayService.setDefaultCardId(cards[0].id);
                   }
                 }
               }
@@ -191,7 +199,7 @@
         popupService.showConfirm(title, message, okText, cancelText,
           function onDismissed(ok) {
             if (ok) {
-              // TODO: Go to add card screen.
+              $state.go('tabs.buybitcoin-add-card-form');
             }
           }
         );
