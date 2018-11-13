@@ -4054,6 +4054,9 @@ msgstr ""
 msgid "Failed to create transaction."
 msgstr ""
 
+msgid "Buy Now"
+msgstr ""
+
 # Success
 
 msgid "Go to Wallet"
