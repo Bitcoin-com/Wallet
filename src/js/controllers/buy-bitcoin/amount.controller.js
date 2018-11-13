@@ -206,60 +206,73 @@
         return;
       }
 
-      ongoingProcess.set('buyingBch', true);
+      title = gettextCatalog.getString("Enter Security Code");
+      message = gettextCatalog.getString("Enter the 3 digit code on the back of your card.");
+      var opts = {
+        inputType: 'text'
+      };
+      popupService.showPrompt(title, message, opts, function onSecurityCode(csc){ 
 
-      walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
-        if (err) {
-          ongoingProcess.set('buyingBch', false);
-          console.log(err);
-
-          message = err.message || gettext.getString('Could not create address');
-          popupService.showAlert(title, message);
+        if (!csc) {
           return;
         }
 
-        //var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
-        // override for testing
-        //toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
+        ongoingProcess.set('buyingBch', true);
 
-        var transaction = {
-          baseCurrencyAmount: vm.inputAmount
-          , currencyCode: 'bch'
-          , cardId: vm.paymentMethod.id
-          , walletAddress: toAddress
-        };
-        moonPayService.createTransaction(transaction).then(
-          function onCreateTransactionSuccess(newTransaction) {
+        walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
+          if (err) {
             ongoingProcess.set('buyingBch', false);
+            console.log(err);
 
-            console.log('Transaction', newTransaction);
-
-            $ionicHistory.nextViewOptions({
-              disableAnimation: true,
-              historyRoot: true
-            });
-            $state.go('tabs.home').then(
-              function() {
-                $state.go('tabs.buybitcoin').then(
-                  function () {
-                    $state.go('tabs.buybitcoin-success', { 
-                      moonpayTxId: newTransaction.id,
-                      purchasedAmount: vm.lineItems.total
-                    });
-                  }
-                );
-              }
-            );
-
-          },
-          function onCreateTransactionError(err) {
-            ongoingProcess.set('buyingBch', false);
-
-            title = gettextCatalog.getString('Purchase Failed');
-            message = err.message || gettextCatalog.getString('Failed to create transaction.');
+            message = err.message || gettext.getString('Could not create address');
             popupService.showAlert(title, message);
+            return;
           }
-        );
+
+          //var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+          // override for testing
+          toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
+
+          var transaction = {
+            baseCurrencyAmount: vm.inputAmount
+            , currencyCode: 'bch'
+            , cardCvc: csc
+            , cardId: vm.paymentMethod.id
+            , walletAddress: toAddress
+          };
+          moonPayService.createTransaction(transaction).then(
+            function onCreateTransactionSuccess(newTransaction) {
+              ongoingProcess.set('buyingBch', false);
+
+              console.log('Transaction', newTransaction);
+
+              $ionicHistory.nextViewOptions({
+                disableAnimation: true,
+                historyRoot: true
+              });
+              $state.go('tabs.home').then(
+                function() {
+                  $state.go('tabs.buybitcoin').then(
+                    function () {
+                      $state.go('tabs.buybitcoin-success', { 
+                        moonpayTxId: newTransaction.id,
+                        purchasedAmount: vm.lineItems.total
+                      });
+                    }
+                  );
+                }
+              );
+
+            },
+            function onCreateTransactionError(err) {
+              ongoingProcess.set('buyingBch', false);
+
+              title = gettextCatalog.getString('Purchase Failed');
+              message = err.message || gettextCatalog.getString('Failed to create transaction.');
+              popupService.showAlert(title, message);
+            }
+          );
+        });
       });
     }
 

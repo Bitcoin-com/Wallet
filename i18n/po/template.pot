@@ -4057,6 +4057,12 @@ msgstr ""
 msgid "Buy Now"
 msgstr ""
 
+msgid "Enter Security Code"
+msgstr ""
+
+msgid ""
+msgstr "Enter the 3 digit code on the back of your card."
+
 # Success
 
 msgid "Go to Wallet"
