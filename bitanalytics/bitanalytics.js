@@ -6070,13 +6070,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var click_action_1 = __importDefault(require("./actions/click-action"));
+var error_1 = __importDefault(require("./exceptions/error"));
 var ActionFactory = /** @class */ (function () {
     function ActionFactory() {
     }
     ActionFactory.createAction = function (type, config) {
         // Check if the action is available
         if (ActionFactory.classDictionary[type] == undefined) {
-            throw new Error('[BitAnalytics] ' + type + ' is not available.');
+            throw new error_1.default(type + ' is not available.');
         }
         else {
             // Create a action
@@ -6093,7 +6094,7 @@ var ActionFactory = /** @class */ (function () {
 }());
 exports.default = ActionFactory;
 
-},{"./actions/click-action":5}],3:[function(require,module,exports){
+},{"./actions/click-action":5,"./exceptions/error":14}],3:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ActionHandlers = /** @class */ (function () {
@@ -6152,11 +6153,15 @@ exports.default = ActionHandlers;
 
 },{}],4:[function(require,module,exports){
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var error_1 = __importDefault(require("./exceptions/error"));
 var Action = /** @class */ (function () {
     function Action(config) {
         if (!config.name) {
-            throw new Error('[BitAnalytics] Action should have a name config : { name : ... }');
+            throw new error_1.default('Action should have a name config : { name : ... }');
         }
         this.name = config.name;
         this.isTracking = false;
@@ -6165,7 +6170,7 @@ var Action = /** @class */ (function () {
 }());
 exports.default = Action;
 
-},{}],5:[function(require,module,exports){
+},{"./exceptions/error":14}],5:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6184,13 +6189,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var action_1 = __importDefault(require("../action"));
 var log_event_handlers_1 = __importDefault(require("../log-event-handlers"));
 var log_event_1 = __importDefault(require("../log-event"));
+var error_1 = __importDefault(require("../exceptions/error"));
 var ClickAction = /** @class */ (function (_super) {
     __extends(ClickAction, _super);
     function ClickAction(config) {
         var _this = _super.call(this, config) || this;
         _this.params = [];
         if (!config.class || !config.channels) {
-            throw new Error('[BitAnalytics] ClickAction should have a config like this : { class : ..., channels: ... }');
+            throw new error_1.default('ClickAction should have a config like this : { class : ..., channels: ... }');
         }
         if (config.params) {
             _this.params = config.params;
@@ -6245,7 +6251,7 @@ var ClickAction = /** @class */ (function (_super) {
      */
     ClickAction.prototype.startTracking = function () {
         if (this.isTracking) {
-            throw new Error('[BitAnalytics] Tracking already started.');
+            throw new error_1.default('Tracking already started.');
         }
         this.isTracking = true;
         var elements = document.getElementsByClassName(this.class);
@@ -6257,7 +6263,7 @@ var ClickAction = /** @class */ (function (_super) {
     };
     ClickAction.prototype.stopTracking = function () {
         if (!this.isTracking) {
-            throw new Error('[BitAnalytics] Tracking already stopped.');
+            throw new error_1.default('Tracking already stopped.');
         }
         var elements = document.getElementsByClassName(this.class);
         // Add event listener to all the elements found
@@ -6271,7 +6277,7 @@ var ClickAction = /** @class */ (function (_super) {
 }(action_1.default));
 exports.default = ClickAction;
 
-},{"../action":4,"../log-event":18,"../log-event-handlers":17}],6:[function(require,module,exports){
+},{"../action":4,"../exceptions/error":14,"../log-event":21,"../log-event-handlers":20}],6:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6310,7 +6316,7 @@ var BitAnalytics = /** @class */ (function () {
 exports.default = BitAnalytics;
 BitAnalytics.main();
 
-},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":13,"./log-event":18,"./log-event-handlers":17}],7:[function(require,module,exports){
+},{"./action-factory":2,"./action-handlers":3,"./channels/adjust-channel":9,"./channels/mixpanel-channel":13,"./log-event":21,"./log-event-handlers":20}],7:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
@@ -6320,13 +6326,14 @@ var adjust_channel_1 = __importDefault(require("./channels/adjust-channel"));
 var firebase_channel_1 = __importDefault(require("./channels/firebase-channel"));
 var ga_channel_1 = __importDefault(require("./channels/ga-channel"));
 var leanplum_channel_1 = __importDefault(require("./channels/leanplum-channel"));
+var error_1 = __importDefault(require("./exceptions/error"));
 var ChannelFactory = /** @class */ (function () {
     function ChannelFactory() {
     }
     ChannelFactory.createChannel = function (name, config) {
         // Check if the channel is available
         if (ChannelFactory.classDictionary[name] == undefined) {
-            throw new Error('[BitAnalytics] ' + name + ' is not available.');
+            throw new error_1.default(name + ' is not available.');
         }
         else {
             // Create a channel
@@ -6346,7 +6353,7 @@ var ChannelFactory = /** @class */ (function () {
 }());
 exports.default = ChannelFactory;
 
-},{"./channels/adjust-channel":9,"./channels/firebase-channel":10,"./channels/ga-channel":11,"./channels/leanplum-channel":12}],8:[function(require,module,exports){
+},{"./channels/adjust-channel":9,"./channels/firebase-channel":10,"./channels/ga-channel":11,"./channels/leanplum-channel":12,"./exceptions/error":14}],8:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Channel = /** @class */ (function () {
@@ -6390,6 +6397,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
+var error_1 = __importDefault(require("../exceptions/error"));
+var id_manager_1 = __importDefault(require("../id-manager"));
 // Loading Adjust websdk
 require('../external-libs/adjust');
 var AdjustChannel = /** @class */ (function (_super) {
@@ -6397,17 +6406,17 @@ var AdjustChannel = /** @class */ (function (_super) {
     function AdjustChannel(name, config) {
         var _this = _super.call(this, name) || this;
         if (!config.token) {
-            throw new Error('[BitAnalytics] Adjust config is missing token.');
+            throw new error_1.default('Adjust config is missing token.');
         }
         if (!config.eventTypes) {
-            throw new Error('[BitAnalytics] Adjust config is missing event types.');
+            throw new error_1.default('Adjust config is missing event types.');
         }
         if (!Adjust) {
-            throw new Error('[BitAnalytics] Adjust cordova plugin is not installed correctly.');
+            throw new error_1.default('Adjust cordova plugin is not installed correctly.');
         }
         _this.eventTypes = config.eventTypes;
         var os = _this.adjustedOs(config.os);
-        _this.advertisingId = _this.getAdvertisingId(os);
+        _this.advertisingId = id_manager_1.default.shared.getAdId(os);
         // TODO: Different initialisation for Cordova.
         var sessionParams = {
             app_version: config.appVersion,
@@ -6431,7 +6440,7 @@ var AdjustChannel = /** @class */ (function (_super) {
             var eventType = this.eventTypes[name];
             // Each event needs to be added on adjust, and config for adjust.
             if (!eventType) {
-                throw new Error('This event name does not exist on Adjust.');
+                throw new error_1.default('This event name does not exist on Adjust.');
             }
             // Don't want adjust-specfic changes to affect the passed-in params.
             var adjustParams_1 = {};
@@ -6444,6 +6453,7 @@ var AdjustChannel = /** @class */ (function (_super) {
             this.adjustInstance.trackEvent(eventType, adjustParams_1);
         }
     };
+    AdjustChannel.prototype.setUserAttributes = function (attributes) { };
     /**
      *
      * Private methods
@@ -6471,42 +6481,11 @@ var AdjustChannel = /** @class */ (function (_super) {
             return 'wstore';
         }
     };
-    AdjustChannel.prototype.generateRandomGuid = function () {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-    };
-    // Example: 107e8ea14329d4a2194ebbb6dc0c0fd7
-    AdjustChannel.prototype.generateWindowsAdvertisingId = function () {
-        var id = '';
-        for (var i = 0; i < 32; i++) {
-            id += Math.floor(Math.random() * 16).toString(16);
-        }
-        return id;
-    };
-    // https://docs.adjust.com/en/event-tracking/
-    AdjustChannel.prototype.getAdvertisingId = function (os) {
-        var adid = localStorage.getItem('adid');
-        if (!adid) {
-            if (os === 'ios') {
-                adid = this.generateRandomGuid().toUpperCase();
-            }
-            else if (os === 'android') {
-                adid = this.generateRandomGuid();
-            }
-            else {
-                adid = this.generateWindowsAdvertisingId();
-            }
-            localStorage.setItem('adid', adid);
-        }
-        return adid;
-    };
     return AdjustChannel;
 }(channel_1.default));
 exports.default = AdjustChannel;
 
-},{"../channel":8,"../external-libs/adjust":14}],10:[function(require,module,exports){
+},{"../channel":8,"../exceptions/error":14,"../external-libs/adjust":15,"../id-manager":19}],10:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6523,6 +6502,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
+var error_1 = __importDefault(require("../exceptions/error"));
 var FirebaseChannel = /** @class */ (function (_super) {
     __extends(FirebaseChannel, _super);
     function FirebaseChannel(name, config) {
@@ -6531,10 +6511,10 @@ var FirebaseChannel = /** @class */ (function (_super) {
          * Firebase available only on ios and android
          */
         if (config.os != 'android' && config.os != 'ios') {
-            throw new Error('[BitAnalytics] Firebase is not supported on ' + config.os);
+            throw new error_1.default('Firebase is not supported on ' + config.os);
         }
         if (!window.FirebasePlugin) {
-            throw new Error('[BitAnalytics] Firebase cordova plugin is not installed correctly.');
+            throw new error_1.default('Firebase cordova plugin is not installed correctly.');
         }
         _this.firebaseInstance = window.FirebasePlugin;
         _this.isReady = true;
@@ -6555,6 +6535,12 @@ var FirebaseChannel = /** @class */ (function (_super) {
             this.firebaseInstance.logEvent(name, sanitizedParams);
         }
     };
+    FirebaseChannel.prototype.setUserAttributes = function (attributes) { };
+    /**
+     *
+     * Private methods
+     *
+     */
     // [Firebase/Analytics][I-ACS013002] Event parameter name must contain only letters, numbers, or underscores
     FirebaseChannel.prototype.sanitizeParams = function (params) {
         var keys = Object.keys(params);
@@ -6570,7 +6556,7 @@ var FirebaseChannel = /** @class */ (function (_super) {
 }(channel_1.default));
 exports.default = FirebaseChannel;
 
-},{"../channel":8}],11:[function(require,module,exports){
+},{"../channel":8,"../exceptions/error":14}],11:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6588,6 +6574,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
 var ga_1 = __importDefault(require("../external-libs/ga"));
+var error_1 = __importDefault(require("../exceptions/error"));
 var GoogleAnalyticsChannel = /** @class */ (function (_super) {
     __extends(GoogleAnalyticsChannel, _super);
     function GoogleAnalyticsChannel(name, config) {
@@ -6595,7 +6582,7 @@ var GoogleAnalyticsChannel = /** @class */ (function (_super) {
         _this.gaInstance = null;
         _this.eventLabels = ['id'];
         if (!config.trackingId) {
-            throw new Error('[BitAnalytics] Google Analytics config is missing tracking ID.');
+            throw new error_1.default('Google Analytics config is missing tracking ID.');
         }
         if (config.eventLabels) {
             _this.eventLabels = config.eventLabels;
@@ -6629,11 +6616,12 @@ var GoogleAnalyticsChannel = /** @class */ (function (_super) {
             this.gaInstance.event(category, action, label, value);
         }
     };
+    GoogleAnalyticsChannel.prototype.setUserAttributes = function (attributes) { };
     return GoogleAnalyticsChannel;
 }(channel_1.default));
 exports.default = GoogleAnalyticsChannel;
 
-},{"../channel":8,"../external-libs/ga":15}],12:[function(require,module,exports){
+},{"../channel":8,"../exceptions/error":14,"../external-libs/ga":16}],12:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6651,6 +6639,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
 var leanplum_min_js_1 = __importDefault(require("../external-libs/leanplum.min.js"));
+var id_manager_1 = __importDefault(require("../id-manager"));
 var LeanplumChannel = /** @class */ (function (_super) {
     __extends(LeanplumChannel, _super);
     function LeanplumChannel(name, config) {
@@ -6668,7 +6657,9 @@ var LeanplumChannel = /** @class */ (function (_super) {
             leanplum_min_js_1.default.setAppIdForDevelopmentMode(config.appId, config.key);
         }
         leanplum_min_js_1.default.setAppVersion(config.appVersion);
-        leanplum_min_js_1.default.start(function (success) {
+        leanplum_min_js_1.default.setSystemName(config.os);
+        _this.userId = id_manager_1.default.shared.getAdId(config.os);
+        leanplum_min_js_1.default.start(_this.userId, function (success) {
             console.log('[BitAnalytics] Leanplum start() returned with success: "' + success + '"');
             //console.log('[BitAnalytics] Leanplum variables', Leanplum.getVariables());
             if (success) {
@@ -6695,11 +6686,38 @@ var LeanplumChannel = /** @class */ (function (_super) {
             this.enqueue(function () { _this.postEvent(name, params); });
         }
     };
+    LeanplumChannel.prototype.setUserAttributes = function (attributes) {
+        // Get the channel names by the keys
+        var attributeNames = Object.keys(attributes);
+        // Iterate to init the several channels given in the config
+        attributeNames.forEach(function (attributeName) {
+            var attribute = attributes[attributeName];
+            if (attributeName === 'email') {
+                leanplum_min_js_1.default.setEmail(attribute);
+            }
+            else if (attributeName === 'deviceId') {
+                leanplum_min_js_1.default.setDeviceId(attribute);
+            }
+            else if (attributeName === 'deviceName') {
+                leanplum_min_js_1.default.setDeviceName(attribute);
+            }
+            else if (attributeName === 'deviceModel') {
+                leanplum_min_js_1.default.setDeviceModel(attribute);
+            }
+            else if (attributeName === 'systemName') {
+                leanplum_min_js_1.default.setSystemName(attribute);
+            }
+            else if (attributeName === 'systemVersion') {
+                leanplum_min_js_1.default.setSystemVersion(attribute);
+            }
+        });
+        leanplum_min_js_1.default.setUserAttributes(attributes);
+    };
     return LeanplumChannel;
 }(channel_1.default));
 exports.default = LeanplumChannel;
 
-},{"../channel":8,"../external-libs/leanplum.min.js":16}],13:[function(require,module,exports){
+},{"../channel":8,"../external-libs/leanplum.min.js":17,"../id-manager":19}],13:[function(require,module,exports){
 "use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -6716,13 +6734,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_1 = __importDefault(require("../channel"));
+var error_1 = __importDefault(require("../exceptions/error"));
 var mixpanel = require('mixpanel-browser');
 var MixpanelChannel = /** @class */ (function (_super) {
     __extends(MixpanelChannel, _super);
     function MixpanelChannel(name, config) {
         var _this = _super.call(this, name) || this;
         if (!config.token) {
-            throw new Error('[BitAnalytics] Config incorrect.');
+            throw new error_1.default('Config incorrect.');
         }
         _this.mixpanelInstance = mixpanel;
         mixpanel.init(config.token, config.config);
@@ -6736,11 +6755,34 @@ var MixpanelChannel = /** @class */ (function (_super) {
     MixpanelChannel.prototype.postEvent = function (name, params) {
         var result = this.mixpanelInstance.track(name);
     };
+    MixpanelChannel.prototype.setUserAttributes = function (attributes) { };
     return MixpanelChannel;
 }(channel_1.default));
 exports.default = MixpanelChannel;
 
-},{"../channel":8,"mixpanel-browser":1}],14:[function(require,module,exports){
+},{"../channel":8,"../exceptions/error":14,"mixpanel-browser":1}],14:[function(require,module,exports){
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var BAError = /** @class */ (function (_super) {
+    __extends(BAError, _super);
+    function BAError(message) {
+        return _super.call(this, '[BitAnalytics] ' + message) || this;
+    }
+    return BAError;
+}(Error));
+exports.default = BAError;
+
+},{}],15:[function(require,module,exports){
 "use strict";
 (function (window) {
     var sendRequest = function (method, url, data, success_cb, error_cb) {
@@ -6789,7 +6831,7 @@ exports.default = MixpanelChannel;
     window.Adjust = function (app_token, environment, os_name) { this.trackSession = function (device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/session?" + encodeQueryString(params)); }; this.trackEvent = function (event_token, device_ids) { var params = cloneObj(device_ids); params.app_token = app_token; params.event_token = event_token; params.os_name = os_name; params.environment = environment; sendRequest("GET", "https://app.adjust.com/event?" + encodeQueryString(params)); }; };
 })(window);
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 /*
  * name: nwjs-analytics -Node-Webkit Google Analytics integration
@@ -6956,7 +6998,7 @@ GA.prototype.timing = function (category, variable, time, label) {
     };
 module.exports = GA;
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 !function (a, b) { "object" == typeof exports && "object" == typeof module ? module.exports = b() : "function" == typeof define && define.amd ? define([], b) : "object" == typeof exports ? exports.Leanplum = b() : a.Leanplum = b(); }(this, function () {
     return function (a) { function b(d) { if (c[d])
@@ -7372,13 +7414,85 @@ module.exports = GA;
         } a.exports = c; }]);
 });
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var IdFactory = /** @class */ (function () {
+    function IdFactory() {
+    }
+    /**
+     *
+     * Public methods
+     *
+     */
+    IdFactory.createAdId = function (os) {
+        var adid;
+        if (os === 'ios') {
+            adid = IdFactory.generateRandomGuid().toUpperCase();
+        }
+        else if (os === 'android') {
+            adid = IdFactory.generateRandomGuid();
+        }
+        else {
+            adid = IdFactory.generateWindowsAdvertisingId();
+        }
+        return adid;
+    };
+    /**
+     *
+     * Private methods
+     *
+     */
+    IdFactory.generateRandomGuid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    // Example: 107e8ea14329d4a2194ebbb6dc0c0fd7
+    IdFactory.generateWindowsAdvertisingId = function () {
+        var id = '';
+        for (var i = 0; i < 32; i++) {
+            id += Math.floor(Math.random() * 16).toString(16);
+        }
+        return id;
+    };
+    return IdFactory;
+}());
+exports.default = IdFactory;
+
+},{}],19:[function(require,module,exports){
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var id_factory_1 = __importDefault(require("./id-factory"));
+var IdManager = /** @class */ (function () {
+    function IdManager() {
+    }
+    IdManager.prototype.getAdId = function (os) {
+        var adid = localStorage.getItem('adid');
+        if (!adid) {
+            adid = id_factory_1.default.createAdId(os);
+            localStorage.setItem('adid', adid);
+        }
+        return adid;
+    };
+    // Singleton
+    IdManager.shared = new IdManager();
+    return IdManager;
+}());
+exports.default = IdManager;
+
+},{"./id-factory":18}],20:[function(require,module,exports){
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var channel_factory_1 = __importDefault(require("./channel-factory"));
+var error_1 = __importDefault(require("./exceptions/error"));
 var LogEventHandlers = /** @class */ (function () {
     function LogEventHandlers(os, appVersion, channelConfigs) {
         this.os = os;
@@ -7398,7 +7512,7 @@ var LogEventHandlers = /** @class */ (function () {
             return LogEventHandlers.instance;
         }
         else {
-            throw new Error('[BitAnalytics] LogEventHandlers need to be initialized');
+            throw new error_1.default('LogEventHandlers need to be initialized');
         }
     };
     LogEventHandlers.prototype.postEvent = function (logEvent) {
@@ -7447,6 +7561,11 @@ var LogEventHandlers = /** @class */ (function () {
             }
         });
     };
+    LogEventHandlers.prototype.setUserAttributes = function (attributes) {
+        this.channels.forEach(function (channel) {
+            channel.setUserAttributes(attributes);
+        });
+    };
     /**
      *
      * Private methods
@@ -7493,13 +7612,17 @@ var LogEventHandlers = /** @class */ (function () {
 }());
 exports.default = LogEventHandlers;
 
-},{"./channel-factory":7}],18:[function(require,module,exports){
+},{"./channel-factory":7,"./exceptions/error":14}],21:[function(require,module,exports){
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var error_1 = __importDefault(require("./exceptions/error"));
 var LogEvent = /** @class */ (function () {
     function LogEvent(name, params, channelNames) {
         if (channelNames.length == 0) {
-            throw new Error('[BitAnalytics] Minimum one channel is needed.');
+            throw new error_1.default('Minimum one channel is needed.');
         }
         this.name = name;
         this.params = params;
@@ -7509,5 +7632,5 @@ var LogEvent = /** @class */ (function () {
 }());
 exports.default = LogEvent;
 
-},{}]},{},[6])(6)
+},{"./exceptions/error":14}]},{},[6])(6)
 });
