@@ -23,10 +23,11 @@
     var moonpayTxId = '';
     var purchasedAmount = 0;
     var walletId = '';
-    
+
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
-
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
+    
     function _initVariables() {
       moonpayTxId = $state.params.moonpayTxId;
       purchasedAmount = $state.params.purchasedAmount;
@@ -71,6 +72,12 @@
           // Can't do much, leave in unknown wallet state
         }
       )
+      
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [], ['leanplum']);
+    }
+
+    function _onBeforeLeave() {
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_close', [], ['leanplum']);
     }
 
     function onDone() {

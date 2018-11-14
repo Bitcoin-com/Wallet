@@ -94,7 +94,7 @@ angular
     }
 
     function didPushBuyInstantly() {
-      $state.go('tabs.buybitcoin-amount');
+\      $state.go('tabs.buybitcoin-amount');
     }
   }
 

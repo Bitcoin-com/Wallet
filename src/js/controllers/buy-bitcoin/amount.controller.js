@@ -7,9 +7,9 @@
 
   function amountController(
     configService , gettextCatalog, ongoingProcess, popupService, bitcoinCashJsService
-    , moonPayService, profileService, walletService
+    , moonPayService, profileService, walletService, bitAnalyticsService
     , $interval, $ionicHistory, $scope, $state, $timeout
-    ) {
+  ) {
 
     var vm = this;
     vm.onAmountChanged = onAmountChanged;
@@ -153,6 +153,8 @@
         _getWallet();
         _getRates();
       }, 200);
+
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [], ['leanplum']);
     }
 
     function _updateAmount() {
@@ -171,10 +173,16 @@
       if (exchangeRateRefreshInterval) {
         $interval.cancel(exchangeRateRefreshInterval);
       }
+
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [], ['leanplum']);
     }
     
 
     function onBuy() {
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_tap_on_buy', [{
+        'amount': vm.inputAmount
+      }], ['leanplum']);
+
       var title = gettextCatalog.getString('Unable to Purchase');
       var message = '';
       var okText = '';
