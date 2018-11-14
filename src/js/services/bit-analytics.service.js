@@ -9,6 +9,7 @@
   function bitAnalyticsService(platformInfo) {
     var service = {
       postEvent: postEvent
+      , setUserAttributes: setUserAttributes
     };
 
     var defaultChannels = ['ga'];
@@ -32,6 +33,10 @@
 
       var log = new window.BitAnalytics.LogEvent(name, params, allChannels);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
+    }
+
+    function setUserAttributes(attributes) {
+      window.BitAnalytics.LogEventHandlers.setUserAttributes(attributes);
     }
 
   }

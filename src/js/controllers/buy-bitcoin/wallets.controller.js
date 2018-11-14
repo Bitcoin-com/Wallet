@@ -7,7 +7,7 @@ angular
   .controller('buyBitcoinWalletsController', walletsController);
 
   function walletsController(
-    moonPayService, profileService
+    moonPayService, profileService, bitAnalyticsService
     , gettextCatalog, popupService
     , $scope, $ionicHistory
   ) {
@@ -49,15 +49,18 @@ angular
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     function _onBeforeEnter(event, data) {
-      _initVariables();
+      _initVariables();      
+      bitAnalyticsService.postEvent('buy_bitcoin_choose_wallet_screen_open', [], ['leanplum']);
     }
 
     function _onBeforeLeave(event, data) {
       var defaultWasChanged = initialWalletId !== vm.walletId;
       if (defaultWasChanged) {
-        moonPayService.setDefaultWalletId(vm.walletId)
+        moonPayService.setDefaultWalletId(vm.walletId);
+        bitAnalyticsService.postEvent('buy_bitcoin_choose_wallet_screen_new_wallet_chosen', [], ['leanplum']);
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
+      bitAnalyticsService.postEvent('buy_bitcoin_choose_wallet_screen_close', [], ['leanplum']);
     }
 
   }

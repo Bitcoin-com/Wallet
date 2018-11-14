@@ -26,9 +26,11 @@ angular
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function getStarted() {
-      $log.debug('getStarted() with email: ' + vm.email);
+      $log.debug('getStarted() with email: ' + vm.email);      
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_tap_on_get_started' ,[], ['leanplum']);
 
       if (!vm.email) {
         var title = gettextCatalog.getString('Unable to Create Customer');
@@ -44,7 +46,9 @@ angular
         function onCreateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
-          bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_get_started', [], ['leanplum']);
+          bitAnalyticsService.setUserAttributes({
+            'email': vm.email
+          });
           $ionicHistory.goBack();
         },
         
@@ -60,10 +64,14 @@ angular
 
     }
     
-
     function onBeforeEnter(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[], ['leanplum']);
       initVariables();
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[], ['leanplum']);
+    }
+
+    function onBeforeLeave(event, data) {
+      initVariables();
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_close' ,[], ['leanplum']);
     }
   }
 
