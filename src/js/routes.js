@@ -1395,40 +1395,83 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinScreenClose);
 
       var actionBuyBitcoinTapOnBuyInstantly = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'buy_bitcoin_tap_on_buy_instantly', 
+        name: 'buy_bitcoin_screen_tap_on_buy_instantly', 
         class: 'track_buy_bitcoin_tap_on_buy_instantly',
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnBuyInstantly);
 
       var actionBuyBitcoinTapOnPurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'buy_bitcoin_tap_on_purchase_history', 
+        name: 'buy_bitcoin_screen_tap_on_purchase_history', 
         class: 'track_buy_bitcoin_tap_on_purchase_history', 
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPurchaseHistory);
 
       var actionBuyBitcoinTapOnPaymentMethods = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'buy_bitcoin_tap_on_payment_methods', 
+        name: 'buy_bitcoin_screen_tap_on_payment_methods', 
         class: 'track_buy_bitcoin_tap_on_payment_methods', 
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPaymentMethods);
 
       var actionBuyBitcoinTapOnPrivacyPolicy = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'buy_bitcoin_tap_on_privacy_policy', 
+        name: 'buy_bitcoin_screen_tap_on_privacy_policy', 
         class: 'track_buy_bitcoin_tap_on_privacy_policy', 
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPrivacyPolicy);
 
       var actionBuyBitcoinTapOnTermsOfService = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'buy_bitcoin_tap_on_terms_of_service', 
+        name: 'buy_bitcoin_screen_tap_on_terms_of_service', 
         class: 'track_buy_bitcoin_tap_on_terms_of_service', 
         channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnTermsOfService);
+
+      var actionBuyBitcoinBuyInstantlyAmountChooseWallet = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet', 
+        class: 'track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinBuyInstantlyAmountChooseWallet);
+
+      var actionBuyBitcoinBuyInstantlyAmountChoosePaymentMethod = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_payment_method', 
+        class: 'track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_payment_method', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinBuyInstantlyAmountChoosePaymentMethod);
       
+      var actionBuyBitcoinPurchaseSuccessSeeWallet = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_wallet', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeeWallet);
+      
+      var actionBuyBitcoinPurchaseSuccessSeeReceipt = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_receipt', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_receipt', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeeReceipt);
+
+      var actionBuyBitcoinPurchaseSuccessSeePurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_purchase_history', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeePurchaseHistory);
+      
+      var actionBuyBitcoinPurchaseSuccessMakeAnotherPurchase = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_make_another_purchase', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_make_another_purchase', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessMakeAnotherPurchase);
+      
+
       // Init language
       uxLanguage.init(function (lang) {
 
