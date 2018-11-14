@@ -3999,7 +3999,7 @@ msgstr ""
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr ""
 
-msgid "You have purchased {{vm.monthlyPurchased}} of your {{vm.monthlyLimit}} monthly limit."
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
 msgstr ""
 
 msgid "Buy Bitcoin Cash"

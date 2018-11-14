@@ -47,16 +47,19 @@
     }
 
     function _prepareTransactionsForDisplay(transactions) {
-      console.log('transaction: ', transactions[0]);
       
       var addresses = [];
 
       transactions.forEach(function onTransaction(tx){
         tx.createdTime = Date.parse(tx.createdAt);
+        var cashAddr = tx.walletAddress;
+        if (cashAddr.indexOf('bitcoincash:') < 0) {
+          cashAddr = 'bitcoincash:' + cashAddr;
+        }
 
-        //tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
+        var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
 
-        addresses.push(tx.walletAddress);
+        addresses.push(legacyAddress);
       });
 
       transactions.sort(function compare(a, b){
@@ -71,8 +74,12 @@
           return;
         }
 
+        var walletCashAddr = bitcoinCashJsService.readAddress(walletAndAddress.address).cashaddr;
+        var walletCashAddrParts = walletCashAddr.split(':');
+        var walletCashAddrWithoutPrefix = walletCashAddrParts.length === 2 ? walletCashAddrParts[1] : walletCashAddr;
+
         transactions.forEach(function onTransaction(tx) {
-          if (tx.walletAddress === walletAndAddress.address) {
+          if (tx.walletAddress === walletCashAddrWithoutPrefix) {
             var wallet = walletAndAddress.wallet;
             tx.walletColor = wallet.color;
             tx.walletName = wallet.name;
