@@ -65,8 +65,8 @@
 
       moonPayService.getTransaction(moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
-          vm.purchasedAmount = transaction.baseCurrencyAmount
-          vm.status = transaction.status
+          vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
+          vm.status = transaction.status;
         }, function onGetTransactionError(err) {
           $log.error(err);
           // Can't do much, leave in unknown wallet state
