@@ -47,18 +47,18 @@
     }
 
     function _prepareTransactionsForDisplay(transactions) {
-      console.log('transaction: ', transactions[0]);
       
       var addresses = [];
 
       transactions.forEach(function onTransaction(tx){
         tx.createdTime = Date.parse(tx.createdAt);
         var cashAddr = tx.walletAddress;
-        cashAddr = 'bitcoincash:' + cashAddr; // TODO: conditional prefix adding 
+        if (cashAddr.indexOf('bitcoincash:') < 0) {
+          cashAddr = 'bitcoincash:' + cashAddr;
+        }
 
         var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-        console.log('legacyAddress for wallet lookup:', legacyAddress);
-        
+
         addresses.push(legacyAddress);
       });
 
