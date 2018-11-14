@@ -10885,6 +10885,18 @@ qrcode {
   #starting .block-spinner {
     display: block; }
 
+#tab-home #buy-bitcoin.padding {
+  padding: 0px 14px; }
+
+#tab-home #buy-bitcoin .button {
+  font-weight: bold;
+  font-size: 19px;
+  line-height: 26px;
+  padding: 8px 6px; }
+  #tab-home #buy-bitcoin .button.button-standard {
+    width: 100%;
+    max-width: 100%; }
+
 #tab-home .icon-create-wallet {
   background-color: #4A90E2; }
 

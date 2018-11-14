@@ -54,7 +54,7 @@
       transactions.forEach(function onTransaction(tx){
         tx.createdTime = Date.parse(tx.createdAt);
 
-        tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
+        //tx.walletAddress = "1L26JXNCL5Z2dSh5utbuMgBipNv8BTCN9r"; // For testing only - Used
 
         addresses.push(tx.walletAddress);
       });
