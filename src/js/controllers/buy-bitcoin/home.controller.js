@@ -23,8 +23,8 @@ angular
     vm.didPushBuyInstantly = didPushBuyInstantly;
 
     function _initVariables() {
-      vm.monthlyLimit = '-';
-      vm.monthlyPurchased = '-';
+      vm.dailyRemaining = '-';
+      vm.monthlyRemaining = '-';
 
       vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
       vm.termsOfService = 'tabs.buybitcoin-tos'
@@ -37,9 +37,8 @@ angular
         function onGetCustomerSuccess(customer) {
           if (customer) {
             console.log('Moonpay customer:', customer);
-            var monthlyPurchased = 0; // TODO: How to get this information?
-            vm.monthlyPurchased = $filter('currency')(monthlyPurchased, '$', 2);
-            vm.monthlyLimit = $filter('currency')(customer.monthlyLimit, '$', 2);
+            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '$', 2);
+            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '$', 2);
           } else {
             $state.go('tabs.buybitcoin-welcome');
             var title = gettextCatalog.getString("Error Getting Customer Information");
