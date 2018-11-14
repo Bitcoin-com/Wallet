@@ -10,6 +10,7 @@
     , $log
     , moonPayService
     , profileService
+    , popupService
     , $scope
     , $state
     ) {
@@ -30,13 +31,18 @@
       moonpayTxId = $state.params.moonpayTxId;
       console.log('moonpayTxId:', moonpayTxId);
 
-      // Change this to crypto later when the transaction is complete.
-      vm.purchasedAmount = 0;
+      vm.haveTxInfo = false;
+      // Change this to crypto later when the transaction is complete
+      vm.lineItems = {
+        bchQty: 0,
+        rateUsd: 0,
+        processingFee: 0,
+        total: 0
+      }
       vm.purchasedCurrency = 'USD';
       vm.walletName = '';
 
       console.log(moonpayTxId);
-
     }
 
     function _onBeforeEnter() {
@@ -45,7 +51,17 @@
 
       moonPayService.getTransaction(moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
+          console.log('Transaction:', transaction);
+          
+          vm.haveTxInfo = true;
+
           vm.purchasedAmount = transaction.baseCurrencyAmount
+          vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
+
+          vm.rateUsd = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
+
+          vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
+          vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
 
           profileService.getWalletFromAddresses([transaction.walletAddress], 'bch', function onWallet(err, walletAndAddress) {
             if (err) {
@@ -57,10 +73,15 @@
 
             $scope.$apply();
           });
+
+          //$scope.$apply();
         },
         function onGetTransactionError(err) {
           $log.error(err);
-          // Can't do much, leave in unknown wallet state
+          
+          var title = gettextCatalog('Error');
+          var message = err.message || gettextCatalog('Failed to get transaction data.');
+          popupService.showAlert(title, message);
         }
       );
 

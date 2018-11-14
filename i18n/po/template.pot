@@ -4077,3 +4077,11 @@ msgstr ""
 msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr ""
 
+# Receipt
+
+msgid ""
+msgstr ""
+
+msgid "Failed to get transaction data."
+msgstr ""
+
