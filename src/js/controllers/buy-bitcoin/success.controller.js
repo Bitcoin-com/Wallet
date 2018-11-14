@@ -6,7 +6,8 @@
       .controller('buyBitcoinSuccessController', successController);
 
   function successController(
-    $ionicHistory
+    $interval
+    , $ionicHistory
     , $log
     , moonPayService
     , profileService
@@ -22,10 +23,12 @@
 
     var moonpayTxId = '';
     var purchasedAmount = 0;
+    var refreshPromise = null;
     var walletId = '';
     
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     function _initVariables() {
       moonpayTxId = $state.params.moonpayTxId;
@@ -62,15 +65,10 @@
         }
       );
 
-      moonPayService.getTransaction(moonpayTxId).then(
-        function onGetTransactionSuccess(transaction) {
-          vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
-          vm.status = transaction.status;
-        }, function onGetTransactionError(err) {
-          $log.error(err);
-          // Can't do much, leave in unknown wallet state
-        }
-      )
+      if (moonpayTxId) {
+        _refreshTransactionInfo();
+        $interval(_refreshTransactionInfo, 5000);
+      }
     }
 
     function onDone() {
@@ -97,6 +95,14 @@
       );
     }
 
+    function _onBeforeLeave() {
+      console.log('_onBeforeLeave()');
+      if (refreshPromise !== null) {
+        cancel(refreshPromise);
+        refreshPromise = null;
+      }
+    }
+
     function onMakeAnotherPurchase() {
       $ionicHistory.nextViewOptions({
         disableAnimation: true,
@@ -111,6 +117,24 @@
           );
         }
       );
+    }
+
+    function _refreshTransactionInfo() {
+      
+      moonPayService.getTransaction(moonpayTxId).then(
+        function onGetTransactionSuccess(transaction) {
+          vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
+          vm.status = transaction.status;
+          console.log('_refreshTransactionInfo() ' + transaction.status);
+          if (vm.status === 'completed') {
+            cancel(refreshPromise);
+            refreshPromise = null;
+          }
+        }, function onGetTransactionError(err) {
+          $log.error(err);
+          // Can't do much, wait for next refresh
+        }
+      )
     }
 
   }
