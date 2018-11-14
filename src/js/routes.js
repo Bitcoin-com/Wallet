@@ -1300,8 +1300,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
   })
   .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
-    $ionicPlatform.ready(function() { 
-
+    $ionicPlatform.ready(function() {
+      
+      leanplumConfig.variables = leanplumConfig.variables || {};
+      leanplumConfig.variables.bitcoincom_fee = 5;
+      
       // Init BitAnalytics
       var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
       window.BitAnalytics.initialize(os, $window.fullVersion, {"firebase": {}, 

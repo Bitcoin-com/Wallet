@@ -10,6 +10,7 @@
     var service = {
       postEvent: postEvent
       , setUserAttributes: setUserAttributes
+      , getVariablesFromChannel: getVariablesFromChannel
     };
 
     var defaultChannels = ['ga'];
@@ -37,6 +38,10 @@
 
     function setUserAttributes(attributes) {
       window.BitAnalytics.LogEventHandlers.setUserAttributes(attributes);
+    }
+
+    function getVariablesFromChannel(channelName) {
+      window.BitAnalytics.LogEventHandlers.getVariablesFromChannel(channelName);
     }
 
   }

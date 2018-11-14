@@ -34,13 +34,12 @@
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
       vm.ratesError = '';
-      /*
-      vm.paymentMethod = {
-        name: 'Visa',
-        partialCardNumber: '••• 2244',
-        expiryDate: '12/21'
-      };
-      */
+
+      let variables = bitAnalyticsService.getVariablesFromChannel('leanplum');
+      if (variables && variables.bitcoincom_fee) {
+        EXTRA_FEE_PERCENTAGE = variables.bitcoincom_fee;
+      }
+
       if (exchangeRateRefreshInterval) {
         $interval.cancel(exchangeRateRefreshInterval);
       }
