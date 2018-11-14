@@ -15,6 +15,9 @@
     vm.onAmountChanged = onAmountChanged;
     vm.onBuy = onBuy;
 
+    var EXTRA_FEE_PERCENTAGE = 5;
+    var MOONPAY_FEE = 4.99;
+    var TOTAL_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
     var exchangeRateRefreshInterval = null;
 
     function _initVariables() {
@@ -23,7 +26,7 @@
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
-        processingFee: 10, // TODO: Use correct amount for this
+        processingFee: 0,
         total: 0
       };
       vm.paymentMethod = null;
@@ -162,7 +165,7 @@
       if (vm.rateUsd) {
         vm.lineItems.bchQty = amount / vm.rateUsd;
         vm.lineItems.cost = amount;
-        vm.lineItems.processingFee = 10; // TODO: Update this with the correct amount
+        vm.lineItems.processingFee = MOONPAY_FEE + amount * TOTAL_FEE_FRACTION;
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
     }
@@ -230,11 +233,6 @@
           }
 
           var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
-          // override for testing
-          //toAddress = 'mtXWDB6k5yC5v7TcwKZHB89SUp85yCKshy';
-          // testnet without prefix
-          //toAddress = 'qqyla5lq3e3ykg7mhtx80aaj5wvesdg6dq5yaeper6';
-          //toAddress = 'qpd2k95d8har236mmze78zgatkhu7y6zny4wgtajdm';
           var addressParts = toCashAddress.split(':');
           var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
@@ -243,7 +241,7 @@
             , currencyCode: 'bch'
             , cardCvc: csc
             , cardId: vm.paymentMethod.id
-            , extraFeePercentage: 1
+            , extraFeePercentage: EXTRA_FEE_PERCENTAGE
             , walletAddress: toAddressForTransaction
           };
           moonPayService.createTransaction(transaction).then(
