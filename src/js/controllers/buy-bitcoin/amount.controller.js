@@ -16,8 +16,9 @@
     vm.onBuy = onBuy;
 
     var EXTRA_FEE_PERCENTAGE = 5;
-    var MOONPAY_FEE = 4.99;
-    var TOTAL_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
+    var MOONPAY_FIXED_FEE = 4.99;
+    var MOONPAY_VARIABLE_FEE_FRACTION = 0.0499;
+    var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
     var exchangeRateRefreshInterval = null;
 
     function _initVariables() {
@@ -167,7 +168,9 @@
       if (vm.rateUsd) {
         vm.lineItems.bchQty = amount / vm.rateUsd;
         vm.lineItems.cost = amount;
-        vm.lineItems.processingFee = MOONPAY_FEE + amount * TOTAL_FEE_FRACTION;
+        var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION);
+        var extraFee = amount * EXTRA_FEE_FRACTION;
+        vm.lineItems.processingFee = moonpayFee + extraFee;
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
     }

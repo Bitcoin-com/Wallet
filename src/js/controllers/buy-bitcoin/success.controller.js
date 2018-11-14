@@ -6,7 +6,8 @@
       .controller('buyBitcoinSuccessController', successController);
 
   function successController(
-    $interval
+    bitAnalyticsService
+    , $interval
     , $ionicHistory
     , $log
     , moonPayService
