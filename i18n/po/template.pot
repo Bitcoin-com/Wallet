@@ -4079,7 +4079,7 @@ msgstr ""
 
 # Receipt
 
-msgid ""
+msgid "Deposited to"
 msgstr ""
 
 msgid "Failed to get transaction data."

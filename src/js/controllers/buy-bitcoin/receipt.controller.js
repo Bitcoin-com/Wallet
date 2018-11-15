@@ -6,7 +6,8 @@
       .controller('buyBitcoinReceiptController', receiptController);
 
   function receiptController(
-    $ionicHistory
+    bitcoinCashJsService
+    , $ionicHistory
     , $log
     , moonPayService
     , profileService
@@ -35,14 +36,35 @@
       // Change this to crypto later when the transaction is complete
       vm.lineItems = {
         bchQty: 0,
+        cost: 0,
         rateUsd: 0,
         processingFee: 0,
         total: 0
       }
-      vm.purchasedCurrency = 'USD';
-      vm.walletName = '';
+      vm.wallet = null;
+      vm.walletAddress = '';
 
       console.log(moonpayTxId);
+    }
+
+    function _getWalletForAddress(cashAddr) {
+      if (cashAddr.indexOf('bitcoincash:') < 0) {
+        cashAddr = 'bitcoincash:' + cashAddr;
+      }
+
+      var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
+
+      profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
+        if (err) {
+          $log.error('Error getting wallet from address. ' + err.message || '');
+          return;
+        }
+
+        console.log('Got wallet from address.');
+        vm.wallet = walletAndAddress.wallet;
+
+        $scope.$apply();
+      });
     }
 
     function _onBeforeEnter() {
@@ -55,24 +77,17 @@
           
           vm.haveTxInfo = true;
 
-          vm.purchasedAmount = transaction.baseCurrencyAmount
           vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
+          vm.lineItems.cost = transaction.baseCurrencyAmount;
 
           vm.rateUsd = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
 
           vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
           vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
 
-          profileService.getWalletFromAddresses([transaction.walletAddress], 'bch', function onWallet(err, walletAndAddress) {
-            if (err) {
-              $log.error('Error getting wallet from address. ' + err.message || '');
-              return;
-            }
+          vm.walletAddress = transaction.walletAddress;
 
-            vm.wallet = walletAndAddress.wallet;
-
-            $scope.$apply();
-          });
+          _getWalletForAddress(transaction.walletAddress);
 
           //$scope.$apply();
         },

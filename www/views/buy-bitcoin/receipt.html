@@ -11,14 +11,10 @@
       Receipt
     </h1>
     <div>
-      <div class="apl-amount">
-        <div class="apl-amount-title" translate>Amount</div>
-        <span class="apl-amount-currency">$</span>
-        <input type="number" class="apl-amount-input" min="0" step="1" placeholder="0" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()"/>
-      </div>
       <div class="apl-amount-totals">
         <div class="apl-amount-totals-item">
           <span class="apl-amount-totals-title" ng-if="vm.haveTxInfo"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</span>
+          <span class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.cost | currency:'':2}} USD</span>
         </div>
         <div class="apl-amount-totals-item">
           <span class="apl-amount-totals-title" translate>Processing Fee</span>
@@ -33,12 +29,14 @@
     </div>
     <div class="apl-list">
       <div class="apl-list-title" translate>
-        Deposit to
+        Deposited to
       </div>
       <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="vm.wallet">
-        <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+        <i class="icon big-icon-svg">
+          <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
+        </i>
         <div class="apl-card__title__container">
-          <div class="apl-card__title" ng-if="vm.wallet">
+          <div class="apl-card__title">
             {{vm.wallet.name}}
           </div>
           <div class="apl-card__subtitle">
@@ -51,15 +49,14 @@
               wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
               wallet-cached-status="{{vm.wallet.cachedStatus}}"
               total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"
-              ng-if="vm.wallet"
               />
           </div>
         </div>
       </div>
       <div class="item item-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="!vm.wallet">
         <div class="apl-card__title__container">
-          <div class="apl-card__title"ng-if="!vm.wallet" translate>
-            Select a BCH wallet
+          <div class="apl-card__title">
+            {{vm.walletAddress}}
           </div>
           <div class="apl-card__subtitle"></div>
         </div>  
