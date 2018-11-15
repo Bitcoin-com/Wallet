@@ -30,6 +30,24 @@
     margin-top: 22px;
   }
 
+  h3 {
+    width: 172px;
+    height: 18px;
+    color: #787878;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: -0.08px;
+    line-height: 18px;
+    margin: 16px 0 6px 16px;
+  }
+
+  p {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
   &-amount {
     padding: 0 16px;
     &-title {
@@ -216,6 +234,11 @@
     }
     &.activated {
       background: #F2F2F2;
+    }
+
+    p {
+      margin-left: 0;
+      margin-right: 0;
     }
   }
   &-card {

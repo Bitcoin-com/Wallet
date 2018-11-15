@@ -10,8 +10,11 @@
     <h1 translate>
       Receipt
     </h1>
-    <p class="center" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
-    <p class="center" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
+    <h3 translate>
+      Status
+    </h3>
+    <p ng-if="vm.status == 'completed'" translate>Completed</p>
+    <p ng-if="vm.status != 'completed'" translate>Pending</p>
     <div>
       <div class="apl-divider"></div>
       <div class="apl-amount-totals">
