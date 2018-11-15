@@ -11,8 +11,8 @@
       <img id="checkmark" src="img/buy-bitcoin/checkmark.svg"/>
       <h1 translate>Success!</h1>
       <div class="clear"></div>
-      <p id="message" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
-      <p id="message" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
+      <p class="message" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
+      <p class="message" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
       <div id="amount-container">
         <formatted-amount value="{{vm.purchasedAmount}}" currency="{{vm.purchasedCurrency}}"></formatted-amount>
       </div>

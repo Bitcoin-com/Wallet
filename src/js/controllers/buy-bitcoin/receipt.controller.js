@@ -7,9 +7,12 @@
 
   function receiptController(
     bitcoinCashJsService
+    , externalLinkService
     , $ionicHistory
+    , ionicToast
     , $log
     , moonPayService
+    , platformInfo
     , profileService
     , popupService
     , $scope
@@ -21,8 +24,11 @@
     vm.onDone = onDone;
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
+    vm.onShareTransaction = onShareTransaction;
+    vm.onViewOnBlockchain = onViewOnBlockchain;
 
     var moonpayTxId = '';
+    var txUrl = '';
     var walletId = '';
     
 
@@ -32,8 +38,9 @@
       moonpayTxId = $state.params.moonpayTxId;
       console.log('moonpayTxId:', moonpayTxId);
 
+      vm.cryptoTransactionId = '';
       vm.haveTxInfo = false;
-      // Change this to crypto later when the transaction is complete
+      
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
@@ -44,8 +51,12 @@
       vm.paymentMethod = null;
       vm.paymentMethodError = '';
       vm.paymentMethodLoading = true;
+      vm.status = 'pending';
       vm.wallet = null;
       vm.walletAddress = '';
+
+      txUrl = '';
+      walletId = '';
 
     }
 
@@ -107,6 +118,11 @@
           
           vm.haveTxInfo = true;
 
+          vm.cryptoTransactionId = transaction.cryptoTransactionId;
+          if (transaction.cryptoTransactionId) {
+            txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
+          }
+
           vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
           vm.lineItems.cost = transaction.baseCurrencyAmount;
 
@@ -114,6 +130,8 @@
 
           vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
           vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
+
+          vm.status = transaction.status;
 
           vm.walletAddress = transaction.walletAddress;
 
@@ -170,6 +188,20 @@
           );
         }
       );
+    }
+
+    function onShareTransaction() {
+      if (platformInfo.isCordova) {
+        var text = gettextCatalog.getString('Take a look at this Bitcoin Cash transaction here: ') + txUrl;
+        window.plugins.socialsharing.share(text, null, null, null);
+      } else {
+        ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
+        clipboardService.copyToClipboard(explorerTxUrl);
+      }
+    }
+
+    function onViewOnBlockchain() {
+      externalLinkService.open(txUrl, false);
     }
 
   }
