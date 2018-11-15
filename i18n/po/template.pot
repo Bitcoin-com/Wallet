@@ -4085,3 +4085,8 @@ msgstr ""
 msgid "Failed to get transaction data."
 msgstr ""
 
+msgid "Not found."
+msgstr ""
+
+msgid "Failed to get payment method info."
+msgstr ""

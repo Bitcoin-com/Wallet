@@ -41,10 +41,41 @@
         processingFee: 0,
         total: 0
       }
+      vm.paymentMethod = null;
+      vm.paymentMethodError = '';
+      vm.paymentMethodLoading = true;
       vm.wallet = null;
       vm.walletAddress = '';
 
-      console.log(moonpayTxId);
+    }
+
+    function _getPaymentMethodInfo(cardId) {
+      vm.paymentMethodLoading = true;
+      moonPayService.getCards().then(
+        function onGetCardsSuccess(cards) {
+          vm.paymentMethodLoading = false;
+          if (cards && cards.length > 0) {
+            
+            var cardWasFound = false;
+            for (var i = 0; i < cards.length; ++i) {
+              if (cards[i].id === cardId) {
+                cardWasFound = true;
+                vm.paymentMethod = cards[i];
+                break;
+              }
+            }
+            if (!cardWasFound) {
+              vm.paymentMethodError = gettextCatalog.getString('Not found.');
+            }
+            
+          }  
+        },
+        function onGetCardsError(err) {
+          vm.paymentMethodLoading = false;
+          vm.paymentMethodError = err.message || gettextCatalog.getString('Failed to get payment method info.');
+        }
+      );
+      
     }
 
     function _getWalletForAddress(cashAddr) {
@@ -60,7 +91,6 @@
           return;
         }
 
-        console.log('Got wallet from address.');
         vm.wallet = walletAndAddress.wallet;
 
         $scope.$apply();
@@ -88,8 +118,7 @@
           vm.walletAddress = transaction.walletAddress;
 
           _getWalletForAddress(transaction.walletAddress);
-
-          //$scope.$apply();
+          _getPaymentMethodInfo(transaction.cardId);
         },
         function onGetTransactionError(err) {
           $log.error(err);
