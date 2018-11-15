@@ -123,6 +123,8 @@
             txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
           }
 
+          vm.createdTime = transaction.createdTime;
+
           vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
           vm.lineItems.cost = transaction.baseCurrencyAmount;
 
