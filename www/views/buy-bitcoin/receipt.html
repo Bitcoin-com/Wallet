@@ -10,37 +10,35 @@
     <h1 translate>
       Receipt
     </h1>
+    <p class="center" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
+    <p class="center" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
     <div>
-      <div class="apl-amount">
-        <div class="apl-amount-title" translate>Amount</div>
-        <span class="apl-amount-currency">$</span>
-        <input type="number" class="apl-amount-input" min="0" step="1" placeholder="0" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()"/>
-      </div>
+      <div class="apl-divider"></div>
       <div class="apl-amount-totals">
         <div class="apl-amount-totals-item">
-          <span class="apl-amount-totals-title" ng-if="!vm.rateUsd">Getting rate...</span>
-          <span class="apl-amount-totals-title" ng-if="vm.rateUsd"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</span>
-          <span class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.cost | currency:'':2}} USD</span>
+          <span class="apl-amount-totals-title" ng-if="vm.haveTxInfo"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</span>
+          <span class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.cost | currency:'':2}} USD</span>
         </div>
         <div class="apl-amount-totals-item">
           <span class="apl-amount-totals-title" translate>Processing Fee</span>
-          <span class="apl-amount-totals-price">{{vm.lineItems.processingFee | currency:'':2}} USD</span>
+          <span class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.processingFee | currency:'':2}} USD</span>
         </div>
         <div class="apl-amount-totals-item total">
           <span class="apl-amount-totals-title" translate>Total</span>
-          <span class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.total | currency:'':2}} USD</span>
+          <span class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.total | currency:'':2}} USD</span>
         </div>
       </div>
       <div class="apl-divider"></div>
     </div>
     <div class="apl-list">
-      <div class="apl-list-title" translate>
-        Deposit to
-      </div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="vm.wallet">
-        <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+      <div class="apl-list-title" ng-if="vm.status !== 'completed'" translate>Depositing to</div>
+      <div class="apl-list-title" ng-if="vm.status === 'completed'" translate>Deposited to</div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.wallet({ walletId: '{{vm.wallet.id}}' })" ng-if="vm.wallet">
+        <i class="icon big-icon-svg">
+          <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
+        </i>
         <div class="apl-card__title__container">
-          <div class="apl-card__title" ng-if="vm.wallet">
+          <div class="apl-card__title">
             {{vm.wallet.name}}
           </div>
           <div class="apl-card__subtitle">
@@ -53,15 +51,14 @@
               wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
               wallet-cached-status="{{vm.wallet.cachedStatus}}"
               total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"
-              ng-if="vm.wallet"
               />
           </div>
         </div>
       </div>
-      <div class="item item-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="!vm.wallet">
+      <div class="item item-icon-left apl-list-item" ng-if="!vm.wallet">
         <div class="apl-card__title__container">
-          <div class="apl-card__title"ng-if="!vm.wallet" translate>
-            Select a BCH wallet
+          <div class="apl-card__title">
+            {{vm.walletAddress}}
           </div>
           <div class="apl-card__subtitle"></div>
         </div>  
@@ -74,7 +71,7 @@
       <div ui-sref="tabs.buybitcoin-paymentmethods" ng-if="vm.paymentMethod">
         <payment-method-item pm="vm.paymentMethod"></payment-method-item>
       </div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodsAreLoading">
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodLoading">
         <div class="apl-card__title__container">
           <div class="apl-card__title">&nbsp;</div>
           <div class="apl-card__subtitle" translate>
@@ -82,12 +79,21 @@
           </div>
         </div>
       </div>
-      <a ui-sref="tabs.buybitcoin-paymentmethods" class="item item-icon-left apl-list-item" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodError">
         <div class="apl-card__title__container">
-          <div class="apl-card__title add" translate>Add a payment method</div>
-          <div class="apl-card__subtitle" translate></div>
+          <div class="apl-card__title" translate>Unknown</div>
+          <div class="apl-card__subtitle" translate>{{vm.paymentMethodError}}</div>
         </div>
-      </a>
+      </div>
+      <div class="apl-list" ng-if="vm.status == 'completed'">
+        <a class="item item-icon-right apl-list-item" ng-click="vm.viewOnBlockchain()">
+          <p translate>See on Blockchain</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item " ng-click="vm.onShareTransaction()">
+          <p translate>Share this Transaction</p>
+        </a>
+      </div>
     </div>
   </ion-content>
 </ion-view>

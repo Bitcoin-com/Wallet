@@ -6,10 +6,15 @@
       .controller('buyBitcoinReceiptController', receiptController);
 
   function receiptController(
-    $ionicHistory
+    bitcoinCashJsService
+    , externalLinkService
+    , $ionicHistory
+    , ionicToast
     , $log
     , moonPayService
+    , platformInfo
     , profileService
+    , popupService
     , $scope
     , $state
     ) {
@@ -19,8 +24,11 @@
     vm.onDone = onDone;
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
+    vm.onShareTransaction = onShareTransaction;
+    vm.onViewOnBlockchain = onViewOnBlockchain;
 
     var moonpayTxId = '';
+    var txUrl = '';
     var walletId = '';
     
 
@@ -30,13 +38,74 @@
       moonpayTxId = $state.params.moonpayTxId;
       console.log('moonpayTxId:', moonpayTxId);
 
-      // Change this to crypto later when the transaction is complete.
-      vm.purchasedAmount = 0;
-      vm.purchasedCurrency = 'USD';
-      vm.walletName = '';
+      vm.cryptoTransactionId = '';
+      vm.haveTxInfo = false;
+      
+      vm.lineItems = {
+        bchQty: 0,
+        cost: 0,
+        rateUsd: 0,
+        processingFee: 0,
+        total: 0
+      }
+      vm.paymentMethod = null;
+      vm.paymentMethodError = '';
+      vm.paymentMethodLoading = true;
+      vm.status = 'pending';
+      vm.wallet = null;
+      vm.walletAddress = '';
 
-      console.log(moonpayTxId);
+      txUrl = '';
+      walletId = '';
 
+    }
+
+    function _getPaymentMethodInfo(cardId) {
+      vm.paymentMethodLoading = true;
+      moonPayService.getCards().then(
+        function onGetCardsSuccess(cards) {
+          vm.paymentMethodLoading = false;
+          if (cards && cards.length > 0) {
+            
+            var cardWasFound = false;
+            for (var i = 0; i < cards.length; ++i) {
+              if (cards[i].id === cardId) {
+                cardWasFound = true;
+                vm.paymentMethod = cards[i];
+                break;
+              }
+            }
+            if (!cardWasFound) {
+              vm.paymentMethodError = gettextCatalog.getString('Not found.');
+            }
+            
+          }  
+        },
+        function onGetCardsError(err) {
+          vm.paymentMethodLoading = false;
+          vm.paymentMethodError = err.message || gettextCatalog.getString('Failed to get payment method info.');
+        }
+      );
+      
+    }
+
+    function _getWalletForAddress(cashAddr) {
+      if (cashAddr.indexOf('bitcoincash:') < 0) {
+        cashAddr = 'bitcoincash:' + cashAddr;
+      }
+
+      var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
+
+      profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
+        if (err) {
+          $log.error('Error getting wallet from address. ' + err.message || '');
+          return;
+        }
+
+        vm.wallet = walletAndAddress.wallet;
+
+        $scope.$apply();
+      });
     }
 
     function _onBeforeEnter() {
@@ -45,22 +114,36 @@
 
       moonPayService.getTransaction(moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
-          vm.purchasedAmount = transaction.baseCurrencyAmount
+          console.log('Transaction:', transaction);
+          
+          vm.haveTxInfo = true;
 
-          profileService.getWalletFromAddresses([transaction.walletAddress], 'bch', function onWallet(err, walletAndAddress) {
-            if (err) {
-              $log.error('Error getting wallet from address. ' + err.message || '');
-              return;
-            }
+          vm.cryptoTransactionId = transaction.cryptoTransactionId;
+          if (transaction.cryptoTransactionId) {
+            txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
+          }
 
-            vm.wallet = walletAndAddress.wallet;
+          vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
+          vm.lineItems.cost = transaction.baseCurrencyAmount;
 
-            $scope.$apply();
-          });
+          vm.rateUsd = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
+
+          vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
+          vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
+
+          vm.status = transaction.status;
+
+          vm.walletAddress = transaction.walletAddress;
+
+          _getWalletForAddress(transaction.walletAddress);
+          _getPaymentMethodInfo(transaction.cardId);
         },
         function onGetTransactionError(err) {
           $log.error(err);
-          // Can't do much, leave in unknown wallet state
+          
+          var title = gettextCatalog('Error');
+          var message = err.message || gettextCatalog('Failed to get transaction data.');
+          popupService.showAlert(title, message);
         }
       );
 
@@ -105,6 +188,20 @@
           );
         }
       );
+    }
+
+    function onShareTransaction() {
+      if (platformInfo.isCordova) {
+        var text = gettextCatalog.getString('Take a look at this Bitcoin Cash transaction here: ') + txUrl;
+        window.plugins.socialsharing.share(text, null, null, null);
+      } else {
+        ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
+        clipboardService.copyToClipboard(explorerTxUrl);
+      }
+    }
+
+    function onViewOnBlockchain() {
+      externalLinkService.open(txUrl, false);
     }
 
   }
