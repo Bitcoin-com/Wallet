@@ -18,7 +18,6 @@ angular
     var defaultCardIdKey = 'moonPayDefaultCardId'
     var currentCustomer = null;
     var currentCards = null;
-    var currentTransactions = null;
 
     var defaultWalletId = null;
     var defaultCardId = null;
@@ -330,17 +329,12 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      if (currentTransactions != null) {
-        deferred.resolve(currentTransactions);
-      } else {
-        moonPayApiService.getTransactions().then(function onGetTransactionsSuccess(transactions) {
-          currentTransactions = transactions
-          deferred.resolve(currentTransactions);
-        }, function onGetTransactionsError(err) {
-          $log.debug('Error getting moonpay transactions from the api');
-          deferred.reject(err);
-        });
-      }
+      moonPayApiService.getTransactions().then(function onGetTransactionsSuccess(transactions) {
+        deferred.resolve(transactions);
+      }, function onGetTransactionsError(err) {
+        $log.debug('Error getting moonpay transactions from the api');
+        deferred.reject(err);
+      });
       
       return deferred.promise;
     }
@@ -372,10 +366,6 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.createTransaction(transaction).then(function onCreateTransactionSuccess(newTransaction) {
-        if (currentTransactions != null) {
-          currentTransactions.push(newTransaction);
-        }
-
         deferred.resolve(newTransaction);
       }, function onCreateTransactionError(err) {
         $log.debug('Error creating moonpay transaction from the api');
