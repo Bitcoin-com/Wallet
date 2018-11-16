@@ -22,7 +22,6 @@
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
 
-    var moonpayTxId = '';
     var purchasedAmount = 0;
     var refreshPromise = null;
     var walletId = '';
@@ -31,15 +30,15 @@
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
     
     function _initVariables() {
-      moonpayTxId = $state.params.moonpayTxId;
       purchasedAmount = $state.params.purchasedAmount;
 
       // Change this to crypto later when the transaction is complete.
+      vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
       vm.purchasedCurrency = 'USD';
       vm.walletName = '';
       vm.status = 'pending';
-      console.log(moonpayTxId, purchasedAmount);
+      console.log('vm.moonpayTxId:', vm.moonpayTxId, purchasedAmount);
     }
 
     function _onBeforeEnter() {
@@ -67,7 +66,7 @@
 
       bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [], ['leanplum']);
 
-      if (moonpayTxId) {
+      if (vm.moonpayTxId) {
         _refreshTransactionInfo();
         $interval(_refreshTransactionInfo, 5000);
       }
@@ -104,7 +103,7 @@
     function _onBeforeLeave() {
       console.log('_onBeforeLeave()');
       if (refreshPromise !== null) {
-        // cancel(refreshPromise);
+        $interval.cancel(refreshPromise);
         refreshPromise = null;
       }
     }
@@ -127,13 +126,13 @@
 
     function _refreshTransactionInfo() {
       
-      moonPayService.getTransaction(moonpayTxId).then(
+      moonPayService.getTransaction(vm.moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
           vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
           vm.status = transaction.status;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
-            // cancel(refreshPromise);
+            $interval.cancel(refreshPromise);
             refreshPromise = null;
           }
         }, function onGetTransactionError(err) {
