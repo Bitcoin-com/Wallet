@@ -4017,6 +4017,9 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
+msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgstr ""
+
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
 msgstr ""
