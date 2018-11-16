@@ -39,6 +39,9 @@ angular
             console.log('Moonpay customer:', customer);
             vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '$', 2);
             vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '$', 2);
+            bitAnalyticsService.setUserAttributes({
+              'email': customer.email
+            });
           } else {
             $state.go('tabs.buybitcoin-welcome');
             var title = gettextCatalog.getString("Error Getting Customer Information");

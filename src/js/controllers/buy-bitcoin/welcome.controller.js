@@ -46,9 +46,6 @@ angular
         function onCreateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
-          bitAnalyticsService.setUserAttributes({
-            'email': vm.email
-          });
           $ionicHistory.goBack();
         },
         
