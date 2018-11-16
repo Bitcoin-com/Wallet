@@ -4093,3 +4093,107 @@ msgstr ""
 
 msgid "Failed to get payment method info."
 msgstr ""
+# Enter Card details
+
+msgid "Back"
+msgstr ""
+
+msgid "Card Details"
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Card Number"
+msgstr ""
+
+# Purchasing
+
+msgid "Purchasing"
+msgstr ""
+
+msgid "Processing Fee"
+msgstr ""
+
+msgid "Deposit to"
+msgstr ""
+
+msgid "Add a payment method"
+msgstr ""
+
+msgid "Price Per BCH"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+# Purchase History
+
+msgid "Purchase History"
+msgstr ""
+
+msgid "Pending Orders"
+msgstr ""
+
+# Payment Method
+
+msgid "Pay"
+msgstr ""
+
+msgid "Payment Method"
+msgstr ""
+
+msgid "Add Credit or Debit Card"
+msgstr ""
+
+
+msgid "This amount exceeds your monthly limit"
+msgstr ""
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr ""
+
+msgid "Verify Identity"
+msgstr ""
+
+# Purchase history item
+
+msgid "Deposited to"
+msgstr ""
+
+msgid "See on Blockchain"
+msgstr ""
+
+msgid "Wallet address"
+msgstr ""
+
+# Pending Order
+
+msgid "Pending Order"
+msgstr ""
+
+msgid "Edit Order"
+msgstr ""
+
+msgid "Cancel Order"
+msgstr ""
+
+# Success
+
+msgid "Success!"
+msgstr ""
+
+
+msgid "Your purchase has been processed."
+msgstr ""
+
+
+msgid "See Receipt"
+msgstr ""
+
+
+msgid "Make Another Purchase"
+msgstr ""
