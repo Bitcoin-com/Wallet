@@ -353,20 +353,7 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      if (currentTransactions != null) {
-        for (var i = 0; i < currentTransactions.length; i++) {
-          var transaction = currentTransactions[i];
-          if (transaction.id == transactionId) {
-            deferred.resolve(transaction);
-            return deferred.promise;
-          }
-        }
-      }
-
       moonPayApiService.getTransaction(transactionId).then(function onGetTransactionSuccess(transaction) {
-        if (currentTransactions != null) {
-          currentTransactions.push(transaction);
-        }
         deferred.resolve(transaction);
       }, function onGetTransactionsError(err) {
         $log.debug('Error getting moonpay transaction from the api');
