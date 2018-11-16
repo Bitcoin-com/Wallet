@@ -96,18 +96,22 @@
         cashAddr = 'bitcoincash:' + cashAddr;
       }
 
-      var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
+      try {
+        var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
 
-      profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
-        if (err) {
-          $log.error('Error getting wallet from address. ' + err.message || '');
-          return;
-        }
+        profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
+          if (err) {
+            $log.error('Error getting wallet from address. ' + err.message || '');
+            return;
+          }
 
-        vm.wallet = walletAndAddress.wallet;
+          vm.wallet = walletAndAddress.wallet;
 
-        $scope.$apply();
-      });
+          $scope.$apply();
+        });
+      } catch (err) { 
+        $log.debug('Error getting wallet from address.' + err.message || ''); 
+      }
     }
 
     function _onBeforeEnter() {
