@@ -11,7 +11,7 @@
     , moonPayService
     , popupService
     , profileService
-    , $scope, $ionicHistory
+    , $scope, $ionicHistory, $log
   ) {
     var vm = this;
 
@@ -57,9 +57,12 @@
           cashAddr = 'bitcoincash:' + cashAddr;
         }
 
-        var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-
-        addresses.push(legacyAddress);
+        try {
+          var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
+          addresses.push(legacyAddress);
+        } catch (err) { 
+          $log.debug('Error converting the address to legacy.' + err.message || ''); 
+        }
       });
 
       transactions.sort(function compare(a, b){
