@@ -7,7 +7,9 @@
 
   function receiptController(
     bitcoinCashJsService
+    , clipboardService
     , externalLinkService
+    , gettextCatalog
     , $ionicHistory
     , ionicToast
     , $log
@@ -198,7 +200,7 @@
         window.plugins.socialsharing.share(text, null, null, null);
       } else {
         ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
-        clipboardService.copyToClipboard(explorerTxUrl);
+        clipboardService.copyToClipboard(txUrl);
       }
     }
 

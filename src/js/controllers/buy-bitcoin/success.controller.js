@@ -21,6 +21,7 @@
     vm.onDone = onDone;
     vm.onGoToWallet = onGoToWallet;
     vm.onMakeAnotherPurchase = onMakeAnotherPurchase;
+    vm.onSeeReceipt = onSeeReceipt;
 
     var purchasedAmount = 0;
     var refreshPromise = null;
@@ -122,6 +123,12 @@
           );
         }
       );
+    }
+
+    function onSeeReceipt() {
+      $state.go('tabs.buybitcoin-receipt', { 
+        moonpayTxId: vm.moonpayTxId
+      });
     }
 
     function _refreshTransactionInfo() {

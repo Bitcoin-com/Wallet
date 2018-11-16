@@ -23,8 +23,8 @@
         <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet" ng-click="vm.onGoToWallet()" ng-if="vm.walletName">
             <p ng-if="vm.walletName" translate>Go to {{vm.walletName}}</p>
             <i class="icon bp-arrow-right"></i>
-          </a>
-        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_receipt" ui-sref="tabs.buybitcoin-receipt({ moonpayTxId: '{{vm.moonpayTxId}}' })">
+          </a>                                                                                                  
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_receipt" ng-click="vm.onSeeReceipt()">
             <p translate>See Receipt</p>
             <i class="icon bp-arrow-right"></i>
           </a>
