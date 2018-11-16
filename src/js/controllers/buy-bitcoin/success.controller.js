@@ -104,7 +104,7 @@
     function _onBeforeLeave() {
       console.log('_onBeforeLeave()');
       if (refreshPromise !== null) {
-        cancel(refreshPromise);
+        // cancel(refreshPromise);
         refreshPromise = null;
       }
     }
@@ -133,7 +133,7 @@
           vm.status = transaction.status;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
-            cancel(refreshPromise);
+            // cancel(refreshPromise);
             refreshPromise = null;
           }
         }, function onGetTransactionError(err) {
