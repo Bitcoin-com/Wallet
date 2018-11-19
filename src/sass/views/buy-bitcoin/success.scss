@@ -23,16 +23,25 @@
 
   p.message {
     font-size: 20px;
-    font-weight: bold;
     margin: 0px 20px 8px 20px;
   }
 
   #amount-container {
-    font-size: 40px;
     font-weight: bold;
-    
+    font-size: 40px;
     margin: 20px 20px;
   }
 
+  .crypto-amount {
+    font-size: 2.5rem;
 
+    @media (max-width: 340px) {
+      font-size: 2rem;
+    }
+  }
+
+  .fiat-amount {
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
 }

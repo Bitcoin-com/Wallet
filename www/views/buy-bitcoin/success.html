@@ -13,8 +13,11 @@
       <div class="clear"></div>
       <p class="message" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
       <p class="message" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
-      <div id="amount-container">
-        <formatted-amount value="{{vm.purchasedAmount}}" currency="{{vm.purchasedCurrency}}"></formatted-amount>
+      <div id="amount-container" ng-if="vm.quoteCurrencyAmount" >
+        <formatted-amount class="crypto-amount" value="{{vm.quoteCurrencyAmount}}" currency="BCH"></formatted-amount>
+      </div>
+      <div id="amount-container" >
+        <formatted-amount class="fiat-amount" value="{{vm.purchasedAmount}}" currency="{{vm.purchasedCurrency}}"></formatted-amount>
       </div>
       <div class="apl-list">
         <a class="item item-icon-right apl-list-item unready track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet" ng-if="!vm.walletName">
