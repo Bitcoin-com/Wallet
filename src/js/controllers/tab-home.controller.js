@@ -42,6 +42,7 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
       if ($window.StatusBar) {
         $window.StatusBar.styleLightContent();
+        StatusBar.backgroundColorByHexString('#000000');
       }
 
       if (!$scope.homeTip) {
