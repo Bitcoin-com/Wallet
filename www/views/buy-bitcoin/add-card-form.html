@@ -7,14 +7,14 @@
       </ion-nav-buttons>
       <ion-nav-buttons side="secondary">
         <button class="button apl-back-button" ng-click="vm.didPushAdd()">
-          <span translate>Add</span>
+          <span translate>Finish</span>
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
     <ion-content id="add-card-form">
       <div class="form-header">
         <h1 translate>
-          Card Details
+          Add Card
         </h1>
         <h5>
           {{vm.subtext}}
@@ -27,7 +27,7 @@
             <label translate>
               Card Number
             </label>
-            <input required type="text" placeholder="Required" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="16" ng-maxlength="16" maxlength="16"/>
+            <input required type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="16" ng-maxlength="16" maxlength="16"/>
             <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
               Invalid card number
             </span>
@@ -37,7 +37,7 @@
             <label translate>
               Expiration Date
             </label>
-            <input required type="text" placeholder="MM/YYYY" ng-model="vm.card.expiration" name="expiration" maxlength="7"  ng-pattern="/\d{2}\/\d{4}/"/>
+            <input required type="text" placeholder="{{ 'MM/YYYY' | translate }}" ng-model="vm.card.expiration" name="expiration" maxlength="7"  ng-pattern="/\d{2}\/\d{4}/"/>
             <span class="validation-error" ng-show="cardForm.expiration.$error.pattern" translate>
                 Follow expected date format MM/YYYY
             </span>
@@ -50,12 +50,13 @@
             <label translate>
               CVC
             </label>
-            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" name="cvc" ng-maxlength="3" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="3"/>
+            <input required type="text" placeholder="{{ 'Required' | translate }}" ng-model="vm.card.cvc" name="cvc" ng-maxlength="4" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="4"/>
             <span class="validation-error" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
               Invalid security code
             </span>
         </div>
       </form>
       <div class="apl-divider"></div>
+      <div class="keyboard-bottom-space"></div>
     </ion-content>
   </ion-view>
