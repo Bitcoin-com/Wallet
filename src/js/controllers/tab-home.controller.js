@@ -40,6 +40,10 @@ angular.module('copayApp.controllers').controller('tabHomeController',
 
     function onBeforeEnter (event, data) {
 
+      if ($window.StatusBar) {
+        $window.StatusBar.styleLightContent();
+      }
+
       if (!$scope.homeTip) {
         storageService.getHomeTipAccepted(function(error, value) {
           $scope.homeTip = (value == 'accepted') ? false : true;

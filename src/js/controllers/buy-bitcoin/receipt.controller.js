@@ -19,6 +19,7 @@
     , popupService
     , $scope
     , $state
+    , $window
     ) {
     var vm = this;
 
@@ -116,6 +117,10 @@
 
     function _onBeforeEnter() {
       console.log('_onBeforeEnter()');
+      if ($window.StatusBar) {
+        $window.StatusBar.styleDefault();
+      }
+
       _initVariables();
 
       moonPayService.getTransaction(moonpayTxId).then(
