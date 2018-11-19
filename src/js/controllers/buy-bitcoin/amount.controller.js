@@ -260,6 +260,29 @@
 
               console.log('Transaction', newTransaction);
 
+              var extraFee = vm.inputAmount * EXTRA_FEE_FRACTION;
+              var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
+              bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
+                'amount': extraFee,
+                'price': extraFeeUsd,
+                'coin': 'bch'
+              }], ['leanplum']);
+
+              var amountUsd = (vm.rateUsd > 0) ? vm.inputAmount / vm.rateUsd : 0;
+              bitAnalyticsService.postEvent('bitcoin_purchased', [{
+                'amount': vm.inputAmount,
+                'price': amountUsd,
+                'coin': 'bch'
+              }], ['leanplum']);
+
+              var moonpayFee = Math.max(MOONPAY_FIXED_FEE, vm.inputAmount * MOONPAY_VARIABLE_FEE_FRACTION);
+              var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
+              bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
+                'amount': moonpayFee,
+                'price': moonpayFeeUsd,
+                'coin': 'bch'
+              }], ['leanplum']);
+
               $ionicHistory.nextViewOptions({
                 disableAnimation: true,
                 historyRoot: true
