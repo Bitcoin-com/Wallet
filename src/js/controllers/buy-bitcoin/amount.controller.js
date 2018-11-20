@@ -23,7 +23,7 @@
 
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
-      vm.inputAmount = 0;
+      vm.inputAmount = '0';
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
@@ -35,10 +35,13 @@
       vm.rateUsd = 0;
       vm.ratesError = '';
 
+
+      
       let variables = bitAnalyticsService.getVariablesFromChannel('leanplum');
       if (variables && variables.bitcoincom_fee) {
         EXTRA_FEE_PERCENTAGE = variables.bitcoincom_fee;
       }
+      
 
       if (exchangeRateRefreshInterval) {
         $interval.cancel(exchangeRateRefreshInterval);
@@ -162,7 +165,9 @@
 
     function _updateAmount() {
       console.log('_updateAmount()');
-      var amount = Math.max(vm.inputAmount, 0);
+      vm.inputAmount = vm.inputAmount.replace(/[^0-9,\.]+/,'');
+
+      var amount = _sanitisedAmountNumber(vm.inputAmount);
 
       if (vm.rateUsd) {
         vm.lineItems.bchQty = amount / vm.rateUsd;
@@ -193,8 +198,15 @@
       var okText = '';
       var cancelText = '';
 
+      var amountBch = _sanitisedAmountNumber(vm.inputAmount);
+      if (!amountBch) {
+        message = gettextCatalog.getString('Amount must be a positive number.');
+        popupService.showAlert(title, message);
+        return;
+      }
+
       if (!vm.rateUsd) {
-        message = gettextCatalog.getString("Waiting for exchange rate.");
+        message = gettextCatalog.getString('Waiting for exchange rate.');
         popupService.showAlert(title, message);
         return;
       }
@@ -246,8 +258,11 @@
           var addressParts = toCashAddress.split(':');
           var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
+          // Override to testnet address for testing
+          toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+
           var transaction = {
-            baseCurrencyAmount: vm.inputAmount
+            baseCurrencyAmount: amountBch
             , currencyCode: 'bch'
             , cardCvc: csc
             , cardId: vm.paymentMethod.id
@@ -260,7 +275,7 @@
 
               console.log('Transaction', newTransaction);
 
-              var extraFee = vm.inputAmount * EXTRA_FEE_FRACTION;
+              var extraFee = amountBch * EXTRA_FEE_FRACTION;
               var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
               bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
                 'amount': extraFee,
@@ -268,14 +283,14 @@
                 'coin': 'bch'
               }], ['leanplum']);
 
-              var amountUsd = (vm.rateUsd > 0) ? vm.inputAmount / vm.rateUsd : 0;
+              var amountUsd = (vm.rateUsd > 0) ? amountBch / vm.rateUsd : 0;
               bitAnalyticsService.postEvent('bitcoin_purchased', [{
-                'amount': vm.inputAmount,
+                'amount': amountBch,
                 'price': amountUsd,
                 'coin': 'bch'
               }], ['leanplum']);
 
-              var moonpayFee = Math.max(MOONPAY_FIXED_FEE, vm.inputAmount * MOONPAY_VARIABLE_FEE_FRACTION);
+              var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
               var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
               bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
                 'amount': moonpayFee,
@@ -315,6 +330,13 @@
 
     function _refreshTheExchangeRate(intervalCount) {
       _getRates();
+    }
+
+    function _sanitisedAmountNumber(amountString) {
+      var cleanAmountString = amountString.replace(/[^0-9,\.]+/,'');
+      var amountNumber = parseFloat(cleanAmountString);
+      amountNumber = isNaN(amountNumber) ? 0 : Math.max(0, amountNumber);
+      return parseFloat(amountNumber.toFixed(2));
     }
   }
 })();
