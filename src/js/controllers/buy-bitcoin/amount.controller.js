@@ -20,12 +20,13 @@
     var MOONPAY_FIXED_FEE = 4.99;
     var MOONPAY_VARIABLE_FEE_FRACTION = 0.0499;
     var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
+    var amountInputElement = null;
     var exchangeRateRefreshInterval = null;
     var prohibitedCharactersRegex = /[^0-9\.]+/;
     
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
-      vm.inputAmount = '0';
+      vm.inputAmount = 0;
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
@@ -53,6 +54,7 @@
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.afterEnter', _onAfterEnter);
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     // Override for testing
@@ -142,6 +144,21 @@
       );
     }
 
+    function _onAfterEnter() {
+      var inputs = angular.element(document).find("input");
+      var inputsLen = inputs.length;
+      var input = null;
+      for (var i = 0; i < inputsLen; i++) {
+        input = inputs[i];
+        if (input.id === 'amount-input') {
+          amountInputElement = input;
+          break;
+        }
+      }
+
+      console.log('Amount input element:', amountInputElement);
+    }
+
     function onAmountChanged() {
       _updateAmount();
     }
@@ -149,10 +166,13 @@
     function onAmountFocus() {
       console.log('onAmountFocus()');
 
-      var amount = _sanitisedAmountNumber(vm.inputAmount);
+      
+      var amount = _sanitisedAmountNumber(amountInputElement.value);
       if (!amount) {
-        vm.inputAmount = '';
+        console.log('Setting amount.');
+        amountInputElement.value = '';
       }
+      
     }
 
     function _onBeforeEnter() {
@@ -176,9 +196,12 @@
 
     function _updateAmount() {
       console.log('_updateAmount()');
-      vm.inputAmount = vm.inputAmount.replace(prohibitedCharactersRegex,'');
+      var amountRaw = amountInputElement.value;
+      console.log('amountRaw: \"' + amountRaw + '".');
 
-      var amount = _sanitisedAmountNumber(vm.inputAmount);
+      amountInputElement.value =  amountRaw.replace(prohibitedCharactersRegex,'');
+
+      var amount = _sanitisedAmountNumber(amountRaw);
 
       if (vm.rateUsd) {
         vm.lineItems.bchQty = amount / vm.rateUsd;
@@ -209,7 +232,7 @@
       var okText = '';
       var cancelText = '';
 
-      var amountBch = _sanitisedAmountNumber(vm.inputAmount);
+      var amountBch = _sanitisedAmountNumber(vm.inputAmount.toString());
       if (!amountBch) {
         message = gettextCatalog.getString('Amount must be a positive number.');
         popupService.showAlert(title, message);
