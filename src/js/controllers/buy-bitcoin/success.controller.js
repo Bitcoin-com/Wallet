@@ -136,7 +136,7 @@
       
       moonPayService.getTransaction(vm.moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
-          vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
+          vm.purchasedAmount = transaction.baseCurrencyAmount;
           vm.status = transaction.status;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
