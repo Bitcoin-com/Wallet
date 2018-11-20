@@ -14,7 +14,8 @@ angular
     moonPayService,
     popupService, 
     $scope, 
-    $state
+    $state,
+    $window
     ) {
 
     var vm = this;
@@ -67,10 +68,12 @@ angular
     }
 
     function _onBeforeEnter(event, data) {
-      _initVariables();
+      if ($window.StatusBar) {
+        $window.StatusBar.styleDefault();
+        $window.StatusBar.backgroundColorByHexString('#F0F0F0');
+      }
 
-      //$state.go('tabs.buybitcoin-welcome');
-      //return;
+      _initVariables();
 
       moonPayService.getCustomerId().then(
         function onCustomerIdSuccess(customerId) {

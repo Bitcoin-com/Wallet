@@ -205,9 +205,6 @@
         color: #D8D8D8;
       }
     }
-    .validation-error {
-      color: $v-warning-color-2;;
-    }
   }
 
   &-icon {
@@ -308,8 +305,14 @@
       text-transform: uppercase;
       letter-spacing: -0.08px;
       line-height: 18px;
-      margin: 18px 0 -12px 16px;
+      margin: 18px 0 0 16px;
     }
+    &-item {
+      .validation-error {
+        color: $v-warning-color-2;;
+      }
+    }
+    
     .item {
       border: 0;
       padding-left: 18px;
@@ -374,7 +377,7 @@
         }
 
       }
-
+      
       & .coming-soon {
         background: rgba(255, 255, 255, 0.5);
         color: #445;
@@ -393,13 +396,12 @@
           padding-right: 16px;
         }
       }
-
+      
       &.unready {
         p {
           color: #7f7f7f;
         }
       }
-
     }
     .item-icon-left .icon {
       left: 0;
@@ -538,9 +540,9 @@
   small {
     color: rgba(0, 0, 0, 0.32);
   }
-
-  
-
+  .keyboard-bottom-space {
+    height: 44px;
+  }  
 }
 
 

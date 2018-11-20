@@ -7,6 +7,7 @@ angular
   .controller('buyBitcoinAddCardFormController', addCardFormController);
 
   function addCardFormController(
+    gettextCatalog,
     moonPayService,
     popupService,
     $scope
@@ -20,13 +21,13 @@ angular
     vm.handleCardNumberChange = handleCardNumberChange;
     vm.handleSecurityChange = handleSecurityChange;
 
-    var addCardInfoText = "Verify and complete your card information.";
-    var contactingText = "Contacting the card issuer.";
+    var addCardInfoText = gettextCatalog.getString("Type all your card details below.");
+    var contactingText = gettextCatalog.getString("Contacting the card issuer.");
 
     function didPushAdd() {
       // Check if the card is valid
       if (!isValidForm()) {
-        var title = "Unable to Add Card";
+        var title = gettextCatalog.getString("Unable to Add Card");
         var message = getFormErrors();
         popupService.showAlert(title, message);
         return;
@@ -46,7 +47,7 @@ angular
         $scope.$ionicGoBack();
       }, function (err) {
         // Handle the error
-        var title = "Unable to Add card";
+        var title = gettextCatalog.getString("Unable to Add Card");
         var message = err;
         popupService.showAlert(title, message);
         console.log(err);
@@ -79,7 +80,7 @@ angular
     }
 
     function isValidSecurityCode() {
-      return vm.card.cvc && vm.card.cvc.length === 3;
+      return vm.card.cvc && vm.card.cvc.length >= 3 && vm.card.cvc.length <= 4;
     }
 
     function isValidExpiration() {
@@ -101,13 +102,13 @@ angular
 
     function getFormErrors() {
       if(!isValidCardNumber()) {
-        return "Card number is invalid. Check your card and try again."
+        return gettextCatalog.getString("Card number is invalid. Check your card and try again.");
       }
       if(!isValidSecurityCode()) {
-        return "CVC number is invalid. Check your card and try again."
+        return gettextCatalog.getString("CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX.");
       }
       if(!isValidExpiration()) {
-        return "Expiration date is invalid. Check your card and try again."
+        return gettextCatalog.getString("Expiration date is invalid. Check your card and try again.");
       }
       return false;
     }

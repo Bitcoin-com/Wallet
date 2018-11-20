@@ -37,6 +37,7 @@
       vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
       vm.purchasedCurrency = 'USD';
+      vm.quoteCurrencyAmount = '';
       vm.walletName = '';
       vm.status = 'pending';
       console.log('vm.moonpayTxId:', vm.moonpayTxId, purchasedAmount);
@@ -135,10 +136,11 @@
       
       moonPayService.getTransaction(vm.moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
-          vm.purchasedAmount = transaction.baseCurrencyAmount + transaction.feeAmount + transaction.extraFeeAmount;
+          vm.purchasedAmount = transaction.baseCurrencyAmount;
           vm.status = transaction.status;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
+            vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
             $interval.cancel(refreshPromise);
             refreshPromise = null;
           }

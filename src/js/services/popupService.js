@@ -3,6 +3,7 @@
 angular.module('copayApp.services').service('popupService', function($log, $ionicPopup, platformInfo, gettextCatalog) {
 
   var isCordova = platformInfo.isCordova;
+  var isIOS = platformInfo.isIOS;
   var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
 
   /*************** Ionic ****************/
@@ -66,13 +67,13 @@ angular.module('copayApp.services').service('popupService', function($log, $ioni
 
   var _cordovaPrompt = function(title, message, opts, cb) {
     var onPrompt = function(results) {
-      if (results.buttonIndex == 1) return cb(results.input1);
+      if (results.buttonIndex == (isIOS ? 2 : 1)) return cb(results.input1);
       else return cb();
     }
     var okText = gettextCatalog.getString('OK');
     var cancelText = gettextCatalog.getString('Cancel');
     title = title ? title : '';
-    navigator.notification.prompt(message, onPrompt, title, [okText, cancelText], opts.defaultText);
+    navigator.notification.prompt(message, onPrompt, title, isIOS ? [cancelText, okText] : [okText, cancelText], opts.defaultText);
   };
 
   /**

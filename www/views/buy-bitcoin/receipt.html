@@ -37,7 +37,7 @@
     <div class="apl-list">
       <div class="apl-list-title" ng-if="vm.status !== 'completed'" translate>Depositing to</div>
       <div class="apl-list-title" ng-if="vm.status === 'completed'" translate>Deposited to</div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.wallet">
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.wallet({ walletId: '{{vm.wallet.id}}' })" ng-if="vm.wallet">
         <i class="icon big-icon-svg">
           <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
         </i>

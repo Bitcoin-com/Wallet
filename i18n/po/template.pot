@@ -4098,16 +4098,46 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-msgid "Card Details"
-msgstr ""
-
 msgid "Verify and complete your card information."
 msgstr ""
 
 msgid "Required"
 msgstr ""
 
+msgid "Visa, MC, or AMEX"
+msgstr ""
+
+msgid "MM/YYYY"
+msgstr ""
+
 msgid "Card Number"
+msgstr ""
+
+msgid "CVC"
+msgstr ""
+
+msgid "Unable to Add Card"
+msgstr ""
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr ""
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr ""
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr ""
+
+msgid "Invalid card number"
+msgstr ""
+
+msgid "Invalid expiration date"
+msgstr ""
+
+msgid "Follow expected date format MM/YYYY"
+msgstr ""
+
+msgid "Invalid CVC number"
 msgstr ""
 
 # Purchasing
@@ -4128,6 +4158,12 @@ msgid "Price Per BCH"
 msgstr ""
 
 msgid "Done"
+msgstr ""
+
+msgid "Amount must be a positive number."
+msgstr ""
+
+msgstr "Unable to Purchase"
 msgstr ""
 
 # Purchase History
