@@ -40,7 +40,7 @@
 
 
       
-      let variables = bitAnalyticsService.getVariablesFromChannel('leanplum');
+      var variables = bitAnalyticsService.getVariablesFromChannel('leanplum');
       if (variables && variables.bitcoincom_fee) {
         EXTRA_FEE_PERCENTAGE = variables.bitcoincom_fee;
       }
