@@ -13,6 +13,7 @@
 
     var vm = this;
     vm.onAmountChanged = onAmountChanged;
+    vm.onAmountFocus = onAmountFocus;
     vm.onBuy = onBuy;
 
     var EXTRA_FEE_PERCENTAGE = 5;
@@ -143,6 +144,15 @@
 
     function onAmountChanged() {
       _updateAmount();
+    }
+
+    function onAmountFocus() {
+      console.log('onAmountFocus()');
+
+      var amount = _sanitisedAmountNumber(vm.inputAmount);
+      if (!amount) {
+        vm.inputAmount = '';
+      }
     }
 
     function _onBeforeEnter() {
