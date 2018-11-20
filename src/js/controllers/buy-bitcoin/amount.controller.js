@@ -167,8 +167,8 @@
       if (vm.rateUsd) {
         vm.lineItems.bchQty = amount / vm.rateUsd;
         vm.lineItems.cost = amount;
-        var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION);
-        var extraFee = amount * EXTRA_FEE_FRACTION;
+        var moonpayFee = amount > 0 ? Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION) : 0;
+        var extraFee = amount > 0 ? amount * EXTRA_FEE_FRACTION : 0;
         vm.lineItems.processingFee = moonpayFee + extraFee;
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
