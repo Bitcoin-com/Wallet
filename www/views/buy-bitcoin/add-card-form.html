@@ -23,37 +23,43 @@
       
       <div class="apl-divider"></div>
       <form name="cardForm" class="apl-list" novalidate>
-        <div class="apl-field apl-list-item">
+        <div class="apl-list-item">
+          <div class="apl-field">
             <label translate>
               Card Number
             </label>
             <input required type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="16" ng-maxlength="16" maxlength="16"/>
-            <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
-              Invalid card number
-            </span>
+          </div>
+          <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
+            Invalid card number
+          </span>
         </div>
         <div class="apl-divider"></div>
-        <div class="apl-field apl-list-item">
+        <div class="apl-list-item">
+          <div class="apl-field">
             <label translate>
               Expiration Date
             </label>
             <input required type="text" placeholder="{{ 'MM/YYYY' | translate }}" ng-model="vm.card.expiration" name="expiration" maxlength="7"  ng-pattern="/\d{2}\/\d{4}/"/>
-            <span class="validation-error" ng-show="cardForm.expiration.$error.pattern" translate>
-                Follow expected date format MM/YYYY
-            </span>
-            <span class="validation-error" ng-show="cardForm.expiration.$error.validExpiration" translate>
-                Invalid date
-            </span>
+          </div>
+          <span class="validation-error" ng-show="cardForm.expiration.$error.pattern" translate>
+            Follow expected date format MM/YYYY
+          </span>
+          <span class="validation-error" ng-show="cardForm.expiration.$error.validExpiration" translate>
+            Invalid expiration date
+          </span>
         </div>
         <div class="apl-divider"></div>
-        <div class="apl-field apl-list-item">
+        <div class="apl-list-item">
+          <div class="apl-field">
             <label translate>
               CVC
             </label>
             <input required type="text" placeholder="{{ 'Required' | translate }}" ng-model="vm.card.cvc" name="cvc" ng-maxlength="4" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="4"/>
-            <span class="validation-error" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
-              Invalid security code
-            </span>
+          </div>
+          <span class="validation-error" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
+            Invalid CVC number
+          </span>
         </div>
       </form>
       <div class="apl-divider"></div>

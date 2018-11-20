@@ -27,7 +27,7 @@ angular
     function didPushAdd() {
       // Check if the card is valid
       if (!isValidForm()) {
-        var title = "Unable to Add Card";
+        var title = gettextCatalog.getString("Unable to Add Card");
         var message = getFormErrors();
         popupService.showAlert(title, message);
         return;
