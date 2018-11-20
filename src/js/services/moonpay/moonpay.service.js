@@ -16,7 +16,6 @@ angular
     var customerIdKey = 'moonPayCustomerId'
     var defaultWalletIdKey = 'moonPayDefaultWalletId'
     var defaultCardIdKey = 'moonPayDefaultCardId'
-    var currentCustomer = null;
     var currentCards = null;
 
     var defaultWalletId = null;
@@ -178,7 +177,6 @@ angular
               $log.debug('Error setting moonpay customer id in the local storage');
               deferred.reject(err);
             } else {
-              currentCustomer = customer;
               deferred.resolve(customer);
             }
           });
@@ -199,20 +197,15 @@ angular
       var deferred = $q.defer();
 
       // Get the customer in the storageService if we didn't do it yet
-      if (currentCustomer != null) {
-        deferred.resolve(currentCustomer);
-      } else {
-        moonPayApiService.getCustomer().then(
-          function onGetCustomerSuccess(customer) {
-            currentCustomer = customer;
-            deferred.resolve(currentCustomer);
-          },
-          function onGetCustomerError(err) {
-            $log.debug('Error getting moonpay customer from the api');
-            deferred.reject(err);
-          }
-        );
-      }
+      moonPayApiService.getCustomer().then(
+        function onGetCustomerSuccess(customer) {
+          deferred.resolve(customer);
+        },
+        function onGetCustomerError(err) {
+          $log.debug('Error getting moonpay customer from the api');
+          deferred.reject(err);
+        }
+      );
       
       return deferred.promise;
     }
