@@ -20,7 +20,8 @@
     var MOONPAY_VARIABLE_FEE_FRACTION = 0.0499;
     var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
     var exchangeRateRefreshInterval = null;
-
+    var prohibitedCharactersRegex = /[^0-9\.]+/;
+    
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
       vm.inputAmount = '0';
@@ -165,7 +166,7 @@
 
     function _updateAmount() {
       console.log('_updateAmount()');
-      vm.inputAmount = vm.inputAmount.replace(/[^0-9,\.]+/,'');
+      vm.inputAmount = vm.inputAmount.replace(prohibitedCharactersRegex,'');
 
       var amount = _sanitisedAmountNumber(vm.inputAmount);
 
@@ -333,7 +334,7 @@
     }
 
     function _sanitisedAmountNumber(amountString) {
-      var cleanAmountString = amountString.replace(/[^0-9,\.]+/,'');
+      var cleanAmountString = amountString.replace(prohibitedCharactersRegex,'');
       var amountNumber = parseFloat(cleanAmountString);
       amountNumber = isNaN(amountNumber) ? 0 : Math.max(0, amountNumber);
       return parseFloat(amountNumber.toFixed(2));
