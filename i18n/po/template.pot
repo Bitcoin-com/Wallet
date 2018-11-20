@@ -4130,6 +4130,12 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
+msgid "Amount must be a positive number."
+msgstr ""
+
+msgstr "Unable to Purchase"
+msgstr ""
+
 # Purchase History
 
 msgid "Purchase History"
