@@ -308,7 +308,7 @@
                     function () {
                       $state.go('tabs.buybitcoin-success', { 
                         moonpayTxId: newTransaction.id,
-                        purchasedAmount: vm.lineItems.total
+                        purchasedAmount: vm.lineItems.cost
                       });
                     }
                   );
