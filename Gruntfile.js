@@ -105,7 +105,7 @@ module.exports = function(grunt) {
           'src/js/directives/*.js',
           'src/js/filters/*.js',
           'src/js/routes.js',
-          'src/js/services/*.js',
+          'src/js/services/**/*.js',
           'src/js/models/*.js',
           'src/js/controllers/**/*.js'
         ],
@@ -188,8 +188,8 @@ module.exports = function(grunt) {
           'src/js/models/*.js',
           '!src/js/models/*.spec.js',
 
-          'src/js/services/*.js',
-          '!src/js/services/*.spec.js',
+          'src/js/services/**/*.js',
+          '!src/js/services/**/*.spec.js',
 
           'src/js/controllers/**/*.js',
           '!src/js/controllers/**/*.spec.js',
@@ -258,6 +258,24 @@ module.exports = function(grunt) {
         options: {
           process: function (content, srcpath) {
             return processLeanplumConfig(content, 'prod');
+          },
+        },
+      },
+      gen_constant_moonpay_dev: {
+        src: 'src/js/templates/constants/moonpay-config.constant.js',
+        dest: 'src/js/generated/constants/moonpay-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processMoonPayConfig(content, 'dev');
+          },
+        },
+      },
+      gen_constant_moonpay_prod: {
+        src: 'src/js/templates/constants/moonpay-config.constant.js',
+        dest: 'src/js/generated/constants/moonpay-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processMoonPayConfig(content, 'prod');
           },
         },
       },
@@ -367,8 +385,8 @@ module.exports = function(grunt) {
   
   grunt.registerTask('default', ['pre-dev', 'main']);
   grunt.registerTask('main', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
-  grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev']);
-  grunt.registerTask('prod', ['copy:gen_constant_leanplum_prod', 'main', 'uglify']);
+  grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_dev']);
+  grunt.registerTask('prod', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
@@ -421,7 +439,7 @@ module.exports = function(grunt) {
   function processLeanplumConfig(content, env) {
     var leanplumConfig = {};
     try {
-      leanplumConfig = grunt.file.readJSON('../leanplum-config.json');
+      leanplumConfig = grunt.file.readJSON('../wallet-configs/app-v1/leanplum-config.json');
     } catch (e) {
       // Without this, there is no clue on the console about what happened.
       if (env === 'prod') {
@@ -442,6 +460,36 @@ module.exports = function(grunt) {
     var newContent = '// Generated\n' + content
       .replace("appId: ''","appId: '" + appId + "'")
       .replace("key: ''", "key: '" + key + "'");
+    return newContent;
+  }
+
+  function processMoonPayConfig(content, env) {
+    var moonPayConfig = {};
+    try {
+      moonPayConfig = grunt.file.readJSON('../wallet-configs/app-v1/moonpay-config.json');
+    } catch (e) {
+      // Without this, there is no clue on the console about what happened.
+      if (env === 'prod') {
+        console.error('Error reading JSON', e);
+        throw e;
+      } else { // Allow people to build if they don't care about MoonPay
+        console.warn('Failed to read MoonPay config JSON', e);
+        return content;
+      }
+    }
+
+    var moonPayForEnv = env === 'prod' ? moonPayConfig.prod : moonPayConfig.dev;
+    var baseUrl = moonPayForEnv.baseUrl;
+    var pubKey = moonPayForEnv.pubKey;
+    var secretKey = moonPayForEnv.secretKey;
+    console.log('MoonPay baseUrl: "' + baseUrl + '"');
+    console.log('MoonPay pubKey:    "' + pubKey + '"');
+    console.log('MoonPay secretKey:    "' + secretKey + '"');
+
+    var newContent = '// Generated\n' + content
+      .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
+      .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'");
     return newContent;
   }
 };

@@ -90,6 +90,7 @@ src/sass/*.css
 src/sass/app
 
 # copay www
+www/css/*
 www/lib/*
 www/js/app.js
 
