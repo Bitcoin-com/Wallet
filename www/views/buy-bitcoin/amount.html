@@ -38,7 +38,7 @@
       <div class="apl-list-title" translate>
         Deposit to
       </div>
-      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="vm.wallet">
+      <div ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left item-big-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="vm.wallet">
         <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
         <div class="apl-card__title__container">
           <div class="apl-card__title" ng-if="vm.wallet">
@@ -59,14 +59,13 @@
           </div>
         </div>
       </div>
-      <div class="item item-icon-left apl-list-item" ui-sref="tabs.buybitcoin-wallets" ng-if="!vm.wallet">
+      <a ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="!vm.wallet">
         <div class="apl-card__title__container">
           <div class="apl-card__title"ng-if="!vm.wallet" translate>
             Select a BCH wallet
           </div>
-          <div class="apl-card__subtitle"></div>
         </div>  
-      </div>  
+      </a>  
     </div>
     <div class="apl-list">
       <div class="apl-list-title" translate>
@@ -83,16 +82,15 @@
           </div>
         </div>
       </div>
-      <a ui-sref="tabs.buybitcoin-add-card-form" class="item item-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
+      <a ui-sref="tabs.buybitcoin-add-card-form" class="item item-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_payment_method" ng-if="!vm.paymentMethodsAreLoading && !vm.paymentMethod">
         <div class="apl-card__title__container">
           <div class="apl-card__title add" translate>Add a payment method</div>
-          <div class="apl-card__subtitle" translate></div>
         </div>
       </a>
     </div>
     <div class="bottom-button-shadow-spacer"></div>
   </ion-content>
   <div class="apl-button-bottom-container">
-      <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy Now</a>
-    </div>
+    <a class="apl-button" ng-class="{ 'unready' : !(vm.rateUsd && vm.paymentMethod && vm.wallet) }" ng-click="vm.onBuy()">Buy Now</a>
+  </div>
 </ion-view>
