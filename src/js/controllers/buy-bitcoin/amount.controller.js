@@ -57,10 +57,6 @@
     $scope.$on('$ionicView.afterEnter', _onAfterEnter);
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
-    // Override for testing
-    //var walletId = '693923fb-0554-45a5-838f-6efa26ca917e'; // Backed Up Dev
-    //var walletId = '98ada868-82bd-44cb-a334-61d0192b7a81'; // Backed Up Dev Other
-
     function _getPaymentMethods() {
       moonPayService.getCards().then(
         function onGetCardsSuccess(cards) {
