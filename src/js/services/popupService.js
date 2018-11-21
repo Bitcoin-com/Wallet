@@ -64,6 +64,14 @@ angular.module('copayApp.services').service('popupService', function($log, $ioni
     navigator.notification.confirm(message, onConfirm, title, [cancelText, okText]);
   };
 
+  /**
+   * Prompt with a native alert (on iOS) and native 
+   * All version upper than KitKat will inverse the expected behaviour.
+   * @param {String} title 
+   * @param {String} message 
+   * @param {Object} opts 
+   * @param {Function} cb 
+   */
   var _cordovaPrompt = function(title, message, opts, cb) {
     var onPrompt = function(results) {
       if (results.buttonIndex == 2) return cb(results.input1);
