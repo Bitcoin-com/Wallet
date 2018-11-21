@@ -110,13 +110,15 @@
           color: #000;
         }
       }
+      /*
       &-title {
         display: inline-block;
       }
       &-price {
-        float: right;
+        //float: right;
         text-align: right;
       }
+      */
     }
     &-switcher {
       margin-top: 12px;
@@ -543,6 +545,22 @@
   .keyboard-bottom-space {
     height: 44px;
   }  
+
+  .apl-amount-totals {
+    table {
+      width: 100%;
+
+      td {
+        padding: 2px 0;
+      }
+    }
+
+    .apl-amount-totals-price {
+      text-align: right;
+    }
+  }
+
+  
 }
 
 
