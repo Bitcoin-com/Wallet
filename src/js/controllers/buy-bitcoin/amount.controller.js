@@ -151,8 +151,6 @@
           break;
         }
       }
-
-      console.log('Amount input element:', amountInputElement);
     }
 
     function onAmountChanged() {
@@ -160,12 +158,9 @@
     }
 
     function onAmountFocus() {
-      console.log('onAmountFocus()');
 
-      
       var amount = _sanitisedAmountNumber(amountInputElement.value);
       if (!amount) {
-        console.log('Setting amount.');
         amountInputElement.value = '';
       }
       
