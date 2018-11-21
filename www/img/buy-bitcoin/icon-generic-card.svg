@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="26px" viewBox="0 0 40 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M5.1277704,-2.07168062e-16 L34.8722296,2.07168062e-16 C36.6552671,-1.2037061e-16 37.3018396,0.185651222 37.9536914,0.534265408 C38.6055433,0.882879593 39.1171204,1.39445674 39.4657346,2.04630859 C39.8143488,2.69816044 40,3.34473292 40,5.1277704 L40,20.5132552 C40,22.2962927 39.8143488,22.9428652 39.4657346,23.594717 C39.1171204,24.2465689 38.6055433,24.758146 37.9536914,25.1067602 C37.3018396,25.4553744 36.6552671,25.6410256 34.8722296,25.6410256 L5.1277704,25.6410256 C3.34473292,25.6410256 2.69816044,25.4553744 2.04630859,25.1067602 C1.39445674,24.758146 0.882879593,24.2465689 0.534265408,23.594717 C0.185651222,22.9428652 8.02470732e-17,22.2962927 -1.38112041e-16,20.5132552 L1.38112041e-16,5.1277704 C-8.02470732e-17,3.34473292 0.185651222,2.69816044 0.534265408,2.04630859 C0.882879593,1.39445674 1.39445674,0.882879593 2.04630859,0.534265408 C2.69816044,0.185651222 3.34473292,1.2037061e-16 5.1277704,-2.07168062e-16 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Payment-method" transform="translate(-16.000000, -148.000000)">
+            <g id="Credit-card" transform="translate(0.000000, 122.000000)">
+                <g id="Group-2" transform="translate(16.000000, 26.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#5BC7FA" xlink:href="#path-1"></use>
+                    <polygon id="Rectangle-4" fill="#48B6FB" mask="url(#mask-2)" points="-4.51416682e-13 5.32907052e-15 7.17948718 5.32907052e-15 40.5128205 18.974359 40 25.6410256 -4.51416682e-13 25.6410256"></polygon>
+                    <polygon id="Rectangle-4" fill="#3AA8FD" mask="url(#mask-2)" points="0 21.5384615 40 7.69230769 39.4871795 25.6410256 0.512820513 25.6410256"></polygon>
+                    <rect id="Rectangle-7" fill="#FA655B" style="mix-blend-mode: hue;" mask="url(#mask-2)" x="-1" y="0" width="41" height="26"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

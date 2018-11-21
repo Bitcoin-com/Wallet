@@ -30,12 +30,14 @@
           <span translate>Receive</span>
         </div>
       </div>
-      <div class="col">
-        <div class="button button-outline button-grey-outline" ng-class="{'ng-hide': walletsWithFunds.length}"
-             ui-sref="tabs.buyandsell">
+      <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
+        <div class="button button-outline button-grey-outline"
+             ui-sref="tabs.buybitcoin">
           <span translate>Buy Bitcoin</span>
         </div>
-        <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
+      </div>
+      <div class="col" ng-class="{'ng-hide': !walletsWithFunds.length}">
+        <div class="button  button-outline button-grey-outline"
              ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>
@@ -106,7 +108,10 @@
     <div class="ng-hide list card" ng-show="walletsBtc[0] && buyAndSellItems.length>0" ng-include="'views/includes/buyAndSellCard.html'"></div>
     <div class="ng-hide list card" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/nextSteps.html'"></div>
-    <div class="ng-hide list card" ng-show="showServices && (walletsBch[0] || walletsBtc[0])" ng-include="'views/includes/services.html'"></div>
+    
+    <div id="buy-bitcoin" class="padding">
+      <button class="button button-standard button-green" ui-sref="tabs.buybitcoin" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
+    </div>
 
     <div class="list card card-banner">
       <ion-spinner ng-if="bannerIsLoading"></ion-spinner>

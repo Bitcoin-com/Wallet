@@ -9,12 +9,14 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
 
   var processNames = {
     'broadcastingTx': gettext('Broadcasting transaction'),
+    'buyingBch': gettext('Buying Bitcoin Cash...'),
     'calculatingFee': gettext('Calculating fee'),
     'connectingCoinbase': gettext('Connecting to Coinbase...'),
     'connectingGlidera': gettext('Connecting to Glidera...'),
     'connectingledger': gettext('Waiting for Ledger...'),
     'connectingShapeshift': gettext('Connecting to Shapeshift...'),
     'connectingtrezor': gettext('Waiting for Trezor...'),
+    'creatingCustomerId': gettext('Creating customer ID...'),
     'creatingTx': gettext('Creating transaction'),
     'creatingWallet': gettext('Creating Wallet...'),
     'deletingWallet': gettext('Deleting Wallet...'),
@@ -22,6 +24,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'fetchingPayPro': gettext('Fetching payment information'),
     'generatingCSV': gettext('Generating .csv file...'),
     'gettingFeeLevels': gettext('Getting fee levels...'),
+    'gettingKycCustomerId': gettext('Getting customer ID...'),
     'importingWallet': gettext('Importing Wallet...'),
     'joiningWallet': gettext('Joining Wallet...'),
     'recreating': gettext('Recreating Wallet...'),
