@@ -120,18 +120,18 @@
     function _getWallet() {
       moonPayService.getDefaultWalletId().then(
         function onGetDefaultWalletIdSuccess(walletId) {
-          console.log('default walletId:', walletId);
-          if (walletId === null) {
+          console.log('default walletId: "' + walletId + '"');
+          if (walletId) {
+            vm.wallet = profileService.getWallet(walletId);
+          } else{
             var wallets = profileService.getWallets({
               coin: 'bch'
             });
-            console.log('wallets:', vm.wallet);
+            console.log('wallets:', vm.wallets);
             if (wallets && wallets.length > 0) {
               vm.wallet = wallets[0];
               moonPayService.setDefaultWalletId(wallets[0].id);
             }
-          } else {
-            vm.wallet = profileService.getWallet(walletId);
           }
           $scope.wallet = vm.wallet;
           console.log('wallet:', $scope.wallet);
