@@ -4002,234 +4002,248 @@ msgstr ""
 msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
 msgstr ""
 
+#: www/views/buy-bitcoin/home.html:16
+#: www/views/buy-bitcoin/welcome.html:15
 msgid "Buy Bitcoin Cash"
 msgstr ""
 
+#: www/views/buy-bitcoin/home.controller.js:90
 msgid "Error Getting Customer ID"
 msgstr ""
 
+#: www/views/buy-bitcoin/home.controller.js:48
+#: www/views/buy-bitcoin/home.controller.js:56
 msgid "Error Getting Customer Information"
 msgstr ""
 
+#: www/views/buy-bitcoin/home.controller.js:57
+#: www/views/buy-bitcoin/home.controller.js:91
 msgid "An error occurred when getting your customer information."
 msgstr ""
 
+#: www/views/buy-bitcoin/home.controller.js:59
 msgid "Customer information was missing."
 msgstr ""
 
+#: www/views/buy-bitcoin/home.html:34
 msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
 msgstr ""
 
-#: www/views/buy-bitcoin/amount.html
+#: www/views/buy-bitcoin/amount.html:89
+#: www/views/buy-bitcoin/payment-methods.controller.js:72
 msgid "Error Getting Payment Methods"
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:90
+#: www/views/buy-bitcoin/payment-methods.controller.js:73
 msgid "An error occurred when getting your payment methods."
 msgstr ""
 
-msgid "No Payment Methods"
-msgstr ""
-
+#: www/views/buy-bitcoin/amount.controller.js:246
 msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
 msgstr ""
 
+#: www/views/buy-bitcoin/add-card-form.html:17
+#: www/views/buy-bitcoin/amount.controller.js:247
 msgid "Add Card"
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.html:22
 msgid "Getting exchange rate..."
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:243
 msgid "Waiting for exchange rate."
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:240
 msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.html:67
 msgid "Select a BCH Wallet"
 msgstr ""
 
+#: src/js/services/onGoingProcess.js:22
 msgid "Buying Bitcoin Cash..."
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:374
 msgid "Purchase Failed"
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:348
 msgid "Failed to create transaction."
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.html:96
 msgid "Buy Now"
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:96
 msgid "Enter Security Code"
 msgstr ""
 
+#: www/views/buy-bitcoin/amount.controller.js:260
+msgstr "Enter the 3 to 4 digit code on the back of your card."
 msgid ""
-msgstr "Enter the 3 digit code on the back of your card."
 
-# Success
-
-msgid "Go to Wallet"
-msgstr ""
-
-msgid "Go to {{vm.walletName}}"
-msgstr ""
-
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr ""
-
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr ""
-
-# Receipt
-
-msgid "Deposited to"
-msgstr ""
-
-msgid "Failed to get transaction data."
-msgstr ""
-
-msgid "Not found."
-msgstr ""
-
-msgid "Failed to get payment method info."
-msgstr ""
-# Enter Card details
-
-msgid "Back"
-msgstr ""
-
-msgid "Verify and complete your card information."
-msgstr ""
-
-msgid "Required"
-msgstr ""
-
-msgid "Visa, MC, or AMEX"
-msgstr ""
-
-msgid "MM/YYYY"
-msgstr ""
-
-msgid "Card Number"
-msgstr ""
-
-msgid "CVC"
-msgstr ""
-
-msgid "Unable to Add Card"
-msgstr ""
-
-msgid "Card number is invalid. Check your card and try again."
-msgstr ""
-
-msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
-msgstr ""
-
-msgid "Expiration date is invalid. Check your card and try again."
-msgstr ""
-
-msgid "Invalid card number"
-msgstr ""
-
-msgid "Invalid expiration date"
-msgstr ""
-
-msgid "Follow expected date format MM/YYYY"
-msgstr ""
-
-msgid "Invalid CVC number"
-msgstr ""
-
-# Purchasing
-
-msgid "Purchasing"
-msgstr ""
-
-msgid "Processing Fee"
-msgstr ""
-
-msgid "Deposit to"
-msgstr ""
-
-msgid "Add a payment method"
-msgstr ""
-
-msgid "Price Per BCH"
-msgstr ""
-
-msgid "Done"
-msgstr ""
-
-msgid "Amount must be a positive number."
-msgstr ""
-
-msgstr "Unable to Purchase"
-msgstr ""
-
-# Purchase History
-
-msgid "Purchase History"
-msgstr ""
-
-msgid "Pending Orders"
-msgstr ""
-
-# Payment Method
-
-msgid "Pay"
-msgstr ""
-
-msgid "Payment Method"
-msgstr ""
-
-msgid "Add Credit or Debit Card"
-msgstr ""
-
-
-msgid "This amount exceeds your monthly limit"
-msgstr ""
-
-msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
-msgstr ""
-
-msgid "Verify Identity"
-msgstr ""
-
-# Purchase history item
-
-msgid "Deposited to"
-msgstr ""
-
-msgid "See on Blockchain"
-msgstr ""
-
-msgid "Wallet address"
-msgstr ""
-
-# Pending Order
-
-msgid "Pending Order"
-msgstr ""
-
-msgid "Edit Order"
-msgstr ""
-
-msgid "Cancel Order"
-msgstr ""
-
-# Success
-
+#: www/views/buy-bitcoin/success.html:12
 msgid "Success!"
 msgstr ""
 
-
-msgid "Your purchase has been processed."
+#: www/views/buy-bitcoin/success.html:24
+msgid "Go to Wallet"
 msgstr ""
 
-
-msgid "See Receipt"
+#: www/views/buy-bitcoin/success.html:27
+msgid "Go to {{vm.walletName}}"
 msgstr ""
 
+#: www/views/buy-bitcoin/success.html:15
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgstr ""
 
+#: www/views/buy-bitcoin/success.html:14
+msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgstr ""
+
+#: www/views/buy-bitcoin/success.html:39
 msgid "Make Another Purchase"
+msgstr ""
+
+#: www/views/buy-bitcoin/receipt.html:41
+msgid "Deposited to"
+msgstr ""
+
+#: www/views/buy-bitcoin/receipt.controller.js:159
+msgid "Failed to get transaction data."
+msgstr ""
+
+#: www/views/buy-bitcoin/receipt.controller.js:82
+msgid "Not found."
+msgstr ""
+
+#: www/views/buy-bitcoin/receipt.controller.js:89
+msgid "Failed to get payment method info."
+msgstr ""
+
+#: www/views/buy-bitcoin/receipt.html:96
+msgid "See on Blockchain"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:5
+msgid "Back"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:58
+msgid "Required"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:31
+msgid "Visa, MC, or AMEX"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:43
+msgid "MM/YYYY"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:29
+msgid "Card Number"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:56
+msgid "CVC"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-card-form.html:29
+msgid "Unable to Add Card"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.controller.js:30
+#: www/views/buy-bitcoin/add-care-form.controller.js:50
+msgid "Card number is invalid. Check your card and try again."
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.controller.js:108
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.controller.js:111
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.controller.js:111
+msgid "Invalid card number"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.html:49
+msgid "Invalid expiration date"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.html:46
+msgid "Follow expected date format MM/YYYY"
+msgstr ""
+
+#: www/views/buy-bitcoin/add-care-form.html:61
+msgid "Invalid CVC number"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html:11
+#: www/views/buy-bitcoin/amount-master.html:12
+msgid "Purchasing"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount-master.html:37
+#: www/views/buy-bitcoin/amount.html:28
+#: www/views/buy-bitcoin/receipt.html:28
+msgid "Processing Fee"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html:48
+#: www/views/buy-bitcoin/amount-master.html:41
+msgid "Deposit to"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html:89
+msgid "Add a payment method"
+msgstr ""
+
+#: www/views/buy-bitcoin/payment-methods.html:13
+#: www/views/buy-bitcoin/success.html:5
+msgid "Done"
+msgstr ""
+
+#: www/views/buy-bitcoin/success.controller.js:5
+msgid "Amount must be a positive number."
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.controller.js:221
+msgstr "Unable to Purchase"
+msgstr ""
+
+#: www/views/buy-bitcoin/home.html:24
+#: www/views/buy-bitcoin/purchase-history.html:12
+#: www/views/buy-bitcoin/success.html:35
+msgid "Purchase History"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount-master.html:66
+#: www/views/buy-bitcoin/amount.html:74
+#: www/views/buy-bitcoin/payment-method.html:28
+#: www/views/buy-bitcoin/reciept.html:75
+#: www/views/buy-bitcoin/buyCoinbase.html:29
+msgid "Payment Method"
+msgstr ""
+
+#: www/views/buy-bitcoin/payment-methods.html:53
+msgid "Add Credit or Debit Card"
+msgstr ""
+
+#: www/views/buy-bitcoin/replaceme.html:1
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr ""
+
+#: www/views/buy-bitcoin/success.html:31
+msgid "See Receipt"
 msgstr ""

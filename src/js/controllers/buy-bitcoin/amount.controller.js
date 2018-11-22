@@ -257,7 +257,7 @@
       }
 
       title = gettextCatalog.getString("Enter Security Code");
-      message = gettextCatalog.getString("Enter the 3 digit code on the back of your card.");
+      message = gettextCatalog.getString("Enter the 3 to 4 digit code on the back of your card.");
       var opts = {
         inputType: 'text'
       };
