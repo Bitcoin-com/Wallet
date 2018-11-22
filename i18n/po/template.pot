@@ -4085,8 +4085,8 @@ msgid "Enter Security Code"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.controller.js:260
-msgstr "Enter the 3 to 4 digit code on the back of your card."
-msgid ""
+msgid "Enter the 3 to 4 digit code on the back of your card."
+msgstr ""
 
 #: www/views/buy-bitcoin/success.html:12
 msgid "Success!"
@@ -4219,7 +4219,7 @@ msgid "Amount must be a positive number."
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.controller.js:221
-msgstr "Unable to Purchase"
+msgid "Unable to Purchase"
 msgstr ""
 
 #: www/views/buy-bitcoin/home.html:24
