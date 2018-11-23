@@ -1,0 +1,71 @@
+#buy-bitcoin-welcome {
+  align-items: stretch;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+  margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+
+  .image-container {
+    flex-shrink: 1;
+    min-height: 32px;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 70%;
+    }
+  }
+
+  h1 {
+    margin-bottom: 8px;
+  }
+
+  small {
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  form {
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    .row {
+      align-items: baseline;
+      display: flex;
+      padding: 0;
+      font-size: 17px;
+
+      label {
+        font-size: 17px;
+        font-weight: 600;
+        margin: 0 8px 0 16px;
+      }
+
+      input {
+        flex-grow: 1;
+        font-size: 17px;
+        padding: 0 16px 0 0;
+        text-align: right;
+      }
+
+
+    }
+
+    .error {
+      color: $v-warning-color-2;
+      margin: 0 16px;
+    }
+  }
+
+  .apl-button-bottom-container {
+    position: static;
+  }
+
+  #bottom-button {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}

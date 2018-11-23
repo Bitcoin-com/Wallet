@@ -144,7 +144,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
-    };
+  };
 
   $scope.displayAddress = function(type) {
     $scope.bchAddressType.type = type;

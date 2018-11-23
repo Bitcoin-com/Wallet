@@ -9,11 +9,13 @@
   function bitAnalyticsService(platformInfo) {
     var service = {
       postEvent: postEvent
+      , setUserAttributes: setUserAttributes
+      , getVariablesFromChannel: getVariablesFromChannel
     };
 
     var defaultChannels = ['ga'];
     if (platformInfo.isCordova) {
-      defaultChannels = 'firebase';
+      defaultChannels = ['firebase'];
     }
 
     return service;
@@ -32,6 +34,14 @@
 
       var log = new window.BitAnalytics.LogEvent(name, params, allChannels);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
+    }
+
+    function setUserAttributes(attributes) {
+      window.BitAnalytics.LogEventHandlers.setUserAttributes(attributes);
+    }
+
+    function getVariablesFromChannel(channelName) {
+      window.BitAnalytics.LogEventHandlers.getVariablesFromChannel(channelName);
     }
 
   }
