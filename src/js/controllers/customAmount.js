@@ -119,9 +119,9 @@ angular.module('copayApp.controllers').controller('customAmountController', func
     }
 
     if ($scope.wallet.coin == 'bch') {
-      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/bch/inv');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172:80/v1/address');
     } else {
-      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv/');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172:81/v1/address');
     }
 
     paymentSubscriptionObj.addr = address;
@@ -142,7 +142,7 @@ angular.module('copayApp.controllers').controller('customAmountController', func
   var receivedPayment = function(data) {
     data = JSON.parse(data);
 
-    if (data.op == 'utx') {
+    if (data) {
       $scope.showingPaymentReceived = true;
       $scope.$apply();
     }
