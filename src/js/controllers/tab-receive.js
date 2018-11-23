@@ -33,11 +33,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     if ($scope.wallet.coin === 'bch') {
       // listen to bch address
-      currentAddressSocket = new WebSocket('ws://47.254.143.172/v1/address');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172:80/v1/address');
       paymentSubscriptionObj.addr = $scope.addrBchLegacy;
     } else {
       // listen to btc address
-      currentAddressSocket = new WebSocket('wss://ws.bitcoin.com/v1/address');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172:81/v1/address');
       paymentSubscriptionObj.addr = $scope.addr;
     }
 
@@ -144,13 +144,12 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       $scope.$apply(function () {
         $scope.showingPaymentReceived = true;
       });
-    }
-  }
+    };
 
   $scope.displayAddress = function(type) {
     $scope.bchAddressType.type = type;
     $scope.addr = bchAddresses[$scope.bchAddressType.type];
-  }
+  };
 
   $scope.goCopayers = function() {
     $ionicHistory.removeBackView();
