@@ -119,7 +119,7 @@ angular.module('copayApp.controllers').controller('customAmountController', func
     }
 
     if ($scope.wallet.coin == 'bch') {
-      currentAddressSocket = new WebSocket('wss://bwscash.bitcoin.com/ws/v1/address');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172/v1/address');
     } else {
       currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv/');
     }

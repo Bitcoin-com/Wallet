@@ -35,11 +35,11 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
     if ($scope.wallet.coin === 'bch') {
       // listen to bch address
-      currentAddressSocket = new WebSocket('wss://bwscash.bitcoin.com/ws/v1/address');
+      currentAddressSocket = new WebSocket('ws://47.254.143.172/v1/address');
       paymentSubscriptionObj.addr = $scope.addrBchLegacy;
     } else {
       // listen to btc address
-      currentAddressSocket = new WebSocket('wss://ws.blockchain.info/inv');
+      currentAddressSocket = new WebSocket('wss://ws.bitcoin.com/v1/address');
       paymentSubscriptionObj.addr = $scope.addr;
     }
 
@@ -109,7 +109,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   var receivedPayment = function(data) {
     data = JSON.parse(data);
-    if ($scope.wallet.coin == 'bch') {
       var watchAddress = $scope.wallet.coin == 'bch' ? $scope.addrBchLegacy : $scope.addr;
       for (var i = 0; i < data.outputs.length; i++) {
         if (data.outputs[i].address == watchAddress) {
@@ -124,25 +123,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
           });
         }
       }
-    } else {
-      //We need to keep this for BTC as it is using the old websocket
-      if (data.op == "utx") {
-        var watchAddress = $scope.wallet.coin == 'bch' ? $scope.addrBchLegacy : $scope.addr;
-        for (var i = 0; i < data.x.out.length; i++) {
-          if (data.x.out[i].addr == watchAddress) {
-            $scope.paymentReceivedAmount = txFormatService.formatAmount(data.x.out[i].value, 'full');
-            $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
-            txFormatService.formatAlternativeStr($scope.wallet.coin, data.x.out[i].value, function(alternativeStr){
-              if (alternativeStr) {
-                $scope.$apply(function () {
-                  $scope.paymentReceivedAlternativeAmount = alternativeStr;
-                });
-              }
-            });
-          }
-        }
-      }
-    }
 
       $scope.paymentReceivedCoin = $scope.wallet.coin;
 
