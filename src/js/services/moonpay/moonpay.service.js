@@ -40,6 +40,8 @@ angular
       , setDefaultCardId: setDefaultCardId
       , getDefaultCardId: getDefaultCardId
       , start: start
+      , getAllCountries: getAllCountries
+      , getIdentityCheck: getIdentityCheck
     };
 
     return service;
@@ -383,6 +385,42 @@ angular
         deferred.reject(err);
       });
       
+      return deferred.promise;
+    }
+
+    /**
+     * Get all countries
+     */
+    function getAllCountries() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getAllCountries().then(
+        function onGetAllCountries(countries) {
+          deferred.resolve(countries);
+        }, function onGetAllCountriesError(err) {
+          $log.debug('Error getting moonpay countries list from the api');
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function getIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getIdentityCheck().then(
+        function onGetIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+          $log.debug('Error getting moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
       return deferred.promise;
     }
   }

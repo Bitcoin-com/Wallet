@@ -1,0 +1,42 @@
+#customer-verification {
+  .form-header {
+    text-align: center;
+    margin: 0.5rem 1rem;
+
+    h1.title {
+      text-align: center;
+    }
+
+    .restore-info {
+      font-size: 0.8rem;
+      color: $v-light-gray;
+      margin: 0.5rem 2rem;
+
+      a {
+        color: $v-bitcoin-orange;
+      }
+    }
+  }
+  
+  .row {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  form {
+    margin: 2.5%;
+
+    select {
+      text-align-last: right;
+    }
+
+    .error {
+      padding: 0 5px;
+      color: $v-error-color;
+    }
+  }
+  
+  hr {
+    color: #787878;
+  }
+}

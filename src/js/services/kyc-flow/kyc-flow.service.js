@@ -9,7 +9,7 @@ angular
   function kycFlowService(
     kycFlowStateService
     , kycFlowRouterService
-    , moonpayService
+    , moonPayService
     , ongoingProcess
     , bitcoinUriService, payproService, bitcoinCashJsService
     , popupService, gettextCatalog
@@ -32,23 +32,23 @@ angular
     function start() {
       $log.debug('buy bitcoin start()');
 
-      ongoingProcess.set('gettingKycCustomerId', true);
-      moonpayService.getCustomerId(function onCustomerId(err, customerId){
-        ongoingProcess.set('gettingKycCustomerId', false);
-
-        if (err) {
-          $log.error('Error getting Moonpay customer ID. ' + err);
-          return;
+      ongoingProcess.set('gettingKycIdentity', true);
+      moonPayService.getIdentityCheck().then( 
+        function onResponse(identity) {
+          ongoingProcess.set('gettingKycIdentity', false);
+          kycFlowStateService.init(identity ? {
+              identity: identity
+              , result: identity.result
+            } : {}
+          );
+          kycFlowRouterService.start(kycFlowStateService.getClone());
+        },
+        function onError(err) {
+          ongoingProcess.set('gettingKycIdentity', false);
+            $log.error('Error getting Moonpay Identity Check. ' + err);
+            return;
         }
-
-        $log.debug('Moonpay customer ID: ' + customerId);
-
-        kycFlowStateService.init({
-          customerId: customerId
-        });
-
-        kycFlowRouterService.start(kycFlowStateService.getClone());
-      });
+      );
     }
 
     /**

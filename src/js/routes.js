@@ -912,6 +912,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin-customer-verification', {
+        url: '/buy-bitcoin/customer-verification',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinCustomerVerificationController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/customer-verification.html'
+          }
+        }
+      })
+
       .state('tabs.buybitcoin-privacypolicy', {
         url: '/buy-bitcoin/privacy-policy',
         views: {

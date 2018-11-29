@@ -4230,6 +4230,54 @@ msgstr ""
 msgid "See Receipt"
 msgstr ""
 
-
 msgid "Make Another Purchase"
 msgstr ""
+
+#: www/views/customer-verification.html:53
+msgid "Photograph document"
+msgstr ""
+
+#: www/views/customer-verification.html:56
+msgid "Continue unverified"
+msgstr ""
+
+#: www/views/customer-verification.html:56
+msgid "Continue unverified"
+msgstr ""
+
+# KYC Verification
+
+#: src/controllers/buy-bitcoin/customer-verification.controller.js:0
+msgid "Passport"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/customer-verification.controller.js:0
+msgid "National ID"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/customer-verification.controller.js:0
+msgid "Driving License"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/customer-verification.html:0
+msgid "You must select a country.""
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/customer-verification.html:0
+msgid "You must select a document type."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/customer-verification.html:0
+msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
+msgstr ""
+

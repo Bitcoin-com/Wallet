@@ -20,19 +20,21 @@ angular
       // Variables
 
       // Functions
-      createCustomer: createCustomer,
-      getCustomer: getCustomer,
-      updateCustomer: updateCustomer,
-      uploadPassport: uploadPassport,
-      uploadNationalIdentityCard: uploadNationalIdentityCard,
-      uploadSelfie: uploadSelfie,
-      createCard: createCard,
-      removeCard: removeCard,
-      getCards: getCards,
-      createTransaction: createTransaction,
-      getTransactions: getTransactions,
-      getTransaction: getTransaction,
-      getRates: getRates
+      createCustomer: createCustomer
+      ,getCustomer: getCustomer
+      ,updateCustomer: updateCustomer
+      ,uploadPassport: uploadPassport
+      ,uploadNationalIdentityCard: uploadNationalIdentityCard
+      ,uploadSelfie: uploadSelfie
+      ,createCard: createCard
+      ,removeCard: removeCard
+      ,getCards: getCards
+      ,createTransaction: createTransaction
+      ,getTransactions: getTransactions
+      ,getTransaction: getTransaction
+      ,getRates: getRates
+      ,getAllCountries: getAllCountries
+      ,getIdentityCheck: getIdentityCheck
     };
 
     return service;
@@ -261,6 +263,49 @@ angular
         }, function onGetRatesError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get all countries
+     */
+    function getAllCountries() {
+      var deferred = $q.defer();
+      getConfig(false).then(function(config) {
+        $http.get(baseUrl + '/v2/countries', config).then(function onGetAllCountries(response) {
+          var countries = response.data;
+          deferred.resolve(countries);
+        }, function onGetAllCountriesError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function getIdentityCheck() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/identity_check', config).then(function onGetIdentityCheckSuccess(response) {
+          var identity = response.data;
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+          // If identity check if not yet created, expect 404
+          if (err.status === 404) {
+            deferred.resolve();
+          } else {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+          }
         });
       }, function (err) {
         deferred.reject(err);
