@@ -19,6 +19,11 @@
     bottom: calc(86px + env(safe-area-inset-bottom));
   }
 
+  // Resolves scroll behavior issues when the content top element adjusts the margin-top. Use a top-boundary div above the offending element to correct scroll.
+  .top-boundary {
+    height:0.000001px;
+  }
+
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -559,7 +564,6 @@
       text-align: right;
     }
   }
-
   
 }
 

@@ -11,6 +11,7 @@ angular
     , gettextCatalog
     , $ionicHistory
     , $log
+    , kycFlowService
     , moonPayService
     , ongoingProcess
     , popupService
@@ -24,7 +25,6 @@ angular
     // Functions
     vm.onCountrySelect = onCountrySelect;
     vm.onStartPhotograph = onStartPhotograph;
-    vm.onSkipVerify = onSkipVerify;
     vm.onRestoreVerify = onRestoreVerify;
 
     vm.supportedDocumentLabels = {
@@ -33,14 +33,16 @@ angular
       ,'driving_licence': gettextCatalog.getString('Driving License') // Check if Typo from Documentation persists
     }
 
+    var currentState = {};
+
     function _initVariables() {
       vm.email = '';
       vm.countries = [];
+      
 
       // Fetch Countries and Documents
       moonPayService.getAllCountries().then(
         function onGetAllCountriesSuccess(countries) {
-          console.log('Fetched countries.', countries);
           vm.countries = countries;
           vm.countriesAreLoading = false;
         },
@@ -49,13 +51,14 @@ angular
           vm.countriesAreLoading = false;
         }
       );
+
+      currentState = kycFlowService.getCurrentStateClone();
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function onCountrySelect() {
-      console.log('Inside onCountrySelect', vm);
       if(!vm.country) {
         vm.supportedDocuments = [];
         vm.documentType = '';
@@ -73,7 +76,14 @@ angular
     }
 
     function onStartPhotograph() {
-
+      if (!vm.country || !vm.documentType) {
+        console.log('Form incomplete.');
+        return;
+      }
+      // Save current state
+      currentState.countryCode = vm.country;
+      currentState.documentType = vm.documentType;
+      kycFlowService.nextGo(currentState);
     }
     
     function onRestoreVerify() {

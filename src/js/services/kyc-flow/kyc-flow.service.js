@@ -21,7 +21,8 @@ angular
       // Functions
       start: start,
       goNext: goNext,
-      goBack: goBack
+      goBack: goBack,
+      getCurrentStateClone: getCurrentStateClone,
     };
 
     return service;
@@ -49,6 +50,10 @@ angular
             return;
         }
       );
+    }
+
+    function getCurrentStateClone() {
+      return kycFlowStateService.getClone();
     }
 
     /**
