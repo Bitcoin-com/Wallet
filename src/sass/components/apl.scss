@@ -54,6 +54,14 @@
     margin-right: 16px;
   }
 
+  select {
+    background: #f8f8f8;
+    border: none;
+    text-align: right;
+    text-align-last: right;
+  }
+
+
   &-amount {
     padding: 0 16px;
     &-title {
