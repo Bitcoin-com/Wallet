@@ -108,3 +108,6 @@ www/img/app
 /GoogleService-Info.plist
 /google-services.json
 src/js/generated
+
+##Intellij
+.idea
