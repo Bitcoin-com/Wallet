@@ -7,16 +7,10 @@ angular
   .factory('sendFlowService', sendFlowService);
   
   function sendFlowService(
-    bitAnalyticsService
-    , bitcoinCashJsService
-    , bitcoinUriService
-    , gettextCatalog
-    , $log
-    , payproService
-    , popupService
-    , sendFlowStateService
-    , sendFlowRouterService
-    , $state
+    sendFlowStateService, sendFlowRouterService
+    , bitcoinUriService, payproService, bitcoinCashJsService
+    , popupService, gettextCatalog
+    , $state, $log
   ) {
 
     var service = {
@@ -47,12 +41,10 @@ angular
 
           // If BIP70 (url)
           if (res.url) {
-            bitAnalyticsService.postEvent('payment_protocol_url_received', [], ['leanplum']);
             var url = res.url;
             var coin = res.coin || '';
             payproService.getPayProDetails(url, coin, function onGetPayProDetails(err, payProData) {
               if (err) {
-                bitAnalyticsService.postEvent('payment_protocol_fetch_failed', [], ['leanplum']);
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
               } else {
                 var name = payProData.domain;
@@ -85,8 +77,6 @@ angular
                 params.toAddress = payProData.toAddress,
                 params.coin = coin,
                 params.thirdParty = thirdPartyData
-
-                bitAnalyticsService.postEvent('payment_protocol_fetch_succeeded', [{}, {}, { domain: thirdPartyData.domain }], ['leanplum']);
               }
 
               // Resolve
