@@ -24,7 +24,6 @@ angular
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
-    $scope.$on("$ionicView.enter", onEnter);
     
     function onBeforeEnter(event, data) {
       if (data.direction == "back") {
@@ -40,6 +39,7 @@ angular
       console.log('walletSelector onBeforeEnter after back sendflow', $scope.params);
 
       var config = configService.getSync().wallet.settings;
+      $scope.selectedPriceDisplay = config.priceDisplay;
       priceDisplayAsFiat = config.priceDisplay === 'fiat';
       unitDecimals = config.unitDecimals;
       unitsFromSatoshis = 1 / config.unitToSatoshi;
@@ -67,12 +67,6 @@ angular
         $scope.specificAmount = $scope.specificAlternativeAmount = '';
         $scope.isPaymentRequest = true;
       }
-    };
-
-    function onEnter (event, data) {
-      configService.whenAvailable(function(config) {
-        $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
-      });
 
       if ($scope.params.thirdParty) {
         // Third party services specific logic
