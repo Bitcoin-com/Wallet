@@ -30,12 +30,14 @@
           <span translate>Receive</span>
         </div>
       </div>
-      <div class="col">
-        <div class="button button-outline button-grey-outline" ng-class="{'ng-hide': walletsWithFunds.length}"
-             ui-sref="tabs.buyandsell">
+      <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
+        <div class="button button-outline button-grey-outline"
+             ui-sref="tabs.buybitcoin">
           <span translate>Buy Bitcoin</span>
         </div>
-        <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
+      </div>
+      <div class="col" ng-class="{'ng-hide': !walletsWithFunds.length}">
+        <div class="button  button-outline button-grey-outline"
              ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>
