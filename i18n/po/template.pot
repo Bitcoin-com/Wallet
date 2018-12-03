@@ -4269,7 +4269,7 @@ msgstr ""
 
 
 #: src/controllers/buy-bitcoin/customer-verification.html:0
-msgid "You must select a country.""
+msgid "You must select a country."
 msgstr ""
 
 
@@ -4281,3 +4281,38 @@ msgstr ""
 msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
 msgstr ""
 
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Building Number."
+msgstr ""

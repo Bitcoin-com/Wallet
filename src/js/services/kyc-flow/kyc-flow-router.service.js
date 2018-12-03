@@ -35,7 +35,7 @@ angular
       var atteptRecovery = (state.recovery)
       var needsNationality = !(state.country && state.doucmentType);
       var needsDocumentation = !( state.documents && state.documents.length >= state.documentPageMinimum);
-      var needsPersonalInfo = false;
+      var needsPersonalInfo = true;
 
       // Recover Customer ID Page
       if(atteptRecovery) {
@@ -50,17 +50,17 @@ angular
         }
       }
       // New Customer Page
-      if (needsNationality) {
-        console.log('KYC-FLOW - Verification');
-        $state.go('tabs.buybitcoin-customer-verification');
-        return;
-      }
+      // if (needsNationality) {
+      //   console.log('KYC-FLOW - Verification');
+      //   $state.go('tabs.buybitcoin-customer-verification');
+      //   return;
+      // }
 
       // Document Photo Page
-      if (needsDocumentation) {
-        console.log('KYC-FLOW - Document Photo');
-        return;
-      }
+      // if (needsDocumentation) {
+      //   console.log('KYC-FLOW - Document Photo');
+      //   return;
+      // }
 
       // Review Document Page
       
@@ -68,6 +68,7 @@ angular
       // Personal Info Page
       if (needsPersonalInfo) {
         console.log('KYC-FLOW - Personal Info');
+        $state.go('tabs.buybitcoin-kyc-personal-info');
         return;
       }
 
@@ -78,6 +79,7 @@ angular
       }
 
       // Go to home
+      console.log('KYC-FLOW - Fallthrough');
       $ionicHistory.clearHistory();
       $state.go('tabs.buy-bitcoin-home');
     }

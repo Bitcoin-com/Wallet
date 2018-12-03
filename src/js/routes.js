@@ -923,6 +923,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin-kyc-personal-info', {
+        url: '/buy-bitcoin/kyc-personal-info',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycPersonalInfoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-personal-info.html'
+          }
+        }
+      })
+
       .state('tabs.buybitcoin-privacypolicy', {
         url: '/buy-bitcoin/privacy-policy',
         views: {
