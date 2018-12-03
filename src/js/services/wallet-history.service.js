@@ -22,6 +22,9 @@
       var service = {
         getCachedTxHistory: getCachedTxHistory,
         updateLocalTxHistoryByPage: updateLocalTxHistoryByPage,
+        processNewTxs: processNewTxs,
+        saveTxHistory: saveTxHistory,
+        getCachedTxHistory: getCachedTxHistory
       };
       return service;
 

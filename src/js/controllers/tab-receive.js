@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabReceiveController', function($interval, $rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
+angular.module('copayApp.controllers').controller('tabReceiveController', function($rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService, walletHistoryService) {
 
   var CLOSE_NORMAL = 1000;
   var listeners = [];
@@ -113,6 +113,35 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
       var watchAddress = $scope.wallet.coin == 'bch' ? $scope.addrBchLegacy : $scope.addr;
       for (var i = 0; i < data.outputs.length; i++) {
         if (data.outputs[i].address == watchAddress) {
+
+          var incomingTx = {
+            txid: data.txid,
+            amount: data.amount,
+            fees: data.fees,
+            time: Date.now(),
+            feePerKb: data.feePerKb,
+            outputs: [],
+            action: 'received'
+          };
+
+          data.outputs.forEach(function (output) {
+            var customOutput = {
+              'address': output.address,
+              'amount': output.value
+            };
+            incomingTx.outputs.push(customOutput);
+          }); 
+          
+          walletHistoryService.getCachedTxHistory($scope.wallet.id, function (err, txs) {
+            if (err) {
+              console.log('Error on getting cached history', err);
+              return;
+            }
+            var tx = walletHistoryService.processNewTxs($scope.wallet, [incomingTx]);
+            txs = tx.concat(txs);
+            walletHistoryService.saveTxHistory($scope.wallet.id, txs);
+          });
+          
           $scope.paymentReceivedAmount = txFormatService.formatAmount(data.outputs[i].value, 'full');
           $scope.paymentReceivedAlternativeAmount = '';  // For when a subsequent payment is received.
           txFormatService.formatAlternativeStr($scope.wallet.coin, data.outputs[i].value, function(alternativeStr){
@@ -169,7 +198,6 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }, 100);
   };
 
-  
   $scope.openBackupNeededModal = function() {
     $ionicModal.fromTemplateUrl('views/includes/backupNeededPopup.html', {
       scope: $scope,

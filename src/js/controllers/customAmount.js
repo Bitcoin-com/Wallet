@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService, bitcoinCashJsService, $timeout) {
+angular.module('copayApp.controllers').controller('customAmountController', function($scope, $ionicHistory, txFormatService, platformInfo, configService, profileService, walletService, popupService, bitcoinCashJsService, $timeout, walletHistoryService) {
 
   var currentAddressSocket = {};
   var paymentSubscriptionObj = { op:"addr_sub" }
@@ -141,6 +141,34 @@ angular.module('copayApp.controllers').controller('customAmountController', func
 
   var receivedPayment = function(data) {
     data = JSON.parse(data);
+
+    var incomingTx = {
+      txid: data.txid,
+      amount: data.amount,
+      fees: data.fees,
+      time: Date.now(),
+      feePerKb: data.feePerKb,
+      outputs: [],
+      action: 'received'
+    };
+
+    data.outputs.forEach(function (output) {
+      var customOutput = {
+        'address': output.address,
+        'amount': output.value
+      };
+      incomingTx.outputs.push(customOutput);
+    }); 
+    
+    walletHistoryService.getCachedTxHistory($scope.wallet.id, function (err, txs) {
+      if (err) {
+        console.log('Error on getting cached history', err);
+        return;
+      }
+      var tx = walletHistoryService.processNewTxs($scope.wallet, [incomingTx]);
+      txs = tx.concat(txs);
+      walletHistoryService.saveTxHistory($scope.wallet.id, txs);
+    });
 
     if (data) {
       $scope.showingPaymentReceived = true;
