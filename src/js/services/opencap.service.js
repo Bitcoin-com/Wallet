@@ -2,7 +2,7 @@
 
 (function() {
   angular.module('bitcoincom.services').factory('opencapService', function($q, $http) {
-    function getAddress(alias, coin) {
+    function getAddress(alias) {
       let aliasData = validateAlias(alias);
       if (aliasData.username === '' || aliasData.domain === '') {
         return $q((resolve, reject) => {
@@ -16,7 +16,7 @@
         .then(function(response) {
           deferred.resolve(
             parseSRV(response.data)
-              .then(data => getAddresses(alias, coin, data.host, data.dnssec))
+              .then(data => getAddresses(alias, data.host, data.dnssec))
               .catch(function(error) {
                 return $q((resolve, reject) => {
                   reject(error);
@@ -54,12 +54,12 @@
       });
     };
 
-    var getAddresses = function(alias, coin, host, dnssec) {
+    var getAddresses = function(alias, host, dnssec) {
       let deferred = $q.defer();
       $http
         .get(`https://${host}/v1/addresses?alias=${alias}`)
         .then(function(response) {
-          deferred.resolve(parseAddresses(response.data, coin, dnssec).then());
+          deferred.resolve(parseAddresses(response.data, dnssec).then());
         })
         .catch(function(response) {
           deferred.reject('Address not found for the specified alias');
@@ -67,7 +67,8 @@
       return deferred.promise;
     };
 
-    var parseAddresses = function(respData, coin, dnssec) {
+    var parseAddresses = function(respData, dnssec) {
+      let addresses = {}
       return $q((resolve, reject) => {
         for (let i = 0; i < respData.length; i++) {
           if (respData[i].address_type === 'undefined') {
@@ -76,15 +77,21 @@
           if (respData[i].address === 'undefined') {
             continue;
           }
-          if (coin == 'bch' && (respData[i].address_type == 200 || respData[i].address_type == 201)) {
-            return resolve({ address: respData[i].address, dnssec });
+          // Take the last BCH address we hit, shouldn't matter which one
+          if (respData[i].address_type == 200 || respData[i].address_type == 201 || respData[i].address_type == 202) {
+            addresses.bch = respData[i].address;
           }
-          if (coin == 'btc' && (respData[i].address_type == 100 || respData[i].address_type == 101)) {
-            return resolve({ address: respData[i].address, dnssec });
+          // Take the last BTC address we hit, shouldn't matter which one
+          if (respData[i].address_type == 100 || respData[i].address_type == 101) {
+            addresses.btc = respData[i].address;
           }
         }
 
-        return reject('Error contacting opencap server, no response');
+        if (addresses.btc === 'undefined' && addresses.btc === 'undefined'){
+          return reject('Error contacting opencap server, no response');
+        }
+
+        return resolve({addresses, dnssec});
       });
     };
 

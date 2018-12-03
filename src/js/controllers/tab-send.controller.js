@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService, ionicToast, opencapService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, $ionicPopover, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService, ionicToast, opencapService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -61,32 +61,46 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
     });
   });
 
-  $scope.sendToAlias = function(alias, coinType) {
-    let coin = coinType;
-    if (coin === ''){
-      coin = $scope.fromWallet.coin
-    }
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
 
-    opencapService.getAddress(alias, coin)
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+
+  $scope.confirmOpenapAddress = function(address, coin){
+    $scope.popover.remove();
+    var params = sendFlowService.state.getClone();
+    params.data = address;
+    params.coin = coin;
+    sendFlowService.start(params, function onError() {
+      return
+    });
+  }
+  
+  $scope.resolveOpencapAlias = function(alias){
+    opencapService.getAddress(alias)
     .then(result => {
-      let msg = `${coin} address found! Address is secure`;
-      if(!result.dnssec){
-        msg = `${coin} address found! Address doesn\'t have maximum DNS security`;
+      if (typeof $scope.fromWallet !== 'undefined'){
+        if ($scope.fromWallet.coin === 'bch'){
+          result.addresses = {bch: result.addresses.bch};
+        }
+        if ($scope.fromWallet.coin === 'btc'){
+          result.addresses = {btc: result.addresses.btc};
+        }
       }
 
-      let msgTime = 1000;
-      ionicToast.show(msg, 'bottom', false, msgTime);
-      setTimeout(function(){ 
-        var params = sendFlowService.state.getClone();
-        params.data = result.address;
-        params.coin = coin;
-        sendFlowService.start(params, function onError() {
-          return
-        });
-      }, msgTime);  
+      $scope.opencapAddresses = result.addresses;
+      $scope.opencapDnssec = result.dnssec;
+      $ionicPopover.fromTemplateUrl('templates/popoverOpencapSend.html', {scope: $scope})
+      .then(function(popover) {
+          $scope.popover = popover;
+          popover.show(angular.element(document.querySelector('#search-input')))
+      });
     })
     .catch(status => {
-      ionicToast.show(status, 'bottom', false, 1500);
+      // do nothing because they may have been typing
     });
   }
 
@@ -98,6 +112,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       });
       return;
     }
+
+    $scope.resolveOpencapAlias(search);
 
     var params = sendFlowService.state.getClone();
     params.data = search;
