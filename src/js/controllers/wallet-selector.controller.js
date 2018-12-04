@@ -6,7 +6,7 @@ angular
   .module('copayApp.controllers')
   .controller('walletSelectorController', walletSelectorController);
 
-  function walletSelectorController ($scope, $state, sendFlowService, configService, gettextCatalog, ongoingProcess, profileService, walletService, txFormatService) {
+  function walletSelectorController ($scope, $timeout, $state, sendFlowService, configService, gettextCatalog, ongoingProcess, profileService, walletService, txFormatService) {
     var fromWalletId = '';
     var priceDisplayAsFiat = false;
     var unitDecimals = 0;
@@ -116,7 +116,7 @@ angular
         } else {
           $scope.coin = 'bch';
         }
-      } 
+      }
     }
 
     function prepareWalletLists() {
@@ -131,46 +131,52 @@ angular
 
         if ($scope.params.amount || $scope.coin) {
 
-          walletsAll = profileService.getWallets({coin: $scope.coin});
           ongoingProcess.set('scanning', true);
+          walletsAll = profileService.getWallets({coin: $scope.coin});
           walletsAll.forEach(function forWallet(wallet) {
-            if (!wallet.status && !wallet.cachedStatus) {
+            var walletStatus = null;
+            if (wallet.status && wallet.status.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
+              walletStatus = wallet.status;
+            } else if (wallet.cachedStatus && wallet.status.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
+              walletStatus = wallet.cachedStatus;
+            }
+
+            if (!walletStatus) {
               walletService.getStatus(wallet, {}, function(err, status) {
+                console.log(err); // We need to handle the error properly
+
                 wallet.status = status;
-                if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
+
+                $timeout(function () { // because of promise
+                  if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
+                    if (wallet.coin === 'btc') {
+                      $scope.walletsBtc.push(wallet);
+                    } else {
+                      $scope.walletsBch.push(wallet);
+                    }
+                  } else {
+                    $scope.walletsInsufficientFunds.push(wallet);
+                  }
+
+                  ongoingProcess.set('scanning', false);
+                }, 60);
+              });
+            } else {
+              $timeout(function () { // because of promise
+                if (walletStatus && walletStatus.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
                   walletsSufficientFunds.push(wallet);
+                  if (wallet.coin === 'btc') {
+                    $scope.walletsBtc.push(wallet);
+                  } else {
+                    $scope.walletsBch.push(wallet);
+                  }
                 } else {
                   $scope.walletsInsufficientFunds.push(wallet);
                 }
-                if ($scope.coin === 'btc') { // As this is a promise
-                  $scope.walletsBtc = walletsSufficientFunds;
-                } else {
-                  $scope.walletsBch = walletsSufficientFunds;
-                }
                 ongoingProcess.set('scanning', false);
-              });
-            } else {
-              var walletStatus = null;
-              if (wallet.status && wallet.status.isValid) {
-                walletStatus = wallet.status;
-              } else if (wallet.cachedStatus && wallet.status.isValid) {
-                walletStatus = wallet.cachedStatus;
-              }
-
-              if (walletStatus && walletStatus.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
-                walletsSufficientFunds.push(wallet);
-              } else {
-                $scope.walletsInsufficientFunds.push(wallet);
-              }
-              ongoingProcess.set('scanning', false);
+              }, 60);
             }
           });
-
-          if ($scope.coin === 'btc') {
-            $scope.walletsBtc = walletsSufficientFunds;
-          } else {
-            $scope.walletsBch = walletsSufficientFunds;
-          }
         } else {
           $scope.walletsBch = profileService.getWallets({coin: 'bch', hasFunds: true});
           $scope.walletsBtc = profileService.getWallets({coin: 'btc', hasFunds: true});
