@@ -137,7 +137,7 @@ angular
             var walletStatus = null;
             if (wallet.status && wallet.status.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
               walletStatus = wallet.status;
-            } else if (wallet.cachedStatus && wallet.status.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
+            } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
               walletStatus = wallet.cachedStatus;
             }
 
