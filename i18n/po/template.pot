@@ -4316,3 +4316,23 @@ msgstr ""
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
 msgid "Building Number."
 msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Maple Street"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr ""

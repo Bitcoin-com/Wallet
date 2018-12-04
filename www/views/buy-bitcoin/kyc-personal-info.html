@@ -4,81 +4,102 @@
       <button class="button apl-back-button" ng-click="vm.onBack()">
         <i class="icon ion-chevron-left"></i><span translate>Back</span>
       </button>
-      <ion-nav-buttons side="secondary">
-        <button class="button apl-back-button" ng-click="vm.onNext()">
-          <span translate>Next</span>
-        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button class="button apl-back-button" ng-click="vm.onNext()">
+        <span translate>Next</span>
+      </button>
     </ion-nav-buttons>
   </ion-nav-bar>
+
   <ion-content >
     <form name="documentForm" novalidate>
       <div class="row">
         <label for="firstName" translate>First Name</label>
-        <input name="firstName" type="text" ng-model="vm.firstName" required></input>
+        <input name="firstName" placeholder="{{ 'Satoshi' | translate }}" type="text" ng-model="vm.firstName" required></input>
       </div>
-      <div class="error" ng-show="documentForm.firstName.$error.required" translate>
-        Field is required.
-      </div>
+      <div ng-show="documentForm.firstName.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.firstName.$error.required" translate>
+          Field is required.
+        </div>
+    </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="lastName" translate>Last Name</label>
-          <input name="lastName" type="text" ng-model="vm.lastName" required></input>
+          <input name="lastName" placeholder="{{ 'Nakamoto' | translate }}" type="text" ng-model="vm.lastName" required ng-model-options="{ debounce: 500 }" /></input>
       </div>
-      <div class="error" ng-show="documentForm.lastName.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.lastName.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.lastName.$error.required" translate>
+          Field is required.
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="dob" translate>Date of Birth</label>
-          <input name="dob" type="text" ng-model="vm.dob" required></input>
+          <input name="dob" placeholder="{{ 'DD/MM/YYYY' | translate }}" type="text" ng-model="vm.dob" ng-pattern="/[0123]\d\/[01]\d\/[12]\d{3}/" maxlength="10" required minage ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.dob.$error.required" translate>
-        Field is required.
-      </div>
-      <div class="error" ng-show="documentForm.dob.$error" translate>
-        Must be at least 18 years old.
+      <div ng-show="documentForm.dob.$touched || vm.submitted"> 
+        <div class="error" ng-show="documentForm.dob.$error.required" translate>
+          Field is required.
+        </div>
+        <div class="error" ng-show="documentForm.dob.$error.minage" translate>
+          Must be at least 18 years old.
+        </div>
+        <div class="error" ng-show="documentForm.dob.$error.pattern" translate>
+          Date format must match DD/MM/YYYY
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="buildingNumber" translate>Building Number</label>
-          <input name="buildingNumber" type="text" ng-model="vm.buildingNumber" required></input>
+          <input name="buildingNumber" placeholder="123" type="text" ng-model="vm.buildingNumber" required ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.buildingNumber.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.buildingNumber.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.buildingNumber.$error.required" translate>
+          Field is required.
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="streetAddress" translate>Street Adress</label>
-          <input name="streetAddress" type="text" ng-model="vm.streetAddress" required></input>
+          <input name="streetAddress" placeholder="{{ 'Maple Street' | translate }}" type="text" ng-model="vm.streetAddress" required ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.streetAddress.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.streetAddress.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.streetAddress.$error.required" translate>
+          Field is required.
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="city" translate>Town/City</label>
-          <input name="city" type="text" ng-model="vm.city" required></input>
+          <input name="city" placeholder="{{ 'Tokyo' | translate }}" type="text" ng-model="vm.city" required ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.city.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.city.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.city.$error.required" translate>
+          Field is required.
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
-          <label for="postal" translate>Postal Code</label>
-          <input name="postal" type="text" ng-model="vm.postal" required></input>
+          <label for="postalCode" translate>Postal Code</label>
+          <input name="postalCode" placeholder="123456" type="text" ng-model="vm.postalCode" required ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.postal.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.postalCode.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.postalCode.$error.required" translate>
+          Field is required.
+        </div>
       </div>
       <div class="apl-divider"></div>
       <div class="row">
           <label for="country" translate>Country</label>
-          <input name="country" type="text" ng-model="vm.country" required></input>
+          <input name="country" placeholder="{{ 'Japan' | translate }}" type="text" ng-model="vm.country" required ng-model-options="{ debounce: 500 }"></input>
       </div>
-      <div class="error" ng-show="documentForm.country.$error.required" translate>
-        Field is required.
+      <div ng-show="documentForm.country.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.country.$error.required" translate>
+          Field is required.
+        </div>
       </div>
+      <div class="apl-divider"></div>
     </form>
-    <div class="apl-divider"></div>
   </ion-content>
 </ion-view>

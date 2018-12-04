@@ -9,31 +9,6 @@ angular
   function kycFlowStateService(lodash, $log) {
 
     var service = {
-      // Variables
-      state: {
-        amount: 0,
-        displayAddress: null,
-        fromWalletId: '',
-        sendMax: false,
-        thirdParty: null,
-        toAddress: '',
-        toWalletId: '',
-        coin: '',
-        isRequestAmount: false,
-        isWalletTransfer: false
-      },
-      previousStates: [],
-
-      // Functions
-      init: init,
-      clear: clear,
-      getClone: getClone,
-      pop: pop,
-      push: push,
-      isEmpty: isEmpty
-    };
-
-    var service = {
 
       identity: null
       , result: ''
@@ -43,9 +18,10 @@ angular
       , documentType: ''
       , firstName: ''
       , lastName: ''
-      , addressLine1: ''
-      , addressLine2: ''
-      , postal: ''
+      , dob: ''
+      , buildingNumber: ''
+      , streetAddress: ''
+      , postalCode: ''
       , city: ''
       , country: ''
       , documents: []

@@ -16,19 +16,11 @@ angular
     , moonPayService
     , ongoingProcess
     , popupService
+    , moment
     , $scope
   ) {
     var currentState = {};
     var vm = this;
-
-    vm.firstName = '';
-    vm.lastName = '';
-    vm.dob = '';
-    vm.buildingNumber = '';
-    vm.streetAddress = '';
-    vm.city = '';
-    vm.postal = '';
-    vm.country = '';
 
     // Functions
     vm.goBack = goBack;
@@ -38,24 +30,59 @@ angular
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _validateAllFields() {
+      return _validateAge() 
+      && vm.firstName
+      && vm.lastName
+      && vm.buildingNumber
+      && vm.streetAddress
+      && vm.city
+      && vm.postalCode
+    }
 
+    function _validateAge() {
+      if (vm.dob) {
+        var dob = moment(vm.dob, 'DD/MM/YYYY');
+        if (moment().diff(dob, 'years') >= 18) {
+          return true
+        }
+      }
+      console.log('Age is: ', moment().diff(dob, 'years'));
+      return false;
     }
 
     function _initVariables() {
-      vm.email = '';
-      vm.countries = [];
+
+      vm.submitted = false;
+
       currentState = kycFlowService.getCurrentStateClone();
+
+      vm.firstName = currentState.firstName ? currentState.firstName : '';
+      vm.lastName = currentState.lastName ? currentState.lastName : '';
+      vm.dob = currentState.dob ? currentState.dob : '';
+      vm.buildingNumber = currentState.buildingNumber ? currentState.buildingNumber : '';
+      vm.streetAddress = currentState.streetAddress ? currentState.streetAddress : '';
+      vm.city = currentState.city ? currentState.city : ''; 
+      vm.postalCode = currentState.postalCode ? currentState.postalCode : ''; ;
+      vm.country = currentState.country ? currentState.country : '';
     }
 
     function onNext() {
+      vm.submitted = true;
       if (!_validateAllFields()) {
-        console.log('Form incomplete.');
+        $log.debug('Form incomplete.');
         return;
       }
       // Save current state
-      currentState.countryCode = vm.country;
-      currentState.documentType = vm.documentType;
-      kycFlowService.nextGo(currentState);
+      currentState.firstName = vm.firstName
+      currentState.lastName = vm.lastName
+      currentState.dob = vm.dob
+      currentState.buildingNumber = vm.buildingNumber
+      currentState.streetAddress = vm.streetAddress
+      currentState.city = vm.city
+      currentState.postalCode = vm.postalCode
+      currentState.country = vm.country;
+
+      kycFlowService.goNext(currentState);
     }
 
     function goBack() {

@@ -8,6 +8,10 @@
       align-items: center;
     }
 
+    input {
+      text-align: right;
+    }
+
     .error {
       padding: 0 5px;
       color: $v-error-color;
