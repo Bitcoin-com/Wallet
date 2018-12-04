@@ -702,7 +702,7 @@ angular
     }
 
     function setNotReady(msg, criticalError) {
-      vn.readyToSend = false;
+      vm.readyToSend = false;
       vm.notReadyMessage = msg;
       $scope.criticalError = criticalError;
       $log.warn('Not ready to make the payment:' + msg);
