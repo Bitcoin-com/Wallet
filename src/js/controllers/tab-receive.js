@@ -2,6 +2,7 @@
 
 angular.module('copayApp.controllers').controller('tabReceiveController', function($interval, $rootScope, $scope, $timeout, $log, $ionicModal, $state, $ionicHistory, $ionicPopover, storageService, platformInfo, walletService, profileService, configService, lodash, gettextCatalog, popupService, bwcError, bitcoinCashJsService, $ionicNavBarDelegate, sendFlowService, txFormatService, soundService, clipboardService) {
 
+  var BALANCE_CHECK_INTERVAL = 10 * 1000;
   var CLOSE_NORMAL = 1000;
   var listeners = [];
   $scope.bchAddressType = { type: 'cashaddr' };
@@ -147,7 +148,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
         $scope.showingPaymentReceived = true;
       });
 
-      updateWallet();
+      _updateWalletPeriodically();
     }
   }
 
@@ -308,7 +309,7 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
 
   function initVariables() {
     if (balanceChecker) {
-      $internval.cancel(balanceChecker);
+      $interval.cancel(balanceChecker);
       balanceChecker = null;
     }
     previousTotalBalanceSat = 0;
@@ -326,37 +327,44 @@ angular.module('copayApp.controllers').controller('tabReceiveController', functi
     }
   }
 
-  function updateWallet() {
+  function _updateWalletPeriodically() {
     if ($scope.wallet) {
       $log.debug('Updating wallet:' + $scope.wallet.name);
+      _updateWalletImmediately();
+
+      // For when changing wallets
+      if (balanceChecker !== null) {
+        $interval.cancel(balanceChecker);
+        balanceChecker = null;
+      }
 
       balanceChecker = $interval(function onInterval() {
-        walletService.invalidateCache($scope.wallet); // Temporary solution, to have the good balance, when we ask to reload the wallets.
-        walletService.getStatus($scope.wallet, {}, function onGetStatus(err, status) {
-          if (err) {
-            $log.error(err);
-            return;
-          }
-  
-          if (status && status.isValid) {
-            var totalBalanceSat = status.totalBalanceSat;
-            var balanceChanged = totalBalanceSat !== previousTotalBalanceSat;
-            previousTotalBalanceSat = totalBalanceSat;
-            console.log('totalBalanceSat: ' + totalBalanceSat + ', changed: ' + balanceChanged);
-            if (balanceChanged) {
-              $scope.wallet.status = status;
-              $scope.wallets = profileService.getWallets();
-              $timeout(function () {
-                $scope.$apply();
-              }, 10);
-              $interval.cancel(balanceChecker);
-            }
-          }
-        });
-      
-      }, 1000);
+        _updateWalletImmediately();
+      }, BALANCE_CHECK_INTERVAL);
 
     }
   
+  }
+
+  function _updateWalletImmediately() {
+    walletService.getStatus($scope.wallet, { force: true }, function onGetStatus(err, status) {
+      if (err) {
+        $log.error(err);
+        return;
+      }
+
+      if (status && status.isValid) {
+        var totalBalanceSat = status.totalBalanceSat;
+        var balanceChanged = totalBalanceSat !== previousTotalBalanceSat;
+        previousTotalBalanceSat = totalBalanceSat;
+
+        if (balanceChanged) {
+          $scope.wallet.status = status;
+          $timeout(function () {
+            $scope.$apply();
+          }, 10);
+        }
+      }
+    });
   }
 });
