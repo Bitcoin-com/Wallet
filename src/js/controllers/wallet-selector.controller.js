@@ -135,19 +135,29 @@ angular
           walletsAll = profileService.getWallets({coin: $scope.coin});
           walletsAll.forEach(function forWallet(wallet) {
             var walletStatus = null;
-            if (wallet.status && wallet.status.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
+            if (wallet.status && wallet.status.isValid) {
               walletStatus = wallet.status;
-            } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) { // We never get there after checking a wallet, are we sure concerning this object?
+            } else if (wallet.cachedStatus && wallet.cachedStatus.isValid) {
               walletStatus = wallet.cachedStatus;
             }
 
             if (!walletStatus) {
-              walletService.getStatus(wallet, {}, function(err, status) {
-                console.log(err); // We need to handle the error properly
+              walletService.getStatus(wallet, {}, function onStatus(err, status) {
+                
+                if (err) {
+                  console.error('Failed to get status for wallet list.', err);
+
+                  $timeout(function onTimeout() { // because of async
+                      $scope.walletsInsufficientFunds.push(wallet);
+
+                      ongoingProcess.set('scanning', false);
+                  }, 60);
+                  return;
+                }
 
                 wallet.status = status;
 
-                $timeout(function () { // because of promise
+                $timeout(function onTimeout() { // because of async
                   if (status.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
                     if (wallet.coin === 'btc') {
                       $scope.walletsBtc.push(wallet);
@@ -162,7 +172,7 @@ angular
                 }, 60);
               });
             } else {
-              $timeout(function () { // because of promise
+              $timeout(function onTimeout() { // because of async
                 if (walletStatus && walletStatus.availableBalanceSat > ($scope.params.amount ? $scope.params.amount : 0)) {
                   walletsSufficientFunds.push(wallet);
                   if (wallet.coin === 'btc') {
