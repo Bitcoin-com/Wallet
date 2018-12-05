@@ -6,7 +6,18 @@ angular
   .module('copayApp.controllers')
   .controller('walletSelectorController', walletSelectorController);
 
-  function walletSelectorController ($scope, $timeout, $state, sendFlowService, configService, gettextCatalog, ongoingProcess, profileService, walletService, txFormatService) {
+  function walletSelectorController (
+    $scope
+    , $timeout
+    , $state
+    , sendFlowService
+    , configService
+    , gettextCatalog
+    , ongoingProcess
+    , profileService
+    , walletService
+    , txFormatService
+    ) {
     var fromWalletId = '';
     var priceDisplayAsFiat = false;
     var unitDecimals = 0;
