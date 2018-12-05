@@ -33,8 +33,7 @@ angular
       return _validateAge() 
       && vm.firstName
       && vm.lastName
-      && vm.buildingNumber
-      && vm.streetAddress
+      && vm.streetAddress1
       && vm.city
       && vm.postalCode
     }
@@ -59,11 +58,29 @@ angular
       vm.firstName = currentState.firstName ? currentState.firstName : '';
       vm.lastName = currentState.lastName ? currentState.lastName : '';
       vm.dob = currentState.dob ? currentState.dob : '';
-      vm.buildingNumber = currentState.buildingNumber ? currentState.buildingNumber : '';
       vm.streetAddress = currentState.streetAddress ? currentState.streetAddress : '';
+      vm.streetAddress2 = currentState.streetAddress ? currentState.streetAddress2 : '';
       vm.city = currentState.city ? currentState.city : ''; 
       vm.postalCode = currentState.postalCode ? currentState.postalCode : ''; ;
       vm.country = currentState.country ? currentState.country : '';
+
+      vm.countries = [];
+      vm.countriesAreLoading = true;
+
+      // Fetch Countries and Documents
+      console.log('Fetching Countries!');
+      moonPayService.getAllCountries().then(
+        function onGetAllCountriesSuccess(countries) {
+          vm.countries = countries;
+          vm.countriesAreLoading = false;
+          console.log('Fetching Countries - SUCCESS!');
+          console.log(countries);
+        },
+        function onGetAllCountriesError(err) {
+          console.log('Failed to get countries.', err);
+          vm.countriesAreLoading = false;
+        }
+      );
     }
 
     function onNext() {
@@ -76,8 +93,8 @@ angular
       currentState.firstName = vm.firstName
       currentState.lastName = vm.lastName
       currentState.dob = vm.dob
-      currentState.buildingNumber = vm.buildingNumber
-      currentState.streetAddress = vm.streetAddress
+      currentState.streetAddress1 = vm.streetAddress1
+      currentState.streetAddress2 = vm.streetAddress2
       currentState.city = vm.city
       currentState.postalCode = vm.postalCode
       currentState.country = vm.country;
@@ -95,7 +112,6 @@ angular
     }
 
     function onBeforeLeave(event, data) {
-      _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_ersonal_info_screen_close' ,[], ['leanplum']);
     }
   }

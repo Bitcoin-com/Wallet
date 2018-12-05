@@ -4302,6 +4302,10 @@ msgid "Street Address"
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
 msgstr ""
 
@@ -4314,10 +4318,6 @@ msgid "Country"
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
-msgid "Building Number."
-msgstr ""
-
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
 msgstr ""
 
@@ -4326,7 +4326,7 @@ msgid "Must be at least 18 years old."
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
-msgid "Maple Street"
+msgid "123 Maple Street"
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
@@ -4335,4 +4335,8 @@ msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
 msgstr ""
