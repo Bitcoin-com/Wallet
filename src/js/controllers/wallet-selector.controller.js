@@ -7,16 +7,16 @@ angular
   .controller('walletSelectorController', walletSelectorController);
 
   function walletSelectorController (
-    $scope
-    , $timeout
-    , $state
-    , sendFlowService
-    , configService
+    configService
     , gettextCatalog
     , ongoingProcess
     , profileService
-    , walletService
+    , $scope
+    , sendFlowService
+    , $state
+    , $timeout
     , txFormatService
+    , walletService
     ) {
     var fromWalletId = '';
     var priceDisplayAsFiat = false;
