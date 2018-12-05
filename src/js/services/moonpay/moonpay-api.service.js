@@ -35,6 +35,10 @@ angular
       ,getRates: getRates
       ,getAllCountries: getAllCountries
       ,getIdentityCheck: getIdentityCheck
+      ,createIdentityCheck: createIdentityCheck
+      ,uploadFile: uploadFile
+      ,getFiles: getFiles
+      ,deleteFile: deleteFile
     };
 
     return service;
@@ -306,6 +310,82 @@ angular
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
           }
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Create an identity check
+     */
+    function createIdentityCheck() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.post(baseUrl + '/v2/identity_check', config).then(function onGetIdentityCheckSuccess(response) {
+          var identity = response.data;
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Upload File
+     */
+    function uploadFile(filePackage) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.post(baseUrl + '/v2/files', filePackage, config).then(function onUploadFileSuccess(response) {
+          var file = response.data;
+          deferred.resolve(files);
+        }, function onUploadFileError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get Files
+     */
+    function getFiles() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/files', config).then(function onGetFilesSuccess(response) {
+          var files = response.data;
+          deferred.resolve(files);
+        }, function onGetFilesError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Delete File
+     */
+    function deleteFile(fileId) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.delete(baseUrl + '/v2/files' + fileId, config).then(function onDeleteFileSuccess(response) {
+          var file = response.data;
+          deferred.resolve(file);
+        }, function onDeleteFileError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
         });
       }, function (err) {
         deferred.reject(err);

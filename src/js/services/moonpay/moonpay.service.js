@@ -42,6 +42,9 @@ angular
       , start: start
       , getAllCountries: getAllCountries
       , getIdentityCheck: getIdentityCheck
+      , createIdentityCheck: createIdentityCheck
+      , getFiles: getFiles
+      , uploadDocument: uploadDocument
     };
 
     return service;
@@ -418,6 +421,69 @@ angular
           deferred.resolve(identity);
         }, function onGetIdentityCheckError(err) {
           $log.debug('Error getting moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function createIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.createIdentityCheck().then(
+        function onCreateIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onCreateIdentityCheckError(err) {
+          $log.debug('Error creating moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get Files
+     */
+    function getFiles() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getFiles().then(
+        function onGetFilesSuccess(files) {
+          deferred.resolve(files);
+        }, function onGetFilesError(err) {
+          $log.debug('Error getting moonpay files list from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Upload Document
+     * * @param {data} file
+     * * @param {String} type
+     * * @param {String} country
+     * * @param {String} side - Optional  
+     */
+    function uploadDocument(file, type, country, side) {
+      // Create the promise
+      var deferred = $q.defer();
+      var filePackage = {
+        'file': file
+        , 'type': type
+        , 'country': country
+        , 'side': side ? side : ''
+      }
+      moonPayApiService.uploadDocument(filePackage).then(
+        function onUploadFileSuccess(files) {
+          deferred.resolve(files);
+        }, function onUploadFileError(err) {
+          $log.debug('Error getting moonpay files list from the api', err);
           deferred.reject(err);
         }
       );
