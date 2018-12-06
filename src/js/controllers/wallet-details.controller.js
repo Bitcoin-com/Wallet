@@ -405,7 +405,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     ];
   });
 
-  var refreshInterval;
+  var refreshInterval = null;
 
   $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
     updateTxHistoryFromCachedData();
@@ -417,18 +417,31 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }, 1000);
   });
 
-  $scope.$on("$ionicView.afterLeave", function(event, data) {
-    $interval.cancel(refreshInterval);
+  $scope.$on("$ionicView.afterLeave", _onAfterLeave);
+  $scope.$on("$ionicView.leave", _onLeave);
+
+  function _onAfterLeave(event, data) {
+    console.log('walletDetailsController onAfterLeave() Cancelling interval.');
+    if (refreshInterval !== null) {
+      $interval.cancel(refreshInterval);
+      refreshInterval = null;
+    }
     if ($window.StatusBar) {
       $window.StatusBar.backgroundColorByHexString('#000000');
     }
-  });
+  }
 
-  $scope.$on("$ionicView.leave", function(event, data) {
+  function _onLeave(event, data) {
+    console.log('walletDetailsController onLeave()');
     lodash.each(listeners, function(x) {
       x();
     });
-  });
+  }
+
+  function _callLeaveHandlers() {
+    _onLeave();
+    _onAfterLeave();
+  }
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
@@ -474,12 +487,15 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     sendFlowService.start({
       fromWalletId: $scope.wallet.id
     });
     
   };
   $scope.goToReceive = function() {
+    console.log('walletDetailsController goToReceive()');
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {
@@ -491,6 +507,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {
