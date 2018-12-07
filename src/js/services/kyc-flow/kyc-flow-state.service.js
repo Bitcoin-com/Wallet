@@ -25,7 +25,7 @@ angular
       , city: ''
       , country: ''
       , documents: []
-      , documentMinimumCount: 1
+      , documentsMeta: {}
 
       // Functions
       , init: init

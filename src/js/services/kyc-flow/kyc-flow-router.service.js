@@ -33,9 +33,17 @@ angular
     function goNext(state) {
       console.log('kyc-flow-router - goNext');
       var atteptRecovery = (state.recovery)
-      var needsNationality = !(state.country && state.doucmentType);
-      var needsDocumentation = !( state.documents && state.documents.length >= state.documentPageMinimum);
-      var needsPersonalInfo = true;
+      var needsDocumentType = !(state.country && state.doucmentType);
+      var needsDocumentation = !( state.documents && state.documents.length >= (state.documentType === 'passport' ? 1 : 2));
+      var needsPersonalInfo = 
+        !( state.firstName
+        && state.lastName
+        && state.dob
+        && state.streetAddress1
+        && state.postalCode
+        && state.clearHistory
+        && state.country
+        );
 
       // Recover Customer ID Page
       if(atteptRecovery) {
@@ -49,18 +57,18 @@ angular
           return;
         }
       }
-      // New Customer Page
-      // if (needsNationality) {
-      //   console.log('KYC-FLOW - Verification');
-      //   $state.go('tabs.buybitcoin-customer-verification');
-      //   return;
-      // }
+      //New Customer Page
+      if (needsDocumentType) {
+        console.log('KYC-FLOW - Verification');
+        $state.go('tabs.buybitcoin-customer-verification');
+        return;
+      }
 
-      // Document Photo Page
-      // if (needsDocumentation) {
-      //   console.log('KYC-FLOW - Document Photo');
-      //   return;
-      // }
+      //Document Photo Page
+      if (needsDocumentation) {
+        console.log('KYC-FLOW - Document Photo');
+        return;
+      }
 
       // Review Document Page
       

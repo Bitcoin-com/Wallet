@@ -4281,62 +4281,70 @@ msgstr ""
 msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information."
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Last Name"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Date of Birth"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Street Address"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Country"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
 msgstr ""
 
-#: src/controllers/buy-bitcoin/kyc-personal-info.html:0
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
 msgstr ""

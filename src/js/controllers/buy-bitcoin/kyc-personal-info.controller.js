@@ -58,8 +58,8 @@ angular
       vm.firstName = currentState.firstName ? currentState.firstName : '';
       vm.lastName = currentState.lastName ? currentState.lastName : '';
       vm.dob = currentState.dob ? currentState.dob : '';
-      vm.streetAddress = currentState.streetAddress ? currentState.streetAddress : '';
-      vm.streetAddress2 = currentState.streetAddress ? currentState.streetAddress2 : '';
+      vm.streetAddress1 = currentState.streetAddress1 ? currentState.streetAddress1 : '';
+      vm.streetAddress2 = currentState.streetAddress2 ? currentState.streetAddress2 : '';
       vm.city = currentState.city ? currentState.city : ''; 
       vm.postalCode = currentState.postalCode ? currentState.postalCode : ''; ;
       vm.country = currentState.country ? currentState.country : '';
@@ -99,7 +99,30 @@ angular
       currentState.postalCode = vm.postalCode
       currentState.country = vm.country;
 
-      kycFlowService.goNext(currentState);
+      
+      // Update Customer
+      var customer = {
+        'firstName': vm.firstName
+        , 'lastName': vm.lastName
+        , 'dateOfBirth': moment(vm.dob, 'DD/MM/YYY').format('YYYY-MM-DD')
+        , 'address' : {
+          'street': vm.streetAddress1
+          , 'subStreet': vm.streetAddress2
+          , 'town': vm.city
+          , 'postCode': vm.postalCode
+          , 'country': vm.country
+        }
+      }
+      ongoingProcess.set('submitingKycInfo', true);
+      moonPayService.updateCustomer(customer).then( 
+        function onUpdateSuccess() {
+          ongoingProcess.set('submitingKycInfo', false);
+          kycFlowService.goNext(currentState);
+      }, 
+        function onUpdateError(err) {
+          ongoingProcess.set('submitingKycInfo', false);
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
+      });
     }
 
     function goBack() {

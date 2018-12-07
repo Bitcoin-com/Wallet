@@ -46,6 +46,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'sendingTx': gettext('Sending transaction'),
     'signingTx': gettext('Signing transaction'),
     'sweepingWallet': gettext('Sweeping Wallet...'),
+    'submitingKycInfo': gettext('Sending Info...'),
     'topup': gettext('Top up in progress...'),
     'updatingGiftCard': 'Updating Gift Card...',
     'updatingGiftCards': 'Updating Gift Cards...',

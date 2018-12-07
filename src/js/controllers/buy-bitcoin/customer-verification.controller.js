@@ -53,6 +53,10 @@ angular
       );
 
       currentState = kycFlowService.getCurrentStateClone();
+      // Apply current State
+      vm.country = currentState.countryCode;
+      vm.documentType = currentState.documentType;
+
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
