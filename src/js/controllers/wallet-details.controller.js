@@ -383,7 +383,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
+    //console.log('walletDetailsController beforeEnter wallet not null: ' + $scope.wallet !== null);
     if (!$scope.wallet) return;
+    console.log('walletDetailsController beforeEnter totalBalanceAlternative: ' + $scope.wallet.status.totalBalanceAlternative);
+    $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
     $scope.vm.gettingInitialHistory = true;
