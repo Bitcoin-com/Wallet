@@ -538,9 +538,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     var satoshis = 0;
     if (unit.isFiat) {
-      satoshis = Math.floor(fromFiat(uiAmount) * unitToSatoshi);
+      satoshis = Math.round(fromFiat(uiAmount) * unitToSatoshi);
     } else {
-      satoshis = Math.floor(uiAmount * unitToSatoshi);
+      satoshis = Math.round(uiAmount * unitToSatoshi);
     }
 
     var confirmData = {
