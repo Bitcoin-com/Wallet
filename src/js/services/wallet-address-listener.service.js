@@ -20,10 +20,12 @@
 
     var BALANCE_REFRESH_INTERVAL = 10 * 1000;
     var CLOSE_NORMAL = 1000;
+    var RECONNECT_RATE_LIMIT = 1000;
     var address = '';
     var balanceChecker = null;
     var cb = null;
     var currentAddressSocket = null;
+    var lastReconnectTime = 0;
     var paymentSubscriptionObj = { op:'addr_sub' };
     var previousTotalBalanceSat = 0;
     var $scope = null;
@@ -62,10 +64,15 @@
   
       currentAddressSocket.onclose = function onClose(event) {
         if (event.code !== CLOSE_NORMAL) {
-          $log.debug('Socket was closed abnormally. Reconnect will be attempted in 1 second.');
+          var timeSinceLastReconnect = Date.now() - lastReconnectTime;
+          // Try to reconnect immediately if haven't tried to reconnect recently
+          var reconnectDelay = Math.max(1, RECONNECT_RATE_LIMIT - timeSinceLastReconnect);
+
+          $log.warn('Socket was closed abnormally. Close reason: ' + event.code + '. Seconds before reconnecting: ' + (reconnectDelay * 0.001).toFixed(3));
           $timeout(function onTimeoutForReconnect() {
-            connectSocket();
-          }, 1000);
+            lastReconnectTime = Date.now();
+            _connectSocket();
+          }, reconnectDelay);
         }
       };
   
@@ -87,6 +94,7 @@
      * @param {} paymentReceivedCb
      */
     function listenTo(legacyAddress, walletForAddress, scope, paymentReceivedCb) {
+      console.log('walletAddressServiceListener listenTo() ' + walletForAddress.name);
       address = legacyAddress;
       cb = paymentReceivedCb;
       $scope = scope;
@@ -109,6 +117,7 @@
     }
 
     function stop() {
+      console.log('walletAddressServiceListener stop()');
       if (balanceChecker !== null) {
         $interval.cancel(balanceChecker);
         balanceChecker = null;
@@ -144,11 +153,24 @@
     }
 
     function _updateWallet() {
+      console.log('walletAddressServiceListener _updateWallet() for ' + wallet.name);
       walletService.getStatus(wallet, { force: true }, function onGetStatus(err, status) {
         if (err) {
           $log.error(err);
           return;
         }
+
+        var statusStatus = 'missing';
+        if (status) {
+          statusStatus = status.isValid ? 'valid' : 'invalid';
+        }
+        console.log('walletAddressServiceListener Received status: ' + statusStatus);
+
+        var walletStatusStatus = 'missing';
+        if (wallet.status) {
+          walletStatusStatus = wallet.status.isValid ? 'valid' : 'invalid';
+        }
+        console.log('walletAddressServiceListener Wallet status: ' + walletStatusStatus);
   
         if (status && status.isValid) {
           var totalBalanceSat = status.totalBalanceSat;
@@ -156,10 +178,11 @@
           previousTotalBalanceSat = totalBalanceSat;
   
           if (balanceChanged) {
-            wallet.status = status;
-            $timeout(function onTimeout() {
-              $scope.$apply();
-            }, 10);
+            // Because we are forcing a refresh of the status form the server,
+            // this should always be outside the Angularjs framework.
+            $scope.$apply(function onApply(){
+              wallet.status = status;
+            });
           }
         }
       });

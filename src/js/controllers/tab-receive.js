@@ -32,8 +32,6 @@
     , walletAddressListenerService
     , walletService
   ) {
-    var BALANCE_CHECK_INTERVAL = 10 * 1000;
-    var CLOSE_NORMAL = 1000;
     var listeners = [];
     $scope.bchAddressType = { type: 'cashaddr' };
     var bchAddresses = {};
@@ -41,11 +39,6 @@
 
     $scope.isCordova = platformInfo.isCordova;
     $scope.isNW = platformInfo.isNW;
-
-    var balanceChecker = null;
-    var currentAddressSocket = null;
-    var paymentSubscriptionObj = { op:'addr_sub' };
-    var previousTotalBalanceSat = 0;
 
     $scope.displayBalanceAsFiat = true;
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
@@ -204,11 +197,11 @@
     };
 
     function _onBeforeLeave() {
+      console.log('tab-receive _onBeforeLeave()');
       walletAddressListenerService.stop();
     }
   
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
-      initVariables();
       $scope.wallets = profileService.getWallets();
       $scope.singleWallet = $scope.wallets.length == 1;
 
@@ -242,6 +235,7 @@
     });
 
     $scope.$on("$ionicView.leave", function(event, data) {
+      console.log('tab-receive leave');
       lodash.each(listeners, function(x) {
         x();
       });
@@ -268,7 +262,6 @@
 
     $scope.onWalletSelect = function(wallet) {
       $scope.wallet = wallet;
-      initVariables();
       setProtocolHandler();
       $scope.setAddress();
     };
@@ -288,14 +281,6 @@
       var protocol = 'bitcoin';
       if ($scope.wallet.coin == 'bch') protocol += 'cash';
       window.plugins.socialsharing.share(protocol + ':' + $scope.addr, null, null, null);
-    }
-
-    function initVariables() {
-      if (balanceChecker) {
-        $interval.cancel(balanceChecker);
-        balanceChecker = null;
-      }
-      previousTotalBalanceSat = 0;
     }
     
   }
