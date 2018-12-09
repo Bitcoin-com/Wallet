@@ -154,9 +154,21 @@
 
     function _updateWallet() {
       console.log('walletAddressServiceListener _updateWallet() for ' + wallet.name);
+      var walletId = wallet.id;
       walletService.getStatus(wallet, { force: true }, function onGetStatus(err, status) {
         if (err) {
           $log.error(err);
+          return;
+        }
+
+        if (!wallet) {
+          // Stopped listening.
+          return;
+        }
+
+        if (wallet.id !== walletId) {
+          console.log('walletAddressServiceListener wallet ID mismatch.');
+          // Wallet has been changed, the status is for the wrong wallet.
           return;
         }
 
@@ -171,7 +183,7 @@
           walletStatusStatus = wallet.status.isValid ? 'valid' : 'invalid';
         }
         console.log('walletAddressServiceListener Wallet status: ' + walletStatusStatus);
-  
+
         if (status && status.isValid) {
           var totalBalanceSat = status.totalBalanceSat;
           var balanceChanged = totalBalanceSat !== previousTotalBalanceSat;
@@ -181,7 +193,9 @@
             // Because we are forcing a refresh of the status form the server,
             // this should always be outside the Angularjs framework.
             $scope.$apply(function onApply(){
-              wallet.status = status;
+              if (wallet) {
+                wallet.status = status;
+              }
             });
           }
         }

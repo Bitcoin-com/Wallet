@@ -28,14 +28,25 @@
     vm.onShareAddress = onShareAddress;
 
     // Variables
+    vm.altAmountStr = '';
+    vm.amountBtc = '';
+    vm.amountReceived = '';
+    vm.amountReceivedCurrency = '';
+    vm.amountUnitStr = '';
+    vm.coin = '';
+    vm.displayAddress = '';
+    vm.selectedPriceDisplay = '';
     vm.showingPaymentReceived = false;
+    vm.showingWrongPaymentReceived = false;
+    vm.showShareButton = false;
+    vm.paymentDelta = 0;
 
     $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", _onBeforeLeave);
-
-    var currentAddressSocket = {};
-    var paymentSubscriptionObj = { op:"addr_sub" }
     
+    var coinsFromSatoshis = 0;
+    var listeningAddressLegacy = '';
+    var satoshisRequested = 0;
 
     function _showErrorAndBack(title, msg) {
       popupService.showAlert(title, msg, function() {
@@ -55,7 +66,7 @@
         return;
       }
 
-      $scope.showShareButton = platformInfo.isCordova ? (platformInfo.isIOS ? 'iOS' : 'Android') : null;
+      vm.showShareButton = platformInfo.isCordova ? (platformInfo.isIOS ? 'iOS' : 'Android') : null;
 
       $scope.wallet = profileService.getWallet(walletId);
 
@@ -70,30 +81,33 @@
         $scope.bchAddressType = 'cashaddr';
         var bchAddresses = {};
 
-        var legacyAddress = '';
         if ($scope.wallet.coin == 'bch') {
             bchAddresses = bitcoinCashJsService.translateAddresses(addr);
-            $scope.address = bchAddresses[$scope.bchAddressType];
-            legacyAddress = bchAddresses['legacy'];
+            vm.displayAddress = bchAddresses[$scope.bchAddressType];
+            listeningAddressLegacy = bchAddresses['legacy'];
         } else {
-            $scope.address = addr;
-            legacyAddress = addr;
+            vm.displayAddress = addr;
+            listeningAddressLegacy = addr;
         }
         
-        $scope.coin = $scope.wallet.coin;
+        vm.coin = $scope.wallet.coin;
         var satoshis = parseInt(data.stateParams.amount, 10);
         var parsedAmount = txFormatService.parseAmount(
           $scope.wallet.coin,
           satoshis,
           'sat');
 
+        satoshisRequested = parsedAmount.amountSat;  
+
         // Amount in USD or BTC
         var amount = parsedAmount.amount;
         var currency = parsedAmount.currency;
-        $scope.amountUnitStr = parsedAmount.amountUnitStr;
+        vm.amountUnitStr = parsedAmount.amountUnitStr;
 
         configService.whenAvailable(function onConfigAvailable(config) {
-          $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+          console.log('customAmountController config available');
+          vm.selectedPriceDisplay = config.wallet.settings.priceDisplay;
+          coinsFromSatoshis = 1 / config.wallet.settings.unitToSatoshi;
 
           $timeout(function () {
             $scope.$apply();
@@ -102,17 +116,17 @@
 
         if (currency !== 'BTC' && currency !== 'BCH') {
           // Convert to BTC or BCH
-          var amountUnit = txFormatService.satToUnit(parsedAmount.amountSat);
+          var amountUnit = txFormatService.satToUnit(satoshisRequested);
           var btcParsedAmount = txFormatService.parseAmount($scope.wallet.coin, amountUnit, $scope.wallet.coin);
 
-          $scope.amountBtc = btcParsedAmount.amount;
-          $scope.altAmountStr = btcParsedAmount.amountUnitStr;
+          vm.amountBtc = btcParsedAmount.amount;
+          vm.altAmountStr = btcParsedAmount.amountUnitStr;
         } else {
-          $scope.amountBtc = amount; // BTC or BCH
-          $scope.altAmountStr = txFormatService.formatAlternativeStr($scope.wallet.coin, parsedAmount.amountSat);
+          vm.amountBtc = amount; // BTC or BCH
+          vm.altAmountStr = txFormatService.formatAlternativeStr($scope.wallet.coin, satoshisRequested);
         }
 
-        walletAddressListenerService.listenTo(legacyAddress, $scope.wallet, $scope, _receivedPayment);
+        walletAddressListenerService.listenTo(listeningAddressLegacy, $scope.wallet, $scope, _receivedPayment);
       });
     };
 
@@ -129,14 +143,14 @@
 
     function onDisplayAddress(type) {
       $scope.bchAddressType = type;
-      $scope.address = bchAddresses[$scope.bchAddressType];
+      vm.displayAddress = bchAddresses[$scope.bchAddressType];
     }
 
     function onShareAddress() {
       if (!platformInfo.isCordova) return;
       var protocol = 'bitcoin';
       if ($scope.wallet.coin == 'bch') protocol += 'cash';
-      var data = protocol + ':' + $scope.address + '?amount=' + $scope.amountBtc;
+      var data = protocol + ':' + vm.displayAddress + '?amount=' + vm.amountBtc;
       window.plugins.socialsharing.share(data, null, null, null);
     }
 
@@ -145,14 +159,34 @@
       if ($scope.wallet.coin == 'bch' && $scope.bchAddressType == 'cashaddr') {
         protocol = 'bitcoincash:';
       }
-      return protocol + $scope.address + '?amount=' + $scope.amountBtc;
+      return protocol + vm.displayAddress + '?amount=' + vm.amountBtc;
     }
 
     function _receivedPayment(data) {
       data = JSON.parse(data);
 
       if (data) {
-        $scope.showingPaymentReceived = true;
+        console.log('received payment data:', data);
+
+        var satoshisReceived = 0;
+        data.outputs.forEach(function onOutput(output) {
+          if (output.address === listeningAddressLegacy) {
+            satoshisReceived += output.value;
+          }
+        });
+
+        vm.showingPaymentReceived = satoshisReceived === satoshisRequested;
+        console.log('satoshisReceived: ', satoshisReceived);
+        console.log('satoshisRequested:', satoshisRequested);
+        console.log('vm.showingWrongPaymentReceived:', vm.showingWrongPaymentReceived);
+        vm.showingWrongPaymentReceived = !vm.showingPaymentReceived;
+        vm.paymentDelta = satoshisReceived - satoshisRequested;
+        console.log('vm.paymentDelta:', vm.paymentDelta);
+
+        vm.amountReceived = (coinsFromSatoshis * satoshisReceived).toFixed(8);
+        console.log('vm.amountReceived: "' + vm.amountReceived + '"');
+        vm.amountReceivedCurrency = $scope.wallet.coin.toUpperCase();
+
         $scope.$apply();
       }
     }

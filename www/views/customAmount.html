@@ -9,7 +9,7 @@
       {{'Custom Amount' | translate}}
     </ion-nav-title>
     <ion-nav-buttons side="secondary">
-      <button class="button-share ng-hide" ng-show="vm.showShareButton"  ng-click="vm.onShareAddress()">
+      <button class="button-share ng-hide" ng-show="vm.showShareButton" ng-click="vm.onShareAddress()">
         <i class="icon"
           ng-class="{
           'ion-ios-upload-outline': showShareButton == 'iOS',
@@ -20,17 +20,27 @@
   </ion-nav-bar>
   <ion-content scroll="false">
     <div class="address" ng-if="vm.displayAddress && vm.amountBtc">
-      <div ng-show="vm.showingPaymentReceived" ng-click="showingPaymentReceived = false">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+      <div ng-show="vm.showingPaymentReceived" ng-click="vm.showingPaymentReceived = false">
+        <svg class="payment-result" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
           <circle class="path circle" fill="none" stroke="#19B234" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-          <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+          <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5"/>
         </svg>
-        <p class="success animated fadeIn" style="text-align: center">
-          <br/>Payment Received!<br/>
-          <br/>Return To Address<br/>
-        </p>
+        <p class="success animated fadeIn" style="text-align: center" translate>Payment Received!</p>
+        <p class="success animated fadeIn payment-received-amount" style="text-align: center"><formatted-amount value="{{vm.amountReceived}}" currency="{{vm.amountReceivedCurrency}}"></formatted-amount></p>
+        <p class="success animated fadeIn" style="text-align: center" translate>Return to Address</p>
       </div>
-      <div ng-show="!vm.showingPaymentReceived" class="amount">
+      <div ng-show="vm.showingWrongPaymentReceived" ng-click="vm.showingWrongPaymentReceived = false">
+        <svg class="payment-result" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
+          <circle class="path circle" fill="none" stroke="#BB331A" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+          <polyline class="path check" fill="none" stroke="#BB331A" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="90.2,40.2 40.2,90.2"/>
+          <polyline class="path check" fill="none" stroke="#BB331A" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="90.2,90.2 40.2,40.2"/>
+        </svg>
+        <p class="wrong animated fadeIn" style="text-align: center" ng-show="vm.paymentDelta &gt; 0" translate>Overpaid!</p>
+        <p class="wrong animated fadeIn" style="text-align: center" ng-show="vm.paymentDelta &lt; 0" translate>Underpaid!</p>
+        <p class="wrong animated fadeIn" style="text-align: center"></p>
+        <p class="wrong animated fadeIn" style="text-align: center" translate>Return to Address</p>
+      </div>
+      <div ng-show="!vm.showingPaymentReceived && !vm.showingWrongPaymentReceived" class="amount">
         <div ng-show="vm.selectedPriceDisplay=='crypto'">
           <span class="size-36"><formatted-amount value="{{vm.amountUnitStr}}"></formatted-amount></span>
           <div class="size-14 amount-alternative">
@@ -44,10 +54,10 @@
           </div>
         </div>
       </div>
-      <div ng-show="!vm.showingPaymentReceived" class="qr-code" copy-to-clipboard="vm.copyToClipboard()">
-        <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" size="220" data="{{ protocolHandler }}:{{address + '?amount=' + vm.amountBtc}}" color="#334"></qrcode>
+      <div ng-show="!vm.showingPaymentReceived && !vm.showingWrongPaymentReceived" class="qr-code" copy-to-clipboard="vm.copyToClipboard()">
+        <qrcode class="qr-overlay qr-overlay--{{ wallet.coin }}" size="220" data="{{ protocolHandler }}:{{vm.displayAddress + '?amount=' + vm.amountBtc}}" color="#334"></qrcode>
       </div>
-      <div ng-show="!vm.showingPaymentReceived" ng-show="vm.displayAddress && vm.coin == 'bch'" class="address-types">
+      <div ng-show="!vm.showingPaymentReceived && !vm.showingWrongPaymentReceived" ng-show="vm.displayAddress && vm.coin == 'bch'" class="address-types">
         <div>
           <button ng-show="vm.displayAddress && vm.coin == 'bch' && vm.bchAddressType != 'cashaddr'" class="button-address" ng-click="vm.onDisplayAddress('cashaddr')">
             <span translate>Display new style address</span>
