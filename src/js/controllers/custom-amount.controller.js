@@ -188,6 +188,19 @@
         vm.amountReceivedCurrency = $scope.wallet.coin.toUpperCase();
 
         $scope.$apply();
+
+        if (vm.selectedPriceDisplay === 'fiat') {
+          console.log('Formatting fiat amount.');
+          txFormatService.formatAlternativeStr($scope.wallet.coin, satoshisReceived, function onFormatted(formatted) {
+            console.log('Formatted: "' + formatted + '"');
+            if (formatted) {
+              $scope.$apply(function onApply(){
+                vm.amountReceived = formatted;
+                vm.amountReceivedCurrency = '';
+              });
+            }
+          });
+        }
       }
     }
 
