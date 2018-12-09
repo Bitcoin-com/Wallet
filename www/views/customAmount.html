@@ -37,7 +37,7 @@
         </svg>
         <p class="wrong animated fadeIn" style="text-align: center" ng-show="vm.paymentDelta &gt; 0" translate>Overpaid!</p>
         <p class="wrong animated fadeIn" style="text-align: center" ng-show="vm.paymentDelta &lt; 0" translate>Underpaid!</p>
-        <p class="wrong animated fadeIn" style="text-align: center"></p>
+        <p class="wrong animated fadeIn payment-received-amount" style="text-align: center"><formatted-amount value="{{vm.amountReceived}}" currency="{{vm.amountReceivedCurrency}}"></formatted-amount></p>
         <p class="wrong animated fadeIn" style="text-align: center" translate>Return to Address</p>
       </div>
       <div ng-show="!vm.showingPaymentReceived && !vm.showingWrongPaymentReceived" class="amount">
