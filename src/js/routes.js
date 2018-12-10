@@ -912,13 +912,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
-      .state('tabs.buybitcoin-customer-verification', {
-        url: '/buy-bitcoin/customer-verification',
+      .state('tabs.buybitcoin-kyc-document-info', {
+        url: '/buy-bitcoin/kyc-documentation-info',
         views: {
           'tab-home': {
-            controller: 'buyBitcoinCustomerVerificationController',
+            controller: 'buyBitcoinDocumentInfoController',
             controllerAs: 'vm',
-            templateUrl: 'views/buy-bitcoin/customer-verification.html'
+            templateUrl: 'views/buy-bitcoin/kyc-document-info.html'
           }
         }
       })
@@ -941,6 +941,17 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             controller: 'buyBitcoinKycDocumentVerifyController',
             controllerAs: 'vm',
             templateUrl: 'views/buy-bitcoin/kyc-document-verify.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-status', {
+        url: '/buy-bitcoin/kyc-personal-info',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycStatusController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-status.html'
           }
         }
       })

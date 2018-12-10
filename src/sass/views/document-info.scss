@@ -1,8 +1,7 @@
-#tab-buy-bitcoin-customer-verifification {
+#tab-buy-bitcoin-document-info {
   .restore-info {
     font-size: 0.8rem;
     color: $v-light-gray;
-    //margin: 0.5rem 2rem;
     margin: 0 2rem;
 
     a {
@@ -20,10 +19,6 @@
     .row {
       justify-content: space-between;
       align-items: center;
-    }
-
-    select {
-      text-align-last: right;
     }
 
     .error {

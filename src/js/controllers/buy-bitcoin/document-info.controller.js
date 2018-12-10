@@ -4,9 +4,9 @@
 
 angular
   .module('bitcoincom.controllers')
-  .controller('buyBitcoinCustomerVerificationController', buyBitcoinCustomerVerificationController);
+  .controller('buyBitcoinDocumentInfoController', buyBitcoinDocumentInfoController);
 
-  function buyBitcoinCustomerVerificationController(
+  function buyBitcoinDocumentInfoController(
     bitAnalyticsService
     , gettextCatalog
     , $ionicHistory

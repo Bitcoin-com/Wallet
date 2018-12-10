@@ -1,0 +1,29 @@
+<ion-view id="tab-buy-bitcoin-kyc-document-verify" class="apl" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="vm.onBack()">
+        <i class="icon ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content scroll="false">
+    <div>
+      Graphic Goes here!
+    </div>
+    <div>
+      <h1 translate>
+        Status Title Goes here!
+      </h1>
+      <p>
+        Status Description goes here!
+      </p>
+    </div>
+    <div id="bottom-button" class="apl-button-bottom-container no-shadow">
+      <a class="apl-button" ng-click="vm.onNext()" translate>OK</a>
+    </div>
+    <div id="bottom-button" class="apl-button-bottom-container no-shadow" ng-show="vm.status === 'failed'">
+      <a class="apl-button" ng-click="vm.onNext()" translate>OK</a>
+    </div>
+  </ion-content>
+</ion-view>
