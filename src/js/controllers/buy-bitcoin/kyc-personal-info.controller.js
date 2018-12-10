@@ -135,7 +135,7 @@ angular
     }
 
     function onBeforeLeave(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_ersonal_info_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_personal_info_screen_close' ,[], ['leanplum']);
     }
   }
 })();

@@ -923,6 +923,28 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin-kyc-document-capture', {
+        url: '/buy-bitcoin/kyc-document-capture',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycDocumentCaptureController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-document-capture.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-document-verify', {
+        url: '/buy-bitcoin/kyc-personal-info',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycDocumentVerifyController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-document-verify.html'
+          }
+        }
+      })
+
       .state('tabs.buybitcoin-kyc-personal-info', {
         url: '/buy-bitcoin/kyc-personal-info',
         views: {

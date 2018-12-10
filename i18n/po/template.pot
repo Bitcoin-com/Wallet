@@ -4348,3 +4348,7 @@ msgstr ""
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
 msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr ""
