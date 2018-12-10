@@ -60,7 +60,7 @@ angular
       //New Customer Page
       if (needsDocumentType) {
         console.log('KYC-FLOW - Verification');
-        $state.go('tabs.buybitcoin-customer-verification');
+        $state.go('tabs.buybitcoin-kyc-document-info');
         return;
       }
 

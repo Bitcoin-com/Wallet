@@ -95,19 +95,21 @@ angular
             var fetchingFiles = moonPayService.getFiles();
 
             Promise.all([fetchingCustomer, fetchingFiles]).then( function onSuccess(values){
+              var personalInfo = values[0];
+              var documents = values[1];
               // Merge Values
               kycFlowStateService.init( { 
-                'firstName': values[0].firstName
-                , 'lastName': values[0].lastName
-                , 'dob': moment(values[0].dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY')
-                , 'streetAddress1': values[0].address.street
-                , 'streetAddress2': values[0].address.subStreet
-                , 'city': values[0].address.town
-                , 'postalCode': values[0].address.postCode
-                , 'country': values[0].address.country
-                , 'documentsMeta': values[1] ? values[1] : {}
-                , 'countryCode': values[1][0].country ? values[1][0].country : ''
-                , 'documentType': values[1][0].type
+                'firstName': personalInfo.firstName
+                , 'lastName': personalInfo.lastName
+                , 'dob': moment(personalInfo.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY')
+                , 'streetAddress1': personalInfo.address.street
+                , 'streetAddress2': personalInfo.address.subStreet
+                , 'city': personalInfo.address.town
+                , 'postalCode': personalInfo.address.postCode
+                , 'country': personalInfo.address.country
+                , 'documentsMeta': documents ? documents : {}
+                , 'countryCode': documents[0] ? (documents[0].country ? documents[0].country : '') : ''
+                , 'documentType': documents[0] ? (documents[0].type ? documents[0].type : '') : ''
                 });
 
 
