@@ -1,167 +1,167 @@
 <ion-view id="txp-details" hide-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>
-      {{title}}
+      {{vm.title}}
     </ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content class="tx-details-content">
-    <div class="list" ng-if="btx">
+    <div class="list" ng-if="vm.btx">
       <div class="item head">
-        <div class="sending-label" ng-if="btx.confirmations > 0">
-          <img src="img/icon-tx-sent-outline.svg" ng-if="btx.action === 'sent'">
-          <img src="img/icon-tx-received-outline.svg" ng-if="btx.action === 'received'">
-          <img src="img/icon-tx-moved-outline.svg" ng-if="btx.action === 'moved'">
-          <span ng-if="btx.action === 'sent'">{{'Sent' | translate}}</span>
-          <span ng-if="btx.action === 'received'">{{'Received' | translate}}</span>
-          <span ng-if="btx.action === 'moved'">{{'Moved' | translate}}</span>
+        <div class="sending-label" ng-if="vm.btx.confirmations > 0">
+          <img src="img/icon-tx-sent-outline.svg" ng-if="vm.btx.action === 'sent'">
+          <img src="img/icon-tx-received-outline.svg" ng-if="vm.btx.action === 'received'">
+          <img src="img/icon-tx-moved-outline.svg" ng-if="vm.btx.action === 'moved'">
+          <span ng-if="vm.btx.action === 'sent'">{{'Sent' | translate}}</span>
+          <span ng-if="vm.btx.action === 'received'">{{'Received' | translate}}</span>
+          <span ng-if="vm.btx.action === 'moved'">{{'Moved' | translate}}</span>
         </div>
-        <div class="sending-label" ng-if="btx.confirmations === 0">
+        <div class="sending-label" ng-if="vm.btx.confirmations === 0">
           <img src="img/icon-confirming.svg">
-          <span ng-if="btx.action == 'sent' || btx.action == 'moved'" translate>Sending</span>
-          <span ng-if="btx.action == 'received'" translate>Receiving</span>
+          <span ng-if="vm.btx.action == 'sent' || vm.btx.action == 'moved'" translate>Sending</span>
+          <span ng-if="vm.btx.action == 'received'" translate>Receiving</span>
         </div>
         <div class="amount-label">
-          <div class="amount"><formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.amountValueStr}}" currency="{{btx.amountUnitStr}}"></formatted-amount></div>
-          <div class="alternative" ng-click="showRate = !showRate">
-            <span ng-if="!showRate"><formatted-amount value="{{btx.action == 'sent'?'-':''}}{{btx.alternativeAmountStr}}"></formatted-amount></span>
-            <span ng-if="showRate">
-              <span ng-if="!rate">...</span>
-              <span ng-if="rate">
-                <formatted-amount value="{{rate| currency:'':2}}" currency="{{alternativeIsoCode}}"></formatted-amount> ({{rateDate | amDateFormat:'MM/DD/YYYY HH:mm a'}})
+          <div class="amount"><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.amountValueStr}}" currency="{{vm.btx.amountUnitStr}}"></formatted-amount></div>
+          <div class="alternative" ng-click="vm.showRate = !vm.showRate">
+            <span ng-if="!vm.showRate"><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.alternativeAmountStr}}"></formatted-amount></span>
+            <span ng-if="vm.showRate">
+              <span ng-if="!vm.rate">...</span>
+              <span ng-if="vm.rate">
+                <formatted-amount value="{{vm.rate| currency:'':2}}" currency="{{vm.alternativeIsoCode}}"></formatted-amount> ({{vm.rateDate | amDateFormat:'MM/DD/YYYY HH:mm a'}})
               </span>
             </span>
           </div>
         </div>
       </div>
       <div class="info">
-        <div class="item" ng-if="btx.action === 'sent'">
+        <div class="item" ng-if="vm.btx.action === 'sent'">
           <span class="label" translate>To</span>
-          <span ng-if="addressDisplayType === 'cashAddr'" class="payment-proposal-to">
-            <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
-            <img ng-if="cardId" src="img/icon-card.svg" width="34">
+          <span ng-if="vm.addressDisplayType === 'cashAddr'" class="payment-proposal-to">
+            <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
+            <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
             <div copy-to-clipboard="btx.cashCopyAddr" class="ellipsis">
-              <contact ng-if="!toName" address="{{btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
+              <contact ng-if="!vm.toName" address="{{vm.btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
+              <span class="m15l size-14" ng-if="vm.toName">{{vm.toName}}</span>
+            </div>
+          </span>
+          <span ng-if="vm.addressDisplayType === 'legacy'" class="payment-proposal-to">
+            <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
+            <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
+            <div copy-to-clipboard="vm.btx.copyAddress" class="ellipsis">
+              <contact ng-if="!vm.toName" address="{{vm.btx.displayAddress}}" class="ellipsis" style="display: block;"></contact>
               <span class="m15l size-14" ng-if="toName">{{toName}}</span>
             </div>
           </span>
-          <span ng-if="addressDisplayType === 'legacy'" class="payment-proposal-to">
-            <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
-            <img ng-if="cardId" src="img/icon-card.svg" width="34">
-            <div copy-to-clipboard="btx.copyAddress" class="ellipsis">
-              <contact ng-if="!toName" address="{{btx.displayAddress}}" class="ellipsis" style="display: block;"></contact>
-              <span class="m15l size-14" ng-if="toName">{{toName}}</span>
-            </div>
-          </span>
-          <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'cashAddr'" ng-click="displayAddress('legacy')">
+          <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'cashAddr'" ng-click="vm.displayAddress('legacy')">
             <span translate>Display legacy address</span>
           </button>
-          <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'legacy'" ng-click="displayAddress('cashAddr')">
+          <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'legacy'" ng-click="vm.displayAddress('cashAddr')">
             <span translate>Display new style address</span>
           </button>
         </div>
 
         <div class="item">
-          <span class="label" ng-if="btx.action === 'sent'" translate>From</span>
-          <span class="label" ng-if="btx.action !== 'sent'" translate>Received To</span>
+          <span class="label" ng-if="vm.btx.action === 'sent'" translate>From</span>
+          <span class="label" ng-if="vm.btx.action !== 'sent'" translate>Received To</span>
           <div class="wallet">
             <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
             <div>{{wallet.name}}</div>
           </div>
-          <div ng-if="btx.action === 'received' || btx.action === 'moved'">
-            <span ng-repeat="o in btx.outputs" ng-if="addressDisplayType === 'cashAddr'" class="payment-proposal-to">
-              <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
-              <img ng-if="cardId" src="img/icon-card.svg" width="34">
+          <div ng-if="vm.btx.action === 'received' || vm.btx.action === 'moved'">
+            <span ng-repeat="o in vm.btx.outputs" ng-if="vm.addressDisplayType === 'cashAddr'" class="payment-proposal-to">
+              <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
+              <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
               <div copy-to-clipboard="'bitcoincash:' + o.cashAddr" class="ellipsis">
                 <contact address="{{o.cashAddr}}" class="ellipsis" style="display: block;"></contact>
               </div>
             </span>
-            <span ng-repeat="o in btx.outputs" ng-if="addressDisplayType === 'legacy'" class="payment-proposal-to">
-              <img ng-if="!cardId" src="img/icon-bitcoin-small.svg">
-              <img ng-if="cardId" src="img/icon-card.svg" width="34">
+            <span ng-repeat="o in vm.btx.outputs" ng-if="vm.addressDisplayType === 'legacy'" class="payment-proposal-to">
+              <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
+              <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
               <div copy-to-clipboard="o.address" class="ellipsis">
                 <contact address="{{o.address}}" class="ellipsis" style="display: block;"></contact>
               </div>
             </span>
-            <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'cashAddr'" ng-click="displayAddress('legacy')">
+            <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'cashAddr'" ng-click="vm.displayAddress('legacy')">
               <span translate>Display legacy address</span>
             </button>
-            <button class="address-info button-address" ng-if="canToggleAddressType && addressDisplayType === 'legacy'" ng-click="displayAddress('cashAddr')">
+            <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'legacy'" ng-click="vm.displayAddress('cashAddr')">
               <span translate>Display new style address</span>
             </button>
           </div>
         </div>
-        <div class="item single-line" ng-if="btx.action != 'received' && isShared">
+        <div class="item single-line" ng-if="vm.btx.action != 'received' && vm.isShared">
           <span class="label" translate>Created by</span>
           <span class="item-note">
-            {{btx.creatorName}}
+            {{vm.btx.creatorName}}
           </span>
         </div>
-        <div class="item single-line" ng-if="btx.ts || btx.createdOn || btx.time">
+        <div class="item single-line" ng-if="vm.btx.ts || vm.btx.createdOn || vm.btx.time">
           <span class="label" translate>Date</span>
           <span class="item-note">
-            <time>{{ (btx.ts || btx.createdOn || btx.time) * 1000 | amDateFormat:'MM/DD/YYYY hh:mm a'}}</time>
+            <time>{{ (vm.btx.ts || vm.btx.createdOn || vm.btx.time) * 1000 | amDateFormat:'MM/DD/YYYY hh:mm a'}}</time>
           </span>
         </div>
         <div class="item single-line">
           <span class="label flex" translate>
             Memo: &emsp;
-            <textarea elastic placeholder="{{btx.note.body || btx.message || 'Enter text here'}}" ng-model="btx.note.body" ng-blur="updateNote(btx.note.body)"></textarea>
+            <textarea elastic placeholder="{{vm.btx.note.body || vm.btx.message || 'Enter text here'}}" ng-model="vm.btx.note.body" ng-blur="vm.updateNote(vm.btx.note.body)"></textarea>
           </span>
         </div>
-        <div class="item" ng-if="btx.action != 'received'">
+        <div class="item" ng-if="vm.btx.action != 'received'">
           <span class="label" translate>Fee</span>
-          <span class="m10l">{{btx.feeStr || '...'}}</span>
+          <span class="m10l">{{vm.btx.feeStr || '...'}}</span>
           <span class="item-note m10l">
-            <span><span ng-if="btx.feeFiatStr"><formatted-amount value="{{btx.feeFiatStr}}"></formatted-amount></span><span ng-if="!btx.feeFiatStr">...</span><span class="fee-rate" ng-if="btx.feeRateStr" translate>- {{btx.feeRateStr}} of the transaction</span></span>
+            <span><span ng-if="vm.btx.feeFiatStr"><formatted-amount value="{{vm.btx.feeFiatStr}}"></formatted-amount></span><span ng-if="!vm.btx.feeFiatStr">...</span><span class="fee-rate" ng-if="vm.btx.feeRateStr" translate>- {{vm.btx.feeRateStr}} of the transaction</span></span>
           </span>
         </div>
-        <div class="item low-fees" ng-if="btx.action == 'received' && btx.lowFees">
+        <div class="item low-fees" ng-if="vm.btx.action == 'received' && vm.btx.lowFees">
           <i class="icon"><img src="img/icon-warning.png" width="20px"></i>
           <span translate>This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender</span>
         </div>
-        <div class="item low-fees" ng-if="btx.lowAmount">
+        <div class="item low-fees" ng-if="vm.btx.lowAmount">
           <i class="icon"><img src="img/icon-warning.png" width="20px"></i>
           <span translate>
             This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself.
           </span>
-          <a ng-click="readMore()" translate>Learn more</a>
+          <a ng-click="vm.readMore()" translate>Learn more</a>
         </div>
 
         <div class="item single-line">
           <span class="label" translate>Confirmations</span>
           <span class="item-note">
-            <span ng-if="!btx.confirmations || btx.confirmations == 0" translate>
+            <span ng-if="!vm.btx.confirmations || vm.btx.confirmations == 0" translate>
               Unconfirmed
             </span>
-            <span ng-if="btx.confirmations>0 && !btx.safeConfirmed">
-              {{btx.confirmations}}
+            <span ng-if="vm.btx.confirmations>0 && !vm.btx.safeConfirmed">
+              {{vm.btx.confirmations}}
             </span>
-            <span ng-if="btx.safeConfirmed">
-              {{btx.safeConfirmed}}
+            <span ng-if="vm.btx.safeConfirmed">
+              {{vm.btx.safeConfirmed}}
             </span>
           </span>
         </div>
-        <div ng-if="txsUnsubscribedForNotifications">
-          <ion-toggle ng-show="!btx.confirmations || btx.confirmations == 0"
+        <div ng-if="vm.txsUnsubscribedForNotifications">
+          <ion-toggle ng-show="!vm.btx.confirmations || vm.btx.confirmations == 0"
                       class="toggle-unconfirmed"
-                      ng-model="txNotification.value"
+                      ng-model="vm.txNotification.value"
                       toggle-class="toggle-balanced"
-                      ng-change="txConfirmNotificationChange()">
+                      ng-change="vm.txConfirmNotificationChange()">
             <span class="toggle-label" translate>Notify me if confirmed</span>
           </ion-toggle>
         </div>
-        <div ng-if="actionList[0]">
+        <div ng-if="vm.actionList[0]">
           <div class="item item-divider" translate>Timeline</div>
-          <div class="item timeline-item" ng-class="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject'}" ng-repeat="a in actionList track by $index">
+          <div class="item timeline-item" ng-class="{'action-created' : a.type == 'created' || a.type == 'accept', 'action-rejected' : a.type == 'reject'}" ng-repeat="a in vm.actionList track by $index">
             <div class="timeline-content">
               <div class="timeline-content__icon">
                 <div class="rejected" ng-if="a.type === 'reject'">!</div>
                 <img src="img/icon-broadcasted.svg" ng-if="a.type === 'broadcasted'">
                 <div ng-if="a.type !== 'reject' && a.type !== 'broadcasted'">
-                  {{actionList.length - $index}}
+                  {{vm.actionList.length - $index}}
                 </div>
               </div>
               <div class="timeline-content__label">
@@ -180,7 +180,7 @@
 
     </div>
 
-    <button ng-if="btx" class="view-on-blockchain-btn button button-standard button-primary" ng-click="viewOnBlockchain()" translate>
+    <button ng-if="vm.btx" class="view-on-blockchain-btn button button-standard button-primary" ng-click="vm.viewOnBlockchain()" translate>
       View on blockchain
     </button>
 
