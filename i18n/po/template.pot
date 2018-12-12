@@ -3981,3 +3981,6 @@ msgstr ""
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
+
+msgid "Value When Sent"
+msgstr ""
