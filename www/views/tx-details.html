@@ -103,10 +103,11 @@
         <div class="item single-line">
           <span class="label" translate>Value When Sent</span>
           <span class="item-note">
-            <span ng-if="!vm.alternativeAmountWhenSent">...</span>
-            <span ng-if="vm.alternativeAmountWhenSent">
-              <formatted-amount value="{{vm.alternativeAmountWhenSent}}" currency="{{vm.alternativeIsoCode}}"></formatted-amount> ({{vm.rateDate | amDateFormat:'MM/DD/YYYY HH:mm a'}})
+            <span ng-if="vm.rateIsAvailable && !vm.alternativeAmountWhenSent">...</span>
+            <span ng-if="vm.rateIsAvailable && vm.alternativeAmountWhenSent">
+              <formatted-amount value="{{vm.alternativeAmountWhenSent}}" currency="{{vm.alternativeIsoCode}}"></formatted-amount>
             </span>
+            <span ng-if="!vm.rateIsAvailable" translate>Rate Unavailable</span>
           </span>
         </div>
 

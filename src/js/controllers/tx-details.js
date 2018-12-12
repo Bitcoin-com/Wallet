@@ -47,14 +47,15 @@
     vm.color = '';
     vm.copayerId = '';
     vm.isShared = false;
-    vm.rate = '';
-    vm.rateDate = '';
+    vm.rateIsAvailable = true;
     vm.title = '';
     vm.toName = '';
     vm.txNotification = {};
     vm.txsUnsubscribedForNotifications = true;
     $scope.wallet = null; // Used by an include
 
+    var BCH_RATE_UNAVAILABLE_BEGIN = 1501611161 * 1000; // Time of first BCH block.
+    var BCH_RATE_UNAVAILABLE_END = Date.UTC(2018, 11, 18); // Approximately fter we started storing the BCH rates.
     var txId = '';
     var listeners = [];
     var config = configService.getSync();
@@ -87,7 +88,7 @@
       updateTx();
 
       listeners = [
-        $rootScope.$on('bwsEvent', function(e, walletId, type, n) {
+        $rootScope.$on('bwsEvent', function onBwsEvent(e, walletId, type, n) {
           if (type == 'NewBlock' && n && n.data && n.data.network == 'livenet') {
             updateTxDebounced({
               hideLoading: true
@@ -99,7 +100,7 @@
 
     
     function _onLeave(event, data) {
-      lodash.each(listeners, function(x) {
+      lodash.each(listeners, function onEachListener(x) {
         x();
       });
     };
@@ -115,7 +116,7 @@
     };
 
     function updateMemo() {
-      walletService.getTxNote($scope.wallet, vm.btx.txid, function(err, note) {
+      walletService.getTxNote($scope.wallet, vm.btx.txid, function onGetTxNote(err, note) {
         if (err) {
           $log.warn('Could not fetch transaction note: ' + err);
           return;
@@ -145,7 +146,7 @@
         by: vm.btx.creatorName
       });
 
-      lodash.each(vm.btx.actions, function(action) {
+      lodash.each(vm.btx.actions, function onEachAction(action) {
         vm.actionList.push({
           type: action.type,
           time: action.createdOn,
@@ -160,7 +161,7 @@
         description: actionDescriptions['broadcasted'],
       });
 
-      $timeout(function() {
+      $timeout(function onTimeout() {
         vm.actionList.reverse();
       }, 10);
     }
@@ -168,7 +169,7 @@
     function updateTx(opts) {
       opts = opts || {};
       if (!opts.hideLoading) ongoingProcess.set('loadingTxInfo', true);
-      walletService.getTx($scope.wallet, txId, function(err, tx) {
+      walletService.getTx($scope.wallet, txId, function onGetTx(err, tx) {
         if (!opts.hideLoading) ongoingProcess.set('loadingTxInfo', false);
         if (err) {
           $log.warn('Error getting transaction: ' + err);
@@ -188,7 +189,7 @@
             vm.btx.cashAddr = bchAddresses.cashaddr;
             vm.btx.cashCopyAddr = 'bitcoincash:' + vm.btx.cashAddr;
           } else {
-            lodash.each(vm.btx.outputs, function(o) {
+            lodash.each(vm.btx.outputs, function onEachOutput(o) {
               var bchAddresses = bitcoinCashJsService.translateAddresses(o.address);
               o.cashAddr = bchAddresses.cashaddr;
             });
@@ -201,7 +202,7 @@
         vm.btx.displayAddress = vm.btx.addressTo;
         vm.btx.copyAddress = vm.btx.displayAddress;
 
-        txFormatService.formatAlternativeStr($scope.wallet.coin, tx.fees, function(v) {
+        txFormatService.formatAlternativeStr($scope.wallet.coin, tx.fees, function onFormatted(v) {
           vm.btx.feeFiatStr = v;
           vm.btx.feeRateStr = (vm.btx.fees / (vm.btx.amount + vm.btx.fees) * 100).toFixed(2) + '%';
         });
@@ -215,19 +216,19 @@
         updateMemo();
         initActionList();
         getFiatRate();
-        $timeout(function() {
+        $timeout(function onTimeout() {
           $scope.$digest();
         });
 
-        feeService.getFeeLevels($scope.wallet.coin, function(err, levels) {
+        feeService.getFeeLevels($scope.wallet.coin, function onFeeLevels(err, levels) {
           if (err) return;
-          walletService.getLowAmount($scope.wallet, levels, function(err, amount) {
+          walletService.getLowAmount($scope.wallet, levels, function onLowAmount(err, amount) {
             if (err) return;
             if ($scope.wallet.coin == 'bch') return;
 
             vm.btx.lowAmount = tx.amount < amount;
 
-            $timeout(function() {
+            $timeout(function onTimeout() {
               $scope.$apply();
             });
 
@@ -269,7 +270,18 @@
       return n.substring(0, 4);
     };
 
-    var getFiatRate = function() {
+    function getFiatRate() {
+      console.log('getFiatRate()');
+      if ($scope.wallet.coin === 'bch') {
+        if (vm.btx.time * 1000 > BCH_RATE_UNAVAILABLE_BEGIN &&
+          vm.btx.time * 1000 < BCH_RATE_UNAVAILABLE_END) {
+            $scope.$apply(function onApply(){
+              vm.rateIsAvailable = false;
+            });
+          return;
+        }
+      }
+
       vm.alternativeIsoCode = $scope.wallet.status.alternativeIsoCode;
       console.log('');
       $scope.wallet.getFiatRate({
@@ -278,13 +290,13 @@
       }, function onFiatRate(err, res) {
         if (err) {
           $log.debug('Could not get historic rate');
+          vm.rateIsAvailable = false;
           return;
         }
         if (res && res.rate) {
-          vm.rateDate = res.fetchedOn;
-          vm.rate = res.rate;
-
           vm.alternativeAmountWhenSent = (vm.btx.amount / config.wallet.settings.unitToSatoshi) * res.rate;
+        } else {
+          vm.rateIsAvailable = false;
         }
       });
     };
