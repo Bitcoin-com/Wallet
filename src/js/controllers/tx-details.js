@@ -284,11 +284,7 @@
           vm.rateDate = res.fetchedOn;
           vm.rate = res.rate;
 
-          vm.alternativeAmountWhenSent = config.wallet.settings.unitToSatoshi * vm.btx.amount;
-          
-          console.log('btx:', vm.btx);
-
-          txFormatService
+          vm.alternativeAmountWhenSent = (vm.btx.amount / config.wallet.settings.unitToSatoshi) * res.rate;
         }
       });
     };
