@@ -39,6 +39,7 @@
     // Variables
     vm.actionList = [];
     vm.addressDisplayType = 'legacy';
+    vm.alternativeAmountWhenSent = '';
     vm.alternativeIsoCode = '';
     vm.btx = null;
     vm.canToggleAddressType = false;
@@ -282,6 +283,12 @@
         if (res && res.rate) {
           vm.rateDate = res.fetchedOn;
           vm.rate = res.rate;
+
+          vm.alternativeAmountWhenSent = config.wallet.settings.unitToSatoshi * vm.btx.amount;
+          
+          console.log('btx:', vm.btx);
+
+          txFormatService
         }
       });
     };

@@ -25,14 +25,8 @@
         </div>
         <div class="amount-label">
           <div class="amount"><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.amountValueStr}}" currency="{{vm.btx.amountUnitStr}}"></formatted-amount></div>
-          <div class="alternative" ng-click="vm.showRate = !vm.showRate">
-            <span ng-if="!vm.showRate"><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.alternativeAmountStr}}"></formatted-amount></span>
-            <span ng-if="vm.showRate">
-              <span ng-if="!vm.rate">...</span>
-              <span ng-if="vm.rate">
-                <formatted-amount value="{{vm.rate| currency:'':2}}" currency="{{vm.alternativeIsoCode}}"></formatted-amount> ({{vm.rateDate | amDateFormat:'MM/DD/YYYY HH:mm a'}})
-              </span>
-            </span>
+          <div class="alternative">
+            <span><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.alternativeAmountStr}}"></formatted-amount></span>
           </div>
         </div>
       </div>
@@ -105,6 +99,7 @@
             <time>{{ (vm.btx.ts || vm.btx.createdOn || vm.btx.time) * 1000 | amDateFormat:'MM/DD/YYYY hh:mm a'}}</time>
           </span>
         </div>
+
         <div class="item single-line">
           <span class="label flex" translate>
             Memo: &emsp;
@@ -144,6 +139,9 @@
             </span>
           </span>
         </div>
+
+        
+
         <div ng-if="vm.txsUnsubscribedForNotifications">
           <ion-toggle ng-show="!vm.btx.confirmations || vm.btx.confirmations == 0"
                       class="toggle-unconfirmed"
