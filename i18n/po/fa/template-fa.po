@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "یک پیشنهاد پرداخت می تواند حذف شود اگر 1) شما ایجاد کننده آن باشید، و هیچ کس دیگه ای از copayer ها آن را امضاء نکرده باشد، و یا 2) 24 ساعت از زمان ایجاد پیشنهاد گذشته باشد."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "{{btx.feeRateStr}} تراکنش"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "{{vm.btx.feeRateStr}} تراکنش"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"

@@ -18,7 +18,7 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr ""
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
 msgstr ""
 
 #: www/views/modals/txp-details.html:102
