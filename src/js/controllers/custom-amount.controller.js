@@ -10,6 +10,7 @@
     bitcoinCashJsService
     , configService
     , $ionicHistory
+    , $log
     , platformInfo
     , popupService
     , profileService
