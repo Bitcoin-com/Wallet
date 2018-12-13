@@ -271,7 +271,7 @@
             var amount = parseFloat(decodedValue);
               if (amount) { // Checking for NaN, or no numbers at all etc. & convert to satoshi
                 parsed.amount = decodedValue; // Need to check if a currency is precised
-                parsed.amountInSatoshis = amount * 100000000
+                parsed.amountInSatoshis = Math.round(amount * 100000000);
               } else {
                 return parsed;
               }  
