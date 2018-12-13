@@ -43,6 +43,7 @@
     $scope.displayBalanceAsFiat = true;
     $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
+
     $scope.requestSpecificAmount = function() {
       sendFlowService.start({
         toWalletId: $scope.wallet.credentials.walletId,
@@ -204,6 +205,7 @@
     $scope.$on("$ionicView.beforeEnter", function(event, data) {
       $scope.wallets = profileService.getWallets();
       $scope.singleWallet = $scope.wallets.length == 1;
+
 
       if (!$scope.wallets[0]) return;
 

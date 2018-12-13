@@ -17,6 +17,10 @@
   .onboarding-tldr {
     margin-left: 3rem;
     margin-right: 3rem;
+    @media(max-width: 350px) {
+      margin-left: 2rem;
+      margin-right: 2rem;
+    }
   }
   .onboarding-topic {
     font-size: 24px;
