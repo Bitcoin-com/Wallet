@@ -3982,6 +3982,18 @@ msgstr ""
 msgid "Invalid response from Shapeshift"
 msgstr ""
 
+msgid "Insufficient Amount Received"
+msgstr ""
+
+msgid "Return to Address"
+msgstr ""
+
+msgid "Overpaid!"
+msgstr ""
+
+msgid "Underpaid!"
+msgstr ""
+
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
 msgstr ""
