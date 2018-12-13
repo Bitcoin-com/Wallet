@@ -240,7 +240,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
       if (err) {
-        console.error('pagination Failed to get history.', err);
+        $log.error('pagination Failed to get history.', err);
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
@@ -383,9 +383,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
-    //console.log('walletDetailsController beforeEnter wallet not null: ' + $scope.wallet !== null);
     if (!$scope.wallet) return;
-    console.log('walletDetailsController beforeEnter totalBalanceAlternative: ' + $scope.wallet.status.totalBalanceAlternative);
     $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
@@ -424,7 +422,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.$on("$ionicView.leave", _onLeave);
 
   function _onAfterLeave(event, data) {
-    console.log('walletDetailsController onAfterLeave() Cancelling interval.');
     if (refreshInterval !== null) {
       $interval.cancel(refreshInterval);
       refreshInterval = null;
@@ -435,7 +432,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   function _onLeave(event, data) {
-    console.log('walletDetailsController onLeave()');
     lodash.each(listeners, function(x) {
       x();
     });
@@ -497,7 +493,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     
   };
   $scope.goToReceive = function() {
-    console.log('walletDetailsController goToReceive()');
     _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id

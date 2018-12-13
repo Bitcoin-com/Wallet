@@ -105,7 +105,6 @@
         vm.amountUnitStr = parsedAmount.amountUnitStr;
 
         configService.whenAvailable(function onConfigAvailable(config) {
-          console.log('customAmountController config available');
           vm.selectedPriceDisplay = config.wallet.settings.priceDisplay;
           coinsFromSatoshis = 1 / config.wallet.settings.unitToSatoshi;
 
@@ -166,7 +165,7 @@
       data = JSON.parse(data);
 
       if (data) {
-        console.log('received payment data:', data);
+        $log.debug('customAmountController Received payment data: ' + data);
 
         var satoshisReceived = 0;
         data.outputs.forEach(function onOutput(output) {
@@ -176,23 +175,16 @@
         });
 
         vm.showingPaymentReceived = satoshisReceived === satoshisRequested;
-        console.log('satoshisReceived: ', satoshisReceived);
-        console.log('satoshisRequested:', satoshisRequested);
-        console.log('vm.showingWrongPaymentReceived:', vm.showingWrongPaymentReceived);
         vm.showingWrongPaymentReceived = !vm.showingPaymentReceived;
         vm.paymentDelta = satoshisReceived - satoshisRequested;
-        console.log('vm.paymentDelta:', vm.paymentDelta);
 
         vm.amountReceived = (coinsFromSatoshis * satoshisReceived).toFixed(8);
-        console.log('vm.amountReceived: "' + vm.amountReceived + '"');
         vm.amountReceivedCurrency = $scope.wallet.coin.toUpperCase();
 
         $scope.$apply();
 
         if (vm.selectedPriceDisplay === 'fiat') {
-          console.log('Formatting fiat amount.');
           txFormatService.formatAlternativeStr($scope.wallet.coin, satoshisReceived, function onFormatted(formatted) {
-            console.log('Formatted: "' + formatted + '"');
             if (formatted) {
               $scope.$apply(function onApply(){
                 vm.amountReceived = formatted;
