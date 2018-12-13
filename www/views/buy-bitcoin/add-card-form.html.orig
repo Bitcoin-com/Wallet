@@ -1,0 +1,80 @@
+<ion-view id="tab-buy-bitcoin-add-card-form" class="apl" hide-tabs>
+    <ion-nav-bar>
+      <ion-nav-buttons side="primary">
+        <button class="button apl-back-button" ng-click="vm.didPushBack()">
+          <i class="icon ion-chevron-left"></i><span translate>Back</span>
+        </button>
+      </ion-nav-buttons>
+<<<<<<< HEAD
+=======
+      <ion-nav-buttons side="secondary">
+        <button ng-click="vm.didPushAdd()" translate>Add</button>
+      </ion-nav-buttons>
+>>>>>>> 451787777592824b36a949d6ca29f8fb9a6fa795
+    </ion-nav-bar>
+    <ion-content id="add-card-form">
+      <div class="form-header">
+        <h1 translate>
+          Card Details
+        </h1>
+        <h5>
+          {{vm.subtext}}
+        </h1>
+      </div>
+      
+      <hr/>
+<<<<<<< HEAD
+      <form name="cardForm" class="apl-list" novalidate>
+        <div class="apl-field apl-list-item">
+            <label translate>
+              Card Number
+            </label>
+            <input required  type="text" placeholder="Required" ng-model="vm.card.number" name="number" maxlength="16"  ng-change="vm.handleCardNumberChange()" min="16"/>
+            <span class="val-err" ng-show="cardForm.number.$error.min" translate>
+              Invalid card number
+            </span>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-field apl-list-item">
+=======
+      <form class="apl-list">
+        <div>
+          <ion-item >
+              <label translate>
+                Card Number: 
+              </label>
+              <input required type="text" placeholder="Required" ng-model="vm.card.number"/>
+          </ion-item>
+        </div>
+        <div>
+            <ion-item class="apl-list-item">
+>>>>>>> 451787777592824b36a949d6ca29f8fb9a6fa795
+            <label translate>
+              Expiration Date
+            </label>
+            <input required type="text" placeholder="MM/YYYY" ng-model="vm.card.expiration" name="expiration" maxlength="7" ng-change="vm.handleExpirationChange()" ng-pattern="/\d{2}\/\d{4}/g"/>
+            <span class="val-err" ng-show="cardForm.expiration.$error.validExpiration" translate>
+                Invalid date
+            <span>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-field apl-list-item">
+            <label translate>
+<<<<<<< HEAD
+              Security Code
+            </label>
+            <input required type="text" placeholder="Required" ng-model="vm.card.security" name="security" maxlength="3" ng-change="vm.handleSecurityChange()" min="3" max="4"/>
+            <span class="val-err" ng-show="cardForm.security.$error.min" translate>
+              Invalid security code
+            <span>
+=======
+              CVC: 
+            </label>
+            <input required type="text" placeholder="Required" ng-model="vm.card.cvc" />
+          </ion-item>
+>>>>>>> 451787777592824b36a949d6ca29f8fb9a6fa795
+        </div>
+      </form>
+      <hr/>
+    </ion-content>
+  </ion-view>

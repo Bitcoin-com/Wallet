@@ -1,5 +1,25 @@
 #tab-home {
   @extend .deflash-blue;
+
+  #buy-bitcoin {
+
+    &.padding {
+      padding: 0px 14px;
+    }
+
+    .button {
+      font-weight: bold;
+      font-size: 19px;
+      line-height: 26px;
+      padding: 8px 6px;
+
+      &.button-standard {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
   .icon-create-wallet {
     background-color: #4A90E2; // default wallet color
   }

@@ -240,7 +240,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
       if (err) {
-        console.error('pagination Failed to get history.', err);
+        $log.error('pagination Failed to get history.', err);
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
@@ -373,6 +373,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    if ($window.StatusBar) {
+      $window.StatusBar.styleLightContent();
+    }
+
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
@@ -384,6 +388,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
     if (!$scope.wallet) return;
+    $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
     $scope.vm.gettingInitialHistory = true;
@@ -405,7 +410,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     ];
   });
 
-  var refreshInterval;
+  var refreshInterval = null;
 
   $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
     updateTxHistoryFromCachedData();
@@ -417,18 +422,29 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }, 1000);
   });
 
-  $scope.$on("$ionicView.afterLeave", function(event, data) {
-    $interval.cancel(refreshInterval);
+  $scope.$on("$ionicView.afterLeave", _onAfterLeave);
+  $scope.$on("$ionicView.leave", _onLeave);
+
+  function _onAfterLeave(event, data) {
+    if (refreshInterval !== null) {
+      $interval.cancel(refreshInterval);
+      refreshInterval = null;
+    }
     if ($window.StatusBar) {
       $window.StatusBar.backgroundColorByHexString('#000000');
     }
-  });
+  }
 
-  $scope.$on("$ionicView.leave", function(event, data) {
+  function _onLeave(event, data) {
     lodash.each(listeners, function(x) {
       x();
     });
-  });
+  }
+
+  function _callLeaveHandlers() {
+    _onLeave();
+    _onAfterLeave();
+  }
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
@@ -474,12 +490,14 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     sendFlowService.start({
       fromWalletId: $scope.wallet.id
     });
     
   };
   $scope.goToReceive = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {
@@ -491,6 +509,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {

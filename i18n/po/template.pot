@@ -3981,3 +3981,267 @@ msgstr ""
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
+
+msgid "Insufficient Amount Received"
+msgstr ""
+
+msgid "Return to Address"
+msgstr ""
+
+msgid "Overpaid!"
+msgstr ""
+
+msgid "Underpaid!"
+msgstr ""
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr ""
+
+msgid "Enter an email address."
+msgstr ""
+
+msgid "Must be a valid email address."
+msgstr ""
+
+msgid "Unable to Create Customer"
+msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr ""
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr ""
+
+msgid "Buy Bitcoin Cash"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr ""
+
+msgid "Error Getting Customer Information"
+msgstr ""
+
+msgid "An error occurred when getting your customer information."
+msgstr ""
+
+msgid "Customer information was missing."
+msgstr ""
+
+msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr ""
+
+msgid "An error occurred when getting your payment methods."
+msgstr ""
+
+msgid "No Payment Methods"
+msgstr ""
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr ""
+
+msgid "Add Card"
+msgstr ""
+
+msgid "Getting exchange rate..."
+msgstr ""
+
+msgid "Waiting for exchange rate."
+msgstr ""
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr ""
+
+msgid "Select a BCH Wallet"
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr ""
+
+msgid "Failed to create transaction."
+msgstr ""
+
+msgid "Buy Now"
+msgstr ""
+
+msgid "Enter Security Code"
+msgstr ""
+
+msgid ""
+msgstr "Enter the 3 digit code on the back of your card."
+
+# Success
+
+msgid "Go to Wallet"
+msgstr ""
+
+msgid "Go to {{vm.walletName}}"
+msgstr ""
+
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgstr ""
+
+msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgstr ""
+
+# Receipt
+
+msgid "Deposited to"
+msgstr ""
+
+msgid "Failed to get transaction data."
+msgstr ""
+
+msgid "Not found."
+msgstr ""
+
+msgid "Failed to get payment method info."
+msgstr ""
+# Enter Card details
+
+msgid "Back"
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Visa, MC, or AMEX"
+msgstr ""
+
+msgid "MM/YYYY"
+msgstr ""
+
+msgid "Card Number"
+msgstr ""
+
+msgid "CVC"
+msgstr ""
+
+msgid "Unable to Add Card"
+msgstr ""
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr ""
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr ""
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr ""
+
+msgid "Invalid card number"
+msgstr ""
+
+msgid "Invalid expiration date"
+msgstr ""
+
+msgid "Follow expected date format MM/YYYY"
+msgstr ""
+
+msgid "Invalid CVC number"
+msgstr ""
+
+# Purchasing
+
+msgid "Purchasing"
+msgstr ""
+
+msgid "Processing Fee"
+msgstr ""
+
+msgid "Deposit to"
+msgstr ""
+
+msgid "Add a payment method"
+msgstr ""
+
+msgid "Price Per BCH"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Amount must be a positive number."
+msgstr ""
+
+msgstr "Unable to Purchase"
+msgstr ""
+
+# Purchase History
+
+msgid "Purchase History"
+msgstr ""
+
+msgid "Pending Orders"
+msgstr ""
+
+# Payment Method
+
+msgid "Pay"
+msgstr ""
+
+msgid "Payment Method"
+msgstr ""
+
+msgid "Add Credit or Debit Card"
+msgstr ""
+
+
+msgid "This amount exceeds your monthly limit"
+msgstr ""
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr ""
+
+msgid "Verify Identity"
+msgstr ""
+
+# Purchase history item
+
+msgid "Deposited to"
+msgstr ""
+
+msgid "See on Blockchain"
+msgstr ""
+
+msgid "Wallet address"
+msgstr ""
+
+# Pending Order
+
+msgid "Pending Order"
+msgstr ""
+
+msgid "Edit Order"
+msgstr ""
+
+msgid "Cancel Order"
+msgstr ""
+
+# Success
+
+msgid "Success!"
+msgstr ""
+
+
+msgid "Your purchase has been processed."
+msgstr ""
+
+
+msgid "See Receipt"
+msgstr ""
+
+
+msgid "Make Another Purchase"
+msgstr ""

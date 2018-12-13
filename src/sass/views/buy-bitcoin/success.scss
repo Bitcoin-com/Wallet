@@ -1,0 +1,47 @@
+#buy-bitcoin-success {
+
+  .apl-close-button {
+    color: #FF9B00;
+    font-weight: bold;
+  }
+
+  img#checkmark {
+    height: 60px;
+    width: 60px;
+    margin-top: 22px;
+    margin-left: 20px;
+  }
+
+  h1 {
+    color: #FF9B00;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 13px 20px 4px 20px;
+    padding: 0px;
+    height: 40px;
+  }
+
+  p.message {
+    font-size: 20px;
+    margin: 0px 20px 8px 20px;
+  }
+
+  #amount-container {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 20px 20px;
+  }
+
+  .crypto-amount {
+    font-size: 2.5rem;
+
+    @media (max-width: 340px) {
+      font-size: 2rem;
+    }
+  }
+
+  .fiat-amount {
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+}

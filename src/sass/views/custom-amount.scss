@@ -115,4 +115,17 @@
     }
 
   }
+
+  .payment-result {
+    margin-bottom: 1em;
+  }
+
+  .payment-received-amount {
+    font-size: 1.8em;
+    margin: 20px auto;
+  }
+
+  .wrong {
+    color: $v-warning-color;
+  }
 }
