@@ -13,8 +13,7 @@
     margin-top: 0;
   }
 
-  small {
-    color: black;
+  p {
     font-size: 14px;
   }
 
@@ -23,10 +22,46 @@
     height: 62px;
     background: black;
     border-radius: 11px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     flex-shrink: 0;
   }
-
-
-
 }
 
+#purse-io {
+  background-image: url("../img/merchants/purse_banner.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.apl {
+
+  .merchant-showcase-container {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .merchant-showcase {
+    color: white;
+    border-radius: 11px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    padding-bottom: 16px;
+    padding-top: 16px;
+
+    h1 {
+      color: white;
+      margin-top: 0;
+
+    }
+
+    .subtitle {
+      width: 70%;
+
+      p {
+        font-size: 14px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
