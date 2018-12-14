@@ -30,13 +30,6 @@
   }
 }
 
-#purse-io {
-  background-image: url("../img/merchants/purse_banner.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-
 .apl {
 
   .merchant-showcase-container {
@@ -47,7 +40,10 @@
   }
   .merchant-showcase {
     color: white;
-    border-radius: 11px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     padding-bottom: 16px;
     padding-top: 16px;
@@ -59,7 +55,7 @@
     }
 
     .subtitle {
-      width: 70%;
+      width: 65%;
 
       p {
         color: rgba(255, 255, 255, 0.8);
@@ -68,5 +64,30 @@
         margin-bottom: 0;
       }
     }
+
+    &.light {
+
+      h1 {
+        color: black;
+      }
+
+      .subtitle {
+        p {
+          color: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
+}
+
+#egifter {
+  background-image: url("../img/merchants/egifter_banner.png");
+}
+
+#purse-io {
+  background-image: url("../img/merchants/purse_banner.png");
+
+  .subtitle {
+    width: 70%;
   }
 }

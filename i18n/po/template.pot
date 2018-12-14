@@ -4242,7 +4242,6 @@ msgstr ""
 msgid "See Receipt"
 msgstr ""
 
-
 msgid "Make Another Purchase"
 msgstr ""
 
@@ -4253,4 +4252,10 @@ msgid "Shop Nearby"
 msgstr ""
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
 msgstr ""
