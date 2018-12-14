@@ -4248,3 +4248,9 @@ msgstr ""
 
 msgid "Spend"
 msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""

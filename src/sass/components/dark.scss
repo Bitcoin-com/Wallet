@@ -10,6 +10,15 @@ ion-view.dark {
     background-color: black;
     background-image: none;
   }
+
+  // To precent h1 margin causing scrolling
+  #top-limit {
+    height: 0px;
+  }
+
+  .content-inset {
+    padding: 16px;
+  }
 }
 
 

@@ -1,0 +1,32 @@
+#map {
+  align-items: center;
+  background-image: url("../img/merchants/map_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 24px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  small {
+    color: black;
+    font-size: 14px;
+  }
+
+  #map-icon-background {
+    width: 62px;
+    height: 62px;
+    background: black;
+    border-radius: 11px;
+    flex-shrink: 0;
+  }
+
+
+
+}
+
