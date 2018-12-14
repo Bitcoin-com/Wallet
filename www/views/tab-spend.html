@@ -38,9 +38,6 @@
       <div ng-repeat="merchant in vm.merchants track by $index">
         <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.goToMerchant($index)" >
           <i class="icon big-icon-svg ion-android-cart"></i>
-          <!--<i class="icon big-icon-svg">
-            <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
-          </i>-->
           <div class="apl-card__title__container">
             <div class="apl-card__title">
               {{merchant.name}}
