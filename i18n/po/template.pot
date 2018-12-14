@@ -4245,3 +4245,6 @@ msgstr ""
 
 msgid "Make Another Purchase"
 msgstr ""
+
+msgid "Spend"
+msgstr ""

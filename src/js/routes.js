@@ -226,6 +226,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.spend', {
+        url: '/spend',
+        views: {
+          'tab-spend': {
+            controller: 'tabSpendController',
+            templateUrl: 'views/tab-spend.html',
+          }
+        }
+      })
       .state('tabs.receive', {
         url: '/receive/:walletId',
         views: {
