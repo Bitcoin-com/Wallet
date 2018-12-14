@@ -25,9 +25,30 @@
       <div id="egifter" class="merchant-showcase light">
         <h1>eGifter</h1>
         <div class="subtitle">
-          <p>Digital giftcards from some of the biggest brand names</p>
+          <p translate>Digital giftcards from some of the biggest brand names</p>
         </div>
       </div>
     </div>
+    <div id="featured-end" class="apl-divider"></div>
+    <h2 translate>Add a Business</h2>
+    <p translate>Do you have or know a business that accepts Bitcoin Cash? Add it.</p>
+    <div id="featured-end" class="apl-divider"></div>
+    <h1>Buy with Bitcoin Cash</h1>
+    <div class="apl-list">
+      <div ng-repeat="merchant in vm.merchants track by $index">
+        <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.goToMerchant($index)" >
+          <i class="icon big-icon-svg">
+            <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
+          </i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              {{merchant.name}}
+            </div>
+            <div class="apl-card__subtitle">
+              {{merchant.description}}
+            </div>
+          </div>
+        </div>
+      </div>
   </ion-content>
 </ion-view>

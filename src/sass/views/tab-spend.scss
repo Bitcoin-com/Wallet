@@ -1,93 +1,105 @@
-#map {
-  align-items: center;
-  background-image: url("../img/merchants/map_bg.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 24px;
-
-  h1 {
-    line-height: normal;
-    margin-top: 0;
+#tab-spend {
+  #featured-end {
+    margin-top: 16px;
   }
 
-  p {
-    font-size: 14px;
-    line-height: normal;
-    margin-bottom: 0;
-  }
-
-  #map-icon-background {
-    width: 62px;
-    height: 62px;
-    background: black;
-    border-radius: 11px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    flex-shrink: 0;
-  }
-}
-
-.apl {
-
-  .merchant-showcase-container {
-    margin-bottom: 8px;
-    margin-top: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .merchant-showcase {
-    color: white;
+  #map {
+    align-items: center;
+    background-image: url("../img/merchants/map_bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    border-radius: 6px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    padding-bottom: 16px;
-    padding-top: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 24px;
 
     h1 {
-      color: white;
+      line-height: normal;
       margin-top: 0;
-
     }
 
-    .subtitle {
-      width: 65%;
-
-      p {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 14px;
-        line-height: normal;
-        margin-bottom: 0;
-      }
+    p {
+      font-size: 14px;
+      line-height: normal;
+      margin-bottom: 0;
     }
 
-    &.light {
+    #map-icon-background {
+      width: 62px;
+      height: 62px;
+      background: black;
+      border-radius: 11px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
+    }
+  }
+
+  &.apl {
+
+    h2 {
+      font-size: 17px;
+      height: 22px;
+      margin-top: 19px;
+    }
+
+    .merchant-showcase-container {
+      margin-bottom: 8px;
+      margin-top: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .merchant-showcase {
+      color: white;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      padding-bottom: 16px;
+      padding-top: 16px;
 
       h1 {
-        color: black;
+        color: white;
+        margin-top: 0;
+
       }
 
       .subtitle {
+        width: 65%;
+
         p {
-          color: rgba(0, 0, 0, 0.8);
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 14px;
+          line-height: normal;
+          margin-bottom: 0;
+        }
+      }
+
+      &.light {
+
+        h1 {
+          color: black;
+        }
+
+        .subtitle {
+          p {
+            color: rgba(0, 0, 0, 0.8);
+          }
         }
       }
     }
   }
-}
 
-#egifter {
-  background-image: url("../img/merchants/egifter_banner.png");
-}
+  #egifter {
+    background-image: url("../img/merchants/egifter_banner.png");
+  }
 
-#purse-io {
-  background-image: url("../img/merchants/purse_banner.png");
+  #purse-io {
+    background-image: url("../img/merchants/purse_banner.png");
 
-  .subtitle {
-    width: 70%;
+    .subtitle {
+      width: 70%;
+    }
   }
 }
