@@ -231,6 +231,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-spend': {
             controller: 'tabSpendController',
+            controllerAs: 'vm',
             templateUrl: 'views/tab-spend.html',
           }
         }

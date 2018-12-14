@@ -1,0 +1,15 @@
+ion-view.dark {
+  @extend .deflash-blue;
+
+  ::before {
+    background-color: black;
+  }
+  
+
+  ion-header-bar.bar.bar-dark {
+    background-color: black;
+    background-image: none;
+  }
+}
+
+
