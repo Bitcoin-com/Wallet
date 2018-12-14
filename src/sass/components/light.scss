@@ -1,7 +1,7 @@
-ion-view.dark {
+ion-view.light {
   @extend .deflash-blue;
 
-  ::before {
+  .deflash-blue::before {
     background-color: black;
   }
   

@@ -35,6 +35,15 @@
     }
   }
 
+  #merchants {
+    .icon.big-icon-svg:before {
+      font-size: 40px;
+      line-height: 40px;
+      height: 40px;
+      width: 40px;
+    }
+  }
+
   &.apl {
 
     h2 {
