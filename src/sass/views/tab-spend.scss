@@ -10,11 +10,14 @@
   padding: 24px;
 
   h1 {
+    line-height: normal;
     margin-top: 0;
   }
 
   p {
     font-size: 14px;
+    line-height: normal;
+    margin-bottom: 0;
   }
 
   #map-icon-background {
@@ -59,7 +62,9 @@
       width: 70%;
 
       p {
+        color: rgba(255, 255, 255, 0.8);
         font-size: 14px;
+        line-height: normal;
         margin-bottom: 0;
       }
     }
