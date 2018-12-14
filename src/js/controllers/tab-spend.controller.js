@@ -6,12 +6,17 @@
     .module('bitcoincom.controllers')
     .controller('tabSpendController', tabSpendController);
     
-  function tabSpendController(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
+  function tabSpendController(
+    externalLinkService
+    , $scope
+    ) {
     
     var vm = this;
 
     // Functions
+    vm.goToEGifter = goToEGifter;
     vm.goToMerchant = goToMerchant;
+    vm.goToPurseIo = goToPurseIo;
 
     // Variables
     vm.merchants = [];
@@ -21,11 +26,18 @@
 
     $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
 
+    function goToEGifter() {
+      externalLinkService.open('https://www.egifter.com/');
+    }
+
     function goToMerchant(index) {
       var merchant = vm.merchants[index];
       console.log('goToMerchant() ' + merchant.name);
     }
 
+    function goToPurseIo() {
+      externalLinkService.open('https://purse.io/?_r=bitcoinwallet');
+    }
 
     function _onBeforeEnter(event, data) {
 
