@@ -1146,6 +1146,22 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
+       * Spend
+       *
+       */
+      .state('tabs.spend.map', {
+        url: '/spend/map',
+        views: {
+          'tab-spend@tabs': {
+            controller: 'merchantMapController',
+            controllerAs: 'vm',
+            templateUrl: 'views/merchant-map.html',
+          }
+        }
+      })
+
+      /*
+       *
        * Mercado Libre Gift Card
        *
        */
