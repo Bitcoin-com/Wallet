@@ -4,9 +4,9 @@
 
   angular
     .module('bitcoincom.controllers')
-    .controller('merchantMapController', merchantMapController);
+    .controller('marcoCoinoController', marcoCoinoController);
     
-  function merchantMapController(
+  function marcoCoinoController(
     externalLinkService
     , $scope
     ) {

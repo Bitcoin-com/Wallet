@@ -1149,13 +1149,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
        * Spend
        *
        */
-      .state('tabs.spend.map', {
-        url: '/spend/map',
+      .state('tabs.spend.marcoCoino', {
+        url: '/spend/marcocoino',
         views: {
           'tab-spend@tabs': {
-            controller: 'merchantMapController',
+            controller: 'marcoCoinoController',
             controllerAs: 'vm',
-            templateUrl: 'views/merchant-map.html',
+            templateUrl: 'views/marco-coino.html',
           }
         }
       })
