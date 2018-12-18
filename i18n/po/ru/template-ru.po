@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-10-17 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Предложенный платёж может быть удалён если 1) вы создали этот платёж и никто его еще не подписал, или 2) если прошло более 24 часов с момента его создания."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "{{feeRateStr}} транзакции"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "{{vm.btx.feeRateStr}} транзакции"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Aдресная книга"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Тип адреса"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Адрес Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Старый формат"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Купить &amp; продать биткойн"
 msgid "Buy Bitcoin"
 msgstr "Купить биткойн"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Покупка или продажа биткойнов"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Подключить биржу"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Подключите свои биржевые аккаунты и продавайте или покупайте биткойны."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Покупка биткойнов по кредитной карте"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -520,7 +547,7 @@ msgid "Cannot Create Wallet"
 msgstr "Не удаётся создать кошелёк"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "Нельзя присоединиться к одному и тому же кошельку более одного раза"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -576,6 +603,7 @@ msgstr "Отправить"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Закрыть"
 
@@ -879,6 +907,10 @@ msgstr "Создать общий кошелёк"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Создать кошелёк {{formData.requiredCopayers}}-из-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Совладельцы"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Введите второй фактор вашей учётной записи BitPay"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Введите сумму"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Просрочено"
 msgid "Expires"
 msgstr "Срок действия"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Показать адрес в старом формате"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Показать адрес в новом формате"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Экспорт кошелька"
@@ -1229,6 +1269,11 @@ msgstr "Экспорт в файл"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Экспорт кошелька"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "Адрес сервера Bitcore"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Если этот параметр включен, на вкладке Обзор будет отображаться список транзакций из всех кошельков."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Если этот параметр включен, {{appName}} будет пытаться тратить неподтверждённые средства, что может привезти к задержкам подтверждения транзакций."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Если этот параметр включен, кошельки будут пытаться тратить неподтвержденные средства. Отключение параметра может привезти к задержкам в проведении транзакций."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2241,6 +2286,10 @@ msgstr "Навсегда удалить этот кошелёк."
 msgid "Personal Wallet"
 msgstr "Личный кошелёк"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Мой кошелек {{coin}}"
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "Внимательно запишите ключевое словосочетание."
@@ -2925,8 +2974,13 @@ msgid "Sweep"
 msgstr "Считать"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Пополнить с бумажного кошелька"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Пополнить с бумажного кошелька"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3443,7 +3497,7 @@ msgstr "Ключевое словосочетание кошелька неде�
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "Адрес сервера Bitcore"
+msgstr "Адрес сервиса кошелька"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3747,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} за подарочную карту Mercado Livre (Бразилия)"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} требует Bitcore для координации совладельцев и получения информации из блокчейна. По-умолчанию используется сервер https://bws.bitpay.com (публичный сервер Bitcore компании BitPay)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "Приложению {{appName}} для работы с сетью, получения информации из блокчейна и синхронизации кошельков требуется сервис кошельков Bitcore (BWS). По умолчанию используется сервер https://bws.bitcoin.com (публичный сервер BWS веб-сайта Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3792,13 +3846,17 @@ msgstr "Обзор Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Игры Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Поделиться программой «Кошелёк»"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Новости"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Пул для майнинга"
+msgid "Start mining Bitcoin"
+msgstr "Начать майнинг биткойнов"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3859,4 +3917,76 @@ msgstr "менее 1 копейки"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "По этому инвойсу платежи больше не принимаются"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Отправить максимальную сумму"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Неизвестная ошибка."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Не найден кошелек Bitcoin Cash для перевода средств."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Не найден Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Найден Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Не найден кошелек Bitcoin Core для перевода средств."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Не найден Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Ошибка сканирования"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Данные не распознаны."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Не поддерживается"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet не поддерживается."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL-адрес"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Открыть в веб-браузере"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Неверный адрес"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Сумма не задана"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Сумма ниже минимума"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Сумма больше ограничения"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Неправильный ответ от Shapeshift"
 

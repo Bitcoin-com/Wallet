@@ -165,4 +165,21 @@ angular.module('copayApp.directives')
         });
       }
     }
+  })
+  .directive('validExpiration', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ctrl) {
+        ctrl.$validators.validExpiration = function(modelValue, viewValue) {
+          var now = new Date();
+          if (attr.expiration && attr.expiration.match(/\d{2}\/\d{4}/,'')) {
+            var split = attr.expiration.split(/\//);
+            return parseInt(split[0]) <= 12 &&
+              parseInt(split[0]) > 0 &&
+              parseInt(split[1]) >= now.getFullYear();
+          }
+          return false;
+        };
+      }
+    }
   });

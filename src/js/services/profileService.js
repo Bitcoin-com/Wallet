@@ -8,7 +8,9 @@ angular.module('copayApp.services')
     var isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     var isIOS = platformInfo.isIOS;
 
-    var root = {};
+    var root = {
+      getWalletFromAddresses: getWalletFromAddresses
+    };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
 
@@ -416,7 +418,7 @@ angular.module('copayApp.services')
         seedWallet(opts, function(err, walletClient) {
           if (err) return cb(err);
 
-          var name = opts.name || gettextCatalog.getString('Personal Wallet');
+          var name = opts.name || gettextCatalog.getString('My {{coin}} Wallet', {coin: opts.coin.toUpperCase()});
           var myName = opts.myName || gettextCatalog.getString('me');
 
           walletClient.createWallet(name, myName, opts.m, opts.n, {
@@ -431,9 +433,15 @@ angular.module('copayApp.services')
             if (platformInfo.isCordova) {
               channel = "firebase";
             }
+
+            var type = opts.n == 1 ? "regular" : "shared"
+
             var log = new window.BitAnalytics.LogEvent("wallet_created", [{
-              "coin": opts.coin
-            }], [channel]);
+              "coin": opts.coin,
+              "type": type,
+              "num_of_copayers": opts.n,
+              "num_of_signatures": opts.m
+            }], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);
@@ -1079,6 +1087,41 @@ angular.module('copayApp.services')
           });
         });
       });
+    }
+
+    /**
+     * 
+     * @param {*} legacyAddresses 
+     * @param {*} coin 
+     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
+     */
+    function getWalletFromAddresses(legacyAddresses, coin, cb) {
+      var wallets = root.getWallets({ coin: coin });
+
+      wallets.forEach(function onWallet(wallet){
+
+        wallet.getMainAddresses({}, function onAddresses(err, walletAddresses) {
+          if (err) {
+            $log.error('Error getting addresses.', err.message);
+            return cb(err);
+          }
+
+          walletAddresses.forEach(function onWalletAddress(walletAddressObject){
+            var walletAddress = walletAddressObject.address;
+
+            legacyAddresses.forEach(function onLegacyAddress(legacyAddress) {
+
+              if (walletAddress === legacyAddress) {
+                cb(null, {
+                  address: legacyAddress,
+                  wallet: wallet
+                });
+              }
+            });
+          });          
+        });
+      }); 
+
     }
 
     return root;

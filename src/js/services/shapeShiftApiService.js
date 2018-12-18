@@ -24,7 +24,7 @@ var ShapeShift = (function() {
                     var parsedResponse = JP(xmlhttp.responseText);
                     cb.apply(null, [parsedResponse]);
                 } else {
-                    cb.apply(null, [new Error('Request Failed')])
+                    cb.apply(null, [new Error('Request Failed')]);
                 }
             }
         };
@@ -328,18 +328,23 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
               $scope.amount, $scope.withdrawalAddress,
               $scope.coinIn, $scope.coinOut
           );
+          console.log('shapeshiftApiService.FixedAmountTx()');
           console.log(fixedTx);
           SSA.FixedAmountTx(fixedTx, function (data) {
-              console.log(data)
-              return promise.resolve({ fixedTxData : data.success });
+            console.log(data);
+            promise.resolve(data);
           });
           return promise.promise;
       },
       NormalTx : function($scope){
           var promise = $q.defer();
           var normalTx = SSA.CreateNormalTx($scope.withdrawalAddress, $scope.coinIn, $scope.coinOut);
+
+          console.log('shapeshiftApiService.NormalTx()');
+          console.log(normalTx);
           SSA.NormalTx(normalTx, function (data) {
-              promise.resolve({ normalTxData : data });
+            console.log(data);
+            promise.resolve(data);
           });
           return promise.promise;
       },
@@ -360,11 +365,12 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
           return promise.promise;
       },
       ValidateAddress : function(address, coin) {
-          var promise = $q.defer();
-          SSA.ValidateAdddress(address, coin, function(data){
-              promise.resolve(data);
-          });
-          return promise.promise;
+        var promise = $q.defer();
+        SSA.ValidateAdddress(address, coin, function onRequest(data){
+          console.log(data);
+          promise.resolve(data);
+        });
+        return promise.promise;
       }
   };
 });

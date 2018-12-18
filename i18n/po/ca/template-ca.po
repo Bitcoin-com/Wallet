@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-10-17 08:33\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Una proposta de pagament es pot suprimir si 1) en sou el creador i si cap altre copagador l'ha firmat, o 2) si han passat 24 hores des de la creació de la proposta."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} de la transacció"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} de la transacció"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Llibreta d'adreces"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Tipus d'adreça"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Adreça Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Legacy"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Compra &amp; ven bitcoins"
 msgid "Buy Bitcoin"
 msgstr "Compra bitcoins"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Compra o ven bitcoins"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Connecta un Exchange"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Compreu o veneu bitcoins directament des de la vostra cartera connectant els vostres comptes d'Exchange."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Compreu bitcoins amb targeta de crèdit"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -520,7 +547,7 @@ msgid "Cannot Create Wallet"
 msgstr "No es pot crear la cartera"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "No us podeu unir a la mateixa cartera més d'un cop"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -576,6 +603,7 @@ msgstr "Feu clic per enviar"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Tanca"
 
@@ -879,6 +907,10 @@ msgstr "Crea una cartera compartida"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Crea una cartera {{formData.requiredCopayers}}-de-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copayers"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Introduïu l'autenticació de doble factor per al vostre compte BitPay"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Introduïu la quantitat"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Caducada"
 msgid "Expires"
 msgstr "Caduca el"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Mostra l'adreça Legacy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Mostra nou estil d'adreça"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Exporta la cartera"
@@ -1229,6 +1269,11 @@ msgstr "Exporta a un fitxer"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Exporta la cartera"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL del servei de la cartera"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Si s'habilita aquesta opció, la targeta de transaccions recents (una llista de les transaccions efectuades en totes les carteres) apareixerà a la pestanya d'Inici."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Si s'habilita aquesta opció, les carteres també intentaran gastar fons no confirmats. Aquesta opció pot provocar retards en la transacció."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Si s'habilita aquesta opció, les carteres també intentaran gastar fons no confirmats. Desactivar aquesta opció pot provocar retards en la transacció."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2241,6 +2286,10 @@ msgstr "Suprimeix definitivament aquesta cartera."
 msgid "Personal Wallet"
 msgstr "Cartera personal"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "La meva cartera {{coin}}"
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "Apunteu-vos bé aquesta frase."
@@ -2925,8 +2974,13 @@ msgid "Sweep"
 msgstr "Escombratge"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Escombra la cartera de paper"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Escombra la cartera de paper"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3443,7 +3497,7 @@ msgstr "La frase de recuperació de la cartera no és vàlida"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "URL del servei de la cartera"
+msgstr "URL de Wallet Service"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3747,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} per a la targeta regal Mercado Livre Brazil"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depèn de Bitcore Wallet Service (BWS) per a la informació blockchain, la gestió de xarxes i la sincronització de Copayer. La configuració per defecte apunta a https://bws.bitpay.com (instància BWS pública de BitPay)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} depèn de Bitcore Wallet Service (BWS) per a la informació blockchain, la gestió de xarxes i la sincronització de la cartera. La configuració per defecte apunta a https://bws.bitcoin.com (instància BWS pública de Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3792,13 +3846,17 @@ msgstr "Explora Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Jocs de Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Comparteix l'aplicació Wallet"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Notícies"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Xarxa minera"
+msgid "Start mining Bitcoin"
+msgstr "Comença a minar bitcoins"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3859,4 +3917,76 @@ msgstr "Menys d'1 cèntim"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Aquesta factura ja no accepta pagaments"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Envia la quantitat màxima"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Error desconegut."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "No hi ha cap cartera de Bitcoin Cash per transferir els fons trobats."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "No s'ha trobat cap Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "S'ha trobat Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "No hi ha cap cartera de Bitcoin Core per transferir els fons trobats."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "No s'ha trobat cap Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "L'escaneig ha fallat"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "No s'han reconegut les dades."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "No compatible"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet no és compatible."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Obre a l'explorador web"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Adreça no vàlida"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "No s'ha definit l'import"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "L'import és inferior al mínim"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "L'import supera el límit"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Resposta no vàlida de Shapeshift"
 

@@ -77,7 +77,7 @@
     </plugin>
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
-    <engine name="android" spec="~6.3.0" />
+    <engine name="android" spec="~6.4.0" />
     <engine name="windows" spec="~5.0.0" />
 
     <!-- Platform Specific Settings -->
@@ -85,6 +85,12 @@
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
       <config-file target="*-Info.plist" parent="ITSAppUsesNonExemptEncryption"><false/></config-file>
+      <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon24x24@2x.png" width="48" height="48" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon27.5x27.5@2x.png" width="55" height="55" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon44x44@2x.png" width="88" height="88" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon86x86@2x.png" width="172" height="172" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon98x98@2x.png" width="196" height="196" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/icon-20.png" width="20" height="20" />
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-60@3x.png" width="180" height="180" />
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-60.png" width="60" height="60" />
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-60@2x.png" width="120" height="120" />
@@ -102,6 +108,7 @@
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-small@3x.png" width="87" height="87" />
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-50.png" width="50" height="50" />
       <icon src="resources/*PACKAGENAME*/ios/icon/icon-50@2x.png" width="100" height="100" />
+      <icon src="resources/*PACKAGENAME*/ios/icon/icon-1024.png" width="1024" height="1024" />
 
       <splash src="resources/*PACKAGENAME*/ios/splash/Default~iphone.png" width="320" height="480"/>
       <splash src="resources/*PACKAGENAME*/ios/splash/Default@2x~iphone.png" width="640" height="960"/>
@@ -134,6 +141,13 @@
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-xhdpi-icon.png" density="xhdpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-xxhdpi-icon.png" density="xxhdpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-xxxhdpi-icon.png" density="xxxhdpi" />
+
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-ldpi/fcm_push_icon.png" target="res/drawable-ldpi/fcm_push_icon.png" />
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-mdpi/fcm_push_icon.png" target="res/drawable-mdpi/fcm_push_icon.png" />
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-hdpi/fcm_push_icon.png" target="res/drawable-hdpi/fcm_push_icon.png" />
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-xhdpi/fcm_push_icon.png" target="res/drawable-xhdpi/fcm_push_icon.png" />
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-xxhdpi/fcm_push_icon.png" target="res/drawable-xxhdpi/fcm_push_icon.png" />
+      <resource-file src="resources/bitcoin.com/android/fcm_push_icon/drawable-xxxhdpi/fcm_push_icon.png" target="res/drawable-xxxhdpi/fcm_push_icon.png" />
 
       <splash src="resources/*PACKAGENAME*/android/splash/drawable-land-hdpi-screen.png" density="land-hdpi"/>
       <splash src="resources/*PACKAGENAME*/android/splash/drawable-land-ldpi-screen.png" density="land-ldpi"/>

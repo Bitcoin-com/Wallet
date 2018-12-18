@@ -9,12 +9,14 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
 
   var processNames = {
     'broadcastingTx': gettext('Broadcasting transaction'),
+    'buyingBch': gettext('Buying Bitcoin Cash...'),
     'calculatingFee': gettext('Calculating fee'),
     'connectingCoinbase': gettext('Connecting to Coinbase...'),
     'connectingGlidera': gettext('Connecting to Glidera...'),
     'connectingledger': gettext('Waiting for Ledger...'),
     'connectingShapeshift': gettext('Connecting to Shapeshift...'),
     'connectingtrezor': gettext('Waiting for Trezor...'),
+    'creatingCustomerId': gettext('Creating customer ID...'),
     'creatingTx': gettext('Creating transaction'),
     'creatingWallet': gettext('Creating Wallet...'),
     'deletingWallet': gettext('Deleting Wallet...'),
@@ -22,6 +24,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'fetchingPayPro': gettext('Fetching payment information'),
     'generatingCSV': gettext('Generating .csv file...'),
     'gettingFeeLevels': gettext('Getting fee levels...'),
+    'gettingKycCustomerId': gettext('Getting customer ID...'),
     'importingWallet': gettext('Importing Wallet...'),
     'joiningWallet': gettext('Joining Wallet...'),
     'recreating': gettext('Recreating Wallet...'),
@@ -52,11 +55,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
 
   root.clear = function() {
     ongoingProcess = {};
-    if (isCordova && !isWindowsPhoneApp) {
-      window.plugins.spinnerDialog.hide();
-    } else {
-      $ionicLoading.hide();
-    }
+    $ionicLoading.hide();
   };
 
   root.get = function(processName) {
@@ -78,28 +77,21 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     root.onGoingProcessName = name;
 
     var showName = $filter('translate')(processNames[name] || name);
+    
+    if (root.onGoingProcessName) {
+      var tmpl;
+      if (isWindowsPhoneApp) tmpl = '<div>' + showName + '</div>';
+      else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
+      $ionicLoading.show({
+        template: tmpl,
+      });
+    } else {
+      $ionicLoading.hide();
+    }
 
     if (customHandler) {
       customHandler(processName, showName, isOn);
-    } else if (root.onGoingProcessName) {
-      if (isCordova && !isWindowsPhoneApp) {
-        window.plugins.spinnerDialog.show(null, showName, root.clear);
-      } else {
-
-        var tmpl;
-        if (isWindowsPhoneApp) tmpl = '<div>' + showName + '</div>';
-        else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
-        $ionicLoading.show({
-          template: tmpl
-        });
-      }
-    } else {
-      if (isCordova && !isWindowsPhoneApp) {
-        window.plugins.spinnerDialog.hide();
-      } else {
-        $ionicLoading.hide();
-      }
-    }
+    } 
   };
 
   return root;

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"PO-Revision-Date: 2018-08-21 03:40\n"
+"PO-Revision-Date: 2018-10-17 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Wniosek wypłaty może być usunięty jeśli: 1) Po utworzeniu nie zatwierdził go żaden inny współwłaściciel portfela lub 2) minęły 24 godziny od kiedy wniosek został utworzony."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "{{btx.feeRateStr}} transakcji"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "{{vm.btx.feeRateStr}} transakcji"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Książka adresowa"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Rodzaj adresu"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Adres Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Legacy"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Kup &amp; sprzedaj bitcoiny"
 msgid "Buy Bitcoin"
 msgstr "Kup bitcoiny"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Kup lub sprzedaj bitcoiny"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Podłącz giełdę"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Kupuj lub sprzedawaj bitcoiny bezpośrednio ze swojego portfela, podłączając konta giełdowe."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Kup bitcoiny za pomocą karty kredytowej"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -520,7 +547,7 @@ msgid "Cannot Create Wallet"
 msgstr "Nie można utworzyć portfela"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "Nie można dołączyć tego samego portfela więcej niż raz"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -576,6 +603,7 @@ msgstr "Kliknij, aby wysłać"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Zamknij"
 
@@ -879,6 +907,10 @@ msgstr "Utwórz współdzielony portfel"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Utwórz portfel {{formData.requiredCopayers}} z {{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Współwłaściciele"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Wprowadź podwójne uwierzytelnienie swojego konta BitPay"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Wprowadź kwotę"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Wygasł"
 msgid "Expires"
 msgstr "Wygasa"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Wyświetl adres legacy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Wyświetl adres w nowym stylu"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Eksport portfela"
@@ -1229,6 +1269,11 @@ msgstr "Eksportuj do pliku"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Eksportuj portfel"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "Adres usług portfela"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Jeśli ta opcja jest włączona, na ekranie głównym pojawi się lista wszystkich transakcji z portfela."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Jeśli opcja jest włączona, portfele będą również starać się wydawać niepotwierdzone środki. Może to prowadzić do opóźnień transakcji."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Jeśli opcja jest włączona, portfele będą również starać się wydawać niepotwierdzone środki. Wyłączenie tej opcji może prowadzić do opóźnień transakcji."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2241,6 +2286,10 @@ msgstr "Trwale usuń portfel."
 msgid "Personal Wallet"
 msgstr "Portfel osobisty"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Mój portfel {{coin}}"
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "Proszę dokładnie zanotować tę kluczową frazę."
@@ -2925,8 +2974,13 @@ msgid "Sweep"
 msgstr "Opróżnij"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "Wyczyść papierowy portfel"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "Wyczyść papierowy portfel"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3443,7 +3497,7 @@ msgstr "Kluczowa fraza jest nieprawidłowa"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "Adres usług portfela"
+msgstr "Adres URL usług portfela"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3747,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} na karcie podarunkowej Mercado Livre Brazil"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} jest zależny od Bitcore Wallet Service (BWS) jeśli chodzi o informacje dotyczące blokcheina, sieci i synchronizacji współwłaścicieli portfela. Domyślnie jest to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "Gdy chodzi o informacje dotyczące blokchaina, sieci i synchronizacji portfela, aplikacja {{appName}} zależy od usługi Bitcore Wallet Service (BWS). Konfiguracja domyślna wskazuje https://bws.bitcoin.com (publiczne wystąpienie BWS w domenie Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3792,13 +3846,17 @@ msgstr "Poznaj Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Gry Bitcoin Cash"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Udostępnij aplikację Portfel"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "Aktualności"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Pula kopalni"
+msgid "Start mining Bitcoin"
+msgstr "Zacznij kopać bitcoiny"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3859,4 +3917,76 @@ msgstr "Mniej niż 1 cent"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "Nie można już opłacić tej faktury"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Wyślij maksymalną kwotę"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Nieznany błąd."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Nie znaleziono portfela Bitcoin Cash do przekazania środków."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Nie znaleziono Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Znaleziono Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Nie znaleziono portfela Bitcoin Core do przekazania środków."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Nie znaleziono Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Skanowanie nie powiodło się"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Nie rozpoznano danych."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Nieobsługiwane"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Sieć testowa nie jest obsługiwana."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "Adres URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Otwórz w przeglądarce internetowej"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Nieprawidłowy adres"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Kwota nie jest określona"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Kwota niższa od minimalnej"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Kwota przekracza limit"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Nieprawidłowa odpowiedź z Shapeshift"
 

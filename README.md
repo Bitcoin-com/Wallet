@@ -72,6 +72,22 @@ A watch task is also available to rebuild components of the app as changes are m
 npm run watch
 ```
 
+### External Config
+When creating the production version, the build scripts expect a configuration file called `leanplum-config.json` to be in the directory that contains the project folder, with contents in the following format:
+
+```json
+{
+  "dev": {
+    "appId": "",
+    "key": ""
+  },
+  "prod": {
+    "appId": "",
+    "key": ""
+  }
+}
+```
+
 ## Testing on Real Devices
 
 It's recommended that all final testing be done on a real device – both to assess performance and to enable features that are unavailable to the emulator (e.g. a device camera).
@@ -113,14 +129,14 @@ npm run start:desktop
 
 Before building the release version for a platform, run the `clean-all` command to delete any untracked files in your current working directory. (Be sure to stash any uncommited changes you've made.) This guarantees consistency across builds for the current state of this repository.
 
-The `final` commands build the production version of the app, and bundle it with the release version of the platform being built.
+The `build:*-release` commands build the production version of the app, and bundle it with the release version of the platform being built.
 
 ### Android
 
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:android
+npm run build:android-release
 ```
 
 ### iOS
@@ -128,7 +144,7 @@ npm run final:android
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:ios
+npm run build:ios-release
 ```
 
 ### Desktop (Linux, macOS, and Windows)
@@ -136,7 +152,7 @@ npm run final:ios
 ```sh
 npm run clean-all
 npm run apply:bitcoincom
-npm run final:desktop
+npm run build:desktop-release
 ```
 
 ## About The Bitcoin.com Wallet

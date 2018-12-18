@@ -88,46 +88,53 @@
     "bitcoincashjs-fork": "^1.0.3"
   },
   "scripts": {
-    "postinstall":            "bower install",
-    "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
-    "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
-    "start:ios":              "npm run build:www && npm run build:ios && npm run open:ios",
-    "start:android":          "npm run build:www && npm run build:android && npm run run:android",
-    "start:windows":          "npm run build:www && npm run build:windows",
-    "start:desktop":          "npm start",
-    "watch":                  "grunt watch",
+    "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
+    
+    "build:app-release":      "grunt build-app-release",
+    
+    "build:mobile-release":   "grunt build-mobile-release",
+    "build:desktop-release":  "grunt build-desktop-release",
+
+    "build:android-debug":    "grunt build-android-debug",
+    "build:android-release":  "grunt build-android-release",
+
+    "build:ios-debug":        "grunt build-ios-debug",
+    "build:ios-release":      "grunt build-ios-release",
+
+    "build:desktop":          "grunt build-desktop",
+    "build:osx-pkg":          "grunt build-desktop-osx-pkg",
+    "build:osx-dmg":          "grunt build-desktop-osx-dmg",
+    "build:others":           "grunt build-desktop-others",
+
+    "build:windows":          "cordova prepare windows && cordova build windows -- --arch=\"ARM\"",
+    "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
     "build:www":              "grunt",
     "build:www-release":      "grunt prod",
-    "build:ios":              "cordova prepare ios && cordova build ios --debug",
-    "build:android":          "cordova prepare android && cordova build android --debug",
-    "build:windows":          "cordova prepare windows && cordova build windows -- --arch=\"ARM\"",
-    "build:ios-release":      "cordova prepare ios && cordova build ios --release",
-    "build:android-release":  "cordova prepare android && cordova build android --release",
-    "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
-    "build:desktop-release":          "grunt desktop-release",
-    "build:desktop":          "grunt desktop-build",
-    "build:osx-pkg":            "grunt desktop-osx-pkg",
-    "build:osx-dmg":            "grunt desktop-osx-dmg",
-    "build:others":            "grunt desktop-others",
-    "sign:desktop":            "grunt desktop-sign",
-    "open:ios":               "open platforms/ios/*.xcodeproj",
-    "open:android":           "open -a open -a /Applications/Android\\ Studio.app platforms/android",
-    "final:www":              "npm run build:www-release",
-    "final:ios":              "npm run final:www && npm run build:ios-release && npm run open:ios",
-    "final:android":          "npm run final:www && npm run build:android-release && npm run sign:android && npm run run:android-release",
-    "final:windows":          "npm run final:www && npm run build:windows-release",
-    "final:desktop":          "npm run final:www && npm run build:desktop-release",
-    "run:android":            "cordova run android --device",
-    "run:android-release":            "cordova run android --device --release",
-    "log:android":            "adb logcat | grep chromium",
-    "sign:android":           "rm -f platforms/android/build/outputs/apk/android-release-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/android-release-signed-aligned.apk",
-    "apply:copay":            "npm i fs-extra && cd app-template && node apply.js copay && npm i && cordova prepare",
-    "apply:bitpay":           "npm i fs-extra && cd app-template && node apply.js bitpay && npm i && cordova prepare",
-    "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
-    "test":                   "karma start test/karma.conf.js --single-run",
+    
     "clean":                  "trash platforms && trash plugins && cordova prepare",
+    "clean-all":              "git clean -dfx",
+    
+    "log:android":            "adb logcat | grep chromium",
+
+    "open:android":           "grunt exec:android_studio",
+    "open:ios":               "grunt exec:xcode",
+
+    "postinstall":            "bower install",
+
+    "sign:android":           "grunt sign-android",
+    "sign:desktop":           "grunt sign-desktop",
+
+    "start":                  "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0",
+    "start:chrome":           "npm run build:www && ionic serve --nolivereload --nogulp -s --address 0.0.0.0 --browser \"google chrome\"",
+    "start:android":          "grunt start-android",
+    "start:android-emulator": "grunt start-android-emulator",
+    "start:android-log":      "grunt start-android && npm run log:android",
+    "start:ios":              "grunt start-ios",
+    "start:windows":          "npm run build:www && npm run build:windows",
+
+    "test":                   "karma start test/karma.conf.js --single-run",
     "unstage-package":        "git reset package.json",
-    "clean-all":              "git clean -dfx"
+    "watch":                  "grunt watch"
   },
   "devDependencies": {
     "cordova": "^6.3.1",

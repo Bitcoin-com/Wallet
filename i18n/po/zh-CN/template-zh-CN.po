@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-10-17 08:33\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 如果 1) 你是创造者，及没有其他 copayer 签名，或 2) 24 小时已经过去，支付提议将被删除。"
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "-{{btx.feeRateStr}} 的交易记录"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "-{{vm.btx.feeRateStr}} 的交易记录"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "地址簿"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "地址类型"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Cash 地址"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "旧"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "购买或出售比特币"
 msgid "Buy Bitcoin"
 msgstr "购买比特币"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "购买或出售比特币"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "连接交易所"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "通过连接您的交易所账户，直接从您的钱包购买或出售比特币。"
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "使用信用卡购买比特币"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -520,7 +547,7 @@ msgid "Cannot Create Wallet"
 msgstr "不能创建钱包"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "无法重复加入同一个钱包"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -576,6 +603,7 @@ msgstr "点击这里发送"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "关闭"
 
@@ -879,6 +907,10 @@ msgstr "创建共享的钱包"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "创建 {{formData.requiredCopayers}} 的{{formData.totalCopayers}} 钱包"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copayer"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "为您的 BitPay 帐户输入两个因素"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "输入金额"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "已过期"
 msgid "Expires"
 msgstr "到期"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "显示旧地址"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "显示新地址"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "导出钱包"
@@ -1229,6 +1269,11 @@ msgstr "导出到文件"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "导出钱包"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "钱包服务 URL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "如果启用，最近的交易卡-交易发生跨所有钱包名单-将出现在主页选项卡。"
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "如果启用了，钱包也尝试使用未经证实的资金。此选项可能会导致事务延迟。"
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "如果启用，钱包还将尝试使用未确认的资金。关闭此选项可能会导致交易延迟。"
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2241,6 +2286,10 @@ msgstr "永久删除这个钱包。"
 msgid "Personal Wallet"
 msgstr "个人钱包"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "我的 {{coin}} 钱包"
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "请仔细记下这句话。"
@@ -2925,9 +2974,14 @@ msgid "Sweep"
 msgstr "扫描"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "Sweep 纸钱包"
+msgstr "清空纸钱包"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "清空纸钱包"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3747,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "梅尔卡多里弗巴西礼品卡 {{amountStr}}"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} 中的区块链信息依赖于 Bitcore Wallet Service (BWS)、网络和 Copayer synchronization。默认配置指向 https://bws.bitpay.com (BitPay 的公共 BWS 实例)。"
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} 依赖于 Bitcore 钱包服务 (BWS) 获取区块链信息，以及进行联网和钱包同步。默认配置指向 https://bws.bitcoin.com（Bitcoin.com 的公开 BWS 实例）。"
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3792,13 +3846,17 @@ msgstr "探索 Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash 游戏"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "分享钱包应用"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "新闻"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "矿池"
+msgid "Start mining Bitcoin"
+msgstr "开始挖掘比特币"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3859,4 +3917,76 @@ msgstr "少于 1 美分"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "此发票不再接受付款"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "发送最大金额"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "未知错误。"
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "未找到可以转入资金的 Bitcoin Cash 钱包。"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "未找到 Bitcoin Cash。"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "已找到 Bitcoin Core："
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "未找到可以转入资金的 Bitcoin Core 钱包。"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "未找到 Bitcoin Core。"
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "扫描失败"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "数据未被识别。"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "不受支持"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "不支持测试网。"
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "网址"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "在网络浏览器中打开"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "地址无效"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "未定义金额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "金额低于最低金额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "金额高于限额"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Shapeshift 的响应无效"
 

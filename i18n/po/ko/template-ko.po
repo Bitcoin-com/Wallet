@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2018-08-21 03:39\n"
+"PO-Revision-Date: 2018-10-17 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 지불 제안은 다음과 같은 상황에 철회하실 수 있습니다. 1) 본인이 지불 제안서의 창조자이며 공동지불인이 아직 서명하지 않았을시, 혹은 2) 지불 제안서가 만들어진 지 24시간이 지났을시."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- 거래량의 {{btx.feeRateStr}}"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- 거래량의 {{vm.btx.feeRateStr}}"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "주소록"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "주소 종류"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "캐시 주소"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "레거시"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -233,12 +244,12 @@ msgstr "가격 표시"
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:12
 msgid "Fiat"
-msgstr "고정비"
+msgstr "법정 화폐"
 
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
 msgid "Cryptocurrency"
-msgstr "가상화폐"
+msgstr "가상 화폐"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
@@ -475,6 +486,22 @@ msgstr "비트코인 구매 &amp; 판매"
 msgid "Buy Bitcoin"
 msgstr "비트코인 구매"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "비트코인 구매/판매하기"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "거래소 연동하기"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "거래소 계정과 연동하여 비트코인을 지갑에서 간편하게 구매/판매하세요."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "신용카드로 비트코인 구매하기"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -520,7 +547,7 @@ msgid "Cannot Create Wallet"
 msgstr "지갑을 생성할 수 없습니다"
 
 #: src/js/services/profileService.js:442
-msgid "Cannot join the same wallet more that once"
+msgid "Cannot join the same wallet more than once"
 msgstr "같은 지갑에 한 번 이상 접속할 수 없습니다"
 
 #: www/views/includes/bitpayCardsCard.html:2
@@ -576,6 +603,7 @@ msgstr "송금하기"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "닫기"
 
@@ -879,6 +907,10 @@ msgstr "공유 지갑 만들기"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "{{formData.requiredCopayers}}-of-{{formData.totalCopayers}} 지갑 만들기"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "공동지불인"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "BitPay 계정의 이중 비밀번호를 입력해주세요"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "액수 입력"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "만료"
 msgid "Expires"
 msgstr "만료"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "레거시 주소 표시"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "새로운 스타일의 주소 표시"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "지갑 내보내기"
@@ -1229,6 +1269,11 @@ msgstr "파일로 내보내기"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "지갑 내보내기"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "지갑 서비스 URL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "활성화시 모든 지갑의 거래 활동이 홈 탭에 생성됩니다."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "활성화시 모든 지갑에서 거래 미확정 상태의 자산을 사용할 수 있습니다. 거래 속도가 더뎌질 수 있습니다."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "활성화시 지갑들이 아직 컨펌되지 않은 자산을 사용하려 시도할 것입니다. 비활성화시 거래 속도가 더뎌질 수 있습니다."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2241,6 +2286,10 @@ msgstr "이 지갑을 영구적으로 삭제합니다."
 msgid "Personal Wallet"
 msgstr "개인 지갑"
 
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "내 {{coin}} 지갑"
+
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
 msgstr "이 문구를 받아적으세요."
@@ -2658,7 +2707,7 @@ msgstr "주소 붙여넣기"
 
 #: www/views/tab-send.html:27
 msgid "Transfer between wallets"
-msgstr "월릿 간 전송"
+msgstr "지갑 간 전송"
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
@@ -2925,8 +2974,13 @@ msgid "Sweep"
 msgstr "스윕하기"
 
 #: www/views/includes/incomingDataMenu.html:89
-#: www/views/paperWallet.html:3
+msgctxt "List item"
 msgid "Sweep paper wallet"
+msgstr "종이 지갑 스윕하기"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
 msgstr "종이 지갑 스윕하기"
 
 #: src/js/services/onGoingProcess.js:33
@@ -3747,8 +3801,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "메르카도 리브르 브라질 기프트 카드에 {{amountStr}}"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}}은 비트코어 월렛 서비스(BWS)의 블록체인 정보와 네트워크, 공동 지불인 정보에 의존합니다. 기본 설정 확인은 https://bws.bitpay.com 으로."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}}은 블록체인 정보, 네트워크, 지갑 동기화를 위해 비트코어 지갑 서비스(BWS)에 의존합니다. 기본 설정 유지시 https://bws.bitcoin.com으로 자동연결됩니다."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3792,13 +3846,17 @@ msgstr "Bitcoin.com 탐색"
 msgid "Bitcoin Cash Games"
 msgstr "BCH 게임"
 
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "지갑 응용 프로그램 공유"
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr "소식"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "채굴 풀"
+msgid "Start mining Bitcoin"
+msgstr "비트코인 채굴하기"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3859,4 +3917,76 @@ msgstr "1센트 미만"
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
 msgstr "이 청구서는 더 이상 결제를 수락하지 않습니다"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "최대 수량 보내기"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "알 수 없는 오류가 발생 했습니다."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "펀드를 전송할 BCH 지갑을 찾을 수 없음"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "BCH 없음"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "비트코인 코어 발견:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "펀드를 전송할 BCH 지갑을 찾을 수 없음"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "비트코인 코어를 찾을 수 없음."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "스캔 실패."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "인식할 수 없는 데이터입니다."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "지원되지 않음"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet는 지원되지 않습니다."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "웹 브라우저에서 열기"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid address"
+msgstr "유효하지 않은 주소"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "금액이 정의되지 않음"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "금액이 최저 이하임"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "금액이 한계 이상임"
+
+#: src/js/services/shapeshift.service.js.html:90
+msgid "Invalid response from Shapeshift"
+msgstr "Shapeshift의 유효하지 않은 응답"
 

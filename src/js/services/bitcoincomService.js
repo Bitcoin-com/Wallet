@@ -33,7 +33,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
 
   var poolItem = {
     name: 'pool',
-    title: gettextCatalog.getString('Mining Pool'),
+    title: gettextCatalog.getString('Start mining Bitcoin'),
     icon: 'icon-mining',
     href: 'https://pool.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
   };
@@ -85,7 +85,9 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
   };
 
   var register = function() {
-    nextStepsService.register(cashGamesItem);
+    if (!platformInfo.isAndroid) { // To comply with Google Play policies
+      nextStepsService.register(cashGamesItem);
+    }
     nextStepsService.register(newsItem);
     nextStepsService.register(poolItem);
     nextStepsService.register(toolsItem);

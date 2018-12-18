@@ -172,6 +172,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'txDetailsController',
+            controllerAs: 'vm',
             templateUrl: 'views/tx-details.html'
           }
         }
@@ -191,16 +192,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home@tabs': {
             templateUrl: 'views/backup.html',
             controller: 'backupController'
-          }
-        }
-      })
-
-      .state('tabs.wallet.addresses', {
-        url: '/addresses/:walletId/:toAddress',
-        views: {
-          'tab-home@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/addresses.html'
           }
         }
       })
@@ -528,7 +519,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences', {
         url: '/preferences/:walletId',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesController',
             templateUrl: 'views/preferences.html'
           }
@@ -537,7 +528,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesAlias', {
         url: '/preferencesAlias',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesAliasController',
             templateUrl: 'views/preferencesAlias.html'
           }
@@ -546,7 +537,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesColor', {
         url: '/preferencesColor',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesColorController',
             templateUrl: 'views/preferencesColor.html'
           }
@@ -555,7 +546,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.backupWarning', {
         url: '/backupWarning/:from',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'backupWarningController',
             templateUrl: 'views/backupWarning.html'
           }
@@ -564,7 +555,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.backup', {
         url: '/backup',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'backupController',
             templateUrl: 'views/backup.html'
           }
@@ -573,7 +564,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesAdvanced', {
         url: '/preferencesAdvanced',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesAdvancedController',
             templateUrl: 'views/preferencesAdvanced.html'
           }
@@ -582,16 +573,25 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.information', {
         url: '/information',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesInformation',
             templateUrl: 'views/preferencesInformation.html'
+          }
+        }
+      })
+      .state('tabs.preferences.addresses', { /* Addresses */
+        url: '/addresses/:walletId/:toAddress',
+        views: {
+          'tab-home@tabs': {
+            controller: 'addressesController',
+            templateUrl: 'views/addresses.html'
           }
         }
       })
       .state('tabs.preferences.export', {
         url: '/export',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'exportController',
             templateUrl: 'views/export.html'
           }
@@ -600,7 +600,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesBwsUrl', {
         url: '/preferencesBwsUrl',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesBwsUrlController',
             templateUrl: 'views/preferencesBwsUrl.html'
           }
@@ -609,7 +609,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesHistory', {
         url: '/preferencesHistory',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesHistory',
             templateUrl: 'views/preferencesHistory.html'
           }
@@ -618,7 +618,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.preferencesExternal', {
         url: '/preferencesExternal',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesExternalController',
             templateUrl: 'views/preferencesExternal.html'
           }
@@ -627,17 +627,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.delete', {
         url: '/delete',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesDeleteWalletController',
             templateUrl: 'views/preferencesDeleteWallet.html'
           }
         }
       })
-
       .state('tabs.preferencesCash.scan', {
         url: '/cashScan',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'cashScanController',
             templateUrl: 'views/cashScan.html'
           }
@@ -697,31 +696,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
-       * Addresses
-       *
-       */
-
-      .state('tabs.settings.addresses', {
-        url: '/addresses/:walletId/:toAddress',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/addresses.html'
-          }
-        }
-      })
-      .state('tabs.settings.allAddresses', {
-        url: '/allAddresses/:walletId',
-        views: {
-          'tab-settings@tabs': {
-            controller: 'addressesController',
-            templateUrl: 'views/allAddresses.html'
-          }
-        }
-      })
-
-      /*
-       *
        * Request Specific amount
        *
        */
@@ -750,6 +724,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-receive@tabs': {
             controller: 'customAmountController',
+            controllerAs: 'vm',
             templateUrl: 'views/customAmount.html'
           }
         }
@@ -858,6 +833,124 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home': {
             controller: 'buyandsellController',
             templateUrl: 'views/buyandsell.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin', {
+        url: '/buy-bitcoin',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinHomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/home.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-amount', {
+        url: '/buy-bitcoin/amount',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAmountController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/amount.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-paymentmethods', {
+        url: '/buy-bitcoin/payment-methods',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPaymentMethodsController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/payment-methods.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-wallets', {
+        url: '/buy-bitcoin/wallets',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinWalletsController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/wallets.html'
+          }
+        }
+      })
+      
+      .state('tabs.buybitcoin-add-card-form', {
+        url: '/buy-bitcoin/add-card-form',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinAddCardFormController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/add-card-form.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-terms', {
+        url: '/buy-bitcoin/terms',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/terms.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-welcome', {
+        url: '/buy-bitcoin/welcome',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinWelcomeController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/welcome.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-privacypolicy', {
+        url: '/buy-bitcoin/privacy-policy',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinStaticContentController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/privacy-policy.html'
+          }
+        }
+      })
+      .state('tabs.buybitcoin-purchasehistory', {
+        url: '/buy-bitcoin/purchase-history',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinPurchaseHistoryController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/purchase-history.html'
+          }
+        }
+      })
+      .state('tabs.buybitcoin-receipt', {
+        url: '/buy-bitcoin/receipt/:moonpayTxId',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinReceiptController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/receipt.html'
+          }
+        }
+      })
+      .state('tabs.buybitcoin-success', {
+        url: '/buy-bitcoin/success/:moonpayTxId/:purchasedAmount',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinSuccessController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/success.html'
           }
         }
       })
@@ -1207,10 +1300,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       });
   })
-  .run(function($rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ buydotbitcoindotcomService, pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
+  .run(function(leanplumConfig, $rootScope, $state, $location, $log, $timeout, startupService, ionicToast, fingerprintService, $ionicHistory, $ionicPlatform, $window, appConfigService, lodash, platformInfo, profileService, uxLanguage, gettextCatalog, openURLService, storageService, scannerService, configService, emailService, /* plugins START HERE => */ pushNotificationsService, glideraService, amazonService, bitpayCardService, applicationService, mercadoLibreService, rateService) {
     
-    $ionicPlatform.ready(function() { 
-
+    $ionicPlatform.ready(function() {
+      
+      leanplumConfig.variables = leanplumConfig.variables || {};
+      leanplumConfig.variables.bitcoincom_fee = 5;
+      
       // Init BitAnalytics
       var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
       window.BitAnalytics.initialize(os, $window.fullVersion, {"firebase": {}, 
@@ -1228,7 +1324,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
             "wallet_created": "nd3dg5",
             "wallet_opened": "4n39l7"
           }
-        }
+        },
+        leanplum: leanplumConfig
       });
 
       configService.whenAvailable(function(config) {
@@ -1242,14 +1339,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       
       // Send a log to test
-      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust"]);
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust", 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'banner_click', 
         class: 'track_banner_click', 
         params: ['href-banner', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBanner);
 
@@ -1257,7 +1354,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'buy_bitcoin_click', 
         class: 'track_buy_bitcoin_click', 
         params: ['href', 'id'], 
-        channels: [channel, 'adjust']
+        channels: [channel, 'adjust', 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoin);
 
@@ -1265,7 +1362,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'link_click_out', 
         class: 'track_link_click_out', 
         params: ['href', 'id'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionLinkClickOut);
 
@@ -1273,17 +1370,113 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         name: 'tab_open', 
         class: 'track_tab_open', 
         params: ['href', 'title', 'icon-off'], 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
       var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
         name: 'shapeshift_start_click', 
         class: 'track_shapeshift_start_click', 
-        channels: [channel]
+        channels: [channel, 'leanplum']
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+
+      // Buy Bitcoin Welcome Screen
+
+      var actionBuyBitcoinWelcomeScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_welcome_screen_close', 
+        class: 'track_buy_bitcoin_welcome_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinWelcomeScreenClose);
+
+      // Buy Bitcoin Main Screen
+
+      var actionBuyBitcoinScreenClose = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_close', 
+        class: 'track_buy_bitcoin_screen_close', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinScreenClose);
+
+      var actionBuyBitcoinTapOnBuyInstantly = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_tap_on_buy_instantly', 
+        class: 'track_buy_bitcoin_tap_on_buy_instantly',
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnBuyInstantly);
+
+      var actionBuyBitcoinTapOnPurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_tap_on_purchase_history', 
+        class: 'track_buy_bitcoin_tap_on_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPurchaseHistory);
+
+      var actionBuyBitcoinTapOnPaymentMethods = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_tap_on_payment_methods', 
+        class: 'track_buy_bitcoin_tap_on_payment_methods', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPaymentMethods);
+
+      var actionBuyBitcoinTapOnPrivacyPolicy = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_tap_on_privacy_policy', 
+        class: 'track_buy_bitcoin_tap_on_privacy_policy', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnPrivacyPolicy);
+
+      var actionBuyBitcoinTapOnTermsOfService = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_screen_tap_on_terms_of_service', 
+        class: 'track_buy_bitcoin_tap_on_terms_of_service', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinTapOnTermsOfService);
+
+      var actionBuyBitcoinBuyInstantlyAmountChooseWallet = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet', 
+        class: 'track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinBuyInstantlyAmountChooseWallet);
+
+      var actionBuyBitcoinBuyInstantlyAmountChoosePaymentMethod = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_payment_method', 
+        class: 'track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_payment_method', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinBuyInstantlyAmountChoosePaymentMethod);
       
+      var actionBuyBitcoinPurchaseSuccessSeeWallet = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_wallet', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeeWallet);
+      
+      var actionBuyBitcoinPurchaseSuccessSeeReceipt = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_receipt', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_receipt', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeeReceipt);
+
+      var actionBuyBitcoinPurchaseSuccessSeePurchaseHistory = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_see_purchase_history', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_see_purchase_history', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessSeePurchaseHistory);
+      
+      var actionBuyBitcoinPurchaseSuccessMakeAnotherPurchase = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'buy_bitcoin_purchase_success_screen_tap_on_make_another_purchase', 
+        class: 'track_buy_bitcoin_purchase_success_screen_tap_on_make_another_purchase', 
+        channels: [channel, 'leanplum']
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(actionBuyBitcoinPurchaseSuccessMakeAnotherPurchase);
+      
+
       // Init language
       uxLanguage.init(function (lang) {
 

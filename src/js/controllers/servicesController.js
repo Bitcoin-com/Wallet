@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('servicesController', function($scope, $ionicScrollDelegate, $timeout, servicesService, configService) {
+angular.module('copayApp.controllers').controller('servicesController', function(externalLinkService, $scope, $ionicScrollDelegate, $timeout, servicesService, configService) {
   $scope.hide = false;
 
   configService.whenAvailable(function(config) {
@@ -19,5 +19,9 @@ angular.module('copayApp.controllers').controller('servicesController', function
       });
     }, 10);
   };
+
+  $scope.open = function(url) {
+    externalLinkService.open(url, false);
+  }
 
 });
