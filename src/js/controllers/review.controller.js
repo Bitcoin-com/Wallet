@@ -6,9 +6,42 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-  function reviewController(addressbookService, externalLinkService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+  function reviewController(
+    addressbookService
+    , externalLinkService
+    , bitcoinCashJsService
+    , bitcore
+    , bitcoreCash
+    , bwcError
+    , clipboardService
+    , configService
+    , feeService
+    , gettextCatalog
+    , $interval
+    , $ionicHistory
+    , $ionicModal
+    , ionicToast
+    , lodash
+    , $log
+    , ongoingProcess
+    , platformInfo
+    , popupService
+    , profileService
+    , satoshiDiceService
+    , $scope
+    , sendFlowService
+    , shapeshiftService
+    , soundService
+    , $state
+    , $timeout
+    , txConfirmNotification
+    , txFormatService
+    , walletService
+    ) {
+    
     var vm = this;
 
+    var destinationIsSatoshiDice = false;
     var sendFlowData;
     var config = null;
     var coin = '';
@@ -35,6 +68,7 @@ angular
 
     function initVariables() {
       // Private variables
+      destinationIsSatoshiDice = false;
       sendFlowData;
       config = null;
       coin = '';
@@ -185,6 +219,7 @@ angular
 
       ongoingProcess.set('creatingTx', true, statusChangeHandler);
       getTxp(lodash.clone(tx), vm.originWallet, false, function onGetTxp(err, txp) {
+        console.log('sd onGetTxp()', txp);
         ongoingProcess.set('creatingTx', false, statusChangeHandler);
         if (err) return;
 
@@ -198,6 +233,7 @@ angular
         };
 
         function publishAndSign() {
+          console.log('sd publishAndSign()', txp);
           if (!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()) {
             $log.info('No signing proposal: No private key');
 
@@ -206,14 +242,19 @@ angular
             }, statusChangeHandler);
           }
 
+          console.log('sd calling walletService.publishAndSign()...', txp);
           walletService.publishAndSign(vm.originWallet, txp, function onPublishAndSign(err, txp) {
+            console.log('sd walletService.publishAndSign() returned error:', err);
             if (err) return setSendError(err);
+            console.log('sd walletService.publishAndSign() returned without error.');
             if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
               txConfirmNotification.subscribe(vm.originWallet, {
                 txid: txp.txid
               });
-              lastTxId = txp.txid;
+              console.log('sd txp.id: ', txp.txid);
             }
+            lastTxId = txp.txid;
+            _onTransactionCompletedSuccessfully();
           }, statusChangeHandler);
         };
 
@@ -484,6 +525,8 @@ angular
           }
           vm.destination.kind = 'address';
         }
+
+        _handleSdIntegrationBeforeSending(address);
       });
 
     }
@@ -518,6 +561,45 @@ angular
       var balanceText = getWalletBalanceDisplayText(destinationWallet);
       vm.destination.balanceAmount = balanceText.amount;
       vm.destination.balanceCurrency = balanceText.currency;
+    }
+
+    function _handleSdIntegrationAfterSending() {
+      console.log('sd _handleSdIntegrationAfterSending()');
+      if (!destinationIsSatoshiDice && lastTxId) {
+        return;
+      }
+
+      var result = satoshiDiceService.getBetStatus(lastTxId);
+      
+      /*
+      .then(
+        function onBetStatusSuccess(statusIsWin) {
+          console.log('sd onBetStatusSuccess(), win: ' + statusIsWin);
+        },
+        function onBetStatusError(err) {
+          console.log('sd onBetStatusError()', err);
+        }
+      );
+      */
+      
+    }
+
+    function _handleSdIntegrationBeforeSending() {
+      if (vm.originWallet.coin !== 'bch') {
+        return;
+      }
+      
+      var address = vm.destination.address;
+      // So the address can be parsed properly
+      if (address[0] === 'q' || address[0] === 'p') {
+        address = 'bitcoincash:' + address;
+      }
+      var legacyAddress = bitcoinCashJsService.readAddress(address).legacy;
+      console.log('sd checking address: "' + legacyAddress + '"');
+      if (satoshiDiceService.addressIsKnown(legacyAddress)) {
+        console.log("sd address is known.");
+        destinationIsSatoshiDice = true;
+      }
     }
 
     function initBip70() {
@@ -589,6 +671,11 @@ angular
         clipboardService.copyToClipboard(explorerTxUrl);
       }
     
+    }
+
+    function _onTransactionCompletedSuccessfully() {
+      console.log('_onTransactionCompletedSuccessfully()');
+      _handleSdIntegrationAfterSending();
     }
 
     function startExpirationTimer(expirationTime) {
@@ -795,7 +882,7 @@ angular
     };
 
     function statusChangeHandler(processName, showName, isOn) {
-      $log.debug('statusChangeHandler: ', processName, showName, isOn);
+      $log.debug('statusChangeHandler() processName: "' + processName + '", isOn: ' + isOn);
       if (
         (
           processName === 'broadcastingTx' ||
@@ -804,6 +891,7 @@ angular
         ) && !isOn) {
         // Show the popup
         vm.sendStatus = 'success';
+        console.log('sd success popup displayed.');
 
         // Clear the send flow service state
         sendFlowService.state.clear();
