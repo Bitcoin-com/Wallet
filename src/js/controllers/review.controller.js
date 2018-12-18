@@ -99,6 +99,8 @@ angular
         kind: '', // 'address', 'contact', 'wallet'
         name: ''
       };
+      vm.didWin = false;
+      vm.didLose = false;
       vm.displayAddress = '';
       vm.feeCrypto = '';
       vm.feeFiat = '';
@@ -565,23 +567,22 @@ angular
 
     function _handleSdIntegrationAfterSending() {
       console.log('sd _handleSdIntegrationAfterSending()');
-      if (!destinationIsSatoshiDice && lastTxId) {
+      if (!(destinationIsSatoshiDice && lastTxId)) {
         return;
       }
 
-      var result = satoshiDiceService.getBetStatus(lastTxId);
-      
-      /*
-      .then(
-        function onBetStatusSuccess(statusIsWin) {
-          console.log('sd onBetStatusSuccess(), win: ' + statusIsWin);
+      satoshiDiceService.getBetStatus(lastTxId).then(
+        function onBetStatusSuccess(payload) {
+          if (payload.win) {
+            console.log('WIN :-)');
+          } else {
+            console.log('LOSE :-(');
+          }
         },
-        function onBetStatusError(err) {
-          console.log('sd onBetStatusError()', err);
+        function onBetStatusError(reason) {
+          $log.error('Failed to get the status of the bet.', reason);
         }
       );
-      */
-      
     }
 
     function _handleSdIntegrationBeforeSending() {
@@ -675,6 +676,20 @@ angular
 
     function _onTransactionCompletedSuccessfully() {
       console.log('_onTransactionCompletedSuccessfully()');
+      var channel = "firebase";
+        if (platformInfo.isNW) {
+          channel = "ga";
+        }
+        // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
+        var amount = unitFromSat * satoshis;
+        var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+          "coin": vm.originWallet.coin,
+          "type": "outgoing",
+          "amount": amount,
+          "fees": vm.feeCrypto
+        }], [channel, "adjust", "leanplum"]);
+        window.BitAnalytics.LogEventHandlers.postEvent(log);
+
       _handleSdIntegrationAfterSending();
     }
 
@@ -900,20 +915,6 @@ angular
           soundService.play('misc/payment_sent.mp3');
         }
         
-        var channel = "firebase";
-        if (platformInfo.isNW) {
-          channel = "ga";
-        }
-        // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
-        var amount = unitFromSat * satoshis;
-        var log = new window.BitAnalytics.LogEvent("transfer_success", [{
-          "coin": vm.originWallet.coin,
-          "type": "outgoing",
-          "amount": amount,
-          "fees": vm.feeCrypto
-        }], [channel, "adjust", "leanplum"]);
-        window.BitAnalytics.LogEventHandlers.postEvent(log);
-
         $timeout(function() {
           $scope.$digest();
         }, 100);

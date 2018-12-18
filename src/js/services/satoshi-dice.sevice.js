@@ -49,7 +49,28 @@
         return isKnown;
       }
 
-
+      /**
+       * Returns a promose. The result of which has the form: (returned by the API)
+       * {
+       *   "id":438983,
+       *   "depositTxHash":"681e9ceaf94becf80a30041bfb82c0f4147319269f1ceb8a169f3ce2a673eb51",
+       *   "vout":0,
+       *   "payoutTxHash":"28e4c318f6c938faf85391ddc886d91e2e6b7ed2076469e0e4632d7de49a3496",
+       *   "serverSeedHash":"90abbfdb3988cc19ab8573277caccd93a0d8858d2fab574c8a371545b08ea128",
+       *   "randomSeed":"4b82c6816ad8d40fa47d702a82ecbee482c4f105c2b0abaf6eff0a01de2be216",
+       *   "serverSeedTx":"2174aba545248847c004c0bbac785261d6f308d8c443850e68a968d36f0b977d",
+       *   "bet":61440,
+       *   "roll":24600,
+       *   "win":true,
+       *   "betAmount":0.0005,
+       *   "payout":0.000525,
+       *   "timestamp":"Dec 18, 2018 12:12:23 AM",
+       *   "timestampUnix":1545091943000,
+       *   "seedPublishTimestamp":"Dec 19, 2018 12:00:00 AM",
+       *   "seedPublishTimestampUnix":1545177600000
+       * }
+       * @param {*} txid 
+       */
       function getBetStatus(txid) {
         var deferred = $q.defer();
         
