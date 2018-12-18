@@ -27,9 +27,17 @@
       var STATUS_CHECK_INTERVAL = 1000; // The request sometimes takes 1.15s
       var STATUS_CHECKS_MAX = 30;
       var addresses = [
-        '1Dice9GgmweQWxqdiu683E7bHfpb7MUXGd', // 1.05x
-        '1Dice81SKu2S1nAzRJUbvpr5LiNTzn7MDV', // 1.12x
-
+        '1Dice9GgmweQWxqdiu683E7bHfpb7MUXGd', //    1.05x
+        '1Dice81SKu2S1nAzRJUbvpr5LiNTzn7MDV', //    1.12x
+        '1Dice7v1M3me7dJGtTX6cqPggwGoRADVQJ', //    1.31x
+        '1Dice7JNVnvzyaenNyNcACuNnRVjt7jBrC', //    1.58x
+        '1Dice5ycHmxDHUFVkdKGgrwsDDK1mPES3U', //    1.98x
+        '1Dice2wTatMqebSPsbG4gKgT3HfHznsHWi', //    2.63x
+        '1Dice1wBBY22stCobuE1LJxHX5FNZ7U97N', //    3.95x
+        '1Dice1cF41TGRLoCTbtN33DSdPtTujzUzx', //    7.91x
+        '1Dice1FZk6Ls5LKhnGMCLq47tg1DFG763e', //   15.83x
+        '1Dice115YcjDrPM9gXFW8iFV9S3j9MtERm', //   63.35x
+        '1DiceoejxZdTrYwu3FMP2Ldew91jq9L2u'   // 1013.74x
       ];
 
       return service;
@@ -74,9 +82,7 @@
        */
       function getBetStatus(txid) {
         var deferred = $q.defer();
-        
         _getBetStatus(txid, deferred, 0);
-        
         return deferred.promise;
       }
 
