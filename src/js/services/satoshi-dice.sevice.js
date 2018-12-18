@@ -20,7 +20,8 @@
  
         // Public functions
         addressIsKnown: addressIsKnown,
-        getBetStatus: getBetStatus
+        getBetStatus: getBetStatus,
+        imageUrlForAddress: imageUrlForAddress
       };
 
       var STATUS_CHECK_INTERVAL = 1000; // The request sometimes takes 1.15s
@@ -86,7 +87,7 @@
           if (totalIterations >= STATUS_CHECKS_MAX) {
             deferred.reject('Retries exhausted.');
           } else {
-            $interval(_getBetStatus, STATUS_CHECK_INTERVAL, 1, true, txid, deferred, totalIterations + 1);
+            $interval(_getBetStatus, STATUS_CHECK_INTERVAL, 1, false, txid, deferred, totalIterations + 1);
           }
         }
 
@@ -112,6 +113,9 @@
             _tryAgain();
           }
         );
+      }
+
+      function imageUrlForAddress(legacyAddress) {
       }
 
     }

@@ -575,8 +575,10 @@ angular
         function onBetStatusSuccess(payload) {
           if (payload.win) {
             console.log('WIN :-)');
+            vm.didWin = true;
           } else {
             console.log('LOSE :-(');
+            vm.didLose = true;
           }
         },
         function onBetStatusError(reason) {
@@ -914,7 +916,7 @@ angular
         if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
           soundService.play('misc/payment_sent.mp3');
         }
-        
+
         $timeout(function() {
           $scope.$digest();
         }, 100);

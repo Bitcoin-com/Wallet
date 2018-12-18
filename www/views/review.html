@@ -116,6 +116,8 @@
     {{vm.buttonText}}
   </slide-to-accept>
   <slide-to-accept-success
+    slide-success-did-lose="vm.didLose"
+    slide-success-did-win="vm.didWin"
     slide-success-show="vm.sendStatus === 'success'"
     slide-success-on-confirm="vm.onSuccessConfirm()"
     slide-success-on-share="vm.onShareTransaction"

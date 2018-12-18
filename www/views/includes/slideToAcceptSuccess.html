@@ -10,6 +10,12 @@
   </div>
   <div class="slide-success__content__share" ng-if="hasShareFunction" ng-class="{reveal: fillScreen}" ng-click="onShareButtonClick()">
     <span><img src="img/icon-share-white.svg"></span><span translate>Share this transaction</span>
+    <div ng-if="didWin">
+      WIN
+    </div>
+    <div ng-if="didLose">
+      LOSE
+    </div>
   </div>
 </div>
 
