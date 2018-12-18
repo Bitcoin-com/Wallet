@@ -1,4 +1,5 @@
 slide-to-accept-success {
+  $duration: 400ms;
   height: 100%;
   width: 100%;
   position: fixed;
@@ -6,10 +7,111 @@ slide-to-accept-success {
   left: 0;
   z-index: 99999;
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  flex-direction: column;
+  background: $v-slider-bg-color;
 
+  #spinner {
+    height: 0;
+    //width: 50%;
+    //max-width: 300px;
+    padding-top: 50%;
+    background-image: url("../img/loader_new.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .slide-success {
+    // For animating in
+    &-background {
+      $start-radius: 5;
+      $scale-factor: 20;
+      height: 10vmax;
+      width: 10vmax;
+      background: $v-slider-bg-color;
+      bottom: 0;
+      position: absolute;
+      left: calc(50% - 5vmax);
+      border-radius: 50%;
+      transition: transform $duration*1.5 ease, background $duration*1.5 ease;
+
+      &.fill-screen {
+        -webkit-transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
+        transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
+        background: $v-success-bg-color;
+      }
+    }
+
+    &-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+      bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+      left: 0;
+
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &-content {
+      flex-grow: 1;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &-content-action {
+      height: 4rem;
+      width: 50%;
+      max-width: 300px;
+    }
+
+    &-content-share {
+      height: 20px;
+    }
+
+    &-content-spinner-container {
+      width: 50%;
+      max-width: 300px;
+    }
+
+    &-footer {
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 0 1.75rem;
+      width: 100%;
+      //-webkit-transform: translateY(5rem);
+      //transform: translateY(5rem);
+      //opacity: 0;
+      transition: transform $duration ease, opacity $duration ease;
+      transition-delay: 250ms;
+    }
+
+    &-footer-button {
+      display: block;
+      color: #FFFFFF;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 2.86px;
+      padding: 2rem 0 2.1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.25);
+      cursor: pointer;
+    }
+
+    &-image-container {
+      img {
+        max-width: 300px;
+        width: 50%;
+      }
+    }
+  }
+  /*
   .slide-success {
     $duration: 400ms;
     &__background {
@@ -72,7 +174,7 @@ slide-to-accept-success {
         transition: transform $duration ease, opacity $duration ease;
         transition-delay: 600ms;
         opacity: 0;
-        margin-top: 15vh;
+        //margin-top: 15vh;
         span {
           color: #FFF;
           font-size: 22px;
@@ -85,7 +187,7 @@ slide-to-accept-success {
           margin-right: 4px;
         }
         &.reveal {
-          opacity: 0.79;
+          opacity: 1;
         }
       }
     }
@@ -102,9 +204,11 @@ slide-to-accept-success {
       transition: transform $duration ease, opacity $duration ease;
       transition-delay: 250ms;
 
-      margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
-      margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+      */
+      //margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+      //margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
 
+      /*
       &.reveal {
         -webkit-transform: translateY(0);
         transform: translateY(0);
@@ -123,4 +227,5 @@ slide-to-accept-success {
       }
     }
   }
+  */
 }

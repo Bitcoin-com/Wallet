@@ -41,7 +41,6 @@ angular
     
     var vm = this;
 
-    var destinationIsSatoshiDice = false;
     var sendFlowData;
     var config = null;
     var coin = '';
@@ -68,7 +67,6 @@ angular
 
     function initVariables() {
       // Private variables
-      destinationIsSatoshiDice = false;
       sendFlowData;
       config = null;
       coin = '';
@@ -87,6 +85,7 @@ angular
       unitFromSat = 0;
 
       // Public variables
+      vm.amountWon = 0;
       vm.buttonText = '';
       vm.destination = {
         address: '',
@@ -99,6 +98,7 @@ angular
         kind: '', // 'address', 'contact', 'wallet'
         name: ''
       };
+      vm.destinationIsAGame = true;
       vm.didWin = false;
       vm.didLose = false;
       vm.displayAddress = '';
@@ -567,7 +567,7 @@ angular
 
     function _handleSdIntegrationAfterSending() {
       console.log('sd _handleSdIntegrationAfterSending()');
-      if (!(destinationIsSatoshiDice && lastTxId)) {
+      if (!(vm.destinationIsAGame && lastTxId)) {
         return;
       }
 
@@ -576,6 +576,7 @@ angular
           if (payload.win) {
             console.log('WIN :-)');
             vm.didWin = true;
+            vm.amountWon = payload.payout;
           } else {
             console.log('LOSE :-(');
             vm.didLose = true;
@@ -601,7 +602,7 @@ angular
       console.log('sd checking address: "' + legacyAddress + '"');
       if (satoshiDiceService.addressIsKnown(legacyAddress)) {
         console.log("sd address is known.");
-        destinationIsSatoshiDice = true;
+        vm.destinationIsAGame = true;
       }
     }
 

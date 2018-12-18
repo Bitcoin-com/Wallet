@@ -7,6 +7,8 @@ angular.module('copayApp.directives')
       templateUrl: 'views/includes/slideToAcceptSuccess.html',
       transclude: true,
       scope: {
+        amountWon: '=slideSuccessAmountWon',
+        destinationIsAGame: '=slideSuccessDestinationIsAGame',
         didWin: '=slideSuccessDidWin',
         didLose: '=slideSuccessDidLose',
         isShown: '=slideSuccessShow',
