@@ -318,6 +318,15 @@
     .item {
       border: 0;
       padding-left: 18px;
+
+      h2 {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
       p {
         color: #000000;
         font-size: 17px;
@@ -337,6 +346,10 @@
         bottom: 0px;
         left: 16px;
         right: 16px;
+      }
+
+      &.item-button-right {
+        padding-right: 68px;
       }
 
       &.item-big-icon-left {

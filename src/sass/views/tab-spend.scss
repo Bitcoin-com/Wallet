@@ -55,6 +55,12 @@
       margin-top: 19px;
     }
 
+    .item {
+      h2 {
+        margin-top: 0;
+      }
+    }
+
     .merchant-showcase-container {
       margin-bottom: 8px;
       margin-top: 8px;
@@ -101,6 +107,10 @@
         }
       }
     }
+  }
+
+  .apl-card__subtitle.multiline {
+    height: auto;
   }
 
   #egifter {

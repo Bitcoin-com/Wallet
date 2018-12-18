@@ -18,7 +18,7 @@
     vm.onAddABusiness = onAddABusiness;
     vm.onEGifter = onEGifter;
     vm.onMerchant = onMerchant;
-    vm.onToPurseIo = onPurseIo;
+    vm.onPurseIo = onPurseIo;
 
     // Variables
     vm.merchants = [];
@@ -71,6 +71,7 @@
         }
       ];
       */
+      
     }
   }
   
