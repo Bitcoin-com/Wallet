@@ -253,6 +253,11 @@ div.slide-success__background.fill-screen {
     background-image: url('../img/chart.svg');
 }
 
+.icon-egifter {
+  background-color: #ffffff;
+  background-image: url('../img/egiftericon.png');
+}
+
 .icon-shapeshift {
 	background-color: #494949;
 	background-image: url('../img/shapeshifticon.png');

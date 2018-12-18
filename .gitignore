@@ -104,11 +104,11 @@ src/js/appConfig.js
 src/js/externalServices.js
 chrome-app/manifest.json
 www/img/app
+src/js/generated
 
 ## Firebase
 /GoogleService-Info.plist
 /google-services.json
-src/js/generated
 
 ##Intellij
 .idea
