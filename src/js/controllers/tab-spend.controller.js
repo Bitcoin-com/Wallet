@@ -40,7 +40,6 @@
 
     function onAddABusiness() {
       var currentLanguageCode = uxLanguage.currentLanguage;
-      console.log('currentLanguageCode: ' + currentLanguageCode);
       var url = addABusinessLinks[currentLanguageCode] || addABusinessLinks.en;
       externalLinkService.open(url);
     }
@@ -51,7 +50,6 @@
 
     function onMerchant(index) {
       var merchant = vm.merchants[index];
-      console.log('goToMerchant() ' + merchant.name);
     }
 
     function onPurseIo() {
@@ -61,6 +59,7 @@
     function _onBeforeEnter(event, data) {
 
       // Sample data
+      /*
       vm.merchants = [
         {
           description: 'Bits and bobs.',
@@ -71,6 +70,7 @@
           name: 'Eve\'s Emporium'
         }
       ];
+      */
     }
   }
   
