@@ -12,6 +12,7 @@ angular
     , gettextCatalog
     , $ionicHistory
     , $log
+    , cameraPreviewService
     , kycFlowService
     , moonPayService
     , ongoingProcess
@@ -37,6 +38,8 @@ angular
 
       // Title Label
       vm.titleLabel = gettextCatalog.getString('Passport'); // TODO: Add logic to describe other cases
+
+      cameraPreviewService.startCamera();
     }
 
     function onCapture() {
@@ -55,6 +58,7 @@ angular
     }
 
     function onBeforeLeave(event, data) {
+      cameraPreviewService.stopCamera();
       bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[], ['leanplum']);
     }
   }

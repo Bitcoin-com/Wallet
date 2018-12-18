@@ -71,7 +71,7 @@ angular
       
       // Set document Types
       for(var i=0; i < vm.countries.length; i++) {
-        if( vm.countries[i]['code'] === vm.country ) {
+        if( vm.countries[i]['alpha3'] === vm.country ) {
           vm.supportedDocuments = vm.countries[i]['supportedDocuments']
           vm.documentType = vm.supportedDocuments[0];
           break;
@@ -87,7 +87,7 @@ angular
       // Save current state
       currentState.countryCode = vm.country;
       currentState.documentType = vm.documentType;
-      kycFlowService.nextGo(currentState);
+      kycFlowService.goNext(currentState);
     }
     
     function onRestoreVerify() {

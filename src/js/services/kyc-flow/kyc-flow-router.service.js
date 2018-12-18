@@ -34,6 +34,7 @@ angular
       console.log('kyc-flow-router - goNext');
       var atteptRecovery = (state.recovery)
       var needsDocumentType = !(state.country && state.doucmentType);
+      var reviewingDocument = state.documentReviewing;
       var needsDocumentation = !( state.documents && state.documents.length >= (state.documentType === 'passport' ? 1 : 2));
       var needsPersonalInfo = 
         !( state.firstName
@@ -64,14 +65,18 @@ angular
         return;
       }
 
+      // Review Document Page
+      if (reviewingDocument) {
+        console.log('KYC-FLOW - Document Review');
+        $state.go('tabs.buybitcoin-kyc-document-verify');
+      }
+
       //Document Photo Page
       if (needsDocumentation) {
         console.log('KYC-FLOW - Document Photo');
+        $state.go('tabs.buybitcoin-kyc-document-info');
         return;
       }
-
-      // Review Document Page
-      
 
       // Personal Info Page
       if (needsPersonalInfo) {

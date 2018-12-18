@@ -14,8 +14,9 @@ angular
       , result: ''
       , isRecovery: false
       , recoverySuccess: false
+      , documentReviewing: false
       , countryCode: ''
-      , documentType: ''
+    , documentType: ''
       , firstName: ''
       , lastName: ''
       , dob: ''
