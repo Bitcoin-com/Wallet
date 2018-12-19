@@ -1,4 +1,6 @@
 .apl {
+  $button-right-width: 78;
+
   background-color: #FFF;
   color: #000;
   padding: 0;
@@ -349,7 +351,7 @@
       }
 
       &.item-button-right {
-        padding-right: 68px;
+        padding-right: #{$button-right-width + 32}px;
       }
 
       &.item-big-icon-left {
@@ -518,6 +520,30 @@
     button {
       font-family: 'ProximaNova';
       line-height: normal;
+    }
+  }
+
+  .apl-list-item {
+    &.item-button-right {
+      .button-right-container {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        bottom: 16px;
+
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .button-right {
+          font-weight: bold;
+          background-color: #EFEFF4;
+          padding: 4px 16px;
+          border-radius: 23px;
+          width: $button-right-width + px;
+          text-align: center;
+        }
+      }
     }
   }
 

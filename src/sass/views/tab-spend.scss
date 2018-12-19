@@ -1,6 +1,10 @@
 #tab-spend {
   #featured-end {
     margin-top: 16px;
+
+    &::after {
+      margin-bottom: 0;
+    }
   }
 
   #map {
