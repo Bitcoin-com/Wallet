@@ -98,6 +98,7 @@ angular
         kind: '', // 'address', 'contact', 'wallet'
         name: ''
       };
+      vm.destinationAddress = '';
       vm.destinationIsAGame = true;
       vm.didWin = false;
       vm.didLose = false;
@@ -152,6 +153,7 @@ angular
       destinationWalletId = sendFlowData.toWalletId;
 
       vm.displayAddress = sendFlowData.displayAddress;
+      vm.destinationAddress = sendFlowData.displayAddress || sendFlowData.toAddress;
       vm.originWallet = profileService.getWallet(originWalletId);
       vm.origin.currency = vm.originWallet.coin.toUpperCase();
       coin = vm.originWallet.coin;
@@ -593,16 +595,18 @@ angular
         return;
       }
       
-      var address = vm.destination.address;
-      // So the address can be parsed properly
-      if (address[0] === 'q' || address[0] === 'p') {
-        address = 'bitcoincash:' + address;
-      }
-      var legacyAddress = bitcoinCashJsService.readAddress(address).legacy;
-      console.log('sd checking address: "' + legacyAddress + '"');
-      if (satoshiDiceService.addressIsKnown(legacyAddress)) {
-        console.log("sd address is known.");
-        vm.destinationIsAGame = true;
+      var address = vm.destinationAddress;
+      if (address) {
+        // So the address can be parsed properly
+        if (address[0] === 'q' || address[0] === 'p') {
+          address = 'bitcoincash:' + address;
+        }
+        var legacyAddress = bitcoinCashJsService.readAddress(address).legacy;
+        console.log('sd checking address: "' + legacyAddress + '"');
+        if (satoshiDiceService.addressIsKnown(legacyAddress)) {
+          console.log("sd address is known.");
+          vm.destinationIsAGame = true;
+        }
       }
     }
 

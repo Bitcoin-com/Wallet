@@ -8,6 +8,7 @@ angular.module('copayApp.directives')
       transclude: true,
       scope: {
         amountWon: '=slideSuccessAmountWon',
+        destinationAddress: '=slideSuccessDestinationAddress',
         destinationIsAGame: '=slideSuccessDestinationIsAGame',
         didWin: '=slideSuccessDidWin',
         didLose: '=slideSuccessDidLose',
@@ -23,6 +24,7 @@ angular.module('copayApp.directives')
         elm.style.display = 'none';
         scope.$watch('isShown', function() {
           if (scope.isShown) {
+            console.log('sd destinationAddress:"' + scope.destinationAddress + '"');
             elm.style.display = 'flex';
             $timeout(function() {
               scope.fillScreen = true;

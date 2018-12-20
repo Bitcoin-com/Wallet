@@ -10,19 +10,11 @@ slide-to-accept-success {
   //display: flex;
   //align-items: center;
   //justify-content: center;
+  color: white;
   flex-direction: column;
   background: $v-slider-bg-color;
 
-  #spinner {
-    height: 0;
-    //width: 50%;
-    //max-width: 300px;
-    padding-top: 50%;
-    background-image: url("../img/loader_new.gif");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-  }
+  
 
   .slide-success {
     // For animating in
@@ -64,22 +56,49 @@ slide-to-accept-success {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-evenly;
+    }
+
+    &-status-text {
+      font-size: 28px;
+      line-height: 1.5;
+      max-width: 100%;
+      padding: 0 16px;
+
+      .address {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+      }
+      /*
+      span {
+        margin-top: 
+      }
+      */
     }
 
     &-content-action {
-      height: 4rem;
-      width: 50%;
-      max-width: 300px;
+      height: 4em;
+      min-width: 50%;
+      //max-width: 300px;
     }
 
     &-content-share {
-      height: 20px;
+      font-size: 22px;
+      height: 28px;
+
+      img {
+        height: 28px;
+        width: auto;
+        vertical-align: bottom;
+        margin-right: 4px;
+      }
     }
 
-    &-content-spinner-container {
-      width: 50%;
-      max-width: 300px;
-    }
+    //&-content-spinner-container {
+    //  min-width: 300px;
+    //}
 
     &-footer {
       flex-grow: 0;
@@ -105,10 +124,20 @@ slide-to-accept-success {
     }
 
     &-image-container {
+      width: 100%;
       img {
-        max-width: 300px;
-        width: 50%;
+        height: 25%;
+        max-height: 200px;
+        
       }
+    }
+
+    &-spinner {
+      height: 100%;
+      background-image: url("../img/loader.gif");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
     }
   }
   /*
