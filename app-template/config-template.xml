@@ -3,7 +3,8 @@
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*VERSION*"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
     <name>*USERVISIBLENAME*</name>
     <description>
       *PURPOSELINE*
@@ -135,9 +136,19 @@
       <allow-navigation href="*" />
     </platform>
 
+    <!-- <edit-config file="AndroidManifest.xml" target="/manifest/uses-permission/[@android:name='android.permission.CAMERA']" mode="overwrite">
+      <uses-permission android:name="android.permission.CAMERA" android:required="false" />
+    </edit-config> -->
+    <!-- <edit-config file="AndroidManifest.xml" target="/manifest/uses-permission" mode="overwrite">
+      <uses-permission android:name="android.permission.CAMERA" android:required="false" />
+    </edit-config> -->
+
     <platform name="android">
-      <preference name="android-manifest/application/@android:allowBackup" value="false" />
-      <preference name="android-manifest/uses-permission/[@android:name='android.permission.CAMERA']" delete="true" />
+      <!-- <preference name="android-manifest/application/@android:allowBackup" value="false" /> -->
+      <!-- <preference name="android-manifest/uses-permission/[@android:name='android.permission.CAMERA']" delete="true" /> -->
+      <!-- <custom-preference name="android-manifest/uses-permission/[@android:name=\"android.permission.CAMERA\"]" delete="true" /> -->
+      <!-- <meta-data name="android-manifest/uses-permission/[@android:name='android.permission.CAMERA']" tools:node="remove"/> -->
+      <!-- <uses-permission android:name="android.permission.CAMERA" tools:node="remove"/> -->
 
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-ldpi-icon.png" density="ldpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-mdpi-icon.png" density="mdpi" />
@@ -182,4 +193,5 @@
       <splash src="resources/*PACKAGENAME*/windows/splash/SplashScreenPhone.scale-240.png" width="1152" height="1920"/>
     </platform>
     <hook src="fixFirebasePlugin.js" type="before_build" />
+    <hook src="fixAndroidPlugin.js" type="after_prepare" />
   </widget>
