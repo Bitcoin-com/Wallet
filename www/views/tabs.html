@@ -1,10 +1,6 @@
 <ion-tabs class="tabs-icon-top tabs-color-active-positive ion-tabs-transparent {{$root.hideTabs}}">
-  <ion-tab class="track_tab_open" id="tab_open_home" title="{{'Home'|translate}}" icon-off="ico-home" icon-on="ico-home-selected" ui-sref="tabs.home">
+  <ion-tab class="track_tab_open" id="tab_open_home" title="{{'Wallets'|translate}}" icon-off="ico-home" icon-on="ico-home-selected" ui-sref="tabs.home">
     <ion-nav-view name="tab-home"></ion-nav-view>
-  </ion-tab>
-
-  <ion-tab class="track_tab_open" id="tab_open_spend" title="{{'Spend'|translate}}" icon-off="ico-send" icon-on="ico-send-selected" ui-sref="tabs.spend">
-    <ion-nav-view name="tab-spend"></ion-nav-view>
   </ion-tab>
 
   <ion-tab class="track_tab_open" id="tab_open_receive" title="{{'Receive'|translate}}" icon-off="ico-receive" icon-on="ico-receive-selected" ui-sref="tabs.receive">
@@ -17,6 +13,10 @@
 
   <ion-tab class="track_tab_open" id="tab_open_send" title="{{'Send'|translate}}" icon-off="ico-send" icon-on="ico-send-selected" ng-click="startFreshSend()">
     <ion-nav-view name="tab-send"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab class="track_tab_open" id="tab_open_spend" title="{{'Spend'|translate}}" icon-off="ico-spend" icon-on="ico-spend-selected" ui-sref="tabs.spend">
+    <ion-nav-view name="tab-spend"></ion-nav-view>
   </ion-tab>
 
   <ion-tab class="track_tab_open" id="tab_open_settings" title="{{'Settings'|translate}}" icon-off="ico-settings" icon-on="ico-settings-selected" ui-sref="tabs.settings">
