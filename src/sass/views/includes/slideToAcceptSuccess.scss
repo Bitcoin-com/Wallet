@@ -104,8 +104,7 @@ slide-to-accept-success {
 
     &-content-action {
       height: 4em;
-      min-width: 50%;
-      //max-width: 300px;
+      width: 100%;
     }
 
     &-content-share {
@@ -171,6 +170,11 @@ slide-to-accept-success {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
+    }
+
+    &-spinner-container {
+      height: 100%;
+      min-width: 50%;
     }
   }
   /*
