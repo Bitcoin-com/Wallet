@@ -28,15 +28,14 @@
   </div>
 
   <div class="slide-success-content-action">
-    <div class="slide-success-spinner-container">
-      <div class="slide-success-spinner" ng-if="destinationIsAGame && !(didWin || didLose)"></div>
+    <div class="slide-success-spinner-container" ng-if="destinationIsAGame && !(didWin || didLose)">
+      <div class="slide-success-spinner"></div>
     </div>
     <div class="slide-success-button-container" ng-if="destinationIsAGame && (didWin || didLose)">
-      <div class="slide-success-button">
-        Replay
+      <div class="slide-success-button" ng-click="onReplay()">
+        <span translate>Replay</span>
       </div>
     </div>
-    <div class="no-button" ng-if="!destinationIsAGame"></div>
   </div>
 
   <div class="slide-success-content-share" ng-show="hasShareFunction && !(destinationIsAGame && (!didLose && !didWin))" ng-click="onShareButtonClick()">

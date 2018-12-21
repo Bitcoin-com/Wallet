@@ -164,6 +164,24 @@ slide-to-accept-success {
       }
     }
 
+    &-button {
+      border: 2px solid white;
+      border-radius: 2em;
+      font-size: 22px;
+      height: 100%;
+      line-height: 64px;
+      padding-left: 2em;
+      padding-right: 2em;
+    }
+
+    &-button-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     &-spinner {
       height: 100%;
       background-image: url("../img/loader.gif");
