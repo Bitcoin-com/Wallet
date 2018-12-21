@@ -3,13 +3,13 @@
   ng-class="{'fill-screen': fillScreen, 'did-lose': didLose, 'did-win': didWin}">
 </div>
 
-<div ng-disabled="wallet" class="slide-success-content" ng-class="{'did-lose': didLose, 'did-win': didWin}">
+<div ng-disabled="wallet" class="slide-success-content" ng-class="{'did-lose': didLose, 'did-win': didWin, reveal: fillScreen}">
 
   <div class="slide-success-image-container">
-    <img src="img/icon-sent-successful.svg" ng-class="{reveal: fillScreen}">
+    <img src="img/icon-sent-successful.svg">
   </div>
 
-  <div class="slide-success-status-text" ng-class="{reveal: fillScreen}">
+  <div class="slide-success-status-text">
     <ng-transclude ng-if="!destinationIsAGame"></ng-transclude>
     <div ng-if="destinationIsAGame && !didLose && !didWin">
       <div translate>Payment Sent to</div>

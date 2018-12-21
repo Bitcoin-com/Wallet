@@ -1,5 +1,6 @@
 slide-to-accept-success {
   $duration: 400ms;
+  $delay: 200ms;
   $lose-color: #d6694d;
   $win-color: #57be91;
 
@@ -68,6 +69,18 @@ slide-to-accept-success {
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
+
+      -webkit-transform: translateY(5rem);
+      transform: translateY(5rem);
+      opacity: 0;
+      transition: transform $duration ease, opacity $duration ease;
+      transition-delay: $delay;
+
+      &.reveal {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     &-status-text {
@@ -117,11 +130,19 @@ slide-to-accept-success {
       padding: 0 1.75rem;
       width: 100%;
       z-index: 1;
-      //-webkit-transform: translateY(5rem);
-      //transform: translateY(5rem);
-      //opacity: 0;
+      -webkit-transform: translateY(5rem);
+      transform: translateY(5rem);
+      opacity: 0;
       transition: transform $duration ease, opacity $duration ease;
-      transition-delay: 250ms;
+      transition-delay: $delay;
+
+      &.reveal {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+
     }
 
     &-footer-button {
