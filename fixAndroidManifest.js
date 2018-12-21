@@ -9,8 +9,6 @@ module.exports = function(context) {
   } else {
     root = context.opts.projectRoot;
   }
-  console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
-  console.log( "Starting In:" + root);
 
   function replaceStringInFile(filePath, targetStr, replacementStr) {
     var data = fs.readFileSync(filePath, 'utf8');
@@ -48,7 +46,5 @@ module.exports = function(context) {
       })
     }
   }
-
-  console.log("Exiting fixAndroidPlugin.js");
-  console.log("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=");
+  console.log("Exiting fixAndroidManieft.js");
 }
