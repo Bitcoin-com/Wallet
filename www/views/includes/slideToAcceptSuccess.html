@@ -1,9 +1,9 @@
 <div
-  id="slide-success-background"
-  ng-class="{'fill-screen': fillScreen}">
+  class="slide-success-background"
+  ng-class="{'fill-screen': fillScreen, 'did-lose': didLose, 'did-win': didWin}">
 </div>
 
-<div ng-disabled="wallet" class="slide-success-content">
+<div ng-disabled="wallet" class="slide-success-content" ng-class="{'did-lose': didLose, 'did-win': didWin}">
 
   <div class="slide-success-image-container">
     <img src="img/icon-sent-successful.svg" ng-class="{reveal: fillScreen}">
@@ -15,13 +15,13 @@
       <div translate>Payment Sent to</div>
       <div class="address">{{destinationAddress}}</div>
     </div>
-    <div>
-      <span ng-if="destinationIsAGame && didLose" translate>Nothing Received</span><br/>
-      <span>&nbsp;</span>
+    <div ng-if="destinationIsAGame && didLose">
+      <div translate>Nothing Received</div>
+      <div class="address">&nbsp;</div>
     </div>
-    <div>
-      <span ng-if="destinationIsAGame && didWin" translate>Received</span>
-      <span>&nbsp;</span>
+    <div ng-if="destinationIsAGame && didWin">
+      <div  translate>Received</div>
+      <div class="address">&nbsp;</div>
     </div>
   </div>
 
@@ -29,15 +29,8 @@
     <div class="slide-success-spinner"></div>
   </div>
 
-  <div class="slide-success-content-share" ng-show="hasShareFunction" ng-class="{reveal: fillScreen}" ng-click="onShareButtonClick()">
-    
+  <div class="slide-success-content-share" ng-show="hasShareFunction && !(destinationIsAGame && (!didLose && !didWin))" ng-class="{reveal: fillScreen}" ng-click="onShareButtonClick()">
     <span><img class="slide-success-share-icon" src="img/icon-share-white.svg"></span><span translate>Share this transaction</span>
-    <div ng-if="didWin">
-      WIN
-    </div>
-    <div ng-if="didLose">
-      LOSE
-    </div>
   </div>
 </div>
 

@@ -1,5 +1,8 @@
 slide-to-accept-success {
   $duration: 400ms;
+  $lose-color: #d6694d;
+  $win-color: #57be91;
+
   height: 100%;
   width: 100%;
   position: fixed;
@@ -7,12 +10,11 @@ slide-to-accept-success {
   left: 0;
   z-index: 99999;
   text-align: center;
-  //display: flex;
+  display: flex;
   //align-items: center;
   //justify-content: center;
   color: white;
   flex-direction: column;
-  background: $v-slider-bg-color;
 
   
 
@@ -33,7 +35,15 @@ slide-to-accept-success {
       &.fill-screen {
         -webkit-transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
         transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
-        background: $v-success-bg-color;
+        background: $v-slider-bg-color;
+
+        &.did-lose {
+          background: $lose-color;
+        }
+  
+        &.did-win {
+          background: $win-color;
+        }
       }
     }
 
@@ -52,6 +62,7 @@ slide-to-accept-success {
 
     &-content {
       flex-grow: 1;
+      z-index: 1;
 
       display: flex;
       flex-direction: column;
@@ -105,6 +116,7 @@ slide-to-accept-success {
       flex-shrink: 0;
       padding: 0 1.75rem;
       width: 100%;
+      z-index: 1;
       //-webkit-transform: translateY(5rem);
       //transform: translateY(5rem);
       //opacity: 0;
