@@ -14,6 +14,7 @@ angular.module('copayApp.directives')
         didLose: '=slideSuccessDidLose',
         isShown: '=slideSuccessShow',
         onConfirm: '&slideSuccessOnConfirm',
+        onReplay: '&slideSuccessOnReplay',
         hideOnConfirm: '=slideSuccessHideOnConfirm',
         onShare: '=slideSuccessOnShare',
       },
@@ -22,9 +23,9 @@ angular.module('copayApp.directives')
         scope.hasShareFunction = typeof scope.onShare === 'function';
         var elm = element[0];
         elm.style.display = 'none';
-
-        scope.onReplay = onReplay;
         
+        scope.onReplayButtonClick = onReplayButtonClick;
+
         scope.$watch('isShown', function() {
           if (scope.isShown) {
             console.log('sd destinationAddress:"' + scope.destinationAddress + '"');
@@ -43,9 +44,14 @@ angular.module('copayApp.directives')
           }
         };
 
-        function onReplay() {
-          console.log('sd onReplay()');
+        
+        function onReplayButtonClick() {
+          scope.fillScreen = false;
+          elm.style.display = 'none';
+
+          scope.onReplay();
         }
+        
 
         scope.onShareButtonClick = function() {
           scope.onShare();

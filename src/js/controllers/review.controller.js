@@ -62,6 +62,7 @@ angular
   
     // Functions
     vm.goBack = goBack;
+    vm.onReplay = onReplay;
     vm.onSuccessConfirm = onSuccessConfirm;
     vm.onShareTransaction = onShareTransaction;
 
@@ -85,7 +86,7 @@ angular
       unitFromSat = 0;
 
       // Public variables
-      vm.amountWon = 0;
+      vm.amountWon = 0.000525;
       vm.buttonText = '';
       vm.destination = {
         address: '',
@@ -98,8 +99,8 @@ angular
         kind: '', // 'address', 'contact', 'wallet'
         name: ''
       };
-      vm.destinationAddress = '';
-      vm.destinationIsAGame = true;
+      vm.destinationAddress = 'something';
+      vm.destinationIsAGame = false;
       vm.didWin = false;
       vm.didLose = false;
       vm.displayAddress = '';
@@ -136,7 +137,7 @@ angular
       vm.memoExpanded = false;
     }
 
-    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
 
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
@@ -173,18 +174,18 @@ angular
                   $ionicHistory.goBack();
                 });
               } else {
-                _next(data);
+                _next();
               }
             });
             break;
           case 'bip70':
             initBip70();
           default:
-            _next(data);
+            _next();
             break;
         }
       } else {
-        _next(data);
+        _next();
       }
 
       function _next() {
@@ -201,7 +202,7 @@ angular
           getOriginWalletBalance(vm.originWallet);
           handleDestinationAsAddress(toAddress, coin);
           handleDestinationAsWallet(sendFlowData.toWalletId);
-          createVanityTransaction(data);
+          createVanityTransaction();
         });
       }
     }
@@ -321,7 +322,7 @@ angular
       };
     };
 
-    function createVanityTransaction(data) {
+    function createVanityTransaction() {
       var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
 
       // Grab stateParams
@@ -348,10 +349,10 @@ angular
       if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
         tx.toAddress = vm.thirdParty.toAddress;
       }
-
-      if (data.stateParams.requiredFeeRate) {
+      
+      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
         vm.usingMerchantFee = true;
-        tx.feeRate = parseInt(data.stateParams.requiredFeeRate);
+        tx.feeRate = parseInt(sendFlowData.thirdParty.requiredFeeRate);
       }
 
       if (tx.coin && tx.coin === 'bch') {
@@ -403,6 +404,7 @@ angular
         return;
       }
     }
+
     function getOriginWalletBalance(originWallet) {
       var balanceText = getWalletBalanceDisplayText(vm.originWallet);
       vm.origin.balanceAmount = balanceText.amount;
@@ -530,7 +532,7 @@ angular
           vm.destination.kind = 'address';
         }
 
-        _handleSdIntegrationBeforeSending(address);
+        _handleSatoshiDiceIntegrationBeforeSending(address);
       });
 
     }
@@ -567,8 +569,8 @@ angular
       vm.destination.balanceCurrency = balanceText.currency;
     }
 
-    function _handleSdIntegrationAfterSending() {
-      console.log('sd _handleSdIntegrationAfterSending()');
+    function _handleSatoshiDiceIntegrationAfterSending() {
+      console.log('sd _handleSatoshiDiceIntegrationAfterSending()');
       if (!(vm.destinationIsAGame && lastTxId)) {
         return;
       }
@@ -590,7 +592,7 @@ angular
       );
     }
 
-    function _handleSdIntegrationBeforeSending() {
+    function _handleSatoshiDiceIntegrationBeforeSending() {
       if (vm.originWallet.coin !== 'bch') {
         return;
       }
@@ -666,6 +668,26 @@ angular
       });
     }
 
+    function onReplay() {
+      console.log('onReplay()');
+      onBeforeEnter();
+      /*
+      //sendFlowService.goHereAgain();
+      var amount = sendFlowData.amount;
+      sendFlowService.router.goBack();
+      //var newState = sendFlowService.state.getClone();
+      //newState.amount = amount;
+      //sendFlowService.goNext(newState);
+
+      $timeout(function onTimeout() {
+        var newState = sendFlowService.state.getClone();
+        newState.amount = amount;
+        sendFlowService.goNext(newState);
+      });
+      */
+
+    }
+
     function onShareTransaction() {
       var explorerTxUrl = 'https://explorer.bitcoin.com/' + tx.coin + '/tx/' + lastTxId;
       if (platformInfo.isCordova) {
@@ -697,7 +719,7 @@ angular
         }], [channel, "adjust", "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
-      _handleSdIntegrationAfterSending();
+      _handleSatoshiDiceIntegrationAfterSending();
     }
 
     function startExpirationTimer(expirationTime) {
@@ -777,6 +799,9 @@ angular
     }
 
     function onSuccessConfirm() {
+      // Clear the send flow service state
+      sendFlowService.state.clear();
+
       vm.sendStatus = '';
       $ionicHistory.nextViewOptions({
         disableAnimate: true,
@@ -915,8 +940,7 @@ angular
         vm.sendStatus = 'success';
         console.log('sd success popup displayed.');
 
-        // Clear the send flow service state
-        sendFlowService.state.clear();
+        
 
         if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
           soundService.play('misc/payment_sent.mp3');

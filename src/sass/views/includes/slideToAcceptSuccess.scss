@@ -158,7 +158,7 @@ slide-to-accept-success {
     &-image-container {
       width: 100%;
       img {
-        height: 25%;
+        height: 20%; // 25% is to much for iPhone SE
         max-height: 200px;
         
       }

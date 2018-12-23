@@ -91,7 +91,7 @@
   </ion-content>
 
   <div class="fee-summary">
-    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'" translate>Suggested by merchant:</div>
+    <div ng-if="vm.usingMerchantFee" translate>Suggested by merchant:</div>
     <div class="amount">
       <div class="fee-fiat positive" ng-if="vm.feeLessThanACent"><span translate>Fee:</span> <span translate>Less than 1 cent</span></div>
       <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent"><span translate>Fee:</span> {{vm.feeFiat}} {{vm.feeCurrency}}</div>
@@ -123,6 +123,7 @@
     slide-success-did-win="vm.didWin"
     slide-success-show="vm.sendStatus === 'success'"
     slide-success-on-confirm="vm.onSuccessConfirm()"
+    slide-success-on_replay="vm.onReplay()"
     slide-success-on-share="vm.onShareTransaction"
     slide-success-hide-on-confirm="true">
     <span ng-show="vm.originWallet.m == 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Payment Sent</span>
