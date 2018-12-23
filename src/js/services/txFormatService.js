@@ -1,239 +1,261 @@
 'use strict';
 
-angular.module('copayApp.services').factory('txFormatService', function($filter, bwcService, rateService, configService, lodash) {
-  var root = {};
+(function(){
 
-  root.Utils = bwcService.getUtils();
+  angular
+    .module('copayApp.services')
+    .factory('txFormatService', txFormatService);
+
+  function txFormatService(
+    bwcService
+    , configService
+    , $filter
+    , lodash
+    , rateService
+    , satoshiDiceService
+    ) {
+    var root = {};
+
+    root.Utils = bwcService.getUtils();
 
 
-  root.formatAmount = function(satoshis, fullPrecision) {
-    var config = configService.getDefaults().wallet.settings;
-    if (config.unitCode == 'sat') return satoshis;
+    root.formatAmount = function(satoshis, fullPrecision) {
+      var config = configService.getDefaults().wallet.settings;
+      if (config.unitCode == 'sat') return satoshis;
 
-    //TODO : now only works for english, specify opts to change thousand separator and decimal separator
-    var opts = {
-      fullPrecision: !!fullPrecision
-    };
-    return parseInt(satoshis) == 0 ? '0.00' : this.Utils.formatAmount(satoshis, config.unitCode, opts);
-  };
-
-  root.formatAmountStr = function(coin, satoshis) {
-    var defaults = configService.getDefaults();
-    var configCache = configService.getSync();
-    var c = coin == 'btc' ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
-                          : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
-
-    if (isNaN(satoshis)) return;
-    return root.formatAmount(satoshis, 'full') + ' ' + (c).toUpperCase();
-  };
-
-  root.toFiat = function(coin, satoshis, code, cb) {
-    if (isNaN(satoshis)) return;
-    var val = function() {
-      var v1 = rateService.toFiat(satoshis, code, coin);
-      if (!v1) return null;
-
-      return v1.toFixed(2);
+      //TODO : now only works for english, specify opts to change thousand separator and decimal separator
+      var opts = {
+        fullPrecision: !!fullPrecision
+      };
+      return parseInt(satoshis) == 0 ? '0.00' : this.Utils.formatAmount(satoshis, config.unitCode, opts);
     };
 
-    // Async version
-    if (cb) {
-      rateService.whenAvailable(function() {
-        return cb(val());
-      });
-    } else {
-      if (!rateService.isAvailable()) return null;
-      return val();
-    };
-  };
+    root.formatAmountStr = function(coin, satoshis) {
+      var defaults = configService.getDefaults();
+      var configCache = configService.getSync();
+      var c = coin == 'btc' ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
+                            : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
 
-  root.formatToUSD = function(coin, satoshis, cb) {
-    if (isNaN(satoshis)) return;
-    var val = function() {
-      var v1 = rateService.toFiat(satoshis, 'USD', coin);
-      if (!v1) return null;
-
-      return v1.toFixed(2);
+      if (isNaN(satoshis)) return;
+      return root.formatAmount(satoshis, 'full') + ' ' + (c).toUpperCase();
     };
 
-    // Async version
-    if (cb) {
-      rateService.whenAvailable(function() {
-        return cb(val());
-      });
-    } else {
-      if (!rateService.isAvailable()) return null;
-      return val();
-    };
-  };
+    root.toFiat = function(coin, satoshis, code, cb) {
+      if (isNaN(satoshis)) return;
+      var val = function() {
+        var v1 = rateService.toFiat(satoshis, code, coin);
+        if (!v1) return null;
 
-  root.formatAlternativeStr = function(coin, satoshis, cb) {
-    if (isNaN(satoshis)) return;
-    var config = configService.getSync().wallet.settings;
+        return v1.toFixed(2);
+      };
 
-    var val = function() {
-      var fiatAmount = rateService.toFiat(satoshis, config.alternativeIsoCode, coin);
-      var roundedStr = fiatAmount.toFixed(2);
-      var roundedNum = parseFloat(roundedStr);
-      var subcent = roundedNum === 0 && fiatAmount > 0;
-      var lessThanPrefix = '';
-      if (subcent) {
-        roundedNum = 0.01;
-        lessThanPrefix = '< ';
-      }
-      var v1 = $filter('formatFiatAmount')(roundedNum);
-      if (!v1) return null;
-
-      return lessThanPrefix + v1 + ' ' + config.alternativeIsoCode;
-    };
-
-    // Async version
-    if (cb) {
-      rateService.whenAvailable(function() {
-        return cb(val());
-      });
-    } else {
-      if (!rateService.isAvailable()) return null;
-      return val();
-    };
-  };
-
-  root.processTx = function(coin, tx) {
-    if (!tx || tx.action == 'invalid')
-      return tx;
-
-    // New transaction output format
-    if (tx.outputs && tx.outputs.length) {
-
-      var outputsNr = tx.outputs.length;
-
-      if (tx.action != 'received') {
-        if (outputsNr > 1) {
-          tx.recipientCount = outputsNr;
-          tx.hasMultiplesOutputs = true;
-        }
-        tx.amount = lodash.reduce(tx.outputs, function(total, o) {
-          o.amountStr = root.formatAmountStr(coin, o.amount);
-          o.alternativeAmountStr = root.formatAlternativeStr(coin, o.amount);
-          return total + o.amount;
-        }, 0);
-      }
-      tx.toAddress = tx.outputs[0].toAddress;
-    }
-
-    tx.amountStr = root.formatAmountStr(coin, tx.amount);
-    tx.alternativeAmountStr = root.formatAlternativeStr(coin, tx.amount);
-    tx.feeStr = root.formatAmountStr(coin, tx.fee || tx.fees);
-
-    if (tx.amountStr) {
-      tx.amountValueStr = tx.amountStr.split(' ')[0];
-      tx.amountUnitStr = tx.amountStr.split(' ')[1];
-    }
-
-    return tx;
-  };
-
-  root.formatPendingTxps = function(txps) {
-    $scope.pendingTxProposalsCountForUs = 0;
-    var now = Math.floor(Date.now() / 1000);
-
-    /* To test multiple outputs...
-    var txp = {
-      message: 'test multi-output',
-      fee: 1000,
-      createdOn: new Date() / 1000,
-      outputs: []
-    };
-    function addOutput(n) {
-      txp.outputs.push({
-        amount: 600,
-        toAddress: '2N8bhEwbKtMvR2jqMRcTCQqzHP6zXGToXcK',
-        message: 'output #' + (Number(n) + 1)
-      });
-    };
-    lodash.times(150, addOutput);
-    txps.push(txp);
-    */
-
-    lodash.each(txps, function(tx) {
-
-      // no future transactions...
-      if (tx.createdOn > now)
-        tx.createdOn = now;
-
-      tx.wallet = profileService.getWallet(tx.walletId);
-      if (!tx.wallet) {
-        $log.error("no wallet at txp?");
-        return;
-      }
-
-      tx = txFormatService.processTx(tx.wallet.coin, tx);
-
-      var action = lodash.find(tx.actions, {
-        copayerId: tx.wallet.copayerId
-      });
-
-      if (!action && tx.status == 'pending') {
-        tx.pendingForUs = true;
-      }
-
-      if (action && action.type == 'accept') {
-        tx.statusForUs = 'accepted';
-      } else if (action && action.type == 'reject') {
-        tx.statusForUs = 'rejected';
+      // Async version
+      if (cb) {
+        rateService.whenAvailable(function() {
+          return cb(val());
+        });
       } else {
-        tx.statusForUs = 'pending';
+        if (!rateService.isAvailable()) return null;
+        return val();
+      };
+    };
+
+    root.formatToUSD = function(coin, satoshis, cb) {
+      if (isNaN(satoshis)) return;
+      var val = function() {
+        var v1 = rateService.toFiat(satoshis, 'USD', coin);
+        if (!v1) return null;
+
+        return v1.toFixed(2);
+      };
+
+      // Async version
+      if (cb) {
+        rateService.whenAvailable(function() {
+          return cb(val());
+        });
+      } else {
+        if (!rateService.isAvailable()) return null;
+        return val();
+      };
+    };
+
+    root.formatAlternativeStr = function(coin, satoshis, cb) {
+      if (isNaN(satoshis)) return;
+      var config = configService.getSync().wallet.settings;
+
+      var val = function() {
+        var fiatAmount = rateService.toFiat(satoshis, config.alternativeIsoCode, coin);
+        var roundedStr = fiatAmount.toFixed(2);
+        var roundedNum = parseFloat(roundedStr);
+        var subcent = roundedNum === 0 && fiatAmount > 0;
+        var lessThanPrefix = '';
+        if (subcent) {
+          roundedNum = 0.01;
+          lessThanPrefix = '< ';
+        }
+        var v1 = $filter('formatFiatAmount')(roundedNum);
+        if (!v1) return null;
+
+        return lessThanPrefix + v1 + ' ' + config.alternativeIsoCode;
+      };
+
+      // Async version
+      if (cb) {
+        rateService.whenAvailable(function() {
+          return cb(val());
+        });
+      } else {
+        if (!rateService.isAvailable()) return null;
+        return val();
+      };
+    };
+
+    root.processTx = function(coin, tx) {
+      if (!tx || tx.action == 'invalid')
+        return tx;
+
+      // New transaction output format
+      if (tx.outputs && tx.outputs.length) {
+
+        var outputsNr = tx.outputs.length;
+
+        if (tx.action != 'received') {
+          if (outputsNr > 1) {
+            tx.recipientCount = outputsNr;
+            tx.hasMultiplesOutputs = true;
+          }
+          tx.amount = lodash.reduce(tx.outputs, function(total, o) {
+            o.amountStr = root.formatAmountStr(coin, o.amount);
+            o.alternativeAmountStr = root.formatAlternativeStr(coin, o.amount);
+            return total + o.amount;
+          }, 0);
+
+          var addressToCheck = tx.outputs[0].address;
+          console.log('sd Checking address: ' + addressToCheck);
+          tx.isSatoshiDice = satoshiDiceService.addressIsKnown(addressToCheck);
+
+        }
+        tx.toAddress = tx.outputs[0].toAddress;
       }
 
-      if (!tx.deleteLockTime)
-        tx.canBeRemoved = true;
-    });
+      tx.amountStr = root.formatAmountStr(coin, tx.amount);
+      tx.alternativeAmountStr = root.formatAlternativeStr(coin, tx.amount);
+      tx.feeStr = root.formatAmountStr(coin, tx.fee || tx.fees);
 
-    return txps;
-  };
+      if (tx.amountStr) {
+        tx.amountValueStr = tx.amountStr.split(' ')[0];
+        tx.amountUnitStr = tx.amountStr.split(' ')[1];
+      }
 
-  root.parseAmount = function(coin, amount, currency) {
-    var config = configService.getSync().wallet.settings;
-    var satToBtc = 1 / 100000000;
-    var unitToSatoshi = config.unitToSatoshi;
-    var amountUnitStr;
-    var amountSat;
-    var alternativeIsoCode = config.alternativeIsoCode;
+      
 
-    // If fiat currency
-    if (currency && currency.toUpperCase() != 'BCH' && currency.toUpperCase() != 'BTC' && currency != 'sat') {
-      amountUnitStr = $filter('formatFiatAmount')(amount) + ' ' + currency;
-      amountSat = rateService.fromFiat(amount, currency, coin).toFixed(0);
-    } else if (currency == 'sat') {
-      amountSat = amount;
-      amountUnitStr = root.formatAmountStr(coin, amountSat);
-      // convert sat to BTC or BCH
-      amount = (amountSat * satToBtc).toFixed(8);
-      currency = (coin).toUpperCase();
-    } else {
-      amountSat = parseInt((amount * unitToSatoshi).toFixed(0));
-      amountUnitStr = root.formatAmountStr(coin, amountSat);
-      // convert unit to BTC or BCH
-      amount = (amountSat * satToBtc).toFixed(8);
-      currency = (coin).toUpperCase();
-    }
-
-    return {
-      amount: amount,
-      currency: currency,
-      alternativeIsoCode: alternativeIsoCode,
-      amountSat: amountSat,
-      amountUnitStr: amountUnitStr
+      return tx;
     };
+
+    root.formatPendingTxps = function(txps) {
+      $scope.pendingTxProposalsCountForUs = 0;
+      var now = Math.floor(Date.now() / 1000);
+
+      /* To test multiple outputs...
+      var txp = {
+        message: 'test multi-output',
+        fee: 1000,
+        createdOn: new Date() / 1000,
+        outputs: []
+      };
+      function addOutput(n) {
+        txp.outputs.push({
+          amount: 600,
+          toAddress: '2N8bhEwbKtMvR2jqMRcTCQqzHP6zXGToXcK',
+          message: 'output #' + (Number(n) + 1)
+        });
+      };
+      lodash.times(150, addOutput);
+      txps.push(txp);
+      */
+
+      lodash.each(txps, function(tx) {
+
+        // no future transactions...
+        if (tx.createdOn > now)
+          tx.createdOn = now;
+
+        tx.wallet = profileService.getWallet(tx.walletId);
+        if (!tx.wallet) {
+          $log.error("no wallet at txp?");
+          return;
+        }
+
+        tx = txFormatService.processTx(tx.wallet.coin, tx);
+
+        var action = lodash.find(tx.actions, {
+          copayerId: tx.wallet.copayerId
+        });
+
+        if (!action && tx.status == 'pending') {
+          tx.pendingForUs = true;
+        }
+
+        if (action && action.type == 'accept') {
+          tx.statusForUs = 'accepted';
+        } else if (action && action.type == 'reject') {
+          tx.statusForUs = 'rejected';
+        } else {
+          tx.statusForUs = 'pending';
+        }
+
+        if (!tx.deleteLockTime)
+          tx.canBeRemoved = true;
+      });
+
+      return txps;
+    };
+
+    root.parseAmount = function(coin, amount, currency) {
+      var config = configService.getSync().wallet.settings;
+      var satToBtc = 1 / 100000000;
+      var unitToSatoshi = config.unitToSatoshi;
+      var amountUnitStr;
+      var amountSat;
+      var alternativeIsoCode = config.alternativeIsoCode;
+
+      // If fiat currency
+      if (currency && currency.toUpperCase() != 'BCH' && currency.toUpperCase() != 'BTC' && currency != 'sat') {
+        amountUnitStr = $filter('formatFiatAmount')(amount) + ' ' + currency;
+        amountSat = rateService.fromFiat(amount, currency, coin).toFixed(0);
+      } else if (currency == 'sat') {
+        amountSat = amount;
+        amountUnitStr = root.formatAmountStr(coin, amountSat);
+        // convert sat to BTC or BCH
+        amount = (amountSat * satToBtc).toFixed(8);
+        currency = (coin).toUpperCase();
+      } else {
+        amountSat = parseInt((amount * unitToSatoshi).toFixed(0));
+        amountUnitStr = root.formatAmountStr(coin, amountSat);
+        // convert unit to BTC or BCH
+        amount = (amountSat * satToBtc).toFixed(8);
+        currency = (coin).toUpperCase();
+      }
+
+      return {
+        amount: amount,
+        currency: currency,
+        alternativeIsoCode: alternativeIsoCode,
+        amountSat: amountSat,
+        amountUnitStr: amountUnitStr
+      };
+    };
+
+    root.satToUnit = function(amount) {
+      var config = configService.getSync().wallet.settings;
+      var unitToSatoshi = config.unitToSatoshi;
+      var satToUnit = 1 / unitToSatoshi;
+      var unitDecimals = config.unitDecimals;
+      return parseFloat((amount * satToUnit).toFixed(unitDecimals));
+    };
+
+    return root;
   };
 
-  root.satToUnit = function(amount) {
-    var config = configService.getSync().wallet.settings;
-    var unitToSatoshi = config.unitToSatoshi;
-    var satToUnit = 1 / unitToSatoshi;
-    var unitDecimals = config.unitDecimals;
-    return parseFloat((amount * satToUnit).toFixed(unitDecimals));
-  };
-
-  return root;
-});
+})();
