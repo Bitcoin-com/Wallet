@@ -11,17 +11,13 @@
       , $interval
       , $log
       , $q
-    ) {
-      var privateVariable = "";
- 
+    ) { 
       var service = {     
         // Public variables     
-        myVariable: "myService",     
  
         // Public functions
         addressIsKnown: addressIsKnown,
-        getBetStatus: getBetStatus,
-        imageUrlForAddress: imageUrlForAddress
+        getBetStatus: getBetStatus
       };
 
       var STATUS_CHECK_INTERVAL = 1000; // The request sometimes takes 1.15s
@@ -44,7 +40,6 @@
 
  
       function addressIsKnown(legacyAddress) {
-        // Content 
         var isKnown = false;
         var knownAddress = '';
         var knownAddressCount = addresses.length;
@@ -120,9 +115,5 @@
           }
         );
       }
-
-      function imageUrlForAddress(legacyAddress) {
-      }
-
     }
 })();
