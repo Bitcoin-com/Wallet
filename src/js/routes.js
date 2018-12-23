@@ -274,7 +274,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.settings', {
         url: '/settings',
         views: {
-          'tab-settings': {
+          'tab-home@tabs': {
             controller: 'tabSettingsController',
             templateUrl: 'views/tab-settings.html',
           }
