@@ -14,12 +14,26 @@
     , rateService
     , satoshiDiceService
     ) {
-    var root = {};
+    var service = {
+      // Variables
+      Utils: bwcService.getUtils(),
 
-    root.Utils = bwcService.getUtils();
+      // Functions
+      formatAlternativeStr: formatAlternativeStr,
+      formatAmount: formatAmount,
+      formatAmountStr: formatAmountStr,
+      formatPendingTxps: formatPendingTxps,
+      formatToUSD: formatToUSD,
+      parseAmount: parseAmount,
+      processTx: processTx,
+      satToUnit: satToUnit,
+      toFiat: toFiat
+    };
+
+    return service;
 
 
-    root.formatAmount = function(satoshis, fullPrecision) {
+    function formatAmount(satoshis, fullPrecision) {
       var config = configService.getDefaults().wallet.settings;
       if (config.unitCode == 'sat') return satoshis;
 
@@ -27,20 +41,20 @@
       var opts = {
         fullPrecision: !!fullPrecision
       };
-      return parseInt(satoshis) == 0 ? '0.00' : this.Utils.formatAmount(satoshis, config.unitCode, opts);
+      return parseInt(satoshis) == 0 ? '0.00' : service.Utils.formatAmount(satoshis, config.unitCode, opts);
     };
 
-    root.formatAmountStr = function(coin, satoshis) {
+    function formatAmountStr(coin, satoshis) {
       var defaults = configService.getDefaults();
       var configCache = configService.getSync();
       var c = coin == 'btc' ? (configCache.bitcoinAlias || defaults.bitcoinAlias)
                             : (configCache.bitcoinCashAlias || defaults.bitcoinCashAlias);
 
       if (isNaN(satoshis)) return;
-      return root.formatAmount(satoshis, 'full') + ' ' + (c).toUpperCase();
+      return formatAmount(satoshis, 'full') + ' ' + (c).toUpperCase();
     };
 
-    root.toFiat = function(coin, satoshis, code, cb) {
+    function toFiat(coin, satoshis, code, cb) {
       if (isNaN(satoshis)) return;
       var val = function() {
         var v1 = rateService.toFiat(satoshis, code, coin);
@@ -60,7 +74,7 @@
       };
     };
 
-    root.formatToUSD = function(coin, satoshis, cb) {
+    function formatToUSD(coin, satoshis, cb) {
       if (isNaN(satoshis)) return;
       var val = function() {
         var v1 = rateService.toFiat(satoshis, 'USD', coin);
@@ -80,7 +94,7 @@
       };
     };
 
-    root.formatAlternativeStr = function(coin, satoshis, cb) {
+    function formatAlternativeStr(coin, satoshis, cb) {
       if (isNaN(satoshis)) return;
       var config = configService.getSync().wallet.settings;
 
@@ -111,7 +125,7 @@
       };
     };
 
-    root.processTx = function(coin, tx) {
+    function processTx(coin, tx) {
       if (!tx || tx.action == 'invalid')
         return tx;
 
@@ -126,8 +140,8 @@
             tx.hasMultiplesOutputs = true;
           }
           tx.amount = lodash.reduce(tx.outputs, function(total, o) {
-            o.amountStr = root.formatAmountStr(coin, o.amount);
-            o.alternativeAmountStr = root.formatAlternativeStr(coin, o.amount);
+            o.amountStr = formatAmountStr(coin, o.amount);
+            o.alternativeAmountStr = formatAlternativeStr(coin, o.amount);
             return total + o.amount;
           }, 0);
 
@@ -139,21 +153,19 @@
         tx.toAddress = tx.outputs[0].toAddress;
       }
 
-      tx.amountStr = root.formatAmountStr(coin, tx.amount);
-      tx.alternativeAmountStr = root.formatAlternativeStr(coin, tx.amount);
-      tx.feeStr = root.formatAmountStr(coin, tx.fee || tx.fees);
+      tx.amountStr = formatAmountStr(coin, tx.amount);
+      tx.alternativeAmountStr = formatAlternativeStr(coin, tx.amount);
+      tx.feeStr = formatAmountStr(coin, tx.fee || tx.fees);
 
       if (tx.amountStr) {
         tx.amountValueStr = tx.amountStr.split(' ')[0];
         tx.amountUnitStr = tx.amountStr.split(' ')[1];
       }
 
-      
-
       return tx;
     };
 
-    root.formatPendingTxps = function(txps) {
+    function formatPendingTxps(txps) {
       $scope.pendingTxProposalsCountForUs = 0;
       var now = Math.floor(Date.now() / 1000);
 
@@ -212,7 +224,7 @@
       return txps;
     };
 
-    root.parseAmount = function(coin, amount, currency) {
+    function parseAmount(coin, amount, currency) {
       var config = configService.getSync().wallet.settings;
       var satToBtc = 1 / 100000000;
       var unitToSatoshi = config.unitToSatoshi;
@@ -226,13 +238,13 @@
         amountSat = rateService.fromFiat(amount, currency, coin).toFixed(0);
       } else if (currency == 'sat') {
         amountSat = amount;
-        amountUnitStr = root.formatAmountStr(coin, amountSat);
+        amountUnitStr = formatAmountStr(coin, amountSat);
         // convert sat to BTC or BCH
         amount = (amountSat * satToBtc).toFixed(8);
         currency = (coin).toUpperCase();
       } else {
         amountSat = parseInt((amount * unitToSatoshi).toFixed(0));
-        amountUnitStr = root.formatAmountStr(coin, amountSat);
+        amountUnitStr = formatAmountStr(coin, amountSat);
         // convert unit to BTC or BCH
         amount = (amountSat * satToBtc).toFixed(8);
         currency = (coin).toUpperCase();
@@ -247,15 +259,13 @@
       };
     };
 
-    root.satToUnit = function(amount) {
+    function satToUnit(amount) {
       var config = configService.getSync().wallet.settings;
       var unitToSatoshi = config.unitToSatoshi;
       var satToUnit = 1 / unitToSatoshi;
       var unitDecimals = config.unitDecimals;
       return parseFloat((amount * satToUnit).toFixed(unitDecimals));
     };
-
-    return root;
   };
 
 })();
