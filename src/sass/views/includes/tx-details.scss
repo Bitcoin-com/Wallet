@@ -8,6 +8,19 @@
   }
 }
 
+.tx-details-content {
+
+  img.satoshi-dice {
+    border-radius: 50%;
+    height: 33px;
+    width: 33px;
+    border: 1px solid #BEBEBE;
+
+    .received {
+      border-color:#09C286;
+    }
+  }
+}
 
 
 
