@@ -101,7 +101,6 @@
           url:url
         }).then(
           function onSuccess(response) {
-            console.log('sd onSuccess', response);
             $log.debug('Retrieved bet status', response);
             if (response.status === 200) {
               if (response.data.payload.length > 0) {
