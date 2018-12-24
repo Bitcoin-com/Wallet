@@ -137,7 +137,8 @@
 
         var opts = {
           skip: skip,
-          limit: limit
+          limit: limit,
+          includeExtendedInfo: true
         };
         wallet.getTxHistory(opts, function onTxHistory(err, txsFromServer) {
           if (err) {
