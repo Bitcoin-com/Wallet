@@ -1,6 +1,10 @@
 #tab-spend {
   #featured-end {
     margin-top: 16px;
+
+    &::after {
+      margin-bottom: 0;
+    }
   }
 
   #map {
@@ -55,6 +59,12 @@
       margin-top: 19px;
     }
 
+    .item {
+      h2 {
+        margin-top: 0;
+      }
+    }
+
     .merchant-showcase-container {
       margin-bottom: 8px;
       margin-top: 8px;
@@ -81,7 +91,7 @@
         width: 65%;
 
         p {
-          color: rgba(255, 255, 255, 0.8);
+          color: rgba(255, 255, 255, 0.75);
           font-size: 14px;
           line-height: normal;
           margin-bottom: 0;
@@ -96,11 +106,15 @@
 
         .subtitle {
           p {
-            color: rgba(0, 0, 0, 0.8);
+            color: rgba(0, 0, 0, 0.5);
           }
         }
       }
     }
+  }
+
+  .apl-card__subtitle.multiline {
+    height: auto;
   }
 
   #egifter {

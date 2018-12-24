@@ -15,15 +15,15 @@
     var vm = this;
 
     // Functions
-    vm.onAddABusiness = onAddABusiness;
+    vm.onStartAccepting = onStartAccepting;
     vm.onEGifter = onEGifter;
     vm.onMerchant = onMerchant;
-    vm.onToPurseIo = onPurseIo;
+    vm.onPurseIo = onPurseIo;
 
     // Variables
     vm.merchants = [];
 
-    var addABusinessLinks = {
+    var startAcceptingLinks = {
       en: 'https://bitcoincashers.org/en/intro/for-merchants/',
       es: 'https://bitcoincashers.org/es/intro/for-merchants/',
       fr: 'https://bitcoincashers.org/fr/intro/for-merchants/',
@@ -38,29 +38,10 @@
     
     $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
 
-    function onAddABusiness() {
-      var currentLanguageCode = uxLanguage.currentLanguage;
-      console.log('currentLanguageCode: ' + currentLanguageCode);
-      var url = addABusinessLinks[currentLanguageCode] || addABusinessLinks.en;
-      externalLinkService.open(url);
-    }
-
-    function onEGifter() {
-      externalLinkService.open('https://www.egifter.com/');
-    }
-
-    function onMerchant(index) {
-      var merchant = vm.merchants[index];
-      console.log('goToMerchant() ' + merchant.name);
-    }
-
-    function onPurseIo() {
-      externalLinkService.open('https://purse.io/?_r=bitcoinwallet');
-    }
-
     function _onBeforeEnter(event, data) {
 
       // Sample data
+      /*
       vm.merchants = [
         {
           description: 'Bits and bobs.',
@@ -71,7 +52,29 @@
           name: 'Eve\'s Emporium'
         }
       ];
+      */
+      
     }
+    
+    function onEGifter() {
+      externalLinkService.open('https://www.egifter.com/');
+    }
+
+    function onMerchant(index) {
+      var merchant = vm.merchants[index];
+    }
+
+    function onPurseIo() {
+      externalLinkService.open('https://purse.io/?_r=bitcoinwallet');
+    }
+
+    function onStartAccepting() {
+      var currentLanguageCode = uxLanguage.currentLanguage;
+      var url = startAcceptingLinks[currentLanguageCode] || startAcceptingLinks.en;
+      externalLinkService.open(url);
+    }
+
+    
   }
   
 })();
