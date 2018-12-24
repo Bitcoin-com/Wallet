@@ -14,7 +14,7 @@
           <img src="img/icon-tx-sent-outline.svg" ng-if="vm.btx.action === 'sent' && !vm.btx.isSatoshiDice">
           <img src="img/icon-tx-received-outline.svg" ng-if="vm.btx.action === 'received' && !vm.btx.isSatoshiDice">
           <img src="img/icon-tx-moved-outline.svg" ng-if="vm.btx.action === 'moved' && !vm.btx.isSatoshiDice">
-          <img class="satoshi-dice" ng-class="{'received': vm.btx.action == 'received'}" src="img/third-party/satoshi_dice.png" ng-if="vm.btx.isSatoshiDice">
+          <img class="satoshi-dice" ng-class="{'received': vm.btx.action == 'received'}" src="{{vm.getSatoshiDiceIconUrl()}}" ng-if="vm.btx.isSatoshiDice">
           <span ng-if="vm.btx.action === 'sent'">{{'Sent' | translate}}</span>
           <span ng-if="vm.btx.action === 'received'">{{'Received' | translate}}</span>
           <span ng-if="vm.btx.action === 'moved'">{{'Moved' | translate}}</span>

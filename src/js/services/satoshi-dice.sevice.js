@@ -123,13 +123,11 @@
        * @param {Object} tx 
        */
       function processTx(tx) {
-        console.log('sd processTx: "' + tx.action + '"', tx);
         var addressCount = 0;
         var addressToCheck = '';
         var isSatoshiDice = false;
 
         if (tx.action === 'received') {
-          console.log('sd Received tx:', tx);
 
           addressCount = tx.inputs.length;
           for (var i = 0; i < addressCount; i++) {

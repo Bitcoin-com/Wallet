@@ -144,9 +144,22 @@
             o.alternativeAmountStr = formatAlternativeStr(coin, o.amount);
             return total + o.amount;
           }, 0);
+        } else {
+          var myOutPuts = [];
+          tx.outputs.forEach(function forOutput(output){
+            console.log('output:', output);
+            if (output.isMine) {
+              myOutPuts.push(output);
+            }
+          });
+          tx.outputs = myOutPuts;
         }
+
+        if (!tx.toAddress && tx.outputs.length > 0) {
+          tx.toAddress = tx.outputs[0].address;
+        }
+
         satoshiDiceService.processTx(tx);
-        tx.toAddress = tx.outputs[0].toAddress;
       }
 
       tx.amountStr = formatAmountStr(coin, tx.amount);
