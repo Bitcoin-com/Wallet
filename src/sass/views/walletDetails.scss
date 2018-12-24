@@ -316,10 +316,10 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
 
   img.satoshi-dice {
     border-radius: 50%;
-    width: 38px;
-    border: 1px solid #BEBEBE;
+    width: 40px;
+    border: 2px solid #BEBEBE;
 
-    .received {
+    &.received {
       border-color:#09C286;
     }
   }

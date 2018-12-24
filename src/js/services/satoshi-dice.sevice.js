@@ -118,20 +118,39 @@
 
 
       /**
-       * Adds isSatoshiDice property
+       * Adds isSatoshiDice property to sent and received txs
        * 
        * @param {Object} tx 
        */
       function processTx(tx) {
+        console.log('sd processTx: "' + tx.action + '"', tx);
+        var addressCount = 0;
         var addressToCheck = '';
+        var isSatoshiDice = false;
 
         if (tx.action === 'received') {
           console.log('sd Received tx:', tx);
-          // TODO: Check tx inputs
+
+          addressCount = tx.inputs.length;
+          for (var i = 0; i < addressCount; i++) {
+            addressToCheck = tx.inputs[i].address;
+            isSatoshiDice = addressIsKnown(addressToCheck);
+            if (isSatoshiDice) {
+              break;
+            }
+          }
+          tx.isSatoshiDice = isSatoshiDice;
 
         } else if (tx.action === 'sent') {
-          addressToCheck = tx.outputs[0].address;
-          tx.isSatoshiDice = addressIsKnown(addressToCheck);
+          addressCount = tx.outputs.length;
+          for (var i = 0; i < addressCount; i++) {
+            addressToCheck = tx.outputs[i].address;
+            isSatoshiDice = addressIsKnown(addressToCheck);
+            if (isSatoshiDice) {
+              break;
+            }
+          }
+          tx.isSatoshiDice = isSatoshiDice;
         }
 
       }

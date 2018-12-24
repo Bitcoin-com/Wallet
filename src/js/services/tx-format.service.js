@@ -144,9 +144,8 @@
             o.alternativeAmountStr = formatAlternativeStr(coin, o.amount);
             return total + o.amount;
           }, 0);
-
-          satoshiDiceService.processTx(tx);
         }
+        satoshiDiceService.processTx(tx);
         tx.toAddress = tx.outputs[0].toAddress;
       }
 
