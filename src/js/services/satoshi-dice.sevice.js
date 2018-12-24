@@ -13,14 +13,16 @@
       , $q
     ) { 
       var service = {     
-        // Public variables     
+        // Public variables 
+        iconUrl: 'img/third-party/satoshi_dice.png',    
  
         // Public functions
         addressIsKnown: addressIsKnown,
-        getBetStatus: getBetStatus
+        getBetStatus: getBetStatus,
+        processTx: processTx
       };
 
-      var STATUS_CHECK_INTERVAL = 1000; // The request sometimes takes 1.15s
+      var STATUS_CHECK_INTERVAL = 2000; // The request sometimes takes 1.15s
       var STATUS_CHECKS_MAX = 30;
       var addresses = [
         '1Dice9GgmweQWxqdiu683E7bHfpb7MUXGd', //    1.05x
@@ -114,6 +116,25 @@
             _tryAgain();
           }
         );
+      }
+
+
+      /**
+       * 
+       * @param {Object} tx 
+       */
+      function processTx(tx) {
+        var addressToCheck = '';
+
+        if (tx.action === 'received') {
+          console.log('sd Received tx:', tx);
+          // TODO: Check tx inputs
+
+        } else if (tx.action === 'sent') {
+          addressToCheck = tx.outputs[0].address;
+          tx.isSatoshiDice = addressIsKnown(addressToCheck);
+        }
+
       }
     }
 })();

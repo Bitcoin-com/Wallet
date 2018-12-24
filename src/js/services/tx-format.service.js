@@ -145,10 +145,7 @@
             return total + o.amount;
           }, 0);
 
-          var addressToCheck = tx.outputs[0].address;
-          console.log('sd Checking address: ' + addressToCheck);
-          tx.isSatoshiDice = satoshiDiceService.addressIsKnown(addressToCheck);
-
+          satoshiDiceService.processTx(tx);
         }
         tx.toAddress = tx.outputs[0].toAddress;
       }
