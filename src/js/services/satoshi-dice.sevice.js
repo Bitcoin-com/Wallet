@@ -84,7 +84,6 @@
       }
 
       function _getBetStatus(txid, deferred, totalIterations) {
-        console.log('_getBetStatus(), totalIterations: ' + totalIterations);
 
         function _tryAgain() {
           if (totalIterations >= STATUS_CHECKS_MAX) {
@@ -119,6 +118,7 @@
 
 
       /**
+       * Adds isSatoshiDice property
        * 
        * @param {Object} tx 
        */
