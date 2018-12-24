@@ -75,7 +75,7 @@
        *   "seedPublishTimestamp":"Dec 19, 2018 12:00:00 AM",
        *   "seedPublishTimestampUnix":1545177600000
        * }
-       * @param {*} txid 
+       * @param {string} txid 
        */
       function getBetStatus(txid) {
         var deferred = $q.defer();
