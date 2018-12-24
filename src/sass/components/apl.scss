@@ -542,6 +542,11 @@
           border-radius: 23px;
           width: $button-right-width + px;
           text-align: center;
+          
+        }
+
+        a.button-right {
+          text-decoration: none;
         }
       }
     }
