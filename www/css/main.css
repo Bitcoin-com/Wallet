@@ -11591,14 +11591,6 @@ qrcode {
 .settings .alt-currency-radio .radio-icon {
   display: none; }
 
-.item-radio input:checked + .radio-content .item-content {
-  background: #eeb640; }
-  .item-radio input:checked + .radio-content .item-content, .item-radio input:checked + .radio-content .item-content .item-note {
-    color: #fff; }
-
-.item-radio .radio-icon {
-  display: none; }
-
 #tab-settings .list .item .big-icon-svg > .bg {
   width: 20px;
   height: 20px;
@@ -15617,6 +15609,14 @@ log-options #check-bar .checkbox-icon {
 
 .item .item-content + .item-content {
   padding-top: 0; }
+
+.item-radio input:checked + .radio-content .item-content {
+  background: #eeb640; }
+  .item-radio input:checked + .radio-content .item-content, .item-radio input:checked + .radio-content .item-content .item-note {
+    color: #fff; }
+
+.item-radio .radio-icon {
+  display: none; }
 
 /*
 * Extends Ionic v1 ion-content
