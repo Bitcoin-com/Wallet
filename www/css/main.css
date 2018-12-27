@@ -15630,6 +15630,9 @@ ion-content.padded-bottom-cta {
 ion-content.padded-bottom-cta-with-summary {
   bottom: 134px; }
 
+ion-content.scroll-content {
+  margin-top: -2px; }
+
 .card.card-gutter-compact {
   margin: 10px 12px; }
 
