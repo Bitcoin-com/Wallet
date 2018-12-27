@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>wallet</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wallet" fill="#FF8209">
+            <path d="M0,5.03369551 L19.5,5.03369551 C20.3284271,5.03369551 21,5.70526838 21,6.53369551 L21,18.5336955 C21,19.3621226 20.3284271,20.0336955 19.5,20.0336955 L1.5,20.0336955 C0.671572875,20.0336955 1.01453063e-16,19.3621226 0,18.5336955 L0,5.03369551 Z M18,1.0002398 L18,3.48252495 L3,3.53369551 L16.7532077,0.031171395 C17.2884094,-0.105128216 17.8327688,0.218245821 17.9690684,0.753447522 C17.9896091,0.834103831 18,0.91700903 18,1.0002398 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
