@@ -5,11 +5,9 @@
 
 <div ng-disabled="wallet" class="slide-success-content" ng-class="{'did-lose': didLose, 'did-win': didWin, reveal: fillScreen}">
 
-  <div class="slide-success-image-container">
-    <img src="img/icon-sent-successful.svg" ng-if="!(didWin || didLose)">
-    <img src="img/icon-sent-nothing.svg" ng-if="didLose">
-    <img src="img/icon-sent-received.svg" ng-if="didWin">
-  </div>
+  <img class="slide-success-status" src="img/icon-sent-successful.svg" ng-if="!(didWin || didLose)"/>
+  <img class="slide-success-status" src="img/icon-sent-nothing.svg" ng-if="didLose"/>
+  <img class="slide-success-status" src="img/icon-sent-received.svg" ng-if="didWin"/>
 
   <div class="slide-success-status-text">
     <ng-transclude ng-if="!destinationIsAGame"></ng-transclude>
@@ -39,7 +37,7 @@
   </div>
 
   <div class="slide-success-content-share" ng-show="hasShareFunction && !(destinationIsAGame && (!didLose && !didWin))" ng-click="onShareButtonClick()">
-    <span><img class="slide-success-share-icon" src="img/icon-share-white.svg"></span><span translate>Share this transaction</span>
+    <span><img class="slide-success-share-icon" src="img/icon-share-white.svg"/></span><span translate>Share this transaction</span>
   </div>
 </div>
 
