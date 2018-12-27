@@ -11591,6 +11591,14 @@ qrcode {
 .settings .alt-currency-radio .radio-icon {
   display: none; }
 
+.item-radio input:checked + .radio-content .item-content {
+  background: #eeb640; }
+  .item-radio input:checked + .radio-content .item-content, .item-radio input:checked + .radio-content .item-content .item-note {
+    color: #fff; }
+
+.item-radio .radio-icon {
+  display: none; }
+
 #tab-settings .list .item .big-icon-svg > .bg {
   width: 20px;
   height: 20px;
@@ -13688,6 +13696,13 @@ action-sheet .bp-action-sheet__backdrop {
   #tab-buy-bitcoin small a:link {
     text-decoration: underline; }
 
+#tab-buy-bitcoin .terms {
+  padding: 16px 0; }
+
+#buy-bitcoin-receipt .purchased {
+  color: #000;
+  font-weight: bold; }
+
 #buy-bitcoin-success .apl-close-button {
   color: #FF9B00;
   font-weight: bold; }
@@ -13706,15 +13721,24 @@ action-sheet .bp-action-sheet__backdrop {
   padding: 0px;
   height: 40px; }
 
-#buy-bitcoin-success p#message {
+#buy-bitcoin-success p.message {
   font-size: 20px;
-  font-weight: bold;
   margin: 0px 20px 8px 20px; }
 
 #buy-bitcoin-success #amount-container {
-  font-size: 40px;
   font-weight: bold;
+  font-size: 40px;
   margin: 20px 20px; }
+
+#buy-bitcoin-success .crypto-amount {
+  font-size: 2.5rem; }
+  @media (max-width: 340px) {
+    #buy-bitcoin-success .crypto-amount {
+      font-size: 2rem; } }
+
+#buy-bitcoin-success .fiat-amount {
+  font-weight: normal;
+  font-size: 1.5rem; }
 
 #buy-bitcoin-welcome {
   align-items: stretch;
@@ -15307,6 +15331,16 @@ account-selector {
     #custom-amount .address .amount-alternative {
       line-height: 36px; }
 
+#custom-amount .payment-result {
+  margin-bottom: 1em; }
+
+#custom-amount .payment-received-amount {
+  font-size: 1.8em;
+  margin: 20px auto; }
+
+#custom-amount .wrong {
+  color: #bb331a; }
+
 #pin {
   background-color: #FAFAFA;
   width: 100%;
@@ -15761,6 +15795,21 @@ ion-content.padded-bottom-cta-with-summary {
     padding: 0 16px;
     text-align: left;
     margin-top: 22px; }
+  .apl h3 {
+    width: 172px;
+    height: 18px;
+    color: #787878;
+    font-family: ProximaNova;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: -0.08px;
+    line-height: 18px;
+    margin: 16px 0 0 16px; }
+  .apl p {
+    margin-left: 16px;
+    margin-right: 16px; }
   .apl-amount {
     padding: 0 16px; }
     .apl-amount-title {
@@ -15799,7 +15848,16 @@ ion-content.padded-bottom-cta-with-summary {
       width: 100%; }
     .apl-amount-totals {
       margin-top: 14px;
-      padding: 0 16px; }
+      padding: 0 16px;
+      /*
+      &-title {
+        display: inline-block;
+      }
+      &-price {
+        //float: right;
+        text-align: right;
+      }
+      */ }
       .apl-amount-totals-item {
         clear: both;
         margin: 4px 0;
@@ -15811,11 +15869,6 @@ ion-content.padded-bottom-cta-with-summary {
         text-align: left; }
         .apl-amount-totals-item.total {
           color: #000; }
-      .apl-amount-totals-title {
-        display: inline-block; }
-      .apl-amount-totals-price {
-        float: right;
-        text-align: right; }
     .apl-amount-switcher {
       margin-top: 12px;
       min-height: 100px;
@@ -15879,8 +15932,6 @@ ion-content.padded-bottom-cta-with-summary {
       caret-color: #FF9B00; }
       .apl-field input::placeholder {
         color: #D8D8D8; }
-    .apl-field .validation-error {
-      color: #b7664d; }
   .apl-icon {
     background: #FA5B5B;
     border-radius: 10px 10px 10px 10px;
@@ -15900,6 +15951,9 @@ ion-content.padded-bottom-cta-with-summary {
       padding-left: 72px; }
     .apl .item.activated {
       background: #F2F2F2; }
+    .apl .item p {
+      margin-left: 0;
+      margin-right: 0; }
   .apl-card {
     background: #FFFFFF;
     border-radius: 9px 9px 9px 9px;
@@ -15948,7 +16002,9 @@ ion-content.padded-bottom-cta-with-summary {
     text-transform: uppercase;
     letter-spacing: -0.08px;
     line-height: 18px;
-    margin: 18px 0 -12px 16px; }
+    margin: 18px 0 0 16px; }
+  .apl-list-item .validation-error {
+    color: #b7664d; }
   .apl-list .item {
     border: 0;
     padding-left: 18px; }
@@ -16094,6 +16150,14 @@ ion-content.padded-bottom-cta-with-summary {
       display: inline-block; }
   .apl small {
     color: rgba(0, 0, 0, 0.32); }
+  .apl .keyboard-bottom-space {
+    height: 44px; }
+  .apl .apl-amount-totals table {
+    width: 100%; }
+    .apl .apl-amount-totals table td {
+      padding: 2px 0; }
+  .apl .apl-amount-totals .apl-amount-totals-price {
+    text-align: right; }
 
 .apl.terms .heading {
   font-weight: bold;
