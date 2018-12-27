@@ -147,7 +147,6 @@
         } else {
           var myOutPuts = [];
           tx.outputs.forEach(function forOutput(output){
-            console.log('output:', output);
             if (output.isMine) {
               myOutPuts.push(output);
             }
