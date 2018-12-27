@@ -224,7 +224,6 @@ angular
 
       ongoingProcess.set('creatingTx', true, statusChangeHandler);
       getTxp(lodash.clone(tx), vm.originWallet, false, function onGetTxp(err, txp) {
-        console.log('sd onGetTxp()', txp);
         ongoingProcess.set('creatingTx', false, statusChangeHandler);
         if (err) return;
 
@@ -238,7 +237,6 @@ angular
         };
 
         function publishAndSign() {
-          console.log('sd publishAndSign()', txp);
           if (!vm.originWallet.canSign() && !vm.originWallet.isPrivKeyExternal()) {
             $log.info('No signing proposal: No private key');
 
@@ -247,16 +245,13 @@ angular
             }, statusChangeHandler);
           }
 
-          console.log('sd calling walletService.publishAndSign()...', txp);
           walletService.publishAndSign(vm.originWallet, txp, function onPublishAndSign(err, txp) {
-            console.log('sd walletService.publishAndSign() returned error:', err);
             if (err) return setSendError(err);
-            console.log('sd walletService.publishAndSign() returned without error.');
+
             if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
               txConfirmNotification.subscribe(vm.originWallet, {
                 txid: txp.txid
               });
-              console.log('sd txp.id: ', txp.txid);
             }
             lastTxId = txp.txid;
             _onTransactionCompletedSuccessfully();
@@ -570,7 +565,6 @@ angular
     }
 
     function _handleSatoshiDiceIntegrationAfterSending() {
-      console.log('sd _handleSatoshiDiceIntegrationAfterSending()');
       if (!(vm.destinationIsAGame && lastTxId)) {
         return;
       }
@@ -578,11 +572,9 @@ angular
       satoshiDiceService.getBetStatus(lastTxId).then(
         function onBetStatusSuccess(payload) {
           if (payload.win) {
-            console.log('WIN :-)');
             vm.didWin = true;
             vm.amountWon = payload.payout;
           } else {
-            console.log('LOSE :-(');
             vm.didLose = true;
           }
         },
@@ -604,9 +596,7 @@ angular
           address = 'bitcoincash:' + address;
         }
         var legacyAddress = bitcoinCashJsService.readAddress(address).legacy;
-        console.log('sd checking address: "' + legacyAddress + '"');
         if (satoshiDiceService.addressIsKnown(legacyAddress)) {
-          console.log("sd address is known.");
           vm.destinationIsAGame = true;
         }
       }
@@ -669,23 +659,7 @@ angular
     }
 
     function onReplay() {
-      console.log('onReplay()');
       onBeforeEnter();
-      /*
-      //sendFlowService.goHereAgain();
-      var amount = sendFlowData.amount;
-      sendFlowService.router.goBack();
-      //var newState = sendFlowService.state.getClone();
-      //newState.amount = amount;
-      //sendFlowService.goNext(newState);
-
-      $timeout(function onTimeout() {
-        var newState = sendFlowService.state.getClone();
-        newState.amount = amount;
-        sendFlowService.goNext(newState);
-      });
-      */
-
     }
 
     function onShareTransaction() {
@@ -704,7 +678,6 @@ angular
     }
 
     function _onTransactionCompletedSuccessfully() {
-      console.log('_onTransactionCompletedSuccessfully()');
       var channel = "firebase";
         if (platformInfo.isNW) {
           channel = "ga";
@@ -938,9 +911,6 @@ angular
         ) && !isOn) {
         // Show the popup
         vm.sendStatus = 'success';
-        console.log('sd success popup displayed.');
-
-        
 
         if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
           soundService.play('misc/payment_sent.mp3');

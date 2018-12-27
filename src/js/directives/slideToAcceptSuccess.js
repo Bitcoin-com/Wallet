@@ -28,7 +28,6 @@ angular.module('copayApp.directives')
 
         scope.$watch('isShown', function() {
           if (scope.isShown) {
-            console.log('sd destinationAddress:"' + scope.destinationAddress + '"');
             elm.style.display = 'flex';
             $timeout(function() {
               scope.fillScreen = true;

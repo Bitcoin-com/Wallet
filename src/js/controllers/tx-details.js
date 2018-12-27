@@ -184,8 +184,6 @@
           return popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Transaction not available at this time'));
         }
 
-        console.log('sd tx from history:', tx)
-
         vm.btx = txFormatService.processTx($scope.wallet.coin, tx);
         vm.addressDisplayType = 'legacy';
 
@@ -243,9 +241,6 @@
 
           });
         });
-      },
-      {
-        includeExtendedInfo: true
       });
     };
 
@@ -284,7 +279,6 @@
 
     var getFiatRate = function() {
       vm.alternativeIsoCode = $scope.wallet.status.alternativeIsoCode;
-      console.log('');
       $scope.wallet.getFiatRate({
         code: vm.alternativeIsoCode,
         ts: vm.btx.time * 1000
