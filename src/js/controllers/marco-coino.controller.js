@@ -7,51 +7,33 @@
     .controller('marcoCoinoController', marcoCoinoController);
     
   function marcoCoinoController(
-    externalLinkService
+    $log
     , $scope
+    , $sce
     ) {
     
+    var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
     var vm = this;
 
-    // Functions
-    vm.goToEGifter = goToEGifter;
-    vm.goToMerchant = goToMerchant;
-    vm.goToPurseIo = goToPurseIo;
-
-    // Variables
-    vm.merchants = [];
-
-
-    
-
-    $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
-
-    function goToEGifter() {
-      externalLinkService.open('https://www.egifter.com/');
-    }
-
-    function goToMerchant(index) {
-      var merchant = vm.merchants[index];
-      console.log('goToMerchant() ' + merchant.name);
-    }
-
-    function goToPurseIo() {
-      externalLinkService.open('https://purse.io/?_r=bitcoinwallet');
-    }
+    // Defaults to Tokyo
+    vm.marcocoinoUrl = $sce.trustAs($sce.RESOURCE_URL, MARCO_COINO_BASE_URL + '&lat=35.652832&long=139.839478');
+  
+    $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
     function _onBeforeEnter(event, data) {
-
-      // Sample data
-      vm.merchants = [
-        {
-          description: 'Bits and bobs.',
-          name: 'Bob\'s Boutique'
+      
+      navigator.geolocation.getCurrentPosition(
+        function onGetCurrentPositionSuccess(position) {
+          var latitude = position.coords.latitude;
+          var longitude = position.coords.longitude;
+          vm.marcocoinoUrl = $sce.trustAs($sce.RESOURCE_URL, MARCO_COINO_BASE_URL + '&lat=' + latitude + '&long=' + longitude);
         },
-        {
-          description: 'Everything eclectic.',
-          name: 'Eve\'s Emporium'
+        function onGetCurrentPositionError(error) {
+          $log.error('Failed to get position. ', error);
         }
-      ];
+      );
+      
+ 
     }
   }
   
