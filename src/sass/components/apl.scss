@@ -277,6 +277,10 @@
       text-align: left;
       letter-spacing: -0.2px;
 
+      &.multiline {
+        height: auto;
+      }
+
       & .right {
         float: right;
       }
