@@ -1,5 +1,5 @@
 <ion-view id="marco-coino" class="apl light" show-tabs>
-  <ion-nav-bar class="bar-dark">
+  <ion-nav-bar class="bar-royal">
     <ion-nav-title>{{'Marco Coino' | translate}}</ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -12,7 +12,7 @@
         <div class="apl-list">
           <div class="item apl-list-item item-button-right">
             <div class="button-right-container">
-              <a href="mailto:brendon@bitcoin.com?subject=Add Merchant" class="button-right" translate>Add</a>
+              <a ng-click="vm.addMerchant()" class="button-right" translate>Add</a>
             </div>
             <div class="apl-card__title__container">
               <div class="apl-card__title" translate>Add a Business</div>
