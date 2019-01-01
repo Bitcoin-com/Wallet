@@ -1,5 +1,6 @@
 /*
  * Copay Distribution SCSS overrides
+ * /img -> /src/img/app
  */
 
 /* Colors */
@@ -73,3 +74,4 @@ $v-tab-receive-selected-icon:                        url('../img/app/tab-icons/i
 $v-tab-settings-selected-icon:                       url('../img/app/tab-icons/ico-settings-selected.svg');
 $v-tab-scan-selected-icon:                           url('../img/app/tab-icons/ico-scan-selected.svg');
 $v-tab-send-selected-icon:                           url('../img/app/tab-icons/ico-send-selected.svg');
+$v-tab-spend-selected-icon:                          url('../img/app/tab-icons/ico-spend-selected.svg');

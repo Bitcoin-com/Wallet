@@ -1,0 +1,64 @@
+<ion-view id="tab-spend" class="apl light" show-tabs>
+  <ion-nav-bar class="bar-dark">
+    <ion-nav-title>{{'Spend' | translate}}</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content>
+    <div id="top-limit"></div>
+    <div id="map">
+      <div id="map-icon-background">
+      </div>
+      <div>
+        <h1 translate>Shop Nearby</h1>
+        <p translate>Find businesses in your area that accept Bitcoin Cash</p>
+      </div>
+    </div>
+    <h1>Featured Businesses</h1>
+    <div class="merchant-showcase-container">
+      <div id="purse-io" class="merchant-showcase" ng-click="vm.onPurseIo()">
+        <h1>Purse.io</h1>
+        <div class="subtitle">
+          <p translate>Get up to 30% off Amazon when you pay with Bitcoin Cash</p>
+        </div>
+      </div>
+    </div>
+    <div class="merchant-showcase-container">
+      <div id="egifter" class="merchant-showcase light"  ng-click="vm.onEGifter()">
+        <h1>eGifter</h1>
+        <div class="subtitle">
+          <p translate>Digital giftcards from some of the biggest brand names</p>
+        </div>
+      </div>
+    </div>
+    <div id="featured-end" class="apl-divider"></div>
+    <div class="apl-list">
+
+      <div class="item apl-list-item item-button-right">
+        <div class="button-right-container">
+          <div class="button-right" ng-click="vm.onStartAccepting()">More</div>
+        </div>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" translate>Are you a business owner?</div>
+          <div class="apl-card__subtitle multiline">
+            Start accepting payments easily with Bitcoin Cash today. We can show you how.
+          </div>
+        </div>
+      </div>       
+      
+    </div>
+    <h1 ng-if="vm.merchants.length &gt; 0">Buy with Bitcoin Cash</h1>
+    <div id="merchants" class="apl-list">
+      <div ng-repeat="merchant in vm.merchants track by $index">
+        <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.onMerchant($index)" >
+          <i class="icon big-icon-svg ion-android-cart"></i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              {{merchant.name}}
+            </div>
+            <div class="apl-card__subtitle">
+              {{merchant.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

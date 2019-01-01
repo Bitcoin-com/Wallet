@@ -1,54 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="Home"
-   x="0px"
-   y="0px"
-   viewBox="0 0 26.441246 23.999983"
-   xml:space="preserve"
-   sodipodi:docname="ico-home.svg"
-   inkscape:version="0.92.1 r15371"
-   width="26.441246"
-   height="23.999983"><metadata
-     id="metadata5945"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
-     id="defs5943" /><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1015"
-     id="namedview5941"
-     showgrid="false"
-     inkscape:zoom="33.04169"
-     inkscape:cx="13.220621"
-     inkscape:cy="11.999991"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="Home"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" /><style
-     type="text/css"
-     id="style5936">
-	.st0{fill:#343434;}
-</style><path
-     style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1"
-     d="M 13.093671,0.49998273 0.4999207,11.947249 H 3.644452 v 11.552734 h 3.7617187 v -9.326172 h 4.9375003 v 9.326172 h 10.296874 l 0.05859,-11.552734 h 3.242188 L 20.12492,6.7656078 V 2.300764 H 17.400311 V 4.3378734 Z M 15.158123,14.173811 h 4.029297 v 4.541016 h -4.029297 z"
-     id="path4483"
-     inkscape:connector-curvature="0" /></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="21px" height="21px" viewBox="0 0 21 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>wallet</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="wallet" fill="#000000">
+            <path d="M0,5.03369551 L19.5,5.03369551 C20.3284271,5.03369551 21,5.70526838 21,6.53369551 L21,18.5336955 C21,19.3621226 20.3284271,20.0336955 19.5,20.0336955 L1.5,20.0336955 C0.671572875,20.0336955 1.01453063e-16,19.3621226 0,18.5336955 L0,5.03369551 Z M18,1.0002398 L18,3.48252495 L3,3.53369551 L16.7532077,0.031171395 C17.2884094,-0.105128216 17.8327688,0.218245821 17.9690684,0.753447522 C17.9896091,0.834103831 18,0.91700903 18,1.0002398 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
