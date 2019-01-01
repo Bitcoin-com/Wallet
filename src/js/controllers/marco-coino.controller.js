@@ -15,6 +15,9 @@
     var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
     var vm = this;
 
+    // Functions
+    vm.addMerchant = addMerchant;
+
     // Defaults to Tokyo
     vm.marcocoinoUrl = $sce.trustAs($sce.RESOURCE_URL, MARCO_COINO_BASE_URL + '&lat=35.652832&long=139.839478');
   
@@ -32,8 +35,19 @@
           $log.error('Failed to get position. ', error);
         }
       );
-      
- 
+    }
+
+    function addMerchant() {
+      window.plugins.socialsharing.shareViaEmail(
+        'Hi,<br><br>I would like to add a new merchant with the following details:<br><br>- name: <br>- address: <br>- phone: <br>- website url: <br>- category: ', // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
+        'Add Merchant',
+        ['brendon@bitcoin.com'], // TO: must be null or an array
+        ['wallet@bitcoin.com'], // CC: must be null or an array
+        null, // BCC: must be null or an array
+        null, // FILES: can be null, a string, or an array
+        function() {},
+        function() {}
+      );
     }
   }
   
