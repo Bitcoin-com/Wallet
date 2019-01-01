@@ -113,6 +113,6 @@ function copyDir(from, to) {
 fs.copySync(configDir + '/GoogleService-Info.plist', '../GoogleService-Info.plist');
 fs.copySync(configDir + '/google-services.json', '../google-services.json');
 
-copyDir(configDir + '/img', '../www/img');
-copyDir(configDir + '/sass', '../src/sass');
+copyDir(configDir + '/img', '../www/img/app');
+copyDir(configDir + '/sass', '../src/sass/app');
 console.log("apply.js finished. \n\n");
