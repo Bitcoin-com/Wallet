@@ -1146,6 +1146,22 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
       /*
        *
+       * Spend
+       *
+       */
+      .state('tabs.spend.marcoCoino', {
+        url: '/spend/marcocoino',
+        views: {
+          'tab-spend@tabs': {
+            controller: 'marcoCoinoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/marco-coino.html',
+          }
+        }
+      })
+
+      /*
+       *
        * Mercado Libre Gift Card
        *
        */
