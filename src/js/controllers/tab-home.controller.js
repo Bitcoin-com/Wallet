@@ -33,12 +33,14 @@ angular
     , appConfigService
     , startupService
     , addressbookService
-    , bwcError, nextStepsService
+    , bwcError
+    , nextStepsService
     , buyAndSellService
     , homeIntegrationsService
     , bitpayCardService
     , timeService
     , $ionicNavBarDelegate
+    , bitcoincomService
     ) {
 
     var wallet;
@@ -59,7 +61,8 @@ angular
     $scope.bannerUrl = '';
 
     $scope.vm = {
-      openSettings: openSettings
+      openSettings: openSettings,
+      openWallet: openWallet
     };
 
     // Functions
@@ -221,7 +224,7 @@ angular
       }
     };
 
-    $scope.openWallet = function(wallet) {
+    function openWallet(wallet) {
       if (!wallet.isComplete()) {
         return $state.go('tabs.copayers', {
           walletId: wallet.credentials.walletId
@@ -233,7 +236,7 @@ angular
       });
     };
 
-    var updateTxps = function() {
+    function updateTxps() {
       profileService.getTxps({
         limit: 3
       }, function onGetTxps(err, txps, n) {
@@ -247,7 +250,7 @@ angular
       })
     };
 
-    var updateAllWallets = function(cb) {
+    function updateAllWallets(cb) {
       var wallets = [];
       $scope.walletsBtc = profileService.getWallets({coin: 'btc'});
       $scope.walletsBch = profileService.getWallets({coin: 'bch'});
@@ -291,7 +294,7 @@ angular
       });
     };
 
-    var updateWallet = function(wallet) {
+    function updateWallet(wallet) {
       $log.debug('Updating wallet:' + wallet.name)
       walletService.getStatus(wallet, {}, function onGetStatus(err, status) {
         if (err) {
@@ -303,7 +306,7 @@ angular
       });
     };
 
-    var getNotifications = function() {
+    function getNotifications() {
       profileService.getNotifications({
         limit: 3
       }, function onGetNotifications(err, notifications, total) {
