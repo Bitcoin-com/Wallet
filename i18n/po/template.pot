@@ -4276,5 +4276,5 @@ msgstr ""
 msgid "E-mail not detected"
 msgstr ""
 
-msgid "In order to add a new merchant, please send an email with all the info to addmerchant@bitcoin.com."
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
 msgstr ""
