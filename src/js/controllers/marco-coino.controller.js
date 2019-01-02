@@ -49,7 +49,7 @@
         null, // FILES: can be null, a string, or an array
         function() {},
         function(error) { // If error, popup a message to set the email
-          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Email account is not available. Please set up an email account and try again.'));
+          popupService.showAlert(gettextCatalog.getString('E-mail not detected'), gettextCatalog.getString('In order to add a new merchant, please send an email with all the info to addmerchant@bitcoin.com.'));
         }
       );
     }
