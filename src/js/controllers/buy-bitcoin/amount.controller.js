@@ -284,7 +284,7 @@
           var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
           // Override to testnet address for testing
-          toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+          // toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
 
           var transaction = {
             baseCurrencyAmount: amountBch
