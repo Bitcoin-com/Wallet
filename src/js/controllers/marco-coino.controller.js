@@ -40,14 +40,20 @@
     }
 
     function addMerchant() {
-      window.plugins.socialsharing.shareViaEmail(
-        'Hi,<br><br>I would like to add a new merchant with the following details:<br><br>- name: <br>- address: <br>- phone: <br>- website url: <br>- category: ', // can contain HTML tags, but support on Android is rather limited:  http://stackoverflow.com/questions/15136480/how-to-send-html-content-with-image-through-android-default-email-client
-        'Add Merchant',
-        ['addbusiness@bitcoin.com'], // TO: must be null or an array
-        null, // BCC: must be null or an array
-        null, // FILES: can be null, a string, or an array
-        function() {},
-        function(error) { // If error, popup a message to set the email
+      var socialsharing = window.plugins.socialsharing;
+      socialsharing.canShareViaEmail(
+        function onCanShareViaEmailSuccess() {
+          socialsharing.shareViaEmail(
+            'Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin as payment to the map in your Wallet App:<br><br>- Name of the business:<br><br>- City/Town: <br>- Type of Business: <br>- Other information that could help locate the business: ',
+            'Add Merchant',
+            ['addbusiness@bitcoin.com'], // TO: must be null or an array
+            null, // CC: must be null or an array
+            null, // BCC: must be null or an array
+            null, // FILES: can be null, a string, or an array
+            function() {},
+            function() {}
+          );
+        }, function onCanShareViaEmailError() {
           popupService.showAlert(gettextCatalog.getString('E-mail not detected'), gettextCatalog.getString('In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com.'));
         }
       );
