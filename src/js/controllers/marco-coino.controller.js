@@ -10,6 +10,8 @@
     $log
     , $scope
     , $sce
+    , popupService
+    , gettextCatalog
     ) {
     
     var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
@@ -46,7 +48,9 @@
         null, // BCC: must be null or an array
         null, // FILES: can be null, a string, or an array
         function() {},
-        function() {}
+        function(error) { // If error, popup a message to set the email
+          popupService.showAlert(gettextCatalog.getString('E-mail not detected'), gettextCatalog.getString('In order to add a new merchant, please send an email with all the info to addmerchant@bitcoin.com.'));
+        }
       );
     }
   }
