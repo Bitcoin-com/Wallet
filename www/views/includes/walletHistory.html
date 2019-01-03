@@ -55,7 +55,10 @@
 
     <div class="wallet-details__tx-title" ng-if="isUnconfirmed(btx)">
       <div ng-if="wallet.coin == 'bch'" class="ellipsis">
-        <span ng-if="btx.action == 'sent' || btx.action == 'moved'">
+        <span ng-if="btx.action == 'moved'">
+          {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Moved'|translate}}
+        </span>
+        <span ng-if="btx.action == 'sent'">
           {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Sent'|translate}}
         </span>
         <div ng-if="btx.note.body" class="wallet-details__tx-message ellipsis">{{btx.note.body}}</div>
@@ -63,7 +66,10 @@
       </div>
 
       <div ng-if="wallet.coin != 'bch'" class="ellipsis" style="color: #B4B4B4;">
-        <span ng-if="btx.action == 'sent' || btx.action == 'moved'">
+        <span ng-if="btx.action == 'moved'">
+          {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Moving'|translate}}
+        </span>
+        <span ng-if="btx.action == 'sent'">
           {{addressbook[btx.addressTo].name || addressbook[btx.addressTo] || 'Sending'|translate}}
         </span>
         <div ng-if="btx.note.body" class="wallet-details__tx-message ellipsis">{{btx.note.body}}</div>
