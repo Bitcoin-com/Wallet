@@ -14,4 +14,8 @@ ion-content {
   &.padded-bottom-cta-with-summary {
     bottom: 134px;
   }
+
+  &.scroll-content {
+    margin-top: -2px;
+  }
 }

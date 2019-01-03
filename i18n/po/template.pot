@@ -4234,14 +4234,47 @@ msgstr ""
 msgid "Success!"
 msgstr ""
 
-
 msgid "Your purchase has been processed."
 msgstr ""
-
 
 msgid "See Receipt"
 msgstr ""
 
-
 msgid "Make Another Purchase"
+msgstr ""
+
+msgid "Spend"
+msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr ""
+
+msgid "Add a Business"
+msgstr ""
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr ""
+
+msgid "Buy with Bitcoin Cash"
+msgstr ""
+
+msgid "Are you a business owner?"
+msgstr ""
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
 msgstr ""

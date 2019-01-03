@@ -225,3 +225,10 @@
     margin-top: 4px;
   }
 }
+
+.button-settings {
+  &, &:active {
+    background: transparent !important;
+    border: transparent !important;
+  }
+}
