@@ -139,20 +139,15 @@
             tx.recipientCount = outputsNr;
             tx.hasMultiplesOutputs = true;
           }
-          tx.amount = lodash.reduce(tx.outputs, function(total, o) {
-            o.amountStr = formatAmountStr(coin, o.amount);
-            o.alternativeAmountStr = formatAlternativeStr(coin, o.amount);
-            return total + o.amount;
-          }, 0);
+          tx.outputs = tx.outputs.filter(function filterOutput(output){ return !output.isMine; });
         } else {
-          var myOutPuts = [];
-          tx.outputs.forEach(function forOutput(output){
-            if (output.isMine) {
-              myOutPuts.push(output);
-            }
-          });
-          tx.outputs = myOutPuts;
+          tx.outputs = tx.outputs.filter(function filterOutput(output){ return output.isMine; });
         }
+
+        lodash.forEach(tx.outputs, function forEachOutput(output) {
+          output.amountStr = formatAmountStr(coin, output.amount);
+          output.alternativeAmountStr = formatAlternativeStr(coin, output.amount);
+        });
 
         if (!tx.toAddress && tx.outputs.length > 0) {
           tx.toAddress = tx.outputs[0].address;
