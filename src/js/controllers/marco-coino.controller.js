@@ -27,14 +27,17 @@
 
     function _onBeforeEnter(event, data) {
       
+      console.log('Getting current position...');
       navigator.geolocation.getCurrentPosition(
         function onGetCurrentPositionSuccess(position) {
+          console.log('Got position successfully.');
+
           var latitude = position.coords.latitude;
           var longitude = position.coords.longitude;
           vm.marcocoinoUrl = $sce.trustAs($sce.RESOURCE_URL, MARCO_COINO_BASE_URL + '&lat=' + latitude + '&long=' + longitude);
         },
         function onGetCurrentPositionError(error) {
-          $log.error('Failed to get position. ', error);
+          $log.error('Failed to get position.', error);
         }
       );
     }
