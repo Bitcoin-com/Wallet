@@ -5,7 +5,7 @@
     function getAddress(alias) {
       let aliasData = validateAlias(alias);
       if (aliasData.username === '' || aliasData.domain === '') {
-        return $q(function(resolve, reject) {
+        return $q(function onQ(resolve, reject) {
           return reject('Invalid OpenCAP alias');
         });
       }
@@ -13,14 +13,14 @@
       let deferred = $q.defer();
       $http
         .get(`https://dns.google.com/resolve?name=_opencap._tcp.${aliasData.domain}&type=SRV`)
-        .then(function(response) {
+        .then(function onThen(response) {
           deferred.resolve(
             parseSRV(response.data)
-              .then(function(data){ 
+              .then(function onThen(data){ 
                 return getAddresses(alias, data.host, data.dnssec) 
               })
-              .catch(function(error) {
-                return $q(function(resolve, reject) {
+              .catch(function onCatch(error) {
+                return $q(function onQ(resolve, reject) {
                   return reject(error);
                 });
               })
@@ -32,8 +32,8 @@
       return deferred.promise;
     }
 
-    var parseSRV = function(respData) {
-      return $q(function(resolve, reject) {
+    function parseSRV(respData) {
+      return $q(function onQ(resolve, reject) {
         let dnssec = respData.AD;
 
         if (typeof respData.Answer === 'undefined') {
@@ -56,22 +56,22 @@
       });
     };
 
-    var getAddresses = function(alias, host, dnssec) {
+    function getAddresses(alias, host, dnssec) {
       let deferred = $q.defer();
       $http
         .get(`https://${host}/v1/addresses?alias=${alias}`)
-        .then(function(response) {
+        .then(function onThen(response) {
           deferred.resolve(parseAddresses(response.data, dnssec).then());
         })
-        .catch(function(response) {
+        .catch(function onCatch(response) {
           deferred.reject('Address not found for the specified alias');
         });
       return deferred.promise;
     };
 
-    var parseAddresses = function(respData, dnssec) {
+    function parseAddresses(respData, dnssec) {
       let addresses = {}
-      return $q(function(resolve, reject) {
+      return $q(function onQ(resolve, reject) {
         for (let i = 0; i < respData.length; i++) {
           if (respData[i].address_type === 'undefined') {
             continue;

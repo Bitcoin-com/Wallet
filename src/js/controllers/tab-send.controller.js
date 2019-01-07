@@ -94,7 +94,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
       $scope.opencapAddresses = result.addresses;
       $scope.opencapDnssec = result.dnssec;
       $ionicPopover.fromTemplateUrl('templates/popoverOpencapSend.html', {scope: $scope})
-      .then(function(popover) {
+      .then(function onThen(popover) {
           $scope.popover = popover;
           popover.show(angular.element(document.querySelector('#search-input')))
       });
