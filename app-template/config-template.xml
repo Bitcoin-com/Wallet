@@ -136,6 +136,11 @@
     <platform name="android">
       <preference name="android-manifest/application/@android:allowBackup" value="false" />
 
+      <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
+         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+      </config-file>
+
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-ldpi-icon.png" density="ldpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-mdpi-icon.png" density="mdpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-hdpi-icon.png" density="hdpi" />
