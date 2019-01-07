@@ -60,7 +60,6 @@
         '- Website:<br>' +
         '- Phone number:<br>'
       );
-      //var emailBodyHtml = emailBody.replace(/%0D%0A/g, '<br>');
       var emailBodyWithNewlines = emailBody.replace(/<br>/g, '%0D%0A');
       var emailSubject = gettextCatalog.getString('Add a Business');
 
