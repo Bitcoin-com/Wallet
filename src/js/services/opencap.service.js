@@ -26,7 +26,7 @@
               })
           );
         })
-        .catch(function(response) {
+        .catch(function onCatch(response) {
           deferred.reject('Couldn\'t find srv record for the provided domain');
         });
       return deferred.promise;
