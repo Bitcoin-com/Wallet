@@ -30,17 +30,19 @@ angular
     /**
      * Start the Buy Bitcoin flow
      */
-    function start() {
+    async function start() {
       $log.debug('buy bitcoin start()');
-
-      ongoingProcess.set('gettingKycIdentity', true);
-
-      _prepareState().then(function onSuccess() {
-        ongoingProcess.set('gettingKycIdentity', false);
-        kycFlowRouterService.start(kycFlowStateService.getClone());
-      }, 
-      function onFailure(err) {
-        ongoingProcess.set('gettingKycIdentity', false);
+      return new Promise(function onStartSuccess(resolve, revoke) {
+        ongoingProcess.set('gettingKycIdentity', true);
+        _prepareState().then(function onSuccess() {
+          ongoingProcess.set('gettingKycIdentity', false);
+          kycFlowRouterService.start(kycFlowStateService.getClone());
+          resolve();
+        }, 
+        function onFailure(err) {
+          ongoingProcess.set('gettingKycIdentity', false);
+          revoke();
+        });
       });
     }
 
@@ -60,7 +62,7 @@ angular
 
       // Save the state and redirect the user
       kycFlowStateService.push(state);
-      kycFlowRouterService.goNext();
+      kycFlowRouterService.goNext(state);
     }
 
     /**
@@ -122,11 +124,6 @@ angular
               reject(err);
           }
         );
-
-        // Get Customer
-
-        // Get Files
-
       });
     }     
   }

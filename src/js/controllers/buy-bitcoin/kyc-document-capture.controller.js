@@ -25,12 +25,18 @@ angular
 
     // Functions
     vm.goBack = goBack;
-    vm.onNext = onNext;
+    vm.onCapture = onCapture;
+    vm.onPreviewAccept = onPreviewAccept;
+    vm.onPreviewDecline = onPreviewDecline;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _initVariables() {
+
+      vm.canEnableLight = true;
+      vm.canChangeCamera = true;
+      vm.inPreview = false;
 
       vm.submitted = false;
 
@@ -43,9 +49,38 @@ angular
     }
 
     function onCapture() {
+      console.log('On Capture');
       // Store Image in Screenshot
+      cameraPreviewService.takePicture(null, function onPictureTaken(base64PictureData) {
+        console.log('Inside take picture callback');
+        cameraPreviewService.stopCamera();
+        vm.photo = cropDocument('data:image/jpeg;base64,' + base64PictureData, 0, 0, 200 , 150 );
+        vm.inPreview = true;
+      }); 
+    }
 
-      // Navigate to Verify
+    function cropDocument(image, originX, originY, width, height) {
+      console.log('Performing Crop');
+      // var canvas = document.createElement('canvas');
+      // var context = canvas.getContext('2d');
+      // canvas.width = width;
+      // canvas.height = height;
+      // context.drawImage(image, 0, 0, width, height);
+      // return canvas.toDataURL();
+      return image;
+    }
+
+    function onPreviewAccept() {
+      console.log('On acceptance');
+      currentState.documents.push(vm.photo);
+      kycFlowService.goNext(currentState);
+    }
+
+    function onPreviewDecline() {
+      console.log('On decline');
+      vm.inPreview = false;
+      vm.photo = null;
+      cameraPreviewService.startCamera();
     }
 
     function goBack() {

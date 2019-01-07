@@ -1,36 +1,62 @@
-<ion-view id="tab-buy-bitcoin-kyc-document-capture"  view-title="{{ 'Document Capture' | translate }}" class="apl" can-swipe-back="false" hide-tabs>
+<ion-view id="buy-bitcoin-document-capture"  view-title="{{ 'Document Capture' | translate }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
   <ion-nav-bar >
     <ion-nav-buttons side="primary">
-      <button class="button apl-back-button" ng-click="vm.onBack()">
+      <button class="button apl-back-button" ng-click="vm.goBack()">
         <i class="icon ion-chevron-left"></i>
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-content scroll="false">
-    <div>
-      Capture Window
-    </div>
-    <div>
+    <div class="capture-frame mask-frame" ng-show="!vm.inPreview">
+      <div class="mask-full mask-cover"></div>
+      <div class="mask-edge mask-cover"></div>
+      <div class="mask-window"></div>
+      <div class="mask-edge mask-cover"></div>
+      <div class="mask-full mask-cover"></div>
+      <div class="mask-cover"></div>
       <h1 translate>
         Photograph your document
       </h1>
       <p>
         Position the 4 corners of your passport clearly in the frame. Avoid any glare.
       </p>
-    </div>
-    <div class="camera-controls">
-      Controls
-      <a ng-click="toggleLight()" ng-show="canEnableLight">
+      <div class="camera-controls mask-cover">
+        Controls
+        <!-- <a ng-click="toggleLight()" ng-show="vm.canEnableLight">
           <i class="icon">
             <div class="icon-flash" ng-class="{'active': lightActive}"></div>
           </i>
-        </a>
-        <a ng-click="toggleCamera()" ng-show="canChangeCamera">
+        </a> -->
+        <!-- <a ng-click="toggleCamera()" ng-show="vm.onCapture">
+          <i class="icon">
+            <div class="icon-camera-toggle" ng-class="{'active': cameraToggleActive}"></div>
+          </i>
+        </a> -->
+        <a ng-click="vm.onCapture()" >
           <i class="icon">
             <div class="icon-camera-toggle" ng-class="{'active': cameraToggleActive}"></div>
           </i>
         </a>
+      </div>
+    </div>
+    <div class="preview-frame" ng-show="vm.inPreview">
+      <div class="preview-image">
+        <img height="100%" width="100%" src="{{vm.photo}}"/>
+      </div>
+      <h3 translate>
+        How does it look?
+      </h3>
+      <p translate>
+        Make sure the details on your document are clear and readable with no blur or glare.
+      </p>
+      <div class="apl-divider"></div>
+      <div class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.onPreviewAccept()" translate>Yes, it's readable</a>
+      </div>
+      <div class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.onPreviewDecline()" translate>Retake the picture</a>
+      </div>
     </div>
   </ion-content>
 </ion-view>

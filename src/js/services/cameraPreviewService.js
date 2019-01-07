@@ -5,11 +5,10 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   , platformInfo
   , $rootScope
   , $window
-  , CameraPreview
   ) {
 
   var isDesktop = !platformInfo.isCordova;
-  var QRScanner = $window.QRScanner;
+  var CameraPreview = $window.CameraPreview;
   var lightEnabled = false;
   var backCamera = true; // the plugin defaults to the back camera
 
@@ -36,54 +35,60 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   }
 
   var defaultCameraSettings = {
-    x: 0
-    , y: 0
-    , width: $window.screen.width
-    , height: $window.screen.height
-    , camera: CameraPreview.CAMERA_DIRECRTION.BACK
-    , toBack: false
+    camera: CameraPreview.CAMERA_DIRECTION.BACK
+    , toBack: true
     , tapPhoto: false
     , tapFocus: true
     , previewDrag: false
   };
 
-  function _intiSettings() {
-    var options = {
-      x: 0
-      , y: 0
-      , width: $window.screen.width
-      , height: $window.screen.height
-      , camera: CameraPreview.CAMERA_DIRECRTION.BACK
-      , toBack: false
-      , tapPhoto: false
-      , tapFocus: true
-      , previewDrag: false
-      , disableExifHeaderStripping: true
-    };
+  var defaultImageSettings = {
+
   }
 
-  function startCamera(options = defaultCameraSettings) {
-    CameraPreview.startCamera(options).then( function onStartCameraSuccess() {
+  var defaultDocumentSettings = {
+
+  }
+
+  // function _initSettings() {
+  //   var options = {
+  //     x: 0
+  //     , y: 0
+  //     , width: $window.screen.width
+  //     , height: $window.screen.height
+  //     , camera: CameraPreview.CAMERA_DIRECTION.BACK
+  //     , toBack: true
+  //     , tapPhoto: false
+  //     , tapFocus: true
+  //     , previewDrag: false
+  //     , disableExifHeaderStripping: true
+  //   };
+  // }
+
+  this.startCamera = function (options = defaultCameraSettings) {
+    CameraPreview.startCamera(options, [function onStartCameraSuccess() {
       console.log('Camera Preview Started!');
-      CameraPreview.show();
+      return;
     }, function onStartCameraError(err) {
       $log.debug('Camera Preview Failed to start on request');
-      });
+      }]);
   }
 
-  function stopCamera() {
-    return CameraPreview.stopCamera().then(
+  this.stopCamera = function () {
+    return CameraPreview.stopCamera(
       function onStopCameraSuccess() {
         return;
       },
       function onCameraStopError(err) {
         $log.debug('Camera Preview Failed to stop on request');
       }
-    )
+    );
   }
 
-  function takePicture() {
-
+  this.takePicture = function (options = defaultDocumentSettings, callback ) {
+    CameraPreview.takePicture(options, function(base64PictureData){
+      callback(base64PictureData);
+    });
   }
 
   function setPreviewSize() {

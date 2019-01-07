@@ -31,9 +31,9 @@ angular
      * Routing strategy : https://bitcoindotcom.atlassian.net/wiki/spaces/BW/pages/757596161/Buy+bitcoin
      */
     function goNext(state) {
-      console.log('kyc-flow-router - goNext');
-      var atteptRecovery = (state.recovery)
-      var needsDocumentType = !(state.country && state.doucmentType);
+      console.log('kyc-flow-router - goNext', state);
+      var attemptRecovery = (state.isRecovery)
+      var needsDocumentType = !(state.countryCode && state.documentType);
       var reviewingDocument = state.documentReviewing;
       var needsDocumentation = !( state.documents && state.documents.length >= (state.documentType === 'passport' ? 1 : 2));
       var needsPersonalInfo = 
@@ -47,8 +47,8 @@ angular
         );
 
       // Recover Customer ID Page
-      if(atteptRecovery) {
-        if(atteptRecovery === 'start') {
+      if(attemptRecovery) {
+        if(attemptRecovery === 'start') {
           // Recovery page
           console.log('KYC-FLOW - Recovery Page');
           return;
@@ -74,7 +74,7 @@ angular
       //Document Photo Page
       if (needsDocumentation) {
         console.log('KYC-FLOW - Document Photo');
-        $state.go('tabs.buybitcoin-kyc-document-info');
+        $state.go('tabs.buybitcoin-kyc-document-capture');
         return;
       }
 

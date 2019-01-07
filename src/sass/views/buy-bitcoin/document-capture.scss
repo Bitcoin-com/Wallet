@@ -1,0 +1,65 @@
+#buy-bitcoin-document-capture {
+  background: transparent;
+
+  .mask-frame {
+    display:flex;
+    flex-flow: row wrap;
+  }
+
+  .mask-full {
+    width: 100%;
+    height: 33%;
+  }
+  .mask-edge {
+    width: 15%;
+    height: 33%;
+  }
+  .mask-window {
+    width: 70%;
+    height: 33%;
+  }
+
+  .capture-view {
+    clip: inset(5%, 290px, 190px, 10px);
+  }
+
+  .mask-cover {
+    background: rgba($color: #000000, $alpha: .8)
+  }
+
+  .icon-flash, .icon-camera-toggle {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    background-color: rgba(13, 13, 13, 0.79);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-size: 100%;
+    display: inline-block;
+    margin: 2em 1em;
+    cursor: pointer;
+    // hover for desktop only
+    body:not(.platform-cordova) &:hover {
+      background-color: rgba(31, 40, 78, 0.79);
+    }
+    &.active, &:active {
+      background-color: rgba(100, 124, 232, 0.79);
+    }
+  }
+  
+  .icon-flash {
+    background-image: url("../img/icon-flash.svg");
+  }
+  .icon-camera-toggle {
+    background-image: url("../img/icon-camera-toggle.svg");
+  }
+
+  .camera-controls {
+    height: 100px;
+  }
+
+  .capture-window {
+    height: 300px;
+    //clip-path: inset-rectangle(10px, 20px, 20px, 10px, 15px, 15px)
+  }
+}

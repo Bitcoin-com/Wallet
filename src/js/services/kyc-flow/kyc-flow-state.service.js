@@ -8,8 +8,7 @@ angular
   
   function kycFlowStateService(lodash, $log) {
 
-    var service = {
-
+    var defaultState = {
       identity: null
       , result: ''
       , isRecovery: false
@@ -28,8 +27,11 @@ angular
       , documents: []
       , documentsMeta: {}
 
+    }
+
+    var service = {
       // Functions
-      , init: init
+      init: init
       , clear: clear
       , getClone: getClone
       , pop: pop
@@ -51,9 +53,14 @@ angular
 
       clear();
 
+      var newState = defaultState;
+
       if (params) {
-        push(params);
+        for(var attributeName in params) {
+          newState[attributeName] = params[attributeName];
+        }
       }
+      push(newState);
     }
 
     /**
