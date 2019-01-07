@@ -7,8 +7,14 @@ angular.module('copayApp.directives')
       templateUrl: 'views/includes/slideToAcceptSuccess.html',
       transclude: true,
       scope: {
+        amountWon: '=slideSuccessAmountWon',
+        destinationAddress: '=slideSuccessDestinationAddress',
+        destinationIsAGame: '=slideSuccessDestinationIsAGame',
+        didWin: '=slideSuccessDidWin',
+        didLose: '=slideSuccessDidLose',
         isShown: '=slideSuccessShow',
         onConfirm: '&slideSuccessOnConfirm',
+        onReplay: '&slideSuccessOnReplay',
         hideOnConfirm: '=slideSuccessHideOnConfirm',
         onShare: '=slideSuccessOnShare',
       },
@@ -17,6 +23,9 @@ angular.module('copayApp.directives')
         scope.hasShareFunction = typeof scope.onShare === 'function';
         var elm = element[0];
         elm.style.display = 'none';
+        
+        scope.onReplayButtonClick = onReplayButtonClick;
+
         scope.$watch('isShown', function() {
           if (scope.isShown) {
             elm.style.display = 'flex';
@@ -25,6 +34,7 @@ angular.module('copayApp.directives')
             }, 10);
           }
         });
+        
         scope.onConfirmButtonClick = function() {
           scope.onConfirm();
           if (scope.hideOnConfirm) {
@@ -32,6 +42,16 @@ angular.module('copayApp.directives')
             elm.style.display = 'none';
           }
         };
+
+        
+        function onReplayButtonClick() {
+          scope.fillScreen = false;
+          elm.style.display = 'none';
+
+          scope.onReplay();
+        }
+        
+
         scope.onShareButtonClick = function() {
           scope.onShare();
         }
