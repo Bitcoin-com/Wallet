@@ -84,6 +84,7 @@
     <platform name="ios">
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
+      <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription"><string>To find nearby merchants.</string></config-file>
       <config-file target="*-Info.plist" parent="ITSAppUsesNonExemptEncryption"><false/></config-file>
       <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon24x24@2x.png" width="48" height="48" />
       <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon27.5x27.5@2x.png" width="55" height="55" />
