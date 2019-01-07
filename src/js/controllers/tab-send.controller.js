@@ -81,7 +81,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   
   $scope.resolveOpencapAlias = function(alias){
     opencapService.getAddress(alias)
-    .then(result => {
+    .then(function(result) {
       if (typeof $scope.fromWallet !== 'undefined'){
         if ($scope.fromWallet.coin === 'bch'){
           result.addresses = {bch: result.addresses.bch};
@@ -99,7 +99,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
           popover.show(angular.element(document.querySelector('#search-input')))
       });
     })
-    .catch(status => {
+    .catch(function(status) {
       // do nothing because they may have been typing
     });
   }

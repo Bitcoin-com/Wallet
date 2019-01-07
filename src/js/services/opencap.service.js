@@ -5,7 +5,7 @@
     function getAddress(alias) {
       let aliasData = validateAlias(alias);
       if (aliasData.username === '' || aliasData.domain === '') {
-        return $q((resolve, reject) => {
+        return $q(function(resolve, reject) {
           return reject('Invalid OpenCAP alias');
         });
       }
@@ -16,10 +16,12 @@
         .then(function(response) {
           deferred.resolve(
             parseSRV(response.data)
-              .then(data => getAddresses(alias, data.host, data.dnssec))
+              .then(function(data){ 
+                return getAddresses(alias, data.host, data.dnssec) 
+              })
               .catch(function(error) {
-                return $q((resolve, reject) => {
-                  reject(error);
+                return $q(function(resolve, reject) {
+                  return reject(error);
                 });
               })
           );
@@ -31,7 +33,7 @@
     }
 
     var parseSRV = function(respData) {
-      return $q((resolve, reject) => {
+      return $q(function(resolve, reject) {
         let dnssec = respData.AD;
 
         if (typeof respData.Answer === 'undefined') {
@@ -69,7 +71,7 @@
 
     var parseAddresses = function(respData, dnssec) {
       let addresses = {}
-      return $q((resolve, reject) => {
+      return $q(function(resolve, reject) {
         for (let i = 0; i < respData.length; i++) {
           if (respData[i].address_type === 'undefined') {
             continue;
