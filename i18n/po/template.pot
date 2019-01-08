@@ -4352,3 +4352,27 @@ msgstr ""
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
 msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your passport clearly in the frame. Avoid any glare."
+msgstr ""
