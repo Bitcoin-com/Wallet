@@ -79,7 +79,17 @@
     //clip-path: inset-rectangle(10px, 20px, 20px, 10px, 15px, 15px)
   }
 
+  .preview-image {
+    img {
+      margin: 5%;
+    }
+  }
+
   .apl-button-bottom-container {
     height: auto !important;
+
+    h3, p {
+      text-align: center;
+    }
   }
 }

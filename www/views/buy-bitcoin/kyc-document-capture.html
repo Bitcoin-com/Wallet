@@ -15,7 +15,7 @@
         <h1 translate>
           Photograph your document
         </h1>
-        <p>
+        <p translate>
           Position the 4 corners of your passport clearly in the frame. Avoid any glare.
         </p>
         <div class="camera-controls mask-cover">
@@ -29,15 +29,11 @@
     </div>
     <div class="preview-frame" ng-show="vm.inPreview">
       <div class="preview-image">
-        <img height="100%" width="100%" src="{{vm.photo}}"/>
+        <img height="100%" width="90%" src="{{vm.photo}}"/>
       </div>
-      <h3 translate>
-        How does it look?
-      </h3>
-      <p translate>
-        Make sure the details on your document are clear and readable with no blur or glare.
-      </p>
       <div class="apl-button-bottom-container no-shadow">
+        <h3 translate>How does it look?</h3>
+        <p translate>Make sure the details on your document are clear and readable with no blur or glare.</p>
         <a class="apl-button" ng-click="vm.onPreviewAccept()" translate>Yes, it's readable</a>
         <div class="apl-divider apl-divider-transparent"></div>
         <a class="apl-button apl-button-transparent" ng-click="vm.onPreviewDecline()" translate>Retake the picture</a>
