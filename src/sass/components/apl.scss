@@ -302,6 +302,10 @@
       width: 100%;
       margin: 8px 0;
     }
+
+    &-transparent:after {
+      border-bottom: transparent !important;
+    }
   }
   &-back-button,
   &-close-button {
@@ -486,6 +490,11 @@
     text-align: center;
     width: 100%;
     text-decoration: none;
+    
+    &-transparent {
+      background: transparent;
+      color: black;
+    }
 
     &.unready {
       background: rgba(255, 155, 0, 0.5);
