@@ -3,6 +3,10 @@ ext {
   ANDROID_SUPPORT_ANNOTATIONS_VERSION = '26.1.0'
 }
 
+ext.postBuildExtras = {
+    android.buildTypes.debug.applicationIdSuffix = '.debug'
+}
+
 configurations.all {
   resolutionStrategy {
     force "com.android.support:support-v4:26.1.0"

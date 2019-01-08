@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "432300239540",
+    "firebase_url": "https://bitcoin-com-wallet.firebaseio.com",
+    "project_id": "bitcoin-com-wallet",
+    "storage_bucket": "bitcoin-com-wallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432300239540:android:e23224cd1aed3778",
+        "android_client_info": {
+          "package_name": "com.bitcoin.mwallet.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432300239540-tpp5t3pmftfvuedlphevullpentp5pbo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bitcoin.mwallet",
+            "certificate_hash": "2b6a5264cc4a58c711d09ce05273a057ed19aafd"
+          }
+        },
+        {
+          "client_id": "432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDphC3flCVFFOENAy9tMgOUFxC6_H8JWMs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432300239540-aeh6b8eebnkgq0e3tv0g0a0t1qhkhhcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
