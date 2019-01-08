@@ -9,23 +9,40 @@
 
   <ion-content scroll="false">
     <div class="capture-frame" ng-show="!vm.inPreview">
-      <div class="mask-frame" style="height:5%">Header</div>
-      <div class="capture-mask"></div>
-      <div class="mask-frame apl-button-bottom-container" style="height:50%">
-        <h1 translate>
-          Photograph your document
-        </h1>
-        <p translate>
-          Position the 4 corners of your passport clearly in the frame. Avoid any glare.
-        </p>
-        <div class="camera-controls mask-cover">
-          <a ng-click="vm.onCapture()" >
-            <i class="icon">
-              <div class="icon-capture"></div>
-            </i>
-          </a>
-        </div>
-      </div>
+      <table height="100%" width="100%">
+        <tbody>
+          <tr height="100%">
+            <td class="mask-cover"></td>
+          </tr>
+          <tr>
+            <td>
+              <img class="capture-image" src="../img/capture-mask.svg">
+            </td>
+          </tr>
+          <tr height="100%">
+              <td class="mask-cover"></td>
+            </tr>
+          <tr>
+            <td>
+                <div class="mask-cover apl-button-bottom-container" style="position:relative">
+                  <h3 class="light-text" translate>
+                    Photograph your document
+                  </h3>
+                  <p class="light-text" translate>
+                    Position the 4 corners of your passport clearly in the frame. Avoid any glare.
+                  </p>
+                  <div class="camera-controls">
+                    <a ng-click="vm.onCapture()" >
+                      <i class="icon">
+                        <div class="icon-capture"></div>
+                      </i>
+                    </a>
+                  </div>
+                </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="preview-frame" ng-show="vm.inPreview">
       <div class="preview-image">

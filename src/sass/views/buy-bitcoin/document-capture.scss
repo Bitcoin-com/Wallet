@@ -63,20 +63,22 @@
     background-image: url("../img/icon-camera-toggle.svg");
   }
 
+  .light-text {
+    color:white;
+    line-height: 22px;
+  }
+
   .camera-controls {
-    position: static;
-    height: 100px;
-    width: 100%;
-    bottom: 0;
+    display:flex;
+    justify-content: center;
   }
 
   .capture-frame, .preview-frame {
     height: 100%;
   }
 
-  .capture-window {
-    height: 300px;
-    //clip-path: inset-rectangle(10px, 20px, 20px, 10px, 15px, 15px)
+  .capture-image {
+    line-height: 0px;
   }
 
   .preview-image {
@@ -90,6 +92,20 @@
 
     h3, p {
       text-align: center;
+    }
+  }
+
+  table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    tr {
+      border:0;
+      padding: 0;
+      margin: 0;
+    }
+
+    td {
+      line-height: 0;
     }
   }
 }
