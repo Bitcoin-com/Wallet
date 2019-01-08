@@ -54,20 +54,15 @@ angular
       cameraPreviewService.takePicture(null, function onPictureTaken(base64PictureData) {
         console.log('Inside take picture callback');
         cameraPreviewService.stopCamera();
-        var horizontalPadding = window.innerWidth * .05;
-        var verticalPadding = 44;
+        
+        var horizontalPadding = window.innerWidth * 0.05;
 
         var imgWidth = window.innerWidth - horizontalPadding * 2;
         var imgHeight = imgWidth * 0.755;
 
-        console.log('window');
-        console.log(window.innerHeight);
-        console.log(window.innerWidth);
+        var verticalPadding = 44 + (imgHeight * 0.12) / 2;
 
-        var scaleX = imgWidth / window.innerWidth;
-        var scaleY = imgHeight / window.innerHeight;
-
-        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight, scaleX, scaleY).then( function(image) {
+        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight).then( function(image) {
           vm.photo = image;
           vm.inPreview = true;
           $scope.$apply();
@@ -78,31 +73,33 @@ angular
       }); 
     }
     
-    function cropDocument(image, originX, originY, width, height, scaleX, scaleY) {
+    function cropDocument(image, originX, originY, imgWidth, imgHeight) {
       return new Promise(async function( resolve, reject) {
         var tempImage = new Image();
         tempImage.onload = function() {
-          console.log('actual size');
-          console.log(this.width + 'x' + this.height);
 
+          var coefX = this.width / window.innerWidth;
+          var coefY = this.height / window.innerHeight;
+
+          var coefImg = this.width / this.height;
+          var coefScreen = window.innerWidth / window.innerHeight;
+
+          var ratioY = 1 + (coefImg - coefScreen);
 
           var canvas = document.createElement('canvas');
           var context = canvas.getContext('2d');
-          console.log('canvas');
-          console.log(canvas.width);
-          console.log(canvas.height);
-          var calWidthImg = this.width * scaleX;
-          var calHeightImg = this.height * scaleY;
+
+          var calWidthImg =  imgWidth * coefX
+          var calHeightImg = imgHeight * coefY * ratioY
+
           canvas.width = calWidthImg;
           canvas.height = calHeightImg;
-          context.drawImage(tempImage, originX * scaleX, originY * scaleY, calWidthImg, calHeightImg, 0, 0, calWidthImg, calHeightImg);
+
+          context.drawImage(tempImage, originX * coefX, originY * coefY * ratioY, calWidthImg, calHeightImg, 0, 0, calWidthImg, calHeightImg);
           resolve(canvas.toDataURL('image/jpeg', 0.8));
         }
-        console.log('tempImage 1');
-        console.log(tempImage);
+
         tempImage.src = image;
-        console.log('tempImage 2');
-        console.log(tempImage);
       });
     }
 
