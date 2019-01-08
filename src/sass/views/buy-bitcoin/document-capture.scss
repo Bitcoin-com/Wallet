@@ -47,10 +47,6 @@
     }
   }
 
-  .capture-mask {
-    background-image: url("../img/capture-mask.svg");
-  }
-  
   .icon-capture {
     background-image: url("../img/icon-capture.svg");
   }
@@ -73,19 +69,27 @@
     justify-content: center;
   }
 
-  .capture-frame, .preview-frame {
+  .capture-frame {
     height: 100%;
-  }
 
-  .capture-image {
-    line-height: 0px;
-  }
-
-  .preview-image {
-    img {
-      margin: 5%;
+    .capture-image {
+      line-height: 0px;
     }
   }
+
+  .preview-frame {
+    height: 100%;
+    background-color: white !important;
+
+    .preview-image {
+      img {
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+  }
+
+
 
   .apl-button-bottom-container {
     height: auto !important;
