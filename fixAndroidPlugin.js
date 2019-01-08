@@ -46,5 +46,5 @@ module.exports = function(context) {
       })
     }
   }
-  console.log("Exiting fixAndroidManifest.js");
+  console.log("Exiting fixAndroidPlugin.js");
 }

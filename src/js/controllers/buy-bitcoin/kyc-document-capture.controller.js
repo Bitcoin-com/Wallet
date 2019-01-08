@@ -56,6 +56,7 @@ angular
         cameraPreviewService.stopCamera();
         vm.photo = cropDocument('data:image/jpeg;base64,' + base64PictureData, 0, 0, 200 , 150 );
         vm.inPreview = true;
+        $scope.$apply();
       }); 
     }
 
