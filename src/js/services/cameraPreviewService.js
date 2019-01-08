@@ -35,7 +35,11 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   }
 
   var defaultCameraSettings = {
-    camera: CameraPreview.CAMERA_DIRECTION.BACK
+    x: 0
+    , y: 0
+    , width: $window.screen.width
+    , height: $window.screen.height
+    , camera: CameraPreview.CAMERA_DIRECTION.BACK
     , toBack: true
     , tapPhoto: false
     , tapFocus: true
@@ -47,7 +51,15 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   }
 
   var defaultDocumentSettings = {
-
+    x: 0
+    , y: 0
+    , width: $window.screen.width
+    , height: $window.screen.height
+    , camera: CameraPreview.CAMERA_DIRECTION.BACK
+    , toBack: true
+    , tapPhoto: false
+    , tapFocus: true
+    , previewDrag: false
   }
 
   // function _initSettings() {

@@ -55,9 +55,19 @@ angular
         console.log('Inside take picture callback');
         cameraPreviewService.stopCamera();
         var horizontalPadding = window.innerWidth * .05;
-        var verticalPadding = window.innerHeight * .1;
-        var controlsHeight = window.innerHeight * .4;
-        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, window.innerWidth - horizontalPadding*2, window.innerHeight - (verticalPadding + controlsHeight)).then( function(image) {
+        var verticalPadding = 44;
+
+        var imgWidth = window.innerWidth - horizontalPadding * 2;
+        var imgHeight = imgWidth * 0.755;
+
+        console.log('window');
+        console.log(window.innerHeight);
+        console.log(window.innerWidth);
+
+        var scaleX = imgWidth / window.innerWidth;
+        var scaleY = imgHeight / window.innerHeight;
+
+        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight, scaleX, scaleY).then( function(image) {
           vm.photo = image;
           vm.inPreview = true;
           $scope.$apply();
@@ -68,18 +78,31 @@ angular
       }); 
     }
     
-    function cropDocument(image, originX, originY, width, height) {
+    function cropDocument(image, originX, originY, width, height, scaleX, scaleY) {
       return new Promise(async function( resolve, reject) {
         var tempImage = new Image();
         tempImage.onload = function() {
+          console.log('actual size');
+          console.log(this.width + 'x' + this.height);
+
+
           var canvas = document.createElement('canvas');
           var context = canvas.getContext('2d');
-          canvas.width = width;
-          canvas.height = height;
-          context.drawImage(tempImage, originX, originY, width, height, 0, 0, width, height);
+          console.log('canvas');
+          console.log(canvas.width);
+          console.log(canvas.height);
+          var calWidthImg = this.width * scaleX;
+          var calHeightImg = this.height * scaleY;
+          canvas.width = calWidthImg;
+          canvas.height = calHeightImg;
+          context.drawImage(tempImage, originX * scaleX, originY * scaleY, calWidthImg, calHeightImg, 0, 0, calWidthImg, calHeightImg);
           resolve(canvas.toDataURL('image/jpeg', 0.8));
         }
+        console.log('tempImage 1');
+        console.log(tempImage);
         tempImage.src = image;
+        console.log('tempImage 2');
+        console.log(tempImage);
       });
     }
 
