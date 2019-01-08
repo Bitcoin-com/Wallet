@@ -54,21 +54,33 @@ angular
       cameraPreviewService.takePicture(null, function onPictureTaken(base64PictureData) {
         console.log('Inside take picture callback');
         cameraPreviewService.stopCamera();
-        vm.photo = cropDocument('data:image/jpeg;base64,' + base64PictureData, 0, 0, 200 , 150 );
-        vm.inPreview = true;
-        $scope.$apply();
+        var horizontalPadding = window.innerWidth * .05;
+        var verticalPadding = window.innerHeight * .1;
+        var controlsHeight = window.innerHeight * .4;
+        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, window.innerWidth - horizontalPadding*2, window.innerHeight - (verticalPadding + controlsHeight)).then( function(image) {
+          vm.photo = image;
+          vm.inPreview = true;
+          $scope.$apply();
+        }).catch(function() {
+          console.log("error occured");
+        });
+        
       }); 
     }
-
+    
     function cropDocument(image, originX, originY, width, height) {
-      console.log('Performing Crop');
-      // var canvas = document.createElement('canvas');
-      // var context = canvas.getContext('2d');
-      // canvas.width = width;
-      // canvas.height = height;
-      // context.drawImage(image, 0, 0, width, height);
-      // return canvas.toDataURL();
-      return image;
+      return new Promise(async function( resolve, reject) {
+        var tempImage = new Image();
+        tempImage.onload = function() {
+          var canvas = document.createElement('canvas');
+          var context = canvas.getContext('2d');
+          canvas.width = width;
+          canvas.height = height;
+          context.drawImage(tempImage, originX, originY, width, height, 0, 0, width, height);
+          resolve(canvas.toDataURL('image/jpeg', 0.8));
+        }
+        tempImage.src = image;
+      });
     }
 
     function onPreviewAccept() {
