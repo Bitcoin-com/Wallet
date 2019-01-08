@@ -75,6 +75,7 @@
     <plugin name="cordova-plugin-media-fork" spec="~5.0.3">
         <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~5.0.1" />
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.4.0" />
