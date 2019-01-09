@@ -57,7 +57,6 @@ angular
 
     function onCapture() {
       console.log('On Capture');
-
       // Store Image in Screenshot
       cameraPreviewService.takePicture(null, function onPictureTaken(base64PictureData) {
         console.log('Inside take picture callback');
@@ -71,9 +70,9 @@ angular
         var verticalPadding = 44 + (imgHeight * 0.12) / 2;
 
         cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight).then( function(image) {
-          vm.photo = image;
-          vm.inPreview = true;
-          $scope.$apply();
+          currentState.documents.push(image);
+          currentState.inPreview = true;
+          kycFlowService.goNext(currentState);
         }).catch(function() {
           console.log("error occured");
         });
@@ -109,20 +108,6 @@ angular
 
         tempImage.src = image;
       });
-    }
-
-    function onPreviewAccept() {
-      console.log('On acceptance');
-      currentState.documents.push(vm.photo);
-      console.log(currentState);
-      kycFlowService.goNext(currentState);
-      _initVariables();
-    }
-
-    function onPreviewDecline() {
-      console.log('On decline');
-      vm.inPreview = false;
-      vm.photo = null;
     }
 
     function goBack() {

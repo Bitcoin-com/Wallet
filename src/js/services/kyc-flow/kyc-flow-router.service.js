@@ -36,6 +36,7 @@ angular
       var attemptRecovery = (state.isRecovery)
       var needsDocumentType = !(state.countryCode && state.documentType);
       var reviewingDocument = state.documentReviewing;
+      var needsVerify = state.inPreview;
       var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 1 : 2));
       var needsPersonalInfo = 
         !( state.firstName
@@ -70,6 +71,12 @@ angular
       if (reviewingDocument) {
         console.log('KYC-FLOW - Document Review');
         $state.go('tabs.buybitcoin-kyc-document-verify');
+      }
+
+      if (needsVerify) {
+        console.log('KYC-FLOW - Document Preview');
+        $state.go('tabs.buybitcoin-kyc-document-verify');
+        return;
       }
 
       //Document Photo Page
