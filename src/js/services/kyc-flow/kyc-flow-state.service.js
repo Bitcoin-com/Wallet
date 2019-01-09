@@ -9,26 +9,7 @@ angular
   function kycFlowStateService(lodash, $log) {
 
     var states = [];
-    var state = {
-      identity: null
-      , result: ''
-      , isRecovery: false
-      , recoverySuccess: false
-      , documentReviewing: false
-      , countryCode: ''
-      , documentType: ''
-      , firstName: ''
-      , lastName: ''
-      , dob: ''
-      , streetAddress1: ''
-      , streetAddress2: ''
-      , postalCode: ''
-      , city: ''
-      , country: ''
-      , inPreview: false
-      , documents: []
-      , documentsMeta: {}
-    };
+    var state = {};
 
     var service = {
       // Functions
@@ -77,9 +58,9 @@ angular
       state = {
         identity: null
         , result: ''
+        , status: ''
         , isRecovery: false
         , recoverySuccess: false
-        , documentReviewing: false
         , countryCode: ''
         , documentType: ''
         , firstName: ''
@@ -90,7 +71,6 @@ angular
         , postalCode: ''
         , city: ''
         , country: ''
-        , inPreview: false
         , documents: []
         , documentsMeta: {}
       };

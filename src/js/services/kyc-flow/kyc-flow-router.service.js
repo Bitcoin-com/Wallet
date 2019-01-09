@@ -87,15 +87,8 @@ angular
       }
 
       // KYC Status Page
-      if (state.identity.status !== 'initiated') {
-        console.log('KYC-FLOW - KYC Status');
-        return;
-      }
-
-      // Go to home
-      console.log('KYC-FLOW - Fallthrough');
-      $ionicHistory.clearHistory();
-      $state.go('tabs.buy-bitcoin-home');
+      console.log('KYC-FLOW - KYC Status');
+      $state.go('tabs.buybitcoin-kyc-status');
     }
 
     /**

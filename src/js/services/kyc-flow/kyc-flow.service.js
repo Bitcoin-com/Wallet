@@ -92,10 +92,11 @@ angular
             ongoingProcess.set('gettingKycIdentity', false);
             if(identity) {
               kycFlowStateService.init( { 
-                'identity': identity 
-              , result: identity.result
+              result: identity.result
+              , status: identity.status
               });
               kycFlowRouterService.start(kycFlowStateService.getClone());
+              resolve();
               return;
             }
             
@@ -124,6 +125,7 @@ angular
 
 
               kycFlowRouterService.start(kycFlowStateService.getClone());
+              resolve();
             }, function onError(err) {
               reject(err);
             });
