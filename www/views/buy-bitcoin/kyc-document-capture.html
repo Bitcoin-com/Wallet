@@ -1,4 +1,4 @@
-<ion-view id="buy-bitcoin-document-capture"  view-title="{{ 'Document Capture' | translate }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
+<ion-view id="buy-bitcoin-document-capture"  view-title="{{ vm.titleLabel }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
   <ion-nav-bar >
     <ion-nav-buttons side="primary">
       <button class="button apl-back-button" ng-click="vm.goBack()">
@@ -26,7 +26,7 @@
                     Photograph your document
                   </h3>
                   <p class="light-text" translate>
-                    Position the 4 corners of your passport clearly in the frame. Avoid any glare.
+                    Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare.
                   </p>
                   <div class="camera-controls">
                     <a ng-click="vm.onCapture()" >

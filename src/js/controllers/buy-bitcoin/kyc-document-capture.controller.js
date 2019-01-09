@@ -34,6 +34,12 @@ angular
 
     function _initVariables() {
 
+      vm.supportedDocumentLabels = {
+        'passport': gettextCatalog.getString('Passport')
+        ,'national_identity_card': gettextCatalog.getString('National ID')
+        ,'driving_licence': gettextCatalog.getString('Driving License')
+      }
+
       vm.canEnableLight = true;
       vm.canChangeCamera = true;
       vm.inPreview = false;
@@ -43,8 +49,9 @@ angular
       currentState = kycFlowService.getCurrentStateClone();
 
       // Title Label
-      vm.titleLabel = gettextCatalog.getString('Passport'); // TODO: Add logic to describe other cases
+      vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
 
+      vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 0 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
       cameraPreviewService.startCamera();
     }
 
@@ -107,7 +114,9 @@ angular
     function onPreviewAccept() {
       console.log('On acceptance');
       currentState.documents.push(vm.photo);
+      console.log(currentState);
       kycFlowService.goNext(currentState);
+      _initVariables();
     }
 
     function onPreviewDecline() {
