@@ -23,6 +23,7 @@ angular
       goNext: goNext,
       goBack: goBack,
       getCurrentStateClone: getCurrentStateClone,
+      popState: popState
     };
 
     return service;
@@ -74,6 +75,10 @@ angular
       // Remove the state on top and redirect the user
       kycFlowStateService.pop();
       kycFlowRouterService.goBack();
+    }
+
+    function popState() {
+      kycFlowStateService.pop();
     }
 
     async function _prepareState() {

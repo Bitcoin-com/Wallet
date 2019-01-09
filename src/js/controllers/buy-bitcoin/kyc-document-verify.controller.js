@@ -62,6 +62,10 @@ angular
     }
 
     function onBeforeEnter(event, data) {
+      if (data.direction == "back") {
+        kycFlowService.popState();
+      }
+      
       _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
     }

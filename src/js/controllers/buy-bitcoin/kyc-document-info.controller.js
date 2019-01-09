@@ -4,9 +4,9 @@
 
 angular
   .module('bitcoincom.controllers')
-  .controller('buyBitcoinDocumentInfoController', buyBitcoinDocumentInfoController);
+  .controller('buyBitcoinKycDocumentInfoController', buyBitcoinKycDocumentInfoController);
 
-  function buyBitcoinDocumentInfoController(
+  function buyBitcoinKycDocumentInfoController(
     bitAnalyticsService
     , gettextCatalog
     , $ionicHistory
@@ -95,6 +95,10 @@ angular
     }
 
     function onBeforeEnter(event, data) {
+      if (data.direction == "back") {
+        kycFlowService.popState();
+      }
+      
       _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_customer_verification_screen_open' ,[], ['leanplum']);
     }

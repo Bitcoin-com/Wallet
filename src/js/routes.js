@@ -916,7 +916,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         url: '/buy-bitcoin/kyc-documentation-info',
         views: {
           'tab-home': {
-            controller: 'buyBitcoinDocumentInfoController',
+            controller: 'buyBitcoinKycDocumentInfoController',
             controllerAs: 'vm',
             templateUrl: 'views/buy-bitcoin/kyc-document-info.html'
           }
