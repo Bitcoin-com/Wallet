@@ -465,10 +465,10 @@ angular
 
     /**
      * Upload Document
-     * * @param {data} file
-     * * @param {String} type
-     * * @param {String} country
-     * * @param {String} side - Optional  
+     * @param {data} file
+     * @param {String} type
+     * @param {String} country
+     * @param {String} side - Optional  
      */
     function uploadDocument(file, type, country, side) {
       // Create the promise
