@@ -32,34 +32,24 @@ angular
 
     function _initVariables() {
 
-      vm.submitted = false;
+      vm.supportedDocumentLabels = {
+        'passport': gettextCatalog.getString('Passport')
+        ,'national_identity_card': gettextCatalog.getString('National ID')
+        ,'driving_licence': gettextCatalog.getString('Driving License')
+      }
 
       currentState = kycFlowService.getCurrentStateClone();
-
-      // Title Label
-      vm.titleLabel = gettextCatalog.getString('Passport'); // TODO: Add logic to describe other cases
+      vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
+      vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 0 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
     }
 
     function onAccept() {
-      // Submit image to API
-      if( currentState.documents.length === 0) {
-        $log.debug('Error: document not supplied!');
-        return;
-      }
-
-      file = currentState.documents[currentState.documents.length - 1];
-      moonPayService.uploadDocument(file, currentState.documentType, currentState.countryCode, currentState.side).then(
-        function onSuccess() {
-          // TODO: Update State to reflect success of document upload
-          kycFlowService.goNext(currentState);
-        },
-        function onError(err) {
-          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to upload image. Please try again.'));
-        });
+      currentState.inPreview = false;
+      kycFlowService.goNext(currentState);
+      _initVariables();
     }
 
     function onRetry() {
-      // TODO: Update state service
       kycFlowService.goBack();
     }
 

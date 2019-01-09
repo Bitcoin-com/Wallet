@@ -24,6 +24,7 @@ angular
       , postalCode: ''
       , city: ''
       , country: ''
+      , inPreview: false
       , documents: []
       , documentsMeta: {}
 
