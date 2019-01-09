@@ -34,6 +34,7 @@ angular
     async function start() {
       $log.debug('buy bitcoin start()');
       return new Promise(function onStartSuccess(resolve, revoke) {
+        kycFlowStateService.init();
         ongoingProcess.set('gettingKycIdentity', true);
         _prepareState().then(function onSuccess() {
           ongoingProcess.set('gettingKycIdentity', false);
@@ -115,6 +116,7 @@ angular
                 , 'postalCode': personalInfo.address.postCode
                 , 'country': personalInfo.address.country
                 , 'documentsMeta': documents ? documents : {}
+                , 'documents': []
                 , 'countryCode': documents[0] ? (documents[0].country ? documents[0].country : '') : ''
                 , 'documentType': documents[0] ? (documents[0].type ? documents[0].type : '') : ''
                 });

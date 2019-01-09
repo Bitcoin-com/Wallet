@@ -39,8 +39,9 @@ angular
       }
 
       currentState = kycFlowService.getCurrentStateClone();
+      console.log("Verify - Current State: ", currentState);
       vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
-      vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 0 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
+      vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 1 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
       var documents = currentState.documents;
       if(documents.length > 0) {
         vm.photo = documents[documents.length-1];
@@ -50,7 +51,6 @@ angular
     function onAccept() {
       currentState.inPreview = false;
       kycFlowService.goNext(currentState);
-      _initVariables();
     }
 
     function onRetry() {
@@ -65,7 +65,7 @@ angular
       if (data.direction == "back") {
         kycFlowService.popState();
       }
-      
+
       _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
     }

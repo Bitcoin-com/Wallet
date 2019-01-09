@@ -53,6 +53,7 @@ angular
       );
 
       currentState = kycFlowService.getCurrentStateClone();
+      console.log("Document Info - Current State: ", currentState);
       // Apply current State
       vm.country = currentState.countryCode;
       vm.documentType = currentState.documentType;
@@ -95,16 +96,15 @@ angular
     }
 
     function onBeforeEnter(event, data) {
+      _initVariables();
+
       if (data.direction == "back") {
         kycFlowService.popState();
       }
-      
-      _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_customer_verification_screen_open' ,[], ['leanplum']);
     }
 
     function onBeforeLeave(event, data) {
-      _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_customer_verification_screen_close' ,[], ['leanplum']);
     }
   }

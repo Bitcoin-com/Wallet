@@ -27,7 +27,6 @@ angular
       , inPreview: false
       , documents: []
       , documentsMeta: {}
-
     }
 
     var service = {
@@ -38,8 +37,10 @@ angular
       , pop: pop
       , push: push
       , isEmpty: isEmpty
+      , 
     };
 
+    var state = defaultState;
     var states = [];
 
     return service;
@@ -73,18 +74,29 @@ angular
       states = [];
     }
 
+     /**
+     * Fill in the current state from the params
+     * @param {Object} params 
+     */
+    function map(params) {
+      Object.keys(params).forEach(function forNewParam(key) {
+        state[key] = params[key];
+      });
+    }
+
     /**
      * Get a clone of the current state
      */
     function getClone() {
-      var statesLen = states.length;
-      if (statesLen > 0) {
-        var currentState = states[statesLen - 1];
-        var clonedState = lodash.clone(currentState);
-        return clonedState;
-      } else {
-        return null;
-      } 
+      var newState = {};
+      var currentState = state;
+
+      Object.keys(currentState).forEach(function forCurrentParam(key) {
+        if (typeof currentState[key] !== 'function' && key !== 'previousStates') {
+          newState[key] = currentState[key];
+        }
+      });
+      return newState;
     }
 
     /**
@@ -92,7 +104,11 @@ angular
      */
     function pop() {
       $log.debug('kyc-flow-state pop');
-      states.pop();
+      map(states.pop());
+      if (states.length === 0) {
+        console.log("Popped with a length of 0!")
+        states.push(defaultState);
+      }
     }
 
     /**
@@ -101,7 +117,8 @@ angular
      */
     function push(params) {
       $log.debug('kyc-flow-state push');
-      states.push(params);
+      map(params);
+      states.push(state);
     }
 
     /**

@@ -39,7 +39,7 @@ angular
       vm.submitted = false;
 
       currentState = kycFlowService.getCurrentStateClone();
-
+      console.log("Capture - Current State: ", currentState);
       // Title Label
       vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
 
@@ -110,8 +110,8 @@ angular
       if (data.direction == "back") {
         kycFlowService.popState();
       }
-
       _initVariables();
+
       bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
     }
 
