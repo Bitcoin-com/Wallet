@@ -55,14 +55,13 @@ angular
 
       clear();
 
-      var newState = defaultState;
-
       if (params) {
         for(var attributeName in params) {
-          newState[attributeName] = params[attributeName];
+          state[attributeName] = params[attributeName];
         }
       }
-      push(newState);
+
+      push(state);
     }
 
     /**
@@ -70,8 +69,35 @@ angular
      */
     function clear() {
       $log.debug("kyc-flow-state clear()");
-
+      clearCurrent();
       states = [];
+    }
+
+    /**
+     * Clear current state only
+     */
+    function clearCurrent() {
+      $log.debug("send-flow-state clearCurrent()");
+      state = {
+        identity: null
+        , result: ''
+        , isRecovery: false
+        , recoverySuccess: false
+        , documentReviewing: false
+        , countryCode: ''
+        , documentType: ''
+        , firstName: ''
+        , lastName: ''
+        , dob: ''
+        , streetAddress1: ''
+        , streetAddress2: ''
+        , postalCode: ''
+        , city: ''
+        , country: ''
+        , inPreview: false
+        , documents: []
+        , documentsMeta: {}
+      };
     }
 
      /**
@@ -93,6 +119,13 @@ angular
 
       Object.keys(currentState).forEach(function forCurrentParam(key) {
         if (typeof currentState[key] !== 'function' && key !== 'previousStates') {
+          if(Array.isArray(currentState[key])) {
+            Object.keys(currentState).forEach(function forCurrentParam(key) {
+              if (typeof currentState[key] !== 'function' && key !== 'previousStates') {
+                newState[key] = currentState[key];
+              }
+          }
+
           newState[key] = currentState[key];
         }
       });
@@ -104,11 +137,12 @@ angular
      */
     function pop() {
       $log.debug('kyc-flow-state pop');
-      map(states.pop());
-      if (states.length === 0) {
-        console.log("Popped with a length of 0!")
-        states.push(defaultState);
-      }
+      console.log('Full-Stack', states);
+      console.log('TRUE - lastState', states[states.length - 1]);
+      var lastState = states.pop();
+      console.log('lastState', lastState);
+      clearCurrent();
+      map(lastState);
     }
 
     /**
@@ -117,8 +151,9 @@ angular
      */
     function push(params) {
       $log.debug('kyc-flow-state push');
-      map(params);
       states.push(state);
+      clearCurrent();
+      map(params);
     }
 
     /**

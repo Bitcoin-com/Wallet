@@ -74,11 +74,13 @@ angular
       $log.debug('kyc-flow goBack()');
 
       // Remove the state on top and redirect the user
-      kycFlowStateService.pop();
+      //kycFlowStateService.pop();
+      popState();
       kycFlowRouterService.goBack();
     }
 
     function popState() {
+      console.log('KYC Flow Service - POPSTATE()');
       kycFlowStateService.pop();
     }
 

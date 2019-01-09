@@ -96,11 +96,12 @@ angular
     }
 
     function onBeforeEnter(event, data) {
+      // if (data.direction == "back") {
+      //   kycFlowService.popState();
+      // }
+      
       _initVariables();
 
-      if (data.direction == "back") {
-        kycFlowService.popState();
-      }
       bitAnalyticsService.postEvent('buy_bitcoin_customer_verification_screen_open' ,[], ['leanplum']);
     }
 

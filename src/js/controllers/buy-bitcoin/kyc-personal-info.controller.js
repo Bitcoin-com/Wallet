@@ -130,10 +130,10 @@ angular
     }
 
     function onBeforeEnter(event, data) {
-      if (data.direction == "back") {
-        kycFlowService.popState();
-      }
-      
+      // if (data.direction == "back") {
+      //   kycFlowService.popState();
+      // }
+
       _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_personal_info_screen_open' ,[], ['leanplum']);
     }
