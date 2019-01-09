@@ -924,7 +924,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.buybitcoin-kyc-document-capture', {
-        url: '/buy-bitcoin/kyc-document-capture',
+        url: '/buy-bitcoin/kyc-document-capture/:count',
         views: {
           'tab-home': {
             controller: 'buyBitcoinKycDocumentCaptureController',
@@ -935,7 +935,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.buybitcoin-kyc-document-verify', {
-        url: '/buy-bitcoin/kyc-document-verify',
+        url: '/buy-bitcoin/kyc-document-verify/:count',
         views: {
           'tab-home': {
             controller: 'buyBitcoinKycDocumentVerifyController',

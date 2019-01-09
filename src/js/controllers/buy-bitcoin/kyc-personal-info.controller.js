@@ -24,7 +24,7 @@ angular
 
     // Functions
     vm.goBack = goBack;
-    vm.onNext = onNext;
+    vm.goNext = goNext;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
@@ -54,6 +54,7 @@ angular
       vm.submitted = false;
 
       currentState = kycFlowService.getCurrentStateClone();
+      console.log('buyBitcoinKycPersonalInfoController onBeforeEnter after back kycflow', currentState);
 
       vm.firstName = currentState.firstName ? currentState.firstName : 'Satoshi';
       vm.lastName = currentState.lastName ? currentState.lastName : 'Nakamoto';
@@ -83,7 +84,7 @@ angular
       );
     }
 
-    function onNext() {
+    function goNext() {
       vm.submitted = true;
       if (!_validateAllFields()) {
         $log.debug('Form incomplete.');
@@ -130,10 +131,10 @@ angular
     }
 
     function onBeforeEnter(event, data) {
-      // if (data.direction == "back") {
-      //   kycFlowService.popState();
-      // }
-
+      if (data.direction == "back") {
+        kycFlowService.popState();
+      }
+      
       _initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_personal_info_screen_open' ,[], ['leanplum']);
     }

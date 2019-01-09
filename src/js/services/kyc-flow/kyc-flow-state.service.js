@@ -114,21 +114,26 @@ angular
      * Get a clone of the current state
      */
     function getClone() {
-      var newState = {};
       var currentState = state;
 
-      Object.keys(currentState).forEach(function forCurrentParam(key) {
-        if (typeof currentState[key] !== 'function' && key !== 'previousStates') {
-          if(Array.isArray(currentState[key])) {
-            Object.keys(currentState).forEach(function forCurrentParam(key) {
-              if (typeof currentState[key] !== 'function' && key !== 'previousStates') {
-                newState[key] = currentState[key];
-              }
+      // Recursive function to clone Object + Array
+      function recClone(oldObject, newObject) {
+        Object.keys(oldObject).forEach(function forCurrentParam(key) {
+          if (typeof oldObject[key] !== 'function') {
+            if (Array.isArray(oldObject[key])) {
+              newObject[key] = [];
+              recClone(oldObject[key], newObject[key]);
+            } else {
+              newObject[key] = oldObject[key];
+            }
           }
+        });
 
-          newState[key] = currentState[key];
-        }
-      });
+        return newObject;
+      }
+      
+      var newState = recClone(currentState, {});
+
       return newState;
     }
 
