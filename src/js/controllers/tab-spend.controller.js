@@ -15,6 +15,7 @@
     var vm = this;
 
     // Functions
+    vm.onCheapAir = onCheapAir
     vm.onStartAccepting = onStartAccepting;
     vm.onEGifter = onEGifter;
     vm.onMerchant = onMerchant;
@@ -56,6 +57,10 @@
       
     }
     
+    function onCheapAir() {
+      externalLinkService.open('https://www.cheapair.com/');
+    }
+
     function onEGifter() {
       externalLinkService.open('https://www.egifter.com/');
     }
