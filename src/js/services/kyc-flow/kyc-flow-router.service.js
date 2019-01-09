@@ -32,10 +32,11 @@ angular
      */
     function goNext(state) {
       console.log('kyc-flow-router - goNext', state);
+      console.log('document count: ', state.documents.length );
       var attemptRecovery = (state.isRecovery)
       var needsDocumentType = !(state.countryCode && state.documentType);
       var reviewingDocument = state.documentReviewing;
-      var needsDocumentation = !( state.documents && state.documents.length >= (state.documentType === 'passport' ? 1 : 2));
+      var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 1 : 2));
       var needsPersonalInfo = 
         !( state.firstName
         && state.lastName
