@@ -50,6 +50,7 @@ angular
 
     function onCapture() {
       console.log('On Capture');
+
       // Store Image in Screenshot
       cameraPreviewService.takePicture(null, function onPictureTaken(base64PictureData) {
         console.log('Inside take picture callback');
@@ -113,7 +114,6 @@ angular
       console.log('On decline');
       vm.inPreview = false;
       vm.photo = null;
-      cameraPreviewService.startCamera();
     }
 
     function goBack() {
