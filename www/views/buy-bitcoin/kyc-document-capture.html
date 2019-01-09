@@ -8,7 +8,7 @@
   </ion-nav-bar>
 
   <ion-content scroll="false">
-    <div class="capture-frame" ng-show="!vm.inPreview">
+    <div class="capture-frame">
       <table height="100%" width="100%">
         <tbody>
           <tr>
@@ -22,12 +22,8 @@
           <tr>
             <td>
                 <div class="mask-cover apl-button-bottom-container" style="position:relative">
-                  <h3 class="light-text" translate>
-                    Photograph your document
-                  </h3>
-                  <p class="light-text" translate>
-                    Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare.
-                  </p>
+                  <h3 class="light-text" translate>Photograph your document</h3>
+                  <p class="light-text" translate>Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare.</p>
                   <div class="camera-controls">
                     <a ng-click="vm.onCapture()" >
                       <i class="icon">
@@ -40,18 +36,6 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <div class="preview-frame" ng-show="vm.inPreview">
-      <div class="preview-image">
-        <img width="90%" src="{{vm.photo}}"/>
-      </div>
-      <div class="apl-button-bottom-container no-shadow">
-        <h3 translate>How does it look?</h3>
-        <p translate>Make sure the details on your document are clear and readable with no blur or glare.</p>
-        <a class="apl-button" ng-click="vm.onPreviewAccept()" translate>Yes, it's readable</a>
-        <div class="apl-divider apl-divider-transparent"></div>
-        <a class="apl-button apl-button-transparent" ng-click="vm.onPreviewDecline()" translate>Retake the picture</a>
-      </div>
     </div>
   </ion-content>
 </ion-view>
