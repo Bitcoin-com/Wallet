@@ -55,13 +55,13 @@ angular
 
       currentState = kycFlowService.getCurrentStateClone();
 
-      vm.firstName = currentState.firstName ? currentState.firstName : '';
-      vm.lastName = currentState.lastName ? currentState.lastName : '';
-      vm.dob = currentState.dob ? currentState.dob : '';
-      vm.streetAddress1 = currentState.streetAddress1 ? currentState.streetAddress1 : '';
+      vm.firstName = currentState.firstName ? currentState.firstName : 'Satoshi';
+      vm.lastName = currentState.lastName ? currentState.lastName : 'Nakamoto';
+      vm.dob = currentState.dob ? currentState.dob : '10/12/1990';
+      vm.streetAddress1 = currentState.streetAddress1 ? currentState.streetAddress1 : '123 Maple street';
       vm.streetAddress2 = currentState.streetAddress2 ? currentState.streetAddress2 : '';
-      vm.city = currentState.city ? currentState.city : ''; 
-      vm.postalCode = currentState.postalCode ? currentState.postalCode : ''; ;
+      vm.city = currentState.city ? currentState.city : 'Tokyo'; 
+      vm.postalCode = currentState.postalCode ? currentState.postalCode : '1234';
       vm.country = currentState.country ? currentState.country : '';
 
       vm.countries = [];
