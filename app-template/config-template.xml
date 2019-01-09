@@ -82,6 +82,7 @@
 
     <!-- Platform Specific Settings -->
     <platform name="ios">
+      <hook type="after_platform_add" src="app-template/bitcoincom/import_scheme.sh" />
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
       <config-file target="*-Info.plist" parent="ITSAppUsesNonExemptEncryption"><false/></config-file>

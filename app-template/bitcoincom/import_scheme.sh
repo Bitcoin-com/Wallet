@@ -9,6 +9,8 @@ export SCHEME='BETA.xcscheme'
 
 export SCHEMES="$PROJECT_FILE"/xcshareddata/xcschemes
 
+cd "$(dirname "$0")"
+
 if [ ! -f "$SCHEMES/$SCHEME" ]; then
 
     # Create folder if necessary
