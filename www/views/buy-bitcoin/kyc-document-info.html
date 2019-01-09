@@ -8,16 +8,10 @@
   </ion-nav-bar>
   <ion-content >
     <div class="top-boundary"></div>
-    <h1 class="center" translate>
-      Get Verified
-    </h1>
+    <h1 class="center" translate>Get Verified</h1>
     <div class="center">
-      <p translate>
-        You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month.
-      </p>
-      <div class="restore-info" translate>
-        If you've previously verified your identity with bitcoin.com you can <a ng-click="vm.onRestoreVerify()">restore your verifitcation.</a>
-      </div>
+      <p translate>You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month.</p>
+      <div class="restore-info" translate>If you've previously verified your identity with bitcoin.com you can <a ng-click="vm.onRestoreVerify()">restore your verifitcation.</a></div>
     </div>
     <div class="apl-divider"></div>
     <form name="documentForm" novalidate>
@@ -38,7 +32,7 @@
         <select ng-model="vm.documentType"
           name="documentType"
           ng-required="true">
-          <option value="" >Select</option>
+          <option value="" translate>Select</option>
           <option ng-repeat="document in vm.supportedDocuments track by $index" value="{{document}}">{{vm.supportedDocumentLabels[document]}}</option>
         </select>
       </div>

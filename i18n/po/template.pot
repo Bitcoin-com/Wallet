@@ -4374,5 +4374,24 @@ msgid "Photograph your document"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
-msgid "Position the 4 corners of your passport clearly in the frame. Avoid any glare."
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
 msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verifitcation.</a>"
+msgstr ""
+
+
+
