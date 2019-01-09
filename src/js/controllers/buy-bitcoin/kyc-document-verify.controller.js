@@ -41,6 +41,10 @@ angular
       currentState = kycFlowService.getCurrentStateClone();
       vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
       vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 0 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
+      var documents = currentState.documents;
+      if(documents.length > 0) {
+        vm.photo = documents[documents.length-1];
+      }
     }
 
     function onAccept() {

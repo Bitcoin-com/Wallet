@@ -10,14 +10,8 @@ angular
   function buyBitcoinKycDocumentCaptureController(
     bitAnalyticsService
     , gettextCatalog
-    , $ionicHistory
-    , $log
     , cameraPreviewService
     , kycFlowService
-    , moonPayService
-    , ongoingProcess
-    , popupService
-    , moment
     , $scope
   ) {
     var currentState = {};
@@ -26,8 +20,6 @@ angular
     // Functions
     vm.goBack = goBack;
     vm.onCapture = onCapture;
-    vm.onPreviewAccept = onPreviewAccept;
-    vm.onPreviewDecline = onPreviewDecline;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
