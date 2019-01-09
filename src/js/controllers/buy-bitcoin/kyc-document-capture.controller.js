@@ -34,7 +34,6 @@ angular
 
       vm.canEnableLight = true;
       vm.canChangeCamera = true;
-      vm.inPreview = false;
 
       vm.submitted = false;
 

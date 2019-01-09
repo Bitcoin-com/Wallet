@@ -8,7 +8,8 @@ angular
   
   function kycFlowStateService(lodash, $log) {
 
-    var defaultState = {
+    var states = [];
+    var state = {
       identity: null
       , result: ''
       , isRecovery: false
@@ -27,7 +28,7 @@ angular
       , inPreview: false
       , documents: []
       , documentsMeta: {}
-    }
+    };
 
     var service = {
       // Functions
@@ -39,9 +40,6 @@ angular
       , isEmpty: isEmpty
       , 
     };
-
-    var state = defaultState;
-    var states = [];
 
     return service;
 
@@ -60,8 +58,6 @@ angular
           state[attributeName] = params[attributeName];
         }
       }
-
-      push(state);
     }
 
     /**
@@ -114,8 +110,6 @@ angular
      * Get a clone of the current state
      */
     function getClone() {
-      var currentState = state;
-
       // Recursive function to clone Object + Array
       function recClone(oldObject, newObject) {
         Object.keys(oldObject).forEach(function forCurrentParam(key) {
@@ -132,9 +126,7 @@ angular
         return newObject;
       }
       
-      var newState = recClone(currentState, {});
-
-      return newState;
+      return recClone(state, {});
     }
 
     /**
@@ -142,10 +134,7 @@ angular
      */
     function pop() {
       $log.debug('kyc-flow-state pop');
-      console.log('Full-Stack', states);
-      console.log('TRUE - lastState', states[states.length - 1]);
       var lastState = states.pop();
-      console.log('lastState', lastState);
       clearCurrent();
       map(lastState);
     }
