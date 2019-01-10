@@ -4275,3 +4275,15 @@ msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash."
 msgstr ""
+
+msgid "The market's highest paying pool"
+msgstr ""
+
+msgid "Start mining Bitcoin"
+msgstr ""
+
+msgid "Pay with BCH, get 10% back"
+msgstr ""
+
+msgid "Get your Bitcoin merch"
+msgstr ""
