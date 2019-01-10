@@ -57,7 +57,10 @@
     <div id="merchants" class="apl-list">
       <div ng-repeat="merchant in vm.merchants track by $index">
         <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.onMerchant($index)" >
-          <i class="icon big-icon-svg ion-android-cart"></i>
+          <!--<i class="icon big-icon-svg ion-android-cart"></i>-->
+          <i class="icon big-icon-svg">
+            <img src="{{merchant.icon}}" />
+        </i>
           <div class="apl-card__title__container">
             <div class="apl-card__title">
               {{merchant.name}}

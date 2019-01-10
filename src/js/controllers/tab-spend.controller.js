@@ -8,6 +8,7 @@
     
   function tabSpendController(
     externalLinkService
+    , gettextCatalog
     , $scope
     , uxLanguage
     ) {
@@ -23,7 +24,7 @@
 
     // Variables
     vm.merchants = [];
-
+    
     var startAcceptingLinks = {
       en: 'https://bitcoincashers.org/en/intro/for-merchants/',
       es: 'https://bitcoincashers.org/es/intro/for-merchants/',
@@ -41,19 +42,23 @@
 
     function _onBeforeEnter(event, data) {
 
-      // Sample data
-      /*
+      // Do the setup here so we get the translations
+      
       vm.merchants = [
         {
-          description: 'Bits and bobs.',
-          name: 'Bob\'s Boutique'
+          description: gettextCatalog.getString("The market's highest paying pool"),
+          icon: 'img/merchants/mining_merchant_icon.svg',
+          name: gettextCatalog.getString('Start mining Bitcoin'),
+          url: 'https://pool.bitcoin.com'
         },
         {
-          description: 'Everything eclectic.',
-          name: 'Eve\'s Emporium'
+          description: gettextCatalog.getString('Pay with BCH, get 10% back'),
+          icon: 'img/merchants/bitcoincom_store_merchant_icon.svg',
+          name: gettextCatalog.getString('Get your Bitcoin merch'),
+          url: 'https://store.bitcoin.com'
         }
       ];
-      */
+      
       
     }
     
@@ -67,6 +72,7 @@
 
     function onMerchant(index) {
       var merchant = vm.merchants[index];
+      externalLinkService.open(merchant.url);
     }
 
     function onPurseIo() {
