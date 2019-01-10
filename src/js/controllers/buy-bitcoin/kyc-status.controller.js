@@ -84,16 +84,19 @@ angular
             }).catch(function onError(error) {
               // Activate Retry Button 
               console.log('Moonpay API Errors:', error);
-              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'), function() {
+                $ionicHistory.goBack();
+              });
             }).finally(function onComplete() {
               ongoingProcess.set('submitingKycInfo', false);
             });
           }).catch(function(error) {
             console.log('Moonpay API Errors:', error);
-            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
             // Activate Retry Button
-            // TODO: Add Back button logic to popup
             ongoingProcess.set('submitingKycInfo', false);
+            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'), function() {
+              $ionicHistory.goBack();
+            });
           });
         })
       } else {
@@ -104,6 +107,9 @@ angular
         }).catch(function onError(error) {
           // Activate Retry Button  
           ongoingProcess.set('fetchingKycStatus', false);
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get information. Please try again.'), function() {
+            $ionicHistory.goBack();
+          });
         });
       }
     }
