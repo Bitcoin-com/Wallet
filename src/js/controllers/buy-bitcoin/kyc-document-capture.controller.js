@@ -47,7 +47,7 @@ angular
       if(currentState.documentType === 'passport') {
         vm.imageType = currentState.documents.length === 0 ? 'front' : 'selfie';
       } else if(currentState.documents.length <= 2) {
-        vm.imageType = currentState.documents.length ? 'front' : 'back';
+        vm.imageType = currentState.documents.length === 0 ? 'front' : 'back';
       }
       console.log('***ImageType: ', vm.imageType);
 
@@ -56,6 +56,17 @@ angular
         vm.titleLabel = gettextCatalog.getString('Self Selfie');
         vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
         vm.descriptionLabel = gettextCatalog.getString('Position your head entirely in the frame and say cheese.');
+        // cameraPreviewService.startCamera({
+        //   x: 0
+        // , y: 0
+        // , width: $window.screen.width
+        // , height: $window.screen.height
+        // , camera: CameraPreview.CAMERA_DIRECTION.FRONT
+        // , toBack: true
+        // , tapPhoto: false
+        // , tapFocus: true
+        // , previewDrag: false
+        // });
       } else {
         vm.titleLabel = vm.documentName + " " + (vm.imageType === 'front' ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
         vm.descriptionHeaderLabel = gettextCatalog.getString('Photograph your document');

@@ -45,9 +45,9 @@ angular
       // Get ImageType
       vm.imageType = 'selfie';
       if(currentState.documentType === 'passport') {
-        vm.imageType = currentState.documents.length === 0 ? 'front' : 'selfie';
+        vm.imageType = currentState.documents.length === 1 ? 'front' : 'selfie';
       } else if(currentState.documents.length <= 2) {
-        vm.imageType = currentState.documents.length ? 'front' : 'back';
+        vm.imageType = currentState.documents.length === 1 ? 'front' : 'back';
       }
       console.log('***ImageType: ', vm.imageType);
 
