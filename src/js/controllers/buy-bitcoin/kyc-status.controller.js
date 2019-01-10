@@ -13,6 +13,8 @@ angular
     , kycFlowService
     , moonPayService
     , moment
+    , ongoingProcess
+    , popupService
     , $scope
   ) {
     var currentState = {};
@@ -20,8 +22,7 @@ angular
 
     // Functions
     vm.goBack = goBack;
-    vm.onRetry = onRetry;
-
+    
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
