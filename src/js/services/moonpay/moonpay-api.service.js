@@ -7,9 +7,12 @@ angular
   .factory('moonPayApiService', moonPayApiService);
   
   function moonPayApiService(
-    moonPayConfig,
-    localStorageService,
-    $http, $q, $log
+    moonPayConfig
+    , localStorageService
+    , $http
+    , $q
+    , $log
+    , $sce
   ) {
 
     var tokenKey = 'moonPayToken';
@@ -81,7 +84,7 @@ angular
       try {
         message = Object.values(response.data.errors[0].constraints)[0];
       } catch(e) {
-        if (response.data.message) {
+        if (response.data && response.data.message) {
           message = response.data.message;
         } else if (Math.floor(response.status / 100) !== 2) { // 2xx HTTP Status code, considered success.
           message = response.statusText;
@@ -341,6 +344,8 @@ angular
       getConfig(true).then(function(config) {
         var customConfig = Object.assign({}, config);
         customConfig.headers['Content-Type'] = 'multipart/form-data';
+
+        $sce.trustAs($sce.RESOURCE_URL, baseUrl + '/v2/files');
 
         $http.post(baseUrl + '/v2/files', data, customConfig).then(function onUploadFileSuccess(response) {
           var file = response.data;
