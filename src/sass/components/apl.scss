@@ -277,6 +277,10 @@
       text-align: left;
       letter-spacing: -0.2px;
 
+      &.multiline {
+        height: auto;
+      }
+
       & .right {
         float: right;
       }
@@ -542,6 +546,11 @@
           border-radius: 23px;
           width: $button-right-width + px;
           text-align: center;
+          
+        }
+
+        a.button-right {
+          text-decoration: none;
         }
       }
     }

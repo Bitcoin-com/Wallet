@@ -6,7 +6,39 @@ angular
   .module('copayApp.controllers')
   .controller('reviewController', reviewController);
 
-  function reviewController(addressbookService, externalLinkService, bitcoinCashJsService, bitcore, bitcoreCash, bwcError, clipboardService, configService, feeService, gettextCatalog, $interval, $ionicHistory, $ionicModal, ionicToast, lodash, $log, ongoingProcess, platformInfo, popupService, profileService, $scope, sendFlowService, shapeshiftService, soundService, $state, $timeout, txConfirmNotification, txFormatService, walletService) {
+  function reviewController(
+    addressbookService
+    , externalLinkService
+    , bitcoinCashJsService
+    , bitcore
+    , bitcoreCash
+    , bwcError
+    , clipboardService
+    , configService
+    , feeService
+    , gettextCatalog
+    , $interval
+    , $ionicHistory
+    , $ionicModal
+    , ionicToast
+    , lodash
+    , $log
+    , ongoingProcess
+    , platformInfo
+    , popupService
+    , profileService
+    , satoshiDiceService
+    , $scope
+    , sendFlowService
+    , shapeshiftService
+    , soundService
+    , $state
+    , $timeout
+    , txConfirmNotification
+    , txFormatService
+    , walletService
+    ) {
+    
     var vm = this;
 
     var sendFlowData;
@@ -30,6 +62,7 @@ angular
   
     // Functions
     vm.goBack = goBack;
+    vm.onReplay = onReplay;
     vm.onSuccessConfirm = onSuccessConfirm;
     vm.onShareTransaction = onShareTransaction;
 
@@ -53,6 +86,7 @@ angular
       unitFromSat = 0;
 
       // Public variables
+      vm.amountWon = 0.000525;
       vm.buttonText = '';
       vm.destination = {
         address: '',
@@ -65,6 +99,10 @@ angular
         kind: '', // 'address', 'contact', 'wallet'
         name: ''
       };
+      vm.destinationAddress = 'something';
+      vm.destinationIsAGame = false;
+      vm.didWin = false;
+      vm.didLose = false;
       vm.displayAddress = '';
       vm.feeCrypto = '';
       vm.feeFiat = '';
@@ -99,7 +137,7 @@ angular
       vm.memoExpanded = false;
     }
 
-    $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
 
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
@@ -116,6 +154,7 @@ angular
       destinationWalletId = sendFlowData.toWalletId;
 
       vm.displayAddress = sendFlowData.displayAddress;
+      vm.destinationAddress = sendFlowData.displayAddress || sendFlowData.toAddress;
       vm.originWallet = profileService.getWallet(originWalletId);
       vm.origin.currency = vm.originWallet.coin.toUpperCase();
       coin = vm.originWallet.coin;
@@ -135,18 +174,18 @@ angular
                   $ionicHistory.goBack();
                 });
               } else {
-                _next(data);
+                _next();
               }
             });
             break;
           case 'bip70':
             initBip70();
           default:
-            _next(data);
+            _next();
             break;
         }
       } else {
-        _next(data);
+        _next();
       }
 
       function _next() {
@@ -163,7 +202,7 @@ angular
           getOriginWalletBalance(vm.originWallet);
           handleDestinationAsAddress(toAddress, coin);
           handleDestinationAsWallet(sendFlowData.toWalletId);
-          createVanityTransaction(data);
+          createVanityTransaction();
         });
       }
     }
@@ -208,12 +247,14 @@ angular
 
           walletService.publishAndSign(vm.originWallet, txp, function onPublishAndSign(err, txp) {
             if (err) return setSendError(err);
+
             if (config.confirmedTxsNotifications && config.confirmedTxsNotifications.enabled) {
               txConfirmNotification.subscribe(vm.originWallet, {
                 txid: txp.txid
               });
-              lastTxId = txp.txid;
             }
+            lastTxId = txp.txid;
+            _onTransactionCompletedSuccessfully();
           }, statusChangeHandler);
         };
 
@@ -276,7 +317,7 @@ angular
       };
     };
 
-    function createVanityTransaction(data) {
+    function createVanityTransaction() {
       var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
 
       // Grab stateParams
@@ -303,10 +344,10 @@ angular
       if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
         tx.toAddress = vm.thirdParty.toAddress;
       }
-
-      if (data.stateParams.requiredFeeRate) {
+      
+      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
         vm.usingMerchantFee = true;
-        tx.feeRate = parseInt(data.stateParams.requiredFeeRate);
+        tx.feeRate = parseInt(sendFlowData.thirdParty.requiredFeeRate);
       }
 
       if (tx.coin && tx.coin === 'bch') {
@@ -358,6 +399,7 @@ angular
         return;
       }
     }
+
     function getOriginWalletBalance(originWallet) {
       var balanceText = getWalletBalanceDisplayText(vm.originWallet);
       vm.origin.balanceAmount = balanceText.amount;
@@ -484,6 +526,8 @@ angular
           }
           vm.destination.kind = 'address';
         }
+
+        _handleSatoshiDiceIntegrationBeforeSending(address);
       });
 
     }
@@ -518,6 +562,44 @@ angular
       var balanceText = getWalletBalanceDisplayText(destinationWallet);
       vm.destination.balanceAmount = balanceText.amount;
       vm.destination.balanceCurrency = balanceText.currency;
+    }
+
+    function _handleSatoshiDiceIntegrationAfterSending() {
+      if (!(vm.destinationIsAGame && lastTxId)) {
+        return;
+      }
+
+      satoshiDiceService.getBetStatus(lastTxId).then(
+        function onBetStatusSuccess(payload) {
+          if (payload.win) {
+            vm.didWin = true;
+            vm.amountWon = payload.payout;
+          } else {
+            vm.didLose = true;
+          }
+        },
+        function onBetStatusError(reason) {
+          $log.error('Failed to get the status of the bet.', reason);
+        }
+      );
+    }
+
+    function _handleSatoshiDiceIntegrationBeforeSending() {
+      if (vm.originWallet.coin !== 'bch') {
+        return;
+      }
+      
+      var address = vm.destinationAddress;
+      if (address) {
+        // So the address can be parsed properly
+        if (address[0] === 'q' || address[0] === 'p') {
+          address = 'bitcoincash:' + address;
+        }
+        var legacyAddress = bitcoinCashJsService.readAddress(address).legacy;
+        if (satoshiDiceService.addressIsKnown(legacyAddress)) {
+          vm.destinationIsAGame = true;
+        }
+      }
     }
 
     function initBip70() {
@@ -576,6 +658,10 @@ angular
       });
     }
 
+    function onReplay() {
+      onBeforeEnter();
+    }
+
     function onShareTransaction() {
       var explorerTxUrl = 'https://explorer.bitcoin.com/' + tx.coin + '/tx/' + lastTxId;
       if (platformInfo.isCordova) {
@@ -589,6 +675,24 @@ angular
         clipboardService.copyToClipboard(explorerTxUrl);
       }
     
+    }
+
+    function _onTransactionCompletedSuccessfully() {
+      var channel = "firebase";
+        if (platformInfo.isNW) {
+          channel = "ga";
+        }
+        // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
+        var amount = unitFromSat * satoshis;
+        var log = new window.BitAnalytics.LogEvent("transfer_success", [{
+          "coin": vm.originWallet.coin,
+          "type": "outgoing",
+          "amount": amount,
+          "fees": vm.feeCrypto
+        }], [channel, "adjust", "leanplum"]);
+        window.BitAnalytics.LogEventHandlers.postEvent(log);
+
+      _handleSatoshiDiceIntegrationAfterSending();
     }
 
     function startExpirationTimer(expirationTime) {
@@ -668,6 +772,9 @@ angular
     }
 
     function onSuccessConfirm() {
+      // Clear the send flow service state
+      sendFlowService.state.clear();
+
       vm.sendStatus = '';
       $ionicHistory.nextViewOptions({
         disableAnimate: true,
@@ -795,7 +902,7 @@ angular
     };
 
     function statusChangeHandler(processName, showName, isOn) {
-      $log.debug('statusChangeHandler: ', processName, showName, isOn);
+      $log.debug('statusChangeHandler() processName: "' + processName + '", isOn: ' + isOn);
       if (
         (
           processName === 'broadcastingTx' ||
@@ -805,26 +912,9 @@ angular
         // Show the popup
         vm.sendStatus = 'success';
 
-        // Clear the send flow service state
-        sendFlowService.state.clear();
-
         if ($state.current.name === "tabs.send.review") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
           soundService.play('misc/payment_sent.mp3');
         }
-        
-        var channel = "firebase";
-        if (platformInfo.isNW) {
-          channel = "ga";
-        }
-        // When displaying Fiat, if the formatting fails, the crypto will be the primary amount.
-        var amount = unitFromSat * satoshis;
-        var log = new window.BitAnalytics.LogEvent("transfer_success", [{
-          "coin": vm.originWallet.coin,
-          "type": "outgoing",
-          "amount": amount,
-          "fees": vm.feeCrypto
-        }], [channel, "adjust", "leanplum"]);
-        window.BitAnalytics.LogEventHandlers.postEvent(log);
 
         $timeout(function() {
           $scope.$digest();

@@ -4,7 +4,7 @@ i18n/crowdin_api_key.txt
 src/js/translations.js
 
 package-lock.json
-
+package.json
 
 # cordova
 plugins

@@ -4287,3 +4287,8 @@ msgstr ""
 
 msgid "Get your Bitcoin merch"
 msgstr ""
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr ""

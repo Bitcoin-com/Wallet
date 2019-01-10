@@ -96,7 +96,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
     // whitelist 'chrome-extension:' for chromeApp to work with image URLs processed by Angular
     // link: http://stackoverflow.com/questions/15606751/angular-changes-urls-to-unsafe-in-extension-page?lq=1
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension):|data:image\/)/);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension|ionic):|data:image\/)/);
 
     $stateProvider
 
@@ -1140,6 +1140,22 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home@tabs': {
             controller: 'verifyMessageController',
             templateUrl: 'views/verifyMessage.html'
+          }
+        }
+      })
+
+      /*
+       *
+       * Spend
+       *
+       */
+      .state('tabs.spend.marcoCoino', {
+        url: '/spend/marcocoino',
+        views: {
+          'tab-spend@tabs': {
+            controller: 'marcoCoinoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/marco-coino.html',
           }
         }
       })
