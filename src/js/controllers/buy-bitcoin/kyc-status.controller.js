@@ -22,7 +22,7 @@ angular
 
     // Functions
     vm.goBack = goBack;
-    
+
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
@@ -56,13 +56,7 @@ angular
           
           // Upload documents
           currentState.documents.forEach(function(imageFile, index) {
-            var object = {
-              file: imageFile,
-              type: currentState.documentType,
-              country: currentState.countryCode,
-              side: index === 0 ? 'front' : 'back'
-            };
-            taskList.push(moonPayService.uploadFile(object));
+            taskList.push(moonPayService.uploadFile(imageFile, currentState.documentType, currentState.countryCode, index === 0 ? 'front' : 'back'));
           });
 
           // Block All for Completion
