@@ -514,8 +514,10 @@ angular
       formData.append('file', blob, type + '_' + side + '.jpeg');
       formData.append('type', type);
       formData.append('country', country);
-      formData.append('side', side ? side : '');
-
+      
+      if (side) {
+        formData.append('side', side);
+      }
       console.log(formData);
 
       moonPayApiService.uploadFile(formData).then(

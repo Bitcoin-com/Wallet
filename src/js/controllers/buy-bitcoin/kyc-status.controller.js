@@ -56,6 +56,9 @@ angular
           
           // Upload documents
           currentState.documents.forEach(function(imageFile, index) {
+            if( index === currentState.documents.length-1) {
+              taskList.push(moonPayService.uploadFile(imageFile, 'selfie', currentState.countryCode, null));
+            }
             taskList.push(moonPayService.uploadFile(imageFile, currentState.documentType, currentState.countryCode, index === 0 ? 'front' : 'back'));
           });
 
