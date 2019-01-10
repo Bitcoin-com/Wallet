@@ -23,7 +23,6 @@ angular
 
     // Functions
     vm.goBack = goBack;
-    vm.onAccept = onAccept;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
