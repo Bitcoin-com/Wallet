@@ -393,27 +393,6 @@ angular
       return deferred.promise;
     }
 
-
-    function uploadPassport(customerId, file) {
-      // Needs to be completed
-      // Will use the uploadFile
-    }
-
-    function uploadNationalIdentityCard(customerId, files) {
-      // Needs to be completed
-      // Will use the uploadFile
-    }
-
-    function uploadSelfie(customerId, file) {
-      // Needs to be completed
-      // Will use the uploadFile
-    }
-
-    function uploadFile(customerId, file) {
-      // Needs to be completed
-      // Post request
-    }
-
     //
     // Private methods
     //

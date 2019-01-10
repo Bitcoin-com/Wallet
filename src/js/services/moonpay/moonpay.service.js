@@ -44,7 +44,7 @@ angular
       , getIdentityCheck: getIdentityCheck
       , createIdentityCheck: createIdentityCheck
       , getFiles: getFiles
-      , uploadDocument: uploadDocument
+      , uploadFile: uploadFile
     };
 
     return service;
@@ -470,7 +470,7 @@ angular
      * @param {String} country
      * @param {String} side - Optional  
      */
-    function uploadDocument(file, type, country, side) {
+    function uploadFile(file, type, country, side) {
       // Create the promise
       var deferred = $q.defer();
       var filePackage = {
@@ -479,7 +479,7 @@ angular
         , 'country': country
         , 'side': side ? side : ''
       }
-      moonPayApiService.uploadDocument(filePackage).then(
+      moonPayApiService.uploadFile(filePackage).then(
         function onUploadFileSuccess(files) {
           deferred.resolve(files);
         }, function onUploadFileError(err) {
