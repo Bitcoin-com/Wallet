@@ -42,7 +42,25 @@ angular
       // Title Label
       vm.documentName = vm.supportedDocumentLabels[currentState.documentType];
 
-      vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 0 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
+      // Get ImageType
+      vm.imageType = 'selfie';
+      if(currentState.documentType === 'passport') {
+        vm.imageType = currentState.documents.length === 0 ? 'front' : 'selfie';
+      } else if(currentState.documents.length <= 2) {
+        vm.imageType = currentState.documents.length ? 'front' : 'back';
+      }
+      console.log('***ImageType: ', vm.imageType);
+
+      // Set Text Content by ImageType
+      if(vm.imageType === 'selfie') {
+        vm.titleLabel = gettextCatalog.getString('Self Selfie');
+        vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
+        vm.descriptionLabel = gettextCatalog.getString('Position your head entirely in the frame and say cheese.');
+      } else {
+        vm.titleLabel = vm.documentName + " " + (vm.imageType === 'front' ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
+        vm.descriptionHeaderLabel = gettextCatalog.getString('Photograph your document');
+        vm.descriptionLabel = gettextCatalog.getString('Position the 4 corners of your document clearly in the frame. Avoid any glare.');
+      }
       cameraPreviewService.startCamera();
     }
 

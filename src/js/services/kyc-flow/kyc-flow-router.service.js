@@ -36,7 +36,7 @@ angular
       console.log('document count: ', state.documents.length );
       var needsDocumentType = !(state.countryCode && state.documentType);
       var needsVerify = state.inPreview;
-      var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 1 : 2));
+      var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 2 : 3));
       var needsPersonalInfo = 
         !( state.firstName
         && state.lastName
