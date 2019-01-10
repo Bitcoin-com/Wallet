@@ -35,49 +35,62 @@ angular
       // Identity Check Status
       if(!currentState.status) {
         // Do Submit to Moonpay
-        var taskList = [];
-
-        // Update Customer
-        var updatedCustomer = {
-          firstName: currentState.firstName,
-          lastName: currentState.lastName,
-          dateOfBirth: moment(currentState.dob, 'DD/MM/YYYY').format('YYYY-MM-DD'),
-          address: {
-            street: currentState.streetAddress1,
-            substreet: currentState.streetAddress2,
-            town: currentState.city,
-            postCode: currentState.postalCode,
-            country: currentState.country
+        ongoingProcess.set('submitingKycInfo', true);
+        moonPayService.getCustomer().then(function onGetCustomerSuccess(customer) {
+          var taskList = [];
+          // Update Customer
+          customer.firstName = currentState.firstName
+          customer.lastName = currentState.lastName
+          customer.dateOfBirth = moment(currentState.dob, 'DD/MM/YYY').format('YYYY-MM-DD')
+          customer.address = {
+            'street': currentState.streetAddress1
+            , 'town': currentState.city
+            , 'postCode': currentState.postalCode
+            , 'country': currentState.country
           }
-        };
-        taskList.push(moonPayService.updateCustomer(updatedCustomer));
-
-        // Upload documents
-        currentState.documents.forEach(function(imageFile, index) {
-          var object = {
-            file: imageFile,
-            type: currentState.documentType,
-            country: currentState.countryCode,
-            side: index === 0 ? 'front' : 'back'
-          };
-          taskList.push(moonPayService.uploadFile(object));
-        });
-
-        Promise.all(taskList).then(function(results) {
-          moonPayService.getIdentityCheck().then(function onSuccess(response) {
-            updateStatusUi(response)
-          }).catch(function onError(error) {
-            // Activate Retry Button  
+          if (currentState.streetAddress2) {
+            customer.address.subStreet = currentState.streetAddress2;
+          }
+          taskList.push(moonPayService.updateCustomer(customer));
+          
+          // Upload documents
+          currentState.documents.forEach(function(imageFile, index) {
+            var object = {
+              file: imageFile,
+              type: currentState.documentType,
+              country: currentState.countryCode,
+              side: index === 0 ? 'front' : 'back'
+            };
+            taskList.push(moonPayService.uploadFile(object));
           });
-        }).catch(function(errors) {
-          console.log();
-          // Activate Retry Button
-        });
+
+          // Block All for Completion
+          Promise.all(taskList).then(function onTaskListSuccess(results) {
+            moonPayService.getIdentityCheck().then(function onSuccess(response) {
+              updateStatusUi(response);
+            }).catch(function onError(error) {
+              // Activate Retry Button 
+              console.log('Moonpay API Errors:', error);
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
+            }).finally(function onComplete() {
+              ongoingProcess.set('submitingKycInfo', false);
+            });
+          }).catch(function(errors) {
+            console.log('Moonpay API Errors:', error);
+            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
+            // Activate Retry Button
+            // TODO: Add Back button logic to popup
+            ongoingProcess.set('submitingKycInfo', false);
+          });
+        })
       } else {
+        ongoingProcess.set('fetchingKycStatus', true);
         moonPayService.getIdentityCheck().then(function onSuccess(response) {
-          updateStatusUi(response)
+          updateStatusUi(response);
+          ongoingProcess.set('fetchingKycStatus', false);
         }).catch(function onError(error) {
           // Activate Retry Button  
+          ongoingProcess.set('fetchingKycStatus', false);
         });
       }
     }

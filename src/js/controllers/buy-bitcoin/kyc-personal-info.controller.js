@@ -99,42 +99,8 @@ angular
       currentState.city = vm.city
       currentState.postalCode = vm.postalCode
       currentState.country = vm.country;
-      
-      moonPayService.getCustomer().then(
-        function onGetCustomerSuccess(customer) {
-          if (customer) {
 
-            // Update Customer
-            customer.firstName = vm.firstName
-            customer.lastName = vm.lastName
-            customer.dateOfBirth = moment(vm.dob, 'DD/MM/YYY').format('YYYY-MM-DD')
-            customer.address = {
-              'street': vm.streetAddress1
-              , 'subStreet': vm.streetAddress2
-              , 'town': vm.city
-              , 'postCode': vm.postalCode
-              , 'country': vm.country
-            }
-
-            ongoingProcess.set('submitingKycInfo', true);
-            moonPayService.updateCustomer(customer).then( 
-              function onUpdateSuccess() {
-                ongoingProcess.set('submitingKycInfo', false);
-                kycFlowService.goNext(currentState);
-            }, 
-              function onUpdateError(err) {
-                ongoingProcess.set('submitingKycInfo', false);
-                popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
-            });
-          } else {
-            ongoingProcess.set('submitingKycInfo', false);
-            popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get the customer. Please try again.'));
-          }
-        }, function onGetCustomerError(err) {
-          ongoingProcess.set('submitingKycInfo', false);
-          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get the customer. Please try again.'));
-        }
-      );
+      kycFlowService.goNext(currentState);
     }
 
     function goBack() {

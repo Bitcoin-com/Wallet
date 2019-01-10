@@ -34,7 +34,6 @@ angular
     function goNext(state) {
       console.log('kyc-flow-router - goNext', state);
       console.log('document count: ', state.documents.length );
-      var attemptRecovery = (state.isRecovery)
       var needsDocumentType = !(state.countryCode && state.documentType);
       var needsVerify = state.inPreview;
       var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 1 : 2));
@@ -48,18 +47,6 @@ angular
         && state.country
         );
 
-      // Recover Customer ID Page
-      if(attemptRecovery) {
-        if(attemptRecovery === 'start') {
-          // Recovery page
-          console.log('KYC-FLOW - Recovery Page');
-          return;
-        } else {
-          // Recovery Success/Failure Page
-          console.log('KYC-FLOW - Recovery Page - Fail/Success');
-          return;
-        }
-      }
       //New Customer Page
       if (needsDocumentType) {
         console.log('KYC-FLOW - Verification');
