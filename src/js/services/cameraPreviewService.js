@@ -46,10 +46,6 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     , previewDrag: false
   };
 
-  var defaultImageSettings = {
-
-  }
-
   var defaultDocumentSettings = {
     x: 0
     , y: 0
@@ -62,21 +58,6 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     , previewDrag: false
   }
 
-  // function _initSettings() {
-  //   var options = {
-  //     x: 0
-  //     , y: 0
-  //     , width: $window.screen.width
-  //     , height: $window.screen.height
-  //     , camera: CameraPreview.CAMERA_DIRECTION.BACK
-  //     , toBack: true
-  //     , tapPhoto: false
-  //     , tapFocus: true
-  //     , previewDrag: false
-  //     , disableExifHeaderStripping: true
-  //   };
-  // }
-
   this.startCamera = function (options = defaultCameraSettings) {
     CameraPreview.startCamera(options, [function onStartCameraSuccess() {
       console.log('Camera Preview Started!');
@@ -84,6 +65,16 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     }, function onStartCameraError(err) {
       $log.debug('Camera Preview Failed to start on request');
       }]);
+  }
+
+  this.startSelfieCamera = function(options = defaultCameraSettings) {
+    options.camera = CameraPreview.CAMERA_DIRECTION.FRONT;
+    this.startCamera(options) ;
+  }
+
+  this.startDocumentCamera = function(options = defaultCameraSettings) {
+    options.camera = CameraPreview.CAMERA_DIRECTION.BACK;
+    this.startCamera(options) ;
   }
 
   this.stopCamera = function () {

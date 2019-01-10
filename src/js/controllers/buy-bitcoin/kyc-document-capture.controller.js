@@ -56,23 +56,14 @@ angular
         vm.titleLabel = gettextCatalog.getString('Self Selfie');
         vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
         vm.descriptionLabel = gettextCatalog.getString('Position your head entirely in the frame and say cheese.');
-        // cameraPreviewService.startCamera({
-        //   x: 0
-        // , y: 0
-        // , width: $window.screen.width
-        // , height: $window.screen.height
-        // , camera: CameraPreview.CAMERA_DIRECTION.FRONT
-        // , toBack: true
-        // , tapPhoto: false
-        // , tapFocus: true
-        // , previewDrag: false
-        // });
+        cameraPreviewService.startSelfieCamera();
       } else {
         vm.titleLabel = vm.documentName + " " + (vm.imageType === 'front' ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
         vm.descriptionHeaderLabel = gettextCatalog.getString('Photograph your document');
         vm.descriptionLabel = gettextCatalog.getString('Position the 4 corners of your document clearly in the frame. Avoid any glare.');
+        cameraPreviewService.startDocumentCamera();
       }
-      cameraPreviewService.startCamera();
+      
     }
 
     function onCapture() {
