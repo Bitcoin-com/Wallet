@@ -89,9 +89,9 @@ angular
           function onResponse(identity) {
             ongoingProcess.set('gettingKycIdentity', false);
             if(identity) {
-              kycFlowStateService.init( { 
-              result: identity.result
-              , status: identity.status
+              kycFlowStateService.init({ 
+                result: identity.result
+                , status: identity.status
               });
               kycFlowRouterService.start(kycFlowStateService.getClone());
               resolve();

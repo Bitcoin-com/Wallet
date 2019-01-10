@@ -16,6 +16,7 @@ angular
     , ongoingProcess
     , popupService
     , $scope
+    , $ionicHistory
   ) {
     var currentState = {};
     var vm = this;
@@ -115,7 +116,7 @@ angular
     }
 
     function goBack() {
-      kycFlowService.goBack();
+      $ionicHistory.goBack();
     }
 
     function onBeforeEnter(event, data) {

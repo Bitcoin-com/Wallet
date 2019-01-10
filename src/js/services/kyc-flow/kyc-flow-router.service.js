@@ -47,6 +47,13 @@ angular
         && state.country
         );
 
+      if (state.status && state.result) {
+        // KYC Status Page
+        console.log('KYC-FLOW - KYC Status');
+        $state.go('tabs.buybitcoin-kyc-status');
+        return;
+      }
+
       //New Customer Page
       if (needsDocumentType) {
         console.log('KYC-FLOW - Verification');

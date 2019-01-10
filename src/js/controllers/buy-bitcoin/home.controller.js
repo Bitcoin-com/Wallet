@@ -45,7 +45,6 @@ angular
             bitAnalyticsService.setUserAttributes({
               'email': customer.email
             });
-
           } else {
             $state.go('tabs.buybitcoin-welcome');
             var title = gettextCatalog.getString("Error Getting Customer Information");
