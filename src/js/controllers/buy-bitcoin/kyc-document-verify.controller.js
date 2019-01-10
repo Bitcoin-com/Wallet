@@ -60,7 +60,7 @@ angular
         vm.previewImageClass = 'preview-image-circle';
       } else {
         vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 1 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
-        vm.descriptionLabel = gettextCatalog.getString('Make sure the details on your document are clear and readable with no blur or glare.Position the 4 corners of your document clearly in the frame. Avoid any glare.');
+        vm.descriptionLabel = gettextCatalog.getString('Make sure the details on your document are clear and readable with no blur or glare.');
         vm.acceptButtonLabel = gettextCatalog.getString("Yes, it's readable");
         vm.previewImageClass = 'preview-image';
       }

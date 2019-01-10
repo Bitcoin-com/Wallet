@@ -9,14 +9,16 @@ angular
 
   function buyBitcoinKycDocumentCaptureController(
     bitAnalyticsService
+    , $document
     , gettextCatalog
     , cameraPreviewService
     , kycFlowService
+    , platformInfo
     , $scope
-    , $document
   ) {
     var currentState = {};
     var vm = this;
+    vm.isMobile = platformInfo.isMobile;
 
     // Functions
     vm.goBack = goBack;
