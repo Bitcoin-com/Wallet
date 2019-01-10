@@ -470,20 +470,59 @@ angular
      * @param {String} country
      * @param {String} side - Optional  
      */
-    function uploadFile(file, type, country, side) {
+    function uploadFile(fileBase64, type, country, side) {
       // Create the promise
       var deferred = $q.defer();
-      var filePackage = {
-        'file': file
-        , 'type': type
-        , 'country': country
-        , 'side': side ? side : ''
+
+
+      function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+      
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+      
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          var slice = byteCharacters.slice(offset, offset + sliceSize);
+      
+          var byteNumbers = new Array(slice.length);
+          for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+      
+          var byteArray = new Uint8Array(byteNumbers);
+      
+          byteArrays.push(byteArray);
+        }
+          
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
       }
-      moonPayApiService.uploadFile(filePackage).then(
-        function onUploadFileSuccess(files) {
-          deferred.resolve(files);
+      
+      
+      var contentType = 'image/jpeg';
+      console.log(fileBase64.slice(23))
+      var b64Data = fileBase64.slice(23);
+      
+      var blob = b64toBlob(b64Data, contentType);
+      var file = new File([blob], type + '_' + side + '.jpeg');
+
+      console.log(file);
+      console.log(blob);
+
+      var formData = new FormData();
+      formData.append('file', file, type + '_' + side + '.jpeg');
+      formData.append('type', type);
+      formData.append('country', country);
+      formData.append('side', side ? side : '');
+
+      console.log(formData);
+
+      moonPayApiService.uploadFile(formData).then(
+        function onUploadFileSuccess(file) {
+          deferred.resolve(file);
         }, function onUploadFileError(err) {
-          $log.debug('Error getting moonpay files list from the api', err);
+          $log.debug('Error getting moonpay file list from the api', err);
           deferred.reject(err);
         }
       );

@@ -94,7 +94,11 @@ angular
           canvas.height = calHeightImg;
 
           context.drawImage(tempImage, originX * coefX, originY * coefY * ratioY, calWidthImg, calHeightImg, 0, 0, calWidthImg, calHeightImg);
-          resolve(canvas.toDataURL('image/jpeg', 0.8));
+
+          var base64Image = canvas.toDataURL('image/jpeg', 0.8);
+          console.log(base64Image);
+
+          resolve(base64Image);
         }
 
         tempImage.src = image;

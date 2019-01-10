@@ -336,12 +336,15 @@ angular
     /**
      * Upload File
      */
-    function uploadFile(filePackage) {
+    function uploadFile(data) {
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
-        $http.post(baseUrl + '/v2/files', filePackage, config).then(function onUploadFileSuccess(response) {
+        var customConfig = Object.assign({}, config);
+        customConfig.headers['Content-Type'] = 'multipart/form-data';
+
+        $http.post(baseUrl + '/v2/files', data, customConfig).then(function onUploadFileSuccess(response) {
           var file = response.data;
-          deferred.resolve(files);
+          deferred.resolve(file);
         }, function onUploadFileError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
