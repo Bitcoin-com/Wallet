@@ -511,7 +511,7 @@ angular
       console.log(blob);
 
       var formData = new FormData();
-      formData.append('file', blob, type + '_' + side + '.jpeg');
+      formData.append('file', blob);
       formData.append('type', type);
       formData.append('country', country);
       

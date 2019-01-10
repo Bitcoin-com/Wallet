@@ -64,7 +64,7 @@ angular
 
           // Block All for Completion
           Promise.all(taskList).then(function onTaskListSuccess(results) {
-            moonPayService.getIdentityCheck().then(function onSuccess(response) {
+            moonPayService.createIdentityCheck().then(function onSuccess(response) {
               updateStatusUi(response);
             }).catch(function onError(error) {
               // Activate Retry Button 
