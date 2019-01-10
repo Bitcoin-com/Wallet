@@ -23,6 +23,7 @@ angular
 
     // Functions
     vm.goBack = goBack;
+    vm.onAccept = onAccept;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
@@ -121,16 +122,19 @@ angular
       }
       switch(statusType) {
         case 'accepted':
-          vm.statusTitle = gettextCatalog.getString('Verified');
-          vm.description = gettextCatalog.getString('Your account has been successfully verified.');
+          vm.statusTitle = gettextCatalog.getString("You're Verified!");
+          vm.description = gettextCatalog.getString("Your account is now verified. Congrats!");
+          vm.graphicUri = "../img/buy-bitcoin/verified.svg"
         break;
         case 'rejected':
-          vm.statusTitle = gettextCatalog.getString('Rejected');
-          vm.description = gettextCatalog.getString('Your verification was denied. Please contact support for additional assistance.');
+          vm.statusTitle = gettextCatalog.getString('Verification Failed');
+          vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time. Please contact support for additional assistance.");
+          vm.graphicUri = "../img/buy-bitcoin/failed.svg"
         break;
         default:
-          vm.statusTitle = gettextCatalog.getString('Pending');
-          vm.description = gettextCatalog.getString('Your account is currently being verified. This process may take up to 3 business days.');
+          vm.statusTitle = gettextCatalog.getString("You're Being Verified");
+          vm.description = gettextCatalog.getString("This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin.");
+          vm.graphicUri = "../img/buy-bitcoin/processing.svg"
         break;
       }
     }

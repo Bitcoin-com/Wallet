@@ -1,0 +1,21 @@
+#tab-buy-bitcoin-kyc-status {
+  .apl-button-bottom-container {
+    height: auto !important;
+
+    h3, p {
+      text-align: center;
+    }
+  }
+
+  .status-frame {
+    height: 100%;
+
+    .status-graphic {
+      margin: auto;
+      display: flex;
+      img {
+        width: 80%;
+      }
+    }
+  }
+}

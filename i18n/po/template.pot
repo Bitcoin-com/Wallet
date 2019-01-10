@@ -4408,20 +4408,29 @@ msgid "Verification Status"
 msgstr ""
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
-msgid "Verified"
+msgid "You're Being Verified"
 msgstr ""
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
-msgid "Your account is currently being verified. This process may take up to 3 business days."
+msgid "You're Verified!"
 msgstr ""
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
-msgid "Your account has been successfully verified."
+msgid "Your account is now verified. Congrats!"
 msgstr ""
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
-msgid "Your account verification was rejected. Please contact support for additional assistance."
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
 msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr ""
+
 msgid "Spend"
 msgstr ""
 
