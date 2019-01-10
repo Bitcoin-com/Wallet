@@ -36,6 +36,7 @@ angular
       && vm.streetAddress1
       && vm.city
       && vm.postalCode
+      && vm.country
     }
 
     function _validateAge() {
@@ -90,6 +91,7 @@ angular
         $log.debug('Form incomplete.');
         return;
       }
+
       // Save current state
       currentState.firstName = vm.firstName
       currentState.lastName = vm.lastName
@@ -114,6 +116,10 @@ angular
               , 'town': vm.city
               , 'postCode': vm.postalCode
               , 'country': vm.country
+            }
+
+            if (vm.streetAddress2) {
+              customer.address.subStreet = vm.streetAddress2;
             }
 
             ongoingProcess.set('submitingKycInfo', true);
