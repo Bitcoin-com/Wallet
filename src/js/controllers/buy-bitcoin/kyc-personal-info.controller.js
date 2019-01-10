@@ -118,7 +118,7 @@ angular
               , 'country': vm.country
             }
 
-            if (vm.streetAddress2) {
+            if (vm.streetAddress2.length > 0) {
               customer.address.subStreet = vm.streetAddress2;
             }
 
