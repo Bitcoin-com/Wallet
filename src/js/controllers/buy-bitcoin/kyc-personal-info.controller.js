@@ -32,6 +32,7 @@ angular
       && vm.streetAddress1
       && vm.city
       && vm.postalCode
+      && vm.country
     }
 
     function _validateAge() {
