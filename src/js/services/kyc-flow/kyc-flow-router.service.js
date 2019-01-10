@@ -43,8 +43,8 @@ angular
         && state.lastName
         && state.dob
         && state.streetAddress1
+        && state.city
         && state.postalCode
-        && state.clearHistory
         && state.country
         );
 

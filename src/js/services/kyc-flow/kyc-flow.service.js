@@ -97,36 +97,39 @@ angular
               resolve();
               return;
             }
+
+
+            kycFlowStateService.init();
+            kycFlowRouterService.start(kycFlowStateService.getClone());
             
             // Get Customer and Files
-            var fetchingCustomer = moonPayService.getCustomer();
-            var fetchingFiles = moonPayService.getFiles();
+            //var fetchingCustomer = moonPayService.getCustomer();
+            //var fetchingFiles = moonPayService.getFiles();
 
-            Promise.all([fetchingCustomer, fetchingFiles]).then( function onSuccess(values){
-              var personalInfo = values[0];
-              var documents = values[1];
+            //Promise.all([fetchingCustomer, fetchingFiles]).then( function onSuccess(values){
+              //var personalInfo = values[0];
+              //var documents = values[1];
               // Merge Values
-              kycFlowStateService.init( { 
-                'firstName': personalInfo.firstName
-                , 'lastName': personalInfo.lastName
-                , 'dob': moment(personalInfo.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY')
-                , 'streetAddress1': personalInfo.address.street
-                , 'streetAddress2': personalInfo.address.subStreet
-                , 'city': personalInfo.address.town
-                , 'postalCode': personalInfo.address.postCode
-                , 'country': personalInfo.address.country
-                , 'documentsMeta': documents ? documents : {}
-                , 'documents': []
-                , 'countryCode': documents[0] ? (documents[0].country ? documents[0].country : '') : ''
-                , 'documentType': documents[0] ? (documents[0].type ? documents[0].type : '') : ''
-                });
+              // kycFlowStateService.init({ 
+              //   'firstName': personalInfo.firstName
+              //   , 'lastName': personalInfo.lastName
+              //   , 'dob': moment(personalInfo.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY')
+              //   , 'streetAddress1': personalInfo.address.street
+              //   , 'streetAddress2': personalInfo.address.subStreet
+              //   , 'city': personalInfo.address.town
+              //   , 'postalCode': personalInfo.address.postCode
+              //   , 'country': personalInfo.address.country
+              //   , 'documentsMeta': documents ? documents : {}
+              //   , 'documents': []
+              //   , 'countryCode': documents[0] ? (documents[0].country ? documents[0].country : '') : ''
+              //   , 'documentType': documents[0] ? (documents[0].type ? documents[0].type : '') : ''
+              //   });
 
-
-              kycFlowRouterService.start(kycFlowStateService.getClone());
-              resolve();
-            }, function onError(err) {
-              reject(err);
-            });
+              // kycFlowRouterService.start(kycFlowStateService.getClone());
+              // resolve();
+            // }, function onError(err) {
+            //   reject(err);
+            // });
           },
           function onError(err) {
               reject(err);
