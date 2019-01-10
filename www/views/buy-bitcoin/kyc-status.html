@@ -7,16 +7,28 @@
     </ion-nav-buttons>
   </ion-nav-bar>
   <ion-content scroll="false">
-    <div class="status-frame">
-      <div class="status-graphic">
-        <img src="{{vm.graphicUri}}"/>
-      </div>
-      <div class="apl-button-bottom-container no-shadow">
-        <h1>{{vm.statusTitle}}</h1>
-        <p>{{vm.description}}</p>
-        <a class="apl-button" ng-click="vm.goBack()" translate>OK</a>
-        <div class="apl-divider apl-divider-transparent"></div>
-      </div>
+    <div class="status-frame" ng-show="vm.showStatus">
+        <table height="100%" width="100%">
+          <tbody>
+            <tr height="100%">
+              <td valign="center">
+                <div class="status-graphic">
+                  <img src="{{vm.graphicUri}}"/>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="apl-button-bottom-container no-shadow">
+                  <h1>{{vm.statusTitle}}</h1>
+                  <p>{{vm.description}}</p>
+                  <a class="apl-button" ng-click="vm.goBack()" translate>OK</a>
+                  <div class="apl-divider apl-divider-transparent"></div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
     </div>
   </ion-content>
 </ion-view>
