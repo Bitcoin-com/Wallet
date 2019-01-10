@@ -9,13 +9,9 @@ angular
 
   function buyBitcoinKycPersonalInfoController(
     bitAnalyticsService
-    , gettextCatalog
-    , $ionicHistory
     , $log
     , kycFlowService
     , moonPayService
-    , ongoingProcess
-    , popupService
     , moment
     , $scope
   ) {
@@ -91,13 +87,13 @@ angular
         return;
       }
       // Save current state
-      currentState.firstName = vm.firstName
-      currentState.lastName = vm.lastName
-      currentState.dob = vm.dob
-      currentState.streetAddress1 = vm.streetAddress1
-      currentState.streetAddress2 = vm.streetAddress2
-      currentState.city = vm.city
-      currentState.postalCode = vm.postalCode
+      currentState.firstName = vm.firstName;
+      currentState.lastName = vm.lastName;
+      currentState.dob = vm.dob;
+      currentState.streetAddress1 = vm.streetAddress1;
+      currentState.streetAddress2 = vm.streetAddress2;
+      currentState.city = vm.city;
+      currentState.postalCode = vm.postalCode;
       currentState.country = vm.country;
 
       kycFlowService.goNext(currentState);
