@@ -97,7 +97,7 @@ angular
     }
     
     function cropDocument(image, originX, originY, imgWidth, imgHeight) {
-      return new Promise(async function( resolve, reject) {
+      return new Promise(function( resolve, reject) {
         var tempImage = new Image();
         tempImage.onload = function() {
 

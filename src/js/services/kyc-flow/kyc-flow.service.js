@@ -29,7 +29,7 @@ angular
     /**
      * Start the Buy Bitcoin flow
      */
-    async function start() {
+    function start() {
       $log.debug('buy bitcoin start()');
       return new Promise(function onStartSuccess(resolve, revoke) {
         kycFlowStateService.init();
@@ -81,7 +81,7 @@ angular
       kycFlowStateService.pop();
     }
 
-    async function _prepareState() {
+    function _prepareState() {
       return new Promise( function(resolve, reject) {
         // Get Identity
         ongoingProcess.set('gettingKycIdentity', true);
