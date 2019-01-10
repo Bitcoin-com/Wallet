@@ -501,14 +501,8 @@ angular
       
       
       var contentType = 'image/jpeg';
-      console.log(fileBase64.slice(23))
-      var b64Data = fileBase64.slice(23);
-      
+      var b64Data = fileBase64.slice(23); // Remove the header data:...
       var blob = b64toBlob(b64Data, contentType);
-      var file = new File([blob], type + '_' + side + '.jpeg');
-
-      console.log(file);
-      console.log(blob);
 
       var formData = new FormData();
       formData.append('file', blob);
@@ -518,7 +512,6 @@ angular
       if (side) {
         formData.append('side', side);
       }
-      console.log(formData);
 
       moonPayApiService.uploadFile(formData).then(
         function onUploadFileSuccess(file) {
