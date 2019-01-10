@@ -1,6 +1,39 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService, walletHistoryService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function(
+  satoshiDiceService
+  , $scope
+  , $rootScope
+  , $interval
+  , $timeout
+  , $filter
+  , $log
+  , $ionicModal
+  , $ionicPopover
+  , $state
+  , $stateParams
+  , $ionicHistory
+  , profileService
+  , lodash
+  , configService
+  , platformInfo
+  , walletService
+  , txpModalService
+  , externalLinkService
+  , popupService
+  , addressbookService
+  , sendFlowService
+  , storageService
+  , $ionicScrollDelegate
+  , $window
+  , bwcError
+  , gettextCatalog
+  , timeService
+  , feeService
+  , appConfigService
+  , rateService
+  , walletHistoryService
+  ) {
   // Desktop can display 13 rows of transactions, bump it up to a nice round 15.
   var DISPLAY_PAGE_SIZE = 15;
   var currentTxHistoryDisplayPage = 0;
@@ -17,6 +50,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     //updateTxHistoryError: false
     updateTxHistoryFailed: false,
 
+    getSatoshiDiceIconUrl: getSatoshiDiceIconUrl,
     openWalletSettings: openWalletSettings
   };
 
@@ -240,7 +274,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
       if (err) {
-        console.error('pagination Failed to get history.', err);
+        $log.error('pagination Failed to get history.', err);
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
@@ -388,6 +422,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
     if (!$scope.wallet) return;
+    $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
     $scope.vm.gettingInitialHistory = true;
@@ -409,7 +444,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     ];
   });
 
-  var refreshInterval;
+  var refreshInterval = null;
 
   $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
     updateTxHistoryFromCachedData();
@@ -421,18 +456,33 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }, 1000);
   });
 
-  $scope.$on("$ionicView.afterLeave", function(event, data) {
-    $interval.cancel(refreshInterval);
+  $scope.$on("$ionicView.afterLeave", _onAfterLeave);
+  $scope.$on("$ionicView.leave", _onLeave);
+
+  function getSatoshiDiceIconUrl() {
+    return satoshiDiceService.iconUrl;
+  }
+
+  function _onAfterLeave(event, data) {
+    if (refreshInterval !== null) {
+      $interval.cancel(refreshInterval);
+      refreshInterval = null;
+    }
     if ($window.StatusBar) {
       $window.StatusBar.backgroundColorByHexString('#000000');
     }
-  });
+  }
 
-  $scope.$on("$ionicView.leave", function(event, data) {
+  function _onLeave(event, data) {
     lodash.each(listeners, function(x) {
       x();
     });
-  });
+  }
+
+  function _callLeaveHandlers() {
+    _onLeave();
+    _onAfterLeave();
+  }
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
@@ -478,12 +528,14 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     sendFlowService.start({
       fromWalletId: $scope.wallet.id
     });
     
   };
   $scope.goToReceive = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {
@@ -495,6 +547,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {

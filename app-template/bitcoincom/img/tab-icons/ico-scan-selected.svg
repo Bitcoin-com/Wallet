@@ -1,87 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   version="1.1"
-   id="Scan_Icon"
-   x="0px"
-   y="0px"
-   viewBox="0 0 22.957628 22.957628"
-   xml:space="preserve"
-   sodipodi:docname="ico-scan-selected.svg"
-   inkscape:version="0.92.1 r15371"
-   width="22.957628"
-   height="22.957628"><metadata
-     id="metadata6589"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
-     id="defs6587" /><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="1920"
-     inkscape:window-height="1015"
-     id="namedview6585"
-     showgrid="false"
-     inkscape:measure-start="0,0"
-     inkscape:measure-end="0,0"
-     inkscape:zoom="11.8"
-     inkscape:cx="11.478814"
-     inkscape:cy="11.478814"
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="Scan_Icon"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0" /><style
-     type="text/css"
-     id="style6572">
-	.st0{fill:#343434;}
-</style><rect
-     style="fill:#fab915;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="rect7138"
-     width="22.457628"
-     height="22.457628"
-     x="0.25"
-     y="0.25"
-     rx="0.80811942"
-     ry="0.93948829" /><path
-     class="st0"
-     d="M 21.220234,12.178814 H 1.6728817 c -0.2580508,0 -0.5161016,-0.3 -0.5161016,-0.7 0,-0.3 0.1935381,-0.7 0.5161016,-0.7 H 21.284747 c 0.25805,0 0.516101,0.3 0.516101,0.7 -0.06452,0.3 -0.258051,0.7 -0.580614,0.7 z"
-     id="path6582"
-     style="fill:#130e00;fill-opacity:1;stroke-width:0.80319804"
-     inkscape:connector-curvature="0" /><g
-     id="g7182"
-     transform="translate(-4.8735827,1.312858)"><path
-       sodipodi:nodetypes="ccc"
-       inkscape:connector-curvature="0"
-       id="path7140"
-       d="M 8.6405327,7.1151086 V 1.8608713 H 13.89477"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" /><path
-       sodipodi:nodetypes="ccc"
-       inkscape:connector-curvature="0"
-       id="path7140-2"
-       d="m 24.064261,13.216803 v 5.254238 h -5.254237"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" /><path
-       sodipodi:nodetypes="ccc"
-       inkscape:connector-curvature="0"
-       id="path7140-9"
-       d="m 18.810023,1.8608713 h 5.254238 v 5.2542376"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" /><path
-       sodipodi:nodetypes="ccc"
-       inkscape:connector-curvature="0"
-       id="path7140-1"
-       d="M 13.89477,18.471041 H 8.6405327 v -5.254237"
-       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:1" /></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="22px" viewBox="0 0 27 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>scan</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="scan" fill="#FF8209">
+            <path d="M5,2.5 L5,5.75 C5,6.44035594 4.44035594,7 3.75,7 C3.05964406,7 2.5,6.44035594 2.5,5.75 L2.5,2 C2.5,0.8954305 3.3954305,-8.8817842e-16 4.5,0 L9.25,2.66453526e-15 C9.94035594,2.66453526e-15 10.5,0.559644063 10.5,1.25 C10.5,1.94035594 9.94035594,2.5 9.25,2.5 L5,2.5 Z M5,19 L9.25,19 C9.94035594,19 10.5,19.5596441 10.5,20.25 C10.5,20.9403559 9.94035594,21.5 9.25,21.5 L4.5,21.5 C3.3954305,21.5 2.5,20.6045695 2.5,19.5 L2.5,15.75 C2.5,15.0596441 3.05964406,14.5 3.75,14.5 C4.44035594,14.5 5,15.0596441 5,15.75 L5,19 Z M21.5,2.5 L17.25,2.5 C16.5596441,2.5 16,1.94035594 16,1.25 C16,0.559644063 16.5596441,1.3580248e-12 17.25,1.3580248e-12 L22,1.35713663e-12 C23.1045695,1.35713663e-12 24,0.8954305 24,2 L24,5.75 C24,6.44035594 23.4403559,7 22.75,7 C22.0596441,7 21.5,6.44035594 21.5,5.75 L21.5,2.5 Z M21.5,19 L21.5,15.75 C21.5,15.0596441 22.0596441,14.5 22.75,14.5 C23.4403559,14.5 24,15.0596441 24,15.75 L24,19.5 C24,20.6045695 23.1045695,21.5 22,21.5 L17.25,21.5 C16.5596441,21.5 16,20.9403559 16,20.25 C16,19.5596441 16.5596441,19 17.25,19 L21.5,19 Z M1.25,9.5 L25.25,9.5 C25.9403559,9.5 26.5,10.0596441 26.5,10.75 C26.5,11.4403559 25.9403559,12 25.25,12 L1.25,12 C0.559644063,12 8.45442189e-17,11.4403559 0,10.75 C-8.45442189e-17,10.0596441 0.559644063,9.5 1.25,9.5 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

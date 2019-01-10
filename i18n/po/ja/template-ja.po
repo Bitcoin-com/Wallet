@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 送金の提案の取下げは①他のウォレット参加者に署名されていなかった場合、提案者に提案を取り下げることができます。②提案の起案から24時間が経っても解決しなかった場合、全員に取り下げることができます。"
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}}のレート"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}}のレート"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"

@@ -6,7 +6,13 @@
     .module('bitcoincom.services')
     .factory('walletHistoryService', walletHistoryService);
     
-    function walletHistoryService(storageService, lodash, $log, txFormatService) {
+    function walletHistoryService(
+      satoshiDiceService
+      , storageService
+      , lodash
+      , $log
+      , txFormatService
+      ) {
       var PAGE_SIZE = 50;
       //var PAGE_SIZE = 20; // For dev only
       // How much to overlap on each end of the page, for mitigating inconsistent sort order.
@@ -137,7 +143,8 @@
 
         var opts = {
           skip: skip,
-          limit: limit
+          limit: limit,
+          includeExtendedInfo: true
         };
         wallet.getTxHistory(opts, function onTxHistory(err, txsFromServer) {
           if (err) {

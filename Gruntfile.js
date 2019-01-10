@@ -327,6 +327,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',
@@ -351,6 +352,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',

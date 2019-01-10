@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Návrh platby může být smazán 1) pokud jste jej vytvořili a nebyl podepsán nikým jiným, nebo 2) uběhlo 24 od doby, kdy byl návrh vytvořen."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} transakce"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} transakce"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"

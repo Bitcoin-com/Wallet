@@ -96,7 +96,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
 
     // whitelist 'chrome-extension:' for chromeApp to work with image URLs processed by Angular
     // link: http://stackoverflow.com/questions/15606751/angular-changes-urls-to-unsafe-in-extension-page?lq=1
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension):|data:image\/)/);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*((https?|ftp|file|blob|chrome-extension|ionic):|data:image\/)/);
 
     $stateProvider
 
@@ -172,6 +172,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-home@tabs': {
             controller: 'txDetailsController',
+            controllerAs: 'vm',
             templateUrl: 'views/tx-details.html'
           }
         }
@@ -225,6 +226,16 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.spend', {
+        url: '/spend',
+        views: {
+          'tab-spend': {
+            controller: 'tabSpendController',
+            controllerAs: 'vm',
+            templateUrl: 'views/tab-spend.html',
+          }
+        }
+      })
       .state('tabs.receive', {
         url: '/receive/:walletId',
         views: {
@@ -263,7 +274,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.settings', {
         url: '/settings',
         views: {
-          'tab-settings': {
+          'tab-home@tabs': {
             controller: 'tabSettingsController',
             templateUrl: 'views/tab-settings.html',
           }
@@ -411,7 +422,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.notifications', {
         url: '/notifications',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesNotificationsController',
             templateUrl: 'views/preferencesNotifications.html'
           }
@@ -420,7 +431,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.language', {
         url: '/language',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesLanguageController',
             templateUrl: 'views/preferencesLanguage.html'
           }
@@ -429,7 +440,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.fee', {
         url: '/fee',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesFeeController',
             templateUrl: 'views/preferencesFee.html'
           }
@@ -438,7 +449,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.altCurrency', {
         url: '/altCurrency',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesAltCurrencyController',
             templateUrl: 'views/preferencesAltCurrency.html'
           }
@@ -447,7 +458,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.priceDisplay', {
         url: '/priceDisplay',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesPriceDisplayController',
             templateUrl: 'views/preferencesPriceDisplay.html'
           }
@@ -456,7 +467,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.about', {
         url: '/about',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesAbout',
             templateUrl: 'views/preferencesAbout.html'
           }
@@ -465,7 +476,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.about.logs', {
         url: '/logs',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesLogs',
             templateUrl: 'views/preferencesLogs.html'
           }
@@ -474,7 +485,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.about.termsOfUse', {
         url: '/termsOfUse',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             templateUrl: 'views/termsOfUse.html'
           }
         }
@@ -482,7 +493,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.advanced', {
         url: '/advanced',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'advancedSettingsController',
             templateUrl: 'views/advancedSettings.html'
           }
@@ -491,7 +502,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.lockSetup', {
         url: '/lockSetup',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'lockSetupController',
             templateUrl: 'views/lockSetup.html',
           }
@@ -500,7 +511,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.pin', {
         url: '/pin/:action',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'pinController',
             templateUrl: 'views/pin.html',
             cache: false
@@ -652,7 +663,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.addressbook', {
         url: '/addressbook',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             templateUrl: 'views/addressbook.html',
             controller: 'addressbookListController'
           }
@@ -661,7 +672,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.addressbook.add', {
         url: '/add',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             templateUrl: 'views/addressbook.add.html',
             controller: 'addressbookAddController'
           }
@@ -670,7 +681,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.addressbook.view', {
         url: '/view/:address/:email/:name/:coin',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             templateUrl: 'views/addressbook.view.html',
             controller: 'addressbookViewController'
           }
@@ -723,6 +734,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         views: {
           'tab-receive@tabs': {
             controller: 'customAmountController',
+            controllerAs: 'vm',
             templateUrl: 'views/customAmount.html'
           }
         }
@@ -813,7 +825,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.shareApp', {
         url: '/shareApp',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'shareAppController',
             templateUrl: 'views/shareApp.html'
           }
@@ -1059,7 +1071,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.glidera', {
         url: '/glidera',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesGlideraController',
             templateUrl: 'views/preferencesGlidera.html'
           }
@@ -1088,7 +1100,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.coinbase', {
         url: '/coinbase',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesCoinbaseController',
             templateUrl: 'views/preferencesCoinbase.html'
           }
@@ -1183,6 +1195,22 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           'tab-home@tabs': {
             controller: 'verifyMessageController',
             templateUrl: 'views/verifyMessage.html'
+          }
+        }
+      })
+
+      /*
+       *
+       * Spend
+       *
+       */
+      .state('tabs.spend.marcoCoino', {
+        url: '/spend/marcocoino',
+        views: {
+          'tab-spend@tabs': {
+            controller: 'marcoCoinoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/marco-coino.html',
           }
         }
       })
@@ -1346,7 +1374,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       .state('tabs.preferences.bitpayServices', {
         url: '/bitpay-services',
         views: {
-          'tab-settings@tabs': {
+          'tab-home@tabs': {
             controller: 'preferencesBitpayServicesController',
             templateUrl: 'views/preferencesBitpayServices.html'
           }

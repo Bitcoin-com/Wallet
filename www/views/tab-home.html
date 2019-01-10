@@ -1,9 +1,14 @@
-<ion-view id="tab-home" show-tabs>
+<ion-view show-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title><span class="nav-bar-title textlogo"><span class="moon-symbol"></span>itcoin.com Wallet</span></ion-nav-title>
+    <ion-nav-buttons side="secondary">
+      <button class="button button-settings" ng-click="vm.openSettings();">
+        <i class="icon ion-android-settings"></i>
+      </button>
+    </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content>
+  <ion-content id="tab-home">
     <ion-refresher
      pulling-icon="ion-ios-refresh"
      spinner="ios-small"
@@ -84,7 +89,7 @@
       <div>
         <a ng-repeat="wallet in walletsBch track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
+           ng-click="vm.openWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
@@ -98,7 +103,7 @@
       <div>
         <a ng-repeat="wallet in walletsBtc track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
+           ng-click="vm.openWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>

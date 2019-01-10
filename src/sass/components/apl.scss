@@ -1,4 +1,6 @@
 .apl {
+  $button-right-width: 78;
+
   background-color: #FFF;
   color: #000;
   padding: 0;
@@ -288,6 +290,10 @@
       text-align: left;
       letter-spacing: -0.2px;
 
+      &.multiline {
+        height: auto;
+      }
+
       & .right {
         float: right;
       }
@@ -335,6 +341,15 @@
     .item {
       border: 0;
       padding-left: 18px;
+
+      h2 {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
       p {
         color: #000000;
         font-size: 17px;
@@ -354,6 +369,10 @@
         bottom: 0px;
         left: 16px;
         right: 16px;
+      }
+
+      &.item-button-right {
+        padding-right: #{$button-right-width + 32}px;
       }
 
       &.item-big-icon-left {
@@ -527,6 +546,35 @@
     button {
       font-family: 'ProximaNova';
       line-height: normal;
+    }
+  }
+
+  .apl-list-item {
+    &.item-button-right {
+      .button-right-container {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        bottom: 16px;
+
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .button-right {
+          font-weight: bold;
+          background-color: #EFEFF4;
+          padding: 4px 16px;
+          border-radius: 23px;
+          width: $button-right-width + px;
+          text-align: center;
+          
+        }
+
+        a.button-right {
+          text-decoration: none;
+        }
+      }
     }
   }
 

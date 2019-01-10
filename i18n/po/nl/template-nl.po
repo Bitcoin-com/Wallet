@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Een bestedingsvoorstel kan worden verwijderd als 1) u de aanmaker bent, en geen andere copayer deze heeft ondertekend, of 2) 24 uur zijn verstreken sinds het voorstel werd aangemaakt."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} van de transactie"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} van de transactie"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"

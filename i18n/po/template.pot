@@ -18,7 +18,7 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr ""
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
 msgstr ""
 
 #: www/views/modals/txp-details.html:102
@@ -3982,6 +3982,18 @@ msgstr ""
 msgid "Invalid response from Shapeshift"
 msgstr ""
 
+msgid "Insufficient Amount Received"
+msgstr ""
+
+msgid "Return to Address"
+msgstr ""
+
+msgid "Overpaid!"
+msgstr ""
+
+msgid "Underpaid!"
+msgstr ""
+
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
 msgstr ""
@@ -4163,7 +4175,7 @@ msgstr ""
 msgid "Amount must be a positive number."
 msgstr ""
 
-msgstr "Unable to Purchase"
+msgid "Unable to Purchase"
 msgstr ""
 
 # Purchase History
@@ -4222,10 +4234,8 @@ msgstr ""
 msgid "Success!"
 msgstr ""
 
-
 msgid "Your purchase has been processed."
 msgstr ""
-
 
 msgid "See Receipt"
 msgstr ""
@@ -4411,4 +4421,39 @@ msgstr ""
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account verification was rejected. Please contact support for additional assistance."
+msgstr ""
+msgid "Spend"
+msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr ""
+
+msgid "Add a Business"
+msgstr ""
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr ""
+
+msgid "Buy with Bitcoin Cash"
+msgstr ""
+
+msgid "Are you a business owner?"
+msgstr ""
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
 msgstr ""

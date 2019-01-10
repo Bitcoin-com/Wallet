@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 지불 제안은 다음과 같은 상황에 철회하실 수 있습니다. 1) 본인이 지불 제안서의 창조자이며 공동지불인이 아직 서명하지 않았을시, 혹은 2) 지불 제안서가 만들어진 지 24시간이 지났을시."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- 거래량의 {{btx.feeRateStr}}"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- 거래량의 {{vm.btx.feeRateStr}}"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"

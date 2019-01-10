@@ -18,4 +18,8 @@ ion-content {
 
 ion-nav-view {
   background-color: transparent !important;
+
+  &.scroll-content {
+    margin-top: -2px;
+  }
 }
