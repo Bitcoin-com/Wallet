@@ -46,7 +46,7 @@ angular
       vm.imageType = 'selfie';
       if(currentState.documentType === 'passport') {
         vm.imageType = currentState.documents.length === 1 ? 'front' : 'selfie';
-      } else if(currentState.documents.length <= 2) {
+      } else if(currentState.documents.length < 3) {
         vm.imageType = currentState.documents.length === 1 ? 'front' : 'back';
       }
       console.log('***ImageType: ', vm.imageType);
@@ -57,10 +57,12 @@ angular
         vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
         vm.descriptionLabel = gettextCatalog.getString('Make sure your head is entirely within the frame and there is no blur.');
         vm.acceptButtonLabel = gettextCatalog.getString("I look good");
+        vm.previewImageClass = 'preview-image-circle';
       } else {
         vm.titleLabel = vm.documentName + " " + (currentState.documents.length === 1 ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
         vm.descriptionLabel = gettextCatalog.getString('Make sure the details on your document are clear and readable with no blur or glare.Position the 4 corners of your document clearly in the frame. Avoid any glare.');
         vm.acceptButtonLabel = gettextCatalog.getString("Yes, it's readable");
+        vm.previewImageClass = 'preview-image';
       }
 
       // Fetch Image from state

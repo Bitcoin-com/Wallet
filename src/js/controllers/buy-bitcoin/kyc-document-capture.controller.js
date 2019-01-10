@@ -46,7 +46,7 @@ angular
       vm.imageType = 'selfie';
       if(currentState.documentType === 'passport') {
         vm.imageType = currentState.documents.length === 0 ? 'front' : 'selfie';
-      } else if(currentState.documents.length <= 2) {
+      } else if(currentState.documents.length < 2) {
         vm.imageType = currentState.documents.length === 0 ? 'front' : 'back';
       }
       console.log('***ImageType: ', vm.imageType);
