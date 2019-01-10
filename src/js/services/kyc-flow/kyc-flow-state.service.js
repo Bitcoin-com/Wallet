@@ -6,7 +6,9 @@ angular
   .module('bitcoincom.services')
   .factory('kycFlowStateService', kycFlowStateService);
   
-  function kycFlowStateService(lodash, $log) {
+  function kycFlowStateService(
+    $log
+  ) {
 
     var states = [];
     var state = {};

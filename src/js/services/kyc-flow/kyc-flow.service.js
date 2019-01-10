@@ -11,8 +11,6 @@ angular
     , kycFlowRouterService
     , moonPayService
     , ongoingProcess
-    , bitcoinUriService, payproService, bitcoinCashJsService
-    , popupService, gettextCatalog
     , $state, $log
   ) {
 
@@ -74,7 +72,7 @@ angular
       $log.debug('kyc-flow goBack()');
 
       // Remove the state on top and redirect the user
-      popState();
+      // popState();
       kycFlowRouterService.goBack();
     }
 

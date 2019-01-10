@@ -7,7 +7,8 @@ angular
   .factory('kycFlowRouterService', kycFlowRouterService);
   
   function kycFlowRouterService(
-    $state, $ionicHistory, $timeout
+    $state
+    , $ionicHistory
   ) {
 
     var service = {

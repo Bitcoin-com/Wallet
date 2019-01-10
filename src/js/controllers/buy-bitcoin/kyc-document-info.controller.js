@@ -96,9 +96,9 @@ angular
     }
 
     function onBeforeEnter(event, data) {
-      // if (data.direction == "back") {
-      //   kycFlowService.popState();
-      // }
+      if (data.direction == "back") {
+        kycFlowService.popState();
+      }
       
       _initVariables();
 

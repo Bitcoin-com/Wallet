@@ -10,12 +10,8 @@ angular
   function buyBitcoinKycStatusController(
     bitAnalyticsService
     , gettextCatalog
-    , $ionicHistory
-    , $log
     , kycFlowService
     , moonPayService
-    , ongoingProcess
-    , popupService
     , moment
     , $scope
   ) {
@@ -58,13 +54,13 @@ angular
 
         // Upload documents
         currentState.documents.forEach(function(imageFile, index) {
-          var package = {
+          var object = {
             file: imageFile,
             type: currentState.documentType,
             country: currentState.countryCode,
             side: index === 0 ? 'front' : 'back'
           };
-          taskList.push(moonPayService.uploadFile(package));
+          taskList.push(moonPayService.uploadFile(object));
         });
 
         Promise.all(taskList).then(function(results) {
@@ -108,7 +104,7 @@ angular
     }
 
     function goBack() {
-      kycFlowService.exit();
+      kycFlowService.goBack();
     }
 
     function onBeforeEnter(event, data) {
