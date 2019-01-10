@@ -9,9 +9,11 @@ angular
 
   function buyBitcoinKycDocumentCaptureController(
     bitAnalyticsService
+    , $document
     , gettextCatalog
     , cameraPreviewService
     , kycFlowService
+    , platformInfo
     , $scope
     , platformInfo
   ) {
