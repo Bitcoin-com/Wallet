@@ -21,24 +21,21 @@ angular
 
       // Functions
       createCustomer: createCustomer
-      ,getCustomer: getCustomer
-      ,updateCustomer: updateCustomer
-      ,uploadPassport: uploadPassport
-      ,uploadNationalIdentityCard: uploadNationalIdentityCard
-      ,uploadSelfie: uploadSelfie
-      ,createCard: createCard
-      ,removeCard: removeCard
-      ,getCards: getCards
-      ,createTransaction: createTransaction
-      ,getTransactions: getTransactions
-      ,getTransaction: getTransaction
-      ,getRates: getRates
-      ,getAllCountries: getAllCountries
-      ,getIdentityCheck: getIdentityCheck
-      ,createIdentityCheck: createIdentityCheck
-      ,uploadFile: uploadFile
-      ,getFiles: getFiles
-      ,deleteFile: deleteFile
+      , getCustomer: getCustomer
+      , updateCustomer: updateCustomer
+      , createCard: createCard
+      , removeCard: removeCard
+      , getCards: getCards
+      , createTransaction: createTransaction
+      , getTransactions: getTransactions
+      , getTransaction: getTransaction
+      , getRates: getRates
+      , getAllCountries: getAllCountries
+      , getIdentityCheck: getIdentityCheck
+      , createIdentityCheck: createIdentityCheck
+      , uploadFile: uploadFile
+      , getFiles: getFiles
+      , deleteFile: deleteFile
     };
 
     return service;

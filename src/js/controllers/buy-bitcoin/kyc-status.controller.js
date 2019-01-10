@@ -70,7 +70,7 @@ angular
             }).finally(function onComplete() {
               ongoingProcess.set('submitingKycInfo', false);
             });
-          }).catch(function(errors) {
+          }).catch(function(error) {
             console.log('Moonpay API Errors:', error);
             popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'));
             // Activate Retry Button
