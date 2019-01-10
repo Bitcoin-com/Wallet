@@ -13,6 +13,7 @@ angular
     , cameraPreviewService
     , kycFlowService
     , $scope
+    , $document
   ) {
     var currentState = {};
     var vm = this;
