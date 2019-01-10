@@ -58,8 +58,7 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function(
     , previewDrag: false
   }
 
-  this.startCamera = function () {
-    var options = defaultCameraSettings;
+  this.startCamera = function (options) {
     if (isDesktop) {
       this.startDesktopCamera();
       return;
@@ -81,7 +80,7 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function(
     }
 
     options.camera = CameraPreview.CAMERA_DIRECTION.FRONT;
-    this.startCamera(options) ;
+    this.startCamera(options);
   }
 
   this.startDocumentCamera = function() {
