@@ -69,12 +69,14 @@ angular
               
               try {
                 // Clean history
-                var viewId = $ionicHistory.backView().stateId
-                while(viewId != 'tabs.buybitcoin') {
-                  $ionicHistory.removeBackView();
-                  viewId = $ionicHistory.backView().stateId
-                };
-              } catch { }
+                var historyId = $ionicHistory.currentHistoryId();
+                var history = $ionicHistory.viewHistory().histories[historyId];
+                for (var i = history.stack.length - 1; i >= 0; i--){
+                  if (history.stack[i].stateName == 'tabs.buybitcoin'){
+                    $ionicHistory.backView(history.stack[i]);
+                  }
+                }
+              } catch {}
 
               updateStatusUi(response);
             }).catch(function onError(error) {
