@@ -5,7 +5,6 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   , platformInfo
   , $rootScope
   , $window
-  , $document
   ) {
 
   var isDesktop = !platformInfo.isCordova;
@@ -97,7 +96,10 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     var constraints = {
       video: true
     };
-    var video = $document.find('video')[0];
+
+    var elements = document.querySelectorAll('video');
+    console.log(elements);
+    var video = elements[elements.length - 1];
     
     navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
       $rootScope.$apply(function () {
@@ -119,9 +121,18 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
   }
 
   this.takePicture = function (options = defaultDocumentSettings, callback ) {
-    if (isDesktop) return;
+    if (isDesktop) {
+      var elements = document.querySelectorAll('video');
+      var video = elements[elements.length - 1];
+      var canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      canvas.getContext('2d').drawImage(video, 0, 0);
+      var base64PictureData = canvas.toDataURL('image/jpeg', 0.8);
+      return callback(base64PictureData);
+    }
     CameraPreview.takePicture(options, function(base64PictureData){
-      callback(base64PictureData);
+      callback('data:image/jpeg;base64,' + base64PictureData);
     });
   }
 

@@ -13,16 +13,20 @@ angular
     , cameraPreviewService
     , kycFlowService
     , $scope
-    , $document
+    , platformInfo
   ) {
     var currentState = {};
     var vm = this;
+
+    // Variables
+    vm.isDesktop = !platformInfo.isCordova;
 
     // Functions
     vm.goBack = goBack;
     vm.onCapture = onCapture;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
+    $scope.$on("$ionicView.afterEnter", onAfterEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _initVariables() {
@@ -81,7 +85,7 @@ angular
 
         var verticalPadding = 44 + (imgHeight * 0.12) / 2;
 
-        cropDocument('data:image/jpeg;base64,' + base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight).then( function(image) {
+        cropDocument(base64PictureData, horizontalPadding, verticalPadding, imgWidth, imgHeight).then( function(image) {
           currentState.documents.push(image);
           currentState.inPreview = true;
           kycFlowService.goNext(currentState);
@@ -134,10 +138,12 @@ angular
       if (data.direction == "back") {
         kycFlowService.popState();
       }
-      
-      _initVariables();
 
       bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
+    }
+
+    function onAfterEnter(event, data) {
+      _initVariables();
     }
 
     function onBeforeLeave(event, data) {
