@@ -1,4 +1,4 @@
-<ion-view id="tab-buy-bitcoin-kyc-document-verify" view-title="{{  'Verification Status'| translate }}" class="apl" can-swipe-back="false" hide-tabs>
+<ion-view id="tab-buy-bitcoin-kyc-status" view-title="{{  'Verification Status'| translate }}" class="apl" can-swipe-back="false" hide-tabs>
   <ion-nav-bar >
     <ion-nav-buttons side="primary">
       <button class="button apl-back-button" ng-click="vm.onBack()">
@@ -6,7 +6,6 @@
       </button>
     </ion-nav-buttons>
   </ion-nav-bar>
-
   <ion-content scroll="false">
     <h3>{{vm.statusTitle}}</h3>
     <p>{{vm.description}}</p>

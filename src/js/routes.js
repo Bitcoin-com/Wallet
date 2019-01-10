@@ -946,7 +946,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.buybitcoin-kyc-status', {
-        url: '/buy-bitcoin/kyc-personal-info',
+        url: '/buy-bitcoin/kyc-status',
         views: {
           'tab-home': {
             controller: 'buyBitcoinKycStatusController',
