@@ -66,6 +66,14 @@ angular
           // Block All for Completion
           Promise.all(taskList).then(function onTaskListSuccess(results) {
             moonPayService.createIdentityCheck().then(function onSuccess(response) {
+              
+              // Clean history
+              var viewId = $ionicHistory.backView().stateId
+              while(viewId != 'tabs.buybitcoin') {
+                $ionicHistory.removeBackView();
+                viewId = $ionicHistory.backView().stateId
+              };
+
               updateStatusUi(response);
             }).catch(function onError(error) {
               // Activate Retry Button 
