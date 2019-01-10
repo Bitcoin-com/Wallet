@@ -323,10 +323,10 @@ angular
     function createIdentityCheck() {
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
-        $http.post(baseUrl + '/v2/identity_check', config).then(function onGetIdentityCheckSuccess(response) {
+        $http.post(baseUrl + '/v2/identity_check', {}, config).then(function onPostIdentityCheckSuccess(response) {
           var identity = response.data;
           deferred.resolve(identity);
-        }, function onGetIdentityCheckError(err) {
+        }, function onPostIdentityCheckError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
         });
@@ -343,7 +343,11 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
         var customConfig = Object.assign({}, config);
-        customConfig.headers['Content-Type'] = 'multipart/form-data';
+
+        customConfig.headers['Content-Type'] = undefined;
+        customConfig.transformRequest = angular.identity;
+
+        console.log(customConfig);
 
         $sce.trustAs($sce.RESOURCE_URL, baseUrl + '/v2/files');
 
