@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('bitcoincom.services').service('cameraPreviewService', function($log
-  , $timeout
+angular.module('bitcoincom.services').service('cameraPreviewService', function(
+  $log
   , platformInfo
   , $rootScope
   , $window
@@ -58,7 +58,8 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     , previewDrag: false
   }
 
-  this.startCamera = function (options = defaultCameraSettings) {
+  this.startCamera = function () {
+    var options = defaultCameraSettings;
     if (isDesktop) {
       this.startDesktopCamera();
       return;
@@ -72,7 +73,8 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     }]);
   }
 
-  this.startSelfieCamera = function(options = defaultCameraSettings) {
+  this.startSelfieCamera = function() {
+    var options = defaultCameraSettings;
     if (isDesktop) {
       this.startDesktopCamera();
       return;
@@ -82,7 +84,8 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     this.startCamera(options) ;
   }
 
-  this.startDocumentCamera = function(options = defaultCameraSettings) {
+  this.startDocumentCamera = function() {
+    var options = defaultDocumentSettings;
     if (isDesktop) {
       this.startDesktopCamera();
       return;
@@ -120,7 +123,7 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function($
     );
   }
 
-  this.takePicture = function (options = defaultDocumentSettings, callback ) {
+  this.takePicture = function (options, callback) {
     if (isDesktop) {
       var elements = document.querySelectorAll('video');
       var video = elements[elements.length - 1];

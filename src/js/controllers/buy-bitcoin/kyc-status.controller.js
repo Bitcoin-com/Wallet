@@ -76,7 +76,9 @@ angular
                     $ionicHistory.backView(history.stack[i]);
                   }
                 }
-              } catch {}
+              } catch (err) {
+                console.log(err);
+              }
 
               updateStatusUi(response);
             }).catch(function onError(error) {
