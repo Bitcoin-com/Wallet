@@ -49,6 +49,27 @@
       height: 40px;
       width: 40px;
     }
+
+    .icon.big-icon-svg {
+      img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+  #merchants {
+    .item-big-icon-left {
+      .icon.big-icon {
+        height: 40px;
+        width: 40px;
+
+        img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
   }
 
   &.apl {
@@ -115,6 +136,14 @@
 
   .apl-card__subtitle.multiline {
     height: auto;
+  }
+
+  #cheapair {
+    background-image: url("../img/merchants/cheapair_banner.jpg");
+
+    .subtitle {
+      width: 100%;
+    }
   }
 
   #egifter {
