@@ -10,12 +10,13 @@ angular
     moonPayApiService
     , storageService
     , moonPayRouterService
+    , moonPayConfig
     , $log, $q
   ) {
 
-    var customerIdKey = 'moonPayCustomerId'
-    var defaultWalletIdKey = 'moonPayDefaultWalletId'
-    var defaultCardIdKey = 'moonPayDefaultCardId'
+    var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
+    var defaultWalletIdKey = 'moonPayDefaultWalletId_' + moonPayConfig.env
+    var defaultCardIdKey = 'moonPayDefaultCardId_' + moonPayConfig.env
     var currentCards = null;
 
     var defaultWalletId = null;

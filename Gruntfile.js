@@ -488,11 +488,13 @@ module.exports = function(grunt) {
     console.log('MoonPay baseUrl: "' + baseUrl + '"');
     console.log('MoonPay pubKey:    "' + pubKey + '"');
     console.log('MoonPay secretKey:    "' + secretKey + '"');
+    console.log('MoonPay env:    "' + env + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
       .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
-      .replace("secretKey: ''", "secretKey: '" + secretKey + "'");
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
+      .replace("env: ''", "env: '" + env + "'");
     return newContent;
   }
 };

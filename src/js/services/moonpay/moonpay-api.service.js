@@ -15,7 +15,7 @@ angular
     , $sce
   ) {
 
-    var tokenKey = 'moonPayToken';
+    var tokenKey = 'moonPayToken_' + moonPayConfig.env;
     var currentToken = null;
     var baseUrl = moonPayConfig.baseUrl
 
