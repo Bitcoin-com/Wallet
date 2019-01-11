@@ -11,7 +11,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'broadcastingTx': gettext('Broadcasting transaction'),
     'buyingBch': gettext('Buying Bitcoin Cash...'),
     'buyingBitcoin': gettext('Buying Bitcoin...'),
-    'buyingGiftCard': 'Buying Gift Card...',
+    'buyingGiftCard': gettext('Buying Gift Card...'),
     'calculatingFee': gettext('Calculating fee'),
     'cancelingGiftCard': 'Canceling Gift Card...',
     'connectingCoinbase': gettext('Connecting to Coinbase...'),
@@ -52,6 +52,20 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'updatingGiftCard': 'Updating Gift Card...',
     'updatingGiftCards': 'Updating Gift Cards...',
     'validatingWords': gettext('Validating recovery phrase...'),
+    'sendingFeedback': gettext('Sending feedback...'),
+    'generatingNewAddress': gettext('Generating new address...'),
+    'sendingByEmail': gettext('Preparing addresses...'),
+    'sending2faCode': gettext('Sending 2FA code...'),
+    'buyingBitcoin': gettext('Buying Bitcoin...'),
+    'sellingBitcoin': gettext('Selling Bitcoin...'),
+    'fetchingBitPayAccount': gettext('Fetching BitPay Account...'),
+    'updatingGiftCards': 'Updating Gift Cards...',
+    'updatingGiftCard': 'Updating Gift Card...',
+    'cancelingGiftCard': 'Canceling Gift Card...',
+    'creatingGiftCard': 'Creating Gift Card...',
+    'buyingGiftCard': 'Buying Gift Card...',
+    'topup': gettext('Top up in progress...'),
+    'duplicatingWallet': gettext('Duplicating wallet...')
   };
 
   root.clear = function() {
