@@ -2,7 +2,8 @@
 <widget id="com.bitcoin.mwallet"
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
-  ios-CFBundleVersion="*VERSION*">
+  ios-CFBundleVersion="*VERSION*"
+  xmlns:android="http://schemas.android.com/apk/res/android">
     <name>*USERVISIBLENAME*</name>
     <description>
       *PURPOSELINE*
@@ -75,6 +76,7 @@
     <plugin name="cordova-plugin-media-fork" spec="~5.0.3">
         <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~4.0.1" />
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.4.0" />
@@ -84,6 +86,7 @@
     <platform name="ios">
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
+      <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription"><string>To find nearby merchants.</string></config-file>
       <config-file target="*-Info.plist" parent="ITSAppUsesNonExemptEncryption"><false/></config-file>
       <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon24x24@2x.png" width="48" height="48" />
       <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon27.5x27.5@2x.png" width="55" height="55" />
@@ -134,6 +137,11 @@
 
     <platform name="android">
       <preference name="android-manifest/application/@android:allowBackup" value="false" />
+
+      <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
+         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+      </config-file>
 
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-ldpi-icon.png" density="ldpi" />
       <icon src="resources/*PACKAGENAME*/android/icon/drawable-mdpi-icon.png" density="mdpi" />
