@@ -57,3 +57,31 @@
     }
   }
 }
+
+.tabs-icon-top > .tabs .tab-item {
+  font-size: 12px;
+}
+
+ion-tabs {
+
+ &.tabs-color-active-positive .tab-item {
+  color: #B0B0B4;
+  //fill: #B9B9B9;
+  font-family: ProximaNova;
+  font-weight: bold;
+
+  &.tab-item-active {
+    color: #FF8209;
+  }
+ }
+
+ .tab-item {
+   opacity: 1.0;
+ }
+
+ .tab-title {
+   height: 15px;
+   line-height: 15px;
+ }
+
+}

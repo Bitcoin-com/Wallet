@@ -29,6 +29,14 @@
         </div>
       </div>
     </div>
+    <div class="merchant-showcase-container">
+      <div id="cheapair" class="merchant-showcase light"  ng-click="vm.onCheapAir()">
+        <h1>CheapAir</h1>
+        <div class="subtitle">
+          <p translate>Take to the skies using Bitcoin Cash</p>
+        </div>
+      </div>
+    </div>
     <div id="featured-end" class="apl-divider"></div>
     <div class="apl-list">
 
@@ -49,7 +57,9 @@
     <div id="merchants" class="apl-list">
       <div ng-repeat="merchant in vm.merchants track by $index">
         <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.onMerchant($index)" >
-          <i class="icon big-icon-svg ion-android-cart"></i>
+          <i class="icon big-icon-svg">
+            <img src="{{merchant.icon}}" />
+          </i>
           <div class="apl-card__title__container">
             <div class="apl-card__title">
               {{merchant.name}}
