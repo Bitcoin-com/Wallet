@@ -53,7 +53,7 @@ angular
 
       // Set Text Content by ImageType
       if(vm.imageType === 'selfie') {
-        vm.titleLabel = gettextCatalog.getString('Self Selfie');
+        vm.titleLabel = gettextCatalog.getString('Self Portrait');
         vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
         vm.descriptionLabel = gettextCatalog.getString('Make sure your head is entirely within the frame and there is no blur.');
         vm.acceptButtonLabel = gettextCatalog.getString("I look good");

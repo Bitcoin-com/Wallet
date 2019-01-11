@@ -4431,6 +4431,9 @@ msgstr ""
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
 msgstr ""
 
+msgid "Self Portrait"
+msgstr ""
+
 msgid "Spend"
 msgstr ""
 
