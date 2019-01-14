@@ -353,13 +353,13 @@ angular.module('copayApp.directives')
           for (var i = 0; i < newValue.length; i++) {
             var element = newValue[i];
 
-            if (isDiff && countOfNumbers%scope.groupValue == 0) return true;
-
             if (element == scope.separtor) {
               if (isDiff) return false;
               countOfNumbers = 0;
             }
             else countOfNumbers++;
+
+            if (isDiff && countOfNumbers%scope.groupValue == 0) return true;
 
             if (!isDiff && i < scope.originalValue.length && element != scope.originalValue[i]) {
               isDiff = true;
