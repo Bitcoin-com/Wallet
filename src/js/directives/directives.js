@@ -400,6 +400,35 @@ angular.module('copayApp.directives')
       link: function(scope, elem, attr, ngModel) {
         // Masks expirations to the format of MM/YY
 
+        scope.originalValue = '';
+        scope.groupValue = 2;
+        scope.separtor = '/';
+        scope.maxDigit = 5;
+
+        function isGroupFullyComplete(newValue) {
+
+          // Check if a group is fully completed, if yes, let's format that
+          var countOfNumbers = 0;
+          var isDiff = false;
+          for (var i = 0; i < newValue.length; i++) {
+            var element = newValue[i];
+
+            if (element == scope.separtor) {
+              if (isDiff) return false;
+              countOfNumbers = 0;
+            }
+            else countOfNumbers++;
+
+            if (isDiff && countOfNumbers%scope.groupValue == 0) return true;
+
+            if (!isDiff && i < scope.originalValue.length && element != scope.originalValue[i]) {
+              isDiff = true;
+            }
+          }
+
+          return false
+        }
+
         function addSpaces(value) {
           if(typeof(value) == typeof(undefined)) {
             return value;
@@ -423,7 +452,14 @@ angular.module('copayApp.directives')
         }
 
         function parseViewValue(value) {
-          var viewValue = addSpaces(value);
+          var viewValue = value;
+          // Need to remove the right part
+          if (value.length > scope.maxDigit 
+            || scope.originalValue[scope.originalValue.length - 1] != viewValue[viewValue.length - 1]   // Complete at the end
+            || isGroupFullyComplete(viewValue)) { // If a new one fully grouped, lets format that by the regex
+            viewValue = addSpaces(viewValue);
+          }
+
           ngModel.$viewValue = viewValue;
           ngModel.$render();
 
@@ -438,7 +474,7 @@ angular.module('copayApp.directives')
         }
 
         ngModel.$parsers.push(parseViewValue);
-        ngModel.$formatters.push(formatModelValue);
+        //ngModel.$formatters.push(formatModelValue);
       }
     }
   });
