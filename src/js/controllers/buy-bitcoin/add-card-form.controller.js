@@ -18,7 +18,6 @@ angular
     vm.didPushBack = didPushBack;
     vm.didPushAdd = didPushAdd;
 
-    vm.handleCardNumberChange = handleCardNumberChange;
     vm.handleSecurityChange = handleSecurityChange;
 
     var addCardInfoText = gettextCatalog.getString("Type all your card details below.");
@@ -57,14 +56,6 @@ angular
 
     function didPushBack() {
       $scope.$ionicGoBack();
-    }
-
-    function handleCardNumberChange() {
-      if(!vm.card.number) {
-        return;
-      }
-      // Clean up string
-      vm.card.number = vm.card.number.replace(/\D/g,'');
     }
 
     function handleSecurityChange() {

@@ -28,7 +28,7 @@
             <label translate>
               Card Number
             </label>
-            <input required masked-credit-card type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="19" ng-maxlength="19" maxlength="19" />
+            <input required masked-credit-card type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number" ng-minlength="19" />
           </div>
           <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
             Invalid card number
