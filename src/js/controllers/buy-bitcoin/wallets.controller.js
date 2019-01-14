@@ -17,6 +17,9 @@ angular
     vm.walletId = null;
     vm.wallets = [];
 
+    // Functions
+    vm.goBack = goBack;
+
     var initialWalletId = null;
 
     function _initVariables() {
@@ -40,7 +43,7 @@ angular
               }
             }
           }
-          initialWalletId = vm.walletId
+          initialWalletId = vm.walletId;
         }
       );
     }
@@ -61,6 +64,10 @@ angular
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
       bitAnalyticsService.postEvent('buy_bitcoin_choose_wallet_screen_close', [], ['leanplum']);
+    }
+
+    function goBack() {
+      $ionicHistory.goBack();
     }
 
   }

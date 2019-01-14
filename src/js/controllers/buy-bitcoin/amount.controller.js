@@ -37,6 +37,7 @@
       vm.paymentMethodsAreLoading = true;
       vm.rateUsd = 0;
       vm.ratesError = '';
+      vm.walletsAreLoading = true;
 
 
       
@@ -135,12 +136,20 @@
           }
           $scope.wallet = vm.wallet;
           console.log('wallet:', $scope.wallet);
-          
+          vm.walletsAreLoading = false;
+        }, function onGetDefaultWalletIdError() {
+          vm.walletsAreLoading = false;
         }
       );
     }
 
     function _onAfterEnter() {
+      $timeout(function () {
+        _getPaymentMethods();
+        _getWallet();
+        _getRates();
+      }, 200);
+
       var inputs = angular.element(document).find("input");
       var inputsLen = inputs.length;
       var input = null;
@@ -171,16 +180,9 @@
       _initVariables();
 
       configService.whenAvailable(function onConfigService(config){
-
         vm.displayBalanceAsFiat = config.wallet.settings.priceDisplay === 'fiat';
         console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
       });
-
-      $timeout(function () {
-        _getPaymentMethods();
-        _getWallet();
-        _getRates();
-      }, 200);
 
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [], ['leanplum']);
     }
