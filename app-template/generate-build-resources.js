@@ -3,7 +3,15 @@
 var shell = require('shelljs');
 
 console.log('Annotating icon...');
-var branchExec = shell.exec('git rev-parse --abbrev-ref HEAD');
+console.log('Checking installation of ImageMagick...');
+var convertExec = shell.exec('convert -version', { silent: true });
+if (convertExec.code !== 0) {
+
+} else {
+  console.log('ImageMagick found.');
+}
+
+var branchExec = shell.exec('git rev-parse --abbrev-ref HEAD', { silent: true });
 
 if (branchExec.code !== 0) {
   console.error('Failed to get branch name, exit code: ' + branchExec.code);

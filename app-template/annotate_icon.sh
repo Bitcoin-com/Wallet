@@ -4,13 +4,19 @@
 
 # Required command line parameters
 FOLDER_NAME=$1
-ICON_TEXT=$2
-HEX_COLOR=$3
-
 DEST_FOLDER_RELATIVE=../resources/bitcoin.com/ios/icon/$FOLDER_NAME
+DEST_ICON_MASTER=$DEST_FOLDER_RELATIVE/icon-1024.png
+SOURCE_ICON='resources/ios/icon/icon-1024.png'
 
 mkdir $DEST_FOLDER_RELATIVE
-convert '../resources/bitcoin.com/ios/icon/icon-1024.png' -gravity center -pointsize 144 -draw "fill '#$HEX_COLOR' rotate -45 rectangle -500,1035,500,1200"  -draw "fill white font 'bitcoincom/fonts/ProximaNova-ExtraBold.otf'  rotate -45 text 0,400 '$ICON_TEXT'" $DEST_FOLDER_RELATIVE/icon-1024.png
+
+if [ -z "$3" ]; then
+  cp $SOURCE_ICON $DEST_ICON_MASTER
+else
+  ICON_TEXT=$2
+  HEX_COLOR=$3
+  convert $SOURCE_ICON -gravity center -pointsize 144 -draw "fill '#$HEX_COLOR' rotate -45 rectangle -500,1035,500,1200"  -draw "fill white font 'bitcoincom/fonts/ProximaNova-ExtraBold.otf'  rotate -45 text 0,400 '$ICON_TEXT'" $DEST_ICON_MASTER
+fi
 
 # iPhone Notifications
 convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 40x40 $DEST_FOLDER_RELATIVE/icon-40.png
