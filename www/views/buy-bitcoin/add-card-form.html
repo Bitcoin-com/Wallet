@@ -28,7 +28,7 @@
             <label translate>
               Card Number
             </label>
-            <input required type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="16" ng-maxlength="16" maxlength="16"/>
+            <input required masked-credit-card type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number"   ng-change="vm.handleCardNumberChange()" ng-minlength="19" ng-maxlength="19" maxlength="19" />
           </div>
           <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
             Invalid card number
@@ -40,11 +40,8 @@
             <label translate>
               Expiration Date
             </label>
-            <input required type="text" placeholder="{{ 'MM/YYYY' | translate }}" ng-model="vm.card.expiration" name="expiration" maxlength="7"  ng-pattern="/\d{2}\/\d{4}/"/>
+            <input required masked-expiration type="text" placeholder="{{ 'MM/YY' | translate }}" ng-model="vm.card.expiration"  name="expiration" maxlength="5" valid-expiration/>
           </div>
-          <span class="validation-error" ng-show="cardForm.expiration.$error.pattern" translate>
-            Follow expected date format MM/YYYY
-          </span>
           <span class="validation-error" ng-show="cardForm.expiration.$error.validExpiration" translate>
             Invalid expiration date
           </span>

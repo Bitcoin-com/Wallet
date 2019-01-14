@@ -171,15 +171,114 @@ angular.module('copayApp.directives')
       require: 'ngModel',
       link: function(scope, elem, attr, ctrl) {
         ctrl.$validators.validExpiration = function(modelValue, viewValue) {
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
           var now = new Date();
-          if (attr.expiration && attr.expiration.match(/\d{2}\/\d{4}/,'')) {
-            var split = attr.expiration.split(/\//);
+          if (viewValue.match(/\d{2}\/\d{2}/g)) {
+            var split = viewValue.split(/\//);
             return parseInt(split[0]) <= 12 &&
               parseInt(split[0]) > 0 &&
-              parseInt(split[1]) >= now.getFullYear();
+              (2000 + parseInt(split[1])) >= now.getFullYear();
           }
+
           return false;
         };
+      }
+    };
+  })
+  .directive('maskedCreditCard', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of 0000 0000 0000 0000
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/(.{4})/g, '$1 ').trim()
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,19);
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+          var viewValue = addSpaces(value);
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          // Return what we want the model value to be
+          return removeSpaces(viewValue);
+        }
+
+        function formatModelValue(value) {
+          var modelValue = removeSpaces(value);
+          ngModel.$modelValue = modelValue;
+          return addSpaces(modelValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+        ngModel.$formatters.push(formatModelValue);
+      }
+    }
+  })
+  .directive('maskedExpiration', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of MM/YY
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/(.{2})/g, '$1/').trim()
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,5);
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '').replace(/\//g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+          var viewValue = addSpaces(value);
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          // Return what we want the model value to be
+          return removeSpaces(viewValue);
+        }
+
+        function formatModelValue(value) {
+          var modelValue = removeSpaces(value);
+          ngModel.$modelValue = modelValue;
+          return addSpaces(modelValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+        ngModel.$formatters.push(formatModelValue);
       }
     }
   });
