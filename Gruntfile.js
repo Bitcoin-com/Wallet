@@ -201,7 +201,8 @@ module.exports = function(grunt) {
           'src/js/trezor-url.js',
           'bower_components/trezor-connect/connect.js',
           'node_modules/bezier-easing/dist/bezier-easing.min.js',
-          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
+          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js',
+          'node_modules/cordova-plugin-camera-preview/www/CameraPreview.js'
         ],
         dest: 'www/js/app.js'
       }
@@ -487,11 +488,13 @@ module.exports = function(grunt) {
     console.log('MoonPay baseUrl: "' + baseUrl + '"');
     console.log('MoonPay pubKey:    "' + pubKey + '"');
     console.log('MoonPay secretKey:    "' + secretKey + '"');
+    console.log('MoonPay env:    "' + env + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
       .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
-      .replace("secretKey: ''", "secretKey: '" + secretKey + "'");
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
+      .replace("env: ''", "env: '" + env + "'");
     return newContent;
   }
 };

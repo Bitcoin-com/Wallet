@@ -7,12 +7,15 @@ angular
   .factory('moonPayApiService', moonPayApiService);
   
   function moonPayApiService(
-    moonPayConfig,
-    localStorageService,
-    $http, $q, $log
+    moonPayConfig
+    , localStorageService
+    , $http
+    , $q
+    , $log
+    , $sce
   ) {
 
-    var tokenKey = 'moonPayToken';
+    var tokenKey = 'moonPayToken_' + moonPayConfig.env;
     var currentToken = null;
     var baseUrl = moonPayConfig.baseUrl
 
@@ -20,19 +23,22 @@ angular
       // Variables
 
       // Functions
-      createCustomer: createCustomer,
-      getCustomer: getCustomer,
-      updateCustomer: updateCustomer,
-      uploadPassport: uploadPassport,
-      uploadNationalIdentityCard: uploadNationalIdentityCard,
-      uploadSelfie: uploadSelfie,
-      createCard: createCard,
-      removeCard: removeCard,
-      getCards: getCards,
-      createTransaction: createTransaction,
-      getTransactions: getTransactions,
-      getTransaction: getTransaction,
-      getRates: getRates
+      createCustomer: createCustomer
+      , getCustomer: getCustomer
+      , updateCustomer: updateCustomer
+      , createCard: createCard
+      , removeCard: removeCard
+      , getCards: getCards
+      , createTransaction: createTransaction
+      , getTransactions: getTransactions
+      , getTransaction: getTransaction
+      , getRates: getRates
+      , getAllCountries: getAllCountries
+      , getIdentityCheck: getIdentityCheck
+      , createIdentityCheck: createIdentityCheck
+      , uploadFile: uploadFile
+      , getFiles: getFiles
+      , deleteFile: deleteFile
     };
 
     return service;
@@ -78,7 +84,7 @@ angular
       try {
         message = Object.values(response.data.errors[0].constraints)[0];
       } catch(e) {
-        if (response.data.message) {
+        if (response.data && response.data.message) {
           message = response.data.message;
         } else if (Math.floor(response.status / 100) !== 2) { // 2xx HTTP Status code, considered success.
           message = response.statusText;
@@ -268,25 +274,132 @@ angular
       return deferred.promise;
     }
 
-
-    function uploadPassport(customerId, file) {
-      // Needs to be completed
-      // Will use the uploadFile
+    /**
+     * Get all countries
+     */
+    function getAllCountries() {
+      var deferred = $q.defer();
+      getConfig(false).then(function(config) {
+        $http.get(baseUrl + '/v2/countries', config).then(function onGetAllCountries(response) {
+          var countries = response.data;
+          deferred.resolve(countries);
+        }, function onGetAllCountriesError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
     }
 
-    function uploadNationalIdentityCard(customerId, files) {
-      // Needs to be completed
-      // Will use the uploadFile
+    /**
+     * Get identity check
+     */
+    function getIdentityCheck() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/identity_check', config).then(function onGetIdentityCheckSuccess(response) {
+          var identity = response.data;
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+          // If identity check if not yet created, expect 404
+          if (err.status === 404) {
+            deferred.resolve();
+          } else {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+          }
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
     }
 
-    function uploadSelfie(customerId, file) {
-      // Needs to be completed
-      // Will use the uploadFile
+    /**
+     * Create an identity check
+     */
+    function createIdentityCheck() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.post(baseUrl + '/v2/identity_check', {}, config).then(function onPostIdentityCheckSuccess(response) {
+          var identity = response.data;
+          deferred.resolve(identity);
+        }, function onPostIdentityCheckError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
     }
 
-    function uploadFile(customerId, file) {
-      // Needs to be completed
-      // Post request
+    /**
+     * Upload File
+     */
+    function uploadFile(data) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        var customConfig = Object.assign({}, config);
+
+        customConfig.headers['Content-Type'] = undefined;
+        customConfig.transformRequest = angular.identity;
+
+        console.log(customConfig);
+
+        $sce.trustAs($sce.RESOURCE_URL, baseUrl + '/v2/files');
+
+        $http.post(baseUrl + '/v2/files', data, customConfig).then(function onUploadFileSuccess(response) {
+          var file = response.data;
+          deferred.resolve(file);
+        }, function onUploadFileError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get Files
+     */
+    function getFiles() {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.get(baseUrl + '/v2/files', config).then(function onGetFilesSuccess(response) {
+          var files = response.data;
+          deferred.resolve(files);
+        }, function onGetFilesError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Delete File
+     */
+    function deleteFile(fileId) {
+      var deferred = $q.defer();
+      getConfig(true).then(function(config) {
+        $http.delete(baseUrl + '/v2/files' + fileId, config).then(function onDeleteFileSuccess(response) {
+          var file = response.data;
+          deferred.resolve(file);
+        }, function onDeleteFileError(err) {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
     }
 
     //

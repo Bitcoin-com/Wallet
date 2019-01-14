@@ -3,7 +3,8 @@
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*VERSION*"
-  xmlns:android="http://schemas.android.com/apk/res/android">
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools">
     <name>*USERVISIBLENAME*</name>
     <description>
       *PURPOSELINE*
@@ -64,6 +65,7 @@
     <plugin name="cordova-plugin-whitelist" spec="~1.3.0" />
     <plugin name="cordova-plugin-ionic-webview" spec="https://github.com/ionic-team/cordova-plugin-ionic-webview.git" />
     <plugin name="cordova-plugin-qrscanner" spec="~2.5.0" />
+    <plugin name="cordova-plugin-camera-preview" spec="~0.10.0" />
     <plugin name="cordova-plugin-customurlscheme" spec="https://github.com/cmgustavo/Custom-URL-scheme.git">
       <variable name="URL_SCHEME" value="bitcoin" />
       <variable name="SECOND_URL_SCHEME" value="*APPURI*" />
@@ -86,6 +88,7 @@
     <platform name="ios">
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
+      <config-file platform="ios" target="*-Info.plist" parent="NSCameraUsageDescription" overrite="true"><string>Allow the app to use your camera for scanning documents</string></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription"><string>To find nearby merchants.</string></config-file>
       <config-file target="*-Info.plist" parent="ITSAppUsesNonExemptEncryption"><false/></config-file>
       <icon src="resources/*PACKAGENAME*/ios/icon/AppIcon24x24@2x.png" width="48" height="48" />
@@ -135,8 +138,19 @@
       <allow-navigation href="*" />
     </platform>
 
+    <!-- <edit-config file="AndroidManifest.xml" target="/manifest/uses-permission/[@android:name='android.permission.CAMERA']" mode="overwrite">
+      <uses-permission android:name="android.permission.CAMERA" android:required="false" />
+    </edit-config> -->
+    <!-- <edit-config file="AndroidManifest.xml" target="/manifest/uses-permission" mode="overwrite">
+      <uses-permission android:name="android.permission.CAMERA" android:required="false" />
+    </edit-config> -->
+
     <platform name="android">
-      <preference name="android-manifest/application/@android:allowBackup" value="false" />
+      <!-- <preference name="android-manifest/application/@android:allowBackup" value="false" /> -->
+      <!-- <preference name="android-manifest/uses-permission/[@android:name='android.permission.CAMERA']" delete="true" /> -->
+      <!-- <custom-preference name="android-manifest/uses-permission/[@android:name=\"android.permission.CAMERA\"]" delete="true" /> -->
+      <!-- <meta-data name="android-manifest/uses-permission/[@android:name='android.permission.CAMERA']" tools:node="remove"/> -->
+      <!-- <uses-permission android:name="android.permission.CAMERA" tools:node="remove"/> -->
 
       <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
          <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -186,4 +200,5 @@
       <splash src="resources/*PACKAGENAME*/windows/splash/SplashScreenPhone.scale-240.png" width="1152" height="1920"/>
     </platform>
     <hook src="fixFirebasePlugin.js" type="before_build" />
+    <hook src="fixAndroidPlugin.js" type="after_prepare" />
   </widget>

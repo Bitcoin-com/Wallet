@@ -10,12 +10,13 @@ angular
     moonPayApiService
     , storageService
     , moonPayRouterService
+    , moonPayConfig
     , $log, $q
   ) {
 
-    var customerIdKey = 'moonPayCustomerId'
-    var defaultWalletIdKey = 'moonPayDefaultWalletId'
-    var defaultCardIdKey = 'moonPayDefaultCardId'
+    var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
+    var defaultWalletIdKey = 'moonPayDefaultWalletId_' + moonPayConfig.env
+    var defaultCardIdKey = 'moonPayDefaultCardId_' + moonPayConfig.env
     var currentCards = null;
 
     var defaultWalletId = null;
@@ -40,6 +41,11 @@ angular
       , setDefaultCardId: setDefaultCardId
       , getDefaultCardId: getDefaultCardId
       , start: start
+      , getAllCountries: getAllCountries
+      , getIdentityCheck: getIdentityCheck
+      , createIdentityCheck: createIdentityCheck
+      , getFiles: getFiles
+      , uploadFile: uploadFile
     };
 
     return service;
@@ -383,6 +389,139 @@ angular
         deferred.reject(err);
       });
       
+      return deferred.promise;
+    }
+
+    /**
+     * Get all countries
+     */
+    function getAllCountries() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getAllCountries().then(
+        function onGetAllCountries(countries) {
+          deferred.resolve(countries);
+        }, function onGetAllCountriesError(err) {
+          $log.debug('Error getting moonpay countries list from the api');
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function getIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getIdentityCheck().then(
+        function onGetIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+          $log.debug('Error getting moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function createIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.createIdentityCheck().then(
+        function onCreateIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onCreateIdentityCheckError(err) {
+          $log.debug('Error creating moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get Files
+     */
+    function getFiles() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getFiles().then(
+        function onGetFilesSuccess(files) {
+          deferred.resolve(files);
+        }, function onGetFilesError(err) {
+          $log.debug('Error getting moonpay files list from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Upload Document
+     * @param {data} file
+     * @param {String} type
+     * @param {String} country
+     * @param {String} side - Optional  
+     */
+    function uploadFile(fileBase64, type, country, side) {
+      // Create the promise
+      var deferred = $q.defer();
+
+
+      function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+      
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+      
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          var slice = byteCharacters.slice(offset, offset + sliceSize);
+      
+          var byteNumbers = new Array(slice.length);
+          for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+      
+          var byteArray = new Uint8Array(byteNumbers);
+      
+          byteArrays.push(byteArray);
+        }
+          
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+      }
+      
+      
+      var contentType = 'image/jpeg';
+      var b64Data = fileBase64.slice(23); // Remove the header data:...
+      var blob = b64toBlob(b64Data, contentType);
+
+      var formData = new FormData();
+      formData.append('file', blob);
+      formData.append('type', type);
+      formData.append('country', country);
+      
+      if (side) {
+        formData.append('side', side);
+      }
+
+      moonPayApiService.uploadFile(formData).then(
+        function onUploadFileSuccess(file) {
+          deferred.resolve(file);
+        }, function onUploadFileError(err) {
+          $log.debug('Error getting moonpay file list from the api', err);
+          deferred.reject(err);
+        }
+      );
       return deferred.promise;
     }
   }

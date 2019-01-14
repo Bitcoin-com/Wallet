@@ -7,21 +7,23 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
-    bitAnalyticsService,
-    $filter,
-    gettextCatalog,
-    $ionicHistory, 
-    moonPayService,
-    popupService, 
-    $scope, 
-    $state,
-    $window
+    bitAnalyticsService
+    , $filter
+    , gettextCatalog
+    , $ionicHistory 
+    , kycFlowService
+    , moonPayService
+    , popupService
+    , $scope
+    , $state
+    , $window
     ) {
 
     var vm = this;
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
+    vm.onVerificationSelect = onVerificationSelect;
 
     function _initVariables() {
       vm.dailyRemaining = '-';
@@ -100,6 +102,10 @@ angular
 
     function didPushBuyInstantly() {
       $state.go('tabs.buybitcoin-amount');
+    }
+
+    function onVerificationSelect() {
+      kycFlowService.start();
     }
   }
 

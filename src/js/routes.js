@@ -924,6 +924,61 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
+      .state('tabs.buybitcoin-kyc-document-info', {
+        url: '/buy-bitcoin/kyc-documentation-info',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycDocumentInfoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-document-info.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-document-capture', {
+        url: '/buy-bitcoin/kyc-document-capture/:count',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycDocumentCaptureController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-document-capture.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-document-verify', {
+        url: '/buy-bitcoin/kyc-document-verify/:count',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycDocumentVerifyController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-document-verify.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-status', {
+        url: '/buy-bitcoin/kyc-status',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycStatusController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-status.html'
+          }
+        }
+      })
+
+      .state('tabs.buybitcoin-kyc-personal-info', {
+        url: '/buy-bitcoin/kyc-personal-info',
+        views: {
+          'tab-home': {
+            controller: 'buyBitcoinKycPersonalInfoController',
+            controllerAs: 'vm',
+            templateUrl: 'views/buy-bitcoin/kyc-personal-info.html'
+          }
+        }
+      })
+
       .state('tabs.buybitcoin-privacypolicy', {
         url: '/buy-bitcoin/privacy-policy',
         views: {

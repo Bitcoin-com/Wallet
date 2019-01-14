@@ -21,6 +21,11 @@
     bottom: calc(86px + env(safe-area-inset-bottom));
   }
 
+  // Resolves scroll behavior issues when the content top element adjusts the margin-top. Use a top-boundary div above the offending element to correct scroll.
+  .top-boundary {
+    height:0.000001px;
+  }
+
   h1, h2 {
     font-size: 22px;
     font-weight: bold;
@@ -50,6 +55,14 @@
     margin-left: 16px;
     margin-right: 16px;
   }
+
+  select {
+    background: #f8f8f8;
+    border: none;
+    text-align: right;
+    text-align-last: right;
+  }
+
 
   &-amount {
     padding: 0 16px;
@@ -295,6 +308,10 @@
       width: 100%;
       margin: 8px 0;
     }
+
+    &-transparent:after {
+      border-bottom: transparent !important;
+    }
   }
   &-back-button,
   &-close-button {
@@ -492,6 +509,11 @@
     text-align: center;
     width: 100%;
     text-decoration: none;
+    
+    &-transparent {
+      background: transparent;
+      color: black;
+    }
 
     &.unready {
       background: rgba(255, 155, 0, 0.5);
@@ -607,7 +629,6 @@
       text-align: right;
     }
   }
-
   
 }
 

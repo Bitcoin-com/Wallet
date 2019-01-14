@@ -166,20 +166,352 @@ angular.module('copayApp.directives')
       }
     }
   })
+  .directive('validDate', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ctrl) {
+        ctrl.$validators.validDate = function(modelValue, viewValue) {
+          // Expected Format is DD/MM/YYYY
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
+          var now = new Date();
+          if (viewValue.match(/\d{2}\/\d{2}\/\d{4}/g)) {
+            var split = viewValue.split(/\//);
+            return parseInt(split[0]) <= 31 &&
+              parseInt(split[0]) > 0 &&
+              parseInt(split[1]) <= 12 &&
+              parseInt(split[1]) > 0 &&
+              (parseInt(split[1])) > 0;
+          }
+
+          return false;
+        };
+      }
+    };
+  })
   .directive('validExpiration', function() {
     return {
       require: 'ngModel',
       link: function(scope, elem, attr, ctrl) {
         ctrl.$validators.validExpiration = function(modelValue, viewValue) {
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
           var now = new Date();
-          if (attr.expiration && attr.expiration.match(/\d{2}\/\d{4}/,'')) {
-            var split = attr.expiration.split(/\//);
+          if (viewValue.match(/\d{2}\/\d{2}/g)) {
+            var split = viewValue.split(/\//);
             return parseInt(split[0]) <= 12 &&
               parseInt(split[0]) > 0 &&
-              parseInt(split[1]) >= now.getFullYear();
+              (2000 + parseInt(split[1])) >= now.getFullYear();
           }
+
           return false;
         };
+      }
+    };
+  })
+  .directive('maskedAmount', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks amounts to the format of 999999999.99
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+          var parsedValue = value.toString()
+            .replace(/^\.(\d)/g,'0.$1')
+            .replace(/^0+(\d)/g,'$1')
+            .replace(/(\d+)\.(\d{2}).+$/g,'$1.$2')
+            .replace(/^(\d{6})(\d+)$/g, '$1')
+            .replace(/^(\d{6})\d+\.(\d{2})$/g, '$1.$2')
+            .replace(/[^\d.]/g, '')
+            .replace(/\/$/, '').trim();
+          return parsedValue;
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+          var viewValue = addSpaces(value);
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          // Return what we want the model value to be
+          return removeSpaces(viewValue);
+        }
+
+        function formatModelValue(value) {
+          var modelValue = removeSpaces(value);
+          ngModel.$modelValue = modelValue;
+          return addSpaces(modelValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+        ngModel.$formatters.push(formatModelValue);
+      }
+    }
+  })
+  .directive('maskedDate', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of 0000 0000 0000 0000
+
+        
+        var originalValue = '';
+        var groupValue = 2;
+        var groupIndex = 0;
+        var separtor = '/';
+        var maxDigit = 10;
+        
+        function isGroupFullyComplete(newValue) {
+          // Check if a group is fully completed, if yes, let's format that
+          var countOfNumbers = 0;
+          var isDiff = false;
+          for (var i = 0; i < newValue.length; i++) {
+            var element = newValue[i];
+            
+            if (!isDiff && i < originalValue.length && element != originalValue[i]) {
+              isDiff = true;
+            }
+            
+            if (element == separtor) {
+              if (isDiff) return false;
+              countOfNumbers = 0;
+              groupIndex++;
+            }
+            else countOfNumbers++;
+            
+            if (isDiff && countOfNumbers%(groupValue * (groupIndex > 2 ? 2 : 1)) == 0) return true;
+          }
+          
+          return false
+        }
+        
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/^(\d{2})$/g, '$1//')
+            .replace(/^(\d{2})(\d?.)$/g, '$1/$2')
+            .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2//')
+            .replace(/^(\d{2})(\d{2})(\d+)$/g, '$1/$2/$3')
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,10);
+        }
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString().replace(/\s/g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+          var viewValue = value;
+
+          // Need to remove the right part
+          if (viewValue.length >= maxDigit 
+            || originalValue[originalValue.length - 1] != viewValue[viewValue.length - 1]   // Complete at the end
+            || isGroupFullyComplete(viewValue)) { // If a new one fully grouped, lets format that by the regex
+            viewValue = addSpaces(viewValue);
+          }
+
+          if (typeof viewValue !== 'undefined') {
+            originalValue = viewValue;
+          }
+
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          return removeSpaces(viewValue);
+        }
+
+        function formatModelValue(value) {
+          var modelValue = removeSpaces(value);
+          ngModel.$modelValue = modelValue;
+          return addSpaces(modelValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+        //ngModel.$formatters.push(formatModelValue);
+      }
+    }
+  })
+  .directive('maskedCreditCard', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of 0000 0000 0000 0000
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/(.{4})/g, '$1 ').trim()
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,19);
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '');
+          return parsedValue;
+        }
+
+        var originalValue = '';
+        var groupValue = 4;
+        var separtor = ' ';
+        var maxDigit = 19;
+
+        function isGroupFullyComplete(newValue) {
+          // Check if a group is fully completed, if yes, let's format that
+          var countOfNumbers = 0;
+          var isDiff = false;
+          for (var i = 0; i < newValue.length; i++) {
+            var element = newValue[i];
+
+            if (!isDiff && i < originalValue.length && element != originalValue[i]) {
+              isDiff = true;
+            }
+
+            if (element == separtor) {
+              if (isDiff) return false;
+              countOfNumbers = 0;
+            }
+            else countOfNumbers++;
+
+            if (isDiff && countOfNumbers%groupValue == 0) return true;
+          }
+
+          return false
+        }
+
+        function parseViewValue(value) {
+
+          var viewValue = value;
+
+          // Need to remove the right part
+          if (viewValue.length >= maxDigit 
+            || originalValue[originalValue.length - 1] != viewValue[viewValue.length - 1]   // Complete at the end
+            || isGroupFullyComplete(viewValue)) { // If a new one fully grouped, lets format that by the regex
+            viewValue = addSpaces(viewValue);
+          }
+
+          if (typeof viewValue !== 'undefined') {
+            originalValue = viewValue;
+          }
+
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          return removeSpaces(viewValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+      }
+    }
+  })
+  .directive('maskedExpiration', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of MM/YY
+
+        var originalValue = '';
+        var groupValue = 2;
+        var separtor = '/';
+        var maxDigit = 5;
+
+        function isGroupFullyComplete(newValue) {
+          // Check if a group is fully completed, if yes, let's format that
+          var countOfNumbers = 0;
+          var isDiff = false;
+          for (var i = 0; i < newValue.length; i++) {
+            var element = newValue[i];
+
+            if (!isDiff && i < originalValue.length && element != originalValue[i]) {
+              isDiff = true;
+            }
+
+            if (element == separtor) {
+              if (isDiff) return false;
+              countOfNumbers = 0;
+            }
+            else countOfNumbers++;
+
+            if (isDiff && countOfNumbers%groupValue == 0) return true;
+          }
+
+          return false
+        }
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/^(\d{2})$/g, '$1//').trim()
+            .replace(/^(\d{2})(\d+)$/g, '$1/$2').trim()
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,5);
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '').replace(/\//g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+
+          var viewValue = value;
+
+          // Need to remove the right part
+          if (viewValue.length >= maxDigit 
+            || originalValue[originalValue.length - 1] != viewValue[viewValue.length - 1]   // Complete at the end
+            || isGroupFullyComplete(viewValue)) { // If a new one fully grouped, lets format that by the regex
+            viewValue = addSpaces(viewValue);
+          }
+
+          if (typeof viewValue !== 'undefined') {
+            originalValue = viewValue;
+          }
+
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          return removeSpaces(viewValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
       }
     }
   });

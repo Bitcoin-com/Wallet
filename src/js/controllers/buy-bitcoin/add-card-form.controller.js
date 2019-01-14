@@ -18,12 +18,11 @@ angular
     vm.didPushBack = didPushBack;
     vm.didPushAdd = didPushAdd;
 
-    vm.handleCardNumberChange = handleCardNumberChange;
     vm.handleSecurityChange = handleSecurityChange;
 
     var addCardInfoText = gettextCatalog.getString("Type all your card details below.");
     var contactingText = gettextCatalog.getString("Contacting the card issuer.");
-
+    
     function didPushAdd() {
       // Check if the card is valid
       if (!isValidForm()) {
@@ -33,11 +32,11 @@ angular
         return;
       }
 
-      var splitExpirationDate = vm.card.expiration.trim().split('/');
+      var splitExpirationDate = [vm.card.expiration.slice(0,2), vm.card.expiration.slice(2)];
       var card = {
         number: vm.card.number.trim(),
         expiryMonth: parseInt(splitExpirationDate[0]),
-        expiryYear: parseInt(splitExpirationDate[1]),
+        expiryYear: 2000 + parseInt(splitExpirationDate[1]),
         cvc: vm.card.cvc.trim()
       }
 
@@ -59,14 +58,6 @@ angular
       $scope.$ionicGoBack();
     }
 
-    function handleCardNumberChange() {
-      if(!vm.card.number) {
-        return;
-      }
-      // Clean up string
-      vm.card.number = vm.card.number.replace(/\D/g,'');
-    }
-
     function handleSecurityChange() {
       if(!vm.card.cvc) {
         return;
@@ -85,11 +76,13 @@ angular
 
     function isValidExpiration() {
       var now = new Date();
-      if (vm.card.expiration && vm.card.expiration.match(/\d{2}\/\d{4}/,'')) {
-        var split = vm.card.expiration.split(/\//);
-        return parseInt(split[0]) <= 12 &&
-          parseInt(split[0]) > 0 &&
-          parseInt(split[1]) >= now.getFullYear();
+      if(vm.card.expiration && vm.card.expiration.length === 4) {
+        var split = [vm.card.expiration.slice(0,2), vm.card.expiration.slice(2)];
+        var month = parseInt(split[0]);
+        var year = (2000 + split[1]);
+        return month > 0 &&
+          month <= 12 &&
+          year >= now.getFullYear();
       }
       return false;
     }
@@ -111,15 +104,6 @@ angular
         return gettextCatalog.getString("Expiration date is invalid. Check your card and try again.");
       }
       return false;
-    }
-
-    function isValidCard(card) {
-      var now = new Date();
-      return card.number.length === 16 && 
-      card.cvc.length === 3 && 
-      card.expiryMonth > 0 &&
-      card.expiryMonth <= 12 &&
-      card.expiryYear >= now.getFullYear();
     }
 
     function _initVariables() {

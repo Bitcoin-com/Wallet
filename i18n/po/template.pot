@@ -4243,6 +4243,197 @@ msgstr ""
 msgid "Make Another Purchase"
 msgstr ""
 
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr ""
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr ""
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr ""
+
+# KYC Verification
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verifitcation.</a>"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr ""
+
+msgid "Self Portrait"
+msgstr ""
+
 msgid "Spend"
 msgstr ""
 

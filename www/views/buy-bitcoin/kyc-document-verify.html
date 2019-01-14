@@ -1,0 +1,24 @@
+<ion-view id="buy-bitcoin-document-capture"  view-title="{{ vm.titleLabel }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="vm.goBack()">
+        <i class="icon ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content scroll="false">
+    <div class="preview-frame">
+      <div class="preview-image">
+        <img width="90%" src="{{vm.photo}}"/>
+      </div>
+      <div class="apl-button-bottom-container no-shadow">
+        <h3 translate>How does it look?</h3>
+        <p>{{vm.descriptionLabel}}</p>
+        <a class="apl-button" ng-click="vm.onAccept()">{{vm.acceptButtonLabel}}</a>
+        <div class="apl-divider apl-divider-transparent"></div>
+        <a class="apl-button apl-button-transparent" ng-click="vm.onRetry()" translate>Retake the picture</a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
