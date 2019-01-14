@@ -37,7 +37,7 @@ angular
       var card = {
         number: vm.card.number.trim(),
         expiryMonth: parseInt(splitExpirationDate[0]),
-        expiryYear: parseInt(2000 + splitExpirationDate[1]),
+        expiryYear: 2000 + parseInt(splitExpirationDate[1]),
         cvc: vm.card.cvc.trim()
       }
 
