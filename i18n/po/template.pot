@@ -4251,10 +4251,6 @@ msgstr ""
 msgid "Continue unverified"
 msgstr ""
 
-#: www/views/kyc-document-info.html:56
-msgid "Continue unverified"
-msgstr ""
-
 # KYC Verification
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
@@ -4478,6 +4474,7 @@ msgstr ""
 
 msgid "Get your Bitcoin merch"
 msgstr ""
+
 msgid "E-mail not detected"
 msgstr ""
 
