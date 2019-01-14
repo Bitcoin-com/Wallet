@@ -36,7 +36,7 @@
       <div class="apl-divider"></div>
       <div class="row">
           <label for="dob" translate>Date of Birth</label>
-          <input name="dob" placeholder="DD/MM/YYYY" type="text" ng-model="vm.dob" ng-pattern="/[0123]\d\/[01]\d\/[12]\d{3}/" maxlength="10" required minage ng-model-options="{ debounce: 500 }"></input>
+          <input masked-date name="dob" placeholder="DD/MM/YYYY" type="text" ng-model="vm.dob" maxlength="10" required minage ng-model-options="{ debounce: 500 }"></input>
       </div>
       <div ng-show="documentForm.dob.$touched || vm.submitted"> 
         <div class="error" ng-show="documentForm.dob.$error.required" translate>
@@ -44,9 +44,6 @@
         </div>
         <div class="error" ng-show="documentForm.dob.$error.minage" translate>
           Must be at least 18 years old.
-        </div>
-        <div class="error" ng-show="documentForm.dob.$error.pattern" translate>
-          Date format must match DD/MM/YYYY.
         </div>
       </div>
       <div class="apl-divider"></div>

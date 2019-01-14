@@ -188,6 +188,56 @@ angular.module('copayApp.directives')
       }
     };
   })
+  .directive('maskedDate', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ngModel) {
+        // Masks expirations to the format of 0000 0000 0000 0000
+
+        function addSpaces(value) {
+          if(typeof(value) == typeof(undefined)) {
+            return value;
+          }
+
+          var parsedValue = value.toString()
+            .replace(/[^\d]/g, '')
+            .replace(/^(\d{2})$/g, '$1//').trim()
+            .replace(/^(\d{2})(\d+)$/g, '$1/$2').trim()
+            .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2//').trim()
+            .replace(/^(\d{2})\/(\d{2})(\d+)$/g, '$1/$2/$3').trim()
+            .replace(/\/$/, '');
+          return parsedValue.slice(0,10);
+        }
+
+        function removeSpaces(value) {
+          if (typeof(value) == typeof(undefined)) {
+            return value;
+          }
+            
+          var parsedValue = value.toString().replace(/\s/g, '');
+          return parsedValue;
+        }
+
+        function parseViewValue(value) {
+          var viewValue = addSpaces(value);
+          ngModel.$viewValue = viewValue;
+          ngModel.$render();
+
+          // Return what we want the model value to be
+          return removeSpaces(viewValue);
+        }
+
+        function formatModelValue(value) {
+          var modelValue = removeSpaces(value);
+          ngModel.$modelValue = modelValue;
+          return addSpaces(modelValue);
+        }
+
+        ngModel.$parsers.push(parseViewValue);
+        ngModel.$formatters.push(formatModelValue);
+      }
+    }
+  })
   .directive('maskedCreditCard', function() {
     return {
       require: 'ngModel',
@@ -248,7 +298,8 @@ angular.module('copayApp.directives')
 
           var parsedValue = value.toString()
             .replace(/[^\d]/g, '')
-            .replace(/(.{2})/g, '$1/').trim()
+            .replace(/^(\d{2})$/g, '$1//').trim()
+            .replace(/^(\d{2})(\d+)$/g, '$1/$2').trim()
             .replace(/\/$/, '');
           return parsedValue.slice(0,5);
         }

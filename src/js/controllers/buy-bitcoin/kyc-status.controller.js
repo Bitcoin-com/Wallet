@@ -49,7 +49,7 @@ angular
           // Update Customer
           customer.firstName = currentState.firstName
           customer.lastName = currentState.lastName
-          customer.dateOfBirth = moment(currentState.dob, 'DD/MM/YYY').format('YYYY-MM-DD')
+          customer.dateOfBirth = moment(currentState.dob, 'DDMMYYY').format('YYYY-MM-DD')
           customer.address = {
             'street': currentState.streetAddress1
             , 'town': currentState.city

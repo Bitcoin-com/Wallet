@@ -37,7 +37,7 @@ angular
 
     function _validateAge() {
       if (vm.dob) {
-        var dob = moment(vm.dob, 'DD/MM/YYYY');
+        var dob = moment(vm.dob, 'DDMMYYYY');
         if (moment().diff(dob, 'years') >= 18) {
           return true
         }
