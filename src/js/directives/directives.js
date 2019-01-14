@@ -288,7 +288,7 @@ angular.module('copayApp.directives')
           if (typeof(value) == typeof(undefined)) {
             return value;
           }
-            
+
           var parsedValue = value.toString().replace(/\s/g, '');
           return parsedValue;
         }
@@ -340,23 +340,57 @@ angular.module('copayApp.directives')
           return parsedValue;
         }
 
+        scope.originalValue = '';
+        scope.groupValue = 4;
+        scope.separtor = ' ';
+        scope.maxDigit = 19;
+
+        function isGroupFullyComplete(newValue) {
+
+          // Check if a group is fully completed, if yes, let's format that
+          var countOfNumbers = 0;
+          var isDiff = false;
+          for (var i = 0; i < newValue.length; i++) {
+            var element = newValue[i];
+
+            if (isDiff && countOfNumbers%scope.groupValue == 0) return true;
+
+            if (element == scope.separtor) {
+              if (isDiff) return false;
+              countOfNumbers = 0;
+            }
+            else countOfNumbers++;
+
+            if (!isDiff && i < scope.originalValue.length && element != scope.originalValue[i]) {
+              isDiff = true;
+            }
+          }
+
+          return false
+        }
+
         function parseViewValue(value) {
-          var viewValue = addSpaces(value);
+
+          var viewValue = value;
+
+          // Need to remove the right part
+          if (value.length > scope.maxDigit 
+            || scope.originalValue[scope.originalValue.length - 1] != viewValue[viewValue.length - 1]   // Complete at the end
+            || isGroupFullyComplete(viewValue)) { // If a new one fully grouped, lets format that by the regex
+            viewValue = addSpaces(viewValue);
+          }
+
+          if (typeof viewValue !== 'undefined') {
+            scope.originalValue = viewValue;
+          }
+
           ngModel.$viewValue = viewValue;
           ngModel.$render();
 
-          // Return what we want the model value to be
           return removeSpaces(viewValue);
         }
 
-        function formatModelValue(value) {
-          var modelValue = removeSpaces(value);
-          ngModel.$modelValue = modelValue;
-          return addSpaces(modelValue);
-        }
-
         ngModel.$parsers.push(parseViewValue);
-        ngModel.$formatters.push(formatModelValue);
       }
     }
   })
