@@ -257,6 +257,7 @@
       text-align: left;
       letter-spacing: -0.41px;
       text-overflow: ellipsis;
+      margin-bottom: 2px;
 
       &.add {
         ::before {
@@ -270,15 +271,15 @@
     }
     &__subtitle {
       clear: both;
-      height: 15px;
       color: #808080;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       text-align: left;
       letter-spacing: -0.2px;
 
       &.multiline {
         height: auto;
+        line-height: normal;
       }
 
       & .right {
