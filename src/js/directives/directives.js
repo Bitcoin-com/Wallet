@@ -474,7 +474,6 @@ angular.module('copayApp.directives')
         }
 
         ngModel.$parsers.push(parseViewValue);
-        //ngModel.$formatters.push(formatModelValue);
       }
     }
   });
