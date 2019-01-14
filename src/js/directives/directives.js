@@ -166,6 +166,31 @@ angular.module('copayApp.directives')
       }
     }
   })
+  .directive('validDate', function() {
+    return {
+      require: 'ngModel',
+      link: function(scope, elem, attr, ctrl) {
+        ctrl.$validators.validDate = function(modelValue, viewValue) {
+          // Expected Format is DD/MM/YYYY
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
+          var now = new Date();
+          if (viewValue.match(/\d{2}\/\d{2}\/\d{4}/g)) {
+            var split = viewValue.split(/\//);
+            return parseInt(split[0]) <= 31 &&
+              parseInt(split[0]) > 0 &&
+              parseInt(split[1]) <= 12 &&
+              parseInt(split[1]) > 0 &&
+              (parseInt(split[1])) > 0;
+          }
+
+          return false;
+        };
+      }
+    };
+  })
   .directive('validExpiration', function() {
     return {
       require: 'ngModel',
@@ -201,10 +226,10 @@ angular.module('copayApp.directives')
 
           var parsedValue = value.toString()
             .replace(/[^\d]/g, '')
-            .replace(/^(\d{2})$/g, '$1//').trim()
-            .replace(/^(\d{2})(\d+)$/g, '$1/$2').trim()
-            .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2//').trim()
-            .replace(/^(\d{2})\/(\d{2})(\d+)$/g, '$1/$2/$3').trim()
+            .replace(/^(\d{2})$/g, '$1//')
+            .replace(/^(\d{2})(\d?.)$/g, '$1/$2')
+            .replace(/^(\d{2})\/(\d{2})$/g, '$1/$2//')
+            .replace(/^(\d{2})(\d{2})(\d+)$/g, '$1/$2/$3')
             .replace(/\/$/, '');
           return parsedValue.slice(0,10);
         }

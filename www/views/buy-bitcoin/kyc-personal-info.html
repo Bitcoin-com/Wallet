@@ -36,11 +36,14 @@
       <div class="apl-divider"></div>
       <div class="row">
           <label for="dob" translate>Date of Birth</label>
-          <input masked-date name="dob" placeholder="DD/MM/YYYY" type="text" ng-model="vm.dob" maxlength="10" required minage ng-model-options="{ debounce: 500 }"></input>
+          <input masked-date valid-date name="dob" placeholder="DD/MM/YYYY" type="text" ng-model="vm.dob" maxlength="10" required minage ></input>
       </div>
       <div ng-show="documentForm.dob.$touched || vm.submitted"> 
         <div class="error" ng-show="documentForm.dob.$error.required" translate>
           Field is required.
+        </div>
+        <div class="error" ng-show="documentForm.dob.$error.validDate" translate>
+          Must be a valid date.
         </div>
         <div class="error" ng-show="documentForm.dob.$error.minage" translate>
           Must be at least 18 years old.

@@ -22,7 +22,7 @@ angular.module('bitcoincom.directives')
       require: 'ngModel',
       link: function(scope, elem, attr, ctrl) {
         ctrl.$validators.minage = function(modelValue, viewValue) {
-          var dob = moment(modelValue, 'DD/MM/YYYY');
+          var dob = moment(modelValue, 'DDMMYYYY');
           if (moment().diff(dob, 'years') >= 18) {
             return true
           }

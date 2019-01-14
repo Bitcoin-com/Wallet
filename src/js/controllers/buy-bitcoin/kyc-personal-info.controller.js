@@ -26,7 +26,8 @@ angular
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _validateAllFields() {
-      return _validateAge() 
+      return _validateDate()
+      && _validateAge() 
       && vm.firstName
       && vm.lastName
       && vm.streetAddress1
@@ -35,9 +36,25 @@ angular
       && vm.country
     }
 
+    function _validateDate() {
+      if(vm.dob.length === 10) {
+        var split = vm.dob.split('/');
+        var day = parseInt(split[0]);
+        var month = parseInt(split[1]);
+        var year = parseInt(split[2]);
+
+        return (day > 0 &&
+          day <= 31 &&
+          month > 0 &&
+          month <= 12 &&
+          year > 0);
+      }
+      return false;
+    }
+
     function _validateAge() {
       if (vm.dob) {
-        var dob = moment(vm.dob, 'DDMMYYYY');
+        var dob = moment(vm.dob, 'DD/MM/YYYY');
         if (moment().diff(dob, 'years') >= 18) {
           return true
         }
