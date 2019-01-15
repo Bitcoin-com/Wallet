@@ -70,7 +70,7 @@
 
       if (vm.moonpayTxId) {
         _refreshTransactionInfo();
-        $interval(_refreshTransactionInfo, 5000);
+        refreshPromise = $interval(_refreshTransactionInfo, 5000);
       }
     }
 
