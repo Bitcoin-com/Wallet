@@ -35,6 +35,7 @@
       };
       vm.paymentMethod = null;
       vm.paymentMethodsAreLoading = true;
+      vm.rateEur = 0;
       vm.rateUsd = 0;
       vm.ratesError = '';
       vm.walletsAreLoading = true;
@@ -105,6 +106,7 @@
       moonPayService.getRates('bch').then(
         function onGetRatesSuccess(rates) {
           console.log('Rates:', rates);
+          vm.rateEur = rates.EUR;
           vm.rateUsd = rates.USD;
           vm.ratesError = '';
           _updateAmount();
@@ -112,6 +114,7 @@
         },
         function onGetRatesError(err) {
           console.error('Rates error.', err);
+          vm.rateEur = 0;
           vm.rateUsd = 0;
           vm.ratesError = err.message || '';
         }
@@ -196,8 +199,8 @@
 
       var amount = _sanitisedAmountNumber(amountRaw);
 
-      if (vm.rateUsd) {
-        vm.lineItems.bchQty = amount / vm.rateUsd;
+      if (vm.rateEur) {
+        vm.lineItems.bchQty = amount / vm.rateEur;
         vm.lineItems.cost = amount;
         var moonpayFee = amount > 0 ? Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION) : 0;
         var extraFee = amount > 0 ? amount * EXTRA_FEE_FRACTION : 0;
@@ -232,7 +235,7 @@
         return;
       }
 
-      if (!vm.rateUsd) {
+      if (!vm.rateEur) {
         message = gettextCatalog.getString('Waiting for exchange rate.');
         popupService.showAlert(title, message);
         return;
@@ -291,25 +294,25 @@
             console.log('Transaction', newTransaction);
 
             var extraFee = amountBch * EXTRA_FEE_FRACTION;
-            var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
+            var extraFeeEur = (vm.rateEur > 0) ? extraFee / vm.rateEur : 0;
             bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
               'amount': extraFee,
-              'price': extraFeeUsd,
+              'price': extraFeeEur,
               'coin': 'bch'
             }], ['leanplum']);
 
-            var amountUsd = (vm.rateUsd > 0) ? amountBch / vm.rateUsd : 0;
+            var amountEur = (vm.rateEur > 0) ? amountBch / vm.rateEur : 0;
             bitAnalyticsService.postEvent('bitcoin_purchased', [{
               'amount': amountBch,
-              'price': amountUsd,
+              'price': amountEur,
               'coin': 'bch'
             }], ['leanplum']);
 
             var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
-            var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
+            var moonpayFeeEur = (vm.rateEur > 0) ? moonpayFee / vm.rateEur : 0;
             bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
               'amount': moonpayFee,
-              'price': moonpayFeeUsd,
+              'price': moonpayFeeEur,
               'coin': 'bch'
             }], ['leanplum']);
 

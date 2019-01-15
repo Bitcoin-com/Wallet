@@ -47,7 +47,7 @@
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
-        rateUsd: 0,
+        rateEur: 0,
         processingFee: 0,
         total: 0
       }
@@ -140,7 +140,7 @@
           vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
           vm.lineItems.cost = transaction.baseCurrencyAmount;
 
-          vm.rateUsd = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
+          vm.rateEur = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
 
           vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
           vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;

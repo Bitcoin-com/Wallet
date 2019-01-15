@@ -4297,7 +4297,7 @@ msgid "You must select a document type."
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
-msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €5000 per month."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0

@@ -36,7 +36,7 @@
       vm.failureReason = '';
       vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
-      vm.purchasedCurrency = 'USD';
+      vm.purchasedCurrency = 'EUR';
       vm.quoteCurrencyAmount = '';
       vm.walletName = '';
       vm.status = 'pending';

@@ -19,18 +19,18 @@
       <div class="apl-amount-totals">
         <table>
           <tr class="apl-amount-totals-item">
-            <td class="apl-amount-totals-title" ng-if="!vm.rateUsd && !vm.ratesError">Getting exchange rate...</td>
-            <td class="apl-amount-totals-title" ng-if="!vm.rateUsd && vm.ratesError">{{vm.ratesError}}</td>
-            <td class="apl-amount-totals-title" ng-if="vm.rateUsd"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.cost | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-title" ng-if="!vm.rateEur && !vm.ratesError">Getting exchange rate...</td>
+            <td class="apl-amount-totals-title" ng-if="!vm.rateEur && vm.ratesError">{{vm.ratesError}}</td>
+            <td class="apl-amount-totals-title" ng-if="vm.rateEur"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateEur | currency:'': 2}} EUR</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.cost | currency:'':2}} EUR</td>
           </tr>
           <tr class="apl-amount-totals-item">
             <td class="apl-amount-totals-title" translate>Processing Fee</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.processingFee | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.processingFee | currency:'':2}} EUR</td>
           </tr>
           <tr class="apl-amount-totals-item total">
             <td class="apl-amount-totals-title" translate>Total</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.total | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.total | currency:'':2}} EUR</td>
           </tr>
         </table>
       </div>  

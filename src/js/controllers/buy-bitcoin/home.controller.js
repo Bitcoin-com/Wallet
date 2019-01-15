@@ -40,8 +40,8 @@ angular
         function onGetCustomerSuccess(customer) {
           if (customer) {
             console.log('Moonpay customer:', customer);
-            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '$', 2);
-            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '$', 2);
+            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '€', 2);
+            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '€', 2);
             bitAnalyticsService.setUserAttributes({
               'email': customer.email
             });
