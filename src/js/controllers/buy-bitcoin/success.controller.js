@@ -66,7 +66,7 @@
         }
       );
 
-      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [{}, {}, {}], ['leanplum']);
 
       if (vm.moonpayTxId) {
         _refreshTransactionInfo();
@@ -75,7 +75,7 @@
     }
 
     function _onBeforeLeave() {
-      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
     function onDone() {

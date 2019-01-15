@@ -460,7 +460,7 @@ angular.module('copayApp.services')
               "type": type,
               "num_of_copayers": opts.n,
               "num_of_signatures": opts.m
-            }], [channel, 'leanplum']);
+            }, {}, {}], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);

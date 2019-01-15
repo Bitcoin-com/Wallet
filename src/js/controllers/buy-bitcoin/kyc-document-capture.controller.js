@@ -139,7 +139,7 @@ angular
         kycFlowService.popState();
       }
 
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onAfterEnter(event, data) {
@@ -148,7 +148,7 @@ angular
 
     function onBeforeLeave(event, data) {
       cameraPreviewService.stopCamera();
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
 })();

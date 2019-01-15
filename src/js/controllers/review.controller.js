@@ -689,7 +689,7 @@ angular
           "type": "outgoing",
           "amount": amount,
           "fees": vm.feeCrypto
-        }], [channel, "adjust", "leanplum"]);
+        }, {}, {}], [channel, "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       _handleSatoshiDiceIntegrationAfterSending();

@@ -88,7 +88,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   if (platformInfo.isCordova) {
     channel = "firebase";
   }
-  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel, 'leanplum']);
+  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [{}, {}, {}], [channel, 'leanplum']);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
 
   $scope.openExternalLink = function(url, target) {

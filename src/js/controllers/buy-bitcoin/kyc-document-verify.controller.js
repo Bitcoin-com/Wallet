@@ -91,11 +91,11 @@ angular
       }
 
       _initVariables();
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onBeforeLeave(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
 })();
