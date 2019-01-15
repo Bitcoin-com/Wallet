@@ -15,7 +15,9 @@
       Status
     </h3>
     <p ng-if="vm.status == 'completed'" translate>Completed</p>
-    <p ng-if="vm.status != 'completed'" translate>Pending</p>
+    <p ng-if="vm.status == 'pending'" translate>Pending</p>
+    <p ng-if="vm.status == 'failed'" translate>Failed</p>
+    <p ng-if="vm.status == 'waitingAuthorization'" translate>Waiting for authorization</p>
     <div>
       <div class="apl-divider"></div>
       <div class="apl-amount-totals">

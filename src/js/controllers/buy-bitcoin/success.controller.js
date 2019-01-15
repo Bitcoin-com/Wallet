@@ -33,7 +33,7 @@
     function _initVariables() {
       purchasedAmount = $state.params.purchasedAmount;
 
-      // Change this to crypto later when the transaction is complete.
+      vm.failureReason = '';
       vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
       vm.purchasedCurrency = 'USD';
@@ -138,9 +138,12 @@
         function onGetTransactionSuccess(transaction) {
           vm.purchasedAmount = transaction.baseCurrencyAmount;
           vm.status = transaction.status;
+          vm.failureReason = transaction.failureReason;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
             vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
+          }
+          if (vm.status !== 'pending') { // completed, failed, waitingAuthorization
             $interval.cancel(refreshPromise);
             refreshPromise = null;
           }
