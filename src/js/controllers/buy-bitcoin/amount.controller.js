@@ -258,100 +258,87 @@
         return;
       }
 
-      title = gettextCatalog.getString("Enter Security Code");
-      message = gettextCatalog.getString("Enter the 3 digit code on the back of your card.");
-      var opts = {
-        inputType: 'text'
-      };
-      popupService.showPrompt(title, message, opts, function onSecurityCode(csc){ 
+      ongoingProcess.set('buyingBch', true);
 
-        if (!csc) {
+      walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
+        if (err) {
+          ongoingProcess.set('buyingBch', false);
+          console.log(err);
+
+          message = err.message || gettext.getString('Could not create address');
+          popupService.showAlert(title, message);
           return;
         }
 
-        ongoingProcess.set('buyingBch', true);
+        var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+        var addressParts = toCashAddress.split(':');
+        var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
-        walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
-          if (err) {
+        // Override to testnet address for testing
+          toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+
+        var transaction = {
+          baseCurrencyAmount: amountBch
+          , currencyCode: 'bch'
+          , cardId: vm.paymentMethod.id
+          , extraFeePercentage: EXTRA_FEE_PERCENTAGE
+          , walletAddress: toAddressForTransaction
+        };
+        moonPayService.createTransaction(transaction).then(
+          function onCreateTransactionSuccess(newTransaction) {
             ongoingProcess.set('buyingBch', false);
-            console.log(err);
 
-            message = err.message || gettext.getString('Could not create address');
+            console.log('Transaction', newTransaction);
+
+            var extraFee = amountBch * EXTRA_FEE_FRACTION;
+            var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
+            bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
+              'amount': extraFee,
+              'price': extraFeeUsd,
+              'coin': 'bch'
+            }], ['leanplum']);
+
+            var amountUsd = (vm.rateUsd > 0) ? amountBch / vm.rateUsd : 0;
+            bitAnalyticsService.postEvent('bitcoin_purchased', [{
+              'amount': amountBch,
+              'price': amountUsd,
+              'coin': 'bch'
+            }], ['leanplum']);
+
+            var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
+            var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
+            bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
+              'amount': moonpayFee,
+              'price': moonpayFeeUsd,
+              'coin': 'bch'
+            }], ['leanplum']);
+
+            $ionicHistory.nextViewOptions({
+              disableAnimation: true,
+              historyRoot: true
+            });
+            $state.go('tabs.home').then(
+              function() {
+                $state.go('tabs.buybitcoin').then(
+                  function () {
+                    $state.go('tabs.buybitcoin-success', { 
+                      moonpayTxId: newTransaction.id,
+                      purchasedAmount: vm.lineItems.cost
+                    });
+                  }
+                );
+              }
+            );
+
+          },
+          function onCreateTransactionError(err) {
+            ongoingProcess.set('buyingBch', false);
+
+            title = gettextCatalog.getString('Purchase Failed');
+            message = err.message || gettextCatalog.getString('Failed to create transaction.');
             popupService.showAlert(title, message);
-            return;
           }
-
-          var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
-          var addressParts = toCashAddress.split(':');
-          var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
-
-          // Override to testnet address for testing
-          // toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
-
-          var transaction = {
-            baseCurrencyAmount: amountBch
-            , currencyCode: 'bch'
-            , cardCvc: csc
-            , cardId: vm.paymentMethod.id
-            , extraFeePercentage: EXTRA_FEE_PERCENTAGE
-            , walletAddress: toAddressForTransaction
-          };
-          moonPayService.createTransaction(transaction).then(
-            function onCreateTransactionSuccess(newTransaction) {
-              ongoingProcess.set('buyingBch', false);
-
-              console.log('Transaction', newTransaction);
-
-              var extraFee = amountBch * EXTRA_FEE_FRACTION;
-              var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
-                'amount': extraFee,
-                'price': extraFeeUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
-
-              var amountUsd = (vm.rateUsd > 0) ? amountBch / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased', [{
-                'amount': amountBch,
-                'price': amountUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
-
-              var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
-              var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
-                'amount': moonpayFee,
-                'price': moonpayFeeUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
-
-              $ionicHistory.nextViewOptions({
-                disableAnimation: true,
-                historyRoot: true
-              });
-              $state.go('tabs.home').then(
-                function() {
-                  $state.go('tabs.buybitcoin').then(
-                    function () {
-                      $state.go('tabs.buybitcoin-success', { 
-                        moonpayTxId: newTransaction.id,
-                        purchasedAmount: vm.lineItems.cost
-                      });
-                    }
-                  );
-                }
-              );
-
-            },
-            function onCreateTransactionError(err) {
-              ongoingProcess.set('buyingBch', false);
-
-              title = gettextCatalog.getString('Purchase Failed');
-              message = err.message || gettextCatalog.getString('Failed to create transaction.');
-              popupService.showAlert(title, message);
-            }
-          );
-        });
+        );
       });
     }
 
