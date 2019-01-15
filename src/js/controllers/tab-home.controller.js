@@ -19,7 +19,6 @@ angular
     , lodash
     , popupService
     , ongoingProcess
-    , bannerService
     , externalLinkService
     , latestReleaseService
     , profileService
@@ -56,9 +55,6 @@ angular
     $scope.isWindowsPhoneApp = platformInfo.isCordova && platformInfo.isWP;
     $scope.isNW = platformInfo.isNW;
     $scope.showServices = false;
-    $scope.bannerIsLoading = true;
-    $scope.bannerImageUrl = '';
-    $scope.bannerUrl = '';
 
     $scope.vm = {
       openSettings: openSettings,
@@ -76,12 +72,6 @@ angular
 
     function onAfterEnter () {
       startupService.ready();
-
-      bannerService.getBanner(function onGetBanner(banner) {
-        $scope.bannerImageUrl = banner.imageURL;
-        $scope.bannerUrl = banner.url;
-        $scope.bannerIsLoading = false;
-      });
     };
 
     function onBeforeEnter (event, data) {
@@ -189,10 +179,6 @@ angular
 
     $scope.showUpdatePopup = function() {
       latestReleaseService.showUpdatePopup();
-    };
-
-    $scope.openBannerUrl = function() {
-      externalLinkService.open($scope.bannerUrl, false);
     };
 
     $scope.openNotificationModal = function(n) {

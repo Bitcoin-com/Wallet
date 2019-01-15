@@ -108,23 +108,15 @@
         </a>
       </div>
     </div>
-
-    <div class="ng-hide list card" ng-show="walletsBtc[0] && bitpayCardItems.length>0" ng-include="'views/includes/bitpayCardsCard.html'"></div>
-    <div class="ng-hide list card" ng-show="walletsBtc[0] && buyAndSellItems.length>0" ng-include="'views/includes/buyAndSellCard.html'"></div>
-    <div class="ng-hide list card" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
-    <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/nextSteps.html'"></div>
     
     <div id="buy-bitcoin" class="padding">
       <button class="button button-standard button-green" ui-sref="tabs.buybitcoin" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
     </div>
 
-    <div class="list card card-banner">
-      <ion-spinner ng-if="bannerIsLoading"></ion-spinner>
-      <a id="home_banner" href-banner="{{bannerImageUrl}}" class="track_banner_click" ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
-        <img class="card-banner__img" ng-src="{{bannerImageUrl}}"/>
-      </a>
-
-    </div>
+    <div class="ng-hide list card" ng-show="walletsBtc[0] && bitpayCardItems.length>0" ng-include="'views/includes/bitpayCardsCard.html'"></div>
+    <div class="ng-hide list card" ng-show="walletsBtc[0] && buyAndSellItems.length>0" ng-include="'views/includes/buyAndSellCard.html'"></div>
+    <div class="ng-hide list card" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
+    <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/nextSteps.html'"></div>
     
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/community.html'"></div>
 
