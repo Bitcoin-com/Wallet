@@ -187,7 +187,7 @@
         console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
       });
 
-      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [{}, {}, {}], ['leanplum']);
     }
 
     function _updateAmount() {
@@ -214,22 +214,22 @@
         $interval.cancel(exchangeRateRefreshInterval);
       }
 
-      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [{}, {}, {}], ['leanplum']);
     }
     
 
     function onBuy() {
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_tap_on_buy', [{
         'amount': vm.inputAmount
-      }], ['leanplum']);
+      }, {}, {}], ['leanplum']);
 
       var title = gettextCatalog.getString('Unable to Purchase');
       var message = '';
       var okText = '';
       var cancelText = '';
 
-      var amountBch = _sanitisedAmountNumber(vm.inputAmount.toString());
-      if (!amountBch) {
+      var amountEur = _sanitisedAmountNumber(vm.inputAmount.toString());
+      if (!amountEur) {
         message = gettextCatalog.getString('Amount must be a positive number.');
         popupService.showAlert(title, message);
         return;
@@ -281,7 +281,7 @@
         //  toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
 
         var transaction = {
-          baseCurrencyAmount: amountBch
+          baseCurrencyAmount: amountEur
           , currencyCode: 'bch'
           , cardId: vm.paymentMethod.id
           , extraFeePercentage: EXTRA_FEE_PERCENTAGE
@@ -293,28 +293,35 @@
 
             console.log('Transaction', newTransaction);
 
-            var extraFee = amountBch * EXTRA_FEE_FRACTION;
-            var extraFeeEur = (vm.rateEur > 0) ? extraFee / vm.rateEur : 0;
+            var extraFeeEur = amountEur * EXTRA_FEE_FRACTION;
+            var extraFeeBch = (vm.rateEur > 0) ? extraFeeEur / vm.rateEur: 0;
+            var extraFeeUsd = extraFeeBch * vm.rateUsd;
             bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
-              'amount': extraFee,
-              'price': extraFeeEur,
+              'amount': extraFeeBch,
+              'price': extraFeeUsd,
               'coin': 'bch'
+            },
+            {},
+            {
+              value: extraFeeUsd
             }], ['leanplum']);
 
-            var amountEur = (vm.rateEur > 0) ? amountBch / vm.rateEur : 0;
+            var amountBch = (vm.rateEur > 0) ? amountEur / vm.rateEur : 0;
+            var amountUsd = amountBch * vm.rateUsd;
             bitAnalyticsService.postEvent('bitcoin_purchased', [{
               'amount': amountBch,
-              'price': amountEur,
+              'price': amountUsd,
               'coin': 'bch'
-            }], ['leanplum']);
+            }, {}, {}], ['leanplum']);
 
-            var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
-            var moonpayFeeEur = (vm.rateEur > 0) ? moonpayFee / vm.rateEur : 0;
+            var moonpayFeeEur = Math.max(MOONPAY_FIXED_FEE, amountEur * MOONPAY_VARIABLE_FEE_FRACTION);
+            var moonpayFeeBch = (vm.rateEur > 0) ? moonpayFeeEur / vm.rateEur : 0;
+            var moonpayFeeUsd = moonpayFeeBch * vm.rateUsd;
             bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
-              'amount': moonpayFee,
-              'price': moonpayFeeEur,
+              'amount': moonpayFeeBch,
+              'price': moonpayFeeUsd,
               'coin': 'bch'
-            }], ['leanplum']);
+            }, {}, {}], ['leanplum']);
 
             $ionicHistory.nextViewOptions({
               disableAnimation: true,
