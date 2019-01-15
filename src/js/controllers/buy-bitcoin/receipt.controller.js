@@ -19,6 +19,7 @@
     , popupService
     , $scope
     , $state
+    , $timeout
     , $window
     ) {
     var vm = this;
@@ -108,7 +109,10 @@
 
           vm.wallet = walletAndAddress.wallet;
 
-          $scope.$apply();
+          // The callback may return immediately if the address was cached.
+          $timeout(function onTimeout(){
+            $scope.$apply();
+          }, 1);
         });
       } catch (err) { 
         $log.debug('Error getting wallet from address.' + err.message || ''); 

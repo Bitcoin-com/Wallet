@@ -11,7 +11,10 @@
     , moonPayService
     , popupService
     , profileService
-    , $scope, $ionicHistory, $log
+    , $scope
+    , $timeout
+    , $ionicHistory
+    , $log
   ) {
     var vm = this;
 
@@ -89,7 +92,10 @@
           }
         });
 
-        $scope.$apply();
+        // The callback may return immediately if the address was cached.
+        $timeout(function onTimeout(){
+          $scope.$apply();
+        }, 1);
 
       });
     }
