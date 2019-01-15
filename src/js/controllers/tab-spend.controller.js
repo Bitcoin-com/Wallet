@@ -9,6 +9,7 @@
   function tabSpendController(
     externalLinkService
     , gettextCatalog
+    , platformInfo
     , $scope
     , uxLanguage
     ) {
@@ -24,6 +25,8 @@
 
     // Variables
     vm.merchants = [];
+
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
     
     var startAcceptingLinks = {
       en: 'https://bitcoincashers.org/en/intro/for-merchants/',
@@ -49,13 +52,13 @@
           description: gettextCatalog.getString("The market's highest paying pool"),
           icon: 'img/merchants/mining_merchant_icon.svg',
           name: gettextCatalog.getString('Start mining Bitcoin'),
-          url: 'https://pool.bitcoin.com'
+          url: 'https://pool.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
         },
         {
           description: gettextCatalog.getString('Pay with BCH, get 10% back'),
           icon: 'img/merchants/bitcoincom_store_merchant_icon.svg',
           name: gettextCatalog.getString('Get your Bitcoin merch'),
-          url: 'https://store.bitcoin.com'
+          url: 'https://store.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
         }
       ];
       

@@ -99,6 +99,10 @@
       background-position: center center;
       border-radius: 6px;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      // So that cards with a 1 line subtitle are the same height as cards with
+      // a 2-line subtitle. Cards that have subtitles with more lines will be
+      // taller.
+      min-height: 99px;
       padding-bottom: 16px;
       padding-top: 16px;
 
