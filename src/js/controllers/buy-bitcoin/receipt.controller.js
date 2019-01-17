@@ -55,7 +55,7 @@
       vm.paymentMethod = null;
       vm.paymentMethodError = '';
       vm.paymentMethodLoading = true;
-      vm.status = 'pending';
+      vm.status = '';
       vm.wallet = null;
       vm.walletAddress = '';
 
