@@ -277,7 +277,7 @@
         var addressParts = toCashAddress.split(':');
         var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
-        // Override to testnet address for testing
+        // Override testnet address for testing
         //  toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
 
         var transaction = {
@@ -287,7 +287,8 @@
           , extraFeePercentage: EXTRA_FEE_PERCENTAGE
           , walletAddress: toAddressForTransaction
         };
-        moonPayService.createTransaction(transaction).then(
+
+        moonPayService.createTransaction(transaction, vm.wallet.id).then(
           function onCreateTransactionSuccess(newTransaction) {
             ongoingProcess.set('buyingBch', false);
 

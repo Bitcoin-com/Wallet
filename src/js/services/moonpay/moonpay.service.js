@@ -46,6 +46,7 @@ angular
       , createIdentityCheck: createIdentityCheck
       , getFiles: getFiles
       , uploadFile: uploadFile
+      , setTransactionWalletId: setTransactionWalletId
     };
 
     return service;
@@ -235,7 +236,7 @@ angular
       return deferred.promise;
     }
 
-    /**
+    /**     
      * Update a customer
      * @param {Object} customer 
      */
@@ -320,6 +321,28 @@ angular
 
       return deferred.promise;
     }
+
+    function getTransactionWalletIds () {
+      // Create the promise
+      var deferred = $q.defer();
+
+      storageService.getItem('moonPayTransactionWalletIds', function onGetTransactionWalletId(err, walletIds) {
+        if (err) {
+          $log.debug('Error setting moonpay transaction wallet id in the local storage');
+          deferred.reject(err);
+        } else {
+          try {
+            console.log(walletIds);
+            walletIds = JSON.parse(walletIds);
+          } catch (err) {
+            walletIds = {};
+          }
+          deferred.resolve(walletIds);
+        }
+      });
+
+      return deferred.promise;
+    }
     
     /**
      * Get transactions
@@ -329,7 +352,17 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.getTransactions().then(function onGetTransactionsSuccess(transactions) {
-        deferred.resolve(transactions);
+
+        // Get in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          transactions.forEach(function (transaction) {
+            transaction.walletId = walletIds[transaction.id];
+          });
+          deferred.resolve(transactions);
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error setting moonpay transactions wallet id in the local storage');
+          deferred.reject(err);
+        });
       }, function onGetTransactionsError(err) {
         $log.debug('Error getting moonpay transactions from the api');
         deferred.reject(err);
@@ -347,8 +380,17 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.getTransaction(transactionId).then(function onGetTransactionSuccess(transaction) {
-        deferred.resolve(transaction);
-      }, function onGetTransactionsError(err) {
+
+        // Get in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          transaction.walletId = walletIds[transaction.id];
+          deferred.resolve(transaction);
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error setting moonpay transactions wallet id in the local storage');
+          deferred.reject(err);
+        });
+
+      }, function onGetTransactionError(err) {
         $log.debug('Error getting moonpay transaction from the api');
         deferred.reject(err);
       });
@@ -356,18 +398,56 @@ angular
       return deferred.promise;
     }
 
+    function setTransactionWalletId(transaction, walletId) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      // Save in cache the mapping with the walletId
+      getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+        walletIds[transaction.id] = transaction.walletId;
+        storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
+          if (err) {
+            $log.debug('Error setting moonpay transaction wallet id in the local storage');
+            deferred.reject();
+          } else {
+            deferred.resolve();
+          }
+        });
+      }, function onGetTransactionWalletIdError(err) {
+        $log.debug('Error setting moonpay selected wallet id in the local storage');
+        deferred.reject(err);
+      });
+    }
+
     /**
      * Create a transaction
      * @param {Object} transaction 
      */
-    function createTransaction(transaction) {
+    function createTransaction(transaction, walletId) {
       // Create the promise
       var deferred = $q.defer();
 
       moonPayApiService.createTransaction(transaction).then(function onCreateTransactionSuccess(newTransaction) {
-        deferred.resolve(newTransaction);
+        // Save in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          walletIds[newTransaction.id] = walletId;
+
+          // Save in cache the mapping with the walletId
+          storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
+            if (err) {
+              $log.debug('Error setting moonpay selected wallet id in the local storage');
+              deferred.reject(err);
+            } else {
+              newTransaction.walletId = walletId;
+              deferred.resolve(newTransaction);
+            }
+          });
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error getting moonpay transaction wallet id in the local storage');
+          deferred.reject(err);
+        });
       }, function onCreateTransactionError(err) {
-        $log.debug('Error creating moonpay transaction from the api');
+        $log.debug('Error getting moonpay transaction wallet id from the api');
         deferred.reject(err);
       });
 

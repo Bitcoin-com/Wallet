@@ -28,7 +28,7 @@ angular.module('copayApp.services')
     var isIOS = platformInfo.isIOS;
 
     var root = {
-      getWalletFromAddresses: getWalletFromAddresses
+      getWalletFromAddress: getWalletFromAddress
     };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
@@ -1108,48 +1108,6 @@ angular.module('copayApp.services')
       });
     }
 
-    /**
-     * 
-     * @param {*} legacyAddresses 
-     * @param {*} coin 
-     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
-     */
-    function getWalletFromAddresses(legacyAddresses, coin, cb) {
-      storageService.getItemPromise(WALLET_ID_FROM_ADDRESS_STORAGE_KEY).then(
-        function onGetSuccess(item) {
-          item = item || {};
-          var coinAddresses = item[coin] || {};
-          var missingAddresses = [];
-          legacyAddresses.forEach(function onAddress(legacyAddress) {
-            var walletId = coinAddresses[legacyAddress];
-            if (walletId) {
-              var wallet = root.getWallet(walletId);
-
-              if (wallet) {
-                console.log('Got walletId for address from cache.');
-                cb(null, {
-                  address: legacyAddress,
-                  wallet: wallet
-                });
-              }
-            } else {
-              missingAddresses.push(legacyAddress);
-            }
-          });
-
-          console.log('Addresses to get wallets for: ' + missingAddresses.length);
-          if (missingAddresses.length > 0) {
-            _searchWalletsForAddresses(missingAddresses, coin, cb);
-          }
-
-        },
-        function onGetError(err) {
-          $log.error('Failed to load cached wallets for addresses.', err);
-          _searchWalletsForAddresses(legacyAddresses, coin, cb);
-        }
-      );
-    }
-
     function _saveWalletFromAddress(coin, legacyAddress, walletId) {
       var deferred = $q.defer();
 
@@ -1170,12 +1128,12 @@ angular.module('copayApp.services')
     }
 
     /**
-     * 
-     * @param {*} legacyAddresses 
+     * Get a wallet from an address, takes long but called rarely, advice : Keep a mapping somewhere else like MoonPayService
+     * @param {*} legacyAddress 
      * @param {*} coin 
-     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
+     * @param {*} cb
      */
-    function _searchWalletsForAddresses(legacyAddresses, coin, cb) {
+    function getWalletFromAddress(legacyAddress, coin, cb) {
       var wallets = root.getWallets({ coin: coin });
 
       wallets.forEach(function onWallet(wallet){
@@ -1189,24 +1147,12 @@ angular.module('copayApp.services')
           walletAddresses.forEach(function onWalletAddress(walletAddressObject){
             var walletAddress = walletAddressObject.address;
 
-            legacyAddresses.forEach(function onLegacyAddress(legacyAddress) {
-
-              if (walletAddress === legacyAddress) {
-                _saveWalletFromAddress(coin, legacyAddress, wallet.id).then(
-                  function onSaveSucceeded() {
-                    console.log('Saved wallet for address \"' + legacyAddress + '"');
-                  },
-                  function onSaveError(err) {
-                    $log.error('Error when saving wallet for address.', err);
-                  }
-                );
-
-                cb(null, {
-                  address: legacyAddress,
-                  wallet: wallet
-                });
-              }
-            });
+            if (walletAddress === legacyAddress) {
+              cb(null, {
+                address: legacyAddress,
+                wallet: wallet
+              });
+            }
           });          
         });
       }); 

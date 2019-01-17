@@ -93,29 +93,32 @@
       
     }
 
-    function _getWalletForAddress(cashAddr) {
+    function _getWalletFromAddress(cashAddr) {
       if (cashAddr.indexOf('bitcoincash:') < 0) {
         cashAddr = 'bitcoincash:' + cashAddr;
       }
 
       try {
         var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-
-        profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
+        profileService.getWalletFromAddress(legacyAddress, 'bch', function onWallet(err, walletAndAddress) {
           if (err) {
             $log.error('Error getting wallet from address. ' + err.message || '');
             return;
           }
 
-          vm.wallet = walletAndAddress.wallet;
+          var walletCashAddr = bitcoinCashJsService.readAddress(walletAndAddress.address).cashaddr;
+          var walletCashAddrParts = walletCashAddr.split(':');
+          var walletCashAddrWithoutPrefix = walletCashAddrParts.length === 2 ? walletCashAddrParts[1] : walletCashAddr;
 
-          // The callback may return immediately if the address was cached.
-          $timeout(function onTimeout(){
-            $scope.$apply();
-          }, 1);
+          if (tx.walletAddress === walletCashAddrWithoutPrefix) {
+            vm.wallet = walletAndAddress.wallet;
+            moonPayService.setTransactionWalletId(tx, wallet.id)
+          }
+
+          $scope.$apply();
         });
       } catch (err) { 
-        $log.debug('Error getting wallet from address.' + err.message || ''); 
+        $log.debug('Error converting the address to legacy.' + err.message || ''); 
       }
     }
 
@@ -152,8 +155,13 @@
           vm.status = transaction.status;
 
           vm.walletAddress = transaction.walletAddress;
+          
+          if (transaction.walletId) {
+            vm.wallet = profileService.getWallet(transaction.walletId);
+          } else {
+            _getWalletFromAddress(transaction.walletAddress);
+          }
 
-          _getWalletForAddress(transaction.walletAddress);
           _getPaymentMethodInfo(transaction.cardId);
         },
         function onGetTransactionError(err) {
