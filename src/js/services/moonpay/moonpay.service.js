@@ -331,8 +331,8 @@ angular
           $log.debug('Error setting moonpay transaction wallet id in the local storage');
           deferred.reject(err);
         } else {
+          walletIds = walletIds || '{}';
           try {
-            console.log(walletIds);
             walletIds = JSON.parse(walletIds);
           } catch (err) {
             walletIds = {};
@@ -404,7 +404,6 @@ angular
 
       // Save in cache the mapping with the walletId
       getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
-        walletIds = walletIds || {};
         walletIds[transaction.id] = transaction.walletId;
         storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
           if (err) {
