@@ -398,12 +398,13 @@ angular
       return deferred.promise;
     }
 
-    function setTransactionWalletId(transaction, walletId) {
+    function setTransactionWalletId(transaction) {
       // Create the promise
       var deferred = $q.defer();
 
       // Save in cache the mapping with the walletId
       getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+        walletIds = walletIds || {};
         walletIds[transaction.id] = transaction.walletId;
         storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
           if (err) {
