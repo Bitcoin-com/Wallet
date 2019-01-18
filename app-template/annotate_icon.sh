@@ -4,7 +4,8 @@
 
 # Required command line parameters
 FOLDER_NAME=$1
-DEST_FOLDER_RELATIVE=../resources/bitcoin.com/ios/icon/$FOLDER_NAME
+#DEST_FOLDER_RELATIVE=../resources/bitcoin.com/ios/icon/$FOLDER_NAME
+DEST_FOLDER_RELATIVE=../resources/bitcoin.com/ios/icon
 DEST_ICON_MASTER=$DEST_FOLDER_RELATIVE/icon-1024.png
 SOURCE_ICON='resources/ios/icon/icon-1024.png'
 
@@ -65,3 +66,14 @@ convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 152x152 $DEST_FOLDER_RELATIV
 
 # iPad Pro App
 convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 167x167 $DEST_FOLDER_RELATIVE/icon-167.png
+
+# Apple Watch Notification Centre
+convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 48x48 $DEST_FOLDER_RELATIVE/icon-48.png
+convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 55x55 $DEST_FOLDER_RELATIVE/icon-55.png
+
+# Apple Watch Companion Settings Notification Centre
+# 58 - already done
+# 87 - already done
+
+# Apple Watch
+convert $DEST_FOLDER_RELATIVE/icon-1024.png -resize 88x88 $DEST_FOLDER_RELATIVE/icon-88.png

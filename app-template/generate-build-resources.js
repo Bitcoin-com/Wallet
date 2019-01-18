@@ -52,10 +52,13 @@ switch (branchParts.length) {
     // nop
 }
 
+// Override for debugging
+//branchType = 'dev';
+//branchNumber = '26';
+
 var buildVariant = '';
 var color = '';
 var iconText = '';
-
 
 // Normal flow of colour
 // Red  -> Orange -> Green as build gets more solid
