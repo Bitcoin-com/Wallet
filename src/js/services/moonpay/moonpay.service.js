@@ -331,7 +331,6 @@ angular
           $log.debug('Error setting moonpay transaction wallet id in the local storage');
           deferred.reject(err);
         } else {
-          walletIds = walletIds || '{}';
           try {
             walletIds = JSON.parse(walletIds);
           } catch (err) {

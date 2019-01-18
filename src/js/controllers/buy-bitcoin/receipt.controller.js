@@ -112,7 +112,8 @@
 
           if (tx.walletAddress === walletCashAddrWithoutPrefix) {
             vm.wallet = walletAndAddress.wallet;
-            moonPayService.setTransactionWalletId(tx, wallet.id)
+            tx.walletId = wallet.id;
+            moonPayService.setTransactionWalletId(tx);
           }
 
           $scope.$apply();

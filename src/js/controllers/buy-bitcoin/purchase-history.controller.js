@@ -78,10 +78,10 @@
 
               if (tx.walletAddress === walletCashAddrWithoutPrefix) {
                 var wallet = walletAndAddress.wallet;
-                tx.walletId = wallet.id;
                 tx.walletColor = wallet.color;
                 tx.walletName = wallet.name;
-                moonPayService.setTransactionWalletId(tx, wallet.id)
+                tx.walletId = wallet.id;
+                moonPayService.setTransactionWalletId(tx);
               }
 
               $scope.$apply();
