@@ -1,4 +1,4 @@
-<ion-view class="apl" can-swipe-back="false" hide-tabs>
+<ion-view class="apl" hide-tabs>
   <ion-nav-bar >
     <ion-nav-buttons side="primary">
       <button class="button apl-back-button" ng-click="$ionicGoBack()">
@@ -31,15 +31,17 @@
             <div class="apl-card__title__container">
               <div class="apl-card__title">
                   <div class="right">
-                      {{ tx.baseCurrencyAmount | currency:'EUR ':2}}
-                    </div>
+                    {{ tx.baseCurrencyAmount | currency:'EUR ':2}}
+                  </div>
                 <p>{{tx.walletName || tx.walletAddress}}</p>
               </div>
               <div></div>
               <div class="apl-card__subtitle">
                 {{ tx.createdTime | date:'medium' }}
                 <div class="right">
-                  <formatted-amount value="{{tx.quoteCurrencyAmount}}" currency="bch"></formatted-amount>
+                  <formatted-amount ng-show="tx.status == 'completed'" value="{{tx.quoteCurrencyAmount}}" currency="bch"></formatted-amount>
+                  <div class="apl-card__warning" ng-show="tx.status == 'pending' || tx.status == 'waitingAuthorization'" translate>Pending</div>
+                  <div class="apl-card__danger" ng-show="tx.status == 'failed'" translate>Failed</div>
                 </div>
               </div>
             </div>
