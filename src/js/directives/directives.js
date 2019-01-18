@@ -224,11 +224,8 @@ angular.module('copayApp.directives')
             return value;
           }
           var parsedValue = value.toString()
-            .replace(/^\.(\d)/g,'0.$1')
             .replace(/^0+(\d)/g,'$1')
-            .replace(/(\d+)\.(\d{2}).+$/g,'$1.$2')
             .replace(/^(\d{6})(\d+)$/g, '$1')
-            .replace(/^(\d{6})\d+\.(\d{2})$/g, '$1.$2')
             .replace(/[^\d.]/g, '')
             .replace(/\/$/, '').trim();
           return parsedValue;

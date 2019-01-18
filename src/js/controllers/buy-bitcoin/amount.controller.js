@@ -22,7 +22,7 @@
     var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
     var amountInputElement = null;
     var exchangeRateRefreshInterval = null;
-    var prohibitedCharactersRegex = /[^0-9\.]+/;
+    var prohibitedCharactersRegex = /[^0-9]/g;
     
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
@@ -109,7 +109,7 @@
           vm.rateEur = rates.EUR;
           vm.rateUsd = rates.USD;
           vm.ratesError = '';
-          _updateAmount();
+          _updateRates();
           
         },
         function onGetRatesError(err) {
@@ -167,6 +167,7 @@
 
     function onAmountChanged() {
       _updateAmount();
+      _updateRates();
     }
 
     function onAmountFocus() {
@@ -191,14 +192,16 @@
     }
 
     function _updateAmount() {
-      console.log('_updateAmount()');
       var amountRaw = amountInputElement.value;
-      console.log('amountRaw: \"' + amountRaw + '".');
+      amountInputElement.value =  amountRaw
+        .replace(prohibitedCharactersRegex,'')
+        .replace(/\./g,'');
+      
+      return _sanitisedAmountNumber(amountRaw);
+    }
 
-      amountInputElement.value =  amountRaw.replace(prohibitedCharactersRegex,'');
-
-      var amount = _sanitisedAmountNumber(amountRaw);
-
+    function _updateRates() {
+      var amount = _sanitisedAmountNumber(amountInputElement.value);
       if (vm.rateEur) {
         vm.lineItems.bchQty = amount / vm.rateEur;
         vm.lineItems.cost = amount;
@@ -358,10 +361,12 @@
     }
 
     function _sanitisedAmountNumber(amountString) {
-      var cleanAmountString = amountString.replace(prohibitedCharactersRegex,'');
+      var cleanAmountString = amountString
+      .replace(prohibitedCharactersRegex,'')
+      .replace('/\.','');
       var amountNumber = parseFloat(cleanAmountString);
       amountNumber = isNaN(amountNumber) ? 0 : Math.max(0, amountNumber);
-      return parseFloat(amountNumber.toFixed(2));
+      return parseFloat(amountNumber);
     }
   }
 })();
