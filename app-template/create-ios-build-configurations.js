@@ -25,12 +25,12 @@ function getBuildConfig(contents, idAndName) {
   assert(idIndex);
 
   const buildConfigOpeningBracketIndex = contents.indexOf('{', idIndex);
-  const buildSettingsClosingBracketIndex = contents.indexOf('}', buildConfigOpeningBracketIndex + 1);
-  const buildConfigClosingBracketIndex = contents.indexOf('}', buildSettingsClosingBracketIndex + 1);
+  const buildSettingsClosingBracketIndex = contents.indexOf('};', buildConfigOpeningBracketIndex + 1);
+  const buildConfigClosingBracketIndex = contents.indexOf('};', buildSettingsClosingBracketIndex + 1);
 
   const buildConfig = contents.substring(
     buildConfigOpeningBracketIndex,
-    buildConfigClosingBracketIndex + 1
+    buildConfigClosingBracketIndex + 2 // To include trailing semicolon
   );
 
   return buildConfig;
@@ -44,6 +44,7 @@ function insertBuildConfiguration(contents, buildConfiguration, idAndName) {
   const newConfig = '    ' + idAndName + ' = ' + buildConfiguration + '\n' + buildConfigsEndDelimiter;
   const newContents = contents.replace(buildConfigsEndDelimiter, newConfig);
 
+  /*
   fs.writeFile(__dirname + '/../platforms/ios/Bitcoin.com\ Wallet.xcodeproj/project2.pbxproj', newContents, function onWriteFile(err) {
     if(err) {
         return console.log(err);
@@ -51,13 +52,22 @@ function insertBuildConfiguration(contents, buildConfiguration, idAndName) {
 
     console.log('project2.pbxproj was written');
   });
+  */
+
+  try {
+    fs.writeFileSync(__dirname + '/../platforms/ios/Bitcoin.com\ Wallet.xcodeproj/project2.pbxproj', newContents);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+ return newContents;
 }
 
 function renamedBuildConfig(buildConfig, newName) {
   return buildConfig.replace('name = Debug', 'name = ' + newName);
 }
 
-function getDebugConfiguration(contents, configContents, start, newName, newId) {
+function getDebugConfiguration(contents, configContents, start, newName) {
 
   const buildConfigId = getDebugConfigurationId(contents, configContents, start);
   assert(buildConfigId);
@@ -67,8 +77,6 @@ function getDebugConfiguration(contents, configContents, start, newName, newId) 
   const renamed = renamedBuildConfig(buildConfig, newName);
   assert(renamed);
 
-  insertBuildConfiguration(contents, renamed, 'AAAAAAAAAAAAAAAAAAAAAAA1 /* ' + newName + ' */')
-  
   return renamed;
 }
 
@@ -110,18 +118,47 @@ function getDebugConfigurations(contents) {
   //  DAD7F4DA21EEE6DC00135531 /* Task */,
   //  1D6058950D05DD3E006BFB54 /* Release */,
   //);
+
+  const PBXNativeTargetConfigListBeginDelimiter = '/* Build configuration list for PBXNativeTarget';
+  const PBXProjectConfigListBeginDelimiter = '/* Build configuration list for PBXProject';
+  const XCConfigurationListBeginDelimiter = '/* Begin XCConfigurationList section */';
+
   const newName = 'Dev';
   const PBXNativeTargetId = 'AAAAAAAAAAAAAAAAAAAAAAA1';
   const PBXProjectId = 'AAAAAAAAAAAAAAAAAAAAAAA2';
+  const PBXNativeTargetIdAndName = PBXNativeTargetId + ' /* ' + newName + ' */';
+  const PBXProjectIdAndName = PBXProjectId + ' /* ' + newName + ' */';
 
-  const configListIndex = contents.indexOf('/* Begin XCConfigurationList section */');
+  const configListIndex = contents.indexOf(XCConfigurationListBeginDelimiter);
   const configContents = contents.substring(configListIndex);
 
-  const PBXNativeTargetBuildConfigsIndex = configContents.indexOf('/* Build configuration list for PBXNativeTarget');
-  const PBXProjectBuildConfigsIndex = configContents.indexOf('/* Build configuration list for PBXProject');
+  const PBXNativeTargetBuildConfigsIndex = configContents.indexOf(PBXNativeTargetConfigListBeginDelimiter);
+  const PBXProjectBuildConfigsIndex = configContents.indexOf(PBXProjectConfigListBeginDelimiter);
 
-  const PBXNativeTargetBuildConfig = getDebugConfiguration(contents, configContents, PBXNativeTargetBuildConfigsIndex, newName, PBXNativeTargetId);
-  //const PBXProjectBuildConfig      = getDebugConfiguration(contents, configContents, PBXProjectBuildConfigsIndex, newName, PBXProjectId);
+  const PBXNativeTargetBuildConfig = getDebugConfiguration(contents, configContents, PBXNativeTargetBuildConfigsIndex, newName);
+  const PBXProjectBuildConfig      = getDebugConfiguration(contents, configContents, PBXProjectBuildConfigsIndex, newName);
   
+  let newContents = insertBuildConfiguration(contents, PBXNativeTargetBuildConfig, PBXNativeTargetIdAndName);
+  newContents = insertBuildConfiguration(newContents, PBXProjectBuildConfig, PBXProjectIdAndName);
+
+  const newConfigListIndex = newContents.indexOf(XCConfigurationListBeginDelimiter);
+
+  const newPBXNativeTargetBuildConfigsIndex = newContents.indexOf(PBXNativeTargetConfigListBeginDelimiter, newConfigListIndex);  
+  let configListEndIndex = newContents.indexOf(')', newPBXNativeTargetBuildConfigsIndex);
+  assert(configListEndIndex >= 0);
+  newContents = newContents.slice(0, configListEndIndex) + PBXNativeTargetIdAndName + ',\n  ' + newContents.slice(configListEndIndex);
+
+  const newPBXProjectBuildConfigsIndex = newContents.indexOf(PBXProjectConfigListBeginDelimiter, newConfigListIndex);
+  configListEndIndex = newContents.indexOf(')', newPBXProjectBuildConfigsIndex);
+  assert(configListEndIndex >= 0);
+  newContents = newContents.slice(0, configListEndIndex) + PBXProjectIdAndName + ',\n  ' + newContents.slice(configListEndIndex);
+
+  try {
+    fs.writeFileSync(__dirname + '/../platforms/ios/Bitcoin.com\ Wallet.xcodeproj/project2.pbxproj', newContents);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+
 
 }
