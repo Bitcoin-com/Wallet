@@ -2266,6 +2266,10 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr ""
+
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
 msgstr ""

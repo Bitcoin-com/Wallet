@@ -40,7 +40,8 @@
                 {{ tx.createdTime | date:'medium' }}
                 <div class="right">
                   <formatted-amount ng-show="tx.status == 'completed'" value="{{tx.quoteCurrencyAmount}}" currency="bch"></formatted-amount>
-                  <div class="apl-card__warning" ng-show="tx.status == 'pending' || tx.status == 'waitingAuthorization'" translate>Pending</div>
+                  <div class="apl-card__warning" ng-show="tx.status == 'pending'" translate>Pending</div>
+                  <div class="apl-card__warning" ng-show="tx.status == 'waitingAuthorization'" translate>Awaiting Auth</div>
                   <div class="apl-card__danger" ng-show="tx.status == 'failed'" translate>Failed</div>
                 </div>
               </div>
