@@ -3211,7 +3211,7 @@ msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Navýšit debetní kartu ({{cardLastNumber}}) o {{amountStr}}"
 
 #: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
+msgid "Start SideShift AI"
 msgstr "Spustit ShapeShift"
 
 #: www/views/shapeshift.html:30
@@ -3227,8 +3227,8 @@ msgid "The process is fast and you will receive the exchanged amount in your wal
 msgstr "Tento proces je rychlý a vyměněnou částku dostanete do peněženky."
 
 #: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Tuto službu poskytuje nezávislý poskytovatel ShapeShift, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Tuto službu poskytuje nezávislý poskytovatel SideShift AI, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3823,7 +3823,7 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-z-{{wallet.n}}"
 
 #: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
+msgid "SideShift AI"
 msgstr "Shapeshift"
 
 #: www/views/includes/community.html:3

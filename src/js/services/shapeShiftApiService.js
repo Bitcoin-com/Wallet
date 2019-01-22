@@ -29,7 +29,7 @@ var ShapeShift = (function() {
             }
         };
 
-        var url='https://shapeshift.io/'+apiEp.path;
+        var url='https://sideshift.ai/shapeshift-api/'+apiEp.path;
         var type = apiEp.method;
 
         xmlhttp.open(apiEp.method, url, true);

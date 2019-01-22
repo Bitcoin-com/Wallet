@@ -128,9 +128,9 @@ angular
               if (err) {
                 // Error stop here
                 ongoingProcess.set('connectingShapeshift', false);
-                popupService.showConfirm(gettextCatalog.getString('Shapeshift Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
+                popupService.showConfirm(gettextCatalog.getString('SideShift AI Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
                   if (hasConfirm) {
-                    externalLinkService.open("https://shapeshift.io");
+                    externalLinkService.open("https://sideshift.ai");
                   }
                   $ionicHistory.goBack();
                 });
@@ -566,7 +566,7 @@ angular
             } else {
               // Want it to appear like a wallet-to-wallet transfer, so don't set the main toAddress.
               vm.thirdParty.toAddress = shapeshiftData.toAddress;
-              vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
+              vm.memo = 'SideShift Order:\nhttps://sideshift.ai/orders/' + shapeshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
               ongoingProcess.set('connectingShapeshift', false);
               cb();

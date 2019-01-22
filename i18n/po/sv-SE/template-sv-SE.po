@@ -3211,7 +3211,7 @@ msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr ""
 
 #: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
+msgid "Start SideShift AI"
 msgstr ""
 
 #: www/views/shapeshift.html:30
@@ -3227,7 +3227,7 @@ msgid "The process is fast and you will receive the exchanged amount in your wal
 msgstr ""
 
 #: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr ""
 
 #: www/views/buyAmazon.html:61
@@ -3823,7 +3823,7 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
 
 #: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
+msgid "SideShift AI"
 msgstr ""
 
 #: www/views/includes/community.html:3
