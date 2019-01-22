@@ -70,7 +70,6 @@
 
       if (vm.moonpayTxId) {
         _refreshTransactionInfo();
-        refreshPromise = $interval(_refreshTransactionInfo, 5000);
       }
     }
 
@@ -143,10 +142,17 @@
           if (vm.status === 'completed') {
             vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
           }
-          if (vm.status !== 'pending') { // completed, failed, waitingAuthorization
+
+          if (refreshPromise === null &&
+            (vm.status === 'pending' || vm.status === 'waitingAuthorization')
+          ) {
+            refreshPromise = $interval(_refreshTransactionInfo, 5000);
+          }
+          else { // completed, failed, waitingAuthorization
             $interval.cancel(refreshPromise);
             refreshPromise = null;
           }
+          
         }, function onGetTransactionError(err) {
           $log.error(err);
           // Can't do much, wait for next refresh

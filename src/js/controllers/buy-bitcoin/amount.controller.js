@@ -231,7 +231,6 @@
       if (exchangeRateRefreshInterval) {
         $interval.cancel(exchangeRateRefreshInterval);
       }
-
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [{}, {}, {}], ['leanplum']);
     }
     

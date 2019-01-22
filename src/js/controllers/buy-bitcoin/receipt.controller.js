@@ -156,7 +156,6 @@
 
       // Check if Refresh cycle is needed
       if (vm.moonpayTxId && refreshPromise === null) {
-        _refreshTransactionInfo();
         refreshPromise = $interval(_refreshTransactionInfo, 5000);
       }
     }
