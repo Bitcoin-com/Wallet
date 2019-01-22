@@ -17,20 +17,18 @@ angular.module('copayApp.services').factory('openURLService', function(
 
   var root = {};
 
-  function handleBitcoincomwalletUrl(url) {
+  function handleBuyBitcoinAuthUrl(url) {
     var txId = '';
-    if (url.startsWith('bitcoincomwallet://buybitcoin/auth?transactionId=')) {
 
-      try {
-        var urlParts = url.split('?');
-        var query = urlParts[1];
-        var queryParts = query.split('=');
-        txId = queryParts[1];
-      } catch (e) {
-        $log.error('Error when parsing Buy Bitcoin auth.', e);
-      }
+    try {
+      var urlParts = url.split('?');
+      var query = urlParts[1];
+      var queryParts = query.split('=');
+      txId = queryParts[1];
+    } catch (e) {
+      $log.error('Error when parsing Buy Bitcoin auth.', e);
     }
-
+    
     if (txId) {
       $ionicHistory.nextViewOptions({
         disableAnimate: true,
@@ -52,7 +50,7 @@ angular.module('copayApp.services').factory('openURLService', function(
       });
 
     } else {
-      $log.warn('Unknown bitcoincomwallet URL! : ' + url);
+      $log.warn('Transaction ID not found in Buy Bitcoin Auth URL: ' + url);
       popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid URL'));
     }
   }
@@ -77,8 +75,8 @@ angular.module('copayApp.services').factory('openURLService', function(
 
     document.addEventListener('handleopenurl', handleOpenURL, false);
 
-    if (url.startsWith('bitcoincomwallet://')) {
-      handleBitcoincomwalletUrl(url);
+    if (url.startsWith('bitcoincom://buybitcoin/auth?transactionId=')) {
+      handleBuyBitcoinAuthUrl(url);
     } else {
 
       incomingDataService.redir(url, function onError(err) {

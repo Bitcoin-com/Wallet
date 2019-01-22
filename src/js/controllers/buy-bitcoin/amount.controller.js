@@ -304,7 +304,7 @@
           , cardId: vm.paymentMethod.id
           , extraFeePercentage: EXTRA_FEE_PERCENTAGE
           , walletAddress: toAddressForTransaction
-          , returnUrl: 'bitcoincomwallet://buybitcoin/auth'
+          , returnUrl: 'bitcoincom://buybitcoin/auth'
         };
 
         moonPayService.createTransaction(transaction, vm.wallet.id).then(
