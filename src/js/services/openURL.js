@@ -1,7 +1,65 @@
 'use strict';
 
-angular.module('copayApp.services').factory('openURLService', function($rootScope, $ionicHistory, $document, $log, $state, platformInfo, lodash, profileService, incomingDataService, appConfigService) {
+angular.module('copayApp.services').factory('openURLService', function(
+  appConfigService
+  , gettextCatalog
+  , incomingDataService
+  , $ionicHistory
+  , $log
+  , platformInfo
+  , popupService
+  , profileService
+  , $state
+  , ongoingProcess
+  , moonPayService
+  ) {
+
   var root = {};
+
+  function handleBuyBitcoinAuthUrl(url) {
+    var txId = '';
+
+    try {
+      var urlParts = url.split('?');
+      var query = urlParts[1];
+      var queryParts = query.split('=');
+      txId = queryParts[1];
+    } catch (e) {
+      $log.error('Error when parsing Buy Bitcoin auth.', e);
+    }
+    
+    if (txId) {
+      ongoingProcess.set('loadingTxInfo', true);
+      moonPayService.getTransaction(txId).then(function (tx) {
+        ongoingProcess.set('loadingTxInfo', false);
+        if (tx.status == 'failed') {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString(tx.failureReason || 'Internal Error'));
+        } else {
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            historyRoot: true
+          });
+          $state.go('tabs.home').then(function onHome() {
+            $ionicHistory.nextViewOptions({ disableAnimate: true });
+            return $state.transitionTo('tabs.buybitcoin');
+
+          }).then(function onBuyBitcoin() {
+            $ionicHistory.nextViewOptions({ disableAnimate: true });
+            return $state.transitionTo('tabs.buybitcoin-purchasehistory');
+
+          }).then(function onBuyBitcoinPurchaseHistory() {
+            $state.go('tabs.buybitcoin-success', {
+              moonpayTxId: txId
+            });
+          });
+        }
+      });
+
+    } else {
+      $log.warn('Transaction ID not found in Buy Bitcoin Auth URL: ' + url);
+      popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid URL'));
+    }
+  }
 
   var handleOpenURL = function(args) {
 
@@ -23,12 +81,17 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
 
     document.addEventListener('handleopenurl', handleOpenURL, false);
 
-    incomingDataService.redir(url, function onError(err) {
-      if (err) {
-        $log.warn('Unknown URL! : ' + url);
-        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
-      }
-    });
+    if (url.startsWith('bitcoincom://buybitcoin/auth?transactionId=')) {
+      handleBuyBitcoinAuthUrl(url);
+    } else {
+
+      incomingDataService.redir(url, function onError(err) {
+        if (err) {
+          $log.warn('Unknown URL! : ' + url);
+          popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+        }
+      });
+    }
   };
 
   var handleResume = function() {

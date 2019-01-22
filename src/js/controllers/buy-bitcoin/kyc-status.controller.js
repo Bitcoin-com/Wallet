@@ -148,11 +148,11 @@ angular
 
     function onBeforeEnter(event, data) {
       _initVariables();
-      bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_open' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onBeforeLeave(event, data) {
-      bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
 })();

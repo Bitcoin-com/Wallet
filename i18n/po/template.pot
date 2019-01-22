@@ -2266,6 +2266,10 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr ""
+
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
 msgstr ""
@@ -4092,6 +4096,12 @@ msgstr ""
 msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr ""
 
+msgid "Your order has failed."
+msgstr ""
+
+msgid "Your order is waiting for authorization."
+msgstr ""
+
 # Receipt
 
 msgid "Deposited to"
@@ -4105,6 +4115,10 @@ msgstr ""
 
 msgid "Failed to get payment method info."
 msgstr ""
+
+msgid "Waiting for authorization"
+msgstr ""
+
 # Enter Card details
 
 msgid "Back"
@@ -4234,6 +4248,9 @@ msgstr ""
 msgid "Success!"
 msgstr ""
 
+msgid "Failed"
+msgstr ""
+
 msgid "Your purchase has been processed."
 msgstr ""
 
@@ -4284,11 +4301,11 @@ msgid "You must select a document type."
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
-msgid "You are currently allowed to purchase up to $500 per month without verifying your identity. Verify your identity to increase your purchase limit to $5000 per month."
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €5000 per month."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
-msgid "Personal Information."
+msgid "Personal Information"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
@@ -4482,4 +4499,25 @@ msgid "In order to add a new merchant, please send an email with all the info to
 msgstr ""
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr ""
+
+msgid "Internal Error"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Take a Selfie"
+msgstr ""
+
+msgid "Position your head entirely in the frame and say cheese."
+msgstr ""
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Buying Gift Card..."
 msgstr ""

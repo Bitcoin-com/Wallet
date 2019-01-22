@@ -6,9 +6,21 @@
       .controller('buyBitcoinAmountController', amountController);
 
   function amountController(
-    configService , gettextCatalog, ongoingProcess, popupService, bitcoinCashJsService
-    , moonPayService, profileService, walletService, bitAnalyticsService
-    , $interval, $ionicHistory, $scope, $state, $timeout
+    configService
+    , gettextCatalog
+    , ongoingProcess
+    , popupService
+    , bitcoinCashJsService
+    , moonPayService
+    , profileService
+    , walletService
+    , bitAnalyticsService
+    , $interval
+    , $ionicHistory
+    , $scope
+    , $state
+    , $timeout
+    , externalLinkService
   ) {
 
     var vm = this;
@@ -22,11 +34,11 @@
     var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
     var amountInputElement = null;
     var exchangeRateRefreshInterval = null;
-    var prohibitedCharactersRegex = /[^0-9\.]+/;
+    var prohibitedCharactersRegex = /[^0-9]/g;
     
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
-      vm.inputAmount = 0;
+      vm.inputAmount = vm.inputAmount || 0;
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
@@ -35,6 +47,7 @@
       };
       vm.paymentMethod = null;
       vm.paymentMethodsAreLoading = true;
+      vm.rateEur = 0;
       vm.rateUsd = 0;
       vm.ratesError = '';
       vm.walletsAreLoading = true;
@@ -105,13 +118,15 @@
       moonPayService.getRates('bch').then(
         function onGetRatesSuccess(rates) {
           console.log('Rates:', rates);
+          vm.rateEur = rates.EUR;
           vm.rateUsd = rates.USD;
           vm.ratesError = '';
-          _updateAmount();
+          _updateRates();
           
         },
         function onGetRatesError(err) {
           console.error('Rates error.', err);
+          vm.rateEur = 0;
           vm.rateUsd = 0;
           vm.ratesError = err.message || '';
         }
@@ -144,6 +159,9 @@
     }
 
     function _onAfterEnter() {
+
+      console.log('ENTER');
+
       $timeout(function () {
         _getPaymentMethods();
         _getWallet();
@@ -164,6 +182,7 @@
 
     function onAmountChanged() {
       _updateAmount();
+      _updateRates();
     }
 
     function onAmountFocus() {
@@ -184,20 +203,26 @@
         console.log('displayBalanceAsFiat: ' + vm.displayBalanceAsFiat);
       });
 
-      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_open', [{}, {}, {}], ['leanplum']);
     }
 
     function _updateAmount() {
-      console.log('_updateAmount()');
+      if (!amountInputElement) {
+        return;
+      }
+
       var amountRaw = amountInputElement.value;
-      console.log('amountRaw: \"' + amountRaw + '".');
+      amountInputElement.value =  amountRaw
+        .replace(prohibitedCharactersRegex,'')
+        .replace(/\./g,'');
+      
+      _sanitisedAmountNumber(amountRaw);
+    }
 
-      amountInputElement.value =  amountRaw.replace(prohibitedCharactersRegex,'');
-
-      var amount = _sanitisedAmountNumber(amountRaw);
-
-      if (vm.rateUsd) {
-        vm.lineItems.bchQty = amount / vm.rateUsd;
+    function _updateRates() {
+      var amount = amountInputElement && amountInputElement.value ? _sanitisedAmountNumber(amountInputElement.value) : 0;
+      if (vm.rateEur) {
+        vm.lineItems.bchQty = amount / vm.rateEur;
         vm.lineItems.cost = amount;
         var moonpayFee = amount > 0 ? Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION) : 0;
         var extraFee = amount > 0 ? amount * EXTRA_FEE_FRACTION : 0;
@@ -210,29 +235,28 @@
       if (exchangeRateRefreshInterval) {
         $interval.cancel(exchangeRateRefreshInterval);
       }
-
-      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [{}, {}, {}], ['leanplum']);
     }
     
 
     function onBuy() {
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_tap_on_buy', [{
         'amount': vm.inputAmount
-      }], ['leanplum']);
+      }, {}, {}], ['leanplum']);
 
       var title = gettextCatalog.getString('Unable to Purchase');
       var message = '';
       var okText = '';
       var cancelText = '';
 
-      var amountBch = _sanitisedAmountNumber(vm.inputAmount.toString());
-      if (!amountBch) {
+      var amountEur = _sanitisedAmountNumber(vm.inputAmount.toString());
+      if (!amountEur) {
         message = gettextCatalog.getString('Amount must be a positive number.');
         popupService.showAlert(title, message);
         return;
       }
 
-      if (!vm.rateUsd) {
+      if (!vm.rateEur) {
         message = gettextCatalog.getString('Waiting for exchange rate.');
         popupService.showAlert(title, message);
         return;
@@ -258,77 +282,85 @@
         return;
       }
 
-      title = gettextCatalog.getString("Enter Security Code");
-      message = gettextCatalog.getString("Enter the 3 digit code on the back of your card.");
-      var opts = {
-        inputType: 'text'
-      };
-      popupService.showPrompt(title, message, opts, function onSecurityCode(csc){ 
+      ongoingProcess.set('buyingBch', true);
 
-        if (!csc) {
+      walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
+        if (err) {
+          ongoingProcess.set('buyingBch', false);
+          console.log(err);
+
+          message = err.message || gettext.getString('Could not create address');
+          popupService.showAlert(title, message);
           return;
         }
 
-        ongoingProcess.set('buyingBch', true);
+        var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+        var addressParts = toCashAddress.split(':');
+        var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
 
-        walletService.getAddress(vm.wallet, true, function onGetWalletAddress(err, toAddress) {
-          if (err) {
+        // Override testnet address for testing
+        //  toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+
+        var transaction = {
+          baseCurrencyAmount: amountEur
+          , currencyCode: 'bch'
+          , cardId: vm.paymentMethod.id
+          , extraFeePercentage: EXTRA_FEE_PERCENTAGE
+          , walletAddress: toAddressForTransaction
+          , returnUrl: 'bitcoincom://buybitcoin/auth'
+        };
+
+        moonPayService.createTransaction(transaction, vm.wallet.id).then(
+          function onCreateTransactionSuccess(newTransaction) {
             ongoingProcess.set('buyingBch', false);
-            console.log(err);
 
-            message = err.message || gettext.getString('Could not create address');
-            popupService.showAlert(title, message);
-            return;
-          }
+            console.log('Transaction', newTransaction);
 
-          var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
-          var addressParts = toCashAddress.split(':');
-          var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
+            var extraFeeEur = amountEur * EXTRA_FEE_FRACTION;
+            var extraFeeBch = (vm.rateEur > 0) ? extraFeeEur / vm.rateEur: 0;
+            var extraFeeUsd = extraFeeBch * vm.rateUsd;
+            bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
+              'amount': extraFeeBch,
+              'price': extraFeeUsd,
+              'coin': 'bch'
+            },
+            {},
+            {
+              value: extraFeeUsd
+            }], ['leanplum']);
 
-          // Override to testnet address for testing
-          // toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+            var amountBch = (vm.rateEur > 0) ? amountEur / vm.rateEur : 0;
+            var amountUsd = amountBch * vm.rateUsd;
+            bitAnalyticsService.postEvent('bitcoin_purchased', [{
+              'amount': amountBch,
+              'price': amountUsd,
+              'coin': 'bch'
+            }, {}, {}], ['leanplum']);
 
-          var transaction = {
-            baseCurrencyAmount: amountBch
-            , currencyCode: 'bch'
-            , cardCvc: csc
-            , cardId: vm.paymentMethod.id
-            , extraFeePercentage: EXTRA_FEE_PERCENTAGE
-            , walletAddress: toAddressForTransaction
-          };
-          moonPayService.createTransaction(transaction).then(
-            function onCreateTransactionSuccess(newTransaction) {
-              ongoingProcess.set('buyingBch', false);
+            var moonpayFeeEur = Math.max(MOONPAY_FIXED_FEE, amountEur * MOONPAY_VARIABLE_FEE_FRACTION);
+            var moonpayFeeBch = (vm.rateEur > 0) ? moonpayFeeEur / vm.rateEur : 0;
+            var moonpayFeeUsd = moonpayFeeBch * vm.rateUsd;
+            bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
+              'amount': moonpayFeeBch,
+              'price': moonpayFeeUsd,
+              'coin': 'bch'
+            }, {}, {}], ['leanplum']);
 
-              console.log('Transaction', newTransaction);
 
-              var extraFee = amountBch * EXTRA_FEE_FRACTION;
-              var extraFeeUsd = (vm.rateUsd > 0) ? extraFee / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
-                'amount': extraFee,
-                'price': extraFeeUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
 
-              var amountUsd = (vm.rateUsd > 0) ? amountBch / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased', [{
-                'amount': amountBch,
-                'price': amountUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
-
-              var moonpayFee = Math.max(MOONPAY_FIXED_FEE, amountBch * MOONPAY_VARIABLE_FEE_FRACTION);
-              var moonpayFeeUsd = (vm.rateUsd > 0) ? moonpayFee / vm.rateUsd : 0;
-              bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
-                'amount': moonpayFee,
-                'price': moonpayFeeUsd,
-                'coin': 'bch'
-              }], ['leanplum']);
-
+            if (newTransaction.redirectUrl) {
+              var optIn = true;
+              var title = gettextCatalog.getString('3D secure');
+              var message = gettextCatalog.getString('You will redirect to your bank website to authorize the transaction.');
+              var okText = gettextCatalog.getString('Open');
+              var cancelText = gettextCatalog.getString('Cancel');
+              externalLinkService.open(newTransaction.redirectUrl, optIn, title, message, okText, cancelText);
+            } else {
               $ionicHistory.nextViewOptions({
                 disableAnimation: true,
                 historyRoot: true
               });
+  
               $state.go('tabs.home').then(
                 function() {
                   $state.go('tabs.buybitcoin').then(
@@ -341,17 +373,17 @@
                   );
                 }
               );
-
-            },
-            function onCreateTransactionError(err) {
-              ongoingProcess.set('buyingBch', false);
-
-              title = gettextCatalog.getString('Purchase Failed');
-              message = err.message || gettextCatalog.getString('Failed to create transaction.');
-              popupService.showAlert(title, message);
             }
-          );
-        });
+
+          },
+          function onCreateTransactionError(err) {
+            ongoingProcess.set('buyingBch', false);
+
+            title = gettextCatalog.getString('Purchase Failed');
+            message = err.message || gettextCatalog.getString('Failed to create transaction.');
+            popupService.showAlert(title, message);
+          }
+        );
       });
     }
 
@@ -360,10 +392,12 @@
     }
 
     function _sanitisedAmountNumber(amountString) {
-      var cleanAmountString = amountString.replace(prohibitedCharactersRegex,'');
+      var cleanAmountString = amountString
+      .replace(prohibitedCharactersRegex,'')
+      .replace('/\.','');
       var amountNumber = parseFloat(cleanAmountString);
       amountNumber = isNaN(amountNumber) ? 0 : Math.max(0, amountNumber);
-      return parseFloat(amountNumber.toFixed(2));
+      return parseFloat(amountNumber);
     }
   }
 })();

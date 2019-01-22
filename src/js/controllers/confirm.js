@@ -705,7 +705,7 @@ angular.module('copayApp.controllers').controller('confirmController', function(
         "type": "outgoing",
         "amount": $scope.amount,
         "fees": $scope.fee
-      }], [channel, 'adjust', 'leanplum']);
+      }, {}, {}], [channel, 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       $timeout(function() {

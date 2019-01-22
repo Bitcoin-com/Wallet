@@ -263,6 +263,14 @@
     height: 77px;
     margin: 0 16px;
 
+    &__warning {
+      color: orange;
+    }
+
+    &__danger {
+      color: red;
+    }
+
     &__title {
       color: #000000;
       font-size: 17px;

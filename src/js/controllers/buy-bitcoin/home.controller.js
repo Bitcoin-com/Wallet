@@ -40,8 +40,8 @@ angular
         function onGetCustomerSuccess(customer) {
           if (customer) {
             console.log('Moonpay customer:', customer);
-            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '$', 2);
-            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '$', 2);
+            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '€', 2);
+            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '€', 2);
             bitAnalyticsService.setUserAttributes({
               'email': customer.email
             });
@@ -66,7 +66,7 @@ angular
 
     function _goBack() {
       $ionicHistory.goBack();
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
     function _onBeforeEnter(event, data) {
@@ -97,7 +97,7 @@ angular
           
         }
       );
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [{}, {}, {}], ['leanplum']);
     }
 
     function didPushBuyInstantly() {

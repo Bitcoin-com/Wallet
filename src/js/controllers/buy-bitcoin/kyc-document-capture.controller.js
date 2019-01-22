@@ -54,6 +54,7 @@ angular
       } else if(currentState.documents.length < 2) {
         vm.imageType = currentState.documents.length === 0 ? 'front' : 'back';
       }
+      
       console.log('***ImageType: ', vm.imageType);
 
       // Set Text Content by ImageType
@@ -139,7 +140,7 @@ angular
         kycFlowService.popState();
       }
 
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onAfterEnter(event, data) {
@@ -148,7 +149,7 @@ angular
 
     function onBeforeLeave(event, data) {
       cameraPreviewService.stopCamera();
-      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_document_capture_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
 })();

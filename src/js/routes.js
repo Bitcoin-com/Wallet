@@ -1420,7 +1420,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       }
       
       // Send a log to test
-      var log = new window.BitAnalytics.LogEvent("wallet_opened", [], [channel, "adjust", 'leanplum']);
+      var log = new window.BitAnalytics.LogEvent("wallet_opened", [{}, {}, {}], [channel, 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
 
       var actionBanner = new window.BitAnalytics.ActionFactory.createAction('click', {
