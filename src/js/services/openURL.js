@@ -1,7 +1,61 @@
 'use strict';
 
-angular.module('copayApp.services').factory('openURLService', function($rootScope, $ionicHistory, $document, $log, $state, platformInfo, lodash, profileService, incomingDataService, appConfigService) {
+angular.module('copayApp.services').factory('openURLService', function(
+  appConfigService
+  , $document
+  , gettextCatalog
+  , incomingDataService
+  , $ionicHistory
+  , lodash
+  , $log
+  , platformInfo
+  , popupService
+  , profileService
+  , $rootScope
+  , $state
+  ) {
+
   var root = {};
+
+  function handleBitcoincomwalletUrl(url) {
+    var txId = '';
+    if (url.startsWith('bitcoincomwallet://buybitcoin/auth?transactionId=')) {
+
+      try {
+        var urlParts = url.split('?');
+        var query = urlParts[1];
+        var queryParts = query.split('=');
+        txId = queryParts[1];
+      } catch (e) {
+        $log.error('Error when parsing Buy Bitcoin auth.', e);
+      }
+    }
+
+    if (txId) {
+      $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        historyRoot: true
+      });
+
+      $state.go('tabs.home').then(function onHome() {
+        $ionicHistory.nextViewOptions({ disableAnimate: true });
+        return $state.transitionTo('tabs.buybitcoin');
+
+      }).then(function onBuyBitcoin() {
+        $ionicHistory.nextViewOptions({ disableAnimate: true });
+        return $state.transitionTo('tabs.buybitcoin-purchasehistory');
+
+      }).then(function onBuyBitcoinPurchaseHistory() {
+        $state.go('tabs.buybitcoin-receipt', {
+          moonpayTxId: txId
+        });
+      });
+
+    } else {
+      $log.warn('Unknown bitcoincomwallet URL! : ' + url);
+      popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Invalid URL'));
+    }
+  }
 
   var handleOpenURL = function(args) {
 
@@ -23,12 +77,17 @@ angular.module('copayApp.services').factory('openURLService', function($rootScop
 
     document.addEventListener('handleopenurl', handleOpenURL, false);
 
-    incomingDataService.redir(url, function onError(err) {
-      if (err) {
-        $log.warn('Unknown URL! : ' + url);
-        popupService.showAlert(gettextCatalog.getString('Error'), err.message);
-      }
-    });
+    if (url.startsWith('bitcoincomwallet://')) {
+      handleBitcoincomwalletUrl(url);
+    } else {
+
+      incomingDataService.redir(url, function onError(err) {
+        if (err) {
+          $log.warn('Unknown URL! : ' + url);
+          popupService.showAlert(gettextCatalog.getString('Error'), err.message);
+        }
+      });
+    }
   };
 
   var handleResume = function() {
