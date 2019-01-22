@@ -2,17 +2,16 @@
 
 angular.module('copayApp.services').factory('openURLService', function(
   appConfigService
-  , $document
   , gettextCatalog
   , incomingDataService
   , $ionicHistory
-  , lodash
   , $log
   , platformInfo
   , popupService
   , profileService
-  , $rootScope
   , $state
+  , ongoingProcess
+  , moonPayService
   ) {
 
   var root = {};
@@ -30,23 +29,30 @@ angular.module('copayApp.services').factory('openURLService', function(
     }
     
     if (txId) {
-      $ionicHistory.nextViewOptions({
-        disableAnimate: true,
-        historyRoot: true
-      });
+      ongoingProcess.set('loadingTxInfo', true);
+      moonPayService.getTransaction(txId).then(function (tx) {
+        ongoingProcess.set('loadingTxInfo', false);
+        if (tx.status == 'failed') {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString(tx.failureReason || 'Internal Error'));
+        } else {
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            historyRoot: true
+          });
+          $state.go('tabs.home').then(function onHome() {
+            $ionicHistory.nextViewOptions({ disableAnimate: true });
+            return $state.transitionTo('tabs.buybitcoin');
 
-      $state.go('tabs.home').then(function onHome() {
-        $ionicHistory.nextViewOptions({ disableAnimate: true });
-        return $state.transitionTo('tabs.buybitcoin');
+          }).then(function onBuyBitcoin() {
+            $ionicHistory.nextViewOptions({ disableAnimate: true });
+            return $state.transitionTo('tabs.buybitcoin-purchasehistory');
 
-      }).then(function onBuyBitcoin() {
-        $ionicHistory.nextViewOptions({ disableAnimate: true });
-        return $state.transitionTo('tabs.buybitcoin-purchasehistory');
-
-      }).then(function onBuyBitcoinPurchaseHistory() {
-        $state.go('tabs.buybitcoin-receipt', {
-          moonpayTxId: txId
-        });
+          }).then(function onBuyBitcoinPurchaseHistory() {
+            $state.go('tabs.buybitcoin-success', {
+              moonpayTxId: txId
+            });
+          });
+        }
       });
 
     } else {

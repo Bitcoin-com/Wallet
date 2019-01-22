@@ -54,6 +54,7 @@ angular
       } else if(currentState.documents.length < 2) {
         vm.imageType = currentState.documents.length === 0 ? 'front' : 'back';
       }
+      
       console.log('***ImageType: ', vm.imageType);
 
       // Set Text Content by ImageType

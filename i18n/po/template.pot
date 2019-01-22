@@ -4305,7 +4305,7 @@ msgid "You are currently allowed to purchase up to €150 per month without veri
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
-msgid "Personal Information."
+msgid "Personal Information"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
@@ -4500,3 +4500,22 @@ msgstr ""
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
 msgstr ""
+
+msgid "Internal Error"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Take a Selfie"
+msgstr ""
+
+msgid "Position your head entirely in the frame and say cheese."
+msgstr ""
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
