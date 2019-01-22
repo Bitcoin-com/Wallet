@@ -220,7 +220,7 @@ angular.module('copayApp.directives')
         // Masks amounts to the format of 999999999.99
 
         function addSpaces(value) {
-          if(typeof(value) == typeof(undefined) || value === null ) {
+          if(typeof(value) == typeof(undefined) || !value) {
             return 0;
           }
           var parsedValue = value.toString()
@@ -232,7 +232,7 @@ angular.module('copayApp.directives')
         }
 
         function removeSpaces(value) {
-          if(typeof(value) == typeof(undefined) || value === null ) {
+          if(typeof(value) == typeof(undefined) || !value) {
             return 0;
           }
             

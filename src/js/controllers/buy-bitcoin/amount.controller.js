@@ -207,16 +207,20 @@
     }
 
     function _updateAmount() {
+      if (!amountInputElement) {
+        return;
+      }
+
       var amountRaw = amountInputElement.value;
       amountInputElement.value =  amountRaw
         .replace(prohibitedCharactersRegex,'')
         .replace(/\./g,'');
       
-      return _sanitisedAmountNumber(amountRaw);
+      _sanitisedAmountNumber(amountRaw);
     }
 
     function _updateRates() {
-      var amount = _sanitisedAmountNumber(amountInputElement.value);
+      var amount = amountInputElement && amountInputElement.value ? _sanitisedAmountNumber(amountInputElement.value) : 0;
       if (vm.rateEur) {
         vm.lineItems.bchQty = amount / vm.rateEur;
         vm.lineItems.cost = amount;
