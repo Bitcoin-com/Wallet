@@ -10,6 +10,7 @@
     , clipboardService
     , externalLinkService
     , gettextCatalog
+    , $interval
     , $ionicHistory
     , ionicToast
     , $log
@@ -19,6 +20,7 @@
     , popupService
     , $scope
     , $state
+    , $timeout
     , $window
     ) {
     var vm = this;
@@ -30,16 +32,16 @@
     vm.onShareTransaction = onShareTransaction;
     vm.onViewOnBlockchain = onViewOnBlockchain;
 
-    var moonpayTxId = '';
     var txUrl = '';
     var walletId = '';
-    
+    var refreshPromise = null;
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
+    $scope.$on('$ionicView.beforeLeave', _onBeforeLeave);
 
     function _initVariables() {
-      moonpayTxId = $state.params.moonpayTxId;
-      console.log('moonpayTxId:', moonpayTxId);
+      vm.moonpayTxId = $state.params.moonpayTxId;
+      console.log('moonpayTxId:', vm.moonpayTxId);
 
       vm.cryptoTransactionId = '';
       vm.haveTxInfo = false;
@@ -47,14 +49,14 @@
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
-        rateUsd: 0,
+        rateEur: 0,
         processingFee: 0,
         total: 0
       }
       vm.paymentMethod = null;
       vm.paymentMethodError = '';
       vm.paymentMethodLoading = true;
-      vm.status = 'pending';
+      vm.status = '';
       vm.wallet = null;
       vm.walletAddress = '';
 
@@ -92,31 +94,73 @@
       
     }
 
-    function _getWalletForAddress(cashAddr) {
+    function _getWalletFromAddress(cashAddr) {
       if (cashAddr.indexOf('bitcoincash:') < 0) {
         cashAddr = 'bitcoincash:' + cashAddr;
       }
 
       try {
         var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-
-        profileService.getWalletFromAddresses([legacyAddress], 'bch', function onWallet(err, walletAndAddress) {
+        profileService.getWalletFromAddress(legacyAddress, 'bch', function onWallet(err, walletAndAddress) {
           if (err) {
             $log.error('Error getting wallet from address. ' + err.message || '');
             return;
           }
 
-          vm.wallet = walletAndAddress.wallet;
+          var walletCashAddr = bitcoinCashJsService.readAddress(walletAndAddress.address).cashaddr;
+          var walletCashAddrParts = walletCashAddr.split(':');
+          var walletCashAddrWithoutPrefix = walletCashAddrParts.length === 2 ? walletCashAddrParts[1] : walletCashAddr;
+
+          if (tx.walletAddress === walletCashAddrWithoutPrefix) {
+            vm.wallet = walletAndAddress.wallet;
+            tx.walletId = wallet.id;
+            moonPayService.setTransactionWalletId(tx);
+          }
 
           $scope.$apply();
         });
       } catch (err) { 
-        $log.debug('Error getting wallet from address.' + err.message || ''); 
+        $log.debug('Error converting the address to legacy.' + err.message || ''); 
+      }
+    }
+
+    function _setTransaction(transaction) {
+      vm.haveTxInfo = true;
+
+      vm.cryptoTransactionId = transaction.cryptoTransactionId;
+      if (transaction.cryptoTransactionId) {
+        txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
+      }
+
+      vm.createdTime = transaction.createdTime;
+
+      vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
+      vm.lineItems.cost = transaction.baseCurrencyAmount;
+
+      vm.rateEur = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
+
+      vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
+      vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
+
+      vm.status = transaction.status;
+
+      vm.walletAddress = transaction.walletAddress;
+      
+      if (transaction.walletId) {
+        vm.wallet = profileService.getWallet(transaction.walletId);
+      } else {
+        _getWalletFromAddress(transaction.walletAddress);
+      }
+
+      _getPaymentMethodInfo(transaction.cardId);
+
+      // Check if Refresh cycle is needed
+      if (vm.moonpayTxId && refreshPromise === null) {
+        refreshPromise = $interval(_refreshTransactionInfo, 5000);
       }
     }
 
     function _onBeforeEnter() {
-      console.log('_onBeforeEnter()');
       if ($window.StatusBar) {
         $window.StatusBar.styleDefault();
         $window.StatusBar.backgroundColorByHexString('#F0F0F0');
@@ -124,33 +168,12 @@
       
       _initVariables();
 
-      moonPayService.getTransaction(moonpayTxId).then(
+      moonPayService.getTransaction(vm.moonpayTxId).then(
         function onGetTransactionSuccess(transaction) {
           console.log('Transaction:', transaction);
           
-          vm.haveTxInfo = true;
-
-          vm.cryptoTransactionId = transaction.cryptoTransactionId;
-          if (transaction.cryptoTransactionId) {
-            txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
-          }
-
-          vm.createdTime = transaction.createdTime;
-
-          vm.lineItems.bchQty = transaction.quoteCurrencyAmount;
-          vm.lineItems.cost = transaction.baseCurrencyAmount;
-
-          vm.rateUsd = transaction.baseCurrencyAmount / transaction.quoteCurrencyAmount;
-
-          vm.lineItems.processingFee = transaction.feeAmount + transaction.extraFeeAmount;
-          vm.lineItems.total = vm.lineItems.processingFee + transaction.baseCurrencyAmount;
-
-          vm.status = transaction.status;
-
-          vm.walletAddress = transaction.walletAddress;
-
-          _getWalletForAddress(transaction.walletAddress);
-          _getPaymentMethodInfo(transaction.cardId);
+          _setTransaction(transaction);
+          _handleTransactionCleanup(transaction);
         },
         function onGetTransactionError(err) {
           $log.error(err);
@@ -160,8 +183,35 @@
           popupService.showAlert(title, message);
         }
       );
+    }
 
-      
+    function _onBeforeLeave() {
+      if (refreshPromise !== null) {
+        $interval.cancel(refreshPromise);
+        refreshPromise = null;
+      }
+    }
+
+    function _handleTransactionCleanup(transaction) {
+      if (vm.status === 'completed') {
+        vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
+      }
+      if (vm.status === 'completed' || vm.status === 'failed') { // pending or waitingAuthorization
+        $interval.cancel(refreshPromise);
+        refreshPromise = null;
+      }
+    }
+
+    function _refreshTransactionInfo() {
+      moonPayService.getTransaction(vm.moonpayTxId).then(
+        function onGetTransactionSuccess(transaction) {
+          _setTransaction(transaction);
+          _handleTransactionCleanup(transaction);
+        }, function onGetTransactionError(err) {
+          $log.error(err);
+          // Can't do much, wait for next refresh
+        }
+      )
     }
 
     function onDone() {

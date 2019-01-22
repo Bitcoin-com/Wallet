@@ -7,21 +7,23 @@ angular
   .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
-    bitAnalyticsService,
-    $filter,
-    gettextCatalog,
-    $ionicHistory, 
-    moonPayService,
-    popupService, 
-    $scope, 
-    $state,
-    $window
+    bitAnalyticsService
+    , $filter
+    , gettextCatalog
+    , $ionicHistory 
+    , kycFlowService
+    , moonPayService
+    , popupService
+    , $scope
+    , $state
+    , $window
     ) {
 
     var vm = this;
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
+    vm.onVerificationSelect = onVerificationSelect;
 
     function _initVariables() {
       vm.dailyRemaining = '-';
@@ -38,8 +40,8 @@ angular
         function onGetCustomerSuccess(customer) {
           if (customer) {
             console.log('Moonpay customer:', customer);
-            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '$', 2);
-            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '$', 2);
+            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '€', 2);
+            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '€', 2);
             bitAnalyticsService.setUserAttributes({
               'email': customer.email
             });
@@ -64,7 +66,7 @@ angular
 
     function _goBack() {
       $ionicHistory.goBack();
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
     function _onBeforeEnter(event, data) {
@@ -95,11 +97,15 @@ angular
           
         }
       );
-      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [{}, {}, {}], ['leanplum']);
     }
 
     function didPushBuyInstantly() {
       $state.go('tabs.buybitcoin-amount');
+    }
+
+    function onVerificationSelect() {
+      kycFlowService.start();
     }
   }
 

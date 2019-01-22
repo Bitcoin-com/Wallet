@@ -19,10 +19,12 @@
     , popupService
     , profileService
     , $rootScope
+    , satoshiDiceService
     , $scope
     , $timeout
     , txConfirmNotification
     , txFormatService
+    , walletHistoryService
     , walletService
     ) {
 
@@ -30,6 +32,7 @@
     
     // Functions
     vm.displayAddress = displayAddress;
+    vm.getSatoshiDiceIconUrl = getSatoshiDiceIconUrl;
     vm.getShortNetworkName = getShortNetworkName;
     vm.readMore = readMore;
     vm.txConfirmNotificationChange = txConfirmNotificationChange;
@@ -64,6 +67,9 @@
     $scope.$on("$ionicView.beforeEnter", _onBeforeEnter);
     $scope.$on("$ionicView.leave", _onLeave);
 
+    function getSatoshiDiceIconUrl() {
+      return satoshiDiceService.iconUrl;
+    }
     
     function _onBeforeEnter(event, data) {
       txId = data.stateParams.txid;
@@ -103,6 +109,8 @@
         x();
       });
     };
+
+    
 
     function readMore() {
       var url = 'https://walletsupport.bitcoin.com/article/101/transaction-fees';
@@ -168,7 +176,7 @@
     function updateTx(opts) {
       opts = opts || {};
       if (!opts.hideLoading) ongoingProcess.set('loadingTxInfo', true);
-      walletService.getTx($scope.wallet, txId, function(err, tx) {
+      walletService.getTx($scope.wallet, txId, function onTx(err, tx) {
         if (!opts.hideLoading) ongoingProcess.set('loadingTxInfo', false);
         if (err) {
           $log.warn('Error getting transaction: ' + err);
@@ -271,7 +279,6 @@
 
     var getFiatRate = function() {
       vm.alternativeIsoCode = $scope.wallet.status.alternativeIsoCode;
-      console.log('');
       $scope.wallet.getFiatRate({
         code: vm.alternativeIsoCode,
         ts: vm.btx.time * 1000

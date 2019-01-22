@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 18</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M195,3.08807055e-15 C232,3.08807055e-15 256,24 256,61 L256,195 C256,232 232,256 195,256 L61,256 C24,256 0,232 0,195 L0,61 C0,24 24,3.08807057e-15 61,3.08807057e-15 L195,3.08807055e-15 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-18">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Placeholder" fill="#5DAD58" xlink:href="#path-1"></use>
+            <path d="M180.817895,58.5807474 C181.794011,59.6059988 165.766259,57.8222963 151.070298,56 C148.540691,67.6871948 139.184656,76.374145 127.999203,76.374145 C116.813749,76.374145 107.457714,67.6871948 104.926512,56 C90.2305515,57.8222963 74.2043941,59.6059988 75.1805096,58.5807474 L28,83.8680448 L50.2544759,124.139786 L74.288927,111.964296 L74.288927,200 L127.70254,200 L128.295865,200 L181.709478,200 L181.709478,111.964296 L205.743929,124.139786 L228,83.8680448 L180.817895,58.5807474 Z" id="Fill-1" fill="#F9F9F9"></path>
+        </g>
+    </g>
+</svg>

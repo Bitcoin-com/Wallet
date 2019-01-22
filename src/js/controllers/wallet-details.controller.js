@@ -1,6 +1,39 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService, walletHistoryService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function(
+  satoshiDiceService
+  , $scope
+  , $rootScope
+  , $interval
+  , $timeout
+  , $filter
+  , $log
+  , $ionicModal
+  , $ionicPopover
+  , $state
+  , $stateParams
+  , $ionicHistory
+  , profileService
+  , lodash
+  , configService
+  , platformInfo
+  , walletService
+  , txpModalService
+  , externalLinkService
+  , popupService
+  , addressbookService
+  , sendFlowService
+  , storageService
+  , $ionicScrollDelegate
+  , $window
+  , bwcError
+  , gettextCatalog
+  , timeService
+  , feeService
+  , appConfigService
+  , rateService
+  , walletHistoryService
+  ) {
   // Desktop can display 13 rows of transactions, bump it up to a nice round 15.
   var DISPLAY_PAGE_SIZE = 15;
   var currentTxHistoryDisplayPage = 0;
@@ -17,6 +50,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     //updateTxHistoryError: false
     updateTxHistoryFailed: false,
 
+    getSatoshiDiceIconUrl: getSatoshiDiceIconUrl,
     openWalletSettings: openWalletSettings
   };
 
@@ -54,7 +88,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   if (platformInfo.isCordova) {
     channel = "firebase";
   }
-  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel, 'leanplum']);
+  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [{}, {}, {}], [channel, 'leanplum']);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
 
   $scope.openExternalLink = function(url, target) {
@@ -424,6 +458,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   $scope.$on("$ionicView.afterLeave", _onAfterLeave);
   $scope.$on("$ionicView.leave", _onLeave);
+
+  function getSatoshiDiceIconUrl() {
+    return satoshiDiceService.iconUrl;
+  }
 
   function _onAfterLeave(event, data) {
     if (refreshInterval !== null) {

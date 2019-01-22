@@ -313,6 +313,17 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       margin-top: 3px;
     }
   }
+
+  img.satoshi-dice {
+    border-radius: 50%;
+    width: 40px;
+    border: 2px solid #BEBEBE;
+
+    &.received {
+      border-color:#09C286;
+    }
+  }
+
 }
 
 .wallet-details-wallet-info {

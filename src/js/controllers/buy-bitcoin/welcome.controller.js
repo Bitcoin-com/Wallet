@@ -30,7 +30,7 @@ angular
 
     function getStarted() {
       $log.debug('getStarted() with email: ' + vm.email);      
-      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_tap_on_get_started' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_tap_on_get_started' ,[{}, {}, {}], ['leanplum']);
 
       if (!vm.email) {
         var title = gettextCatalog.getString('Unable to Create Customer');
@@ -63,12 +63,12 @@ angular
     
     function onBeforeEnter(event, data) {
       initVariables();
-      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onBeforeLeave(event, data) {
       initVariables();
-      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_close' ,[], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
 

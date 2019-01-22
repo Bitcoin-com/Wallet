@@ -338,7 +338,9 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
     wallet.getTxHistory({
       skip: skip,
-      limit: limit
+      limit: limit,
+      // To determine where the transaction has been send from, for Satoshi Dice integration
+      includeExtendedInfo: true
     }, function(err, txsFromServer) {
       if (err) return cb(err);
 

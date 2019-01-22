@@ -117,7 +117,7 @@
         var log = new window.BitAnalytics.LogEvent("transfer_success", [{
           "coin": $scope.wallet.coin,
           "type": "incoming"
-        }], [channel, "adjust", 'leanplum']);
+        }, {}, {}], [channel, 'leanplum']);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
         if ($state.current.name === "tabs.receive") {

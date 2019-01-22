@@ -11,17 +11,26 @@
     <div class="list" ng-if="vm.btx">
       <div class="item head">
         <div class="sending-label" ng-if="vm.btx.confirmations > 0">
-          <img src="img/icon-tx-sent-outline.svg" ng-if="vm.btx.action === 'sent'">
-          <img src="img/icon-tx-received-outline.svg" ng-if="vm.btx.action === 'received'">
-          <img src="img/icon-tx-moved-outline.svg" ng-if="vm.btx.action === 'moved'">
+          <img src="img/icon-tx-sent-outline.svg" ng-if="vm.btx.action === 'sent' && !vm.btx.isSatoshiDice">
+          <img src="img/icon-tx-received-outline.svg" ng-if="vm.btx.action === 'received' && !vm.btx.isSatoshiDice">
+          <img src="img/icon-tx-moved-outline.svg" ng-if="vm.btx.action === 'moved' && !vm.btx.isSatoshiDice">
+          <img class="satoshi-dice" ng-class="{'received': vm.btx.action == 'received'}" src="{{vm.getSatoshiDiceIconUrl()}}" ng-if="vm.btx.isSatoshiDice">
           <span ng-if="vm.btx.action === 'sent'">{{'Sent' | translate}}</span>
           <span ng-if="vm.btx.action === 'received'">{{'Received' | translate}}</span>
           <span ng-if="vm.btx.action === 'moved'">{{'Moved' | translate}}</span>
         </div>
         <div class="sending-label" ng-if="vm.btx.confirmations === 0">
           <img src="img/icon-confirming.svg">
-          <span ng-if="vm.btx.action == 'sent' || vm.btx.action == 'moved'" translate>Sending</span>
-          <span ng-if="vm.btx.action == 'received'" translate>Receiving</span>
+          <span ng-if="wallet.coin == 'bch'">
+            <span ng-if="vm.btx.action == 'moved'" translate>Moved</span>
+            <span ng-if="vm.btx.action == 'sent'" translate>Sent</span>
+            <span ng-if="vm.btx.action == 'received'" translate>Received</span>
+          </span>
+          <span ng-if="wallet.coin != 'bch'">
+            <span ng-if="vm.btx.action == 'moved'" translate>Moving</span>
+            <span ng-if="vm.btx.action == 'sent'" translate>Sending</span>
+            <span ng-if="vm.btx.action == 'received'" translate>Receiving</span>
+          </span>
         </div>
         <div class="amount-label">
           <div class="amount"><formatted-amount value="{{vm.btx.action == 'sent'?'-':''}}{{vm.btx.amountValueStr}}" currency="{{vm.btx.amountUnitStr}}"></formatted-amount></div>

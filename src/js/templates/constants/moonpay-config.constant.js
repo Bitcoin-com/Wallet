@@ -26,7 +26,8 @@ Requires a file above the project root: moonpay-config.json, containing:
     .constant('moonPayConfig', {
       baseUrl: '',
       pubKey: '',
-      secretKey: ''
+      secretKey: '',
+      env: ''
     });
     
 })();
