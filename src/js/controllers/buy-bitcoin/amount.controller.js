@@ -6,9 +6,21 @@
       .controller('buyBitcoinAmountController', amountController);
 
   function amountController(
-    configService , gettextCatalog, ongoingProcess, popupService, bitcoinCashJsService
-    , moonPayService, profileService, walletService, bitAnalyticsService
-    , $interval, $ionicHistory, $scope, $state, $timeout
+    configService
+    , gettextCatalog
+    , ongoingProcess
+    , popupService
+    , bitcoinCashJsService
+    , moonPayService
+    , profileService
+    , walletService
+    , bitAnalyticsService
+    , $interval
+    , $ionicHistory
+    , $scope
+    , $state
+    , $timeout
+    , externalLinkService
   ) {
 
     var vm = this;
@@ -26,7 +38,7 @@
     
     function _initVariables() {
       vm.displayBalanceAsFiat = true;
-      vm.inputAmount = 0;
+      vm.inputAmount = vm.inputAmount || 0;
       vm.lineItems = {
         bchQty: 0,
         cost: 0,
@@ -147,6 +159,9 @@
     }
 
     function _onAfterEnter() {
+
+      console.log('ENTER');
+
       $timeout(function () {
         _getPaymentMethods();
         _getWallet();
@@ -289,6 +304,7 @@
           , cardId: vm.paymentMethod.id
           , extraFeePercentage: EXTRA_FEE_PERCENTAGE
           , walletAddress: toAddressForTransaction
+          , returnUrl: 'bitcoincomwallet://buybitcoin/auth'
         };
 
         moonPayService.createTransaction(transaction, vm.wallet.id).then(
@@ -327,22 +343,34 @@
               'coin': 'bch'
             }, {}, {}], ['leanplum']);
 
-            $ionicHistory.nextViewOptions({
-              disableAnimation: true,
-              historyRoot: true
-            });
-            $state.go('tabs.home').then(
-              function() {
-                $state.go('tabs.buybitcoin').then(
-                  function () {
-                    $state.go('tabs.buybitcoin-success', { 
-                      moonpayTxId: newTransaction.id,
-                      purchasedAmount: vm.lineItems.cost
-                    });
-                  }
-                );
-              }
-            );
+
+
+            if (newTransaction.redirectUrl) {
+              var optIn = true;
+              var title = gettextCatalog.getString('3D secure');
+              var message = gettextCatalog.getString('You will redirect to your bank website to authorize the transaction.');
+              var okText = gettextCatalog.getString('Open');
+              var cancelText = gettextCatalog.getString('Cancel');
+              externalLinkService.open(newTransaction.redirectUrl, optIn, title, message, okText, cancelText);
+            } else {
+              $ionicHistory.nextViewOptions({
+                disableAnimation: true,
+                historyRoot: true
+              });
+  
+              $state.go('tabs.home').then(
+                function() {
+                  $state.go('tabs.buybitcoin').then(
+                    function () {
+                      $state.go('tabs.buybitcoin-success', { 
+                        moonpayTxId: newTransaction.id,
+                        purchasedAmount: vm.lineItems.cost
+                      });
+                    }
+                  );
+                }
+              );
+            }
 
           },
           function onCreateTransactionError(err) {
