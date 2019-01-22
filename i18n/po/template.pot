@@ -4519,3 +4519,5 @@ msgstr ""
 msgid "Front"
 msgstr ""
 
+msgid "Buying Gift Card..."
+msgstr ""
