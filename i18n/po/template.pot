@@ -4451,7 +4451,7 @@ msgstr ""
 msgid "Self Portrait"
 msgstr ""
 
-msgid "Spend"
+msgid "Shop"
 msgstr ""
 
 msgid "Shop Nearby"
