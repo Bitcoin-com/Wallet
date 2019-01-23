@@ -4,15 +4,16 @@
   </ion-nav-bar>
   <ion-content>
     <div id="top-limit"></div>
-    <div id="map" ui-sref="tabs.spend.marcoCoino">
-      <div id="map-icon-background">
-      </div>
-      <div>
+    <h1>Featured Businesses</h1>
+    <div class="merchant-showcase-container">
+      <div id="marcocoino" class="merchant-showcase light" ui-sref="tabs.spend.marcoCoino">
+        <div id="marcocoino-icon"></div>
         <h1 translate>Shop Nearby</h1>
-        <p translate>Find businesses in your area that accept Bitcoin Cash</p>
+        <div class="subtitle">
+          <p translate>Find businesses in your area that accept Bitcoin Cash</p>
+        </div>
       </div>
     </div>
-    <h1>Featured Businesses</h1>
     <div class="merchant-showcase-container">
       <div id="purse-io" class="merchant-showcase" ng-click="vm.onPurseIo()">
         <h1>Purse.io</h1>
