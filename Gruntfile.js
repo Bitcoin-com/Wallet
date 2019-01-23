@@ -389,7 +389,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['pre-dev', 'main']);
   grunt.registerTask('main', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_dev']);
-  grunt.registerTask('prod', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
+  grunt.registerTask('prod', ['copy:gen_constant_leanplum_prod', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
