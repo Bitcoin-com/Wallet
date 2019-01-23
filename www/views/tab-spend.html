@@ -6,7 +6,7 @@
     <div id="top-limit"></div>
     <h1>Featured Businesses</h1>
     <div class="merchant-showcase-container">
-      <div id="marcocoino" class="merchant-showcase light" ui-sref="tabs.spend.marcoCoino">
+      <div id="marcocoino" class="merchant-showcase light track_shop_screen_tap_on_featured_business" ui-sref="tabs.spend.marcoCoino">
         <div id="marcocoino-icon"></div>
         <h1 translate>Shop Nearby</h1>
         <div class="subtitle">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="merchant-showcase-container">
-      <div id="purse-io" class="merchant-showcase" ng-click="vm.onPurseIo()">
+      <div id="purse-io" class="merchant-showcase track_shop_screen_tap_on_featured_business" ng-click="vm.onPurseIo()">
         <h1>Purse.io</h1>
         <div class="subtitle">
           <p translate>Get up to 30% off Amazon when you pay with Bitcoin Cash</p>
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="merchant-showcase-container">
-      <div id="egifter" class="merchant-showcase light"  ng-click="vm.onEGifter()">
+      <div id="egifter" class="merchant-showcase light track_shop_screen_tap_on_featured_business"  ng-click="vm.onEGifter()">
         <h1>eGifter</h1>
         <div class="subtitle">
           <p translate>Digital giftcards from some of the biggest brand names</p>
@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="merchant-showcase-container">
-      <div id="cheapair" class="merchant-showcase light"  ng-click="vm.onCheapAir()">
+      <div id="cheapair" class="merchant-showcase light track_shop_screen_tap_on_featured_business"  ng-click="vm.onCheapAir()">
         <h1>CheapAir</h1>
         <div class="subtitle">
           <p translate>Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals.</p>
@@ -43,7 +43,7 @@
 
       <div class="item apl-list-item item-button-right">
         <div class="button-right-container">
-          <div class="button-right" ng-click="vm.onStartAccepting()" translate>More</div>
+          <div class="button-right track_shop_screen_tap_on_learn_more" ng-click="vm.onStartAccepting()" translate>More</div>
         </div>
         <div class="apl-card__title__container">
           <div class="apl-card__title" translate>Are you a business owner?</div>
@@ -57,7 +57,7 @@
     <h1 ng-if="vm.merchants.length &gt; 0">Buy with Bitcoin Cash</h1>
     <div id="merchants" class="apl-list">
       <div ng-repeat="merchant in vm.merchants track by $index">
-        <div class="item item-icon-left item-big-icon-left apl-list-item" ng-click="vm.onMerchant($index)" >
+        <div class="item item-icon-left item-big-icon-left apl-list-item track_shop_screen_tap_on_standard_business" ng-click="vm.onMerchant($index)" >
           <i class="icon big-icon-svg">
             <img src="{{merchant.icon}}" />
           </i>
