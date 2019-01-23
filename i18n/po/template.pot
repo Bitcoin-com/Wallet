@@ -4478,6 +4478,9 @@ msgstr ""
 msgid "Are you a business owner?"
 msgstr ""
 
+msgid "More"
+msgstr ""
+
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr ""
 
