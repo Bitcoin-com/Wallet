@@ -4286,6 +4286,10 @@ msgstr ""
 msgid "Verification"
 msgstr ""
 
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr ""
+
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
 msgstr ""
@@ -4301,7 +4305,7 @@ msgid "You must select a document type."
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
-msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €5000 per month."
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
