@@ -4325,7 +4325,7 @@ msgid "Street Address"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
-msgid "Apt, Suite, Building (Optional)
+msgid "Apt, Suite, Building (Optional)"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
