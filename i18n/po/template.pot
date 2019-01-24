@@ -4417,7 +4417,7 @@ msgid "Select"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-document-info.html
-msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verifitcation.</a>"
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-status.html
