@@ -8,7 +8,8 @@
     
   function bitAnalyticsService(platformInfo) {
     var service = {
-      postEvent: postEvent
+      init: init
+      , postEvent: postEvent
       , setUserAttributes: setUserAttributes
       , getVariablesFromChannel: getVariablesFromChannel
     };
@@ -19,6 +20,34 @@
     }
 
     return service;
+
+    function init() {
+      // Shop screen
+      var shopScreenTapOnFeaturedBusiness = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'shop_screen_tap_on_featured_business', 
+        class: 'track_shop_screen_tap_on_featured_business',
+        params: ['id'], 
+        channels: defaultChannels.concat(['leanplum'])
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(shopScreenTapOnFeaturedBusiness);
+      console.log('bitAnalyticsService set up.');
+
+      var shopScreenTapOnLearnMore = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'shop_screen_tap_on_learn_more',
+        class: 'track_shop_screen_tap_on_learn_more',
+        channels: defaultChannels.concat(['leanplum'])
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(shopScreenTapOnLearnMore);
+
+      var shopScreenTapOnStandardBusiness = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'shop_screen_tap_on_standard_business', 
+        class: 'track_shop_screen_tap_on_standard_business',
+        params: ['id'], 
+        channels: defaultChannels.concat(['leanplum'])
+      });
+      window.BitAnalytics.ActionHandlers.trackAction(shopScreenTapOnStandardBusiness);
+    }
+
 
     /**
      * Sends an event to analytics channels.

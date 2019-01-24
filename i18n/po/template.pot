@@ -4286,6 +4286,10 @@ msgstr ""
 msgid "Verification"
 msgstr ""
 
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr ""
+
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
 msgstr ""
@@ -4301,7 +4305,7 @@ msgid "You must select a document type."
 msgstr ""
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
-msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €5000 per month."
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
@@ -4325,7 +4329,7 @@ msgid "Street Address"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
-msgid "Apt, Suite, Building (Optional)
+msgid "Apt, Suite, Building (Optional)"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
@@ -4413,7 +4417,7 @@ msgid "Select"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-document-info.html
-msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verifitcation.</a>"
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-status.html
@@ -4447,7 +4451,7 @@ msgstr ""
 msgid "Self Portrait"
 msgstr ""
 
-msgid "Spend"
+msgid "Shop"
 msgstr ""
 
 msgid "Shop Nearby"
@@ -4474,10 +4478,13 @@ msgstr ""
 msgid "Are you a business owner?"
 msgstr ""
 
+msgid "More"
+msgstr ""
+
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr ""
 
-msgid "Take to the skies using Bitcoin Cash."
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr ""
 
 msgid "The market's highest paying pool"

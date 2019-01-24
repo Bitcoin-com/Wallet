@@ -14,7 +14,7 @@
         <tbody>
           <tr>
             <td>
-              <img class="capture-image" src="img/buy-bitcoin/capture-mask.svg">
+              <img class="capture-image" src="img/buy-bitcoin/{{vm.imageType == 'selfie' ? vm.imageType + '-' : ''}}capture-mask.svg" />
             </td>
           </tr>
           <tr height="100%">
@@ -26,7 +26,7 @@
                   <h3 class="light-text" translate>{{vm.descriptionHeaderLabel}}</h3>
                   <p class="light-text" translate>{{vm.descriptionLabel}}</p>
                   <div class="camera-controls">
-                    <a ng-click="vm.onCapture()" >
+                    <a ng-click="vm.onCapture()">
                       <i class="icon">
                         <div class="icon-capture"></div>
                       </i>

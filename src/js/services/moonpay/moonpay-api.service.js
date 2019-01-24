@@ -124,7 +124,7 @@ angular
     function updateCustomer(customer) {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.patch(baseUrl + '/v2/customers/' + customer.id, customer, config).then(function onPatchCustomerSuccess(response) {
+        $http.patch(baseUrl + '/v2/customers/me', customer, config).then(function onPatchCustomerSuccess(response) {
           var customer = response.data;
           deferred.resolve(customer);
         }, function onPatchCustomerError(err) {
