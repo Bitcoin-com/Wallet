@@ -552,7 +552,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       walletId: $scope.wallet.id
     }).then(function () {
       $ionicHistory.clearHistory();
-      $state.go('tabs.buyandsell');
+      $state.go('tabs.buybitcoin');
     });
   };
 });
