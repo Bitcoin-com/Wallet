@@ -20,6 +20,7 @@ angular
 
     // Variables
     vm.isDesktop = !platformInfo.isCordova;
+    vm.isSelfie = false;
 
     // Functions
     vm.goBack = goBack;
