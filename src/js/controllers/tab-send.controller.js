@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, externalLinkService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
@@ -207,9 +207,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.buyBitcoin = function() {
-    $state.go('tabs.home').then(function() {
-      $state.go('tabs.buybitcoin');
-    });
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+    externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
