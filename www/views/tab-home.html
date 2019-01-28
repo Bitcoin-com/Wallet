@@ -2,7 +2,7 @@
   <ion-nav-bar class="bar-royal">
     <ion-nav-title><span class="nav-bar-title textlogo"><span class="moon-symbol"></span>itcoin.com Wallet</span></ion-nav-title>
     <ion-nav-buttons side="secondary">
-      <button class="button button-settings" ng-click="vm.openSettings();">
+      <button class="button button-settings" ng-click="vm.onSettings();">
         <i class="icon ion-android-settings"></i>
       </button>
     </ion-nav-buttons>
@@ -37,7 +37,7 @@
       </div>
       <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
         <div class="button button-outline button-grey-outline"
-             ui-sref="tabs.buybitcoin">
+          ng-click="vm.onBuyBitcoin()">
           <span translate>Buy Bitcoin</span>
         </div>
       </div>
@@ -89,7 +89,7 @@
       <div>
         <a ng-repeat="wallet in walletsBch track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="vm.openWallet(wallet)">
+           ng-click="vm.onWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
@@ -103,14 +103,14 @@
       <div>
         <a ng-repeat="wallet in walletsBtc track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="vm.openWallet(wallet)">
+           ng-click="vm.onWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
     </div>
     
     <div id="buy-bitcoin" class="padding">
-      <button class="button button-standard button-green" ui-sref="tabs.buybitcoin" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
+      <button class="button button-standard button-green" ng-click="vm.onBuyBitcoin()" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
     </div>
 
     <div class="ng-hide list card" ng-show="walletsBtc[0] && bitpayCardItems.length>0" ng-include="'views/includes/bitpayCardsCard.html'"></div>

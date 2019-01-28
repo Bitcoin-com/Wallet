@@ -547,12 +547,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
-    _callLeaveHandlers(); // During testing these weren't automatically called
-    $state.go('tabs.home', {
-      walletId: $scope.wallet.id
-    }).then(function () {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.buybitcoin');
-    });
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+    var url = 'https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium='+ os;
+    externalLinkService.open(url);
   };
 });
