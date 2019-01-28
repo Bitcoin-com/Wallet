@@ -547,6 +547,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
-    externalLinkService.open('https://purchase.bitcoin.com');
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+    var url = 'https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium='+ os;
+    externalLinkService.open(url);
   };
 });
