@@ -60,7 +60,7 @@
           icon: 'img/merchants/bitcoincom_store_merchant_icon.svg',
           id: 'merchant_bitcoincom_store',
           name: gettextCatalog.getString('Get your Bitcoin merch'),
-          url: 'https://store.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
+          url: 'https://store.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os
         }
       ];
       
