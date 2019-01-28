@@ -57,13 +57,10 @@ angular
     $scope.showServices = false;
 
     $scope.vm = {
-      openSettings: openSettings,
-      openWallet: openWallet
+      onSettings: onSettings
+      , onWallet: onWallet
+      , onBuyBitcoin: onBuyBitcoin
     };
-
-    // Functions
-    $scope.buyBitcoin = buyBitcoin;
-
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.enter", onEnter);
@@ -153,8 +150,13 @@ angular
         }, 10);
       });
     }
+
+    function onBuyBitcoin() {
+      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+    };
     
-    function openSettings() {
+    function onSettings() {
       $state.go('tabs.settings', {});
     }
 
@@ -210,7 +212,7 @@ angular
       }
     };
 
-    function openWallet(wallet) {
+    function onWallet(wallet) {
       if (!wallet.isComplete()) {
         return $state.go('tabs.copayers', {
           walletId: wallet.credentials.walletId
