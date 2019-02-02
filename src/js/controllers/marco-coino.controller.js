@@ -7,11 +7,12 @@
     .controller('marcoCoinoController', marcoCoinoController);
     
   function marcoCoinoController(
-    $log
-    , $scope
-    , $sce
+    gettextCatalog
+    , $log
     , popupService
-    , gettextCatalog
+    , $sce
+    , $scope
+    , $timeout
     ) {
     
     var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
@@ -32,12 +33,12 @@
 
           var latitude = position.coords.latitude;
           var longitude = position.coords.longitude;
-          $scope.$apply(function onApply() {
+          $timeout(function onTimeout() { // Doesn't work on Android if just using $scope.$apply()
             vm.marcocoinoUrl = $sce.trustAs($sce.RESOURCE_URL, MARCO_COINO_BASE_URL + '&lat=' + latitude + '&long=' + longitude);
-          });
+          }, 1);
         },
         function onGetCurrentPositionError(error) {
-          $log.error('Failed to get position.', error);
+          $log.error('Failed to get position for Marco Coino.', error);
         }
       );
     }
