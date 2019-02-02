@@ -1,8 +1,25 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('storageService', function(appConfigService, logHeader, fileStorageService, localStorageService, sjcl, $log, lodash, platformInfo, $timeout) {
+  .factory('storageService', function(
+    appConfigService
+    , logHeader
+    , fileStorageService
+    , localStorageService
+    , sjcl
+    , $log
+    , lodash
+    , platformInfo
+    , $q
+    , $timeout
+    ) {
 
-    var root = {};
+    var root = {
+      getItem: getItem,
+      getItemPromise: getItemPromise,
+      removeItem: removeItem,
+      setItem: setItem,
+      setItemPromise: setItemPromise
+    };
     var storage;
 
     // File storage is not supported for writing according to
@@ -708,6 +725,81 @@ angular.module('copayApp.services')
         });
       });
     }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error, string)} cb 
+     */
+    function getItem(keyName, cb) {
+      storage.get(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @returns {Promise}
+     */
+    function getItemPromise(keyName) {
+      var deferred = $q.defer();
+
+      storage.get(keyName, function onGet(err, data) {
+        if (err) {
+          deferred.reject(err);
+        } else {
+          if (data) {
+            try {
+              data = JSON.parse(data);
+            } catch (e) {
+              $log.error('Error parsing retrieved "' + keyName + '" to JSON.', e);
+            }
+          }
+          deferred.resolve(data);
+        }
+      });
+
+      return deferred.promise
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {function(Error)} cb 
+     */
+    function removeItem(keyName, cb) {
+      storage.remove(keyName, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {string} keyValue 
+     * @param {function(Error)} cb 
+     */
+    function setItem(keyName, keyValue, cb) {
+      storage.set(keyName, keyValue, cb);
+    }
+
+    /**
+     * 
+     * @param {string} keyName 
+     * @param {string} keyValue 
+     * @returns {Promise}
+     */
+    function setItemPromise(keyName, keyValue) {
+      var deferred = $q.defer();
+
+      storage.set(keyName, keyValue, function onSet(err) {
+        if (err) {
+          deferred.reject(err);
+        } else {
+          deferred.resolve();
+        }
+      });
+
+      return deferred.promise;
+    }
+    
     
     return root;
   });

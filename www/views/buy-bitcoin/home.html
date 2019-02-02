@@ -1,0 +1,41 @@
+<ion-view id="tab-buy-bitcoin" class="apl" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button track_buy_bitcoin_screen_close" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl">
+    <img class="intro" src="img/buy-bitcoin/buy-bitcoin.svg"/>
+    <h1 class="center" translate>
+      Buy Bitcoin Cash (BCH)
+    </h1>
+    <p class="center" translate>You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month.</p>
+    <div class="apl-button-container">
+      <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" ng-click="vm.didPushBuyInstantly()" translate>Buy Bitcoin Cash</div>
+    </div>
+    <div>
+      <h1 translate>
+        Quick Links
+      </h1>
+      <div class="apl-list">
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods" ng-click="vm.onVerificationSelect()">
+          <p translate>Increase Purchase Limit</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods" ui-sref="tabs.buybitcoin-paymentmethods">
+          <p translate>Payment Methods</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_purchase_history" ui-sref="tabs.buybitcoin-purchasehistory">
+          <p translate>Purchase History</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="center-container">
+      <small class="center terms" translate>See our <a class="track_buy_bitcoin_tap_on_terms_of_service" ui-sref="tabs.buybitcoin-terms">Terms of Service</a> & <a class="track_buy_bitcoin_tap_on_privacy_policy" ui-sref="tabs.buybitcoin-privacypolicy">Privacy Policy</a></small>
+    </div>
+  </ion-content>
+</ion-view>

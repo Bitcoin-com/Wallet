@@ -1,0 +1,24 @@
+#tab-buy-bitcoin-kyc-personal-info {
+
+  form {
+    margin: 0 2.5%;
+
+    .row {
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    input {
+      text-align: right;
+    }
+
+    .error {
+      padding: 0 5px;
+      color: $v-error-color;
+    }
+  }
+  
+  hr {
+    color: #787878;
+  }
+}
