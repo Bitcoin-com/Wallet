@@ -31,6 +31,7 @@ angular
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
+      , addCard: addCard
       , createCard: createCard
       , removeCard: removeCard
       , getCards: getCards
@@ -299,6 +300,19 @@ angular
       });
 
       return deferred.promise;
+    }
+
+    /**
+     * Add a defined card
+     * @param {Object} newCard 
+     */
+    function addCard(newCard) {
+      if (currentCards != null) {
+        currentCards.push(newCard);
+      } else {
+        currentCards = [newCard];
+      }
+      return currentCards;
     }
 
     /**
