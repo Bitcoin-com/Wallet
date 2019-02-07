@@ -23,7 +23,6 @@ angular
       // Variables
 
       // Functions
-      /* TODO: Reinstate when Moonpay is working properly
       createCustomer: createCustomer
       , getCustomer: getCustomer
       , updateCustomer: updateCustomer
@@ -40,7 +39,7 @@ angular
       , uploadFile: uploadFile
       , getFiles: getFiles
       , deleteFile: deleteFile
-      */
+      , getConfig: getConfig
     };
 
     return service;

@@ -11,7 +11,9 @@ angular
     , storageService
     , moonPayRouterService
     , moonPayConfig
-    , $log, $q
+    , $log
+    , $q
+    , ongoingProcess
   ) {
 
     var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
@@ -25,7 +27,6 @@ angular
     var service = {
 
       // Functions
-      /* TODO: Reinstate when Moonpay is working properly
       createCustomer: createCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
@@ -48,7 +49,7 @@ angular
       , getFiles: getFiles
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
-      */
+      , getConfigWithToken: getConfigWithToken
     };
 
     return service;
@@ -60,7 +61,7 @@ angular
       $log.debug('buy bitcoin start()');
 
       ongoingProcess.set('gettingKycCustomerId', true);
-      getCustomerId(function onCustomerId(err, customerId){
+      getCustomerId().then(function onCustomerId(customerId, err){
         ongoingProcess.set('gettingKycCustomerId', false);
 
         if (err) {
@@ -604,6 +605,10 @@ angular
         }
       );
       return deferred.promise;
+    }
+    
+    function getConfigWithToken() {
+      return moonPayApiService.getConfig(true);
     }
   }
 })();
