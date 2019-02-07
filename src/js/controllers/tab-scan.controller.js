@@ -65,8 +65,9 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
       // try initializing and refreshing status any time the view is entered
       if(!scannerService.isInitialized()) {
         scannerService.gentleInitialize();
+      } else {
+        activate();
       }
-      activate();
     }
   });
 
@@ -101,7 +102,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     });
   };
 
-  $scope.$on("$ionicView.afterLeave", function() {
+  $scope.$on("$ionicView.beforeLeave", function() {
     scannerService.deactivate();
   });
 
@@ -153,6 +154,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
     // (a short delay for the user to see the visual feedback)
       $timeout(function(){
         $scope.cameraToggleActive = false;
+        $scope.lightActive = false; // The light is off when we switch camera succesfully
         $log.debug('Camera toggle control deactivated.');
       }, 200);
     });
