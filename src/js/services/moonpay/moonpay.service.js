@@ -474,11 +474,13 @@ angular
     /**
      * Get all countries
      */
-    function getAllCountries() {
+    function getAllCountries(onlySendAllowedCountries) {
+      onlySendAllowedCountries = onlySendAllowedCountries || false;
+      
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.getAllCountries().then(
+      moonPayApiService.getAllCountries(onlySendAllowedCountries).then(
         function onGetAllCountries(countries) {
           deferred.resolve(countries);
         }, function onGetAllCountriesError(err) {

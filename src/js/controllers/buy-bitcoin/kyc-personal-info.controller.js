@@ -84,7 +84,7 @@ angular
 
       // Fetch Countries and Documents
       console.log('Fetching Countries!');
-      moonPayService.getAllCountries().then(
+      moonPayService.getAllCountries(true).then(
         function onGetAllCountriesSuccess(countries) {
           vm.countries = countries;
           vm.countriesAreLoading = false;
