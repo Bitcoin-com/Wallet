@@ -4531,3 +4531,6 @@ msgstr ""
 
 msgid "Useful Links"
 msgstr ""
+
+msgid "SideShift AI"
+msgstr ""

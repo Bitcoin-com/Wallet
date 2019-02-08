@@ -52,6 +52,13 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     href: 'https://free.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Faucet'
   };
 
+  var sideShiftItem = {
+    name: 'sideshift',
+    title: gettextCatalog.getString('SideShift AI'),
+    icon: 'icon-sideshift',
+    sref: 'tabs.shapeshift'
+  };
+
   var bchRedditItem = {
     name: 'bchreddit',
     title: gettextCatalog.getString('Bitcoin Cash Reddit'),
@@ -99,6 +106,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     nextStepsService.register(toolsItem);
     nextStepsService.register(priceChartItem);
     nextStepsService.register(faucetItem);
+    nextStepsService.register(sideShiftItem);
     nextStepsService.register(bchRedditItem);
     nextStepsService.register(bitcoincomTwitterItem);
   };
