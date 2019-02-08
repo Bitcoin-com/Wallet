@@ -3,7 +3,7 @@ angular.module('copayApp.services').factory('servicesService', function(configSe
   var root = {};
   var services = [{
     name: 'shapeshift',
-    title: 'Shapeshift',
+    title: 'SideShift AI',
     icon: 'icon-shapeshift',
     sref: 'tabs.shapeshift'
   }];

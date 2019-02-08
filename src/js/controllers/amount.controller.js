@@ -274,7 +274,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
         ongoingProcess.set('connectingShapeshift', false);
         if (err) {
           // Error stop here
-          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.message, function () {
+          popupService.showAlert(gettextCatalog.getString('SideShift AI Error'), err.message, function () {
             goBack();
           });
         } else {
