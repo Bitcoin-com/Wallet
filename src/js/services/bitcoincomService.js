@@ -54,7 +54,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
 
   var sideShiftItem = {
     name: 'sideshift',
-    title: gettextCatalog.getString('SideShift AI'),
+    title: gettextCatalog.getString('Exchange between BTC and BCH'),
     icon: 'icon-sideshift',
     sref: 'tabs.shapeshift'
   };

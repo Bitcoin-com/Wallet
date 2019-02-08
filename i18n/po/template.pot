@@ -4532,5 +4532,5 @@ msgstr ""
 msgid "Useful Links"
 msgstr ""
 
-msgid "SideShift AI"
+msgid "Exchange between BTC and BCH"
 msgstr ""
