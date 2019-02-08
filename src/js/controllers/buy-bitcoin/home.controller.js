@@ -10,7 +10,7 @@ angular
     bitAnalyticsService
     , $filter
     , gettextCatalog
-    , $ionicHistory 
+    , $ionicHistory
     , kycFlowService
     , moonPayService
     , popupService
@@ -24,13 +24,12 @@ angular
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
     vm.onVerificationSelect = onVerificationSelect;
+    vm.openTermsofService = openTermsofService;
+    vm.openPrivacyPolicy = openPrivacyPolicy;
 
     function _initVariables() {
       vm.dailyRemaining = '-';
       vm.monthlyRemaining = '-';
-
-      vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
-      vm.termsOfService = 'tabs.buybitcoin-tos'
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
@@ -88,13 +87,13 @@ angular
             $state.go('tabs.buybitcoin-welcome');
           }
         },
-        function onCustomerIdError(err) {          
+        function onCustomerIdError(err) {
           var title = gettextCatalog.getString("Error Getting Customer ID");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
           popupService.showAlert(title, message, function onAlert(){
             _goBack();
           });
-          
+
         }
       );
       bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [{}, {}, {}], ['leanplum']);
@@ -107,6 +106,14 @@ angular
     function onVerificationSelect() {
       kycFlowService.start();
     }
+
+    function openTermsofService() {
+      window.open('https://www.moonpay.io/terms_of_use?mobile=true', '_system');
+    };
+
+    function openPrivacyPolicy() {
+      window.open('https://www.moonpay.io/privacy_policy?mobile=true', '_system');
+    };
   }
 
 
