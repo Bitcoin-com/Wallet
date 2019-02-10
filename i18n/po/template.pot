@@ -4531,3 +4531,6 @@ msgstr ""
 
 msgid "Useful Links"
 msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
