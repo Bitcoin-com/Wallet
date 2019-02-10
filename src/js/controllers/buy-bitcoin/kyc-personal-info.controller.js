@@ -67,7 +67,9 @@ angular
     function _initVariables() {
       vm.submitted = false;
 
-      Promise.all([moonPayService.getCustomer(), moonPayService.getAllCountries()]).then(
+      vm.countries = [];
+      // Fetch Countries and Documents
+      Promise.all([moonPayService.getCustomer(), moonPayService.getAllCountries(true)]).then(
         function onGetFormDataSuccess(data) {
           var customer = data[0];
           var countries = data[1];
