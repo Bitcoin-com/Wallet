@@ -25,6 +25,7 @@ angular
     var service = {
 
       // Functions
+      /* TODO: Reinstate when Moonpay is working properly
       createCustomer: createCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
@@ -47,6 +48,7 @@ angular
       , getFiles: getFiles
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
+      */
     };
 
     return service;

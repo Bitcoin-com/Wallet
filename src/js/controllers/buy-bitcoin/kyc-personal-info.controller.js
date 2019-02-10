@@ -12,15 +12,16 @@ angular
     , $log
     , kycFlowService
     , moonPayService
+    , popupService
     , moment
     , $scope
+    , $ionicHistory
   ) {
-    var currentState = {};
     var vm = this;
 
     // Functions
     vm.goBack = goBack;
-    vm.goNext = goNext;
+    vm.submitForm = submitForm;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
@@ -64,61 +65,66 @@ angular
     }
 
     function _initVariables() {
-
       vm.submitted = false;
 
       currentState = kycFlowService.getCurrentStateClone();
       console.log('buyBitcoinKycPersonalInfoController onBeforeEnter after back kycflow', currentState);
 
-      vm.firstName = currentState.firstName ? currentState.firstName : '';
-      vm.lastName = currentState.lastName ? currentState.lastName : '';
-      vm.dob = currentState.dob ? currentState.dob : '';
-      vm.streetAddress1 = currentState.streetAddress1 ? currentState.streetAddress1 : '';
-      vm.streetAddress2 = currentState.streetAddress2 ? currentState.streetAddress2 : '';
-      vm.city = currentState.city ? currentState.city : ''; 
-      vm.postalCode = currentState.postalCode ? currentState.postalCode : '';
-      vm.country = currentState.country ? currentState.country : '';
-
       vm.countries = [];
-      vm.countriesAreLoading = true;
-
       // Fetch Countries and Documents
-      console.log('Fetching Countries!');
-      moonPayService.getAllCountries(true).then(
-        function onGetAllCountriesSuccess(countries) {
+      Promise.all([moonPayService.getCustomer(), moonPayService.getAllCountries(true)]).then(
+        function onGetFormDataSuccess(data) {
+          var customer = data[0];
+          var countries = data[1];
+
+          vm.firstName = customer.firstName || '';
+          vm.lastName =  customer.lastName || '';
+          vm.dob = customer.dateOfBirth && moment(customer.dateOfBirth).format('DD/MM/YYYY') || '';
+          vm.streetAddress1 = customer.address.street || '';
+          vm.streetAddress2 = customer.address.subStreet || '';
+          vm.city = customer.address.town || '';
+          vm.postalCode = customer.address.postCode || '';
+          vm.country = customer.address.country || '';
           vm.countries = countries;
-          vm.countriesAreLoading = false;
-          console.log('Fetching Countries - SUCCESS!');
-          console.log(countries);
         },
-        function onGetAllCountriesError(err) {
-          console.log('Failed to get countries.', err);
-          vm.countriesAreLoading = false;
+        function onGetFormDataError(err) {
+          console.log('Failed to get form data.', err);
         }
-      );
+      )
     }
 
-    function goNext() {
+    function submitForm() {
       vm.submitted = true;
       if (!_validateAllFields()) {
         $log.debug('Form incomplete.');
         return;
       }
-      // Save current state
-      currentState.firstName = vm.firstName;
-      currentState.lastName = vm.lastName;
-      currentState.dob = vm.dob;
-      currentState.streetAddress1 = vm.streetAddress1;
-      currentState.streetAddress2 = vm.streetAddress2;
-      currentState.city = vm.city;
-      currentState.postalCode = vm.postalCode;
-      currentState.country = vm.country;
 
-      kycFlowService.goNext(currentState);
+      moonPayService.updateCustomer({
+        firstName: vm.firstName,
+        lastName: vm.lastName,
+        dateOfBirth: moment(vm.dob, 'DDMMYYY').format('YYYY-MM-DD'),
+        address: {
+          street: vm.streetAddress1,
+          subStreet: vm.streetAddress2,
+          town: vm.city,
+          postCode: vm.postalCode,
+          country: vm.country
+        }
+      }).then(
+        function onSuccess() {
+          goBack();
+        },
+        function onError() {
+          popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'), function() {
+            $ionicHistory.goBack();
+          });
+        }
+      );
     }
 
     function goBack() {
-      kycFlowService.goBack();
+      $ionicHistory.goBack();
     }
 
     function onBeforeEnter(event, data) {
