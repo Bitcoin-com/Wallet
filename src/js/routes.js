@@ -1168,7 +1168,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
-      /* Shapeshift */
+      /* Sideshift */
       .state('tabs.sideshift', {
         url: '/sideshift/:fromWalletId/:toWalletId',
         views: {

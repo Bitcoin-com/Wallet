@@ -3991,7 +3991,7 @@ msgid "Amount is above the limit"
 msgstr ""
 
 #: src/js/services/sideshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
+msgid "Invalid response from Sideshift"
 msgstr ""
 
 msgid "Insufficient Amount Received"

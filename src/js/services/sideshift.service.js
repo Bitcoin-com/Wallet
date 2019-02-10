@@ -45,7 +45,7 @@ angular
         .marketInfo(service.coinIn, service.coinOut)
         .then(function (response) {
           if (!response || response.error) {
-            handleError(response, 'Invalid response from Shapeshift', cb);
+            handleError(response, 'Invalid response from Sideshift', cb);
           } else {
             service.marketData = response;
             service.rateString = service.marketData.rate.toString() + ' ' + coinOut.toUpperCase() + '/' + coinIn.toUpperCase();
@@ -80,13 +80,13 @@ angular
               sideshiftApiService.NormalTx(service).then(function onResponse(response) {
                 // If error, return it
                 if (!response || response.error) {
-                  handleError(response, gettextCatalog.getString('Invalid response from Shapeshift'), cb);
+                  handleError(response, gettextCatalog.getString('Invalid response from Sideshift'), cb);
                 } else {
                   var txData = response;
   
                   // If the content is not that it was expected, get back an error
                   if (!txData || !txData.orderId || !txData.deposit) {
-                    cb(new Error(gettextCatalog.getString('Invalid response from Shapeshift')));
+                    cb(new Error(gettextCatalog.getString('Invalid response from Sideshift')));
                   } else {
                     // Get back the data
                     service.depositInfo = txData;

@@ -143,7 +143,7 @@ describe('amountController', function(){
 
   
 
-  describe('Shapeshift', function() {
+  describe('Sideshift', function() {
     var walletFrom;
     var walletTo;
 

@@ -163,11 +163,11 @@ angular
         vm.thirdParty = sendFlowData.thirdParty;
         switch (vm.thirdParty.id) {
           case 'sideshift':
-            initShapeshift(function onInitShapeshift(err) {
+            initSideshift(function onInitSideshift(err) {
               if (err) {
                 // Error stop here
-                ongoingProcess.set('connectingShapeshift', false);
-                popupService.showConfirm(gettextCatalog.getString('SideShift AI Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
+                ongoingProcess.set('connectingSideshift', false);
+                popupService.showConfirm(gettextCatalog.getString('SideShift AI Error'), err.toString(), gettextCatalog.getString('Open') + " Sideshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
                   if (hasConfirm) {
                     externalLinkService.open("https://sideshift.ai");
                   }
@@ -618,7 +618,7 @@ angular
       };
     }
 
-    function initShapeshift(cb) {
+    function initSideshift(cb) {
       vm.sendingTitle = gettextCatalog.getString('You are shifting');
       if (!vm.thirdParty.data) {
         vm.thirdParty.data = {};
@@ -629,7 +629,7 @@ angular
       vm.destination.color = toWallet.color;
       vm.destination.currency = toWallet.coin.toUpperCase();
 
-      ongoingProcess.set('connectingShapeshift', true);
+      ongoingProcess.set('connectingSideshift', true);
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
           return cb(err);
@@ -650,7 +650,7 @@ angular
               vm.thirdParty.toAddress = sideshiftData.toAddress;
               vm.memo = 'SideShift Order:\nhttps://sideshift.ai/orders/' + sideshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
-              ongoingProcess.set('connectingShapeshift', false);
+              ongoingProcess.set('connectingSideshift', false);
               cb();
             }
           });

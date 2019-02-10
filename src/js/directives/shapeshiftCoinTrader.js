@@ -64,7 +64,7 @@ angular.module('copayApp.directives').directive('sideshiftCoinTrader', function(
         }
 
         $scope.shiftIt = function(){
-            ongoingProcess.set('connectingShapeshift', true);
+            ongoingProcess.set('connectingSideshift', true);
             var validate=sideshiftApiService.ValidateAddress($scope.withdrawalAddress, $scope.coinOut);
             validate.then(function(valid){
                 //console.log($scope.withdrawalAddress)
@@ -113,7 +113,7 @@ angular.module('copayApp.directives').directive('sideshiftCoinTrader', function(
 
                     // How to handle this
                     if (incomingDataService.redir(sendAddress, 'sideshift', sideshiftData)) {
-                        ongoingProcess.set('connectingShapeshift', false);
+                        ongoingProcess.set('connectingSideshift', false);
                         return;
                     }
 

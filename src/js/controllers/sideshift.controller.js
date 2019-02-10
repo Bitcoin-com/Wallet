@@ -57,10 +57,10 @@ angular
       });
     };
 
-    $scope.shapeshift = function() {    
+    $scope.sideshift = function() {    
       var stateParams = {
         thirdParty: {
-          id: 'shapeshift'
+          id: 'sideshift'
         }
       };
       sendFlowService.start(stateParams);

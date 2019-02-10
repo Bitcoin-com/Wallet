@@ -3828,7 +3828,7 @@ msgstr "{{wallet.n}}의 {{wallet.m}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "SideShift AI"
-msgstr "Shapeshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3991,8 +3991,8 @@ msgid "Amount is above the limit"
 msgstr "금액이 한계 이상임"
 
 #: src/js/services/sideshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Shapeshift의 유효하지 않은 응답"
+msgid "Invalid response from Sideshift"
+msgstr "Sideshift의 유효하지 않은 응답"
 
 msgid "Insufficient Amount Received"
 msgstr "수령 금액이 부족합니다"

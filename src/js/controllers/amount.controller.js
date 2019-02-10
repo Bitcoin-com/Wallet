@@ -244,7 +244,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       if (passthroughParams.thirdParty) {
         vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
         if (vm.thirdParty) {
-          initShapeshift();
+          initSideshift();
         }
       }
     }
@@ -258,7 +258,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     sendFlowService.router.goBack();
   }
 
-  function initShapeshift() {
+  function initSideshift() {
     if (vm.thirdParty.id === 'sideshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
 
@@ -269,9 +269,9 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.showSendLimitMaxButton = false;
       vm.canSendAllAvailableFunds = false;
 
-      ongoingProcess.set('connectingShapeshift', true);
+      ongoingProcess.set('connectingSideshift', true);
       sideshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
-        ongoingProcess.set('connectingShapeshift', false);
+        ongoingProcess.set('connectingSideshift', false);
         if (err) {
           // Error stop here
           popupService.showAlert(gettextCatalog.getString('SideShift AI Error'), err.message, function () {

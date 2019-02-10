@@ -3828,8 +3828,8 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-ของ -{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+msgid "Sideshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,8 +3992,8 @@ msgid "Amount is above the limit"
 msgstr "ยอดเงินเกินขีดจำกัด"
 
 #: src/js/services/sideshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "การตอบกลับไม่ถูกต้องจาก Shapeshift"
+msgid "Invalid response from Sideshift"
+msgstr "การตอบกลับไม่ถูกต้องจาก Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "ได้รับเงินไม่เพียงพอ"

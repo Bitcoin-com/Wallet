@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-из-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "SideShift AI"
-msgstr "Shapeshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3991,8 +3991,8 @@ msgid "Amount is above the limit"
 msgstr "Сумма больше ограничения"
 
 #: src/js/services/sideshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Неправильный ответ от Shapeshift"
+msgid "Invalid response from Sideshift"
+msgstr "Неправильный ответ от Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "Получена неполная оплата"

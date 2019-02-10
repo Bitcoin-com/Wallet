@@ -17,7 +17,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'connectingCoinbase': gettext('Connecting to Coinbase...'),
     'connectingGlidera': gettext('Connecting to Glidera...'),
     'connectingledger': gettext('Waiting for Ledger...'),
-    'connectingShapeshift': gettext('Connecting to SideShift AI...'),
+    'connectingSideshift': gettext('Connecting to SideShift AI...'),
     'connectingtrezor': gettext('Waiting for Trezor...'),
     'creatingCustomerId': gettext('Creating customer ID...'),
     'creatingGiftCard': 'Creating Gift Card...',

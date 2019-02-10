@@ -3829,7 +3829,7 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
 
 #: src/js/services/sideshiftService.js:8
-msgid "Shapeshift"
+msgid "Sideshift"
 msgstr ""
 
 #: www/views/includes/community.html:3
@@ -3993,7 +3993,7 @@ msgid "Amount is above the limit"
 msgstr ""
 
 #: src/js/services/sideshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
+msgid "Invalid response from Sideshift"
 msgstr ""
 
 msgid "Insufficient Amount Received"
