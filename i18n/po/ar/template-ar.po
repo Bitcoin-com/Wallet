@@ -2744,7 +2744,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr ""
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
@@ -3216,24 +3216,24 @@ msgstr ""
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr ""
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start Sideshift"
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr ""
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party Sideshift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr ""
 
 #: www/views/buyAmazon.html:61
@@ -3828,7 +3828,7 @@ msgstr ""
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
 
-#: src/js/services/shapeshiftService.js:8
+#: src/js/services/sideshiftService.js:8
 msgid "Shapeshift"
 msgstr ""
 
@@ -3976,23 +3976,23 @@ msgstr ""
 msgid "Open in web browser"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr ""
 

@@ -2742,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "Puoi ricevere Bitcoin da qualsiasi portafoglio o servizio."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Per iniziare, è necessario che tu crei un portafoglio bitcoin e ottenerne qualcuno."
@@ -3214,23 +3214,23 @@ msgstr "Ricarica in corso..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Ricaricare di {{amountStr}} sulla carta di debito ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Avvia ShapeShift"
+msgstr "Avvia Sideshift"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Cambia i tuoi BTC in BCH in pochi minuti."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "Per avviare il processo devi aggiungere fondi al tuo portafoglio."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "Il processo è veloce e riceverai l'importo cambiato nel tuo portafoglio."
 
-#: www/views/shapeshift.html:34
+#: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr "Questo servizio è fornito dalla terza parte SideShift AI, che addebiterà una piccola commissione per lo stesso. La commissione sarà mostrata prima di iniziare la transazione."
 
@@ -3826,7 +3826,7 @@ msgstr "{{updatingTxHistoryProgress}} transazioni scaricate"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-di-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
+#: src/js/services/sideshiftService.js:8
 msgid "SideShift AI"
 msgstr "Shapeshift"
 
@@ -3974,23 +3974,23 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Aprire nel browser web"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Indirizzo non valido"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "Importo non definito"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "Importo inferiore al minimo"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "Importo sopra il limite"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr "Risposta non valida da Shapeshift"
 

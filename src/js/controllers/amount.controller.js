@@ -6,7 +6,7 @@ angular
   .module('bitcoincom.controllers')
   .controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, sideshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
   var vm = this;
   
   // Functions
@@ -259,7 +259,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function initShapeshift() {
-    if (vm.thirdParty.id === 'shapeshift') {
+    if (vm.thirdParty.id === 'sideshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
 
       vm.fromWallet = profileService.getWallet(vm.fromWalletId);
@@ -270,7 +270,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.canSendAllAvailableFunds = false;
 
       ongoingProcess.set('connectingShapeshift', true);
-      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
+      sideshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
         ongoingProcess.set('connectingShapeshift', false);
         if (err) {
           // Error stop here
@@ -481,7 +481,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (vm.fundsAreInsufficient) {
       vm.errorMessage = gettextCatalog.getString('Not enough available funds');
 
-    } else if (amountInCrypto && vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
+    } else if (amountInCrypto && vm.thirdParty && vm.thirdParty.id === 'sideshift') {
       if (amountInCrypto < vm.minAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is below minimum');
 

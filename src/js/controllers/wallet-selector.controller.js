@@ -120,7 +120,7 @@ angular
 
     function handleThirdPartyIfShapeshift() {
       console.log($scope.params.thirdParty, $scope.coin);
-      if ($scope.params.thirdParty.id === 'shapeshift' && $scope.type === 'destination') { // Shapeshift wants to know the
+      if ($scope.params.thirdParty.id === 'sideshift' && $scope.type === 'destination') { // Shapeshift wants to know the
         $scope.coin = profileService.getWallet(fromWalletId).coin;
         if ($scope.coin === 'bch') {
           $scope.coin = 'btc';

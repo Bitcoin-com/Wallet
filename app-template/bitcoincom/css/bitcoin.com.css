@@ -207,9 +207,9 @@ div.onboarding-topic {
 	color:#26B03C;
 }
 
-.icon-shapeshift {
+.icon-sideshift {
 	background-color: #494949;
-	background-image: url('../img/shapeshifticon.png');
+	background-image: url('../img/sideshifticon.png');
 }
 
 .icon-games {
@@ -257,14 +257,14 @@ div.onboarding-topic {
 	background-image: url('../img/icon-share.svg');
 }
 
-.shapeshift-banner {
-	background: url(../img/shapeshiftbg.jpg) center center no-repeat #28394d;
+.sideshift-banner {
+	background: url(../img/sideshiftbg.jpg) center center no-repeat #28394d;
 	padding: 10px;
 	box-shadow: 0px 5px 10px 0px #cccccc;
 	height: 5em;
 }
 
-.shapeshift-logo {
+.sideshift-logo {
 	display: block;
 	float: left;
 	max-height: 100%;

@@ -1,4 +1,4 @@
-var ShapeShift = (function() {
+var Sideshift = (function() {
     var JP = JSON.parse;
     var JS = JSON.stringify;
 
@@ -89,9 +89,9 @@ var ShapeShift = (function() {
         if(typeof(cb) === 'function') cb(data);
     }
 
-    function ShapeShiftApi(publicApiKey) { this.apiPubKey = publicApiKey; }
+    function SideshiftApi(publicApiKey) { this.apiPubKey = publicApiKey; }
 
-    var SS=ShapeShiftApi.prototype;
+    var SS=SideshiftApi.prototype;
 
     SS.GetRate = function(coin1, coin2, cb) {
         var pair = coinPairer(coin1, coin2);
@@ -293,13 +293,13 @@ var ShapeShift = (function() {
     };
 
     return {
-        ShapeShiftApi: ShapeShiftApi
+        SideshiftApi: SideshiftApi
     }
 })();
 var PUBLIC_API_KEY = '023735052c21eaf1a9a9087ed03cac30fccd64bdd2515c8de230f8591caf282faa3afb8694cb3e44d25621b4e46453c5526d56e007468b56cced10d37cfed351'
-var SSA = new ShapeShift.ShapeShiftApi(PUBLIC_API_KEY);
+var SSA = new Sideshift.SideshiftApi(PUBLIC_API_KEY);
 
-angular.module('copayApp.services').factory('shapeshiftApiService', function($q) {
+angular.module('copayApp.services').factory('sideshiftApiService', function($q) {
   return {
       coins : function(){
           var promise = $q.defer();
@@ -328,7 +328,7 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
               $scope.amount, $scope.withdrawalAddress,
               $scope.coinIn, $scope.coinOut
           );
-          console.log('shapeshiftApiService.FixedAmountTx()');
+          console.log('sideshiftApiService.FixedAmountTx()');
           console.log(fixedTx);
           SSA.FixedAmountTx(fixedTx, function (data) {
             console.log(data);
@@ -340,7 +340,7 @@ angular.module('copayApp.services').factory('shapeshiftApiService', function($q)
           var promise = $q.defer();
           var normalTx = SSA.CreateNormalTx($scope.withdrawalAddress, $scope.coinIn, $scope.coinOut);
 
-          console.log('shapeshiftApiService.NormalTx()');
+          console.log('sideshiftApiService.NormalTx()');
           console.log(normalTx);
           SSA.NormalTx(normalTx, function (data) {
             console.log(data);

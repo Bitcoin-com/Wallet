@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinSelector', function(shapeshiftApiService) {
+angular.module('copayApp.directives').directive('sideshiftCoinSelector', function(sideshiftApiService) {
     return {
-        require:['^shapeshiftCoinTrader'],
+        require:['^sideshiftCoinTrader'],
         restrict: 'E',
         transclude: false,
         scope: {
@@ -43,6 +43,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinSelector', functi
                   coinTraderCtrl.toWalletId(newVal);
             });
         },
-        templateUrl: 'views/includes/shapeshift-coin-selector.html'
+        templateUrl: 'views/includes/sideshift-coin-selector.html'
     }
 });

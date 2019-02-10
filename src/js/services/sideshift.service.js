@@ -4,9 +4,9 @@
 
 angular
   .module('bitcoincom.services')
-  .factory('shapeshiftService', shapeshiftService);
+  .factory('sideshiftService', sideshiftService);
   
-  function shapeshiftService(shapeshiftApiService, gettextCatalog) {
+  function sideshiftService(sideshiftApiService, gettextCatalog) {
 
     var service = {
       // Variables
@@ -41,7 +41,7 @@ angular
     function getMarketData(coinIn, coinOut, cb) {
       service.coinIn = coinIn;
       service.coinOut = coinOut;
-      shapeshiftApiService
+      sideshiftApiService
         .marketInfo(service.coinIn, service.coinOut)
         .then(function (response) {
           if (!response || response.error) {
@@ -72,12 +72,12 @@ angular
         service.amount = amount;
 
         // Check the address
-        shapeshiftApiService
+        sideshiftApiService
           .ValidateAddress(returnAddress, coinOut)
           .then(function onSuccess(response) {
             if (response && response.isvalid) {
-              // Prepare the transaction shapeshift side
-              shapeshiftApiService.NormalTx(service).then(function onResponse(response) {
+              // Prepare the transaction sideshift side
+              sideshiftApiService.NormalTx(service).then(function onResponse(response) {
                 // If error, return it
                 if (!response || response.error) {
                   handleError(response, gettextCatalog.getString('Invalid response from Shapeshift'), cb);
@@ -90,7 +90,7 @@ angular
                   } else {
                     // Get back the data
                     service.depositInfo = txData;
-                    var shapeshiftData = {
+                    var sideshiftData = {
                       coinIn: coinIn,
                       coinOut: coinOut,
                       toWalletId: service.toWalletId,
@@ -99,7 +99,7 @@ angular
                       orderId: txData.orderId,
                       toAddress: txData.deposit
                     };
-                    cb(null, shapeshiftData);
+                    cb(null, sideshiftData);
                   }
                 }
               });

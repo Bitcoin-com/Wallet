@@ -30,7 +30,7 @@ angular
     , satoshiDiceService
     , $scope
     , sendFlowService
-    , shapeshiftService
+    , sideshiftService
     , soundService
     , $state
     , $timeout
@@ -162,7 +162,7 @@ angular
       if (sendFlowData.thirdParty) {
         vm.thirdParty = sendFlowData.thirdParty;
         switch (vm.thirdParty.id) {
-          case 'shapeshift':
+          case 'sideshift':
             initShapeshift(function onInitShapeshift(err) {
               if (err) {
                 // Error stop here
@@ -341,7 +341,7 @@ angular
         txp: {},
       };
 
-      if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
+      if (vm.thirdParty && vm.thirdParty.id === "sideshift") {
         tx.toAddress = vm.thirdParty.toAddress;
       }
       
@@ -358,7 +358,7 @@ angular
       var networkName;
       try {
         // Final destination is a wallet, but this transaction must go to an address for the first stage of the exchange.
-        if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'shapeshift') {
+        if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'sideshift') {
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
           setupTx(tx);
@@ -642,13 +642,13 @@ angular
           // Need to use the correct service to do it.
           var amount = parseFloat(satoshis / 100000000);
 
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, shapeshiftData) {
+          sideshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, sideshiftData) {
             if (err) {
               return cb(err);
             } else {
               // Want it to appear like a wallet-to-wallet transfer, so don't set the main toAddress.
-              vm.thirdParty.toAddress = shapeshiftData.toAddress;
-              vm.memo = 'SideShift Order:\nhttps://sideshift.ai/orders/' + shapeshiftData.orderId;
+              vm.thirdParty.toAddress = sideshiftData.toAddress;
+              vm.memo = 'SideShift Order:\nhttps://sideshift.ai/orders/' + sideshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
               ongoingProcess.set('connectingShapeshift', false);
               cb();

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function($interval, shapeshiftApiService, profileService, incomingDataService, ongoingProcess) {
+angular.module('copayApp.directives').directive('sideshiftCoinTrader', function($interval, sideshiftApiService, profileService, incomingDataService, ongoingProcess) {
   return {
     restrict: 'E',
     transclude: true,
@@ -38,7 +38,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
             $scope.coinIn = coinIn;
             $scope.coinOut= coinOut;
             if($scope.coinIn === undefined || $scope.coinOut === undefined) return;
-            shapeshiftApiService
+            sideshiftApiService
                 .marketInfo($scope.coinIn, $scope.coinOut)
                 .then(function(marketData){
                     $scope.marketData = marketData;
@@ -46,7 +46,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
             });
         };
 
-        /*shapeshiftApiService.coins().then(function(coins){
+        /*sideshiftApiService.coins().then(function(coins){
             $scope.coins = coins;
             $scope.coinIn = coins['BTC'].symbol;
             $scope.coinOut = coins['BCH'].symbol;
@@ -65,11 +65,11 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
 
         $scope.shiftIt = function(){
             ongoingProcess.set('connectingShapeshift', true);
-            var validate=shapeshiftApiService.ValidateAddress($scope.withdrawalAddress, $scope.coinOut);
+            var validate=sideshiftApiService.ValidateAddress($scope.withdrawalAddress, $scope.coinOut);
             validate.then(function(valid){
                 //console.log($scope.withdrawalAddress)
                 //console.log(valid)
-                var tx = ShapeShift();
+                var tx = Sideshift();
                 tx.then(function(txData){
                     if(txData['fixedTxData']){
                         txData = txData.fixedTxData;
@@ -104,7 +104,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                     if (sendAddress && sendAddress.indexOf('bitcoin cash') >= 0)
                       sendAddress = sendAddress.replace('bitcoin cash', 'bitcoincash');
 
-                    var shapeshiftData = {
+                    var sideshiftData = {
                       fromWalletId: $scope.fromWalletId,
                       minAmount: $scope.marketData.minimum,
                       maxAmount: $scope.marketData.maxLimit,
@@ -112,7 +112,7 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
                     };
 
                     // How to handle this
-                    if (incomingDataService.redir(sendAddress, 'shapeshift', shapeshiftData)) {
+                    if (incomingDataService.redir(sendAddress, 'sideshift', sideshiftData)) {
                         ongoingProcess.set('connectingShapeshift', false);
                         return;
                     }
@@ -124,15 +124,15 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
             })
         };
 
-        function ShapeShift() {
-            if($scope.ShiftState === 'Cancel') return shapeshiftApiService.CancelTx($scope);
-            if(parseFloat($scope.amount) > 0) return shapeshiftApiService.FixedAmountTx($scope);
-            return shapeshiftApiService.NormalTx($scope);
+        function Sideshift() {
+            if($scope.ShiftState === 'Cancel') return sideshiftApiService.CancelTx($scope);
+            if(parseFloat($scope.amount) > 0) return sideshiftApiService.FixedAmountTx($scope);
+            return sideshiftApiService.NormalTx($scope);
         }
 
         $scope.GetStatus = function(){
             var address = $scope.depositInfo.deposit
-            shapeshiftApiService.GetStatusOfDepositToAddress(address).then(function(data){
+            sideshiftApiService.GetStatusOfDepositToAddress(address).then(function(data){
                 $scope.DepositStatus = data;
                 if($scope.DepositStatus.status === 'complete'){
                     $interval.cancel($scope.txInterval);
@@ -142,6 +142,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinTrader', function
             });
         }
     },
-    templateUrl: 'views/includes/shapeshift-coin-trader.html'
+    templateUrl: 'views/includes/sideshift-coin-trader.html'
   }
 });

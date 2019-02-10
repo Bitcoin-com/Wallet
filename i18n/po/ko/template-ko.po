@@ -2742,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "지갑 또는 서비스에서 비트코인을 받을 수 있습니다."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "시작하시기 위해선 비트코인 지갑을 생성하시거나 비트코인을 구매하세요."
@@ -3214,23 +3214,23 @@ msgstr "추가 지불(Top up) 진행 중..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "체크 카드 ({{cardLastNumber}})에 {{amountStr}} 추가 지불(Top up)하기"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "ShapeShift 시작"
+msgstr "Sideshift 시작"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "BTC를 몇 분 내에 BCH로 교환"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "과정을 시작하려면 지갑에 펀드를 적립해야 합니다."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "과정은 빠르며 지갑에 교환 금액이 전송됩니다."
 
-#: www/views/shapeshift.html:34
+#: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr "제3자 회사 SideShift AI는 소액의 수수료를 받고 서비스를 제공합니다. 수수료 금액은 거래 시작 전에 표시됩니다."
 
@@ -3826,7 +3826,7 @@ msgstr "{{updatingTxHistoryProgress}} 거래 내역 다운로드 완료"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.n}}의 {{wallet.m}}"
 
-#: src/js/services/shapeshiftService.js:8
+#: src/js/services/sideshiftService.js:8
 msgid "SideShift AI"
 msgstr "Shapeshift"
 
@@ -3974,23 +3974,23 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "웹 브라우저에서 열기"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "유효하지 않은 주소"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "금액이 정의되지 않음"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "금액이 최저 이하임"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "금액이 한계 이상임"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr "Shapeshift의 유효하지 않은 응답"
 
