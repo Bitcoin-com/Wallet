@@ -67,9 +67,6 @@ angular
     function _initVariables() {
       vm.submitted = false;
 
-      currentState = kycFlowService.getCurrentStateClone();
-      console.log('buyBitcoinKycPersonalInfoController onBeforeEnter after back kycflow', currentState);
-
       vm.countries = [];
       // Fetch Countries and Documents
       Promise.all([moonPayService.getCustomer(), moonPayService.getAllCountries(true)]).then(
