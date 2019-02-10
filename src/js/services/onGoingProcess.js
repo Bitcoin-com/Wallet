@@ -33,6 +33,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'gettingKycIdentity': gettext('Getting Verification Status...'),
     'importingWallet': gettext('Importing Wallet...'),
     'joiningWallet': gettext('Joining Wallet...'),
+    'loadingProfile': gettext('Loading Profile...'),
     'loadingTxInfo': gettext('Loading transaction info...'),
     'recreating': gettext('Recreating Wallet...'),
     'rejectTx': gettext('Rejecting payment proposal'),

@@ -27,6 +27,8 @@ angular
       // Functions
       preAuthenticateCustomer: preAuthenticateCustomer
       , authenticateCustomer: authenticateCustomer
+      /* TODO: Reinstate when Moonpay is working properly
+      createCustomer: createCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
@@ -48,6 +50,7 @@ angular
       , getFiles: getFiles
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
+      */
     };
 
     return service;
@@ -496,11 +499,13 @@ angular
     /**
      * Get all countries
      */
-    function getAllCountries() {
+    function getAllCountries(onlySendAllowedCountries) {
+      onlySendAllowedCountries = onlySendAllowedCountries || false;
+      
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.getAllCountries().then(
+      moonPayApiService.getAllCountries(onlySendAllowedCountries).then(
         function onGetAllCountries(countries) {
           deferred.resolve(countries);
         }, function onGetAllCountriesError(err) {

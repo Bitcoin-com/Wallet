@@ -25,6 +25,8 @@ angular
       // Functions
       preAuthenticateCustomer: preAuthenticateCustomer
       , authenticateCustomer: authenticateCustomer
+      /* TODO: Reinstate when Moonpay is working properly
+      createCustomer: createCustomer
       , getCustomer: getCustomer
       , updateCustomer: updateCustomer
       , createCard: createCard
@@ -40,6 +42,7 @@ angular
       , uploadFile: uploadFile
       , getFiles: getFiles
       , deleteFile: deleteFile
+      */
     };
 
     return service;
@@ -302,11 +305,18 @@ angular
     /**
      * Get all countries
      */
-    function getAllCountries() {
+    function getAllCountries(onlySendAllowedCountries) {
       var deferred = $q.defer();
       getConfig(false).then(function(config) {
         $http.get(baseUrl + '/v2/countries', config).then(function onGetAllCountries(response) {
           var countries = response.data;
+
+          if (onlySendAllowedCountries) {
+            countries = countries.filter(function(country) {
+              return country.isAllowed;
+            });
+          }
+
           deferred.resolve(countries);
         }, function onGetAllCountriesError(err) {
           var httpErr = _errorFromResponse(err);
