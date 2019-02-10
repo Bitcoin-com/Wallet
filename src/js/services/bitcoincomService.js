@@ -56,7 +56,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     name: 'sideshift',
     title: gettextCatalog.getString('Exchange between BTC and BCH'),
     icon: 'icon-sideshift',
-    sref: 'tabs.shapeshift'
+    sref: 'tabs.sideshift'
   };
 
   var bchRedditItem = {

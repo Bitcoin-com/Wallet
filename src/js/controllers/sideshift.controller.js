@@ -4,7 +4,7 @@
 
 angular
   .module('bitcoincom.controllers')
-  .factory('sideshiftController', sideshiftController);
+  .controller('sideshiftController', sideshiftController);
   
   function sideshiftController(
     $scope

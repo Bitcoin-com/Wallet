@@ -10035,6 +10035,9 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-image: url("../img/icon-twitter-white.svg");
       background-color: #1da1f2;
       background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-sideshift {
+      background-image: url("../img/shapeshifticon.png");
+      background-size: 100%; }
     .big-icon-svg.theme-circle > .bg.icon-faucet {
       background-image: url("../img/icon-faucet.svg");
       background-size: 70%; }
