@@ -25,6 +25,8 @@ angular
     var service = {
 
       // Functions
+      preAuthenticateCustomer: preAuthenticateCustomer
+      , authenticateCustomer: authenticateCustomer
       /* TODO: Reinstate when Moonpay is working properly
       createCustomer: createCustomer
       , getCustomer: getCustomer
@@ -172,15 +174,36 @@ angular
     }
 
     /**
-     * Create a customer
-     * @param {String} email 
+     * Pre-authenticate a customer with an email address
+     * @param {String} email
      */
-    function createCustomer(email) {
+    function preAuthenticateCustomer(email) {
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCustomer(email).then(
-        function onCreateCustomerSuccess(customer) {
+      moonPayApiService.preAuthenticateCustomer(email).then(
+        function onPreAuthenticateCustomerSuccess(customer) {
+          deferred.resolve(customer);
+        }, function onPreAuthenticateCustomerError(err) {
+          $log.debug('Error pre-authenticating moonpay customer from the api');
+          deferred.reject(err);
+        }
+      );
+
+      return deferred.promise;
+    }
+
+    /**
+     * Authenticate a customer with an email address and a security code
+     * @param {String} email
+     * @param {String} securityCode
+     */
+    function authenticateCustomer(email, securityCode) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.authenticateCustomer(email, securityCode).then(
+        function onAuthenticateCustomerSuccess(customer) {
           storageService.setItem(customerIdKey, customer.id, function onSaveCustomer(err) {
             if (err) {
               $log.debug('Error setting moonpay customer id in the local storage');
@@ -189,8 +212,8 @@ angular
               deferred.resolve(customer);
             }
           });
-        }, function onCreateCustomerError(err) {
-          $log.debug('Error creating moonpay customer from the api');
+        }, function onAuthenticateCustomerError(err) {
+          $log.debug('Error authenticating moonpay customer from the api');
           deferred.reject(err);
         }
       );

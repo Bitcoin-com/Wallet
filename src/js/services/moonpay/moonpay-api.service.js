@@ -23,6 +23,8 @@ angular
       // Variables
 
       // Functions
+      preAuthenticateCustomer: preAuthenticateCustomer
+      , authenticateCustomer: authenticateCustomer
       /* TODO: Reinstate when Moonpay is working properly
       createCustomer: createCustomer
       , getCustomer: getCustomer
@@ -46,17 +48,41 @@ angular
     return service;
 
     /**
-     * Create customer
-     * @param {String} email 
+     * Pre-authenticate a customer with an email address
+     * @param {String} email
      */
-    function createCustomer(email) {
+    function preAuthenticateCustomer(email) {
       var deferred = $q.defer();
       getConfig(false).then(function onGetConfig(config) {
-        $http.post(baseUrl + '/v2/customers?apiKey=' + moonPayConfig.pubKey, {
+        $http.post(baseUrl + '/v2/customers/email_login?apiKey=' + moonPayConfig.pubKey, {
           'email': email
-        }, config).then(function onPostEmailSuccess(response) {
+        }, config).then(function onPreAuthenticateCustomerSuccess(response) {
+          deferred.resolve(response.data);
+        }, function onPreAuthenticateCustomerError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Authenticate a customer with an email address and a security code
+     * @param {String} email
+     * @param {String} securityCode
+     */
+    function authenticateCustomer(email, securityCode) {
+      var deferred = $q.defer();
+      getConfig(false).then(function onGetConfig(config) {
+        $http.post(baseUrl + '/v2/customers/email_login?apiKey=' + moonPayConfig.pubKey, {
+          'email': email,
+          'securityCode': securityCode
+        }, config).then(function onAuthenticateCustomerSuccess(response) {
           var data = response.data;
           currentToken = data.token;
+          deferred.resolve(data.customer);
           localStorageService.set(tokenKey, data.token, function onTokenSaved(err) {
             if (err) {
               $log.debug('Error setting moonpay customer token in the local storage');
@@ -65,7 +91,7 @@ angular
               deferred.resolve(data.customer);
             }
           });
-        }, function onPostEmailError(err) {
+        }, function onAuthenticateCustomerError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
         });

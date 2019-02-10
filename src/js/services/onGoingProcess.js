@@ -53,6 +53,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'updatingGiftCard': 'Updating Gift Card...',
     'updatingGiftCards': 'Updating Gift Cards...',
     'validatingWords': gettext('Validating recovery phrase...'),
+    'verifyingEmail': gettext('Verifying your email...'),
     'generatingNewAddress': gettext('Generating new address...')
   };
 
