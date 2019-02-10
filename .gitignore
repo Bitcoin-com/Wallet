@@ -112,3 +112,4 @@ src/js/generated
 
 ##Intellij
 .idea
+package.json
