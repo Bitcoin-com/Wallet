@@ -150,18 +150,12 @@ angular
         }, 10);
       });
     }
-
-    function onBuyBitcoin() {
-      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
-    };
     
     function onSettings() {
       $state.go('tabs.settings', {});
     }
 
-    function buyBitcoin() {
-      console.log('buyBitcoin()');
+    function onBuyBitcoin() {
       moonPayService.start();
     }
 

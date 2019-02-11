@@ -11,7 +11,9 @@ angular
     , storageService
     , moonPayRouterService
     , moonPayConfig
-    , $log, $q
+    , $log
+    , $q
+    , ongoingProcess
   ) {
 
     var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
@@ -27,11 +29,10 @@ angular
       // Functions
       preAuthenticateCustomer: preAuthenticateCustomer
       , authenticateCustomer: authenticateCustomer
-      /* TODO: Reinstate when Moonpay is working properly
-      createCustomer: createCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
+      , addCard: addCard
       , createCard: createCard
       , removeCard: removeCard
       , getCards: getCards
@@ -50,7 +51,7 @@ angular
       , getFiles: getFiles
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
-      */
+      , getConfigWithToken: getConfigWithToken
     };
 
     return service;
@@ -62,7 +63,7 @@ angular
       $log.debug('buy bitcoin start()');
 
       ongoingProcess.set('gettingKycCustomerId', true);
-      getCustomerId(function onCustomerId(err, customerId){
+      getCustomerId().then(function onCustomerId(customerId, err){
         ongoingProcess.set('gettingKycCustomerId', false);
 
         if (err) {
@@ -321,6 +322,19 @@ angular
       });
 
       return deferred.promise;
+    }
+
+    /**
+     * Add a defined card
+     * @param {Object} newCard 
+     */
+    function addCard(newCard) {
+      if (currentCards != null) {
+        currentCards.push(newCard);
+      } else {
+        currentCards = [newCard];
+      }
+      return currentCards;
     }
 
     /**
@@ -629,6 +643,10 @@ angular
         }
       );
       return deferred.promise;
+    }
+    
+    function getConfigWithToken() {
+      return moonPayApiService.getConfig(true);
     }
   }
 })();
