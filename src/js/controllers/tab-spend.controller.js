@@ -72,7 +72,7 @@
     }
 
     function onEGifter() {
-      externalLinkService.open('https://www.egifter.com/');
+      externalLinkService.open('https://giftcards.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
     }
 
     function onMerchant(index) {
