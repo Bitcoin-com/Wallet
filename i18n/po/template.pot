@@ -4536,4 +4536,4 @@ msgid "Exchange between BTC and BCH"
 msgstr ""
 
 msgid "Exchange"
-msgid ""
+msgstr ""
