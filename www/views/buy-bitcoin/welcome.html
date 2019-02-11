@@ -12,7 +12,8 @@
       <div class="image-container">
         <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
       </div>
-      <h1 class="center" translate>Buy Bitcoin Cash</h1>
+      <h1 ng-if="!vm.securityCodeMode" class="center" translate>Buy Bitcoin Cash</h1>
+      <h1 ng-if="vm.securityCodeMode" class="center" translate>Verify Email</h1>
       <p class="center" ng-if="!vm.securityCodeMode">Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
       <p class="center" ng-if="vm.securityCodeMode">Enter the security code we've just sent you to verify your email.</p>
       <small class="center">You will only receive emails related to your purchases.</small>
