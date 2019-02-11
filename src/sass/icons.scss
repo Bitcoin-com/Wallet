@@ -64,7 +64,7 @@
         vertical-align: middle;
       }
 
-      &.icon-shapeshift {
+      &.icon-sideshift {
         background-color: #263e5c;
       }
 
@@ -82,6 +82,11 @@
         background-image: url('../img/icon-twitter-white.svg');
         background-color: #1da1f2;
         background-size: 60%;
+      }
+
+      &.icon-sideshift {
+        background-image: url('../img/sideshifticon.png');
+        background-size: 100%;
       }
 
       &.icon-faucet {

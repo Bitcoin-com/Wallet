@@ -2743,7 +2743,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "คุณสามารถรับbitcoinได้จากกระเป๋าเงินหรือบริการใดๆก็ได้"
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "ในการเริ่มต้นคุณจะต้องสร้างกระเป๋าเงินbitcoin และรับเงินbitcoin"
@@ -3215,25 +3215,25 @@ msgstr "อยู่ระหว่างดำเนินการ..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr " {{amountStr}} ไปยังบัตรเดบิต {{cardLastNumber}}"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "เริ่ม ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start Sideshift"
+msgstr "เริ่ม Sideshift"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "แลก BTC เป็น BCH แค่แปปเดียว"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "การเริ่มต้นขั้นตอน คุณจำเป็นต้องเพิ่มเงินในกระเป๋าของคุณ"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "กระบวนการเป็นไปอย่างรวดเร็ว และคุณจะได้รับเงินที่แลกแล้วในกระเป๋าของคุณ"
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "บริการนี้เป็นบริการโดยบุคคลที่สาม ShapeShift จะถูกเก็บค่าธรรมเนียมที่ต่ำ และค่าธรรมเนียมจะแสดงให้เห็นเมื่อคุณทำธุรกรรม"
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party Sideshift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "บริการนี้เป็นบริการโดยบุคคลที่สาม Sideshift จะถูกเก็บค่าธรรมเนียมที่ต่ำ และค่าธรรมเนียมจะแสดงให้เห็นเมื่อคุณทำธุรกรรม"
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3827,9 +3827,9 @@ msgstr "{{updatingTxHistoryProgress}} ดาวน์โหลดธุรกร
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-ของ -{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3975,25 +3975,25 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "เปิดในเว็บเบราว์เซอร์"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "ที่อยู่ไม่ถูกต้อง"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "ไม่กำหนดยอดเงิน"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "ยอดเงินต่ำกว่าขั้นต่ำที่กำหนด"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "ยอดเงินเกินขีดจำกัด"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "การตอบกลับไม่ถูกต้องจาก Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "การตอบกลับไม่ถูกต้องจาก Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "ได้รับเงินไม่เพียงพอ"

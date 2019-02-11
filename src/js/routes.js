@@ -1168,13 +1168,13 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         }
       })
 
-      /* Shapeshift */
-      .state('tabs.shapeshift', {
-        url: '/shapeshift/:fromWalletId/:toWalletId',
+      /* Sideshift */
+      .state('tabs.sideshift', {
+        url: '/sideshift/:fromWalletId/:toWalletId',
         views: {
           'tab-home@tabs': {
-            controller: 'shapeshiftController',
-            templateUrl: 'views/shapeshift.html'
+            controller: 'sideshiftController',
+            templateUrl: 'views/sideshift.html'
           }
         }
       })
@@ -1489,12 +1489,12 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       });
       window.BitAnalytics.ActionHandlers.trackAction(actionTabOpen);
 
-      var actionShapeShiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
-        name: 'shapeshift_start_click', 
-        class: 'track_shapeshift_start_click', 
+      var actionSideshiftStart = new window.BitAnalytics.ActionFactory.createAction('click', {
+        name: 'sideshift_start_click', 
+        class: 'track_sideshift_start_click', 
         channels: [channel, 'leanplum']
       });
-      window.BitAnalytics.ActionHandlers.trackAction(actionShapeShiftStart);
+      window.BitAnalytics.ActionHandlers.trackAction(actionSideshiftStart);
 
       // Buy Bitcoin Welcome Screen
 
