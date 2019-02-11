@@ -4537,3 +4537,7 @@ msgstr ""
 
 msgid "Exchange"
 msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr ""
+
