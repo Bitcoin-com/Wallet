@@ -24,15 +24,15 @@
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
-    vm.onVerificationSelect = onVerificationSelect;
     vm.didPushContactSupport = didPushContactSupport;
+    vm.onPrivacyPolicy = onPrivacyPolicy;
+    vm.onTermsOfUse = onTermsOfUse;
+    vm.onVerificationSelect = onVerificationSelect;
+    
 
     function _initVariables() {
       vm.customer = null;
       vm.identityCheck = null;
-
-      vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
-      vm.termsOfService = 'tabs.buybitcoin-tos'
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
@@ -126,6 +126,14 @@
 
     function didPushBuyInstantly() {
       $state.go('tabs.buybitcoin-amount');
+    }
+
+    function onPrivacyPolicy() {
+      externalLinkService.open('https://www.moonpay.io/privacy_policy?mobile=true', false);
+    }
+
+    function onTermsOfUse() {
+      externalLinkService.open('https://www.moonpay.io/terms_of_use?mobile=true', false);
     }
 
     function onVerificationSelect() {
