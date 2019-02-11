@@ -530,6 +530,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.goToSend = function() {
     _callLeaveHandlers(); // During testing these weren't automatically called
     sendFlowService.start({
+      coin: $scope.wallet.coin,
       fromWalletId: $scope.wallet.id
     });
     
