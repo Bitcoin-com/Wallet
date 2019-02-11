@@ -40,6 +40,7 @@ angular
         form.submit('/v2/cards',
         config,
         function onFormSubmitSuccess(status, response) {
+          ongoingProcess.set('addingCreditCard', false);
           moonPayService.addCard(response);
           $scope.$ionicGoBack();
         },

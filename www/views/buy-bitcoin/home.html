@@ -43,10 +43,10 @@
       </div>
     </div>
     <div>
-      <h1 translate>
+      <h1 ng-show="vm.customer.dailyLimit > 0" translate>
         Quick Links
       </h1>
-      <div class="apl-list">
+      <div class="apl-list" ng-show="vm.customer.dailyLimit > 0">
         <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods"
           ng-click="vm.onVerificationSelect()"
           ng-if="(!vm.identityCheck && vm.customer.dailyLimit > 0) || (vm.identityCheck && vm.identityCheck.status !== 'completed')">
