@@ -28,6 +28,7 @@
     vm.onPrivacyPolicy = onPrivacyPolicy;
     vm.onTermsOfUse = onTermsOfUse;
     vm.onVerificationSelect = onVerificationSelect;
+    vm.goBack = goBack;
     
 
     function _initVariables() {
@@ -54,7 +55,7 @@
             var title = gettextCatalog.getString("Error Getting Customer Information");
             var message = gettextCatalog.getString("Customer information was missing.");
             popupService.showAlert(title, message, function onAlert() {
-              _goBack();
+              goBack();
             });
             return;
           }
@@ -72,14 +73,15 @@
           var title = gettextCatalog.getString("Error Getting Customer Information");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
           popupService.showAlert(title, message, function onAlert() {
-            _goBack();
+            goBack();
           });
         }
       );
     }
 
-    function _goBack() {
-      $ionicHistory.goBack();
+    function goBack() {
+      $ionicHistory.removeBackView();
+      $state.go('tabs.home');
       bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [{}, {}, {}], ['leanplum']);
     }
 

@@ -14,7 +14,8 @@ angular
     moonPayService,
     ongoingProcess,
     popupService,
-    $scope
+    $scope,
+    $state
     ) {
     var vm = this;
 
@@ -82,7 +83,8 @@ angular
         function onAuthenticateCustomerSuccess(customer) {
           console.log('Email verified.', customer);
           ongoingProcess.set('verifyingEmail', false);
-          $ionicHistory.goBack();
+          $ionicHistory.clearHistory();
+          $state.go('tabs.buybitcoin');
         },
 
         function onAuthenticateCustomerError(err) {
