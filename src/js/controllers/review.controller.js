@@ -342,7 +342,8 @@ angular
       };
 
       if (vm.thirdParty && vm.thirdParty.id === "sideshift") {
-        tx.toAddress = vm.thirdParty.toAddress;
+        //tx.toAddress = vm.thirdParty.toAddress;
+        tx.toAddress = bitcoinCashJsService.readAddress(vm.thirdParty.toAddress).legacy;
       }
       
       if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
@@ -434,8 +435,10 @@ angular
 
       var txp = {};
 
+      var toAddress = bitcoinCashJsService.readAddress(tx.toAddress).legacy;
+
       txp.outputs = [{
-        'toAddress': tx.toAddress,
+        'toAddress': toAddress,
         'amount': tx.amount,
         'message': vm.memo
       }];

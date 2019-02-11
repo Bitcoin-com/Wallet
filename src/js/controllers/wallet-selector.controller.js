@@ -120,12 +120,16 @@ angular
 
     function handleThirdPartyIfSideshift() {
       console.log($scope.params.thirdParty, $scope.coin);
-      if ($scope.params.thirdParty.id === 'sideshift' && $scope.type === 'destination') { // Sideshift wants to know the
-        $scope.coin = profileService.getWallet(fromWalletId).coin;
-        if ($scope.coin === 'bch') {
-          $scope.coin = 'btc';
-        } else {
-          $scope.coin = 'bch';
+      if ($scope.params.thirdParty.id === 'sideshift') {
+        $scope.sendFlowTitle = gettextCatalog.getString('Exchange');
+
+        if ($scope.type === 'destination') { // Sideshift wants to know the
+          $scope.coin = profileService.getWallet(fromWalletId).coin;
+          if ($scope.coin === 'bch') {
+            $scope.coin = 'btc';
+          } else {
+            $scope.coin = 'bch';
+          }
         }
       }
     }
