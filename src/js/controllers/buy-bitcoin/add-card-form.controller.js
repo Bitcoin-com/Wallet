@@ -8,7 +8,8 @@ angular
 
   function addCardFormController(
     gettextCatalog,
-    moonPayService,
+    $log
+    , moonPayService,
     popupService,
     ongoingProcess,
     $scope,
@@ -41,8 +42,16 @@ angular
         config,
         function onFormSubmitSuccess(status, response) {
           ongoingProcess.set('addingCreditCard', false);
-          moonPayService.addCard(response);
-          $scope.$ionicGoBack();
+          console.log('status:', status);
+          if (status === 200 || status === 201) {
+            moonPayService.addCard(response);
+            $scope.$ionicGoBack();
+          } else {
+            $log.error('Status when submitting credit card form: ' + status);
+            var title = gettextCatalog.getString("Unable to Add Card");
+            var message = gettextCatalog.getString("Error. Status code: {{status}}", { status: status.toString()});
+            popupService.showAlert(title, message);
+          }
         },
         function onFormSubmitFail(errors) {
           ongoingProcess.set('addingCreditCard', false);
