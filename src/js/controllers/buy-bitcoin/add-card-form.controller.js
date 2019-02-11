@@ -106,8 +106,8 @@ angular
       }
       // TODO: Add production/debug switch for key
       form = VGSCollect.create(
-        'tntzdhyyfg9', // for test mode
-        // 'tntajtv6zty', // for production mode
+        //'tntzdhyyfg9', // for test mode
+        'tntajtv6zty', // for production mode
         function(state) {
         }
       );
