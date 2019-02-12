@@ -9,6 +9,7 @@ angular
 
   function buyBitcoinKycPersonalInfoController(
     bitAnalyticsService
+    , gettextCatalog
     , $log
     , kycFlowService
     , moonPayService
@@ -100,7 +101,7 @@ angular
       moonPayService.updateCustomer({
         firstName: vm.firstName,
         lastName: vm.lastName,
-        dateOfBirth: moment(vm.dob, 'DDMMYYY').format('YYYY-MM-DD'),
+        dateOfBirth: moment(vm.dob, 'DDMMYYYY').format('YYYY-MM-DD'),
         address: {
           street: vm.streetAddress1,
           subStreet: vm.streetAddress2,
