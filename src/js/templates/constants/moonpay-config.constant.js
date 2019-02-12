@@ -10,13 +10,13 @@ Requires a file above the project root: moonpay-config.json, containing:
       "baseUrl": "YOUR_DEV_BASE_URL",
       "pubKey": "YOUR_DEV_API_KEY",
       "secretKey": "YOUR_DEV_API_KEY"
-      "vgsKey": "YOUR_VGS_DEV_KEY"
+      "vgsIdentifier": "YOUR_VGS_DEV_IDENTIFIER"
     },
     "prod": {
       "baseUrl": "YOUR_PROD_BASE_URL",
       "pubKey": "YOUR_PROD_API_KEY",
       "secretKey": "YOUR_PROD_API_KEY",
-      "vgsKey": "YOUR_VGS_PROD_KEY"
+      "vgsIdentifier": "YOUR_VGS_PROD_IDENTIFIER"
     }
   }
 */
@@ -30,7 +30,7 @@ Requires a file above the project root: moonpay-config.json, containing:
       env: '',
       pubKey: '',
       secretKey: '',
-      vgsKey: '',
+      vgsIdentifier: '',
     });
     
 })();

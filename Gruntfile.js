@@ -486,18 +486,18 @@ module.exports = function(grunt) {
     var baseUrl = moonPayForEnv.baseUrl;
     var pubKey = moonPayForEnv.pubKey;
     var secretKey = moonPayForEnv.secretKey;
-    var vgsKey = moonPayForEnv.vgsKey;
-    console.log('MoonPay env:       "' + env + '"');
-    console.log('MoonPay baseUrl:   "' + baseUrl + '"');
-    console.log('MoonPay pubKey:    "' + pubKey + '"');
-    console.log('MoonPay secretKey: "' + secretKey + '"');
-    console.log('Moonpay vgsKey:    "' + vgsKey + '"');
+    var vgsIdentifier = moonPayForEnv.vgsIdentifier;
+    console.log('MoonPay env:            "' + env + '"');
+    console.log('MoonPay baseUrl:        "' + baseUrl + '"');
+    console.log('MoonPay pubKey:         "' + pubKey + '"');
+    console.log('MoonPay secretKey:      "' + secretKey + '"');
+    console.log('Moonpay VGS Identifier: "' + vgsIdentifier + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
       .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
       .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
-      .replace("vgsKey: ''", "vgsKey: '" + vgsKey + "'")
+      .replace("vgsIdentifier: ''", "vgsIdentifier: '" + vgsIdentifier + "'")
       .replace("env: ''", "env: '" + env + "'");
     return newContent;
   }

@@ -121,7 +121,7 @@ angular
       }
 
       form = VGSCollect.create(
-        moonPayConfig.vgsKey,
+        moonPayConfig.vgsIdentifier,
         function(state) {
         }
       );
