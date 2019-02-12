@@ -47,9 +47,13 @@ angular
             moonPayService.addCard(response);
             $scope.$ionicGoBack();
           } else {
-            $log.error('Status when submitting credit card form: ' + status);
+            var responseMessage = response.message ? response.message : '';
+            $log.error('Status when submitting credit card form: ' + status + ". " + responseMessage);
             var title = gettextCatalog.getString("Unable to Add Card");
             var message = gettextCatalog.getString("Error. Status code: {{status}}", { status: status.toString()});
+            if (responseMessage) {
+              message += '<br><br>' + responseMessage;
+            }
             popupService.showAlert(title, message);
           }
         },
@@ -116,8 +120,8 @@ angular
       }
       // TODO: Add production/debug switch for key
       form = VGSCollect.create(
-        //'tntzdhyyfg9', // for test mode
-        'tntajtv6zty', // for production mode
+        'tntzdhyyfg9', // for test mode
+        //'tntajtv6zty', // for production mode
         function(state) {
         }
       );
