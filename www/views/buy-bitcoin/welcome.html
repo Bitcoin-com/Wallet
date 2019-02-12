@@ -49,7 +49,8 @@
         <div class="apl-divider"></div>
       </div>
       <div id="bottom-button" class="apl-button-bottom-container no-shadow">
-        <a class="apl-button" ng-click="vm.securityCodeMode ? vm.authenticateCustomer() : vm.preAuthenticateCustomer()" translate>Get Started</a>
+        <a ng-if="!vm.securityCodeMode" class="apl-button" ng-click="vm.preAuthenticateCustomer()" translate>Get Started</a>
+        <a ng-if="vm.securityCodeMode" class="apl-button" ng-click="vm.authenticateCustomer()" translate>Verify Email</a>
       </div>
   </div>
   </ion-content>
