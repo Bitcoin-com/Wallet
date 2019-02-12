@@ -7,12 +7,13 @@ angular
   .controller('buyBitcoinAddCardFormController', addCardFormController);
 
   function addCardFormController(
-    gettextCatalog,
-    $log
-    , moonPayService,
-    popupService,
-    ongoingProcess,
-    $scope,
+    gettextCatalog
+    , $log
+    , moonPayConfig
+    , moonPayService
+    , popupService
+    , ongoingProcess
+    ,$scope
   ) {
     var vm = this;
     var form = null;
@@ -118,10 +119,9 @@ angular
       if(form){
         return;
       }
-      // TODO: Add production/debug switch for key
+
       form = VGSCollect.create(
-        'tntzdhyyfg9', // for test mode
-        //'tntajtv6zty', // for production mode
+        moonPayConfig.vgsKey,
         function(state) {
         }
       );
