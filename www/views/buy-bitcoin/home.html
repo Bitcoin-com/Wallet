@@ -16,7 +16,7 @@
       {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month.
     </p>
     <p ng-if="vm.identityCheck && vm.identityCheck.result === 'rejected'" class="center" translate>
-      Your account verification was rejected. Please contact support for additional assistance.
+      Your account verification was rejected.
     </p>
     <p ng-if="!vm.identityCheck && vm.customer.dailyLimit === 0" class="center" translate>
       In order to purchase Bitcoin Cash, you are required to provide some personal information.

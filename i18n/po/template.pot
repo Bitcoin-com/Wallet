@@ -4546,3 +4546,21 @@ msgstr ""
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr ""
+
+msgid "Your account verification was rejected."
+msgstr ""
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
