@@ -343,19 +343,12 @@ angular
     /**
      * Get all countries
      */
-    function getAllCountries(onlySendAllowedCountries) {
+    function getAllCountries() {
       var deferred = $q.defer();
       getConfig(false).then(function(config) {
         $http.get(baseUrl + '/v2/countries', config).then(function onGetAllCountries(response) {
           if (response.status === 200 || response.status === 201) {
             var countries = response.data;
-
-            if (onlySendAllowedCountries) {
-              countries = countries.filter(function(country) {
-                return country.isAllowed;
-              });
-            }
-
             deferred.resolve(countries);
           } else {
             deferred.reject(response.statusText);

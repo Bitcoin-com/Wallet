@@ -522,9 +522,15 @@ angular
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.getAllCountries(onlySendAllowedCountries).then(
+      moonPayApiService.getAllCountries().then(
         function onGetAllCountries(countries) {
-          deferred.resolve(countries);
+          var filteredCountries = countries;
+          if (onlySendAllowedCountries) {
+            filteredCountries = filteredCountries.filter(function(country) {
+              return country.isAllowed;
+            });
+          }
+          deferred.resolve(filteredCountries);
         }, function onGetAllCountriesError(err) {
           $log.debug('Error getting moonpay countries list from the api');
           deferred.reject(err);
