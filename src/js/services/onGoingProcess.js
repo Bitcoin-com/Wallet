@@ -11,6 +11,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'broadcastingTx': gettext('Broadcasting transaction'),
     'buyingBch': gettext('Buying Bitcoin Cash...'),
     'buyingBitcoin': gettext('Buying Bitcoin...'),
+    'addingCreditCard': gettext('Contacting the card issuer.'),
     'buyingGiftCard': gettext('Buying Gift Card...'),
     'calculatingFee': gettext('Calculating fee'),
     'cancelingGiftCard': 'Canceling Gift Card...',
@@ -33,6 +34,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'gettingKycIdentity': gettext('Getting Verification Status...'),
     'importingWallet': gettext('Importing Wallet...'),
     'joiningWallet': gettext('Joining Wallet...'),
+    'loadingProfile': gettext('Loading Profile...'),
     'loadingTxInfo': gettext('Loading transaction info...'),
     'recreating': gettext('Recreating Wallet...'),
     'rejectTx': gettext('Rejecting payment proposal'),
@@ -52,6 +54,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'updatingGiftCard': 'Updating Gift Card...',
     'updatingGiftCards': 'Updating Gift Cards...',
     'validatingWords': gettext('Validating recovery phrase...'),
+    'verifyingEmail': gettext('Verifying your email...'),
     'generatingNewAddress': gettext('Generating new address...')
   };
 
@@ -86,14 +89,21 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
       else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
       $ionicLoading.show({
         template: tmpl,
+      }).finally(function () {
+        _executeHandler();
       });
     } else {
-      $ionicLoading.hide();
+      $ionicLoading.hide().finally(function () {
+        _executeHandler();
+      });
     }
 
-    if (customHandler) {
-      customHandler(processName, showName, isOn);
-    } 
+    function _executeHandler() {
+      if (typeof customHandler === 'function') {
+        customHandler(processName, showName, isOn);
+      } 
+    }
+
   };
 
   return root;

@@ -23,8 +23,8 @@ angular
       // Variables
 
       // Functions
-      /* TODO: Reinstate when Moonpay is working properly
-      createCustomer: createCustomer
+      preAuthenticateCustomer: preAuthenticateCustomer
+      , authenticateCustomer: authenticateCustomer
       , getCustomer: getCustomer
       , updateCustomer: updateCustomer
       , createCard: createCard
@@ -40,32 +40,60 @@ angular
       , uploadFile: uploadFile
       , getFiles: getFiles
       , deleteFile: deleteFile
-      */
+      , getConfig: getConfig
     };
 
     return service;
 
     /**
-     * Create customer
-     * @param {String} email 
+     * Pre-authenticate a customer with an email address
+     * @param {String} email
      */
-    function createCustomer(email) {
+    function preAuthenticateCustomer(email) {
       var deferred = $q.defer();
       getConfig(false).then(function onGetConfig(config) {
-        $http.post(baseUrl + '/v2/customers?apiKey=' + moonPayConfig.pubKey, {
+        $http.post(baseUrl + '/v2/customers/email_login?apiKey=' + moonPayConfig.pubKey, {
           'email': email
-        }, config).then(function onPostEmailSuccess(response) {
-          var data = response.data;
-          currentToken = data.token;
-          localStorageService.set(tokenKey, data.token, function onTokenSaved(err) {
-            if (err) {
-              $log.debug('Error setting moonpay customer token in the local storage');
-              deferred.reject(err);
-            } else {
-              deferred.resolve(data.customer);
-            }
-          });
-        }, function onPostEmailError(err) {
+        }, config).then(function onPreAuthenticateCustomerSuccess(response) {
+          deferred.resolve(response.data);
+        }, function onPreAuthenticateCustomerError(err) {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        });
+      }, function (err) {
+        deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Authenticate a customer with an email address and a security code
+     * @param {String} email
+     * @param {String} securityCode
+     */
+    function authenticateCustomer(email, securityCode) {
+      var deferred = $q.defer();
+      getConfig(false).then(function onGetConfig(config) {
+        $http.post(baseUrl + '/v2/customers/email_login?apiKey=' + moonPayConfig.pubKey, {
+          'email': email,
+          'securityCode': securityCode
+        }, config).then(function onAuthenticateCustomerSuccess(response) {
+          if (response.status === 200 || response.status === 201) {
+            var data = response.data;
+            currentToken = data.token;
+            deferred.resolve(data.customer);
+            localStorageService.set(tokenKey, data.token, function onTokenSaved(err) {
+              if (err) {
+                $log.debug('Error setting moonpay customer token in the local storage');
+                deferred.reject(err);
+              } else {
+                deferred.resolve(data.customer);
+              }
+            });
+          } else {
+            deferred.reject(response.statusText);
+          }
+        }, function onAuthenticateCustomerError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
         });
@@ -107,8 +135,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.get(baseUrl + '/v2/customers/me', config).then(function onGetMeSuccess(response) {
-          var customer = response.data;
-          deferred.resolve(customer);
+          if (response.status === 200 || response.status === 201) {
+            var customer = response.data;
+            deferred.resolve(customer);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetMeError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -127,8 +159,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.patch(baseUrl + '/v2/customers/me', customer, config).then(function onPatchCustomerSuccess(response) {
-          var customer = response.data;
-          deferred.resolve(customer);
+          if (response.status === 200 || response.status === 201) {
+            var customer = response.data;
+            deferred.resolve(customer);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onPatchCustomerError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -146,8 +182,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.get(baseUrl + '/v2/cards', config).then(function onGetCardsSuccess(response) {
-          var cards = response.data;
-          deferred.resolve(cards);
+          if (response.status === 200 || response.status === 201) {
+            var cards = response.data;
+            deferred.resolve(cards);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetCardsError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -166,8 +206,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.post(baseUrl + '/v2/cards', card, config).then(function onPostCardSuccess(response) {
-          var card = response.data;
-          deferred.resolve(card);
+          if (response.status === 200 || response.status === 201) {  
+            var card = response.data;
+            deferred.resolve(card);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onPostCardError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -185,8 +229,12 @@ angular
     function removeCard(cardId) {
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
-        $http.delete(baseUrl + '/v2/cards/' + cardId, config).then(function onDeleteCardSuccess() {
-          deferred.resolve();
+        $http.delete(baseUrl + '/v2/cards/' + cardId, config).then(function onDeleteCardSuccess(response) {
+          if (response.status === 200 || response.status === 201) {
+            deferred.resolve();
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onDeleteCardError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -204,8 +252,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.get(baseUrl + '/v2/transactions', config).then(function onGetTransactionsSuccess(response) {
-          var transactions = response.data;
-          deferred.resolve(transactions);
+          if (response.status === 200 || response.status === 201) {
+            var transactions = response.data;
+            deferred.resolve(transactions);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetTransactionsError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -224,8 +276,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function onGetConfig(config) {
         $http.get(baseUrl + '/v2/transactions/' + transactionId, config).then(function onGetTransactionSuccess(response) {
-          var transaction = response.data;
-          deferred.resolve(transaction);
+          if (response.status === 200 || response.status === 201) {
+            var transaction = response.data;
+            deferred.resolve(transaction);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetTransactionError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -244,8 +300,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function getConfig(config) {
         $http.post(baseUrl + '/v2/transactions', transaction, config).then(function onPostTransactionSuccess(response) {
-          var transaction = response.data;
-          deferred.resolve(transaction);
+          if (response.status) {  
+            var transaction = response.data;
+            deferred.resolve(transaction);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onPostTransactionError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -264,8 +324,12 @@ angular
       var deferred = $q.defer();
       getConfig(false).then(function(config) {
         $http.get(baseUrl + '/v2/currencies/' + code + '/price', config).then(function onGetRatesSuccess(response) {
-          var rates = response.data;
-          deferred.resolve(rates);
+          if (response.status === 200 || response.status === 201) {
+            var rates = response.data;
+            deferred.resolve(rates);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetRatesError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -283,8 +347,12 @@ angular
       var deferred = $q.defer();
       getConfig(false).then(function(config) {
         $http.get(baseUrl + '/v2/countries', config).then(function onGetAllCountries(response) {
-          var countries = response.data;
-          deferred.resolve(countries);
+          if (response.status === 200 || response.status === 201) {
+            var countries = response.data;
+            deferred.resolve(countries);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetAllCountriesError(err) {
           var httpErr = _errorFromResponse(err);
           deferred.reject(httpErr);
@@ -302,8 +370,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
         $http.get(baseUrl + '/v2/identity_check', config).then(function onGetIdentityCheckSuccess(response) {
-          var identity = response.data;
-          deferred.resolve(identity);
+          if (response.status === 200 || response.status === 201) {
+            var identity = response.data;
+            deferred.resolve(identity);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetIdentityCheckError(err) {
           // If identity check if not yet created, expect 404
           if (err.status === 404) {
@@ -326,8 +398,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
         $http.post(baseUrl + '/v2/identity_check', {}, config).then(function onPostIdentityCheckSuccess(response) {
-          var identity = response.data;
-          deferred.resolve(identity);
+          if (response.status === 200 || response.status === 201) {
+            var identity = response.data;
+            deferred.resolve(identity);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onPostIdentityCheckError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
@@ -354,8 +430,12 @@ angular
         $sce.trustAs($sce.RESOURCE_URL, baseUrl + '/v2/files');
 
         $http.post(baseUrl + '/v2/files', data, customConfig).then(function onUploadFileSuccess(response) {
-          var file = response.data;
-          deferred.resolve(file);
+          if (response.status === 200 || response.status === 201) {
+            var file = response.data;
+            deferred.resolve(file);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onUploadFileError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
@@ -373,8 +453,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
         $http.get(baseUrl + '/v2/files', config).then(function onGetFilesSuccess(response) {
-          var files = response.data;
-          deferred.resolve(files);
+          if (response.status === 200 || response.status === 201) {
+            var files = response.data;
+            deferred.resolve(files);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onGetFilesError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);
@@ -392,8 +476,12 @@ angular
       var deferred = $q.defer();
       getConfig(true).then(function(config) {
         $http.delete(baseUrl + '/v2/files' + fileId, config).then(function onDeleteFileSuccess(response) {
-          var file = response.data;
-          deferred.resolve(file);
+          if (response.status === 200 || response.status === 201) {
+            var file = response.data;
+            deferred.resolve(file);
+          } else {
+            deferred.reject(response.statusText);
+          }
         }, function onDeleteFileError(err) {
             var httpErr = _errorFromResponse(err);
             deferred.reject(httpErr);

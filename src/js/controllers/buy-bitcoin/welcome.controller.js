@@ -8,28 +8,32 @@ angular
 
   function buyBitcoinWelcomeController(
     bitAnalyticsService,
-    gettextCatalog, 
+    gettextCatalog,
     $ionicHistory,
-    $log, 
+    $log,
     moonPayService,
-    ongoingProcess, 
-    popupService, 
-    $scope
-    ) {
+    ongoingProcess,
+    popupService,
+    $scope,
+    $state
+  ) {
     var vm = this;
 
     // Functions
-    vm.getStarted = getStarted;
+    vm.preAuthenticateCustomer = preAuthenticateCustomer;
+    vm.authenticateCustomer = authenticateCustomer;
 
     function initVariables() {
+      vm.securityCodeMode = false;
       vm.email = '';
+      vm.securityCode = '';
     }
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
-    function getStarted() {
-      $log.debug('getStarted() with email: ' + vm.email);      
+    function preAuthenticateCustomer() {
+      $log.debug('preAuthenticateCustomer() with email: ' + vm.email);
       bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_tap_on_get_started' ,[{}, {}, {}], ['leanplum']);
 
       if (!vm.email) {
@@ -41,18 +45,18 @@ angular
 
       ongoingProcess.set('creatingCustomerId', true);
 
-      moonPayService.createCustomer(vm.email).then(
-      
-        function onCreateCustomerSuccess(customer) {
+      moonPayService.preAuthenticateCustomer(vm.email).then(
+
+        function onPreAuthenticateCustomerSuccess(customer) {
           console.log('Created customer.', customer);
           ongoingProcess.set('creatingCustomerId', false);
-          $ionicHistory.goBack();
+          vm.securityCodeMode = true;
         },
-        
-        function onCreateCustomerError(err) {
-          console.error('Error creating customer.', err);
+
+        function onPreAuthenticateCustomerError(err) {
+          console.error('Error pre-authenticating customer.', err);
           ongoingProcess.set('creatingCustomerId', false);
-       
+
           var title = gettextCatalog.getString('Error Creating Customer');
           var message = err.message || '';
           popupService.showAlert(title, message);
@@ -60,14 +64,47 @@ angular
       );
 
     }
-    
+
+    function authenticateCustomer() {
+      $log.debug('authenticateCustomer() with email: ' + vm.email + 'and security code: ' + vm.securityCode);
+      bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_tap_on_get_started' ,[{}, {}, {}], ['leanplum']);
+
+      if (!vm.securityCode) {
+        var title = gettextCatalog.getString('Unable to Verify Email');
+        var message = gettextCatalog.getString('Enter a valid security code.');
+        popupService.showAlert(title, message);
+        return;
+      }
+
+      ongoingProcess.set('verifyingEmail', true);
+
+      moonPayService.authenticateCustomer(vm.email, vm.securityCode).then(
+
+        function onAuthenticateCustomerSuccess(customer) {
+          console.log('Email verified.', customer);
+          ongoingProcess.set('verifyingEmail', false);
+          $ionicHistory.clearHistory();
+          $state.go('tabs.buybitcoin');
+        },
+
+        function onAuthenticateCustomerError(err) {
+          console.error('Error authenticating customer.', err);
+          ongoingProcess.set('verifyingEmail', false);
+
+          var title = gettextCatalog.getString('Error Verifying Email');
+          var message = err.message || '';
+          popupService.showAlert(title, message);
+        }
+      );
+
+    }
+
     function onBeforeEnter(event, data) {
       initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_open' ,[{}, {}, {}], ['leanplum']);
     }
 
     function onBeforeLeave(event, data) {
-      initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }

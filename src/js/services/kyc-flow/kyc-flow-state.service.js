@@ -65,14 +65,6 @@ angular
         , recoverySuccess: false
         , countryCode: ''
         , documentType: ''
-        , firstName: ''
-        , lastName: ''
-        , dob: ''
-        , streetAddress1: ''
-        , streetAddress2: ''
-        , postalCode: ''
-        , city: ''
-        , country: ''
         , documents: []
         , documentsMeta: {}
       };

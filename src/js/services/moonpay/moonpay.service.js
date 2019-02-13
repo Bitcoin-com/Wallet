@@ -11,7 +11,9 @@ angular
     , storageService
     , moonPayRouterService
     , moonPayConfig
-    , $log, $q
+    , $log
+    , $q
+    , ongoingProcess
   ) {
 
     var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
@@ -25,11 +27,12 @@ angular
     var service = {
 
       // Functions
-      /* TODO: Reinstate when Moonpay is working properly
-      createCustomer: createCustomer
+      preAuthenticateCustomer: preAuthenticateCustomer
+      , authenticateCustomer: authenticateCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
+      , addCard: addCard
       , createCard: createCard
       , removeCard: removeCard
       , getCards: getCards
@@ -48,7 +51,7 @@ angular
       , getFiles: getFiles
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
-      */
+      , getConfigWithToken: getConfigWithToken
     };
 
     return service;
@@ -58,24 +61,21 @@ angular
      */
     function start() {
       $log.debug('buy bitcoin start()');
-
-      ongoingProcess.set('gettingKycCustomerId', true);
-      getCustomerId(function onCustomerId(err, customerId){
-        ongoingProcess.set('gettingKycCustomerId', false);
-
-        if (err) {
-          $log.error('Error getting Moonpay customer ID. ' + err);
-          return;
-        }
-
+      ongoingProcess.set('fetchingKycStatus', true);
+      getCustomerId().then(function onCustomerIdSuccess(customerId) {
         $log.debug('Moonpay customer ID: ' + customerId);
 
-        if (customerId != null) {
-          moonPayRouterService.startFromHome();
-        } else {
-          moonPayRouterService.startFromWelcome();
-        }
+        ongoingProcess.set('fetchingKycStatus', false, function onSet() {
+          if (customerId != null) {
+            moonPayRouterService.startFromHome();
+          } else {
+            moonPayRouterService.startFromWelcome();
+          }
+        });
 
+      }, function onCustomerIdError(err) {
+        ongoingProcess.set('fetchingKycStatus', false);
+        $log.error('Error getting Moonpay customer ID. ' + err);
       });
     }
 
@@ -172,15 +172,36 @@ angular
     }
 
     /**
-     * Create a customer
-     * @param {String} email 
+     * Pre-authenticate a customer with an email address
+     * @param {String} email
      */
-    function createCustomer(email) {
+    function preAuthenticateCustomer(email) {
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCustomer(email).then(
-        function onCreateCustomerSuccess(customer) {
+      moonPayApiService.preAuthenticateCustomer(email).then(
+        function onPreAuthenticateCustomerSuccess(customer) {
+          deferred.resolve(customer);
+        }, function onPreAuthenticateCustomerError(err) {
+          $log.debug('Error pre-authenticating moonpay customer from the api');
+          deferred.reject(err);
+        }
+      );
+
+      return deferred.promise;
+    }
+
+    /**
+     * Authenticate a customer with an email address and a security code
+     * @param {String} email
+     * @param {String} securityCode
+     */
+    function authenticateCustomer(email, securityCode) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.authenticateCustomer(email, securityCode).then(
+        function onAuthenticateCustomerSuccess(customer) {
           storageService.setItem(customerIdKey, customer.id, function onSaveCustomer(err) {
             if (err) {
               $log.debug('Error setting moonpay customer id in the local storage');
@@ -189,8 +210,8 @@ angular
               deferred.resolve(customer);
             }
           });
-        }, function onCreateCustomerError(err) {
-          $log.debug('Error creating moonpay customer from the api');
+        }, function onAuthenticateCustomerError(err) {
+          $log.debug('Error authenticating moonpay customer from the api');
           deferred.reject(err);
         }
       );
@@ -301,6 +322,19 @@ angular
     }
 
     /**
+     * Add a defined card
+     * @param {Object} newCard 
+     */
+    function addCard(newCard) {
+      if (currentCards != null) {
+        currentCards.push(newCard);
+      } else {
+        currentCards = [newCard];
+      }
+      return currentCards;
+    }
+
+    /**
      * Remove a card
      * @param {String} cardId 
      */
@@ -333,6 +367,9 @@ angular
           $log.debug('Error setting moonpay transaction wallet id in the local storage');
           deferred.reject(err);
         } else {
+          // Needed before the try because if walletIds is null, it parses OK,
+          // no exception is generated to catch.
+          walletIds = walletIds || {};
           try {
             walletIds = JSON.parse(walletIds);
           } catch (err) {
@@ -476,13 +513,21 @@ angular
     /**
      * Get all countries
      */
-    function getAllCountries() {
+    function getAllCountries(onlySendAllowedCountries) {
+      onlySendAllowedCountries = onlySendAllowedCountries || false;
+      
       // Create the promise
       var deferred = $q.defer();
 
       moonPayApiService.getAllCountries().then(
         function onGetAllCountries(countries) {
-          deferred.resolve(countries);
+          var filteredCountries = countries;
+          if (onlySendAllowedCountries) {
+            filteredCountries = filteredCountries.filter(function(country) {
+              return country.isAllowed;
+            });
+          }
+          deferred.resolve(filteredCountries);
         }, function onGetAllCountriesError(err) {
           $log.debug('Error getting moonpay countries list from the api');
           deferred.reject(err);
@@ -604,6 +649,10 @@ angular
         }
       );
       return deferred.promise;
+    }
+    
+    function getConfigWithToken() {
+      return moonPayApiService.getConfig(true);
     }
   }
 })();
