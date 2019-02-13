@@ -89,14 +89,21 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
       else tmpl = '<div class="item-icon-left">' + showName + '<ion-spinner class="spinner-stable" icon="lines"></ion-spinner></div>';
       $ionicLoading.show({
         template: tmpl,
+      }).finally(function () {
+        _executeHandler();
       });
     } else {
-      $ionicLoading.hide();
+      $ionicLoading.hide().finally(function () {
+        _executeHandler();
+      });
     }
 
-    if (typeof customHandler === 'function') {
-      customHandler(processName, showName, isOn);
-    } 
+    function _executeHandler() {
+      if (typeof customHandler === 'function') {
+        customHandler(processName, showName, isOn);
+      } 
+    }
+
   };
 
   return root;
