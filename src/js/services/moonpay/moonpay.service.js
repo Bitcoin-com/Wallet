@@ -61,15 +61,9 @@ angular
      */
     function start() {
       $log.debug('buy bitcoin start()');
-
-      ongoingProcess.set('gettingKycCustomerId', true);
-      getCustomerId().then(function onCustomerId(customerId, err){
-        ongoingProcess.set('gettingKycCustomerId', false);
-
-        if (err) {
-          $log.error('Error getting Moonpay customer ID. ' + err);
-          return;
-        }
+      ongoingProcess.set('fetchingKycStatus', true);
+      getCustomerId().then(function onCustomerId(customerId){
+        ongoingProcess.set('fetchingKycStatus', false);
 
         $log.debug('Moonpay customer ID: ' + customerId);
 
@@ -79,6 +73,9 @@ angular
           moonPayRouterService.startFromWelcome();
         }
 
+      }, function onCustomerIdFailure(err) {
+        ongoingProcess.set('fetchingKycStatus', false);
+        $log.error('Error getting Moonpay customer ID. ' + err);
       });
     }
 

@@ -105,7 +105,6 @@ angular
     }
 
     function onBeforeLeave(event, data) {
-      initVariables();
       bitAnalyticsService.postEvent('buy_bitcoin_welcome_screen_close' ,[{}, {}, {}], ['leanplum']);
     }
   }
