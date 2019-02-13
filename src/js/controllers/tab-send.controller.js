@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, externalLinkService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
+angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, externalLinkService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService, ionicToast, opencapService) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
