@@ -52,6 +52,9 @@ angular
             $log.error('Status when submitting credit card form: ' + status + ". " + responseMessage);
             var title = gettextCatalog.getString("Unable to Add Card");
             var message = gettextCatalog.getString("Error. Status code: {{status}}", { status: status.toString()});
+            if (responseMessage) {
+              message += '. ' + responseMessage;
+            }
             popupService.showAlert(title, message);
           }
         },
