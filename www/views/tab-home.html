@@ -1,9 +1,14 @@
-<ion-view id="tab-home" show-tabs>
+<ion-view show-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title><span class="nav-bar-title textlogo"><span class="moon-symbol"></span>itcoin.com Wallet</span></ion-nav-title>
+    <ion-nav-buttons side="secondary">
+      <button class="button button-settings" ng-click="vm.onSettings();">
+        <i class="icon ion-android-settings"></i>
+      </button>
+    </ion-nav-buttons>
   </ion-nav-bar>
 
-  <ion-content>
+  <ion-content id="tab-home">
     <ion-refresher
      pulling-icon="ion-ios-refresh"
      spinner="ios-small"
@@ -30,12 +35,14 @@
           <span translate>Receive</span>
         </div>
       </div>
-      <div class="col">
-        <div class="button button-outline button-grey-outline" ng-class="{'ng-hide': walletsWithFunds.length}"
-             ui-sref="tabs.buyandsell">
+      <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
+        <div class="button button-outline button-grey-outline"
+          ng-click="vm.onBuyBitcoin()">
           <span translate>Buy Bitcoin</span>
         </div>
-        <div class="button  button-outline button-grey-outline" ng-class="{'ng-hide': !walletsWithFunds.length}"
+      </div>
+      <div class="col" ng-class="{'ng-hide': !walletsWithFunds.length}">
+        <div class="button  button-outline button-grey-outline"
              ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>
@@ -82,7 +89,7 @@
       <div>
         <a ng-repeat="wallet in walletsBch track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
+           ng-click="vm.onWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
@@ -96,27 +103,19 @@
       <div>
         <a ng-repeat="wallet in walletsBtc track by $index"
            class="item item-sub item-icon-left item-big-icon-left item-icon-right wallet"
-           ng-click="openWallet(wallet)">
+           ng-click="vm.onWallet(wallet)">
           <span ng-include="'views/includes/walletList.html'"></span>
         </a>
       </div>
+    </div>
+    
+    <div id="buy-bitcoin" class="padding">
+      <button class="button button-standard button-green" ng-click="vm.onBuyBitcoin()" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
     </div>
 
     <div class="ng-hide list card" ng-show="walletsBtc[0] && bitpayCardItems.length>0" ng-include="'views/includes/bitpayCardsCard.html'"></div>
     <div class="ng-hide list card" ng-show="walletsBtc[0] && buyAndSellItems.length>0" ng-include="'views/includes/buyAndSellCard.html'"></div>
     <div class="ng-hide list card" ng-show="homeIntegrations.length>0" ng-include="'views/includes/homeIntegrations.html'"></div>
     <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/nextSteps.html'"></div>
-    <div class="ng-hide list card" ng-show="showServices && (walletsBch[0] || walletsBtc[0])" ng-include="'views/includes/services.html'"></div>
-
-    <div class="list card card-banner">
-      <ion-spinner ng-if="bannerIsLoading"></ion-spinner>
-      <a id="home_banner" href-banner="{{bannerImageUrl}}" class="track_banner_click" ng-if="!bannerIsLoading" ng-click="openBannerUrl()">
-        <img class="card-banner__img" ng-src="{{bannerImageUrl}}"/>
-      </a>
-
-    </div>
-    
-    <div class="ng-hide list card" ng-show="nextStepsItems.length>0 && !isWindowsPhoneApp" ng-include="'views/includes/community.html'"></div>
-
   </ion-content>
 </ion-view>

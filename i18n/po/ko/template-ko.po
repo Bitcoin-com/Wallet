@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2018-10-17 08:34\n"
+"PO-Revision-Date: 2019-01-24 08:36\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 지불 제안은 다음과 같은 상황에 철회하실 수 있습니다. 1) 본인이 지불 제안서의 창조자이며 공동지불인이 아직 서명하지 않았을시, 혹은 2) 지불 제안서가 만들어진 지 24시간이 지났을시."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- 거래량의 {{btx.feeRateStr}}"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- 거래량의 {{vm.btx.feeRateStr}}"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -433,7 +433,7 @@ msgstr "비트코인지갑"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr "비트코인 캐시 결제"
+msgstr "비트코인 캐시 지불"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
@@ -457,7 +457,7 @@ msgstr "{{amountUnitStr}} 구매 완료"
 
 #: www/views/modals/txp-details.html:36
 msgid "Broadcast Payment"
-msgstr "결제 브로드캐스트하기"
+msgstr "지불브로드캐스트하기"
 
 #: src/js/controllers/modals/txpDetails.js:64
 #: src/js/controllers/tx-details.js:81
@@ -589,7 +589,7 @@ msgstr "수락하기"
 
 #: src/js/controllers/confirm.js:367
 msgid "Click to pay"
-msgstr "결제하기"
+msgstr "지불하기"
 
 #: src/js/controllers/confirm.js:379
 #: src/js/controllers/modals/txpDetails.js:42
@@ -655,7 +655,7 @@ msgstr "비밀번호 확인"
 
 #: src/js/services/walletService.js:1033
 msgid "Confirm your new spending password"
-msgstr "새로운 결제 비밀번호 확인"
+msgstr "새로운 지불비밀번호 확인"
 
 #: www/views/tx-details.html:98
 msgid "Confirmations"
@@ -1078,7 +1078,7 @@ msgstr "활성화"
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
 msgid "Enter Spending Password"
-msgstr "결제 비밀번호 입력"
+msgstr "지불비밀번호 입력"
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
@@ -1094,7 +1094,7 @@ msgstr "커스텀 수수료 입력"
 
 #: src/js/services/walletService.js:1029
 msgid "Enter new spending password"
-msgstr "새로운 결제 비밀번호 입력"
+msgstr "새로운 지불비밀번호 입력"
 
 #: www/views/join.html:79
 #: www/views/tab-create-personal.html:51
@@ -1214,7 +1214,7 @@ msgstr "SendMax 정보 오류"
 #: src/js/controllers/buyMercadoLibre.js:136
 #: src/js/controllers/topup.js:114
 msgid "Error in Payment Protocol"
-msgstr "결제 프로토콜 오류"
+msgstr "지불프로토콜 오류"
 
 #: src/js/controllers/bitpayCardIntro.js:14
 msgid "Error pairing BitPay Account"
@@ -1328,7 +1328,7 @@ msgstr "BitPay 계정 가져오는 중..."
 
 #: src/js/services/onGoingProcess.js:21
 msgid "Fetching payment information"
-msgstr "결제 정보 가져오는 중"
+msgstr "지불정보 가져오는 중"
 
 #: www/views/export.html:14
 #: www/views/import.html:16
@@ -1379,7 +1379,7 @@ msgstr "목표 기기에서 지갑 추가로 가셔서 지갑 내려받기를 �
 
 #: src/js/services/bwcError.js:74
 msgid "Funds are locked by pending spend proposals"
-msgstr "자금이 진행 중인 결제 제안서에 묶여있습니다"
+msgstr "자금이 진행 중인 지불제안서에 묶여있습니다"
 
 #: www/views/paperWallet.html:16
 msgid "Funds found:"
@@ -1811,11 +1811,11 @@ msgstr "보안 설정 완료"
 
 #: src/js/services/bwcError.js:86
 msgid "Locktime in effect. Please wait to create a new spend proposal"
-msgstr "보안 시간이 발동되었습니다. 새로운 결제 제안서를 만들기 위해 기다려주세요"
+msgstr "보안 시간이 발동되었습니다. 새로운 지불제안서를 만들기 위해 기다려주세요"
 
 #: src/js/services/bwcError.js:89
 msgid "Locktime in effect. Please wait to remove this spend proposal"
-msgstr "보안 시간이 발동되었습니다. 이 결제 제안서를 삭제하기 위해 기다려주세요"
+msgstr "보안 시간이 발동되었습니다. 이 지불제안서를 삭제하기 위해 기다려주세요"
 
 #: www/views/includes/logOptions.html:3
 msgid "Log options"
@@ -2223,11 +2223,11 @@ msgstr "지불 제안서"
 
 #: src/js/services/payproService.js:32
 msgid "Payment Protocol Invalid"
-msgstr "결제 프로토콜 무효/오류"
+msgstr "지불프로토콜 무효/오류"
 
 #: src/js/services/payproService.js:18
 msgid "Payment Protocol not supported on Chrome App"
-msgstr "크롬 앱은 결제 프로토콜을 지원하지 않습니다"
+msgstr "크롬 앱은 지불프로토콜을 지원하지 않습니다"
 
 #: www/views/includes/walletActivity.html:20
 msgid "Payment Received"
@@ -2259,20 +2259,24 @@ msgstr "송금 수락 완료. Glidera에 의해 브로드캐스트될 예정입�
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr "기존의 결제 주소가 새로운 비트코인 캐시 주소 포맷으로 전환되었습니다:"
+msgstr "기존의 지불주소가 새로운 비트코인 캐시 주소 포맷으로 전환되었습니다:"
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
-msgstr "결제 디테일"
+msgstr "지불디테일"
 
 #: www/views/modals/paypro.html:6
 msgid "Payment Request"
-msgstr "결제 요구"
+msgstr "지불요구"
 
 #: www/views/mercadoLibreCards.html:22
 #: www/views/modals/mercadolibre-card-details.html:39
 msgid "Pending"
 msgstr "보류 중"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "본인인증 대기"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -2501,7 +2505,7 @@ msgstr "거부"
 
 #: src/js/services/onGoingProcess.js:27
 msgid "Rejecting payment proposal"
-msgstr "결제 제안서 거부 중"
+msgstr "지불제안서 거부 중"
 
 #: www/views/preferencesAbout.html:9
 msgid "Release information"
@@ -2548,7 +2552,7 @@ msgstr "특정 액수 요구하기"
 
 #: www/views/preferences.html:42
 msgid "Request Spending Password"
-msgstr "결제 비밀번호 요구하기"
+msgstr "지불비밀번호 요구하기"
 
 #: www/views/tab-create-shared.html:44
 msgid "Required number of signatures"
@@ -2912,7 +2916,7 @@ msgstr "밀어서 구매하기"
 
 #: src/js/controllers/confirm.js:365
 msgid "Slide to pay"
-msgstr "밀어서 결제하기"
+msgstr "밀어서 지불하기"
 
 #: src/js/controllers/confirm.js:377
 #: src/js/controllers/modals/txpDetails.js:40
@@ -2930,15 +2934,15 @@ msgstr "복구 문구를 자세히 적어주세요..."
 
 #: src/js/services/bwcError.js:92
 msgid "Spend proposal is not accepted"
-msgstr "결제 제안서 사용 불가"
+msgstr "지불제안서 사용 불가"
 
 #: src/js/services/bwcError.js:95
 msgid "Spend proposal not found"
-msgstr "결제 제안서를 찾을 수 없습니다"
+msgstr "지불제안서를 찾을 수 없습니다"
 
 #: src/js/services/bwcError.js:137
 msgid "Spending Password needed"
-msgstr "결제 비밀번호가 필요합니다"
+msgstr "지불비밀번호가 필요합니다"
 
 #: www/views/walletDetails.html:173
 msgid "Spending this balance will need significant Bitcoin network fees"
@@ -3089,7 +3093,7 @@ msgstr "거래가 생성되었으나 완료되지 않았습니다. 처음부터 
 
 #: www/views/modals/txp-details.html:26
 msgid "The payment was removed by creator"
-msgstr "결제 내역이 사용자에 의해 삭제되었습니다"
+msgstr "지불내역이 사용자에 의해 삭제되었습니다"
 
 #: www/views/join.html:91
 #: www/views/tab-create-personal.html:63
@@ -3108,7 +3112,7 @@ msgstr "복구 작업은 20개의 비어있는 주소가 생성될 때까지 진
 
 #: src/js/services/bwcError.js:98
 msgid "The spend proposal is not pending"
-msgstr "결제 제안서 오류"
+msgstr "지불제안서 오류"
 
 #: www/views/modals/wallet-balance.html:36
 msgid "The total amount of bitcoin stored in this wallet."
@@ -3147,7 +3151,7 @@ msgstr "이 앱은 귀하의 비트코인을 최첨단 보안 서비스로 보�
 
 #: src/js/controllers/confirm.js:523
 msgid "This bitcoin payment request has expired."
-msgstr "비트코인 결제 요구가 만료되었습니다."
+msgstr "비트코인 지불요구가 만료되었습니다."
 
 #: www/views/review.html:55
 msgid "Payment expires:"
@@ -3155,7 +3159,7 @@ msgstr "송금 만료:"
 
 #: www/views/review.html:56
 msgid "Payment request has expired"
-msgstr "결제 요청 만료"
+msgstr "지불요청 만료"
 
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
@@ -3220,11 +3224,11 @@ msgstr "BTC를 몇 분 내에 BCH로 교환"
 
 #: www/views/shapeshift.html:30
 msgid "To start the process you need to add funds to your wallet."
-msgstr "과정을 시작하려면 월릿에 펀드를 적립해야 합니다."
+msgstr "과정을 시작하려면 지갑에 펀드를 적립해야 합니다."
 
 #: www/views/shapeshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
-msgstr "과정은 빠르며 월릿에 교환 금액이 전송됩니다."
+msgstr "과정은 빠르며 지갑에 교환 금액이 전송됩니다."
 
 #: www/views/shapeshift.html:34
 msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
@@ -3626,7 +3630,7 @@ msgstr "이 지갑의 첫 이름은 &ldquo;{{walletName}}&rdquo;이었습니다.
 
 #: www/views/onboarding/collectEmail.html:10
 msgid "Where would you like to receive email notifications about payments?"
-msgstr "결제 내역 이메일 알림을 어디로 받으시겠습니까?"
+msgstr "지불내역 이메일 알림을 어디로 받으시겠습니까?"
 
 #: www/views/addresses.html:19
 msgid "Why?"
@@ -3638,7 +3642,7 @@ msgstr "앱스토에서 {{appName}}를 평가해주시겠습니까?"
 
 #: www/views/onboarding/notifications.html:4
 msgid "Would you like to receive push notifications about payments?"
-msgstr "결제 내역 푸시 알림을 받으시겠습니까?"
+msgstr "지불내역 푸시 알림을 받으시겠습니까?"
 
 #: src/js/controllers/import.js:288
 msgid "Wrong number of recovery words:"
@@ -3646,7 +3650,7 @@ msgstr "백업 문구는 12개가 필요합니다:"
 
 #: src/js/services/bwcError.js:140
 msgid "Wrong spending password"
-msgstr "결제 비밀번호 오류"
+msgstr "지불비밀번호 오류"
 
 #: www/views/modals/confirmation.html:7
 msgid "Yes"
@@ -3752,7 +3756,7 @@ msgstr "귀하의 지갑은 클라우드나 기기 백업 등으로 저장되지
 
 #: src/js/services/walletService.js:1030
 msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
-msgstr "지갑키가 암호화됩니다. 결제 비밀번호는 복구할 수 없습니다. 꼭 적어두세요."
+msgstr "지갑키가 암호화됩니다. 지불비밀번호는 복구할 수 없습니다. 꼭 적어두세요."
 
 #: www/views/includes/walletList.html:13
 #: www/views/includes/walletSelector.html:21
@@ -3916,7 +3920,7 @@ msgstr "1센트 미만"
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
-msgstr "이 청구서는 더 이상 결제를 수락하지 않습니다"
+msgstr "이 청구서는 더 이상 지불을 수락하지 않습니다"
 
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
@@ -3989,4 +3993,525 @@ msgstr "금액이 한계 이상임"
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr "Shapeshift의 유효하지 않은 응답"
+
+msgid "Insufficient Amount Received"
+msgstr "수령 금액이 부족합니다"
+
+msgid "Return to Address"
+msgstr "주소 표시로 복귀"
+
+msgid "Overpaid!"
+msgstr "초과 지불되었습니다!"
+
+msgid "Underpaid!"
+msgstr "적게 지불되었습니다!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "고객 생성 오류"
+
+msgid "Enter an email address."
+msgstr "이메일 주소를 입력해 주십시오."
+
+msgid "Must be a valid email address."
+msgstr "유효한 이메일 주소를 입력해 주십시오."
+
+msgid "Unable to Create Customer"
+msgstr "고객을 만들 수 없습니다"
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "비트코인 캐시(BCH) 구매"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "1일 {{vm.dailyRemaining}} 및 월 최고 {{vm.monthlyRemaining}}까지 구매할 수 있습니다."
+
+msgid "Buy Bitcoin Cash"
+msgstr "비트코인 캐시 구매"
+
+msgid "Error Getting Customer ID"
+msgstr "고객 ID 확인 오류"
+
+msgid "Error Getting Customer Information"
+msgstr "고객 정보 확인 오류"
+
+msgid "An error occurred when getting your customer information."
+msgstr "고객 정보 확인 중 오류가 발생했습니다."
+
+msgid "Customer information was missing."
+msgstr "고객 정보가 누락되었습니다."
+
+msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">개인정보보호정책을 확인해 주십시오."
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "지불방법 확인 오류"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "지불방법 확인 중 오류가 발생했습니다."
+
+msgid "No Payment Methods"
+msgstr "지불 방법 없음"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "비트코인 캐시(BCH)를 구매하려면 신용카드 또는 직불카드를 입력해 주십시오."
+
+msgid "Add Card"
+msgstr "카드 추가"
+
+msgid "Getting exchange rate..."
+msgstr "환율 확인 중..."
+
+msgid "Waiting for exchange rate."
+msgstr "환율 확인 중."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "예치할 수 있는 비트코인 캐시(BCH) 지갑이 필요합니다."
+
+msgid "Select a BCH Wallet"
+msgstr "BCH 지갑 선택"
+
+msgid "Buying Bitcoin Cash..."
+msgstr "비트코인 캐시 구매 중..."
+
+msgid "Purchase Failed"
+msgstr "구매 실패"
+
+msgid "Failed to create transaction."
+msgstr "거래 생성 실패"
+
+msgid "Buy Now"
+msgstr "지금 구매"
+
+msgid "Enter Security Code"
+msgstr "보안 코드 입력"
+
+msgid ""
+msgstr ""
+"Enter the 3 digit code on the back of your card."
+
+msgid "Go to Wallet"
+msgstr "지갑으로 이동"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "{{vm.walletName}}(으)로 이동"
+
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgstr "주문이 승인되어 확인 중입니다. BCH가 곧 윌릿에 적립됩니다."
+
+msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgstr "주문이 완료되었습니다. 지갑에서 적립된 BCH를 확인하실 수 있습니다."
+
+msgid "Your order has failed."
+msgstr "주문을 실패했습니다."
+
+msgid "Your order is waiting for authorization."
+msgstr "주문 완료를 위해 본인인증이 필요합니다."
+
+msgid "Deposited to"
+msgstr "예치"
+
+msgid "Failed to get transaction data."
+msgstr "거래 데이터 확인 실패"
+
+msgid "Not found."
+msgstr "찾을 수 없음"
+
+msgid "Failed to get payment method info."
+msgstr "지불방법 정보 확인 실패"
+
+msgid "Waiting for authorization"
+msgstr "본인인증이 필요합니다"
+
+msgid "Back"
+msgstr "뒤로"
+
+msgid "Verify and complete your card information."
+msgstr "카드 정보를 확인하고 완료해 주십시오."
+
+msgid "Required"
+msgstr "필수"
+
+msgid "Visa, MC, or AMEX"
+msgstr "비자, 마스터, 또는 아멕스"
+
+msgid "MM/YYYY"
+msgstr "MM/YYYY"
+
+msgid "Card Number"
+msgstr "카드 번호"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "카드를 추가할 수 없습니다"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "유효하지 않은 카드 번호입니다. 카드를 확인하고 다시 시도해 주십시오."
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "유효하지 않은 CVC 번호입니다. 카드 뒤 부분의 3자리, 아멕스 카드는 4자리 숫자를 입력합니다."
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "유효하지 않은 만료 날짜입니다. 카드를 확인하고 다시 시도해 주십시오."
+
+msgid "Invalid card number"
+msgstr "유효하지 않은 카드 번호"
+
+msgid "Invalid expiration date"
+msgstr "유효하지 않은 만료 날짜"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "유효한 날짜 형식 MM/YYYY"
+
+msgid "Invalid CVC number"
+msgstr "유효하지 않은 CVC 번호"
+
+msgid "Purchasing"
+msgstr "구매"
+
+msgid "Processing Fee"
+msgstr "처리 수수료"
+
+msgid "Deposit to"
+msgstr "예치"
+
+msgid "Add a payment method"
+msgstr "지불방법 추가"
+
+msgid "Price Per BCH"
+msgstr "BCH당 가격"
+
+msgid "Done"
+msgstr "완료"
+
+msgid "Amount must be a positive number."
+msgstr "금액은 양수이어야 합니다."
+
+msgid "Unable to Purchase"
+msgstr "구매할 수 없습니다"
+
+msgid "Purchase History"
+msgstr "구매 내역"
+
+msgid "Pending Orders"
+msgstr "보류 중인 주문"
+
+msgid "Pay"
+msgstr "지불"
+
+msgid "Payment Method"
+msgstr "지불방법"
+
+msgid "Add Credit or Debit Card"
+msgstr "신용카드 또는 직불카드 추가"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "월별 한도를 초과한 금액입니다"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "월 구매 한도 {{monthly}} 중 이용 가능한 금액은 {{remaining}}입니다. 추가 구매하려면 개인 정보를 확인해 주십시오."
+
+msgid "Verify Identity"
+msgstr "사용자 확인"
+
+msgid "Deposited to"
+msgstr "입금처"
+
+msgid "See on Blockchain"
+msgstr "블록체인에서 보기"
+
+msgid "Wallet address"
+msgstr "지갑 주소"
+
+msgid "Pending Order"
+msgstr "보류 중인 주문"
+
+msgid "Edit Order"
+msgstr "주문 수정"
+
+msgid "Cancel Order"
+msgstr "주문 취소"
+
+msgid "Success!"
+msgstr "완료!"
+
+msgid "Failed"
+msgstr "실패"
+
+msgid "Your purchase has been processed."
+msgstr "구매가 처리되었습니다."
+
+msgid "See Receipt"
+msgstr "영수증 확인"
+
+msgid "Make Another Purchase"
+msgstr "더 구매"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "사진 문서"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "인증 없이 계속하기"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "여권"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "신분증"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "운전면허증"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "인증"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "구매 제한 증가"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "인증 여부 확인 중"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "국가를 선택해야 합니다."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "문서 종류를 선택해야 합니다."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "본인인증 없이도 매달 최대 €150을 구매할 수 있습니다. 인증 시 한도가 매달 €20,000으로 늘어납니다."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "개인 정보"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "이름"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "성"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "생년월일"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "주소"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "호 주소, 건물 등 (선택 사항)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "도시"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "우편번호"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "국가"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "해당 품목 기재가 필요합니다."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "최소 만 18세 이상이어야 합니다."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "123 메이플 스트리트"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "도쿄"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "일본"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "아파트 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "정보를 제출하지 못했습니다. 다시 시도해주세요."
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "정보를 보내는 중입니다."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "이미지를 업로드하지 못했습니다. 다시 시도해주세요."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "사진이 잘 보이시나요?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "문서가 문짐이나 반사 없이 뚜렷하게 보이나 확인해주세요."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "네 잘 보입니다"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "사진을 다시 촬영해주세요"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "문서 촬영하기"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "{{vm.documentName}} 4개의 꼭짓점을 틀 안에 넣어주세요. 빛 반사를 조심해주세요."
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "인증하기"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "문서 종류"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "선택하기"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "이미 Bitcoin.com에서 본인 인증을 하셨다면 <a ng-click=\"vm.onRestoreVerify()\">인증을 복구해주세요.</a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "인증 상태"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "인증 진행 중입니다."
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "인증되었습니다!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "귀하의 계정은 인증이 완료되었습니다. 축하합니다!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "오래 걸리지는 않을 것입니다. 인증 완료 시 알려드리겠습니다."
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "인증 실패"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "죄송합니다. 인증을 할 수 없습니다. 추가 지원이 필요하시다면 지원팀에 연락해주세요."
+
+msgid "Self Portrait"
+msgstr "본인 사진"
+
+msgid "Shop"
+msgstr "상점"
+
+msgid "Shop Nearby"
+msgstr "근처에서 비트코인 캐시로 구매하기"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "본인 지역에서 비트코인 캐시 결제를 지원하는 비즈니스들을 찾아보세요"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "비트코인 캐시로 결제할 시 아마존에서 최대 30% 할인받으실 수 있습니다."
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "유명 브랜드 기프트카드"
+
+msgid "Add a Business"
+msgstr "상점 추가하기"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "비트코인 캐시 결제를 지원하는 비즈니스를 아시나요? 목록에 추가해주세요."
+
+msgid "Buy with Bitcoin Cash"
+msgstr "비트코인 캐시로 구매하기"
+
+msgid "Are you a business owner?"
+msgstr "사업을 소유하고 계신가요?"
+
+msgid "More"
+msgstr "추가 정보"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "비트코인 캐시 결제 기능을 오늘부터 추가하세요. 방법을 알려드리겠습니다."
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr "비트코인 캐시로 여행을 떠나세요. 비행기, 호텔, 자동차 렌탈 모두 가능합니다."
+
+msgid "The market's highest paying pool"
+msgstr "시장에 가장 높은 수익률을 자랑하는 마이닝 풀"
+
+msgid "Start mining Bitcoin"
+msgstr "비트코인 채굴하기"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "비트코인 캐시로 결제 시 10% 캐시백"
+
+msgid "Get your Bitcoin merch"
+msgstr "비트코인 굿즈 구매하기"
+
+msgid "E-mail not detected"
+msgstr "이메일을 찾을 수 없습니다"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "새로운 비즈니스를 추가하고 싶으신가요? addbusiness@bitcoin.com으로 이메일을 보내주세요."
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+
+msgid "Internal Error"
+msgstr "내부 오류"
+
+msgid "Front"
+msgstr "앞면"
+
+msgid "Take a Selfie"
+msgstr "셀카를 찍으세요"
+
+msgid "Position your head entirely in the frame and say cheese."
+msgstr "테두리 속에 얼굴을 넣어 촬영하세요."
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "문서 4개의 꼭짓점을 틀 안에 넣어주세요. 빛 반사를 조심해주세요."
+
+msgid "Front"
+msgstr "앞면"
+
+msgid "Buying Gift Card..."
+msgstr "기프트 카드 구매 중..."
 

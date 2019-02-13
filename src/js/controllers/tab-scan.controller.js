@@ -82,7 +82,7 @@ angular.module('copayApp.controllers').controller('tabScanController', function(
           if(err){
             $log.debug('Scan canceled.');
           } else if ($state.params.passthroughMode) {
-            $rootScope.scanResult = contents;
+            $rootScope.scanResult = contents.result || contents;
             goBack();
           } else {
             handleSuccessfulScan(contents);

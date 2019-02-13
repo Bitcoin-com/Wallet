@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2018-10-17 08:34\n"
+"PO-Revision-Date: 2019-01-24 08:36\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* 送金の提案の取下げは①他のウォレット参加者に署名されていなかった場合、提案者に提案を取り下げることができます。②提案の起案から24時間が経っても解決しなかった場合、全員に取り下げることができます。"
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}}のレート"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- 取引の{{vm.btx.feeRateStr}}"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -249,7 +249,7 @@ msgstr "法定通貨"
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
 msgid "Cryptocurrency"
-msgstr "仮想通貨"
+msgstr "暗号通貨"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
@@ -2249,7 +2249,7 @@ msgstr "送金が完了しました"
 
 #: www/views/includes/slideToAcceptSuccess.html:12
 msgid "Share this transaction"
-msgstr "このトランザクションを共有"
+msgstr "この取引を共有"
 
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
@@ -2275,6 +2275,10 @@ msgstr "支払いを要求する"
 #: www/views/modals/mercadolibre-card-details.html:39
 msgid "Pending"
 msgstr "未決"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "認証待ちです"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -3890,11 +3894,11 @@ msgstr "トランザクションの確認"
 
 #: src/js/controllers/review.controller.js:36
 msgid "You are sending"
-msgstr "送金中: "
+msgstr "送金しています"
 
 #: src/js/controllers/review.controller.js:66
 msgid "You are shifting"
-msgstr "取引中: "
+msgstr "交換しています"
 
 #: www/views/review.html:36
 msgid "To:"
@@ -3995,4 +3999,525 @@ msgstr "金額が上限を超えています"
 #: src/js/services/shapeshift.service.js.html:90
 msgid "Invalid response from Shapeshift"
 msgstr "Shapeshift から無効な応答がありました"
+
+msgid "Insufficient Amount Received"
+msgstr "受領金額が不足しています"
+
+msgid "Return to Address"
+msgstr "アドレス表示に戻る"
+
+msgid "Overpaid!"
+msgstr "過払いです！"
+
+msgid "Underpaid!"
+msgstr "支払い不足です！"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "顧客作成エラー"
+
+msgid "Enter an email address."
+msgstr "メールアドレスを入力してください。"
+
+msgid "Must be a valid email address."
+msgstr "有効なメールアドレスでなければなりません。"
+
+msgid "Unable to Create Customer"
+msgstr "顧客を作成できません"
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "ビットコインキャッシュ (BCH) を購入"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "今日は {{vm.dailyRemaining}} まで、今月は {{vm.monthlyRemaining}} まで購入できます。"
+
+msgid "Buy Bitcoin Cash"
+msgstr "ビットコインキャッシュを購入"
+
+msgid "Error Getting Customer ID"
+msgstr "顧客ID取得エラー"
+
+msgid "Error Getting Customer Information"
+msgstr "顧客情報取得エラー"
+
+msgid "An error occurred when getting your customer information."
+msgstr "顧客情報を取得中にエラーが発生しました。"
+
+msgid "Customer information was missing."
+msgstr "顧客情報が見つかりませんでした。"
+
+msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgstr "当社<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">サービス利用規約</a>と<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">プライバシーポリシー</a>をご確認ください"
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "支払方法取得エラー"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "支払方法を取得中にエラーが発生しました。"
+
+msgid "No Payment Methods"
+msgstr "支払方法がありません"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "ビットコインキャッシュ (BCH) を購入するにはクレジットカードまたはデビットカードを追加する必要があります。"
+
+msgid "Add Card"
+msgstr "カードを追加"
+
+msgid "Getting exchange rate..."
+msgstr "為替レートを取得しています..."
+
+msgid "Waiting for exchange rate."
+msgstr "為替レートを待っています。"
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "ビットコインキャッシュ (BCH) ウォレットに入金する必要があります。"
+
+msgid "Select a BCH Wallet"
+msgstr "BCH ウォレットを選択"
+
+msgid "Buying Bitcoin Cash..."
+msgstr "ビットコインキャッシュを購入中..."
+
+msgid "Purchase Failed"
+msgstr "購入できませんでした"
+
+msgid "Failed to create transaction."
+msgstr "取引を作成できませんでした。"
+
+msgid "Buy Now"
+msgstr "今すぐ購入"
+
+msgid "Enter Security Code"
+msgstr "セキュリティコードを入力してください"
+
+msgid ""
+msgstr ""
+"Enter the 3 digit code on the back of your card."
+
+msgid "Go to Wallet"
+msgstr "ウォレットに移動"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "{{vm.walletName}}に移動"
+
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgstr "注文が承認され、完了待ちの状態になりました。BCH はまもなくあなたのウォレットで利用できるようになります。"
+
+msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgstr "注文が完了しました。あなたのウォレットで BCH を確認できるようになりました。"
+
+msgid "Your order has failed."
+msgstr "ご注文に失敗しました。"
+
+msgid "Your order is waiting for authorization."
+msgstr "ご注文の認証を待っています。"
+
+msgid "Deposited to"
+msgstr "入金先"
+
+msgid "Failed to get transaction data."
+msgstr "取引データを取得できませんでした。"
+
+msgid "Not found."
+msgstr "見つかりません。"
+
+msgid "Failed to get payment method info."
+msgstr "支払方法の情報を取得できませんでした。"
+
+msgid "Waiting for authorization"
+msgstr "認証待ちです。"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Verify and complete your card information."
+msgstr "認証を行い、カード情報を入力してください。"
+
+msgid "Required"
+msgstr "必須"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa、MC、またはAMEX"
+
+msgid "MM/YYYY"
+msgstr "MM/YYYY"
+
+msgid "Card Number"
+msgstr "カード番号"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "カードを追加できません"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "カード番号が無効です。カードを確認して、もう一度やり直してください。"
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "CVC 番号が無効です。カードの裏に3桁の数字があります。アメックスをご利用の場合は4桁の数字です。"
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "有効期限が無効です。カードを確認して、もう一度やり直してください。"
+
+msgid "Invalid card number"
+msgstr "無効なカード番号"
+
+msgid "Invalid expiration date"
+msgstr "無効な有効期限"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "所定の日付書式 MM/YYYY に従ってください"
+
+msgid "Invalid CVC number"
+msgstr "無効なCVC番号"
+
+msgid "Purchasing"
+msgstr "購入手続き中"
+
+msgid "Processing Fee"
+msgstr "手数料"
+
+msgid "Deposit to"
+msgstr "入金先"
+
+msgid "Add a payment method"
+msgstr "支払方法を追加"
+
+msgid "Price Per BCH"
+msgstr "BCHあたりの価格"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Amount must be a positive number."
+msgstr "金額は正の数字でなければなりません。"
+
+msgid "Unable to Purchase"
+msgstr "購入できません"
+
+msgid "Purchase History"
+msgstr "購入履歴"
+
+msgid "Pending Orders"
+msgstr "保留中の注文"
+
+msgid "Pay"
+msgstr "支払う"
+
+msgid "Payment Method"
+msgstr "支払方法"
+
+msgid "Add Credit or Debit Card"
+msgstr "クレジットカードまたはデビットカードを追加"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "この金額は月間上限を上回っています"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "毎月の購入限度額 {{monthly}} まで残り {{remaining}} です。さらに購入するには認証を行なってください。"
+
+msgid "Verify Identity"
+msgstr "認証を行ってください"
+
+msgid "Deposited to"
+msgstr "入金先"
+
+msgid "See on Blockchain"
+msgstr "ブロックチェーンで確認"
+
+msgid "Wallet address"
+msgstr "ウォレットアドレス"
+
+msgid "Pending Order"
+msgstr "保留中の注文"
+
+msgid "Edit Order"
+msgstr "注文を編集"
+
+msgid "Cancel Order"
+msgstr "注文をキャンセル"
+
+msgid "Success!"
+msgstr "成功！"
+
+msgid "Failed"
+msgstr "失敗しました"
+
+msgid "Your purchase has been processed."
+msgstr "ご注文を処理しました。"
+
+msgid "See Receipt"
+msgstr "領収書を表示"
+
+msgid "Make Another Purchase"
+msgstr "新たに購入"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "書類の写真"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "認証なしのまま続けます"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "パスポート"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "政府発行の身分証明書"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "運転免許証"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "認証"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "購入限度の増加"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "認証状況を調べています..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "国を選択してください。"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "種類の種類を選択してください。"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "ご本人確認が未認証の状態での購入限度額は€150/月となっています。ご本人確認を行うことで€20,000/月まで増額が可能です。"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "個人情報"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "名"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "姓"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "生年月日"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "ご住所"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "アパート、マンション、ビル名など"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "市区町村"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "郵便番号"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "国"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "入力必須項目です。"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "18歳以上である必要があります。"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "渋谷1-2-3"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "東京都"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "日本"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "アパートシブヤ 101"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "情報を送信できませんでした。もう一度やり直してください。"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "情報を送信しています..."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "画像をアップロードできませんでした。もう一度やり直してください。"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "いかがでしょうか？"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "書類に記載の文字を明確に読むことができ、反射やブレなどがないかご確認ください。"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "はい、読めます"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "再度写真を撮影します"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "書類を撮影する"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "{{vm.documentName}} の四隅を枠内に収まるように配置してください。反射に注意してください。"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "本人確認を行う"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "書類の種類"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "選択する"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "以前Bitcoin.comにて本人確認を行っている場合は、 <a ng-click=\"vm.onRestoreVerify()\">認証を復元</a>できます。"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "認証状況"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "認証作業を行っています"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "認証されました！"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "おめでとうございます！アカウントが認証されました。"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr ""
+
+msgid "Self Portrait"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr ""
+
+msgid "Add a Business"
+msgstr ""
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr ""
+
+msgid "Buy with Bitcoin Cash"
+msgstr ""
+
+msgid "Are you a business owner?"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr ""
+
+msgid "The market's highest paying pool"
+msgstr ""
+
+msgid "Start mining Bitcoin"
+msgstr ""
+
+msgid "Pay with BCH, get 10% back"
+msgstr ""
+
+msgid "Get your Bitcoin merch"
+msgstr ""
+
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr ""
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr ""
+
+msgid "Internal Error"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Take a Selfie"
+msgstr ""
+
+msgid "Position your head entirely in the frame and say cheese."
+msgstr ""
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr ""
 

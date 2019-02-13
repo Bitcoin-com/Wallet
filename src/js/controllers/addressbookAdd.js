@@ -45,7 +45,7 @@ angular.module('copayApp.controllers').controller('addressbookAddController', fu
     }
     var log = new window.BitAnalytics.LogEvent("contact_created", [{
       "coin": $scope.addressbookEntry.coin
-    }], [channel, 'leanplum']);
+    }, {}, {}], [channel, 'leanplum']);
     window.BitAnalytics.LogEventHandlers.postEvent(log);
 
     $timeout(function() {

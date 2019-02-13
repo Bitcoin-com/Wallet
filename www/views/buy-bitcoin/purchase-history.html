@@ -1,0 +1,54 @@
+<ion-view class="apl" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="apl ">
+    <div class="top-boundary"></div>
+    <div id="buy-bitcoin-purchase-history">
+      <h1 translate>Purchase History</h1>
+      <div class="apl-list">
+        <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.transactionsAreLoading">
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">&nbsp;</div>
+            <div class="apl-card__subtitle" translate>
+              Loading...
+            </div>
+          </div>
+        </div>
+        <div ng-if="vm.history.length === 0 && !vm.transactionsAreLoading" class="item apl-list-item">
+          <p><span translate>No transactions.</span></p>
+        </div>
+        <div ng-repeat="tx in vm.history" ng-if="!vm.transactionsAreLoading">
+          <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.buybitcoin-receipt({ moonpayTxId: '{{tx.id}}' })">
+            <i class="icon big-icon-svg">
+              <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !tx.walletColor}" ng-style="{'background-color': tx.walletColor}" class="bg"/>
+            </i>
+            <div class="apl-card__title__container">
+              <div class="apl-card__title">
+                  <div class="right">
+                    {{ tx.baseCurrencyAmount | currency:'EUR ':2}}
+                  </div>
+                <p>{{tx.walletName || tx.walletAddress}}</p>
+              </div>
+              <div></div>
+              <div class="apl-card__subtitle">
+                {{ tx.createdTime | date:'medium' }}
+                <div class="right">
+                  <formatted-amount ng-show="tx.status == 'completed'" value="{{tx.quoteCurrencyAmount}}" currency="bch"></formatted-amount>
+                  <div class="apl-card__warning" ng-show="tx.status == 'pending'" translate>Pending</div>
+                  <div class="apl-card__warning" ng-show="tx.status == 'waitingAuthorization'" translate>Awaiting Auth</div>
+                  <div class="apl-card__danger" ng-show="tx.status == 'failed'" translate>Failed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </ion-content>
+</ion-view>

@@ -64,6 +64,7 @@
     "cordova-custom-config": "^3.0.5",
     "cordova-plugin-qrscanner": "^2.5.0",
     "cordova-plugin-vibration": "^3.0.1",
+    "cordova-plugin-camera-preview": "^0.10.0",
     "coveralls": "^2.11.9",
     "express": "^4.11.2",
     "fs": "0.0.2",
@@ -136,7 +137,7 @@
     "watch":                  "grunt watch"
   },
   "devDependencies": {
-    "cordova": "^6.3.1",
+    "cordova": "^6.4.0",
     "grunt": "^1.0.1",
     "ionic": "^3.6.0",
     "jasmine-core": "^3.1.0",

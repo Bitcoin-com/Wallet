@@ -1,0 +1,65 @@
+<ion-view id="tab-buy-bitcoin-add-card-form" class="apl" hide-tabs>
+    <ion-nav-bar>
+      <ion-nav-buttons side="primary">
+        <button class="button apl-back-button" ng-click="vm.didPushBack()">
+          <i class="icon ion-chevron-left"></i><span translate>Back</span>
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="secondary">
+        <button class="button apl-back-button" ng-click="vm.didPushAdd()">
+          <span translate>Finish</span>
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content id="add-card-form">
+      <div class="form-header">
+        <h1 translate>
+          Add Card
+        </h1>
+        <h5>
+          {{vm.subtext}}
+        </h5>
+      </div>
+      
+      <div class="apl-divider"></div>
+      <form name="cardForm" class="apl-list" novalidate>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              Card Number
+            </label>
+            <input required masked-credit-card type="text" placeholder="{{ 'Visa, MC, or AMEX' | translate }}" ng-model="vm.card.number" name="number" ng-minlength="19" />
+          </div>
+          <span class="validation-error" ng-show="cardForm.number.$error.minlength || cardForm.number.$error.maxlength" translate>
+            Invalid card number
+          </span>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              Expiration Date
+            </label>
+            <input required masked-expiration type="text" placeholder="{{ 'MM/YY' | translate }}" ng-model="vm.card.expiration"  name="expiration" maxlength="5" valid-expiration/>
+          </div>
+          <span class="validation-error" ng-show="cardForm.expiration.$error.validExpiration" translate>
+            Invalid expiration date
+          </span>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              CVC
+            </label>
+            <input required type="text" placeholder="{{ 'Required' | translate }}" ng-model="vm.card.cvc" name="cvc" ng-maxlength="4" ng-change="vm.handleSecurityChange()" ng-minlength="3" maxlength="4"/>
+          </div>
+          <span class="validation-error" ng-show="cardForm.cvc.$error.minlength || cardForm.cvc.$error.maxlength" translate>
+            Invalid CVC number
+          </span>
+        </div>
+      </form>
+      <div class="apl-divider"></div>
+      <div class="keyboard-bottom-space"></div>
+    </ion-content>
+  </ion-view>

@@ -1,0 +1,24 @@
+ion-view.light {
+  @extend .deflash-blue;
+
+  .deflash-blue::before {
+    background-color: black;
+  }
+  
+
+  ion-header-bar.bar.bar-dark {
+    background-color: black;
+    background-image: none;
+  }
+
+  // To precent h1 margin causing scrolling
+  #top-limit {
+    height: 0px;
+  }
+
+  .content-inset {
+    padding: 16px;
+  }
+}
+
+
