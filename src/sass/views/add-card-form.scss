@@ -1,4 +1,11 @@
 #add-card-form {
+  .apl-field {
+    display: block;
+
+    div iframe {
+      height: 40px;
+    }
+  }
   .form-header {
     text-align: center;
     margin: 0.5rem 1rem;
