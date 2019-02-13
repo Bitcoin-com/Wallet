@@ -72,8 +72,10 @@ angular
       // Set document Types
       for(var i=0; i < vm.countries.length; i++) {
         if( vm.countries[i]['alpha3'] === vm.country ) {
-          vm.supportedDocuments = vm.countries[i]['supportedDocuments']
-          vm.documentType = vm.supportedDocuments[0];
+          vm.supportedDocuments = vm.countries[i]['supportedDocuments'];
+          if (vm.supportedDocuments.indexOf(vm.documentType) < 0) {
+            vm.documentType = vm.supportedDocuments[0];
+          }
           break;
         }
       }
