@@ -84,6 +84,22 @@ angular
         ongoingProcess.set('fetchingKycStatus', true);
         moonPayService.getIdentityCheck().then(function onSuccess(response) {
           updateStatusUi(response);
+
+          if (response.status === 'completed' && response.result === 'rejected') {
+            moonPayService.getFiles().then(function onSuccess(files) {
+              console.log('files', files);
+              vm.files = files;
+              ongoingProcess.set('fetchingKycStatus', false);
+            }).catch(function onFilesError(err) {
+              $log.error(err);
+              // Activate Retry Button  
+              ongoingProcess.set('fetchingKycStatus', false);
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get information. Please try again.'), function() {
+              $ionicHistory.goBack();
+          });
+            });
+          }
+
           ongoingProcess.set('fetchingKycStatus', false);
         }).catch(function onError(error) {
           // Activate Retry Button  
