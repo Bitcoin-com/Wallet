@@ -7,7 +7,7 @@
   </ion-nav-bar>
 
   <ion-content class="padded-bottom-cta-with-summary bg-neutral">
-    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'sideshift'" ng-include="'views/thirdparty/sideshift-header.html'"></div>
     <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
@@ -37,9 +37,9 @@
         <div class="item item-compact" translate>To:</div>
         <div class="item item-gutterless item-complex item-avatar">
           <div class="item-content item-content-avatar"
-          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet' || vm.destination.kind == 'shapeshift'">
+          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet' || vm.destination.kind == 'sideshift'">
             <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.destination.kind === 'contact'">
-            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet' || vm.destination.kind === 'shapeshift'">
+            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet' || vm.destination.kind === 'sideshift'">
                 <div class="bg icon-wallet"
                   style="background-color: {{vm.destination.color}}"
                 ></div>
