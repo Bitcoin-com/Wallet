@@ -62,18 +62,18 @@ angular
     function start() {
       $log.debug('buy bitcoin start()');
       ongoingProcess.set('fetchingKycStatus', true);
-      getCustomerId().then(function onCustomerId(customerId){
-        ongoingProcess.set('fetchingKycStatus', false);
-
+      getCustomerId().then(function onCustomerIdSuccess(customerId) {
         $log.debug('Moonpay customer ID: ' + customerId);
 
-        if (customerId != null) {
-          moonPayRouterService.startFromHome();
-        } else {
-          moonPayRouterService.startFromWelcome();
-        }
+        ongoingProcess.set('fetchingKycStatus', false, function onSet() {
+          if (customerId != null) {
+            moonPayRouterService.startFromHome();
+          } else {
+            moonPayRouterService.startFromWelcome();
+          }
+        });
 
-      }, function onCustomerIdFailure(err) {
+      }, function onCustomerIdError(err) {
         ongoingProcess.set('fetchingKycStatus', false);
         $log.error('Error getting Moonpay customer ID. ' + err);
       });

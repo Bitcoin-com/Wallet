@@ -94,7 +94,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
       $ionicLoading.hide();
     }
 
-    if (customHandler) {
+    if (typeof customHandler === 'function') {
       customHandler(processName, showName, isOn);
     } 
   };

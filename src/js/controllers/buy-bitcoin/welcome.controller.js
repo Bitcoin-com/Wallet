@@ -16,7 +16,7 @@ angular
     popupService,
     $scope,
     $state
-    ) {
+  ) {
     var vm = this;
 
     // Functions
