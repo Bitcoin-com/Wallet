@@ -70,25 +70,25 @@ angular
 
       vm.countries = [];
       // Fetch Countries and Documents
-      Promise.all([moonPayService.getCustomer(), moonPayService.getAllCountries(true)]).then(
-        function onGetFormDataSuccess(data) {
-          var customer = data[0];
-          var countries = data[1];
-
-          vm.firstName = customer.firstName || '';
-          vm.lastName =  customer.lastName || '';
-          vm.dob = customer.dateOfBirth && moment(customer.dateOfBirth).format('DD/MM/YYYY') || '';
-          vm.streetAddress1 = customer.address.street || '';
-          vm.streetAddress2 = customer.address.subStreet || '';
-          vm.city = customer.address.town || '';
-          vm.postalCode = customer.address.postCode || '';
-          vm.country = customer.address.country || '';
+      moonPayService.getAllCountries(true).then(
+        function onGetFormDataSuccess(countries) {
           vm.countries = countries;
+          var state = kycFlowService.getCurrentStateClone();
+          if (state) {
+            vm.firstName = state.firstName || '';
+            vm.lastName =  state.lastName || '';
+            vm.dob = state.dob && moment(state.dob, 'MM/DD/YYYY').format('DD/MM/YYYY') || '';
+            vm.streetAddress1 = state.streetAddress1 || '';
+            vm.streetAddress2 = state.streetAddress2 || '';
+            vm.city = state.city || '';
+            vm.postalCode = state.postalCode || '';
+            vm.country = state.country || '';
+          }
         },
         function onGetFormDataError(err) {
           console.log('Failed to get form data.', err);
         }
-      )
+      );
     }
 
     function submitForm() {
@@ -97,7 +97,7 @@ angular
         $log.debug('Form incomplete.');
         return;
       }
-
+      
       moonPayService.updateCustomer({
         firstName: vm.firstName,
         lastName: vm.lastName,
@@ -111,7 +111,9 @@ angular
         }
       }).then(
         function onSuccess() {
-          goBack();
+          var state = kycFlowService.getCurrentStateClone();
+          state.kycIsSubmitted = true;
+          kycFlowService.goNext(state);
         },
         function onError() {
           popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to submit information. Please try again.'), function() {

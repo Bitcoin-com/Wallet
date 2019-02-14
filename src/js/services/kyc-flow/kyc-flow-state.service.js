@@ -62,6 +62,7 @@ angular
         , result: ''
         , status: ''
         , isRecovery: false
+        , kycIsSubmitted: false
         , recoverySuccess: false
         , countryCode: ''
         , documentType: ''
