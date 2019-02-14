@@ -58,16 +58,17 @@ angular
     function clearCurrent() {
       $log.debug("send-flow-state clearCurrent()");
       state = {
-        identity: null
-        , result: ''
-        , status: ''
-        , isRecovery: false
-        , kycIsSubmitted: false
-        , recoverySuccess: false
-        , countryCode: ''
+        countryCode: ''
         , documentType: ''
         , documents: []
         , documentsMeta: {}
+        , identity: null
+        , isRecovery: false
+        , kycIsSubmitted: false
+        , recoverySuccess: false
+        , result: ''
+        , reviewedFiles: []
+        , status: ''
       };
     }
 

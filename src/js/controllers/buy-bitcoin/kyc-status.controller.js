@@ -31,6 +31,7 @@ angular
 
     // Functions
     vm.goBack = goBack;
+    vm.onRetry = onRetry;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
@@ -155,6 +156,10 @@ angular
 
     function onBeforeLeave(event, data) {
       bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_close' ,[{}, {}, {}], ['leanplum']);
+    }
+
+    function onRetry() {
+      kycFlowService.retry();
     }
   }
 })();
