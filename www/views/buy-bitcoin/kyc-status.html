@@ -27,7 +27,11 @@
           </div>
         </div>
       </div>
-      <div class="apl-button-bottom-container no-shadow">
+      <div ng-show="vm.showRetry" class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.goBack()" translate>Retry</a>
+        <div class="apl-divider apl-divider-transparent"></div>
+      </div>
+      <div ng-show="!vm.showRetry" class="apl-button-bottom-container no-shadow">
         <a class="apl-button" ng-click="vm.goBack()" translate>OK</a>
         <div class="apl-divider apl-divider-transparent"></div>
       </div>

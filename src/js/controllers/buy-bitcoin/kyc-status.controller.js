@@ -27,6 +27,7 @@ angular
     vm.description = gettextCatalog.getString("This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin.");
     vm.graphicUri = "img/buy-bitcoin/processing.svg"
     vm.showStatus = false;
+    vm.showRetry = false;
 
     // Functions
     vm.goBack = goBack;
@@ -118,19 +119,24 @@ angular
 
     function updateStatusUi(response) {
       var statusType;
+      var rejectType;
       if(response.status === 'completed') {
         statusType = response.result === 'clear' ? 'accepted' : 'rejected';
+        rejectType = response.rejectType;
       }
       switch(statusType) {
         case 'accepted':
           vm.statusTitle = gettextCatalog.getString("You're Verified!");
           vm.description = gettextCatalog.getString("Your account is now verified. Congrats!");
-          vm.graphicUri = "img/buy-bitcoin/verified.svg"
+          vm.graphicUri = "img/buy-bitcoin/verified.svg";
           break;
         case 'rejected':
           vm.statusTitle = gettextCatalog.getString('Verification Failed');
           vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time.");
-          vm.graphicUri = "img/buy-bitcoin/failed.svg"
+          vm.graphicUri = "img/buy-bitcoin/failed.svg";
+          if(rejectType === 'retry') {
+            vm.showRetry = true;
+          }
           break;
         default:
           break;
