@@ -10,12 +10,14 @@ angular
   function buyBitcoinKycStatusController(
     bitAnalyticsService
     , gettextCatalog
+    , $ionicHistory
     , kycFlowService
+    , $log
     , moonPayService
     , ongoingProcess
     , popupService
     , $scope
-    , $ionicHistory
+    , $timeout
   ) {
     var currentState = {};
     var vm = this;
@@ -33,6 +35,7 @@ angular
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _initVariables() {
+      vm.files = [];
 
       currentState = kycFlowService.getCurrentStateClone();
 
@@ -86,9 +89,11 @@ angular
           updateStatusUi(response);
 
           if (response.status === 'completed' && response.result === 'rejected') {
-            moonPayService.getFiles().then(function onSuccess(files) {
+            moonPayService.getFiles().then(function onFilesSuccess(files) {
               console.log('files', files);
-              vm.files = files;
+              $timeout(function onTimeout() {
+                vm.files = files;
+              }, 0);
               ongoingProcess.set('fetchingKycStatus', false);
             }).catch(function onFilesError(err) {
               $log.error(err);

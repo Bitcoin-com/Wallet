@@ -4564,3 +4564,9 @@ msgstr ""
 
 msgid "Payment Methods"
 msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""

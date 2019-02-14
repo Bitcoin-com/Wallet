@@ -8,27 +8,29 @@
   </ion-nav-bar>
   <ion-content scroll="false">
     <div class="status-frame" ng-show="vm.showStatus">
-        <table height="100%" width="100%">
-          <tbody>
-            <tr height="100%">
-              <td valign="center">
-                <div class="status-graphic">
-                  <img src="{{vm.graphicUri}}"/>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="apl-button-bottom-container no-shadow">
-                  <h1>{{vm.statusTitle}}</h1>
-                  <p>{{vm.description}}</p>
-                  <a class="apl-button" ng-click="vm.goBack()" translate>OK</a>
-                  <div class="apl-divider apl-divider-transparent"></div>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div id="status-content">
+        <div class="status-graphic">
+            <img src="{{vm.graphicUri}}"/>
+        </div> 
+        <div id="status-info">
+            <h1>{{vm.statusTitle}}</h1>
+            <p>{{vm.description}}</p>
+        </div>
+        <div ng-if="vm.files.length > 0" id="status-files">
+          <div ng-repeat="file in vm.files" class="file">
+            <h3 ng-if="file.type === 'passport'" translate>Passport</h3>
+            <h3 ng-if="file.type === 'selfie'" translate>Self Portrait</h3>
+            <div ng-if="file.side" class="file-text" translate>Side: {{file.side}}</div>
+            <div ng-if="file.reviewResult === 'clear'" class="file-text" translate>Approved</div>
+            <div ng-if="file.reviewResult === 'rejected'" class="file-text" translate>Rejected</div>
+            <div ng-if="file.reviewResultDescription" class="file-text">{{file.reviewResultDescription}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="apl-button-bottom-container no-shadow">
+        <a class="apl-button" ng-click="vm.goBack()" translate>OK</a>
+        <div class="apl-divider apl-divider-transparent"></div>
+      </div>
     </div>
   </ion-content>
 </ion-view>
