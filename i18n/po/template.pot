@@ -4570,3 +4570,6 @@ msgstr ""
 
 msgid "Approved"
 msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr ""

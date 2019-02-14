@@ -129,7 +129,7 @@ angular
           break;
         case 'rejected':
           vm.statusTitle = gettextCatalog.getString('Verification Failed');
-          vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time. Please contact support for additional assistance.");
+          vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time.");
           vm.graphicUri = "img/buy-bitcoin/failed.svg"
           break;
         default:
