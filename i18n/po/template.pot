@@ -4526,9 +4526,6 @@ msgstr ""
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr ""
 
-msgid "Front"
-msgstr ""
-
 msgid "Buying Gift Card..."
 msgstr ""
 

@@ -20,7 +20,8 @@
           <div ng-repeat="file in vm.files" class="file">
             <h3 ng-if="file.type === 'passport'" translate>Passport</h3>
             <h3 ng-if="file.type === 'selfie'" translate>Self Portrait</h3>
-            <div ng-if="file.side" class="file-text" translate>Side: {{file.side}}</div>
+            <div ng-if="file.side === 'front'" class="file-text" translate>Front</div>
+            <div ng-if="file.side === 'back'" class="file-text" translate>Back</div>
             <div ng-if="file.reviewResult === 'clear'" class="file-text" translate>Approved</div>
             <div ng-if="file.reviewResult === 'rejected'" class="file-text" translate>Rejected</div>
             <div ng-if="file.reviewResultDescription" class="file-text">{{file.reviewResultDescription}}</div>
