@@ -644,7 +644,7 @@ angular
         function onUploadFileSuccess(file) {
           deferred.resolve(file);
         }, function onUploadFileError(err) {
-          $log.debug('Error getting moonpay file list from the api', err);
+          $log.debug('Error uploading file to moonpay api', err);
           deferred.reject(err);
         }
       );
