@@ -67,7 +67,6 @@ angular
         , kycIsSubmitted: false
         , recoverySuccess: false
         , result: ''
-        , reviewedFiles: []
         , status: ''
       };
     }
