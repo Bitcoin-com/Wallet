@@ -33,10 +33,10 @@ angular
      */
     function goNext(state) {
       console.log('kyc-flow-router - goNext', state);
-      console.log('document count: ', state.documents.length );
       var needsDocumentType = !(state.countryCode && state.documentType);
       var needsVerify = state.inPreview;
       var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 2 : 3));
+      var needsPersonalInfo = !state.kycIsSubmitted;
 
       if (state.status) {
         // KYC Status Page
@@ -62,6 +62,13 @@ angular
       if (needsDocumentation) {
         console.log('KYC-FLOW - Document Photo');
         $state.go('tabs.buybitcoin-kyc-document-capture', {count: state.documents.length});
+        return;
+      }
+
+      // Personal Info Page
+      if (needsPersonalInfo) {
+        console.log('KYC-FLOW - Personal Info');
+        $state.go('tabs.buybitcoin-kyc-personal-info');
         return;
       }
 

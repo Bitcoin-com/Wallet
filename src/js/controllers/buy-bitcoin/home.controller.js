@@ -24,7 +24,6 @@
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
-    vm.didPushContactSupport = didPushContactSupport;
     vm.onPrivacyPolicy = onPrivacyPolicy;
     vm.onTermsOfUse = onTermsOfUse;
     vm.onVerificationSelect = onVerificationSelect;
@@ -114,16 +113,6 @@
         }
       );
       bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [{}, {}, {}], ['leanplum']);
-    }
-
-    function didPushContactSupport() {
-      var url = 'https://www.bitcoin.com/wallet-support';
-      var optIn = true;
-      var title = null;
-      var message = gettextCatalog.getString('Help and support information is available at the website.');
-      var okText = gettextCatalog.getString('Open');
-      var cancelText = gettextCatalog.getString('Go Back');
-      externalLinkService.open(url, optIn, title, message, okText, cancelText);
     }
 
     function didPushBuyInstantly() {

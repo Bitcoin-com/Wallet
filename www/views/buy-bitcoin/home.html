@@ -16,7 +16,7 @@
       {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month.
     </p>
     <p ng-if="vm.identityCheck && vm.identityCheck.result === 'rejected'" class="center" translate>
-      Your account verification was rejected. Please contact support for additional assistance.
+      Your account verification was rejected.
     </p>
     <p ng-if="!vm.identityCheck && vm.customer.dailyLimit === 0" class="center" translate>
       In order to purchase Bitcoin Cash, you are required to provide some personal information.
@@ -35,12 +35,6 @@
         translate>
         Provide my information
       </div>
-      <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" 
-        ng-click="vm.didPushContactSupport()"
-        ng-if="vm.identityCheck && vm.identityCheck.result === 'rejected'" 
-        translate>
-        Contact support
-      </div>
     </div>
     <div>
       <h1 ng-show="vm.customer.dailyLimit > 0" translate>
@@ -49,7 +43,7 @@
       <div class="apl-list" ng-show="vm.customer.dailyLimit > 0">
         <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods"
           ng-click="vm.onVerificationSelect()"
-          ng-if="(!vm.identityCheck && vm.customer.dailyLimit > 0) || (vm.identityCheck && vm.identityCheck.status !== 'completed')">
+          ng-if="(!vm.identityCheck) || (vm.identityCheck && vm.identityCheck.status !== 'completed') || (vm.identityCheck && vm.identityCheck.result === 'rejected')">
           <p translate>Increase Purchase Limit</p>
           <i class="icon bp-arrow-right"></i>
         </a>
