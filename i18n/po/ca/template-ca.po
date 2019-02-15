@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"PO-Revision-Date: 2019-01-24 07:17\n"
+"PO-Revision-Date: 2019-02-13 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -2742,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "Podeu rebre bitcoins des de qualsevol cartera o servei."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Per començar, heu de crear una cartera bitcoin i obtenir uns quants bitcoins."
@@ -3214,25 +3214,25 @@ msgstr "Recàrrega en curs..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Recàrrega de {{amountStr}} a la targeta de dèbit ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "Inicia ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Canvieu de BTC a BCH en minuts."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "Per iniciar el procés heu d'afegir fons a la cartera."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "El procés és ràpid i rebreu l'import canviat a la vostra cartera."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Aquest servei el presta un tercer, ShapeShift, que cobrarà una petita comissió pel servei. Veureu la comissió abans d'iniciar la transacció."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3826,9 +3826,9 @@ msgstr "{{updatingTxHistoryProgress}} transaccions descarregades"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-de-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr ""
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3974,25 +3974,25 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Obre a l'explorador web"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Adreça no vàlida"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "No s'ha definit l'import"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "L'import és inferior al mínim"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "L'import supera el límit"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Resposta no vàlida de Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr ""
 
 msgid "Insufficient Amount Received"
 msgstr "S'ha rebut un import insuficient"
@@ -4041,8 +4041,8 @@ msgstr "S'ha produït un error en obtenir la informació de client."
 msgid "Customer information was missing."
 msgstr "Faltava la informació de client."
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "Consulteu <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Condicions de servei</a> 59 <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Política de privacitat"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "Consulteu <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Condicions de servei</a> i <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Política de privacitat"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4316,7 +4316,7 @@ msgstr "Adreça postal"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr "Adreça 2"
+msgstr "Adreça 2 (opcional)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
@@ -4503,7 +4503,10 @@ msgstr "Frontal"
 msgid "Take a Selfie"
 msgstr "Prendre una Selfi"
 
-msgid "Position your head entirely in the frame and say cheese."
+msgid "Document + Selfie"
+msgstr ""
+
+msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
@@ -4514,4 +4517,19 @@ msgstr "Frontal"
 
 msgid "Buying Gift Card..."
 msgstr "Comprant targeta regal..."
+
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr ""
 

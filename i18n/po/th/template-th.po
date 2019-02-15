@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Thai\n"
 "Language: th\n"
-"PO-Revision-Date: 2019-01-24 07:18\n"
+"PO-Revision-Date: 2019-02-15 07:49\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -20,7 +20,7 @@ msgstr "(เชื่อถือ)"
 #: www/views/includes/txp.html:23
 #: www/views/includes/walletHistory.html:64
 msgid "(possible double spend)"
-msgstr "(มีการจ่ายครั้งที่สองก็เป็นได้)"
+msgstr "(อาจมีการจ่ายซ้ำ)"
 
 #: www/views/modals/txp-details.html:159
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
@@ -218,7 +218,7 @@ msgstr "ยอดเงินทั้งหมดในกระเป๋าอ
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "อุปกรณ์ทั้งหมดลงต้องเพิ่มกระเป๋าสตางค์ multisig นี้ก่อนจะสร้างที่อยู่ bitcoin"
+msgstr "อุปกรณ์ทั้งหมดจำเป็นต้องถูกเพิ่มไปยังกระเป๋านี้ก่อนถึงจะสร้างที่อยู่ Bitcoin ได้"
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
@@ -244,7 +244,7 @@ msgstr "แสดงราคา"
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:12
 msgid "Fiat"
-msgstr "คำสั่ง"
+msgstr "Държавна Валута"
 
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
@@ -1082,7 +1082,7 @@ msgstr "ป้อนรหัสผ่านในการใช้จ่าย
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
-msgstr "Enter Two Factor for your BitPay account"
+msgstr "  กรอก 2 ปัจจัยสำหรับบัญชี BitPay ของคุณ"
 
 #: www/views/amount.html:4
 msgid "Enter Amount"
@@ -2075,7 +2075,7 @@ msgstr "ถึงเวลาทำการสำรองข้อมูลก
 
 #: www/views/backupWarning.html:11
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
-msgstr "ตอนนี้เหมาะแก่การมองดูรอบๆคุณว่ามีหน้าต่างอยู่ใกล้ๆไหม มีกล้องซ่อนอยู่ไหม หรือมีใครแอบจ้องมองคุณอยู่หรือไม่"
+msgstr "ตอนนี้เหมาะแก่การมองดูรอบๆคุณว่าคุณอยู่ใกล้หน้าต่างไหม มีกล้องซ่อนอยู่ไหม หรือมีใครแอบจ้องมองคุณอยู่หรือไม่"
 
 #: src/js/controllers/buyAmazon.js:312
 #: src/js/controllers/topup.js:286
@@ -2276,7 +2276,7 @@ msgstr "อยู่ระหว่างดำเนินการ"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "รอการรับรองความถูกต้อง"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -2334,7 +2334,7 @@ msgstr "กรุณาเลือกไฟล์สำรองข้อมู
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr "ตรวจสอบก่อนเก็บ"
+msgstr " Pre-Auth Holds"
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
@@ -2743,7 +2743,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "คุณสามารถรับbitcoinได้จากกระเป๋าเงินหรือบริการใดๆก็ได้"
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "ในการเริ่มต้นคุณจะต้องสร้างกระเป๋าเงินbitcoin และรับเงินbitcoin"
@@ -3121,7 +3121,7 @@ msgstr "ยอดรวมของ bitcoin ที่เก็บไว้ใน
 
 #: www/views/preferencesHistory.html:27
 msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
-msgstr "ประวัติธุรกรรมและธุรกรรมใหม่จะถูกเก็บไว้ในแอปฯไว้ชั่วคราว และคุณลักษณะนี้ทำการล้างและประสานอีกครั้งจากเซิฟเวอร์ "
+msgstr "ประวัติธุรกรรมและธุรกรรมใหม่จะถูกเก็บไว้ในแอปฯชั่วคราว และคุณลักษณะนี้จะทำการล้างและประสานอีกครั้งจากเซิฟเวอร์ "
 
 #: www/views/tab-import-phrase.html:6
 msgid "The wallet service URL"
@@ -3215,25 +3215,25 @@ msgstr "อยู่ระหว่างดำเนินการ..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr " {{amountStr}} ไปยังบัตรเดบิต {{cardLastNumber}}"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "เริ่ม ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "เริ่ม SideShift AI"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "แลก BTC เป็น BCH แค่แปปเดียว"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "การเริ่มต้นขั้นตอน คุณจำเป็นต้องเพิ่มเงินในกระเป๋าของคุณ"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "กระบวนการเป็นไปอย่างรวดเร็ว และคุณจะได้รับเงินที่แลกแล้วในกระเป๋าของคุณ"
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "บริการนี้เป็นบริการโดยบุคคลที่สาม ShapeShift จะถูกเก็บค่าธรรมเนียมที่ต่ำ และค่าธรรมเนียมจะแสดงให้เห็นเมื่อคุณทำธุรกรรม"
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "บริการนี้เป็นบริการของ SideShift AI บุคคลที่สาม ที่จะเรียกเก็บค่าธรรมเนียมบริการจากคุณ คุณจะทราบค่าธรรมเนียมก่อนทำธุรกรรมทุกครั้ง"
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3248,7 +3248,7 @@ msgstr "ยอดทั้งหมดที่ล็อค"
 
 #: www/views/tab-create-shared.html:35
 msgid "Total number of copayers"
-msgstr "จำนวนทั้งหมด copayers"
+msgstr "จำนวน copayersทั้งหมด"
 
 #: www/views/addresses.html:81
 msgid "Total wallet inputs"
@@ -3321,7 +3321,7 @@ msgstr "พิมพ์วลีกู้คืน (ปกติมี 12 คำ
 
 #: src/js/controllers/backup.js:75
 msgid "Uh oh..."
-msgstr "โอ ไม่..."
+msgstr "โอ้ไม่..."
 
 #: www/views/tx-details.html:100
 msgid "Unconfirmed"
@@ -3827,9 +3827,9 @@ msgstr "{{updatingTxHistoryProgress}} ดาวน์โหลดธุรกร
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-ของ -{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3975,25 +3975,25 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "เปิดในเว็บเบราว์เซอร์"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "ที่อยู่ไม่ถูกต้อง"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "ไม่กำหนดยอดเงิน"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "ยอดเงินต่ำกว่าขั้นต่ำที่กำหนด"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "ยอดเงินเกินขีดจำกัด"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "การตอบกลับไม่ถูกต้องจาก Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr " มีการตอบสนองที่ไม่ถูกต้องจาก Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "ได้รับเงินไม่เพียงพอ"
@@ -4042,8 +4042,8 @@ msgstr "เกิดข้อผิดพลาดเมื่อเรียก
 msgid "Customer information was missing."
 msgstr "ข้อมูลลูกค้าผิดพลาด"
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "ดู <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\"> ของพวกเรา เงื่อนไขการให้บริการ </a> และ <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\"> นโยบายความเป็นส่วนตัว"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "ดู <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">  เงื่อนไขการให้บริการของพวกเรา </a> และ <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\"> นโยบายความเป็นส่วนตัว"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4105,10 +4105,10 @@ msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr "การซื้อเสร็จสมบูรณ์ ตอนนี้คุณจะพบ BCH ในกระเป๋าของคุณ"
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "การสั่งซื้อล้มเหลว"
 
 msgid "Your order is waiting for authorization."
-msgstr ""
+msgstr "ใบสั่งซื้อของคุณกำลังรอการอนุมัติ"
 
 msgid "Deposited to"
 msgstr "ฝากไปยัง"
@@ -4123,7 +4123,7 @@ msgid "Failed to get payment method info."
 msgstr "ไม่สามารถรับข้อมูลวิธีการชำระเงิน"
 
 msgid "Waiting for authorization"
-msgstr ""
+msgstr "กำลังรอการอนุมัติ"
 
 msgid "Back"
 msgstr "ย้อนกลับ"
@@ -4138,7 +4138,7 @@ msgid "Visa, MC, or AMEX"
 msgstr "วีซ่า,MC หรือ AMEX"
 
 msgid "MM/YYYY"
-msgstr "MM/YYYY"
+msgstr "เดือน/ปีค.ศ."
 
 msgid "Card Number"
 msgstr "หมายเลขบัตร"
@@ -4240,7 +4240,7 @@ msgid "Success!"
 msgstr "สำเร็จ!"
 
 msgid "Failed"
-msgstr ""
+msgstr "ล้มเหลว"
 
 msgid "Your purchase has been processed."
 msgstr "อยู่ในขั้นตอนการซื้อ"
@@ -4253,266 +4253,284 @@ msgstr "ทำการซื้อเพิ่ม"
 
 #: www/views/kyc-document-info.html:53
 msgid "Photograph document"
-msgstr ""
+msgstr "ถ่ายภาพเอกสาร"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
-msgstr ""
+msgstr "ข้ามการตรวจสอบ"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Passport"
-msgstr ""
+msgstr "หนังสือเดินทาง"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "National ID"
-msgstr ""
+msgstr "เลขบัตรประชาชน"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Driving License"
-msgstr ""
+msgstr "ใบอนุญาตขับขี่"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Verification"
-msgstr ""
+msgstr "การตรวจสอบ"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "เพิ่มวงเงินในการซื้อ"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
-msgstr ""
+msgstr "ทำการตรวจสอบสถานะ..."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a country."
-msgstr ""
+msgstr "โปรดเลือกประเทศของคุณ"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a document type."
-msgstr ""
+msgstr "โปรดเลือกชนิดของเอกสาร"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "ขณะนี้คุณสามารถทำการซื้อได้ถึง 150 ยูโรต่อเดือนแล้วโดยไม่ต้องยืนยันตัวตน และคุณสามารถทำการยืนยันตัวตนเพื่อเพิ่มวงเงินในการซื้อได้ถึง 20,000 ยูโรต่อเดือน"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
-msgstr ""
+msgstr "ข้อมูลส่วนตัว"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
-msgstr ""
+msgstr " ชื่อจริง"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Last Name"
-msgstr ""
+msgstr "นามสกุล"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Date of Birth"
-msgstr ""
+msgstr "วันเดือนปีเกิด"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Street Address"
-msgstr ""
+msgstr "ถนน"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr ""
+msgstr "อาคาร/ตึก (ถ้ามี)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
-msgstr ""
+msgstr "เมือง"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
-msgstr ""
+msgstr "รหัสไปรษณีย์"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Country"
-msgstr ""
+msgstr "ประเทศ"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
-msgstr ""
+msgstr "จำเป็นต้องกรอกข้อมูล"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
-msgstr ""
+msgstr "ต้องมีอายุอย่างน้อย 18 ปี"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "123 ถนนเมเปิล"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
-msgstr ""
+msgstr "โตเกียว"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
-msgstr ""
+msgstr "ญี่ปุ่น"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
-msgstr ""
+msgstr "Apt 1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "การส่งข้อมูลล้มเหลว โปรดลองอีกครั้ง"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
-msgstr ""
+msgstr "กำลังส่งข้อมูล"
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "การอัปโหลดภาพล้มเหลว โปรดลองอีกครั้ง"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "มีรูปลักษณ์แบบไหน?"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "ตรวจทานรายละเอียดบนเอกสารของคุณว่าสามารถอ่านได้ชัดเจน"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "สามารถอ่านได้"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "ถ่ายใหม่"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "ถ่ายภาพเอกสารของคุณ"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "จัดตำแหน่ง {{vm.documentName}} ของคุณให้อยู่ในกรอบ 4 มุมอย่างชัดเจน และหลีกเลี่ยงแสงจ้า"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "ยืนยันแล้ว"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
-msgstr ""
+msgstr "ชนิดเอกสาร"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Select"
-msgstr ""
+msgstr "เลือก"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "หากก่อนหน้านี้คุณเคยยืนยันตัวตนของคุณแล้วกับ bitcoin.com คุณสามารถ <a ng-click=\"vm.onRestoreVerify()\"> คืนค่าการตรวจสอบของคุณ </a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
-msgstr ""
+msgstr "สถานะการตรวจสอบ"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "อยู่ระหว่างการยืนยันตัวตน"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "ยืนยันตัวตนแล้ว!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "ขณะนี้บัญชีของคุณได้รับการยืนยันแล้ว ขอแสดงความยินดีด้วย!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "ใช้เวลานานเกินไปเราจะแจ้งให้ท่านทราบเร็วๆนี้ หลังจากนั้นคุณจะสามารถเริ่มการซื้อBitcoinได้"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "การตรวจสอบล้มเหลว"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "ทางเราต้องขออภัยด้วยที่เราไม่สามารถยืนยันตัวตนของคุณในขณะนี้ โปรดติดต่อฝ่ายสนับสนุนสำหรับความช่วยเหลือเพิ่มเติม"
 
 msgid "Self Portrait"
-msgstr ""
+msgstr " ภาพถ่ายบุคคล"
 
 msgid "Shop"
-msgstr ""
+msgstr "ซื้อของ"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "ร้านค้าใกล้เคียงฉัน"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "ค้นหาร้านค้าในพื้นที่ที่รับเงินสด Bitcoin"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "รับส่วนลดมากถึง 30% ที่ Amazon หากจ่ายด้วยเงินสด Bitcoin"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "บัตรกำนัลดิจิทัลจากหลายแบรนด์ชื่อดัง"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "เพิ่มธุรกิจ"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "คุณมีร้านค้าหรือรู้จักธุรกิจที่รับเงินสด Bitcoin ไหม เพิ่มธุรกิจเลย"
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "ซื้อ Bitcoin Cash"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "คุณเป็นเจ้าของธุรกิจใช่ไหม"
 
 msgid "More"
-msgstr ""
+msgstr "เพิ่มเติม"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "ดูวิธีการรับชำระเงินด้วย Bitcoin ได้ง่ายๆได้เลย"
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr " เข้าสู่ยุคของ Bitcoin Cash สามารถจองตั๋วเครื่องบิน จองโรงแรม หรือเช่ารถก็ได้ "
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "เป็นตลาดที่มีการใช้จ่ายเงินสูงสุด"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "เริ่ม  Bitcoin mining"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "ชำระเงินด้วย BCH รับเงินคืน 10%"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "รับ Bitcoin merch ของคุณ "
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "ไม่พบอีเมล์"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "ในกรณีหากต้องเพิ่มร้านค้า กรุณาส่งข้อมูลรายละเอียดไปยังอีเมลนี้ addbusiness@bitcoin.com."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "ทักทายทีม Bitcoin.com <br><br> ฉันอยากจะเพิ่มร้านค้าใหม่ที่รับชำระเงินด้วย Bitcoin Cash ไปยังพิกัดแผนที่ของแอปฯ <br> ชื่อของธุรกิจ <br> ที่อยู่ <br> ประเภทธุรกิจ <br><br> ข้อมูลเพื่อช่วยในการค้นหา <br> ลิงค์ของแผนที่ <br> หรือ <br>. พิกัดละติจูด <br> พิกัดลองติจูด <br><br> ข้อมูลประกอบเพิ่มเติม <br> เว็บไซต์ <br> เบอร์โทร <br>  "
 
 msgid "Internal Error"
-msgstr ""
+msgstr "ข้อผิดพลาดภายใน"
 
 msgid "Front"
-msgstr ""
+msgstr "ด้านหน้า"
 
 msgid "Take a Selfie"
-msgstr ""
+msgstr "ถ่ายรูปเซลฟี่"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr ""
+msgid "Document + Selfie"
+msgstr "เอกสาร + ถ่ายเซลฟี่"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "โปรดถือเอกสารไว้ข้างๆหน้าของคุณและทำการถ่ายภาพ"
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "หลีกเลี่ยงแสงจ้าและจัดตำแหน่งเอกสารให้อยู่ในกรอบทั้ง 4 มุมอย่างชัดเจน "
 
 msgid "Front"
-msgstr ""
+msgstr "ด้านหน้า"
 
 msgid "Buying Gift Card..."
-msgstr ""
+msgstr "ทำการซื้อบัตรของขวัญ..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "เกิดข้อผิดพลาด รหัสสถานะ {{status}}"
+
+msgid "Useful Links"
+msgstr "ลิ้งค์สาระ "
+
+msgid "Exchange between BTC and BCH"
+msgstr "ทำการแลกระหว่าง BTC และ BCH"
+
+msgid "Exchange"
+msgstr "แลกเปลี่ยน"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "นี่อาจจะยอดเงินที่หายไป คุณไม่สามารถส่ง Bitcoin Core ไปยังที่อยู่ Bitcoin Cash นี้ "
 

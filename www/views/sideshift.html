@@ -1,16 +1,16 @@
-<ion-view id="shapeshift" class="settings" show-tabs>
+<ion-view id="sideshift" class="settings" show-tabs>
   <ion-nav-bar class="bar-royal">
     <ion-nav-title>
-      {{'Shapeshift'|translate}}
+      {{'SideShift AI'|translate}}
     </ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <div ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div ng-include="'views/thirdparty/sideshift-header.html'"></div>
     <div class="list card empty-case">
       <div>
-        <img class="swap-image" src="img/shapeshift_swap.png"/>
+        <img class="swap-image" src="img/sideshift_swap.png"/>
       </div>
       <div class="subtitle">
         <p translate>Exchange your BTC to BCH in minutes.</p>
@@ -25,9 +25,9 @@
           <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="!walletsWithFunds.length" translate>Buy Bitcoin now</button>
           <button class="button button-standard button-white" ng-click="showMyAddress()" ng-show="!walletsWithFunds.length" translate>Show my address</button>
           <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
-          <button class="button button-standard button-shapeshift track_shapeshift_start_click" ng-click="shapeshift()" ng-show="walletsWithFunds.length" translate>Start ShapeShift</button>
+          <button class="button button-standard button-sideshift track_sideshift_start_click" ng-click="sideshift()" ng-show="walletsWithFunds.length" translate>Start SideShift AI</button>
         </div>
       </div>
     </div>
-    <div class="third-party-notice" translate>This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction.</div>
+    <div class="third-party-notice" translate>This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction.</div>
 </ion-content>

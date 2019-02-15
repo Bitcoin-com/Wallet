@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2019-01-24 07:18\n"
+"PO-Revision-Date: 2019-02-13 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -2276,7 +2276,7 @@ msgstr "处理中"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "等待身份验证中"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -2742,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "您可以从任何钱包或服务接收比特币。"
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "若要开始，您将需要创建一个比特币的钱包，并获得一些比特币。"
@@ -3214,25 +3214,25 @@ msgstr "在进展充值..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "充值 {{amountStr}}，记入借方卡 ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "开始 ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "在数分钟内将您的 BTC 兑换为 BCH。"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "要开始兑换，您需要先向钱包中充入资金。"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "兑换操作非常快，您将在自己的钱包中收到兑换后的金额。"
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "此服务由第三方 ShapeShift 提供，他们将收取少量服务费。所需费用将在您开始交易之前显示。"
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3826,9 +3826,9 @@ msgstr "下载的 {{updatingTxHistoryProgress}} 交易"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr ""
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3974,25 +3974,25 @@ msgstr "网址"
 msgid "Open in web browser"
 msgstr "在网络浏览器中打开"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "地址无效"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "未定义金额"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "金额低于最低金额"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "金额高于限额"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Shapeshift 的响应无效"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr ""
 
 msgid "Insufficient Amount Received"
 msgstr "收到的金额不足"
@@ -4041,8 +4041,8 @@ msgstr "获取您的客户信息时出错。"
 msgid "Customer information was missing."
 msgstr "缺少客户信息。"
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "请参阅我们的<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">服务条款</a>和<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">隐私政策</a>"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "请参阅我们的<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">服务条款</a>和<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">隐私政策"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4104,7 +4104,7 @@ msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr "您的订单已完成。您现在可以在钱包中找到您的 BCH。"
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "订单失败。"
 
 msgid "Your order is waiting for authorization."
 msgstr "您的订单正在等待授权。"
@@ -4256,7 +4256,7 @@ msgstr "照片文件"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
-msgstr ""
+msgstr "未验证"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Passport"
@@ -4276,7 +4276,7 @@ msgstr "验证"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "增加购买额度"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
@@ -4292,11 +4292,11 @@ msgstr "您必须选择一种证件"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "在没有验证的状况下，目前你每个月只能购买最高到150欧元。 通过妊娠数据后，可将你的购买额度，升高到20,000欧元。"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
-msgstr ""
+msgstr "个人资料"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
@@ -4320,7 +4320,7 @@ msgstr "公寓, 套房, 建筑 (可选)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
-msgstr ""
+msgstr "城市"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
@@ -4332,7 +4332,7 @@ msgstr "国家"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
-msgstr ""
+msgstr "必须填写这一行"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
@@ -4340,7 +4340,7 @@ msgstr "必须满18岁。"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "枫树街123号"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
@@ -4356,7 +4356,7 @@ msgstr "公寓1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "未能提交资料。请再试一次。"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
@@ -4364,154 +4364,172 @@ msgstr "正在发送信息..。"
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "上载图像失败。请再试一次。"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "看起来如何？"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "确保您的证件资料上的详细信息清晰易读, 不会有模糊或眩光。"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "是的, 它是可读的"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "重新拍摄"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "请拍摄您的证件。"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "将 {{vm.documentName}} 的4个角清楚地放置在框架中。避免任何眩光。"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "验证"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
-msgstr ""
+msgstr "证件种类"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Select"
-msgstr ""
+msgstr "选择"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "如果你之前有在bitcoin.com 验证过，您可以 <a ng-click=\"vm.onRestoreVerify()\">重新采用你的验证资料。</a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
-msgstr ""
+msgstr "验证状态"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "验证中。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "验证结束。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "恭喜您！您的帐户已经通过验证手续。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "应该不会花太久，当您可以买比特币的时候，我们会马上通知您。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "验证失败。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "很抱歉，目前我们没有办法帮您认真亲和我们的顾客服务中心联络。"
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "自拍"
 
 msgid "Shop"
-msgstr ""
+msgstr "店"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "在附近的店消费"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "查询在您的附近接收比特币现金店铺或服务的地方。"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "用比特币现金在亚马逊网络购物最高可取得30%折扣"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "大企业的电子礼券"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "追加店铺，服务"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "您有认识的店铺或服务，接收比特币现金的吗？追加它吧。"
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "用比特币现金购买。"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "您是企业主吗？"
 
 msgid "More"
-msgstr ""
+msgstr "更多"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "从今天开始接收比特币现金付款方式，我们可以教您接收方法。"
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "用比特币现金去滑雪订机票订饭店和租车。"
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "市场上最高的支付池"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "开始挖掘比特币"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "用比特币现金支付可以得到是10％回扣。"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "购买比特币关联商品"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "无法确认电子邮件"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "为了追加新的服务和店铺，请送所有的情报到电子邮箱 addbusiness@bitcoin.com"
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "您好 Bitcoin.com team,<br><br>我想要追加一间新的企业接受比特币现金，在你们的钱包App上:<br>- 企业名:<br>- 地址: <br>- 企业种类: <br><br>方便找这个企业的情报:<br>- Google地图: <br>or<br>- 纬度: <br>- 经度: <br><br>追加企业情报:<br>- 网页:<br>- 电话号码:<br>"
 
 msgid "Internal Error"
-msgstr ""
+msgstr "发生内部错误"
 
 msgid "Front"
-msgstr ""
+msgstr "正面"
 
 msgid "Take a Selfie"
+msgstr "请拍摄自拍"
+
+msgid "Document + Selfie"
 msgstr ""
 
-msgid "Position your head entirely in the frame and say cheese."
+msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "将您的证件资料的4个角清楚地放置在框架中。避免任何眩光。"
 
 msgid "Front"
-msgstr ""
+msgstr "正面"
 
 msgid "Buying Gift Card..."
+msgstr "买礼券"
+
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr ""
 

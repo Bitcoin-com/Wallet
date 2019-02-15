@@ -2,70 +2,85 @@
 
 (function () {
 
-angular
-  .module('bitcoincom.controllers')
-  .controller('buyBitcoinHomeController', buyBitcoinHomeController);
+  angular
+    .module('bitcoincom.controllers')
+    .controller('buyBitcoinHomeController', buyBitcoinHomeController);
 
   function buyBitcoinHomeController(
     bitAnalyticsService
-    , $filter
     , gettextCatalog
-    , $ionicHistory 
+    , $ionicHistory
+    , externalLinkService
     , kycFlowService
     , moonPayService
+    , ongoingProcess
     , popupService
     , $scope
     , $state
     , $window
-    ) {
+  ) {
 
     var vm = this;
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
+    vm.onPrivacyPolicy = onPrivacyPolicy;
+    vm.onTermsOfUse = onTermsOfUse;
     vm.onVerificationSelect = onVerificationSelect;
+    vm.goBack = goBack;
+    
 
     function _initVariables() {
-      vm.dailyRemaining = '-';
-      vm.monthlyRemaining = '-';
-
-      vm.privacyPolicy = 'tabs.buybitcoin-privacypolicy'
-      vm.termsOfService = 'tabs.buybitcoin-tos'
+      vm.customer = null;
+      vm.identityCheck = null;
     }
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
     function _getAndPopulateCustomerInfo() {
-      moonPayService.getCustomer().then(
-        function onGetCustomerSuccess(customer) {
-          if (customer) {
-            console.log('Moonpay customer:', customer);
-            vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '€', 2);
-            vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '€', 2);
-            bitAnalyticsService.setUserAttributes({
-              'email': customer.email
-            });
-          } else {
+      ongoingProcess.set('loadingProfile', true);
+
+      Promise.all([moonPayService.getCustomer(), moonPayService.getIdentityCheck()]).then(
+        function onGetCustomerInfoSuccess(customerInfo) {
+          var customer = customerInfo[0];
+          var identityCheck = customerInfo[1];
+
+          ongoingProcess.set('loadingProfile', false);
+
+          console.log('Moonpay customer:', customer, ' identity check:', identityCheck);
+
+          if (!customer) {
             $state.go('tabs.buybitcoin-welcome');
             var title = gettextCatalog.getString("Error Getting Customer Information");
             var message = gettextCatalog.getString("Customer information was missing.");
-            popupService.showAlert(title, message, function onAlert(){
-              _goBack();
+            popupService.showAlert(title, message, function onAlert() {
+              goBack();
             });
+            return;
           }
+
+          vm.customer = customer;
+          vm.identityCheck = identityCheck;
+          // vm.dailyRemaining = $filter('currency')(customer.dailyLimit, '€', 2);
+          // vm.monthlyRemaining = $filter('currency')(customer.monthlyLimit, '€', 2);
+          bitAnalyticsService.setUserAttributes({
+            'email': customer.email
+          });
         },
-        function onGetCustomerError(err) {
+        function onGetCustomerInfoError(err) {
+          ongoingProcess.set('loadingProfile', false);
           var title = gettextCatalog.getString("Error Getting Customer Information");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
-          popupService.showAlert(title, message, function onAlert(){
-            _goBack();
+          popupService.showAlert(title, message, function onAlert() {
+            goBack();
           });
         }
       );
     }
 
-    function _goBack() {
-      $ionicHistory.goBack();
+    function goBack() {
+      $ionicHistory.removeBackView();
+      $state.go('tabs.home');
       bitAnalyticsService.postEvent('buy_bitcoin_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
@@ -88,13 +103,13 @@ angular
             $state.go('tabs.buybitcoin-welcome');
           }
         },
-        function onCustomerIdError(err) {          
+        function onCustomerIdError(err) {
           var title = gettextCatalog.getString("Error Getting Customer ID");
           var message = err.message || gettextCatalog.getString("An error occurred when getting your customer information.");
-          popupService.showAlert(title, message, function onAlert(){
+          popupService.showAlert(title, message, function onAlert() {
             _goBack();
           });
-          
+
         }
       );
       bitAnalyticsService.postEvent('buy_bitcoin_screen_open', [{}, {}, {}], ['leanplum']);
@@ -102,6 +117,14 @@ angular
 
     function didPushBuyInstantly() {
       $state.go('tabs.buybitcoin-amount');
+    }
+
+    function onPrivacyPolicy() {
+      externalLinkService.open('https://www.moonpay.io/privacy_policy?mobile=true', false);
+    }
+
+    function onTermsOfUse() {
+      externalLinkService.open('https://www.moonpay.io/terms_of_use?mobile=true', false);
     }
 
     function onVerificationSelect() {

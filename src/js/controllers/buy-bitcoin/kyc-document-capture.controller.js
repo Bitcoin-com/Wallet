@@ -13,6 +13,7 @@ angular
     , cameraPreviewService
     , kycFlowService
     , $scope
+    , $q
     , platformInfo
   ) {
     var currentState = {};
@@ -61,8 +62,8 @@ angular
       // Set Text Content by ImageType
       if(vm.imageType === 'selfie') {
         vm.titleLabel = gettextCatalog.getString('Self Portrait');
-        vm.descriptionHeaderLabel = gettextCatalog.getString('Take a Selfie');
-        vm.descriptionLabel = gettextCatalog.getString('Position your head entirely in the frame and say cheese.');
+        vm.descriptionHeaderLabel = gettextCatalog.getString('Document + Selfie');
+        vm.descriptionLabel = gettextCatalog.getString('Take a picture of your document held up beside your face.');
         cameraPreviewService.startSelfieCamera();
       } else {
         vm.titleLabel = vm.documentName + " " + (vm.imageType === 'front' ? gettextCatalog.getString('Front') : gettextCatalog.getString('Back'));
@@ -99,7 +100,7 @@ angular
     }
     
     function cropDocument(image, originX, originY, imgWidth, imgHeight) {
-      return new Promise(function( resolve, reject) {
+      return $q(function( resolve, reject) {
         var tempImage = new Image();
         tempImage.onload = function() {
 
