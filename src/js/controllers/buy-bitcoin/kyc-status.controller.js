@@ -10,12 +10,14 @@ angular
   function buyBitcoinKycStatusController(
     bitAnalyticsService
     , gettextCatalog
+    , $ionicHistory
     , kycFlowService
+    , $log
     , moonPayService
     , ongoingProcess
     , popupService
     , $scope
-    , $ionicHistory
+    , $timeout
   ) {
     var currentState = {};
     var vm = this;
@@ -25,14 +27,17 @@ angular
     vm.description = gettextCatalog.getString("This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin.");
     vm.graphicUri = "img/buy-bitcoin/processing.svg"
     vm.showStatus = false;
+    vm.showRetry = false;
 
     // Functions
     vm.goBack = goBack;
+    vm.onRetry = onRetry;
 
     $scope.$on("$ionicView.beforeEnter", onBeforeEnter);
     $scope.$on("$ionicView.beforeLeave", onBeforeLeave);
 
     function _initVariables() {
+      vm.files = [];
 
       currentState = kycFlowService.getCurrentStateClone();
 
@@ -84,6 +89,24 @@ angular
         ongoingProcess.set('fetchingKycStatus', true);
         moonPayService.getIdentityCheck().then(function onSuccess(response) {
           updateStatusUi(response);
+
+          if (response.status === 'completed' && response.result === 'rejected') {
+            moonPayService.getFiles().then(function onFilesSuccess(files) {
+              console.log('files', files);
+              $timeout(function onTimeout() {
+                vm.files = files;
+              }, 0);
+              ongoingProcess.set('fetchingKycStatus', false);
+            }).catch(function onFilesError(err) {
+              $log.error(err);
+              // Activate Retry Button  
+              ongoingProcess.set('fetchingKycStatus', false);
+              popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get information. Please try again.'), function() {
+              $ionicHistory.goBack();
+          });
+            });
+          }
+
           ongoingProcess.set('fetchingKycStatus', false);
         }).catch(function onError(error) {
           // Activate Retry Button  
@@ -97,19 +120,24 @@ angular
 
     function updateStatusUi(response) {
       var statusType;
+      var rejectType;
       if(response.status === 'completed') {
         statusType = response.result === 'clear' ? 'accepted' : 'rejected';
+        rejectType = response.rejectType;
       }
       switch(statusType) {
         case 'accepted':
           vm.statusTitle = gettextCatalog.getString("You're Verified!");
           vm.description = gettextCatalog.getString("Your account is now verified. Congrats!");
-          vm.graphicUri = "img/buy-bitcoin/verified.svg"
+          vm.graphicUri = "img/buy-bitcoin/verified.svg";
           break;
         case 'rejected':
           vm.statusTitle = gettextCatalog.getString('Verification Failed');
-          vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time. Please contact support for additional assistance.");
-          vm.graphicUri = "img/buy-bitcoin/failed.svg"
+          vm.description = gettextCatalog.getString("We're sorry but we're not able to verify you at this time.");
+          vm.graphicUri = "img/buy-bitcoin/failed.svg";
+          if(rejectType === 'retry') {
+            vm.showRetry = true;
+          }
           break;
         default:
           break;
@@ -128,6 +156,10 @@ angular
 
     function onBeforeLeave(event, data) {
       bitAnalyticsService.postEvent('buy_bitcoin_kyc_status_screen_close' ,[{}, {}, {}], ['leanplum']);
+    }
+
+    function onRetry() {
+      kycFlowService.retry();
     }
   }
 })();

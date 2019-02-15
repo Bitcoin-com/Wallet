@@ -13,6 +13,7 @@ angular
     , cameraPreviewService
     , kycFlowService
     , $scope
+    , $q
     , platformInfo
   ) {
     var currentState = {};
@@ -99,7 +100,7 @@ angular
     }
     
     function cropDocument(image, originX, originY, imgWidth, imgHeight) {
-      return new Promise(function( resolve, reject) {
+      return $q(function( resolve, reject) {
         var tempImage = new Image();
         tempImage.onload = function() {
 
