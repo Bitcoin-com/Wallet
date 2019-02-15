@@ -76,8 +76,7 @@ angular
           updateStatusUi(response);
 
           ongoingProcess.set('submitingKycInfo', false);
-        })
-        .catch(function onError(error) {
+        }, function onCreateIdentityFail(error) {
           console.log('Moonpay API Errors:', error);
           // Activate Retry Button
           ongoingProcess.set('submitingKycInfo', false);
@@ -97,24 +96,23 @@ angular
                 vm.files = files;
               }, 0);
               ongoingProcess.set('fetchingKycStatus', false);
-            }).catch(function onFilesError(err) {
+            },
+            function onFilesError(err) {
               $log.error(err);
               // Activate Retry Button  
               ongoingProcess.set('fetchingKycStatus', false);
               popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get information. Please try again.'), function() {
-              $ionicHistory.goBack();
-          });
+                $ionicHistory.goBack();
+              });
             });
           }
-
           ongoingProcess.set('fetchingKycStatus', false);
-        }).catch(function onError(error) {
-          // Activate Retry Button  
+        }, function onIdentityCheckError(err) {
           ongoingProcess.set('fetchingKycStatus', false);
           popupService.showAlert(gettextCatalog.getString('Error'), gettextCatalog.getString('Failed to get information. Please try again.'), function() {
             $ionicHistory.goBack();
           });
-        });
+        })
       }
     }
 

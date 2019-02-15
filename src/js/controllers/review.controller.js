@@ -691,7 +691,9 @@ angular
           "coin": vm.originWallet.coin,
           "type": "outgoing",
           "amount": amount,
-          "fees": vm.feeCrypto
+          "fees": vm.feeCrypto,
+          "num_of_copayers": vm.originWallet.n,
+          "num_of_signatures": vm.originWallet.m
         }, {}, {}], [channel, "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 
