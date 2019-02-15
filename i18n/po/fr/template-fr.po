@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: French\n"
 "Language: fr\n"
-"PO-Revision-Date: 2019-01-24 08:36\n"
+"PO-Revision-Date: 2019-02-15 07:49\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "Rechargement de {{amountStr}} vers la carte de débit ({{cardLastNumber}
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Démarrer Sideshift"
+msgstr "Commencer avec SideShift"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3827,8 +3827,8 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-sur-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "SideShift AI"
-msgstr "Sideshift"
+msgid "Sideshift"
+msgstr "SideShift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "Le montant est supérieur à la limite"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr "Réponse de Sideshift invalide"
+msgstr "Réponse invalide de SideShift"
 
 msgid "Insufficient Amount Received"
 msgstr "Montant reçu insuffisant"
@@ -4041,8 +4041,8 @@ msgstr "Une erreur s’est produite lors de l’obtention de vos informations cl
 msgid "Customer information was missing."
 msgstr "Informations client manquantes."
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "Consulter nos <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Conditions d'utilisation</a> &<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\"> politique de confidentialité"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "Consulter nos <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Conditions d'utilisation</a> &<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\"> politique de confidentialité"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4503,8 +4503,11 @@ msgstr "Avant"
 msgid "Take a Selfie"
 msgstr "Prendre un Selfie"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr "Positionner la tête entièrement dans le cadre et souriez."
+msgid "Document + Selfie"
+msgstr "Document + Selfie"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Prendre une photo de votre document qui est tenue vers le haut à côté de votre visage."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Positionnez les 4 coins de votre document clairement dans le cadre. Éviter tout éblouissement."
@@ -4514,4 +4517,19 @@ msgstr "Avant"
 
 msgid "Buying Gift Card..."
 msgstr "Achat de chèques-cadeaux..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "Erreur. Code : {{status}}"
+
+msgid "Useful Links"
+msgstr "Liens utiles"
+
+msgid "Exchange between BTC and BCH"
+msgstr "Échange entre BTC et BCH"
+
+msgid "Exchange"
+msgstr "Échange"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Vous ne pouvez pas envoyer de Bitcoin Core à cette adresse Bitcoin Cash. Cela mènerait à une perte des fonds."
 

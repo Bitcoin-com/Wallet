@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"PO-Revision-Date: 2019-01-24 07:18\n"
+"PO-Revision-Date: 2019-02-15 07:49\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "Doładuj o {{amountStr}} kartę debetową ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Rozpocznij Sideshift"
+msgstr ""
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Proces jest szybki, a użytkownik otrzyma wymienione środki do portfela
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Ta usługa jest świadczona przez podmiot zewnętrzny SideShift AI, który naliczy za nią niewielką opłatę. Będzie ona widoczna przed rozpoczęciem transakcji."
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3827,8 +3827,8 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-z-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "SideShift AI"
-msgstr "Sideshift"
+msgid "Sideshift"
+msgstr ""
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "Kwota przekracza limit"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr "Nieprawidłowa odpowiedź z Sideshift"
+msgstr ""
 
 msgid "Insufficient Amount Received"
 msgstr "Otrzymana ilość jest niewystarczająca"
@@ -4041,8 +4041,8 @@ msgstr "Podczas pobierania Twoich danych klienta wystąpił błąd."
 msgid "Customer information was missing."
 msgstr "Brakuje informacji o kliencie."
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "Zobacz nasze <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Warunki użytkowania</a> i <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Politykę prywatności"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "Zobacz nasze <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Warunki użytkowania</a> i <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Politykę prywatności"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4503,8 +4503,11 @@ msgstr "Przód"
 msgid "Take a Selfie"
 msgstr "Zrób sobie Selfie"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr "Cała głowa musi zmieścić się w ramce i prosimy o uśmiech."
+msgid "Document + Selfie"
+msgstr "Dokument + Selfie"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Zrób zdjęcie dokumentu trzymając go obok twarzy."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Wpasuj 4 rogi dokumentu wyraźnie w ramkę. Unikaj powstawania odblasków."
@@ -4514,4 +4517,19 @@ msgstr "Przód"
 
 msgid "Buying Gift Card..."
 msgstr "Zakup karty upominkowej..."
+
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Nie możesz przesłać BTC na adres BCH. Spowodowałoby to utratę funduszy w BTC."
 

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-01-24 08:36\n"
+"PO-Revision-Date: 2019-02-15 07:49\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "체크 카드 ({{cardLastNumber}})에 {{amountStr}} 추가 지불(Top up
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Sideshift 시작"
+msgstr "SideShift AI 시작하기"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "과정은 빠르며 지갑에 교환 금액이 전송됩니다."
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "제3자 회사 SideShift AI는 소액의 수수료를 받고 서비스를 제공합니다. 수수료 금액은 거래 시작 전에 표시됩니다."
+msgstr "이 서비스는 제3자 회사 Sideshift가 소액의 수수료를 받고 제공합니다. 수수료 금액은 거래 시작 전에 표시됩니다."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3827,7 +3827,7 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.n}}의 {{wallet.m}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "SideShift AI"
+msgid "Sideshift"
 msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
@@ -4041,8 +4041,8 @@ msgstr "고객 정보 확인 중 오류가 발생했습니다."
 msgid "Customer information was missing."
 msgstr "고객 정보가 누락되었습니다."
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">개인정보보호정책을 확인해 주십시오."
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보보호정책을 확인해 주십시오."
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4503,8 +4503,11 @@ msgstr "앞면"
 msgid "Take a Selfie"
 msgstr "셀카를 찍으세요"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr "테두리 속에 얼굴을 넣어 촬영하세요."
+msgid "Document + Selfie"
+msgstr "문서 + 셀카"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "문서를 들고 셀카를 촬영하세요."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "문서 4개의 꼭짓점을 틀 안에 넣어주세요. 빛 반사를 조심해주세요."
@@ -4514,4 +4517,19 @@ msgstr "앞면"
 
 msgid "Buying Gift Card..."
 msgstr "기프트 카드 구매 중..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "오류가 발생 했습니다. 상태 코드: {{status}}"
+
+msgid "Useful Links"
+msgstr "유용한 링크"
+
+msgid "Exchange between BTC and BCH"
+msgstr "BTC와 BCH 전환하기"
+
+msgid "Exchange"
+msgstr "교환"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "이 주소는 비트코인 캐시 주소입니다. 비트코인을 이 주소로 송금할 시 자금이 유실됩니다."
 

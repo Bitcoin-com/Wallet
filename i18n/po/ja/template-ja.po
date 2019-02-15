@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2019-01-24 08:36\n"
+"PO-Revision-Date: 2019-02-15 07:49\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -451,7 +451,7 @@ msgstr "ビットコインは世界で<br>最も安全な仮想通貨。"
 
 #: www/views/preferencesFee.html:11
 msgid "Bitcoin transactions include a fee collected by miners on the network."
-msgstr "ビットコインの取引はネットワークの安全を守る「採掘者」と呼ばれる方達に送る手数料が含まれます。"
+msgstr "ビットコインの取引にはネットワークの安全を守る「採掘者」に必要な手数料が含まれます。"
 
 #: www/views/buyAmazon.html:108
 msgid "Bought {{amountUnitStr}}"
@@ -1955,7 +1955,7 @@ msgstr "バックアップは非常に重要です！"
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
-msgstr "連絡先はありません"
+msgstr "連絡先がありません"
 
 #: www/views/preferencesLogs.html:16
 msgid "No entries for this log level"
@@ -2984,12 +2984,12 @@ msgstr "全残高インポート"
 #: www/views/includes/incomingDataMenu.html:89
 msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr "ペーパーウォレットの全残高インポート"
+msgstr "ペーパーウォレットをスワイプする"
 
 #: www/views/paperWallet.html:3
 msgctxt "Page title"
 msgid "Sweep Paper Wallet"
-msgstr "ペーパーウォレットの全残高インポート"
+msgstr "ペーパーウォレットをスワイプする"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
@@ -3222,7 +3222,7 @@ msgstr "デビットカード ({{cardLastNumber}}) に {{amountStr}} の入金�
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Sideshiftを開始"
+msgstr "SideShift AIを開始する"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3238,7 +3238,7 @@ msgstr "処理は高速で、交換した金額がウォレットに届きます
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "このサービスは、少額のサービス手数料を請求する第三者組織である SideShift AI によって提供されています。手数料は取引を開始する前に表示されます。"
+msgstr "このサービスは第三者会社のSideShift AIより提供されています。サービスのご利用には少額の手数料がかかります。取引を行う前に料金が表示されます。"
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3833,7 +3833,7 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}} の{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "SideShift AI"
+msgid "Sideshift"
 msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
@@ -3846,7 +3846,7 @@ msgstr "Bitcoin Cash Reddit"
 
 #: src/js/services/communityService.js:47
 msgid "Bitcoin.com Twitter"
-msgstr "Bitcoin.com Twitter"
+msgstr "Bitcoin.com公式Twitter"
 
 #: www/views/includes/nextSteps.html:3
 msgid "Explore Bitcoin.com"
@@ -3910,7 +3910,7 @@ msgstr "個人用メモを追加"
 
 #: www/views/review.html:87
 msgid "Suggested by merchant:"
-msgstr "お店からのおすすめ:"
+msgstr "推奨される手数料："
 
 #: src/js/controllers/review.controller.js:37
 msgid "Enter text here"
@@ -3922,15 +3922,15 @@ msgstr "個人用メモ:"
 
 #: www/views/review.html:69
 msgid "Less than 1 cent"
-msgstr "１セント以下"
+msgstr "１円以下"
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
-msgstr "この請求書はもう支払を受け付けていません"
+msgstr "この請求書はもう有効ではありません"
 
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
-msgstr "全残高を送金"
+msgstr "全残高を送金する"
 
 #: src/js/controllers/amount.controller.js:239
 msgid "Unknown error."
@@ -3998,7 +3998,7 @@ msgstr "金額が上限を超えています"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr "Sideshift から無効な応答がありました"
+msgstr "Sideshiftより無効な応答がありました"
 
 msgid "Insufficient Amount Received"
 msgstr "受領金額が不足しています"
@@ -4047,8 +4047,8 @@ msgstr "顧客情報を取得中にエラーが発生しました。"
 msgid "Customer information was missing."
 msgstr "顧客情報が見つかりませんでした。"
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "当社<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">サービス利用規約</a>と<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">プライバシーポリシー</a>をご確認ください"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "当社<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">サービス利用規約</a>と<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">プライバシーポリシー</a>をご確認ください"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4258,7 +4258,7 @@ msgstr "新たに購入"
 
 #: www/views/kyc-document-info.html:53
 msgid "Photograph document"
-msgstr "書類の写真"
+msgstr "書類の撮影"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
@@ -4282,7 +4282,7 @@ msgstr "認証"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr "購入限度の増加"
+msgstr "購入限度額の増加"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
@@ -4394,7 +4394,7 @@ msgstr "書類を撮影する"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr "{{vm.documentName}} の四隅を枠内に収まるように配置してください。反射に注意してください。"
+msgstr "枠内に {{vm.documentName}} の四隅が完全に収まるように調整してください。反射にご注意ください。"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
@@ -4430,94 +4430,112 @@ msgstr "おめでとうございます！アカウントが認証されました
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "作業はそれほど時間はかかりません。すぐにビットコインを購入できるよう、後ほどお知らせします。"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "認証が通りませんでした"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "申し訳ありませんが、現段階では、認証を行うことができませんでした。詳細につきましては、サポートまでお問い合わせください。"
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "自画像"
 
 msgid "Shop"
-msgstr ""
+msgstr "ショッピング"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "近くにあるお店"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "ビットコインキャッシュで支払いが可能な近場のお店を検索する"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "ビットコインキャッシュで支払うとアマゾンで最大30%の割引が受けられます"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "大手ブランドのデジタルギフトカードを多数取り揃えるサイト"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "店舗を追加する"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "ビットコインキャッシュで支払い可能なお店をご存知ですか？ぜひ情報の提供をお願いします。"
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "ビットコインキャッシュで購入する"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "店舗や事業オーナーですか？"
 
 msgid "More"
-msgstr ""
+msgstr "さらに詳しく"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "今すぐにビットコインキャッシュで簡単に支払いを受け取ることができます。私たちがご説明いたします。"
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "ビットコインキャッシュで旅行に出かけることができます。航空券、ホテル、レンタカーが予約できます。"
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "業界で最も高額配当のプール"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "ビットコインのマイニングを始める"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "BCHで支払うと10%キャッシュバック"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "ビットコイングッズ買う"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "メールアドレスが認識できません"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "新しいお店等を追加するには、詳細をaddbusiness@bitcoin.comまで送ってください。"
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "Bitcoin.comチーム、<br><br>ウォレットアプリ内の地図にビットコインキャッシュ決済が可能な新しいお店を追加したく、連絡しました：<br>- 店舗や会社名：<br>- 住所：<br>- 業種：<br><br>店舗や会社への道順や目印など：<br>- Google マップリンク：<br>または<br>- 緯度：<br>- 緯度：<br><br>その他の情報 (任意)：<br>- ウェブサイト：<br>- 電話番号：<br>"
 
 msgid "Internal Error"
-msgstr ""
+msgstr "内部エラー"
 
 msgid "Front"
-msgstr ""
+msgstr "表"
 
 msgid "Take a Selfie"
-msgstr ""
+msgstr "自画像を撮影する"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr ""
+msgid "Document + Selfie"
+msgstr "身分証明書および自画像"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "身分証明書を顔の横に持ち上げ、身分証明書と顔を同時に撮影してください。"
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "枠内に書類の四隅が完全に収まるように調整してください。反射にご注意ください。"
 
 msgid "Front"
-msgstr ""
+msgstr "表"
 
 msgid "Buying Gift Card..."
-msgstr ""
+msgstr "ギフトカードを購入しています..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "エラー。ステータスコード：{{status}}"
+
+msgid "Useful Links"
+msgstr "役に立つリンク集"
+
+msgid "Exchange between BTC and BCH"
+msgstr "BTC - BCH間で交換を行う"
+
+msgid "Exchange"
+msgstr "交換する"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Bitcoin CoreをこのBitcoin Cashアドレスに送ることはできません。送金を行ってしまうと、資金を喪失します。"
 

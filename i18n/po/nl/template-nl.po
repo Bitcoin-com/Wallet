@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2019-01-24 07:17\n"
+"PO-Revision-Date: 2019-02-13 08:34\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -79,7 +79,7 @@ msgstr "Account Nummer"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr "Onmiddellijke transacties met lage kosten"
+msgstr "Directe transacties tegen lage kosten"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
@@ -3216,7 +3216,7 @@ msgstr "Vul debet kaart ({{cardLastNumber}}) aan met {{amountStr}}"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr "Sideshift starten"
+msgstr ""
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Het proces is snel en je ontvangt het uitgewisselde bedrag direct in je 
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Deze dienst wordt aangeboden door de partij SideShift AI, die zal een kleine vergoeding voor de service rekenen. Deze vergoeding wordt getoond voordat je de transactie start."
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3827,12 +3827,12 @@ msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-van-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
-msgid "SideShift AI"
-msgstr "Sideshift"
+msgid "Sideshift"
+msgstr ""
 
 #: www/views/includes/community.html:3
 msgid "Community"
-msgstr "Gemeenschap"
+msgstr "Community"
 
 #: src/js/services/communityService.js:40
 msgid "Bitcoin Cash Reddit"
@@ -3992,7 +3992,7 @@ msgstr "Bedrag is boven het limiet"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr "Ongeldig respons van Sideshift"
+msgstr ""
 
 msgid "Insufficient Amount Received"
 msgstr ""
@@ -4041,7 +4041,7 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
@@ -4503,7 +4503,10 @@ msgstr ""
 msgid "Take a Selfie"
 msgstr ""
 
-msgid "Position your head entirely in the frame and say cheese."
+msgid "Document + Selfie"
+msgstr ""
+
+msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
@@ -4513,5 +4516,20 @@ msgid "Front"
 msgstr ""
 
 msgid "Buying Gift Card..."
+msgstr ""
+
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr ""
 
