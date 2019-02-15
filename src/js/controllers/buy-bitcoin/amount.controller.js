@@ -28,10 +28,11 @@
     vm.onAmountFocus = onAmountFocus;
     vm.onBuy = onBuy;
 
-    var EXTRA_FEE_PERCENTAGE = 5;
+    
     var MOONPAY_FIXED_FEE = 4.99;
     var MOONPAY_VARIABLE_FEE_FRACTION = 0.0499;
-    var EXTRA_FEE_FRACTION = EXTRA_FEE_PERCENTAGE * 0.01;
+    var extraFeePercentage = 5;
+    var extraFeeFraction = extraFeePercentage * 0.01;
     var amountInputElement = null;
     var exchangeRateRefreshInterval = null;
     var prohibitedCharactersRegex = /[^0-9]/g;
@@ -56,7 +57,8 @@
       
       var variables = bitAnalyticsService.getVariablesFromChannel('leanplum');
       if (variables && variables.bitcoincom_fee) {
-        EXTRA_FEE_PERCENTAGE = variables.bitcoincom_fee;
+        extraFeePercentage = variables.bitcoincom_fee;
+        extraFeeFraction = extraFeePercentage * 0.01;
       }
       
 
@@ -225,7 +227,7 @@
         vm.lineItems.bchQty = amount / vm.rateEur;
         vm.lineItems.cost = amount;
         var moonpayFee = amount > 0 ? Math.max(MOONPAY_FIXED_FEE, amount * MOONPAY_VARIABLE_FEE_FRACTION) : 0;
-        var extraFee = amount > 0 ? amount * EXTRA_FEE_FRACTION : 0;
+        var extraFee = amount > 0 ? amount * extraFeeFraction : 0;
         vm.lineItems.processingFee = moonpayFee + extraFee;
         vm.lineItems.total = amount + vm.lineItems.processingFee;
       }
@@ -305,7 +307,7 @@
           baseCurrencyAmount: amountEur
           , currencyCode: 'bch'
           , cardId: vm.paymentMethod.id
-          , extraFeePercentage: EXTRA_FEE_PERCENTAGE
+          , extraFeePercentage: extraFeePercentage
           , walletAddress: toAddressForTransaction
           , returnUrl: 'bitcoincom://buybitcoin/auth'
         };
@@ -316,7 +318,7 @@
 
             console.log('Transaction', newTransaction);
 
-            var extraFeeEur = amountEur * EXTRA_FEE_FRACTION;
+            var extraFeeEur = amountEur * extraFeeFraction;
             var extraFeeBch = (vm.rateEur > 0) ? extraFeeEur / vm.rateEur: 0;
             var extraFeeUsd = extraFeeBch * vm.rateUsd;
             bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
