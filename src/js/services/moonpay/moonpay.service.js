@@ -10,12 +10,15 @@ angular
     moonPayApiService
     , storageService
     , moonPayRouterService
-    , $log, $q
+    , moonPayConfig
+    , $log
+    , $q
+    , ongoingProcess
   ) {
 
-    var customerIdKey = 'moonPayCustomerId'
-    var defaultWalletIdKey = 'moonPayDefaultWalletId'
-    var defaultCardIdKey = 'moonPayDefaultCardId'
+    var customerIdKey = 'moonPayCustomerId_' + moonPayConfig.env
+    var defaultWalletIdKey = 'moonPayDefaultWalletId_' + moonPayConfig.env
+    var defaultCardIdKey = 'moonPayDefaultCardId_' + moonPayConfig.env
     var currentCards = null;
 
     var defaultWalletId = null;
@@ -24,10 +27,12 @@ angular
     var service = {
 
       // Functions
-      createCustomer: createCustomer
+      preAuthenticateCustomer: preAuthenticateCustomer
+      , authenticateCustomer: authenticateCustomer
       , getCustomer: getCustomer
       , getCustomerId: getCustomerId
       , updateCustomer: updateCustomer
+      , addCard: addCard
       , createCard: createCard
       , removeCard: removeCard
       , getCards: getCards
@@ -40,6 +45,13 @@ angular
       , setDefaultCardId: setDefaultCardId
       , getDefaultCardId: getDefaultCardId
       , start: start
+      , getAllCountries: getAllCountries
+      , getIdentityCheck: getIdentityCheck
+      , createIdentityCheck: createIdentityCheck
+      , getFiles: getFiles
+      , uploadFile: uploadFile
+      , setTransactionWalletId: setTransactionWalletId
+      , getConfigWithToken: getConfigWithToken
     };
 
     return service;
@@ -49,24 +61,21 @@ angular
      */
     function start() {
       $log.debug('buy bitcoin start()');
-
-      ongoingProcess.set('gettingKycCustomerId', true);
-      getCustomerId(function onCustomerId(err, customerId){
-        ongoingProcess.set('gettingKycCustomerId', false);
-
-        if (err) {
-          $log.error('Error getting Moonpay customer ID. ' + err);
-          return;
-        }
-
+      ongoingProcess.set('fetchingKycStatus', true);
+      getCustomerId().then(function onCustomerIdSuccess(customerId) {
         $log.debug('Moonpay customer ID: ' + customerId);
 
-        if (customerId != null) {
-          moonPayRouterService.startFromHome();
-        } else {
-          moonPayRouterService.startFromWelcome();
-        }
+        ongoingProcess.set('fetchingKycStatus', false, function onSet() {
+          if (customerId != null) {
+            moonPayRouterService.startFromHome();
+          } else {
+            moonPayRouterService.startFromWelcome();
+          }
+        });
 
+      }, function onCustomerIdError(err) {
+        ongoingProcess.set('fetchingKycStatus', false);
+        $log.error('Error getting Moonpay customer ID. ' + err);
       });
     }
 
@@ -163,15 +172,36 @@ angular
     }
 
     /**
-     * Create a customer
-     * @param {String} email 
+     * Pre-authenticate a customer with an email address
+     * @param {String} email
      */
-    function createCustomer(email) {
+    function preAuthenticateCustomer(email) {
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.createCustomer(email).then(
-        function onCreateCustomerSuccess(customer) {
+      moonPayApiService.preAuthenticateCustomer(email).then(
+        function onPreAuthenticateCustomerSuccess(customer) {
+          deferred.resolve(customer);
+        }, function onPreAuthenticateCustomerError(err) {
+          $log.debug('Error pre-authenticating moonpay customer from the api');
+          deferred.reject(err);
+        }
+      );
+
+      return deferred.promise;
+    }
+
+    /**
+     * Authenticate a customer with an email address and a security code
+     * @param {String} email
+     * @param {String} securityCode
+     */
+    function authenticateCustomer(email, securityCode) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.authenticateCustomer(email, securityCode).then(
+        function onAuthenticateCustomerSuccess(customer) {
           storageService.setItem(customerIdKey, customer.id, function onSaveCustomer(err) {
             if (err) {
               $log.debug('Error setting moonpay customer id in the local storage');
@@ -180,8 +210,8 @@ angular
               deferred.resolve(customer);
             }
           });
-        }, function onCreateCustomerError(err) {
-          $log.debug('Error creating moonpay customer from the api');
+        }, function onAuthenticateCustomerError(err) {
+          $log.debug('Error authenticating moonpay customer from the api');
           deferred.reject(err);
         }
       );
@@ -229,7 +259,7 @@ angular
       return deferred.promise;
     }
 
-    /**
+    /**     
      * Update a customer
      * @param {Object} customer 
      */
@@ -292,6 +322,19 @@ angular
     }
 
     /**
+     * Add a defined card
+     * @param {Object} newCard 
+     */
+    function addCard(newCard) {
+      if (currentCards != null) {
+        currentCards.push(newCard);
+      } else {
+        currentCards = [newCard];
+      }
+      return currentCards;
+    }
+
+    /**
      * Remove a card
      * @param {String} cardId 
      */
@@ -314,6 +357,30 @@ angular
 
       return deferred.promise;
     }
+
+    function getTransactionWalletIds () {
+      // Create the promise
+      var deferred = $q.defer();
+
+      storageService.getItem('moonPayTransactionWalletIds', function onGetTransactionWalletId(err, walletIds) {
+        if (err) {
+          $log.debug('Error setting moonpay transaction wallet id in the local storage');
+          deferred.reject(err);
+        } else {
+          // Needed before the try because if walletIds is null, it parses OK,
+          // no exception is generated to catch.
+          walletIds = walletIds || {};
+          try {
+            walletIds = JSON.parse(walletIds);
+          } catch (err) {
+            walletIds = {};
+          }
+          deferred.resolve(walletIds);
+        }
+      });
+
+      return deferred.promise;
+    }
     
     /**
      * Get transactions
@@ -323,7 +390,17 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.getTransactions().then(function onGetTransactionsSuccess(transactions) {
-        deferred.resolve(transactions);
+
+        // Get in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          transactions.forEach(function (transaction) {
+            transaction.walletId = walletIds[transaction.id];
+          });
+          deferred.resolve(transactions);
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error setting moonpay transactions wallet id in the local storage');
+          deferred.reject(err);
+        });
       }, function onGetTransactionsError(err) {
         $log.debug('Error getting moonpay transactions from the api');
         deferred.reject(err);
@@ -341,8 +418,17 @@ angular
       var deferred = $q.defer();
 
       moonPayApiService.getTransaction(transactionId).then(function onGetTransactionSuccess(transaction) {
-        deferred.resolve(transaction);
-      }, function onGetTransactionsError(err) {
+
+        // Get in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          transaction.walletId = walletIds[transaction.id];
+          deferred.resolve(transaction);
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error setting moonpay transactions wallet id in the local storage');
+          deferred.reject(err);
+        });
+
+      }, function onGetTransactionError(err) {
         $log.debug('Error getting moonpay transaction from the api');
         deferred.reject(err);
       });
@@ -350,18 +436,56 @@ angular
       return deferred.promise;
     }
 
+    function setTransactionWalletId(transaction) {
+      // Create the promise
+      var deferred = $q.defer();
+
+      // Save in cache the mapping with the walletId
+      getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+        walletIds[transaction.id] = transaction.walletId;
+        storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
+          if (err) {
+            $log.debug('Error setting moonpay transaction wallet id in the local storage');
+            deferred.reject();
+          } else {
+            deferred.resolve();
+          }
+        });
+      }, function onGetTransactionWalletIdError(err) {
+        $log.debug('Error setting moonpay selected wallet id in the local storage');
+        deferred.reject(err);
+      });
+    }
+
     /**
      * Create a transaction
      * @param {Object} transaction 
      */
-    function createTransaction(transaction) {
+    function createTransaction(transaction, walletId) {
       // Create the promise
       var deferred = $q.defer();
 
       moonPayApiService.createTransaction(transaction).then(function onCreateTransactionSuccess(newTransaction) {
-        deferred.resolve(newTransaction);
+        // Save in cache the mapping with the walletId
+        getTransactionWalletIds().then(function onGetTransactionWalletIdSuccess(walletIds) {
+          walletIds[newTransaction.id] = walletId;
+
+          // Save in cache the mapping with the walletId
+          storageService.setItem("moonPayTransactionWalletIds", JSON.stringify(walletIds), function onSetTransactionWalletId(err) {
+            if (err) {
+              $log.debug('Error setting moonpay selected wallet id in the local storage');
+              deferred.reject(err);
+            } else {
+              newTransaction.walletId = walletId;
+              deferred.resolve(newTransaction);
+            }
+          });
+        }, function onGetTransactionWalletIdError(err) {
+          $log.debug('Error getting moonpay transaction wallet id in the local storage');
+          deferred.reject(err);
+        });
       }, function onCreateTransactionError(err) {
-        $log.debug('Error creating moonpay transaction from the api');
+        $log.debug('Error getting moonpay transaction wallet id from the api');
         deferred.reject(err);
       });
 
@@ -384,6 +508,151 @@ angular
       });
       
       return deferred.promise;
+    }
+
+    /**
+     * Get all countries
+     */
+    function getAllCountries(onlySendAllowedCountries) {
+      onlySendAllowedCountries = onlySendAllowedCountries || false;
+      
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getAllCountries().then(
+        function onGetAllCountries(countries) {
+          var filteredCountries = countries;
+          if (onlySendAllowedCountries) {
+            filteredCountries = filteredCountries.filter(function(country) {
+              return country.isAllowed;
+            });
+          }
+          deferred.resolve(filteredCountries);
+        }, function onGetAllCountriesError(err) {
+          $log.debug('Error getting moonpay countries list from the api');
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function getIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getIdentityCheck().then(
+        function onGetIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onGetIdentityCheckError(err) {
+          $log.debug('Error getting moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get identity check
+     */
+    function createIdentityCheck() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.createIdentityCheck().then(
+        function onCreateIdentityCheck(identity) {
+          deferred.resolve(identity);
+        }, function onCreateIdentityCheckError(err) {
+          $log.debug('Error creating moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get Files
+     */
+    function getFiles() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getFiles().then(
+        function onGetFilesSuccess(files) {
+          deferred.resolve(files);
+        }, function onGetFilesError(err) {
+          $log.debug('Error getting moonpay files list from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Upload Document
+     * @param {data} file
+     * @param {String} type
+     * @param {String} country
+     * @param {String} side - Optional  
+     */
+    function uploadFile(fileBase64, type, country, side) {
+      // Create the promise
+      var deferred = $q.defer();
+
+
+      function b64toBlob(b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+      
+        var byteCharacters = atob(b64Data);
+        var byteArrays = [];
+      
+        for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+          var slice = byteCharacters.slice(offset, offset + sliceSize);
+      
+          var byteNumbers = new Array(slice.length);
+          for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+          }
+      
+          var byteArray = new Uint8Array(byteNumbers);
+      
+          byteArrays.push(byteArray);
+        }
+          
+        var blob = new Blob(byteArrays, {type: contentType});
+        return blob;
+      }
+      
+      
+      var contentType = 'image/jpeg';
+      var b64Data = fileBase64.slice(23); // Remove the header data:...
+      var blob = b64toBlob(b64Data, contentType);
+
+      var formData = new FormData();
+      formData.append('file', blob);
+      formData.append('type', type);
+      formData.append('country', country);
+      
+      if (side) {
+        formData.append('side', side);
+      }
+
+      moonPayApiService.uploadFile(formData).then(
+        function onUploadFileSuccess(file) {
+          deferred.resolve(file);
+        }, function onUploadFileError(err) {
+          $log.debug('Error getting moonpay file list from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+    
+    function getConfigWithToken() {
+      return moonPayApiService.getConfig(true);
     }
   }
 })();

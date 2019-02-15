@@ -94,6 +94,16 @@ angular
             });
           } else {
             if (res.coin) {
+              if (params.coin && params.coin === 'btc' && res.coin === 'bch') {
+                popupService.showAlert(
+                  gettextCatalog.getString('Error'), 
+                  gettextCatalog.getString('You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds.')
+                );
+                if (onError) {
+                  onError();
+                }
+                return;
+              }
               params.coin = res.coin;
             }
 

@@ -82,7 +82,7 @@ angular.module('copayApp.controllers').controller('preferencesNotificationsContr
     }
     var log = new window.BitAnalytics.LogEvent("settings_email_notification_toggle", [{
       "toggle": $scope.emailNotifications.value
-    }], [channel, 'leanplum']);
+    }, {}, {}], [channel, 'leanplum']);
     window.BitAnalytics.LogEventHandlers.postEvent(log);
   };
 

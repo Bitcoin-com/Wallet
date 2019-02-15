@@ -1,0 +1,105 @@
+<ion-view id="tab-buy-bitcoin-kyc-personal-info"  view-title="{{ 'Personal Information' | translate }}" class="apl" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="vm.goBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button class="button apl-back-button" ng-click="vm.submitForm()">
+        <span translate>Submit</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content >
+    <form name="documentForm" novalidate>
+      <div class="row">
+        <label for="firstName" translate>First Name</label>
+        <input name="firstName" placeholder="Satoshi" type="text" ng-model="vm.firstName" required></input>
+      </div>
+      <div ng-show="documentForm.firstName.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.firstName.$error.required" translate>
+          Field is required.
+        </div>
+    </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+          <label for="lastName" translate>Last Name</label>
+          <input name="lastName" placeholder="Nakamoto" type="text" ng-model="vm.lastName" required ng-model-options="{ debounce: 500 }" /></input>
+      </div>
+      <div ng-show="documentForm.lastName.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.lastName.$error.required" translate>
+          Field is required.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+          <label for="dob" translate>Date of Birth</label>
+          <input masked-date valid-date name="dob" placeholder="DD/MM/YYYY" type="text" ng-model="vm.dob" maxlength="10" required minage ></input>
+      </div>
+      <div ng-show="documentForm.dob.$touched || vm.submitted"> 
+        <div class="error" ng-show="documentForm.dob.$error.required" translate>
+          Field is required.
+        </div>
+        <div class="error" ng-show="documentForm.dob.$error.validDate" translate>
+          Must be a valid date.
+        </div>
+        <div class="error" ng-show="documentForm.dob.$error.minage" translate>
+          Must be at least 18 years old.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+          <label for="streetAddress" translate>Street Address</label>
+          <input name="streetAddress" placeholder="{{ '123 Maple Street' | translate }}" type="text" ng-model="vm.streetAddress1" required ng-model-options="{ debounce: 500 }"></input>
+      </div>
+      <div ng-show="documentForm.streetAddress.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.streetAddress.$error.required" translate>
+          Field is required.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+        <label for="streetAddress2" translate>Apt, Suite, Building (Optional)</label>
+        <input name="streetAddress2" placeholder="{{ 'Apt 1' | translate }}" type="text" ng-model="vm.streetAddress2" required ng-model-options="{ debounce: 500 }"></input>
+      </div>
+    <div class="apl-divider"></div>
+      <div class="row">
+          <label for="city" translate>Town/City</label>
+          <input name="city" placeholder="{{ 'Tokyo' | translate }}" type="text" ng-model="vm.city" required ng-model-options="{ debounce: 500 }"></input>
+      </div>
+      <div ng-show="documentForm.city.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.city.$error.required" translate>
+          Field is required.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+          <label for="postalCode" translate>Postal Code</label>
+          <input name="postalCode" placeholder="123456" type="text" ng-model="vm.postalCode" required ng-model-options="{ debounce: 500 }"></input>
+      </div>
+      <div ng-show="documentForm.postalCode.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.postalCode.$error.required" translate>
+          Field is required.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+      <div class="row">
+        <label for="country" translate>Country</label>
+        <select ng-model="vm.country"
+          name="country"
+          required>
+          <option value="">Select</option>
+          <option ng-repeat="country in vm.countries track by country.alpha3" value="{{country.alpha3}}">{{country.name}}</option>
+        </select>
+      </div>
+      <div ng-show="documentForm.country.$touched || vm.submitted">
+        <div class="error" ng-show="documentForm.country.$error.required" translate>
+          Select a country.
+        </div>
+      </div>
+      <div class="apl-divider"></div>
+    </form>
+  </ion-content>
+</ion-view>

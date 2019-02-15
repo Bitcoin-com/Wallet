@@ -54,6 +54,18 @@ describe('bitcoinUriService', function() {
     expect(parsed.isTestnet).toBe(true);
   });
 
+  it('Bitcoin Cash uri with amount that needs correct rounding.', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash:qqx0ff5n04z4m83dnrj3khkcdexlnqlttckeq9q8ke?amount=0.00013000');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.amount).toBe('0.00013000');
+    expect(parsed.amountInSatoshis).toBe(13000);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qqx0ff5n04z4m83dnrj3khkcdexlnqlttckeq9q8ke');
+    expect(parsed.isTestnet).toBe(false);
+  });
+
   it('Bitcoin Cash uri with extended params', function() {
 
     var parsed = bitcoinUriService.parse('bitcoincash:qr8v2vqnzntykakht43rqmxq8cdjzjp795fc3vsjgc?unknown=something&mystery=Melton%20probang&req-one=ichi&req-beta=Ni%20san');

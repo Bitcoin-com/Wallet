@@ -18,7 +18,7 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr ""
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
 msgstr ""
 
 #: www/views/modals/txp-details.html:102
@@ -2266,6 +2266,10 @@ msgstr ""
 msgid "Pending"
 msgstr ""
 
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr ""
+
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
 msgstr ""
@@ -2730,7 +2734,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr ""
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr ""
@@ -3202,24 +3206,24 @@ msgstr ""
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr ""
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr ""
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 msgstr ""
 
 #: www/views/buyAmazon.html:61
@@ -3814,8 +3818,8 @@ msgstr ""
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr ""
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
 msgstr ""
 
 #: www/views/includes/community.html:3
@@ -3962,24 +3966,36 @@ msgstr ""
 msgid "Open in web browser"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr ""
+
+msgid "Insufficient Amount Received"
+msgstr ""
+
+msgid "Return to Address"
+msgstr ""
+
+msgid "Overpaid!"
+msgstr ""
+
+msgid "Underpaid!"
 msgstr ""
 
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
@@ -4017,7 +4033,7 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
@@ -4080,6 +4096,12 @@ msgstr ""
 msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr ""
 
+msgid "Your order has failed."
+msgstr ""
+
+msgid "Your order is waiting for authorization."
+msgstr ""
+
 # Receipt
 
 msgid "Deposited to"
@@ -4093,6 +4115,10 @@ msgstr ""
 
 msgid "Failed to get payment method info."
 msgstr ""
+
+msgid "Waiting for authorization"
+msgstr ""
+
 # Enter Card details
 
 msgid "Back"
@@ -4163,7 +4189,7 @@ msgstr ""
 msgid "Amount must be a positive number."
 msgstr ""
 
-msgstr "Unable to Purchase"
+msgid "Unable to Purchase"
 msgstr ""
 
 # Purchase History
@@ -4222,14 +4248,325 @@ msgstr ""
 msgid "Success!"
 msgstr ""
 
+msgid "Failed"
+msgstr ""
 
 msgid "Your purchase has been processed."
 msgstr ""
 
-
 msgid "See Receipt"
 msgstr ""
 
-
 msgid "Make Another Purchase"
+msgstr ""
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr ""
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr ""
+
+# KYC Verification
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr ""
+
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr ""
+
+msgid "Self Portrait"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr ""
+
+msgid "Add a Business"
+msgstr ""
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr ""
+
+msgid "Buy with Bitcoin Cash"
+msgstr ""
+
+msgid "Are you a business owner?"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr ""
+
+msgid "The market's highest paying pool"
+msgstr ""
+
+msgid "Start mining Bitcoin"
+msgstr ""
+
+msgid "Pay with BCH, get 10% back"
+msgstr ""
+
+msgid "Get your Bitcoin merch"
+msgstr ""
+
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr ""
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr ""
+
+msgid "Internal Error"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Take a Selfie"
+msgstr ""
+
+msgid "Document + Selfie"
+msgstr ""
+
+msgid "Take a picture of your document held up beside your face."
+msgstr ""
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr ""
+
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr ""
+
+msgid "Your account verification was rejected."
+msgstr ""
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
 msgstr ""

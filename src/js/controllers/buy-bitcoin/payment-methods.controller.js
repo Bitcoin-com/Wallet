@@ -86,17 +86,17 @@ angular
 
     function _onBeforeEnter(event, data) {
       _initVariables();
-      bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_open', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_open', [{}, {}, {}], ['leanplum']);
     }
 
     function _onBeforeLeave(event, data) {
       var defaultWasChanged = vm.paymentMethodId && initialPaymentMethodId !== vm.paymentMethodId;
       if (defaultWasChanged) {
         moonPayService.setDefaultCardId(vm.paymentMethodId);
-        bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_new_payment_method_chosen', [], ['leanplum']);
+        bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_new_payment_method_chosen', [{}, {}, {}], ['leanplum']);
       }
       console.log('onBeforeExit(), defaultWasChanged: ' + defaultWasChanged);
-      bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_choose_payment_method_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
     function onDone() {

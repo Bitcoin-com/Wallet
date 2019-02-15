@@ -13,24 +13,25 @@
     <div>
       <div class="apl-amount">
         <div class="apl-amount-title" translate>Amount</div>
-        <span class="apl-amount-currency">$</span>
-        <input id="amount-input" type="number" min="0" step="0.01" placeholder="0" class="apl-amount-input" ng-model="vm.inputAmount" ng-change="vm.onAmountChanged()" ng-focus="vm.onAmountFocus()"/>
+        <span class="apl-amount-currency">€</span>
+        <input masked-amount id="amount-input" type="number" min="0" max="999999" step="1" placeholder="0" class="apl-amount-input" ng-model="vm.inputAmount" ng-keypress="{{vm.onAmountChanged()}}" maxlength="6"  ng-focus="vm.onAmountFocus()"
+        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"/>
       </div>
       <div class="apl-amount-totals">
         <table>
           <tr class="apl-amount-totals-item">
-            <td class="apl-amount-totals-title" ng-if="!vm.rateUsd && !vm.ratesError">Getting exchange rate...</td>
-            <td class="apl-amount-totals-title" ng-if="!vm.rateUsd && vm.ratesError">{{vm.ratesError}}</td>
-            <td class="apl-amount-totals-title" ng-if="vm.rateUsd"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateUsd | currency:'': 2}} USD</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.cost | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-title" ng-if="!vm.rateEur && !vm.ratesError">Getting exchange rate...</td>
+            <td class="apl-amount-totals-title" ng-if="!vm.rateEur && vm.ratesError">{{vm.ratesError}}</td>
+            <td class="apl-amount-totals-title" ng-if="vm.rateEur"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateEur | currency:'': 2}} EUR</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.cost | currency:'':2}} EUR</td>
           </tr>
           <tr class="apl-amount-totals-item">
             <td class="apl-amount-totals-title" translate>Processing Fee</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.processingFee | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.processingFee | currency:'':2}} EUR</td>
           </tr>
           <tr class="apl-amount-totals-item total">
             <td class="apl-amount-totals-title" translate>Total</td>
-            <td class="apl-amount-totals-price" ng-if="vm.rateUsd">{{vm.lineItems.total | currency:'':2}} USD</td>
+            <td class="apl-amount-totals-price" ng-if="vm.rateEur">{{vm.lineItems.total | currency:'':2}} EUR</td>
           </tr>
         </table>
       </div>  
@@ -40,7 +41,15 @@
       <div class="apl-list-title" translate>
         Deposit to
       </div>
-      <div ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left item-big-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="vm.wallet">
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.walletsAreLoading">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">&nbsp;</div>
+          <div class="apl-card__subtitle" translate>
+            Loading...
+          </div>
+        </div>
+      </div>
+      <div ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left item-big-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="vm.wallet && !vm.walletsAreLoading">
         <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
         <div class="apl-card__title__container">
           <div class="apl-card__title" ng-if="vm.wallet">
@@ -61,7 +70,7 @@
           </div>
         </div>
       </div>
-      <a ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="!vm.wallet">
+      <a ui-sref="tabs.buybitcoin-wallets" class="item item-icon-left apl-list-item track_buy_bitcoin_buy_instantly_amount_screen_tap_on_choose_wallet" ng-if="!vm.wallet && !vm.walletsAreLoading">
         <div class="apl-card__title__container">
           <div class="apl-card__title"ng-if="!vm.wallet" translate>
             Select a BCH wallet

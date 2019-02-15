@@ -4,7 +4,7 @@ i18n/crowdin_api_key.txt
 src/js/translations.js
 
 package-lock.json
-
+package.json
 
 # cordova
 plugins
@@ -109,3 +109,6 @@ www/img/app
 /GoogleService-Info.plist
 /google-services.json
 src/js/generated
+
+##Intellij
+.idea

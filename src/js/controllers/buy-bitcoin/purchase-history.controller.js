@@ -11,16 +11,18 @@
     , moonPayService
     , popupService
     , profileService
-    , $scope, $ionicHistory, $log
+    , $scope
+    , $ionicHistory
+    , $log
   ) {
     var vm = this;
 
     vm.history = [];
-    vm.transactionsAreLoading = true;
 
     $scope.$on('$ionicView.beforeEnter', _onBeforeEnter);
 
     function _initVariables() {
+      vm.transactionsAreLoading = true;
       vm.history = [];
       moonPayService.getTransactions().then(
         function onGetTransactionsSuccess(transactions) {
@@ -48,21 +50,47 @@
 
     function _prepareTransactionsForDisplay(transactions) {
       
-      var addresses = [];
 
       transactions.forEach(function onTransaction(tx){
         tx.createdTime = Date.parse(tx.createdAt);
-        var cashAddr = tx.walletAddress;
-        if (cashAddr.indexOf('bitcoincash:') < 0) {
-          cashAddr = 'bitcoincash:' + cashAddr;
+
+        if (tx.walletId) {
+          var wallet = profileService.getWallet(tx.walletId);
+          tx.walletColor = wallet.color;
+          tx.walletName = wallet.name;
+        } else {
+          var cashAddr = tx.walletAddress;
+          if (cashAddr.indexOf('bitcoincash:') < 0) {
+            cashAddr = 'bitcoincash:' + cashAddr;
+          }
+  
+          try {
+            var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
+            profileService.getWalletFromAddress(legacyAddress, 'bch', function onWallet(err, walletAndAddress) {
+              if (err) {
+                $log.error('Error getting wallet from address. ' + err.message || '');
+                return;
+              }
+
+              var walletCashAddr = bitcoinCashJsService.readAddress(walletAndAddress.address).cashaddr;
+              var walletCashAddrParts = walletCashAddr.split(':');
+              var walletCashAddrWithoutPrefix = walletCashAddrParts.length === 2 ? walletCashAddrParts[1] : walletCashAddr;
+
+              if (tx.walletAddress === walletCashAddrWithoutPrefix) {
+                var wallet = walletAndAddress.wallet;
+                tx.walletColor = wallet.color;
+                tx.walletName = wallet.name;
+                tx.walletId = wallet.id;
+                moonPayService.setTransactionWalletId(tx);
+              }
+
+              $scope.$apply();
+            });
+          } catch (err) { 
+            $log.debug('Error converting the address to legacy.' + err.message || ''); 
+          }
         }
 
-        try {
-          var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-          addresses.push(legacyAddress);
-        } catch (err) { 
-          $log.debug('Error converting the address to legacy.' + err.message || ''); 
-        }
       });
 
       transactions.sort(function compare(a, b){
@@ -70,29 +98,6 @@
       });
 
       vm.history = transactions;
-
-      profileService.getWalletFromAddresses(addresses, 'bch', function onWallet(err, walletAndAddress) {
-        if (err) {
-          $log.error('Error getting wallet from address. ' + err.message || '');
-          return;
-        }
-
-        var walletCashAddr = bitcoinCashJsService.readAddress(walletAndAddress.address).cashaddr;
-        var walletCashAddrParts = walletCashAddr.split(':');
-        var walletCashAddrWithoutPrefix = walletCashAddrParts.length === 2 ? walletCashAddrParts[1] : walletCashAddr;
-
-        transactions.forEach(function onTransaction(tx) {
-          if (tx.walletAddress === walletCashAddrWithoutPrefix) {
-            var wallet = walletAndAddress.wallet;
-            tx.walletColor = wallet.color;
-            tx.walletName = wallet.name;
-          }
-        });
-
-        $scope.$apply();
-
-      });
     }
-
   }
 })();

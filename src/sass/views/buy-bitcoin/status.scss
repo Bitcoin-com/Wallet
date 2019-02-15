@@ -1,0 +1,51 @@
+#tab-buy-bitcoin-kyc-status {
+  .apl-button-bottom-container {
+    position: relative !important;
+    bottom: auto !important;
+    height: auto !important;
+
+    h1, p {
+      line-height: 22px;
+      text-align: center;
+    }
+  }
+
+  #status-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .status-frame {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .status-graphic {
+      img {
+        display: block;
+        margin: auto;
+        max-width: 75%;
+      }
+    }
+  }
+
+  #status-info {
+
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .file {
+    margin-bottom: 1em;
+    text-align: left;
+
+    .file-text {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+}

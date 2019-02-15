@@ -1,7 +1,26 @@
 'use strict';
 angular.module('copayApp.services')
-  .factory('profileService', function profileServiceFactory($rootScope, $timeout, $filter, $log, $state, sjcl, lodash, storageService, bwcService, configService, gettextCatalog, bwcError, uxLanguage, platformInfo, txFormatService, appConfigService) {
+  .factory('profileService', function profileServiceFactory(
+    $q
+    , $rootScope
+    , $timeout
+    , $filter
+    , $log
+    , $state
+    , sjcl
+    , lodash
+    , storageService
+    , bwcService
+    , configService
+    , gettextCatalog
+    , bwcError
+    , uxLanguage
+    , platformInfo
+    , txFormatService
+    , appConfigService
+    ) {
 
+    var WALLET_ID_FROM_ADDRESS_STORAGE_KEY = 'walletIdFromAddress';
 
     var isChromeApp = platformInfo.isChromeApp;
     var isCordova = platformInfo.isCordova;
@@ -9,7 +28,7 @@ angular.module('copayApp.services')
     var isIOS = platformInfo.isIOS;
 
     var root = {
-      getWalletFromAddresses: getWalletFromAddresses
+      getWalletFromAddress: getWalletFromAddress
     };
     var errors = bwcService.getErrors();
     var usePushNotifications = isCordova && !isWindowsPhoneApp;
@@ -441,7 +460,7 @@ angular.module('copayApp.services')
               "type": type,
               "num_of_copayers": opts.n,
               "num_of_signatures": opts.m
-            }], [channel, 'leanplum']);
+            }, {}, {}], [channel, 'leanplum']);
             window.BitAnalytics.LogEventHandlers.postEvent(log);
 
             return cb(null, walletClient, secret);
@@ -1089,13 +1108,32 @@ angular.module('copayApp.services')
       });
     }
 
+    function _saveWalletFromAddress(coin, legacyAddress, walletId) {
+      var deferred = $q.defer();
+
+      storageService.getItemPromise(WALLET_ID_FROM_ADDRESS_STORAGE_KEY).then(
+        function onGetSuccess(item) {
+          item = item || {};
+          item[coin] = item[coin] || {};
+          item[coin][legacyAddress] = walletId;
+
+          return storageService.setItemPromise(WALLET_ID_FROM_ADDRESS_STORAGE_KEY, item);
+        },
+        function onGetError(err) {
+          return $q.reject(err.message);
+        }
+      );
+
+      return deferred.promise;
+    }
+
     /**
-     * 
-     * @param {*} legacyAddresses 
+     * Get a wallet from an address, takes long but called rarely, advice : Keep a mapping somewhere else like MoonPayService
+     * @param {*} legacyAddress 
      * @param {*} coin 
-     * @param {*} cb Called multiple times, once for each address, as they are found, because this takes a long time.
+     * @param {*} cb
      */
-    function getWalletFromAddresses(legacyAddresses, coin, cb) {
+    function getWalletFromAddress(legacyAddress, coin, cb) {
       var wallets = root.getWallets({ coin: coin });
 
       wallets.forEach(function onWallet(wallet){
@@ -1109,19 +1147,15 @@ angular.module('copayApp.services')
           walletAddresses.forEach(function onWalletAddress(walletAddressObject){
             var walletAddress = walletAddressObject.address;
 
-            legacyAddresses.forEach(function onLegacyAddress(legacyAddress) {
-
-              if (walletAddress === legacyAddress) {
-                cb(null, {
-                  address: legacyAddress,
-                  wallet: wallet
-                });
-              }
-            });
+            if (walletAddress === legacyAddress) {
+              cb(null, {
+                address: legacyAddress,
+                wallet: wallet
+              });
+            }
           });          
         });
       }); 
-
     }
 
     return root;

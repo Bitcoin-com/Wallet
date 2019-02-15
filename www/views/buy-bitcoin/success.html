@@ -9,10 +9,14 @@
 
   <ion-content class="apl">
       <img id="checkmark" src="img/buy-bitcoin/checkmark.svg"/>
-      <h1 translate>Success!</h1>
+      <h1 ng-if="vm.status != 'failed'" translate>Success!</h1>
+      <h1 ng-if="vm.status == 'failed'" translate>Failed</h1>
       <div class="clear"></div>
       <p class="message" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your BCH in your wallet.</p>
-      <p class="message" ng-if="vm.status != 'completed'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
+      <p class="message" ng-if="vm.status == 'pending'" translate>Your order has been approved and is pending completion. Your BCH will be available in your wallet soon.</p>
+      <p class="message" ng-if="vm.status == 'failed'" translate>Your order has failed.</p>
+      <p class="message" ng-if="vm.status == 'failed' && vm.failureReason" translate>{{vm.failureReason}}</p>
+      <p class="message" ng-if="vm.status == 'waitingAuthorization'" translate>Your order is waiting for authorization.</p>
       <div id="amount-container" ng-if="vm.quoteCurrencyAmount" >
         <formatted-amount class="crypto-amount" value="{{vm.quoteCurrencyAmount}}" currency="BCH"></formatted-amount>
       </div>

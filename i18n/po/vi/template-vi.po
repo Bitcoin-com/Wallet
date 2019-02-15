@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-10-08 08:38\n"
+"PO-Revision-Date: 2019-01-24 07:18\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -20,15 +20,15 @@ msgstr "(Đáng tin cậy)"
 #: www/views/includes/txp.html:23
 #: www/views/includes/walletHistory.html:64
 msgid "(possible double spend)"
-msgstr "(có thể chi tiêu gấp đôi)"
+msgstr "(possible double spend)"
 
 #: www/views/modals/txp-details.html:159
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
 msgstr "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} of the transaction"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} of the transaction"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -56,7 +56,7 @@ msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size all
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
+msgstr "{{amountBelowFeeStr}}{{amountBelowFeeStr}} chungtran6655@gmail. com{{amountBelowFeeStr}} A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -105,7 +105,7 @@ msgstr "Next"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
-msgstr "Accounts"
+msgstr "Accountso"
 
 #: www/views/bitpayCard.html:56
 msgid "Activity"
@@ -187,12 +187,12 @@ msgstr "Address Type"
 #: www/views/tab-receive.html:76
 #: www/views/addresses.html:45
 msgid "Cash Address"
-msgstr ""
+msgstr "Cash Address"
 
 #: www/views/tab-receive.html:77
 #: www/views/addresses.html:46
 msgid "Legacy"
-msgstr ""
+msgstr "Legacy"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -490,19 +490,19 @@ msgstr "Buy Bitcoin"
 
 #: www/views/buyandsell.html:5
 msgid "Buy or Sell Bitcoin"
-msgstr ""
+msgstr "Buy or Sell Bitcoin"
 
 #: www/views/buyandsell.html:13
 msgid "Connect an Exchange"
-msgstr ""
+msgstr "Connect an Exchange"
 
 #: www/views/buyandsell.html:14
 msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
-msgstr ""
+msgstr "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
 
 #: src/js/services/buy-bitcoin-com.service.js:14
 msgid "Buy Bitcoin With Credit Card"
-msgstr ""
+msgstr "Buy Bitcoin With Credit Card"
 
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
@@ -911,7 +911,7 @@ msgstr "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} walle
 
 #: www/views/preferencesInformation.html:79
 msgid "Copayers"
-msgstr ""
+msgstr "Copayers"
 
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
@@ -1014,7 +1014,7 @@ msgstr "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd l
 #: www/views/tab-export-file.html:59
 #: www/views/tab-home.html:22
 msgid "Download"
-msgstr "Download"
+msgstr "Tải về"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
@@ -1088,7 +1088,7 @@ msgstr "Enter Two Factor for your BitPay account"
 
 #: www/views/amount.html:4
 msgid "Enter Amount"
-msgstr ""
+msgstr "Enter Amount"
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
@@ -1253,11 +1253,11 @@ msgstr "Expires"
 
 #: www/views/modals/txp-details.html:65
 msgid "Display legacy address"
-msgstr ""
+msgstr "Display legacy address"
 
 #: www/views/modals/txp-details.html:68
 msgid "Display new style address"
-msgstr ""
+msgstr "Display new style address"
 
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
@@ -1598,7 +1598,7 @@ msgstr "If enabled, the Recent Transactions card - a list of transactions occuri
 
 #: www/views/advancedSettings.html:14
 msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
-msgstr ""
+msgstr "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2276,6 +2276,10 @@ msgstr "Payment Request"
 msgid "Pending"
 msgstr "Pending"
 
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr ""
+
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
 msgstr "Pending Proposals"
@@ -2290,7 +2294,7 @@ msgstr "Personal Wallet"
 
 #: src/js/services/profileService.js:419
 msgid "My {{coin}} Wallet"
-msgstr ""
+msgstr "My {{coin}} Wallet"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -2740,7 +2744,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "You can receive bitcoin from any wallet or service."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
@@ -3212,25 +3216,25 @@ msgstr "Top up in progress..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "Start ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "Start Sideshift"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Exchange your BTC to BCH in minutes."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "To start the process you need to add funds to your wallet."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "The process is fast and you will receive the exchanged amount in your wallet."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3499,7 +3503,7 @@ msgstr "Wallet Recovery Phrase is invalid"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr ""
+msgstr "Wallet Service URL"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3524,7 +3528,7 @@ msgstr "Wallet created"
 
 #: www/views/copayers.html:58
 msgid "Wallet incomplete and broken"
-msgstr "Wallet incomplete and broken"
+msgstr "Ví không đầy đủ và bị hỏng"
 
 #: src/js/services/bwcError.js:65
 msgid "Wallet is full"
@@ -3804,7 +3808,7 @@ msgstr "{{amountStr}} for Mercado Livre Brazil Gift Card"
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
-msgstr ""
+msgstr "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3824,9 +3828,9 @@ msgstr "{{updatingTxHistoryProgress}} transactions downloaded"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-of-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "SideShift AI"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3858,7 +3862,7 @@ msgstr "News"
 
 #: src/js/services/bitcoincomService.js:35
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "Start mining Bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3972,23 +3976,544 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Open in web browser"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Invalid address"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "Amount is not defined"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "Amount is below the minimun"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "Amount is above the limit"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Invalid response from Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Invalid response from Sideshift"
+
+msgid "Insufficient Amount Received"
+msgstr "Insufficient Amount Received"
+
+msgid "Return to Address"
+msgstr "Quay trở lại địa chỉ"
+
+msgid "Overpaid!"
+msgstr "Thừa!"
+
+msgid "Underpaid!"
+msgstr "Underpaid!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "Error Creating Customer"
+
+msgid "Enter an email address."
+msgstr "trandoc.ktvn@gmail.com."
+
+msgid "Must be a valid email address."
+msgstr "Ff."
+
+msgid "Unable to Create Customer"
+msgstr "Unable to Create Customer"
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "Buy Bitcoin Cash (BCH)"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "Bạn có thể mua lên đến {{vm.dailyRemaining}} ngày hôm nay, và lên tới {{vm.monthlyRemaining}} tháng."
+
+msgid "Buy Bitcoin Cash"
+msgstr "Free Bitcoin Cash"
+
+msgid "Error Getting Customer ID"
+msgstr "Error Creating Customer"
+
+msgid "Error Getting Customer Information"
+msgstr "Error Getting Customer Information"
+
+msgid "An error occurred when getting your customer information."
+msgstr "Lỗi xảy ra khi nhận được thông tin khách hàng của bạn."
+
+msgid "Customer information was missing."
+msgstr "vietnam"
+
+msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgstr "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "Phương thức thanh toán nhận được lỗi"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "An error occurred when getting your payment methods."
+
+msgid "No Payment Methods"
+msgstr "Không có phương thức thanh toán"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+
+msgid "Add Card"
+msgstr "Thêm thẻ"
+
+msgid "Getting exchange rate..."
+msgstr "Nhận được tỷ lệ trao đổi..."
+
+msgid "Waiting for exchange rate."
+msgstr "Waiting for exchange rate."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+
+msgid "Select a BCH Wallet"
+msgstr "Select a BCH Wallet"
+
+msgid "Buying Bitcoin Cash..."
+msgstr "Buying Bitcoin Cash..."
+
+msgid "Purchase Failed"
+msgstr "Purchase Failed"
+
+msgid "Failed to create transaction."
+msgstr "Vunh"
+
+msgid "Buy Now"
+msgstr "Mua ngay bây giờ"
+
+msgid "Enter Security Code"
+msgstr "Enter Security Code"
+
+msgid ""
+msgstr ""
+"Enter the 3 digit code on the back of your card."
+
+msgid "Go to Wallet"
+msgstr "Go to Wallet"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "Go to {{vm.walletName}}"
+
+msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgstr "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+
+msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgstr "Your order has been completed. You can now find your BCH in your wallet."
+
+msgid "Your order has failed."
+msgstr ""
+
+msgid "Your order is waiting for authorization."
+msgstr ""
+
+msgid "Deposited to"
+msgstr "Deposited to"
+
+msgid "Failed to get transaction data."
+msgstr "Failed to get transaction data."
+
+msgid "Not found."
+msgstr "Not found."
+
+msgid "Failed to get payment method info."
+msgstr "Failed to get payment method info."
+
+msgid "Waiting for authorization"
+msgstr ""
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Verify and complete your card information."
+msgstr "Verify and complete your card information."
+
+msgid "Required"
+msgstr "Required"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa, MC, or AMEX"
+
+msgid "MM/YYYY"
+msgstr "MM/YYYY"
+
+msgid "Card Number"
+msgstr "Card Number"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "Unable to Add Card"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "Card number is invalid. Check your card and try again."
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "Expiration date is invalid. Check your card and try again."
+
+msgid "Invalid card number"
+msgstr "Invalid card number"
+
+msgid "Invalid expiration date"
+msgstr "Invalid expiration date"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "Viet nam"
+
+msgid "Invalid CVC number"
+msgstr ""
+
+msgid "Purchasing"
+msgstr ""
+
+msgid "Processing Fee"
+msgstr ""
+
+msgid "Deposit to"
+msgstr ""
+
+msgid "Add a payment method"
+msgstr ""
+
+msgid "Price Per BCH"
+msgstr ""
+
+msgid "Done"
+msgstr ""
+
+msgid "Amount must be a positive number."
+msgstr ""
+
+msgid "Unable to Purchase"
+msgstr ""
+
+msgid "Purchase History"
+msgstr ""
+
+msgid "Pending Orders"
+msgstr ""
+
+msgid "Pay"
+msgstr ""
+
+msgid "Payment Method"
+msgstr ""
+
+msgid "Add Credit or Debit Card"
+msgstr "Thêm thẻ Visa Sacombank"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "Số của bạn1000000ⁿ"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "{{remaining}}."
+
+msgid "Verify Identity"
+msgstr ""
+
+msgid "Deposited to"
+msgstr ""
+
+msgid "See on Blockchain"
+msgstr ""
+
+msgid "Wallet address"
+msgstr "Wallet address"
+
+msgid "Pending Order"
+msgstr "Pending Order"
+
+msgid "Edit Order"
+msgstr "Edit Order"
+
+msgid "Cancel Order"
+msgstr "Cancel Order"
+
+msgid "Success!"
+msgstr "Success!"
+
+msgid "Failed"
+msgstr ""
+
+msgid "Your purchase has been processed."
+msgstr "Your purchase has been processed."
+
+msgid "See Receipt"
+msgstr "See Receipt"
+
+msgid "Make Another Purchase"
+msgstr "Make Another Purchase"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr ""
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr ""
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr ""
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr ""
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr ""
+
+msgid "Self Portrait"
+msgstr ""
+
+msgid "Shop"
+msgstr ""
+
+msgid "Shop Nearby"
+msgstr ""
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr ""
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr ""
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr ""
+
+msgid "Add a Business"
+msgstr ""
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr ""
+
+msgid "Buy with Bitcoin Cash"
+msgstr ""
+
+msgid "Are you a business owner?"
+msgstr ""
+
+msgid "More"
+msgstr ""
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr ""
+
+msgid "The market's highest paying pool"
+msgstr ""
+
+msgid "Start mining Bitcoin"
+msgstr ""
+
+msgid "Pay with BCH, get 10% back"
+msgstr ""
+
+msgid "Get your Bitcoin merch"
+msgstr ""
+
+msgid "E-mail not detected"
+msgstr ""
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr ""
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr ""
+
+msgid "Internal Error"
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Take a Selfie"
+msgstr ""
+
+msgid "Position your head entirely in the frame and say cheese."
+msgstr ""
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Front"
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr ""
 

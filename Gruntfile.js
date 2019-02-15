@@ -201,7 +201,8 @@ module.exports = function(grunt) {
           'src/js/trezor-url.js',
           'bower_components/trezor-connect/connect.js',
           'node_modules/bezier-easing/dist/bezier-easing.min.js',
-          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
+          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js',
+          'node_modules/cordova-plugin-camera-preview/www/CameraPreview.js'
         ],
         dest: 'www/js/app.js'
       }
@@ -326,6 +327,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',
@@ -350,6 +352,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',
@@ -386,7 +389,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['pre-dev', 'main']);
   grunt.registerTask('main', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
   grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_dev']);
-  grunt.registerTask('prod', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
+  grunt.registerTask('prod', ['copy:gen_constant_leanplum_prod', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
@@ -454,6 +457,7 @@ module.exports = function(grunt) {
     var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
     var appId = leanplumForEnv.appId;
     var key = leanplumForEnv.key;
+    console.log('Leanplum env:    "' + env + '"');
     console.log('Leanplum app ID: "' + appId + '"');
     console.log('Leanplum key:    "' + key + '"');
 
@@ -482,14 +486,19 @@ module.exports = function(grunt) {
     var baseUrl = moonPayForEnv.baseUrl;
     var pubKey = moonPayForEnv.pubKey;
     var secretKey = moonPayForEnv.secretKey;
-    console.log('MoonPay baseUrl: "' + baseUrl + '"');
-    console.log('MoonPay pubKey:    "' + pubKey + '"');
-    console.log('MoonPay secretKey:    "' + secretKey + '"');
+    var vgsIdentifier = moonPayForEnv.vgsIdentifier;
+    console.log('MoonPay env:            "' + env + '"');
+    console.log('MoonPay baseUrl:        "' + baseUrl + '"');
+    console.log('MoonPay pubKey:         "' + pubKey + '"');
+    console.log('MoonPay secretKey:      "' + secretKey + '"');
+    console.log('Moonpay VGS Identifier: "' + vgsIdentifier + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
       .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
-      .replace("secretKey: ''", "secretKey: '" + secretKey + "'");
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
+      .replace("vgsIdentifier: ''", "vgsIdentifier: '" + vgsIdentifier + "'")
+      .replace("env: ''", "env: '" + env + "'");
     return newContent;
   }
 };

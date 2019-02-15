@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="340px" viewBox="0 0 375 340" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0.8">
+        <g id="Selfie" transform="translate(0.000000, -70.000000)" fill="#000000">
+            <path d="M0,70 L375,70 L375,410 L0,410 L0,70 Z M187.5,395 C273.380279,395 343,325.380279 343,239.5 C343,153.619721 273.380279,84 187.5,84 C101.619721,84 32,153.619721 32,239.5 C32,325.380279 101.619721,395 187.5,395 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

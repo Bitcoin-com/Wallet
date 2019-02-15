@@ -33,10 +33,10 @@
     function _initVariables() {
       purchasedAmount = $state.params.purchasedAmount;
 
-      // Change this to crypto later when the transaction is complete.
+      vm.failureReason = '';
       vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
-      vm.purchasedCurrency = 'USD';
+      vm.purchasedCurrency = 'EUR';
       vm.quoteCurrencyAmount = '';
       vm.walletName = '';
       vm.status = 'pending';
@@ -66,16 +66,15 @@
         }
       );
 
-      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_shown', [{}, {}, {}], ['leanplum']);
 
       if (vm.moonpayTxId) {
         _refreshTransactionInfo();
-        $interval(_refreshTransactionInfo, 5000);
       }
     }
 
     function _onBeforeLeave() {
-      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_close', [], ['leanplum']);
+      bitAnalyticsService.postEvent('buy_bitcoin_purchase_success_screen_close', [{}, {}, {}], ['leanplum']);
     }
 
     function onDone() {
@@ -138,12 +137,22 @@
         function onGetTransactionSuccess(transaction) {
           vm.purchasedAmount = transaction.baseCurrencyAmount;
           vm.status = transaction.status;
+          vm.failureReason = transaction.failureReason;
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
             vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
+          }
+
+          if (refreshPromise === null &&
+            (vm.status === 'pending' || vm.status === 'waitingAuthorization')
+          ) {
+            refreshPromise = $interval(_refreshTransactionInfo, 5000);
+          }
+          else { // completed, failed, waitingAuthorization
             $interval.cancel(refreshPromise);
             refreshPromise = null;
           }
+          
         }, function onGetTransactionError(err) {
           $log.error(err);
           // Can't do much, wait for next refresh

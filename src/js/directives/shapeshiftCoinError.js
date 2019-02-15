@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinError', function(shapeshiftApiService) {
+angular.module('copayApp.directives').directive('sideshiftCoinError', function(sideshiftApiService) {
     return {
-        require:['^shapeshiftCoinTrader'],
+        require:['^sideshiftCoinTrader'],
         restrict: 'E',
         transclude: true,
         scope: {
@@ -11,6 +11,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinError', function(
         link: function(scope, element, attrs, controllers) {
 
         },
-        templateUrl: 'views/includes/shapeshift-coin-error.html'
+        templateUrl: 'views/includes/sideshift-coin-error.html'
     }
 });
