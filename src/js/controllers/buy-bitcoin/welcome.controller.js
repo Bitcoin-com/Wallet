@@ -84,7 +84,10 @@ angular
           console.log('Email verified.', customer);
           ongoingProcess.set('verifyingEmail', false);
           $ionicHistory.clearHistory();
-          $state.go('tabs.buybitcoin');
+          $state.go('tabs.home').then(function () {
+            $ionicHistory.clearHistory();
+            $state.go('tabs.buybitcoin');
+          }); 
         },
 
         function onAuthenticateCustomerError(err) {
