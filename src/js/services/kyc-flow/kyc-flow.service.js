@@ -11,7 +11,9 @@ angular
     , kycFlowRouterService
     , moonPayService
     , ongoingProcess
-    , $state, $log
+    , $state
+    , $log
+    , $q
   ) {
 
     var service = {
@@ -32,7 +34,7 @@ angular
      */
     function start() {
       $log.debug('buy bitcoin start()');
-      return new Promise(function onStartSuccess(resolve, revoke) {
+      return $q(function onStartSuccess(resolve, revoke) {
         kycFlowStateService.init();
         ongoingProcess.set('gettingKycIdentity', true);
         _prepareState().then(function onSuccess() {
@@ -51,7 +53,7 @@ angular
      */
     function retry() {
       $log.debug('buy bitcoin retry()');
-      return new Promise(function onRetrySuccess(resolve, revoke) {
+      return $q(function onRetrySuccess(resolve, revoke) {
         ongoingProcess.set('gettingKycIdentity', true);
         _prepareRetryState().then(function onSuccess() {
           ongoingProcess.set('gettingKycIdentity', false);
@@ -103,7 +105,7 @@ angular
     }
 
     function _prepareState() {
-      return new Promise( function(resolve, reject) {
+      return $q( function(resolve, reject) {
         // Get Identity
         ongoingProcess.set('gettingKycIdentity', true);
         moonPayService.getIdentityCheck().then( 
@@ -154,7 +156,7 @@ angular
     }
 
     function _prepareRetryState() {
-      return new Promise( function(resolve, reject) {
+      return $q( function(resolve, reject) {
         // Beign Retry Verification flow
         moonPayService.getCustomer().then( 
           function onFetchCustomerSuccess(personalInfo) {
