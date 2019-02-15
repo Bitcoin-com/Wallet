@@ -47,12 +47,12 @@ angular
 
           // If BIP70 (url)
           if (res.url) {
-            bitAnalyticsService.postEvent('payment_protocol_url_received', [], ['leanplum']);
+            bitAnalyticsService.postEvent('payment_protocol_url_received', [{}, {}, {}], ['leanplum']);
             var url = res.url;
             var coin = res.coin || '';
             payproService.getPayProDetails(url, coin, function onGetPayProDetails(err, payProData) {
               if (err) {
-                bitAnalyticsService.postEvent('payment_protocol_fetch_failed', [], ['leanplum']);
+                bitAnalyticsService.postEvent('payment_protocol_fetch_failed', [{}, {}, {}], ['leanplum']);
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
               } else {
                 var name = payProData.domain;
