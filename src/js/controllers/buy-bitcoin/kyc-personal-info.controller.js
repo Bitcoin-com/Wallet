@@ -77,7 +77,7 @@ angular
           if (state) {
             vm.firstName = state.firstName || '';
             vm.lastName =  state.lastName || '';
-            vm.dob = state.dob && moment(state.dob, 'MM/DD/YYYY').format('DD/MM/YYYY') || '';
+            vm.dob = state.dob && moment(state.dob, 'DD/MM/YYYY').format('DD/MM/YYYY') || '';
             vm.streetAddress1 = state.streetAddress1 || '';
             vm.streetAddress2 = state.streetAddress2 || '';
             vm.city = state.city || '';
