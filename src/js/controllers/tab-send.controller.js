@@ -1,11 +1,37 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabSendController', function(bitcoinUriService, externalLinkService, $scope, $log, $timeout, $ionicScrollDelegate, addressbookService, profileService, lodash, $state, walletService, platformInfo, sendFlowService, gettextCatalog, configService, $ionicPopup, $ionicNavBarDelegate, clipboardService, incomingDataService) {
+angular.module('copayApp.controllers').controller('tabSendController', function tabSendController(
+    bitcoinUriService
+  , externalLinkService
+  , $scope
+  , $log
+  , $timeout
+  , $ionicScrollDelegate
+  , addressbookService
+  , profileService
+  , lodash
+  , $state
+  , walletService
+  , platformInfo
+  , sendFlowService
+  , gettextCatalog
+  , configService
+  , $ionicPopup
+  , $ionicNavBarDelegate
+  , clipboardService
+  , incomingDataService
+  , moonPayService
+) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
+  var isBuyBitcoinAllowed = false;
   $scope.displayBalanceAsFiat = true;
   $scope.walletSelectorTitleForce = true;
+
+  moonPayService.getUserByIpAddress().then(function(user) {
+    isBuyBitcoinAllowed = user.isAllowed;
+  });
 
   $scope.addContact = function() {
       $state.go('tabs.send.addressbook');
@@ -207,8 +233,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function(
   };
 
   $scope.buyBitcoin = function() {
-    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-    externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+    if (isBuyBitcoinAllowed) {
+      moonPayService.start();
+    } else {
+      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+    }
   };
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {

@@ -52,6 +52,7 @@ angular
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
       , getConfigWithToken: getConfigWithToken
+      , getUserByIpAddress: getUserByIpAddress
     };
 
     return service;
@@ -566,6 +567,25 @@ angular
           deferred.resolve(identity);
         }, function onCreateIdentityCheckError(err) {
           $log.debug('Error creating moonpay identity check from the api', err);
+          deferred.reject(err);
+        }
+      );
+      return deferred.promise;
+    }
+
+    /**
+     * Get User by IP address
+     */
+    
+    function getUserByIpAddress() {
+      // Create the promise
+      var deferred = $q.defer();
+
+      moonPayApiService.getUserByIpAddress().then(
+        function onGetUserByIpAddressSuccess(user) {
+          deferred.resolve(user);
+        }, function onGetUserByIpAddressError(err) {
+          $log.debug('Error get moonpay user by ip address from the api', err);
           deferred.reject(err);
         }
       );

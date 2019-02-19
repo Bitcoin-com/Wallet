@@ -45,6 +45,8 @@ angular
     var wallet;
     var listeners = [];
     var notifications = [];
+    var isBuyBitcoinAllowed = false;
+
     $scope.externalServices = {};
     $scope.openTxpModal = txpModalService.open;
     $scope.version = $window.version;
@@ -66,6 +68,10 @@ angular
     $scope.$on("$ionicView.enter", onEnter);
     $scope.$on("$ionicView.afterEnter", onAfterEnter);
     $scope.$on("$ionicView.leave", onLeave);
+
+    moonPayService.getUserByIpAddress().then(function(user) {
+      isBuyBitcoinAllowed = user.isAllowed;
+    });
 
     function onAfterEnter () {
       startupService.ready();
@@ -156,7 +162,11 @@ angular
     }
 
     function onBuyBitcoin() {
-      moonPayService.start();
+      if (isBuyBitcoinAllowed) {
+        moonPayService.start();
+      } else {
+        externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+      }
     }
 
     function onLeave (event, data) {
