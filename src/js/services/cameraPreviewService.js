@@ -94,6 +94,17 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function(
     this.startCamera(options);
   }
 
+  this.startScanCamera = function() {
+    var options = defaultDocumentSettings;
+    // if (isDesktop) {
+    //   this.startDesktopCamera();
+    //   return;
+    // }
+    
+    options.camera = CameraPreview.CAMERA_DIRECTION.BACK;
+    this.startCamera(options);
+  }
+
   this.startDesktopCamera = function () {
     var constraints = {
       video: true
@@ -138,8 +149,10 @@ angular.module('bitcoincom.services').service('cameraPreviewService', function(
     });
   }
 
-  function setPreviewSize() {
-
+  this.takeRawPicture = function (options, callback) {
+    CameraPreview.takePicture(options, function(base64PictureData){
+      callback(base64PictureData);
+    });
   }
 
   // getCameraCharacteristics

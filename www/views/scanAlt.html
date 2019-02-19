@@ -1,0 +1,23 @@
+<ion-view id="buy-bitcoin-document-capture"  view-title="{{ vm.titleLabel }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
+    <ion-nav-bar >
+      <ion-nav-buttons side="primary">
+        <button class="button apl-back-button" ng-click="vm.goBack()">
+          <i class="icon ion-chevron-left"></i>
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+  
+    <ion-content scroll="false">
+      <div class="capture-frame">
+        <video autoplay ng-if="vm.isDesktop"></video>
+        <div class="camera-controls">
+            <a ng-click="vm.onCapture()">
+              <i class="icon">
+                <div class="icon-capture"></div>
+              </i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+  </ion-view>

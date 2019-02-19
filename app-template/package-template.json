@@ -65,6 +65,7 @@
     "cordova-plugin-qrscanner": "^2.5.0",
     "cordova-plugin-vibration": "^3.0.1",
     "cordova-plugin-camera-preview": "^0.10.0",
+    "jsqr": "1.2.0",
     "coveralls": "^2.11.9",
     "express": "^4.11.2",
     "fs": "0.0.2",
