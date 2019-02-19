@@ -1434,6 +1434,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       //window.Device.getInfo();
       if (window.qrreader) {
         console.log('qrreader present with testString:', window.qrreader.testString);
+        console.log('qrreader get test info.');
+        window.qrreader.getTestInfo(
+          function onSuccess(result) {
+            console.log('qrreader getTestInfo() result:', result);
+          },
+          function onError(error) {
+            console.error('qrreader getTestInfo() error:', error);
+          });
+        
       } else {
         console.log('qrreader missing.');
       }

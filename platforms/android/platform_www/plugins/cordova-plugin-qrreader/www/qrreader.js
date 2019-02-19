@@ -20,13 +20,13 @@ cordova.define("cordova-plugin-qrreader.qrreader", function(require, exports, mo
  *
 */
 
-/*
+
 var argscheck = require('cordova/argscheck');
 var channel = require('cordova/channel');
 var utils = require('cordova/utils');
 var exec = require('cordova/exec');
 var cordova = require('cordova');
-
+/*
 channel.createSticky('onCordovaInfoReady');
 // Tell cordova channel to wait on the CordovaInfoReady event
 channel.waitForInitialization('onCordovaInfoReady');
@@ -83,6 +83,12 @@ QRReader.prototype.getInfo = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'QRReader', 'getDeviceInfo', []);
 };
 */
+
+QRReader.prototype.getTestInfo = function (successCallback, errorCallback) {
+    argscheck.checkArgs('fF', 'QRReader.getTestInfo', arguments);
+    exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
+};
+
 module.exports = new QRReader();
 
 //module.exports = {};

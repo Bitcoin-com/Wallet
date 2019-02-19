@@ -17,7 +17,7 @@
        under the License.
 */
 
-/*
+
 package com.bitcoin.cordova.qrreader;
 
 import java.util.TimeZone;
@@ -49,13 +49,15 @@ public class QRReader extends CordovaPlugin {
   
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        QRReader.uuid = getUuid();
+        //QRReader.uuid = getUuid();
     }
 
     
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if ("getDeviceInfo".equals(action)) {
+        if ("getTestInfo".equals(action)) {
+
             JSONObject r = new JSONObject();
+            /*
             r.put("uuid", QRReader.uuid);
             r.put("version", this.getOSVersion());
             r.put("platform", this.getPlatform());
@@ -63,6 +65,8 @@ public class QRReader extends CordovaPlugin {
             r.put("manufacturer", this.getManufacturer());
 	        r.put("isVirtual", this.isVirtual());
             r.put("serial", this.getSerialNumber());
+            */
+            r.put("something", this.getTestInfo());
             callbackContext.success(r);
         }
         else {
@@ -75,7 +79,11 @@ public class QRReader extends CordovaPlugin {
     // LOCAL METHODS
     //--------------------------------------------------------------------------
 
-    
+    public String getTestInfo() {
+        return "Hello Java World 1";
+    }
+
+    /*
     public String getPlatform() {
         String platform;
         if (isAmazonDevice()) {
@@ -141,6 +149,7 @@ public class QRReader extends CordovaPlugin {
 	return android.os.Build.FINGERPRINT.contains("generic") ||
 	    android.os.Build.PRODUCT.contains("sdk");
     }
+    */
 
 }
-*/
+
