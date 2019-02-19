@@ -30,9 +30,11 @@ var cordova = require('cordova');
 channel.createSticky('onCordovaInfoReady');
 // Tell cordova channel to wait on the CordovaInfoReady event
 channel.waitForInitialization('onCordovaInfoReady');
+*/
 
-
-function QRReader () {
+function QRReader() {
+    this.testString = 'hello1';
+    /*
     this.available = false;
     this.platform = null;
     this.version = null;
@@ -65,8 +67,9 @@ function QRReader () {
             utils.alert('[ERROR] Error initializing Cordova: ' + e);
         });
     });
+    */
 }
-*/
+
 
 /**
  * Get device info
@@ -79,9 +82,9 @@ QRReader.prototype.getInfo = function (successCallback, errorCallback) {
     argscheck.checkArgs('fF', 'QRReader.getInfo', arguments);
     exec(successCallback, errorCallback, 'QRReader', 'getDeviceInfo', []);
 };
-
-module.exports = new QRReader();
 */
-module.exports = {};
+module.exports = new QRReader();
+
+//module.exports = {};
 
 });

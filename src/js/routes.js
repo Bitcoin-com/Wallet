@@ -1430,6 +1430,14 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         channel = "firebase";
       }
       
+      //console.log('calling getInfo()...');
+      //window.Device.getInfo();
+      if (window.qrreader) {
+        console.log('qrreader present with testString:', window.qrreader.testString);
+      } else {
+        console.log('qrreader missing.');
+      }
+
       // Send a log to test
       var log = new window.BitAnalytics.LogEvent("wallet_opened", [{}, {}, {}], [channel, 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
