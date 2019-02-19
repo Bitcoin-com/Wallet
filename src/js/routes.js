@@ -1442,6 +1442,22 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           function onError(error) {
             console.error('qrreader getTestInfo() error:', error);
           });
+
+        window.qrreader.startReading(
+            function onSuccess(result) {
+              console.log('qrreader startReading() result:', result);
+            },
+            function onError(error) {
+              console.error('qrreader startReading() error:', error);
+            });
+
+          window.qrreader.stopReading(
+              function onSuccess(result) {
+                console.log('qrreader stopReading() result:', result);
+              },
+              function onError(error) {
+                console.error('qrreader stopReading() error:', error);
+              });
         
       } else {
         console.log('qrreader missing.');

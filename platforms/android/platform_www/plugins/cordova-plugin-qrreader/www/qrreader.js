@@ -89,6 +89,16 @@ QRReader.prototype.getTestInfo = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
 };
 
+QRReader.prototype.startReading = function (successCallback, errorCallback) {
+    argscheck.checkArgs('fF', 'QRReader.startReading', arguments);
+    exec(successCallback, errorCallback, 'QRReader', 'startReading', []);
+};
+
+QRReader.prototype.stopReading = function (successCallback, errorCallback) {
+    argscheck.checkArgs('fF', 'QRReader.stopReading', arguments);
+    exec(successCallback, errorCallback, 'QRReader', 'stopReading', []);
+};
+
 module.exports = new QRReader();
 
 //module.exports = {};

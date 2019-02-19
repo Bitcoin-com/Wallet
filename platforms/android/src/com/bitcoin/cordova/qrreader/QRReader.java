@@ -68,8 +68,11 @@ public class QRReader extends CordovaPlugin {
             */
             r.put("something", this.getTestInfo());
             callbackContext.success(r);
-        }
-        else {
+        } else if ("startReading".equals(action)) {
+            callbackContext.success("started");
+        } else if ("stopReading".equals(action)) {
+            callbackContext.success("stopped");
+        } else {
             return false;
         }
         return true;
