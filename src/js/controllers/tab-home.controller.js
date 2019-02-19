@@ -165,6 +165,7 @@ angular
       if (isBuyBitcoinAllowed) {
         moonPayService.start();
       } else {
+        var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
         externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
       }
     }
