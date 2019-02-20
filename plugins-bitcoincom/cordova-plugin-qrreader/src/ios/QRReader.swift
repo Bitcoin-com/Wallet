@@ -12,6 +12,11 @@
 import UIKit
 import AVKit
 
+enum QRReaderError {
+  case NO_PERMISSION
+  case SCANNING_UNSUPPORTED
+}
+
 class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
     
     fileprivate var captureSession: AVCaptureSession!
@@ -42,6 +47,7 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
             // TODO: Handle the case without permission "Permission"
+            failed(QRReaderError.NO_PERMISSION)
             return
         }
         
@@ -54,28 +60,27 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         
-        if (captureSession.canAddInput(videoInput)) {
-            captureSession.addInput(videoInput)
-        } else {
-            failed()
+        guard captureSession.canAddInput(videoInput) else {
+            failed(QRReaderError.SCANNING_UNSUPPORTED)
             return
         }
-        
+        captureSession.addInput(videoInput)
+
         let metadataOutput = AVCaptureMetadataOutput()
         
-        if (captureSession.canAddOutput(metadataOutput)) {
-            captureSession.addOutput(metadataOutput)
-            
-            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.qr]
-        } else {
-            failed()
+        guard captureSession.canAddOutput(metadataOutput) else {
+            failed(QRReaderError.SCANNING_UNSUPPORTED)
             return
         }
+        captureSession.addOutput(metadataOutput)
+
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        metadataOutput.metadataObjectTypes = [.qr]
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = self.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
+
         self.layer.addSublayer(previewLayer)
         
         captureSession.startRunning()
@@ -85,26 +90,17 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         captureSession.stopRunning()
     }
     
-    func failed() {
+    func failed(error: QRReaderError) {
         print("Scanning unsupported")
-        captureSession = nil
+        guard let readingCommand = self.readingCommand
+            , let callbackId = readingCommand.callbackId
+            , let commandDelegate = self.commandDelegate else {
+            return
+        }
+
+        let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error.rawValue)
+        commandDelegate.send(pluginResult, callbackId:callbackId)
     }
-    
-    // override func viewWillAppear(_ animated: Bool) {
-    //     super.viewWillAppear(animated)
-    
-    //     if (captureSession?.isRunning == false) {
-    //         captureSession.startRunning()
-    //     }
-    // }
-    
-    // override func viewWillDisappear(_ animated: Bool) {
-    //     super.viewWillDisappear(animated)
-    
-    //     if (captureSession?.isRunning == true) {
-    //         captureSession.stopRunning()
-    //     }
-    // }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         captureSession.stopRunning()
