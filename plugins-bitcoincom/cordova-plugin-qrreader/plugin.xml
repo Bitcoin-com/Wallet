@@ -46,8 +46,8 @@
         <source-file src="src/android/CameraSource.java" target-dir="src/com/bitcoin/cordova/qrreader" />
         <source-file src="src/android/CameraSourcePreview.java" target-dir="src/com/bitcoin/cordova/qrreader" />
         <source-file src="src/android/QRReader.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        v
-        <framework src="qrreader.gradle" custom="true" type="gradleReference" />
+        
+        <framework src="src/android/qrreader.gradle" custom="true" type="gradleReference" />
     </platform>
 
 </plugin>
