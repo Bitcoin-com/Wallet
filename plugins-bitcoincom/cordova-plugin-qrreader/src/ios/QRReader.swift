@@ -19,6 +19,10 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
     
     fileprivate var readingCommand: CDVInvokedUrlCommand?
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
     override func pluginInitialize() {
         super.pluginInitialize()
     }
@@ -76,6 +80,10 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         
         captureSession.startRunning()
     }
+
+    func stopReading(_ command: CDVInvokedUrlCommand){
+        captureSession.stopRunning()
+    }
     
     func failed() {
         print("Scanning unsupported")
@@ -119,9 +127,4 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             readingCommand = nil
         }
     }
-    
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-    
 }
