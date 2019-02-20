@@ -1,4 +1,4 @@
-cordova.define("cordova-plugin-qrreader.qrreader", function(require, exports, module) {
+
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -103,4 +103,4 @@ module.exports = new QRReader();
 
 //module.exports = {};
 
-});
+
