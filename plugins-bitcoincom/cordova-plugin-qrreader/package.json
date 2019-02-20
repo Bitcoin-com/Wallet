@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-qrreader",
+  "version": "0.1.0",
+  "description": "Cordova QR Code Reader Plugin",
+  "cordova": {
+    "id": "cordova-plugin-qrreader",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "qrcode",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "cordova-browser",
+    "cordova-osx"
+  ],
+  "author": "Bitcoin.com",
+  "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "0.1.0": {
+        "cordova-androd": ">6.0.0"
+      }
+    }
+  },
+  "devDependencies": {
+  }
+}
