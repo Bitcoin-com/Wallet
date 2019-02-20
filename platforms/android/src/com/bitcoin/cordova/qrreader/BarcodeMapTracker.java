@@ -26,15 +26,11 @@ public class BarcodeMapTracker extends Tracker<Barcode> {
 
 
 
-  BarcodeMapTracker(Map<Integer, Barcode> barcodes, Context context) {
+  BarcodeMapTracker(Map<Integer, Barcode> barcodes, BarcodeUpdateListener listener) {
     this.mBarcodes = barcodes;
     //this.mOverlay = mOverlay;
     //this.mGraphic = mGraphic;
-    if (context instanceof BarcodeUpdateListener) {
-      this.mBarcodeUpdateListener = (BarcodeUpdateListener) context;
-    } else {
-      throw new RuntimeException("Hosting activity must implement BarcodeUpdateListener");
-    }
+    this.mBarcodeUpdateListener = listener;
   }
 
   /**
@@ -46,7 +42,9 @@ public class BarcodeMapTracker extends Tracker<Barcode> {
     mId = id;
     mBarcodes.put(id, item);
     Log.d("BarcodeGraphicTracker", "New barcode.");
-    mBarcodeUpdateListener.onBarcodeDetected(item);
+    if (mBarcodeUpdateListener != null) {
+      mBarcodeUpdateListener.onBarcodeDetected(item);
+    }
   }
 
   /**

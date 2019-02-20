@@ -89,6 +89,8 @@ angular
       window.qrreader.startReading(
         function onSuccess(result) {
           console.log('qrreader startReading() result:', result);
+
+          handleSuccessfulScan(result);
         },
         function onError(error) {
           console.error('qrreader startReading() error:', error);
@@ -147,9 +149,9 @@ angular
     });
 
     function handleSuccessfulScan(contents){
-      /*
+      
       $log.debug('Scan returned: "' + contents + '"');
-      scannerService.pausePreview();
+      //scannerService.pausePreview();
       // Sometimes (testing in Chrome, when reading QR Code) data is an object
       // that has a string data.result.
       contents = contents.result || contents;
@@ -158,13 +160,13 @@ angular
           var title = gettextCatalog.getString('Scan Failed');
           popupService.showAlert(title, err.message, function onAlertShown() {
             // Enable another scan since we won't receive incomingDataMenu.menuHidden
-            activate();
+            //activate();
           });
         } else {
-          scannerService.resumePreview();
+          //scannerService.resumePreview();
         }
       });
-      */
+      
     }
 
     $rootScope.$on('incomingDataMenu.menuHidden', function() {

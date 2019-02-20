@@ -61,7 +61,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-public class QRReader extends CordovaPlugin {
+public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     public static final String TAG = "QRReader";
 
     public static String platform;                            // Device OS
@@ -81,7 +81,7 @@ public class QRReader extends CordovaPlugin {
     private Map<Integer, Barcode> mBarcodes = new HashMap<Integer, Barcode>();
     private CameraSource mCameraSource;
     private CameraSourcePreview mCameraSourcePreview;
-    private CallbackContext mPermissionCallbackContext;
+    private CallbackContext mStartCallbackContext;
 
     public QRReader() {
     }
@@ -111,9 +111,17 @@ public class QRReader extends CordovaPlugin {
         return true;
     }
 
-    //--------------------------------------------------------------------------
-    // LOCAL METHODS
-    //--------------------------------------------------------------------------
+    @Override
+    public void onBarcodeDetected(Barcode barcode) {
+        String contents = barcode.rawValue;
+        Log.d(TAG, "Detected new barcode.");
+        if (mStartCallbackContext != null) {
+            mStartCallbackContext.success(contents);
+        } else {
+            Log.e(TAG, "No callback context when detecting new barcode.");
+        }
+    }
+
 
     /**
      * Creates and starts the camera.  Note that this uses a higher resolution in comparison
@@ -132,7 +140,7 @@ public class QRReader extends CordovaPlugin {
         // graphics for each barcode on screen.  The factory is used by the multi-processor to
         // create a separate tracker instance for each barcode.
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(context).build();
-        BarcodeMapTrackerFactory barcodeFactory = new BarcodeMapTrackerFactory(mBarcodes, context);
+        BarcodeMapTrackerFactory barcodeFactory = new BarcodeMapTrackerFactory(mBarcodes, this);
         barcodeDetector.setProcessor(
                 new MultiProcessor.Builder<Barcode>(barcodeFactory).build());
 
@@ -186,7 +194,7 @@ public class QRReader extends CordovaPlugin {
     }
 
     private void getCameraPermission(CallbackContext callbackContext) {
-        mPermissionCallbackContext = callbackContext;
+
         cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
     }
 
@@ -202,14 +210,14 @@ public class QRReader extends CordovaPlugin {
         if (requestCode == CAMERA_REQ_CODE) {
             for (int r : grantResults) {
                 if (r == PackageManager.PERMISSION_DENIED) {
-                    if (this.mPermissionCallbackContext != null) {
-                        this.mPermissionCallbackContext.error("Camera permission denied.");
+                    if (this.mStartCallbackContext != null) {
+                        this.mStartCallbackContext.error("Camera permission denied.");
                     }
                     return;
                 }
             }
-            if (this.mPermissionCallbackContext != null) {
-                startReadingWithPermission(mPermissionCallbackContext);
+            if (this.mStartCallbackContext != null) {
+                startReadingWithPermission(mStartCallbackContext);
             }
         }
 
@@ -251,6 +259,7 @@ public class QRReader extends CordovaPlugin {
 
     private void startReading(CallbackContext callbackContext) {
         Log.d(TAG, "startReading()");
+        mStartCallbackContext = callbackContext;
 
         if(cordova.hasPermission(CAMERA))
         {
@@ -294,7 +303,7 @@ public class QRReader extends CordovaPlugin {
 
                 //viewGroup.addView(mCameraSourcePreview, layoutParams);
 
-                FrameLayout.LayoutParams sizedLayout = new FrameLayout.LayoutParams(400, 400, Gravity.CENTER);
+                FrameLayout.LayoutParams sizedLayout = new FrameLayout.LayoutParams(800, 800, Gravity.CENTER);
                 FrameLayout.LayoutParams matchParentLayout = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT, Gravity.CENTER);
                 View testView;
                 //View testView = new View(context);
@@ -324,9 +333,11 @@ public class QRReader extends CordovaPlugin {
                 }
 
                 //testView.bringToFront();
+                /* // Send barcode instead
                 if (cameraStarted) {
                     callbackContext.success("Added view.");
                 }
+                */
             }
         });
 

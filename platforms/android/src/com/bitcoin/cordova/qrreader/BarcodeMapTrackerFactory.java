@@ -13,17 +13,17 @@ import java.util.Map;
  */
 class BarcodeMapTrackerFactory implements MultiProcessor.Factory<Barcode> {
   private Map<Integer, Barcode> mBarcodes;
-  private Context mContext;
+  private BarcodeUpdateListener mListener;
 
   public BarcodeMapTrackerFactory(Map<Integer, Barcode> mBarcodes,
-                                  Context mContext) {
+                                  BarcodeUpdateListener listener) {
     this.mBarcodes = mBarcodes;
-    this.mContext = mContext;
+    this.mListener = listener;
   }
 
   @Override
   public Tracker<Barcode> create(Barcode barcode) {
-    return new BarcodeMapTracker(mBarcodes, mContext);
+    return new BarcodeMapTracker(mBarcodes, mListener);
   }
 
 }
