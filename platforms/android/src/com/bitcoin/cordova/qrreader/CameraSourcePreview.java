@@ -26,6 +26,17 @@ public class CameraSourcePreview extends ViewGroup {
 
   //private GraphicOverlay mOverlay;
 
+  public CameraSourcePreview(Context context) {
+    super(context);
+    mContext = context;
+    mStartRequested = false;
+    mSurfaceAvailable = false;
+
+    mSurfaceView = new SurfaceView(context);
+    mSurfaceView.getHolder().addCallback(new SurfaceCallback());
+    addView(mSurfaceView);
+  }
+
   public CameraSourcePreview(Context context, AttributeSet attrs) {
     super(context, attrs);
     mContext = context;

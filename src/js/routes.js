@@ -1433,6 +1433,8 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       //console.log('calling getInfo()...');
       //window.Device.getInfo();
       if (window.qrreader) {
+        console.log('qrreader found.');
+        /*
         console.log('qrreader present with testString:', window.qrreader.testString);
         console.log('qrreader get test info.');
         window.qrreader.getTestInfo(
@@ -1458,10 +1460,11 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
               function onError(error) {
                 console.error('qrreader stopReading() error:', error);
               });
-        
+      */  
       } else {
         console.log('qrreader missing.');
       }
+      
 
       // Send a log to test
       var log = new window.BitAnalytics.LogEvent("wallet_opened", [{}, {}, {}], [channel, 'leanplum']);

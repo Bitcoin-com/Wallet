@@ -27,6 +27,8 @@ angular
       loading: 'loading',
       visible: 'visible'
     };
+
+    $scope.onStart = onStart;
     $scope.scannerStates = scannerStates;
 
     function _updateCapabilities(){
@@ -42,6 +44,7 @@ angular
 
     function _handleCapabilities(){
       // always update the view
+      /*
       $timeout(function(){
         if(!scannerService.isInitialized()){
           $scope.currentState = scannerStates.loading;
@@ -56,6 +59,7 @@ angular
         }
         $log.debug('Scan view state set to: ' + $scope.currentState);
       });
+      */
     }
 
     function _refreshScanView(){
@@ -68,16 +72,28 @@ angular
 
     // This could be much cleaner with a Promise API
     // (needs a polyfill for some platforms)
+    /*
     $rootScope.$on('scannerServiceInitialized', function(){
       $log.debug('Scanner initialization finished, reinitializing scan view...');
       _refreshScanView();
     });
+    */
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
+      $scope.currentState = scannerStates.hasPermission;
+      console.log('Starting qrreader.');
+      window.qrreader.startReading(
+        function onSuccess(result) {
+          console.log('qrreader startReading() result:', result);
+        },
+        function onError(error) {
+          console.error('qrreader startReading() error:', error);
+        });
+      /*
       var capabilities = scannerService.getCapabilities();
       if (capabilities.hasPermission) {
         // try initializing and refreshing status any time the view is entered
@@ -87,9 +103,11 @@ angular
           activate();
         }
       }
+      */
     });
 
     function activate(){
+      /*
       scannerService.activate(function(){
         _updateCapabilities();
         _handleCapabilities();
@@ -111,20 +129,25 @@ angular
             scannerService.resumePreview();
           });
       });
+      */
     }
     $scope.activate = activate;
 
     $scope.authorize = function(){
+      /*
       scannerService.initialize(function(){
         _refreshScanView();
       });
+      */
     };
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      scannerService.deactivate();
+      //scannerService.deactivate();
+      window.qrreader.stopReading();
     });
 
     function handleSuccessfulScan(contents){
+      /*
       $log.debug('Scan returned: "' + contents + '"');
       scannerService.pausePreview();
       // Sometimes (testing in Chrome, when reading QR Code) data is an object
@@ -141,31 +164,41 @@ angular
           scannerService.resumePreview();
         }
       });
+      */
     }
 
     $rootScope.$on('incomingDataMenu.menuHidden', function() {
       activate();
     });
 
+    function onStart() {
+      $scope.currentState = scannerStates.hasPermission;
+    }
+
     $scope.openSettings = function(){
-      scannerService.openSettings();
+      //scannerService.openSettings();
     };
 
     $scope.reactivationCount = 0;
     $scope.attemptToReactivate = function(){
+      /*
       scannerService.reinitialize(function(){
         $scope.reactivationCount++;
       });
+      */
     };
 
     $scope.toggleLight = function(){
+      /*
       scannerService.toggleLight(function(lightEnabled){
         $scope.lightActive = lightEnabled;
         $scope.$apply();
       });
+      */
     };
 
     $scope.toggleCamera = function(){
+      /*
       $scope.cameraToggleActive = true;
       scannerService.toggleCamera(function(status){
       // (a short delay for the user to see the visual feedback)
@@ -175,6 +208,7 @@ angular
           $log.debug('Camera toggle control deactivated.');
         }, 200);
       });
+      */
     };
 
     $scope.canGoBack = function(){

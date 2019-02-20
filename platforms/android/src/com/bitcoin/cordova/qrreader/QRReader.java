@@ -22,20 +22,28 @@ package com.bitcoin.cordova.qrreader;
 
 
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Camera;
 import android.os.Build;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -49,6 +57,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.provider.Settings;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class QRReader extends CordovaPlugin {
@@ -64,9 +74,13 @@ public class QRReader extends CordovaPlugin {
     public static final String CAMERA = Manifest.permission.CAMERA;
     public static final int CAMERA_REQ_CODE = 774980;
 
+    // intent request code to handle updating play services if needed.
+    private static final int RC_HANDLE_GMS = 9001;
+
 
     private Map<Integer, Barcode> mBarcodes = new HashMap<Integer, Barcode>();
     private CameraSource mCameraSource;
+    private CameraSourcePreview mCameraSourcePreview;
     private CallbackContext mPermissionCallbackContext;
 
     public QRReader() {
@@ -201,6 +215,40 @@ public class QRReader extends CordovaPlugin {
 
     }
 
+    /**
+     * Starts or restarts the camera source, if it exists.  If the camera source doesn't exist yet
+     * (e.g., because onResume was called before the camera source was created), this will be called
+     * again when the camera source is created.
+     */
+    private Boolean startCameraSource(Context context, CallbackContext callbackContext) throws SecurityException {
+        // check that the device has play services available.
+        int code = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context);
+        if (code != ConnectionResult.SUCCESS) {
+            Dialog dlg =
+                    GoogleApiAvailability.getInstance().getErrorDialog(cordova.getActivity(), code, RC_HANDLE_GMS);
+            dlg.show();
+            callbackContext.error("Google Play services is unavailable.");
+            return false;
+        }
+
+        if (mCameraSource != null) {
+            try {
+                mCameraSourcePreview.start(mCameraSource);
+            } catch (IOException e) {
+                Log.e(TAG, "Unable to start camera source.", e);
+                mCameraSource.release();
+                mCameraSource = null;
+                callbackContext.error("Unable to start camera source. " + e.getMessage());
+                return false;
+            }
+        } else {
+            Log.e(TAG, "No camera source to start.");
+            callbackContext.error("No camera source to start.");
+            return false;
+        }
+        return true;
+    }
+
     private void startReading(CallbackContext callbackContext) {
         Log.d(TAG, "startReading()");
 
@@ -214,26 +262,73 @@ public class QRReader extends CordovaPlugin {
         }
     }
 
-    private void startReadingWithPermission(CallbackContext callbackContext) {
+    private void startReadingWithPermission(final CallbackContext callbackContext) {
         Log.d(TAG, "startReadingWithPermission()");
 
-        ViewGroup viewGroup = ((ViewGroup) webView.getView().getParent());
+        final ViewGroup viewGroup = ((ViewGroup) webView.getView().getParent());
         if (viewGroup == null) {
             callbackContext.error("Failed to get view group.");
             return;
         }
 
 
-        Context context = cordova.getActivity().getApplicationContext();
+        final Context context = cordova.getActivity().getApplicationContext();
         if (mCameraSource == null) {
             if (!createCameraSource(context, false, callbackContext)) {
                 return;
             } else {
-                callbackContext.success("Created camera source.");
+                //callbackContext.success("Created camera source.");
             }
         } else {
-            callbackContext.success("Have existing camera source.");
+            //callbackContext.success("Have existing camera source.");
         }
+
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                // What about coming through here subsequently?
+                mCameraSourcePreview = new CameraSourcePreview(context);
+
+                //FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+
+                //viewGroup.addView(mCameraSourcePreview, layoutParams);
+
+                FrameLayout.LayoutParams sizedLayout = new FrameLayout.LayoutParams(400, 400, Gravity.CENTER);
+                FrameLayout.LayoutParams matchParentLayout = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT, Gravity.CENTER);
+                View testView;
+                //View testView = new View(context);
+                //testView = new Button(context);
+                //((Button) testView).setText("The Button");
+                //testView.setBackgroundColor(Color.argb(1, 1, 0, 0));
+                testView = mCameraSourcePreview;
+
+
+                viewGroup.addView(testView, sizedLayout);
+
+                //webView.getView().setBackgroundColor(Color.argb(1, 0, 0, 0));
+                //cameraPreviewing = true;
+                //webView.getView().bringToFront();
+                //mCameraSourcePreview.bringToFront();
+                //testView.bringToFront();
+                webView.getView().bringToFront();
+                viewGroup.bringChildToFront(testView);
+
+                Boolean cameraStarted = false;
+                try {
+                    cameraStarted = startCameraSource(context, callbackContext);
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Security Exception when starting camera source. " + e.getMessage());
+                    callbackContext.error("Security Exception when starting camera source. " + e.getMessage());
+                    return;
+                }
+
+                //testView.bringToFront();
+                if (cameraStarted) {
+                    callbackContext.success("Added view.");
+                }
+            }
+        });
 
 
     }
