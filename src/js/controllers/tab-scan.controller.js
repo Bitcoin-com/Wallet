@@ -183,6 +183,20 @@ angular
 
     $scope.openSettings = function(){
       //scannerService.openSettings();
+      qrReaderService.openSettings().then(
+        function onOpenSettingsResolved(contents) {
+          handleSuccessfulScan(contents);
+        },
+        function onOpenSettingsRejected(reason) {
+          $log.error('Failed to open settings. ' + reason);
+
+          var newScannerState = scannerStates.unavailable;
+          $scope.canOpenSettings = false;
+          // TODO: Handle all the different types of errors
+          //$scope.$apply(function onApply() {
+            $scope.currentState = newScannerState;
+          //});          
+        });
     };
 
     $scope.reactivationCount = 0;
@@ -241,7 +255,8 @@ angular
         function onStartReadingRejected(reason) {
           $log.error('Failed to start reading QR code. ' + reason);
 
-          var newScannerState = scannerStates.unauthorized;
+          var newScannerState = scannerStates.denied;
+          $scope.canOpenSettings = true;
           // TODO: Handle all the different types of errors
           //$scope.$apply(function onApply() {
             $scope.currentState = newScannerState;

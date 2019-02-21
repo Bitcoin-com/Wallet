@@ -66,7 +66,7 @@ QRReader.prototype.getTestInfo = function (successCallback, errorCallback) {
 
 QRReader.prototype.openSettings = function (successCallback, errorCallback) {
     argscheck.checkArgs('fF', 'QRReader.openSettings', arguments);
-    exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
+    exec(successCallback, errorCallback, 'QRReader', 'openSettings', []);
 };
 
 QRReader.prototype.startReading = function (successCallback, errorCallback) {
