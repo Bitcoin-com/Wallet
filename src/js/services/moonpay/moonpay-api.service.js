@@ -40,6 +40,7 @@ angular
       , uploadFile: uploadFile
       , getFiles: getFiles
       , deleteFile: deleteFile
+      , getCountryByIpAddress: getCountryByIpAddress
       , getConfig: getConfig
     };
 
@@ -488,6 +489,30 @@ angular
         });
       }, function (err) {
         deferred.reject(err);
+      });
+      return deferred.promise;
+    }
+
+    /**
+     * Get User Ip Address
+     */
+    function getCountryByIpAddress() {
+      var deferred = $q.defer();
+      $http.get(baseUrl + '/v2/ip_address').then(function onGetCountryByIpAddressSuccess(response) {
+        if (response.status === 200 || response.status === 201) {
+          var user = response.data;
+          deferred.resolve(user);
+        } else {
+          deferred.reject(response.statusText);
+        }
+      }, function onGetCountryByIpAddressError(err) {
+        // If identity check if not yet created, expect 404
+        if (err.status === 404) {
+          deferred.resolve();
+        } else {
+          var httpErr = _errorFromResponse(err);
+          deferred.reject(httpErr);
+        }
       });
       return deferred.promise;
     }
