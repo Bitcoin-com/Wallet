@@ -1,4 +1,5 @@
 cordova.define("cordova-plugin-qrreader.qrreader", function(require, exports, module) {
+
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -89,6 +90,11 @@ QRReader.prototype.getTestInfo = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
 };
 
+QRReader.prototype.openSettings = function (successCallback, errorCallback) {
+    argscheck.checkArgs('fF', 'QRReader.openSettings', arguments);
+    exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
+};
+
 QRReader.prototype.startReading = function (successCallback, errorCallback) {
     argscheck.checkArgs('fF', 'QRReader.startReading', arguments);
     exec(successCallback, errorCallback, 'QRReader', 'startReading', []);
@@ -102,5 +108,7 @@ QRReader.prototype.stopReading = function (successCallback, errorCallback) {
 module.exports = new QRReader();
 
 //module.exports = {};
+
+
 
 });

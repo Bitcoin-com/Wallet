@@ -33,11 +33,32 @@
 
     var service = {
       // Functions
+      openSettings: openSettings,
       startReading: startReading,
       stopReading: stopReading
     };
 
     return service;
+
+    function openSettings() {
+      var deferred = $q.defer();
+
+      qrReader.openSettings(
+        function onSuccess(result) {
+          console.log('qrreader openSettings() result:', result);
+
+          deferred.resolve(result);
+        },
+        function onError(error) {
+          console.error('qrreader openSettings() error:', error);
+
+          var errorMessage = errors[error] || error;
+          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
+          deferred.reject(translatedErrorMessage);
+        });
+
+      return deferred.promise;
+    }
 
     function startReading() {
       var deferred = $q.defer();
