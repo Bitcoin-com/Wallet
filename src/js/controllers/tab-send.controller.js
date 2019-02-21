@@ -29,7 +29,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   $scope.displayBalanceAsFiat = true;
   $scope.walletSelectorTitleForce = true;
 
-  moonPayService.getUserByIpAddress().then(function(user) {
+  moonPayService.getCountryByIpAddress().then(function onGetCountryByIpAddress(user) {
     isBuyBitcoinAllowed = user.isAllowed;
   });
 

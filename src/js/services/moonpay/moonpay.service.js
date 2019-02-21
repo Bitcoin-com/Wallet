@@ -52,7 +52,7 @@ angular
       , uploadFile: uploadFile
       , setTransactionWalletId: setTransactionWalletId
       , getConfigWithToken: getConfigWithToken
-      , getUserByIpAddress: getUserByIpAddress
+      , getCountryByIpAddress: getCountryByIpAddress
     };
 
     return service;
@@ -577,14 +577,14 @@ angular
      * Get User by IP address
      */
     
-    function getUserByIpAddress() {
+    function getCountryByIpAddress() {
       // Create the promise
       var deferred = $q.defer();
 
-      moonPayApiService.getUserByIpAddress().then(
-        function onGetUserByIpAddressSuccess(user) {
+      moonPayApiService.getCountryByIpAddress().then(
+        function onGetCountryByIpAddressSuccess(user) {
           deferred.resolve(user);
-        }, function onGetUserByIpAddressError(err) {
+        }, function onGetCountryByIpAddressError(err) {
           $log.debug('Error get moonpay user by ip address from the api', err);
           deferred.reject(err);
         }
