@@ -184,8 +184,8 @@ angular
     $scope.openSettings = function(){
       //scannerService.openSettings();
       qrReaderService.openSettings().then(
-        function onOpenSettingsResolved(contents) {
-          handleSuccessfulScan(contents);
+        function onOpenSettingsResolved(result) {
+          console.log('Open settings resolved with:', result);
         },
         function onOpenSettingsRejected(reason) {
           $log.error('Failed to open settings. ' + reason);

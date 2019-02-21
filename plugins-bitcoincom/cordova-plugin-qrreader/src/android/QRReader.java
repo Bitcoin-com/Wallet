@@ -1,4 +1,3 @@
-
 package com.bitcoin.cordova.qrreader;
 
 
@@ -94,6 +93,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        Log.d(TAG, "execute() with \"" + action + "\"");
         if ("getTestInfo".equals(action)) {
 
             JSONObject r = new JSONObject();
@@ -244,15 +244,19 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     }
 
     private void openSettings(CallbackContext callbackContext) {
+        Log.d(TAG, "openSettings()");
         try {
             Intent intent = new Intent();
             intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Uri uri = Uri.fromParts("package", this.cordova.getActivity().getPackageName(), null);
             intent.setData(uri);
+            Log.d(TAG, "Starting settings activity...");
             this.cordova.getActivity().getApplicationContext().startActivity(intent);
 
-            startReading(callbackContext);
+            callbackContext.success();
+            //Log.d(TAG, "About to start reading.");
+            //startReading(callbackContext);
 
         } catch (Exception e) {
             Log.e(TAG, "Error opening settings. " + e.getMessage());

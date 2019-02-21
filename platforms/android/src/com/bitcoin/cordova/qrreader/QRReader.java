@@ -252,10 +252,12 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Uri uri = Uri.fromParts("package", this.cordova.getActivity().getPackageName(), null);
             intent.setData(uri);
+            Log.d(TAG, "Starting settings activity...");
             this.cordova.getActivity().getApplicationContext().startActivity(intent);
 
-            Log.d(TAG, "About to start reading.");
-            startReading(callbackContext);
+            callbackContext.success();
+            //Log.d(TAG, "About to start reading.");
+            //startReading(callbackContext);
 
         } catch (Exception e) {
             Log.e(TAG, "Error opening settings. " + e.getMessage());
