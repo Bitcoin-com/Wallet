@@ -1,22 +1,3 @@
-/*
-       Licensed to the Apache Software Foundation (ASF) under one
-       or more contributor license agreements.  See the NOTICE file
-       distributed with this work for additional information
-       regarding copyright ownership.  The ASF licenses this file
-       to you under the Apache License, Version 2.0 (the
-       "License"); you may not use this file except in compliance
-       with the License.  You may obtain a copy of the License at
-
-         http://www.apache.org/licenses/LICENSE-2.0
-
-       Unless required by applicable law or agreed to in writing,
-       software distributed under the License is distributed on an
-       "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-       KIND, either express or implied.  See the License for the
-       specific language governing permissions and limitations
-       under the License.
-*/
-
 
 package com.bitcoin.cordova.qrreader;
 
@@ -35,6 +16,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -75,6 +57,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
        ERROR_FAILED_TO_GET_VIEW_GROUP,
        ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE,
        ERROR_NO_CAMERA_SOURCE,
+       ERROR_OPEN_SETTINGS_UNAVAILABLE,
        ERROR_PERMISSION_DENIED,
        ERROR_READER_ALREADY_STARTED,
        ERROR_SECURITY_EXCEPTION_WHEN_STARTING_CAMERA_SOURCE,
@@ -116,6 +99,9 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
             JSONObject r = new JSONObject();
             r.put("something", this.getTestInfo());
             callbackContext.success(r);
+
+        } else if ("openSettings".equals(action)) {
+            openSettings(callbackContext);
 
         } else if ("startReading".equals(action)) {
             startReading(callbackContext);
@@ -255,6 +241,24 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
       FrameLayout.LayoutParams childCenterLayout = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
       viewGroup.addView(mCameraSourcePreview, childCenterLayout);
+    }
+
+    private void openSettings(CallbackContext callbackContext) {
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Uri uri = Uri.fromParts("package", this.cordova.getActivity().getPackageName(), null);
+            intent.setData(uri);
+            this.cordova.getActivity().getApplicationContext().startActivity(intent);
+
+            startReading(callbackContext);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Error opening settings. " + e.getMessage());
+            callbackContext.error(eReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.toString());
+        }
+
     }
 
     /**
