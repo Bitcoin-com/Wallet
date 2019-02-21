@@ -9,6 +9,7 @@ angular
   function tabScanController(
     gettextCatalog
     , popupService
+    , qrReaderService
     , $scope
     , $log
     , $timeout
@@ -84,8 +85,17 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      $scope.currentState = scannerStates.hasPermission;
+      $scope.currentState = scannerStates.visible;
       console.log('Starting qrreader.');
+
+      qrReaderService.startReading().then(
+        function onStartReadingResolved(contents) {
+          handleSuccessfulScan(contents);
+        },
+        function onStartReadingRejected(reason) {
+          $log.error('Failed to start reading QR code. ' + reason);
+        });
+      /*
       window.qrreader.startReading(
         function onSuccess(result) {
           console.log('qrreader startReading() result:', result);
@@ -95,6 +105,8 @@ angular
         function onError(error) {
           console.error('qrreader startReading() error:', error);
         });
+        */
+
       /*
       var capabilities = scannerService.getCapabilities();
       if (capabilities.hasPermission) {
@@ -145,7 +157,8 @@ angular
 
     $scope.$on("$ionicView.beforeLeave", function() {
       //scannerService.deactivate();
-      window.qrreader.stopReading();
+      //window.qrreader.stopReading();
+      qrReaderService.stopReading();
     });
 
     function handleSuccessfulScan(contents){
