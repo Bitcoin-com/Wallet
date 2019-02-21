@@ -52,11 +52,11 @@
           console.error('qrreader startReading() error:', error);
 
           var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog(errorMessage);
+          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
           deferred.reject(translatedErrorMessage);
         });
 
-      return deferred;
+      return deferred.promise;
     }
 
     // No need to wait on this promise unless you want to start again
@@ -74,11 +74,11 @@
           console.error('qrreader stopReading() error:', error);
 
           var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog(errorMessage);
+          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
           deferred.reject(translatedErrorMessage);
         });
 
-      return deferred;
+      return deferred.promise;
     }
 
   }

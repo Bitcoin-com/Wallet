@@ -71,13 +71,14 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     public static String uuid;                                // Device UUID
 
    public enum eReaderError {
-     ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE,
-     ERROR_FAILED_TO_GET_VIEW_GROUP,
-     ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE,
-     ERROR_NO_CAMERA_SOURCE,
-     ERROR_PERMISSION_DENIED,
-     ERROR_SECURITY_EXCEPTION_WHEN_STARTING_CAMERA_SOURCE,
-     ERROR_UNABLE_TO_START_CAMERA_SOURCE
+       ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE,
+       ERROR_FAILED_TO_GET_VIEW_GROUP,
+       ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE,
+       ERROR_NO_CAMERA_SOURCE,
+       ERROR_PERMISSION_DENIED,
+       ERROR_READER_ALREADY_STARTED,
+       ERROR_SECURITY_EXCEPTION_WHEN_STARTING_CAMERA_SOURCE,
+       ERROR_UNABLE_TO_START_CAMERA_SOURCE
    }
 
     public static final String CAMERA = Manifest.permission.CAMERA;
@@ -325,6 +326,9 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
                 if (!createCameraSource(context, false, callbackContext)) {
                   return;
                 }
+              } else {
+                  callbackContext.error("Reader already started.");
+                  return;
               }
 
               webView.getView().setBackgroundColor(Color.argb(1, 0, 0, 0));
@@ -353,6 +357,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
     if (mCameraSource != null) {
       mCameraSource.stop();
+      mCameraSource = null;
     }
     webView.getView().setBackgroundColor(Color.WHITE);
 

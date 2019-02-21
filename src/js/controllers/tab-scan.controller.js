@@ -85,16 +85,7 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      $scope.currentState = scannerStates.visible;
-      console.log('Starting qrreader.');
-
-      qrReaderService.startReading().then(
-        function onStartReadingResolved(contents) {
-          handleSuccessfulScan(contents);
-        },
-        function onStartReadingRejected(reason) {
-          $log.error('Failed to start reading QR code. ' + reason);
-        });
+      startReading();
       /*
       window.qrreader.startReading(
         function onSuccess(result) {
@@ -229,6 +220,8 @@ angular
     $scope.canGoBack = function(){
       return $state.params.passthroughMode;
     };
+
+
     function goBack(){
       $ionicHistory.nextViewOptions({
         disableAnimate: true
@@ -236,5 +229,24 @@ angular
       $ionicHistory.backView().go();
     }
     $scope.goBack = goBack;
+
+    function startReading() {
+      $scope.currentState = scannerStates.visible;
+      console.log('Starting qrreader.');
+
+      qrReaderService.startReading().then(
+        function onStartReadingResolved(contents) {
+          handleSuccessfulScan(contents);
+        },
+        function onStartReadingRejected(reason) {
+          $log.error('Failed to start reading QR code. ' + reason);
+
+          var newScannerState = scannerStates.unauthorized;
+          // TODO: Handle all the different types of errors
+          //$scope.$apply(function onApply() {
+            $scope.currentState = newScannerState;
+          //});          
+        });
+    }
   }
 })();
