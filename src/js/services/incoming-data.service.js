@@ -15,6 +15,8 @@
     , $state
     , $rootScope
     , scannerService
+    , qrReaderService
+    , platformInfo
     , sendFlowService
     , gettextCatalog
   ) {
@@ -39,7 +41,8 @@
             cbError(new Error(errorMessage));
           }
         } else {
-          scannerService.pausePreview();
+          var qrService = platformInfo.isMobile ? qrReaderService : scannerService;
+          qrService.stopReading();
 
           /**
            * Strategy for the action
