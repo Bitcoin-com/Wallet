@@ -4,6 +4,7 @@ package com.bitcoin.cordova.qrreader;
 import android.Manifest;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.support.annotation.RequiresPermission;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -31,6 +32,8 @@ public class CameraSourcePreview extends ViewGroup {
     mContext = context;
     mStartRequested = false;
     mSurfaceAvailable = false;
+
+    setBackgroundColor(Color.BLACK);
 
     mSurfaceView = new SurfaceView(context);
     mSurfaceView.getHolder().addCallback(new SurfaceCallback());
