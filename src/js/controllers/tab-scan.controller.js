@@ -27,8 +27,8 @@ angular
       unavailable: 'unavailable',
       visible: 'visible'
     };
-    var isHandlerEnable = true;
 
+    $scope.onOpenSettings = onOpenSettings;
     $scope.onRetry = onRetry;
     $scope.scannerStates = scannerStates;
     $scope.currentState = scannerStates.visible;
@@ -38,7 +38,7 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      startReading();
+      startReadingWithPermission();
       document.addEventListener("resume", onResume, true);
     });
 
@@ -48,13 +48,9 @@ angular
     });
 
     function onResume() {
-      if (isHandlerEnable) {
-        $scope.$apply(function () {
-          startReading();
-        });
-      } else {
-        isHandlerEnable = true;
-      }
+      $scope.$apply(function () {
+        startReading();
+      });
     }
 
     function handleSuccessfulScan(contents){
@@ -86,7 +82,7 @@ angular
       startReading();
     }
 
-    $scope.onOpenSettings = function(){
+    function onOpenSettings(){
       //scannerService.openSettings();
       qrReaderService.openSettings().then(
         function onOpenSettingsResolved(result) {
@@ -101,6 +97,29 @@ angular
           $scope.currentState = newScannerState;
         });
     };
+
+    function startReadingWithPermission() {
+      qrReaderService.checkPermission().then(function () {
+        startReading();
+      });
+    }
+
+    function startReading() {
+      $scope.currentState = scannerStates.visible;
+      console.log('Starting qrreader.');
+      qrReaderService.startReading().then(
+        function onStartReadingResolved(contents) {
+          handleSuccessfulScan(contents);
+        },
+        function onStartReadingRejected(reason) {
+          $log.error('Failed to start reading QR code. ' + reason);
+
+          var newScannerState = scannerStates.denied;
+          $scope.canOpenSettings = true;
+          // TODO: Handle all the different types of errors
+          $scope.currentState = newScannerState;
+        });
+    }
 
     $scope.toggleLight = function(){
       /*
@@ -137,24 +156,5 @@ angular
       $ionicHistory.backView().go();
     }
     $scope.goBack = goBack;
-
-    function startReading() {
-      $scope.currentState = scannerStates.visible;
-      console.log('Starting qrreader.');
-
-      isHandlerEnable = false;
-      qrReaderService.startReading().then(
-        function onStartReadingResolved(contents) {
-          handleSuccessfulScan(contents);
-        },
-        function onStartReadingRejected(reason) {
-          $log.error('Failed to start reading QR code. ' + reason);
-
-          var newScannerState = scannerStates.denied;
-          $scope.canOpenSettings = true;
-          // TODO: Handle all the different types of errors
-          $scope.currentState = newScannerState;
-        });
-    }
   }
 })();

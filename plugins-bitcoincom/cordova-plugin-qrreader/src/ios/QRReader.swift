@@ -63,19 +63,18 @@ extension QRReader {
 extension QRReader {
     
     func checkPermission(_ command: CDVInvokedUrlCommand) {
-        self.callback(command, status: CDVCommandStatus_NO_RESULT)
+        self.callback(command, status: CDVCommandStatus_OK)
     }
     
     func openSettings(_ command: CDVInvokedUrlCommand) {
-        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
+        guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString), UIApplication.shared.canOpenURL(settingsUrl) else {
+            self.callback(command, status: CDVCommandStatus_ERROR, message: QRReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.rawValue)
             return
         }
         
-        if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl, completionHandler: { [weak self] (success) in
-                self?.callback(command, status: CDVCommandStatus_NO_RESULT)
-            })
-        }
+        UIApplication.shared.open(settingsUrl, completionHandler: { [weak self] (success) in
+            self?.callback(command, status: CDVCommandStatus_OK)
+        })
     }
     
     func startReading(_ command: CDVInvokedUrlCommand){
