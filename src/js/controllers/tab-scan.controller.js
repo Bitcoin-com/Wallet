@@ -111,34 +111,8 @@ angular
       */
     });
 
-    function activate(){
-      /*
-      scannerService.activate(function(){
-        _updateCapabilities();
-        _handleCapabilities();
-        $log.debug('Scanner activated, setting to visible...');
-        $scope.currentState = scannerStates.visible;
-          // pause to update the view
-          $timeout(function(){
-            scannerService.scan(function(err, contents){
-            if(err){
-              $log.debug('Scan canceled.');
-            } else if ($state.params.passthroughMode) {
-              $rootScope.scanResult = contents.result || contents;
-              goBack();
-            } else {
-              handleSuccessfulScan(contents);
-            }
-            });
-            // resume preview if paused
-            scannerService.resumePreview();
-          });
-      });
-      */
-    }
-    $scope.activate = activate;
-
     $scope.authorize = function(){
+      // TODO: Manage the authorization
       /*
       scannerService.initialize(function(){
         _refreshScanView();
@@ -147,8 +121,6 @@ angular
     };
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      //scannerService.deactivate();
-      //window.qrreader.stopReading();
       qrReaderService.stopReading();
     });
 
@@ -164,17 +136,17 @@ angular
           var title = gettextCatalog.getString('Scan Failed');
           popupService.showAlert(title, err.message, function onAlertShown() {
             // Enable another scan since we won't receive incomingDataMenu.menuHidden
-            //activate();
+            startReading();
           });
         } else {
-          //scannerService.resumePreview();
+          startReading();
         }
       });
       
     }
 
     $rootScope.$on('incomingDataMenu.menuHidden', function() {
-      activate();
+      startReading();
     });
 
     function onStart() {
