@@ -12,17 +12,19 @@
 import UIKit
 import AVKit
 
-enum QRReaderError {
-  case NO_PERMISSION
-  case SCANNING_UNSUPPORTED
-}
 
+@objc(QRReader)
 class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
-    
+        
+    fileprivate var readingCommand: CDVInvokedUrlCommand?
     fileprivate var captureSession: AVCaptureSession!
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer!
-    
-    fileprivate var readingCommand: CDVInvokedUrlCommand?
+    fileprivate var cameraView: UIView!
+
+    enum QRReaderError {
+      case NO_PERMISSION
+      case SCANNING_UNSUPPORTED
+    }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
@@ -30,15 +32,19 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
 
     override func pluginInitialize() {
         super.pluginInitialize()
+        cameraView = CameraView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        cameraView.autoresizingMask = [.flexibleWidth, .flexibleHeight];
     }
-    
+
     func startReading(_ command: CDVInvokedUrlCommand){
         
         // Keep the callback
         readingCommand = command
         
-        // If it is already initialized, return
-        guard let _ = self.previewLayer else {
+        // If it is already initialized or webview missing, return
+        guard let _ = self.previewLayer
+            , let webView = self.webView
+            , let superView = webView.superview else {
             return
         }
         
@@ -81,7 +87,8 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         previewLayer.frame = self.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
 
-        self.layer.addSublayer(previewLayer)
+        cameraView.addSublayer(previewLayer)
+        superView.insertSubview(cameraView, belowSubview: webView)
         
         captureSession.startRunning()
     }

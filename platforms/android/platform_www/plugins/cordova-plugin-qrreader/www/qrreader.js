@@ -1,4 +1,5 @@
 cordova.define("cordova-plugin-qrreader.qrreader", function(require, exports, module) {
+
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -102,5 +103,7 @@ QRReader.prototype.stopReading = function (successCallback, errorCallback) {
 module.exports = new QRReader();
 
 //module.exports = {};
+
+
 
 });
