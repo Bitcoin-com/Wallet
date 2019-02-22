@@ -86,7 +86,7 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         captureSession.addOutput(metadataOutput)
         
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN13Code]
+        metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = cameraView.layer.bounds
@@ -114,11 +114,12 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
         commandDelegate.send(pluginResult, callbackId:callbackId)
     }
     
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func captureOutput(_ output: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         captureSession.stopRunning()
         
         if let metadataObject = metadataObjects.first {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
+            
             guard let result = readableObject.stringValue
                 , let readingCommand = self.readingCommand
                 , let callbackId = readingCommand.callbackId
