@@ -21,7 +21,7 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
     fileprivate var cameraView: UIView!
     
     enum QRReaderError: String {
-        case ERROR_NO_PERMISSION
+        case ERROR_PERMISSION_DENIED
         case ERROR_SCANNING_UNSUPPORTED
         case ERROR_OPEN_SETTINGS_UNAVAILABLE
     }
@@ -101,7 +101,7 @@ extension QRReader {
         
         guard let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
             // TODO: Handle the case without permission "Permission"
-            onFailed(QRReaderError.ERROR_NO_PERMISSION)
+            onFailed(QRReaderError.ERROR_PERMISSION_DENIED)
             return
         }
         
@@ -111,7 +111,7 @@ extension QRReader {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
             // TODO: Handle this case "Retry"
-            onFailed(QRReaderError.ERROR_NO_PERMISSION)
+            onFailed(QRReaderError.ERROR_PERMISSION_DENIED)
             return
         }
         

@@ -52,17 +52,11 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     public static String platform;                            // Device OS
     public static String uuid;                                // Device UUID
 
-   public enum eReaderError {
-       ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE,
-       ERROR_FAILED_TO_GET_VIEW_GROUP,
-       ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE,
-       ERROR_NO_CAMERA_SOURCE,
-       ERROR_OPEN_SETTINGS_UNAVAILABLE,
-       ERROR_PERMISSION_DENIED,
-       ERROR_READER_ALREADY_STARTED,
-       ERROR_SECURITY_EXCEPTION_WHEN_STARTING_CAMERA_SOURCE,
-       ERROR_UNABLE_TO_START_CAMERA_SOURCE
-   }
+    enum QRReaderError {
+        ERROR_PERMISSION_DENIED,
+        ERROR_SCANNING_UNSUPPORTED,
+        ERROR_OPEN_SETTINGS_UNAVAILABLE
+    }
 
     public static final String CAMERA = Manifest.permission.CAMERA;
     public static final int CAMERA_REQ_CODE = 774980;
@@ -108,7 +102,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
             startReading(callbackContext);
 
         } else if ("stopReading".equals(action)) {
-          stopReading(callbackContext);
+            stopReading(callbackContext);
         } else {
             return false;
         }
@@ -198,7 +192,6 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     }
 
     private void getCameraPermission(CallbackContext callbackContext) {
-
         cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
     }
 
@@ -261,7 +254,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
         } catch (Exception e) {
             Log.e(TAG, "Error opening settings. " + e.getMessage());
-            callbackContext.error(eReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.toString());
+            callbackContext.error(QRReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.toString());
         }
 
     }
@@ -307,12 +300,9 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         Log.d(TAG, "startReading()");
         mStartCallbackContext = callbackContext;
 
-        if(cordova.hasPermission(CAMERA))
-        {
+        if(cordova.hasPermission(CAMERA)) {
             startReadingWithPermission(callbackContext);
-        }
-        else
-        {
+        } else {
             getCameraPermission(callbackContext);
         }
     }

@@ -79,10 +79,4 @@ QRReader.prototype.stopReading = function (successCallback, errorCallback) {
 };
 
 module.exports = new QRReader();
-
-
-
-
-
-
 });
