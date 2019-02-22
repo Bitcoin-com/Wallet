@@ -10,15 +10,16 @@ angular
     gettextCatalog
     , popupService
     , qrReaderService
+    , qrScannerService
     , $scope
     , $log
     , $timeout
-    , scannerService
     , incomingDataService
     , $state
     , $ionicHistory
     , $rootScope
     , $ionicNavBarDelegate
+    , platformInfo
     ) {
 
     var scannerStates = {
@@ -27,6 +28,9 @@ angular
       unavailable: 'unavailable',
       visible: 'visible'
     };
+
+    var isDesktop = !platformInfo.isCordova;
+    var qrService = isDesktop ? qrScannerService : qrReaderService;
 
     $scope.onOpenSettings = onOpenSettings;
     $scope.onRetry = onRetry;
@@ -43,7 +47,7 @@ angular
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      qrReaderService.stopReading();
+      qrService.stopReading();
       document.removeEventListener("resume", onResume, true);
     });
 
@@ -84,7 +88,7 @@ angular
 
     function onOpenSettings(){
       //scannerService.openSettings();
-      qrReaderService.openSettings().then(
+      qrService.openSettings().then(
         function onOpenSettingsResolved(result) {
           console.log('Open settings resolved with:', result);
         },
@@ -99,15 +103,15 @@ angular
     };
 
     function startReadingWithPermission() {
-      qrReaderService.checkPermission().then(function () {
+      qrService.checkPermission().then(function () {
         startReading();
       });
     }
 
     function startReading() {
       $scope.currentState = scannerStates.visible;
-      console.log('Starting qrreader.');
-      qrReaderService.startReading().then(
+      console.log('Starting QR Service.');
+      qrService.startReading().then(
         function onStartReadingResolved(contents) {
           handleSuccessfulScan(contents);
         },
