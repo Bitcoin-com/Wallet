@@ -19,36 +19,36 @@
 -->
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-    xmlns:rim="http://www.blackberry.com/ns/widgets"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    id="cordova-plugin-qrreader"
-    version="0.1.0">
-    <name>QR Reader</name>
-    <description>Cordova QR Code Reader Plugin</description>
-    <license>Apache 2.0</license>
-    <keywords>cordova,qrcode</keywords>
-    
-    <js-module src="www/qrreader.js" name="qrreader">
-        <clobbers target="qrreader" />
-    </js-module>
+  xmlns:rim="http://www.blackberry.com/ns/widgets"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-qrreader"
+  version="0.1.0">
+  <name>QR Reader</name>
+  <description>Cordova QR Code Reader Plugin</description>
+  <license>Apache 2.0</license>
+  <keywords>cordova,qrcode</keywords>
+  
+  <js-module src="www/qrreader.js" name="qrreader">
+      <clobbers target="qrreader" />
+  </js-module>
 
-    <!-- android -->
-    <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="QRReader" >
-                <param name="android-package" value="com.bitcoin.cordova.qrreader.QRReader" />
-            </feature>
-        </config-file>
+  <!-- android -->
+  <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+          <feature name="QRReader" >
+              <param name="android-package" value="com.bitcoin.cordova.qrreader.QRReader" />
+          </feature>
+      </config-file>
 
-        <source-file src="src/android/BarcodeMapTracker.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        <source-file src="src/android/BarcodeMapTrackerFactory.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        <source-file src="src/android/BarcodeUpdateListener.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        <source-file src="src/android/CameraSource.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        <source-file src="src/android/CameraSourcePreview.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        <source-file src="src/android/QRReader.java" target-dir="src/com/bitcoin/cordova/qrreader" />
-        
-        <framework src="src/android/qrreader.gradle" custom="true" type="gradleReference" />
-    </platform>
+      <source-file src="src/android/BarcodeMapTracker.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      <source-file src="src/android/BarcodeMapTrackerFactory.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      <source-file src="src/android/BarcodeUpdateListener.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      <source-file src="src/android/CameraSource.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      <source-file src="src/android/CameraSourcePreview.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      <source-file src="src/android/QRReader.java" target-dir="src/com/bitcoin/cordova/qrreader" />
+      
+      <framework src="src/android/qrreader.gradle" custom="true" type="gradleReference" />
+  </platform>
 
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
