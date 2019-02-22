@@ -15,15 +15,11 @@
       <div class="zero-state-heading" translate>Scan QR Codes</div>
       <div class="zero-state-description" translate>You can scan bitcoin addresses, payment requests, paper wallets, and more.</div>
       <div class="zero-state-cta">
-        <div class="ng-hide zero-state-tldr" ng-show="!currentState || currentState === scannerStates.unauthorized" translate>Enable the camera to get started.</div>
-        <div class="ng-hide zero-state-tldr" ng-show="currentState === scannerStates.denied || reactivationCount > 2" translate>Enable camera access in your device settings to get started.</div>
-        <div class="ng-hide zero-state-tldr" ng-show="currentState === scannerStates.unavailable" translate>Please connect a camera to get started.</div>
-        <button ng-show="!currentState || currentState === scannerStates.unauthorized" class="ng-hide button button-standard button-primary" ng-click="onStart()" translate>Allow Camera Access</button>
-        <button ng-show="currentState === scannerStates.denied && canOpenSettings" class="ng-hide button button-standard button-primary" ng-click="openSettings()" translate>Open Settings</button>
-        <button ng-show="currentState === scannerStates.unavailable" class="ng-hide button button-standard button-primary" ng-click="onStart()" translate>Retry Camera</button>
+        <button ng-show="currentState === scannerStates.denied && canOpenSettings" class="ng-hide button button-standard button-primary" ng-click="onOpenSettings()" translate>Open Settings</button>
+        <button ng-show="currentState === scannerStates.unavailable" class="ng-hide button button-standard button-primary" ng-click="onRetry()" translate>Retry Camera</button>
       </div>
     </div>
-    <div class="ng-show" id="tab-scan-loading-camera" ng-show="currentState === scannerStates.loading"></div>
+    <!-- <div class="ng-show" id="tab-scan-loading-camera" ng-show="currentState === scannerStates.loading"></div> -->
     <div class="ng-hide" id="tab-scan-camera-ready" ng-show="currentState === scannerStates.visible">
       <div class="guides">
         <img class="svg qr-scan-guides" src="img/bitpay-wallet-qr-scan-guides.svg">

@@ -29,56 +29,9 @@ angular
       visible: 'visible'
     };
 
-    $scope.onStart = onStart;
+    $scope.onRetry = onRetry;
     $scope.scannerStates = scannerStates;
-
-    function _updateCapabilities(){
-      // var capabilities = scannerService.getCapabilities();
-      // $scope.scannerIsAvailable = capabilities.isAvailable;
-      // $scope.scannerHasPermission = capabilities.hasPermission;
-      // $scope.scannerIsDenied = capabilities.isDenied;
-      // $scope.scannerIsRestricted = capabilities.isRestricted;
-      // $scope.canEnableLight = capabilities.canEnableLight;
-      // $scope.canChangeCamera = capabilities.canChangeCamera;
-      // $scope.canOpenSettings = capabilities.canOpenSettings;
-    }
-
-    function _handleCapabilities(){
-      // always update the view
-      /*
-      $timeout(function(){
-        if(!scannerService.isInitialized()){
-          $scope.currentState = scannerStates.loading;
-        } else if(!$scope.scannerIsAvailable){
-          $scope.currentState = scannerStates.unavailable;
-        } else if($scope.scannerIsDenied){
-          $scope.currentState = scannerStates.denied;
-        } else if($scope.scannerIsRestricted){
-          $scope.currentState = scannerStates.denied;
-        } else if(!$scope.scannerHasPermission){
-          $scope.currentState = scannerStates.unauthorized;
-        }
-        $log.debug('Scan view state set to: ' + $scope.currentState);
-      });
-      */
-    }
-
-    function _refreshScanView(){
-      _updateCapabilities();
-      _handleCapabilities();
-      if($scope.scannerHasPermission){
-        activate();
-      }
-    }
-
-    // This could be much cleaner with a Promise API
-    // (needs a polyfill for some platforms)
-    /*
-    $rootScope.$on('scannerServiceInitialized', function(){
-      $log.debug('Scanner initialization finished, reinitializing scan view...');
-      _refreshScanView();
-    });
-    */
+    $scope.currentState = scannerStates.visible;
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
@@ -86,39 +39,7 @@ angular
 
     $scope.$on("$ionicView.afterEnter", function() {
       startReading();
-      /*
-      window.qrreader.startReading(
-        function onSuccess(result) {
-          console.log('qrreader startReading() result:', result);
-
-          handleSuccessfulScan(result);
-        },
-        function onError(error) {
-          console.error('qrreader startReading() error:', error);
-        });
-        */
-
-      /*
-      var capabilities = scannerService.getCapabilities();
-      if (capabilities.hasPermission) {
-        // try initializing and refreshing status any time the view is entered
-        if(!scannerService.isInitialized()) {
-          scannerService.gentleInitialize();
-        } else {
-          activate();
-        }
-      }
-      */
     });
-
-    $scope.authorize = function(){
-      // TODO: Manage the authorization
-      /*
-      scannerService.initialize(function(){
-        _refreshScanView();
-      });
-      */
-    };
 
     $scope.$on("$ionicView.beforeLeave", function() {
       qrReaderService.stopReading();
@@ -149,11 +70,11 @@ angular
       startReading();
     });
 
-    function onStart() {
-      $scope.currentState = scannerStates.hasPermission;
+    function onRetry() {
+      startReading();
     }
 
-    $scope.openSettings = function(){
+    $scope.onOpenSettings = function(){
       //scannerService.openSettings();
       qrReaderService.openSettings().then(
         function onOpenSettingsResolved(result) {
@@ -165,19 +86,8 @@ angular
           var newScannerState = scannerStates.unavailable;
           $scope.canOpenSettings = false;
           // TODO: Handle all the different types of errors
-          //$scope.$apply(function onApply() {
-            $scope.currentState = newScannerState;
-          //});          
+          $scope.currentState = newScannerState;
         });
-    };
-
-    $scope.reactivationCount = 0;
-    $scope.attemptToReactivate = function(){
-      /*
-      scannerService.reinitialize(function(){
-        $scope.reactivationCount++;
-      });
-      */
     };
 
     $scope.toggleLight = function(){
@@ -230,9 +140,7 @@ angular
           var newScannerState = scannerStates.denied;
           $scope.canOpenSettings = true;
           // TODO: Handle all the different types of errors
-          //$scope.$apply(function onApply() {
-            $scope.currentState = newScannerState;
-          //});          
+          $scope.currentState = newScannerState;
         });
     }
   }
