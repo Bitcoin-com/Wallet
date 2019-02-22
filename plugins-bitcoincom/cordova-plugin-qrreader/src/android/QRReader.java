@@ -89,20 +89,14 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         Log.d(TAG, "execute() with \"" + action + "\"");
-        if ("getTestInfo".equals(action)) {
-
-            JSONObject r = new JSONObject();
-            r.put("something", this.getTestInfo());
-            callbackContext.success(r);
-
-        } else if ("openSettings".equals(action)) {
+        if ("openSettings".equals(action)) {
             openSettings(callbackContext);
-
         } else if ("startReading".equals(action)) {
             startReading(callbackContext);
-
         } else if ("stopReading".equals(action)) {
             stopReading(callbackContext);
+        } else if ("checkPermission".equals(action)) {
+            checkPermission(callbackContext);
         } else {
             return false;
         }
@@ -191,14 +185,6 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         return true;
     }
 
-    private void getCameraPermission(CallbackContext callbackContext) {
-        cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
-    }
-
-    public String getTestInfo() {
-        return "Hello Java World 1";
-    }
-
     public void onRequestPermissionResult(int requestCode, String[] permissions,
                                           int[] grantResults) throws JSONException
     {
@@ -235,6 +221,10 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
       FrameLayout.LayoutParams childCenterLayout = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
       viewGroup.addView(mCameraSourcePreview, childCenterLayout);
+    }
+
+    private void checkPermission(CallbackContext callbackContext) {
+        cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
     }
 
     private void openSettings(CallbackContext callbackContext) {
@@ -303,7 +293,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         if(cordova.hasPermission(CAMERA)) {
             startReadingWithPermission(callbackContext);
         } else {
-            getCameraPermission(callbackContext);
+            callbackContext.error(QRReaderError.ERROR_PERMISSION_DENIED.toString());
         }
     }
 

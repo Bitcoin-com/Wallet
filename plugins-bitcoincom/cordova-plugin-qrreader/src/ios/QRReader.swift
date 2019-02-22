@@ -62,6 +62,10 @@ extension QRReader {
 //
 extension QRReader {
     
+    func checkPermission(_ command: CDVInvokedUrlCommand) {
+        self.callback(command, status: CDVCommandStatus_NO_RESULT)
+    }
+    
     func openSettings(_ command: CDVInvokedUrlCommand) {
         guard let settingsUrl = URL(string: UIApplicationOpenSettingsURLString) else {
             return

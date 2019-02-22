@@ -58,15 +58,14 @@ function QRReader() {
  * @param {Function} errorCallback The function to call when there is an error getting the heading data. (OPTIONAL)
  */
 
-
-QRReader.prototype.getTestInfo = function (successCallback, errorCallback) {
-    argscheck.checkArgs('fF', 'QRReader.getTestInfo', arguments);
-    exec(successCallback, errorCallback, 'QRReader', 'getTestInfo', []);
-};
-
 QRReader.prototype.openSettings = function (successCallback, errorCallback) {
     argscheck.checkArgs('fF', 'QRReader.openSettings', arguments);
     exec(successCallback, errorCallback, 'QRReader', 'openSettings', []);
+};
+
+QRReader.prototype.checkPermission = function (successCallback, errorCallback) {
+    argscheck.checkArgs('fF', 'QRReader.checkPermission', arguments);
+    exec(successCallback, errorCallback, 'QRReader', 'checkPermission', []);
 };
 
 QRReader.prototype.startReading = function (successCallback, errorCallback) {
