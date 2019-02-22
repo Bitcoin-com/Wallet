@@ -12,46 +12,51 @@
 import UIKit
 import AVKit
 
-
 @objc(QRReader)
 class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
-        
+    
     fileprivate var readingCommand: CDVInvokedUrlCommand?
     fileprivate var captureSession: AVCaptureSession!
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer!
     fileprivate var cameraView: UIView!
-
-    enum QRReaderError {
-      case NO_PERMISSION
-      case SCANNING_UNSUPPORTED
+    
+    enum QRReaderError: Int {
+        case NO_PERMISSION = 1
+        case SCANNING_UNSUPPORTED = 2
     }
     
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
-
     override func pluginInitialize() {
         super.pluginInitialize()
-        cameraView = CameraView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        cameraView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         cameraView.autoresizingMask = [.flexibleWidth, .flexibleHeight];
     }
-
+    
     func startReading(_ command: CDVInvokedUrlCommand){
         
         // Keep the callback
         readingCommand = command
         
         // If it is already initialized or webview missing, return
-        guard let _ = self.previewLayer
+        
+        guard let _ = self.cameraView
             , let webView = self.webView
             , let superView = webView.superview else {
+                return
+        }
+        
+        guard self.previewLayer == nil
+            , self.captureSession == nil else {
+                
+            if !self.captureSession.isRunning {
+                self.captureSession.startRunning()
+            }
             return
         }
         
-        backgroundColor = UIColor.black
+        cameraView.backgroundColor = UIColor.yellow
         captureSession = AVCaptureSession()
         
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+        guard let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo) else {
             // TODO: Handle the case without permission "Permission"
             failed(QRReaderError.NO_PERMISSION)
             return
@@ -71,7 +76,7 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         captureSession.addInput(videoInput)
-
+        
         let metadataOutput = AVCaptureMetadataOutput()
         
         guard captureSession.canAddOutput(metadataOutput) else {
@@ -79,32 +84,32 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             return
         }
         captureSession.addOutput(metadataOutput)
-
+        
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        metadataOutput.metadataObjectTypes = [.qr]
+        metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeEAN13Code]
         
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = self.layer.bounds
-        previewLayer.videoGravity = .resizeAspectFill
-
-        cameraView.addSublayer(previewLayer)
+        previewLayer.frame = cameraView.layer.bounds
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        cameraView.layer.addSublayer(previewLayer)
         superView.insertSubview(cameraView, belowSubview: webView)
         
         captureSession.startRunning()
     }
-
+    
     func stopReading(_ command: CDVInvokedUrlCommand){
         captureSession.stopRunning()
     }
     
-    func failed(error: QRReaderError) {
+    func failed(_ error: QRReaderError) {
         print("Scanning unsupported")
         guard let readingCommand = self.readingCommand
             , let callbackId = readingCommand.callbackId
             , let commandDelegate = self.commandDelegate else {
-            return
+                return
         }
-
+        
         let pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: error.rawValue)
         commandDelegate.send(pluginResult, callbackId:callbackId)
     }
@@ -125,9 +130,9 @@ class QRReader: CDVPlugin, AVCaptureMetadataOutputObjectsDelegate {
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             
             // Callback
-            let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result.stringValue)
+            let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
             commandDelegate.send(pluginResult, callbackId: callbackId)
-            readingCommand = nil
+            self.readingCommand = nil
         }
     }
 }

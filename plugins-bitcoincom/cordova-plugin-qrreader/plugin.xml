@@ -56,6 +56,7 @@
         <param name="ios-package" value="QRReader" />
       </feature>
     </config-file>
+    <dependency id="cordova-plugin-swift-support" spec="~3.1.1" />
     <source-file src="src/ios/QRReader.swift" />
   </platform>
 </plugin>

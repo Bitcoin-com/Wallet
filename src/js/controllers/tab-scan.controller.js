@@ -33,14 +33,14 @@ angular
     $scope.scannerStates = scannerStates;
 
     function _updateCapabilities(){
-      var capabilities = scannerService.getCapabilities();
-      $scope.scannerIsAvailable = capabilities.isAvailable;
-      $scope.scannerHasPermission = capabilities.hasPermission;
-      $scope.scannerIsDenied = capabilities.isDenied;
-      $scope.scannerIsRestricted = capabilities.isRestricted;
-      $scope.canEnableLight = capabilities.canEnableLight;
-      $scope.canChangeCamera = capabilities.canChangeCamera;
-      $scope.canOpenSettings = capabilities.canOpenSettings;
+      // var capabilities = scannerService.getCapabilities();
+      // $scope.scannerIsAvailable = capabilities.isAvailable;
+      // $scope.scannerHasPermission = capabilities.hasPermission;
+      // $scope.scannerIsDenied = capabilities.isDenied;
+      // $scope.scannerIsRestricted = capabilities.isRestricted;
+      // $scope.canEnableLight = capabilities.canEnableLight;
+      // $scope.canChangeCamera = capabilities.canChangeCamera;
+      // $scope.canOpenSettings = capabilities.canOpenSettings;
     }
 
     function _handleCapabilities(){
