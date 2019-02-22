@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2019-02-13 08:34\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "充值 {{amountStr}}，记入借方卡 ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "开始SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "兑换操作非常快，您将在自己的钱包中收到兑换后的金
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "此服务由第三方 ShapeShift AI 提供，他们将收取少量服务费。所需费用将在您开始交易之前显示。"
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "金额高于限额"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Sideshif的回复无效"
 
 msgid "Insufficient Amount Received"
 msgstr "收到的金额不足"
@@ -4504,32 +4504,56 @@ msgid "Take a Selfie"
 msgstr "请拍摄自拍"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "证件+ 自拍"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "拍一张您的证件在您的脸旁边的照片。"
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "将您的证件资料的4个角清楚地放置在框架中。避免任何眩光。"
-
-msgid "Front"
-msgstr "正面"
 
 msgid "Buying Gift Card..."
 msgstr "买礼券"
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "错误信息。状态代码: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "有用的链接"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "BTC 和 BCH 之间的交易"
 
 msgid "Exchange"
-msgstr ""
+msgstr "交易"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "您不能将比特币发送到此比特币现金地址。这将导致失去资金"
+
+msgid "Your account verification was rejected."
+msgstr "您的帐户验证被拒绝。"
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "为了购买比特币现金, 您需要提供一些个人资料。"
+
+msgid "Provide my information"
+msgstr "提供我的个人资料"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "您今天最多可以购买 {{vm.customer.dailyLimitRemaining | 货币: \"欧元\": 2} , 本月最多可以购买{{{{vm.customer.monthlyLimitRemaining | 货币: \"欧元\": 2}。"
+
+msgid "Quick Links"
+msgstr "快速链接"
+
+msgid "Payment Methods"
+msgstr "付款方式"
+
+msgid "Side: {{file.side}}"
+msgstr "面: {{file.side}}"
+
+msgid "Approved"
+msgstr "批准"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "很抱歉, 我们目前无法验证您。"
 

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Thai\n"
 "Language: th\n"
-"PO-Revision-Date: 2019-02-15 07:49\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4513,9 +4513,6 @@ msgstr "โปรดถือเอกสารไว้ข้างๆหน้
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "หลีกเลี่ยงแสงจ้าและจัดตำแหน่งเอกสารให้อยู่ในกรอบทั้ง 4 มุมอย่างชัดเจน "
 
-msgid "Front"
-msgstr "ด้านหน้า"
-
 msgid "Buying Gift Card..."
 msgstr "ทำการซื้อบัตรของขวัญ..."
 
@@ -4533,4 +4530,31 @@ msgstr "แลกเปลี่ยน"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "นี่อาจจะยอดเงินที่หายไป คุณไม่สามารถส่ง Bitcoin Core ไปยังที่อยู่ Bitcoin Cash นี้ "
+
+msgid "Your account verification was rejected."
+msgstr ""
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr ""
 

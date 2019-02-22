@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-02-15 07:49\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4512,9 +4512,6 @@ msgstr "문서를 들고 셀카를 촬영하세요."
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "문서 4개의 꼭짓점을 틀 안에 넣어주세요. 빛 반사를 조심해주세요."
 
-msgid "Front"
-msgstr "앞면"
-
 msgid "Buying Gift Card..."
 msgstr "기프트 카드 구매 중..."
 
@@ -4532,4 +4529,31 @@ msgstr "교환"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "이 주소는 비트코인 캐시 주소입니다. 비트코인을 이 주소로 송금할 시 자금이 유실됩니다."
+
+msgid "Your account verification was rejected."
+msgstr "계정 인증을 실패했습니다."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "비트코인 캐시를 구매하기 위해 몇 가지 개인 정보를 제공해야 합니다."
+
+msgid "Provide my information"
+msgstr "정보 제공하기"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "오늘 {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}}까지 구매할 수 있습니다. 이번 달에는 {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}}까지 구매할 수 있습니다."
+
+msgid "Quick Links"
+msgstr "유용한 링크"
+
+msgid "Payment Methods"
+msgstr "결제 방법"
+
+msgid "Side: {{file.side}}"
+msgstr "사이드: {{file.side}}"
+
+msgid "Approved"
+msgstr "승인 완료"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "지금은 인증할 수 없습니다. 죄송합니다."
 

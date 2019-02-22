@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"PO-Revision-Date: 2019-02-15 07:49\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -28,7 +28,7 @@ msgstr "* Una propuesta de pago puede ser eliminada si 1) Tú eres el creador, y
 
 #: www/views/tx-details.html:82
 msgid "- {{vm.btx.feeRateStr}} of the transaction"
-msgstr "{{vm.btx.feeRateStr}} de la transacción"
+msgstr "- {{vm.btx.feeRateStr}} de la transacción"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -4512,9 +4512,6 @@ msgstr "Toma una foto de tu documento junto a tu cara."
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Posiciona las 4 esquinas de tu documento claramente en el marco. Evita brillos."
 
-msgid "Front"
-msgstr "Frente"
-
 msgid "Buying Gift Card..."
 msgstr "Comprando tarjeta regalo..."
 
@@ -4532,4 +4529,31 @@ msgstr "Intercambiar"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "No puedes enviar Bitcoin Core a una dirección Bitcoin Cash. Esto haría que perdieras tu dinero."
+
+msgid "Your account verification was rejected."
+msgstr "La verificación de tu cuenta ha sido rechazada."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Para poder comprar Bitcoin Cash, necesitas proveer alguna información personal."
+
+msgid "Provide my information"
+msgstr "Proveer mi información"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Puedes comprar hasta {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} hoy, y hasta {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} este mes."
+
+msgid "Quick Links"
+msgstr "Enlaces rápidos"
+
+msgid "Payment Methods"
+msgstr "Métodos de pago"
+
+msgid "Side: {{file.side}}"
+msgstr "Lado: {{file.side}}"
+
+msgid "Approved"
+msgstr "Aprobado"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Lo sentimos, pero no podemos verificarte en este momento."
 

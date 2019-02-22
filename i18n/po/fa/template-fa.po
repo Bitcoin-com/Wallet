@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2019-02-13 08:34\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4512,9 +4512,6 @@ msgstr ""
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr ""
 
-msgid "Front"
-msgstr ""
-
 msgid "Buying Gift Card..."
 msgstr ""
 
@@ -4531,5 +4528,32 @@ msgid "Exchange"
 msgstr ""
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr ""
+
+msgid "Your account verification was rejected."
+msgstr ""
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
 msgstr ""
 
