@@ -9,6 +9,7 @@ angular
   function tabScanController(
     gettextCatalog
     , popupService
+    , qrReaderService
     , $scope
     , $log
     , $timeout
@@ -84,8 +85,8 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      $scope.currentState = scannerStates.hasPermission;
-      console.log('Starting qrreader.');
+      startReading();
+      /*
       window.qrreader.startReading(
         function onSuccess(result) {
           console.log('qrreader startReading() result:', result);
@@ -95,6 +96,8 @@ angular
         function onError(error) {
           console.error('qrreader startReading() error:', error);
         });
+        */
+
       /*
       var capabilities = scannerService.getCapabilities();
       if (capabilities.hasPermission) {
@@ -145,7 +148,8 @@ angular
 
     $scope.$on("$ionicView.beforeLeave", function() {
       //scannerService.deactivate();
-      window.qrreader.stopReading();
+      //window.qrreader.stopReading();
+      qrReaderService.stopReading();
     });
 
     function handleSuccessfulScan(contents){
@@ -179,6 +183,20 @@ angular
 
     $scope.openSettings = function(){
       //scannerService.openSettings();
+      qrReaderService.openSettings().then(
+        function onOpenSettingsResolved(result) {
+          console.log('Open settings resolved with:', result);
+        },
+        function onOpenSettingsRejected(reason) {
+          $log.error('Failed to open settings. ' + reason);
+
+          var newScannerState = scannerStates.unavailable;
+          $scope.canOpenSettings = false;
+          // TODO: Handle all the different types of errors
+          //$scope.$apply(function onApply() {
+            $scope.currentState = newScannerState;
+          //});          
+        });
     };
 
     $scope.reactivationCount = 0;
@@ -216,6 +234,8 @@ angular
     $scope.canGoBack = function(){
       return $state.params.passthroughMode;
     };
+
+
     function goBack(){
       $ionicHistory.nextViewOptions({
         disableAnimate: true
@@ -223,5 +243,25 @@ angular
       $ionicHistory.backView().go();
     }
     $scope.goBack = goBack;
+
+    function startReading() {
+      $scope.currentState = scannerStates.visible;
+      console.log('Starting qrreader.');
+
+      qrReaderService.startReading().then(
+        function onStartReadingResolved(contents) {
+          handleSuccessfulScan(contents);
+        },
+        function onStartReadingRejected(reason) {
+          $log.error('Failed to start reading QR code. ' + reason);
+
+          var newScannerState = scannerStates.denied;
+          $scope.canOpenSettings = true;
+          // TODO: Handle all the different types of errors
+          //$scope.$apply(function onApply() {
+            $scope.currentState = newScannerState;
+          //});          
+        });
+    }
   }
 })();
