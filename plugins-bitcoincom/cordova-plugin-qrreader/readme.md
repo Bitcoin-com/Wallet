@@ -21,3 +21,6 @@ Contents presented here for your convenience:
       compile 'com.google.android.gms:play-services-vision:11.8.0'
     }
 
+
+ 6. `npm run start:android` Scanning should work now.   
+
