@@ -25,7 +25,6 @@ angular
       unauthorized: 'unauthorized',
       denied: 'denied',
       unavailable: 'unavailable',
-      loading: 'loading',
       visible: 'visible'
     };
 
