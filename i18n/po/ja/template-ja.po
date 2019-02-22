@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2019-02-15 07:49\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4518,9 +4518,6 @@ msgstr "身分証明書を顔の横に持ち上げ、身分証明書と顔を同
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "枠内に書類の四隅が完全に収まるように調整してください。反射にご注意ください。"
 
-msgid "Front"
-msgstr "表"
-
 msgid "Buying Gift Card..."
 msgstr "ギフトカードを購入しています..."
 
@@ -4538,4 +4535,31 @@ msgstr "交換する"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "Bitcoin CoreをこのBitcoin Cashアドレスに送ることはできません。送金を行ってしまうと、資金を喪失します。"
+
+msgid "Your account verification was rejected."
+msgstr "アカウントの承認が拒否されました。"
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Bitcoin Cashを購入するには、いくつかの個人情報を提供する必要があります。"
+
+msgid "Provide my information"
+msgstr "個人情報を提供する"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "本日{{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}}まで購入することができ、今月は today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}}まで購入することができます。"
+
+msgid "Quick Links"
+msgstr "お役立ちリンク"
+
+msgid "Payment Methods"
+msgstr "支払方法"
+
+msgid "Side: {{file.side}}"
+msgstr "面: {{file.side}}"
+
+msgid "Approved"
+msgstr "承認済み"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "申し訳ありませんが、現段階では承認することができません。"
 

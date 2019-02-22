@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: French\n"
 "Language: fr\n"
-"PO-Revision-Date: 2019-02-15 07:49\n"
+"PO-Revision-Date: 2019-02-22 02:14\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4512,9 +4512,6 @@ msgstr "Prendre une photo de votre document qui est tenue vers le haut à côté
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Positionnez les 4 coins de votre document clairement dans le cadre. Éviter tout éblouissement."
 
-msgid "Front"
-msgstr "Avant"
-
 msgid "Buying Gift Card..."
 msgstr "Achat de chèques-cadeaux..."
 
@@ -4532,4 +4529,31 @@ msgstr "Échange"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "Vous ne pouvez pas envoyer de Bitcoin Core à cette adresse Bitcoin Cash. Cela mènerait à une perte des fonds."
+
+msgid "Your account verification was rejected."
+msgstr "La vérification de votre compte a été rejetée."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Pour pouvoir acheter des Bitcoin Cash, vous devrez fournir certains renseignements personnels."
+
+msgid "Provide my information"
+msgstr "Fournir mes coordonnées"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Vous pouvez acheter jusqu'à {{vm.customer.dailyLimitRemaining | monnaie : « € » : 2}} aujourd'hui et jusqu’à {{vm.customer.monthlyLimitRemaining | devise : « € » : 2}} ce mois-ci."
+
+msgid "Quick Links"
+msgstr "Liens rapides"
+
+msgid "Payment Methods"
+msgstr "Mode de paiement"
+
+msgid "Side: {{file.side}}"
+msgstr "Côté : {{file.side}}"
+
+msgid "Approved"
+msgstr "Approuvé"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Nous sommes désolés, mais nous ne sommes pas en mesure de vérifier en ce moment."
 
