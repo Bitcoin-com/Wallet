@@ -39,11 +39,19 @@ angular
 
     $scope.$on("$ionicView.afterEnter", function() {
       startReading();
+      document.addEventListener("resume", onResume, true);
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
       qrReaderService.stopReading();
+      document.removeEventListener("resume", onResume, true);
     });
+
+    function onResume() {
+      $scope.$apply(function () {
+        startReading();
+      });
+    }
 
     function handleSuccessfulScan(contents){
       
