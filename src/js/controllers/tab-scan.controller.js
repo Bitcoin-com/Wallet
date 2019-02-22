@@ -36,6 +36,7 @@ angular
     $scope.onRetry = onRetry;
     $scope.scannerStates = scannerStates;
     $scope.currentState = scannerStates.visible;
+    $scope.canOpenSettings = isDesktop ? false : true;
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
@@ -83,7 +84,7 @@ angular
     });
 
     function onRetry() {
-      startReading();
+      startReadingWithPermission();
     }
 
     function onOpenSettings(){
@@ -99,8 +100,9 @@ angular
           $scope.canOpenSettings = false;
           // TODO: Handle all the different types of errors
           $scope.currentState = newScannerState;
-        });
-    };
+        }
+      );
+    }
 
     function startReadingWithPermission() {
       qrService.checkPermission().then(function () {
@@ -119,7 +121,6 @@ angular
           $log.error('Failed to start reading QR code. ' + reason);
 
           var newScannerState = scannerStates.denied;
-          $scope.canOpenSettings = true;
           // TODO: Handle all the different types of errors
           $scope.currentState = newScannerState;
         });

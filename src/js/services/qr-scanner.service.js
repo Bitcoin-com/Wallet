@@ -8,13 +8,8 @@
 
   function qrScannerService(
     gettextCatalog
-    , $log
-    , $timeout
-    , platformInfo
     , $q
-    , $rootScope
     , $window
-    , scannerService
   ) {
 
     var errors = {
@@ -29,8 +24,9 @@
 
       // iOS
     };
-    var isDesktop = !platformInfo.isCordova;
-    var qrReader = $window.qrreader;
+
+    var qrService = $window.QRScanner;
+    var scanDeferred = null;
 
     var service = {
       // Functions
@@ -44,41 +40,44 @@
 
     function openSettings() {
       var deferred = $q.defer();
+      console.log('qrscanner openSettings()');
 
-      scannerService.openSettings(
-        function onSuccess(result) {
-          console.log('qrscanner openSettings() result:', result);
+      // Doesn't do anything
+      qrService.openSettings();
 
-          deferred.resolve(result);
-        },
-        function onError(error) {
-          console.error('qrscanner openSettings() error:', error);
-
-          var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
-          deferred.reject(translatedErrorMessage);
-        });
-
+      // Resolve by default
+      deferred.resolve();
       return deferred.promise;
     }
 
     function startReading() {
       var deferred = $q.defer();
+      stopReading().finally(function() {
+        qrService.prepare(
+          function onPrepare(error, status) {
+            if (error) {
+              console.error('qrscanner startReading() error:', error);
+              var errorMessage = errors[error] || error;
+              var translatedErrorMessage = gettextCatalog.getString(errorMessage);
+              deferred.reject(translatedErrorMessage);
+            } else {
+              console.log('qrscanner startReading() status:', status);
 
-      scannerService.initialize(
-        function onSuccess(result) {
-          console.log('qrscanner startReading() result:', result);
-          scannerService.scan( function onSuccessScan(content) {
-            deferred.resolve(content);
-          });
-        },
-        function onError(error) {
-          console.error('qrscanner startReading() error:', error);
+              scanDeferred = deferred;
+              qrService.scan(function onScan(err, content) {
+                if (err) {
+                  deferred.reject(err);
+                } else {
+                  deferred.resolve(content);
+                }
+              });
+            }
+          }
+        );
 
-          var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
-          deferred.reject(translatedErrorMessage);
-        });
+        qrService.show();
+      });
+
 
       return deferred.promise;
     }
@@ -87,19 +86,16 @@
     // immediately after
     function stopReading() {
       var deferred = $q.defer();
-      scannerService.deactivate(
-        function onSuccess(result) {
-          console.log('qrscanner stopReading() result:', result);
+      
+      if (scanDeferred) {
+        scanDeferred.reject();
+        scanDeferred = null;
+      }
 
-          deferred.resolve(result);
-        },
-        function onError(error) {
-          console.error('qrscanner stopReading() error:', error);
-
-          var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
-          deferred.reject(translatedErrorMessage);
-        });
+      QRScanner.destroy(function onDestroy(status){
+        console.log('qrscanner stopReading() result:', status);
+        deferred.resolve();
+      });
 
       return deferred.promise;
     }
@@ -109,7 +105,14 @@
     function checkPermission() {
       var deferred = $q.defer();
 
-      deferred.resolve(scannerService.getCapabilities());
+      // qrService.getStatus(function(status){
+      //   if(!status.authorized){
+      //     deferred.reject(status);
+      //   } else {
+      //     deferred.resolve(status);
+      //   }
+      // });
+      deferred.resolve(status);
 
       return deferred.promise;
     }

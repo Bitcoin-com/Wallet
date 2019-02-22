@@ -16,7 +16,7 @@
       <div class="zero-state-description" translate>You can scan bitcoin addresses, payment requests, paper wallets, and more.</div>
       <div class="zero-state-cta">
         <button ng-show="currentState === scannerStates.denied && canOpenSettings" class="ng-hide button button-standard button-primary" ng-click="onOpenSettings()" translate>Open Settings</button>
-        <button ng-show="currentState === scannerStates.unavailable" class="ng-hide button button-standard button-primary" ng-click="onRetry()" translate>Retry Camera</button>
+        <button ng-show="!(currentState === scannerStates.denied && canOpenSettings)" class="ng-hide button button-standard button-primary" ng-click="onRetry()" translate>Retry Camera</button>
       </div>
     </div>
     <!-- <div class="ng-show" id="tab-scan-loading-camera" ng-show="currentState === scannerStates.loading"></div> -->
