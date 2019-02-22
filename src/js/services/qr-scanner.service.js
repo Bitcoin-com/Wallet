@@ -68,8 +68,9 @@
       scannerService.initialize(
         function onSuccess(result) {
           console.log('qrscanner startReading() result:', result);
-
-          deferred.resolve(result);
+          scannerService.scan( function onSuccessScan(content) {
+            deferred.resolve(content);
+          });
         },
         function onError(error) {
           console.error('qrscanner startReading() error:', error);
@@ -108,19 +109,7 @@
     function checkPermission() {
       var deferred = $q.defer();
 
-      scannerService.getCapabilities(
-        function onSuccess(result) {
-          console.log('qrreader checkPermission() result:', result);
-
-          deferred.resolve(result);
-        },
-        function onError(error) {
-          console.error('qrreader checkPermission() error:', error);
-
-          var errorMessage = errors[error] || error;
-          var translatedErrorMessage = gettextCatalog.getString(errorMessage);
-          deferred.reject(translatedErrorMessage);
-        });
+      deferred.resolve(scannerService.getCapabilities());
 
       return deferred.promise;
     }
