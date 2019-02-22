@@ -27,6 +27,7 @@ angular
       unavailable: 'unavailable',
       visible: 'visible'
     };
+    var isHandlerEnable = true;
 
     $scope.onRetry = onRetry;
     $scope.scannerStates = scannerStates;
@@ -47,9 +48,13 @@ angular
     });
 
     function onResume() {
-      $scope.$apply(function () {
-        startReading();
-      });
+      if (isHandlerEnable) {
+        $scope.$apply(function () {
+          startReading();
+        });
+      } else {
+        isHandlerEnable = true;
+      }
     }
 
     function handleSuccessfulScan(contents){
@@ -137,6 +142,7 @@ angular
       $scope.currentState = scannerStates.visible;
       console.log('Starting qrreader.');
 
+      isHandlerEnable = false;
       qrReaderService.startReading().then(
         function onStartReadingResolved(contents) {
           handleSuccessfulScan(contents);
