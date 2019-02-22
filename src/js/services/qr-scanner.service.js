@@ -54,10 +54,10 @@
       var deferred = $q.defer();
       stopReading().finally(function() {
         qrService.prepare(
-          function onPrepare(error, status) {
-            if (error) {
-              console.error('qrscanner startReading() error:', error);
-              var errorMessage = errors[error] || error;
+          function onPrepare(err, status) {
+            if (err) {
+              console.error('qrscanner startReading() error:', err);
+              var errorMessage = errors[err] || err;
               var translatedErrorMessage = gettextCatalog.getString(errorMessage);
               deferred.reject(translatedErrorMessage);
             } else {

@@ -48,8 +48,8 @@ angular
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      qrService.stopReading();
       document.removeEventListener("resume", onResume, true);
+      qrService.stopReading();
     });
 
     function onResume() {
@@ -96,10 +96,10 @@ angular
         function onOpenSettingsRejected(reason) {
           $log.error('Failed to open settings. ' + reason);
 
-          var newScannerState = scannerStates.unavailable;
           $scope.canOpenSettings = false;
+          
           // TODO: Handle all the different types of errors
-          $scope.currentState = newScannerState;
+          $scope.currentState = scannerStates.unavailable;
         }
       );
     }
@@ -120,9 +120,8 @@ angular
         function onStartReadingRejected(reason) {
           $log.error('Failed to start reading QR code. ' + reason);
 
-          var newScannerState = scannerStates.denied;
           // TODO: Handle all the different types of errors
-          $scope.currentState = newScannerState;
+          $scope.currentState = scannerStates.denied;
         });
     }
 
