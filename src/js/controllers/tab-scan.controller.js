@@ -43,7 +43,7 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      startReadingWithPermission();
+      checkPermissionsThenStartReading();
       document.addEventListener("resume", onResume, true);
     });
 
@@ -84,7 +84,7 @@ angular
     });
 
     function onRetry() {
-      startReadingWithPermission();
+      checkPermissionsThenStartReading();
     }
 
     function onOpenSettings(){
@@ -104,7 +104,7 @@ angular
       );
     }
 
-    function startReadingWithPermission() {
+    function checkPermissionsThenStartReading() {
       qrService.checkPermission().then(function () {
         startReading();
       });
