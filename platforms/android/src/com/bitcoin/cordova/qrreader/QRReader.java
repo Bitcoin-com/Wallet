@@ -49,13 +49,25 @@ import android.widget.Toast;
 public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     public static final String TAG = "QRReader";
 
-    public static String platform;                            // Device OS
-    public static String uuid;                                // Device UUID
+    enum QRReaderPermissionResult {
+        PERMISSION_DENIED,
+        PERMISSION_GRANTED
+    }
 
     enum QRReaderError {
+        // Shared with iOS
         ERROR_PERMISSION_DENIED,
         ERROR_SCANNING_UNSUPPORTED,
-        ERROR_OPEN_SETTINGS_UNAVAILABLE
+        ERROR_OPEN_SETTINGS_UNAVAILABLE,
+
+        // Android specific
+        ERROR_CAMERA_FAILED_TO_START,
+        ERROR_CAMERA_SECURITY_EXCEPTION,
+        ERROR_CAMERA_UNAVAILABLE,
+        ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE,
+        ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE,
+        ERROR_READ_ALREADY_STARTED,
+        ERROR_UI_SETUP_FAILED
     }
 
     public static final String CAMERA = Manifest.permission.CAMERA;
@@ -69,6 +81,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     private CameraSource mCameraSource;
     private CameraSourcePreview mCameraSourcePreview;
     private CallbackContext mStartCallbackContext;
+    private CallbackContext mPermissionCallbackContext;
 
     public QRReader() {
     }
@@ -109,6 +122,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         Log.d(TAG, "Detected new barcode.");
         if (mStartCallbackContext != null) {
             mStartCallbackContext.success(contents);
+            mStartCallbackContext = null;
         } else {
             Log.e(TAG, "No callback context when detecting new barcode.");
         }
@@ -125,6 +139,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
      */
     @SuppressLint("InlinedApi")
     private Boolean createCameraSource(Context context, boolean useFlash, CallbackContext callbackContext) {
+        Log.d(TAG, "createCameraSource()");
 
         boolean autoFocus = true;
         // A barcode detector is created to track barcodes.  An associated multi-processor instance
@@ -147,7 +162,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
             // available.  The detectors will automatically become operational once the library
             // downloads complete on device.
             Log.w(TAG, "Detector dependencies are not yet available.");
-            callbackContext.error("Detector dependencies are not yet available.");
+            callbackContext.error(QRReaderError.ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE.name());
             return false;
 
 
@@ -193,14 +208,17 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         if (requestCode == CAMERA_REQ_CODE) {
             for (int r : grantResults) {
                 if (r == PackageManager.PERMISSION_DENIED) {
-                    if (this.mStartCallbackContext != null) {
-                        this.mStartCallbackContext.error("Camera permission denied.");
+                    if (this.mPermissionCallbackContext != null) {
+                        this.mPermissionCallbackContext.success(QRReaderPermissionResult.PERMISSION_DENIED.name());
+                        this.mPermissionCallbackContext = null;
                     }
                     return;
                 }
             }
-            if (this.mStartCallbackContext != null) {
-                startReadingWithPermission(mStartCallbackContext);
+
+            if (this.mPermissionCallbackContext != null) {
+                this.mPermissionCallbackContext.success(QRReaderPermissionResult.PERMISSION_GRANTED.name());
+                this.mPermissionCallbackContext = null;
             }
         }
 
@@ -211,7 +229,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
       if (viewGroup == null) {
         Log.e(TAG, "Failed to get view group");
         if (callbackContext != null) {
-          callbackContext.error("Failed to get view group.");
+          callbackContext.error(QRReaderError.ERROR_UI_SETUP_FAILED.name());
         }
         return;
       }
@@ -224,7 +242,12 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     }
 
     private void checkPermission(CallbackContext callbackContext) {
-        cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
+        if(cordova.hasPermission(CAMERA)) {
+            callbackContext.success(QRReaderPermissionResult.PERMISSION_GRANTED.name());
+        } else {
+            mPermissionCallbackContext = callbackContext;
+            cordova.requestPermission(this, CAMERA_REQ_CODE, CAMERA);
+        }
     }
 
     private void openSettings(CallbackContext callbackContext) {
@@ -244,7 +267,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
 
         } catch (Exception e) {
             Log.e(TAG, "Error opening settings. " + e.getMessage());
-            callbackContext.error(QRReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.toString());
+            callbackContext.error(QRReaderError.ERROR_OPEN_SETTINGS_UNAVAILABLE.name());
         }
 
     }
@@ -263,7 +286,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
             Dialog dlg =
                     GoogleApiAvailability.getInstance().getErrorDialog(cordova.getActivity(), code, RC_HANDLE_GMS);
             dlg.show();
-            callbackContext.error("Google Play services is unavailable.");
+            callbackContext.error(QRReaderError.ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE.name());
             return false;
         }
 
@@ -275,12 +298,12 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
                 Log.e(TAG, "Unable to start camera source.", e);
                 mCameraSource.release();
                 mCameraSource = null;
-                callbackContext.error("Unable to start camera source. " + e.getMessage());
+                callbackContext.error(QRReaderError.ERROR_CAMERA_FAILED_TO_START.name() + " " + e.getMessage());
                 return false;
             }
         } else {
             Log.e(TAG, "No camera source to start.");
-            callbackContext.error("No camera source to start.");
+            callbackContext.error(QRReaderError.ERROR_CAMERA_UNAVAILABLE.name());
             return false;
         }
         return true;
@@ -293,7 +316,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
         if(cordova.hasPermission(CAMERA)) {
             startReadingWithPermission(callbackContext);
         } else {
-            callbackContext.error(QRReaderError.ERROR_PERMISSION_DENIED.toString());
+            callbackContext.error(QRReaderError.ERROR_PERMISSION_DENIED.name());
         }
     }
 
@@ -316,7 +339,8 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
                   return;
                 }
               } else {
-                  callbackContext.error("Reader already started.");
+                  Log.d(TAG, "mCamera source was not null");
+                  callbackContext.error(QRReaderError.ERROR_READ_ALREADY_STARTED.name());
                   return;
               }
 
@@ -330,7 +354,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
                 startCameraSource(context, callbackContext);
               } catch (SecurityException e) {
                 Log.e(TAG, "Security Exception when starting camera source. " + e.getMessage());
-                callbackContext.error("Security Exception when starting camera source. " + e.getMessage());
+                callbackContext.error(QRReaderError.ERROR_CAMERA_SECURITY_EXCEPTION.name() + " " + e.getMessage());
                 return;
               }
 
@@ -347,6 +371,7 @@ public class QRReader extends CordovaPlugin implements BarcodeUpdateListener {
     if (mCameraSource != null) {
       mCameraSource.stop();
       mCameraSource = null;
+      Log.d(TAG, "Set mCameraSource to null.");
     }
     webView.getView().setBackgroundColor(Color.WHITE);
 

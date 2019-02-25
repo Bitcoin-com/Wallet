@@ -22,13 +22,19 @@ angular
     , platformInfo
     ) {
 
+      var qrPermissionResult = {
+        denied: 'PERMISSION_DENIED',
+        granted: 'PERMISSION_GRANTED',
+      };
+
     var scannerStates = {
-      unauthorized: 'unauthorized',
       denied: 'denied',
       unavailable: 'unavailable',
       visible: 'visible'
     };
 
+    var isCheckingPermissions = false;
+    var isReading = false;
     var isDesktop = !platformInfo.isCordova;
     var qrService = isDesktop ? qrScannerService : qrReaderService;
 
@@ -43,22 +49,51 @@ angular
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      checkPermissionsThenStartReading();
-      document.addEventListener("resume", onResume, true);
+      _checkPermissionThenStartReading();
+      document.addEventListener("resume", _onResume, true);
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      document.removeEventListener("resume", onResume, true);
+      document.removeEventListener("resume", _onResume, true);
       qrService.stopReading();
     });
 
-    function onResume() {
-      $scope.$apply(function () {
-        startReading();
-      });
+
+    function _onResume() {
+      console.log('onResume()');
+
+      // Give everything time to settle since onResume gets call after the app resumes,
+      // and some things are already happening, such as:
+      // - Permission check has returned and reading was started.o
+
+      $timeout(function onResumeTimeout() {
+
+        if (isCheckingPermissions) {
+          console.log('onResume(), was checking permissions, so don\'t do anything.');
+          // Resume is called after using the permissions dialog
+          // Let's hope they are not switching back to this app from another app
+          return;
+        }
+  
+        if (isReading) {
+          console.log('onResume(), was reading, so restart reading.');
+          qrService.stopReading().then(
+            function onStoppedReadingSuccess() {
+              console.log('onResume(), Starting reading after stopping.');
+              _startReading();
+            },
+            function onStoppedReadingFailed(err) {
+              $log.error('Failed to restart reading', err);
+              $scope.currentState = scannerStates.unavailable;
+            }
+          );
+        }
+
+      }, 200);
+
     }
 
-    function handleSuccessfulScan(contents){
+    function _handleSuccessfulScan(contents){
       
       $log.debug('Scan returned: "' + contents + '"');
       //scannerService.pausePreview();
@@ -70,21 +105,21 @@ angular
           var title = gettextCatalog.getString('Scan Failed');
           popupService.showAlert(title, err.message, function onAlertShown() {
             // Enable another scan since we won't receive incomingDataMenu.menuHidden
-            startReading();
+            _startReading();
           });
         } else {
-          startReading();
+          _startReading();
         }
       });
       
     }
 
     $rootScope.$on('incomingDataMenu.menuHidden', function() {
-      startReading();
+      _startReading();
     });
 
     function onRetry() {
-      checkPermissionsThenStartReading();
+      _checkPermissionThenStartReading();
     }
 
     function onOpenSettings(){
@@ -92,6 +127,10 @@ angular
       qrService.openSettings().then(
         function onOpenSettingsResolved(result) {
           console.log('Open settings resolved with:', result);
+          //_checkPermissionThenStartReading();
+          // Allow to manually retry the camera
+          $scope.canOpenSettings = false;
+          
         },
         function onOpenSettingsRejected(reason) {
           $log.error('Failed to open settings. ' + reason);
@@ -104,24 +143,44 @@ angular
       );
     }
 
-    function checkPermissionsThenStartReading() {
-      qrService.checkPermission().then(function () {
-        startReading();
-      });
+    function _checkPermissionThenStartReading() {
+      isCheckingPermissions = true;
+      qrService.checkPermission().then(
+        function onCheckPermissionSuccess(result) {
+          console.log('onPermissionSuccess() ', result);
+          isCheckingPermissions = false;
+          if (result === qrPermissionResult.granted) {
+            _startReading();
+          } else {
+            $scope.currentState = scannerStates.denied;
+          }
+        },
+        function onCheckPermissionFailed(err) {
+          isCheckingPermissions = false;
+          $log.error('Failed to check permission.', err);
+        }
+      );
     }
 
-    function startReading() {
+    function _startReading() {
       $scope.currentState = scannerStates.visible;
+      isReading = true;
       console.log('Starting QR Service.');
       qrService.startReading().then(
         function onStartReadingResolved(contents) {
-          handleSuccessfulScan(contents);
+          isReading = false;
+          _handleSuccessfulScan(contents);
         },
         function onStartReadingRejected(reason) {
+          isReading = false;
           $log.error('Failed to start reading QR code. ' + reason);
 
-          // TODO: Handle all the different types of errors
-          $scope.currentState = scannerStates.denied;
+          if (reason === qrService.errors.permissionDenied) {
+            $scope.currentState = scannerStates.denied;
+          } else {
+            // TODO: Handle all the different types of errors
+            $scope.currentState = scannerStates.unavailable;
+          }
         });
     }
 

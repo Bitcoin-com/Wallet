@@ -18,10 +18,18 @@
 
     var errors = {
       // Common
-
+      permissionDenied: 'ERROR_PERMISSION_DENIED',
+      scanningUnsupported: 'ERROR_SCANNING_UNSUPPORTED',
+      openSettingsUnavailable: 'ERROR_OPEN_SETTINGS_UNAVAILABLE',
 
       // Android
-
+      cameraFailedToStart: 'ERROR_CAMERA_FAILED_TO_START',
+      cameraSecurityException: 'ERROR_CAMERA_SECURITY_EXCEPTION',
+      cameraUnavailable: 'ERROR_CAMERA_UNAVAILABLE',
+      detectorDependenciesUnavailable: 'ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE',
+      googlePlayServicesUnavailable: 'ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE',
+      readAlreadyStarted: 'ERROR_READ_ALREADY_STARTED',
+      errorUiSetupFailed: 'ERROR_UI_SETUP_FAILED'
 
       // Desktop
 
@@ -32,6 +40,8 @@
     var qrReader = $window.qrreader;
 
     var service = {
+      errors: errors,
+      
       // Functions
       openSettings: openSettings
       , startReading: startReading
@@ -88,12 +98,12 @@
 
       qrReader.stopReading(
         function onSuccess(result) {
-          console.log('qrreader stopReading() result:', result);
+          console.log('qrReader stopReading() result:', result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          console.error('qrreader stopReading() error:', error);
+          $log.error('qrReader stopReading() error:', error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
@@ -103,19 +113,17 @@
       return deferred.promise;
     }
 
-    // No need to wait on this promise unless you want to start again
-    // immediately after
     function checkPermission() {
       var deferred = $q.defer();
 
       qrReader.checkPermission(
         function onSuccess(result) {
-          console.log('qrreader checkPermission() result:', result);
+          console.log('qrReader checkPermission() result:', result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          console.error('qrreader checkPermission() error:', error);
+          $log.error('qrReader checkPermission() error:', error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
