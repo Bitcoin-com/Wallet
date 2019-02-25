@@ -75,7 +75,7 @@ angular
           return;
         }
   
-        if (isReading) {
+        if (isReading && platformInfo.isAndroid) { // Don't need to do this on iOS, in fact it breaks if you do
           console.log('onResume(), was reading, so restart reading.');
           qrService.stopReading().then(
             function onStoppedReadingSuccess() {
