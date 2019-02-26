@@ -1429,42 +1429,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (platformInfo.isCordova) {
         channel = "firebase";
       }
-      
-      //console.log('calling getInfo()...');
-      //window.Device.getInfo();
-      if (window.qrreader) {
-        console.log('qrreader found.');
-        /*
-        console.log('qrreader present with testString:', window.qrreader.testString);
-        console.log('qrreader get test info.');
-        window.qrreader.getTestInfo(
-          function onSuccess(result) {
-            console.log('qrreader getTestInfo() result:', result);
-          },
-          function onError(error) {
-            console.error('qrreader getTestInfo() error:', error);
-          });
-
-        window.qrreader.startReading(
-            function onSuccess(result) {
-              console.log('qrreader startReading() result:', result);
-            },
-            function onError(error) {
-              console.error('qrreader startReading() error:', error);
-            });
-
-          window.qrreader.stopReading(
-              function onSuccess(result) {
-                console.log('qrreader stopReading() result:', result);
-              },
-              function onError(error) {
-                console.error('qrreader stopReading() error:', error);
-              });
-      */  
-      } else {
-        console.log('qrreader missing.');
-      }
-      
 
       // Send a log to test
       var log = new window.BitAnalytics.LogEvent("wallet_opened", [{}, {}, {}], [channel, 'leanplum']);
