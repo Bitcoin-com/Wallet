@@ -25,6 +25,10 @@ angular
       var qrPermissionResult = {
         denied: 'PERMISSION_DENIED',
         granted: 'PERMISSION_GRANTED',
+
+        // iOS
+        restricted: 'PERMISSION_RESTRICTED',
+        notDetermined: 'PERMISSION_NOT_DETERMINED'
       };
 
     var scannerStates = {
@@ -149,7 +153,7 @@ angular
         function onCheckPermissionSuccess(result) {
           console.log('onPermissionSuccess() ', result);
           isCheckingPermissions = false;
-          if (result === qrPermissionResult.granted) {
+          if (result === qrPermissionResult.granted || result === qrPermissionResult.notDetermined) {
             _startReading();
           } else {
             $scope.currentState = scannerStates.denied;
