@@ -14,10 +14,18 @@
 
     var errors = {
       // Common
-
+      permissionDenied: 'ERROR_PERMISSION_DENIED',
+      scanningUnsupported: 'ERROR_SCANNING_UNSUPPORTED',
+      openSettingsUnavailable: 'ERROR_OPEN_SETTINGS_UNAVAILABLE',
 
       // Android
-
+      cameraFailedToStart: 'ERROR_CAMERA_FAILED_TO_START',
+      cameraSecurityException: 'ERROR_CAMERA_SECURITY_EXCEPTION',
+      cameraUnavailable: 'ERROR_CAMERA_UNAVAILABLE',
+      detectorDependenciesUnavailable: 'ERROR_DETECTOR_DEPENDENCIES_UNAVAILABLE',
+      googlePlayServicesUnavailable: 'ERROR_GOOGLE_PLAY_SERVICES_UNAVAILABLE',
+      readAlreadyStarted: 'ERROR_READ_ALREADY_STARTED',
+      errorUiSetupFailed: 'ERROR_UI_SETUP_FAILED'
 
       // Desktop
 
@@ -29,6 +37,8 @@
     var scanDeferred = null;
 
     var service = {
+      errors: errors,
+
       // Functions
       openSettings: openSettings,
       startReading: startReading,
@@ -105,14 +115,21 @@
     function checkPermission() {
       var deferred = $q.defer();
 
-      // qrService.getStatus(function(status){
-      //   if(!status.authorized){
-      //     deferred.reject(status);
-      //   } else {
-      //     deferred.resolve(status);
-      //   }
-      // });
-      deferred.resolve(status);
+      qrService.getStatus(function onStatus(status) {
+        var result = '';
+        if (status.authorized) {
+          result = 'PERMISSION_GRANTED';
+        } else if (status.authorized) {
+          result = 'PERMISSION_DENIED';
+        } else if (status.restricted) {
+          result = 'PEMISSION_RESTRICTED'
+        } else {
+          result = 'PERMISSION_NOT_DETERMINED';
+        }
+
+        deferred.resolve(result);
+      });
+      
 
       return deferred.promise;
     }
