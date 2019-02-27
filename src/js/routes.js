@@ -1429,7 +1429,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       if (platformInfo.isCordova) {
         channel = "firebase";
       }
-      
+
       // Send a log to test
       var log = new window.BitAnalytics.LogEvent("wallet_opened", [{}, {}, {}], [channel, 'leanplum']);
       window.BitAnalytics.LogEventHandlers.postEvent(log);
