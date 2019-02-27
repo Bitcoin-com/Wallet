@@ -9,124 +9,98 @@ angular
   function tabScanController(
     gettextCatalog
     , popupService
+    , qrReaderService
+    , qrScannerService
     , $scope
     , $log
     , $timeout
-    , scannerService
     , incomingDataService
     , $state
     , $ionicHistory
     , $rootScope
     , $ionicNavBarDelegate
+    , platformInfo
     ) {
 
+      var qrPermissionResult = {
+        denied: 'PERMISSION_DENIED',
+        granted: 'PERMISSION_GRANTED',
+
+        // iOS
+        restricted: 'PERMISSION_RESTRICTED',
+        notDetermined: 'PERMISSION_NOT_DETERMINED'
+      };
+
     var scannerStates = {
-      unauthorized: 'unauthorized',
       denied: 'denied',
       unavailable: 'unavailable',
-      loading: 'loading',
       visible: 'visible'
     };
+
+    var isCheckingPermissions = false;
+    var isReading = false;
+    var isDesktop = !platformInfo.isCordova;
+    var qrService = isDesktop ? qrScannerService : qrReaderService;
+
+    $scope.onOpenSettings = onOpenSettings;
+    $scope.onRetry = onRetry;
     $scope.scannerStates = scannerStates;
-
-    function _updateCapabilities(){
-      var capabilities = scannerService.getCapabilities();
-      $scope.scannerIsAvailable = capabilities.isAvailable;
-      $scope.scannerHasPermission = capabilities.hasPermission;
-      $scope.scannerIsDenied = capabilities.isDenied;
-      $scope.scannerIsRestricted = capabilities.isRestricted;
-      $scope.canEnableLight = capabilities.canEnableLight;
-      $scope.canChangeCamera = capabilities.canChangeCamera;
-      $scope.canOpenSettings = capabilities.canOpenSettings;
-    }
-
-    function _handleCapabilities(){
-      // always update the view
-      $timeout(function(){
-        if(!scannerService.isInitialized()){
-          $scope.currentState = scannerStates.loading;
-        } else if(!$scope.scannerIsAvailable){
-          $scope.currentState = scannerStates.unavailable;
-        } else if($scope.scannerIsDenied){
-          $scope.currentState = scannerStates.denied;
-        } else if($scope.scannerIsRestricted){
-          $scope.currentState = scannerStates.denied;
-        } else if(!$scope.scannerHasPermission){
-          $scope.currentState = scannerStates.unauthorized;
-        }
-        $log.debug('Scan view state set to: ' + $scope.currentState);
-      });
-    }
-
-    function _refreshScanView(){
-      _updateCapabilities();
-      _handleCapabilities();
-      if($scope.scannerHasPermission){
-        activate();
-      }
-    }
-
-    // This could be much cleaner with a Promise API
-    // (needs a polyfill for some platforms)
-    $rootScope.$on('scannerServiceInitialized', function(){
-      $log.debug('Scanner initialization finished, reinitializing scan view...');
-      _refreshScanView();
-    });
+    $scope.currentState = scannerStates.visible;
+    $scope.canOpenSettings = isDesktop ? false : true;
 
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
     });
 
     $scope.$on("$ionicView.afterEnter", function() {
-      var capabilities = scannerService.getCapabilities();
-      if (capabilities.hasPermission) {
-        // try initializing and refreshing status any time the view is entered
-        if(!scannerService.isInitialized()) {
-          scannerService.gentleInitialize();
-        } else {
-          activate();
-        }
-      }
+      _checkPermissionThenStartReading();
+      document.addEventListener("resume", _onResume, true);
     });
-
-    function activate(){
-      scannerService.activate(function(){
-        _updateCapabilities();
-        _handleCapabilities();
-        $log.debug('Scanner activated, setting to visible...');
-        $scope.currentState = scannerStates.visible;
-          // pause to update the view
-          $timeout(function(){
-            scannerService.scan(function(err, contents){
-            if(err){
-              $log.debug('Scan canceled.');
-            } else if ($state.params.passthroughMode) {
-              $rootScope.scanResult = contents.result || contents;
-              goBack();
-            } else {
-              handleSuccessfulScan(contents);
-            }
-            });
-            // resume preview if paused
-            scannerService.resumePreview();
-          });
-      });
-    }
-    $scope.activate = activate;
-
-    $scope.authorize = function(){
-      scannerService.initialize(function(){
-        _refreshScanView();
-      });
-    };
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      scannerService.deactivate();
+      document.removeEventListener("resume", _onResume, true);
+      qrService.stopReading();
     });
 
-    function handleSuccessfulScan(contents){
+
+    function _onResume() {
+      console.log('onResume()');
+
+      // Give everything time to settle since onResume gets call after the app resumes,
+      // and some things are already happening, such as:
+      // - Permission check has returned and reading was started.o
+
+      $timeout(function onResumeTimeout() {
+
+        if (isCheckingPermissions) {
+          console.log('onResume(), was checking permissions, so don\'t do anything.');
+          // Resume is called after using the permissions dialog
+          // Let's hope they are not switching back to this app from another app
+          return;
+        }
+  
+        if (isReading && platformInfo.isAndroid) { // Don't need to do this on iOS, in fact it breaks if you do
+          console.log('onResume(), was reading, so restart reading.');
+          qrService.stopReading().then(
+            function onStoppedReadingSuccess() {
+              console.log('onResume(), Starting reading after stopping.');
+              _startReading();
+            },
+            function onStoppedReadingFailed(err) {
+              $log.error('Failed to restart reading', err);
+              $scope.currentState = scannerStates.unavailable;
+            }
+          );
+        }
+
+      }, 200);
+
+    }
+
+    function _handleSuccessfulScan(contents){
+      
       $log.debug('Scan returned: "' + contents + '"');
-      scannerService.pausePreview();
+      //scannerService.pausePreview();
       // Sometimes (testing in Chrome, when reading QR Code) data is an object
       // that has a string data.result.
       contents = contents.result || contents;
@@ -135,37 +109,96 @@ angular
           var title = gettextCatalog.getString('Scan Failed');
           popupService.showAlert(title, err.message, function onAlertShown() {
             // Enable another scan since we won't receive incomingDataMenu.menuHidden
-            activate();
+            _startReading();
           });
         } else {
-          scannerService.resumePreview();
+          _startReading();
         }
       });
+      
     }
 
     $rootScope.$on('incomingDataMenu.menuHidden', function() {
-      activate();
+      _startReading();
     });
 
-    $scope.openSettings = function(){
-      scannerService.openSettings();
-    };
+    function onRetry() {
+      _checkPermissionThenStartReading();
+    }
 
-    $scope.reactivationCount = 0;
-    $scope.attemptToReactivate = function(){
-      scannerService.reinitialize(function(){
-        $scope.reactivationCount++;
-      });
-    };
+    function onOpenSettings(){
+      //scannerService.openSettings();
+      qrService.openSettings().then(
+        function onOpenSettingsResolved(result) {
+          console.log('Open settings resolved with:', result);
+          //_checkPermissionThenStartReading();
+          // Allow to manually retry the camera
+          $scope.canOpenSettings = false;
+          
+        },
+        function onOpenSettingsRejected(reason) {
+          $log.error('Failed to open settings. ' + reason);
+
+          $scope.canOpenSettings = false;
+          
+          // TODO: Handle all the different types of errors
+          $scope.currentState = scannerStates.unavailable;
+        }
+      );
+    }
+
+    function _checkPermissionThenStartReading() {
+      isCheckingPermissions = true;
+      qrService.checkPermission().then(
+        function onCheckPermissionSuccess(result) {
+          console.log('onPermissionSuccess() ', result);
+          isCheckingPermissions = false;
+          if (result === qrPermissionResult.granted || result === qrPermissionResult.notDetermined) {
+            _startReading();
+          } else {
+            $scope.currentState = scannerStates.denied;
+          }
+        },
+        function onCheckPermissionFailed(err) {
+          isCheckingPermissions = false;
+          $log.error('Failed to check permission.', err);
+        }
+      );
+    }
+
+    function _startReading() {
+      $scope.currentState = scannerStates.visible;
+      isReading = true;
+      console.log('Starting QR Service.');
+      qrService.startReading().then(
+        function onStartReadingResolved(contents) {
+          isReading = false;
+          _handleSuccessfulScan(contents);
+        },
+        function onStartReadingRejected(reason) {
+          isReading = false;
+          $log.error('Failed to start reading QR code. ' + reason);
+
+          if (reason === qrService.errors.permissionDenied) {
+            $scope.currentState = scannerStates.denied;
+          } else {
+            // TODO: Handle all the different types of errors
+            $scope.currentState = scannerStates.unavailable;
+          }
+        });
+    }
 
     $scope.toggleLight = function(){
+      /*
       scannerService.toggleLight(function(lightEnabled){
         $scope.lightActive = lightEnabled;
         $scope.$apply();
       });
+      */
     };
 
     $scope.toggleCamera = function(){
+      /*
       $scope.cameraToggleActive = true;
       scannerService.toggleCamera(function(status){
       // (a short delay for the user to see the visual feedback)
@@ -175,11 +208,14 @@ angular
           $log.debug('Camera toggle control deactivated.');
         }, 200);
       });
+      */
     };
 
     $scope.canGoBack = function(){
       return $state.params.passthroughMode;
     };
+
+
     function goBack(){
       $ionicHistory.nextViewOptions({
         disableAnimate: true
