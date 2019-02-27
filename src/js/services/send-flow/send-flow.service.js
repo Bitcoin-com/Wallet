@@ -77,6 +77,15 @@ angular
                 params.toAddress = payProData.toAddress,
                 params.coin = coin,
                 params.thirdParty = thirdPartyData
+
+                if('outs' in payProData) {
+                  params.outs = payProData.outs
+                } else {
+                  params.outs = {
+                    addr: payProData.toAddress, 
+                    amount: payProData.amount
+                  }
+                }
               }
 
               // Resolve

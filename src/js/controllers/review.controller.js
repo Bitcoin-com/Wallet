@@ -327,6 +327,7 @@ angular
         fromWalletId: sendFlowData.fromWalletId,
         toAddress: sendFlowData.toAddress,
         paypro: txPayproData,
+        outs: sendFlowData.outs,
 
         feeLevel: configFeeLevel,
         spendUnconfirmed: config.wallet.spendUnconfirmed,
@@ -434,11 +435,22 @@ angular
 
       var txp = {};
 
-      txp.outputs = [{
-        'toAddress': tx.toAddress,
-        'amount': tx.amount,
-        'message': vm.memo
-      }];
+      if(tx.outs.length > 0){
+        txp.outputs = tx.outs.map(function(out){
+          return {
+            'toAddress': out.addr,
+            'amount': out.amount,
+            'message': vm.memo
+          }
+        });
+      } else {
+        txp.outputs = [{
+          'toAddress': tx.toAddress,
+          'amount': tx.amount,
+          'message': vm.memo
+        }];
+      }
+    
 
       if (tx.sendMaxInfo) {
         txp.inputs = tx.sendMaxInfo.inputs;

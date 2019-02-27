@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /*
  * Copay Distribution SCSS overrides
+ * /img -> /src/img/app
  */
 /* Colors */
 /* Theme */
@@ -10342,6 +10343,23 @@ qrcode {
     .third-party-notice {
       text-align: center; } }
 
+#marco-coino #container {
+  margin-top: -1px;
+  margin-bottom: -2px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+
+#marco-coino #marco-coino-iframe {
+  flex-grow: 1;
+  width: 100%; }
+
+#marco-coino #add-merchant {
+  flex-grow: 0;
+  flex-shrink: 0; }
+
 .tabs .tab-item .icon {
   background-repeat: no-repeat;
   background-position: center;
@@ -10379,6 +10397,23 @@ qrcode {
     color: #667;
     font-size: 12px;
     font-weight: 300; }
+
+.tabs-icon-top > .tabs .tab-item {
+  font-size: 12px; }
+
+ion-tabs.tabs-color-active-positive .tab-item {
+  color: #B0B0B4;
+  font-family: ProximaNova;
+  font-weight: bold; }
+  ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+    color: #FF8209; }
+
+ion-tabs .tab-item {
+  opacity: 1.0; }
+
+ion-tabs .tab-title {
+  height: 15px;
+  line-height: 15px; }
 
 #add-card-form .form-header {
   text-align: center;
@@ -10868,6 +10903,42 @@ qrcode {
   word-break: break-all;
   white-space: normal; }
 
+#tab-buy-bitcoin-document-info .restore-info {
+  font-size: 0.8rem;
+  color: #9b9bab;
+  margin: 0 2rem; }
+  #tab-buy-bitcoin-document-info .restore-info a {
+    color: #fab915; }
+
+#tab-buy-bitcoin-document-info .top-spacer {
+  height: 1px; }
+
+#tab-buy-bitcoin-document-info form {
+  margin: 0 2.5%; }
+  #tab-buy-bitcoin-document-info form .row {
+    justify-content: space-between;
+    align-items: center; }
+  #tab-buy-bitcoin-document-info form .error {
+    padding: 0 5px;
+    color: #ef473a; }
+
+#tab-buy-bitcoin-document-info hr {
+  color: #787878; }
+
+#tab-buy-bitcoin-kyc-personal-info form {
+  margin: 0 2.5%; }
+  #tab-buy-bitcoin-kyc-personal-info form .row {
+    justify-content: space-between;
+    align-items: center; }
+  #tab-buy-bitcoin-kyc-personal-info form input {
+    text-align: right; }
+  #tab-buy-bitcoin-kyc-personal-info form .error {
+    padding: 0 5px;
+    color: #ef473a; }
+
+#tab-buy-bitcoin-kyc-personal-info hr {
+  color: #787878; }
+
 #starting {
   background: #fab915;
   background: -moz-linear-gradient(top, #fab915 0%, #fab915 100%);
@@ -11069,6 +11140,10 @@ qrcode {
   display: block;
   min-width: 100% !important;
   margin-top: 4px; }
+
+.button-settings, .button-settings:active {
+  background: transparent !important;
+  border: transparent !important; }
 
 #tab-receive .button-share {
   color: #fff;
@@ -11406,39 +11481,34 @@ qrcode {
   #tab-spend #featured-end::after {
     margin-bottom: 0; }
 
-#tab-spend #map {
-  align-items: center;
-  background-image: url("../img/merchants/map_bg.png");
+#tab-spend #marcocoino-icon {
+  width: 62px;
+  height: 62px;
+  background-image: url("../img/merchants/marcocoino.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 24px; }
-  #tab-spend #map h1 {
-    line-height: normal;
-    margin-top: 0; }
-  #tab-spend #map p {
-    font-size: 14px;
-    line-height: normal;
-    margin-bottom: 0; }
-  #tab-spend #map #map-icon-background {
-    width: 62px;
-    height: 62px;
-    background-image: url("../img/merchants/marcocoino.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    border-radius: 11px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    flex-shrink: 0; }
+  border-radius: 11px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  float: right;
+  margin: 0px 16px; }
 
 #tab-spend #merchants .icon.big-icon-svg:before {
   font-size: 40px;
   line-height: 40px;
   height: 40px;
   width: 40px; }
+
+#tab-spend #merchants .icon.big-icon-svg img {
+  height: 40px;
+  width: 40px; }
+
+#tab-spend #merchants .item-big-icon-left .icon.big-icon {
+  height: 40px;
+  width: 40px; }
+  #tab-spend #merchants .item-big-icon-left .icon.big-icon img {
+    height: 40px;
+    width: 40px; }
 
 #tab-spend.apl h2 {
   font-size: 17px;
@@ -11461,6 +11531,7 @@ qrcode {
   background-position: center center;
   border-radius: 6px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  min-height: 99px;
   padding-bottom: 16px;
   padding-top: 16px; }
   #tab-spend.apl .merchant-showcase h1 {
@@ -11481,8 +11552,18 @@ qrcode {
 #tab-spend .apl-card__subtitle.multiline {
   height: auto; }
 
+#tab-spend #cheapair {
+  background-image: url("../img/merchants/cheapair_banner.jpg"); }
+  #tab-spend #cheapair .subtitle {
+    width: 100%; }
+
 #tab-spend #egifter {
   background-image: url("../img/merchants/egifter_banner.png"); }
+
+#tab-spend #marcocoino {
+  background-image: url("../img/merchants/map_bg.jpg"); }
+  #tab-spend #marcocoino .subtitle {
+    width: auto; }
 
 #tab-spend #purse-io {
   background-image: url("../img/merchants/purse_banner.png"); }
@@ -12183,6 +12264,12 @@ qrcode {
   #walletDetails .low-fees img {
     position: absolute;
     margin-top: 3px; }
+  #walletDetails img.satoshi-dice {
+    border-radius: 50%;
+    width: 40px;
+    border: 2px solid #BEBEBE; }
+    #walletDetails img.satoshi-dice.received {
+      border-color: #09C286; }
 
 .wallet-details-wallet-info {
   position: absolute;
@@ -13783,9 +13870,104 @@ action-sheet .bp-action-sheet__backdrop {
 #tab-buy-bitcoin .terms {
   padding: 16px 0; }
 
+#buy-bitcoin-document-capture {
+  background: transparent; }
+  #buy-bitcoin-document-capture .mask-frame {
+    display: flex;
+    flex-flow: row wrap; }
+  #buy-bitcoin-document-capture .mask-full {
+    width: 100%;
+    height: 33%; }
+  #buy-bitcoin-document-capture .mask-edge {
+    width: 15%;
+    height: 33%; }
+  #buy-bitcoin-document-capture .mask-window {
+    width: 70%;
+    height: 33%; }
+  #buy-bitcoin-document-capture .capture-view {
+    clip: inset(5%, 290px, 190px, 10px); }
+  #buy-bitcoin-document-capture .mask-cover {
+    background: rgba(0, 0, 0, 0.8); }
+  #buy-bitcoin-document-capture .icon-flash, #buy-bitcoin-document-capture .icon-camera-toggle, #buy-bitcoin-document-capture .icon-capture {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    background-color: rgba(13, 13, 13, 0.79);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-size: 100%;
+    display: inline-block;
+    margin: 2em 1em;
+    cursor: pointer; }
+    body:not(.platform-cordova) #buy-bitcoin-document-capture .icon-flash:hover, body:not(.platform-cordova) #buy-bitcoin-document-capture .icon-camera-toggle:hover, body:not(.platform-cordova) #buy-bitcoin-document-capture .icon-capture:hover {
+      background-color: rgba(31, 40, 78, 0.79); }
+    #buy-bitcoin-document-capture .icon-flash.active, #buy-bitcoin-document-capture .icon-flash:active, #buy-bitcoin-document-capture .icon-camera-toggle.active, #buy-bitcoin-document-capture .icon-camera-toggle:active, #buy-bitcoin-document-capture .icon-capture.active, #buy-bitcoin-document-capture .icon-capture:active {
+      background-color: rgba(100, 124, 232, 0.79); }
+  #buy-bitcoin-document-capture .icon-capture {
+    background-image: url("../img/icon-capture.svg"); }
+  #buy-bitcoin-document-capture .icon-flash {
+    background-image: url("../img/icon-flash.svg"); }
+  #buy-bitcoin-document-capture .icon-camera-toggle {
+    background-image: url("../img/icon-camera-toggle.svg"); }
+  #buy-bitcoin-document-capture .light-text {
+    color: white;
+    line-height: 22px; }
+  #buy-bitcoin-document-capture h3.light-text {
+    line-height: 28px; }
+  #buy-bitcoin-document-capture .camera-controls {
+    display: flex;
+    justify-content: center; }
+  #buy-bitcoin-document-capture .capture-frame {
+    height: 100%; }
+    #buy-bitcoin-document-capture .capture-frame video {
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      z-index: -1; }
+    #buy-bitcoin-document-capture .capture-frame .capture-image {
+      width: 100%;
+      line-height: 0px; }
+  #buy-bitcoin-document-capture .preview-frame {
+    height: 100%;
+    background-color: white !important; }
+    #buy-bitcoin-document-capture .preview-frame .preview-image img {
+      margin: 5%;
+      border-radius: 5px; }
+  #buy-bitcoin-document-capture .apl-button-bottom-container {
+    height: auto !important; }
+    #buy-bitcoin-document-capture .apl-button-bottom-container h3, #buy-bitcoin-document-capture .apl-button-bottom-container p {
+      text-align: center; }
+  #buy-bitcoin-document-capture table {
+    border-spacing: 0px;
+    border-collapse: collapse; }
+    #buy-bitcoin-document-capture table tr {
+      border: 0;
+      padding: 0;
+      margin: 0; }
+    #buy-bitcoin-document-capture table td {
+      line-height: 0; }
+
 #buy-bitcoin-receipt .purchased {
   color: #000;
   font-weight: bold; }
+
+#tab-buy-bitcoin-kyc-status .apl-button-bottom-container {
+  position: relative !important;
+  bottom: auto !important;
+  height: auto !important; }
+  #tab-buy-bitcoin-kyc-status .apl-button-bottom-container h1, #tab-buy-bitcoin-kyc-status .apl-button-bottom-container p {
+    line-height: 22px;
+    text-align: center; }
+
+#tab-buy-bitcoin-kyc-status .status-frame {
+  height: 100%; }
+  #tab-buy-bitcoin-kyc-status .status-frame .status-graphic {
+    margin: auto;
+    display: flex;
+    height: 100%; }
+    #tab-buy-bitcoin-kyc-status .status-frame .status-graphic img {
+      width: 100%;
+      height: 100%; }
 
 #buy-bitcoin-success .apl-close-button {
   color: #FF9B00;
@@ -14321,9 +14503,9 @@ slide-to-accept-success {
   z-index: 99999;
   text-align: center;
   display: flex;
-  align-items: center;
-  justify-content: center; }
-  slide-to-accept-success .slide-success__background {
+  color: white;
+  flex-direction: column; }
+  slide-to-accept-success .slide-success-background {
     height: 10vmax;
     width: 10vmax;
     background: #fab915;
@@ -14332,89 +14514,131 @@ slide-to-accept-success {
     left: calc(50% - 5vmax);
     border-radius: 50%;
     transition: transform 600ms ease, background 600ms ease; }
-    slide-to-accept-success .slide-success__background.fill-screen {
-      -webkit-transform: scale3d(20, 20, 1) translateY(-40%);
-      transform: scale3d(20, 20, 1) translateY(-40%);
-      background: #11D1A6; }
-  slide-to-accept-success .slide-success__content {
-    position: relative;
-    z-index: 1;
-    margin-top: -10vh; }
-    slide-to-accept-success .slide-success__content > img {
-      width: 45vw;
-      max-width: 166px;
-      margin-bottom: 1.8rem;
-      -webkit-transform: translateY(5rem);
-      transform: translateY(5rem);
-      opacity: 0;
-      transition: transform 400ms ease, opacity 400ms ease;
-      transition-delay: 200ms; }
-      slide-to-accept-success .slide-success__content > img.reveal {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1; }
-    slide-to-accept-success .slide-success__content__header {
-      color: #FFFFFF;
-      font-size: 29px;
-      -webkit-transform: translateY(5rem);
-      transform: translateY(5rem);
-      opacity: 0;
-      transition: transform 400ms ease, opacity 400ms ease;
-      transition-delay: 250ms; }
-      slide-to-accept-success .slide-success__content__header.reveal {
-        -webkit-transform: translateY(0);
-        transform: translateY(0);
-        opacity: 1; }
-    slide-to-accept-success .slide-success__content__share {
-      transition: transform 400ms ease, opacity 400ms ease;
-      transition-delay: 600ms;
-      opacity: 0;
-      margin-top: 15vh; }
-      slide-to-accept-success .slide-success__content__share span {
-        color: #FFF;
-        font-size: 22px;
-        height: 28px; }
-      slide-to-accept-success .slide-success__content__share img {
-        height: 28px;
-        width: auto;
-        vertical-align: bottom;
-        margin-right: 4px; }
-      slide-to-accept-success .slide-success__content__share.reveal {
-        opacity: 0.79; }
-  slide-to-accept-success .slide-success__footer {
+    slide-to-accept-success .slide-success-background.fill-screen {
+      -webkit-transform: scale3d(25, 25, 1) translateY(-40%);
+      transform: scale3d(25, 25, 1) translateY(-40%);
+      background: #fab915; }
+      slide-to-accept-success .slide-success-background.fill-screen.did-lose {
+        background: #d6694d; }
+      slide-to-accept-success .slide-success-background.fill-screen.did-win {
+        background: #57be91; }
+  slide-to-accept-success .slide-success-container {
     position: absolute;
+    top: 0;
+    right: 0;
+    bottom: constant(safe-area-inset-bottom);
+    /* iOS 11.0 */
+    bottom: env(safe-area-inset-bottom);
+    /* iOS 11.2 */
     left: 0;
-    bottom: 0;
-    padding: 0 1.75rem;
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; }
+  slide-to-accept-success .slide-success-content {
+    flex-grow: 1;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    justify-content: space-evenly;
     -webkit-transform: translateY(5rem);
     transform: translateY(5rem);
     opacity: 0;
     transition: transform 400ms ease, opacity 400ms ease;
-    transition-delay: 250ms;
-    margin-bottom: constant(safe-area-inset-bottom);
-    /* iOS 11.0 */
-    margin-bottom: env(safe-area-inset-bottom);
-    /* iOS 11.2 */ }
-    slide-to-accept-success .slide-success__footer.reveal {
+    transition-delay: 200ms; }
+    slide-to-accept-success .slide-success-content.reveal {
       -webkit-transform: translateY(0);
       transform: translateY(0);
       opacity: 1; }
-    slide-to-accept-success .slide-success__footer__btn {
-      display: block;
-      color: #FFFFFF;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 2.86px;
-      padding: 2rem 0 2.1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.25);
-      cursor: pointer; }
+  slide-to-accept-success .slide-success-status-text {
+    font-size: 28px;
+    line-height: 1.5;
+    max-width: 100%;
+    padding: 0 16px;
+    /*
+      span {
+        margin-top: 
+      }
+      */ }
+    slide-to-accept-success .slide-success-status-text .address {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%; }
+  slide-to-accept-success .slide-success-content-action {
+    height: 4em;
+    width: 100%; }
+  slide-to-accept-success .slide-success-content-share {
+    font-size: 22px;
+    height: 28px;
+    width: 200%; }
+    slide-to-accept-success .slide-success-content-share img {
+      height: 28px;
+      width: auto;
+      vertical-align: bottom;
+      margin-right: 4px; }
+  slide-to-accept-success .slide-success-footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding: 0 1.75rem;
+    width: 100%;
+    z-index: 1;
+    -webkit-transform: translateY(5rem);
+    transform: translateY(5rem);
+    opacity: 0;
+    transition: transform 400ms ease, opacity 400ms ease;
+    transition-delay: 200ms; }
+    slide-to-accept-success .slide-success-footer.reveal {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 1; }
+  slide-to-accept-success .slide-success-footer-button {
+    display: block;
+    color: #FFFFFF;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2.86px;
+    padding: 2rem 0 2.1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer; }
+  slide-to-accept-success .slide-success-status {
+    height: 25vh; }
+  slide-to-accept-success .slide-success-button {
+    border: 2px solid white;
+    border-radius: 2em;
+    font-size: 22px;
+    height: 100%;
+    line-height: 64px;
+    padding-left: 2em;
+    padding-right: 2em; }
+  slide-to-accept-success .slide-success-button-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  slide-to-accept-success .slide-success-spinner {
+    height: 100%;
+    background-image: url("../img/loader.gif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center; }
+  slide-to-accept-success .slide-success-spinner-container {
+    height: 100%;
+    min-width: 50%; }
 
 #tx-details .action-created.action-accepted {
   color: green; }
 
 #tx-details .action-rejected {
   color: red; }
+
+.tx-details-content img.satoshi-dice {
+  border-radius: 50%;
+  border: 2px solid #BEBEBE; }
+  .tx-details-content img.satoshi-dice.received {
+    border-color: #09C286; }
 
 #txp-details,
 #view-confirm {
@@ -15722,8 +15946,10 @@ ion-content.padded-bottom-cta {
 ion-content.padded-bottom-cta-with-summary {
   bottom: 134px; }
 
-ion-content.scroll-content {
-  margin-top: -2px; }
+ion-nav-view {
+  background-color: transparent !important; }
+  ion-nav-view.scroll-content {
+    margin-top: -2px; }
 
 .card.card-gutter-compact {
   margin: 10px 12px; }
@@ -15894,6 +16120,8 @@ ion-view.light .content-inset {
     bottom: 86px;
     bottom: calc(86px + constant(safe-area-inset-bottom));
     bottom: calc(86px + env(safe-area-inset-bottom)); }
+  .apl .top-boundary {
+    height: 0.000001px; }
   .apl h1, .apl h2 {
     font-size: 22px;
     font-weight: bold;
@@ -15918,6 +16146,11 @@ ion-view.light .content-inset {
   .apl p {
     margin-left: 16px;
     margin-right: 16px; }
+  .apl select {
+    background: #f8f8f8;
+    border: none;
+    text-align: right;
+    text-align-last: right; }
   .apl-amount {
     padding: 0 16px; }
     .apl-amount-title {
@@ -16068,25 +16301,32 @@ ion-view.light .content-inset {
     box-shadow: 0 5px 34px 0 rgba(0, 0, 0, 0.11);
     height: 77px;
     margin: 0 16px; }
+    .apl-card__warning {
+      color: orange; }
+    .apl-card__danger {
+      color: red; }
     .apl-card__title {
       color: #000000;
       font-size: 17px;
       font-weight: bold;
       text-align: left;
       letter-spacing: -0.41px;
-      text-overflow: ellipsis; }
+      text-overflow: ellipsis;
+      margin-bottom: 2px; }
       .apl-card__title.add ::before {
         content: "+ "; }
       .apl-card__title .right {
         float: right; }
     .apl-card__subtitle {
       clear: both;
-      height: 15px;
       color: #808080;
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 500;
       text-align: left;
       letter-spacing: -0.2px; }
+      .apl-card__subtitle.multiline {
+        height: auto;
+        line-height: normal; }
       .apl-card__subtitle .right {
         float: right; }
   .apl-divider:after {
@@ -16096,6 +16336,8 @@ ion-view.light .content-inset {
     height: 1px;
     width: 100%;
     margin: 8px 0; }
+  .apl-divider-transparent:after {
+    border-bottom: transparent !important; }
   .apl-back-button, .apl-close-button {
     border: 0;
     background: #FFF;
@@ -16227,6 +16469,9 @@ ion-view.light .content-inset {
     text-align: center;
     width: 100%;
     text-decoration: none; }
+    .apl-button-transparent {
+      background: transparent;
+      color: black; }
     .apl-button.unready {
       background: rgba(255, 155, 0, 0.5); }
     .apl-button-container {
@@ -16263,6 +16508,8 @@ ion-view.light .content-inset {
       border-radius: 23px;
       width: 78px;
       text-align: center; }
+    .apl .apl-list-item.item-button-right .button-right-container a.button-right {
+      text-decoration: none; }
   .apl .bar .buttons span {
     display: inline;
     font-size: 17px;
