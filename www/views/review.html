@@ -49,8 +49,7 @@
             <p ng-if="vm.destination.balanceAmount && vm.destinationWallet.balanceHidden" translate>[Balance Hidden]</p>
           </div>
           <div class="item-content item-content-avatar"
-          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'
-           && (vm.thirdParty.name === 'BitPay' || vm.thirdParty.name === 'eGifter')">
+          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'">
             <img ng-if="vm.thirdParty.name === 'BitPay'" src="img/icon-bitpay.svg" class="bg">
             <img ng-if="vm.thirdParty.name === 'eGifter'" src="img/icon-egifter.png" class="bg">
             <h2>{{vm.destination.name}}</h2>
