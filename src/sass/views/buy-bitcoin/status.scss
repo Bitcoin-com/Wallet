@@ -10,18 +10,42 @@
     }
   }
 
+  #status-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+    text-align: center;
+  }
+
   .status-frame {
+    display: flex;
+    flex-direction: column;
     height: 100%;
 
     .status-graphic {
-      margin: auto;
-      display: flex;
-      height: 100%;
-
       img {
-        width: 100%;
-        height: 100%;
+        display: block;
+        margin: auto;
+        max-width: 75%;
       }
+    }
+  }
+
+  #status-info {
+
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .file {
+    margin-bottom: 1em;
+    text-align: left;
+
+    .file-text {
+      padding-left: 16px;
+      padding-right: 16px;
     }
   }
 }

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2019-01-24 07:17\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -79,7 +79,7 @@ msgstr "Account Nummer"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr "Onmiddellijke transacties met lage kosten"
+msgstr "Directe transacties tegen lage kosten"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
@@ -2742,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "U kunt Bitcoin ontvangen van elke portemonnee of dienst."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Om aan de slag te gaan zult u een bitcoin portemonnee moeten aanmaken en wat bitcoin moeten verkrijgen."
@@ -3214,25 +3214,25 @@ msgstr "Bezig met opladen..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Vul debet kaart ({{cardLastNumber}}) aan met {{amountStr}}"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "ShapeShift starten"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr ""
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Binnen enkele minuten je BTC omwisselen naar BCH."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "Om het proces te starten moet je eerst bitcoin in je portemonnee hebben staan."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "Het proces is snel en je ontvangt het uitgewisselde bedrag direct in je portemonnee."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Deze dienst wordt aangeboden door de partij ShapeShift, die zal een kleine vergoeding voor de service rekenen. Deze vergoeding wordt getoond voordat je de transactie start."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr ""
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3826,13 +3826,13 @@ msgstr "{{updatingTxHistoryProgress}} transacties gedownload"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-van-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr ""
 
 #: www/views/includes/community.html:3
 msgid "Community"
-msgstr "Gemeenschap"
+msgstr "Community"
 
 #: src/js/services/communityService.js:40
 msgid "Bitcoin Cash Reddit"
@@ -3974,25 +3974,25 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Open in webbrowser"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Ongeldig adres"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "Bedrag is niet gespecificeerd"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "Bedrag lager is dan het minimum"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "Bedrag is boven het limiet"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Ongeldig respons van Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr ""
 
 msgid "Insufficient Amount Received"
 msgstr ""
@@ -4041,7 +4041,7 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
@@ -4503,15 +4503,57 @@ msgstr ""
 msgid "Take a Selfie"
 msgstr ""
 
-msgid "Position your head entirely in the frame and say cheese."
+msgid "Document + Selfie"
+msgstr ""
+
+msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr ""
 
-msgid "Front"
+msgid "Buying Gift Card..."
 msgstr ""
 
-msgid "Buying Gift Card..."
+msgid "Error. Status code: {{status}}"
+msgstr ""
+
+msgid "Useful Links"
+msgstr ""
+
+msgid "Exchange between BTC and BCH"
+msgstr ""
+
+msgid "Exchange"
+msgstr ""
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr ""
+
+msgid "Your account verification was rejected."
+msgstr ""
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
 msgstr ""
 

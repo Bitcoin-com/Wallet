@@ -457,6 +457,7 @@ module.exports = function(grunt) {
     var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
     var appId = leanplumForEnv.appId;
     var key = leanplumForEnv.key;
+    console.log('Leanplum env:    "' + env + '"');
     console.log('Leanplum app ID: "' + appId + '"');
     console.log('Leanplum key:    "' + key + '"');
 
@@ -485,15 +486,18 @@ module.exports = function(grunt) {
     var baseUrl = moonPayForEnv.baseUrl;
     var pubKey = moonPayForEnv.pubKey;
     var secretKey = moonPayForEnv.secretKey;
-    console.log('MoonPay baseUrl: "' + baseUrl + '"');
-    console.log('MoonPay pubKey:    "' + pubKey + '"');
-    console.log('MoonPay secretKey:    "' + secretKey + '"');
-    console.log('MoonPay env:    "' + env + '"');
+    var vgsIdentifier = moonPayForEnv.vgsIdentifier;
+    console.log('MoonPay env:            "' + env + '"');
+    console.log('MoonPay baseUrl:        "' + baseUrl + '"');
+    console.log('MoonPay pubKey:         "' + pubKey + '"');
+    console.log('MoonPay secretKey:      "' + secretKey + '"');
+    console.log('Moonpay VGS Identifier: "' + vgsIdentifier + '"');
 
     var newContent = '// Generated\n' + content
       .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
       .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
       .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
+      .replace("vgsIdentifier: ''", "vgsIdentifier: '" + vgsIdentifier + "'")
       .replace("env: ''", "env: '" + env + "'");
     return newContent;
   }

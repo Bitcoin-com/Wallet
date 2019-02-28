@@ -10023,7 +10023,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
     font-size: 30px; }
     .big-icon-svg.theme-circle > .bg:before {
       vertical-align: middle; }
-    .big-icon-svg.theme-circle > .bg.icon-shapeshift {
+    .big-icon-svg.theme-circle > .bg.icon-sideshift {
       background-color: #263e5c; }
     .big-icon-svg.theme-circle > .bg.icon-buy-bitcoin2 {
       border: 1px solid #faba13; }
@@ -10035,6 +10035,9 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-image: url("../img/icon-twitter-white.svg");
       background-color: #1da1f2;
       background-size: 60%; }
+    .big-icon-svg.theme-circle > .bg.icon-sideshift {
+      background-image: url("../img/shapeshifticon.png");
+      background-size: 100%; }
     .big-icon-svg.theme-circle > .bg.icon-faucet {
       background-image: url("../img/icon-faucet.svg");
       background-size: 70%; }
@@ -10083,7 +10086,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 .onboarding .button.button-light.button-standard,
 .onboarding .button.button-white.button-standard,
 .onboarding .button.button-green.button-standard,
-.onboarding .button.button-assertive.button-standard, #shapeshift .button-shapeshift {
+.onboarding .button.button-assertive.button-standard, #sideshift .button-sideshift {
   width: 90%;
   max-width: 300px;
   margin-left: auto;
@@ -12342,73 +12345,73 @@ a.item {
   color: #667;
   font-size: 0.9em; }
 
-#shapeshift .swap-image {
+#sideshift .swap-image {
   width: auto;
   max-width: 400px;
   max-height: 25vh; }
 
-#shapeshift .empty-case {
+#sideshift .empty-case {
   padding-top: 5vh;
   text-align: center; }
-  #shapeshift .empty-case .item {
+  #sideshift .empty-case .item {
     border-style: none; }
-  #shapeshift .empty-case > .title {
+  #sideshift .empty-case > .title {
     font-size: 20px;
     color: #445;
     margin: 20px 10px; }
-  #shapeshift .empty-case > .subtitle {
+  #sideshift .empty-case > .subtitle {
     font-size: 1rem;
     line-height: 1.5em;
     font-weight: 300;
     color: #6F6F70;
     margin: 20px 1em 2.5em; }
-  #shapeshift .empty-case .big-icon-svg .bg.green {
+  #sideshift .empty-case .big-icon-svg .bg.green {
     padding: 0 10px;
     box-shadow: none; }
-  #shapeshift .empty-case .buttons {
+  #sideshift .empty-case .buttons {
     margin-top: 18px; }
-    #shapeshift .empty-case .buttons .button {
+    #sideshift .empty-case .buttons .button {
       font-weight: bold;
       font-size: 19px;
       line-height: 26px;
       padding: 8px 6px; }
-  #shapeshift .empty-case .button-first-contact img {
+  #sideshift .empty-case .button-first-contact img {
     height: 19px;
     width: 19px;
     margin-right: 6px;
     vertical-align: sub; }
 
-#shapeshift .button-shapeshift {
+#sideshift .button-sideshift {
   border-color: #FFF;
   background-color: #243F5D;
   color: #FFF;
   border: 0px;
   box-shadow: 0 2px 11px 0 #C1C1C1; }
-  #shapeshift .button-shapeshift:hover {
+  #sideshift .button-sideshift:hover {
     color: #FFF;
     text-decoration: none; }
-  #shapeshift .button-shapeshift.active, #shapeshift .button-shapeshift.activated {
+  #sideshift .button-sideshift.active, #sideshift .button-sideshift.activated {
     border-color: #FFF;
     background-color: #606060; }
-  #shapeshift .button-shapeshift.button-clear {
+  #sideshift .button-sideshift.button-clear {
     border-color: transparent;
     background: none;
     box-shadow: none;
     color: #FFF; }
-  #shapeshift .button-shapeshift.button-icon {
+  #sideshift .button-sideshift.button-icon {
     border-color: transparent;
     background: none; }
-  #shapeshift .button-shapeshift.button-outline {
+  #sideshift .button-sideshift.button-outline {
     border-color: #C1C1C1;
     background: transparent;
     color: #C1C1C1; }
-    #shapeshift .button-shapeshift.button-outline.active, #shapeshift .button-shapeshift.button-outline.activated {
+    #sideshift .button-sideshift.button-outline.active, #sideshift .button-sideshift.button-outline.activated {
       background-color: #C1C1C1;
       box-shadow: none;
       color: #fff; }
 
-.header.shapeshift {
-  background: url(../img/shapeshiftbg.jpg) center center repeat #28394d;
+.header.sideshift {
+  background: url(../img/sideshiftbg.jpg) center center repeat #28394d;
   opacity: 0.99; }
 
 #bitpayCard {
@@ -15876,7 +15879,7 @@ log-options #check-bar .checkbox-icon {
   /* iOS 11.2 */
   position: absolute; }
 
-#view-review .shapeshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
+#view-review .sideshift-banner, #view-review .bitpay-banner, #view-review .egifter-banner {
   box-shadow: none; }
 
 #view-review .warning {

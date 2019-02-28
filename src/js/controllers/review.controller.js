@@ -30,7 +30,7 @@ angular
     , satoshiDiceService
     , $scope
     , sendFlowService
-    , shapeshiftService
+    , sideshiftService
     , soundService
     , $state
     , $timeout
@@ -162,14 +162,14 @@ angular
       if (sendFlowData.thirdParty) {
         vm.thirdParty = sendFlowData.thirdParty;
         switch (vm.thirdParty.id) {
-          case 'shapeshift':
-            initShapeshift(function onInitShapeshift(err) {
+          case 'sideshift':
+            initSideshift(function onInitSideshift(err) {
               if (err) {
                 // Error stop here
-                ongoingProcess.set('connectingShapeshift', false);
-                popupService.showConfirm(gettextCatalog.getString('Shapeshift Error'), err.toString(), gettextCatalog.getString('Open') + " Shapeshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
+                ongoingProcess.set('connectingSideshift', false);
+                popupService.showConfirm(gettextCatalog.getString('SideShift AI Error'), err.toString(), gettextCatalog.getString('Open') + " Sideshift", gettextCatalog.getString('Go Back'), function onConfirm(hasConfirm) {
                   if (hasConfirm) {
-                    externalLinkService.open("https://shapeshift.io");
+                    externalLinkService.open("https://sideshift.ai");
                   }
                   $ionicHistory.goBack();
                 });
@@ -342,8 +342,9 @@ angular
         txp: {},
       };
 
-      if (vm.thirdParty && vm.thirdParty.id === "shapeshift") {
-        tx.toAddress = vm.thirdParty.toAddress;
+      if (vm.thirdParty && vm.thirdParty.id === "sideshift") {
+        //tx.toAddress = vm.thirdParty.toAddress;
+        tx.toAddress = bitcoinCashJsService.readAddress(vm.thirdParty.toAddress).legacy;
       }
       
       if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
@@ -359,7 +360,7 @@ angular
       var networkName;
       try {
         // Final destination is a wallet, but this transaction must go to an address for the first stage of the exchange.
-        if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'shapeshift') {
+        if (sendFlowData.thirdParty && sendFlowData.thirdParty.id === 'sideshift') {
           networkName = (new B.Address(tx.toAddress)).network.name;
           tx.network = networkName;
           setupTx(tx);
@@ -451,6 +452,7 @@ angular
         }];
       }
     
+      var toAddress = bitcoinCashJsService.readAddress(tx.toAddress).legacy;
 
       if (tx.sendMaxInfo) {
         txp.inputs = tx.sendMaxInfo.inputs;
@@ -630,7 +632,7 @@ angular
       };
     }
 
-    function initShapeshift(cb) {
+    function initSideshift(cb) {
       vm.sendingTitle = gettextCatalog.getString('You are shifting');
       if (!vm.thirdParty.data) {
         vm.thirdParty.data = {};
@@ -641,7 +643,7 @@ angular
       vm.destination.color = toWallet.color;
       vm.destination.currency = toWallet.coin.toUpperCase();
 
-      ongoingProcess.set('connectingShapeshift', true);
+      ongoingProcess.set('connectingSideshift', true);
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
           return cb(err);
@@ -654,15 +656,15 @@ angular
           // Need to use the correct service to do it.
           var amount = parseFloat(satoshis / 100000000);
 
-          shapeshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, shapeshiftData) {
+          sideshiftService.shiftIt(vm.originWallet.coin, toWallet.coin, withdrawalAddr, returnAddr, amount, function onShiftIt(err, sideshiftData) {
             if (err) {
               return cb(err);
             } else {
               // Want it to appear like a wallet-to-wallet transfer, so don't set the main toAddress.
-              vm.thirdParty.toAddress = shapeshiftData.toAddress;
-              vm.memo = 'ShapeShift Order:\nhttps://www.shapeshift.io/#/status/' + shapeshiftData.orderId;
+              vm.thirdParty.toAddress = sideshiftData.toAddress;
+              vm.memo = 'SideShift Order:\nhttps://sideshift.ai/orders/' + sideshiftData.orderId;
               vm.memoExpanded = !!vm.memo;
-              ongoingProcess.set('connectingShapeshift', false);
+              ongoingProcess.set('connectingSideshift', false);
               cb();
             }
           });
@@ -700,7 +702,9 @@ angular
           "coin": vm.originWallet.coin,
           "type": "outgoing",
           "amount": amount,
-          "fees": vm.feeCrypto
+          "fees": vm.feeCrypto,
+          "num_of_copayers": vm.originWallet.n,
+          "num_of_signatures": vm.originWallet.m
         }, {}, {}], [channel, "leanplum"]);
         window.BitAnalytics.LogEventHandlers.postEvent(log);
 

@@ -45,6 +45,8 @@ angular
     var wallet;
     var listeners = [];
     var notifications = [];
+    var isBuyBitcoinAllowed = false;
+
     $scope.externalServices = {};
     $scope.openTxpModal = txpModalService.open;
     $scope.version = $window.version;
@@ -66,6 +68,10 @@ angular
     $scope.$on("$ionicView.enter", onEnter);
     $scope.$on("$ionicView.afterEnter", onAfterEnter);
     $scope.$on("$ionicView.leave", onLeave);
+
+    moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
+      isBuyBitcoinAllowed = user.isAllowed;
+    });
 
     function onAfterEnter () {
       startupService.ready();
@@ -150,19 +156,18 @@ angular
         }, 10);
       });
     }
-
-    function onBuyBitcoin() {
-      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
-    };
     
     function onSettings() {
       $state.go('tabs.settings', {});
     }
 
-    function buyBitcoin() {
-      console.log('buyBitcoin()');
-      moonPayService.start();
+    function onBuyBitcoin() {
+      if (isBuyBitcoinAllowed) {
+        moonPayService.start();
+      } else {
+        var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+        externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+      }
     }
 
     function onLeave (event, data) {

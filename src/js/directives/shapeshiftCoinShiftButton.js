@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('copayApp.directives').directive('shapeshiftCoinShiftButton', function(shapeshiftApiService) {
+angular.module('copayApp.directives').directive('sideshiftCoinShiftButton', function(sideshiftApiService) {
     return {
-        require:['^shapeshiftCoinTrader'],
+        require:['^sideshiftCoinTrader'],
         restrict: 'E',
         transclude: true,
         scope: {
@@ -12,6 +12,6 @@ angular.module('copayApp.directives').directive('shapeshiftCoinShiftButton', fun
         link: function(scope, element, attrs, controllers) {
             console.log(scope.ShiftState)
         },
-        templateUrl: 'views/includes/shapeshift-coin-shift-button.html'
+        templateUrl: 'views/includes/sideshift-coin-shift-button.html'
     }
 });

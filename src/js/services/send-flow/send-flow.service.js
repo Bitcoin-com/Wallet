@@ -7,10 +7,16 @@ angular
   .factory('sendFlowService', sendFlowService);
   
   function sendFlowService(
-    sendFlowStateService, sendFlowRouterService
-    , bitcoinUriService, payproService, bitcoinCashJsService
-    , popupService, gettextCatalog
-    , $state, $log
+    bitAnalyticsService
+    , bitcoinCashJsService
+    , bitcoinUriService
+    , gettextCatalog
+    , $log
+    , payproService
+    , popupService
+    , sendFlowStateService
+    , sendFlowRouterService
+    , $state
   ) {
 
     var service = {
@@ -41,10 +47,12 @@ angular
 
           // If BIP70 (url)
           if (res.url) {
+            bitAnalyticsService.postEvent('payment_protocol_url_received', [{}, {}, {}], ['leanplum']);
             var url = res.url;
             var coin = res.coin || '';
             payproService.getPayProDetails(url, coin, function onGetPayProDetails(err, payProData) {
               if (err) {
+                bitAnalyticsService.postEvent('payment_protocol_fetch_failed', [{}, {}, {}], ['leanplum']);
                 popupService.showAlert(gettextCatalog.getString('Error'), err);
               } else {
                 var name = payProData.domain;
@@ -86,6 +94,9 @@ angular
                     amount: payProData.amount
                   }
                 }
+
+                bitAnalyticsService.postEvent('payment_protocol_fetch_succeeded', [{}, {}, { domain: thirdPartyData.domain }], ['leanplum']);
+
               }
 
               // Resolve
@@ -93,6 +104,16 @@ angular
             });
           } else {
             if (res.coin) {
+              if (params.coin && params.coin === 'btc' && res.coin === 'bch') {
+                popupService.showAlert(
+                  gettextCatalog.getString('Error'), 
+                  gettextCatalog.getString('You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds.')
+                );
+                if (onError) {
+                  onError();
+                }
+                return;
+              }
               params.coin = res.coin;
             }
 
