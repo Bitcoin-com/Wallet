@@ -89,10 +89,10 @@ angular
                 if('outs' in payProData) {
                   params.outs = payProData.outs
                 } else {
-                  params.outs = {
+                  params.outs = [{
                     addr: payProData.toAddress, 
                     amount: payProData.amount
-                  }
+                  }]
                 }
 
                 bitAnalyticsService.postEvent('payment_protocol_fetch_succeeded', [{}, {}, { domain: thirdPartyData.domain }], ['leanplum']);
