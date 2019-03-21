@@ -54,48 +54,11 @@ angular
 
     $scope.$on("$ionicView.afterEnter", function() {
       _checkPermissionThenStartReading();
-      document.addEventListener("resume", _onResume, true);
     });
 
     $scope.$on("$ionicView.beforeLeave", function() {
-      document.removeEventListener("resume", _onResume, true);
       qrService.stopReading();
     });
-
-
-    function _onResume() {
-      console.log('onResume()');
-
-      // Give everything time to settle since onResume gets call after the app resumes,
-      // and some things are already happening, such as:
-      // - Permission check has returned and reading was started.o
-
-      $timeout(function onResumeTimeout() {
-
-        if (isCheckingPermissions) {
-          console.log('onResume(), was checking permissions, so don\'t do anything.');
-          // Resume is called after using the permissions dialog
-          // Let's hope they are not switching back to this app from another app
-          return;
-        }
-  
-        if (isReading && platformInfo.isAndroid) { // Don't need to do this on iOS, in fact it breaks if you do
-          console.log('onResume(), was reading, so restart reading.');
-          qrService.stopReading().then(
-            function onStoppedReadingSuccess() {
-              console.log('onResume(), Starting reading after stopping.');
-              _startReading();
-            },
-            function onStoppedReadingFailed(err) {
-              $log.error('Failed to restart reading', err);
-              $scope.currentState = scannerStates.unavailable;
-            }
-          );
-        }
-
-      }, 200);
-
-    }
 
     function _handleSuccessfulScan(contents){
       
