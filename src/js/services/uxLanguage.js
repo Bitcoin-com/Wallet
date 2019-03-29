@@ -30,10 +30,6 @@ angular.module('copayApp.services')
       isoCode: 'fr',
       rateCode: 'EUR'
     }, {
-      name: 'Hindi',
-      isoCode: 'hi',
-      rateCode: 'INR'
-    }, {
       name: 'Italiano',
       isoCode: 'it',
       rateCode: 'EUR'
@@ -67,6 +63,10 @@ angular.module('copayApp.services')
       name: '한국어',
       isoCode: 'ko',
       rateCode: 'KRW'
+    }, {
+      name: 'हिंदी',
+      isoCode: 'hi',
+      rateCode: 'INR'
     }, {
       name: 'ภาษาไทย',
       isoCode: 'th',
