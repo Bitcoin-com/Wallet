@@ -11,20 +11,20 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
-msgstr "(قابل اعتماد)"
+msgstr "(مورد اعتماد)"
 
 #: www/views/includes/txp.html:23
 #: www/views/includes/walletHistory.html:64
 msgid "(possible double spend)"
-msgstr "(احتمالا دو بار خرج شده)"
+msgstr "(احتمالا دو بار خرج شده است)"
 
 #: www/views/modals/txp-details.html:159
 msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
-msgstr "یک پیشنهاد پرداخت را می توان حذف کرد: 1) شما سازنده هستید، و هیچ کمپین دیگری امضا نشده است، یا 2) 24 ساعت از زمانی که پیشنهاد ایجاد شده است."
+msgstr "پیشنهاد پرداختی را می توان حذف کرد اگر: 1) شما سازنده هستید، و همکار پرداختی امضا نکرده است، یا 2) 24 ساعت از زمانی که پیشنهاد ایجاد شد گذشته است."
 
 #: www/views/tx-details.html:82
 msgid "- {{vm.btx.feeRateStr}} of the transaction"
@@ -36,25 +36,25 @@ msgstr "{{tx.feeRateStr}} تراکنش"
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
-msgstr "پنج ستاره به ما کمک می کند تا {{appName}} را به دست افراد بیشتری برسانیم، و کاربران بیشتر به این معنی است که منابع بیشتری نسبت به برنامه متعهد هستند!"
+msgstr "رتبه پنج ستاره ایی به ما کمک می کند تا {{appName}} را به دست افراد بیشتری برسانیم، و تعداد بیشتر کاربران باعث میشود که منابع بیشتری به این برنامه سپرده شود!"
 
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr "<b>فقط </b> قابل باز پرداخت در Marcado Livre(برزیل) است"
+msgstr "<b>فقط </b> قابل باز پرداخت در Marcado Livre (برزیل) است"
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
 msgid "A member of the team will review your feedback as soon as possible."
-msgstr "یک عضو از تیم بازخورد شما را در اسرع وقت بررسی خواهد کرد."
+msgstr "یک عضو تیم بازخورد شما را در اسرع وقت بررسی خواهد کرد."
 
 #: src/js/controllers/confirm.js:401
 msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
-msgstr "در مجموع {{amountAboveMaxSizeStr}} حذف شد. بیش از حداکثر سایز مجاز برای یک تراکنش بوده است."
+msgstr "در مجموع {{amountAboveMaxSizeStr}} حذف شد. بیشتر از حداکثر اتدازه مجاز برای یک تراکنش بوده است."
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "در مجموع {{amountBelowFeeStr}} حذف شد. این وجوه از تراکنشهای خرج نشده ای(UTXOs) می آیند که از مبلغ تعیین شده برای کارمزد شبکه کمتر هستند."
+msgstr "در مجموع {{amountBelowFeeStr}} حذف شد. این وجوه از UTXOs می آیند که از مبلغ تعیین شده برای کارمزد شبکه کمتر هستند."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
@@ -79,7 +79,7 @@ msgstr "شماره حساب"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr "معاملات فوری با پرداخت کم"
+msgstr "معاملات انی با هزینه کم"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
@@ -107,7 +107,7 @@ msgstr "حساب‌ها"
 
 #: www/views/bitpayCard.html:56
 msgid "Activity"
-msgstr "فعالیت ها"
+msgstr "فعالیت"
 
 #: src/js/services/bitpayAccountService.js:83
 msgid "Add Account"
@@ -115,26 +115,26 @@ msgstr "اضافه نمودن حساب"
 
 #: src/js/services/bitpayAccountService.js:69
 msgid "Add BitPay Account?"
-msgstr "افزودن حساب BitPay?"
+msgstr "اضافه نمودن حساب BitPay؟"
 
 #: www/views/addressbook.add.html:4
 #: www/views/addressbook.html:22
 msgid "Add Contact"
-msgstr "افزودن مخاطب"
+msgstr "اضافه نمودن افراد"
 
 #: www/views/bitpayCard.html:28
 msgid "Add Funds"
-msgstr "اضافه نمودن سرمایه"
+msgstr "اضافه نمودن منابع مالی"
 
 #: www/views/confirm.html:94
 msgid "Add Memo"
-msgstr "یادداشت جدید"
+msgstr "افزودن یادداشت"
 
 #: www/views/join.html:87
 #: www/views/tab-create-personal.html:59
 #: www/views/tab-create-shared.html:88
 msgid "Add a password"
-msgstr "یک پسورد وارد کنید"
+msgstr "اضافه کردن رمز عبور"
 
 #: www/views/includes/accountSelector.html:27
 msgid "Add account"
@@ -144,11 +144,11 @@ msgstr "افزودن حساب"
 #: www/views/tab-create-personal.html:62
 #: www/views/tab-create-shared.html:91
 msgid "Add an optional password to secure the recovery phrase"
-msgstr "گذرواژه اختیاری را برای تأیید عبارت بازیابی اضافه کنید"
+msgstr "رمز عبور دلخواه خود را اضافه کنید تا از عبارات بازیابی خود محافظت کنید"
 
 #: www/views/includes/incomingDataMenu.html:41
 msgid "Add as a contact"
-msgstr "به مخاطبین اضافه شود"
+msgstr "به لیست تماس ها اضافه شود"
 
 #: src/js/controllers/confirm.js:424
 msgid "Add description"
@@ -156,11 +156,11 @@ msgstr "افزودن توضیحات"
 
 #: www/views/topup.html:6
 msgid "Add funds"
-msgstr "اضافه کردن سرمایه"
+msgstr "اضافه نمودن منابع مالی"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
-msgstr "افزودن حساب BitPay مربوط به ایمیل ({{email}})?"
+msgstr "افزودن این حساب BitPay ({{email}})?"
 
 #: www/views/add.html:3
 msgid "Add wallet"
@@ -170,7 +170,7 @@ msgstr "افزودن کیف پول"
 #: www/views/customAmount.html:28
 #: www/views/modals/paypro.html:24
 msgid "Address"
-msgstr "آدرس:"
+msgstr "آدرس"
 
 #: www/views/addressbook.html:6
 #: www/views/tab-settings.html:13
@@ -185,7 +185,7 @@ msgstr "نوع آدرس"
 #: www/views/tab-receive.html:76
 #: www/views/addresses.html:45
 msgid "Cash Address"
-msgstr "آدرس واریزی"
+msgstr "آدرس نقدی"
 
 #: www/views/tab-receive.html:77
 #: www/views/addresses.html:46
@@ -214,19 +214,19 @@ msgstr "همه آدرس ها"
 
 #: www/views/modals/wallet-balance.html:18
 msgid "All of your bitcoin wallet balance may not be available for immediate spending."
-msgstr "شاید امکان خرج تمامی موجودی کیف پول بیتکوین شما در لحظه وجود نداشته باشد."
+msgstr "شاید امکان خرج فوری تمامی موجودی کیف پول بیتکوین شما وجود نداشته باشد."
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "قبل از اینکه بتوانید آدرس های بیت کوین را ایجاد کنید، همه دستگاه های امضا باید به این کیف پول چند منظوره اضافه شوند."
+msgstr "قبل از اینکه بتوانید آدرس های بیت کوین را ایجاد کنید، همه دستگاه های امضا باید به این کیف پول چند امضاعه اضافه شوند."
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
-msgstr "پذیرش دسترسی به دوربین"
+msgstr "اجازه دسترسی به دوربین"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
-msgstr "اجازه ارسال اعلان"
+msgstr "اجازه ارسال اعلان ها"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
@@ -235,7 +235,7 @@ msgstr "تقریبا کار به پایان رسیده! بیا مروری کنی
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
-msgstr "ارز دوم"
+msgstr "ارز جایگزین"
 
 #: www/views/tab-settings.html:75
 msgid "Price Display"
@@ -253,7 +253,7 @@ msgstr "ارز رمزنگاری شده"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr "Amazon.com فعلاً در دسترس نیست، خواهشمند است بعداً امتحان کنید."
+msgstr "Amazon.com در این لحظه در دسترس نمی باشد. لطفا بعدا سعی کنید."
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
@@ -271,7 +271,7 @@ msgstr "مبلغ بیش از اندازه"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr "مبلغ کمتر از آن است که بتوان پرداخت کرد"
+msgstr "مبلغ کمتر از آن است که بتوان خرج کرد"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
@@ -445,7 +445,7 @@ msgstr "بیتکوین متفاوته&ndash; اون نمی تونه به صور�
 
 #: www/views/onboarding/tour.html:18
 msgid "Bitcoin is secure,<br>digital money."
-msgstr "بیتکوین امنه، <br> پول دیجیتال."
+msgstr "بیتکوین امن است ، <br> پول دیجیتال."
 
 #: www/views/preferencesFee.html:11
 msgid "Bitcoin transactions include a fee collected by miners on the network."
@@ -2276,7 +2276,7 @@ msgstr "در حالت انتظار"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "درانتظار مجوز"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -3216,7 +3216,7 @@ msgstr "در حال انتقال {{amountStr}} به صورت Top Up به کار�
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "راه‌اندازی SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "فرایند سریع است و شما مقدار ارز تبدیل شد
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "این سرویس توسط SideShift AI ارائه می‌شود که هزینه کمی برای سرویس اعمال می‌کند. هزینه قبل از شروع تراکنش نشان داده می‌شود."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}} از {{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,19 +3992,19 @@ msgstr "مقدار بالاتر از حد است"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "پاسخ Sideshift نامعتبر است"
 
 msgid "Insufficient Amount Received"
-msgstr ""
+msgstr "مقدار دریافت‌شده کافی نیست"
 
 msgid "Return to Address"
-msgstr ""
+msgstr "برگشت به آدرس"
 
 msgid "Overpaid!"
-msgstr ""
+msgstr "اضافه پرداخت شد!"
 
 msgid "Underpaid!"
-msgstr ""
+msgstr "کمتر پرداخت شد!"
 
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
@@ -4052,7 +4052,7 @@ msgid "An error occurred when getting your payment methods."
 msgstr "هنگام گرفتن روش های پرداخت شما خطایی رخ داد."
 
 msgid "No Payment Methods"
-msgstr ""
+msgstr "روش پرداختی وجود ندارد"
 
 msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
 msgstr "برای خرید Bitcoin Cash (BCH) باید یک کارت اعتباری یا دبیت کارت اضافه کنید."
@@ -4104,10 +4104,10 @@ msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr "سفارش شما کامل شده است. اکنون می توانید BCH خود را در کیف پولتان پیدا کنید."
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "سفارشتان انجام نشد."
 
 msgid "Your order is waiting for authorization."
-msgstr ""
+msgstr "سفارشتان درانتظار مجوز است."
 
 msgid "Deposited to"
 msgstr "سپرده شده در"
@@ -4122,13 +4122,13 @@ msgid "Failed to get payment method info."
 msgstr "اطلاعات روش پرداخت دریافت نشد."
 
 msgid "Waiting for authorization"
-msgstr ""
+msgstr "درانتظار مجوز"
 
 msgid "Back"
 msgstr "قبل"
 
 msgid "Verify and complete your card information."
-msgstr ""
+msgstr "اطلاعات کارت را تأیید و کامل کنید."
 
 msgid "Required"
 msgstr "مورد نیاز"
@@ -4182,7 +4182,7 @@ msgid "Add a payment method"
 msgstr "اضافه کردن روش پرداخت"
 
 msgid "Price Per BCH"
-msgstr ""
+msgstr "قیمت هر BCH"
 
 msgid "Done"
 msgstr "تکمیل شد"
@@ -4197,10 +4197,10 @@ msgid "Purchase History"
 msgstr "تاریخچه خرید"
 
 msgid "Pending Orders"
-msgstr ""
+msgstr "سفارش‌های درانتظار"
 
 msgid "Pay"
-msgstr ""
+msgstr "پرداخت"
 
 msgid "Payment Method"
 msgstr "روش پرداخت"
@@ -4209,40 +4209,40 @@ msgid "Add Credit or Debit Card"
 msgstr "اضافه کردن کارت اعتباری یا کارت دبیت"
 
 msgid "This amount exceeds your monthly limit"
-msgstr ""
+msgstr "این مقدار بیشتر از محدودیت ماهانه است"
 
 msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
 msgstr "{{remaining}} از {{monthly}} محدودیت خرید ماهانه شما باقی مانده است. هویت خود را برای خرید بیشتر تایید کنید."
 
 msgid "Verify Identity"
-msgstr ""
+msgstr "تأیید هویت"
 
 msgid "Deposited to"
-msgstr ""
+msgstr "واریز شد به"
 
 msgid "See on Blockchain"
 msgstr "مشاهده زنجیره بلاک"
 
 msgid "Wallet address"
-msgstr ""
+msgstr "آدرس کیف پول"
 
 msgid "Pending Order"
-msgstr ""
+msgstr "سفارش درانتظار"
 
 msgid "Edit Order"
-msgstr ""
+msgstr "ویرایش سفارش"
 
 msgid "Cancel Order"
-msgstr ""
+msgstr "لغو سفارش"
 
 msgid "Success!"
 msgstr "موفقیت!"
 
 msgid "Failed"
-msgstr ""
+msgstr "انجام نشد"
 
 msgid "Your purchase has been processed."
-msgstr ""
+msgstr "خریدتان پردازش شد."
 
 msgid "See Receipt"
 msgstr "مشاهده رسید"
@@ -4252,308 +4252,308 @@ msgstr "انجام خرید دیگر"
 
 #: www/views/kyc-document-info.html:53
 msgid "Photograph document"
-msgstr ""
+msgstr "سند عکس"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
-msgstr ""
+msgstr "ادامه بدون تأیید کردن"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Passport"
-msgstr ""
+msgstr "گذرنامه"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "National ID"
-msgstr ""
+msgstr "شناسه ملی"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Driving License"
-msgstr ""
+msgstr "گواهینامه رانندگی"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Verification"
-msgstr ""
+msgstr "تأیید"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "افزایش محدودیت خرید"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
-msgstr ""
+msgstr "درحال دریافت وضعیت تأیید…"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a country."
-msgstr ""
+msgstr "باید کشوری انتخاب کنید."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a document type."
-msgstr ""
+msgstr "باید نوع سند را انتخاب کنید."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "درحال‌حاضر، بدون تأیید هویتتان حداکثر تا 150 یورو در ماه مجاز به خرید کردن هستید. برای افزایش محدودیت خرید تا 20,000 یورو در ماه، هویتتان را تأیید کنید."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
-msgstr ""
+msgstr "اطلاعات شخصی"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
-msgstr ""
+msgstr "نام"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Last Name"
-msgstr ""
+msgstr "نام خانوادگی"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Date of Birth"
-msgstr ""
+msgstr "تاریخ تولد"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Street Address"
-msgstr ""
+msgstr "نشانی خیابان"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr ""
+msgstr "آپارتمان, سوئیت ساختمان (اختیاری)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
-msgstr ""
+msgstr "شهر/شهرستان"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
-msgstr ""
+msgstr "کد پستی"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Country"
-msgstr ""
+msgstr "کشور"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
-msgstr ""
+msgstr "فیلد الزامی است."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
-msgstr ""
+msgstr "باید حداقل 18 سال سن داشته باشید."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "123 Maple Street"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
-msgstr ""
+msgstr "توکیو"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
-msgstr ""
+msgstr "ژاپن"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
-msgstr ""
+msgstr "آپارتمان 1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "اطلاعات ارسال نشد. لطفاً دوباره امتحان کنید."
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
-msgstr ""
+msgstr "درحال ارسال اطلاعات..."
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "تصویر بارگذاری نشد. لطفاً دوباره امتحان کنید."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "چطور است؟"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "مطمئن شوید جزئیات موجود در سند بدون هرگونه تاری و بازتاب نور، واضح و قابل خواندن باشد. "
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "بله، قابل خواندن است"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "دوباره عکس بگیرید"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "از سندتان عکس بگیرید"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "4 گوشه {{vm.documentName}} خود را به‌طور واضح در قاب قرار دهید. هیچ‌گونه بازتاب نوری وجود نداشته باشد."
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "تأیید شد"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
-msgstr ""
+msgstr "نوع سند"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Select"
-msgstr ""
+msgstr "انتخاب"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "اگر قبلاً هویتتان را در bitcoin.com تأیید کرده باشید، می‌توانید <a ng-click=\"vm.onRestoreVerify()\">تأییدتان را بازیابی کنید.</a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
-msgstr ""
+msgstr "وضعیت تأیید"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "درحال تأیید شدن هستید"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "تأیید شدید!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "حسابتان اکنون تأیید شده است. تبریک!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "این کار نباید بیش‌ازحد طول بکشد. به‌زودی به شما اطلاع خواهیم داد تا بتوانید شروع به خرید بیتکوین کنید."
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "تأیید نشد"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "متأسفیم ولی نمی‌توانیم درحال‌حاضر شما را تأیید کنیم. لطفاً برای دریافت راهنمایی بیشتر، با پشتیبانی تماس بگیرید."
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "پرتره از خود"
 
 msgid "Shop"
-msgstr ""
+msgstr "فروشگاه"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "فروشگاه نزدیک"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "کسب‌وکارهای موجود در منطقه‌تان را که بیت‌کوین‌کَش می‌پذیرند پیدا کنید"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "اگر با بیت‌کوین‌کَش پرداخت کنید، از تخفیف حداکثر 30 درصدی آمازون بهره‌مند می‌شوید"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "کارت های هدیه دیجیتال از برخی از بزرگترین نام های تجاری"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "افزودن کسب‌وکار"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "آیا کسب‌وکاری دارید یا می‌شناسید که بیت‌کوین‌کَش بپذیرد؟ آن را اضافه کنید."
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "خرید با بیت‌کوین‌کَش"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "آیا مالک کسب و کار هستید؟"
 
 msgid "More"
-msgstr ""
+msgstr "بیشتر"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "امروز با Bitcoin Cash، به‌آسانی شروع به پذیرفتن پرداخت‌ها کنید. می‌توانیم نحوه انجام کار را به شما نشان دهیم."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "با استفاده از بیت‌کوین‌کَش، به اسکی برید. پروازها، هتل‌ها و کرایه خودرو."
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "بالاترین استخر پرداخت در بازار"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "شروع استخراج بیتکوین"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "با BCH پرداخت کنید و 10٪ پس بگیرید"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "تجارت بیت‌کوین خود را شروع کنید"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "ایمیل شناسایی نشد"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "برای افزودن تاجر جدید، لطفاً ایمیلی حاوی کلیه اطلاعات به addbusiness@bitcoin.com ارسال کنید."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "سلام تیم Bitcoin.com‏،<br><br>می‌خواهم کسب‌وکار جدیدی را به نقشه برنامه «کیف پول» شما اضافه کنم که بیت‌کوین‌کَش را به‌عنوان پرداخت می‌پذیرد:<br>- نام کسب‌وکار:<br>-آدرس فیزیکی:<br>-نوع کسب‌وکار:<br><br>اطلاعات برای کمک به مکان‌یابی کسب‌وکار:<br>- پیوند Google Maps:‏<br>یا<br>-عرض جغرافیایی:<br>-طول جغرافیایی:<br><br>اطلاعات اختیاری بیشتر:<br>-وب‌سایت:<br>-شماره تلفن:<br>"
 
 msgid "Internal Error"
-msgstr ""
+msgstr "خطای داخلی"
 
 msgid "Front"
-msgstr ""
+msgstr "جلو"
 
 msgid "Take a Selfie"
-msgstr ""
+msgstr "خودگرفت گرفتن"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "سند + خودگرفت"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "عکسی بگیرید که در آن سندتان کنار صورت گرفته اید."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "4 گوشه سند خود را به‌طور واضح در قاب قرار دهید. هیچ‌گونه بازتاب نوری وجود نداشته باشد."
 
 msgid "Buying Gift Card..."
-msgstr ""
+msgstr "درحال خرید کارت هدیه…"
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "خطا. کد وضعیت: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "لینک های مفید"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "تبادل بین BTC و BCH"
 
 msgid "Exchange"
-msgstr ""
+msgstr "تبادل"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "نمی‌توانید «بیت‌کوین کور» را به این آدرس بیت‌کوین‌کَش ارسال کنید. این کار منجر به از بین رفتن سرمایه می‌شود."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "تآیید حسابتان رد شد."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "برای خرید بیت‌کوین‌کَش، باید برخی از اطلاعات شخصی را ارائه دهید."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "ارائه اطلاعات من"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "می‌توانید امروز تا {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} و این ماه تا {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} خرید کنید."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "پیوندهای سریع"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "روش‌های پرداخت"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "سمت: {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "تأیید شد"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "متأسفیم، درحال‌حاضر نمی‌توانیم شما را تأیید کنیم."
 

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:29\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -2276,7 +2276,7 @@ msgstr "Pendent"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "En espera de l'autorització"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -3216,7 +3216,7 @@ msgstr "Recàrrega de {{amountStr}} a la targeta de dèbit ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "Inici SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "El procés és ràpid i rebreu l'import canviat a la vostra cartera."
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Aquest servei el presta l'empresa de tercers SideShift AI, que cobrarà una petita comissió. La comissió es mostrarà abans d'iniciar la transacció."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-de-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "L'import supera el límit"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Resposta invàlida de Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "S'ha rebut un import insuficient"
@@ -4104,10 +4104,10 @@ msgid "Your order has been completed. You can now find your BCH in your wallet."
 msgstr "La vostra sol·licitud s'ha completat. Ara ja trobareu els BCH a la cartera."
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "La vostra comanda ha fallat."
 
 msgid "Your order is waiting for authorization."
-msgstr ""
+msgstr "La vostra comanda està en espera de l'autorització."
 
 msgid "Deposited to"
 msgstr "Dipositats a"
@@ -4122,7 +4122,7 @@ msgid "Failed to get payment method info."
 msgstr "No s'ha pogut obtenir informació de la forma de pagament."
 
 msgid "Waiting for authorization"
-msgstr ""
+msgstr "La vostra comanda està en espera de l'autorització"
 
 msgid "Back"
 msgstr "Enrere"
@@ -4276,7 +4276,7 @@ msgstr "Verificació"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "Augmentar el límit de compra"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
@@ -4292,7 +4292,7 @@ msgstr "Heu de seleccionar un tipus de document."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "En aquest moment podeu adquirir fins a 150€ al mes sense confirmar la vostra identitat. Verifiqueu la vostra identitat per tal d'augmentar el límit de compra fins a 20.000€ al mes."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
@@ -4388,7 +4388,7 @@ msgstr "Fotografia el teu document"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Col·loqueu les 4 cantonades del vostre {{vm.documentName}} clarament en el marc. Intenteu evitar qualsevol reflex."
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
@@ -4404,7 +4404,7 @@ msgstr "Seleccioneu"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "Si prèviament ja heu verificat la vostra identitat amb bitcoin.com podeu <a ng-click=\"vm.onRestoreVerify()\">restaurar-la. </a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
@@ -4424,7 +4424,7 @@ msgstr "El teu compte està verificada. Felicitats!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "No trigarà gaire. Us informarem de seguida quan pugueu començar a comprar bitcoins."
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
@@ -4438,7 +4438,7 @@ msgid "Self Portrait"
 msgstr "Selfi"
 
 msgid "Shop"
-msgstr ""
+msgstr "Botiga"
 
 msgid "Shop Nearby"
 msgstr "Compra proper"
@@ -4447,52 +4447,52 @@ msgid "Find businesses in your area that accept Bitcoin Cash"
 msgstr "Troba empreses en l'àrea que accepten Bitcoin Cash"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "Aprofiteu un descompte de fins a un 30% a Amazon si pagueu amb Bitcoin Cash"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "Xecs regal electrònics de les marques més conegudes"
 
 msgid "Add a Business"
 msgstr "Afegir un negoci"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "Coneixeu o teniu algun lloc on s'accepti Bitcoin Cash? Afegiu-lo."
 
 msgid "Buy with Bitcoin Cash"
 msgstr "Comprar amb Bitcoin Cash"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "Sou el propietari d'un negoci?"
 
 msgid "More"
-msgstr ""
+msgstr "Més"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "Comenceu a acceptar pagaments amb Bitcoin Cash avui mateix. Nosaltres us hi podem ajudar."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "Toqueu el cel amb Bitcoin Cash: pagueu bitllets d'avió, hotels i lloguer de cotxes."
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "La piscina de mineria més rentable del mercat"
 
 msgid "Start mining Bitcoin"
 msgstr "Comença a minar Bitcoins"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "Si pagueu amb BCH, se us retorna el 10% al compte"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "Merchandising bitcoin"
 
 msgid "E-mail not detected"
 msgstr "E-mail no detectat"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "Per tal d'afegir un nou venedor o negoci, si us plau, escriviu-nos a addbusiness@bitcoin.com."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "Hola, equip de Bitcoin.com!<br><br>Voldria afegir al mapa de vostra app Wallet un nou negoci que accepta Bitcoin Cash com a forma de pagament:<br>- Nom de l'empresa: <br> -Direcció postal: <br>- Tipus de negoci: <br><br>Informació per ajudar a trobar el Negoci:<br>- Enllaç de Google Maps: <br>o<br>- Latitut: <br>- Longitut: <br><br>Informació adicional opcional:<br>- Pàgina web:<br>- Número de telèfon:<br>"
 
 msgid "Internal Error"
 msgstr "Error intern"
@@ -4504,56 +4504,56 @@ msgid "Take a Selfie"
 msgstr "Prendre una Selfi"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "Document + selfie"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "Feu una foto del document elevat al costat del vostre rostre."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Col·loqueu les 4 cantonades del vostre document clarament en el marc. Intenteu evitar qualsevol reflex."
 
 msgid "Buying Gift Card..."
 msgstr "Comprant targeta regal..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Error. Codi d'error: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Enllaços d'utilitat"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "Canviar ВТС a ВСН"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Canviar"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "No podeu enviar Bitcoin Core a aquesta direcció de Bitcoin Cash, perquè comportaria la pèrdua dels fons."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "No s'ha pogut verificar el compte."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "Per tal de comprar Bitcoin Cash, necessitem que ens proporcioneu certa informació personal."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Proporcionar la meva informació"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "Podeu comprar fins a {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} avui, i fins a {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} aquest mes."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Enllaços"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Formes de pagament"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Costat: {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Autoritzat"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Ens sap greu, però no podem verificar-vos en aquest moment."
 

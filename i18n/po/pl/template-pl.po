@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "Doładuj o {{amountStr}} kartę debetową ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "Start SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Proces jest szybki, a użytkownik otrzyma wymienione środki do portfela
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Ta usługa jest świadczona przez podmiot zewnętrzny SideShift AI, który naliczy za nią niewielką opłatę. Będzie ona widoczna przed rozpoczęciem transakcji."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-z-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "Kwota przekracza limit"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Nieprawidłowa odpowiedź z Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "Otrzymana ilość jest niewystarczająca"
@@ -4276,7 +4276,7 @@ msgstr "Weryfikacja"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "Zwiększ limit zakupów"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
@@ -4292,7 +4292,7 @@ msgstr "Należy wybrać typ dokumentu."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "Masz obecnie możliwość zakupu do 150 € miesięcznie bez weryfikowania swojej tożsamości. Potwierdź swoją tożsamość, aby zwiększyć swój limit zakupów do 20 000 € miesięcznie."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
@@ -4404,7 +4404,7 @@ msgstr "Wybierz"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "Jeśli Twoja tożsamość była wcześniej zweryfikowana w bitcoin.com możesz <a ng-click=\"vm.onRestoreVerify()\"> ją wznowić.</a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
@@ -4438,7 +4438,7 @@ msgid "Self Portrait"
 msgstr "Autoportret"
 
 msgid "Shop"
-msgstr ""
+msgstr "Zakupy"
 
 msgid "Shop Nearby"
 msgstr "Sklep w pobliżu"
@@ -4465,13 +4465,13 @@ msgid "Are you a business owner?"
 msgstr "Jesteś właścicielem firmy?"
 
 msgid "More"
-msgstr ""
+msgstr "Jeszcze"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Zacznij przyjmować płatności w Bitcoin Cash już dziś. Pokażemy Ci jak to robić."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "W siódmym niebie z Bitcoin Cash - zapłacić za loty, hotele i wynajem samochodów."
 
 msgid "The market's highest paying pool"
 msgstr "Najlepiej płacąca kopalnia na rynku"
@@ -4516,44 +4516,44 @@ msgid "Buying Gift Card..."
 msgstr "Zakup karty upominkowej..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Błąd. Kod błędu: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Przydatne linki"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "Wymienić ВТС na ВСН"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Wymienić"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "Nie możesz przesłać BTC na adres BCH. Spowodowałoby to utratę funduszy w BTC."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "Twoja weryfikacja konta została odrzucona."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "Aby kupić Bitcoin Cash, musisz podać dane osobowe."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Podaj informacją"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "Możesz kupić {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} dzisiaj i do {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} w tym miesiącu ."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Linki"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Metody płatności"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Strona {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Potwierdzono"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Przepraszamy, ale obecnie nie możemy Cię zweryfikować."
 

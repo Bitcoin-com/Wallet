@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4042,7 +4042,7 @@ msgid "Customer information was missing."
 msgstr "고객 정보가 누락되었습니다."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보보호정책을 확인해 주십시오."
+msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보 보호정책을 확인해 주십시오."
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4372,7 +4372,7 @@ msgstr "사진이 잘 보이시나요?"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr "문서가 문짐이나 반사 없이 뚜렷하게 보이나 확인해주세요."
+msgstr "문서가 문짐, 반사 없이 뚜렷하게 보이나 확인해주세요."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
