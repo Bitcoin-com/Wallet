@@ -12,12 +12,14 @@
       <div class="image-container">
         <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
       </div>
-      <h1 class="center" translate>Buy Bitcoin Cash</h1>
-      <p class="center">Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+      <h1 ng-if="!vm.securityCodeMode" class="center" translate>Buy Bitcoin Cash</h1>
+      <h1 ng-if="vm.securityCodeMode" class="center" translate>Verify Email</h1>
+      <p class="center" ng-if="!vm.securityCodeMode">Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+      <p class="center" ng-if="vm.securityCodeMode">Enter the security code we've just sent you to verify your email.</p>
       <small class="center">You will only receive emails related to your purchases.</small>
       <div>
         <div class="apl-divider"></div>
-        <form name="emailForm" ng-submit="vm.getStarted()" novalidate>
+        <form ng-if="!vm.securityCodeMode" name="emailForm" ng-submit="vm.preAuthenticateCustomer()" novalidate>
           <div class="row">
             <label for="email-entry" translate>Email</label>
             <input id="email-entry"
@@ -31,10 +33,24 @@
           </div>
           <div class="error" ng-show="emailForm.email.$error.email" translate>Must be a valid email address.</div>
         </form>
+        <form ng-if="vm.securityCodeMode" name="securityCodeForm" ng-submit="vm.authenticateCustomer()" novalidate>
+          <div class="row">
+            <label for="securityCode-entry" translate>Security code</label>
+            <input id="securityCode-entry"
+            name="securityCode"
+            type="text"
+            placeholder="1234"
+            ng-required="true"
+            ng-model="vm.securityCode"
+            ng-model-options="{ debounce: 1000 }"
+            required>
+          </div>
+        </form>
         <div class="apl-divider"></div>
       </div>
       <div id="bottom-button" class="apl-button-bottom-container no-shadow">
-        <a class="apl-button" ng-click="vm.getStarted()" translate>Get Started</a>
+        <a ng-if="!vm.securityCodeMode" class="apl-button" ng-click="vm.preAuthenticateCustomer()" translate>Get Started</a>
+        <a ng-if="vm.securityCodeMode" class="apl-button" ng-click="vm.authenticateCustomer()" translate>Verify Email</a>
       </div>
   </div>
   </ion-content>

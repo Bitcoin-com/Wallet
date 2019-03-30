@@ -24,7 +24,7 @@ angular
     function startFromWelcome() { 
       $state.go('tabs.home').then(function () {
         $ionicHistory.clearHistory();
-        $state.go('tabs.buy-bitcoin-welcome');
+        $state.go('tabs.buybitcoin-welcome');
       }); 
     }
 
@@ -34,7 +34,7 @@ angular
     function startFromHome() { 
       $state.go('tabs.home').then(function () {
         $ionicHistory.clearHistory();
-        $state.go('tabs.buy-bitcoin');
+        $state.go('tabs.buybitcoin');
       }); 
     }
   };

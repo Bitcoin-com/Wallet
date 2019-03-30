@@ -33,19 +33,10 @@ angular
      */
     function goNext(state) {
       console.log('kyc-flow-router - goNext', state);
-      console.log('document count: ', state.documents.length );
       var needsDocumentType = !(state.countryCode && state.documentType);
       var needsVerify = state.inPreview;
       var needsDocumentation = !(state.documentType && state.documents && state.documents.length === ((state.documentType === 'passport') ? 2 : 3));
-      var needsPersonalInfo = 
-        !( state.firstName
-        && state.lastName
-        && state.dob
-        && state.streetAddress1
-        && state.city
-        && state.postalCode
-        && state.country
-        );
+      var needsPersonalInfo = !state.kycIsSubmitted;
 
       if (state.status) {
         // KYC Status Page

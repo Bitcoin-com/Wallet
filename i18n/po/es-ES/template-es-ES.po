@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
-"PO-Revision-Date: 2019-01-24 08:36\n"
+"PO-Revision-Date: 2019-02-22 02:15\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -1065,7 +1065,7 @@ msgstr "Activar notificaciones push"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr "Habilitar sonido"
+msgstr "Habilitar sonidos"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
@@ -1668,7 +1668,7 @@ msgstr "Dirección de red incorrecta"
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr "Insuficiencia de fondos confirmado"
+msgstr "No hay suficientes fondos confirmados"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
@@ -2135,7 +2135,7 @@ msgstr "Abrir Proyecto en GitHub"
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr "Abra Explorador"
+msgstr "Abrir explorador"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
@@ -2334,7 +2334,7 @@ msgstr "Por favor, selecciona el archivo de copia de seguridad"
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr "Retención Pre-Auth"
+msgstr "Retención Pre-autorización"
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
@@ -2739,10 +2739,10 @@ msgstr "Para empezar, compra Bitcoin Cash (BCH) o Bitcoin Core (BTC), o comparte
 
 #: www/views/tab-send.html:70
 msgid "You can receive bitcoin from any wallet or service."
-msgstr "Puedes recibir bitcoin desde cualquier billetera o servicio."
+msgstr "Puedes recibir Bitcoin desde cualquier billetera o servicio."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Para empezar, necesitarás crear una billetera y obtener bitcoins."
@@ -3214,25 +3214,25 @@ msgstr "Recarda en progreso..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Recargar {{amountStr}} a la tarjeta de débito ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "Empezar ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "Iniciar SideShift AI"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Intercambia tus BTC a BCH en minutos."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "Para iniciar el cambio necesitas añadir fondos a tu billetera."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "El proceso es rápido y recibirás la cantidad intercambiada en tu cartera."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Este servicio es proporcionado por el tercero ShapeShift, quien cobrará una pequeña tarifa por el servicio. La tarifa se mostrará antes de empezar la transacción."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Este service es proporcionado por un tercero, SideShift AI, quien cobrará una pequeña comisión por el servicio. La comisión se mostrará cuando realices la transacción."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3390,7 +3390,7 @@ msgstr "Ver Términos de Uso"
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr "Ver transacción en Explorer.Bitcoin.com"
+msgstr "Ver transacción en el explorador de Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
@@ -3806,7 +3806,7 @@ msgstr "{{amountStr}} en Tarjeta de Regalo Mercado Livre Brasil"
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
-msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para la información del blockchain, acceso a redes y sincronización de la billetera. La configuración por defecto apunta a https://bws.bitcoin.com (La instancia BWS pública de Bitcoin.com)"
+msgstr "{{appName}} depende de Bitcore Wallet Service (BWS) para la información del blockchain, acceso a redes y sincronización de la billetera. La configuración por defecto apunta a https://bws.bitcoin.com (La instancia BWS pública de Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3826,9 +3826,9 @@ msgstr "{{updatingTxHistoryProgress}} transacciones descargadas"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-de-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "SideShift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3974,37 +3974,37 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Abrir en navegador web"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Dirección inválida"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "Cantidad no definida"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "Cantidad por debajo del mínimo"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "Cantidad por encima del límite"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Respuesta inválida de Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Respuesta inválida de Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "Cantidad recibida insuficiente"
 
 msgid "Return to Address"
-msgstr "Dirección de retorno"
+msgstr "Volver a la dirección"
 
 msgid "Overpaid!"
-msgstr "Pago excedido!"
+msgstr "¡Sobrepagado!"
 
 msgid "Underpaid!"
-msgstr "Pago insuficiente!"
+msgstr "¡Pago insuficiente!"
 
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
@@ -4041,8 +4041,8 @@ msgstr "Un error ha ocurrido obteniendo tu información de cliente."
 msgid "Customer information was missing."
 msgstr "Faltaba información de cliente."
 
-msgid "See our <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\">Privacy Policy"
-msgstr "Vea nuestros <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ui-sref=\"tabs.buybitcoin-terms\"> Términos de Servicio </a> y <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ui-sref=\"tabs.buybitcoin-privacypolicy\"> Política de Privacidad"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgstr "Vea nuestros <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\"> Términos de Servicio </a> y <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\"> Política de Privacidad"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4052,7 +4052,7 @@ msgid "An error occurred when getting your payment methods."
 msgstr "Un error ha ocurrido al obtener tus métodos de pago."
 
 msgid "No Payment Methods"
-msgstr "No hay métodos de pago"
+msgstr "No tienes métodos de pago"
 
 msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
 msgstr "Debes añadir una tarjeta de crédito o débito para comprar Bitcoin Cash (BCH)."
@@ -4128,7 +4128,7 @@ msgid "Back"
 msgstr "Atrás"
 
 msgid "Verify and complete your card information."
-msgstr "Verificar y completar la información de tu tarjeta."
+msgstr "Verifica y completa la información de tu tarjeta."
 
 msgid "Required"
 msgstr "Obligatorio"
@@ -4209,7 +4209,7 @@ msgid "Add Credit or Debit Card"
 msgstr "Añadir tarjeta de débito o crédito"
 
 msgid "This amount exceeds your monthly limit"
-msgstr "Esta cantidad sobrepasa tu límite mensual"
+msgstr "Esta cantidad supera tu límite mensual"
 
 msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
 msgstr "Te restan {{remaining}} de tus {{monthly}} del límite de compra mensual. Verifica tu identidad para aumentar tu límite."
@@ -4218,13 +4218,13 @@ msgid "Verify Identity"
 msgstr "Verificar identidad"
 
 msgid "Deposited to"
-msgstr "Depositado a"
+msgstr "Depositado en"
 
 msgid "See on Blockchain"
 msgstr "Ver en blockchain"
 
 msgid "Wallet address"
-msgstr "Dirección de cartera"
+msgstr "Dirección de la billetera"
 
 msgid "Pending Order"
 msgstr "Pedido pendiente"
@@ -4503,15 +4503,57 @@ msgstr "Frente"
 msgid "Take a Selfie"
 msgstr "Tómate un selfie"
 
-msgid "Position your head entirely in the frame and say cheese."
-msgstr "Posiciona tu cabeza entera en el marco."
+msgid "Document + Selfie"
+msgstr "Documento + Selfie"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Toma una foto de tu documento junto a tu cara."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Posiciona las 4 esquinas de tu documento claramente en el marco. Evita brillos."
 
-msgid "Front"
-msgstr "Frente"
-
 msgid "Buying Gift Card..."
 msgstr "Comprando tarjeta regalo..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "Error. Estado de error: {{status}}"
+
+msgid "Useful Links"
+msgstr "Enlaces útiles"
+
+msgid "Exchange between BTC and BCH"
+msgstr "Intercambiar entre BTC y BCH"
+
+msgid "Exchange"
+msgstr "Intercambiar"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "No puedes enviar Bitcoin Core a una dirección Bitcoin Cash. Esto haría que perdieras tu dinero."
+
+msgid "Your account verification was rejected."
+msgstr "La verificación de tu cuenta ha sido rechazada."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Para poder comprar Bitcoin Cash, necesitas proveer alguna información personal."
+
+msgid "Provide my information"
+msgstr "Proveer mi información"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Puedes comprar hasta {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} hoy, y hasta {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} este mes."
+
+msgid "Quick Links"
+msgstr "Enlaces rápidos"
+
+msgid "Payment Methods"
+msgstr "Métodos de pago"
+
+msgid "Side: {{file.side}}"
+msgstr "Lado: {{file.side}}"
+
+msgid "Approved"
+msgstr "Aprobado"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Lo sentimos, pero no podemos verificarte en este momento."
 

@@ -70,7 +70,7 @@
     }
 
     function getVariablesFromChannel(channelName) {
-      window.BitAnalytics.LogEventHandlers.getVariablesFromChannel(channelName);
+      return window.BitAnalytics.LogEventHandlers.getVariablesFromChannel(channelName);
     }
 
   }

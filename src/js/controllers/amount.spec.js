@@ -11,7 +11,7 @@ describe('amountController', function(){
     profileService,
     rateService,
     sendFlowService,
-    shapeshiftService,
+    sideshiftService,
     txFormatService,
     $scope,
     $state,
@@ -55,7 +55,7 @@ describe('amountController', function(){
     
     rateService = jasmine.createSpyObj(['fromFiat', 'listAlternatives', 'updateRates', 'whenAvailable']);
     sendFlowService = jasmine.createSpyObj(['getStateClone', 'pushState']);
-    shapeshiftService = jasmine.createSpyObj(['getMarketData']);
+    sideshiftService = jasmine.createSpyObj(['getMarketData']);
     txFormatService = jasmine.createSpyObj(['formatAlternativeStr', 'formatAmountStr']);
 
     txFormatService.formatAlternativeStr.and.callFake(function(coin, satoshis, cb) {
@@ -121,7 +121,7 @@ describe('amountController', function(){
       rateService: rateService,
       $scope: $scope,
       sendFlowService: sendFlowService,
-      shapeshiftService: shapeshiftService,
+      sideshiftService: sideshiftService,
       $state: {},
       $stateParams: $stateParams,
       txFormatService: txFormatService,
@@ -143,7 +143,7 @@ describe('amountController', function(){
 
   
 
-  describe('Shapeshift', function() {
+  describe('Sideshift', function() {
     var walletFrom;
     var walletTo;
 
@@ -196,7 +196,7 @@ describe('amountController', function(){
         rateService: rateService,
         $scope: $scope,
         sendFlowService: sendFlowService,
-        shapeshiftService: shapeshiftService,
+        sideshiftService: sideshiftService,
         $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
@@ -213,7 +213,7 @@ describe('amountController', function(){
         fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a', 
         sendMax: false, 
         thirdParty: {
-          id: 'shapeshift',
+          id: 'sideshift',
           data: {},
         },
         toAddress: '',
@@ -224,7 +224,7 @@ describe('amountController', function(){
 
       var reqCoinIn = '';
       var reqCoinOut = '';
-      shapeshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
+      sideshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
         reqCoinIn = coinIn;
         reqCoinOut = coinOut;
         cb({
@@ -285,7 +285,7 @@ describe('amountController', function(){
         rateService: rateService,
         $scope: $scope,
         sendFlowService: sendFlowService,
-        shapeshiftService: shapeshiftService,
+        sideshiftService: sideshiftService,
         $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
@@ -302,7 +302,7 @@ describe('amountController', function(){
         fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a', 
         sendMax: false, 
         thirdParty: {
-          id: 'shapeshift',
+          id: 'sideshift',
           data: {},
         },
         toAddress: '',
@@ -313,7 +313,7 @@ describe('amountController', function(){
 
       var reqCoinIn = '';
       var reqCoinOut = '';
-      shapeshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
+      sideshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
         reqCoinIn = coinIn;
         reqCoinOut = coinOut;
         cb({
@@ -348,7 +348,7 @@ describe('amountController', function(){
       expect(pushedState.sendMax).toEqual(true);
       expect(pushedState.toWalletId).toEqual('bf00af8f-0788-4b57-b30a-0390747407e9');
       
-      expect(pushedState.thirdParty.id).toEqual('shapeshift');
+      expect(pushedState.thirdParty.id).toEqual('sideshift');
       expect(pushedState.thirdParty.data.maxAmount).toEqual(0.6846239);
       expect(pushedState.thirdParty.data.minAmount).toEqual(0.00013692);
 
@@ -384,7 +384,7 @@ describe('amountController', function(){
         rateService: rateService,
         $scope: $scope,
         sendFlowService: sendFlowService,
-        shapeshiftService: shapeshiftService,
+        sideshiftService: sideshiftService,
         $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
@@ -401,7 +401,7 @@ describe('amountController', function(){
         fromWalletId: '4cd7673e-7320-4dfa-86e5-d4edb51d460a', 
         sendMax: false, 
         thirdParty: {
-          id: 'shapeshift',
+          id: 'sideshift',
           data: {},
         },
         toAddress: '',
@@ -412,7 +412,7 @@ describe('amountController', function(){
 
       var reqCoinIn = '';
       var reqCoinOut = '';
-      shapeshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
+      sideshiftService.getMarketData.and.callFake(function(coinIn, coinOut, cb){
         reqCoinIn = coinIn;
         reqCoinOut = coinOut;
         cb({
@@ -447,7 +447,7 @@ describe('amountController', function(){
       expect(pushedState.sendMax).toEqual(false);
       expect(pushedState.toWalletId).toEqual('bf00af8f-0788-4b57-b30a-0390747407e9');
       
-      expect(pushedState.thirdParty.id).toEqual('shapeshift');
+      expect(pushedState.thirdParty.id).toEqual('sideshift');
       expect(pushedState.thirdParty.data.maxAmount).toEqual(0.6846239);
       expect(pushedState.thirdParty.data.minAmount).toEqual(0.00013692);
 
@@ -508,7 +508,7 @@ describe('amountController', function(){
         rateService: rateService,
         $scope: $scope,
         sendFlowService: sendFlowService,
-        shapeshiftService: shapeshiftService,
+        sideshiftService: sideshiftService,
         $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
@@ -577,7 +577,7 @@ describe('amountController', function(){
         rateService: rateService,
         $scope: $scope,
         sendFlowService: sendFlowService,
-        shapeshiftService: shapeshiftService,
+        sideshiftService: sideshiftService,
         $state: $state,
         $stateParams: $stateParams,
         txFormatService: txFormatService,
