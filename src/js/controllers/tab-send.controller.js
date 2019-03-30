@@ -24,16 +24,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   , ionicToast
   , opencapService
 ) {
+  
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
   var originalList;
-  var isBuyBitcoinAllowed = false;
   $scope.displayBalanceAsFiat = true;
   $scope.walletSelectorTitleForce = true;
-
-  moonPayService.getCountryByIpAddress().then(function onGetCountryByIpAddress(user) {
-    isBuyBitcoinAllowed = user.isAllowed;
-  });
 
   $scope.addContact = function () {
     $state.go('tabs.send.addressbook');
@@ -280,12 +276,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   };
 
   $scope.buyBitcoin = function () {
-    if (isBuyBitcoinAllowed) {
-      moonPayService.start();
-    } else {
-      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
-    }
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+    externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
   };
 
   $scope.$on("$ionicView.beforeEnter", function (event, data) {
