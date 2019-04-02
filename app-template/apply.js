@@ -111,7 +111,8 @@ function copyDir(from, to) {
 
 // Push Notification
 fs.copySync(configDir + '/GoogleService-Info.plist', '../GoogleService-Info.plist');
-fs.copySync(configDir + '/google-services.json', '../google-services.json');
+fs.copySync(configDir + '/google-services-debug.json', '../google-services-debug.json');
+fs.copySync(configDir + '/google-services-release.json', '../google-services-release.json')
 
 copyDir(configDir + '/img', '../www/img/app');
 copyDir(configDir + '/sass', '../src/sass/app');

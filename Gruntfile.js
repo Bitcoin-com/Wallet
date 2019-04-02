@@ -15,10 +15,10 @@ module.exports = function(grunt) {
         command: ' open -a open -a /Applications/Android\\ Studio.app platforms/android',
       },
       build_android_debug: {
-        command: 'cordova prepare android && cordova build android --debug',
+        command: 'cp google-services-debug.json google-services.json && cordova prepare android && cordova build android --debug',
       },
       build_android_release: {
-        command: 'cordova prepare android && cordova build android --release',
+        command: 'cp google-services-release.json google-services.json && cordova prepare android && cordova build android --release',
       },
       build_ios_debug: {
         command: 'cordova prepare ios && cordova build ios --debug --buildFlag="-UseModernBuildSystem=0"',
