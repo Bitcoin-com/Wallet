@@ -73,7 +73,7 @@
     </plugin>
     <plugin name="cordova-custom-config" spec="3.0.14" />
     <plugin name="cordova-plugin-queries-schemes" spec="0.1.5" />
-    <plugin name="cordova-plugin-firebase" spec="https://github.com/arnesson/cordova-plugin-firebase.git#1.0.5" />
+    <plugin name="cordova-plugin-firebase" spec="1.0.5" />
     <plugin name="cordova-plugin-wkwebview-inputfocusfix" spec="https://github.com/onderceylan/cordova-plugin-wkwebview-inputfocusfix.git" />
     <plugin name="cordova-plugin-media-fork" spec="5.0.3">
         <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
