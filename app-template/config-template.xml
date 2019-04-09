@@ -79,7 +79,7 @@
         <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="4.0.1" />
-    <plugin name="cordova-plugin-qrreader" spec="https://github.com/Bitcoin-com/cordova-plugin-qrreader.git" commit="bdeb2f1afb28e9f5a845ea46a681b6a2b0b5691c"/>
+    <plugin name="cordova-plugin-qrreader" spec="https://github.com/Bitcoin-com/cordova-plugin-qrreader.git" commit="d27e62e136c942d1d02bec0b34ed68c1e25ac92c"/>
     <!-- Supported Platforms -->
     <engine name="ios" spec="~4.5.3" />
     <engine name="android" spec="~6.4.0" />
