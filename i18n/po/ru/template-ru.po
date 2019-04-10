@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4239,7 +4239,7 @@ msgid "Success!"
 msgstr "Операция выполнена!"
 
 msgid "Failed"
-msgstr "Неудачно"
+msgstr "Не удалось"
 
 msgid "Your purchase has been processed."
 msgstr "Ваша покупка была обработана."
@@ -4522,10 +4522,10 @@ msgid "Useful Links"
 msgstr "Полезные ссылки"
 
 msgid "Exchange between BTC and BCH"
-msgstr "Обмен между ВТС и ВСН"
+msgstr "Обменять ВТС на ВСН"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Обменять"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
 msgstr "Вы не можете послать Bitcoin Core на этот Bitcoin Cash адрес, так как это приведет к потере ваших средств."
