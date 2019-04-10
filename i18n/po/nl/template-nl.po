@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -28,7 +28,7 @@ msgstr "* Een bestedingsvoorstel kan worden verwijderd als 1) u de aanmaker bent
 
 #: www/views/tx-details.html:82
 msgid "- {{vm.btx.feeRateStr}} of the transaction"
-msgstr ""
+msgstr "— {{vm.btx.feeRateStr}} van de transactie"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -2276,7 +2276,7 @@ msgstr "In behandeling"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "In afwachting van autorisatie"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
@@ -3216,7 +3216,7 @@ msgstr "Vul debet kaart ({{cardLastNumber}}) aan met {{amountStr}}"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "SideShift AI starten"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Het proces is snel en je ontvangt het uitgewisselde bedrag direct in je 
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Deze service wordt geleverd door het externe bedrijf SideShift AI dat een kleine vergoeding daarvoor in rekening brengt. De prijs wordt getoond voordat u de transactie start."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-van-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,568 +3992,568 @@ msgstr "Bedrag is boven het limiet"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Verkeerd antwoord van SideShift"
 
 msgid "Insufficient Amount Received"
-msgstr ""
+msgstr "Onvolledige betaling ontvangen"
 
 msgid "Return to Address"
-msgstr ""
+msgstr "Terug naar het adres"
 
 msgid "Overpaid!"
-msgstr ""
+msgstr "Overbetaling!"
 
 msgid "Underpaid!"
-msgstr ""
+msgstr "Onderbetaling!"
 
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
-msgstr ""
+msgstr "Fout bij het aanmaken van de klant"
 
 msgid "Enter an email address."
-msgstr ""
+msgstr "Voer het e-mailadres in."
 
 msgid "Must be a valid email address."
-msgstr ""
+msgstr "Het e-mailadres moet geldig zijn."
 
 msgid "Unable to Create Customer"
-msgstr ""
+msgstr "Het aanmaken van de klant is mislukt"
 
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
-msgstr ""
+msgstr "Bitcoin Cash (BCH) kopen"
 
 msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
-msgstr ""
+msgstr "U kunt nog maximaal {{vm.dailyRemaining}} vandaag en {{vm.monthlyRemaining}} deze maand kopen."
 
 msgid "Buy Bitcoin Cash"
-msgstr ""
+msgstr "Bitcoin Cash kopen"
 
 msgid "Error Getting Customer ID"
-msgstr ""
+msgstr "Fout bij het ophalen van de klant-ID"
 
 msgid "Error Getting Customer Information"
-msgstr ""
+msgstr "Fout bij het ophalen van de klantinformatie"
 
 msgid "An error occurred when getting your customer information."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het ophalen van de klantinformatie."
 
 msgid "Customer information was missing."
-msgstr ""
+msgstr "Geen klantinformatie beschikbaar."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr ""
+msgstr "Zie <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Servicevoorwaarden </a> en <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacybeleid"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
-msgstr ""
+msgstr "Fout bij het ophalen van betaalmethoden"
 
 msgid "An error occurred when getting your payment methods."
-msgstr ""
+msgstr "Er is een fout opgetreden bij het ophalen van betaalmethoden."
 
 msgid "No Payment Methods"
-msgstr ""
+msgstr "Geen betaalmethoden"
 
 msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
-msgstr ""
+msgstr "U moet een kredietkaart of debetkaart toevoegen om Bitcoin Cash (BCH) te kopen."
 
 msgid "Add Card"
-msgstr ""
+msgstr "Kaart toevoegen"
 
 msgid "Getting exchange rate..."
-msgstr ""
+msgstr "Wisselkoers wordt opgehaald..."
 
 msgid "Waiting for exchange rate."
-msgstr ""
+msgstr "In afwachting van de wisselkoers."
 
 msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
-msgstr ""
+msgstr "U moet een Bitcoin Cash (BCH)-portemonnee hebben om geld te storten."
 
 msgid "Select a BCH Wallet"
-msgstr ""
+msgstr "Kies een BCH-portemonnee"
 
 msgid "Buying Bitcoin Cash..."
-msgstr ""
+msgstr "Bitcoin Cash wordt gekocht..."
 
 msgid "Purchase Failed"
-msgstr ""
+msgstr "Aankoop mislukt"
 
 msgid "Failed to create transaction."
-msgstr ""
+msgstr "Aanmaken van de transactie is mislukt."
 
 msgid "Buy Now"
-msgstr ""
+msgstr "Kopen"
 
 msgid "Enter Security Code"
-msgstr ""
+msgstr "Voer de beveiligingscode in"
 
 msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
 msgid "Go to Wallet"
-msgstr ""
+msgstr "Naar Portemonnee gaan"
 
 msgid "Go to {{vm.walletName}}"
-msgstr ""
+msgstr "Naar {{vm.walletName}} gaan"
 
 msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr ""
+msgstr "De bestelling is bevestigd en wacht op de uitvoering. BCH is binnenkort in uw portemonnee beschikbaar."
 
 msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr ""
+msgstr "Uw bestelling is uitgevoerd. BCH is al in uw portemonnee."
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "Uw bestelling is mislukt."
 
 msgid "Your order is waiting for authorization."
-msgstr ""
+msgstr "Uw bestelling wacht op de autorisatie."
 
 msgid "Deposited to"
-msgstr ""
+msgstr "Gestort naar de portemonnee:"
 
 msgid "Failed to get transaction data."
-msgstr ""
+msgstr "Ophalen van de transactiegegevens is mislukt."
 
 msgid "Not found."
-msgstr ""
+msgstr "Niet gevonden."
 
 msgid "Failed to get payment method info."
-msgstr ""
+msgstr "Ontvangen van de informatie over de betaalmethode is mislukt."
 
 msgid "Waiting for authorization"
-msgstr ""
+msgstr "Uw bestelling wacht op de autorisatie"
 
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 msgid "Verify and complete your card information."
-msgstr ""
+msgstr "Controleer en vul uw kaartgegevens in."
 
 msgid "Required"
-msgstr ""
+msgstr "Verplicht"
 
 msgid "Visa, MC, or AMEX"
-msgstr ""
+msgstr "Visa, MasterCard of American Express"
 
 msgid "MM/YYYY"
-msgstr ""
+msgstr "MM/JJJJ"
 
 msgid "Card Number"
-msgstr ""
+msgstr "Kaartnummer"
 
 msgid "CVC"
-msgstr ""
+msgstr "CVC"
 
 msgid "Unable to Add Card"
-msgstr ""
+msgstr "Toevoegen van de kaart is mislukt"
 
 msgid "Card number is invalid. Check your card and try again."
-msgstr ""
+msgstr "Kaartnummer is ongeldig. Controleer uw kaart en probeer het opnieuw."
 
 msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
-msgstr ""
+msgstr "CVC-nummer is ongeldig. (Dit zijn 3 cijfers achterop uw kaart of 4 cijfers als u een American Express heeft)."
 
 msgid "Expiration date is invalid. Check your card and try again."
-msgstr ""
+msgstr "Vervaldatum is ongeldig. Controleer uw kaart en probeer het opnieuw."
 
 msgid "Invalid card number"
-msgstr ""
+msgstr "Ongeldig kaartnummer"
 
 msgid "Invalid expiration date"
-msgstr ""
+msgstr "Ongeldige vervaldatum"
 
 msgid "Follow expected date format MM/YYYY"
-msgstr ""
+msgstr "Gebruik voor de datum de notatie MM-JJJJ"
 
 msgid "Invalid CVC number"
-msgstr ""
+msgstr "Ongeldig CVC-nummer"
 
 msgid "Purchasing"
-msgstr ""
+msgstr "Aankoop"
 
 msgid "Processing Fee"
-msgstr ""
+msgstr "Verwerkingskosten"
 
 msgid "Deposit to"
-msgstr ""
+msgstr "Gestort naar de portemonnee:"
 
 msgid "Add a payment method"
-msgstr ""
+msgstr "Betaalmethoden toevoegen"
 
 msgid "Price Per BCH"
-msgstr ""
+msgstr "Prijs per BCH"
 
 msgid "Done"
-msgstr ""
+msgstr "Gedaan"
 
 msgid "Amount must be a positive number."
-msgstr ""
+msgstr "Bedrag moet een positief getal zijn."
 
 msgid "Unable to Purchase"
-msgstr ""
+msgstr "Aankoopfout"
 
 msgid "Purchase History"
-msgstr ""
+msgstr "Aankoopgeschiedenis"
 
 msgid "Pending Orders"
-msgstr ""
+msgstr "Bestellingen in uitvoering"
 
 msgid "Pay"
-msgstr ""
+msgstr "Betalen"
 
 msgid "Payment Method"
-msgstr ""
+msgstr "Betaalmethode"
 
 msgid "Add Credit or Debit Card"
-msgstr ""
+msgstr "Kredietkaart of debetkaart toevoegen"
 
 msgid "This amount exceeds your monthly limit"
-msgstr ""
+msgstr "Dit bedrag overschrijdt uw maandelijkse limiet"
 
 msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
-msgstr ""
+msgstr "Van de maandelijkse aankooplimiet {{monthly}} heeft u {{remaining}} over. Verifieer uw identiteit om meer te kopen."
 
 msgid "Verify Identity"
-msgstr ""
+msgstr "Identiteit verifiëren"
 
 msgid "Deposited to"
-msgstr ""
+msgstr "Gestort naar de portemonnee:"
 
 msgid "See on Blockchain"
-msgstr ""
+msgstr "Zie in blockchain"
 
 msgid "Wallet address"
-msgstr ""
+msgstr "Portemonnee-adres"
 
 msgid "Pending Order"
-msgstr ""
+msgstr "Bestelling in uitvoering"
 
 msgid "Edit Order"
-msgstr ""
+msgstr "Bestelling wijzigen"
 
 msgid "Cancel Order"
-msgstr ""
+msgstr "Bestelling annuleren"
 
 msgid "Success!"
-msgstr ""
+msgstr "Transactie is uitgevoerd!"
 
 msgid "Failed"
-msgstr ""
+msgstr "Mislukt"
 
 msgid "Your purchase has been processed."
-msgstr ""
+msgstr "Uw aankoop is verwerkt."
 
 msgid "See Receipt"
-msgstr ""
+msgstr "Ontvangstbewijs bekijken"
 
 msgid "Make Another Purchase"
-msgstr ""
+msgstr "Nog een aankoop doen"
 
 #: www/views/kyc-document-info.html:53
 msgid "Photograph document"
-msgstr ""
+msgstr "Maak een foto van uw document"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
-msgstr ""
+msgstr "Doorgaan zonder identiteitsverificatie"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Passport"
-msgstr ""
+msgstr "Paspoort"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "National ID"
-msgstr ""
+msgstr "Nationaal identiteitsbewijs"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Driving License"
-msgstr ""
+msgstr "Rijbewijs"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Verification"
-msgstr ""
+msgstr "Verificatie"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "Aankooplimiet verhogen"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
-msgstr ""
+msgstr "Verificatiestatus wordt gekregen..."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a country."
-msgstr ""
+msgstr "U moet een land kiezen."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a document type."
-msgstr ""
+msgstr "U moet een documenttype kiezen."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "Op dit moment kunt u tot € 150 per maand aankopen zonder uw identiteit te verifiëren. Verifieer uw identiteit om de aankooplimiet tot € 20.000 per maand te verhogen."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
-msgstr ""
+msgstr "Persoonlijke informatie"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
-msgstr ""
+msgstr "Voornaam"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Last Name"
-msgstr ""
+msgstr "Achternaam"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Date of Birth"
-msgstr ""
+msgstr "Geboortedatum"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Street Address"
-msgstr ""
+msgstr "Straatnaam"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr ""
+msgstr "Huisnummer, blok, appartement (optioneel)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
-msgstr ""
+msgstr "Plaats"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
-msgstr ""
+msgstr "Postcode"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
-msgstr ""
+msgstr "Veld is verplicht."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
-msgstr ""
+msgstr "Minimumleeftijd is 18 jaar."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "Kalverstraat, 123"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
-msgstr ""
+msgstr "Amsterdam"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
-msgstr ""
+msgstr "Land"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
-msgstr ""
+msgstr "Appartement 1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "Opslaan van informatie is mislukt. Probeer het a.u.b. opnieuw."
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
-msgstr ""
+msgstr "Informatie wordt verwerkt..."
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "Uploaden van afbeelding is mislukt. Probeer het a.u.b. opnieuw."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "Hoe is het gedaan?"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "Controleer a.u.b. dat alle gegevens in uw document duidelijk zichtbaar en leesbaar zijn (zonder verblinding en onscherpe tekst)."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "Ja, alles is duidelijk zichtbaar"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "Opnieuw proberen"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "Maak een foto van uw document"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Plaats uw document {{vm.documentName}} volledig in het frame. Voorkom verblinding."
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "Verificatieprocedure ondergaan"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
-msgstr ""
+msgstr "Documenttype"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Select"
-msgstr ""
+msgstr "Kiezen"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "Als u uw identiteit eerder bij bitcoin.com heeft geverifieerd, kunt u <a ng-click=\"vm.onRestoreVerify()\"> uw verificatie herstellen. </a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
-msgstr ""
+msgstr "Verificatiestatus"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "Verificatie wordt uitgevoerd"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "Verificatie is geslaagd!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "Uw account is nu geverifieerd. Gefeliciteerd!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "Het kost niet veel tijd. We laten het u snel weten wanneer u Bitcoins kunt gaan kopen."
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "Verificatie is mislukt"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "Helaas is het ons niet gelukt om u te verifiëren. Neem a.u.b. contact op met het ondersteuningsteam."
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "Zelfportret"
 
 msgid "Shop"
-msgstr ""
+msgstr "Aankopen"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "Bij u in de buurt kopen"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "Dichtstbijzijnde winkels vinden die Bitcoin Cash accepteren"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "Krijg tot 30% korting op Amazon bij de betaling met Bitcoin Cash"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "Elektronische cadeaubonnen van de meest bekende merken"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "Plaats toevoegen"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "Weet u een plaats waar Bitcoin Cash wordt geaccepteerd? Voeg het toe."
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "Met Bitcoin Cash kopen"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "Bent u bedrijfseigenaar?"
 
 msgid "More"
-msgstr ""
+msgstr "Meer"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "Begin vandaag de betalingen met Bitcoin Cash te accepteren. Wij kunnen u hierbij helpen."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "Ga de lucht in met Bitcoin Cash – betaal vliegtickets, hotels en autoverhuur mee."
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "De meest winstgevende mining pool op de markt"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "Bitcoin mining starten"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "Bij de betaling met BCH krijgt u 10% terug op uw account"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "Bitcoin-producten"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "E-mailadres is niet gevonden"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "Als u een nieuwe verkoper of een nieuw bedrijf wilt toevoegen, stuur een e-mail met alle informatie naar addbusiness@bitcoin.com."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "Hallo Bitcoin.com-team,<br><br> Ik wil graag een nieuw bedrijf aan de map toevoegen dat de betaling met Bitcoin Cash accepteert:<br>- Bedrijfsnaam: <br>-Bezoekadres: <br>- Type bedrijf: <br><br>Informatie om het bedrijf te vinden:<br>- Google-map link: <br>of<br>- Breedtegraad: <br>- Lengtegraad: <br><br>aanvullende informatie :<br>- Website:<br>- Telefoonnummer:<br>"
 
 msgid "Internal Error"
-msgstr ""
+msgstr "Applicatiefout"
 
 msgid "Front"
-msgstr ""
+msgstr "Voorkant"
 
 msgid "Take a Selfie"
-msgstr ""
+msgstr "Foto van uzelf maken"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "Document + foto"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "Maak een foto van het document naast uw gezicht, zodat ze in één frame passen."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Plaats het hele document in een frame. Probeer verblinding te voorkomen."
 
 msgid "Buying Gift Card..."
-msgstr ""
+msgstr "Cadeaubon wordt gekocht..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Fout. Foutcode: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Handige links"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "BTC naar BCH wisselen"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Wisselen"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "U kunt geen Bitcoin Core naar dit Bitcoin Cash-adres sturen, omdat het tot verlies van uw geld leidt."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "Het is niet gelukt om de accountverificatie uit te voeren."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "Om Bitcoin Cash te kopen dient u uw persoonlijke informatie te verstrekken."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Informatie verstrekken"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "U kunt tot {vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} vandaag kopen en tot {vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} deze maand."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Links"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Betaalmethoden"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Partij {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Bevestigd"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Het spijt ons, maar we konden u nu niet verifiëren."
 

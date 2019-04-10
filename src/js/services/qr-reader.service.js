@@ -56,12 +56,13 @@
 
       qrReader.openSettings(
         function onSuccess(result) {
-          console.log('qrreader openSettings() result:', result);
+          // Concatenate with + so that it shows up well in Android Logcat
+          console.log('qrreader openSettings() result: ' + result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          console.error('qrreader openSettings() error:', error);
+          console.error('qrreader openSettings() error: ' + error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
@@ -76,12 +77,12 @@
 
       qrReader.startReading(
         function onSuccess(result) {
-          console.log('qrreader startReading() result:', result);
+          console.log('qrreader startReading() result: ' + result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          console.error('qrreader startReading() error:', error);
+          console.error('qrreader startReading() error: ' + error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
@@ -98,12 +99,12 @@
 
       qrReader.stopReading(
         function onSuccess(result) {
-          console.log('qrReader stopReading() result:', result);
+          console.log('qrReader stopReading() result: ' + result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          $log.error('qrReader stopReading() error:', error);
+          $log.error('qrReader stopReading() error: ' + error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
@@ -118,12 +119,12 @@
 
       qrReader.checkPermission(
         function onSuccess(result) {
-          console.log('qrReader checkPermission() result:', result);
+          console.log('qrReader checkPermission() result: ' + result);
 
           deferred.resolve(result);
         },
         function onError(error) {
-          $log.error('qrReader checkPermission() error:', error);
+          $log.error('qrReader checkPermission() error: ' + error);
 
           var errorMessage = errors[error] || error;
           var translatedErrorMessage = gettextCatalog.getString(errorMessage);
