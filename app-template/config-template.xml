@@ -68,7 +68,7 @@
     <plugin name="cordova-plugin-camera-preview" spec="0.10.0" />
     <plugin name="cordova-plugin-customurlscheme" spec="https://github.com/cmgustavo/Custom-URL-scheme.git#4.1.5">
       <variable name="URL_SCHEME" value="bitcoin" />
-      <variable name="SECOND_URL_SCHEME" value="bitcoincom" />
+      <variable name="SECOND_URL_SCHEME" value="*APPURI*" />
       <variable name="THIRD_URL_SCHEME" value="bitcoincash" />
     </plugin>
     <plugin name="cordova-custom-config" spec="3.0.14" />
