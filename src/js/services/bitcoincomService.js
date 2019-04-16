@@ -21,7 +21,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     name: 'games',
     title: gettextCatalog.getString('Bitcoin Cash Games'),
     icon: 'icon-games',
-    href: 'https://cashgames.bitcoin.com'
+    href: 'https://games.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os
   };
 
   var newsItem = {
