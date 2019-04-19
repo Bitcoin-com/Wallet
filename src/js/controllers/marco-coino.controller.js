@@ -9,6 +9,7 @@
   function marcoCoinoController(
     gettextCatalog
     , $log
+    , externalLinkService
     , popupService
     , $sce
     , $scope
@@ -16,6 +17,7 @@
     ) {
     
     var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
+    var ADD_MERCHANT_URL = 'https://shop.bitcoin.com/submit-listing/';
     var vm = this;
 
     // Functions
@@ -44,49 +46,7 @@
     }
 
     function addMerchant() {
-      var socialsharing = window.plugins && window.plugins.socialsharing;
-      var emailAddress = gettextCatalog.getString('addbusiness@bitcoin.com');
-      var emailBody = gettextCatalog.getString(
-        'Hello Bitcoin.com team,<br>' +
-        '<br>' +
-        'I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>' +
-        '- Name of the business:<br>' +
-        '- Physical address: <br>' +
-        '- Type of business: <br>' +
-        '<br>' +
-        'Information to help locate the business:<br>' +
-        '- Google Maps Link: <br>' +
-        'or<br>' +
-        '- Latitude: <br>' + 
-        '- Longitude: <br>' +
-        '<br>' +
-        'Optional extra Information:<br>' +
-        '- Website:<br>' +
-        '- Phone number:<br>'
-      );
-      var emailBodyWithNewlines = emailBody.replace(/<br>/g, '%0D%0A');
-      var emailSubject = gettextCatalog.getString('Add a Business');
-
-      if (socialsharing) {
-        socialsharing.canShareViaEmail(
-          function onCanShareViaEmailSuccess() {
-            socialsharing.shareViaEmail(
-              emailBody,
-              emailSubject,
-              [emailAddress], // TO: must be null or an array
-              null, // CC: must be null or an array
-              null, // BCC: must be null or an array
-              null, // FILES: can be null, a string, or an array
-              function() {},
-              function() {}
-            );
-          }, function onCanShareViaEmailError() {
-            popupService.showAlert(gettextCatalog.getString('E-mail not detected'), gettextCatalog.getString('In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com.'));
-          }
-        );
-      } else {
-        window.location.href = 'mailto:' + emailAddress + '?subject=' + emailSubject + '&body=' + emailBodyWithNewlines;
-      }
+      externalLinkService.open(ADD_MERCHANT_URL, true);
     }
   }
   
