@@ -45,7 +45,7 @@
           <span ng-if="vm.addressDisplayType === 'cashAddr'" class="payment-proposal-to">
             <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
-            <div copy-to-clipboard="btx.cashCopyAddr" class="ellipsis">
+            <div copy-to-clipboard="vm.btx.cashCopyAddr" class="ellipsis">
               <contact ng-if="!vm.toName" address="{{vm.btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
               <span class="m15l size-14" ng-if="vm.toName">{{vm.toName}}</span>
             </div>
