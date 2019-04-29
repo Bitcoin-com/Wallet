@@ -17,7 +17,7 @@
     ) {
     
     var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
-    var ADD_MERCHANT_URL = 'https://shop.bitcoin.com/submit-listing/';
+    var ADD_MERCHANT_URL = 'https://marcocoino.bitcoin.com/submit-listing/';
     var vm = this;
 
     // Functions
