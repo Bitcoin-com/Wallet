@@ -46,7 +46,7 @@
     }
 
     function addMerchant() {
-      externalLinkService.open(ADD_MERCHANT_URL, true);
+      externalLinkService.open(ADD_MERCHANT_URL);
     }
   }
   
