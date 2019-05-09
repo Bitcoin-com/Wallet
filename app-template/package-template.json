@@ -59,7 +59,7 @@
     "bezier-easing": "^2.0.3",
     "bhttp": "1.2.1",
     "bitauth": "^0.2.1",
-    "bitcore-wallet-client": "https://github.com/vinarmani/bitcore-wallet-client.git",
+    "bitcore-wallet-client": "https://github.com/Bitcoin-com/bitcore-wallet-client.git",
     "bower": "^1.7.9",
     "cordova-custom-config": "^3.0.5",
     "cordova-plugin-qrscanner": "^2.5.0",
