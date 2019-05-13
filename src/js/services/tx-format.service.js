@@ -137,11 +137,14 @@
         if (tx.action != 'received') {
           if (outputsNr > 1) {
             tx.recipientCount = outputsNr;
-            tx.hasMultiplesOutputs = true;
           }
           tx.outputs = tx.outputs.filter(function filterOutput(output){ return !output.isMine; });
         } else {
           tx.outputs = tx.outputs.filter(function filterOutput(output){ return output.isMine; });
+        }
+
+        if(tx.outputs.length > 1){
+          tx.hasMultiplesOutputs = true;
         }
 
         lodash.forEach(tx.outputs, function forEachOutput(output) {
