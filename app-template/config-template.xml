@@ -66,7 +66,7 @@
     <plugin name="cordova-plugin-ionic-webview" spec="2.2.3" />
     <plugin name="cordova-plugin-qrscanner-no-android" spec="https://github.com/Bitcoin-com/cordova-plugin-qrscanner-no-android.git" commit="cbb6910d245a60899d33d933c9fa369c960e90f7" />
     <plugin name="cordova-plugin-camera-preview" spec="0.10.0" />
-    <plugin name="cordova-plugin-customurlscheme" spec="https://github.com/cmgustavo/Custom-URL-scheme.git#4.1.5">
+    <plugin name="cordova-plugin-customurlscheme" spec="https://github.com/Bitcoin-com/Custom-URL-scheme#4.1.6">
       <variable name="URL_SCHEME" value="bitcoin" />
       <variable name="SECOND_URL_SCHEME" value="*APPURI*" />
       <variable name="THIRD_URL_SCHEME" value="bitcoincash" />
