@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:29\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "Navýšit debetní kartu ({{cardLastNumber}}) o {{amountStr}}"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "Start SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Tento proces je rychlý a vyměněnou částku dostanete do peněženky.
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Tuto službu poskytuje nezávislý poskytovatel SideShift AI, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-z-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "Nadlimitní částka"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Neplatná odpověď z Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "Přijata nedostatečná částka"
@@ -4504,10 +4504,10 @@ msgid "Take a Selfie"
 msgstr "Vyfotit selfie"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "Doklad + foto"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "Držte dokument blízko tváře a pořiďte foto tak, aby se vešlo do jednoho snímku."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Nastavte svůj dokument do rámečku a vyhněte se odleskům."
@@ -4516,44 +4516,44 @@ msgid "Buying Gift Card..."
 msgstr "Nákup dárkového kupónu..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Chyba. Kód chyby: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Užitečné odkazy"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "Vyměnit BTC na BCH"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Vyměnit"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "Nemůžete odeslat Bitcoin Core na tuto Bitcoin Cash adresu. Následkem toho utrpíte ztrátu vašich prostředků."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "Ověření vašeho účtu bylo zamítnuto."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "Chcete-li zakoupit službu Bitcoin Cash, musíte poskytnout některé osobní údaje."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Poskytnout mé údaje"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "Můžete si zakoupit {{vm.customer.dailyLimitRemaining | currency: '€': 2}} dnes, až do {{vm.customer.monthlyLimitRemaining |currency: '€': 2}} tento měsíc."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Rychlé odkazy"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Způsoby platby"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Strana: {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Schváleno"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Je nám líto, ale momentálně vás nemůžeme ověřit."
 

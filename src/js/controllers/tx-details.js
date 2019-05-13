@@ -268,7 +268,7 @@
 
     function viewOnBlockchain() {
       var btx = vm.btx;
-      var url = 'https://' + (vm.getShortNetworkName() == 'test' ? 'test-' : '') + blockexplorerUrl + '/tx/' + btx.txid;
+      var url = 'https://' + (vm.getShortNetworkName() == 'test' ? 'test-' : '') + blockexplorerUrl + '/tx/' + btx.txid + '?utm_source=bitcoincomwallet';
       externalLinkService.open(url, false);
     };
 

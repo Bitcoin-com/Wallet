@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Thai\n"
 "Language: th\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4532,7 +4532,7 @@ msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would res
 msgstr "นี่อาจจะยอดเงินที่หายไป คุณไม่สามารถส่ง Bitcoin Core ไปยังที่อยู่ Bitcoin Cash นี้ "
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "계정 인증을 실패했습니다."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
 msgstr ""

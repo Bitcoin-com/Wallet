@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -79,27 +79,27 @@ msgstr "Kontonummer"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr ""
+msgstr "Snabba transaktioner med låg avgift"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
-msgstr ""
+msgstr "Otillräckliga medel"
 
 #: www/views/amount.html:42
 msgid "Change Currency"
-msgstr ""
+msgstr "Ändra valuta"
 
 #: www/views/amount.html:49
 msgid "Available Funds"
-msgstr ""
+msgstr "Tillgängliga medel"
 
 #: www/views/amount.html:59
 msgid "Use All Available Funds"
-msgstr ""
+msgstr "Använda alla tillgängliga medel"
 
 #: www/views/amount.html:99
 msgid "Next"
-msgstr ""
+msgstr "Vidare"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
@@ -222,7 +222,7 @@ msgstr "Alla enheter som ska signera denna delade plånbok måste läggas till, 
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
-msgstr ""
+msgstr "Tillåt åtkomst till kameran"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
@@ -230,12 +230,12 @@ msgstr "Tillåt notifieringar"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
-msgstr ""
+msgstr "Nästan klart! Låt oss kolla."
 
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
-msgstr ""
+msgstr "Alternativ valuta"
 
 #: www/views/tab-settings.html:75
 msgid "Price Display"
@@ -244,38 +244,38 @@ msgstr "Visa pris"
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:12
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat valuta"
 
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
 msgid "Cryptocurrency"
-msgstr ""
+msgstr "Kryptovaluta"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr ""
+msgstr "Amazon.com är för närvarande inte tillgänglig. Försök igen senare."
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
 #: www/views/includes/output.html:7
 msgid "Amount"
-msgstr ""
+msgstr "Belopp"
 
 #: src/js/services/bwcError.js:110
 msgid "Amount below minimum allowed"
-msgstr ""
+msgstr "Beloppet är under tillåtligt minimum"
 
 #: src/js/controllers/confirm.js:216
 msgid "Amount too big"
-msgstr ""
+msgstr "Beloppet är för stort"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr ""
+msgstr "Beloppet är för litet att spendera"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
-msgstr ""
+msgstr "Uppdateringen är tillgänglig. För din egen säkerhet, var god uppgradera till den senaste versionen."
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
@@ -287,7 +287,7 @@ msgstr "Ungefärlig Bitcoin nätverksavgift för att överföra plånbokens sald
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
-msgstr ""
+msgstr "Ser någon på dig nu?"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
@@ -295,103 +295,103 @@ msgstr "Håller någon ögonen på dig? Vem som helst med din återhämtningsfra
 
 #: src/js/controllers/copayers.js:56
 msgid "Are you sure you want to cancel and delete this wallet?"
-msgstr ""
+msgstr "Vill du verkligen avbryta och ta bort denna plånbok?"
 
 #: src/js/controllers/addressbookView.js:37
 msgid "Are you sure you want to delete this contact?"
-msgstr ""
+msgstr "Vill du verkligen ta bort den här kontakten?"
 
 #: src/js/controllers/preferencesDelete.js:25
 msgid "Are you sure you want to delete this wallet?"
-msgstr ""
+msgstr "Vill du verkligen ta bort denna plånbok?"
 
 #: src/js/controllers/modals/txpDetails.js:154
 msgid "Are you sure you want to reject this transaction?"
-msgstr ""
+msgstr "Vill du verkligen avböja denna betalning?"
 
 #: src/js/controllers/modals/txpDetails.js:171
 msgid "Are you sure you want to remove this transaction?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort denna transaktion?"
 
 #: src/js/controllers/onboarding/backupRequest.js:23
 msgid "Are you sure you want to skip it?"
-msgstr ""
+msgstr "Vill du verkligen skippa säkerhetskopia?"
 
 #: www/views/modals/bitpay-card-confirmation.html:4
 msgid "Are you sure you would like to log out of your BitPay Card account?"
-msgstr ""
+msgstr "Logga ut från ditt BitPay Card-konto?"
 
 #: src/js/controllers/preferencesBitpayCard.js:7
 #: src/js/controllers/preferencesBitpayServices.js:20
 msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
-msgstr ""
+msgstr "Är du säker på att du vill ta bort BitPay-kortet ({{lastFourDigits}}) från den här enheten?"
 
 #: www/views/includes/walletInfo.html:10
 msgid "Auditable"
-msgstr ""
+msgstr "Kollade"
 
 #: www/views/modals/wallet-balance.html:42
 msgid "Available"
-msgstr ""
+msgstr "Tillgänglig"
 
 #: www/views/includes/available-balance.html:3
 msgid "Available Balance"
-msgstr ""
+msgstr "Tillgänglig balansen"
 
 #: www/views/modals/chooseFeeLevel.html:24
 #: www/views/preferencesFee.html:15
 msgid "Average confirmation time"
-msgstr ""
+msgstr "Genomsnittlig bekräftelsestid"
 
 #: www/views/join.html:143
 #: www/views/tab-create-personal.html:113
 #: www/views/tab-create-shared.html:142
 #: www/views/tab-import-phrase.html:51
 msgid "BIP32 path for address derivation"
-msgstr ""
+msgstr "Ange BIP32 för att generera adresser"
 
 #: www/views/cashScan.html:25
 msgid "BTC wallets"
-msgstr ""
+msgstr "BTC plånböcker"
 
 #: www/views/preferences.html:34
 msgid "Backup"
-msgstr ""
+msgstr "Säkerhetskopiering"
 
 #: www/views/includes/backupNeededPopup.html:7
 msgid "Backup Needed"
-msgstr ""
+msgstr "Säkerhetskopiering krävs"
 
 #: src/js/controllers/lockSetup.js:87
 msgid "Backup all livenet wallets before using this function"
-msgstr ""
+msgstr "Säkerhetskopiera din plånbok innan du använder denna funktion"
 
 #: src/js/controllers/cashScan.js:64
 #: www/views/includes/walletListSettings.html:12
 #: www/views/preferences.html:36
 msgid "Backup needed"
-msgstr ""
+msgstr "Säkerhetskopiering krävs"
 
 #: www/views/includes/backupNeededPopup.html:9
 msgid "Backup now"
-msgstr ""
+msgstr "Gör en säkerhetskopia"
 
 #: www/views/onboarding/backupRequest.html:11
 #: www/views/tab-export-file.html:89
 msgid "Backup wallet"
-msgstr ""
+msgstr "Säkerhetskopiering"
 
 #: src/js/controllers/lockSetup.js:84
 msgid "Backup your wallet before using this function"
-msgstr ""
+msgstr "Gör en säkerhetskopia av din plånbok innan du använder den här funktionen"
 
 #: src/js/services/profileService.js:446
 msgid "Bad wallet invitation"
-msgstr ""
+msgstr "Ogiltig inbjudan"
 
 #: www/views/preferencesInformation.html:102
 msgid "Balance By Address"
-msgstr ""
+msgstr "Balans på adresserna"
 
 #: www/views/includes/confirmBackupPopup.html:7
 msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
@@ -404,7 +404,7 @@ msgstr "BitPay Visa&reg; Kort"
 #: www/views/addressbook.add.html:38
 #: www/views/includes/incomingDataMenu.html:29
 msgid "Bitcoin Address"
-msgstr ""
+msgstr "Bitcoin adress"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
@@ -437,7 +437,7 @@ msgstr "Bitcoin cash Betalning"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
-msgstr ""
+msgstr "Bitcoin är en valuta."
 
 #: www/views/onboarding/disclaimer.html:15
 msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
@@ -457,7 +457,7 @@ msgstr "Köpt {{amountUnitStr}}"
 
 #: www/views/modals/txp-details.html:36
 msgid "Broadcast Payment"
-msgstr ""
+msgstr "Skicka betalning"
 
 #: src/js/controllers/modals/txpDetails.js:64
 #: src/js/controllers/tx-details.js:81
@@ -466,16 +466,16 @@ msgstr "Sänds"
 
 #: src/js/services/onGoingProcess.js:11
 msgid "Broadcasting transaction"
-msgstr ""
+msgstr "Skicka transaktionen"
 
 #: www/views/unsupported.html:6
 msgid "Browser unsupported"
-msgstr ""
+msgstr "Webbläsare stöds inte"
 
 #: www/views/buyAmazon.html:5
 #: www/views/buyMercadoLibre.html:6
 msgid "Buy"
-msgstr ""
+msgstr "Köp"
 
 #: www/views/includes/buyAndSellCard.html:3
 msgid "Buy &amp; Sell Bitcoin"
@@ -484,7 +484,7 @@ msgstr "Köp &amp; Sälj Bitcoin"
 #: www/views/tab-send.html:35
 #: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
-msgstr ""
+msgstr "Köp bitcoin"
 
 #: www/views/buyandsell.html:5
 msgid "Buy or Sell Bitcoin"
@@ -505,11 +505,11 @@ msgstr "Köp Bitcoin med ett Kreditkort"
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
-msgstr ""
+msgstr "Köp ett presentkort"
 
 #: src/js/controllers/buyAmazon.js:334
 msgid "Buy from"
-msgstr ""
+msgstr "Köp"
 
 #: src/js/services/onGoingProcess.js:40
 msgid "Buying Bitcoin..."
@@ -517,7 +517,7 @@ msgstr "Köper Bitcoin..."
 
 #: src/js/services/onGoingProcess.js:12
 msgid "Calculating fee"
-msgstr ""
+msgstr "Kommissionens beräkning"
 
 #: src/js/controllers/buyAmazon.js:313
 #: src/js/controllers/buyMercadoLibre.js:307
@@ -536,15 +536,15 @@ msgstr ""
 #: www/views/modals/bitpay-card-confirmation.html:8
 #: www/views/modals/confirmation.html:13
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: www/views/copayers.html:36
 msgid "Cancel invitation"
-msgstr ""
+msgstr "Avbryt inbjudan"
 
 #: src/js/controllers/onboarding/tour.js:52
 msgid "Cannot Create Wallet"
-msgstr ""
+msgstr "Kan inte att skapa plånbok"
 
 #: src/js/services/profileService.js:442
 msgid "Cannot join the same wallet more than once"
@@ -552,19 +552,19 @@ msgstr "Kan inte gå med i samma plånbok fler än en gång"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
-msgstr ""
+msgstr "Kort"
 
 #: www/views/modals/paypro.html:30
 msgid "Certified by"
-msgstr ""
+msgstr "Certifierad"
 
 #: www/views/preferencesExternal.html:19
 msgid "Check installation and retry."
-msgstr ""
+msgstr "Kolla installationen och försök igen."
 
 #: www/views/tab-import-file.html:4
 msgid "Choose a backup file from your computer"
-msgstr ""
+msgstr "Välj backup filer"
 
 #: www/views/modals/wallets.html:9
 msgid "Choose your destination wallet"
@@ -696,42 +696,42 @@ msgstr "Fortsätt"
 
 #: www/views/preferencesLanguage.html:26
 msgid "Contribute Translations"
-msgstr ""
+msgstr "Hjälp att översätta"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr ""
+msgstr "\"Copay\" stöder endast Bitcoin Cash med ny versionsnummer adressering"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
-msgstr ""
+msgstr "Plånbokens delägare har redan gått med"
 
 #: src/js/services/bwcError.js:77
 msgid "Copayer already voted on this spend proposal"
-msgstr ""
+msgstr "Delägaren har redan röstat om denna betalning"
 
 #: src/js/services/bwcError.js:107
 msgid "Copayer data mismatch"
-msgstr ""
+msgstr "Uppgifterna av plånbokens delägare stämmer inte"
 
 #: www/views/includes/walletActivity.html:2
 msgid "Copayer joined"
-msgstr ""
+msgstr "Delägare gick med"
 
 #: www/views/preferencesInformation.html:94
 msgid "Copayer {{$index}}"
-msgstr ""
+msgstr "Delägare {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
 #: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
-msgstr ""
+msgstr "Kopierad till klippbordet"
 
 #: www/views/tab-export-file.html:94
 msgid "Copy this text as it is to a safe place (notepad or email)"
-msgstr ""
+msgstr "Kopiera texten som den är till en säker plats (notepad eller e-mail)"
 
 #: www/views/includes/incomingDataMenu.html:51
 #: www/views/includes/incomingDataMenu.html:70
@@ -739,376 +739,376 @@ msgstr ""
 #: www/views/includes/logOptions.html:9
 #: www/views/tab-export-file.html:78
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopiera till klippbordet"
 
 #: src/js/controllers/buyMercadoLibre.js:102
 msgid "Could not access Gift Card Service"
-msgstr ""
+msgstr "Kunde inte komma åt presentkort tjänsten"
 
 #: www/views/tab-import-phrase.html:2
 msgid "Could not access the wallet at the server. Please check:"
-msgstr ""
+msgstr "Kunde inte komma åt plånboken på servern. Vänligen kolla:"
 
 #: src/js/controllers/buyAmazon.js:102
 msgid "Could not access to Amazon.com"
-msgstr ""
+msgstr "Kunde inte komma åt Amazon.com"
 
 #: src/js/services/profileService.js:511
 msgid "Could not access wallet"
-msgstr ""
+msgstr "Kunde inte komma åt plånboken"
 
 #: src/js/controllers/confirm.js:210
 msgid "Could not add message to imported wallet without shared encrypting key"
-msgstr ""
+msgstr "Kunde inte tillägga meddelande till importerad plånbok utan delad krypteringsnyckel"
 
 #: src/js/controllers/modals/txpDetails.js:199
 msgid "Could not broadcast payment"
-msgstr ""
+msgstr "Kunde inte sända ut betalningen"
 
 #: src/js/services/bwcError.js:41
 msgid "Could not build transaction"
-msgstr ""
+msgstr "Kunde inte skapa transaktionen"
 
 #: src/js/services/walletService.js:854
 msgid "Could not create address"
-msgstr ""
+msgstr "Kunde inte skapa adress"
 
 #: src/js/controllers/topup.js:92
 msgid "Could not create the invoice"
-msgstr ""
+msgstr "Kunde inte skapa fakturan"
 
 #: src/js/controllers/buyAmazon.js:164
 #: src/js/controllers/buyMercadoLibre.js:164
 #: src/js/controllers/topup.js:142
 msgid "Could not create transaction"
-msgstr ""
+msgstr "Kunde inte skapa transaktionen"
 
 #: src/js/services/profileService.js:350
 msgid "Could not create using the specified extended private key"
-msgstr ""
+msgstr "Kunde inte skapa med den angivna utökade privata nyckeln"
 
 #: src/js/services/profileService.js:362
 msgid "Could not create using the specified extended public key"
-msgstr ""
+msgstr "Kunde inte skapa med den angivna utökade offentliga nyckeln"
 
 #: src/js/services/profileService.js:338
 msgid "Could not create: Invalid wallet recovery phrase"
-msgstr ""
+msgstr "Kunde inte skapa: ogiltig plånbok lösenordsfras"
 
 #: src/js/controllers/import.js:114
 msgid "Could not decrypt file, check your password"
-msgstr ""
+msgstr "Kunde inte avkoda filen, kolla ditt lösenord"
 
 #: src/js/controllers/modals/txpDetails.js:181
 msgid "Could not delete payment proposal"
-msgstr ""
+msgstr "Kunde inte ta bort betalningsförslag"
 
 #: src/js/controllers/cashScan.js:117
 msgid "Could not duplicate"
-msgstr ""
+msgstr "Kunde inte duplicera"
 
 #: src/js/services/feeService.js:73
 msgid "Could not get dynamic fee"
-msgstr ""
+msgstr "Kunde inte få den dynamiska avgiften"
 
 #: src/js/services/feeService.js:43
 msgid "Could not get dynamic fee for level: {{feeLevel}}"
-msgstr ""
+msgstr "Kunde inte få den dynamiska avgiften för nivå: {{feeLevel}}"
 
 #: src/js/controllers/modals/feeLevels.js:112
 msgid "Could not get fee levels"
-msgstr ""
+msgstr "Kunde inte få avgiften"
 
 #: src/js/controllers/buyAmazon.js:122
 #: src/js/controllers/buyMercadoLibre.js:122
 #: src/js/controllers/topup.js:100
 msgid "Could not get the invoice"
-msgstr ""
+msgstr "Kunde inte få fakturan"
 
 #: src/js/controllers/bitpayCard.js:66
 msgid "Could not get transactions"
-msgstr ""
+msgstr "Kunde inte få transaktioner"
 
 #: src/js/services/profileService.js:615
 #: src/js/services/profileService.js:650
 #: src/js/services/profileService.js:674
 msgid "Could not import"
-msgstr ""
+msgstr "Kunde inte importera"
 
 #: src/js/services/profileService.js:584
 msgid "Could not import. Check input file and spending password"
-msgstr ""
+msgstr "Kunde inte importera Kolla inmatningsfilen och lösenordet"
 
 #: src/js/services/profileService.js:457
 msgid "Could not join wallet"
-msgstr ""
+msgstr "Kunde inte gå med plånboken"
 
 #: src/js/controllers/modals/txpDetails.js:161
 msgid "Could not reject payment"
-msgstr ""
+msgstr "Kunde inte avvisa betalningen"
 
 #: src/js/controllers/preferencesBitpayServices.js:33
 msgid "Could not remove account"
-msgstr ""
+msgstr "Kunde inte ta bort konto"
 
 #: src/js/controllers/preferencesBitpayCard.js:20
 #: src/js/controllers/preferencesBitpayServices.js:50
 msgid "Could not remove card"
-msgstr ""
+msgstr "Kunde inte ta bort kortet"
 
 #: src/js/services/walletService.js:776
 msgid "Could not save preferences on the server"
-msgstr ""
+msgstr "Kunde inte spara inställningar på servern"
 
 #: src/js/controllers/modals/txpDetails.js:147
 msgid "Could not send payment"
-msgstr ""
+msgstr "Kunde inte sända ut betalningen"
 
 #: src/js/controllers/buyAmazon.js:325
 #: src/js/controllers/buyMercadoLibre.js:318
 #: src/js/controllers/topup.js:299
 msgid "Could not send transaction"
-msgstr ""
+msgstr "Kunde inte skicka transaktionen"
 
 #: www/views/walletDetails.html:210
 msgid "Could not update transaction history"
-msgstr ""
+msgstr "Kunde inte uppdatera transaktions historia"
 
 #: src/js/controllers/addresses.js:29
 #: src/js/controllers/addresses.js:37
 #: src/js/controllers/copayers.js:30
 #: src/js/controllers/walletDetails.js:78
 msgid "Could not update wallet"
-msgstr ""
+msgstr "Kunde inte uppdatera plånboken"
 
 #: www/views/tab-create-personal.html:3
 msgid "Create Personal Wallet"
-msgstr ""
+msgstr "Skapa personlig plånboken"
 
 #: www/views/tab-create-shared.html:3
 msgid "Create Shared Wallet"
-msgstr ""
+msgstr "Skapa delade plånboken"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
 #: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
-msgstr ""
+msgstr "Skapa bitcoin plånboken"
 
 #: www/views/tab-create-personal.html:131
 msgid "Create new wallet"
-msgstr ""
+msgstr "Skapa ny plånboken"
 
 #: www/views/add.html:22
 msgid "Create shared wallet"
-msgstr ""
+msgstr "Skapa delade plånboken"
 
 #: www/views/tab-create-shared.html:160
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
-msgstr ""
+msgstr "Skapa delad plånboken {{formData.requiredCopayers}}-från-{{formData.totalCopayers}}"
 
 #: www/views/preferencesInformation.html:79
 msgid "Copayers"
-msgstr ""
+msgstr "Delägare"
 
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
-msgstr ""
+msgstr "Skapad av"
 
 #: src/js/services/onGoingProcess.js:18
 msgid "Creating Wallet..."
-msgstr ""
+msgstr "Skapar plånboken..."
 
 #: src/js/services/onGoingProcess.js:17
 msgid "Creating transaction"
-msgstr ""
+msgstr "Skapar transaktion"
 
 #: www/views/modals/chooseFeeLevel.html:34
 #: www/views/preferencesFee.html:20
 msgid "Current fee rate for this policy"
-msgstr ""
+msgstr "Nuvarande avgift för denna policy"
 
 #: src/js/services/feeService.js:15
 msgid "Custom"
-msgstr ""
+msgstr "Avgiften"
 
 #: www/views/customAmount.html:9
 msgid "Custom Amount"
-msgstr ""
+msgstr "Belopp"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Custom Fee"
-msgstr ""
+msgstr "Avgiften"
 
 #: www/views/modals/mercadolibre-card-details.html:56
 #: www/views/modals/txp-details.html:87
 #: www/views/tx-details.html:66
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: www/views/preferencesDeleteWallet.html:21
 msgid "Delete"
-msgstr ""
+msgstr "Ta bort"
 
 #: www/views/modals/txp-details.html:164
 msgid "Delete Payment Proposal"
-msgstr ""
+msgstr "Ta bort betalningsförslaget"
 
 #: www/views/preferencesAdvanced.html:33
 #: www/views/preferencesDeleteWallet.html:3
 msgid "Delete Wallet"
-msgstr ""
+msgstr "Ta bort plånboken"
 
 #: www/views/copayers.html:59
 msgid "Delete it and create a new one"
-msgstr ""
+msgstr "Ta bort den och skapa en ny"
 
 #: src/js/services/onGoingProcess.js:19
 msgid "Deleting Wallet..."
-msgstr ""
+msgstr "Tar bort plånboken..."
 
 #: src/js/services/onGoingProcess.js:28
 msgid "Deleting payment proposal"
-msgstr ""
+msgstr "Tar bort betalningsförslaget"
 
 #: www/views/join.html:141
 #: www/views/tab-create-personal.html:111
 #: www/views/tab-create-shared.html:140
 #: www/views/tab-import-phrase.html:49
 msgid "Derivation Path"
-msgstr ""
+msgstr "Derivationsväg"
 
 #: www/views/preferencesInformation.html:47
 msgid "Derivation Strategy"
-msgstr ""
+msgstr "Derivationsstrategi"
 
 #: www/views/buyAmazon.html:39
 #: www/views/buyMercadoLibre.html:38
 #: www/views/modals/mercadolibre-card-details.html:6
 #: www/views/topup.html:45
 msgid "Details"
-msgstr ""
+msgstr "Detaljer"
 
 #: src/js/controllers/lockSetup.js:9
 #: src/js/controllers/tab-settings.js:65
 #: www/views/tab-settings.html:50
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 #: www/views/includes/backupNeededPopup.html:10
 #: www/views/onboarding/backupRequest.html:12
 msgid "Do it later"
-msgstr ""
+msgstr "Gör det senare"
 
 #: www/views/tab-export-file.html:29
 msgid "Do not include private key"
-msgstr ""
+msgstr "Inkludera inte privat nyckel"
 
 #: www/views/preferencesLanguage.html:21
 msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
-msgstr ""
+msgstr "Kan du inte se ditt språk på Crowdin? Kontakta ägaren på Crowdin! Vi skulle gärna stödja ditt språk."
 
 #: www/views/tab-export-file.html:59
 #: www/views/tab-home.html:22
 msgid "Download"
-msgstr ""
+msgstr "Ladda ner"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
-msgstr ""
+msgstr "Dubblett för BCH"
 
 #: src/js/services/onGoingProcess.js:49
 msgid "Duplicating wallet..."
-msgstr ""
+msgstr "Duplicerar plånboken..."
 
 #: www/views/addresses.html:19
 msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
-msgstr ""
+msgstr "Varje bitcoin plånboken kan generera miljarder adresser från din lösenordsfras. En ny adress genereras automatiskt och visas varje gång du får en betalning."
 
 #: src/js/services/feeService.js:13
 msgid "Economy"
-msgstr ""
+msgstr "Ekonomi"
 
 #: www/views/onboarding/collectEmail.html:27
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: www/views/addressbook.add.html:29
 #: www/views/addressbook.view.html:22
 msgid "Email"
-msgstr ""
+msgstr "E-mail adress"
 
 #: www/views/preferencesNotifications.html:42
 msgid "Email Address"
-msgstr ""
+msgstr "E-mail"
 
 #: src/js/services/bwcError.js:122
 msgid "Empty addresses limit reached. New addresses cannot be generated."
-msgstr ""
+msgstr "Tomma adressgränser uppnådda. Nya adresser kan inte genereras."
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr ""
+msgstr "Aktivera Bitcoin Cash plånböcker skapande och drift inom App."
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
-msgstr ""
+msgstr "Aktivera kamera tillgänglighet i enhetens inställningar för att komma igång."
 
 #: www/views/preferencesNotifications.html:29
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Aktivera e-mail meddelandet"
 
 #: www/views/preferencesNotifications.html:12
 msgid "Enable push notifications"
-msgstr ""
+msgstr "Aktivera push-meddelandet"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr ""
+msgstr "Aktivera ljudet"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
-msgstr ""
+msgstr "Aktivera kameran för att komma igång."
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr ""
+msgstr "Aktiverad"
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
 msgid "Enter Spending Password"
-msgstr ""
+msgstr "Ange spenderar lösenordet"
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
-msgstr ""
+msgstr "Ange två faktorer för ditt BitPay konto"
 
 #: www/views/amount.html:4
 msgid "Enter Amount"
-msgstr ""
+msgstr "Ange beloppet"
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
-msgstr ""
+msgstr "Ange anpassad avgiften"
 
 #: src/js/services/walletService.js:1029
 msgid "Enter new spending password"
-msgstr ""
+msgstr "Ange nytt spenderar lösenordet"
 
 #: www/views/join.html:79
 #: www/views/tab-create-personal.html:51
 #: www/views/tab-create-shared.html:80
 msgid "Enter the recovery phrase (BIP39)"
-msgstr ""
+msgstr "Ange lösenordsfrasen (BIP39)"
 
 #: www/views/onboarding/collectEmail.html:13
 msgid "Enter your email"
-msgstr ""
+msgstr "Ange ditt e-post"
 
 #: www/views/backup.html:69
 msgid "Enter your password"
-msgstr ""
+msgstr "Ange lösenordet"
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/activity.js:45
@@ -1187,54 +1187,54 @@ msgstr ""
 #: www/views/mercadoLibreCards.html:19
 #: www/views/modals/mercadolibre-card-details.html:45
 msgid "Error"
-msgstr ""
+msgstr "Fel"
 
 #: src/js/controllers/confirm.js:502
 msgid "Error at confirm"
-msgstr ""
+msgstr "Fel vid bekräftelse"
 
 #: src/js/controllers/buyAmazon.js:179
 msgid "Error creating gift card"
-msgstr ""
+msgstr "Fel vid skapande av Presentkort"
 
 #: src/js/controllers/buyAmazon.js:94
 #: src/js/controllers/buyMercadoLibre.js:94
 msgid "Error creating the invoice"
-msgstr ""
+msgstr "Fel vid skapande av faktura"
 
 #: src/js/services/profileService.js:412
 msgid "Error creating wallet"
-msgstr ""
+msgstr "Fel vid skapande av plånboken"
 
 #: src/js/controllers/confirm.js:296
 msgid "Error getting SendMax information"
-msgstr ""
+msgstr "Fel vid SendMax information mottagande"
 
 #: src/js/controllers/buyAmazon.js:136
 #: src/js/controllers/buyMercadoLibre.js:136
 #: src/js/controllers/topup.js:114
 msgid "Error in Payment Protocol"
-msgstr ""
+msgstr "Fel i betalningsprotokollet"
 
 #: src/js/controllers/bitpayCardIntro.js:14
 msgid "Error pairing BitPay Account"
-msgstr ""
+msgstr "Fel i parning med BitPay-konto"
 
 #: src/js/controllers/paperWallet.js:41
 msgid "Error scanning funds:"
-msgstr ""
+msgstr "Fel i kassa skanning:"
 
 #: src/js/controllers/paperWallet.js:90
 msgid "Error sweeping wallet:"
-msgstr ""
+msgstr "Fel sopa plånboken:"
 
 #: src/js/controllers/bitpayCardIntro.js:20
 msgid "Error updating Debit Cards"
-msgstr ""
+msgstr "Fel i kreditkort uppdatering"
 
 #: src/js/services/bwcError.js:143
 msgid "Exceeded daily limit of $500 per user"
-msgstr ""
+msgstr "Översteg daglig gräns på $ 500 per användare"
 
 #: src/js/controllers/confirm.js:461
 #: www/views/confirm.html:27
@@ -1242,51 +1242,51 @@ msgstr ""
 #: www/views/modals/mercadolibre-card-details.html:34
 #: www/views/modals/txp-details.html:119
 msgid "Expired"
-msgstr ""
+msgstr "Har löpt ut"
 
 #: www/views/modals/paypro.html:54
 #: www/views/modals/txp-details.html:125
 msgid "Expires"
-msgstr ""
+msgstr "Löper ut"
 
 #: www/views/modals/txp-details.html:65
 msgid "Display legacy address"
-msgstr ""
+msgstr "Visa äldre adress"
 
 #: www/views/modals/txp-details.html:68
 msgid "Display new style address"
-msgstr ""
+msgstr "Visa en ny form av adress"
 
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
-msgstr ""
+msgstr "Exportera plånboken"
 
 #: www/views/preferencesHistory.html:11
 #: www/views/preferencesHistory.html:14
 msgid "Export to file"
-msgstr ""
+msgstr "Exportera till filen"
 
 #: www/views/export.html:3
 msgid "Export wallet"
-msgstr ""
+msgstr "Exportera plånboken"
 
 #: www/views/preferencesBwsUrl.html:3
 #: www/views/preferencesBwsUrl.html:13
 msgid "Wallet Service URL"
-msgstr ""
+msgstr "Plånbokstjänsten URL"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
 msgid "Exporting via QR not supported for this wallet"
-msgstr ""
+msgstr "QR-koden export stöds inte för denna plånbok"
 
 #: www/views/preferencesInformation.html:89
 msgid "Extended Public Keys"
-msgstr ""
+msgstr "Utökade offentliga nycklar"
 
 #: src/js/services/onGoingProcess.js:20
 msgid "Extracting Wallet information..."
-msgstr ""
+msgstr "Extraherar av plånboksinformation..."
 
 #: src/js/controllers/export.js:115
 #: src/js/controllers/export.js:126
@@ -1294,65 +1294,65 @@ msgstr ""
 #: src/js/controllers/export.js:171
 #: www/views/tab-export-file.html:4
 msgid "Failed to export"
-msgstr ""
+msgstr "Det gick inte att exportera"
 
 #: www/views/tab-create-personal.html:14
 #: www/views/tab-create-shared.html:14
 msgid "Family vacation funds"
-msgstr ""
+msgstr "Familjesemester fond"
 
 #: www/views/tx-details.html:79
 msgid "Fee"
-msgstr ""
+msgstr "Avgifter"
 
 #: www/views/modals/chooseFeeLevel.html:75
 msgid "Fee level"
-msgstr ""
+msgstr "Avgiftsnivå"
 
 #: src/js/controllers/modals/feeLevels.js:100
 msgid "Fee level is not defined"
-msgstr ""
+msgstr "Avgiftsnivå är inte definierad"
 
 #: www/views/confirm.html:79
 #: www/views/modals/txp-details.html:99
 msgid "Fee:"
-msgstr ""
+msgstr "Avgifter:"
 
 #: src/js/controllers/feedback/send.js:23
 msgid "Feedback could not be submitted. Please try again later."
-msgstr ""
+msgstr "Feedback kunde inte skickas in. Vänligen försök igen senare."
 
 #: src/js/services/onGoingProcess.js:42
 msgid "Fetching BitPay Account..."
-msgstr ""
+msgstr "Hämtar BitPay-konto..."
 
 #: src/js/services/onGoingProcess.js:21
 msgid "Fetching payment information"
-msgstr ""
+msgstr "Hämtar betalningsinformationen"
 
 #: www/views/export.html:14
 #: www/views/import.html:16
 msgid "File/Text"
-msgstr ""
+msgstr "Fil/Text"
 
 #: www/views/preferencesLogs.html:17
 msgid "Filter setting"
-msgstr ""
+msgstr "FIlterinställning"
 
 #: src/js/services/fingerprintService.js:43
 #: src/js/services/fingerprintService.js:48
 msgid "Finger Scan Failed"
-msgstr ""
+msgstr "Finger scanning misslyckades"
 
 #: src/js/controllers/feedback/send.js:34
 #: www/views/feedback/complete.html:7
 msgid "Finish"
-msgstr ""
+msgstr "Färdigt"
 
 #: www/views/tab-create-personal.html:123
 #: www/views/tab-create-shared.html:152
 msgid "For audit purposes"
-msgstr ""
+msgstr "För revisionsändamål"
 
 #: src/js/controllers/topup.js:308
 #: www/views/buyAmazon.html:29
@@ -1363,94 +1363,94 @@ msgstr ""
 #: www/views/tx-details.html:52
 #: www/views/review.html:22
 msgid "From"
-msgstr ""
+msgstr "Från"
 
 #: src/js/controllers/bitpayCardIntro.js:71
 msgid "From BitPay account"
-msgstr ""
+msgstr "Från BitPay-konto"
 
 #: www/views/tab-import-phrase.html:57
 msgid "From Hardware Wallet"
-msgstr ""
+msgstr "Från hårdvarad plånboken"
 
 #: www/views/tab-export-qrCode.html:5
 msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
-msgstr ""
+msgstr "Vid destinationenhet gå till \"Lägg till plånboken\" &gt; \"Importera plånboken\" och \"skanna den här QR-koden\""
 
 #: src/js/services/bwcError.js:74
 msgid "Funds are locked by pending spend proposals"
-msgstr ""
+msgstr "Medel låses av pågående betalningsförslaget"
 
 #: www/views/paperWallet.html:16
 msgid "Funds found:"
-msgstr ""
+msgstr "Medel som hittades:"
 
 #: www/views/topup.html:49
 msgid "Funds to be added"
-msgstr ""
+msgstr "Medel som ska läggas till"
 
 #: www/views/paperWallet.html:51
 msgid "Funds transferred"
-msgstr ""
+msgstr "Överförda medel"
 
 #: www/views/topup.html:103
 msgid "Funds were added to debit card"
-msgstr ""
+msgstr "Medel lagts till kontokort"
 
 #: www/views/paperWallet.html:22
 msgid "Funds will be transferred to"
-msgstr ""
+msgstr "Medel kommer att överföras till"
 
 #: www/views/tab-receive.html:51
 msgid "Generate new address"
-msgstr ""
+msgstr "Skapa en ny adress"
 
 #: src/js/services/onGoingProcess.js:22
 msgid "Generating .csv file..."
-msgstr ""
+msgstr "Genererar .csv-fil..."
 
 #: src/js/services/onGoingProcess.js:37
 msgid "Generating new address..."
-msgstr ""
+msgstr "Genererar en ny adress..."
 
 #: www/views/bitpayCardIntro.html:23
 msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
-msgstr ""
+msgstr "Få lokal kontant överallt, från vilken som helst Visa <sup>&reg; </sup> kompatibel bankomat. Bank kan ta avgiften."
 
 #: www/views/onboarding/collectEmail.html:15
 msgid "Get news and updates from BitPay"
-msgstr ""
+msgstr "Få nyheter och uppdateringar från BitPay"
 
 #: www/views/onboarding/welcome.html:8
 #: www/views/bitpayCard.html:49
 msgid "Get started"
-msgstr ""
+msgstr "Startar"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr ""
+msgstr "Starta genom att lägga till din första kontakt."
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
-msgstr ""
+msgstr "Får avgiftsnivåer..."
 
 #: www/views/buyAmazon.html:43
 #: www/views/buyMercadoLibre.html:42
 msgid "Gift Card"
-msgstr ""
+msgstr "Presentkort"
 
 #: www/views/modals/mercadolibre-card-details.html:30
 #: www/views/modals/mercadolibre-card-details.html:35
 msgid "Gift Card is not available to use anymore"
-msgstr ""
+msgstr "Presentkort är inte tillgängligt att använda längre"
 
 #: src/js/controllers/buyAmazon.js:204
 msgid "Gift card expired"
-msgstr ""
+msgstr "Presentkort har gått ut"
 
 #: www/views/buyAmazon.html:111
 msgid "Gift card generated and ready to use."
-msgstr ""
+msgstr "Presentkort genererat och redo att användas."
 
 #: src/js/controllers/bitpayCard.js:114
 #: src/js/controllers/bitpayCard.js:124
@@ -1465,59 +1465,59 @@ msgstr ""
 #: src/js/controllers/tx-details.js:193
 #: src/js/controllers/tx-details.js:56
 msgid "Go Back"
-msgstr ""
+msgstr "Gå tillbaka"
 
 #: src/js/controllers/confirm.js:131
 #: src/js/controllers/onboarding/backupRequest.js:20
 #: src/js/controllers/onboarding/backupRequest.js:26
 #: src/js/services/bitpayAccountService.js:84
 msgid "Go back"
-msgstr ""
+msgstr "Gå tillbaka"
 
 #: www/views/backupWarning.html:15
 #: www/views/includes/confirmBackupPopup.html:8
 #: www/views/onboarding/tour.html:23
 msgid "Got it"
-msgstr ""
+msgstr "Fattade"
 
 #: www/views/preferencesInformation.html:53
 #: www/views/preferencesInformation.html:59
 msgid "Hardware Wallet"
-msgstr ""
+msgstr "Hårdvara Plånboken"
 
 #: www/views/preferencesExternal.html:18
 msgid "Hardware not connected."
-msgstr ""
+msgstr "Hårdvaran är inte ansluten."
 
 #: www/views/import.html:20
 msgid "Hardware wallet"
-msgstr ""
+msgstr "Hårdvara Plånboken"
 
 #: src/js/controllers/create.js:180
 #: src/js/controllers/join.js:145
 msgid "Hardware wallets are not yet supported with Bitcoin Cash"
-msgstr ""
+msgstr "Bitcoin Cash stöds ännu inte Hårdvaraplånböcker"
 
 #: www/views/tab-settings.html:20
 msgid "Help & Support"
-msgstr ""
+msgstr "Hjälp och stöd"
 
 #: src/js/controllers/bitpayCard.js:112
 #: src/js/controllers/tab-settings.js:51
 msgid "Help and support information is available at the website."
-msgstr ""
+msgstr "Hjälp och stödinformation finns på webbplatsen."
 
 #: www/views/addresses.html:25
 msgid "Hide"
-msgstr ""
+msgstr "Dölj"
 
 #: www/views/preferences.html:27
 msgid "Hide Balance"
-msgstr ""
+msgstr "Dölj balans"
 
 #: www/views/advancedSettings.html:30
 msgid "Hide Next Steps Card"
-msgstr ""
+msgstr "Dölj nästa steg"
 
 #: www/views/join.html:49
 #: www/views/tab-create-personal.html:28
@@ -1527,555 +1527,555 @@ msgstr ""
 #: www/views/tab-import-hardware.html:31
 #: www/views/tab-import-phrase.html:36
 msgid "Hide advanced options"
-msgstr ""
+msgstr "Dölj avancerade alternativ"
 
 #: www/views/tabs.html:3
 msgid "Home"
-msgstr ""
+msgstr "Hem"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 #: src/js/controllers/feedback/send.js:69
 msgid "How could we improve your experience?"
-msgstr ""
+msgstr "Hur kan vi förbättra din erfarenhet?"
 
 #: www/views/feedback/rateCard.html:3
 msgid "How do you like {{appName}}?"
-msgstr ""
+msgstr "Vad tycker du om {{appName}}?"
 
 #: src/js/controllers/feedback/rateCard.js:29
 msgid "I don't like it"
-msgstr ""
+msgstr "Jag tycker inte om det"
 
 #: www/views/onboarding/disclaimer.html:43
 msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
-msgstr ""
+msgstr "Jag har läst, förstått och håller med <a ng-click=\"openTerms()\" translate=\"\"> användarvillkor</a>."
 
 #: www/views/modals/terms.html:22
 msgid "I have read, understood, and agree with the Terms of use."
-msgstr ""
+msgstr "Jag har läst, förstått, och håller med användarvillkoren."
 
 #: www/views/join.html:137
 #: www/views/tab-create-personal.html:107
 #: www/views/tab-create-shared.html:136
 msgid "I have written it down"
-msgstr ""
+msgstr "Jag har skrivit ner den"
 
 #: src/js/controllers/feedback/rateCard.js:35
 msgid "I like the app"
-msgstr ""
+msgstr "Jag gillar appen"
 
 #: src/js/controllers/feedback/rateCard.js:26
 msgid "I think this app is terrible."
-msgstr ""
+msgstr "Jag tycker att den här appen är hemsk."
 
 #: src/js/controllers/onboarding/backupRequest.js:19
 #: www/views/includes/screenshotWarningModal.html:9
 msgid "I understand"
-msgstr ""
+msgstr "Jag förstår"
 
 #: www/views/onboarding/disclaimer.html:21
 msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
-msgstr ""
+msgstr "Jag förstår att om denna app flyttas till en annan enhet eller tas bort, kan min bitcoin bara återställas med lösenordsfrasen."
 
 #: www/views/onboarding/disclaimer.html:18
 msgid "I understand that my funds are held securely on this device, not by a company."
-msgstr ""
+msgstr "Jag förstår att mina medel hålls säkert på den här enheten, inte av ett företag."
 
 #: www/views/backup.html:36
 msgid "I've written it down"
-msgstr ""
+msgstr "Jag har skrivit ner den"
 
 #: www/views/preferences.html:45
 msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
-msgstr ""
+msgstr "Om det är aktiverat kommer all känslig information (privat nyckel och återställningsfras) och åtgärder (utgifter och export) som är associerad med den här plånboken skyddas."
 
 #: www/views/advancedSettings.html:23
 msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
-msgstr ""
+msgstr "Om det är aktiverat visas nyligen transaktionskort - en lista över transaktioner som förekommer i alla plånböcker - på fliken Hem."
 
 #: www/views/advancedSettings.html:14
 msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
-msgstr ""
+msgstr "Om det är aktiverat kommer plånböcker också att försöka spendera obekräftade medel. Om du avaktiverar det här alternativet kan det orsaka transaktionsförseningar."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
-msgstr ""
+msgstr "Om den här enheten är ersatt eller den här appen tas bort, kan du eller BitPay inte återställa dina medel utan säkerhetskopiering."
 
 #: www/views/feedback/complete.html:23
 msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
-msgstr ""
+msgstr "Om du har ytterligare feedback, vänligen meddela oss genom att trycka på alternativet \"Skicka feedback\" på fliken Inställningar."
 
 #: www/views/includes/screenshotWarningModal.html:8
 msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
-msgstr ""
+msgstr "Om du tar en skärmdump kan din säkerhetskopiering ses av andra appar. Det säkra sättet att säkerhetskopiera är penn och papper."
 
 #: www/views/tab-import-hardware.html:42
 #: www/views/tab-import-phrase.html:80
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: www/views/import.html:3
 msgid "Import Wallet"
-msgstr ""
+msgstr "Plånbok import"
 
 #: www/views/tab-import-file.html:41
 msgid "Import backup"
-msgstr ""
+msgstr "Importera säkerhetskopiering"
 
 #: www/views/add.html:38
 msgid "Import wallet"
-msgstr ""
+msgstr "Importerar plånboken"
 
 #: src/js/services/onGoingProcess.js:24
 msgid "Importing Wallet..."
-msgstr ""
+msgstr "Importerar plånboken..."
 
 #: www/views/backup.html:72
 msgid "In order to verify your wallet backup, please type your password."
-msgstr ""
+msgstr "För att verifiera din plånbokssäkerhet, skriv in din lösenord."
 
 #: www/views/mercadoLibreCards.html:24
 #: www/views/modals/mercadolibre-card-details.html:29
 msgid "Inactive"
-msgstr ""
+msgstr "Inaktiv"
 
 #: www/views/includes/walletItem.html:9
 #: www/views/includes/walletList.html:6
 #: www/views/includes/walletListSettings.html:9
 #: www/views/includes/walletSelector.html:16
 msgid "Incomplete"
-msgstr ""
+msgstr "Inte alla delägare har gått med"
 
 #: www/views/tab-receive.html:22
 msgid "Incomplete wallet"
-msgstr ""
+msgstr "Inte alla delägare har gått med"
 
 #: www/views/modals/pin.html:12
 msgid "Incorrect PIN, try again."
-msgstr ""
+msgstr "Felaktig PIN-kod, försök igen."
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/import.js:85
 msgid "Incorrect code format"
-msgstr ""
+msgstr "Felaktigt QR-kod format"
 
 #: src/js/services/bwcError.js:113
 msgid "Incorrect network address"
-msgstr ""
+msgstr "Felaktig nätverksadress"
 
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr ""
+msgstr "Otillräckliga bekräftade medel"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
 #: src/js/services/bwcError.js:71
 msgid "Insufficient funds for fee"
-msgstr ""
+msgstr "Otillräckliga medel för avgift"
 
 #: www/views/tab-settings.html:123
 msgid "Integrations"
-msgstr ""
+msgstr "Integrationer"
 
 #: www/views/includes/walletHistory.html:49
 msgid "Invalid"
-msgstr ""
+msgstr "Ogiltig"
 
 #: src/js/controllers/buyAmazon.js:137
 #: src/js/controllers/buyMercadoLibre.js:137
 #: src/js/controllers/topup.js:115
 msgid "Invalid URL"
-msgstr ""
+msgstr "Ogiltig URL"
 
 #: src/js/controllers/create.js:186
 #: src/js/controllers/import.js:345
 #: src/js/controllers/join.js:151
 msgid "Invalid account number"
-msgstr ""
+msgstr "Ogiltigt kontonummer"
 
 #: src/js/services/bwcError.js:119
 msgid "Invalid address"
-msgstr ""
+msgstr "Ogiltig adress"
 
 #: src/js/controllers/tabsController.js:7
 msgid "Invalid data"
-msgstr ""
+msgstr "Ogiltig data"
 
 #: src/js/controllers/create.js:161
 #: src/js/controllers/import.js:266
 #: src/js/controllers/join.js:125
 msgid "Invalid derivation path"
-msgstr ""
+msgstr "Ogiltig derivationsväg"
 
 #: src/js/controllers/copayers.js:90
 msgid "Invitation to share a {{appName}} Wallet"
-msgstr ""
+msgstr "Inbjudan att dela en {{appName}} plånboken"
 
 #: www/views/mercadoLibreCards.html:20
 #: www/views/modals/mercadolibre-card-details.html:48
 msgid "Invoice expired"
-msgstr ""
+msgstr "Faktura har löpt ut"
 
 #: src/js/controllers/feedback/send.js:79
 msgid "Is there anything we could do better?"
-msgstr ""
+msgstr "Finns det något vi kan förbättra?"
 
 #: www/views/backup.html:54
 msgid "Is this correct?"
-msgstr ""
+msgstr "Är detta rätt?"
 
 #: www/views/onboarding/collectEmail.html:22
 msgid "Is this email address correct?"
-msgstr ""
+msgstr "Är det rätt e-mail?"
 
 #: www/views/addresses.html:25
 msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
-msgstr ""
+msgstr "Återanvända inte adresser - detta både skyddar din integritet och håller dina bitcoins säkra mot hypotetiska attacker av kvantdatorer."
 
 #: src/js/controllers/backup.js:76
 msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
-msgstr ""
+msgstr "Det är jätte viktigt att skriva din säkerhetsfras ned korrekt. Du kan använda den för att återställa tillgången till medel om något händer med din plånbok. Kolla din säkerhetskopia och försök igen."
 
 #: www/views/join.html:151
 msgid "Join"
-msgstr ""
+msgstr "Gå med"
 
 #: src/js/controllers/copayers.js:85
 msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
-msgstr ""
+msgstr "Gå med i min plånbok {{appName}}. Inbjudan kod {{secret}} Du kan ladda ner {{appName}} för din telefon eller skrivbord på {{appUrl}}"
 
 #: www/views/add.html:30
 #: www/views/join.html:5
 msgid "Join shared wallet"
-msgstr ""
+msgstr "Gå med i en offentlig plånbok"
 
 #: src/js/services/onGoingProcess.js:25
 msgid "Joining Wallet..."
-msgstr ""
+msgstr "Gå med i plånboken..."
 
 #: www/views/onboarding/tour.html:22
 msgid "Just scan the code to pay."
-msgstr ""
+msgstr "Skanna bara koden för att betala."
 
 #: src/js/services/bwcError.js:116
 msgid "Key already associated with an existing wallet"
-msgstr ""
+msgstr "Nyckeln är redan associerad med en befintlig plånbok"
 
 #: www/views/preferencesLanguage.html:4
 #: www/views/tab-settings.html:68
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: www/views/bitpayCard.html:61
 msgid "Last Month"
-msgstr ""
+msgstr "Senaste månaden"
 
 #: src/js/controllers/confirm.js:132
 #: www/views/preferences.html:48
 #: www/views/preferencesCash.html:18
 #: www/views/tx-details.html:94
 msgid "Learn more"
-msgstr ""
+msgstr "Lära mer"
 
 #: www/views/backup.html:43
 msgid "Let's verify your backup phrase."
-msgstr ""
+msgstr "Låt oss verifiera din säkerhetsfras."
 
 #: www/views/addresses.html:45
 #: www/views/allAddresses.html:14
 msgid "Loading addresses..."
-msgstr ""
+msgstr "Laddar adresser..."
 
 #: src/js/services/onGoingProcess.js:35
 msgid "Loading transaction info..."
-msgstr ""
+msgstr "Laddar transaktioner..."
 
 #: www/views/tab-settings.html:100
 msgid "Lock App"
-msgstr ""
+msgstr "Lås app"
 
 #: src/js/controllers/lockSetup.js:23
 msgid "Lock by Fingerprint"
-msgstr ""
+msgstr "Lås av fingeravtryck"
 
 #: src/js/controllers/lockSetup.js:14
 msgid "Lock by PIN"
-msgstr ""
+msgstr "Lås av PIN"
 
 #: www/views/modals/wallet-balance.html:80
 msgid "Locked"
-msgstr ""
+msgstr "Låst"
 
 #: src/js/services/bwcError.js:86
 msgid "Locktime in effect. Please wait to create a new spend proposal"
-msgstr ""
+msgstr "Låsningstid i kraft. Vänligen vänta för att skapa ny spendera betalningen"
 
 #: src/js/services/bwcError.js:89
 msgid "Locktime in effect. Please wait to remove this spend proposal"
-msgstr ""
+msgstr "Låsningstid i kraft. Vänligen vänta för att skapa ett nytt betalningsförslaget"
 
 #: www/views/includes/logOptions.html:3
 msgid "Log options"
-msgstr ""
+msgstr "Loggalternativ"
 
 #: www/views/modals/bitpay-card-confirmation.html:14
 msgid "Log out"
-msgstr ""
+msgstr "Logga ut"
 
 #: www/views/addresses.html:87
 msgid "Low amount inputs"
-msgstr ""
+msgstr "Låg mängd ingångar"
 
 #: www/views/includes/walletHistory.html:27
 msgid "Low fees"
-msgstr ""
+msgstr "Låg avgift"
 
 #: www/views/onboarding/tour.html:38
 msgid "Makes sense"
-msgstr ""
+msgstr "Lämpligt"
 
 #: src/js/controllers/modals/search.js:61
 msgid "Matches:"
-msgstr ""
+msgstr "Matchar:"
 
 #: www/views/includes/copayers.html:4
 #: www/views/preferencesInformation.html:85
 msgid "Me"
-msgstr ""
+msgstr "Jag"
 
 #: src/js/controllers/feedback/rateCard.js:32
 msgid "Meh - it's alright"
-msgstr ""
+msgstr "Meh - det är okej"
 
 #: src/js/controllers/tx-details.js:165
 #: www/views/modals/paypro.html:48
 #: www/views/modals/txp-details.html:93
 #: www/views/tx-details.html:72
 msgid "Memo"
-msgstr ""
+msgstr "PM"
 
 #: www/views/mercadoLibre.html:6
 msgid "Mercado Livre Brazil Gift Cards"
-msgstr ""
+msgstr "Presentkort Mercado Livre (Brasilien)"
 
 #: src/js/controllers/buyMercadoLibre.js:98
 msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
-msgstr ""
+msgstr "Mercadolibre presentkort tjänst är inte tillgänglig just nu. Vänligen försök igen senare."
 
 #: www/views/modals/txp-details.html:131
 msgid "Merchant Message"
-msgstr ""
+msgstr "Meddelande från försäljare"
 
 #: www/views/buyAmazon.html:55
 #: www/views/buyMercadoLibre.html:54
 #: www/views/topup.html:63
 msgid "Miner Fee"
-msgstr ""
+msgstr "Miner avgift"
 
 #: src/js/services/bwcError.js:134
 msgid "Missing parameter"
-msgstr ""
+msgstr "Saknad parameter"
 
 #: src/js/services/bwcError.js:32
 msgid "Missing private keys to sign"
-msgstr ""
+msgstr "Saknar privata nycklar för att signera"
 
 #: www/views/preferences.html:61
 #: www/views/preferencesAdvanced.html:3
 msgid "More Options"
-msgstr ""
+msgstr "Fler alternativ"
 
 #: www/views/includes/walletHistory.html:47
 #: www/views/tx-details.html:19
 msgid "Moved"
-msgstr ""
+msgstr "Flyttad"
 
 #: src/js/controllers/tx-details.js:131
 msgid "Moved Funds"
-msgstr ""
+msgstr "Flyttad medel"
 
 #: www/views/modals/txp-details.html:57
 msgid "Multiple recipients"
-msgstr ""
+msgstr "Flera mottagare"
 
 #: www/views/tab-import-phrase.html:8
 msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
-msgstr ""
+msgstr "OBS: om du vill importera en plånbok från en tredje parts programvara, gå till \"Lägg till plånbok &gt; \"Skapa Plånbok\" och ange säkerhetsfras där."
 
 #: www/views/addressbook.add.html:21
 #: www/views/addressbook.view.html:18
 #: www/views/preferences.html:15
 #: www/views/preferencesAlias.html:17
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: www/views/buyAmazon.html:49
 #: www/views/buyMercadoLibre.html:48
 #: www/views/topup.html:56
 msgid "Network Cost"
-msgstr ""
+msgstr "Nätverkskostnad"
 
 #: src/js/services/bwcError.js:47
 msgid "Network error"
-msgstr ""
+msgstr "Nätverksfel"
 
 #: www/views/includes/walletActivity.html:43
 msgid "New Proposal"
-msgstr ""
+msgstr "Nytt förslag"
 
 #: src/js/controllers/addresses.js:126
 msgid "New address could not be generated. Please try again."
-msgstr ""
+msgstr "Ny adress kunde inte genereras. Vänligen försök igen senare."
 
 #: www/views/add.html:14
 msgid "New personal wallet"
-msgstr ""
+msgstr "Ny personligen plånboken"
 
 #: www/views/includes/nextSteps.html:3
 msgid "Next steps"
-msgstr ""
+msgstr "Ytterligare steg"
 
 #: www/views/tab-receive.html:16
 msgid "No Wallet"
-msgstr ""
+msgstr "Inga plånböcker"
 
 #: src/js/controllers/buyAmazon.js:115
 #: src/js/controllers/buyMercadoLibre.js:115
 msgid "No access key defined"
-msgstr ""
+msgstr "Ingen åtkomstnyckel definierad"
 
 #: www/views/onboarding/backupRequest.html:5
 msgid "No backup, no bitcoin."
-msgstr ""
+msgstr "Ingen säkerhetskopiering, ingen bitcoin."
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
-msgstr ""
+msgstr "Inga kontakter"
 
 #: www/views/preferencesLogs.html:16
 msgid "No entries for this log level"
-msgstr ""
+msgstr "Inga poster för denna loggnivå"
 
 #: www/views/preferencesExternal.html:12
 msgid "No hardware information available."
-msgstr ""
+msgstr "Ingen Hårdvarainformation tillgänglig."
 
 #: www/views/tab-import-hardware.html:3
 msgid "No hardware wallets supported on this device"
-msgstr ""
+msgstr "Hårdvara Plånböcker stöds inte på den här enheten"
 
 #: www/views/proposals.html:24
 msgid "No pending proposals"
-msgstr ""
+msgstr "Inga pågående betalningsförslaget"
 
 #: www/views/activity.html:25
 msgid "No recent transactions"
-msgstr ""
+msgstr "Inga senaste transaktioner"
 
 #: src/js/controllers/buyAmazon.js:44
 #: src/js/controllers/topup.js:47
 msgid "No signing proposal: No private key"
-msgstr ""
+msgstr "Inget signeringsförslag: Ingen privat nyckel"
 
 #: www/views/walletDetails.html:204
 msgid "No transactions yet"
-msgstr ""
+msgstr "Inga transaktioner än"
 
 #: src/js/controllers/preferencesDelete.js:15
 msgid "No wallet found"
-msgstr ""
+msgstr "Ingen plånbok hittades"
 
 #: src/js/controllers/preferencesDelete.js:8
 msgid "No wallet selected"
-msgstr ""
+msgstr "Ingen plånbok vald"
 
 #: src/js/controllers/buyAmazon.js:300
 #: src/js/controllers/buyMercadoLibre.js:292
 #: src/js/controllers/confirm.js:85
 #: src/js/controllers/topup.js:265
 msgid "No wallets available"
-msgstr ""
+msgstr "Inga plånböcker"
 
 #: www/views/paperWallet.html:45
 msgid "No wallets available to receive funds"
-msgstr ""
+msgstr "Inga plånböcker finns tillgängliga för att ta emot pengar"
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr ""
+msgstr "Inga plånböcker berättigade till Bitcoin Cash stöd"
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
-msgstr ""
+msgstr "Inte BIP44 plånboken"
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr ""
+msgstr "Ej-berättigad BTC-plånböcker"
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
-msgstr ""
+msgstr "Vanligt"
 
 #: src/js/services/bwcError.js:80
 msgid "Not authorized"
-msgstr ""
+msgstr "Inte auktoriserad"
 
 #: src/js/controllers/confirm.js:307
 msgid "Not enough funds for fee"
-msgstr ""
+msgstr "Inte tillräckligt med pengar för avgift"
 
 #: www/views/onboarding/tour.html:50
 msgid "Not even BitPay can access it."
-msgstr ""
+msgstr "BitPay kommer inte kunna få åtkomst till det själv."
 
 #: src/js/controllers/paperWallet.js:47
 msgid "Not funds found"
-msgstr ""
+msgstr "Inga medel hittades"
 
 #: www/views/feedback/rateApp.html:3
 #: www/views/onboarding/notifications.html:8
 msgid "Not now"
-msgstr ""
+msgstr "Inte nu"
 
 #: www/views/includes/output.html:15
 msgid "Note"
-msgstr ""
+msgstr "Notera"
 
 #: www/views/backup.html:19
 msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
-msgstr ""
+msgstr "OBS: Om denna BCH-plånbok duplicerades från en BTC-plånbok delar de samma lösenordsfras."
 
 #: www/views/modals/wallets.html:25
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
-msgstr ""
+msgstr "OBS: endast 1-1 (enkelsignatur) plånböcker kan användas för försäljning av bitcoin"
 
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:61
 msgid "Notifications"
-msgstr ""
+msgstr "Meddelande"
 
 #: www/views/onboarding/collectEmail.html:9
 msgid "Notifications by email"
-msgstr ""
+msgstr "Meddelande via e-mail"
 
 #: www/views/tx-details.html:117
 msgid "Notify me if confirmed"
-msgstr ""
+msgstr "Meddela mig om det är bekräftat"
 
 #: www/views/preferencesNotifications.html:24
 msgid "Notify me when transactions are confirmed"
-msgstr ""
+msgstr "Meddela mig när transaktioner är bekräftade"
 
 #: www/views/includes/backupNeededPopup.html:8
 msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
-msgstr ""
+msgstr "Om den här enheten går förlorad blir det omöjligt att återställa tillgången till pengar utan säkerhetskopiering. Nu är det bra tid att säkerhetskopiera din plånbok."
 
 #: www/views/backupWarning.html:11
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
-msgstr ""
+msgstr "Nu är det dags att bedöma din omgivning. Närliggande fönster? Dolda kameror? Axel spioner?"
 
 #: src/js/controllers/buyAmazon.js:312
 #: src/js/controllers/topup.js:286
@@ -2086,30 +2086,30 @@ msgstr ""
 #: src/js/services/popupService.js:72
 #: www/views/modals/chooseFeeLevel.html:6
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: www/views/modals/tx-status.html:12
 #: www/views/modals/tx-status.html:24
 #: www/views/modals/tx-status.html:36
 #: www/views/modals/tx-status.html:46
 msgid "OKAY"
-msgstr ""
+msgstr "OK"
 
 #: www/views/modals/terms.html:15
 msgid "Official English Disclaimer"
-msgstr ""
+msgstr "Officiell engelsk friskrivning"
 
 #: src/js/controllers/feedback/send.js:64
 msgid "Oh no!"
-msgstr ""
+msgstr "Åh nej!"
 
 #: src/js/controllers/buyMercadoLibre.js:306
 msgid "Ok"
-msgstr ""
+msgstr "OK"
 
 #: www/views/tab-home.html:39
 msgid "On this screen you can see all your wallets, accounts, and assets."
-msgstr ""
+msgstr "På den här fliken kan du se alla dina plånböcker, konton och tillgångar."
 
 #: src/js/controllers/bitpayCard.js:113
 #: src/js/controllers/cashScan.js:19
@@ -2118,56 +2118,56 @@ msgstr ""
 #: src/js/controllers/tab-settings.js:52
 #: src/js/controllers/tx-details.js:55
 msgid "Open"
-msgstr ""
+msgstr "Öppna"
 
 #: src/js/controllers/preferencesLanguage.js:13
 msgid "Open Crowdin"
-msgstr ""
+msgstr "Öppna Crowdin"
 
 #: src/js/controllers/preferencesAbout.js:15
 msgid "Open GitHub"
-msgstr ""
+msgstr "Öppna GitHub"
 
 #: src/js/controllers/preferencesAbout.js:13
 msgid "Open GitHub Project"
-msgstr ""
+msgstr "Öppna GitHub Project"
 
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr ""
+msgstr "Öppna upptäckare"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
-msgstr ""
+msgstr "Öppna Inställningar"
 
 #: src/js/controllers/preferencesLanguage.js:11
 msgid "Open Translation Community"
-msgstr ""
+msgstr "Redigera översättning"
 
 #: src/js/controllers/onboarding/terms.js:22
 msgid "Open Website"
-msgstr ""
+msgstr "Öppna hemsidan"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr ""
+msgstr "Öppna bitcoincash.org?"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
-msgstr ""
+msgstr "Öppna återställningsverktyget."
 
 #: www/views/tab-receive.html:27
 msgid "Open wallet"
-msgstr ""
+msgstr "Öppna plånboken"
 
 #: www/views/includes/incomingDataMenu.html:19
 msgid "Open website"
-msgstr ""
+msgstr "Öppna hemsidan"
 
 #: www/views/bitpayCardIntro.html:34
 msgid "Order the BitPay Card"
-msgstr ""
+msgstr "Beställ BitPay-kortet"
 
 #: www/views/join.html:105
 #: www/views/join.html:96
@@ -2178,355 +2178,355 @@ msgstr ""
 #: www/views/tab-import-file.html:18
 #: www/views/tab-import-phrase.html:41
 msgid "Password"
-msgstr ""
+msgstr "Lösenord"
 
 #: src/js/controllers/import.js:98
 msgid "Password required. Make sure to enter your password in advanced options"
-msgstr ""
+msgstr "Lösenord krävs. Se till att du anger ditt lösenord i avancerade alternativ"
 
 #: www/views/join.html:33
 msgid "Paste invitation here"
-msgstr ""
+msgstr "Klistra inbjudan här"
 
 #: www/views/tab-import-file.html:13
 msgid "Paste the backup plain text code"
-msgstr ""
+msgstr "Klistra in textkoden för säkerhetskopiering"
 
 #: www/views/bitpayCardIntro.html:28
 msgid "Pay 0% fees to turn bitcoin into dollars."
-msgstr ""
+msgstr "Betala 0% avgifter för att ändra bitcoin till dollar."
 
 #: www/views/modals/paypro.html:18
 msgid "Pay To"
-msgstr ""
+msgstr "Betala till"
 
 #: src/js/controllers/modals/txpDetails.js:51
 #: www/views/modals/tx-status.html:33
 msgid "Payment Accepted"
-msgstr ""
+msgstr "Betalningen godkänd"
 
 #: www/views/confirm.html:25
 msgid "Payment Expires:"
-msgstr ""
+msgstr "Betalningen löper ut:"
 
 #: www/views/modals/txp-details.html:6
 msgid "Payment Proposal"
-msgstr ""
+msgstr "Betalningsförslaget"
 
 #: www/views/modals/tx-status.html:21
 msgid "Payment Proposal Created"
-msgstr ""
+msgstr "Betalningsförslaget skapat"
 
 #: www/views/tab-home.html:46
 msgid "Payment Proposals"
-msgstr ""
+msgstr "Betalningsförslag"
 
 #: src/js/services/payproService.js:32
 msgid "Payment Protocol Invalid"
-msgstr ""
+msgstr "Betalningsprotokollet ogiltigt"
 
 #: src/js/services/payproService.js:18
 msgid "Payment Protocol not supported on Chrome App"
-msgstr ""
+msgstr "Betalningsprotokollet stöds inte på Chrome App"
 
 #: www/views/includes/walletActivity.html:20
 msgid "Payment Received"
-msgstr ""
+msgstr "Betalningen mottagen"
 
 #: www/views/modals/tx-status.html:43
 #: www/views/modals/txp-details.html:43
 msgid "Payment Rejected"
-msgstr ""
+msgstr "Betalningen Avvisad"
 
 #: src/js/controllers/modals/txpDetails.js:44
 #: www/views/confirm.html:124
 #: www/views/includes/walletActivity.html:11
 #: www/views/modals/txp-details.html:42
 msgid "Payment Sent"
-msgstr ""
+msgstr "Betalningen skickad"
 
 #: www/views/includes/slideToAcceptSuccess.html:12
 msgid "Share this transaction"
-msgstr ""
+msgstr "Dela den här transaktionen"
 
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
-msgstr ""
+msgstr "Betalningen accepterad, men ännu inte utsänd"
 
 #: www/views/modals/txp-details.html:40
 msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
-msgstr ""
+msgstr "Betalningen accepterad. Den kommer att sändas av Glidera. I händelse av problem kan den raderas 6 timmar efter det var skapad."
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr ""
+msgstr "Betalningsadressen förändrades till det nya Bitcoin Cash adress format:"
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
-msgstr ""
+msgstr "Betalningsinformationen"
 
 #: www/views/modals/paypro.html:6
 msgid "Payment Request"
-msgstr ""
+msgstr "Betalningsbegäran"
 
 #: www/views/mercadoLibreCards.html:22
 #: www/views/modals/mercadolibre-card-details.html:39
 msgid "Pending"
-msgstr ""
+msgstr "Pågående"
 
 #: www/views/buy-bitcoin/purchase-history.html:44
 msgid "Awaiting Auth"
-msgstr ""
+msgstr "Pågående förslag"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
-msgstr ""
+msgstr "Ta bort denna plånbok permanent"
 
 #: www/views/preferencesDeleteWallet.html:13
 msgid "Permanently delete this wallet."
-msgstr ""
+msgstr "Personlig plånboken."
 
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
-msgstr ""
+msgstr "Personlig plånboken"
 
 #: src/js/services/profileService.js:419
 msgid "My {{coin}} Wallet"
-msgstr ""
+msgstr "Min {{coin}} plånbok"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
-msgstr ""
+msgstr "Var god skriv ner denna lösenordsfras noga."
 
 #: www/views/tab-scan.html:20
 msgid "Please connect a camera to get started."
-msgstr ""
+msgstr "Vänligen anslut kameran för att komma igång."
 
 #: src/js/controllers/import.js:278
 msgid "Please enter the recovery phrase"
-msgstr ""
+msgstr "Vänligen ange lösenordsfras"
 
 #: src/js/controllers/create.js:174
 #: src/js/controllers/join.js:139
 msgid "Please enter the wallet recovery phrase"
-msgstr ""
+msgstr "Vänligen ange plånbokens lösenordsfras"
 
 #: www/views/modals/pin.html:9
 msgid "Please enter your PIN"
-msgstr ""
+msgstr "Vänligen ange PIN kod"
 
 #: www/views/backup.html:53
 msgid "Please tap each word in the correct order."
-msgstr ""
+msgstr "Var god och tryck på varje ord i rätt ordning."
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
-msgstr ""
+msgstr "Uppgradera Copay för att utföra denna åtgärd"
 
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62
 msgid "Please wait"
-msgstr ""
+msgstr "Vänligen vänta"
 
 #: src/js/controllers/import.js:238
 msgid "Please, select your backup file"
-msgstr ""
+msgstr "Välj din säkerhetskopia"
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr ""
+msgstr "Pre-behörighet"
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
-msgstr ""
+msgstr "Inställningar"
 
 #: src/js/services/onGoingProcess.js:38
 msgid "Preparing addresses..."
-msgstr ""
+msgstr "Förbereder adresser..."
 
 #: src/js/controllers/export.js:198
 msgid "Preparing backup..."
-msgstr ""
+msgstr "Förbereder säkerhetskopiering..."
 
 #: src/js/routes.js:1264
 msgid "Press again to exit"
-msgstr ""
+msgstr "Tryck igen för att avsluta"
 
 #: src/js/services/feeService.js:11
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #: www/views/includes/incomingDataMenu.html:80
 msgid "Private Key"
-msgstr ""
+msgstr "Privat nyckel"
 
 #: src/js/controllers/paperWallet.js:136
 msgid "Private key encrypted. Enter password"
-msgstr ""
+msgstr "Privat nyckel krypterad. Ange lösenordet"
 
 #: src/js/services/bwcError.js:35
 msgid "Private key is encrypted, cannot sign"
-msgstr ""
+msgstr "Privat nyckel är krypterad, kan inte logga in"
 
 #: www/views/includes/walletActivity.html:51
 msgid "Proposal Accepted"
-msgstr ""
+msgstr "Betalningen godkänd"
 
 #: src/js/controllers/modals/txpDetails.js:61
 #: src/js/controllers/tx-details.js:78
 #: www/views/confirm.html:125
 msgid "Proposal Created"
-msgstr ""
+msgstr "Förslag skapat"
 
 #: www/views/includes/walletActivity.html:27
 msgid "Proposal Deleted"
-msgstr ""
+msgstr "Förslag Raderat"
 
 #: www/views/includes/walletActivity.html:35
 msgid "Proposal Rejected"
-msgstr ""
+msgstr "Betalningen Avvisad"
 
 #: www/views/walletDetails.html:189
 msgid "Proposals"
-msgstr ""
+msgstr "Betalningsförslag"
 
 #: src/js/controllers/buyAmazon.js:282
 msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
-msgstr ""
+msgstr "Köpbeloppet är begränsat till {{limitPerDay}} {{currency}} per dag"
 
 #: src/js/controllers/buyMercadoLibre.js:281
 msgid "Purchase amount must be a value between 50 and 2000"
-msgstr ""
+msgstr "Köpbeloppet måste vara ett värde mellan 50 och 2000"
 
 #: www/views/onboarding/notifications.html:3
 msgid "Push Notifications"
-msgstr ""
+msgstr "Push-notifikationer"
 
 #: www/views/preferencesNotifications.html:17
 msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
-msgstr ""
+msgstr "Push notifieringar för {{appName}} är för närvarande inaktiverade. Aktivera dem i appens Inställningar."
 
 #: www/views/export.html:17
 msgid "QR Code"
-msgstr ""
+msgstr "QR-kod"
 
 #: www/views/onboarding/disclaimer.html:13
 msgid "Quick review!"
-msgstr ""
+msgstr "Snabb översyn!"
 
 #: src/js/controllers/create.js:84
 #: src/js/controllers/join.js:68
 msgid "Random"
-msgstr ""
+msgstr "Slumpmässig"
 
 #: www/views/feedback/rateApp.html:14
 msgid "Rate on the app store"
-msgstr ""
+msgstr "Betygsätt i app store"
 
 #: www/views/addresses.html:52
 msgid "Read less"
-msgstr ""
+msgstr "Läs mindre"
 
 #: www/views/addresses.html:51
 msgid "Read more"
-msgstr ""
+msgstr "Läs mer"
 
 #: src/js/controllers/preferences.js:65
 #: src/js/controllers/tx-details.js:54
 msgid "Read more in our Wiki"
-msgstr ""
+msgstr "Läs mer i vår Wiki"
 
 #: src/js/controllers/cashScan.js:61
 msgid "Read only wallet"
-msgstr ""
+msgstr "Läs endast plånboken"
 
 #: www/views/tab-receive.html:3
 #: www/views/tabs.html:7
 msgid "Receive"
-msgstr ""
+msgstr "Ta emot"
 
 #: www/views/customAmount.html:44
 msgid "Receive in"
-msgstr ""
+msgstr "Ta emot i"
 
 #: www/views/includes/walletHistory.html:24
 #: www/views/tx-details.html:18
 msgid "Received"
-msgstr ""
+msgstr "Mottagen"
 
 #: src/js/controllers/tx-details.js:130
 msgid "Received Funds"
-msgstr ""
+msgstr "Mottagna medel"
 
 #: www/views/includes/walletHistory.html:57
 #: www/views/tx-details.html:24
 msgid "Receiving"
-msgstr ""
+msgstr "Tar emot"
 
 #: www/views/bitpayCard.html:60
 #: www/views/includes/walletHistory.html:3
 msgid "Recent"
-msgstr ""
+msgstr "Senaste"
 
 #: www/views/advancedSettings.html:21
 msgid "Recent Transaction Card"
-msgstr ""
+msgstr "Senaste Transaktionskortet"
 
 #: www/views/activity.html:4
 #: www/views/tab-home.html:58
 msgid "Recent Transactions"
-msgstr ""
+msgstr "Senaste Transaktionerna"
 
 #: www/views/amount.html:18
 #: www/views/tab-send.html:9
 msgid "Recipient"
-msgstr ""
+msgstr "Mottagare"
 
 #: www/views/modals/txp-details.html:62
 msgid "Recipients"
-msgstr ""
+msgstr "Mottagarna"
 
 #: www/views/import.html:12
 msgid "Recovery phrase"
-msgstr ""
+msgstr "Lösenordsfras"
 
 #: src/js/services/onGoingProcess.js:26
 msgid "Recreating Wallet..."
-msgstr ""
+msgstr "Nyskapa plånboken..."
 
 #: www/views/modals/mercadolibre-card-details.html:22
 msgid "Redeem now"
-msgstr ""
+msgstr "Inlösa nu"
 
 #: src/js/controllers/modals/txpDetails.js:63
 #: src/js/controllers/tx-details.js:80
 msgid "Rejected"
-msgstr ""
+msgstr "Avvisad"
 
 #: src/js/services/onGoingProcess.js:27
 msgid "Rejecting payment proposal"
-msgstr ""
+msgstr "Avvisa betalningsförslaget"
 
 #: www/views/preferencesAbout.html:9
 msgid "Release information"
-msgstr ""
+msgstr "Utsättnings Information"
 
 #: www/views/addressbook.view.html:36
 #: www/views/modals/mercadolibre-card-details.html:69
 msgid "Remove"
-msgstr ""
+msgstr "Ta bort"
 
 #: src/js/controllers/preferencesBitpayServices.js:7
 msgid "Remove BitPay Account?"
-msgstr ""
+msgstr "Lägg till BitPay-konto?"
 
 #: src/js/controllers/preferencesBitpayServices.js:19
 msgid "Remove BitPay Card?"
-msgstr ""
+msgstr "Ta bort BitPay-kort?"
 
 #: src/js/controllers/preferencesBitpayServices.js:8
 msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
-msgstr ""
+msgstr "Om du tar bort ditt BitPay-konto tas alla associerade BitPay-kontodata bort från den här enheten. Är du säker på att du vill ta bort ditt BitPay-konto ({{email}}) från den här enheten?"
 
 #: www/views/join.html:116
 #: www/views/join.html:124
@@ -2536,43 +2536,43 @@ msgstr ""
 #: www/views/tab-create-shared.html:123
 #: www/views/tab-export-file.html:17
 msgid "Repeat password"
-msgstr ""
+msgstr "Upprepa lösenord"
 
 #: www/views/tab-export-file.html:16
 msgid "Repeat the password"
-msgstr ""
+msgstr "Upprepa lösenord"
 
 #: www/views/preferences.html:56
 msgid "Request Fingerprint"
-msgstr ""
+msgstr "Begär fingeravtryck"
 
 #: www/views/tab-receive.html:45
 msgid "Request Specific amount"
-msgstr ""
+msgstr "Begär specifikt belopp"
 
 #: www/views/preferences.html:42
 msgid "Request Spending Password"
-msgstr ""
+msgstr "Begär spendera lösenord"
 
 #: www/views/tab-create-shared.html:44
 msgid "Required number of signatures"
-msgstr ""
+msgstr "Obligatoriskt antal signaturer"
 
 #: www/views/onboarding/welcome.html:9
 msgid "Restore from backup"
-msgstr ""
+msgstr "Återställ från säkerhetskopiering"
 
 #: src/js/services/onGoingProcess.js:29
 msgid "Retrieving inputs information"
-msgstr ""
+msgstr "Hämtar inmatningsinformation"
 
 #: src/js/controllers/onboarding/tour.js:56
 msgid "Retry"
-msgstr ""
+msgstr "Försök igen"
 
 #: www/views/tab-scan.html:23
 msgid "Retry Camera"
-msgstr ""
+msgstr "Försök igen kameran"
 
 #: www/views/addressbook.add.html:56
 #: www/views/includes/note.html:9
@@ -2580,290 +2580,290 @@ msgstr ""
 #: www/views/preferencesBwsUrl.html:25
 #: www/views/preferencesNotifications.html:46
 msgid "Save"
-msgstr ""
+msgstr "Spara"
 
 #: www/views/tab-scan.html:3
 #: www/views/tabs.html:11
 msgid "Scan"
-msgstr ""
+msgstr "Skanna"
 
 #: www/views/tab-scan.html:15
 msgid "Scan QR Codes"
-msgstr ""
+msgstr "Skanna QR-koder"
 
 #: www/views/addresses.html:31
 msgid "Scan addresses for funds"
-msgstr ""
+msgstr "Skanna adresser för medel"
 
 #: www/views/modals/fingerprintCheck.html:11
 msgid "Scan again"
-msgstr ""
+msgstr "Skanna igen"
 
 #: src/js/services/fingerprintService.js:56
 msgid "Scan your fingerprint please"
-msgstr ""
+msgstr "Skanna ditt fingeravtryck"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr ""
+msgstr "Skanna dina plånböcker för Bitcoin Cash"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
-msgstr ""
+msgstr "Skannar plånböckers medel..."
 
 #: www/views/includes/walletList.html:11
 msgid "Scanning funds..."
-msgstr ""
+msgstr "Skannar medel..."
 
 #: www/views/includes/screenshotWarningModal.html:7
 msgid "Screenshots are not secure"
-msgstr ""
+msgstr "Skärmdumpar är inte säkra"
 
 #: www/views/modals/search.html:6
 msgid "Search Transactions"
-msgstr ""
+msgstr "Sök transaktioner"
 
 #: www/views/tab-send.html:13
 msgid "Search or enter bitcoin address"
-msgstr ""
+msgstr "Sök eller ange bitcoinadress"
 
 #: src/js/controllers/tab-send.js:28
 msgid "Clipboard"
-msgstr ""
+msgstr "Urklipp"
 
 #: src/js/controllers/tab-send.js:29
 msgid "Your Clipboard is empty"
-msgstr ""
+msgstr "Urklippet är tomt"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
-msgstr ""
+msgstr "Sök transaktioner"
 
 #: www/views/preferencesAltCurrency.html:14
 msgid "Search your currency"
-msgstr ""
+msgstr "Sök i din valuta"
 
 #: www/views/preferences.html:30
 msgid "Security"
-msgstr ""
+msgstr "Säkerhet"
 
 #: www/views/modals/mercadolibre-card-details.html:64
 msgid "See invoice"
-msgstr ""
+msgstr "Se fakturan"
 
 #: www/views/tab-import-file.html:7
 msgid "Select a backup file"
-msgstr ""
+msgstr "Välj en säkerhetskopieringsfil"
 
 #: src/js/controllers/tab-receive.js:139
 msgid "Select a wallet"
-msgstr ""
+msgstr "Välj en plånbok"
 
 #: www/views/modals/paypro.html:38
 msgid "Self-signed Certificate"
-msgstr ""
+msgstr "Självundertecknad certifikat"
 
 #: src/js/services/onGoingProcess.js:41
 msgid "Selling Bitcoin..."
-msgstr ""
+msgstr "Säljer Bitcoin..."
 
 #: www/views/feedback/send.html:13
 #: www/views/feedback/send.html:43
 #: www/views/tab-send.html:3
 #: www/views/tabs.html:15
 msgid "Send"
-msgstr ""
+msgstr "Skicka"
 
 #: www/views/feedback/send.html:3
 #: www/views/tab-settings.html:29
 msgid "Send Feedback"
-msgstr ""
+msgstr "Skicka feedback"
 
 #: www/views/addressbook.view.html:31
 msgid "Send Money"
-msgstr ""
+msgstr "Skicka pengar"
 
 #: www/views/allAddresses.html:19
 msgid "Send addresses by email"
-msgstr ""
+msgstr "Skicka adresser via e-post"
 
 #: www/views/includes/logOptions.html:17
 #: www/views/tab-export-file.html:82
 msgid "Send by email"
-msgstr ""
+msgstr "Skicka via e-post"
 
 #: src/js/controllers/confirm.js:177
 #: src/js/controllers/tab-send.js:94
 msgid "Send from"
-msgstr ""
+msgstr "Skicka från"
 
 #: src/js/controllers/tab-send.js:77
 msgid "Send to"
-msgstr ""
+msgstr "Skicka till"
 
 #: www/views/tab-send.html:20
 msgid "Paste Clipboard"
-msgstr ""
+msgstr "Klistra in urklipp"
 
 #: www/views/tab-send.html:21
 msgid "Paste Address"
-msgstr ""
+msgstr "Klistra in adress"
 
 #: www/views/tab-send.html:27
 msgid "Transfer between wallets"
-msgstr ""
+msgstr "Överföring mellan plånböcker"
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
-msgstr ""
+msgstr "Scanna QR-kod"
 
 #: www/views/tab-send.html:46
 msgid "Send Bitcoin faster!"
-msgstr ""
+msgstr "Skicka Bitcoin snabbare!"
 
 #: www/views/tab-send.html:50
 msgid "Save frequently used addresses and send them Bitcoin in just one tap"
-msgstr ""
+msgstr "Spara ofta använda adresser och skicka dem Bitcoin i bara en klick"
 
 #: www/views/tab-send.html:55
 msgid "Add your first contact"
-msgstr ""
+msgstr "Lägg till din första kontakt"
 
 #: www/views/tab-send.html:65
 msgid "Your Bitcoin wallet is empty"
-msgstr ""
+msgstr "Din Bitcoin plånbok är tom"
 
 #: www/views/tab-send.html:69
 msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
-msgstr ""
+msgstr "För att komma igång, köp Bitcoin Cash (BCH) eller Bitcoin Core (BTC), eller dela din adress."
 
 #: www/views/tab-send.html:70
 msgid "You can receive bitcoin from any wallet or service."
-msgstr ""
+msgstr "Du kan få bitcoin från någon plånbok eller tjänst."
 
 #: www/views/tab-send.html:72
 #: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr ""
+msgstr "För att komma igång ska du skapa en bitcoin plånbok och få lite bitcoin."
 
 #: www/views/tab-send.html:74
 msgid "Buy Bitcoin now"
-msgstr ""
+msgstr "Köp Bitcoin nu"
 
 #: www/views/tab-send.html:76
 msgid "Show my address"
-msgstr ""
+msgstr "Visa min adress"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
-msgstr ""
+msgstr "Skicka maxbelopp"
 
 #: www/views/includes/incomingDataMenu.html:46
 msgid "Send payment to this address"
-msgstr ""
+msgstr "Skicka betalning till denna adress"
 
 #: www/views/feedback/rateApp.html:17
 msgid "Send us feedback instead"
-msgstr ""
+msgstr "Skicka oss feedback istället"
 
 #: www/views/confirm.html:15
 #: www/views/includes/txp.html:12
 #: www/views/modals/txp-details.html:19
 #: www/views/tx-details.html:23
 msgid "Sending"
-msgstr ""
+msgstr "Skickar"
 
 #: src/js/services/onGoingProcess.js:39
 msgid "Sending 2FA code..."
-msgstr ""
+msgstr "Skickar 2FA-kod..."
 
 #: src/js/services/onGoingProcess.js:36
 msgid "Sending feedback..."
-msgstr ""
+msgstr "Skickar feedback..."
 
 #: www/views/confirm.html:16
 msgid "Sending maximum amount"
-msgstr ""
+msgstr "Skickar maxbelopp"
 
 #: src/js/services/onGoingProcess.js:31
 msgid "Sending transaction"
-msgstr ""
+msgstr "Skickar transaktionen"
 
 #: src/js/controllers/confirm.js:545
 msgid "Sending {{amountStr}} from your {{name}} wallet"
-msgstr ""
+msgstr "Skickar {{amountStr}} från din {{name}} plånbok"
 
 #: www/views/includes/walletHistory.html:42
 #: www/views/modals/tx-status.html:9
 #: www/views/topup.html:100
 #: www/views/tx-details.html:17
 msgid "Sent"
-msgstr ""
+msgstr "Skickad"
 
 #: src/js/controllers/tx-details.js:129
 msgid "Sent Funds"
-msgstr ""
+msgstr "Skickade medel"
 
 #: src/js/services/bwcError.js:38
 msgid "Server response could not be verified"
-msgstr ""
+msgstr "Serverrespons kunde inte verifieras"
 
 #: src/js/controllers/buyAmazon.js:97
 #: src/js/controllers/buyMercadoLibre.js:97
 msgid "Service not available"
-msgstr ""
+msgstr "Tjänsten är inte tillgänglig"
 
 #: www/views/includes/homeIntegrations.html:3
 msgid "Services"
-msgstr ""
+msgstr "Tjänster"
 
 #: www/views/preferencesLogs.html:3
 msgid "Session Log"
-msgstr ""
+msgstr "Sessionslogg"
 
 #: www/views/preferencesAbout.html:35
 msgid "Session log"
-msgstr ""
+msgstr "Sessionslogg"
 
 #: www/views/tab-export-file.html:10
 msgid "Set up a password"
-msgstr ""
+msgstr "Ställ in ett lösenord"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Set your own fee in satoshis/byte"
-msgstr ""
+msgstr "Ange din egen avgift i satoshis/byte inställningar"
 
 #: www/views/tab-settings.html:3
 #: www/views/tabs.html:19
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: www/views/feedback/complete.html:17
 #: www/views/feedback/complete.html:26
 msgid "Share the love by inviting your friends."
-msgstr ""
+msgstr "Dela kärleken genom att bjuda in dina vänner."
 
 #: www/views/copayers.html:20
 msgid "Share this invitation with your copayers"
-msgstr ""
+msgstr "Dela den här inbjudan med dina medbetalare"
 
 #: src/js/controllers/feedback/complete.js:5
 #: www/views/tab-settings.html:36
 msgid "Share {{appName}}"
-msgstr ""
+msgstr "Dela {{appName}}"
 
 #: www/views/tab-import-hardware.html:24
 msgid "Shared Wallet"
-msgstr ""
+msgstr "Delad plånboken"
 
 #: www/views/preferencesExternal.html:34
 msgid "Show Recovery Phrase"
-msgstr ""
+msgstr "Visa lösenordsfrasen"
 
 #: www/views/tab-receive.html:34
 msgid "Show address"
-msgstr ""
+msgstr "Visa adress"
 
 #: www/views/join.html:48
 #: www/views/tab-create-personal.html:27
@@ -2873,321 +2873,321 @@ msgstr ""
 #: www/views/tab-import-hardware.html:30
 #: www/views/tab-import-phrase.html:35
 msgid "Show advanced options"
-msgstr ""
+msgstr "Visa avancerade alternativ"
 
 #: www/views/tab-send.html:37
 msgid "Show bitcoin address"
-msgstr ""
+msgstr "Visa bitcoinadress"
 
 #: www/views/tab-send.html:59
 msgid "Show more"
-msgstr ""
+msgstr "Visa mer"
 
 #: src/js/services/bwcError.js:104
 msgid "Signatures rejected by server"
-msgstr ""
+msgstr "Signaturer avvisade av servern"
 
 #: src/js/services/onGoingProcess.js:32
 msgid "Signing transaction"
-msgstr ""
+msgstr "Signeringstransaktion"
 
 #: www/views/onboarding/backupRequest.html:6
 msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
-msgstr ""
+msgstr "Eftersom du bara kontrollerar dina pengar behöver du spara din säkerhetsfras om denna app raderas."
 
 #: www/views/tab-create-personal.html:122
 #: www/views/tab-create-shared.html:151
 msgid "Single Address Wallet"
-msgstr ""
+msgstr "Plånboken med singel adress"
 
 #: www/views/onboarding/collectEmail.html:40
 #: www/views/onboarding/tour.html:11
 msgid "Skip"
-msgstr ""
+msgstr "Hoppa"
 
 #: src/js/controllers/confirm.js:371
 #: src/js/controllers/modals/txpDetails.js:47
 msgid "Slide to accept"
-msgstr ""
+msgstr "Klicka för att acceptera"
 
 #: www/views/buyAmazon.html:96
 msgid "Slide to buy"
-msgstr ""
+msgstr "Klicka för att köpa"
 
 #: src/js/controllers/confirm.js:365
 msgid "Slide to pay"
-msgstr ""
+msgstr "Klicka för att betala"
 
 #: src/js/controllers/confirm.js:377
 #: src/js/controllers/modals/txpDetails.js:40
 msgid "Slide to send"
-msgstr ""
+msgstr "Klicka för att skicka"
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr ""
+msgstr "Vissa av dina plånböcker stöds inte Bitcoin Cash. Du kan försöka få tillgång till BCH-medel från dessa plånböcker med hjälp av"
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
 msgid "Specify Recovery Phrase..."
-msgstr ""
+msgstr "Ange lösenordsfras..."
 
 #: src/js/services/bwcError.js:92
 msgid "Spend proposal is not accepted"
-msgstr ""
+msgstr "Spendera förslag accepteras inte"
 
 #: src/js/services/bwcError.js:95
 msgid "Spend proposal not found"
-msgstr ""
+msgstr "Spendera förslag hittades inte"
 
 #: src/js/services/bwcError.js:137
 msgid "Spending Password needed"
-msgstr ""
+msgstr "Betalningslösenord behövs"
 
 #: www/views/walletDetails.html:173
 msgid "Spending this balance will need significant Bitcoin network fees"
-msgstr ""
+msgstr "För att spendera det här balansen behövs betydande Bitcoin nätverksavgifter"
 
 #: www/views/tab-send.html:28
 msgid "Start sending bitcoin"
-msgstr ""
+msgstr "Börja skicka bitcoin"
 
 #: www/views/lockSetup.html:3
 msgid "Startup Lock"
-msgstr ""
+msgstr "Uppstart låst"
 
 #: www/views/mercadoLibreCards.html:21
 #: www/views/modals/mercadolibre-card-details.html:42
 msgid "Still pending"
-msgstr ""
+msgstr "Väntar fortfarande"
 
 #: www/views/topup.html:101
 msgid "Success"
-msgstr ""
+msgstr "Framgång"
 
 #: src/js/services/feeService.js:14
 msgid "Super Economy"
-msgstr ""
+msgstr "Super ekonomi"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr ""
+msgstr "Bitcoin Cash stöd"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
-msgstr ""
+msgstr "Sopa"
 
 #: www/views/includes/incomingDataMenu.html:89
 msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr ""
+msgstr "Sopa pappersplånboken"
 
 #: www/views/paperWallet.html:3
 msgctxt "Page title"
 msgid "Sweep Paper Wallet"
-msgstr ""
+msgstr "Sopa pappersplånboken"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
-msgstr ""
+msgstr "Sopar plånboken..."
 
 #: www/views/preferencesDeleteWallet.html:16
 msgid "THIS ACTION CANNOT BE REVERSED"
-msgstr ""
+msgstr "DENNA ÅTGÄRD KAN INTE REVERSERAS"
 
 #: www/views/onboarding/welcome.html:5
 msgid "Take control of your money,<br>get started with bitcoin."
-msgstr ""
+msgstr "Ta kontroll över dina pengar,<br>börja med bitcoin."
 
 #: www/views/walletDetails.html:132
 #: www/views/walletDetails.html:52
 msgid "Tap and hold to show"
-msgstr ""
+msgstr "Tryck och håll för att visa"
 
 #: www/views/includes/walletInfo.html:3
 msgid "Tap to recreate"
-msgstr ""
+msgstr "Tryck för att återskapa"
 
 #: www/views/includes/walletInfo.html:4
 msgid "Tap to retry"
-msgstr ""
+msgstr "Klicka för att försöka igen"
 
 #: www/views/termsOfUse.html:3
 msgid "Terms Of Use"
-msgstr ""
+msgstr "Användningsvillkor"
 
 #: www/views/modals/terms.html:3
 #: www/views/onboarding/disclaimer.html:29
 #: www/views/onboarding/disclaimer.html:43
 #: www/views/preferencesAbout.html:30
 msgid "Terms of Use"
-msgstr ""
+msgstr "Användningsvillkor"
 
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
 msgid "Testnet"
-msgstr ""
+msgstr "Testnet"
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: src/js/controllers/feedback/send.js:27
 #: src/js/controllers/feedback/send.js:76
 #: www/views/feedback/complete.html:20
 #: www/views/feedback/rateApp.html:4
 msgid "Thank you!"
-msgstr ""
+msgstr "Tack!"
 
 #: src/js/controllers/feedback/send.js:72
 msgid "Thanks!"
-msgstr ""
+msgstr "Tack!"
 
 #: src/js/controllers/feedback/send.js:73
 msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
-msgstr ""
+msgstr "Det är spännande att höra. Vi skulle gärna tjäna den femte stjärnan från dig - Var får vi förbättra?"
 
 #: src/js/services/ledger.js:152
 msgid "The Ledger Chrome application is not installed"
-msgstr ""
+msgstr "Ledger Chrome-programmet är inte installerat"
 
 #: www/views/modals/wallet-balance.html:55
 msgid "The amount of bitcoin immediately spendable from this wallet."
-msgstr ""
+msgstr "Mängden bitcoin som kan spenderas direkt från denna plånbok."
 
 #: www/views/modals/wallet-balance.html:93
 msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
-msgstr ""
+msgstr "Mängden bitcoin lagrat i denna plånbok som tilldelas som input till dina pågående transaktionsförslag. Beloppet bestäms med oanvända transaktionsutgångar som är förknippade med denna plånbok och kan vara mer än de faktiska beloppen som är förknippade med pågående transaktionsförslag."
 
 #: www/views/modals/wallet-balance.html:74
 msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
-msgstr ""
+msgstr "Mängden bitcoin lagrad i denna plånbok med mindre än 1 blockchain-bekräftelse."
 
 #: www/views/tab-import-phrase.html:5
 msgid "The derivation path"
-msgstr ""
+msgstr "Derivationsväg"
 
 #: www/views/onboarding/tour.html:37
 msgid "The exchange rate changes with the market."
-msgstr ""
+msgstr "Växelkursen förändras med marknaden."
 
 #: www/views/preferencesFee.html:12
 msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
-msgstr ""
+msgstr "Ju högre avgiften desto mer troligt att miner ska inkludera den transaktionen i ett block. Nuvarande avgifter bestäms utifrån nätverksbelastning och den valda policyn."
 
 #: www/views/addresses.html:51
 msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
-msgstr ""
+msgstr "Det maximala antalet oanvända adresser i följd (20) har uppnåtts. När en av dina oanvända adresser mottar en betalning genereras en ny adress och visas på fliken Mottagning."
 
 #: src/js/controllers/onboarding/terms.js:21
 msgid "The official English Terms of Service are available on the BitPay website."
-msgstr ""
+msgstr "De officiella engelska användningsvillkor finns på BitPays webbplats."
 
 #: www/views/tab-import-phrase.html:4
 msgid "The password of the recovery phrase (if set)"
-msgstr ""
+msgstr "Lösenordet för återställningsfrasen (om den är inställd)"
 
 #: src/js/services/walletService.js:1139
 msgid "The payment was created but could not be completed. Please try again from home screen"
-msgstr ""
+msgstr "Betalningen skapades men kunde inte slutföras. Vänligen försök igen från startskärmen"
 
 #: www/views/modals/txp-details.html:26
 msgid "The payment was removed by creator"
-msgstr ""
+msgstr "Betalningen togs bort av skaparen"
 
 #: www/views/join.html:91
 #: www/views/tab-create-personal.html:63
 #: www/views/tab-create-shared.html:92
 #: www/views/tab-import-phrase.html:43
 msgid "The recovery phrase could require a password to be imported"
-msgstr ""
+msgstr "Återställningsfrasen kan kräva ett lösenord som ska importeras"
 
 #: src/js/services/bwcError.js:56
 msgid "The request could not be understood by the server"
-msgstr ""
+msgstr "Förfrågan kunde inte förstås av servern"
 
 #: www/views/addresses.html:52
 msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
-msgstr ""
+msgstr "Återställingsprocessen slutar när 20 adresser genereras i en rad som inte innehåller några pengar. För att generera flera adresser på ett säkert sätt, gör en betalning till en av de oanvända adresserna som redan har genererats."
 
 #: src/js/services/bwcError.js:98
 msgid "The spend proposal is not pending"
-msgstr ""
+msgstr "Utbetalningsförslaget är inte i avvaktan på"
 
 #: www/views/modals/wallet-balance.html:36
 msgid "The total amount of bitcoin stored in this wallet."
-msgstr ""
+msgstr "Den totala mängden bitcoin lagrad i denna plånbok."
 
 #: www/views/preferencesHistory.html:27
 msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
-msgstr ""
+msgstr "Transaktionshistoria och varje ny inkommande transaktion cachas i appen Den här funktionen rengör det här och synkroniseras igen från servern"
 
 #: www/views/tab-import-phrase.html:6
 msgid "The wallet service URL"
-msgstr ""
+msgstr "Plånbokens tjänst URL"
 
 #: src/js/controllers/tab-home.js:38
 msgid "There is a new version of {{appName}} available"
-msgstr ""
+msgstr "En ny version av {{appName}} är tillgänglig"
 
 #: src/js/controllers/import.js:229
 #: src/js/controllers/import.js:254
 #: src/js/controllers/import.js:335
 msgid "There is an error in the form"
-msgstr ""
+msgstr "Det finns ett fel i formuläret"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 msgid "There's obviously something we're doing wrong."
-msgstr ""
+msgstr "Det är klart att vi gör nogånting fel."
 
 #: src/js/controllers/feedback/rateCard.js:38
 msgid "This app is fantastic!"
-msgstr ""
+msgstr "Den här appen är fantastisk!"
 
 #: www/views/onboarding/tour.html:47
 msgid "This app stores your bitcoin with cutting-edge security."
-msgstr ""
+msgstr "Denna app lagrar din bitcoin med högteknologisk säkerhet."
 
 #: src/js/controllers/confirm.js:523
 msgid "This bitcoin payment request has expired."
-msgstr ""
+msgstr "Denna begäran om bitcoin-betalning har löpt ut."
 
 #: www/views/review.html:55
 msgid "Payment expires:"
-msgstr ""
+msgstr "Betalningen löper ut:"
 
 #: www/views/review.html:56
 msgid "Payment request has expired"
-msgstr ""
+msgstr "Betalningsbegäran har löpt ut"
 
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
 msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
-msgstr ""
+msgstr "Det här lösenordet kan inte återställas. Om lösenordet är förlorat finns det inget sätt att återställa dina pengar."
 
 #: www/views/backup.html:31
 msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
-msgstr ""
+msgstr "Den här återställningsfrasen var skapad med ett lösenord För att återställa denna plånbok krävs både återställningsfrasen och lösenordet."
 
 #: www/views/tx-details.html:91
 msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
-msgstr ""
+msgstr "Detta transaktionsbelopp är för litet jämfört med nuvarande Bitcoin-nätverksavgifter. Om du spenderar dessa medel behöver du en Bitcoin nätverksavgiftskostnad som kan jämföras med de medlen."
 
 #: www/views/tx-details.html:87
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
-msgstr ""
+msgstr "Denna transaktion kan ta lång tid att bekräfta eller kan tappas på grund av de låga avgifterna som avsändaren bestämmer"
 
 #: www/views/walletDetails.html:109
 #: www/views/walletDetails.html:29
 msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
-msgstr ""
+msgstr "Denna plånbok är inte registrerad på den här Bitcore Wallet-tjänsten (BWS). Du kan återskapa den från den lokala informationen."
 
 #: www/views/modals/txp-details.html:136
 #: www/views/tx-details.html:121
 msgid "Timeline"
-msgstr ""
+msgstr "Tidslinje"
 
 #: www/views/confirm.html:31
 #: www/views/includes/output.html:2
@@ -3196,388 +3196,388 @@ msgstr ""
 #: www/views/tx-details.html:41
 #: www/views/tx-details.html:53
 msgid "To"
-msgstr ""
+msgstr "Till"
 
 #: www/views/tab-send.html:32
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr ""
+msgstr "För att börja, köp bitcoin eller dela din adress. Du kan få bitcoin från någon plånbok eller tjänst."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
-msgstr ""
+msgstr "Till {{reason}}: måste du först lägga till ditt BitPay-konto - {{email}}"
 
 #: src/js/services/onGoingProcess.js:48
 msgid "Top up in progress..."
-msgstr ""
+msgstr "Fylls på pågår..."
 
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
-msgstr ""
+msgstr "Fylls på {{amountStr}} till betalkort ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "Starta SideShift AI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
-msgstr ""
+msgstr "Byt din BTC till BCH om några minuter."
 
 #: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
-msgstr ""
+msgstr "För att starta processen måste du lägga till pengar i din plånbok."
 
 #: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
-msgstr ""
+msgstr "Processen är snabb och du får den utbytta beloppet i din plånbok."
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Denna tjänst tillhandahålls av den tredje parten SideShift AI, som tar ut en liten avgift för tjänsten. Avgiften visas innan du börjar transaktionen."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
 #: www/views/modals/wallet-balance.html:23
 #: www/views/topup.html:70
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: www/views/walletDetails.html:196
 msgid "Total Locked Balance"
-msgstr ""
+msgstr "Total låst balans"
 
 #: www/views/tab-create-shared.html:35
 msgid "Total number of copayers"
-msgstr ""
+msgstr "Totalt antal medbetalare"
 
 #: www/views/addresses.html:81
 msgid "Total wallet inputs"
-msgstr ""
+msgstr "Totala plånboks input"
 
 #: src/js/services/fingerprintService.js:63
 #: src/js/services/fingerprintService.js:68
 msgid "Touch ID Failed"
-msgstr ""
+msgstr "Touch ID misslyckades"
 
 #: src/js/controllers/tx-details.js:12
 msgid "Transaction"
-msgstr ""
+msgstr "Transaktion"
 
 #: www/views/confirm.html:126
 msgid "Transaction Created"
-msgstr ""
+msgstr "Transaktion skapad"
 
 #: www/views/preferencesAdvanced.html:29
 #: www/views/preferencesHistory.html:3
 msgid "Transaction History"
-msgstr ""
+msgstr "Transaktionshistoria"
 
 #: src/js/services/bwcError.js:83
 msgid "Transaction already broadcasted"
-msgstr ""
+msgstr "Transaktion var redan sänt"
 
 #: src/js/controllers/buyAmazon.js:308
 #: src/js/controllers/buyMercadoLibre.js:301
 #: src/js/controllers/topup.js:281
 msgid "Transaction has not been created"
-msgstr ""
+msgstr "Transaktionen har inte skapats"
 
 #: www/views/topup.html:104
 msgid "Transaction initiated"
-msgstr ""
+msgstr "Transaktion initierad"
 
 #: src/js/controllers/tx-details.js:119
 msgid "Transaction not available at this time"
-msgstr ""
+msgstr "Transaktionen är inte tillgänglig just nu"
 
 #: src/js/controllers/activity.js:45
 #: src/js/controllers/tab-home.js:174
 msgid "Transaction not found"
-msgstr ""
+msgstr "Transaktionen hittades inte"
 
 #: www/views/modals/chooseFeeLevel.html:55
 msgid "Transactions without fee are not supported."
-msgstr ""
+msgstr "Transaktioner utan avgift stöds inte."
 
 #: src/js/controllers/paperWallet.js:109
 msgid "Transfer to"
-msgstr ""
+msgstr "Överföra till"
 
 #: www/views/tab-send.html:67
 msgid "Transfer to Wallet"
-msgstr ""
+msgstr "Överför till plånboken"
 
 #: www/views/modals/pin.html:13
 msgid "Try again in {{expires}}"
-msgstr ""
+msgstr "Försök igen {{expires}}"
 
 #: www/views/bitpayCardIntro.html:18
 msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
-msgstr ""
+msgstr "Omvandla bitcoin i dollar, svep överallt Visa <sup>&reg;</sup> accepteras."
 
 #: www/views/tab-import-phrase.html:17
 msgid "Type the Recovery Phrase (usually 12 words)"
-msgstr ""
+msgstr "Skriv återställningsfrasen (vanligtvis 12 ord)"
 
 #: src/js/controllers/backup.js:75
 msgid "Uh oh..."
-msgstr ""
+msgstr "Hoppsan..."
 
 #: www/views/tx-details.html:100
 msgid "Unconfirmed"
-msgstr ""
+msgstr "Obekräftad"
 
 #: www/views/walletDetails.html:190
 msgid "Unsent transactions"
-msgstr ""
+msgstr "Oskickades transaktioner"
 
 #: www/views/addresses.html:39
 msgid "Unused Addresses"
-msgstr ""
+msgstr "Oanvända adresser"
 
 #: www/views/addresses.html:50
 msgid "Unused Addresses Limit"
-msgstr ""
+msgstr "Oanvända adresser begränsas"
 
 #: src/js/controllers/tab-home.js:146
 msgid "Update Available"
-msgstr ""
+msgstr "Uppdatering tillgänglig"
 
 #: www/views/proposals.html:14
 msgid "Updating pending proposals. Please stand by"
-msgstr ""
+msgstr "Uppdatering av pågående förslag Vänligen vänta"
 
 #: www/views/walletDetails.html:217
 msgid "Updating transaction history. Please stand by."
-msgstr ""
+msgstr "Uppdaterar transaktionshistoria Vänligen vänta."
 
 #: www/views/activity.html:14
 msgid "Updating... Please stand by"
-msgstr ""
+msgstr "Uppdatering... Vänligen vänta"
 
 #: src/js/services/feeService.js:10
 msgid "Urgent"
-msgstr ""
+msgstr "Omedelbart"
 
 #: www/views/advancedSettings.html:12
 msgid "Use Unconfirmed Funds"
-msgstr ""
+msgstr "Använd okontrollerade medel"
 
 #: src/js/services/onGoingProcess.js:34
 msgid "Validating recovery phrase..."
-msgstr ""
+msgstr "Validerar återställningsfrasen..."
 
 #: www/views/modals/fingerprintCheck.html:4
 msgid "Verify your identity"
-msgstr ""
+msgstr "Verifiera din identitet"
 
 #: www/views/preferencesAbout.html:14
 #: www/views/preferencesExternal.html:25
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: www/views/tab-export-file.html:69
 msgid "View"
-msgstr ""
+msgstr "Kolla"
 
 #: www/views/addresses.html:34
 msgid "View All Addresses"
-msgstr ""
+msgstr "Kolla alla adresser"
 
 #: src/js/controllers/onboarding/terms.js:20
 msgid "View Terms of Service"
-msgstr ""
+msgstr "Kolla användningsvillkor"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr ""
+msgstr "Kolla transaktionen på Explorer.Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
-msgstr ""
+msgstr "Kolla uppdatering"
 
 #: www/views/tx-details.html:147
 msgid "View on blockchain"
-msgstr ""
+msgstr "Kolla på blockchain"
 
 #: www/views/mercadoLibre.html:26
 msgid "Visit mercadolivre.com.br &rarr;"
-msgstr ""
+msgstr "Besök mercadolivre.com.br &rarr;"
 
 #: www/views/walletDetails.html:182
 msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
-msgstr ""
+msgstr "VARNING: Nyckelutdraget fungerar inte på den här enheten/plånboken. Åtgärder kan inte utföras på denna plånbok."
 
 #: www/views/tab-export-file.html:45
 msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr ""
+msgstr "VARNING: Ej inkluderad nyckeln får kontrollera plånbokens balans, transaktionshistorik och skapa utgiftsförslag från exporten. Men tillåter inte att godkänna (underteckna) förslag, så <b> pengar kommer inte att vara tillgängliga från exporten </b>."
 
 #: www/views/tab-export-file.html:36
 msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr ""
+msgstr "VARNING: Den privata nyckeln till denna plånbok är inte tillgänglig. Exporten tillåter att kontrollera plånbokensbalans, transaktionshistoria och skapa betalningsförslag från exporten. Men tillåter inte att godkänna (underteckna) förslag, så <b> pengar kommer inte att vara tillgängliga från exporten </b>."
 
 #: www/views/modals/paypro.html:42
 msgid "WARNING: UNTRUSTED CERTIFICATE"
-msgstr ""
+msgstr "VARNING: OSÄKERT CERTIFIKAT"
 
 #: src/js/services/onGoingProcess.js:15
 msgid "Waiting for Ledger..."
-msgstr ""
+msgstr "Väntar på Ledger..."
 
 #: src/js/services/onGoingProcess.js:16
 msgid "Waiting for Trezor..."
-msgstr ""
+msgstr "Väntar på Trezor..."
 
 #: www/views/copayers.html:48
 msgid "Waiting for copayers"
-msgstr ""
+msgstr "Väntar på medbetalare"
 
 #: www/views/copayers.html:53
 msgid "Waiting..."
-msgstr ""
+msgstr "Väntar..."
 
 #: www/views/addresses.html:3
 #: www/views/preferencesAdvanced.html:17
 msgid "Wallet Addresses"
-msgstr ""
+msgstr "Plånbokensadresser"
 
 #: www/views/preferencesColor.html:4
 msgid "Wallet Color"
-msgstr ""
+msgstr "Plånbokensfärg"
 
 #: www/views/preferencesInformation.html:29
 msgid "Wallet Configuration (m-n)"
-msgstr ""
+msgstr "Plånbokenskonfiguration (m-n)"
 
 #: www/views/onboarding/collectEmail.html:5
 msgid "Wallet Created"
-msgstr ""
+msgstr "Plånboken skapad"
 
 #: www/views/preferencesInformation.html:23
 msgid "Wallet Id"
-msgstr ""
+msgstr "Plånbokens Id"
 
 #: www/views/preferencesAdvanced.html:13
 #: www/views/preferencesInformation.html:3
 msgid "Wallet Information"
-msgstr ""
+msgstr "Plånbokens Information"
 
 #: www/views/addresses.html:76
 msgid "Wallet Inputs"
-msgstr ""
+msgstr "Plånbokens ingångar"
 
 #: www/views/join.html:26
 msgid "Wallet Invitation"
-msgstr ""
+msgstr "Plånboken Inbjudan"
 
 #: www/views/join.html:60
 #: www/views/tab-create-personal.html:38
 #: www/views/tab-create-shared.html:67
 msgid "Wallet Key"
-msgstr ""
+msgstr "Plånbokens nyckel"
 
 #: www/views/preferencesAlias.html:4
 msgid "Wallet Name"
-msgstr ""
+msgstr "Plånbokensnamn"
 
 #: www/views/preferencesInformation.html:11
 msgid "Wallet Name (at creation)"
-msgstr ""
+msgstr "Plånbokens namn (vid skapandet)"
 
 #: www/views/preferencesInformation.html:35
 msgid "Wallet Network"
-msgstr ""
+msgstr "Plånbokens nätverk"
 
 #: www/views/join.html:77
 #: www/views/tab-create-personal.html:50
 #: www/views/tab-create-shared.html:79
 msgid "Wallet Recovery Phrase"
-msgstr ""
+msgstr "Plånbokens återhämtningsfras"
 
 #: src/js/services/bwcError.js:26
 msgid "Wallet Recovery Phrase is invalid"
-msgstr ""
+msgstr "Plånbokens återhämtningsfras är ogiltig"
 
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr ""
+msgstr "Plånbokstjänst URL"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
-msgstr ""
+msgstr "Plånboksinställningar"
 
 #: www/views/tab-import-hardware.html:11
 #: www/views/tab-import-phrase.html:61
 msgid "Wallet Type"
-msgstr ""
+msgstr "Plånbokenstyp"
 
 #: src/js/services/bwcError.js:59
 msgid "Wallet already exists"
-msgstr ""
+msgstr "Plånboken existerar redan"
 
 #: src/js/services/profileService.js:516
 msgid "Wallet already in {{appName}}"
-msgstr ""
+msgstr "Plånboken redan i {{appName}}"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
-msgstr ""
+msgstr "Plånboken skapad"
 
 #: www/views/copayers.html:58
 msgid "Wallet incomplete and broken"
-msgstr ""
+msgstr "Plånboken ofullständig och skadad"
 
 #: src/js/services/bwcError.js:65
 msgid "Wallet is full"
-msgstr ""
+msgstr "Plånboken är full"
 
 #: src/js/services/bwcError.js:125
 msgid "Wallet is locked"
-msgstr ""
+msgstr "Plånboken är låst"
 
 #: src/js/services/bwcError.js:128
 msgid "Wallet is not complete"
-msgstr ""
+msgstr "Plånboken är inte fullständig"
 
 #: www/views/tab-create-personal.html:12
 #: www/views/tab-create-shared.html:12
 msgid "Wallet name"
-msgstr ""
+msgstr "Plånbokensnamn"
 
 #: src/js/services/bwcError.js:131
 msgid "Wallet needs backup"
-msgstr ""
+msgstr "Plånboken behöver säkerhetskopiering"
 
 #: www/views/tab-receive.html:59
 #: www/views/walletDetails.html:169
 msgid "Wallet not backed up"
-msgstr ""
+msgstr "Plånboken har inte säkerhetskopierats"
 
 #: src/js/services/bwcError.js:68
 msgid "Wallet not found"
-msgstr ""
+msgstr "Plånboken hittades inte"
 
 #: src/js/controllers/cashScan.js:81
 #: src/js/controllers/tab-home.js:230
 msgid "Wallet not registered"
-msgstr ""
+msgstr "Plånboken är inte registrerad"
 
 #: src/js/services/bwcError.js:29
 msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
-msgstr ""
+msgstr "Plånboken är inte registrerad i plånbokstjänsten. Återskapa det från \"Skapa plånbok\" med \"Avancerade alternativ\" för att ställa in din återställningsfras"
 
 #: www/views/backup.html:12
 msgid "Wallet recovery phrase not available"
-msgstr ""
+msgstr "Plånbokens återställningsfras är inte tillgänglig"
 
 #: src/js/services/bwcError.js:50
 msgid "Wallet service not found"
-msgstr ""
+msgstr "Wallet-tjänsten hittades inte"
 
 #: www/views/tab-home.html:69
 msgid "Wallets"
-msgstr ""
+msgstr "Plånböcker"
 
 #: src/js/controllers/addressbookView.js:36
 #: src/js/controllers/modals/txpDetails.js:153
@@ -3586,177 +3586,177 @@ msgstr ""
 #: src/js/controllers/preferencesExternal.js:14
 #: www/views/preferencesDeleteWallet.html:11
 msgid "Warning!"
-msgstr ""
+msgstr "Varning!"
 
 #: www/views/modals/txp-details.html:47
 msgid "Warning: this transaction has unconfirmed inputs"
-msgstr ""
+msgstr "Varning: Denna transaktion har okontrollerade ingångar"
 
 #: src/js/controllers/onboarding/backupRequest.js:17
 msgid "Watch out!"
-msgstr ""
+msgstr "Akta dig!"
 
 #: src/js/controllers/feedback/send.js:69
 msgid "We'd love to do better."
-msgstr ""
+msgstr "Vi skulle gärna göra bättre."
 
 #: www/views/backup.html:35
 msgid "We'll confirm on the next screen."
-msgstr ""
+msgstr "Vi bekräftar på nästa skärm."
 
 #: src/js/controllers/feedback/send.js:77
 msgid "We're always looking for ways to improve {{appName}}."
-msgstr ""
+msgstr "Vi letar alltid efter sätt att förbättra {{appName}}."
 
 #: src/js/controllers/feedback/send.js:83
 msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
-msgstr ""
+msgstr "Vi letar alltid efter sätt att förbättra {{appName}}. Vad ska vi förbättra?"
 
 #: www/views/includes/incomingDataMenu.html:6
 msgid "Website"
-msgstr ""
+msgstr "Hemsida"
 
 #: www/views/preferencesLanguage.html:16
 msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
-msgstr ""
+msgstr "Vi letar alltid efter översättare! Du kan göra korrigeringar eller hjälp att göra den här appen tillgänglig på ditt modersmål genom att gå med i vår community på Crowdin."
 
 #: www/views/preferencesAlias.html:11
 msgid "What do you call this wallet?"
-msgstr ""
+msgstr "Vad kallar du den här plånboken?"
 
 #: www/views/preferencesAlias.html:12
 msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
-msgstr ""
+msgstr "När den här plånboken skapades kallades den för &ldquo;{{walletName}}&rdquo;. Du kan ändra namnet som visas på den här enheten nedan."
 
 #: www/views/onboarding/collectEmail.html:10
 msgid "Where would you like to receive email notifications about payments?"
-msgstr ""
+msgstr "Var vill du få e-mail meddelanden om betalningar?"
 
 #: www/views/addresses.html:19
 msgid "Why?"
-msgstr ""
+msgstr "Varför?"
 
 #: www/views/feedback/rateApp.html:10
 msgid "Would you be willing to rate {{appName}} in the app store?"
-msgstr ""
+msgstr "Vill du betygsätta {{appName}} i appbutiken?"
 
 #: www/views/onboarding/notifications.html:4
 msgid "Would you like to receive push notifications about payments?"
-msgstr ""
+msgstr "Vill du få push notifieringar om betalningar?"
 
 #: src/js/controllers/import.js:288
 msgid "Wrong number of recovery words:"
-msgstr ""
+msgstr "Fel antal återställningsord:"
 
 #: src/js/services/bwcError.js:140
 msgid "Wrong spending password"
-msgstr ""
+msgstr "Felaktig lösenord"
 
 #: www/views/modals/confirmation.html:7
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: src/js/controllers/onboarding/backupRequest.js:25
 msgid "Yes, skip"
-msgstr ""
+msgstr "Ja, hoppa över"
 
 #: src/js/controllers/onboarding/backupRequest.js:24
 msgid "You can create a backup later from your wallet settings."
-msgstr ""
+msgstr "Du kan skapa en säkerhetskopia senare från dina plånboksinställningar."
 
 #: src/js/controllers/preferencesLanguage.js:12
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
-msgstr ""
+msgstr "Du kan göra bidrag genom att anmäla dig till vår Crowdin. Vi ser fram emot att höra från dig!"
 
 #: www/views/tab-scan.html:16
 msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr ""
+msgstr "Du kan skanna bitcoinadresser, betalningsförfrågningar, pappersplånböcker och mycket mer."
 
 #: src/js/controllers/preferencesAbout.js:14
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
-msgstr ""
+msgstr "Du kan se de senaste utvecklingen och bidra till denna open source-app genom att besöka vårt projekt på GitHub."
 
 #: www/views/onboarding/tour.html:19
 msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr ""
+msgstr "Du kan spendera bitcoin på miljontals webbplatser och butiker över hela världen."
 
 #: www/views/backup.html:15
 msgid "You can still export it from Advanced &gt; Export."
-msgstr ""
+msgstr "Du kan fortfarande exportera det från Avancerat &gt; Exportera."
 
 #: www/views/onboarding/tour.html:32
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
-msgstr ""
+msgstr "Du kan handla det för andra valutor som amerikanska dollar, euro eller pund."
 
 #: www/views/onboarding/tour.html:46
 msgid "You control your bitcoin."
-msgstr ""
+msgstr "Du kontrollerar ditt bitcoin."
 
 #: www/views/modals/chooseFeeLevel.html:64
 msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
-msgstr ""
+msgstr "Du bör inte ange en avgift högre än {{maxFeeRecommended}} satoshis / byte."
 
 #: www/views/modals/bitpay-card-confirmation.html:5
 msgid "You will need to log back for fill in your BitPay Card."
-msgstr ""
+msgstr "Du måste logga in för att fylla i ditt BitPay-kort."
 
 #: www/views/preferencesNotifications.html:34
 msgid "You'll receive email notifications about payments sent and received from your wallets."
-msgstr ""
+msgstr "Du får e-postmeddelanden om betalningar som skickas och tas emot från dina plånböcker."
 
 #: www/views/bitpayCard.html:50
 msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
-msgstr ""
+msgstr "Ditt BitPay-kort är klart. Lägg till pengar på ditt kort för att börja använda det i butiker och bankomater över hela världen."
 
 #: www/views/mercadoLibre.html:57
 #: www/views/mercadoLibreCards.html:6
 msgid "Your Gift Cards"
-msgstr ""
+msgstr "Dina presentkort"
 
 #: www/views/includes/confirmBackupPopup.html:6
 msgid "Your bitcoin wallet is backed up!"
-msgstr ""
+msgstr "Din bitcoin plånbok är säkerhetskopierad!"
 
 #: www/views/tab-home.html:36
 msgid "Your bitcoin wallet is ready!"
-msgstr ""
+msgstr "Din bitcoin plånbok är klar!"
 
 #: www/views/modals/chooseFeeLevel.html:61
 msgid "Your fee is lower than recommended."
-msgstr ""
+msgstr "Din avgift är lägre än rekommenderad."
 
 #: www/views/feedback/send.html:42
 msgid "Your ideas, feedback, or comments"
-msgstr ""
+msgstr "Dina idéer, feedback eller kommentarer"
 
 #: www/views/tab-create-shared.html:22
 msgid "Your name"
-msgstr ""
+msgstr "Ditt namn"
 
 #: www/views/join.html:16
 msgid "Your nickname"
-msgstr ""
+msgstr "Ditt smeknamn"
 
 #: www/views/tab-export-file.html:11
 #: www/views/tab-import-file.html:20
 msgid "Your password"
-msgstr ""
+msgstr "Ditt lösenord"
 
 #: www/views/buyAmazon.html:102
 msgid "Your purchase could not be completed"
-msgstr ""
+msgstr "Ditt köp kunde inte slutföras"
 
 #: www/views/buyAmazon.html:105
 msgid "Your purchase was added to the list of pending"
-msgstr ""
+msgstr "Ditt köp har lagts till i väntade listan"
 
 #: www/views/onboarding/backupRequest.html:10
 msgid "Your wallet is never saved to cloud storage or standard device backups."
-msgstr ""
+msgstr "Din plånbok sparas aldrig i molnlagring eller standardbackup."
 
 #: src/js/services/walletService.js:1030
 msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
-msgstr ""
+msgstr "Din plånboks nyckel kommer att krypteras. Betalning lösenordet kan inte återställas. Vara säker att skriva ner den."
 
 #: www/views/includes/walletList.html:13
 #: www/views/includes/walletSelector.html:21
@@ -3765,795 +3765,795 @@ msgstr ""
 #: www/views/walletDetails.html:131
 #: www/views/walletDetails.html:51
 msgid "[Balance Hidden]"
-msgstr ""
+msgstr "[Balans döljd]"
 
 #: www/views/walletDetails.html:141
 #: www/views/walletDetails.html:61
 msgid "[Scanning Funds]"
-msgstr ""
+msgstr "[Skanningsfonder]"
 
 #: src/js/controllers/bitpayCardIntro.js:11
 msgid "add your BitPay Visa card(s)"
-msgstr ""
+msgstr "lägg till ditt BitPay Visa-kort"
 
 #: www/views/includes/available-balance.html:8
 msgid "locked by pending payments"
-msgstr ""
+msgstr "låst av pågående betalningar"
 
 #: src/js/services/profileService.js:404
 msgid "me"
-msgstr ""
+msgstr "jag"
 
 #: www/views/addressbook.add.html:32
 msgid "name@example.com"
-msgstr ""
+msgstr "name@example.com"
 
 #: www/views/preferencesHistory.html:15
 msgid "preparing..."
-msgstr ""
+msgstr "förbereder..."
 
 #: www/views/cashScan.html:57
 msgid "recovery tool."
-msgstr ""
+msgstr "återvinningsverktyg."
 
 #: src/js/controllers/buyAmazon.js:239
 msgid "{{amountStr}} for Amazon.com Gift Card"
-msgstr ""
+msgstr "{{amountStr}} för Amazon.com Presentkort"
 
 #: src/js/controllers/buyMercadoLibre.js:237
 msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
-msgstr ""
+msgstr "{{amountStr}} för Mercado Livre Presentkort (Brasilien)"
 
 #: www/views/preferencesBwsUrl.html:21
 msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
-msgstr ""
+msgstr "{{appName}} beror på BitCore Wallet Service (BWS) för blockchaininformation, nätverks- och plånbokssynkronisering. Standardkonfigurationen pekar på https://bws.bitcoin.com (Bitcoin.com: s offentliga BWS-instans)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
-msgstr ""
+msgstr "{{fee}} kommer att avräknas för bitcoin nätverksavgifter."
 
 #: www/views/confirm.html:85
 msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
-msgstr ""
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}} av sändningsbeloppet"
 
 #: www/views/walletDetails.html:218
 msgid "{{updatingTxHistoryProgress}} transactions downloaded"
-msgstr ""
+msgstr "{{updatingTxHistoryProgress}} transaktioner som hämtats"
 
 #: www/views/cashScan.html:33
 #: www/views/copayers.html:46
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
-msgstr ""
+msgstr "{{wallet.m}}-från-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
-msgstr ""
+msgstr "Gemenskap"
 
 #: src/js/services/communityService.js:40
 msgid "Bitcoin Cash Reddit"
-msgstr ""
+msgstr "Bitcoin Cash Reddit"
 
 #: src/js/services/communityService.js:47
 msgid "Bitcoin.com Twitter"
-msgstr ""
+msgstr "Bitcoin.com Twitter"
 
 #: www/views/includes/nextSteps.html:3
 msgid "Explore Bitcoin.com"
-msgstr ""
+msgstr "Utforska Bitcoin.com"
 
 #: src/js/services/bitcoincomService.js:21
 msgid "Bitcoin Cash Games"
-msgstr ""
+msgstr "Bitcoin Cash Spel"
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
-msgstr ""
+msgstr "Dela Plånboken-appen"
 
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
-msgstr ""
+msgstr "Nyheter"
 
 #: src/js/services/bitcoincomService.js:35
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "Börja mining Bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
-msgstr ""
+msgstr "Verktyg"
 
 #: src/js/services/bitcoincomService.js:49
 msgid "Bitcoin Price Charts"
-msgstr ""
+msgstr "Bitcoin Pris Tabell"
 
 #: src/js/services/bitcoincomService.js:56
 msgid "Free Bitcoin Cash"
-msgstr ""
+msgstr "Gratis Bitcoin Cash"
 
 #: www/views/tab-home.html:30
 msgid "Your Bitcoin Wallets are ready!"
-msgstr ""
+msgstr "Dina Bitcoin Plånböcker är färdiga!"
 
 #: src/js/controllers/amount.js:49
 msgid "Address does not contain currency information, please make sure you are sending the correct currency."
-msgstr ""
+msgstr "Adressen innehåller inte valutainformation. Kolla om du skickar rätt valuta."
 
 #: www/views/review.html:4
 msgid "Review Transaction"
-msgstr ""
+msgstr "Kolla transaktionen"
 
 #: src/js/controllers/review.controller.js:36
 msgid "You are sending"
-msgstr ""
+msgstr "Du skickar"
 
 #: src/js/controllers/review.controller.js:66
 msgid "You are shifting"
-msgstr ""
+msgstr "Du skiftar"
 
 #: www/views/review.html:36
 msgid "To:"
-msgstr ""
+msgstr "Till:"
 
 #: www/views/review.html:53
 msgid "Add personal note"
-msgstr ""
+msgstr "Lägg till personlig notering"
 
 #: www/views/review.html:87
 msgid "Suggested by merchant:"
-msgstr ""
+msgstr "Föreslagen av köpman:"
 
 #: src/js/controllers/review.controller.js:37
 msgid "Enter text here"
-msgstr ""
+msgstr "Skriv in text här"
 
 #: www/views/review.html:57
 msgid "Personal note:"
-msgstr ""
+msgstr "Personlig anteckning:"
 
 #: www/views/review.html:69
 msgid "Less than 1 cent"
-msgstr ""
+msgstr "Mindre än 1 cent"
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
-msgstr ""
+msgstr "Denna faktura accepterar inte längre betalningar"
 
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
-msgstr ""
+msgstr "Skicka maximalt belopp"
 
 #: src/js/controllers/amount.controller.js:239
 msgid "Unknown error."
-msgstr ""
+msgstr "Okänt fel."
 
 #: www/views/paperWallet.html:48
 msgid "No Bitcoin Cash wallet to transfer funds to found."
-msgstr ""
+msgstr "Ingen Bitcoin Cash plånbok för att överföra pengar till hittades."
 
 #: www/views/paperWallet.html:54
 msgid "No Bitcoin Cash found."
-msgstr ""
+msgstr "Ingen Bitcoin Cash hittades."
 
 #: www/views/paperWallet.html:60
 msgid "Bitcoin Core found:"
-msgstr ""
+msgstr "Bitcoin Core hittades:"
 
 #: www/views/paperWallet.html:98
 msgid "No Bitcoin Core wallet to transfer funds to found."
-msgstr ""
+msgstr "Ingen Bitcoin Core plånbok för att överföra pengar till hittades."
 
 #: www/views/paperWallet.html:104
 msgid "No Bitcoin Core found."
-msgstr ""
+msgstr "Ingen Bitcoin Core hittades."
 
 #: src/js/controllers/tab-scan.js:120
 msgid "Scan Failed"
-msgstr ""
+msgstr "Skan misslyckades"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Data not recognised."
-msgstr ""
+msgstr "Data inte erkänd."
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Unsupported"
-msgstr ""
+msgstr "Utan stöd"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Testnet is not supported."
-msgstr ""
+msgstr "Testnet stöds inte."
 
 #: www/views/includes/incomingDataMenu.html:81
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: www/views/includes/incomingDataMenu.html:90
 msgid "Open in web browser"
-msgstr ""
+msgstr "Öppna i webbläsaren"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
-msgstr ""
+msgstr "Ogiltig adress"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
-msgstr ""
+msgstr "Beloppet är inte definierat"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
-msgstr ""
+msgstr "Beloppet ligger under minimunen"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
-msgstr ""
+msgstr "Beloppet är över gränsen"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Ogiltigt svar från Sideshift"
 
 msgid "Insufficient Amount Received"
-msgstr ""
+msgstr "Otillräckligt belopp mottaget"
 
 msgid "Return to Address"
-msgstr ""
+msgstr "Återgå till adress"
 
 msgid "Overpaid!"
-msgstr ""
+msgstr "Underbetald!"
 
 msgid "Underpaid!"
-msgstr ""
+msgstr "Underbetald!"
 
 #: src/js/controllers/buy-bitcoin/welcome.controller.js
 msgid "Error Creating Customer"
-msgstr ""
+msgstr "Fel med kund skapelse"
 
 msgid "Enter an email address."
-msgstr ""
+msgstr "Ange en e-postadress."
 
 msgid "Must be a valid email address."
-msgstr ""
+msgstr "Måste vara en giltig e-postadress."
 
 msgid "Unable to Create Customer"
-msgstr ""
+msgstr "Kund skapelse lyckades inte"
 
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
-msgstr ""
+msgstr "Köp Bitcoin Cash (BCH)"
 
 msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
-msgstr ""
+msgstr "Du kan köpa upp till {{vm.dailyRemaining}} idag, och upp till {{vm.monthlyRemaining}} denna månad."
 
 msgid "Buy Bitcoin Cash"
-msgstr ""
+msgstr "Köp Bitcoin Cash"
 
 msgid "Error Getting Customer ID"
-msgstr ""
+msgstr "Fel på att få kund-ID"
 
 msgid "Error Getting Customer Information"
-msgstr ""
+msgstr "Fel på att få kundinformation"
 
 msgid "An error occurred when getting your customer information."
-msgstr ""
+msgstr "Ett fel uppstod under kundinformation mottagande."
 
 msgid "Customer information was missing."
-msgstr ""
+msgstr "Kundinformation saknades."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr ""
+msgstr "Se<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\"> användarvillkoren </a> och <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Sekretesspolicy"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
-msgstr ""
+msgstr "Ett fel uppstod vid betalningsmetoder"
 
 msgid "An error occurred when getting your payment methods."
-msgstr ""
+msgstr "Ett fel uppstod när du fick betalningsmetoder."
 
 msgid "No Payment Methods"
-msgstr ""
+msgstr "Inga betalningsmetoder"
 
 msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
-msgstr ""
+msgstr "Du måste lägga till ett kredit- eller betalkort för att köpa Bitcoin Cash (BCH)."
 
 msgid "Add Card"
-msgstr ""
+msgstr "Lägg till kort"
 
 msgid "Getting exchange rate..."
-msgstr ""
+msgstr "Få växelkurs..."
 
 msgid "Waiting for exchange rate."
-msgstr ""
+msgstr "Väntar på växelkurs."
 
 msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
-msgstr ""
+msgstr "Du måste ha en Bitcoin Cash (BCH) plånbok att sätta in på."
 
 msgid "Select a BCH Wallet"
-msgstr ""
+msgstr "Välj en BCH-plånbok"
 
 msgid "Buying Bitcoin Cash..."
-msgstr ""
+msgstr "Köper Bitcoin Cash..."
 
 msgid "Purchase Failed"
-msgstr ""
+msgstr "Köp misslyckades"
 
 msgid "Failed to create transaction."
-msgstr ""
+msgstr "Misslyckades med att skapa transaktion."
 
 msgid "Buy Now"
-msgstr ""
+msgstr "Köpa nu"
 
 msgid "Enter Security Code"
-msgstr ""
+msgstr "Slå in säkerhetskoden"
 
 msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
 msgid "Go to Wallet"
-msgstr ""
+msgstr "Gå till Plånboken"
 
 msgid "Go to {{vm.walletName}}"
-msgstr ""
+msgstr "Gå till {{vm.walletName}}"
 
 msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr ""
+msgstr "Din beställning har godkänts och väntar på slutförandet. Din BCH är tillgänglig snart i din plånbok."
 
 msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr ""
+msgstr "Din beställning har slutförts. Du kan nu hitta din BCH i din plånbok."
 
 msgid "Your order has failed."
-msgstr ""
+msgstr "Din order har misslyckats."
 
 msgid "Your order is waiting for authorization."
-msgstr ""
+msgstr "Din beställning väntar på auktorisation."
 
 msgid "Deposited to"
-msgstr ""
+msgstr "Sätta in till"
 
 msgid "Failed to get transaction data."
-msgstr ""
+msgstr "Misslyckades med att få transaktionsdata."
 
 msgid "Not found."
-msgstr ""
+msgstr "Hittades inte."
 
 msgid "Failed to get payment method info."
-msgstr ""
+msgstr "Misslyckades med att få betalningsmetod info."
 
 msgid "Waiting for authorization"
-msgstr ""
+msgstr "Väntar på behörighet"
 
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 msgid "Verify and complete your card information."
-msgstr ""
+msgstr "Verifiera och slutföra din kortinformation."
 
 msgid "Required"
-msgstr ""
+msgstr "Nödvändig"
 
 msgid "Visa, MC, or AMEX"
-msgstr ""
+msgstr "Visa, MasterCard eller American Express"
 
 msgid "MM/YYYY"
-msgstr ""
+msgstr "MM/ÅÅÅÅ"
 
 msgid "Card Number"
-msgstr ""
+msgstr "Kortnummer"
 
 msgid "CVC"
-msgstr ""
+msgstr "CVC"
 
 msgid "Unable to Add Card"
-msgstr ""
+msgstr "Kan inte lägga till kort"
 
 msgid "Card number is invalid. Check your card and try again."
-msgstr ""
+msgstr "Kortnummer är ogiltigt. Kolla ditt kort och försök igen."
 
 msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
-msgstr ""
+msgstr "CVC-nummer är ogiltigt. De 3 siffrorna på baksidan av ditt kort. 4 siffror om du använder AMEX."
 
 msgid "Expiration date is invalid. Check your card and try again."
-msgstr ""
+msgstr "Ogiltigt utgångsdatum. Kolla ditt kort och försök igen."
 
 msgid "Invalid card number"
-msgstr ""
+msgstr "Ogiltigt kortnummer"
 
 msgid "Invalid expiration date"
-msgstr ""
+msgstr "Ogiltigt utgångsdatum"
 
 msgid "Follow expected date format MM/YYYY"
-msgstr ""
+msgstr "Följ förväntat datumformat MM/ÅÅÅÅ"
 
 msgid "Invalid CVC number"
-msgstr ""
+msgstr "Ogiltigt CVC-nummer"
 
 msgid "Purchasing"
-msgstr ""
+msgstr "Köper"
 
 msgid "Processing Fee"
-msgstr ""
+msgstr "Administrativ avgift"
 
 msgid "Deposit to"
-msgstr ""
+msgstr "Sätta in till"
 
 msgid "Add a payment method"
-msgstr ""
+msgstr "Lägg till en betalningsmetod"
 
 msgid "Price Per BCH"
-msgstr ""
+msgstr "Pris per BCH"
 
 msgid "Done"
-msgstr ""
+msgstr "Färdigt"
 
 msgid "Amount must be a positive number."
-msgstr ""
+msgstr "Beloppet måste vara ett positivt tal."
 
 msgid "Unable to Purchase"
-msgstr ""
+msgstr "Köp misslyckades"
 
 msgid "Purchase History"
-msgstr ""
+msgstr "Köphistoria"
 
 msgid "Pending Orders"
-msgstr ""
+msgstr "Pågående beställningar"
 
 msgid "Pay"
-msgstr ""
+msgstr "Betala"
 
 msgid "Payment Method"
-msgstr ""
+msgstr "Betalningsmetod"
 
 msgid "Add Credit or Debit Card"
-msgstr ""
+msgstr "Lägg till kredit- eller betalkort"
 
 msgid "This amount exceeds your monthly limit"
-msgstr ""
+msgstr "Detta belopp överstiger din månadsgräns"
 
 msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
-msgstr ""
+msgstr "Du har {{remaining}} kvar av din {{monthly}} månads köpgräns. Verifiera din identitet för att köpa mer."
 
 msgid "Verify Identity"
-msgstr ""
+msgstr "Verifiera identitet"
 
 msgid "Deposited to"
-msgstr ""
+msgstr "Sätta in till"
 
 msgid "See on Blockchain"
-msgstr ""
+msgstr "Se på Blockchain"
 
 msgid "Wallet address"
-msgstr ""
+msgstr "Plånbokensadress"
 
 msgid "Pending Order"
-msgstr ""
+msgstr "Väntar på beställning"
 
 msgid "Edit Order"
-msgstr ""
+msgstr "Redigera beställning"
 
 msgid "Cancel Order"
-msgstr ""
+msgstr "Avbryt beställning"
 
 msgid "Success!"
-msgstr ""
+msgstr "Framgång!"
 
 msgid "Failed"
-msgstr ""
+msgstr "Misslyckades"
 
 msgid "Your purchase has been processed."
-msgstr ""
+msgstr "Ditt köp har bearbetats."
 
 msgid "See Receipt"
-msgstr ""
+msgstr "Se kvitto"
 
 msgid "Make Another Purchase"
-msgstr ""
+msgstr "Gör en annan inköp"
 
 #: www/views/kyc-document-info.html:53
 msgid "Photograph document"
-msgstr ""
+msgstr "Fotografera dokument"
 
 #: www/views/kyc-document-info.html:56
 msgid "Continue unverified"
-msgstr ""
+msgstr "Fortsätt utan verifiering"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Passport"
-msgstr ""
+msgstr "Pass"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "National ID"
-msgstr ""
+msgstr "Nationellt ID"
 
 #: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
 msgid "Driving License"
-msgstr ""
+msgstr "Körkort"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Verification"
-msgstr ""
+msgstr "Verifiering"
 
 #: src/controllers/buy-bitcoin/home.html:0
 msgid "Increase Purchase Limit"
-msgstr ""
+msgstr "Öka köpgränsen"
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Getting Verification Status..."
-msgstr ""
+msgstr "Få verifieringsstatus..."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a country."
-msgstr ""
+msgstr "Du måste välja ett land."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You must select a document type."
-msgstr ""
+msgstr "Du måste välja en dokumenttyp."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "Du får för tillfället köpa upp till € 150 per månad utan att verifiera din identitet. Verifiera din identitet för att öka din köpgräns till € 20 000 per månad."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
-msgstr ""
+msgstr "Personlig information"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "First Name"
-msgstr ""
+msgstr "Namn"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Last Name"
-msgstr ""
+msgstr "Efternamn"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Date of Birth"
-msgstr ""
+msgstr "Födelsedatum"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Street Address"
-msgstr ""
+msgstr "Gatuadress"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr ""
+msgstr "Apt, svit, Byggnad (Valfritt)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
-msgstr ""
+msgstr "Stad"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Postal Code"
-msgstr ""
+msgstr "Postnummer"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Field is required."
-msgstr ""
+msgstr "Fältet är obligatoriskt."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
-msgstr ""
+msgstr "Måste vara minst 18 år gammal."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "Strömgatan, 123"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
-msgstr ""
+msgstr "Stockholm"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Japan"
-msgstr ""
+msgstr "Land"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
-msgstr ""
+msgstr "Apt 1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "Misslyckades med att lämna in information. Vänligen försök igen senare."
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
-msgstr ""
+msgstr "Skickar information..."
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "Det gick inte att ladda upp bilden. Vänligen försök igen."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "Hur ser det ut?"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "Se till att detaljerna på ditt dokument är tydliga och läsbara utan att det blir sudd eller bländning."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "Ja, det är läsbart"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "Försök igen"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "Fotografera dokument"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Placera de fyra hörnen på din {{vm.documentName}} tydligt i ramen. Undvik bländning. Undvik bländning."
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "Bli verifierad"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
-msgstr ""
+msgstr "Dokumenttyp"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Select"
-msgstr ""
+msgstr "Välj"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "Om du tidigare har verifierat din identitet med bitcoin.com kan du <a ng-click=\"vm.onRestoreVerify()\"> återställa din verifiering. </a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
-msgstr ""
+msgstr "Verifieringsstatus"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "Verifiering pågår"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "Du är verifierad!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "Ditt konto är nu verifierat. Grattis!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "Detta ska inte ta mycket tid. Vi meddelar dig snart att du kan börja köpa bitcoin."
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
-msgstr ""
+msgstr "Verifiering misslyckades"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "Tyvärr kan vi inte verifiera dig just nu. Kontakta support för ytterligare hjälp."
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "Selfie"
 
 msgid "Shop"
-msgstr ""
+msgstr "Butiken"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "Butiken i närheten"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "Hitta företag i ditt område som accepterar Bitcoin Cash"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "Få upp till 30% rabatt på Amazon när du betalar med Bitcoin Cash"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "Elektroniska presentkort från några av de största varumärkena"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "Lägg till ett företag"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "Äger du eller känner ett företag som accepterar Bitcoin Cash? Lägg till den."
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "Köp med Bitcoin Cash"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "Är du företagsägare?"
 
 msgid "More"
-msgstr ""
+msgstr "Mer"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "Börja acceptera betalningar enkelt med Bitcoin Cash idag. Vi kan hjälpa dig."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "Ta till himlen med Bitcoin Cash. Flyg, hotell och biluthyrning."
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "Marknadens högsta betalande pool"
 
 msgid "Start mining Bitcoin"
-msgstr ""
+msgstr "Börja mining Bitcoin"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "Betala med BCH och få 10% tillbaka"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "Hämta din Bitcoin merch"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "E-post hittas inte"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "För att lägga till en ny köpman, skicka e-mail med all info till addbusiness@bitcoin.com."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "Hej Bitcoin.com-teamet, <br> <br> Jag vill lägga till ett nytt företag som accepterar Bitcoin Cash som betalning till kartan i din Plånbok app: <br> - Företagets namn: <br>- Fysisk adress: <br>-typ av business <br> <br> Information för att hitta business: <br>- Google Maps Länk: <br>или<br>- breddgrad: <br>- longitud: <br><br>Valfri extra information: <br> - webbsida: <br> - telefonnummer: <br>"
 
 msgid "Internal Error"
-msgstr ""
+msgstr "Internt fel"
 
 msgid "Front"
-msgstr ""
+msgstr "Främre"
 
 msgid "Take a Selfie"
-msgstr ""
+msgstr "Ta en Selfie"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "Dokument + Selfie"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "Ta en bild av ditt dokument som hölls vid ditt ansikte."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Placera de fyra hörnen på ditt dokument tydligt i ramen. Undvik bländning."
 
 msgid "Buying Gift Card..."
-msgstr ""
+msgstr "Köper presentkort..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Fel. Statuskod: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Användbara länkar"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "Byt mellan BTC och BCH"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Utbyta"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "Du kan inte skicka Bitcoin Core till denna Bitcoin Cash-adress. Detta skulle resultera i förlorade pengar."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "Din konton verifiering avvisades."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "För att köpa Bitcoin Cash måste du lämna några personuppgifter."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Tillhandahålla information"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "Du kan köpa upp till {{vm.customer.dailyLimitRemaining | currency: '€ ' : 2}} idag och upp till {{vm.customer.monthlyLimitRemaining | currency: '€' : 2}} den här månaden."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Snabblänkar"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Betalningsmetoder"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Sidan: {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Godkänd"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Vi är ledsna, men vi kan inte verifiera dig just nu."
 

@@ -37,7 +37,7 @@
     $scope.displaySizeEqual = !!$scope.sizeEqual;
 
     var decimalPlaces = {
-      '0': ['BIF', 'CLP', 'DJF', 'GNF', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
+      '0': ['BIF', 'CLP', 'DJF', 'GNF', 'INR', 'ILS', 'JPY', 'KMF', 'KRW', 'MGA', 'PYG', 'RWF', 'THB', 'UGX', 'VND', 'VUV', 'XAF', 'XOF', 'XPF'],
       '3': ['BHD', 'IQD', 'JOD', 'KWD', 'OMR', 'TND'],
       '8': ['BCH', 'BTC']
     };
