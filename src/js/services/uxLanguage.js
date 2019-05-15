@@ -13,7 +13,7 @@ angular.module('copayApp.services')
       name: 'Català',
       isoCode: 'ca',
       rateCode: 'EUR'
-    },{
+    }, {
       name: 'Čeština',
       isoCode: 'cs',
       rateCode: 'EUR'
@@ -52,6 +52,10 @@ angular.module('copayApp.services')
       useIdeograms: true,
       rateCode: 'CNY'
     }, {
+      name: 'България',
+      isoCode: 'bg',
+      rateCode: 'BGN'
+    }, {
       name: 'Pусский',
       isoCode: 'ru',
       rateCode: 'RUB'
@@ -60,9 +64,25 @@ angular.module('copayApp.services')
       isoCode: 'pt',
       rateCode: 'EUR'
     }, {
+      name: 'Svenska',
+      isoCode: 'sv',
+      rateCode: 'SEK'
+    }, {
       name: '한국어',
       isoCode: 'ko',
       rateCode: 'KRW'
+    }, {
+      name: 'हिंदी',
+      isoCode: 'hi',
+      rateCode: 'INR'
+    }, {
+      name: 'ภาษาไทย',
+      isoCode: 'th',
+      rateCode: 'THB'
+    }, {
+      name: 'Tiếng Việt',
+      isoCode: 'vi',
+      rateCode: 'VND'
     }, {
       name: 'فارسی',
       isoCode: 'fa',

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Italian\n"
 "Language: it\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-03-29 07:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3216,7 +3216,7 @@ msgstr "Ricaricare di {{amountStr}} sulla carta di debito ({{cardLastNumber}})"
 
 #: www/views/sideshift.html:30
 msgid "Start SideShift AI"
-msgstr ""
+msgstr "Avvio SideShiftAI"
 
 #: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
@@ -3232,7 +3232,7 @@ msgstr "Il processo è veloce e riceverai l'importo cambiato nel tuo portafoglio
 
 #: www/views/sideshift.html:34
 msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr ""
+msgstr "Il servizio è fornito da una società terza SideShift AI, che addebita una piccola commissione. La commissione verrà mostrata prima della transazione."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3828,7 +3828,7 @@ msgstr "{{wallet.m}}-di-{{wallet.n}}"
 
 #: src/js/services/sideshiftService.js:8
 msgid "Sideshift"
-msgstr ""
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3992,7 +3992,7 @@ msgstr "Importo sopra il limite"
 
 #: src/js/services/sideshift.service.js.html:90
 msgid "Invalid response from Sideshift"
-msgstr ""
+msgstr "Risposta sbagliata da Sideshift"
 
 msgid "Insufficient Amount Received"
 msgstr "Importo ricevuto insufficiente"
@@ -4292,7 +4292,7 @@ msgstr "Devi selezionare un tipo di documento."
 
 #: src/controllers/buy-bitcoin/kyc-document-info.html:0
 msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
-msgstr ""
+msgstr "Al momento potete acquistare fino a 150 € al mese senza confermare la propra identità. Con la conferma l’identità sarà possibile aumentare il limite di acquisto a 20.000 € al mese."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Personal Information"
@@ -4316,7 +4316,7 @@ msgstr "Indirizzo"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt, Suite, Building (Optional)"
-msgstr ""
+msgstr "Numero civico, edificio, int. (facoltativo)"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Town/City"
@@ -4340,7 +4340,7 @@ msgstr "Deve avere almeno 18 anni."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
-msgstr ""
+msgstr "Via Rossi, 123"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Tokyo"
@@ -4352,47 +4352,47 @@ msgstr "Giappone"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Apt 1"
-msgstr ""
+msgstr "Int. 1"
 
 #: src/controllers/buy-bitcoin/kyc-personal-info.js:0
 msgid "Failed to submit information. Please try again."
-msgstr ""
+msgstr "Impossibile salvare le informazioni. Riprovate per favore."
 
 #: src/js/services/onGoingProcess.js:0
 msgid "Sending Info..."
-msgstr ""
+msgstr "Elaborazione dei dati..."
 
 #: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
 msgid "Failed to upload image. Please try again."
-msgstr ""
+msgstr "Impossibile caricare l'immagine. Riprovate per favore."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "How does it look?"
-msgstr ""
+msgstr "Come vi sembra?"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Make sure the details on your document are clear and readable with no blur or glare."
-msgstr ""
+msgstr "Assicuratevi che tutta l’informazioni sul documento sia chiaramente visibile e leggibile (senza abbagliamento e sfocatura del testo)."
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Yes, it's readable"
-msgstr ""
+msgstr "Sì, tutto è chiaramente visibile"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Retake the picture"
-msgstr ""
+msgstr "Riprovare"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Photograph your document"
-msgstr ""
+msgstr "Fate una foto del vostro documento"
 
 #: www/views/buy-bitcoin/kyc-document-capture.html
 msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Mettete l'intero documento {{vm.documentName}} in una cornice. Cercate di evitare l'abbagliamento."
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Get Verified"
-msgstr ""
+msgstr "Passare la verifica"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "Document Type"
@@ -4404,7 +4404,7 @@ msgstr "Seleziona"
 
 #: www/views/buy-bitcoin/kyc-document-info.html
 msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
-msgstr ""
+msgstr "Se avete già passato la verifica dell'identità con bitcoin.com, potete <a ng-click=\"vm.onRestoreVerify()\"> ripristinarla. </a>"
 
 #: www/views/buy-bitcoin/kyc-status.html
 msgid "Verification Status"
@@ -4412,19 +4412,19 @@ msgstr "Stato Verifica"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Being Verified"
-msgstr ""
+msgstr "Verifica in corso"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "You're Verified!"
-msgstr ""
+msgstr "La verifica è avvenuta con successo!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Your account is now verified. Congrats!"
-msgstr ""
+msgstr "Il votro account è verificato. Complimenti!"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
-msgstr ""
+msgstr "Non ci vuole molto tempo. Vi informeremo immediatamente quando potrete iniziare a comprare Bitcoin."
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "Verification Failed"
@@ -4432,67 +4432,67 @@ msgstr "Verifica non Riuscita"
 
 #:src/controllers/buy-bitcoin/kyc-status.controller.js:0
 msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
-msgstr ""
+msgstr "Sfortunatamente, non siamo riusciti a verificare. Si prega di contattare il team di supporto."
 
 msgid "Self Portrait"
-msgstr ""
+msgstr "Selfie"
 
 msgid "Shop"
-msgstr ""
+msgstr "Acquisti"
 
 msgid "Shop Nearby"
-msgstr ""
+msgstr "Comprare vicino"
 
 msgid "Find businesses in your area that accept Bitcoin Cash"
-msgstr ""
+msgstr "Trovare i negozi più vicini che accettino Bitcoin Cash"
 
 msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
-msgstr ""
+msgstr "Approfittare dello sconto fino al 30% su Amazon pagando con BitcoinCash"
 
 msgid "Digital giftcards from some of the biggest brand names"
-msgstr ""
+msgstr "Buoni d’acquisto elettronici dei marchi più famosi"
 
 msgid "Add a Business"
-msgstr ""
+msgstr "Aggiungere un luogo"
 
 msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
-msgstr ""
+msgstr "Sapete o siete proprietari di un luogo che accetti BitcoinCash? Aggiungetelo."
 
 msgid "Buy with Bitcoin Cash"
-msgstr ""
+msgstr "Acquistare utilizzando Bitcoin Cash"
 
 msgid "Are you a business owner?"
-msgstr ""
+msgstr "È un imprenditore?"
 
 msgid "More"
 msgstr "Altro"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
-msgstr ""
+msgstr "Iniziate ad accettare pagamenti con Bitcoin Cash oggi. Vi possiamo aiutare con questo."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
+msgstr "Al settimo cielo insieme a BitcoinCash - pagate per voli, hotel e noleggio auto."
 
 msgid "The market's highest paying pool"
-msgstr ""
+msgstr "Il pool più redditizio sul mercato"
 
 msgid "Start mining Bitcoin"
 msgstr "Avvia mining Bitcoin"
 
 msgid "Pay with BCH, get 10% back"
-msgstr ""
+msgstr "Pagando con BCH ricevi 10% sul conto"
 
 msgid "Get your Bitcoin merch"
-msgstr ""
+msgstr "Prodotti con simbolo di Bitcoin"
 
 msgid "E-mail not detected"
-msgstr ""
+msgstr "Indirizzo elettronico non è stato trovato"
 
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
-msgstr ""
+msgstr "Per aggiungere un nuovo venditore o azienda contattateci all'indirizzo addbusiness@bitcoin.com."
 
 msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
-msgstr ""
+msgstr "Ciao team di Bitcoin.com, <br> <br> vorrei aggiungere una nuova attività alla carta che accetta BitcoinCash per il pagamento: <br> - nome della società: <br> - indirizzo fisico: <br> - tipo di attività: <br> <br> informazioni per aiutare a trovare Business: <br> - Link di Google Maps: <br> o <br> - Latitude: <br> - Longitudine: <br> <br > ulteriori informazioni: <br> - sito Web: <br> - numero di telefono: <br>"
 
 msgid "Internal Error"
 msgstr "Errore Interno"
@@ -4504,56 +4504,56 @@ msgid "Take a Selfie"
 msgstr "Scatta un Selfie"
 
 msgid "Document + Selfie"
-msgstr ""
+msgstr "Documento + fotografia"
 
 msgid "Take a picture of your document held up beside your face."
-msgstr ""
+msgstr "Fate una foto del documento accanto al vostro viso in modo che si inseriscano in un fotogramma."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
-msgstr ""
+msgstr "Inquadrare l'intero documento. Cercate di evitare l'abbagliamento."
 
 msgid "Buying Gift Card..."
 msgstr "Acquistando una carta regalo..."
 
 msgid "Error. Status code: {{status}}"
-msgstr ""
+msgstr "Errore. Codice d’errore: {{status}}"
 
 msgid "Useful Links"
-msgstr ""
+msgstr "Link utili"
 
 msgid "Exchange between BTC and BCH"
-msgstr ""
+msgstr "Scambiare BTC per BCH"
 
 msgid "Exchange"
-msgstr ""
+msgstr "Scambiare"
 
 msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
-msgstr ""
+msgstr "Non è possibile inviare Bitcoin Core a questo indirizzo Bitcoin Cash in quanto ciò comporterà la perdita delle vostre risorse."
 
 msgid "Your account verification was rejected."
-msgstr ""
+msgstr "Impossibile verificare l'account."
 
 msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
-msgstr ""
+msgstr "Per acquistare Bitcoin Cash abbiamo bisogno dei tuoi dati."
 
 msgid "Provide my information"
-msgstr ""
+msgstr "Fornire i miei dati"
 
 msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
-msgstr ""
+msgstr "Potete acquistare {{vm.customer.dailyLimitRemaining | valuta: '€': 2}} oggi e fino a {{vm.customer.monthlyLimitRemaining | valuta: '€': 2}} di questo mese."
 
 msgid "Quick Links"
-msgstr ""
+msgstr "Link veloci"
 
 msgid "Payment Methods"
-msgstr ""
+msgstr "Metodi di pagamento"
 
 msgid "Side: {{file.side}}"
-msgstr ""
+msgstr "Lato: {{file.side}}"
 
 msgid "Approved"
-msgstr ""
+msgstr "Approvato"
 
 msgid "We're sorry but we're not able to verify you at this time."
-msgstr ""
+msgstr "Siamo spiacenti ma non siamo riusciti a verificarla."
 
