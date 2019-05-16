@@ -26,7 +26,7 @@
   "description": "A Secure Bitcoin Wallet",
   "version": "5.7.2",
   "fullVersion": "5.7-hotfix1",
-  "androidVersion": "506600",
+  "androidVersion": "507200",
   "_extraCSS": "",
   "_enabledExtensions": {
     "coinbase": false,
