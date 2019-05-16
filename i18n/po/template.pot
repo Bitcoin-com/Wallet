@@ -4484,6 +4484,9 @@ msgstr ""
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr ""
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr ""
 
