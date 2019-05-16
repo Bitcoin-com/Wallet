@@ -22,6 +22,7 @@
     vm.onEGifter = onEGifter;
     vm.onMerchant = onMerchant;
     vm.onPurseIo = onPurseIo;
+    vm.onTravala = onTravala;
 
     // Variables
     vm.merchants = [];
@@ -82,6 +83,10 @@
 
     function onPurseIo() {
       externalLinkService.open('https://purse.io/?_r=bitcoinwallet');
+    }
+
+    function onTravala() {
+      externalLinkService.open('https://www.travala.com/?afp_source=xsHp7u9YeEnDW');
     }
 
     function onStartAccepting() {
