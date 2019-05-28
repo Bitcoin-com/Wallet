@@ -53,23 +53,22 @@
 }
 
 .button {
-  border-radius: 6px;
+  border-radius: 3px;
   &.button-full {
     border-radius: 0;
     display: block;
   }
   &-green {
-    @include button-style(#719561, #FFF, #606060, #FFF, #FFF);
-    @include button-clear(#FFF);
-    @include button-outline(#C1C1C1);
-    border: 0px;
-    @include button-shadow();
+    // button-style - BG-color, border-color, active bg-color, active border-color, text color
+    @include button-style(#15d6a0, #11A87E, #15d6a0, #11A87E, #FFF);
+    background: -moz-linear-gradient(top, #15d6a0 0%, #0ac18e 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #15d6a0 0%,#0ac18e 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #15d6a0 0%,#0ac18e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    border: 1px;
   }
   &-white {
-    @include button-style(#FFF, #C1C1C1, #C1C1C1, #FFF, #606060);
+    @include button-style(#F1F3FB, transparent, #F1F3FB, transparent, #0AC18E);
     @include button-clear(#FFF);
-    @include button-outline(#C1C1C1);
-    @include button-shadow();
     &.activated {
       color: #FFF;
     }
