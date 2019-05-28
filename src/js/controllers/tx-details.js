@@ -195,12 +195,13 @@
             var bchAddresses = bitcoinCashJsService.translateAddresses(vm.btx.addressTo);
             vm.btx.cashAddr = bchAddresses.cashaddr;
             vm.btx.cashCopyAddr = 'bitcoincash:' + vm.btx.cashAddr;
-          } else {
-            lodash.each(vm.btx.outputs, function(o) {
-              var bchAddresses = bitcoinCashJsService.translateAddresses(o.address);
-              o.cashAddr = bchAddresses.cashaddr;
-            });
           }
+          
+          lodash.each(vm.btx.outputs, function(output) {
+            var bchAddresses = bitcoinCashJsService.translateAddresses(output.address);
+            output.cashAddr = bchAddresses.cashaddr;
+            output.cashCopyAddr = 'bitcoincash:' + output.cashAddr;
+          });
 
           vm.canToggleAddressType = true;
           vm.addressDisplayType = 'cashAddr';
