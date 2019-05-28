@@ -288,7 +288,7 @@
             case 'r':
               // Could use a more comprehesive regex to test URL validity, but then how would we know
               // which part of the validation it failed?
-              if (decodedValue.startsWith('https://')) {
+              if (decodedValue.indexOf('https://') == 0) {
                 parsed.url = decodedValue;
               } else {
                 return parsed;
