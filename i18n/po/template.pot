@@ -4021,6 +4021,9 @@ msgstr ""
 msgid "Buy Bitcoin Cash"
 msgstr ""
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr ""
 
