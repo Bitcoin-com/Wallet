@@ -4133,9 +4133,6 @@ msgstr ""
 msgid "Expiration Date"
 msgstr ""
 
-msgid "Expiration Date"
-msgstr ""
-
 msgid "Type all your card details below."
 msgstr ""
 
