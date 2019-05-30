@@ -48,6 +48,10 @@
     }
   }
   .card {
+    background: #FFFFFF;
+    box-shadow: 0 3px 30px 0 rgba(105,105,105,0.07);
+    border-radius: 7px;
+
     .item {
       color: #444;
       border-top:none;
