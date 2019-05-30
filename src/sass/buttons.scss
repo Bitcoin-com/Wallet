@@ -59,11 +59,9 @@
     display: block;
   }
   &-green {
-    // button-style - BG-color, border-color, active bg-color, active border-color, text color
     @include button-style(#15d6a0, #11A87E, #15d6a0, #11A87E, #FFF);
-    background: -moz-linear-gradient(top, #15d6a0 0%, #0ac18e 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #15d6a0 0%,#0ac18e 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #15d6a0 0%,#0ac18e 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: url(../img/green_px.png);
+    background-repeat: repeat;
     border: 1px;
   }
   &-white {
