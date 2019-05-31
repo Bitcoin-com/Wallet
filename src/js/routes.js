@@ -859,7 +859,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.buybitcoin-amount', {
-        url: '/buy-bitcoin/amount',
+        url: '/buy-bitcoin/amount/:coin',
         views: {
           'tab-home': {
             controller: 'buyBitcoinAmountController',
@@ -881,7 +881,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
       })
 
       .state('tabs.buybitcoin-wallets', {
-        url: '/buy-bitcoin/wallets',
+        url: '/buy-bitcoin/wallets/:coin',
         views: {
           'tab-home': {
             controller: 'buyBitcoinWalletsController',

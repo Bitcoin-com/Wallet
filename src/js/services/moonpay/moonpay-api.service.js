@@ -17,6 +17,7 @@ angular
 
     var tokenKey = 'moonPayToken_' + moonPayConfig.env;
     var currentToken = null;
+    var currentUser = null;
     var baseUrl = moonPayConfig.baseUrl
 
     var service = {
@@ -137,8 +138,8 @@ angular
       getConfig(true).then(function onGetConfig(config) {
         $http.get(baseUrl + '/v2/customers/me', config).then(function onGetMeSuccess(response) {
           if (response.status === 200 || response.status === 201) {
-            var customer = response.data;
-            deferred.resolve(customer);
+            currentUser = response.data;
+            deferred.resolve(currentUser);
           } else {
             deferred.reject(response.statusText);
           }
@@ -498,22 +499,27 @@ angular
      */
     function getCountryByIpAddress() {
       var deferred = $q.defer();
-      $http.get(baseUrl + '/v2/ip_address').then(function onGetCountryByIpAddressSuccess(response) {
-        if (response.status === 200 || response.status === 201) {
-          var user = response.data;
-          deferred.resolve(user);
-        } else {
-          deferred.reject(response.statusText);
-        }
-      }, function onGetCountryByIpAddressError(err) {
-        // If identity check if not yet created, expect 404
-        if (err.status === 404) {
-          deferred.resolve();
-        } else {
-          var httpErr = _errorFromResponse(err);
-          deferred.reject(httpErr);
-        }
-      });
+
+      if (currentUser != null) {
+        deferred.resolve(currentUser);
+      } else {
+        $http.get(baseUrl + '/v2/ip_address').then(function onGetCountryByIpAddressSuccess(response) {
+          if (response.status === 200 || response.status === 201) {
+            currentUser = response.data;
+            deferred.resolve(currentUser);
+          } else {
+            deferred.reject(response.statusText);
+          }
+        }, function onGetCountryByIpAddressError(err) {
+          // If identity check if not yet created, expect 404
+          if (err.status === 404) {
+            deferred.resolve();
+          } else {
+            var httpErr = _errorFromResponse(err);
+            deferred.reject(httpErr);
+          }
+        });
+      }
       return deferred.promise;
     }
 

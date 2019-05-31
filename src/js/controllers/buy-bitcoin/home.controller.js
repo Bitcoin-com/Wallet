@@ -116,7 +116,9 @@
     }
 
     function didPushBuyInstantly() {
-      $state.go('tabs.buybitcoin-amount');
+      $state.go('tabs.buybitcoin-amount', { 
+        coin: 'bch'
+      });
     }
 
     function onPrivacyPolicy() {
