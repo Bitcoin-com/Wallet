@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Thai\n"
 "Language: th\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-30 03:43\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4030,6 +4030,9 @@ msgstr "วันนี้คุณสามารถซื้อได้ถึ
 msgid "Buy Bitcoin Cash"
 msgstr "ซื้อเงินสด Bitcoin"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "เกิดข้อผิดพลาดในการรับไอดีลูกค้า"
 
@@ -4092,6 +4095,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "ไปที่กระเป๋าสตางค์"
 
@@ -4127,6 +4133,15 @@ msgstr "กำลังรอการอนุมัติ"
 
 msgid "Back"
 msgstr "ย้อนกลับ"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "ตรวจสอบ และกรอกข้อมูลบัตรของคุณ"
@@ -4170,6 +4185,15 @@ msgstr "โปรดกรอกตามรูปแบบนี้ เดื�
 msgid "Invalid CVC number"
 msgstr "เลข CVC ไม่ถูกต้อง"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
 msgid "Purchasing"
 msgstr "การจัดซื้อ"
 
@@ -4193,6 +4217,12 @@ msgstr "ยอดเงินต้องเป็นจำนวนบวก"
 
 msgid "Unable to Purchase"
 msgstr "ไม่สามารถซื้อได้"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "ประวัติการซื้อ"
@@ -4470,6 +4500,9 @@ msgstr "เพิ่มเติม"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "ดูวิธีการรับชำระเงินด้วย Bitcoin ได้ง่ายๆได้เลย"
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr " เข้าสู่ยุคของ Bitcoin Cash สามารถจองตั๋วเครื่องบิน จองโรงแรม หรือเช่ารถก็ได้ "

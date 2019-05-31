@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-30 03:42\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "Bạn có thể mua lên đến {{vm.dailyRemaining}} hôm nay và lên 
 msgid "Buy Bitcoin Cash"
 msgstr "Mua Bitcoin Cash"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "Lỗi lấy ID khách hàng"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "Đi tới Ví"
 
@@ -4126,6 +4132,15 @@ msgstr "Đang chờ ủy quyền"
 
 msgid "Back"
 msgstr "Quay lại"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "Xác minh và hoàn tất thông tin thẻ của bạn."
@@ -4169,6 +4184,15 @@ msgstr "Sử dụng định dạng ngày mong đợi MM/YYYY"
 msgid "Invalid CVC number"
 msgstr "Số CVC không hợp lệ"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
 msgid "Purchasing"
 msgstr "Đang mua"
 
@@ -4192,6 +4216,12 @@ msgstr "Số tiền phải là một số dương."
 
 msgid "Unable to Purchase"
 msgstr "Không thể mua"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "Lịch sử mua"
@@ -4469,6 +4499,9 @@ msgstr "Thêm"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Bắt đầu chấp nhận thanh toán dễ dàng với Bitcoin Cash ngay hôm nay. Chúng tôi sẽ chỉ bạn cách làm."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Bay bằng Bitcoin Cash. Các chuyến bay, khách sạn và thuê xe."

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-30 03:42\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "Dzisiaj możesz kupić maksymalnie {{vm.dailyRemaining}}, a w tym miesi�
 msgid "Buy Bitcoin Cash"
 msgstr "Kup Bitcoin Cash"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "Błąd podczas uzyskiwania identyfikatora klienta"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "Przejdź do portfela"
 
@@ -4126,6 +4132,15 @@ msgstr "Oczekiwanie na autoryzację"
 
 msgid "Back"
 msgstr "Wstecz"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "Zweryfikuj i skompletuj twoją kartę informacyjną."
@@ -4169,6 +4184,15 @@ msgstr "Podaj datę w oczekiwanym formacie MM/RRRR"
 msgid "Invalid CVC number"
 msgstr "Nieprawidłowy numer CVC"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
 msgid "Purchasing"
 msgstr "Kupowanie"
 
@@ -4192,6 +4216,12 @@ msgstr "Kwota musi być liczbą dodatnią."
 
 msgid "Unable to Purchase"
 msgstr "Nie można dokonać zakupu"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "Historia zakupów"
@@ -4469,6 +4499,9 @@ msgstr "Jeszcze"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Zacznij przyjmować płatności w Bitcoin Cash już dziś. Pokażemy Ci jak to robić."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "W siódmym niebie z Bitcoin Cash - zapłacić za loty, hotele i wynajem samochodów."

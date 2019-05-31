@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: French\n"
 "Language: fr\n"
-"PO-Revision-Date: 2019-02-22 02:14\n"
+"PO-Revision-Date: 2019-05-31 04:38\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "Vous pouvez acheter jusqu'à {{vm.dailyRemaining}} aujourd'hui et jusqu'
 msgid "Buy Bitcoin Cash"
 msgstr "Acheter des Bitcoin Cash"
 
+msgid "Verify Email"
+msgstr "Vérifies ton email"
+
 msgid "Error Getting Customer ID"
 msgstr "Erreur lors de l'obtention de l'ID client"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr "Acheter des Bitcoin Cash"
+
 msgid "Go to Wallet"
 msgstr "Aller au porte-monnaie"
 
@@ -4126,6 +4132,15 @@ msgstr "En attente d’autorisation"
 
 msgid "Back"
 msgstr "Précédent"
+
+msgid "Expiration Date"
+msgstr "Date d'expiration"
+
+msgid "Expiration Date"
+msgstr "Date d'expiration"
+
+msgid "Type all your card details below."
+msgstr "Entres les détails de ta carte ci-dessous."
 
 msgid "Verify and complete your card information."
 msgstr "Vérifiez et complétez les informations de votre carte."
@@ -4169,6 +4184,15 @@ msgstr "Suivre le format de date prévu MM/AAAA"
 msgid "Invalid CVC number"
 msgstr "CVC invalide"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Achètes des Bitcoin Cash instantanément avec ta carte de crédit. Entres ton email pour commencer."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Entre le code de sécurité qu'on vient de t'envoyer pour vérifier ton email."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Tu ne recevras que des emails liés à tes achats."
+
 msgid "Purchasing"
 msgstr "Acheter"
 
@@ -4192,6 +4216,12 @@ msgstr "Le montant doit être un nombre positif."
 
 msgid "Unable to Purchase"
 msgstr "Impossible d’acheter"
+
+msgid "3D secure"
+msgstr "3D secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Tu vas être redirigé vers le site web de ta banque pour autoriser la transaction."
 
 msgid "Purchase History"
 msgstr "Historique des achats"
@@ -4469,6 +4499,9 @@ msgstr "Plus"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Commencer à accepter les paiements facilement avec Bitcoin Cash aujourd'hui. Nous pouvons vous montrer comment."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Prenez votre envol avec Bitcoin Cash. Vols, hôtels et locations de voitures."

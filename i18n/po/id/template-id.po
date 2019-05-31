@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Indonesian\n"
 "Language: id\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-05-30 03:43\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr ""
 msgid "Buy Bitcoin Cash"
 msgstr ""
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr ""
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr ""
 
@@ -4125,6 +4131,15 @@ msgid "Waiting for authorization"
 msgstr ""
 
 msgid "Back"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
 msgstr ""
 
 msgid "Verify and complete your card information."
@@ -4169,6 +4184,15 @@ msgstr ""
 msgid "Invalid CVC number"
 msgstr ""
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
 msgid "Purchasing"
 msgstr ""
 
@@ -4191,6 +4215,12 @@ msgid "Amount must be a positive number."
 msgstr ""
 
 msgid "Unable to Purchase"
+msgstr ""
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
 msgstr ""
 
 msgid "Purchase History"
@@ -4468,6 +4498,9 @@ msgid "More"
 msgstr ""
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr ""
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
 msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
