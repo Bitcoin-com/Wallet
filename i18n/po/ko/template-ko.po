@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-05-31 09:30\n"
+"PO-Revision-Date: 2019-05-31 09:51\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4049,6 +4049,12 @@ msgstr "고객 정보가 누락되었습니다."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
 msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보 보호정책을 확인해 주십시오.</a>"
+
+msgid "Terms of Service"
+msgstr "이용약관"
+
+msgid "Privacy Policy"
+msgstr "개인정보 보호정책을 확인해 주십시오"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"

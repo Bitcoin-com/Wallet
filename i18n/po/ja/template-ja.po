@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2019-05-31 08:53\n"
+"PO-Revision-Date: 2019-05-31 09:42\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4054,6 +4054,12 @@ msgid "Customer information was missing."
 msgstr "顧客情報が見つかりませんでした。"
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html

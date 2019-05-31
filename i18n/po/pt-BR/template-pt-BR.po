@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt\n"
-"PO-Revision-Date: 2019-05-31 08:53\n"
+"PO-Revision-Date: 2019-05-31 09:52\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4049,6 +4049,12 @@ msgstr "Informações do cliente ausentes."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
 msgstr ""
+
+msgid "Terms of Service"
+msgstr "Termos de serviço"
+
+msgid "Privacy Policy"
+msgstr "Política de privacidade"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"

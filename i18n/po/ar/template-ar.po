@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
-"PO-Revision-Date: 2019-05-31 09:29\n"
+"PO-Revision-Date: 2019-05-31 09:42\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4051,6 +4051,12 @@ msgstr "معلومات العميل كانت مفقودة."
 
 msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
 msgstr "راجع <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">شروط الخدمة</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">سياسة الخصوصية</a>"
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
