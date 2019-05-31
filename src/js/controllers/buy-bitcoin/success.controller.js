@@ -118,7 +118,9 @@
         function() {
           $state.go('tabs.buybitcoin').then(
             function () {
-              $state.go('tabs.buybitcoin-amount');
+              $state.go('tabs.buybitcoin-amount', { 
+                coin: 'bch'
+              });
             }
           );
         }

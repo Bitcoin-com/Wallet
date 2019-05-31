@@ -21,7 +21,7 @@ angular
     var defaultCardIdKey = 'moonPayDefaultCardId_' + moonPayConfig.env
     var currentCards = null;
 
-    var defaultWalletId = null;
+    var defaultWalletIdByCoin = [];
     var defaultCardId = null;
 
     var service = {
@@ -83,17 +83,18 @@ angular
     /**
      * Set the default wallet id
      * @param {String} walletId 
+     * @param {String} coin 
      */
-    function setDefaultWalletId(walletId) {
+    function setDefaultWalletId(walletId, coin) {
       // Create the promise
       var deferred = $q.defer();
 
-      storageService.setItem(defaultWalletIdKey, walletId, function onSaveWalletId(err) {
+      storageService.setItem(defaultWalletIdKey + '_' + coin, walletId, function onSaveWalletId(err) {
         if (err) {
           $log.debug('Error setting moonpay selected wallet id in the local storage');
           deferred.reject(err);
         } else {
-          defaultWalletId = walletId
+          defaultWalletIdByCoin[coin] = walletId
           deferred.resolve();
         }
       });
@@ -105,20 +106,22 @@ angular
      * Get the default wallet id
      * @param {String} walletId 
      */
-    function getDefaultWalletId() {
+    function getDefaultWalletId(coin) {
       // Create the promise
       var deferred = $q.defer();
+
+      var defaultWalletId = defaultWalletIdByCoin[coin]
 
       if (defaultWalletId != null) {
         deferred.resolve(defaultWalletId);
       } else {
-        storageService.getItem(defaultWalletIdKey, function onGetWalletId(err, walletId) {
+        storageService.getItem(defaultWalletIdKey + '_' + coin, function onGetWalletId(err, walletId) {
           if (err) {
             $log.debug('Error getting moonpay selected wallet id in the local storage');
             deferred.reject(err);
           } else {
-            defaultWalletId = walletId
-            deferred.resolve(defaultWalletId);
+            defaultWalletIdByCoin[coin] = walletId
+            deferred.resolve(walletId);
           }
         });
       }
