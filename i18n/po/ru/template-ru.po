@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"PO-Revision-Date: 2019-05-31 06:40\n"
+"PO-Revision-Date: 2019-05-31 08:53\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Адрес электронной почты должен быть де�
 msgid "Unable to Create Customer"
 msgstr "Не удалось создать клиента"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Покупка Bitcoin Cash (BCH)"
@@ -4044,8 +4047,8 @@ msgstr "При получении информации о клиенте про�
 msgid "Customer information was missing."
 msgstr "Информация о клиенте отсутствует."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "См. <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Условия обслуживания</a> и <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Политику конфиденциальности"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "Для внесения депозита нужен кошелек Bitco
 msgid "Select a BCH Wallet"
 msgstr "Выберите кошелек BCH"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Идет покупка Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Ошибка покупки"
@@ -4090,9 +4114,8 @@ msgstr "Купить"
 msgid "Enter Security Code"
 msgstr "Введите защитный код"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr "Покупка Bitcoin Cash"
@@ -4103,11 +4126,11 @@ msgstr "Перейти в кошелек"
 msgid "Go to {{vm.walletName}}"
 msgstr "Перейти в {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "Заказ подтвержден и ожидает выполнения. BCH скоро появятся у вас в кошельке."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Заказ выполнен. BCH уже у вас в кошельке."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "Ваш заказ не прошел."
@@ -4129,6 +4152,9 @@ msgstr "Не удалось получить информацию о метод�
 
 msgid "Waiting for authorization"
 msgstr "В ожидании авторизации"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr "Назад"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "Возраст не менее 18 лет"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "улица Ленина 123"
 
@@ -4501,7 +4535,7 @@ msgid "Start accepting payments easily with Bitcoin Cash today. We can show you 
 msgstr "Начните принимать оплату Bitcoin Cash сегодня. Мы можем вам с этим помочь."
 
 msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
-msgstr ""
+msgstr "Бронируйте отели и апартаменты и многое другое, используя Bitcoin Cash и экономьте до 40%."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "На седьмом небе вместе с Bitcoin Cash - оплачивайте авиабилеты, гостиницы и аренду машины!"
@@ -4544,6 +4578,12 @@ msgstr "Сделайте фото документа рядом с вашим л
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Поместите ваш документ целиком в рамку. Постарайтесь избежать бликов."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "Покупка подарочного сертификата..."

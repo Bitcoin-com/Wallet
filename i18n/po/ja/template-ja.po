@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2019-05-31 06:40\n"
+"PO-Revision-Date: 2019-05-31 08:53\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4025,6 +4025,9 @@ msgstr "有効なメールアドレスでなければなりません。"
 msgid "Unable to Create Customer"
 msgstr "顧客を作成できません"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "ビットコインキャッシュ (BCH) を購入"
@@ -4050,8 +4053,8 @@ msgstr "顧客情報を取得中にエラーが発生しました。"
 msgid "Customer information was missing."
 msgstr "顧客情報が見つかりませんでした。"
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "当社<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">サービス利用規約</a>と<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">プライバシーポリシー</a>をご確認ください"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4081,8 +4084,29 @@ msgstr "ビットコインキャッシュ (BCH) ウォレットに入金する�
 msgid "Select a BCH Wallet"
 msgstr "BCH ウォレットを選択"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "ビットコインキャッシュを購入中..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "購入できませんでした"
@@ -4096,9 +4120,8 @@ msgstr "今すぐ購入"
 msgid "Enter Security Code"
 msgstr "セキュリティコードを入力してください"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr "ビットコインキャッシュを購入"
@@ -4109,11 +4132,11 @@ msgstr "ウォレットに移動"
 msgid "Go to {{vm.walletName}}"
 msgstr "{{vm.walletName}}に移動"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "注文が承認され、完了待ちの状態になりました。BCH はまもなくあなたのウォレットで利用できるようになります。"
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "注文が完了しました。あなたのウォレットで BCH を確認できるようになりました。"
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "ご注文に失敗しました。"
@@ -4135,6 +4158,9 @@ msgstr "支払方法の情報を取得できませんでした。"
 
 msgid "Waiting for authorization"
 msgstr "認証待ちです。"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr "戻る"
@@ -4375,6 +4401,14 @@ msgid "Must be at least 18 years old."
 msgstr "18歳以上である必要があります。"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "渋谷1-2-3"
 
@@ -4550,6 +4584,12 @@ msgstr "身分証明書を顔の横に持ち上げ、身分証明書と顔を同
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "枠内に書類の四隅が完全に収まるように調整してください。反射にご注意ください。"
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "ギフトカードを購入しています..."

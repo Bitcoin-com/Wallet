@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Portuguese, Brazilian\n"
 "Language: pt\n"
-"PO-Revision-Date: 2019-05-31 04:47\n"
+"PO-Revision-Date: 2019-05-31 08:53\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Deve ser um endereço de e-mail válido."
 msgid "Unable to Create Customer"
 msgstr "Não é possível criar o cliente"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Comprar Bitcoin Cash (BCH)"
@@ -4044,8 +4047,8 @@ msgstr "Ocorreu um erro ao obter suas informações de cliente."
 msgid "Customer information was missing."
 msgstr "Informações do cliente ausentes."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Consulte nossos <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Termos de Serviço</a> e <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Política de Privacidade"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "Você deve ter uma carteira de Bitcoin Cash (BCH) para depositar."
 msgid "Select a BCH Wallet"
 msgstr "Selecione uma carteira BCH"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Comprando Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Falha na compra"
@@ -4090,9 +4114,8 @@ msgstr "Comprar agora"
 msgid "Enter Security Code"
 msgstr "Insira o código de segurança"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr ""
@@ -4103,11 +4126,11 @@ msgstr "Ir para a carteira"
 msgid "Go to {{vm.walletName}}"
 msgstr "Ir para {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "O seu pedido foi aprovado e está pendente de conclusão. Seu BCH estará disponível em sua carteira em breve."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "O seu pedido foi concluído. Você encontra, agora, o seu BCH na sua carteira."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "A sua encomenda falhou."
@@ -4129,6 +4152,9 @@ msgstr "Falha ao obter informações de método de pagamento."
 
 msgid "Waiting for authorization"
 msgstr "À espera de autorização"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr "Voltar"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "Deve ter 18 anos no mínimo."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "Rua das Tílias, 123"
 
@@ -4544,6 +4578,12 @@ msgstr "Tire uma foto do seu documento ao lado do seu rosto."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Posicione os 4 cantos do seu documento exactamente dentro do quadro. Evite qualquer brilho."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "A comprar um Cartão-Presente..."

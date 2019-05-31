@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2019-05-31 04:47\n"
+"PO-Revision-Date: 2019-05-31 08:53\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "必须是有效的电子邮件地址。"
 msgid "Unable to Create Customer"
 msgstr "无法创建客户"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "购买 Bitcoin Cash (BCH)"
@@ -4044,8 +4047,8 @@ msgstr "获取您的客户信息时出错。"
 msgid "Customer information was missing."
 msgstr "缺少客户信息。"
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "请参阅我们的<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">服务条款</a>和<a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">隐私政策"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "您必须有一个 Bitcoin Cash (BCH) 钱包才能向其中存款。"
 msgid "Select a BCH Wallet"
 msgstr "选择 BCH 钱包"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "正在购买 Bitcoin Cash…"
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "购买失败"
@@ -4090,9 +4114,8 @@ msgstr "立即购买"
 msgid "Enter Security Code"
 msgstr "输入安全码"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr ""
@@ -4103,11 +4126,11 @@ msgstr "前往钱包"
 msgid "Go to {{vm.walletName}}"
 msgstr "前往 {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "您的订单已被批准，正在等待完成。您的 BCH 很快就会到达您的钱包中。"
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "您的订单已完成。您现在可以在钱包中找到您的 BCH。"
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "订单失败。"
@@ -4129,6 +4152,9 @@ msgstr "无法获取付款方式信息。"
 
 msgid "Waiting for authorization"
 msgstr "等待授权"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr "返回"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "必须满18岁。"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "枫树街123号"
 
@@ -4544,6 +4578,12 @@ msgstr "拍一张您的证件在您的脸旁边的照片。"
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "将您的证件资料的4个角清楚地放置在框架中。避免任何眩光。"
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "买礼券"

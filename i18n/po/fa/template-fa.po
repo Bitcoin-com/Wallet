@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Persian\n"
 "Language: fa\n"
-"PO-Revision-Date: 2019-05-31 04:47\n"
+"PO-Revision-Date: 2019-05-31 08:54\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "باید یک آدرس ایمیل معتبر باشد."
 msgid "Unable to Create Customer"
 msgstr "عدم امکان ایجاد مشتری"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "خرید Bitcoin Cash (BCH)"
@@ -4044,8 +4047,8 @@ msgstr "هنگام گرفتن اطلاعات مشتری مربوط به شما �
 msgid "Customer information was missing."
 msgstr "اطلاعات مشتری از بین رفته بود."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "به <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">شرایط سرویس</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">سیاست حفظ حریم خصوصی ما مراجعه کنید"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "برای سپرده گذاری، نیاز به یک کیف پول Bitcoi
 msgid "Select a BCH Wallet"
 msgstr "یک کیف پول BCH انتخاب کنید"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "خرید Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "خرید انجام نشد"
@@ -4090,9 +4114,8 @@ msgstr "همین الان خرید کنید"
 msgid "Enter Security Code"
 msgstr "کد امنیتی را وارد کنید"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr ""
@@ -4103,11 +4126,11 @@ msgstr "رفتن به کیف پول"
 msgid "Go to {{vm.walletName}}"
 msgstr "رفتن به {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "سفارش شما تایید شده و در حال تکمیل شدن است. BCH شما به زودی در کیف پول تان در دسترس خواهد بود."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "سفارش شما کامل شده است. اکنون می توانید BCH خود را در کیف پولتان پیدا کنید."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "سفارشتان انجام نشد."
@@ -4129,6 +4152,9 @@ msgstr "اطلاعات روش پرداخت دریافت نشد."
 
 msgid "Waiting for authorization"
 msgstr "درانتظار مجوز"
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr "قبل"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "باید حداقل 18 سال سن داشته باشید."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 Maple Street"
 
@@ -4544,6 +4578,12 @@ msgstr "عکسی بگیرید که در آن سندتان کنار صورت گر
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "4 گوشه سند خود را به‌طور واضح در قاب قرار دهید. هیچ‌گونه بازتاب نوری وجود نداشته باشد."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "درحال خرید کارت هدیه…"

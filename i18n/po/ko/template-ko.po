@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-05-31 06:40\n"
+"PO-Revision-Date: 2019-05-31 09:30\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "유효한 이메일 주소를 입력해 주십시오."
 msgid "Unable to Create Customer"
 msgstr "고객을 만들 수 없습니다"
 
+msgid "Enter a valid email address."
+msgstr "유효한 이메일 주소를 입력해 주십시오."
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "비트코인 캐시(BCH) 구매"
@@ -4044,8 +4047,8 @@ msgstr "고객 정보 확인 중 오류가 발생했습니다."
 msgid "Customer information was missing."
 msgstr "고객 정보가 누락되었습니다."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보 보호정책을 확인해 주십시오."
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">이용약관</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">개인정보 보호정책을 확인해 주십시오.</a>"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "예치할 수 있는 비트코인 캐시(BCH) 지갑이 필요합니다.
 msgid "Select a BCH Wallet"
 msgstr "BCH 지갑 선택"
 
+msgid "No stored debit or credit cards."
+msgstr "카드가 아직 추가되지 않았습니다."
+
+msgid "No transactions."
+msgstr "아직 거래 없음."
+
 msgid "Buying Bitcoin Cash..."
 msgstr "비트코인 캐시 구매 중..."
+
+msgid "Verifying your email..."
+msgstr "이메일 확인 중 ..."
+
+msgid "Creating customer ID..."
+msgstr "고객 ID 생성 중 ..."
+
+msgid "Contacting the card issuer..."
+msgstr "은행에 문의 중 ..."
+
+msgid "Checking Status..."
+msgstr "상태 확인 중 ..."
+
+msgid "Loading Profile..."
+msgstr "프로필로드 중 ..."
 
 msgid "Purchase Failed"
 msgstr "구매 실패"
@@ -4090,9 +4114,8 @@ msgstr "지금 구매"
 msgid "Enter Security Code"
 msgstr "보안 코드 입력"
 
-msgid ""
-msgstr ""
-"Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "카드 뒷면에 3 자리 코드를 입력하십시오."
 
 msgid "Buy Bitcoin Cash Now"
 msgstr "비트코인 캐시 구매하기"
@@ -4103,11 +4126,11 @@ msgstr "지갑으로 이동"
 msgid "Go to {{vm.walletName}}"
 msgstr "{{vm.walletName}}(으)로 이동"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "주문이 승인되어 확인 중입니다. BCH가 곧 윌릿에 적립됩니다."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "주문이 승인되어 확인 중입니다. {{vm.coin | uppercase}}가 곧 윌릿에 적립됩니다."
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "주문이 완료되었습니다. 지갑에서 적립된 BCH를 확인하실 수 있습니다."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "주문이 완료되었습니다. 지갑에서 적립된 {{vm.coin | uppercase}}를 확인하실 수 있습니다."
 
 msgid "Your order has failed."
 msgstr "주문을 실패했습니다."
@@ -4129,6 +4152,9 @@ msgstr "지불방법 정보 확인 실패"
 
 msgid "Waiting for authorization"
 msgstr "본인인증이 필요합니다"
+
+msgid "Submit"
+msgstr "제출"
 
 msgid "Back"
 msgstr "뒤로"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "최소 만 18세 이상이어야 합니다."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "유효한 날짜 여야합니다."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "국가를 고르시 오."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 메이플 스트리트"
 
@@ -4501,7 +4535,7 @@ msgid "Start accepting payments easily with Bitcoin Cash today. We can show you 
 msgstr "비트코인 캐시 결제 기능을 오늘부터 추가하세요. 방법을 알려드리겠습니다."
 
 msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
-msgstr ""
+msgstr "Bitcoin Cash를 사용하여 호텔, 빌라, 아파트 등을 예약하고 최대 40 % 할인하십시오."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "비트코인 캐시로 여행을 떠나세요. 비행기, 호텔, 자동차 렌탈 모두 가능합니다."
@@ -4544,6 +4578,12 @@ msgstr "문서를 들고 셀카를 촬영하세요."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "문서 4개의 꼭짓점을 틀 안에 넣어주세요. 빛 반사를 조심해주세요."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr "머리가 프레임 안에 있는지 확인하십시오."
+
+msgid "I look good"
+msgstr "나는 좋아 보인다."
 
 msgid "Buying Gift Card..."
 msgstr "기프트 카드 구매 중..."

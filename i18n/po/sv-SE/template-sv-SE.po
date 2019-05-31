@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2019-05-31 04:47\n"
+"PO-Revision-Date: 2019-05-31 08:53\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Måste vara en giltig e-postadress."
 msgid "Unable to Create Customer"
 msgstr "Kund skapelse lyckades inte"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Köp Bitcoin Cash (BCH)"
@@ -4030,7 +4033,7 @@ msgid "Buy Bitcoin Cash"
 msgstr "Köp Bitcoin Cash"
 
 msgid "Verify Email"
-msgstr ""
+msgstr "Verifiera email"
 
 msgid "Error Getting Customer ID"
 msgstr "Fel på att få kund-ID"
@@ -4044,8 +4047,8 @@ msgstr "Ett fel uppstod under kundinformation mottagande."
 msgid "Customer information was missing."
 msgstr "Kundinformation saknades."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Se<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\"> användarvillkoren </a> och <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Sekretesspolicy"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4075,8 +4078,29 @@ msgstr "Du måste ha en Bitcoin Cash (BCH) plånbok att sätta in på."
 msgid "Select a BCH Wallet"
 msgstr "Välj en BCH-plånbok"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Köper Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Köp misslyckades"
@@ -4090,12 +4114,11 @@ msgstr "Köpa nu"
 msgid "Enter Security Code"
 msgstr "Slå in säkerhetskoden"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
 
 msgid "Buy Bitcoin Cash Now"
-msgstr ""
+msgstr "Köp Bitcoin Cash nu"
 
 msgid "Go to Wallet"
 msgstr "Gå till Plånboken"
@@ -4103,11 +4126,11 @@ msgstr "Gå till Plånboken"
 msgid "Go to {{vm.walletName}}"
 msgstr "Gå till {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "Din beställning har godkänts och väntar på slutförandet. Din BCH är tillgänglig snart i din plånbok."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Din beställning har slutförts. Du kan nu hitta din BCH i din plånbok."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "Din order har misslyckats."
@@ -4130,14 +4153,17 @@ msgstr "Misslyckades med att få betalningsmetod info."
 msgid "Waiting for authorization"
 msgstr "Väntar på behörighet"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
 msgstr "Tillbaka"
 
 msgid "Expiration Date"
-msgstr ""
+msgstr "Utgångsdatum"
 
 msgid "Type all your card details below."
-msgstr ""
+msgstr "Fyll i dina kortuppgifter nedan."
 
 msgid "Verify and complete your card information."
 msgstr "Verifiera och slutföra din kortinformation."
@@ -4182,16 +4208,16 @@ msgid "Invalid CVC number"
 msgstr "Ogiltigt CVC-nummer"
 
 msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
-msgstr ""
+msgstr "Köp Bitcoin Cash direkt med ditt kreditkort. Fyll i din email-address för att komma igång."
 
 msgid "Enter the security code we've just sent you to verify your email."
-msgstr ""
+msgstr "Verifiera säkerhetskoden som skickats till din email-address."
 
 msgid "You will only receive emails related to your purchases."
-msgstr ""
+msgstr "Vi kommer bara skicka mail relaterat till dina köp."
 
 msgid "Security code"
-msgstr ""
+msgstr "Säkerhetskod"
 
 msgid "Purchasing"
 msgstr "Köper"
@@ -4218,10 +4244,10 @@ msgid "Unable to Purchase"
 msgstr "Köp misslyckades"
 
 msgid "3D secure"
-msgstr ""
+msgstr "3D secure"
 
 msgid "You will redirect to your bank website to authorize the transaction."
-msgstr ""
+msgstr "Du blir skickad till din bank för att godkänna transaktionen."
 
 msgid "Purchase History"
 msgstr "Köphistoria"
@@ -4369,6 +4395,14 @@ msgid "Must be at least 18 years old."
 msgstr "Måste vara minst 18 år gammal."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "Strömgatan, 123"
 
@@ -4501,7 +4535,7 @@ msgid "Start accepting payments easily with Bitcoin Cash today. We can show you 
 msgstr "Börja acceptera betalningar enkelt med Bitcoin Cash idag. Vi kan hjälpa dig."
 
 msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
-msgstr ""
+msgstr "Boka hotell och lägenheter, och mer med Bitcoin Cash och spara upp till 40%."
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Ta till himlen med Bitcoin Cash. Flyg, hotell och biluthyrning."
@@ -4544,6 +4578,12 @@ msgstr "Ta en bild av ditt dokument som hölls vid ditt ansikte."
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Placera de fyra hörnen på ditt dokument tydligt i ramen. Undvik bländning."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "Köper presentkort..."
