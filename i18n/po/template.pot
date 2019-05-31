@@ -4011,6 +4011,9 @@ msgstr ""
 msgid "Unable to Create Customer"
 msgstr ""
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr ""
@@ -4036,7 +4039,7 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgid "See the <a class="track_buy_bitcoin_tap_on_terms_of_service" ng-click="vm.onTermsOfUse()">Terms of Service</a> & <a class="track_buy_bitcoin_tap_on_privacy_policy" ng-click="vm.onPrivacyPolicy()">Privacy Policy</a>"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
@@ -4067,7 +4070,28 @@ msgstr ""
 msgid "Select a BCH Wallet"
 msgstr ""
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
 msgstr ""
 
 msgid "Purchase Failed"
@@ -4082,8 +4106,8 @@ msgstr ""
 msgid "Enter Security Code"
 msgstr ""
 
-msgid ""
-msgstr "Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr ""
 
 # Success
 
@@ -4096,10 +4120,10 @@ msgstr ""
 msgid "Go to {{vm.walletName}}"
 msgstr ""
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
 msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
 msgstr ""
 
 msgid "Your order has failed."
@@ -4126,6 +4150,9 @@ msgid "Waiting for authorization"
 msgstr ""
 
 # Enter Card details
+
+msgid "Submit"
+msgstr ""
 
 msgid "Back"
 msgstr ""
@@ -4382,6 +4409,14 @@ msgid "Must be at least 18 years old."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr ""
 
@@ -4556,6 +4591,12 @@ msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
 msgstr ""
 
 msgid "Buying Gift Card..."
