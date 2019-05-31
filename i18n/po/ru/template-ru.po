@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-31 06:40\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3324,7 +3324,7 @@ msgstr "Упс..."
 
 #: www/views/tx-details.html:100
 msgid "Unconfirmed"
-msgstr "Неподтверждено"
+msgstr "Не подтверждена"
 
 #: www/views/walletDetails.html:190
 msgid "Unsent transactions"
@@ -4029,6 +4029,9 @@ msgstr "Вы можете купить еще максимум {{vm.dailyRemaini
 msgid "Buy Bitcoin Cash"
 msgstr "Покупка Bitcoin Cash"
 
+msgid "Verify Email"
+msgstr "Подтвердить адрес электронной почты"
+
 msgid "Error Getting Customer ID"
 msgstr "Ошибка при получении идентификатора клиента"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr "Покупка Bitcoin Cash"
+
 msgid "Go to Wallet"
 msgstr "Перейти в кошелек"
 
@@ -4126,6 +4132,12 @@ msgstr "В ожидании авторизации"
 
 msgid "Back"
 msgstr "Назад"
+
+msgid "Expiration Date"
+msgstr "Срок истечения"
+
+msgid "Type all your card details below."
+msgstr "Введите данные своей карты в поля ниже."
 
 msgid "Verify and complete your card information."
 msgstr "Проверьте и заполните данные вашей карты."
@@ -4169,6 +4181,18 @@ msgstr "Указывайте дату в формате ММ/ГГГГ"
 msgid "Invalid CVC number"
 msgstr "Недействительный номер CVC"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Купить Bitcoin Cash прямо сейчас, используя кредитную карту. Введите ваш адрес электронной почты, чтобы начать."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Чтобы подтвердить ваш адрес электронной почты, введите код безопасности из письма, которое мы вам только что отправили."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Вы будете получать письма только непосредственно относящиеся к вашим покупкам."
+
+msgid "Security code"
+msgstr "Код безопасности"
+
 msgid "Purchasing"
 msgstr "Покупка"
 
@@ -4192,6 +4216,12 @@ msgstr "Сумма должна быть положительным числом
 
 msgid "Unable to Purchase"
 msgstr "Ошибка покупки"
+
+msgid "3D secure"
+msgstr "3D secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Для подтверждения транзакции вы будете перенаправлены на страницу своего банка."
 
 msgid "Purchase History"
 msgstr "История покупок"
@@ -4469,6 +4499,9 @@ msgstr "Еще"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Начните принимать оплату Bitcoin Cash сегодня. Мы можем вам с этим помочь."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "На седьмом небе вместе с Bitcoin Cash - оплачивайте авиабилеты, гостиницы и аренду машины!"

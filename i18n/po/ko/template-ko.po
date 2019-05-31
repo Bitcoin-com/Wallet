@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-31 06:40\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "1일 {{vm.dailyRemaining}} 및 월 최고 {{vm.monthlyRemaining}}까지 
 msgid "Buy Bitcoin Cash"
 msgstr "비트코인 캐시 구매"
 
+msgid "Verify Email"
+msgstr "이메일 인증하기"
+
 msgid "Error Getting Customer ID"
 msgstr "고객 ID 확인 오류"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr "비트코인 캐시 구매하기"
+
 msgid "Go to Wallet"
 msgstr "지갑으로 이동"
 
@@ -4126,6 +4132,12 @@ msgstr "본인인증이 필요합니다"
 
 msgid "Back"
 msgstr "뒤로"
+
+msgid "Expiration Date"
+msgstr "유효 기간"
+
+msgid "Type all your card details below."
+msgstr "카드 정보를 입력하세요."
 
 msgid "Verify and complete your card information."
 msgstr "카드 정보를 확인하고 완료해 주십시오."
@@ -4169,6 +4181,18 @@ msgstr "유효한 날짜 형식 MM/YYYY"
 msgid "Invalid CVC number"
 msgstr "유효하지 않은 CVC 번호"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "신용카드로 비트코인 캐시를 지금 구매하세요. 시작하시려면 이메일 주소를 적어주세요."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "이메일로 보안 코드를 전송했습니다. 보안 코드를 아래에 작성해주세요."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "해당 이메일 주소로는 구매 내역 내용만 전송됩니다."
+
+msgid "Security code"
+msgstr "보안 코드"
+
 msgid "Purchasing"
 msgstr "구매"
 
@@ -4192,6 +4216,12 @@ msgstr "금액은 양수이어야 합니다."
 
 msgid "Unable to Purchase"
 msgstr "구매할 수 없습니다"
+
+msgid "3D secure"
+msgstr "3D secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "구매 인증을 위해 은행으로 리다이렉트됩니다."
 
 msgid "Purchase History"
 msgstr "구매 내역"
@@ -4469,6 +4499,9 @@ msgstr "추가 정보"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "비트코인 캐시 결제 기능을 오늘부터 추가하세요. 방법을 알려드리겠습니다."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "비트코인 캐시로 여행을 떠나세요. 비행기, 호텔, 자동차 렌탈 모두 가능합니다."

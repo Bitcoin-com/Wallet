@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh\n"
-"PO-Revision-Date: 2019-02-22 02:15\n"
+"PO-Revision-Date: 2019-05-31 04:47\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "您今天最多还可以购买 {{vm.dailyRemaining}}，本月最多还�
 msgid "Buy Bitcoin Cash"
 msgstr "购买 Bitcoin Cash"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "获取客户 ID 时出错"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "前往钱包"
 
@@ -4126,6 +4132,12 @@ msgstr "等待授权"
 
 msgid "Back"
 msgstr "返回"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "验证并完成您的卡片信息。"
@@ -4169,6 +4181,18 @@ msgstr "请按照“月/年”的预期日期格式输入"
 msgid "Invalid CVC number"
 msgstr "CVC 数字无效"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "正在购买"
 
@@ -4192,6 +4216,12 @@ msgstr "金额必须为正数。"
 
 msgid "Unable to Purchase"
 msgstr "无法购买"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "购买历史记录"
@@ -4469,6 +4499,9 @@ msgstr "更多"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "从今天开始接收比特币现金付款方式，我们可以教您接收方法。"
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "用比特币现金去滑雪订机票订饭店和租车。"

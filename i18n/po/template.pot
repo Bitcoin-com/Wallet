@@ -4021,6 +4021,9 @@ msgstr ""
 msgid "Buy Bitcoin Cash"
 msgstr ""
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr ""
 
@@ -4084,6 +4087,9 @@ msgstr "Enter the 3 digit code on the back of your card."
 
 # Success
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr ""
 
@@ -4122,6 +4128,12 @@ msgstr ""
 # Enter Card details
 
 msgid "Back"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
 msgstr ""
 
 msgid "Verify and complete your card information."
@@ -4168,6 +4180,18 @@ msgstr ""
 
 # Purchasing
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr ""
 
@@ -4192,6 +4216,12 @@ msgstr ""
 msgid "Unable to Purchase"
 msgstr ""
 
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
+
 # Purchase History
 
 msgid "Purchase History"
@@ -4210,7 +4240,6 @@ msgstr ""
 
 msgid "Add Credit or Debit Card"
 msgstr ""
-
 
 msgid "This amount exceeds your monthly limit"
 msgstr ""

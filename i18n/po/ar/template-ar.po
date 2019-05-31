@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
-"PO-Revision-Date: 2019-03-29 07:29\n"
+"PO-Revision-Date: 2019-05-31 04:47\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4031,6 +4031,9 @@ msgstr "يمكنك شراء ما يصل إلى {{vm.dailyRemaining}} اليوم�
 msgid "Buy Bitcoin Cash"
 msgstr "قم بشراء البتكوين كاش"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "خطأ في الحصول على معرف العميل"
 
@@ -4093,6 +4096,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "اذهب إلى المحفظة"
 
@@ -4128,6 +4134,12 @@ msgstr "انتظار المصادقة"
 
 msgid "Back"
 msgstr "الرجوع"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "تحقق واستكمل معلومات البطاقة الخاصة بك."
@@ -4171,6 +4183,18 @@ msgstr "متابعة تنسيق التاريخ المتوقع شهر/سنة"
 msgid "Invalid CVC number"
 msgstr "رقم CVC غير صالح"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "الشراء"
 
@@ -4194,6 +4218,12 @@ msgstr "يجب أن يكون المبلغ رقمًا إيحابيًا."
 
 msgid "Unable to Purchase"
 msgstr "تعذر الشراء"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "محفوظات الشراء"
@@ -4471,6 +4501,9 @@ msgstr "المزيد"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "بدء قبول المدفوعات بسهولة باستخدام بيتكوين كاش اليوم. يمكننا أن نعرفك الكيفية."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "عانق السحاب مستخدمًا البيتكوين كاش. رحالات الطيران والفنادق وتأجير السيارات."

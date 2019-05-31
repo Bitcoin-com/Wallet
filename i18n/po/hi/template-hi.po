@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Hindi\n"
 "Language: hi\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-31 04:47\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4029,6 +4029,9 @@ msgstr "आप आज {{vm.dailyRemaining}} तक, और इस माह {{vm
 msgid "Buy Bitcoin Cash"
 msgstr "Bitcoin Cash खरीदें"
 
+msgid "Verify Email"
+msgstr ""
+
 msgid "Error Getting Customer ID"
 msgstr "ग्राहक ID प्राप्त करने में त्रुटि"
 
@@ -4091,6 +4094,9 @@ msgid ""
 msgstr ""
 "Enter the 3 digit code on the back of your card."
 
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
 msgid "Go to Wallet"
 msgstr "वॉलेट में जाएं"
 
@@ -4126,6 +4132,12 @@ msgstr "प्राधिकरण के लिए प्रतीक्षा
 
 msgid "Back"
 msgstr "पीछे"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "अपनी कार्ड जानकारी को सत्यापित और पूरा करें।"
@@ -4169,6 +4181,18 @@ msgstr "अपेक्षित दिनांक स्वरूप MM/YYYY �
 msgid "Invalid CVC number"
 msgstr "अमान्य CVC संख्या"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "खरीदारी की जा रही है"
 
@@ -4192,6 +4216,12 @@ msgstr "राशि एक धनात्मक संख्या होन�
 
 msgid "Unable to Purchase"
 msgstr "खरीदने में असमर्थ"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "खरीद इतिहास"
@@ -4469,6 +4499,9 @@ msgstr "अधिक"
 
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "आज ही Bitcoin Cash के साथ आसानी से भुगतान स्वीकार करना प्रारंभ करें। हम आपको दिखा सकते हैं कि ऐसा कैसे करना है।"
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Bitcoin Cash का इस्तेमाल कर सब कुछ प्राप्त करें। फ्लाइट्स, होटल, और किराए पर कार।"

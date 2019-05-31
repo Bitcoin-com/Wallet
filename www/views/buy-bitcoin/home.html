@@ -12,8 +12,7 @@
       Buy Bitcoin Cash (BCH)
     </h1>
     <p ng-if="vm.customer.dailyLimit > 0" class="center" translate>
-      You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to
-      {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month.
+      You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month.
     </p>
     <p ng-if="vm.identityCheck && vm.identityCheck.result === 'rejected'" class="center" translate>
       Your account verification was rejected.
