@@ -33,6 +33,7 @@
     function _initVariables() {
       purchasedAmount = $state.params.purchasedAmount;
 
+      vm.coin = 'bch';
       vm.failureReason = '';
       vm.moonpayTxId = $state.params.moonpayTxId;
       vm.purchasedAmount = purchasedAmount;
@@ -119,7 +120,7 @@
           $state.go('tabs.buybitcoin').then(
             function () {
               $state.go('tabs.buybitcoin-amount', { 
-                coin: 'bch'
+                coin: vm.coin
               });
             }
           );
@@ -140,6 +141,11 @@
           vm.purchasedAmount = transaction.baseCurrencyAmount;
           vm.status = transaction.status;
           vm.failureReason = transaction.failureReason;
+
+          if (vm.walletAddress[0] != 'q' && vm.walletAddress[0] != 'p') {
+            vm.coin = 'btc'
+          }
+
           console.log('_refreshTransactionInfo() ' + transaction.status);
           if (vm.status === 'completed') {
             vm.quoteCurrencyAmount = transaction.quoteCurrencyAmount;
