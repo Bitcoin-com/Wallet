@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
-"PO-Revision-Date: 2019-05-30 03:42\n"
+"PO-Revision-Date: 2019-05-31 04:47\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4138,9 +4138,6 @@ msgstr "الرجوع"
 msgid "Expiration Date"
 msgstr ""
 
-msgid "Expiration Date"
-msgstr ""
-
 msgid "Type all your card details below."
 msgstr ""
 
@@ -4193,6 +4190,9 @@ msgid "Enter the security code we've just sent you to verify your email."
 msgstr ""
 
 msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
 msgstr ""
 
 msgid "Purchasing"

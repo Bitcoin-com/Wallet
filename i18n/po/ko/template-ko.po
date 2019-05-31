@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-05-31 01:21\n"
+"PO-Revision-Date: 2019-05-31 06:40\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4136,9 +4136,6 @@ msgstr "뒤로"
 msgid "Expiration Date"
 msgstr "유효 기간"
 
-msgid "Expiration Date"
-msgstr "유효 기간"
-
 msgid "Type all your card details below."
 msgstr "카드 정보를 입력하세요."
 
@@ -4192,6 +4189,9 @@ msgstr "이메일로 보안 코드를 전송했습니다. 보안 코드를 아�
 
 msgid "You will only receive emails related to your purchases."
 msgstr "해당 이메일 주소로는 구매 내역 내용만 전송됩니다."
+
+msgid "Security code"
+msgstr "보안 코드"
 
 msgid "Purchasing"
 msgstr "구매"

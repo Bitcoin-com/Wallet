@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
-"PO-Revision-Date: 2019-05-31 01:21\n"
+"PO-Revision-Date: 2019-05-31 06:40\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4142,9 +4142,6 @@ msgstr "戻る"
 msgid "Expiration Date"
 msgstr "有効期限"
 
-msgid "Expiration Date"
-msgstr "有効期限"
-
 msgid "Type all your card details below."
 msgstr "クレジットカード情報を以下に入力してください"
 
@@ -4198,6 +4195,9 @@ msgstr "メールアドレスを認証するために、今送信したセキュ
 
 msgid "You will only receive emails related to your purchases."
 msgstr "購入に関係するメールのみ送信します"
+
+msgid "Security code"
+msgstr "セキュリティコード"
 
 msgid "Purchasing"
 msgstr "購入手続き中"
