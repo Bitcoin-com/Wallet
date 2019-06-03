@@ -58,8 +58,6 @@
       background-size: 85%;
       background-position: 50%;
       background-color: #FFFFFF;
-      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
-      border: 1px solid #faba13;
       text-align: center;
       font-size: 30px;
 
@@ -72,7 +70,6 @@
       }
 
       &.icon-buy-bitcoin2 {
-        border: 1px solid #faba13;
       }
 
       &.icon-reddit-white {
@@ -98,7 +95,7 @@
       }
 
       &.icon-wallet {
-        background-color: #FAB915;
+        background-color: $v-bitcoin-green;;
         background-image: url('../img/icon-wallet.svg');
         border: none;
         box-shadow: 0 0 0 1px rgba(0,0,0,0.3) inset;
@@ -108,13 +105,11 @@
 
   &.theme-circle-services {
     > .bg {
-      border: 1px solid #191919;
     }
   }
 
   &.theme-circle-community {
     > .bg {
-      border: 1px solid #FFFFFF;
     }
   }
 }

@@ -9,12 +9,12 @@
     height: 50px;
     border-radius: $v-icon-border-radius;
     box-shadow: $v-subtle-box-shadow;
-    background-color: #fa912b;
+    background-color: $v-bitcoin-green;;
     img {
       height: 100%;
       width: 100%;
       content: $v-bitcoin-icon;
-      background-color: $v-bitcoin-orange;
+      background-color: $v-bitcoin-green;
       border-radius: $v-icon-border-radius;
     }
   }
