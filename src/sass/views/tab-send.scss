@@ -201,6 +201,10 @@
     height: 100%;
   }
 
+  .card {
+    box-shadow: none;
+    border-radius: 7px;
+  }
   .card.contacts {
     margin: 4px 4px 16px 4px;
 

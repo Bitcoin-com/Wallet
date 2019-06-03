@@ -1,7 +1,7 @@
 .apl {
   $button-right-width: 78;
 
-  background-color: #FFF;
+  background-color: $v-background-root-color;
   color: #000;
   padding: 0;
   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */  
