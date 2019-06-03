@@ -101,7 +101,7 @@
     }
     &:not(.apl-amount-switcher) {
       &:after {
-        border-bottom: 1px solid #FF9B00;
+        border-bottom: 1px solid $v-bitcoin-green;
         content: '';
         display: block;
         height: 1px;
@@ -162,7 +162,7 @@
       &-left {
         &:after {
           content: '';
-          border-bottom: 1px solid #FF9B00;
+          border-bottom: 1px solid $v-bitcoin-green;
           display: block;
           height: 1px;
           position: absolute;
@@ -174,7 +174,7 @@
         right: 0;
         &:after {
           content: '';
-          border-bottom: 1px solid #FF9B00;
+          border-bottom: 1px solid $v-bitcoin-green;
           display: block;
           height: 1px;
           position: absolute;
@@ -217,7 +217,7 @@
     align-items: center;
 
     input {
-      caret-color: #FF9B00;
+      caret-color: $v-bitcoin-green;
       &::placeholder {
         color: #D8D8D8;
       }
@@ -236,7 +236,7 @@
       background: #5B97FA;
     }
     &.c2 {
-      background: #FAAB5B;
+      background: $v-bitcoin-green;
     }
   }
 
@@ -506,7 +506,8 @@
 
   }
   &-button {
-    background: #FF9B00;
+    background: url(../img/green_px.png);
+    background-repeat: repeat;
     border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     display: block;
@@ -525,7 +526,7 @@
     }
 
     &.unready {
-      background: rgba(255, 155, 0, 0.5);
+      background: rgba(10, 193, 142, 0.5);
     }
 
 
