@@ -1609,7 +1609,7 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         screen.lockOrientation('portrait');
 
       if (ionic.Platform.isAndroid() && platformInfo.isCordova && StatusBar) {
-        StatusBar.backgroundColorByHexString('#000000');
+        StatusBar.backgroundColorByHexString('#FBFCFF');
       }
 
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard && !platformInfo.isWP) {

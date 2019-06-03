@@ -80,8 +80,8 @@ angular
     function onBeforeEnter (event, data) {
 
       if ($window.StatusBar) {
-        $window.StatusBar.styleLightContent();
-        StatusBar.backgroundColorByHexString('#000000');
+        $window.StatusBar.styleDefault();
+        StatusBar.backgroundColorByHexString('#FBFCFF');
       }
 
       if (!$scope.homeTip) {

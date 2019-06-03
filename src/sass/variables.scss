@@ -30,6 +30,7 @@ $v-warning-color:                                    #ffa500 !default;
 $v-warning-color-2:                                  #b7664d;
 $v-error-color:                                      #ef473a !default;
 
+$v-background-root-color:                            #fbfcff;
 $v-background-under-card:                            #fbfcff;
 
 $v-wallet-color-map: (
@@ -192,9 +193,10 @@ $item-default-active-border:                         darken($v-subtle-gray, 7%) 
 $item-divider-bg:                                    $v-subtle-gray !default;
 
 $bar-default-border:                                 $v-subtle-gray !default;
-$bar-royal-bg:                                       $v-primary-color !default;
-$bar-royal-border:                                   $v-primary-color !default;
-$bar-royal-text:                                     #ffffff !default;
+$bar-royal-bg:                                       $v-background-root-color !default;
+$bar-royal-border:                                   $v-background-root-color !default;
+$bar-royal-text:                                     #000 !default;
+$toolbar-background:                                 $v-background-root-color;
 
 $tabs-icon-size:                                     22px !default;
 

@@ -408,7 +408,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
     if ($window.StatusBar) {
-      $window.StatusBar.styleLightContent();
+      $window.StatusBar.styleDefault();
     }
 
     configService.whenAvailable(function (config) {
@@ -469,7 +469,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       refreshInterval = null;
     }
     if ($window.StatusBar) {
-      $window.StatusBar.backgroundColorByHexString('#000000');
+      $window.StatusBar.backgroundColorByHexString('#FBFCFF');
     }
   }
 
