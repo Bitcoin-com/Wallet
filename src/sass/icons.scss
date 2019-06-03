@@ -48,7 +48,7 @@
       border-radius: 20px;  
     }
     &.green{
-      background: rgb(1, 209, 162);
+      background: $v-bitcoin-green;
     }
   }
 
@@ -89,13 +89,38 @@
         background-size: 100%;
       }
 
+      &.icon-games {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-games.svg');
+        background-size: 50%;
+      }
+
+      &.icon-news {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-news.svg');
+        background-size: 50%;
+      }
+
+      &.icon-tools {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-tools.svg');
+        background-size: 50%;
+      }
+
+      &.icon-chart {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-chart.svg');
+        background-size: 50%;
+      }
+
       &.icon-faucet {
+        background-color: $v-bitcoin-green;
         background-image: url('../img/icon-faucet.svg');
-        background-size: 70%;
+        background-size: 50%;
       }
 
       &.icon-wallet {
-        background-color: $v-bitcoin-green;;
+        background-color: $v-bitcoin-green;
         background-image: url('../img/icon-wallet.svg');
         border: none;
         box-shadow: 0 0 0 1px rgba(0,0,0,0.3) inset;
