@@ -2,7 +2,7 @@
 
   <ion-nav-bar ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}">
     <ion-nav-title>{{wallet.name}}</ion-nav-title>
-    <ion-nav-back-button>
+    <ion-nav-back-button class="light">
     </ion-nav-back-button>
     <ion-nav-buttons side="secondary">
       <button class="button back-button" ng-click="startSearch(); openSearchModal()" ng-if="txHistory.length > 4">

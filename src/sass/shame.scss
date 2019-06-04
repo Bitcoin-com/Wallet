@@ -99,10 +99,19 @@ input[type=number] {
 .back-button {
   border: 0;
   .icon:before {
-    color: #fff;
+    color: black;
     font-size: 30px !important;
     font-weight: bold;
     margin-left: 5px;
+  }
+
+  &.light {
+    .icon:before {
+      color: #fff;
+      font-size: 30px !important;
+      font-weight: bold;
+      margin-left: 5px;
+    }
   }
 }
 
