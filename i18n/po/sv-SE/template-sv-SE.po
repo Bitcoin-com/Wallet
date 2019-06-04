@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
-"PO-Revision-Date: 2019-05-31 09:51\n"
+"PO-Revision-Date: 2019-06-04 04:55\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3849,6 +3849,9 @@ msgstr "Utforska Bitcoin.com"
 #: src/js/services/bitcoincomService.js:21
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash Spel"
+
+msgid "Bitcoin Games"
+msgstr ""
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"

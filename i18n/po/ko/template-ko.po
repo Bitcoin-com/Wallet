@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Korean\n"
 "Language: ko\n"
-"PO-Revision-Date: 2019-05-31 09:51\n"
+"PO-Revision-Date: 2019-06-04 08:10\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3849,6 +3849,9 @@ msgstr "Bitcoin.com 탐색"
 #: src/js/services/bitcoincomService.js:21
 msgid "Bitcoin Cash Games"
 msgstr "BCH 게임"
+
+msgid "Bitcoin Games"
+msgstr "Bitcoin 게임"
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
