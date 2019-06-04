@@ -3842,6 +3842,9 @@ msgstr ""
 msgid "Bitcoin Cash Games"
 msgstr ""
 
+msgid "Bitcoin Games"
+msgstr ""
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr ""
