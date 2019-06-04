@@ -23,7 +23,7 @@
       <div class="apl-amount-totals">
         <table>
           <tr class="apl-amount-totals-item">
-            <td class="apl-amount-totals-title purchased" ng-if="vm.haveTxInfo"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="BCH"></formatted-amount> @ {{vm.rateEur | currency:'': 2}} EUR</td>
+            <td class="apl-amount-totals-title purchased" ng-if="vm.haveTxInfo"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="{{vm.coin | uppercase}}"></formatted-amount> @ {{vm.rateEur | currency:'': 2}} EUR</td>
             <td class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.cost | currency:'':2}} EUR</td>
           </tr>
           <tr class="apl-amount-totals-item">

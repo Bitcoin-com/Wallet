@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2019-03-29 07:29\n"
+"PO-Revision-Date: 2019-05-31 09:51\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Musí to být platná e-mailová adresa."
 msgid "Unable to Create Customer"
 msgstr "Nelze vytvořit zákazníka"
 
+msgid "Enter a valid email address."
+msgstr "Musí to být platná e-mailová adresa."
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Koupit Bitcoin Cash (BCH)"
@@ -4028,6 +4031,9 @@ msgstr "Dnes si můžete koupit až {{vm.dailyRemaining}} a až {{vm.monthlyRema
 
 msgid "Buy Bitcoin Cash"
 msgstr "Koupit Bitcoin Cash"
+
+msgid "Verify Email"
+msgstr "Ověřovací email"
 
 msgid "Error Getting Customer ID"
 msgstr "Chyba načítání ID zákazníka"
@@ -4041,8 +4047,14 @@ msgstr "Došlo k chybě při získávání informací o zákazníkovi."
 msgid "Customer information was missing."
 msgstr "Chybí informace o zákazníkovi."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Viz naše <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">podmínky</a> a <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">zásady ochrany osobních údajů"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "Viz naše <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">podmínky</a> a <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">zásady ochrany osobních údajů</a>"
+
+msgid "Terms of Service"
+msgstr "Podmínky"
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany osobních údajů"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4072,8 +4084,29 @@ msgstr "K uložení musíte mít peněženku Bitcoin Cash (BCH)."
 msgid "Select a BCH Wallet"
 msgstr "Zvolte BCH peněženku"
 
+msgid "No stored debit or credit cards."
+msgstr "Žádné uložené debetní nebo kreditní karty."
+
+msgid "No transactions."
+msgstr "Zatím žádné transakce."
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Kupuje se Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Nákup selhal"
@@ -4087,9 +4120,11 @@ msgstr "Koupit teď"
 msgid "Enter Security Code"
 msgstr "Zadejte bezpečnostní kód"
 
-msgid ""
-msgstr ""
-"Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "Zadejte 3 až místný kód ze zadní strany vaší karty."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr "Koupit Bitcoin Cash"
 
 msgid "Go to Wallet"
 msgstr "Přejít do peněženky"
@@ -4097,11 +4132,11 @@ msgstr "Přejít do peněženky"
 msgid "Go to {{vm.walletName}}"
 msgstr "Přejít do {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "Vaše objednávka byla schválena a čeká na dokončení. Váš BCH bude brzy k dispozici ve vaší peněžence."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "Vaše objednávka byla schválena a čeká na dokončení. Váš {{vm.coin | uppercase}} bude brzy k dispozici ve vaší peněžence."
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Vaše objednávka byla dokončena. Vaše BCH teď najdete ve své peněžence."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "Vaše objednávka byla dokončena. Vaše {{vm.coin | uppercase}} teď najdete ve své peněžence."
 
 msgid "Your order has failed."
 msgstr "Vaše objednávka selhala."
@@ -4124,8 +4159,17 @@ msgstr "Nepodařilo se získat informace o způsobu platby."
 msgid "Waiting for authorization"
 msgstr "Čekání na autorizaci"
 
+msgid "Submit"
+msgstr "Předložit"
+
 msgid "Back"
 msgstr "Zpět"
+
+msgid "Expiration Date"
+msgstr "Datum spotřeby"
+
+msgid "Type all your card details below."
+msgstr "Níže zadejte všechny podrobnosti o vaší kartě."
 
 msgid "Verify and complete your card information."
 msgstr "Zkontrolujte a vyplňte údaje o vaší kartě."
@@ -4169,6 +4213,18 @@ msgstr "Očekávaný formát data: MM/RRRR"
 msgid "Invalid CVC number"
 msgstr "Neplatné číslo CVC"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Koupit Bitcoin hotovosti okamžitě s vaší kreditní kartou. Chcete-li začít, zadejte svůj e-mail."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Zadejte bezpečnostní kód, který jsme vám právě poslali, abyste ověřili svůj e-mail."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Dostanete pouze e-maily týkající se vašich nákupů."
+
+msgid "Security code"
+msgstr "Bezpečnostní kód"
+
 msgid "Purchasing"
 msgstr "Nákup"
 
@@ -4192,6 +4248,12 @@ msgstr "Částka musí být kladné číslo."
 
 msgid "Unable to Purchase"
 msgstr "Nelze provést nákup"
+
+msgid "3D secure"
+msgstr "3D secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Budete přesměrováni na webovou stránku své banky, abyste transakci autorizovali."
 
 msgid "Purchase History"
 msgstr "Historie nákupů"
@@ -4339,6 +4401,14 @@ msgid "Must be at least 18 years old."
 msgstr "Pouze starší 18-ti let."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "Musí být správné datum."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "Vyber zemi."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 Maple Street"
 
@@ -4470,6 +4540,9 @@ msgstr "Více"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Začněte přijímat platby snadno pomocí Bitcoin Cash již dnes. Ukážeme Vám jak."
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr "Rezervujte si hotely, vily, apartmány a více pomocí Bitcoin Cash a ušetříte až 40%."
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Zamiřte do nebes s pomocí Bitcoin Cash. Lety, hotely a půjčovny aut."
 
@@ -4511,6 +4584,12 @@ msgstr "Držte dokument blízko tváře a pořiďte foto tak, aby se vešlo do j
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Nastavte svůj dokument do rámečku a vyhněte se odleskům."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr "Ujistěte se, že je hlava zcela v rámu."
+
+msgid "I look good"
+msgstr "vypadám dobře"
 
 msgid "Buying Gift Card..."
 msgstr "Nákup dárkového kupónu..."

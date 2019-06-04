@@ -24,10 +24,13 @@
   ) {
 
     var vm = this;
+    vm.coin = $state.params.coin
+    vm.otherCoin = vm.coin == 'bch' ? 'btc' : 'bch'
     vm.onAmountChanged = onAmountChanged;
     vm.onAmountFocus = onAmountFocus;
     vm.onBuy = onBuy;
-
+    vm.onSelectWallet = onSelectWallet;
+    vm.onBuyCoin = onBuyCoin;
     
     var MOONPAY_FIXED_FEE = 4.99;
     var MOONPAY_VARIABLE_FEE_FRACTION = 0.0499;
@@ -117,7 +120,7 @@
 
     function _getRates() {
 
-      moonPayService.getRates('bch').then(
+      moonPayService.getRates(vm.coin).then(
         function onGetRatesSuccess(rates) {
           console.log('Rates:', rates);
           vm.rateEur = rates.EUR;
@@ -136,19 +139,19 @@
     }
 
     function _getWallet() {
-      moonPayService.getDefaultWalletId().then(
+      moonPayService.getDefaultWalletId(vm.coin).then(
         function onGetDefaultWalletIdSuccess(walletId) {
           console.log('default walletId: "' + walletId + '"');
           if (walletId) {
             vm.wallet = profileService.getWallet(walletId);
           } else{
             var wallets = profileService.getWallets({
-              coin: 'bch'
+              coin: vm.coin
             });
             console.log('wallets:', vm.wallets);
             if (wallets && wallets.length > 0) {
               vm.wallet = wallets[0];
-              moonPayService.setDefaultWalletId(wallets[0].id);
+              moonPayService.setDefaultWalletId(wallets[0].id, vm.coin);
             }
           }
           $scope.wallet = vm.wallet;
@@ -240,6 +243,21 @@
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_close', [{}, {}, {}], ['leanplum']);
     }
     
+    function onSelectWallet() {
+      $state.go('tabs.buybitcoin-wallets', { 
+        coin: vm.coin,
+      });
+    }
+
+    function onBuyCoin() {
+      var newCoin = vm.otherCoin
+      vm.otherCoin = vm.coin
+      vm.coin = newCoin
+
+      // Reload data
+      _onBeforeEnter()
+      _onAfterEnter()
+    }
 
     function onBuy() {
       bitAnalyticsService.postEvent('buy_bitcoin_buy_instantly_amount_screen_tap_on_buy', [{
@@ -296,16 +314,20 @@
           return;
         }
 
-        var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
-        var addressParts = toCashAddress.split(':');
-        var toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
+        var toAddressForTransaction = toAddress
+
+        if (vm.coin == 'bch') {
+          var toCashAddress = bitcoinCashJsService.translateAddresses(toAddress).cashaddr;
+          var addressParts = toCashAddress.split(':');
+          toAddressForTransaction = addressParts.length === 2 ? addressParts[1] : toCashAddress;
+        }
 
         // Override testnet address for testing
-        //  toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
+        // toAddressForTransaction = 'qpa09d2upua473rm2chjxev3uxlrgpnavux2q8avqc';
 
         var transaction = {
           baseCurrencyAmount: amountEur
-          , currencyCode: 'bch'
+          , currencyCode: vm.coin
           , cardId: vm.paymentMethod.id
           , extraFeePercentage: extraFeePercentage
           , walletAddress: toAddressForTransaction
@@ -324,7 +346,7 @@
             bitAnalyticsService.postEvent('bitcoin_purchased_bitcoincom_fee', [{
               'amount': extraFeeBch,
               'price': extraFeeUsd,
-              'coin': 'bch'
+              'coin': vm.coin
             },
             {},
             {
@@ -336,7 +358,7 @@
             bitAnalyticsService.postEvent('bitcoin_purchased', [{
               'amount': amountBch,
               'price': amountUsd,
-              'coin': 'bch'
+              'coin': vm.coin
             }, {}, {}], ['leanplum']);
 
             var moonpayFeeEur = Math.max(MOONPAY_FIXED_FEE, amountEur * MOONPAY_VARIABLE_FEE_FRACTION);
@@ -345,7 +367,7 @@
             bitAnalyticsService.postEvent('bitcoin_purchased_provider_fee', [{
               'amount': moonpayFeeBch,
               'price': moonpayFeeUsd,
-              'coin': 'bch'
+              'coin': vm.coin
             }, {}, {}], ['leanplum']);
 
 

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Dutch\n"
 "Language: nl\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-31 09:51\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Het e-mailadres moet geldig zijn."
 msgid "Unable to Create Customer"
 msgstr "Het aanmaken van de klant is mislukt"
 
+msgid "Enter a valid email address."
+msgstr "Het e-mailadres moet geldig zijn."
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Bitcoin Cash (BCH) kopen"
@@ -4028,6 +4031,9 @@ msgstr "U kunt nog maximaal {{vm.dailyRemaining}} vandaag en {{vm.monthlyRemaini
 
 msgid "Buy Bitcoin Cash"
 msgstr "Bitcoin Cash kopen"
+
+msgid "Verify Email"
+msgstr "Email Verifiëren"
 
 msgid "Error Getting Customer ID"
 msgstr "Fout bij het ophalen van de klant-ID"
@@ -4041,8 +4047,14 @@ msgstr "Er is een fout opgetreden bij het ophalen van de klantinformatie."
 msgid "Customer information was missing."
 msgstr "Geen klantinformatie beschikbaar."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Zie <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Servicevoorwaarden </a> en <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacybeleid"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "Zie <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Servicevoorwaarden </a> en <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacybeleid</a>"
+
+msgid "Terms of Service"
+msgstr "Servicevoorwaarden"
+
+msgid "Privacy Policy"
+msgstr "Privacybeleid"
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4072,8 +4084,29 @@ msgstr "U moet een Bitcoin Cash (BCH)-portemonnee hebben om geld te storten."
 msgid "Select a BCH Wallet"
 msgstr "Kies een BCH-portemonnee"
 
+msgid "No stored debit or credit cards."
+msgstr "Geen opgeslagen debet- of creditcards."
+
+msgid "No transactions."
+msgstr "Nog geen transacties."
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Bitcoin Cash wordt gekocht..."
+
+msgid "Verifying your email..."
+msgstr "Uw e-mail verifiëren ..."
+
+msgid "Creating customer ID..."
+msgstr "Klant-ID maken ..."
+
+msgid "Contacting the card issuer..."
+msgstr "Contact opnemen met uw bank..."
+
+msgid "Checking Status..."
+msgstr "Status controleren ..."
+
+msgid "Loading Profile..."
+msgstr "Profiel laden ..."
 
 msgid "Purchase Failed"
 msgstr "Aankoop mislukt"
@@ -4087,9 +4120,11 @@ msgstr "Kopen"
 msgid "Enter Security Code"
 msgstr "Voer de beveiligingscode in"
 
-msgid ""
-msgstr ""
-"Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "Voer de 3-cijferige code op de achterkant van uw kaart in."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr "Bitcoin Cash kopen"
 
 msgid "Go to Wallet"
 msgstr "Naar Portemonnee gaan"
@@ -4097,11 +4132,11 @@ msgstr "Naar Portemonnee gaan"
 msgid "Go to {{vm.walletName}}"
 msgstr "Naar {{vm.walletName}} gaan"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "De bestelling is bevestigd en wacht op de uitvoering. BCH is binnenkort in uw portemonnee beschikbaar."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "De bestelling is bevestigd en wacht op de uitvoering. {{vm.coin | uppercase}} is binnenkort in uw portemonnee beschikbaar."
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Uw bestelling is uitgevoerd. BCH is al in uw portemonnee."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "Uw bestelling is uitgevoerd. {{vm.coin | uppercase}} is al in uw portemonnee."
 
 msgid "Your order has failed."
 msgstr "Uw bestelling is mislukt."
@@ -4124,8 +4159,17 @@ msgstr "Ontvangen van de informatie over de betaalmethode is mislukt."
 msgid "Waiting for authorization"
 msgstr "Uw bestelling wacht op de autorisatie"
 
+msgid "Submit"
+msgstr "Voorleggen"
+
 msgid "Back"
 msgstr "Terug"
+
+msgid "Expiration Date"
+msgstr "Vervaldatum"
+
+msgid "Type all your card details below."
+msgstr "Vul je credit card-gegevens hier in."
 
 msgid "Verify and complete your card information."
 msgstr "Controleer en vul uw kaartgegevens in."
@@ -4169,6 +4213,18 @@ msgstr "Gebruik voor de datum de notatie MM-JJJJ"
 msgid "Invalid CVC number"
 msgstr "Ongeldig CVC-nummer"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Koop direct Bitcoin Cash met je credit card. Voer je email in om te beginnen."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Voer de veligheidscode in die we zojuist naar je email gestuurd hebben."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Je ontvangt alleen emails die gerelateerd zijn aan je aankopen."
+
+msgid "Security code"
+msgstr "Veiligheidscode"
+
 msgid "Purchasing"
 msgstr "Aankoop"
 
@@ -4192,6 +4248,12 @@ msgstr "Bedrag moet een positief getal zijn."
 
 msgid "Unable to Purchase"
 msgstr "Aankoopfout"
+
+msgid "3D secure"
+msgstr "3d secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Je zal naar de website van je bank worden doorverwezen om de betaling te autoriseren."
 
 msgid "Purchase History"
 msgstr "Aankoopgeschiedenis"
@@ -4339,6 +4401,14 @@ msgid "Must be at least 18 years old."
 msgstr "Minimumleeftijd is 18 jaar."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "Het moet een geldige datum zijn."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "Selecteer een land."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "Kalverstraat, 123"
 
@@ -4470,6 +4540,9 @@ msgstr "Meer"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Begin vandaag de betalingen met Bitcoin Cash te accepteren. Wij kunnen u hierbij helpen."
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr "Réservez des hôtels et des appartements et économisez jusqu'à 40% avec Bitcoin Cash."
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Ga de lucht in met Bitcoin Cash – betaal vliegtickets, hotels en autoverhuur mee."
 
@@ -4511,6 +4584,12 @@ msgstr "Maak een foto van het document naast uw gezicht, zodat ze in één frame
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Plaats het hele document in een frame. Probeer verblinding te voorkomen."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr "Zorg ervoor dat je hoofd volledig in het frame zit."
+
+msgid "I look good"
+msgstr "Ik zie er goed uit"
 
 msgid "Buying Gift Card..."
 msgstr "Cadeaubon wordt gekocht..."
