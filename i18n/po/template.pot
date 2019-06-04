@@ -4011,6 +4011,9 @@ msgstr ""
 msgid "Unable to Create Customer"
 msgstr ""
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr ""
@@ -4019,6 +4022,9 @@ msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthl
 msgstr ""
 
 msgid "Buy Bitcoin Cash"
+msgstr ""
+
+msgid "Verify Email"
 msgstr ""
 
 msgid "Error Getting Customer ID"
@@ -4033,7 +4039,13 @@ msgstr ""
 msgid "Customer information was missing."
 msgstr ""
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
 msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
@@ -4064,7 +4076,28 @@ msgstr ""
 msgid "Select a BCH Wallet"
 msgstr ""
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
+msgstr ""
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
 msgstr ""
 
 msgid "Purchase Failed"
@@ -4079,10 +4112,13 @@ msgstr ""
 msgid "Enter Security Code"
 msgstr ""
 
-msgid ""
-msgstr "Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr ""
 
 # Success
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
 
 msgid "Go to Wallet"
 msgstr ""
@@ -4090,10 +4126,10 @@ msgstr ""
 msgid "Go to {{vm.walletName}}"
 msgstr ""
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
 msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
 msgstr ""
 
 msgid "Your order has failed."
@@ -4121,7 +4157,16 @@ msgstr ""
 
 # Enter Card details
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
+msgstr ""
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
 msgstr ""
 
 msgid "Verify and complete your card information."
@@ -4168,6 +4213,18 @@ msgstr ""
 
 # Purchasing
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr ""
 
@@ -4192,6 +4249,12 @@ msgstr ""
 msgid "Unable to Purchase"
 msgstr ""
 
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
+
 # Purchase History
 
 msgid "Purchase History"
@@ -4210,7 +4273,6 @@ msgstr ""
 
 msgid "Add Credit or Debit Card"
 msgstr ""
-
 
 msgid "This amount exceeds your monthly limit"
 msgstr ""
@@ -4350,6 +4412,14 @@ msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "Must be at least 18 years old."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
 msgstr ""
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
@@ -4527,6 +4597,12 @@ msgid "Take a picture of your document held up beside your face."
 msgstr ""
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr ""
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
 msgstr ""
 
 msgid "Buying Gift Card..."

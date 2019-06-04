@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-05-31 09:42\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -4019,6 +4019,9 @@ msgstr "Phải là địa chỉ email hợp lệ."
 msgid "Unable to Create Customer"
 msgstr "Unable to Create Customer"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Buy Bitcoin Cash (BCH)"
@@ -4028,6 +4031,9 @@ msgstr "Bạn có thể mua lên đến {{vm.dailyRemaining}} hôm nay và lên 
 
 msgid "Buy Bitcoin Cash"
 msgstr "Mua Bitcoin Cash"
+
+msgid "Verify Email"
+msgstr ""
 
 msgid "Error Getting Customer ID"
 msgstr "Lỗi lấy ID khách hàng"
@@ -4041,8 +4047,14 @@ msgstr "Đã xảy ra lỗi khi lấy thông tin khách hàng của bạn."
 msgid "Customer information was missing."
 msgstr "Thiếu thông tin khách hàng."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Xem <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Điều khoản dịch vụ</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Chính sách riêng tư"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4072,8 +4084,29 @@ msgstr "Bạn phải có ví Bitcoin Cash (BCH) để gửi tiền vào."
 msgid "Select a BCH Wallet"
 msgstr "Chọn ví BCH"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Đang mua Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Không thể mua"
@@ -4087,9 +4120,11 @@ msgstr "Mua ngay"
 msgid "Enter Security Code"
 msgstr "Nhập mã bảo mật"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
 
 msgid "Go to Wallet"
 msgstr "Đi tới Ví"
@@ -4097,11 +4132,11 @@ msgstr "Đi tới Ví"
 msgid "Go to {{vm.walletName}}"
 msgstr "Đi tới {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "Đơn hàng của bạn đã được phê duyệt và đang chờ hoàn tất. BCH của bạn sẽ sớm có trong ví của bạn."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Đơn hàng của bạn đã hoàn tất. Bây giờ bạn có thể tìm thấy BCH trong ví của bạn."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "Đơn hàng của bạn đã bị lỗi."
@@ -4124,8 +4159,17 @@ msgstr "Không thể lấy thông tin phương thức thanh toán."
 msgid "Waiting for authorization"
 msgstr "Đang chờ ủy quyền"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
 msgstr "Quay lại"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "Xác minh và hoàn tất thông tin thẻ của bạn."
@@ -4169,6 +4213,18 @@ msgstr "Sử dụng định dạng ngày mong đợi MM/YYYY"
 msgid "Invalid CVC number"
 msgstr "Số CVC không hợp lệ"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "Đang mua"
 
@@ -4192,6 +4248,12 @@ msgstr "Số tiền phải là một số dương."
 
 msgid "Unable to Purchase"
 msgstr "Không thể mua"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "Lịch sử mua"
@@ -4339,6 +4401,14 @@ msgid "Must be at least 18 years old."
 msgstr "Phải ít nhất 18 tuổi."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 Maple Street"
 
@@ -4470,6 +4540,9 @@ msgstr "Thêm"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Bắt đầu chấp nhận thanh toán dễ dàng với Bitcoin Cash ngay hôm nay. Chúng tôi sẽ chỉ bạn cách làm."
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Bay bằng Bitcoin Cash. Các chuyến bay, khách sạn và thuê xe."
 
@@ -4511,6 +4584,12 @@ msgstr "Chụp ảnh tài liệu của bạn đặt bên cạnh khuôn mặt c�
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Đặt 4 góc của tài liệu của bạn rõ ràng trong khung. Tránh để bị lóa."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "Đang mua thẻ quà tặng..."

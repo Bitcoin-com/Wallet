@@ -66,7 +66,7 @@
   
           try {
             var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-            profileService.getWalletFromAddress(legacyAddress, 'bch', function onWallet(err, walletAndAddress) {
+            profileService.getWalletFromAddress(legacyAddress, '', function onWallet(err, walletAndAddress) {
               if (err) {
                 $log.error('Error getting wallet from address. ' + err.message || '');
                 return;

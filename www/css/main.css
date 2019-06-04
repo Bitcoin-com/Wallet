@@ -10036,7 +10036,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-color: #1da1f2;
       background-size: 60%; }
     .big-icon-svg.theme-circle > .bg.icon-sideshift {
-      background-image: url("../img/shapeshifticon.png");
+      background-image: url("../img/sideshifticon.png");
       background-size: 100%; }
     .big-icon-svg.theme-circle > .bg.icon-faucet {
       background-image: url("../img/icon-faucet.svg");
@@ -10417,6 +10417,11 @@ ion-tabs .tab-item {
 ion-tabs .tab-title {
   height: 15px;
   line-height: 15px; }
+
+#add-card-form .apl-field {
+  display: block; }
+  #add-card-form .apl-field div iframe {
+    height: 40px; }
 
 #add-card-form .form-header {
   text-align: center;
@@ -12383,7 +12388,7 @@ a.item {
 
 #sideshift .button-sideshift {
   border-color: #FFF;
-  background-color: #243F5D;
+  background-color: #111111;
   color: #FFF;
   border: 0px;
   box-shadow: 0 2px 11px 0 #C1C1C1; }
@@ -13920,6 +13925,9 @@ action-sheet .bp-action-sheet__backdrop {
   #buy-bitcoin-document-capture .camera-controls {
     display: flex;
     justify-content: center; }
+  #buy-bitcoin-document-capture .center-content {
+    display: flex;
+    justify-content: center; }
   #buy-bitcoin-document-capture .capture-frame {
     height: 100%; }
     #buy-bitcoin-document-capture .capture-frame video {
@@ -13962,15 +13970,31 @@ action-sheet .bp-action-sheet__backdrop {
     line-height: 22px;
     text-align: center; }
 
+#tab-buy-bitcoin-kyc-status #status-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-around;
+  text-align: center; }
+
 #tab-buy-bitcoin-kyc-status .status-frame {
+  display: flex;
+  flex-direction: column;
   height: 100%; }
-  #tab-buy-bitcoin-kyc-status .status-frame .status-graphic {
+  #tab-buy-bitcoin-kyc-status .status-frame .status-graphic img {
+    display: block;
     margin: auto;
-    display: flex;
-    height: 100%; }
-    #tab-buy-bitcoin-kyc-status .status-frame .status-graphic img {
-      width: 100%;
-      height: 100%; }
+    max-width: 75%; }
+
+#tab-buy-bitcoin-kyc-status #status-info h1 {
+  text-align: center; }
+
+#tab-buy-bitcoin-kyc-status .file {
+  margin-bottom: 1em;
+  text-align: left; }
+  #tab-buy-bitcoin-kyc-status .file .file-text {
+    padding-left: 16px;
+    padding-right: 16px; }
 
 #buy-bitcoin-success .apl-close-button {
   color: #FF9B00;
