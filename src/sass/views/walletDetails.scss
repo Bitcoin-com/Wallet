@@ -348,7 +348,7 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
 }
 
 .wallet-not-backed-up-warning {
-  background: #FF5248;
+  background: $v-error-color;
   text-align: center;
   color: white;
   font-size: 14px;

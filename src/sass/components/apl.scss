@@ -264,11 +264,11 @@
     margin: 0 16px;
 
     &__warning {
-      color: #FF5248;
+      color: $v-error-color;
     }
 
     &__danger {
-      color: #FF5248;
+      color: $v-error-color;
     }
 
     &__title {

@@ -1,4 +1,6 @@
 #tab-send {
+  background-color: $v-background-root-color;
+
   @extend .deflash-blue;
 
   &-header{
@@ -41,13 +43,13 @@
       display: block;
       position: relative;
       height: 1px;
-      background: #DEDEDE;
+      background: $v-background-root-color;
       bottom: 0;
       content: '';
       margin: 10px 6px 0px;
     }
     padding: 18px 9px 9px 9px;
-    background-color: #f2f2f2;
+    background-color: $v-background-root-color;
     border-radius: 3px;
     border: none;
     &.focus {
