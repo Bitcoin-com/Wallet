@@ -734,23 +734,20 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function updateMaximumButtonIfNeeded() {
-    console.log('sendmax updateMaximumButtonIfNeeded()'); 
+    console.log('sendmax updateMaximumButtonIfNeeded()');
     if (vm.showSendMaxButton || vm.showSendLimitMaxButton) {
-      if(vm.fromWallet) {
-        setMaximumButtonFromWallet(vm.fromWallet);
-      } else {
-        transactionSendableAmount.fiat = '';
-        vm.sendableFunds = transactionSendableAmount.crypto;
-        if (availableUnits[unitIndex].isFiat) {
-          var coin = availableUnits[altUnitIndex].id;
-          txFormatService.formatAlternativeStr(coin, transactionSendableAmount.satoshis, function formatCallback(formatted){
-            if (formatted) {
-              $scope.$apply(function onApply() {
-                vm.sendableFunds = formatted;
-              });
-            }
-          });
-        }
+      transactionSendableAmount.fiat = '';
+      vm.sendableFunds = transactionSendableAmount.crypto;
+
+      if (availableUnits[unitIndex].isFiat) {
+        var coin = availableUnits[altUnitIndex].id;
+        txFormatService.formatAlternativeStr(coin, transactionSendableAmount.satoshis, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              vm.sendableFunds = formatted;
+            });
+          }
+        });
       }
     }
   }
