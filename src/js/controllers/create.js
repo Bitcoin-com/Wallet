@@ -27,7 +27,7 @@ angular.module('copayApp.controllers').controller('createController',
       var defaults = configService.getDefaults();
       var tc = $state.current.name == 'tabs.add.create-personal' ? 1 : defaults.wallet.totalCopayers;
       $scope.formData.account = 1;
-      $scope.formData.bwsurl = data.stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
+      $scope.formData.bwsurl = data.stateParams.coin == 'btc' ? defaults.bws.url : tc == 1 ? defaults.bwscashnew.url : defaults.bwscash.url;
       $scope.TCValues = lodash.range(2, defaults.limits.totalCopayers + 1);
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.coin = data.stateParams.coin;
