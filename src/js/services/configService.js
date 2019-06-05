@@ -21,6 +21,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       url: 'https://bwscash.bitcoin.com/bws/api'
     },
 
+    bwscashnew: {
+      url: 'https://bch.api.wallet.bitcoin.com/bws/api'
+    },
+
     download: {
       bitpay: {
         url: 'https://wallet.bitcoin.com'
