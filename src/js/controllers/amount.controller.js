@@ -740,19 +740,16 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   function updateMinAndMaxAmountsIfNeeded() {
     if(vm.minAmount || vm.maxAmount) {
       if (availableUnits[unitIndex].isFiat) {
-        console.log('minAmount, maxAmount, SatToUnit:', vm.minAmount, vm.maxAmount, satToUnit);
         var coin = availableUnits[altUnitIndex].id;
         txFormatService.formatAlternativeStr(coin, vm.minAmount * unitToSatoshi, function formatCallback(formatted){
           if (formatted) {
             $scope.$apply(function onApply() {
-              console.log("Formating Min", coin, formatted);
               vm.minAmountFormatted = formatted;
             });
           }
         });
         txFormatService.formatAlternativeStr(coin, vm.maxAmount * unitToSatoshi, function formatCallback(formatted){
           if (formatted) {
-            console.log("Formating Max", coin, formatted);
             $scope.$apply(function onApply() {
               vm.maxAmountFormatted = formatted;
             });
