@@ -99,6 +99,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     vm.lastUsedPopularList = [];
     vm.maxAmount = 0;
     vm.minAmount = 0;
+    vm.minAmountFormatted = '';
+    vm.maxAmountFormatted = '';
     vm.sendableFunds = '';
     vm.showSendMaxButton = false;
     vm.showSendLimitMaxButton = false;
@@ -281,6 +283,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);
           vm.thirdParty.data.maxAmount = vm.maxAmount = parseFloat(data.maxLimit);
           setMaximumButtonFromWallet(vm.fromWallet);
+          updateMinAndMaxAmountsIfNeeded();
         }
       });
     }
@@ -692,6 +695,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           }
         });
       }
+      updateMinAndMaxAmountsIfNeeded();
       updateMaximumButtonIfNeeded();
     }
   }
@@ -731,6 +735,34 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     setMaximumButtonFromWallet(wallet);
+  }
+
+  function updateMinAndMaxAmountsIfNeeded() {
+    if(vm.minAmount || vm.maxAmount) {
+      if (availableUnits[unitIndex].isFiat) {
+        console.log('minAmount, maxAmount, SatToUnit:', vm.minAmount, vm.maxAmount, satToUnit);
+        var coin = availableUnits[altUnitIndex].id;
+        txFormatService.formatAlternativeStr(coin, vm.minAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              console.log("Formating Min", coin, formatted);
+              vm.minAmountFormatted = formatted;
+            });
+          }
+        });
+        txFormatService.formatAlternativeStr(coin, vm.maxAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            console.log("Formating Max", coin, formatted);
+            $scope.$apply(function onApply() {
+              vm.maxAmountFormatted = formatted;
+            });
+          }
+        });
+      } else {
+        vm.minAmountFormatted = vm.minAmount.toString();
+        vm.maxAmountFormatted = vm.maxAmount.toString();
+      }
+    }
   }
 
   function updateMaximumButtonIfNeeded() {
