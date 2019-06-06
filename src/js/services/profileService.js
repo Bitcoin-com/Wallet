@@ -762,7 +762,7 @@ angular.module('copayApp.services')
       bchOpts.n = 1;
       bchOpts.networkName = 'livenet';
       bchOpts.coin = 'bch';
-      bchOpts.bwsurl = defaults.bwscashnew.url;
+      bchOpts.bwsurl = defaults.bwscash.url;
 
       var btcOpts = {};
       btcOpts.m = 1;

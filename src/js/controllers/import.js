@@ -13,8 +13,7 @@ angular.module('copayApp.controllers').controller('importController',
       $scope.supportsTrezor = platformInfo.supportsTrezor;
       $scope.isCordova = platformInfo.isCordova;
       $scope.formData = {};
-      $scope.isCopay = appConfigService.name == 'copay';
-      $scope.formData.bwsurl = $stateParams.coin == 'btc' ? defaults.bws.url : $scope.isCopay ? defaults.bwscash.url : defaults.bwscashnew.url;
+      $scope.formData.bwsurl = $stateParams.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
       $scope.formData.derivationPath = derivationPathHelper.default;
       $scope.formData.account = 1;
       $scope.formData.coin = $stateParams.coin ? $stateParams.coin : 'bch';
@@ -79,7 +78,7 @@ angular.module('copayApp.controllers').controller('importController',
     };
 
     $scope.coinChanged = function() {
-      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : $scope.isCopay ? defaults.bwscash.url : defaults.bwscashnew.url;
+      $scope.formData.bwsurl = $scope.formData.coin == 'btc' ? defaults.bws.url : defaults.bwscash.url;
     }
 
     $scope.processWalletInfo = function(code) {
