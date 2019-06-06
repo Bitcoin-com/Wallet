@@ -27,6 +27,18 @@ angular.module('copayApp.controllers').controller('preferencesAbout',
       externalLinkService.open(url, optIn, title, message, okText, cancelText);
     };
 
+    $scope.openExternalLinkTermsOfUse = function() {
+      console.log('Terms of Use!');
+      var url = 'https://www.bitcoin.com/wallet-disclaimer';
+      externalLinkService.open(url);
+    }
+
+    $scope.openExternalLinkPrivacyPolicy = function() {
+      console.log('Privacy Policy!');
+      var url = 'https://www.bitcoin.com/privacy-policy';
+      externalLinkService.open(url);
+    }
+
     $scope.$on("$ionicView.enter", function(event, data) {
       $ionicNavBarDelegate.showBar(true);
     });
