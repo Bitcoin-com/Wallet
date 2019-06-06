@@ -49,6 +49,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   var unitIndex = 0;
   var unitToSatoshi;
   var useSendMax = false;
+  var useSendLimitedMax = false;
   var walletSpendableAmount = {
     crypto: '',
     satoshis: null
@@ -75,6 +76,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     unitIndex = 0;
     unitToSatoshi;
     useSendMax = false;
+    useSendLimitedMax = false;
     walletSpendableAmount = {
       crypto: '',
       satoshis: null
@@ -304,7 +306,11 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function sendMax() {
-    if (canSendMax) {
+    if (vm.showSendLimitMaxButton) {
+      useSendLimitedMax = true
+      finish();
+    }
+    else if (canSendMax) {
       useSendMax = true;
       finish();
     } else {
@@ -547,7 +553,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     var confirmData = {
-      amount: (useSendMax && canSendMax) ? undefined : satoshis,
+      amount: (useSendLimitedMax) ? transactionSendableAmount.satoshis : satoshis,
       displayAddress: passthroughParams.displayAddress,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
