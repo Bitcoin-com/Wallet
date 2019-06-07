@@ -4578,6 +4578,12 @@ msgstr ""
 msgid "E-mail not detected"
 msgstr ""
 
+msgid "Buy Bitcoin without fees"
+msgstr ""
+
+msgid "Visit the peer-to-peer marketplace now"
+msgstr ""
+
 msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
 msgstr ""
 
@@ -4642,6 +4648,9 @@ msgid "Quick Links"
 msgstr ""
 
 msgid "Payment Methods"
+msgstr ""
+
+msgid "Buy Without Fees"
 msgstr ""
 
 msgid "Side: {{file.side}}"
