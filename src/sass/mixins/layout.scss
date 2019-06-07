@@ -1,3 +1,8 @@
+@mixin p3-green() {
+  background: url('../img/green_px.png');
+  background-repeat: repeat;
+}
+
 @mixin center-block($topBottom: 0) {
   float: none;
   margin: $topBottom auto;

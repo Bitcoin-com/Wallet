@@ -60,8 +60,7 @@
   }
   &-green {
     @include button-style(#15d6a0, #11A87E, #15d6a0, #11A87E, #FFF);
-    background: url(../img/green_px.png);
-    background-repeat: repeat;
+    @include p3-green();
     border: 1px;
   }
   &-white {

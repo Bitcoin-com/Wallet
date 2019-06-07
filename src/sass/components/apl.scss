@@ -506,8 +506,7 @@
 
   }
   &-button {
-    background: url(../img/green_px.png);
-    background-repeat: repeat;
+    @include p3-green();
     border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     display: block;
