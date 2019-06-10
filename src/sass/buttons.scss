@@ -82,4 +82,16 @@
     background: none;
     box-shadow: none;
   }
+  &-card-style {
+    border-radius: 3px;
+    background: white;
+
+    &.white{
+      @include button-style(#FFF, transparent, #FFF, #FFF, #15d6a0);
+    }
+
+    &.white-outline{
+      @include button-style(transparent, #FFF, #FFF, #FFF, #FFF);
+    }
+  }
 }
