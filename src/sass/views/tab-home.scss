@@ -8,6 +8,7 @@
     }
 
     .button {
+      border-color: transparent;
       font-weight: bold;
       font-size: 19px;
       line-height: 26px;
@@ -115,6 +116,10 @@
       font-weight: bolder;
       min-height: 0;
       line-height: 19px;
+      
+      &-no-border {
+        border: none;
+      }
     }
   }
   .wallet-coin-logo {
