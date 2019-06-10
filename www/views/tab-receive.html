@@ -91,7 +91,7 @@
     <div class="wallet-selector" ng-click="showWalletSelector()" ng-if="wallets[0] && wallet">
       <a ng-if="wallet" class="item item-sub item-icon-left item-big-icon-left item-icon-right">
         <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
-        <span>
+        <span class="title">
           {{wallet.name || wallet.id}}
         </span>
         <p>

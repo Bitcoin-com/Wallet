@@ -3,6 +3,10 @@
 */
 
 .item {
+  .title {
+    font-weight: bold;
+  }
+
   &.item-compact {
     padding: 11px 13px;
   }
