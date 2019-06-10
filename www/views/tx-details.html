@@ -46,24 +46,73 @@
             <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
             <div copy-to-clipboard="vm.btx.cashCopyAddr" class="ellipsis">
-              <contact ng-if="!vm.toName" address="{{vm.btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
-              <span class="m15l size-14" ng-if="vm.toName">{{vm.toName}}</span>
+              <contact ng-if="!vm.toName && !vm.btx.hasMultiplesOutputs" address="{{vm.btx.cashAddr}}" class="ellipsis" style="display: block;"></contact>
+              <span class="m15l size-14" ng-if="vm.toName && !vm.btx.hasMultiplesOutputs">{{vm.toName}}</span>
+              <span ng-if="vm.btx.hasMultiplesOutputs" translate>Multiple recipients</span>
             </div>
           </span>
           <span ng-if="vm.addressDisplayType === 'legacy'" class="payment-proposal-to">
             <img ng-if="!vm.cardId" src="img/icon-bitcoin-small.svg">
             <img ng-if="vm.cardId" src="img/icon-card.svg" width="34">
             <div copy-to-clipboard="vm.btx.copyAddress" class="ellipsis">
-              <contact ng-if="!vm.toName" address="{{vm.btx.displayAddress}}" class="ellipsis" style="display: block;"></contact>
-              <span class="m15l size-14" ng-if="toName">{{toName}}</span>
+              <contact ng-if="!vm.toName && !vm.btx.hasMultiplesOutputs" address="{{vm.btx.displayAddress}}" class="ellipsis" style="display: block;"></contact>
+              <span class="m15l size-14" ng-if="vm.toName && !vm.btx.hasMultiplesOutputs">{{toName}}</span>
+              <span ng-if="vm.btx.hasMultiplesOutputs" translate>Multiple recipients</span>
             </div>
           </span>
-          <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'cashAddr'" ng-click="vm.displayAddress('legacy')">
-            <span translate>Display legacy address</span>
-          </button>
-          <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'legacy'" ng-click="vm.displayAddress('cashAddr')">
-            <span translate>Display new style address</span>
-          </button>
+          <div ng-if="!vm.btx.hasMultiplesOutputs">
+              <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'cashAddr'" ng-click="vm.displayAddress('legacy')">
+                  <span translate>Display legacy address</span>
+                </button>
+                <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'legacy'" ng-click="vm.displayAddress('cashAddr')">
+                  <span translate>Display new style address</span>
+                </button>
+          </div>
+
+          <div ng-show="vm.btx.hasMultiplesOutputs" class="item" ng-click="showMultiplesOutputs = !showMultiplesOutputs">
+            <span class="text-gray" translate>Recipients</span>
+            <span class="right">{{vm.btx.recipientCount}}
+              <i ng-show="showMultiplesOutputs" class="icon ion-ios-arrow-up"></i>
+              <i ng-show="!showMultiplesOutputs" class="icon ion-ios-arrow-down"></i>
+            </span>
+          </div>
+
+          <div ng-show="vm.btx.hasMultiplesOutputs && showMultiplesOutputs">
+            <div class="item"
+              ng-repeat="output in vm.btx.outputs">
+
+              <div class="item" copy-to-clipboard="output.address" ng-if="vm.addressDisplayType === 'legacy'">
+                <span class="text-gray" translate>To</span>:
+                <span class="right enable_text_select"></span>{{output.address}}</span>
+              </div>
+
+              <div class="item" copy-to-clipboard="output.cashCopyAddr" ng-if="vm.addressDisplayType === 'cashAddr'">
+                <span class="text-gray" translate>To</span>:
+                <span class="right enable_text_select"></span>{{output.cashAddr}}</span>
+              </div>
+              
+              <div class="item" copy-to-clipboard="output.amountStr">
+                <span class="text-gray" translate>Amount</span>:
+                <span class="right enable_text_select">{{output.amountStr}}
+                <span ng-show="output.alternativeAmountStr">({{output.alternativeAmountStr}})</span>
+                </span>
+              </div>
+              
+              
+              <div class="item" copy-to-clipboard="output.message" ng-show="output.message">
+                <span class="text-gray" translate>Note</span>:
+                <span class="right enable_text_select">{{output.message}}</span>
+              </div>
+            </div>
+            
+            <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'cashAddr'" ng-click="vm.displayAddress('legacy')">
+              <span translate>Display legacy address</span>
+            </button>
+            <button class="address-info button-address" ng-if="vm.canToggleAddressType && vm.addressDisplayType === 'legacy'" ng-click="vm.displayAddress('cashAddr')">
+              <span translate>Display new style address</span>
+            </button>
+          </div>
+          
         </div>
 
         <div class="item">

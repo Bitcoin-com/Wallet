@@ -49,6 +49,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   var unitIndex = 0;
   var unitToSatoshi;
   var useSendMax = false;
+  var useSendLimitedMax = false;
   var walletSpendableAmount = {
     crypto: '',
     satoshis: null
@@ -75,6 +76,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     unitIndex = 0;
     unitToSatoshi;
     useSendMax = false;
+    useSendLimitedMax = false;
     walletSpendableAmount = {
       crypto: '',
       satoshis: null
@@ -99,6 +101,8 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     vm.lastUsedPopularList = [];
     vm.maxAmount = 0;
     vm.minAmount = 0;
+    vm.minAmountFormatted = '';
+    vm.maxAmountFormatted = '';
     vm.sendableFunds = '';
     vm.showSendMaxButton = false;
     vm.showSendLimitMaxButton = false;
@@ -281,6 +285,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);
           vm.thirdParty.data.maxAmount = vm.maxAmount = parseFloat(data.maxLimit);
           setMaximumButtonFromWallet(vm.fromWallet);
+          updateMinAndMaxAmountsIfNeeded();
         }
       });
     }
@@ -301,7 +306,11 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function sendMax() {
-    if (canSendMax) {
+    if (vm.showSendLimitMaxButton) {
+      useSendLimitedMax = true
+      finish();
+    }
+    else if (canSendMax) {
       useSendMax = true;
       finish();
     } else {
@@ -544,7 +553,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     var confirmData = {
-      amount: (useSendMax && canSendMax) ? undefined : satoshis,
+      amount: (useSendLimitedMax) ? transactionSendableAmount.satoshis : satoshis,
       displayAddress: passthroughParams.displayAddress,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
@@ -692,6 +701,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           }
         });
       }
+      updateMinAndMaxAmountsIfNeeded();
       updateMaximumButtonIfNeeded();
     }
   }
@@ -731,6 +741,31 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     setMaximumButtonFromWallet(wallet);
+  }
+
+  function updateMinAndMaxAmountsIfNeeded() {
+    if(vm.minAmount || vm.maxAmount) {
+      if (availableUnits[unitIndex].isFiat) {
+        var coin = availableUnits[altUnitIndex].id;
+        txFormatService.formatAlternativeStr(coin, vm.minAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              vm.minAmountFormatted = formatted;
+            });
+          }
+        });
+        txFormatService.formatAlternativeStr(coin, vm.maxAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              vm.maxAmountFormatted = formatted;
+            });
+          }
+        });
+      } else {
+        vm.minAmountFormatted = vm.minAmount.toString();
+        vm.maxAmountFormatted = vm.maxAmount.toString();
+      }
+    }
   }
 
   function updateMaximumButtonIfNeeded() {

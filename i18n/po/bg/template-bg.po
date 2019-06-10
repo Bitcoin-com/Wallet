@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Bulgarian\n"
 "Language: bg\n"
-"PO-Revision-Date: 2019-03-29 07:29\n"
+"PO-Revision-Date: 2019-06-04 08:09\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3850,6 +3850,9 @@ msgstr "Обзор Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Игри Bitcoin Cash"
 
+msgid "Bitcoin Games"
+msgstr "Игри Bitcoin"
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr "Да се сподели програмата \"Портмоне\""
@@ -4019,6 +4022,9 @@ msgstr "Адресът на електронната поща следва да 
 msgid "Unable to Create Customer"
 msgstr "Не успя да се създаде клиент"
 
+msgid "Enter a valid email address."
+msgstr "Адресът на електронната поща следва да е валиден."
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Покупка Bitcoin Cash (BCH)"
@@ -4028,6 +4034,9 @@ msgstr "Вие можете да купите още максимум {{vm.daily
 
 msgid "Buy Bitcoin Cash"
 msgstr "Покупка Bitcoin Cash"
+
+msgid "Verify Email"
+msgstr "Потвърди Имейл"
 
 msgid "Error Getting Customer ID"
 msgstr "Грешка при получаване на идентификатора на клиента"
@@ -4041,8 +4050,14 @@ msgstr "При получаване на информацията за клие�
 msgid "Customer information was missing."
 msgstr "Информацията за клиента отсъства."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "Виж <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Условия на обслужване</a> и <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Политиката на конфиденциалността"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "Виж <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Условия на обслужване</a> и <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Политиката на конфиденциалността</a>"
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4072,8 +4087,29 @@ msgstr "За внасяне на депозит е нужно портмоне B
 msgid "Select a BCH Wallet"
 msgstr "Изберете портмоне ВСН"
 
+msgid "No stored debit or credit cards."
+msgstr "Няма съхранени дебитни или кредитни карти."
+
+msgid "No transactions."
+msgstr "Транзакции засега не е имало."
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Осъществява се покупка на Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "Грешка на покупката"
@@ -4087,9 +4123,11 @@ msgstr "Да се купи"
 msgid "Enter Security Code"
 msgstr "Вкарайте защитния код"
 
-msgid ""
-msgstr ""
-"Enter the 3 digit code on the back of your card."
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "Въведете трицифрения код на гърба на картата."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr "Купи Bitcoin сега"
 
 msgid "Go to Wallet"
 msgstr "Да се премине в портмонето"
@@ -4097,11 +4135,11 @@ msgstr "Да се премине в портмонето"
 msgid "Go to {{vm.walletName}}"
 msgstr "Да се премине в {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "Поръчката е потвърдена и очаква изпълнение. BCH скоро ще се появи при вас в портмонето."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "Поръчката е потвърдена и очаква изпълнение. {{vm.coin | uppercase}} скоро ще се появи при вас в портмонето."
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "Поръчката е изпълнена. BCH вече е при вас в портмонето."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "Поръчката е изпълнена. {{vm.coin | uppercase}} вече е при вас в портмонето."
 
 msgid "Your order has failed."
 msgstr "Вашата поръчка не е минала."
@@ -4124,8 +4162,17 @@ msgstr "Неуспешно получаване на информация за �
 msgid "Waiting for authorization"
 msgstr "В очакване на авторизация"
 
+msgid "Submit"
+msgstr "Изпращане"
+
 msgid "Back"
 msgstr "Назад"
+
+msgid "Expiration Date"
+msgstr "Срок на годност"
+
+msgid "Type all your card details below."
+msgstr "По-долу въведете данните за картата си."
 
 msgid "Verify and complete your card information."
 msgstr "Проверете и попълнете данните на вашата карта."
@@ -4169,6 +4216,18 @@ msgstr "Посочвайте датата във вид ММ/ГГГГ"
 msgid "Invalid CVC number"
 msgstr "Невалиден номер на CVC"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Купете Bitcoin Cash веднага с кредитната си карта. Въведете имейла си, за да започнете."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Въведете кода за сигурност, който току-що ви изпратихме, за да потвърдите имейла си."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Ще получавате само имейли, свързани с покупките ви."
+
+msgid "Security code"
+msgstr "Код за сигурност"
+
 msgid "Purchasing"
 msgstr "Покупка"
 
@@ -4192,6 +4251,12 @@ msgstr "Сумата следва да е положително число."
 
 msgid "Unable to Purchase"
 msgstr "Грешка на покупката"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Ще пренасочите към банковия си уебсайт, за да разрешите транзакцията."
 
 msgid "Purchase History"
 msgstr "История на покупките"
@@ -4339,6 +4404,14 @@ msgid "Must be at least 18 years old."
 msgstr "Възраст не по-малко от 18 години."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "Трябва да е валидна дата."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "Изберете държава."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "ул. Черковна"
 
@@ -4470,6 +4543,9 @@ msgstr "Още"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "Започнете да приемате плащането с Bitcoin Cash днес. Ние можем в това да ви помогнем."
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "На седмо небе заедно с Bitcoin Cash - плащайте авио билети, хотели и наема на колата!"
 
@@ -4511,6 +4587,12 @@ msgstr "Направете фото на документа редом с ваш
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "Поместете вашия документ изцяло в рамка. Опитайте се да избегнете отблясъци."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr "Изглеждам добре"
 
 msgid "Buying Gift Card..."
 msgstr "Покупка на подаръчен сертификат..."

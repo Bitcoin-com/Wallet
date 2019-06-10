@@ -11,7 +11,7 @@ angular.module('copayApp.services').factory('ongoingProcess', function($log, $ti
     'broadcastingTx': gettext('Broadcasting transaction'),
     'buyingBch': gettext('Buying Bitcoin Cash...'),
     'buyingBitcoin': gettext('Buying Bitcoin...'),
-    'addingCreditCard': gettext('Contacting the card issuer.'),
+    'addingCreditCard': gettext('Contacting the card issuer...'),
     'buyingGiftCard': gettext('Buying Gift Card...'),
     'calculatingFee': gettext('Calculating fee'),
     'cancelingGiftCard': 'Canceling Gift Card...',

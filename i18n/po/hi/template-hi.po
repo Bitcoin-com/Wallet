@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Hindi\n"
 "Language: hi\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-06-04 04:56\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3850,6 +3850,9 @@ msgstr "Bitcoin.com के बारे में जानें"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash गेम्ज़"
 
+msgid "Bitcoin Games"
+msgstr ""
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr "वॉलेट एप को सांझा करें"
@@ -4019,6 +4022,9 @@ msgstr "कोई मान्य ईमेल पता होना चाह�
 msgid "Unable to Create Customer"
 msgstr "ग्राहक बनाने में असमर्थ"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "Bitcoin Cash (BCH) खरीदें"
@@ -4028,6 +4034,9 @@ msgstr "आप आज {{vm.dailyRemaining}} तक, और इस माह {{vm
 
 msgid "Buy Bitcoin Cash"
 msgstr "Bitcoin Cash खरीदें"
+
+msgid "Verify Email"
+msgstr ""
 
 msgid "Error Getting Customer ID"
 msgstr "ग्राहक ID प्राप्त करने में त्रुटि"
@@ -4041,8 +4050,14 @@ msgstr "आपकी ग्राहक जानकारी प्राप्
 msgid "Customer information was missing."
 msgstr "ग्राहक जानकारी अनुपलब्ध थी।"
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "<a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\"> सेवा की शर्तें</a> एवं <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">गोपनीयता नीति देखें"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4072,8 +4087,29 @@ msgstr "आपके पास जमा करने के लिए Bitcoin C
 msgid "Select a BCH Wallet"
 msgstr "BCH वॉलेट का चयन करें"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "Bitcoin Cash खरीदा जा रहा है..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "खरीदारी विफल हुई"
@@ -4087,9 +4123,11 @@ msgstr "अभी खरीदें"
 msgid "Enter Security Code"
 msgstr "सुरक्षा कोड दर्ज करें"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
 
 msgid "Go to Wallet"
 msgstr "वॉलेट में जाएं"
@@ -4097,11 +4135,11 @@ msgstr "वॉलेट में जाएं"
 msgid "Go to {{vm.walletName}}"
 msgstr "{{vm.walletName}} में जाएं"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "आपके ऑर्डर को मंज़ूरी दे दी गई है और उसे अभी पूरा किया जाना है। आपका BCH जल्द ही आपके वॉलेट में उपलब्ध होगा।"
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "आपका ऑर्डर पूरा हो चुका है। अब आपको अपना BCH अपने वॉलेट में मिल सकता है।"
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "आपका ऑर्डर विफल हो गया।"
@@ -4124,8 +4162,17 @@ msgstr "भुगतान विधि की जानकारी प्र�
 msgid "Waiting for authorization"
 msgstr "प्राधिकरण के लिए प्रतीक्षा की जा रही है"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
 msgstr "पीछे"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "अपनी कार्ड जानकारी को सत्यापित और पूरा करें।"
@@ -4169,6 +4216,18 @@ msgstr "अपेक्षित दिनांक स्वरूप MM/YYYY �
 msgid "Invalid CVC number"
 msgstr "अमान्य CVC संख्या"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "खरीदारी की जा रही है"
 
@@ -4192,6 +4251,12 @@ msgstr "राशि एक धनात्मक संख्या होन�
 
 msgid "Unable to Purchase"
 msgstr "खरीदने में असमर्थ"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "खरीद इतिहास"
@@ -4339,6 +4404,14 @@ msgid "Must be at least 18 years old."
 msgstr "कम से कम 18 वर्ष की आयु होना आवश्यक है।"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 Maple Street"
 
@@ -4470,6 +4543,9 @@ msgstr "अधिक"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "आज ही Bitcoin Cash के साथ आसानी से भुगतान स्वीकार करना प्रारंभ करें। हम आपको दिखा सकते हैं कि ऐसा कैसे करना है।"
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "Bitcoin Cash का इस्तेमाल कर सब कुछ प्राप्त करें। फ्लाइट्स, होटल, और किराए पर कार।"
 
@@ -4511,6 +4587,12 @@ msgstr "अपने चेहरे के पास अपने दस्त�
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "फ्रेम में अपने दस्तावेज़ के 4 कोनों को स्पष्ट रूप से स्थिति में रखें। किसी भी चौंध से बचें।"
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "गिफ्ट कार्ड खरीदा जा रहा है..."

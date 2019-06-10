@@ -26,6 +26,7 @@
     vm.didPushBuyInstantly = didPushBuyInstantly;
     vm.onPrivacyPolicy = onPrivacyPolicy;
     vm.onTermsOfUse = onTermsOfUse;
+    vm.onBuyWithoutFees = onBuyWithoutFees;
     vm.onVerificationSelect = onVerificationSelect;
     vm.goBack = goBack;
     
@@ -116,7 +117,9 @@
     }
 
     function didPushBuyInstantly() {
-      $state.go('tabs.buybitcoin-amount');
+      $state.go('tabs.buybitcoin-amount', { 
+        coin: 'bch'
+      });
     }
 
     function onPrivacyPolicy() {
@@ -125,6 +128,10 @@
 
     function onTermsOfUse() {
       externalLinkService.open('https://www.moonpay.io/terms_of_use?mobile=true', false);
+    }
+
+    function onBuyWithoutFees() {
+      externalLinkService.open('https://local.bitcoin.com/r/walletapp', false);
     }
 
     function onVerificationSelect() {

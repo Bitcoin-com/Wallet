@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
-"PO-Revision-Date: 2019-03-29 07:29\n"
+"PO-Revision-Date: 2019-06-04 04:55\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3852,6 +3852,9 @@ msgstr "اكتشف Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "ألعاب Bitcoin Cash"
 
+msgid "Bitcoin Games"
+msgstr ""
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr "شارك Wallet App"
@@ -4021,6 +4024,9 @@ msgstr "يجب أن يكون عنوان بريد إلكتروني صالح."
 msgid "Unable to Create Customer"
 msgstr "غير قادر على إنشاء العميل"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "شراء البتكوين كاش (BCH)"
@@ -4030,6 +4036,9 @@ msgstr "يمكنك شراء ما يصل إلى {{vm.dailyRemaining}} اليوم�
 
 msgid "Buy Bitcoin Cash"
 msgstr "قم بشراء البتكوين كاش"
+
+msgid "Verify Email"
+msgstr ""
 
 msgid "Error Getting Customer ID"
 msgstr "خطأ في الحصول على معرف العميل"
@@ -4043,8 +4052,14 @@ msgstr "حدث خطأ أثناء الحصول على معلومات العميل
 msgid "Customer information was missing."
 msgstr "معلومات العميل كانت مفقودة."
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "راجع <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">شروط الخدمة</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">سياسة الخصوصية"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "راجع <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">شروط الخدمة</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">سياسة الخصوصية</a>"
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4074,8 +4089,29 @@ msgstr "لا بد أن يكون لديك محفظة بيتكوين كاش (BCH) 
 msgid "Select a BCH Wallet"
 msgstr "اختر محفظة BCH"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "جارٍ شراء بيتكوين كاش..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "فشل الشراء"
@@ -4089,9 +4125,11 @@ msgstr "قم بالشراء الآن"
 msgid "Enter Security Code"
 msgstr "أدخل كود الأمان"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
 
 msgid "Go to Wallet"
 msgstr "اذهب إلى المحفظة"
@@ -4099,11 +4137,11 @@ msgstr "اذهب إلى المحفظة"
 msgid "Go to {{vm.walletName}}"
 msgstr "اذهب إلى {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "تمت الموافقة على طلبك وهو في انتظار الانتهاء. ستكون (BCH) متاحة في محفظتك قريبًا."
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "تمت الموافقة على طلبك وهو في انتظار الانتهاء. ستكون {{vm.coin | uppercase}} متاحة في محفظتك قريبًا."
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "تم الانتهاء من طلبك. يمكنك الآن إيجاد (BCH) الخاصة بك في محفظتك."
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "تم الانتهاء من طلبك. يمكنك الآن إيجاد {{vm.coin | uppercase}} الخاصة بك في محفظتك."
 
 msgid "Your order has failed."
 msgstr "فشل طلبك."
@@ -4126,8 +4164,17 @@ msgstr "فشل الحصول على معلومات طريقة الدفع."
 msgid "Waiting for authorization"
 msgstr "انتظار المصادقة"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
 msgstr "الرجوع"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "تحقق واستكمل معلومات البطاقة الخاصة بك."
@@ -4171,6 +4218,18 @@ msgstr "متابعة تنسيق التاريخ المتوقع شهر/سنة"
 msgid "Invalid CVC number"
 msgstr "رقم CVC غير صالح"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "الشراء"
 
@@ -4194,6 +4253,12 @@ msgstr "يجب أن يكون المبلغ رقمًا إيحابيًا."
 
 msgid "Unable to Purchase"
 msgstr "تعذر الشراء"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "محفوظات الشراء"
@@ -4341,6 +4406,14 @@ msgid "Must be at least 18 years old."
 msgstr "يجب أن يكون عمرك 18عامًا على الأقل."
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 Maple Street"
 
@@ -4472,6 +4545,9 @@ msgstr "المزيد"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "بدء قبول المدفوعات بسهولة باستخدام بيتكوين كاش اليوم. يمكننا أن نعرفك الكيفية."
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr "عانق السحاب مستخدمًا البيتكوين كاش. رحالات الطيران والفنادق وتأجير السيارات."
 
@@ -4513,6 +4589,12 @@ msgstr "التقط صورة المستند الخاص بك محمولاً بجا
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "ضع الأطراف الأربعة لمستندك بوضوح في الإطار. تجنب أي وهج."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "جارٍ شراء بطاقة هدايا..."

@@ -33,6 +33,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   , appConfigService
   , rateService
   , walletHistoryService
+  , moonPayService
   ) {
   // Desktop can display 13 rows of transactions, bump it up to a nice round 15.
   var DISPLAY_PAGE_SIZE = 15;
@@ -80,9 +81,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.wallet = null;
   $scope.walletId = '';
   $scope.walletNotRegistered = false;
+  $scope.isBuyBitcoinAllowed = false
 
-    
-    
+  moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
+    $scope.isBuyBitcoinAllowed = user.isAllowed;
+  });
 
   var channel = "ga";
   if (platformInfo.isCordova) {
@@ -548,8 +551,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
-    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
-    var url = 'https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium='+ os;
-    externalLinkService.open(url);
+    if ($scope.isBuyBitcoinAllowed) {
+      moonPayService.start();
+    } else {
+      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+    }
   };
 });

@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Thai\n"
 "Language: th\n"
-"PO-Revision-Date: 2019-03-29 07:30\n"
+"PO-Revision-Date: 2019-06-04 04:55\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -3851,6 +3851,9 @@ msgstr "สำรวจ Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "เกมเงินสด Bitcoin"
 
+msgid "Bitcoin Games"
+msgstr ""
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr "แชร์ให้เพื่อนรู้จัก"
@@ -4020,6 +4023,9 @@ msgstr "ต้องเป็นที่อยู่ที่ถูกต้อ
 msgid "Unable to Create Customer"
 msgstr "ไม่สามารถสร้างลูกค้าได้"
 
+msgid "Enter a valid email address."
+msgstr ""
+
 #: www/views/buy-bitcoin/home.html
 msgid "Buy Bitcoin Cash (BCH)"
 msgstr "ซื้อเงินสด Bitcoin (BCH)"
@@ -4029,6 +4035,9 @@ msgstr "วันนี้คุณสามารถซื้อได้ถึ
 
 msgid "Buy Bitcoin Cash"
 msgstr "ซื้อเงินสด Bitcoin"
+
+msgid "Verify Email"
+msgstr ""
 
 msgid "Error Getting Customer ID"
 msgstr "เกิดข้อผิดพลาดในการรับไอดีลูกค้า"
@@ -4042,8 +4051,14 @@ msgstr "เกิดข้อผิดพลาดเมื่อเรียก
 msgid "Customer information was missing."
 msgstr "ข้อมูลลูกค้าผิดพลาด"
 
-msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy"
-msgstr "ดู <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">  เงื่อนไขการให้บริการของพวกเรา </a> และ <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\"> นโยบายความเป็นส่วนตัว"
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
 
 #: www/views/buy-bitcoin/amount.html
 msgid "Error Getting Payment Methods"
@@ -4073,8 +4088,29 @@ msgstr "คุณจะต้องมีเงินสด Bitcoin (BCH)เพ�
 msgid "Select a BCH Wallet"
 msgstr "เลือกกระเป๋า BCH"
 
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
 msgid "Buying Bitcoin Cash..."
 msgstr "กำลังซื้อเงินสด Bitcoin..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
 
 msgid "Purchase Failed"
 msgstr "การซื้อล้มเหลว"
@@ -4088,9 +4124,11 @@ msgstr "ซื้อตอนนี้"
 msgid "Enter Security Code"
 msgstr "ป้อนรหัสความปลอดภัย"
 
-msgid ""
+msgid "Enter the 3 digit code on the back of your card."
 msgstr ""
-"Enter the 3 digit code on the back of your card."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
 
 msgid "Go to Wallet"
 msgstr "ไปที่กระเป๋าสตางค์"
@@ -4098,11 +4136,11 @@ msgstr "ไปที่กระเป๋าสตางค์"
 msgid "Go to {{vm.walletName}}"
 msgstr "ไปที่ {{vm.walletName}}"
 
-msgid "Your order has been approved and is pending completion. Your BCH will be available in your wallet soon."
-msgstr "การสั่งซื้อได้รับอนุมัติแล้ว และอยู่ระหว่างการพิจารณาแล้วเสร็จ คุณจะใช้ BCH ของคุณได้เร็วๆนี้"
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
 
-msgid "Your order has been completed. You can now find your BCH in your wallet."
-msgstr "การซื้อเสร็จสมบูรณ์ ตอนนี้คุณจะพบ BCH ในกระเป๋าของคุณ"
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
 
 msgid "Your order has failed."
 msgstr "การสั่งซื้อล้มเหลว"
@@ -4125,8 +4163,17 @@ msgstr "ไม่สามารถรับข้อมูลวิธีกา
 msgid "Waiting for authorization"
 msgstr "กำลังรอการอนุมัติ"
 
+msgid "Submit"
+msgstr ""
+
 msgid "Back"
 msgstr "ย้อนกลับ"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
 
 msgid "Verify and complete your card information."
 msgstr "ตรวจสอบ และกรอกข้อมูลบัตรของคุณ"
@@ -4170,6 +4217,18 @@ msgstr "โปรดกรอกตามรูปแบบนี้ เดื�
 msgid "Invalid CVC number"
 msgstr "เลข CVC ไม่ถูกต้อง"
 
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
 msgid "Purchasing"
 msgstr "การจัดซื้อ"
 
@@ -4193,6 +4252,12 @@ msgstr "ยอดเงินต้องเป็นจำนวนบวก"
 
 msgid "Unable to Purchase"
 msgstr "ไม่สามารถซื้อได้"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
 
 msgid "Purchase History"
 msgstr "ประวัติการซื้อ"
@@ -4340,6 +4405,14 @@ msgid "Must be at least 18 years old."
 msgstr "ต้องมีอายุอย่างน้อย 18 ปี"
 
 #: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
 msgid "123 Maple Street"
 msgstr "123 ถนนเมเปิล"
 
@@ -4471,6 +4544,9 @@ msgstr "เพิ่มเติม"
 msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
 msgstr "ดูวิธีการรับชำระเงินด้วย Bitcoin ได้ง่ายๆได้เลย"
 
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
 msgstr " เข้าสู่ยุคของ Bitcoin Cash สามารถจองตั๋วเครื่องบิน จองโรงแรม หรือเช่ารถก็ได้ "
 
@@ -4512,6 +4588,12 @@ msgstr "โปรดถือเอกสารไว้ข้างๆหน้
 
 msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
 msgstr "หลีกเลี่ยงแสงจ้าและจัดตำแหน่งเอกสารให้อยู่ในกรอบทั้ง 4 มุมอย่างชัดเจน "
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
 
 msgid "Buying Gift Card..."
 msgstr "ทำการซื้อบัตรของขวัญ..."

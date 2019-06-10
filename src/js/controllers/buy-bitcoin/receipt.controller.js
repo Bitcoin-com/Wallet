@@ -43,6 +43,7 @@
       vm.moonpayTxId = $state.params.moonpayTxId;
       console.log('moonpayTxId:', vm.moonpayTxId);
 
+      vm.coin = 'bch';
       vm.cryptoTransactionId = '';
       vm.haveTxInfo = false;
       
@@ -94,14 +95,16 @@
       
     }
 
-    function _getWalletFromAddress(cashAddr) {
-      if (cashAddr.indexOf('bitcoincash:') < 0) {
-        cashAddr = 'bitcoincash:' + cashAddr;
+    function _getWalletFromAddress(toAddress) {
+      if (vm.coin == 'bch') {
+        if (toAddress.indexOf('bitcoincash:') < 0) {
+          toAddress = 'bitcoincash:' + toAddress;
+        }
+        toAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
       }
 
       try {
-        var legacyAddress = bitcoinCashJsService.readAddress(cashAddr).legacy;
-        profileService.getWalletFromAddress(legacyAddress, 'bch', function onWallet(err, walletAndAddress) {
+        profileService.getWalletFromAddress(toAddress, vm.coin, function onWallet(err, walletAndAddress) {
           if (err) {
             $log.error('Error getting wallet from address. ' + err.message || '');
             return;
@@ -125,11 +128,13 @@
     }
 
     function _setTransaction(transaction) {
-      vm.haveTxInfo = true;
 
+      vm.haveTxInfo = true;
+      vm.coin = transaction.baseCurrencyCode
       vm.cryptoTransactionId = transaction.cryptoTransactionId;
+
       if (transaction.cryptoTransactionId) {
-        txUrl = 'https://explorer.bitcoin.com/bch/tx/' + transaction.cryptoTransactionId;
+        txUrl = 'https://explorer.bitcoin.com/' + vm.coin + '/tx/' + transaction.cryptoTransactionId;
       }
 
       vm.createdTime = transaction.createdTime;
@@ -145,6 +150,10 @@
       vm.status = transaction.status;
 
       vm.walletAddress = transaction.walletAddress;
+
+      if (vm.walletAddress[0] != 'q' && vm.walletAddress[0] != 'p') {
+        vm.coin = 'btc'
+      }
       
       if (transaction.walletId) {
         vm.wallet = profileService.getWallet(transaction.walletId);
@@ -247,7 +256,9 @@
         function() {
           $state.go('tabs.buybitcoin').then(
             function () {
-              $state.go('tabs.buybitcoin-amount');
+              $state.go('tabs.buybitcoin-amount', { 
+                coin: 'bch'
+              });
             }
           );
         }
