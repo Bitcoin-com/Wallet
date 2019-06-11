@@ -76,6 +76,11 @@
   .center-content {
     display:flex;
     justify-content: center;
+
+    & img {
+      max-height: 15vh;
+      max-width: 400px;
+    }
   }
 
   .capture-frame {
