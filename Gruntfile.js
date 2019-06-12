@@ -172,6 +172,12 @@ module.exports = function(grunt) {
         ],
         dest: 'www/lib/bitanalytics.js'
       },
+      cashshufflejsweb: {
+        src: [
+          'node_modules/cashshufflejs-web/dist/ShuffleClient.js'
+        ],
+        dest: 'www/lib/ShuffleClient.js'
+      },
       js: {
         src: [
           'src/js/app.js',
@@ -216,7 +222,8 @@ module.exports = function(grunt) {
           'www/js/app.js': ['www/js/app.js'],
           'www/lib/angular-components.js': ['www/lib/angular-components.js'],
           'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js'],
-          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js']
+          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js'],
+          'www/lib/ShuffleClient.js': ['www/lib/ShuffleClient.js']
         }
       }
     },

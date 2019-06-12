@@ -27,7 +27,13 @@
           <button class="button button-standard button-primary" ng-click="goCopayers()" translate>Open wallet</button>
         </div>
       </div>
-      <div class="address-info" ng-if="wallet && wallet.isComplete()">
+
+      <div class="address-info" ng-if="wallet.disableReceive">
+        <div class="address-label">
+          <span class="ellipsis">This is a CashShuffle spend-only wallet. You cannot receive payments to it.</span>
+        </div>
+      </div>
+      <div class="address-info" ng-if="wallet && wallet.isComplete() && !wallet.disableReceive">
         <div ng-show="!showingPaymentReceived">
           <div>
             <button ng-show="addr" class="button button-standard button-small" ng-click="requestSpecificAmount()">

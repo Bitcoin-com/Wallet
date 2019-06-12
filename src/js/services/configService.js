@@ -73,6 +73,13 @@ angular.module('copayApp.services').factory('configService', function(storageSer
       }
     },
 
+    cashshuffle: {
+      shufflingEnabled: false,
+      autoShuffle: false,
+      spendOnlyShuffled: false,
+      serverStatsUri: 'https://shuffle.servo.cash:8080/stats'
+    },
+
     lock: {
       method: null,
       value: null,
