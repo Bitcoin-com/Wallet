@@ -37,6 +37,8 @@ angular
 
       const defaultServerStatsUri = 'https://shuffle.servo.cash:8080/stats';
 
+      // Function called by the CashShuffle library which returns an
+      // empty address to store change from the shuffle transaction.
       const getChangeAddress = function getChangeAddress(unshuffledCoinDetails) {
         console.log('gettin change address for coin', unshuffledCoinDetails);
         return new Promise((resolve, reject) => {
@@ -81,6 +83,8 @@ angular
 
       };
 
+      // Function called by the CashShuffle library which returns an
+      // empty address to store a freshly shuffled coin.
       const getShuffledAddress = function getShuffledAddress(unshuffledCoinDetails) {
         console.log('getting ShuffledOutput address for coin', unshuffledCoinDetails);
 
@@ -289,12 +293,8 @@ angular
 
           });
 
-          // this.client.on('stats', (serverStats) => {
-          //   _.extend(this.serverStats, serverStats);
-          // });
-
           this.client.on('failed', (roundData) => {
-
+            console.log('HEY! Failed round!!!', roundData);
             let coinInQuestion = _.find(this.coinFactory.coins, { txid: roundData.coin.txid, vout: roundData.coin.vout });
 
             if (coinInQuestion) {
@@ -357,28 +357,55 @@ angular
                     .update()
                     .then(()=>{
                       console.log('Coins Updated!');
+
                     })
                     .catch(console.log);
 
                   });
                 });
-
               });
             });
           });
 
           $rootScope.$on('bwsEvent', (event, walletId) => {
+            console.log('bws event firing update from cashshuffle service');
             let wallet = profileService.getWallet(walletId);
             if (wallet.coin === 'bch') {
               this
               .coinFactory
               .update()
               .then(() => {
+                $timeout(() => {
+                  $rootScope.$emit('cashshuffle-update');
+                }, 1000);
               })
               .catch(console.log);
             }
-
           });
+
+          $rootScope.$on('Local/TxAction', (event, walletId) => {
+            console.log('local transaction event firing update from cashshuffle service');
+
+            let wallet = profileService.getWallet(walletId);
+            if (wallet.coin === 'bch') {
+              this
+              .coinFactory
+              .update()
+              .then(() => {
+                $timeout(() => {
+                  $rootScope.$emit('cashshuffle-update');
+                }, 1000);
+              })
+              .catch(console.log);
+            }
+          });
+
+          for (let oneEventName of ['skipped', 'phase', 'abort', 'message', 'stats']) {
+            this.client.on(oneEventName, () => {
+              console.log('Sending cashshuffle-update message for event', oneEventName);
+              $rootScope.$emit('cashshuffle-update');
+            });
+          }
 
           return resolve(this.client);
 
@@ -499,9 +526,6 @@ angular
       };
 
       const service = new CoinShuffleService({});
-      $rootScope.$emit('cashshuffle-update');
-
-      const eventListeners = [];
 
       window.cashshuffleService = service;
       return service;

@@ -43,8 +43,9 @@ angular
     };
 
     CashShuffleCoin.prototype.update = function(someProperties) {
+      _.extend(this, someProperties);
       $rootScope.$emit('cashshuffle-update');
-      return _.extend(this, someProperties);
+      return this;
     };
 
     CashShuffleCoin.prototype.toggleShuffle = function() {
@@ -62,7 +63,6 @@ angular
           console.log('Aborting shuffle round!');
           grabRound.abortRound();
         }
-        $rootScope.$emit('cashshuffle-update');
       }
       // 
       else {
@@ -123,6 +123,7 @@ angular
 
       const cashshuffleService = this.cashshuffleService;
 
+      let walletConfig;
       const getUtxosFromWallet = async function(someWallet) {
         return new Promise( (resolve, reject) => {
 
@@ -134,7 +135,7 @@ angular
               console.log('Cashshuffle not yet enabled');
               return resolve([]);
             }
-
+            walletConfig = config;
             walletHistoryService.getCachedTxHistory(someWallet.id, (err, historicalTransactions) => {
 
               someWallet.getUtxos({}, (error, utxos) => {
@@ -206,7 +207,8 @@ angular
 
                     oneCoin.shuffleThisCoin = false;
 
-                    if (!oneCoin.shuffled && config.cashshuffle.shufflingEnabled && config.cashshuffle.autoShuffle) {
+                    if (!oneCoin.shuffled && oneCoin.confirmations && config.cashshuffle.shufflingEnabled && config.cashshuffle.autoShuffle) {
+                      console.log('reshuffling based on config:', config.cashshuffle);
                       oneCoin.shuffleThisCoin = true;
                     }
 
@@ -268,6 +270,38 @@ angular
       }
 
       console.log('Coins in all wallets:', this.coins);
+
+      if (walletConfig && walletConfig.cashshuffle) {
+
+        if (walletConfig.cashshuffle.shufflingEnabled && walletConfig.cashshuffle.autoShuffle && this.cashshuffleService && this.cashshuffleService.client) {
+
+          if (!this.cashshuffleService.client.isShuffling) {
+            console.log('Starting our CashShuffle client!');
+            this.cashshuffleService.client.isShuffling.start();
+          }
+
+          for (let oneCoin of this.coins) {
+
+            let checkAgainst = _.compact([].concat(_.map(this.cashshuffleService.client.rounds, 'coin'), this.cashshuffleService.client.coins));
+            if (!_.find(checkAgainst, { txid: oneCoin.txid, vout: oneCoin.vout }) && oneCoin.shuffleThisCoin && oneCoin.confirmations) {
+              console.log('Adding coin that is unaccounted for:', oneCoin);
+              this.cashshuffleService.client.addUnshuffledCoins(oneCoin);
+            }
+
+          }
+
+          for (let oneActiveRound of this.cashshuffleService.client.rounds) {
+            let coinInFactory = _.find(this.coins, { txid: oneActiveRound.coin.txid, vout: oneActiveRound.coin.vout });
+
+            if (!coinInFactory) {
+              console.log('A coin from an active round has gone missing.  Aborting round.', oneActiveRound.coin);
+              oneActiveRound.abortRound();
+            }
+          }
+
+        }
+
+      }
 
       $rootScope.$emit('cashshuffle-update');
 

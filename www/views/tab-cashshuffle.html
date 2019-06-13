@@ -85,8 +85,9 @@
         ng-style="{ 'background-color': oneCoin.shuffleThisCoin ? '#FF8209' : 'rgb(238, 182, 64)' }"
         ng-click="toggleShuffle(oneCoin)"
         class="item item-sub wallet">
+
         <div>
-          {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )
+          {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )  {{ !oneCoin.confirmations ? '( Waiting for confirmations )' : '' }}
         </div>
         <div>
           {{ oneCoin.amountSatoshis }} sats ( {{ oneCoin.amountBch.toFixed(8) }} BCH ) {{ oneCoin.shuffleThisCoin ? '( Queued for shuffle )' : '' }}

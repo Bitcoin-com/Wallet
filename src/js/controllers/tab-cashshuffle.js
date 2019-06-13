@@ -45,11 +45,6 @@
     , walletHistoryService
     , cashshuffleService
   ) {
-// $rootScope.$broadcast('cashshuffle-update');
-// listeners = [
-//   $rootScope.$on('cashshuffle-update', (cashShuffleService) => {
-//     $scope.CashShuffleEnabled = cashShuffleService.preferences.shufflingEnabled;
-//   }),
 
     const _ = lodash;
 
@@ -119,7 +114,7 @@
           });
         break;
         case 'shuffled':
-          coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, { shuffled: true });
+          coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, { shuffled: true, shuffleThisCoin: false });
         break;
         case 'dust':
           coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, { isDust: true });
@@ -127,48 +122,9 @@
         default:
         break;
       }
-      return _.sortBy(coinsToReturn, ['shuffleThisCoin']);
+      return _.sortByOrder(coinsToReturn, ['shuffleThisCoin', 'amountSatoshis'], [false, false]);
 
     };
-
-    cashshuffleService
-    .serviceReady
-    .then(() => {
-
-      $rootScope.$on('bwsEvent', function ionicViewEvent(event, walletId) {
-        $timeout(() => {
-          try {
-            $scope.$apply();
-          }
-          catch(nope) {
-            return;
-          }
-        }, 500);
-      });
-
-      $rootScope.$on('cashshuffle-update', () => {
-        $timeout(() => {
-          try {
-            $scope.$apply();
-          }
-          catch(nope) {
-            return;
-          }
-        }, 500);
-      });
-
-      for (let oneEvenName of ['shuffle', 'skipped', 'phase', 'abort', 'message', 'stats']) {
-        cashshuffleService.client.on(oneEvenName, () => {
-          try {
-            $scope.$apply();
-          }
-          catch(nope) {
-            return;
-          }
-        });
-      }
-
-    });
 
     window.stuff = {
       lodash: lodash,
@@ -296,13 +252,29 @@
 
     console.log('CashShuffle Controller loaded!!!');
 
-    $scope.$on('$ionicView.beforeEnter', () => {
+    let scopeEventListeners = [];
 
+    cashshuffleService
+    .serviceReady
+    .then(() => {
+      console.log('!!#!@Setting up event handlers! in cashshuffle controller~~~~!!~~!');
+      scopeEventListeners.push(
+        $rootScope.$on('cashshuffle-update', () => {
+          console.log('!!! Cashshuffle update event received in cashshuffle controller!');
+          $timeout(() => {
+            try {
+              $scope.$apply();
+            }
+            catch(nope) {
+              return;
+            }
+          }, 500);
+        })
+      );
+    })
+    .catch(() => {
+      console.log('Error preparing CashShuffle service');
     });
-    // $scope.$on('$ionicView.enter', onEnter);
-    // $scope.$on('$ionicView.afterEnter', onAfterEnter);
-    // $scope.$on('$ionicView.leave', onLeave);
-
 
   }
 })();
