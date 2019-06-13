@@ -48,6 +48,7 @@ angular
     };
 
     CashShuffleCoin.prototype.toggleShuffle = function() {
+      // Abort a CashShuffle round
       if (this.shuffleThisCoin) {
         this.shuffleThisCoin = false;
 
@@ -61,8 +62,9 @@ angular
           console.log('Aborting shuffle round!');
           grabRound.abortRound();
         }
-
+        $rootScope.$emit('cashshuffle-update');
       }
+      // 
       else {
         if (this.service && this.service.client) {
 
@@ -79,7 +81,6 @@ angular
         }
         this.shuffleThisCoin = true;
       }
-
       $rootScope.$emit('cashshuffle-update');
       return this.shuffleThisCoin;
     };

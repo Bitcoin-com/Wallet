@@ -74,6 +74,7 @@ angular
       isBuyBitcoinAllowed = user.isAllowed;
     });
 
+
     function onAfterEnter () {
       startupService.ready();
     };
@@ -116,6 +117,9 @@ angular
       });
 
       listeners = [
+        // $rootScope.$on('cashshuffle-update', (cashShuffleService) => {
+        //   $scope.CashShuffleEnabled = cashShuffleService.preferences.shufflingEnabled;
+        // }),
         $rootScope.$on('bwsEvent', function onBwsEvent(e, walletId, type, n) {
           var wallet = profileService.getWallet(walletId);
           updateWallet(wallet);

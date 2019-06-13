@@ -45,20 +45,16 @@
     , walletHistoryService
     , cashshuffleService
   ) {
+// $rootScope.$broadcast('cashshuffle-update');
+// listeners = [
+//   $rootScope.$on('cashshuffle-update', (cashShuffleService) => {
+//     $scope.CashShuffleEnabled = cashShuffleService.preferences.shufflingEnabled;
+//   }),
 
     const _ = lodash;
 
     $scope.client = cashshuffleService.client;
     $scope.preferences = cashshuffleService.preferences;
-
-    $scope.messageFromClient = '';
-
-    $scope.showEventMessage = function(newMessage) {
-      $scope.messageFromClient = newMessage;
-      setTimeout(() => {
-        $scope.messageFromClient = '';
-      }, 2000);
-    };
 
     $scope.cardVisibility = {
       shuffling: true,
@@ -80,7 +76,6 @@
       let coinsToShuffle = _.filter(cashshuffleService.coinFactory.coins, { shuffleThisCoin: true });
 
       someCoin.toggleShuffle();
-      console.log('New Val:', someCoin.shuffleThisCoin);
       return someCoin;
     };
 
@@ -92,6 +87,13 @@
         });
       }
       else {
+
+        // Reset the prompt
+        $timeout(() => {
+            _.extend(someCoin, {
+              abortShuffleClicked: false
+            });
+        }, 2000);
         return _.extend(someCoin, {
           abortShuffleClicked: true
         });
@@ -134,22 +136,35 @@
     .then(() => {
 
       $rootScope.$on('bwsEvent', function ionicViewEvent(event, walletId) {
-        console.log('bwsEvent inside cashshuffle controller');
         $timeout(() => {
-          $scope.$apply();
+          try {
+            $scope.$apply();
+          }
+          catch(nope) {
+            return;
+          }
         }, 500);
       });
 
       $rootScope.$on('cashshuffle-update', () => {
         $timeout(() => {
-          $scope.$apply();
+          try {
+            $scope.$apply();
+          }
+          catch(nope) {
+            return;
+          }
         }, 500);
-
       });
 
       for (let oneEvenName of ['shuffle', 'skipped', 'phase', 'abort', 'message', 'stats']) {
         cashshuffleService.client.on(oneEvenName, () => {
-          $scope.$apply();
+          try {
+            $scope.$apply();
+          }
+          catch(nope) {
+            return;
+          }
         });
       }
 

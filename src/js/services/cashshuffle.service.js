@@ -38,7 +38,7 @@ angular
       const defaultServerStatsUri = 'https://shuffle.servo.cash:8080/stats';
 
       const getChangeAddress = function getChangeAddress(unshuffledCoinDetails) {
-        console.log('getting change address for coin', unshuffledCoinDetails);
+        console.log('gettin change address for coin', unshuffledCoinDetails);
         return new Promise((resolve, reject) => {
 
           let grabWallet = _.find(profileService.getWallets({ coin: 'bch' }), { id: unshuffledCoinDetails.walletId });
@@ -162,6 +162,9 @@ angular
             .registerClient()
             .then(() => {
               console.log('The CashShuffle service is ready and the ShuffleClient is registered!');
+              setTimeout(() => {
+                $rootScope.$emit('cashshuffle-update');
+              }, 500);
               i.resolve(this);
             })
             .catch((someError) => {
@@ -199,6 +202,10 @@ angular
               serverStatsUri: currentCashShuffleConfig.serverStatsUri || defaultServerStatsUri,
               preferencesLoading: false
             });
+
+            setTimeout(() => {
+              $rootScope.$emit('cashshuffle-update');
+            }, 500);
 
             return resolve();
 
@@ -275,7 +282,9 @@ angular
 
             return coinInQuestion.update({
               shuffleThisCoin: false,
-              playersInRound: roundData.numberOfPlayers ? roundData.numberOfPlayers : 1
+              shufflePhase: undefined,
+              playersInRound: undefined,
+              inShufflePool: false
             });
 
           });
@@ -304,12 +313,12 @@ angular
                 }
               };
 
-              $timeout(tryItAgain, 1000 *10);
+              $timeout(tryAgain, 1000 *5);
             }
 
             return coinInQuestion.update({
               shuffleThisCoin: false,
-              playersInRound: roundData.numberOfPlayers ? roundData.numberOfPlayers : 1,
+              playersInRound: undefined,
               shufflePhase: '',
               inShufflePool: false
             });
@@ -413,6 +422,7 @@ angular
             .client
             .changeShuffleServer(newPreferences.cashshuffle.serverStatsUri)
             .then(() => {
+              $rootScope.$emit('cashshuffle-update');
               console.log('Shuffle server updated to', newPreferences.cashshuffle.serverStatsUri);
             })
             .catch(console.log);
@@ -489,6 +499,7 @@ angular
       };
 
       const service = new CoinShuffleService({});
+      $rootScope.$emit('cashshuffle-update');
 
       const eventListeners = [];
 

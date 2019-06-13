@@ -12,26 +12,26 @@
   }
 </style>
 
-<ion-view id="tab-cashshuffle" show-tabs ng-if="client">
+<ion-view id="tab-cashshuffle" show-tabs>
 
   <div class="list card" ng-if="preferences.shufflingEnabled">
     <div class="item">
       <span ng-if="!preferences.shufflingEnabled">
-        <a sref="tabs.csPreferences">
+        <a ui-sref="tabs.csPreferences">
           You must enable CashShuffle in settings.
         </a>
       </span>
       <span ng-if="preferences.shufflingEnabled">
-        {{ client.serverStats.poolSize ? 'Connected to '+preferences.serverStatsUri : 'disconnected' }} {{ client.serverStats.banned ? '( temporarily disconnected )' : '' }}
+        {{ client.serverStats.poolSize ? client.serverStats.connections + ' shufflers @ '+preferences.serverStatsUri : 'disconnected' }} {{ client.serverStats.banned ? '( temporarily disconnected )' : '' }}
       </span>
     </div>
-    <div class="item pointer">
+    <!-- <div class="item pointer">
       <span ng-show="client.serverStats.poolSize">
         <span ng-if="client.serverStats.poolSize" ng-repeat="onePoolStat in client.serverStats.poolSummary" class="poolStatsItem">
           ( {{ onePoolStat.totalMembers }} ) {{ onePoolStat.amount | number }}sats
         </span>
       </span>
-    </div>
+    </div> -->
   </div>
 
   <div class="list card" ng-if="preferences.shufflingEnabled" ng-class="{'cardHidden': !cardVisibility.shuffling}" ng-show="getCoins('shuffling').length">
