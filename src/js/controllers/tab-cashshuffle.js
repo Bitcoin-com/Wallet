@@ -250,17 +250,13 @@
       }
     };
 
-    console.log('CashShuffle Controller loaded!!!');
-
     let scopeEventListeners = [];
 
     cashshuffleService
     .serviceReady
     .then(() => {
-      console.log('!!#!@Setting up event handlers! in cashshuffle controller~~~~!!~~!');
       scopeEventListeners.push(
         $rootScope.$on('cashshuffle-update', () => {
-          console.log('!!! Cashshuffle update event received in cashshuffle controller!');
           $timeout(() => {
             try {
               $scope.$apply();

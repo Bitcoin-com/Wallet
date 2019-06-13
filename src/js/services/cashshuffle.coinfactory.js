@@ -277,7 +277,7 @@ angular
 
           if (!this.cashshuffleService.client.isShuffling) {
             console.log('Starting our CashShuffle client!');
-            this.cashshuffleService.client.isShuffling.start();
+            this.cashshuffleService.client.start();
           }
 
           for (let oneCoin of this.coins) {
