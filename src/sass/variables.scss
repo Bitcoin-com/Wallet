@@ -34,26 +34,26 @@ $v-background-root-color:                            #fbfcff;
 $v-background-under-card:                            #fbfcff;
 
 $v-wallet-color-map: (
-  0: (color: #FF4A33, name: 'Cinnabar'),
-  1: (color: #FF6100, name: 'Carrot Orange'),
-  2: (color: #FF8888, name: 'Light Salmon'),
-  3: (color: #928C3E, name: 'Metallic Gold'),
-  4: (color: #48DC54, name: 'Feijoa'),
-  5: (color: #00BD89, name: 'Shamrock'),
-  6: (color: #F9A254, name: 'Light Orange'),
-  7: (color: #283144, name: 'Dark Grey'),
-  8: (color: #00D8D8, name: 'Turquoise Blue'),
-  9: (color: #0073FF, name: 'Cornflower Blue'),
- 10: (color: #590EFF, name: 'Free Speech Blue'),
- 11: (color: #BA11FF, name: 'Deep Lilac'),
- 12: (color: #F523FF, name: 'Free Speech Magenta'),
- 13: (color: #FF2C84, name: 'Brilliant Rose'),
- 14: (color: #6B717E, name: 'Light Slate Grey')
+  0: (color: #FF4A33, name: 'Cinnabar', url: '../img/colors/cinnabar.png'),
+  1: (color: #FF6100, name: 'Carrot Orange', url: '../img/colors/carrot-orange.png'),
+  2: (color: #FF8888, name: 'Light Salmon', url: '../img/colors/light-salmon.png'),
+  3: (color: #928C3E, name: 'Metallic Gold', url: '../img/colors/metallic-gold.png'),
+  4: (color: #48DC54, name: 'Feijoa', url: '../img/colors/feijoa.png'),
+  5: (color: #00BD89, name: 'Shamrock', url: '../img/colors/shamrock.png'),
+  6: (color: #F9A254, name: 'Light Orange', url: '../img/colors/light-orange.png'),
+  7: (color: #283144, name: 'Dark Grey', url: '../img/colors/dark-grey.png'),
+  8: (color: #00D8D8, name: 'Turquoise Blue', url: '../img/colors/turquoise-blue.png'),
+  9: (color: #0073FF, name: 'Cornflower Blue', url: '../img/colors/cornflower-blue.png'),
+ 10: (color: #590EFF, name: 'Free Speech Blue', url: '../img/colors/free-speech-blue.png'),
+ 11: (color: #BA11FF, name: 'Deep Lilac', url: '../img/colors/deep-lilac.png'),
+ 12: (color: #F523FF, name: 'Free Speech Magenta', url: '../img/colors/free-speech-magenta.png'),
+ 13: (color: #FF2C84, name: 'Brilliant Rose', url: '../img/colors/brilliant-rose.png'),
+ 14: (color: #6B717E, name: 'Light Slate Grey', url: '../img/colors/light-slate-grey.png')
 ) !default;
 
 /* Theme */
 $v-default-wallet-color-index:                       7 !default; // See $v-wallet-color-map
-$v-default-cashwallet-color-index:                   6 !default; // See $v-wallet-color-map
+$v-default-cashwallet-color-index:                   5 !default; // See $v-wallet-color-map
 $v-subtle-box-shadow:                                0 1px 2px rgba(0, 0, 0, 0.25) !default;
 $v-hovering-box-shadow:                              0px 6px 12px 0px rgba(0, 0, 0, 0.3) !default;
 $v-subtle-radius:                                    3px !default;

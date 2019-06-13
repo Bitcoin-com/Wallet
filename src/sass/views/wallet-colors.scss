@@ -10,6 +10,9 @@
 $default-wallet-color: map-get( map-get($v-wallet-color-map, $v-default-wallet-color-index) , color);
 $default-cashwallet-color: map-get( map-get($v-wallet-color-map, $v-default-cashwallet-color-index) , color);
 
+$default-wallet-color-url: map-get( map-get($v-wallet-color-map, $v-default-wallet-color-index) , url);
+$default-cashwallet-color-url: map-get( map-get($v-wallet-color-map, $v-default-cashwallet-color-index) , url);
+
 .wallet-background-color-default {
   background-color: $default-wallet-color;
 }
@@ -25,7 +28,8 @@ $default-cashwallet-color: map-get( map-get($v-wallet-color-map, $v-default-cash
 /* generate classes for all colors */
 @each $id, $map in $v-wallet-color-map {
   .wallet-color-#{$id} {
-    background: map-get($map, color);
+    background: url(map-get($map, url));
+    background-repeat: repeat;
   }
   .wallet-color-#{$id}:before {
     content: map-get($map, name);
