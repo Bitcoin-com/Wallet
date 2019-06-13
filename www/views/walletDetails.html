@@ -1,11 +1,10 @@
 <ion-view id="walletDetails" hide-tabs>
-
-  <ion-nav-bar style="background: url('{{walletBackgroundUrl}}; background-repeat: repeat;">
+  <ion-nav-bar>
     <ion-nav-title>{{wallet.name}}</ion-nav-title>
-    <ion-nav-back-button class="light">
+    <ion-nav-back-button>
     </ion-nav-back-button>
     <ion-nav-buttons side="secondary">
-      <button class="button back-button light" ng-click="startSearch(); openSearchModal()" ng-if="txHistory.length > 4">
+      <button class="button back-button" ng-click="startSearch(); openSearchModal()" ng-if="txHistory.length > 4">
         <i class="icon ion-ios-search-strong tx-search"></i>
       </button>
       <button class="button" ng-click="vm.openWalletSettings();">

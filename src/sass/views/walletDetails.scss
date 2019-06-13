@@ -153,15 +153,18 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       }
     }
   }
+  ion-header-bar.bar.bar-header {
+    background-color: $v-background-root-color !important;  
+  }
   .bar-header {
     border: 0;
-    background: rgb(238, 182, 64);
     .title, .button {
-      color: #fff;
+      color: #000000;
     }
     .button {
       background-color: transparent;
     }
+    
   }
   .nav-bar-block, .bar {
   background-color: inherit !important;
