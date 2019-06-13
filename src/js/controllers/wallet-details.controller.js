@@ -424,7 +424,6 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var scrollWatcherInitialized;
 
   $scope.$on("$ionicView.enter", function(event, data) {
-    if ($scope.isCordova && $scope.isAndroid) setAndroidStatusBarColor();
     scrollWatcherInitialized = true;
   });
 
@@ -510,9 +509,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
-    var walletColor = "#ffffff"
-    // if (!$scope.wallet.color) walletColor = appConfigService.name == 'copay' ? '#019477' : '#4a90e2';
-    // else walletColor = $scope.wallet.color;
+    var walletColor = "#ffffff";
     var rgb = hexToRgb(walletColor);
     var keys = Object.keys(rgb);
     keys.forEach(function(k) {
