@@ -115,9 +115,9 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     bitcoinAlias: 'btc',
     bitcoinCashAlias: 'bch',
-    bitcoinWalletColor: '#535353', // Dark Grey
+    bitcoinWalletColor: '#F9A254', // Light Orange
     bitcoinCashWalletColor: '#00BD89', // Shamrock
-    bitcoinWalletColorIndex: 7, // Dark Grey
+    bitcoinWalletColorIndex: 6, // Light Orange
     bitcoinCashWalletColorIndex: 5, // Shamrock
 
     homeSectionIsHidden: {
