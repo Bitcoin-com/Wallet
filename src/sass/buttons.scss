@@ -64,16 +64,19 @@
     border: 1px;
   }
   &-white {
-    @include button-style(#F1F3FB, transparent, #F1F3FB, transparent, #0AC18E);
+    @include button-style(#F1F3FB, transparent, transparent, transparent, #0AC18E);
     @include button-clear(#FFF);
     &.activated {
       color: #FFF;
     }
     &-outline {
-      @include button-style(transparent, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF);
+      @include button-style(transparent, #FFFFFF, #FFFFFF, transparent, #FFFFFF);
       @include button-outline(#FFFFFF);
       background: none;
       box-shadow: none;
+      &.activated {
+        background-color: rgba(0,0,0,0.1);
+      }
     }
   }
   &-grey-outline {
@@ -84,10 +87,13 @@
   }
   &-card-style {
     border-radius: 3px;
-    background: white;
 
     &.white{
       @include button-style(#FFF, transparent, #FFF, #FFF, #15d6a0);
+      background: white;
+      &.activated {
+        background-color: rgba(0,0,0,0.05);
+      }
     }
 
     &.white-outline{
