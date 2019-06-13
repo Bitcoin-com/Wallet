@@ -82,6 +82,25 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.walletId = '';
   $scope.walletNotRegistered = false;
   $scope.isBuyBitcoinAllowed = false
+  $scope.walletBackgroundUrl = ""
+
+  $scope.walletColorMap = [
+      '../img/colors/cinnabar.png',
+      '../img/colors/carrot-orange.png',
+      '../img/colors/light-salmon.png',
+      '../img/colors/metallic-gold.png',
+      '../img/colors/feijoa.png',
+      '../img/colors/shamrock.png',
+      '../img/colors/light-orange.png',
+      '../img/colors/dark-grey.png',
+      '../img/colors/turquoise-blue.png',
+      '../img/colors/cornflower-blue.png',
+     '../img/colors/free-speech-blue.png',
+     '../img/colors/deep-lilac.png',
+     '../img/colors/free-speech-magenta.png',
+    '../img/colors/brilliant-rose.png',
+    '../img/colors/light-slate-grey.png'
+  ]
 
   moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
     $scope.isBuyBitcoinAllowed = user.isAllowed;
@@ -424,6 +443,8 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
+    $scope.walletBackgroundUrl = $scope.walletBackgroundUrl = $scope.wallet.colorIndex;
+    console.log('')
     if (!$scope.wallet) return;
     $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;

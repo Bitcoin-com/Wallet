@@ -58,7 +58,7 @@ angular.module('copayApp.services')
                       || (wallet.coin == 'bch'
                           ? defaults.bitcoinCashWalletColor
                           : defaults.bitcoinWalletColor);
-        wallet.colorIndex = (config.colorIndexFor && config.colorIndexFor[wallet.id])
+        wallet.colorIndex = (config.colorIndexFor != null && config.colorIndexFor[wallet.id] != null)
                       || (wallet.coin == 'bch'
                           ? defaults.bitcoinCashWalletColorIndex
                           : defaults.bitcoinWalletColorIndex);
