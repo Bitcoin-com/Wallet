@@ -20,14 +20,12 @@
   </style>
 
   <div class="bp-content" ng-class="{'status-bar': isCordova, 'collapse': scrollPosition > 50}">
-
   <div class="amount-wrapper" ng-show="wallet && wallet.isComplete()" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color':wallet.color}">
-
     <div
       ng-style="{'background-color':wallet.color}"
-      class="amount collapsible"
+      class="amount collapsible wallet-background-color-{{wallet.colorIndex}}"
       ng-class="{'wallet-background-color-default': !wallet.color, 'no-alternative': wallet.network != 'livenet'}"
-    >
+      >
 
       <div class="amount__error" ng-show="updateStatusError">
         <span>{{updateStatusError}}</span>

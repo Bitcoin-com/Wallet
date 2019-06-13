@@ -27,9 +27,12 @@ $default-cashwallet-color-url: map-get( map-get($v-wallet-color-map, $v-default-
 
 /* generate classes for all colors */
 @each $id, $map in $v-wallet-color-map {
-  .wallet-color-#{$id} {
+  .wallet-background-color-#{$id} {
     background: url(map-get($map, url));
     background-repeat: repeat;
+  }
+  .wallet-color-#{$id} {
+    background-color: map-get($map, color);
   }
   .wallet-color-#{$id}:before {
     content: map-get($map, name);

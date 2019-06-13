@@ -58,6 +58,10 @@ angular.module('copayApp.services')
                       || (wallet.coin == 'bch'
                           ? defaults.bitcoinCashWalletColor
                           : defaults.bitcoinWalletColor);
+        wallet.colorIndex = (config.colorIndexFor && config.colorIndexFor[wallet.id])
+                      || (wallet.coin == 'bch'
+                          ? defaults.bitcoinCashWalletColorIndex
+                          : defaults.bitcoinWalletColorIndex);
         wallet.email = config.emailFor && config.emailFor[wallet.id];
       });
     }
