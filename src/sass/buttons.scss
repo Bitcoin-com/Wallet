@@ -67,7 +67,7 @@
     @include button-style(#F1F3FB, transparent, transparent, transparent, #0AC18E);
     @include button-clear(#FFF);
     &.activated {
-      color: #FFF;
+      background-color: rgba(0,0,0,0.05);
     }
     &-outline {
       @include button-style(transparent, #FFFFFF, #FFFFFF, transparent, #FFFFFF);
