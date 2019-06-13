@@ -510,9 +510,9 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
-    var walletColor;
-    if (!$scope.wallet.color) walletColor = appConfigService.name == 'copay' ? '#019477' : '#4a90e2';
-    else walletColor = $scope.wallet.color;
+    var walletColor = "#ffffff"
+    // if (!$scope.wallet.color) walletColor = appConfigService.name == 'copay' ? '#019477' : '#4a90e2';
+    // else walletColor = $scope.wallet.color;
     var rgb = hexToRgb(walletColor);
     var keys = Object.keys(rgb);
     keys.forEach(function(k) {
