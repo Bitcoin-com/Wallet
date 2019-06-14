@@ -303,7 +303,9 @@ angular
               const tryAgain = () => {
                 if (!coinInQuestion.shuffleThisCoin) {
                   console.log('Retrying coin', coinInQuestion);
-                  coinInQuestion.toggleShuffle();
+                  coinInQuestion.update({
+                    shuffleThisCoin: true
+                  });
                 }
               };
 
@@ -415,7 +417,7 @@ angular
         let newPreferences = {
           cashshuffle: {
             shufflingEnabled: this.preferences.shufflingEnabled,
-            autoShuffle: this.preferences.autoShuffle,
+            autoShuffle: this.preferences.shufflingEnabled ? this.preferences.autoShuffle : false,
             spendOnlyShuffled: this.preferences.spendOnlyShuffled
           }
         };
@@ -441,6 +443,61 @@ angular
             })
             .catch(console.log);
           }
+
+          // Reset all coins when settings are changed.
+          // Their state will be corrected later based
+          // on the new settings.
+          for (let oneCoin of this.coinFactory.coins) {
+            oneCoin.update({
+              shuffleThisCoin: false,
+              playersInRound: undefined,
+              shufflePhase: '',
+              inShufflePool: false
+            });
+          }
+
+          // Now purge the ShuffleClient's internal coin array.
+          while(this.client.coins.length) {
+            this.client.coins.pop();
+          }
+
+          if (!newPreferences.cashshuffle.shufflingEnabled) {
+            console.log('Closing all active shuffle rounds because CashShuffle is disabled in preferences');
+            let activeShuffleRounds = this.client ? this.client.rounds : []; 
+            // Kill any active shuffle rounds on the client
+            while (activeShuffleRounds.length) {
+              let oneRound = this.client.rounds.pop();
+              oneRound.abortRound();
+              let coinFromFactory = _.find(this.coinFactory.coins, { txid: oneRound.coin.txid, vout: oneRound.coin.vout });
+              if (coinFromFactory) {
+                coinFromFactory.update({
+                  shuffleThisCoin: false,
+                  playersInRound: undefined,
+                  shufflePhase: '',
+                  inShufflePool: false
+                });
+              }
+            }
+            this.client.stop(true);
+
+          }
+          else {
+
+            if (!this.client.isShuffling) {
+              this.client.start();
+            }
+
+          }
+
+          this
+          .coinFactory
+          .update()
+          .then(() => {
+            $timeout(() => {
+              $rootScope.$emit('cashshuffle-update');
+            }, 2000);
+          })
+          .catch(console.log);
 
         });
 
@@ -504,6 +561,7 @@ angular
         .fetchPreferences()
         .then(() => {
           _.extend(this.preferences, { preferencesLoading: false });
+          $rootScope.$emit('cashshuffle-update');
         })
         .catch((someError) => {
           return $log.debug(someError)

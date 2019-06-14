@@ -43,29 +43,10 @@ angular
     };
 
     CashShuffleCoin.prototype.update = function(someProperties) {
+
       _.extend(this, someProperties);
-      $rootScope.$emit('cashshuffle-update');
-      return this;
-    };
 
-    CashShuffleCoin.prototype.toggleShuffle = function() {
-      // Abort a CashShuffle round
       if (this.shuffleThisCoin) {
-        this.shuffleThisCoin = false;
-
-        // Check and see if this coin is currently being
-        // shuffled. If so, we must abort the round.
-        let grabRound = _.find(this.service.client.rounds, (oneRound) => {
-          return oneRound.coin && oneRound.coin.id === this.id;
-        });
-
-        if (grabRound) {
-          console.log('Aborting shuffle round!');
-          grabRound.abortRound();
-        }
-      }
-      // 
-      else {
         if (this.service && this.service.client) {
 
           // Start the ShuffleClient if it's not already running.
@@ -74,15 +55,26 @@ angular
           }
 
           let checkAgainst = _.compact([].concat(_.map(this.service.client.rounds, 'coin'), this.service.client.coins));
-          if (!_.find(checkAgainst, { txid: this.txid, vout: this.vout })) {
+          if (!_.find(checkAgainst, { txid: this.txid, vout: this.vout }) && this.confirmations) {
             this.service.client.addUnshuffledCoins(this);
           }
 
         }
-        this.shuffleThisCoin = true;
       }
+      else {
+        // Check and see if this coin is currently being
+        // shuffled. If so, we must abort the round.
+        let grabRound = _.find(this.service.client.rounds, (oneRound) => {
+          return oneRound.coin && oneRound.coin.id === this.id;
+        });
+
+        if (grabRound) {
+          grabRound.abortRound();
+        }
+      }
+
       $rootScope.$emit('cashshuffle-update');
-      return this.shuffleThisCoin;
+      return this;
     };
 
     const uiPropertiesToKeep = ['shuffleThisCoin', 'inShufflePool', 'shufflePhase', 'id', 'service', 'playersInRound'];
@@ -119,11 +111,9 @@ angular
 
     CoinFactory.prototype.update = async function() {
 
-      console.log('Now updating cashshuffle service!');
-
       const cashshuffleService = this.cashshuffleService;
 
-      let walletConfig;
+      let walletConfig = {};
       const getUtxosFromWallet = async function(someWallet) {
         return new Promise( (resolve, reject) => {
 
@@ -132,12 +122,10 @@ angular
           configService.whenAvailable((config) => {
 
             if (!config.cashshuffle) {
-              console.log('Cashshuffle not yet enabled');
               return resolve([]);
             }
-            walletConfig = config;
-            walletHistoryService.getCachedTxHistory(someWallet.id, (err, historicalTransactions) => {
-
+            _.extend(walletConfig, config);
+            walletHistoryService.updateLocalTxHistoryByPage(someWallet, true, false, (err, historicalTransactions) => {
               someWallet.getUtxos({}, (error, utxos) => {
                 if (error) {
                  return reject(error);
@@ -207,8 +195,9 @@ angular
 
                     oneCoin.shuffleThisCoin = false;
 
+                    // This will only stick for new coins or old coins being
+                    // instantiated for the first time (opening the wallet)
                     if (!oneCoin.shuffled && oneCoin.confirmations && config.cashshuffle.shufflingEnabled && config.cashshuffle.autoShuffle) {
-                      console.log('reshuffling based on config:', config.cashshuffle);
                       oneCoin.shuffleThisCoin = true;
                     }
 
@@ -271,36 +260,48 @@ angular
 
       console.log('Coins in all wallets:', this.coins);
 
-      if (walletConfig && walletConfig.cashshuffle) {
+      // This must be a freshly migrated wallet
+      if (!(walletConfig && walletConfig.cashshuffle) || !(this.cashshuffleService && this.cashshuffleService.client)) {
+        return [];
+      };
 
-        if (walletConfig.cashshuffle.shufflingEnabled && walletConfig.cashshuffle.autoShuffle && this.cashshuffleService && this.cashshuffleService.client) {
+      // If the client hasnt been started, do so now.
+      if (walletConfig.cashshuffle.shufflingEnabled && !this.cashshuffleService.client.isShuffling) {
+        this.cashshuffleService.client.start();
+      }
 
-          if (!this.cashshuffleService.client.isShuffling) {
-            console.log('Starting our CashShuffle client!');
-            this.cashshuffleService.client.start();
+
+      if (walletConfig.cashshuffle.shufflingEnabled && walletConfig.cashshuffle.autoShuffle) {
+
+        for (let oneCoin of this.coins) {
+
+          // Set the flag that tells the UI what's going on.
+          if (!oneCoin.shuffled && oneCoin.confirmations) {
+            oneCoin.update({
+              shuffleThisCoin: true
+            });
           }
 
-          for (let oneCoin of this.coins) {
-
-            let checkAgainst = _.compact([].concat(_.map(this.cashshuffleService.client.rounds, 'coin'), this.cashshuffleService.client.coins));
-            if (!_.find(checkAgainst, { txid: oneCoin.txid, vout: oneCoin.vout }) && oneCoin.shuffleThisCoin && oneCoin.confirmations) {
-              console.log('Adding coin that is unaccounted for:', oneCoin);
-              this.cashshuffleService.client.addUnshuffledCoins(oneCoin);
-            }
-
-          }
-
-          for (let oneActiveRound of this.cashshuffleService.client.rounds) {
-            let coinInFactory = _.find(this.coins, { txid: oneActiveRound.coin.txid, vout: oneActiveRound.coin.vout });
-
-            if (!coinInFactory) {
-              console.log('A coin from an active round has gone missing.  Aborting round.', oneActiveRound.coin);
-              oneActiveRound.abortRound();
-            }
+          // If it's not already in a round or waiting inside the client to be added to a
+          // round, add it to the client so it can be shuffled when a pool opens up.
+          let checkAgainst = _.compact([].concat(_.map(this.cashshuffleService.client.rounds, 'coin'), this.cashshuffleService.client.coins));
+          if (!_.find(checkAgainst, { txid: oneCoin.txid, vout: oneCoin.vout }) && oneCoin.shuffleThisCoin && oneCoin.confirmations) {
+            this.cashshuffleService.client.addUnshuffledCoins(oneCoin);
           }
 
         }
 
+      }
+
+      // If we have coins in active rounds but they are no longer in
+      // this factory, they must have been spent before the round
+      // could complete.  In this case, abort the CashShuffle round.
+      for (let oneActiveRound of this.cashshuffleService.client.rounds) {
+        let coinInFactory = _.find(this.coins, { txid: oneActiveRound.coin.txid, vout: oneActiveRound.coin.vout });
+        if (!coinInFactory) {
+          console.log('A coin from an active round has gone missing.  Aborting round.', oneActiveRound.coin);
+          oneActiveRound.abortRound();
+        }
       }
 
       $rootScope.$emit('cashshuffle-update');

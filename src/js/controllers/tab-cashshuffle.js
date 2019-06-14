@@ -68,16 +68,16 @@
 
     $scope.toggleShuffle = function(someCoin) {
       console.log('Toggling shuffle for coin', someCoin.id);
-      let coinsToShuffle = _.filter(cashshuffleService.coinFactory.coins, { shuffleThisCoin: true });
-
-      someCoin.toggleShuffle();
+      someCoin.update({
+        shuffleThisCoin: !!!someCoin.shuffleThisCoin
+      });
       return someCoin;
     };
 
     $scope.abortShuffle = function(someCoin) {
       if (someCoin.abortShuffleClicked) {
-        someCoin.toggleShuffle();
-        return _.extend(someCoin, {
+        return someCoin.update({
+          shuffleThisCoin: false,
           abortShuffleClicked: false
         });
       }
