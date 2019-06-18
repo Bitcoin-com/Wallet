@@ -1,6 +1,6 @@
 <ion-modal-view id="pin" ng-controller="pinController">
   <ion-header-bar align-title="center">
-    <button ng-if="action != 'check'" class="button button-back button-clear" ng-click="hideModal()" translate>
+    <button ng-if="action != 'check'" class="button button-back button-clear text-black" ng-click="hideModal()" translate>
       Close
     </button>
   </ion-header-bar>
@@ -20,10 +20,10 @@
     </div>
     <div class="block-code">
       <div class="row">
-        <div class="col circle-{{appName}}" ng-class="getFilledClass(1)"></div>
-        <div class="col circle-{{appName}}" ng-class="getFilledClass(2)"></div>
-        <div class="col circle-{{appName}}" ng-class="getFilledClass(3)"></div>
-        <div class="col circle-{{appName}}" ng-class="getFilledClass(4)"></div>
+        <div class="col circle" ng-class="getFilledClass(1)"></div>
+        <div class="col circle" ng-class="getFilledClass(2)"></div>
+        <div class="col circle" ng-class="getFilledClass(3)"></div>
+        <div class="col circle" ng-class="getFilledClass(4)"></div>
       </div>
     </div>
     <div class="block-buttons">
