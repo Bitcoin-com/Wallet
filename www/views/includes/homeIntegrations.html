@@ -10,14 +10,14 @@
         <i class="icon big-icon-svg theme-circle">
           <div class="bg {{service.icon}}"></div>
         </i>
-        <span>{{service.title ||  service.name}}</span>
+        <span class="title">{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
       <a ng-if="service.name!='buyandsell'" ui-sref="{{service.sref}}" id="home_{{service.name}}" title="{{service.title ||  service.name}}" class="track_link_click_out item item-sub item-icon-left item-big-icon-left item-icon-right next-step">
         <i class="icon big-icon-svg theme-circle">
           <div class="bg {{service.icon}}"></div>
         </i>
-        <span>{{service.title ||  service.name}}</span>
+        <span class="title">{{service.title ||  service.name}}</span>
         <i class="icon bp-arrow-right"></i>
       </a>
     </div>

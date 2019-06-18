@@ -1,7 +1,7 @@
 .apl {
   $button-right-width: 78;
 
-  background-color: #FFF;
+  background-color: $v-background-root-color;
   color: #000;
   padding: 0;
   padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */  
@@ -101,7 +101,7 @@
     }
     &:not(.apl-amount-switcher) {
       &:after {
-        border-bottom: 1px solid #FF9B00;
+        border-bottom: 1px solid $v-bitcoin-green;
         content: '';
         display: block;
         height: 1px;
@@ -162,7 +162,7 @@
       &-left {
         &:after {
           content: '';
-          border-bottom: 1px solid #FF9B00;
+          border-bottom: 1px solid $v-bitcoin-green;
           display: block;
           height: 1px;
           position: absolute;
@@ -174,7 +174,7 @@
         right: 0;
         &:after {
           content: '';
-          border-bottom: 1px solid #FF9B00;
+          border-bottom: 1px solid $v-bitcoin-green;
           display: block;
           height: 1px;
           position: absolute;
@@ -217,7 +217,7 @@
     align-items: center;
 
     input {
-      caret-color: #FF9B00;
+      caret-color: $v-bitcoin-green;
       &::placeholder {
         color: #D8D8D8;
       }
@@ -236,7 +236,7 @@
       background: #5B97FA;
     }
     &.c2 {
-      background: #FAAB5B;
+      background: $v-bitcoin-green;
     }
   }
 
@@ -264,11 +264,11 @@
     margin: 0 16px;
 
     &__warning {
-      color: orange;
+      color: $v-error-color;
     }
 
     &__danger {
-      color: red;
+      color: $v-error-color;
     }
 
     &__title {
@@ -506,7 +506,7 @@
 
   }
   &-button {
-    background: #FF9B00;
+    @include p3-green();
     border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     display: block;
@@ -525,7 +525,7 @@
     }
 
     &.unready {
-      background: rgba(255, 155, 0, 0.5);
+      background: rgba(10, 193, 142, 0.5);
     }
 
 

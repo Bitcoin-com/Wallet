@@ -36,14 +36,15 @@ slide-to-accept-success {
       &.fill-screen {
         -webkit-transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
         transform: scale3d($scale-factor, $scale-factor, 1) translateY(-40%);
-        background: $v-slider-bg-color;
+        background-color: red;
+        @include p3-green();
 
         &.did-lose {
           background: $lose-color;
         }
   
         &.did-win {
-          background: $win-color;
+          @include p3-green();
         }
       }
     }

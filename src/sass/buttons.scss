@@ -53,31 +53,30 @@
 }
 
 .button {
-  border-radius: 6px;
+  border-radius: 7px;
   &.button-full {
     border-radius: 0;
     display: block;
   }
   &-green {
-    @include button-style(#719561, #FFF, #606060, #FFF, #FFF);
-    @include button-clear(#FFF);
-    @include button-outline(#C1C1C1);
-    border: 0px;
-    @include button-shadow();
+    @include button-style(#15d6a0, #11A87E, #15d6a0, #11A87E, #FFF);
+    @include p3-green();
+    border: 1px;
   }
   &-white {
-    @include button-style(#FFF, #C1C1C1, #C1C1C1, #FFF, #606060);
+    @include button-style(#F1F3FB, transparent, transparent, transparent, #0AC18E);
     @include button-clear(#FFF);
-    @include button-outline(#C1C1C1);
-    @include button-shadow();
     &.activated {
-      color: #FFF;
+      background-color: rgba(0,0,0,0.05);
     }
     &-outline {
-      @include button-style(transparent, #FFFFFF, #FFFFFF, #FFFFFF, #FFFFFF);
+      @include button-style(transparent, #FFFFFF, #FFFFFF, transparent, #FFFFFF);
       @include button-outline(#FFFFFF);
       background: none;
       box-shadow: none;
+      &.activated {
+        background-color: rgba(0,0,0,0.1);
+      }
     }
   }
   &-grey-outline {
@@ -85,5 +84,23 @@
     @include button-outline(#727272);
     background: none;
     box-shadow: none;
+  }
+  &-card-style {
+    border-radius: 3px;
+
+    &.white{
+      @include button-style(#FFF, transparent, #FFF, #FFF, #15d6a0);
+      background: white;
+      &.activated {
+        background-color: rgba(0,0,0,0.05);
+      }
+    }
+
+    &.white-outline{
+      @include button-style(transparent, #FFF, #FFF, #FFF, #FFF);
+    }
+  }
+  &-drop-shadow {
+    box-shadow: 0 3px 30px 0 rgba(105, 105, 105, 0.07);
   }
 }

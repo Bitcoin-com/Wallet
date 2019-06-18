@@ -1,10 +1,8 @@
 #tab-scan {
-  color: #fff;
+  color: #000;
   text-align: center;
   background: transparent none;
-  .bar-header {
-    opacity: .9;
-  }
+
   svg#QR-scanner-guides path.st1 {
     stroke: $v-scanner-guide-color;
   }

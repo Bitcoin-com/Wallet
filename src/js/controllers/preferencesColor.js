@@ -7,6 +7,7 @@ angular.module('copayApp.controllers').controller('preferencesColorController', 
   var config = configService.getSync();
   var defaults = configService.getDefaults();
   config.colorFor = config.colorFor || {};
+  config.colorIndexFor = config.colorIndexFor || {};
 
   var retries = 3;
   $scope.colorCount = getColorCount();
@@ -17,9 +18,11 @@ angular.module('copayApp.controllers').controller('preferencesColorController', 
     if (!color) return;
 
     var opts = {
-      colorFor: {}
+      colorFor: {} ,
+      colorIndexFor: {}
     };
     opts.colorFor[walletId] = color;
+    opts.colorIndexFor[walletId] = i;
 
     configService.set(opts, function(err) {
       if (err) $log.warn(err);

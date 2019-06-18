@@ -1,6 +1,5 @@
 <ion-view id="walletDetails" hide-tabs>
-
-  <ion-nav-bar ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color': wallet.color}">
+  <ion-nav-bar style="background-color: #fbfcff;">
     <ion-nav-title>{{wallet.name}}</ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
@@ -20,14 +19,12 @@
   </style>
 
   <div class="bp-content" ng-class="{'status-bar': isCordova, 'collapse': scrollPosition > 50}">
-
   <div class="amount-wrapper" ng-show="wallet && wallet.isComplete()" ng-class="{'wallet-background-color-default': !wallet.color}" ng-style="{'background-color':wallet.color}">
-
     <div
       ng-style="{'background-color':wallet.color}"
-      class="amount collapsible"
+      class="amount collapsible wallet-background-color-{{wallet.colorIndex}}"
       ng-class="{'wallet-background-color-default': !wallet.color, 'no-alternative': wallet.network != 'livenet'}"
-    >
+      >
 
       <div class="amount__error" ng-show="updateStatusError">
         <span>{{updateStatusError}}</span>
@@ -101,15 +98,15 @@
 
       <div class="send-receive-buttons row" ng-if="(status.availableBalanceSat || status.availableBalanceSat === 0)">
         <div class="col">
-          <div class="button button-outline button-white-outline" ng-click="goToReceive()">
+          <div class="button button-card-style button-white-outline" ng-click="goToReceive()">
             <span translate>Receive</span>
           </div>
         </div>
         <div class="col">
-          <div class="button button-outline button-white-outline" ng-if="!status.availableBalanceSat" ng-click="goToBuy()">
+          <div class="button button-card-style button-white-outline" ng-if="!status.availableBalanceSat" ng-click="goToBuy()">
             <span translate>Buy Bitcoin</span>
           </div>
-          <div class="button  button-outline button-white-outline" ng-if="status.availableBalanceSat>0" ng-click="goToSend()">
+          <div class="button button-card-style button-white-outline" ng-if="status.availableBalanceSat>0" ng-click="goToSend()">
             <span translate>Send</span>
           </div>
         </div>

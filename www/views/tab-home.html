@@ -1,6 +1,8 @@
 <ion-view show-tabs>
-  <ion-nav-bar class="bar-royal">
-    <ion-nav-title><span class="nav-bar-title textlogo"><span class="moon-symbol"></span>itcoin.com</span></ion-nav-title>
+  <ion-nav-bar>
+    <ion-nav-title >
+      <img src="img/header-logo.png" height="20">
+    </ion-nav-title>
     <ion-nav-buttons side="secondary">
       <button class="button button-settings" ng-click="vm.onSettings();">
         <i class="icon ion-android-settings"></i>
@@ -31,18 +33,18 @@
 
     <div class="buttons row">
       <div class="col">
-        <div class="button button-outline button-grey-outline" ui-sref="tabs.receive">
+        <div class="button button-card-style button-no-border button-drop-shadow white" ui-sref="tabs.receive">
           <span translate>Receive</span>
         </div>
       </div>
       <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
-        <div class="button button-outline button-grey-outline"
+        <div class="button button-card-style button-no-border button-drop-shadow white"
           ng-click="vm.onBuyBitcoin()">
           <span translate>Buy Bitcoin</span>
         </div>
       </div>
       <div class="col" ng-class="{'ng-hide': !walletsWithFunds.length}">
-        <div class="button  button-outline button-grey-outline"
+        <div class="button button-card-style button-no-border button-drop-shadow white"
              ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>
@@ -110,7 +112,7 @@
     </div>
     
     <div id="buy-bitcoin" class="padding">
-      <button class="button button-standard button-green" ng-click="vm.onBuyBitcoin()" ng-show="walletsBch" translate>Buy Bitcoin Cash now</button>
+      <button class="button button-standard button-green" ng-click="vm.onBuyBitcoin()" ng-show="walletsBch" translate>Buy Bitcoin now</button>
     </div>
 
     <div class="ng-hide list card" ng-show="walletsBtc[0] && bitpayCardItems.length>0" ng-include="'views/includes/bitpayCardsCard.html'"></div>

@@ -172,7 +172,7 @@
     function _onBeforeEnter() {
       if ($window.StatusBar) {
         $window.StatusBar.styleDefault();
-        $window.StatusBar.backgroundColorByHexString('#F0F0F0');
+        $window.StatusBar.backgroundColorByHexString('#FBFCFF');
       }
       
       _initVariables();

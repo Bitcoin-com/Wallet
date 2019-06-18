@@ -40,12 +40,14 @@
     border-radius: $v-icon-border-radius;
     width: 40px;
     height: 40px;
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.3);
     background-repeat:no-repeat;
     background-clip: padding-box;
     background-size: 103%;
+    &.coin {
+      border-radius: 20px;  
+    }
     &.green{
-      background: rgb(1, 209, 162);
+      background: $v-bitcoin-green;
     }
   }
 
@@ -55,8 +57,6 @@
       background-size: 85%;
       background-position: 50%;
       background-color: #FFFFFF;
-      box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.3);
-      border: 1px solid #faba13;
       text-align: center;
       font-size: 30px;
 
@@ -69,7 +69,6 @@
       }
 
       &.icon-buy-bitcoin2 {
-        border: 1px solid #faba13;
       }
 
       &.icon-reddit-white {
@@ -89,13 +88,38 @@
         background-size: 100%;
       }
 
+      &.icon-games {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-games.svg');
+        background-size: 50%;
+      }
+
+      &.icon-news {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-news.svg');
+        background-size: 50%;
+      }
+
+      &.icon-tools {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-tools.svg');
+        background-size: 50%;
+      }
+
+      &.icon-chart {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-chart.svg');
+        background-size: 50%;
+      }
+
       &.icon-faucet {
+        background-color: $v-bitcoin-green;
         background-image: url('../img/icon-faucet.svg');
-        background-size: 70%;
+        background-size: 50%;
       }
 
       &.icon-wallet {
-        background-color: #FAB915;
+        background-color: $v-bitcoin-green;
         background-image: url('../img/icon-wallet.svg');
         border: none;
         box-shadow: 0 0 0 1px rgba(0,0,0,0.3) inset;
@@ -105,13 +129,11 @@
 
   &.theme-circle-services {
     > .bg {
-      border: 1px solid #191919;
     }
   }
 
   &.theme-circle-community {
     > .bg {
-      border: 1px solid #FFFFFF;
     }
   }
 }
@@ -127,10 +149,10 @@
     &.circle{
       left:8px;
       .bg {
-        border-radius: $v-icon-border-radius;
+        border-radius: 35px;
         width: 70px;
         height: 70px;
-        padding:.1rem;
+        padding:.5rem;
         margin: 0.2rem;
         box-shadow: 0px 1px 5px rgba($v-mid-gray, .1);
         display:flex;

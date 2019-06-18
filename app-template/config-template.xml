@@ -30,7 +30,8 @@
     <preference name="cordova-custom-config-stoponerror" value="true" />
 
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarStyle" value="default" />
+    <preference name="StatusBarBackgroundColor" value="#FBFCFF" />
 
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="AutoHideSplashScreen" value="false" />

@@ -8,6 +8,7 @@
     }
 
     .button {
+      border-color: transparent;
       font-weight: bold;
       font-size: 19px;
       line-height: 26px;
@@ -25,7 +26,7 @@
   }
   .icon-buy-bitcoin {
     background-image: $v-bitcoin-icon;
-    background-color: $v-bitcoin-orange;
+    background-color: $v-bitcoin-green;
   }
   .icon-bitpay-card {
     background-image: url("../img/icon-card.svg");
@@ -48,8 +49,12 @@
     }
   }
   .card {
+    background: #FFFFFF;
+    box-shadow: 0 3px 30px 0 rgba(105,105,105,0.07);
+    border-radius: 7px;
+
     .item {
-      color: #444;
+      color: #131720;
       border-top:none;
       padding-bottom: 1rem;
       padding-top:1rem;
@@ -102,7 +107,7 @@
     }
     .button {
       border: 2px solid;
-      border-radius: 47px;
+      border-radius: 3px;
       padding: 8px 2px 8px 2px;
       text-align: center;
       width: 100%;
@@ -111,6 +116,10 @@
       font-weight: bolder;
       min-height: 0;
       line-height: 19px;
+      
+      &-no-border {
+        border: none;
+      }
     }
   }
   .wallet-coin-logo {
@@ -191,7 +200,7 @@
     }
     .title {
       font-weight: 700;
-      color: #444;
+      color: #131720;
     }
     .release-notes {
       white-space: pre;
