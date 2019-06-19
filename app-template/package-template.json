@@ -89,9 +89,9 @@
   },
   "scripts": {
     "apply:bitcoincom":       "npm i fs-extra && cd app-template && node apply.js bitcoincom && npm i && cordova prepare && cd ../ && ./fix-asn1.sh",
-    
+
     "build:app-release":      "grunt build-app-release",
-    
+
     "build:mobile-release":   "grunt build-mobile-release",
     "build:desktop-release":  "grunt build-desktop-release",
 
@@ -110,10 +110,10 @@
     "build:windows-release":  "cordova prepare windows && cordova build windows --release --arch=\"ARM\"",
     "build:www":              "grunt",
     "build:www-release":      "grunt prod",
-    
+
     "clean":                  "trash platforms && trash plugins && cordova prepare",
     "clean-all":              "git clean -dfx",
-    
+
     "log:android":            "adb logcat | grep chromium",
 
     "open:android":           "grunt exec:android_studio",
