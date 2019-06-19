@@ -72,6 +72,10 @@
     padding: 7%;
     margin: 5%;
   }
+  .circle {
+    @include circle;
+  	border: 1px solid $v-bitcoin-green;
+  }
   .circle-copay {
     @include circle;
   	border: 1px solid $v-accent-color;
@@ -79,6 +83,9 @@
   .circle-bitpay {
     @include circle;
   	border: 1px solid $v-primary-color;
+  }
+  .filled {
+    background-color: $v-bitcoin-green;
   }
   .filled-copay {
     background-color: $v-accent-color;
