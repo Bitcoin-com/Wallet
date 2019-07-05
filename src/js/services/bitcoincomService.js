@@ -63,7 +63,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     name: 'bitcoincomTwitter',
     title: gettextCatalog.getString('Bitcoin.com Twitter'),
     icon: 'icon-twitter-white',
-    href: 'https://twitter.com/BTCTN'
+    href: 'https://twitter.com/BitcoinCom'
   };
 
   var _getBitPay = function(endpoint) {
