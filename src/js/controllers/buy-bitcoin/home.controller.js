@@ -15,12 +15,14 @@
     , moonPayService
     , ongoingProcess
     , popupService
+    , platformInfo
     , $scope
     , $state
     , $window
   ) {
 
     var vm = this;
+    var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
 
     // Functions
     vm.didPushBuyInstantly = didPushBuyInstantly;
@@ -131,7 +133,7 @@
     }
 
     function onBuyWithoutFees() {
-      externalLinkService.open('https://local.bitcoin.com/r/walletapp', false);
+      externalLinkService.open('https://local.bitcoin.com/?pk_campaign=WalletApp&pk_source=' + os, false);
     }
 
     function onVerificationSelect() {
