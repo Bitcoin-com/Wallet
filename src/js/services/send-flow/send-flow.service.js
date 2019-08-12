@@ -13,6 +13,7 @@ angular
     , gettextCatalog
     , $log
     , payproService
+    , goCryptoService
     , popupService
     , sendFlowStateService
     , sendFlowRouterService
@@ -44,6 +45,24 @@ angular
         var res = bitcoinUriService.parse(params.data);
 
         if (res.isValid) {
+
+          if (res.others != null && res.others.third_party_id === 'gocrypto') {
+            var url = goCryptoService.decodePaymentUrl(res.others.payment_url);
+            var expiresAt = Math.floor(parseInt(res.others.expires_at, 10) / 1000);
+
+            params.thirdParty = {
+              id: 'gocrypto',
+              caTrusted: true,
+              name: 'GoCrypto',
+              domain: 'https://gocrypto.com',
+              expires: expiresAt,
+              memo: gettextCatalog.getString('GoCrypto payment'),
+              network: 'livenet',
+              time: new Date(),
+              url: url,
+              verified: true,
+            };
+          }
 
           // If BIP70 (url)
           if (res.url) {
