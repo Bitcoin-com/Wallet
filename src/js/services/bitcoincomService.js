@@ -17,6 +17,13 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     credentials.BITPAY_API_URL = "https://bitpay.com";
   };
 
+  var exchangeItem = {
+    name: 'news',
+    title: gettextCatalog.getString('Bitcoin.com Exchange'), // TODO: Add localizations
+    icon: 'icon-news', // TODO: Replace with proper icon
+    href: 'https://exchange.bitcoin.com'
+  };
+
   var newsItem = {
     name: 'news',
     title: gettextCatalog.getString('News'),
@@ -92,6 +99,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
   };
 
   var register = function() {
+    nextStepsService.register(exchangeItem);
     nextStepsService.register(newsItem);
     nextStepsService.register(toolsItem);
     nextStepsService.register(priceChartItem);
