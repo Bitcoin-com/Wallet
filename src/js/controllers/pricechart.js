@@ -6,8 +6,8 @@ angular.module('copayApp.controllers').controller('pricechartController', functi
       externalLinkService.open(url);
     };
 
-    var bchPriceUrl = 'https://index.bitcoin.com/api/v0/cash/history?unix=1&pretty=0';
-    var btcPriceUrl = 'https://index.bitcoin.com/api/v0/history?unix=1&pretty=0';
+    var bchPriceUrl = 'https://index-api.bitcoin.com/api/v0/cash/history?unix=1&pretty=0';
+    var btcPriceUrl = 'https://index-api.bitcoin.com/api/v0/core/history?unix=1&pretty=0';
 
     function getChartOptions() {
       var chartContainer = document.querySelector('.chart-container');
