@@ -10059,6 +10059,10 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-color: #0AC18E;
       background-image: url("../img/icon-games.svg");
       background-size: 50%; }
+    .big-icon-svg.theme-circle > .bg.icon-crypto-exchange {
+      background-color: #0AC18E;
+      background-image: url("../img/icon-crypto-exchange.svg");
+      background-size: 50%; }
     .big-icon-svg.theme-circle > .bg.icon-news {
       background-color: #0AC18E;
       background-image: url("../img/icon-news.svg");

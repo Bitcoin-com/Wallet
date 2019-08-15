@@ -94,6 +94,12 @@
         background-size: 50%;
       }
 
+      &.icon-crypto-exchange {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-crypto-exchange.svg');
+        background-size: 50%;
+      }
+
       &.icon-news {
         background-color: $v-bitcoin-green;
         background-image: url('../img/icon-news.svg');
