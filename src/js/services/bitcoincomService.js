@@ -19,8 +19,8 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
 
   var exchangeItem = {
     name: 'exchange',
-    title: gettextCatalog.getString('Bitcoin.com Exchange'), // TODO: Add localizations
-    icon: 'icon-news', // TODO: Replace with proper icon
+    title: gettextCatalog.getString('Bitcoin.com Exchange'),
+    icon: 'icon-crypto-exchange', 
     href: 'https://exchange.bitcoin.com/?utm_source=Wallet&utm_medium=Useful%20Links&utm_campaign=Wallet%20Signup&utm_content=MagazineName1'
   };
 
