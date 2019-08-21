@@ -40,6 +40,7 @@ angular
     , timeService
     , $ionicNavBarDelegate
     , bitcoincomService
+    , cashshuffleService
     ) {
 
     var wallet;
@@ -72,6 +73,7 @@ angular
     moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
       isBuyBitcoinAllowed = user.isAllowed;
     });
+
 
     function onAfterEnter () {
       startupService.ready();

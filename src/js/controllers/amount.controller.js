@@ -124,6 +124,11 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     passthroughParams = sendFlowService.state.getClone();
     console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
+    vm.walletSendingIsDisabled = false;
+    if (passthroughParams.fromWalletId) {
+      var fromWallet = profileService.getWallet(passthroughParams.fromWalletId);
+      vm.walletSendingIsDisabled = fromWallet.disableSend;
+    }
 
     // Init thirdParty, should be done for all the variable
     vm.thirdParty = null;

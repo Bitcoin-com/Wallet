@@ -98,15 +98,15 @@
 
       <div class="send-receive-buttons row" ng-if="(status.availableBalanceSat || status.availableBalanceSat === 0)">
         <div class="col">
-          <div class="button button-card-style button-white-outline" ng-click="goToReceive()">
+          <div class="button button-outline button-white-outline" ng-click="goToReceive()" ng-if="!wallet.disableReceive">
             <span translate>Receive</span>
           </div>
         </div>
         <div class="col">
-          <div class="button button-card-style button-white-outline" ng-if="!status.availableBalanceSat" ng-click="goToBuy()">
+          <div class="button button-outline button-white-outline" ng-if="!status.availableBalanceSat && !wallet.isCashShuffleWallet" ng-click="goToBuy()">
             <span translate>Buy Bitcoin</span>
           </div>
-          <div class="button button-card-style button-white-outline" ng-if="status.availableBalanceSat>0" ng-click="goToSend()">
+          <div class="button  button-outline button-white-outline" ng-if="status.availableBalanceSat>0 && !wallet.disableSend" ng-click="goToSend()">
             <span translate>Send</span>
           </div>
         </div>

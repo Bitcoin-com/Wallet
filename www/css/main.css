@@ -11590,6 +11590,11 @@ ion-tabs .tab-title {
     #tab-spend #travala .subtitle {
       width: 100%; }
 
+#tab-spend #travala {
+  background-image: url("../img/merchants/travala_bg.jpg"); }
+  #tab-spend #travala .subtitle {
+    width: 100%; }
+
 #wallet-origin-destination .header--request {
   padding: 30px 24px;
   width: 100%;
@@ -14001,9 +14006,6 @@ action-sheet .bp-action-sheet__backdrop {
   #buy-bitcoin-document-capture .center-content {
     display: flex;
     justify-content: center; }
-    #buy-bitcoin-document-capture .center-content img {
-      max-height: 15vh;
-      max-width: 400px; }
   #buy-bitcoin-document-capture .capture-frame {
     height: 100%; }
     #buy-bitcoin-document-capture .capture-frame video {

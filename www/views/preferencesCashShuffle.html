@@ -1,0 +1,87 @@
+<ion-view id="tab-cspreferences" class="settings" show-tabs>
+  <ion-nav-bar class="bar-royal">
+    <ion-nav-title>{{'CashShuffle' | translate}}</ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
+  <ion-content>
+    <div class="list">
+
+      <ion-toggle
+        ng-model="cs.preferences.shufflingEnabled"
+        toggle-class="toggle-balanced"
+        ng-change="cs.updateWalletPreferences()"
+        ng-disabled="cs.preferences.preferencesLoading">
+        <span class="toggle-label" translate>Enable CashShuffle for all wallets</span>
+      </ion-toggle>
+      <div class="comment" translate>
+        If enabled, you will be able to select coins you wish to shuffle under the "CashShuffle" tab.
+      </div>
+
+      <div class="item item-divider"></div>
+
+      <ion-toggle
+        ng-model="cs.preferences.autoShuffle"
+        toggle-class="toggle-balanced"
+        ng-change="cs.updateWalletPreferences()"
+        ng-disabled="!cs.preferences.shufflingEnabled || cs.preferences.preferencesLoading">
+        <span class="toggle-label" translate>Automatically shuffle my coins</span>
+      </ion-toggle>
+      <div class="comment" translate>
+        If enabled, all eligible coins will be selected for shuffling.  To withold a coin from shuffling, keep this disabled.
+      </div>
+
+      <div class="item item-divider"></div>
+
+      <ion-toggle
+        ng-model="cs.preferences.spendOnlyShuffled"
+        toggle-class="toggle-balanced"
+        ng-change="cs.updateWalletPreferences()"
+        ng-disabled="!cs.preferences.shufflingEnabled || cs.preferences.preferencesLoading">
+        <span class="toggle-label" translate>Only allow me to spend shuffled coins</span>
+      </ion-toggle>
+      <div class="comment" translate>
+        When enabled, all unshuffled coins will be unavailable for spending in all wallets.  Use this for better privacy.
+      </div>
+
+      <div class="item item-divider"></div>
+
+      <ion-toggle
+        ng-model="useCustomServer"
+        toggle-class="toggle-balanced"
+        ng-disabled="cs.preferences.preferencesLoading">
+        <span class="toggle-label" translate>Use custom CashShuffle server</span>
+      </ion-toggle>
+      <div class="comment" translate>
+        This allows you to set a custom CashShuffle server.  Use the server's "stats" endpoint. 
+      </div>
+      <div ng-if="useCustomServer">
+        <div class="settings-explanation">
+          <div class="settings-description" translate>
+            Caution: Only change this if you know what you're doing.
+            ( <a ng-click="saveCustomShuffleServer(true)">Restore Default</a> )
+          </div>
+        </div>
+
+        <form name="newServerForm" novalidate ng-if="useCustomServer">
+          <div class="list settings-input-group">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label" translate>CashShuffle Server (stats url)</span>
+              <input type="url" id="newServer" name="newServer" ng-model="cs.preferences.serverStatsUri" ng-change="dirtyForm=true" required></input>
+            </label>
+          </div>
+          <button
+            type="submit"
+            class="button button-standard button-primary"
+            ng-show="dirtyForm"
+            ng-click="saveCustomShuffleServer()"
+            translate>
+            {{ saveButtonText }}
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

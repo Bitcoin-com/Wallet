@@ -1,6 +1,9 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingDataService, lodash, popupService, gettextCatalog, scannerService, sendFlowService) {
+angular.module('copayApp.controllers').controller('tabsController', function($rootScope, $log, $scope, $state, $stateParams, $timeout, platformInfo, incomingDataService, lodash, popupService, gettextCatalog, scannerService, sendFlowService, cashshuffleService) {
+
+  // Should we show the CashShuffle tab?
+  $scope.csPrefs = cashshuffleService.preferences;
 
   $scope.onScan = function(data) {
     incomingDataService.redir(data, function onError(err) {
