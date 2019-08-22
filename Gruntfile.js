@@ -222,8 +222,7 @@ module.exports = function(grunt) {
           'www/js/app.js': ['www/js/app.js'],
           'www/lib/angular-components.js': ['www/lib/angular-components.js'],
           'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js'],
-          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js'],
-          'www/lib/ShuffleClient.js': ['www/lib/ShuffleClient.js']
+          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js']
         }
       }
     },
