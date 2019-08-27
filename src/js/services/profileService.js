@@ -710,7 +710,7 @@ angular.module('copayApp.services')
         }
 
         addAndBindWalletClient(walletClient, {
-          bwsurl: opts.bwsurl
+          bwsurl: walletClient.baseUrl
         }, cb);
       });
     };
