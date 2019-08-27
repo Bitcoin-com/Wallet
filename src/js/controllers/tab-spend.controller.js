@@ -54,7 +54,7 @@
           icon: 'img/merchants/local-bitcoincash.png',
           id: 'merchant_local_bitcoincash',
           name: gettextCatalog.getString('Buy Bitcoin without fees'),
-          url: ' https://local.bitcoin.com/r/walletapp'
+          url: 'https://local.bitcoin.com/?pk_campaign=WalletApp&pk_source=' + os
         },
         {
           description: gettextCatalog.getString("The market's highest paying pool"),
@@ -76,7 +76,7 @@
     }
     
     function onCheapAir() {
-      externalLinkService.open('https://www.cheapair.com/');
+      externalLinkService.open('http://www.cheapair.com/air?uid=397');
     }
 
     function onEGifter() {

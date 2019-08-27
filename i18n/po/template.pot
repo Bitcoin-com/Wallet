@@ -3849,6 +3849,10 @@ msgstr ""
 msgid "Share the Wallet App"
 msgstr ""
 
+#: src/js/services/bitcoincomService.js:22
+msgid "Bitcoin.com Exchange"
+msgstr ""
+
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
 msgstr ""

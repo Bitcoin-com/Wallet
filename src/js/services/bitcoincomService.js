@@ -17,6 +17,13 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     credentials.BITPAY_API_URL = "https://bitpay.com";
   };
 
+  var exchangeItem = {
+    name: 'exchange',
+    title: gettextCatalog.getString('Bitcoin.com Exchange'),
+    icon: 'icon-crypto-exchange', 
+    href: 'https://exchange.bitcoin.com/?utm_source=Wallet&utm_medium=Useful%20Links&utm_campaign=Wallet%20Signup&utm_content=MagazineName1'
+  };
+
   var newsItem = {
     name: 'news',
     title: gettextCatalog.getString('News'),
@@ -92,6 +99,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
   };
 
   var register = function() {
+    nextStepsService.register(exchangeItem);
     nextStepsService.register(newsItem);
     nextStepsService.register(toolsItem);
     nextStepsService.register(priceChartItem);
