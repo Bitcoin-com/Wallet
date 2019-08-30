@@ -20,8 +20,8 @@
       'BITCOIN_CORE': 2,
       'BITCOIN_CASH': 7,
     });
-    var GOCRYPTO_URL_REGEX = /^https?:\/\/gocrypto\.com\/sticker(\/)?/;
-    var GOCRYPTO_BACKWARD_COMPATIBILITY_URL_REGEX = /^https?:\/\/www\.elipay\.com\/getelipay(\/)?/;
+    var GOCRYPTO_URL_REGEX = /^https?:\/\/(www\.)?gocrypto\.com/;
+    var GOCRYPTO_BACKWARD_COMPATIBILITY_URL_REGEX = /^https?:\/\/(www\.)?elipay\.com/;
     var GOCRYPTO_ENDPOINT_URL = 'https://api.gocrypto.com/publicapi/payment?merchant_id=';
     var GOCRYPTO_AUTH_HEADERS = {'Authorization': 'publicauth 6a15c40d-c3fa-41ac-a7ae-b089e95cf8fc'};
 
