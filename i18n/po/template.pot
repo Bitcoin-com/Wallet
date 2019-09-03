@@ -2044,6 +2044,9 @@ msgstr ""
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
 msgstr ""
 
+msgid "CashShuffle"
+msgstr ""
+
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:61
 msgid "Notifications"
