@@ -9,9 +9,9 @@
     <div class="list">
 
       <ion-toggle
-        ng-model="cs.preferences.shufflingEnabled"
+        ng-model="toggleState.cashShuffleEnabled"
         toggle-class="toggle-balanced"
-        ng-change="cs.updateWalletPreferences()"
+        ng-change="toggleEnableShuffle()"
         ng-disabled="cs.preferences.preferencesLoading">
         <span class="toggle-label" translate>Enable CashShuffle for all wallets</span>
       </ion-toggle>
@@ -22,9 +22,9 @@
       <div class="item item-divider"></div>
 
       <ion-toggle
-        ng-model="cs.preferences.autoShuffle"
+        ng-model="toggleState.autoShuffle"
         toggle-class="toggle-balanced"
-        ng-change="cs.updateWalletPreferences()"
+        ng-change="toggleAutoShuffle()"
         ng-disabled="!cs.preferences.shufflingEnabled || cs.preferences.preferencesLoading">
         <span class="toggle-label" translate>Automatically shuffle my coins</span>
       </ion-toggle>

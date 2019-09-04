@@ -55,7 +55,7 @@
 
     $scope.saveButtonText = 'Save';
 
-    $scope.preferences = cashshuffleService.preferences
+    $scope.preferences = cashshuffleService.preferences;
 
     $scope.client = cashshuffleService.client;
 
@@ -67,6 +67,27 @@
     };
 
     $scope.dirtyForm = false;
+
+    $scope.toggleState = {
+      cashShuffleEnabled: $scope.cs.preferences.shufflingEnabled,
+      automaticShuffle: $scope.cs.preferences.autoShuffle,
+      onlySpendSuffle: $scope.cs.preferences.spendOnlyShuffled,
+    };
+
+    $scope.toggleEnableShuffle = function() {
+      $scope.cs.preferences.shufflingEnabled = $scope.toggleState.cashShuffleEnabled;
+      $scope.cs.updateWalletPreferences();
+    };
+
+    $scope.toggleAutoShuffle = function() {
+      $scope.cs.preferences.autoShuffle = $scope.toggleState.automaticShuffle;
+      $scope.cs.updateWalletPreferences();
+    };
+
+    $scope.toggleOnlySpendShuffle = function() {
+      $scope.cs.preferences.spendOnlyShuffled = $scope.toggleState.onlySpendSuffle;
+      $scope.cs.updateWalletPreferences();
+    };
 
     $scope.saveCustomShuffleServer = function(restoreTheDefault) {
 
