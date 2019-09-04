@@ -40,7 +40,6 @@ angular
     , timeService
     , $ionicNavBarDelegate
     , bitcoincomService
-    , cashshuffleService
     ) {
 
     var wallet;
