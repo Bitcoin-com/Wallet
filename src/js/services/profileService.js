@@ -72,11 +72,11 @@ angular.module('copayApp.services')
 
         // Set the `disableReceive` flag to true only for
         // the CashShuffle spend-only wallets.
-        wallet.disableReceive = wallet.isCashShuffleWallet ? true : false;
+        wallet.disableReceive = wallet.coin == 'bch' && wallet.isCashShuffleWallet ? true : false;
 
         // Only disable spending if the user has toggled the `spendOnlyShuffled`
         // setting under CashShuffle preferences.
-        wallet.disableSend = config.cashshuffle && config.cashshuffle.spendOnlyShuffled && !wallet.isCashShuffleWallet ? true : false;
+        wallet.disableSend = wallet.coin == 'bch' && config.cashshuffle && config.cashshuffle.spendOnlyShuffled && !wallet.isCashShuffleWallet ? true : false;
 
         wallet.email = config.emailFor && config.emailFor[wallet.id];
       });
