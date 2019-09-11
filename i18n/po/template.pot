@@ -2708,6 +2708,10 @@ msgstr ""
 msgid "Transfer between wallets"
 msgstr ""
 
+#: www/views/tab-send.controller.js
+msgid "Cannot transfer funds when Cash Shuffle spend only is enabled."
+msgstr ""
+
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
 msgstr ""
