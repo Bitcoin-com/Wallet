@@ -24,6 +24,13 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     href: 'https://exchange.bitcoin.com/?utm_source=Wallet&utm_medium=Useful%20Links&utm_campaign=Wallet%20Signup&utm_content=MagazineName1'
   };
 
+  var loanItem = {
+    name: 'loans',
+    title: gettextCatalog.getString('Bitcoin Loans'),
+    icon: 'icon-bitcoin-loans', 
+    href: 'https://www.bitcoin.com/bitcoin-loan-directory/?utm_source=Wallet&utm_medium=Useful%20Links&utm_campaign=Bitcoin%20Loan%20Directory'
+  };
+
   var newsItem = {
     name: 'news',
     title: gettextCatalog.getString('News'),
