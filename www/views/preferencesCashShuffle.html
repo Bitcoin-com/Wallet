@@ -12,11 +12,11 @@
         ng-model="toggleState.cashShuffleEnabled"
         toggle-class="toggle-balanced"
         ng-change="toggleEnableShuffle()"
-        ng-disabled="cs.preferences.preferencesLoading">
+        ng-disabled="preferences.preferencesLoading">
         <span class="toggle-label" translate>Enable CashShuffle for all wallets</span>
       </ion-toggle>
       <div class="comment" translate>
-        If enabled, you will be able to select coins you wish to shuffle under the "CashShuffle" tab.
+        If enabled, you will be able to select coins you wish to shuffle below.
       </div>
 
       <div class="item item-divider"></div>
@@ -25,7 +25,7 @@
         ng-model="toggleState.autoShuffle"
         toggle-class="toggle-balanced"
         ng-change="toggleAutoShuffle()"
-        ng-disabled="!cs.preferences.shufflingEnabled || cs.preferences.preferencesLoading">
+        ng-disabled="!preferences.shufflingEnabled || preferences.preferencesLoading">
         <span class="toggle-label" translate>Automatically shuffle my coins</span>
       </ion-toggle>
       <div class="comment" translate>
@@ -35,10 +35,10 @@
       <div class="item item-divider"></div>
 
       <ion-toggle
-        ng-model="cs.preferences.spendOnlyShuffled"
+        ng-model="toggleState.onlySpendSuffle"
         toggle-class="toggle-balanced"
-        ng-change="cs.updateWalletPreferences()"
-        ng-disabled="!cs.preferences.shufflingEnabled || cs.preferences.preferencesLoading">
+        ng-change="toggleOnlySpendShuffle()"
+        ng-disabled="!preferences.shufflingEnabled || preferences.preferencesLoading">
         <span class="toggle-label" translate>Only allow me to spend shuffled coins</span>
       </ion-toggle>
       <div class="comment" translate>
@@ -50,7 +50,7 @@
       <ion-toggle
         ng-model="useCustomServer"
         toggle-class="toggle-balanced"
-        ng-disabled="cs.preferences.preferencesLoading">
+        ng-disabled="preferences.preferencesLoading">
         <span class="toggle-label" translate>Use custom CashShuffle server</span>
       </ion-toggle>
       <div class="comment" translate>
@@ -68,7 +68,7 @@
           <div class="list settings-input-group">
             <label class="item item-input item-stacked-label">
               <span class="input-label" translate>CashShuffle Server (stats url)</span>
-              <input type="url" id="newServer" name="newServer" ng-model="cs.preferences.serverStatsUri" ng-change="dirtyForm=true" required></input>
+              <input type="url" id="newServer" name="newServer" ng-model="preferences.serverStatsUri" ng-change="dirtyForm=true" required></input>
             </label>
           </div>
           <button
@@ -83,7 +83,7 @@
       </div>
     </div>
     
-    <div ng-if="cs.preferences.shufflingEnabled">
+    <div ng-if="preferences.shufflingEnabled">
         <div class="list card" ng-if="preferences.shufflingEnabled">
             <div class="item">
               <span ng-if="preferences.shufflingEnabled">

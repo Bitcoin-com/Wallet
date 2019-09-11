@@ -44,6 +44,7 @@
     , rateService
     , walletHistoryService
     , cashshuffleService
+    , ongoingProcess
   ) {
     var _ = lodash;
 
@@ -69,24 +70,49 @@
     $scope.dirtyForm = false;
 
     $scope.toggleState = {
-      cashShuffleEnabled: $scope.cs.preferences.shufflingEnabled,
-      automaticShuffle: $scope.cs.preferences.autoShuffle,
-      onlySpendSuffle: $scope.cs.preferences.spendOnlyShuffled,
+      cashShuffleEnabled: false,
+      automaticShuffle: false,
+      onlySpendSuffle: false,
+    };
+
+    $scope.refreshPreferences = function() {
+      console.log("Refreshing Prerences Start");
+      cashshuffleService.fetchPreferences().then( function() {
+        console.log("Refreshing Prerences Start");
+        $scope.toggleState.cashShuffleEnabled = $scope.preferences.shufflingEnabled
+        $scope.toggleState.automaticShuffle = $scope.preferences.autoShuffle;
+        $scope.toggleState.onlySpendSuffle = $scope.preferences.spendOnlyShuffled;
+        $scope.preferences = cashshuffleService.preferences;
+        $timeout(function() {
+          console.log("Refreshing Prerences End");
+          $scope.$apply();
+        });
+      });
     };
 
     $scope.toggleEnableShuffle = function() {
-      $scope.cs.preferences.shufflingEnabled = $scope.toggleState.cashShuffleEnabled;
-      $scope.cs.updateWalletPreferences();
+      $scope.preferences.shufflingEnabled = $scope.toggleState.cashShuffleEnabled;
+      cashshuffleService.updateWalletPreferences();
+      $timeout(function() {
+        $scope.refreshPreferences();
+      }, 200);
     };
 
     $scope.toggleAutoShuffle = function() {
-      $scope.cs.preferences.autoShuffle = $scope.toggleState.automaticShuffle;
-      $scope.cs.updateWalletPreferences();
+      $scope.preferences.autoShuffle = $scope.toggleState.automaticShuffle;
+      cashshuffleService.updateWalletPreferences();
+
+      $timeout(function() {
+        $scope.refreshPreferences();
+      },200);
     };
 
     $scope.toggleOnlySpendShuffle = function() {
-      $scope.cs.preferences.spendOnlyShuffled = $scope.toggleState.onlySpendSuffle;
-      $scope.cs.updateWalletPreferences();
+      $scope.preferences.spendOnlyShuffled = $scope.toggleState.onlySpendSuffle;
+      cashshuffleService.updateWalletPreferences();
+      $timeout(function() {
+        $scope.refreshPreferences();
+      },200);
     };
 
     $scope.saveCustomShuffleServer = function(restoreTheDefault) {
@@ -109,10 +135,7 @@
     $scope.$on('$ionicView.enter', function(event, data) {
       $ionicNavBarDelegate.showBar(true);
 
-      $timeout(function() {
-        $scope.$apply();
-      });
-
+      $scope.refreshPreferences();
     });
 
     // Migrating tab-cashshuffle.js
