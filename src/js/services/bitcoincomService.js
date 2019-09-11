@@ -111,6 +111,7 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     nextStepsService.register(toolsItem);
     nextStepsService.register(priceChartItem);
     nextStepsService.register(faucetItem);
+    nextStepsService.register(loanItem);
     nextStepsService.register(sideShiftItem);
     nextStepsService.register(bchRedditItem);
     nextStepsService.register(bitcoincomTwitterItem);
