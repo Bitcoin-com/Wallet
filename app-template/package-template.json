@@ -61,6 +61,7 @@
     "bitauth": "0.2.1",
     "bitcore-wallet-client": "https://github.com/Bitcoin-com/bitcore-wallet-client.git",
     "bower": "1.8.8",
+    "cashshufflejs-web": "https://github.com/alwaysAn0n/cashshufflejs-web.git#feat/browserify",
     "cordova-custom-config": "3.0.14",
     "cordova-plugin-qrscanner-no-android": "https://github.com/Bitcoin-com/cordova-plugin-qrscanner-no-android.git",
     "cordova-plugin-vibration": "3.0.1",

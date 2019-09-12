@@ -73,6 +73,7 @@ angular
       isBuyBitcoinAllowed = user.isAllowed;
     });
 
+
     function onAfterEnter () {
       startupService.ready();
     };

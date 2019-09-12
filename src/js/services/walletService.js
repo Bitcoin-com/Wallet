@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService, firebaseEventsService, payproService) {
+angular.module('copayApp.services').factory('walletService', function($log, $timeout, lodash, trezor, ledger, intelTEE, storageService, configService, rateService, uxLanguage, $filter, gettextCatalog, bwcError, $ionicPopup, fingerprintService, ongoingProcess, gettext, $rootScope, txFormatService, $ionicModal, $state, bwcService, bitcore, popupService, firebaseEventsService, payproService, profileService) {
 
   // Ratio low amount warning (fee/amount) in incoming TX
   var LOW_AMOUNT_RATIO = 0.15;
@@ -786,6 +786,45 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     });
   };
 
+  root.createFreshChangeAddress = function(wallet, cb) {
+
+    var walletHdMaster = wallet.credentials.getDerivedXPrivKey();
+
+    root.getAddress(wallet, true, function(err, someLegacyAddress) {
+      if (err) {
+        return cb(err);
+      }
+
+      root.getAddressObj(wallet, someLegacyAddress, function(err, someAddressObject) {
+        if (err) {
+          return cb(err);
+        }
+
+        let pieces = someAddressObject.path.split('/');
+        let newAddressPath = pieces[0]+'/1/'+pieces[2];
+
+        let coinPrivateKey = walletHdMaster.derive(newAddressPath).privateKey;
+
+        let oneCoin = {};
+
+        oneCoin.path = newAddressPath;
+        oneCoin.publicKey = coinPrivateKey.toPublicKey();
+        oneCoin.legacyAddress = oneCoin.publicKey.toAddress().toString();
+        oneCoin.address = oneCoin.legacyAddress;
+        oneCoin.privateKeyWif = coinPrivateKey.toWIF();
+        oneCoin.walletId = wallet.id;
+        oneCoin.walletName = wallet.name;
+        oneCoin.wallet = wallet;
+
+        console.log('Got change address for wallet', wallet.name, oneCoin);
+
+        return cb(undefined, oneCoin);
+
+      });
+    });
+
+  };
+
   root.isEncrypted = function(wallet) {
     if (lodash.isEmpty(wallet)) return;
     var isEncrypted = wallet.isPrivKeyEncrypted();
@@ -797,13 +836,55 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     if (lodash.isEmpty(txp) || lodash.isEmpty(wallet))
       return cb('MISSING_PARAMETER');
 
-    wallet.createTxProposal(txp, function(err, createdTxp) {
-      if (err) return cb(err);
-      else {
-        $log.debug('Transaction created');
-        return cb(null, createdTxp);
-      }
-    });
+    // If we are spending from our dedicated CashShuffle Spend-Only wallet,
+    // we need to make sure change addresses are generated from non-CashShuffle
+    // wallets.  Since we treat all utxos in this wallet as "fungible", accepting
+    // change into it might damage the user's privacy.
+    //
+    // The best way to do this is to use a change address for the wallet
+    // from which the original shuffle input came.  I believe this can
+    // be deduced using the tools available.  For now though, we will be
+    // grabbing an arbitrary one.
+    //
+    // After much pain, it appears as if there is no way to create/submit a transaction using
+    // bitcore-wallet-service where the change address is outside of the spending wallet. We
+    // might end up having to add the outside change address as an output although this is
+    // likely to require us to choose the utxos.  We might be better off building and broadcasting
+    // the transaction outside of the bitcore stack.
+
+    // if (wallet.isCashShuffleWallet) {
+    //   console.log('This is from the cashshuffle wallet');
+    //   var changeWallet = lodash.find(profileService.getWallets({ coin: 'bch' }), { isCashShuffleWallet: false });
+
+    //   root.createFreshChangeAddress(changeWallet, function(err, changeAddressObject) {
+
+    //     lodash.extend(txp, { changeAddress: changeAddressObject.address });
+
+    //     console.log('using txp:', txp);
+    //     wallet.createTxProposal(txp, function(err, createdTxp) {
+    //       if (err) return cb(err);
+    //       else {
+    //         console.log('tx proposal:', createdTxp);
+    //         $log.debug('Transaction created');
+    //         return cb(null, createdTxp);
+    //       }
+    //     });
+
+    //   });
+
+    // }
+    // else {
+
+      wallet.createTxProposal(txp, function(err, createdTxp) {
+        if (err) return cb(err);
+        else {
+          $log.debug('Transaction created');
+          return cb(null, createdTxp);
+        }
+      });
+
+    // }
+
   };
 
   root.publishTx = function(wallet, txp, cb) {
@@ -982,16 +1063,21 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     });
   };
 
-  var createAddress = function(wallet, cb) {
+  var createAddress = function(wallet, cb, ignoreMaxGap) {
     $log.debug('Creating address for wallet:', wallet.id);
 
-    wallet.createAddress({}, function onWalletCreatedAddress(err, addr) {
+    var createParams = {};
+    if (ignoreMaxGap === true) {
+      createParams.ignoreMaxGap = true;
+    }
+
+    wallet.createAddress(createParams, function onWalletCreatedAddress(err, addr) {
       if (err) {
         var prefix = gettextCatalog.getString('Could not create address');
         if (err instanceof errors.CONNECTION_ERROR || (err.message && err.message.match(/5../))) {
           $log.warn(err);
           return $timeout(function() {
-            createAddress(wallet, cb);
+            createAddress(wallet, cb, ignoreMaxGap);
           }, 5000);
         } else if (err instanceof errors.MAIN_ADDRESS_GAP_REACHED || (err.message && err.message == 'MAIN_ADDRESS_GAP_REACHED')) {
           $log.warn(err);
@@ -1103,7 +1189,7 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     });
   };
 
-  root.getAddress = function(wallet, forceNew, cb) {
+  root.getAddress = function(wallet, forceNew, cb, ignoreMaxGap) {
     storageService.getLastAddress(wallet.id, function(err, addr) {
       if (err) return cb(err);
 
@@ -1118,7 +1204,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           if (err) return cb(err);
           return cb(null, _addr);
         });
-      });
+      // Forces BWS to ignore the maximum allowed gap
+      // between addresses.  This is needed for CashShuffle
+      // address generation.
+      }, ignoreMaxGap);
     });
   };
 
