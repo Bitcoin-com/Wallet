@@ -100,6 +100,12 @@
         background-size: 50%;
       }
 
+      &.icon-bitcoin-loans {
+        background-color: $v-bitcoin-green;
+        background-image: url('../img/icon-bitcoin-loans.svg');
+        background-size: 50%;
+      }
+
       &.icon-news {
         background-color: $v-bitcoin-green;
         background-image: url('../img/icon-news.svg');
