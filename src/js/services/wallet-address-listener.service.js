@@ -43,7 +43,7 @@
   
       if (wallet.coin === 'bch') {
         // listen to bch address
-        currentAddressSocket = new WebSocket('wss://bch.api.wallet.bitcoin.com/socket/v1/address');
+        currentAddressSocket = new WebSocket('wss://bch.api.wallet.bitcoin.com/bws/api/socket/v1/address');
         paymentSubscriptionObj.addr = address;
       } else {
         // listen to btc address
