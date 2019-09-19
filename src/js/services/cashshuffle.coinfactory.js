@@ -102,7 +102,7 @@ angular
           .then(() => {
             i.resolve(this);
           });
-          
+
         })
       })
 
@@ -126,7 +126,12 @@ angular
             }
             _.extend(walletConfig, config);
             walletHistoryService.updateLocalTxHistoryByPage(someWallet, true, false, (err, historicalTransactions) => {
-              someWallet.getUtxos({}, (error, utxos) => {
+              let addresses = null;
+              if (someWallet.baseUrl === 'https://bch.api.wallet.bitcoin.com/bws/api') {
+                addresses = someWallet.cachedStatus.balanceByAddress.map(s => s.address);
+                addresses = addresses.length === 0 ? null: addresses;
+              }
+              someWallet.getUtxos(addresses !== null ? {addresses} : {} , (error, utxos) => {
                 if (error) {
                  return reject(error);
                 }
