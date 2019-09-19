@@ -159,6 +159,13 @@ angular
                     //   privateKeyWif: ''
                     // }
 
+                    if (oneCoin.path === undefined || oneCoin.path == '') {
+                      oneCoin.path = someWallet.cachedStatus.balanceByAddress.filter(s => s.address === oneCoin.address).map(s => s.path)[0];
+                      if (oneCoin.path === undefined || oneCoin.path == '') {
+                        continue;
+                      }
+                    }
+
                     let coinPrivateKey = walletHdMaster.derive(oneCoin.path).privateKey;
 
                     oneCoin.amountSatoshis = Number(oneCoin.satoshis);
