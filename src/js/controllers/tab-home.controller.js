@@ -70,7 +70,7 @@ angular
     $scope.$on("$ionicView.leave", onLeave);
 
     moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
-      isBuyBitcoinAllowed = user.isAllowed;
+      isBuyBitcoinAllowed = user && user.isAllowed || false;
     });
 
 

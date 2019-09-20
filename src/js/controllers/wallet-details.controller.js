@@ -103,7 +103,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   ]
 
   moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
-    $scope.isBuyBitcoinAllowed = user.isAllowed;
+    $scope.isBuyBitcoinAllowed = user && user.isAllowed || false;
   });
 
   var channel = "ga";
