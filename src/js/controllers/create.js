@@ -146,6 +146,11 @@ angular.module('copayApp.controllers').controller('createController',
 
     $scope.create = function() {
 
+      // Reject reserved wallet names
+      if($scope.formData.walletName == "CashShuffle Spending Wallet") {
+        return;
+      }
+
       var opts = {
         name: $scope.formData.walletName,
         m: $scope.formData.requiredCopayers,
