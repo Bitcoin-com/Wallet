@@ -124,6 +124,11 @@
           soundService.play('misc/payment_received.mp3');
         } 
 
+        // Update the CashShuffle service's inventory of shuffle-able coins.
+        if ($scope.wallet.coin === 'bch') {
+          $rootScope.$emit('cashshuffle-update-coins', $scope.wallet);
+        }
+
         // Notify new tx
         $scope.$emit('bwsEvent', $scope.wallet.id);
 

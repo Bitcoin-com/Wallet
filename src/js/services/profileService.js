@@ -59,15 +59,28 @@ angular.module('copayApp.services')
                           ? defaults.bitcoinCashWalletColor
                           : defaults.bitcoinWalletColor);
 
-        // If this is our CashShuffle spend-only wallet, make it
-        // green and add a flag stating so.
-        if (wallet.coin === 'bch' && wallet.name === 'CashShuffle Spending Wallet') {
-          console.log('Set CashShuffle color to #0073FF'); // Cornflower Blue
-          wallet.color = '#0073FF';
-          wallet.isCashShuffleWallet = true;
+        if (wallet.coin === 'bch') {
+
+          // If this is our CashShuffle spend-only wallet, make it
+          // green and add a flag stating so.
+          if (wallet.name === 'Private Spending Wallet') {
+            console.log('Set CashShuffle color to #0073FF'); // Cornflower Blue
+            wallet.color = '#0073FF';
+            wallet.isCashShuffleWallet = true;
+            wallet.shuffleThisWallet = true;
+          }
+
+          if (config.cashshuffle && config.cashshuffle.statusByWalletId && typeof config.cashshuffle.statusByWalletId[wallet.id] === 'boolean') {
+            wallet.shuffleThisWallet = config.cashshuffle.statusByWalletId[wallet.id];
+          }
+          else {
+            wallet.shuffleThisWallet = false;
+          }
+
         }
         else {
           wallet.isCashShuffleWallet = false;
+          wallet.shuffleThisWallet = false;
         }
 
         // Set the `disableReceive` flag to true only for

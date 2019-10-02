@@ -1,0 +1,167 @@
+#tab-cspreferences {
+
+    .item-toggle {
+        padding-right: 80px;
+    }
+
+    .round {
+        border: 1px solid lightgray;
+        border-radius: 5px;
+    }
+
+    .bold {
+
+        font-weight: 600;
+    }
+
+    .shuffle-server-message {
+      margin: 3px 0px;
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 0px;
+    }
+
+    .progress-message {
+        margin-bottom: 5px;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .progress-bar-container {
+        background-color: white;
+    }
+
+    .progress-bar {
+        width: 100%;
+        background-color: white;
+        padding: 3px;
+        border-radius: 15px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, .2);
+    }
+
+    .progress-bar-fill {
+        display: block;
+        height: 22px;
+        background-color: rgb(0, 189, 137);
+        border-radius: 15px;
+        transition: width 500ms ease-in-out;
+    }
+
+    .wallet-container {
+
+        height: 200px;
+        min-height: 200px;
+        max-height: 200px;
+
+        .wallet-details {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 60%;
+            max-height: 60%;
+
+            .radio-container-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80px;
+                height: auto;
+
+                .radio-container {
+                    background-color: white;
+                    width: 35px;
+                    height: 35px;
+                    max-width: 35px;
+                    max-height: 35px;
+
+                    .radio {
+                      position: inherit;
+                      width: 100%;
+                      height: 100%;
+                      border: 2px solid darkgrey;
+                      border-radius: 50%;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+
+                      .radio-selected {
+                        min-width: 100%;
+                        min-height: 100%;
+                        background-color: white;
+                        border: 2px solid white;
+                        border-radius: 50%;
+                        transition: width 500ms ease-in-out;
+                      }
+
+                    }
+
+                }
+
+            }
+
+            .wallet-icon-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-height: 100px;
+                font-size: 1.4rem;
+
+                .icon {
+                    width: 70px;
+                    height: 70px;
+                     max-width: 70px; 
+                    max-height: 70px;
+                    border: 10px solid #00bd89;
+                    border-radius: 50%;
+                    display: flex;
+
+                    .wallet-icon {
+                      width: 50px;
+                      height: 50px;
+                      background-repeat: no-repeat;
+                      background-clip: padding-box;
+                      background-size: 103%;
+                      -webkit-user-drag: none;
+                    }
+                }
+            }
+
+            .wallet-info-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                max-height: 100px;
+                max-width: 225px;
+                margin-left: 20px;
+
+                .wallet-info {
+
+                    .wallet-name {
+                        font-size: 1.4rem;
+                        margin: 5px 0px;
+                    }
+
+                    .wallet-balance {
+                        font-size: 1.3rem;
+                        margin: 5px 0px;
+                    }
+                }
+            }
+        }
+
+        .wallet-message-container {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            min-height: 20%;
+            max-height: 40%;
+
+            .wallet-message-content{
+                .wallet-message {
+                    font-size: 1rem;
+                    margin-left: 20px;
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}

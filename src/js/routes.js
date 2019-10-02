@@ -254,16 +254,6 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
-      .state('tabs.cashshuffle', {
-        url: '/cashshuffle',
-        cache: false,
-        views: {
-          'tab-cashshuffle': {
-            controller: 'tabCashshuffleController',
-            templateUrl: 'views/tab-cashshuffle.html',
-          }
-        }
-      })
       .state('scanner', {
         url: '/scanner',
         params: {

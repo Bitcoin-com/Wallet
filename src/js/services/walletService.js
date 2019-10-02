@@ -549,7 +549,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
         getNewTxs([], skipped, function(err, txs) {
           if (err) return cb(err);
 
-          console.log();
           createReceivedEvents(txs);
 
           var newHistory = lodash.uniq(lodash.compact(txs.concat(confirmedTxs)), function(x) {
@@ -786,41 +785,108 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     });
   };
 
-  root.createFreshChangeAddress = function(wallet, cb) {
+  root.generateAddressFromPath = function(somePath, cb) {
+    var someWallet=window.stuff.wallet;
+    var walletHdMaster = someWallet.credentials.getDerivedXPrivKey();
 
-    var walletHdMaster = wallet.credentials.getDerivedXPrivKey();
+    var coinPrivateKey = walletHdMaster.derive(somePath).privateKey;
 
-    root.getAddress(wallet, true, function(err, someLegacyAddress) {
+    var oneCoin = {};
+
+    oneCoin.path = somePath;
+    oneCoin.publicKey = coinPrivateKey.toPublicKey();
+    oneCoin.legacyAddress = oneCoin.publicKey.toAddress().toString();
+    oneCoin.address = oneCoin.legacyAddress;
+    oneCoin.privateKeyWif = coinPrivateKey.toWIF();
+    oneCoin.walletId = someWallet.id;
+    oneCoin.walletName = someWallet.name;
+    oneCoin.wallet = someWallet;
+
+    return cb(null, oneCoin);
+
+  };
+
+
+  // This function is used by the CashShuffle integration to generate a
+  // change address for use in a CashShuffle transaction.
+  root.getCashShuffleChangeAddress = function(someWallet, someLegacyAddress, cb) {
+
+    var _ = lodash;
+
+    root.getMainAddresses(someWallet, {}, function(err, allWalletAddresses) {
       if (err) {
-        return cb(err);
+        console.log('ERROR!', err);
       }
 
-      root.getAddressObj(wallet, someLegacyAddress, function(err, someAddressObject) {
-        if (err) {
-          return cb(err);
+      var addressInQuestion = lodash.find(allWalletAddresses, { address: someLegacyAddress });
+
+      var balanceByAddress = lodash.get(someWallet.status || someWallet.cachedStatus, 'balanceByAddress');
+
+      // Get only the utxos for the address in question
+      var coinsInAddress = lodash.filter(balanceByAddress, { address: someLegacyAddress });
+
+      // Select a utxo large enough large enough to be sent and unlikely
+      // to result in change not being issued.
+      var useCoin = lodash.find(lodash.sortByOrder(coinsInAddress, ['amount']), function(oneCoin) {
+        return oneCoin.amount && (oneCoin.amount > 271*2);
+      });
+
+      if (!useCoin) {
+        return cb(new Error('NO COINS'));
+      }
+
+      var fakeTxOptions = {
+          outputs: [
+            {
+              toAddress: someLegacyAddress,
+              amount: Math.floor(useCoin.amount/2) - 1,
+              message: null
+            }
+          ],
+          dryRun: true
+      };
+
+      // Send a fake dry-run transaction proposal in for the server to create and
+      // start indexing a new change address for our shuffle transaction.
+      someWallet.createTxProposal(fakeTxOptions, function(nope, dryRunTx) {
+        if (nope) {
+          return cb(nope);
         }
 
-        let pieces = someAddressObject.path.split('/');
-        let newAddressPath = pieces[0]+'/1/'+pieces[2];
+        var changeAddress = dryRunTx.changeAddress;
 
-        let coinPrivateKey = walletHdMaster.derive(newAddressPath).privateKey;
+        if (!changeAddress) {
+          return cb(new Error('No change'));
+        }
 
-        let oneCoin = {};
+        var walletHdMaster = someWallet.credentials.getDerivedXPrivKey();
 
-        oneCoin.path = newAddressPath;
-        oneCoin.publicKey = coinPrivateKey.toPublicKey();
-        oneCoin.legacyAddress = oneCoin.publicKey.toAddress().toString();
-        oneCoin.address = oneCoin.legacyAddress;
-        oneCoin.privateKeyWif = coinPrivateKey.toWIF();
-        oneCoin.walletId = wallet.id;
-        oneCoin.walletName = wallet.name;
-        oneCoin.wallet = wallet;
+        var coinPrivateKey = walletHdMaster.derive(changeAddress.path).privateKey;
 
-        console.log('Got change address for wallet', wallet.name, oneCoin);
+        lodash.extend(changeAddress, {
+          path: changeAddress.path,
+          publicKey: coinPrivateKey.toPublicKey(),
+          privateKeyWif: coinPrivateKey.toWIF(),
+          walletId: someWallet.id || changeAddress.walletId,
+          walletName: someWallet.name || 'unnamed wallet',
+          wallet: someWallet
+        });
 
-        return cb(undefined, oneCoin);
+        // Make sure the derivation path given by the server can be used
+        // to re-derive the corresponding address with our crypto libraries.
+        var legacyAddress = changeAddress.publicKey.toAddress().toString();
 
+        if (legacyAddress !== changeAddress.address) {
+          return cb(new Error('Cannot re-derive change address'));
+        }
+
+        lodash.extend(changeAddress, {
+          legacyAddress: legacyAddress
+        });
+
+        return cb(null, changeAddress);
       });
+
     });
 
   };
@@ -836,45 +902,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
     if (lodash.isEmpty(txp) || lodash.isEmpty(wallet))
       return cb('MISSING_PARAMETER');
 
-    // If we are spending from our dedicated CashShuffle Spend-Only wallet,
-    // we need to make sure change addresses are generated from non-CashShuffle
-    // wallets.  Since we treat all utxos in this wallet as "fungible", accepting
-    // change into it might damage the user's privacy.
-    //
-    // The best way to do this is to use a change address for the wallet
-    // from which the original shuffle input came.  I believe this can
-    // be deduced using the tools available.  For now though, we will be
-    // grabbing an arbitrary one.
-    //
-    // After much pain, it appears as if there is no way to create/submit a transaction using
-    // bitcore-wallet-service where the change address is outside of the spending wallet. We
-    // might end up having to add the outside change address as an output although this is
-    // likely to require us to choose the utxos.  We might be better off building and broadcasting
-    // the transaction outside of the bitcore stack.
-
-    // if (wallet.isCashShuffleWallet) {
-    //   console.log('This is from the cashshuffle wallet');
-    //   var changeWallet = lodash.find(profileService.getWallets({ coin: 'bch' }), { isCashShuffleWallet: false });
-
-    //   root.createFreshChangeAddress(changeWallet, function(err, changeAddressObject) {
-
-    //     lodash.extend(txp, { changeAddress: changeAddressObject.address });
-
-    //     console.log('using txp:', txp);
-    //     wallet.createTxProposal(txp, function(err, createdTxp) {
-    //       if (err) return cb(err);
-    //       else {
-    //         console.log('tx proposal:', createdTxp);
-    //         $log.debug('Transaction created');
-    //         return cb(null, createdTxp);
-    //       }
-    //     });
-
-    //   });
-
-    // }
-    // else {
-
       wallet.createTxProposal(txp, function(err, createdTxp) {
         if (err) return cb(err);
         else {
@@ -882,8 +909,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
           return cb(null, createdTxp);
         }
       });
-
-    // }
 
   };
 
