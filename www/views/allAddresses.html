@@ -35,7 +35,7 @@
 
       <div class="item" ng-repeat="a in allAddresses track by $index" copy-to-clipboard="wallet.coin == 'bch' ? (addressType.type == 'cashaddr' ? 'bitcoincash:' : '') + a.translatedAddresses[addressType.type] : a.address">
         {{wallet.coin == 'bch' ? a.translatedAddresses[addressType.type] : a.address}}
-        <div class="addr-path" ng-if="!a.balanceStr">
+        <div class="addr-path">
           {{a.path}} {{a.createdOn * 1000 | amDateFormat:'MMMM Do YYYY, hh:mm a'}}
         </div>
         <div class="addr-balance" ng-if="a.balanceStr">{{a.balanceStr}}</div>
