@@ -63,8 +63,8 @@
     $scope.dirtyForm = false;
 
     $scope.toggleState = {
-      cashShuffleEnabled: false,
-      onlySpendSuffle: false
+      cashShuffleEnabled: cashshuffleService.preferences && cashshuffleService.preferences.shufflingEnabled || false,
+      onlySpendSuffle: cashshuffleService.preferences && cashshuffleService.preferences.spendOnlyShuffled || false
     };
 
     $scope.status = {
@@ -164,7 +164,7 @@
 
     };
 
-    $scope.computeWalletStats = function() {
+    $scope.computeWalletStats = _.throttle(function() {
 
       let newData = {
         coins: {
@@ -180,7 +180,8 @@
           unshuffled: 0,
           shuffling: 0,
           shuffled: 0,
-          dust: 0
+          dust: 0,
+          unconfirmed: 0
         },
         percentComplete: 0,
         percentShuffleableComplete: 0
@@ -200,7 +201,7 @@
 
       if (newData.stats.totalBch) {
         newData.stats.percentComplete = Math.floor(100*Number((newData.stats.shuffled/newData.stats.totalBch).toFixed(8)));
-        newData.stats.percentShuffleableComplete = Math.floor(100*Number((newData.stats.shuffled/(newData.stats.totalBch-newData.stats.dust)).toFixed(8)));
+        newData.stats.percentShuffleableComplete = Math.floor( 100*Number( newData.stats.shuffled / ( newData.stats.totalBch === newData.stats.dust ? newData.stats.shuffled/newData.stats.shuffled : newData.stats.totalBch-newData.stats.dust ) ).toFixed(8));
       }
 
       $scope.showProgressBar = $scope.preferences.shufflingEnabled && useWallets.length >= 2 && newData.stats.totalBch ? true : false;
@@ -209,10 +210,9 @@
       $timeout(function() {
         $scope.$apply();
       });
-    };
+    }, 5000, { trailing: false });
 
-    $scope.getWallets = function() {
-
+    $scope.getWallets = _.throttle(function() {
         let returnThese = [];
 
         let bchWallets = profileService.getWallets({ coin: 'bch' });
@@ -257,7 +257,7 @@
         }
 
         return returnThese;
-    };
+    }, 1000, { trailing: false });
 
     let scopeEventListeners = [];
 
@@ -266,14 +266,12 @@
     .then( function() {
       scopeEventListeners.push(
         $rootScope.$on('cashshuffle-update-ui', function() {
-          $timeout( function() {
-            try {
-              $scope.computeWalletStats();
-            }
-            catch(nope) {
-              return;
-            }
-          }, 500);
+          try {
+            $scope.computeWalletStats();
+          }
+          catch(nope) {
+            return;
+          }
         })
       );
     })
@@ -281,20 +279,21 @@
       console.log('CashShuffle is disabled or the CashShuffle service has failed', someError);
     });
 
-    // window.stuff = {
-    //   lodash: lodash,
-    //   walletService: walletService,
-    //   configService: configService,
-    //   rateService: rateService,
-    //   walletHistoryService: walletHistoryService,
-    //   appConfigService: appConfigService,
-    //   rootScope: $rootScope,
-    //   cashshuffleService: cashshuffleService,
-    //   coins: cashshuffleService.coinFactory.coins,
-    //   profileService: profileService,
-    //   allWallets: profileService.getWallets({ coin: 'bch' }),
-    //   storageService: storageService
-    // }
+    window.stuff = {
+      scope: $scope,
+      lodash: lodash,
+      walletService: walletService,
+      configService: configService,
+      rateService: rateService,
+      walletHistoryService: walletHistoryService,
+      appConfigService: appConfigService,
+      rootScope: $rootScope,
+      cashshuffleService: cashshuffleService,
+      coins: cashshuffleService.coinFactory.coins,
+      profileService: profileService,
+      allWallets: profileService.getWallets({ coin: 'bch' }),
+      storageService: storageService
+    }
 
   }
 })();

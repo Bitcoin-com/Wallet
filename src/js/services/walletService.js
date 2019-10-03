@@ -809,85 +809,88 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
   // This function is used by the CashShuffle integration to generate a
   // change address for use in a CashShuffle transaction.
-  root.getCashShuffleChangeAddress = function(someWallet, someLegacyAddress, cb) {
+  root.getCashShuffleChangeAddress = function(someWallet, unshuffledCoinDetails, cb) {
+
+    var someLegacyAddress = unshuffledCoinDetails.legacyAddress;
 
     var _ = lodash;
 
-    root.getMainAddresses(someWallet, {}, function(err, allWalletAddresses) {
-      if (err) {
-        console.log('ERROR!', err);
+    var fakeTxOptions = {
+        outputs: [
+          {
+            toAddress: someLegacyAddress,
+            amount: Math.floor(unshuffledCoinDetails.amountSatoshis/2) - 1,
+            message: null
+          }
+        ],
+        dryRun: true
+    };
+
+    // Send a fake dry-run transaction proposal in for the server to create and
+    // start indexing a new change address for our shuffle transaction.
+    someWallet.createTxProposal(fakeTxOptions, function(nope, dryRunTx) {
+      if (nope) {
+        return cb(nope);
       }
 
-      var addressInQuestion = lodash.find(allWalletAddresses, { address: someLegacyAddress });
+      var changeAddress = dryRunTx.changeAddress;
 
-      var balanceByAddress = lodash.get(someWallet.status || someWallet.cachedStatus, 'balanceByAddress');
-
-      // Get only the utxos for the address in question
-      var coinsInAddress = lodash.filter(balanceByAddress, { address: someLegacyAddress });
-
-      // Select a utxo large enough large enough to be sent and unlikely
-      // to result in change not being issued.
-      var useCoin = lodash.find(lodash.sortByOrder(coinsInAddress, ['amount']), function(oneCoin) {
-        return oneCoin.amount && (oneCoin.amount > 271*2);
-      });
-
-      if (!useCoin) {
-        return cb(new Error('NO COINS'));
+      if (!changeAddress) {
+        return cb(new Error('No change'));
       }
 
-      var fakeTxOptions = {
-          outputs: [
-            {
-              toAddress: someLegacyAddress,
-              amount: Math.floor(useCoin.amount/2) - 1,
-              message: null
-            }
-          ],
-          dryRun: true
-      };
+      var walletHdMaster = someWallet.credentials.getDerivedXPrivKey();
 
-      // Send a fake dry-run transaction proposal in for the server to create and
-      // start indexing a new change address for our shuffle transaction.
-      someWallet.createTxProposal(fakeTxOptions, function(nope, dryRunTx) {
-        if (nope) {
-          return cb(nope);
-        }
+      var coinPrivateKey = walletHdMaster.derive(changeAddress.path).privateKey;
 
-        var changeAddress = dryRunTx.changeAddress;
-
-        if (!changeAddress) {
-          return cb(new Error('No change'));
-        }
-
-        var walletHdMaster = someWallet.credentials.getDerivedXPrivKey();
-
-        var coinPrivateKey = walletHdMaster.derive(changeAddress.path).privateKey;
-
-        lodash.extend(changeAddress, {
-          path: changeAddress.path,
-          publicKey: coinPrivateKey.toPublicKey(),
-          privateKeyWif: coinPrivateKey.toWIF(),
-          walletId: someWallet.id || changeAddress.walletId,
-          walletName: someWallet.name || 'unnamed wallet',
-          wallet: someWallet
-        });
-
-        // Make sure the derivation path given by the server can be used
-        // to re-derive the corresponding address with our crypto libraries.
-        var legacyAddress = changeAddress.publicKey.toAddress().toString();
-
-        if (legacyAddress !== changeAddress.address) {
-          return cb(new Error('Cannot re-derive change address'));
-        }
-
-        lodash.extend(changeAddress, {
-          legacyAddress: legacyAddress
-        });
-
-        return cb(null, changeAddress);
+      lodash.extend(changeAddress, {
+        path: changeAddress.path,
+        publicKey: coinPrivateKey.toPublicKey(),
+        privateKeyWif: coinPrivateKey.toWIF(),
+        walletId: someWallet.id || changeAddress.walletId,
+        walletName: someWallet.name || 'unnamed wallet',
+        wallet: someWallet
       });
 
+      // Make sure the derivation path given by the server can be used
+      // to re-derive the corresponding address with our crypto libraries.
+      var legacyAddress = changeAddress.publicKey.toAddress().toString();
+
+      if (legacyAddress !== changeAddress.address) {
+        return cb(new Error('Cannot re-derive change address'));
+      }
+
+      lodash.extend(changeAddress, {
+        legacyAddress: legacyAddress
+      });
+
+      return cb(null, changeAddress);
     });
+
+
+    // root.getMainAddresses(someWallet, {}, function(err, allWalletAddresses) {
+    //   if (err) {
+    //     console.log('ERROR!', err);
+    //   }
+
+    //   var addressInQuestion = lodash.find(allWalletAddresses, { address: someLegacyAddress });
+
+    //   var balanceByAddress = lodash.get(someWallet.status || someWallet.cachedStatus, 'balanceByAddress');
+
+    //   // Get only the utxos for the address in question
+    //   var coinsInAddress = lodash.filter(balanceByAddress, { address: someLegacyAddress });
+
+    //   // Select a utxo large enough large enough to be sent and unlikely
+    //   // to result in change not being issued.
+    //   var useCoin = lodash.find(lodash.sortByOrder(coinsInAddress, ['amount']), function(oneCoin) {
+    //     return oneCoin.amount && (oneCoin.amount > 271*2);
+    //   });
+
+    //   if (!useCoin) {
+    //     return cb(new Error('NO COINS'));
+    //   }
+
+    // });
 
   };
 

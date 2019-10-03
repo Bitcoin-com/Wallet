@@ -194,7 +194,7 @@ angular
 
           let grabWallet = _.find(profileService.getWallets({ coin: 'bch' }), { id: unshuffledCoinDetails.walletId });
 
-          walletService.getCashShuffleChangeAddress(grabWallet, unshuffledCoinDetails.legacyAddress, (nope, someAddressObject) => {
+          walletService.getCashShuffleChangeAddress(grabWallet, unshuffledCoinDetails, (nope, someAddressObject) => {
             if (nope) {
               return reject(nope);
             }
@@ -523,7 +523,7 @@ angular
             });
           });
 
-          for (let oneEventName of ['phase', 'skipped', 'abort', 'stats']) {
+          for (let oneEventName of ['abort', 'stats']) {
             this.client.on(oneEventName, () => {
               $rootScope.$emit('cashshuffle-update-ui');
             });

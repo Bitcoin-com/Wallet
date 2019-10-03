@@ -126,11 +126,11 @@
 
                         <div class="wallet-info">
                             <div class="wallet-name">{{ oneWallet.name }}</div>
-                            <div class="wallet-balance">
-                              {{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH
+                            <div class="wallet-balance" ng-if="oneWallet.stats.dust == oneWallet.stats.totalBch">
+                              {{ oneWallet.stats.dust.toFixed(5) }} BCH ( dust ) 
                             </div>
-                            <div class="wallet-balance" ng-if="oneWallet.stats.dust">
-                              {{ oneWallet.stats.dust.toFixed(5) }} BCH shuffle dust
+                            <div class="wallet-balance" ng-if="oneWallet.stats.dust != oneWallet.stats.totalBch">
+                              {{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH
                             </div>
                         </div>
 
