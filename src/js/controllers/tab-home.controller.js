@@ -257,7 +257,7 @@ angular
     function updateAllWallets(cb) {
       var wallets = [];
       $scope.walletsBtc = profileService.getWallets({coin: 'btc'});
-      $scope.walletsBch = profileService.getWallets({coin: 'bch'});
+      $scope.walletsBch = lodash.sortByOrder(profileService.getWallets({coin: 'bch'}), ['isCashShuffleWallet']);
 
       lodash.each($scope.walletsBtc, function onEach(wBtc) {
         wallets.push(wBtc);
