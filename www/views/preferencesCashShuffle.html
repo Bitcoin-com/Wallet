@@ -102,7 +102,7 @@
         <div class="list card round" style="cursor: pointer">
             <div class="wallet-container" ng-click="toggleShuffleWallet(oneWallet)" ng-repeat="oneWallet in getWallets() track by $index" ng-if="!oneWallet.isCashShuffleWallet">
 
-                <div class="wallet-details">
+                <div class="wallet-details" style="border-bottom:{{$last ? '0px' : '1px solid lightgray'}}">
                     <div class="radio-container-content">
 
                         <div class="radio-container">
@@ -126,18 +126,32 @@
 
                         <div class="wallet-info">
                             <div class="wallet-name">{{ oneWallet.name }}</div>
-                            <div class="wallet-balance" ng-if="oneWallet.stats.dust == oneWallet.stats.totalBch">
-                              {{ oneWallet.stats.dust.toFixed(5) }} BCH ( dust ) 
+
+                            <div class="wallet-balance-container" ng-if="!oneWallet.walletMessage">
+                                <div class="wallet-balance" ng-if="oneWallet.stats.dust && oneWallet.stats.dust == oneWallet.stats.totalBch">
+                                  {{ oneWallet.stats.dust.toFixed(8) }} BCH ( dust ) 
+                                </div>
+                                <div class="wallet-balance" ng-if="!oneWallet.stats.dust || oneWallet.stats.dust != oneWallet.stats.totalBch">
+                                  {{ oneWallet.stats.totalBch.toFixed(5) }} BCH
+                                </div>
+                                <div class="wallet-balance" ng-hide="!oneWallet.stats.unconfirmed">
+                                  {{ oneWallet.stats.unconfirmed.toFixed(5) }} BCH unconfirmed
+                                </div>
                             </div>
-                            <div class="wallet-balance" ng-if="oneWallet.stats.dust != oneWallet.stats.totalBch">
-                              {{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH
+                            <div class="wallet-message-container">
+                                <div class="wallet-message-content">
+                                    <div class="wallet-message"  ng-if="!oneWallet.shuffleThisWallet">
+                                        Click to make the coins in this wallet private using CashShuffle
+                                    </div>
+                                    <div class="wallet-message"  ng-if="oneWallet.shuffleThisWallet && oneWallet.walletMessage">
+                                        {{ oneWallet.walletMessage }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-                <div class="wallet-message-container" ng-if="oneWallet.shuffleThisWallet">
-
+                <!-- <div class="wallet-message-container" ng-if="oneWallet.shuffleThisWallet">
                     <div class="wallet-message-content">
                         <div class="wallet-message" ng-if="oneWallet.stats.unconfirmed && !oneWallet.shufflingComplete">
                             <span class="bold">{{ oneWallet.stats.unconfirmed }}</span> BCH unconfirmed
@@ -149,12 +163,12 @@
                 </div>
                 <div class="wallet-message-container" ng-if="!oneWallet.shuffleThisWallet">
 
-                    <div class="wallet-message-content">
+                    <div class="wallet-message-content" ng-if="!oneWallet.shuffleThisWallet>
                         <div class="wallet-message">
                             Click to make the coins in this wallet private using CashShuffle
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
         </div>

@@ -232,6 +232,8 @@
           let shufflingBchInWallet = _.sum(_.compact(_.map(inShufflePool, 'amountBch')));
           let unconfirmedBchInWallet = _.sum(_.compact(_.map(unconfirmed, 'amountBch')));
 
+          let useWalletMessage = shufflingBchInWallet ? 'Now Shuffling '+Number(shufflingBchInWallet.toFixed(5))+' BCH' : undefined;
+
           _.extend(oneWallet, {
             coins: {
               all: allCoinsInWallet,
@@ -241,6 +243,7 @@
               shuffling: inShufflePool,
               unconfirmed: unconfirmed
             },
+            walletMessage: useWalletMessage,
             stats: {
               totalBch: Number(totalBchInWallet.toFixed(8)),
               unshuffled: Number(unshuffledBchInWallet.toFixed(8)),
