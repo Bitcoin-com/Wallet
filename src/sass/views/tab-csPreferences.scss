@@ -48,21 +48,20 @@
 
     .wallet-container {
 
-        height: 120px;
-        min-height: 120px;
-        max-height: 120px;
 
         .wallet-details {
+            height: 150px;
+            min-height: 150px;
+            max-height: 150px;
+
             display: flex;
             flex-wrap: wrap;
-            min-height: 100%;
-            max-height: 100%;
 
             .radio-container-content {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 80px;
+                width: 60px;
 
                 .radio-container {
                     background-color: white;
@@ -100,15 +99,14 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                max-height: 100px;
                 font-size: 1.4rem;
 
                 .icon {
                     width: 70px;
                     height: 70px;
-                     max-width: 70px; 
+                    max-width: 70px; 
                     max-height: 70px;
-                    border: 10px solid #00bd89;
+                    border: 11px solid #00bd89;
                     border-radius: 50%;
                     display: flex;
 
@@ -128,8 +126,8 @@
                 justify-content: center;
                 align-items: center;
                 height: auto;
-                max-width: 300px;
-                margin-left: 25px;
+                max-width: 200px;
+                margin-left: 12px;
 
                 .wallet-info {
 
@@ -139,7 +137,7 @@
                     }
 
                     .wallet-balance {
-                        font-size: 1rem;
+                        font-size: .8rem;
                         font-color: lightgray;
                     }
                 }
@@ -149,8 +147,6 @@
                 display: flex;
                 justify-content: left;
                 align-items: center;
-                min-height: 20%;
-                max-height: 40%;
 
                 .wallet-message-content{
 

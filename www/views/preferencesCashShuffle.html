@@ -100,9 +100,9 @@
         </div>
 
         <div class="list card round" style="cursor: pointer">
-            <div class="wallet-container" ng-click="toggleShuffleWallet(oneWallet)" ng-repeat="oneWallet in getWallets() track by $index" ng-if="!oneWallet.isCashShuffleWallet">
+            <div class="wallet-container">
 
-                <div class="wallet-details" style="border-bottom:{{$last ? '0px' : '1px solid lightgray'}}">
+                <div class="wallet-details" style="border-bottom:{{$last ? '0px' : '1px solid lightgray'}}"  ng-repeat="oneWallet in getWallets() track by $index" ng-if="!oneWallet.isCashShuffleWallet" ng-click="toggleShuffleWallet(oneWallet)" >
                     <div class="radio-container-content">
 
                         <div class="radio-container">
@@ -151,24 +151,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="wallet-message-container" ng-if="oneWallet.shuffleThisWallet">
-                    <div class="wallet-message-content">
-                        <div class="wallet-message" ng-if="oneWallet.stats.unconfirmed && !oneWallet.shufflingComplete">
-                            <span class="bold">{{ oneWallet.stats.unconfirmed }}</span> BCH unconfirmed
-                        </div>
-                        <div class="wallet-message" class="wallet-stat" ng-if="oneWallet.coins.shuffling.length">
-                            Now shuffling <span class="bold">{{ oneWallet.stats.shuffling.toFixed(4) }}</span> BCH
-                        </div>
-                    </div>
-                </div>
-                <div class="wallet-message-container" ng-if="!oneWallet.shuffleThisWallet">
-
-                    <div class="wallet-message-content" ng-if="!oneWallet.shuffleThisWallet>
-                        <div class="wallet-message">
-                            Click to make the coins in this wallet private using CashShuffle
-                        </div>
-                    </div>
-                </div> -->
 
             </div>
         </div>
