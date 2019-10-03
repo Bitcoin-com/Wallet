@@ -126,7 +126,12 @@
 
                         <div class="wallet-info">
                             <div class="wallet-name">{{ oneWallet.name }}</div>
-                            <div class="wallet-balance" ng-if="!oneWallet.shufflingComplete">{{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH</div>
+                            <div class="wallet-balance">
+                              {{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH
+                            </div>
+                            <div class="wallet-balance" ng-if="oneWallet.stats.dust">
+                              {{ oneWallet.stats.dust.toFixed(5) }} BCH shuffle dust
+                            </div>
                         </div>
 
                     </div>
@@ -137,11 +142,8 @@
                         <div class="wallet-message" ng-if="oneWallet.stats.unconfirmed && !oneWallet.shufflingComplete">
                             <span class="bold">{{ oneWallet.stats.unconfirmed }}</span> BCH unconfirmed
                         </div>
-                        <div class="wallet-message" ng-if="oneWallet.shufflingComplete && !oneWallet.stats.shuffling">
-                            No coins to shuffle!
-                        </div>
                         <div class="wallet-message" class="wallet-stat" ng-if="oneWallet.coins.shuffling.length">
-                            Now shuffling <span class="bold">{{ oneWallet.coins.shuffling.length }}</span> coins ( <span class="bold">{{ oneWallet.stats.shuffling.toFixed(4) }}</span>) BCH
+                            Now shuffling <span class="bold">{{ oneWallet.stats.shuffling.toFixed(4) }}</span> BCH
                         </div>
                     </div>
                 </div>

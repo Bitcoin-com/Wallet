@@ -18,7 +18,7 @@ angular.module('copayApp.controllers').controller('preferencesAliasController',
       };
 
       // Reject reserved wallet names
-      if($scope.alias.value == "CashShuffle Spending Wallet") {
+      if($scope.alias.value == 'Private Spending Wallet') {
         return;
       }
 
