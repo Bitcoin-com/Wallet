@@ -11579,6 +11579,10 @@ ion-tabs .tab-title {
     background-image: url("../img/merchants/cheapair_banner.jpg"); }
     #tab-spend #cheapair .subtitle {
       width: 100%; }
+  #tab-spend #cred {
+    background-image: url("../img/merchants/cred_banner.png"); }
+    #tab-spend #cred .subtitle {
+      width: 100%; }
   #tab-spend #egifter {
     background-image: url("../img/merchants/egifter_banner.png"); }
   #tab-spend #marcocoino {

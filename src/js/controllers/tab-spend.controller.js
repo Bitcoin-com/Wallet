@@ -18,6 +18,7 @@
 
     // Functions
     vm.onCheapAir = onCheapAir
+    vm.onCred = onCred;
     vm.onStartAccepting = onStartAccepting;
     vm.onEGifter = onEGifter;
     vm.onMerchant = onMerchant;
@@ -78,6 +79,11 @@
     function onCheapAir() {
       externalLinkService.open('http://www.cheapair.com/air?uid=397');
     }
+
+    function onCred() {
+      externalLinkService.open('https://earn.mycred.io/bitcoin?utm_source=BitcoincomWallet&utm_medium=Shop&utm_campaign=Earn');
+    }
+
 
     function onEGifter() {
       externalLinkService.open('https://giftcards.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
