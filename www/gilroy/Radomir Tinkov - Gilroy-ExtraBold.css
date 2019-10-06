@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Gilroy-ExtraBold";
+    src: url("Radomir Tinkov - Gilroy-ExtraBold.eot");
+    src: url("Radomir Tinkov - Gilroy-ExtraBold.eot?#iefix") format("embedded-opentype"),
+         url("Radomir Tinkov - Gilroy-ExtraBold.woff2") format("woff2"),
+         url("Radomir Tinkov - Gilroy-ExtraBold.woff") format("woff"),
+         url("Radomir Tinkov - Gilroy-ExtraBold.ttf") format("ttf"),
+         url("Radomir Tinkov - Gilroy-ExtraBold.svg#Gilroy-ExtraBold") format("svg");
+    font-style: normal;
+    font-weight: 800;
+}

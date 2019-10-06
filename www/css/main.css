@@ -100,6 +100,48 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Regular.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Regular.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-Regular.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-Regular.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-Regular.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-Regular.svg#Gilroy-Regular") format("svg");
+  font-style: normal;
+  font-weight: regular; }
+
+@font-face {
+  font-family: "Gilroy-Medium";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Medium.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Medium.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-Medium.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-Medium.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-Medium.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-Medium.svg#Gilroy-Medium") format("svg");
+  font-style: normal;
+  font-weight: normal; }
+
+@font-face {
+  font-family: "Gilroy-SemiBold";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.svg#Gilroy-SemiBold") format("svg");
+  font-style: normal;
+  font-weight: 700; }
+
+@font-face {
+  font-family: "Gilroy-Heavy";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Heavy.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Heavy.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-Heavy.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-Heavy.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-Heavy.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-Heavy.svg#Gilroy-Heavy") format("svg");
+  font-style: normal;
+  font-weight: heavy; }
+
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Bold.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-Bold.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-Bold.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-Bold.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-Bold.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-Bold.svg#Gilroy-Bold") format("svg");
+  font-style: normal;
+  font-weight: 700; }
+
+@font-face {
+  font-family: "Gilroy-ExtraBold";
+  src: url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.eot");
+  src: url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.eot?#iefix") format("embedded-opentype"), url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.woff2") format("woff2"), url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.woff") format("woff"), url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.ttf") format("ttf"), url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.svg#Gilroy-ExtraBold") format("svg");
+  font-style: normal;
+  font-weight: 800; }
+
 /*
  * App variables
  */
@@ -3436,7 +3478,7 @@ body,
   word-wrap: break-word;
   font-size: 16px;
   font-family: -apple-system;
-  font-family: "Roboto", sans-serif;
+  font-family: "Gilroy-Medium", "Roboto", sans-serif;
   line-height: 22px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3692,7 +3734,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: "Gilroy-Medium", "Roboto", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -5217,7 +5259,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Gilroy-Medium", "Roboto", sans-serif;
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
@@ -6751,7 +6793,7 @@ button.item.item-button-right {
 .card {
   padding-top: 1px;
   padding-bottom: 1px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25); }
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px; }
   .card .item {
     border-left: 0;
     border-right: 0; }
@@ -7650,7 +7692,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Roboto", sans-serif; }
+  font-family: "Gilroy-Medium", "Roboto", sans-serif; }
 
 .item-input {
   display: -webkit-box;
@@ -10235,7 +10277,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
   display: inline !important; }
 
 .button {
-  border-radius: 7px; }
+  border-radius: 3px; }
   .button.button-full {
     border-radius: 0;
     display: block; }
@@ -10254,10 +10296,12 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       background-color: #15d6a0; }
   .button-white {
     border-color: transparent;
-    background-color: #F1F3FB;
-    color: #0AC18E; }
+    background-color: #FFF;
+    color: #13171F;
+    border: 1px solid #C7CDD8;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px; }
     .button-white:hover {
-      color: #0AC18E;
+      color: #13171F;
       text-decoration: none; }
     .button-white.active, .button-white.activated {
       border-color: transparent;
@@ -10320,7 +10364,11 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       border-color: transparent;
       background-color: #FFF;
       color: #15d6a0;
-      background: white; }
+      background: white;
+      border-color: #C7CDD8;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+      color: #13171F;
+      background: #fdfdfd; }
       .button-card-style.white:hover {
         color: #15d6a0;
         text-decoration: none; }
@@ -10431,8 +10479,7 @@ qrcode {
 
 ion-tabs.tabs-color-active-positive .tab-item {
   color: #B0B0B4;
-  font-family: ProximaNova;
-  font-weight: bold; }
+  font-family: "Gilroy-SemiBold"; }
   ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
     color: #0AC18E; }
 
@@ -10461,13 +10508,15 @@ ion-tabs .tab-title {
   color: #787878; }
 
 #view-add .item {
-  margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
   padding-top: 2rem;
   padding-bottom: 2rem;
   border: none;
-  padding-left: 90px; }
+  padding-left: 90px;
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
+  margin-bottom: 15px;
+  border-radius: 7px; }
   #view-add .item:first-child {
     margin-top: 25px; }
 
@@ -10672,6 +10721,8 @@ ion-tabs .tab-title {
     display: flex;
     flex-direction: column; }
     #view-amount .scroll-content .send-amount {
+      box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
+      border-radius: 7px;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
@@ -10699,7 +10750,7 @@ ion-tabs .tab-title {
             user-select: text; }
           #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount {
             color: #333;
-            font-weight: bold; }
+            font-family: "Gilroy-Bold"; }
             #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount input, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit, #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
               font-size: 1.8em; }
               @media (min-width: 375px) {
@@ -10736,7 +10787,7 @@ ion-tabs .tab-title {
               margin: 0;
               height: 1em;
               margin-right: 5px;
-              font-family: 'ProximaNova'; }
+              font-family: 'Gilroy-Regular'; }
             #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .unit,
             #view-amount .scroll-content .send-amount .send-amount-tool .send-amount-tool-input .primary-amount .primary-amount-display {
               display: inline-block;
@@ -10780,7 +10831,7 @@ ion-tabs .tab-title {
           border: none;
           border-radius: 0;
           color: #000;
-          font-family: 'ProximaNova';
+          font-family: 'Gilroy-Medium';
           font-size: 14px;
           line-height: normal;
           min-height: auto;
@@ -10993,6 +11044,9 @@ ion-tabs .tab-title {
   #starting .block-spinner {
     display: block; }
 
+.bar-header .nav-bar-title, .bar-header .nav-bar-title img {
+  vertical-align: middle; }
+
 #tab-home #buy-bitcoin.padding {
   padding: 0px 14px; }
 
@@ -11001,10 +11055,21 @@ ion-tabs .tab-title {
   font-weight: bold;
   font-size: 19px;
   line-height: 26px;
-  padding: 8px 6px; }
+  padding: 16px 16px;
+  max-width: 250px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px; }
   #tab-home #buy-bitcoin .button.button-standard {
     width: 100%;
-    max-width: 100%; }
+    max-width: 300px; }
+
+#tab-home #buy-bitcoin .button-green {
+  border-color: #11A87E;
+  background-color: #15d6a0;
+  color: #FFF;
+  background: url("../img/p3green.png");
+  background-repeat: repeat-x;
+  border: 1px; }
 
 #tab-home .icon-create-wallet {
   background-color: #4A90E2; }
@@ -11033,7 +11098,7 @@ ion-tabs .tab-title {
 
 #tab-home .card {
   background: #FFFFFF;
-  box-shadow: 0 3px 30px 0 rgba(105, 105, 105, 0.07);
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
   border-radius: 7px; }
   #tab-home .card .item {
     color: #131720;
@@ -11076,16 +11141,19 @@ ion-tabs .tab-title {
     padding: 5px 10px;
     margin-bottom: 0; }
   #tab-home .buttons .button {
-    border: 2px solid;
+    font-family: "Gilroy-SemiBold", sans-serif;
+    font-weight: normal;
+    border: 1px solid #C7CDD8;
     border-radius: 3px;
-    padding: 8px 2px 8px 2px;
+    padding: 16px;
     text-align: center;
     width: 100%;
     max-width: 300px;
     font-size: 19px;
-    font-weight: bolder;
     min-height: 0;
-    line-height: 19px; }
+    line-height: 19px;
+    color: #13171F;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px; }
     #tab-home .buttons .button-no-border {
       border: none; }
 
@@ -11369,7 +11437,12 @@ ion-tabs .tab-title {
         margin-right: 0px;
         width: 95%;
         max-width: none;
-        padding: 2px; }
+        padding: 2px;
+        background: #fdfdfd;
+        border: 1px solid #C7CDD8;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+        color: #13171F;
+        font-family: "Gilroy-Regular", "Roboto-Light", sans-serif-light; }
         #tab-send .send-wrapper .buttons .button-clipboard-paste {
           margin-left: 0; }
           #tab-send .send-wrapper .buttons .button-clipboard-paste .address {
@@ -11381,7 +11454,7 @@ ion-tabs .tab-title {
             display: inline-block;
             margin-bottom: 4px; }
           #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-address, #tab-send .send-wrapper .buttons .button-clipboard-paste.contains-content {
-            background: #FAB915;
+            background: #327DC0;
             color: #FFF !important;
             border: 0;
             box-shadow: 0 2px 11px 0 #C1C1C1; }
@@ -11414,6 +11487,13 @@ ion-tabs .tab-title {
             height: 43px; }
           #tab-send .send-wrapper .buttons .button-qr span {
             font-size: 19px; }
+      #tab-send .send-wrapper .buttons .button-green {
+        border-color: #11A87E;
+        background-color: #15d6a0;
+        color: #FFF;
+        background: url("../img/p3green.png");
+        background-repeat: repeat-x;
+        border: 1px; }
   #tab-send .search-input {
     background-color: transparent;
     padding-left: 30px; }
@@ -12292,20 +12372,25 @@ ion-tabs .tab-title {
         padding: 5px 10px;
         margin-bottom: 0; }
       #walletDetails .amount-wrapper .send-receive-buttons .button {
-        border: 2px solid;
+        font-family: "Gilroy-SemiBold", sans-serif;
+        font-weight: normal;
+        border: 1px solid #C7CDD8;
         border-radius: 3px;
-        padding: 6px 2px 6px 2px;
+        padding: 16px;
         text-align: center;
         width: 100%;
+        color: #13171F;
         max-width: 300px;
         font-size: 19px;
-        font-weight: bolder;
         min-height: 0;
-        line-height: 19px; }
+        line-height: 19px;
+        background: #fdfdfd;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px; }
   #walletDetails .amount {
     align-items: center;
     color: #fff;
     display: block;
+    font-family: "Gilroy-Bold", sans-serif;
     height: 230px;
     justify-content: center;
     padding-top: 40px;
@@ -12324,7 +12409,8 @@ ion-tabs .tab-title {
       margin-top: -2.1rem; }
     #walletDetails .amount-alternative {
       line-height: 36px;
-      transition: all 0.25s ease-in-out; }
+      transition: all 0.25s ease-in-out;
+      font-family: "Gilroy-SemiBold", sans-serif; }
     #walletDetails .amount__button-balance {
       background-color: transparent;
       border: 1px solid rgba(255, 255, 255, 0.25);
@@ -12811,7 +12897,7 @@ a.item {
   width: 50px;
   height: 50px;
   border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
   background-color: #0AC18E; }
   #buy-and-sell .buy-and-sell-icon img {
     height: 100%;
@@ -13176,7 +13262,7 @@ a.item {
     #wallet-backup-phrase-step-2 .select-word {
       background: #494949;
       color: #fff;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
       display: inline-block;
       margin: 3px 0;
       min-height: 35px;
@@ -13219,7 +13305,7 @@ a.item {
     height: 50px;
     border-radius: 3px;
     padding: 13px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
     background-color: #fff; }
     .zero-state-icon img {
       height: 100%;
@@ -13318,7 +13404,7 @@ a.item {
 
 #terms-of-use ion-header-bar {
   background: #fbfcff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
   color: #000; }
   #terms-of-use ion-header-bar .primary-buttons .button {
     color: #000;
@@ -14207,7 +14293,7 @@ action-sheet .bp-action-sheet__backdrop {
 
 .wallets .slides .card {
   max-width: 350px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
   padding: 0;
   border-radius: 6px;
   margin: 0 auto; }
@@ -14797,14 +14883,14 @@ slide-to-accept-success {
       #view-confirm .head .amount-label .amount {
         font-size: 16px;
         color: #9B9B9B;
-        font-family: "Roboto-Light"; }
+        font-family: "Gilroy-Regular"; }
       #txp-details .head .amount-label .alternative,
       #view-confirm .head .amount-label .alternative {
         font-size: 38px;
         margin-bottom: .5rem; }
         #txp-details .head .amount-label .alternative > .unit,
         #view-confirm .head .amount-label .alternative > .unit {
-          font-family: "Roboto-Light"; }
+          font-family: "Gilroy-Regular"; }
   #txp-details .item,
   #view-confirm .item {
     border-color: #EFEFEF; }
@@ -15139,7 +15225,7 @@ wallet-selector .wallet-selector .wallet-details {
     padding-bottom: 5px; }
   wallet-selector .wallet-selector .wallet-details .wallet-balance {
     color: #3A3A3A;
-    font-family: "Roboto-Light"; }
+    font-family: "Gilroy-Regular"; }
 
 account-selector {
   text-align: left; }
@@ -15186,7 +15272,7 @@ account-selector {
       padding-bottom: 5px; }
     account-selector .account-selector .account-details .account-email {
       color: #3A3A3A;
-      font-family: "Roboto-Light"; }
+      font-family: "Gilroy-Regular"; }
     account-selector .account-selector .account-details .account-add {
       padding-bottom: 16px;
       padding-top: 11px; }
@@ -15808,7 +15894,7 @@ account-selector {
     #pin .content .block-buttons {
       color: #445;
       font-size: 1.7rem;
-      font-family: "Roboto-Light", sans-serif-light;
+      font-family: "Gilroy-Regular", "Roboto-Light", sans-serif-light;
       cursor: pointer;
       position: absolute;
       bottom: 3%;
@@ -15991,7 +16077,12 @@ log-options #check-bar .checkbox-icon {
 
 #view-review .header {
   background: url("../img/green_px.png");
-  background-repeat: repeat; }
+  background-repeat: repeat;
+  font-family: "Gilroy-Medium", "Roboto", sans-serif; }
+  #view-review .header .large {
+    font-family: "Gilroy-Bold", "Gilroy-Medium", "Roboto", sans-serif, sans-serif;
+    font-size: 36px;
+    font-weight: normal; }
 
 #view-review slide-to-accept, #view-review slide-to-accept-success {
   margin-bottom: constant(safe-area-inset-bottom);
@@ -16012,6 +16103,152 @@ log-options #check-bar .checkbox-icon {
 
 #view-review .warning {
   color: #b7664d; }
+
+#tab-cspreferences .cs-img {
+  width: 190px;
+  max-width: 100%;
+  margin: 0 auto 10px;
+  display: block; }
+
+#tab-cspreferences .item-toggle {
+  padding-right: 80px; }
+
+#tab-cspreferences .round {
+  border-radius: 7px; }
+
+#tab-cspreferences .bold {
+  font-weight: 600; }
+
+#tab-cspreferences .cs-button {
+  width: 100%;
+  padding: 5px 15px;
+  text-align: center; }
+
+#tab-cspreferences .button-green {
+  font-family: "Gilroy-Medium", "Roboto", sans-serif;
+  border-color: #11A87E;
+  background-color: #15d6a0;
+  color: #FFF;
+  background: url("../img/p3green.png");
+  background-repeat: repeat-x;
+  border: 1px;
+  border-radius: 3px;
+  width: 250px;
+  padding: 16px;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 700;
+  display: inline-block; }
+
+#tab-cspreferences .shuffle-server-message {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 0px; }
+
+#tab-cspreferences .progress-message {
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 1.4rem; }
+
+#tab-cspreferences .progress-bar-container {
+  background-color: white; }
+
+#tab-cspreferences .progress-bar {
+  width: 100%;
+  background-color: white;
+  padding: 3px;
+  border-radius: 15px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2); }
+
+#tab-cspreferences .progress-bar-fill {
+  display: block;
+  height: 22px;
+  background-color: #00bd89;
+  border-radius: 15px;
+  transition: width 500ms ease-in-out; }
+
+#tab-cspreferences .wallet-container {
+  height: auto; }
+  #tab-cspreferences .wallet-container .wallet-details {
+    height: 150px;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 50%;
+    max-height: 50%;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; }
+    #tab-cspreferences .wallet-container .wallet-details .radio-container-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 60px;
+      height: auto; }
+      #tab-cspreferences .wallet-container .wallet-details .radio-container-content .radio-container {
+        background-color: white;
+        width: 35px;
+        height: 35px;
+        max-width: 35px;
+        max-height: 35px; }
+        #tab-cspreferences .wallet-container .wallet-details .radio-container-content .radio-container .radio {
+          position: inherit;
+          width: 100%;
+          height: 100%;
+          border: 2px solid darkgrey;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          #tab-cspreferences .wallet-container .wallet-details .radio-container-content .radio-container .radio .radio-selected {
+            min-width: 100%;
+            min-height: 100%;
+            background-color: white;
+            border: 2px solid white;
+            border-radius: 50%;
+            transition: width 500ms ease-in-out; }
+    #tab-cspreferences .wallet-container .wallet-details .wallet-icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.4rem; }
+      #tab-cspreferences .wallet-container .wallet-details .wallet-icon-container .icon {
+        width: 60px;
+        height: 60px;
+        max-width: 60px;
+        max-height: 60px;
+        border: 10px solid #00bd89;
+        border-radius: 50%;
+        display: flex; }
+        #tab-cspreferences .wallet-container .wallet-details .wallet-icon-container .icon .wallet-icon {
+          width: 40px;
+          height: 40px;
+          background-repeat: no-repeat;
+          background-clip: padding-box;
+          background-size: 103%;
+          -webkit-user-drag: none; }
+    #tab-cspreferences .wallet-container .wallet-details .wallet-info-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 100px;
+      max-width: 215px;
+      margin-left: 10px; }
+      #tab-cspreferences .wallet-container .wallet-details .wallet-info-container .wallet-info .wallet-name {
+        font-size: 16px;
+        font-weight: bolder;
+        margin: 5px 0px; }
+      #tab-cspreferences .wallet-container .wallet-details .wallet-info-container .wallet-info .wallet-balance {
+        font-size: 14px;
+        color: #6B717E; }
+    #tab-cspreferences .wallet-container .wallet-details .wallet-message-container {
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      min-height: 20%;
+      max-height: 40%; }
+      #tab-cspreferences .wallet-container .wallet-details .wallet-message-container .wallet-message-content .wallet-message {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #6B717E; }
 
 .gravatar {
   border-radius: 3px;
@@ -16086,7 +16323,9 @@ ion-nav-view {
     margin-top: -2px; }
 
 .card.card-gutter-compact {
-  margin: 10px 12px; }
+  margin: 20px 12px;
+  border-radius: 7px;
+  box-shadow: white 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px; }
 
 .header {
   padding: 29px 12px 61px;
