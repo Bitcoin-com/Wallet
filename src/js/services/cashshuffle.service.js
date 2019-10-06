@@ -366,7 +366,9 @@ angular
               return reject(err);
             }
 
-            let currentCashShuffleConfig = currentWalletConfig && currentWalletConfig.cashshuffle || {};
+            let currentCashShuffleConfig = currentWalletConfig && currentWalletConfig.cashshuffle || {
+              statusByWalletId: {}
+            };
 
             let bchWallets = profileService.getWallets({ coin: 'bch' });
 
