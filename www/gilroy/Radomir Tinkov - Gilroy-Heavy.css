@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Gilroy-Heavy";
+    src: url("Radomir Tinkov - Gilroy-Heavy.eot");
+    src: url("Radomir Tinkov - Gilroy-Heavy.eot?#iefix") format("embedded-opentype"),
+         url("Radomir Tinkov - Gilroy-Heavy.woff2") format("woff2"),
+         url("Radomir Tinkov - Gilroy-Heavy.woff") format("woff"),
+         url("Radomir Tinkov - Gilroy-Heavy.ttf") format("ttf"),
+         url("Radomir Tinkov - Gilroy-Heavy.svg#Gilroy-Heavy") format("svg");
+    font-style: normal;
+    font-weight: heavy;
+}

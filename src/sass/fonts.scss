@@ -138,3 +138,75 @@
   font-style: normal;
 
 }
+
+@font-face {
+    font-family: "Gilroy-Regular";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Regular.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Regular.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Regular.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Regular.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Regular.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Regular.svg#Gilroy-Regular") format("svg");
+    font-style: normal;
+    font-weight: regular;
+}
+
+@font-face {
+    font-family: "Gilroy-Medium";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Medium.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Medium.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Medium.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Medium.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Medium.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Medium.svg#Gilroy-Medium") format("svg");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Gilroy-SemiBold";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-SemiBold.svg#Gilroy-SemiBold") format("svg");
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Gilroy-Heavy";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Heavy.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Heavy.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Heavy.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Heavy.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Heavy.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Heavy.svg#Gilroy-Heavy") format("svg");
+    font-style: normal;
+    font-weight: heavy;
+}
+
+@font-face {
+    font-family: "Gilroy-Bold";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Bold.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-Bold.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Bold.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Bold.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Bold.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-Bold.svg#Gilroy-Bold") format("svg");
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Gilroy-ExtraBold";
+    src: url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.eot");
+    src: url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.eot?#iefix") format("embedded-opentype"),
+         url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.woff2") format("woff2"),
+         url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.woff") format("woff"),
+         url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.ttf") format("ttf"),
+         url("../gilroy/Radomir Tinkov - Gilroy-ExtraBold.svg#Gilroy-ExtraBold") format("svg");
+    font-style: normal;
+    font-weight: 800;
+}

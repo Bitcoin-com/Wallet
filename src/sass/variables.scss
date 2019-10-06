@@ -3,8 +3,8 @@
  */
 
 /* Fonts */
-$v-font-family:                                      "Roboto", sans-serif !default;
-$v-font-family-light:                                "Roboto-Light", sans-serif-light !default;
+$v-font-family:                                      "Gilroy-Medium", "Roboto", sans-serif !default;
+$v-font-family-light:                                "Gilroy-Regular", "Roboto-Light", sans-serif-light !default;
 
 /* Colors */
 $v-bitcoin-green:                                    #0AC18E !default;
@@ -54,7 +54,7 @@ $v-wallet-color-map: (
 /* Theme */
 $v-default-wallet-color-index:                       6 !default; // See $v-wallet-color-map
 $v-default-cashwallet-color-index:                   5 !default; // See $v-wallet-color-map
-$v-subtle-box-shadow:                                0 1px 2px rgba(0, 0, 0, 0.25) !default;
+$v-subtle-box-shadow:                                rgb(255, 255, 255) 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px !default;
 $v-hovering-box-shadow:                              0px 6px 12px 0px rgba(0, 0, 0, 0.3) !default;
 $v-subtle-radius:                                    3px !default;
 $v-visible-radius:                                   6px !default;

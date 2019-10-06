@@ -1,17 +1,46 @@
 #tab-cspreferences {
 
+    .cs-img {
+        width:190px;
+        max-width:100%;
+        margin:0 auto 10px;
+        display:block;
+    }
+
     .item-toggle {
         padding-right: 80px;
     }
 
     .round {
-        border: 1px solid lightgray;
-        border-radius: 5px;
+        border-radius: 7px;
     }
 
     .bold {
 
         font-weight: 600;
+    }
+
+    .cs-button {
+        width:100%;
+        padding:5px 15px;
+        text-align:center;
+    }
+
+      .button-green {
+          font-family:$v-font-family;
+          border-color: #11A87E;
+          background-color: #15d6a0;
+          color: #FFF;
+          background: url("../img/p3green.png");
+          background-repeat: repeat-x;
+          border: 1px; 
+          border-radius:3px;
+          width:250px;
+          padding:16px;
+          text-decoration:none;
+          font-size:19px;
+          font-weight:700;
+          display:inline-block;
     }
 
     .shuffle-server-message {
@@ -47,21 +76,24 @@
     }
 
     .wallet-container {
-
-
+        height: auto;
+      
         .wallet-details {
             height: 150px;
-            min-height: 150px;
-            max-height: 150px;
-
             display: flex;
             flex-wrap: wrap;
+            min-height: 50%;
+            max-height: 50%;
+            padding:10px 0;
+            border-bottom: 1px solid #eee;
+
 
             .radio-container-content {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 60px;
+                height: auto;
 
                 .radio-container {
                     background-color: white;
@@ -102,17 +134,17 @@
                 font-size: 1.4rem;
 
                 .icon {
-                    width: 70px;
-                    height: 70px;
-                    max-width: 70px; 
-                    max-height: 70px;
-                    border: 11px solid #00bd89;
+                    width: 60px;
+                    height: 60px;
+                     max-width: 60px; 
+                    max-height: 60px;
+                    border: 10px solid #00bd89;
                     border-radius: 50%;
                     display: flex;
 
                     .wallet-icon {
-                      width: 50px;
-                      height: 50px;
+                      width: 40px;
+                      height: 40px;
                       background-repeat: no-repeat;
                       background-clip: padding-box;
                       background-size: 103%;
@@ -125,40 +157,42 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: auto;
-                max-width: 200px;
-                margin-left: 12px;
+                max-height: 100px;
+                max-width: 215px;
+                margin-left: 10px;
 
                 .wallet-info {
 
                     .wallet-name {
-                        font-size: 1.2rem;
-                        font-weight: 600;
+                        font-size: 16px;
+                        font-weight:bolder;
+                        margin: 5px 0px;
                     }
 
                     .wallet-balance {
-                        font-size: .8rem;
-                        font-color: lightgray;
+                        font-size: 14px;
+                        color:#6B717E;
                     }
                 }
             }
 
-            .wallet-message-container {
-                display: flex;
-                justify-content: left;
-                align-items: center;
+        .wallet-message-container {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            min-height: 20%;
+            max-height: 40%;
 
-                .wallet-message-content{
-
-                    .wallet-message {
-                        font-size: 1rem;
-                        font-color: lightgray;
-                    }
-
+            .wallet-message-content{
+                .wallet-message {
+                    font-size: 14px;
+                    margin-bottom: 5px;
+                    color:#6B717E;
                 }
             }
 
         }
 
     }
+}
 }

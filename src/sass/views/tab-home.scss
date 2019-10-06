@@ -1,5 +1,8 @@
+  .bar-header .nav-bar-title, .bar-header .nav-bar-title img {vertical-align: middle}
+
 #tab-home {
   @extend .deflash-blue;
+
 
   #buy-bitcoin {
 
@@ -12,13 +15,24 @@
       font-weight: bold;
       font-size: 19px;
       line-height: 26px;
-      padding: 8px 6px;
+      padding: 16px 16px;
+      max-width: 250px;
+      border-radius:3px;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 4px 0px;
 
       &.button-standard {
         width: 100%;
-        max-width: 100%;
+        max-width: 300px;
       }
     }
+
+    .button-green {
+        border-color: #11A87E;
+        background-color: #15d6a0;
+        color: #FFF;
+        background: url("../img/p3green.png");
+        background-repeat: repeat-x;
+        border: 1px; }
   }
 
   .icon-create-wallet {
@@ -50,7 +64,7 @@
   }
   .card {
     background: #FFFFFF;
-    box-shadow: 0 3px 30px 0 rgba(105,105,105,0.07);
+    box-shadow: rgb(255, 255, 255) 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
     border-radius: 7px;
 
     .item {
@@ -106,17 +120,20 @@
       margin-bottom: 0;
     }
     .button {
-      border: 2px solid;
+      font-family:"Gilroy-SemiBold", sans-serif;
+      font-weight:normal;
+      border: 1px solid #C7CDD8;
       border-radius: 3px;
-      padding: 8px 2px 8px 2px;
+      padding: 16px;
       text-align: center;
       width: 100%;
       max-width: 300px;
       font-size: 19px;
-      font-weight: bolder;
       min-height: 0;
       line-height: 19px;
-      
+      color:#13171F;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+
       &-no-border {
         border: none;
       }

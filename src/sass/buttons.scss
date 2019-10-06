@@ -53,7 +53,7 @@
 }
 
 .button {
-  border-radius: 7px;
+  border-radius: 3px;
   &.button-full {
     border-radius: 0;
     display: block;
@@ -64,7 +64,9 @@
     border: 1px;
   }
   &-white {
-    @include button-style(#F1F3FB, transparent, transparent, transparent, #0AC18E);
+    @include button-style(#FFF, transparent, transparent, transparent, #13171F);
+    border:1px solid #C7CDD8;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
     @include button-clear(#FFF);
     &.activated {
       background-color: rgba(0,0,0,0.05);
@@ -91,6 +93,10 @@
     &.white{
       @include button-style(#FFF, transparent, #FFF, #FFF, #15d6a0);
       background: white;
+      border-color: #C7CDD8;
+      box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+      color: #13171F;
+      background: rgb(253, 253, 253); 
       &.activated {
         background-color: rgba(0,0,0,0.05);
       }

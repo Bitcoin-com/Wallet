@@ -36,8 +36,8 @@ svg {
   animation: dash-check 0.9s 0.35s ease-in-out forwards;
 }
 p.success {
-  color: #27B03C;
-  font-family:sans-serif;
+  color: #20BD8B;
+  font-family:"Gilroy-Medium", sans-serif;
 }
 
 @-webkit-keyframes dash {

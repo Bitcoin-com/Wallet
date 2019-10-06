@@ -239,6 +239,8 @@
     flex-direction: column;
 
     .send-amount {
+      box-shadow:rgb(255, 255, 255) 0px 2px 3px 0px inset, rgba(21, 19, 56, 0.07) 0px 4px 10px 0px, rgba(7, 7, 12, 0.05) 0px 5px 25px 0px;
+      border-radius:7px;
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
@@ -276,7 +278,7 @@
 
           .primary-amount {
             color: #333;
-            font-weight: bold;
+            font-family:"Gilroy-Bold";
             input, .unit, .primary-amount-display {
               font-size: 1.8em;
 
@@ -331,7 +333,7 @@
               margin: 0;
               height: 1em;
               margin-right: 5px;
-              font-family: 'ProximaNova';
+              font-family: 'Gilroy-Regular';
 
               @media (min-width: 375px) {
               }
@@ -404,7 +406,7 @@
           border: none;
           border-radius: 0;
           color: #000;
-          font-family: 'ProximaNova';
+          font-family: 'Gilroy-Medium';
           font-size: 14px;
           line-height: normal;
           min-height: auto;

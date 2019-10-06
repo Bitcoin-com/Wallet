@@ -9,6 +9,17 @@
 
     <div class="list">
 
+      <div class="comment" translate>
+        <img src="../img/obfuscate.svg" alt="CashShuffle" class="cs-img">
+        <div class="settings-description-cs" translate>
+          <p>CashShuffle is a fully decentralized coin mixing protocol that shuffles your Bitcoin Cash with other network participants. This shuffling process obscures your real spending and makes it difficult for chain analysis companies to follow your transactions.</p>
+            <p><strong>Warning: Privacy mode is in beta.</strong> Shuffling your wallet can take hours to complete. Do not enable if you need to spend right away.
+            </p>
+            <div class="cs-button">
+            <a href="https://www.youtube.com/watch?v=8g0Levpj1I4" class="button-green" target="_blank">Learn more</a>
+            </div>
+        </div>
+      </div>
       <ion-toggle
         ng-model="toggleState.cashShuffleEnabled"
         toggle-class="toggle-balanced"
@@ -126,31 +137,38 @@
 
                         <div class="wallet-info">
                             <div class="wallet-name">{{ oneWallet.name }}</div>
+                            <div class="wallet-balance" ng-if="!oneWallet.shufflingComplete">{{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH</div>
 
-                            <div class="wallet-balance-container" ng-if="!oneWallet.walletMessage">
-                                <div class="wallet-balance" ng-if="oneWallet.stats.dust && oneWallet.stats.dust == oneWallet.stats.totalBch">
-                                  {{ oneWallet.stats.dust.toFixed(8) }} BCH ( dust ) 
-                                </div>
-                                <div class="wallet-balance" ng-if="!oneWallet.stats.dust || oneWallet.stats.dust != oneWallet.stats.totalBch">
-                                  {{ oneWallet.stats.totalBch.toFixed(5) }} BCH
-                                </div>
-                                <div class="wallet-balance" ng-hide="!oneWallet.stats.unconfirmed">
-                                  {{ oneWallet.stats.unconfirmed.toFixed(5) }} BCH unconfirmed
+                            <div class="wallet-message-container" ng-if="oneWallet.shuffleThisWallet">
+
+                                <div class="wallet-message-content">
+                                    <div class="wallet-message" ng-if="oneWallet.stats.unconfirmed && !oneWallet.shufflingComplete">
+                                        <span class="bold">{{ oneWallet.stats.unconfirmed }}</span> BCH unconfirmed
+                                    </div>
+                                    <div class="wallet-message" ng-if="oneWallet.shufflingComplete && !oneWallet.stats.shuffling">
+                                        No coins to shuffle!
+                                    </div>
+                                    <div class="wallet-message" class="wallet-stat" ng-if="oneWallet.coins.shuffling.length">
+                                        Now shuffling <span class="bold">{{ oneWallet.coins.shuffling.length }}</span> coins ( <span class="bold">{{ oneWallet.stats.shuffling.toFixed(4) }}</span>) BCH
+                                    </div>
                                 </div>
                             </div>
-                            <div class="wallet-message-container">
+                            <div class="wallet-message-container" ng-if="!oneWallet.shuffleThisWallet">
+
                                 <div class="wallet-message-content">
-                                    <div class="wallet-message"  ng-if="!oneWallet.shuffleThisWallet">
+                                    <div class="wallet-message">
                                         Click to make the coins in this wallet private using CashShuffle
-                                    </div>
-                                    <div class="wallet-message"  ng-if="oneWallet.shuffleThisWallet && oneWallet.walletMessage">
-                                        {{ oneWallet.walletMessage }}
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
+
+
                 </div>
+                
 
             </div>
         </div>
