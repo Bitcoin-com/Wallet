@@ -866,32 +866,6 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
 
       return cb(null, changeAddress);
     });
-
-
-    // root.getMainAddresses(someWallet, {}, function(err, allWalletAddresses) {
-    //   if (err) {
-    //     console.log('ERROR!', err);
-    //   }
-
-    //   var addressInQuestion = lodash.find(allWalletAddresses, { address: someLegacyAddress });
-
-    //   var balanceByAddress = lodash.get(someWallet.status || someWallet.cachedStatus, 'balanceByAddress');
-
-    //   // Get only the utxos for the address in question
-    //   var coinsInAddress = lodash.filter(balanceByAddress, { address: someLegacyAddress });
-
-    //   // Select a utxo large enough large enough to be sent and unlikely
-    //   // to result in change not being issued.
-    //   var useCoin = lodash.find(lodash.sortByOrder(coinsInAddress, ['amount']), function(oneCoin) {
-    //     return oneCoin.amount && (oneCoin.amount > 271*2);
-    //   });
-
-    //   if (!useCoin) {
-    //     return cb(new Error('NO COINS'));
-    //   }
-
-    // });
-
   };
 
   root.isEncrypted = function(wallet) {
