@@ -64,7 +64,6 @@ angular.module('copayApp.services')
           // If this is our CashShuffle spend-only wallet, make it
           // green and add a flag stating so.
           if (wallet.name === 'Private Spending Wallet') {
-            console.log('Set CashShuffle color to #0073FF'); // Cornflower Blue
             wallet.color = '#0073FF';
             wallet.isCashShuffleWallet = true;
             wallet.shuffleThisWallet = true;
