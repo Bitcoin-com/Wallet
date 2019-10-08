@@ -70,7 +70,7 @@ angular
     $scope.$on("$ionicView.leave", onLeave);
 
     moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
-      isBuyBitcoinAllowed = user.isAllowed;
+      isBuyBitcoinAllowed = user && user.isAllowed || false;
     });
 
 
@@ -127,9 +127,19 @@ angular
           var wallet = profileService.getWallet(walletId);
           updateWallet(wallet);
           if ($scope.recentTransactionsEnabled) getNotifications();
+        }),
+        // BWS transaction events don't fire on $rootScope.  This handler
+        // is here to update the balance in the UI when a CashShuffle
+        // transaction completes in the background.
+        $rootScope.$on('cashshuffle-update-ui', function onAction(event, coinData, wallet) {
+
+          if (wallet) {
+            console.log('Updating balances after cashshuffle event', wallet);
+            updateWallet(wallet);
+          }
+
         })
       ];
-
 
       $scope.buyAndSellItems = buyAndSellService.getLinked();
       $scope.homeIntegrations = homeIntegrationsService.get();
@@ -247,7 +257,7 @@ angular
     function updateAllWallets(cb) {
       var wallets = [];
       $scope.walletsBtc = profileService.getWallets({coin: 'btc'});
-      $scope.walletsBch = profileService.getWallets({coin: 'bch'});
+      $scope.walletsBch = lodash.sortByOrder(profileService.getWallets({coin: 'bch'}), ['isCashShuffleWallet']);
 
       lodash.each($scope.walletsBtc, function onEach(wBtc) {
         wallets.push(wBtc);

@@ -60,51 +60,58 @@
 
     $scope.client = cashshuffleService.client;
 
-    $scope.cardVisibility = {
-      shuffling: true,
-      unshuffled: true,
-      shuffled: true,
-      dust: false
-    };
-
     $scope.dirtyForm = false;
 
     $scope.toggleState = {
-      cashShuffleEnabled: false,
-      automaticShuffle: false,
-      onlySpendSuffle: false,
+      cashShuffleEnabled: cashshuffleService.preferences && cashshuffleService.preferences.shufflingEnabled || false,
+      onlySpendSuffle: cashshuffleService.preferences && cashshuffleService.preferences.spendOnlyShuffled || false
+    };
+
+    $scope.status = {
+      coins: {
+        all: [],
+        shuffled: [],
+        unshuffled: [],
+        dust: [],
+        shuffling: [],
+        unconfirmed: []
+      },
+      stats: {
+        totalBch: 0,
+        percentComplete: 0,
+        percentShuffleableComplete: 0
+      }
+    };
+
+    $scope.showProgressBar = false;
+
+    $scope.getProgressStat = function() {
+      let shuffleProgress = $scope.status.stats.percentShuffleableComplete+'%';
+      return shuffleProgress;
     };
 
     $scope.refreshPreferences = function() {
-      console.log("Refreshing Prerences Start");
-      cashshuffleService.fetchPreferences().then( function() {
-        console.log("Refreshing Prerences Start");
-        $scope.toggleState.cashShuffleEnabled = $scope.preferences.shufflingEnabled
-        $scope.toggleState.automaticShuffle = $scope.preferences.autoShuffle;
-        $scope.toggleState.onlySpendSuffle = $scope.preferences.spendOnlyShuffled;
-        $scope.preferences = cashshuffleService.preferences;
-        $timeout(function() {
-          console.log("Refreshing Prerences End");
-          $scope.$apply();
+        cashshuffleService.fetchPreferences().then( function() {
+
+          $scope.toggleState.cashShuffleEnabled = $scope.preferences.shufflingEnabled
+          $scope.toggleState.onlySpendSuffle = $scope.preferences.spendOnlyShuffled;
+
+          _.extend($scope.preferences, cashshuffleService.preferences);
+          _.extend($scope.client, cashshuffleService.client);
+
+          $timeout(function() {
+            $scope.$apply();
+          });
         });
-      });
     };
 
     $scope.toggleEnableShuffle = function() {
       $scope.preferences.shufflingEnabled = $scope.toggleState.cashShuffleEnabled;
+
       cashshuffleService.updateWalletPreferences();
       $timeout(function() {
         $scope.refreshPreferences();
       }, 200);
-    };
-
-    $scope.toggleAutoShuffle = function() {
-      $scope.preferences.autoShuffle = $scope.toggleState.automaticShuffle;
-      cashshuffleService.updateWalletPreferences();
-
-      $timeout(function() {
-        $scope.refreshPreferences();
-      },200);
     };
 
     $scope.toggleOnlySpendShuffle = function() {
@@ -112,7 +119,7 @@
       cashshuffleService.updateWalletPreferences();
       $timeout(function() {
         $scope.refreshPreferences();
-      },200);
+      }, 200);
     };
 
     $scope.saveCustomShuffleServer = function(restoreTheDefault) {
@@ -134,80 +141,149 @@
 
     $scope.$on('$ionicView.enter', function(event, data) {
       $ionicNavBarDelegate.showBar(true);
-
       $scope.refreshPreferences();
+      $scope.computeWalletStats();
     });
 
-    // Migrating tab-cashshuffle.js
-    $scope.displayCoinId = function(someCoin) {
-      return someCoin.id.substring(someCoin.id.length-10,someCoin.id.length);
-    };
+    $scope.toggleShuffleWallet = function(someWallet) {
+        if (!someWallet) {
+          return;
+        }
 
-    $scope.toggleCardVisibility = function(someCardName) {
-      return $scope.cardVisibility[someCardName] = !!!$scope.cardVisibility[someCardName];
-    };
+        if (cashshuffleService.preferences.statusByWalletId[someWallet.id]) {
+          _.set(cashshuffleService.preferences, 'statusByWalletId['+someWallet.id+']', false);
+        }
+        else {
+          _.set(cashshuffleService.preferences, 'statusByWalletId['+someWallet.id+']', true);
+        }
 
-    $scope.toggleShuffle = function(someCoin) {
-      console.log('Toggling shuffle for coin', someCoin.id);
-      someCoin.update({
-        shuffleThisCoin: !!!someCoin.shuffleThisCoin
-      });
-      return someCoin;
-    };
-
-    $scope.abortShuffle = function(someCoin) {
-      if (someCoin.abortShuffleClicked) {
-        return someCoin.update({
-          shuffleThisCoin: false,
-          abortShuffleClicked: false
-        });
-      }
-      else {
-
-        // Reset the prompt
+        cashshuffleService.updateWalletPreferences();
         $timeout(function() {
-            _.extend(someCoin, {
-              abortShuffleClicked: false
-            });
-        }, 2000);
-        return _.extend(someCoin, {
-          abortShuffleClicked: true
-        });
-      }
+          $scope.refreshPreferences();
+        }, 200);
+
     };
 
-    $scope.getCoins = function(whichCoins) {
-      if (!cashshuffleService) {
-        return [];
+    $scope.computeWalletStats = _.throttle(function() {
+
+      let newData = {
+        coins: {
+          all: [],
+          shuffled: [],
+          unshuffled: [],
+          dust: [],
+          shuffling: [],
+          unconfirmed: []
+        },
+        stats: {
+          totalBch: 0,
+          unshuffled: 0,
+          shuffling: 0,
+          shuffled: 0,
+          dust: 0,
+          unconfirmed: 0
+        },
+        percentComplete: 0,
+        percentShuffleableComplete: 0
+      };
+
+      let useWallets = _.filter($scope.getWallets(), { shuffleThisWallet: true });
+
+      for (let oneWallet of useWallets) {
+        for (let oneProperty of _.keys(oneWallet.coins)) {
+          newData.coins[oneProperty] = newData.coins[oneProperty].concat(oneWallet.coins[oneProperty]);
+        }
+
+        for (let oneProperty of _.keys(oneWallet.stats)) {
+          newData.stats[oneProperty] += oneWallet.stats[oneProperty];
+        }
       }
 
-      var coinsToReturn;
-      switch(whichCoins) {
-        case 'shuffling':
-          coinsToReturn = !cashshuffleService.client ? [] : _.map(cashshuffleService.client.rounds, 'coin');
-        break;
-        case 'unshuffled':
-          // Return all coins that are flagged for shuffle
-          // but are not currently in a CashShuffle pool
-          var currentlyShuffling = _.map(cashshuffleService.client ? cashshuffleService.client.rounds : [], 'coin');
-          coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, function(oneCoin) {
-            return !_.find(currentlyShuffling, { id: oneCoin.id }) && !oneCoin.isDust && (!oneCoin.shuffled || oneCoin.shuffleThisCoin);
+      if (newData.stats.totalBch) {
+        newData.stats.percentComplete = Math.floor(100*Number((newData.stats.shuffled/newData.stats.totalBch).toFixed(8)));
+        newData.stats.percentShuffleableComplete = Math.floor( 100*Number( newData.stats.shuffled / ( newData.stats.totalBch === newData.stats.dust ? newData.stats.shuffled/newData.stats.shuffled : newData.stats.totalBch-newData.stats.dust ) ).toFixed(8));
+      }
+
+      $scope.showProgressBar = $scope.preferences.shufflingEnabled && useWallets.length >= 2 && newData.stats.totalBch ? true : false;
+      _.extend($scope.status, newData);
+
+      $timeout(function() {
+        $scope.$apply();
+      });
+    }, 5000, { trailing: false });
+
+    $scope.getWallets = _.throttle(function() {
+        let returnThese = [];
+
+        let bchWallets = profileService.getWallets({ coin: 'bch' });
+        for (let oneWallet of bchWallets) {
+
+          let allCoinsInWallet = _.filter(cashshuffleService.coinFactory.coins, { walletId: oneWallet.id });
+          let shuffled = _.filter(allCoinsInWallet, { shuffled: true });
+          let unshuffled = _.filter(allCoinsInWallet, { shuffled: false });
+          let dust = _.filter(allCoinsInWallet, { isDust: true });
+          let inShufflePool = _.filter(allCoinsInWallet, { inShufflePool: true });
+          let unconfirmed = _.filter(allCoinsInWallet, { confirmations: 0 });
+
+          let totalBchInWallet = _.sum(_.compact(_.map(allCoinsInWallet, 'amountBch')));
+          let shuffledBchInWallet = _.sum(_.compact(_.map(shuffled, 'amountBch')));
+          let unshuffledBchInWallet = _.sum(_.compact(_.map(unshuffled, 'amountBch')));
+          let dustBchInWallet = _.sum(_.compact(_.map(dust, 'amountBch')));
+          let shufflingBchInWallet = _.sum(_.compact(_.map(inShufflePool, 'amountBch')));
+          let unconfirmedBchInWallet = _.sum(_.compact(_.map(unconfirmed, 'amountBch')));
+
+          let useWalletMessage = shufflingBchInWallet ? 'Now Shuffling '+Number(shufflingBchInWallet.toFixed(5))+' BCH' : undefined;
+
+          _.extend(oneWallet, {
+            coins: {
+              all: allCoinsInWallet,
+              shuffled: shuffled,
+              unshuffled: unshuffled,
+              dust: dust,
+              shuffling: inShufflePool,
+              unconfirmed: unconfirmed
+            },
+            walletMessage: useWalletMessage,
+            stats: {
+              totalBch: Number(totalBchInWallet.toFixed(8)),
+              unshuffled: Number(unshuffledBchInWallet.toFixed(8)),
+              shuffling: Number(shufflingBchInWallet.toFixed(8)),
+              shuffled: Number(shuffledBchInWallet.toFixed(8)),
+              dust: Number(dustBchInWallet.toFixed(8)),
+              unconfirmed: Number(unconfirmedBchInWallet.toFixed(8))
+            },
+            shuffleThisWallet: cashshuffleService.preferences.statusByWalletId[oneWallet.id],
+            shufflingComplete: !_.find(allCoinsInWallet, { isDust: false, confirmations: 0, shuffled: false }) ? true : false
           });
-        break;
-        case 'shuffled':
-          coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, { shuffled: true, shuffleThisCoin: false });
-        break;
-        case 'dust':
-          coinsToReturn = _.filter(cashshuffleService.coinFactory.coins, { isDust: true });
-        break;
-        default:
-        break;
-      }
-      return _.sortByOrder(coinsToReturn, ['shuffleThisCoin', 'amountSatoshis'], [false, false]);
 
-    };
+          returnThese.push(oneWallet);
+        }
+
+        return returnThese;
+    }, 1000, { trailing: false });
+
+    let scopeEventListeners = [];
+
+    cashshuffleService
+    .serviceReady
+    .then( function() {
+      scopeEventListeners.push(
+        $rootScope.$on('cashshuffle-update-ui', function() {
+          try {
+            $scope.computeWalletStats();
+          }
+          catch(nope) {
+            return;
+          }
+        })
+      );
+    })
+    .catch( function(someError) {
+      console.log('CashShuffle is disabled or the CashShuffle service has failed', someError);
+    });
 
     window.stuff = {
+      scope: $scope,
       lodash: lodash,
       walletService: walletService,
       configService: configService,
@@ -216,142 +292,11 @@
       appConfigService: appConfigService,
       rootScope: $rootScope,
       cashshuffleService: cashshuffleService,
+      coins: cashshuffleService.coinFactory.coins,
       profileService: profileService,
-      someWallet: profileService.getWallets({ coin: 'bch' })[0],
       allWallets: profileService.getWallets({ coin: 'bch' }),
-      storageService: storageService,
-      testShuffleLookup: function(txid, vout, depthRemaining) {
-
-        let outgoingTx = _.find(window.mapping.transactions, {
-          action: 'sent',
-          txid: txid
-        });
-
-        let shuffleInputAddress;
-        if (_.find(window.mapping.addresses, { address: outgoingTx.outputs[vout].address })) {
-          console.log('Yep.  That was it', outgoingTx);
-          shuffleInputAddress = _.reduce(_.map(outgoingTx.inputs, 'address'), function(winner, oneAddress) {
-            if (winner) {
-              return winner;
-            }
-            console.log('Now looking for address:', oneAddress);
-
-            return _.find(window.mapping.addresses, { address: oneAddress });
-          }, undefined);
-        }
-
-        console.log('We got the input address:', shuffleInputAddress);
-        console.log('So its from wallet named', _.get(shuffleInputAddress, 'inWallet.name'));
-
-        if (shuffleInputAddress.inWallet.isCashShuffleWallet) {
-          console.log('This is from a shuffle wallet so it must be a reshuffle');
-        }
-        else {
-          return shuffleInputAddress;
-        }
-
-      },
-      exposeMapping: function() {
-
-        const getMapping = async function() {
-          const mapping = {
-            transactions: [],
-            addresses: [],
-            wallets: []
-          };
-
-          const getAddressesAndTransactions = function(someWallet) {
-            return new Promise( function (resolve, reject) {
-              walletService.getMainAddresses(someWallet, {}, function(err, addresses) {
-                if (err) { return reject(err); }
-                walletHistoryService.getCachedTxHistory(someWallet.id, function(err, transactions) {
-                  if (err) { return reject(err); }
-                  walletService.getBalance(someWallet, {}, function(err, balance){
-                    return resolve({
-                      balance: balance,
-                      addresses: addresses,
-                      transactions: transactions
-                    });
-                  })
-                });
-              });
-            });
-          };
-
-          for (let oneWallet of profileService.getWallets({ coin: 'bch' })) {
-            let results;
-            try {
-              results = await getAddressesAndTransactions(oneWallet);
-            }
-            catch(nope) {
-              console.log(nope);
-              continue;
-            }
-
-            while(results.addresses.length){
-              mapping.addresses.push(_.extend(results.addresses.pop(), {
-                inWallet: oneWallet
-              }));
-            }
-
-            while(results.balance.byAddress && results.balance.byAddress.length){
-              mapping.addresses.push(_.extend(results.balance.byAddress.pop(), {
-                inWallet: oneWallet,
-                isRemote: true
-              }));
-            }
-
-            while(results.transactions.length){
-              mapping.transactions.push(results.transactions.pop());
-            }
-
-            mapping.wallets.push(oneWallet);
-
-          }
-
-          return mapping;
-        };
-
-        // I want a function where I input a CashShuffle txid num and it gives me the wallet
-        // from which the closest non-shuffle input came.
-
-        let cswallet = _.find(profileService.getWallets({ coin: 'bch' }), { disableReceive: true });
-        let oneShuffleCoin = _.find(cashshuffleService.coinFactory.coins, { shuffled: true });
-        console.log('Finding the origin wallet of coin', oneShuffleCoin);
-
-        getMapping()
-        .then( function(mapping) {
-          console.log('Mapping ready');
-          window._ = lodash;
-          window.oneShuffleCoin = oneShuffleCoin;
-          window.cswallet = cswallet;
-          window.mapping = mapping;
-        });
-
-      }
-    };
-
-    let scopeEventListeners = [];
-
-    cashshuffleService
-    .serviceReady
-    .then( function() {
-      scopeEventListeners.push(
-        $rootScope.$on('cashshuffle-update', function() {
-          $timeout( function() {
-            try {
-              $scope.$apply();
-            }
-            catch(nope) {
-              return;
-            }
-          }, 500);
-        })
-      );
-    })
-    .catch( function() {
-      console.log('Error preparing CashShuffle service');
-    });
+      storageService: storageService
+    }
 
   }
 })();

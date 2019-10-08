@@ -34,15 +34,19 @@ angular.module('copayApp.services').factory('clipboardService', function ($http,
       $timeout(function() {
         cb(nodeWebkitService.readFromClipboard());
       },0);
+    } else if (navigator && navigator.clipboard) {
+      $log.debug("Use navigator clipboard.")
+      navigator
+      .clipboard
+      .readText()
+      .then(function (text) {
+        cb(text);
+      })
+      .catch(function (err) {
+        $log.debug("Clipboard reading is not supported in browser..");
+      });
     } else {
-      navigator.clipboard.readText()
-          .then(function (text) {
-            cb(text);
-          })
-          .catch(function (err) {
-            $log.debug("Clipboard reading is not supported in browser..");
-          });
-
+      // Not supported
       return;
     }
   };

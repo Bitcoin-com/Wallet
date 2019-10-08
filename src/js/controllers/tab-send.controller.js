@@ -32,7 +32,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   $scope.walletSelectorTitleForce = true;
 
   moonPayService.getCountryByIpAddress().then(function onGetCountryByIpAddress(user) {
-    isBuyBitcoinAllowed = user.isAllowed;
+    isBuyBitcoinAllowed = user && user.isAllowed || false;
   });
 
   $scope.addContact = function() {

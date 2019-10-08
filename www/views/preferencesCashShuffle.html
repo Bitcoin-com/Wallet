@@ -1,35 +1,34 @@
 <ion-view id="tab-cspreferences" class="settings" show-tabs>
   <ion-nav-bar>
-    <ion-nav-title>{{'CashShuffle' | translate}}</ion-nav-title>
+    <ion-nav-title>{{'Privacy Mode' | translate}}</ion-nav-title>
     <ion-nav-back-button>
     </ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content>
+
     <div class="list">
 
+      <div class="comment" translate>
+        <img src="../img/obfuscate.svg" alt="CashShuffle" class="cs-img">
+        <div class="settings-description-cs" translate>
+          <p>CashShuffle is a fully decentralized coin mixing protocol that shuffles your Bitcoin Cash with other network participants. This shuffling process obscures your real spending and makes it difficult for chain analysis companies to follow your transactions.</p>
+            <p><strong>Warning: Privacy mode is in beta.</strong> Shuffling your wallet can take hours to complete. Do not enable if you need to spend right away.
+            </p>
+            <div class="cs-button">
+            <a href="https://www.youtube.com/watch?v=8g0Levpj1I4" class="button-green" target="_blank">Learn more</a>
+            </div>
+        </div>
+      </div>
       <ion-toggle
         ng-model="toggleState.cashShuffleEnabled"
         toggle-class="toggle-balanced"
         ng-change="toggleEnableShuffle()"
         ng-disabled="preferences.preferencesLoading">
-        <span class="toggle-label" translate>Enable CashShuffle for all wallets</span>
+        <span class="toggle-label" translate>Enable Transaction Privacy Mode</span>
       </ion-toggle>
       <div class="comment" translate>
-        If enabled, you will be able to select coins you wish to shuffle below.
-      </div>
-
-      <div class="item item-divider"></div>
-
-      <ion-toggle
-        ng-model="toggleState.autoShuffle"
-        toggle-class="toggle-balanced"
-        ng-change="toggleAutoShuffle()"
-        ng-disabled="!preferences.shufflingEnabled || preferences.preferencesLoading">
-        <span class="toggle-label" translate>Automatically shuffle my coins</span>
-      </ion-toggle>
-      <div class="comment" translate>
-        If enabled, all eligible coins will be selected for shuffling.  To withold a coin from shuffling, keep this disabled.
+        If enabled, you will be able to select which wallets to make private.
       </div>
 
       <div class="item item-divider"></div>
@@ -82,119 +81,99 @@
         </form>
       </div>
     </div>
-    
+
+    <!--  Wallet Section -->
     <div ng-if="preferences.shufflingEnabled">
-        <div class="list card" ng-if="preferences.shufflingEnabled">
+
+        <div class="list card round" ng-if="client && client.serverStats">
             <div class="item">
-              <span ng-if="preferences.shufflingEnabled">
-                {{ client.serverStats.poolSize ? client.serverStats.connections + ' shufflers @ '+preferences.serverStatsUri : 'disconnected' }} {{ client.serverStats.banned ? '( temporarily disconnected )' : '' }}
-              </span>
-            </div>
-          </div>
-      
-          <div class="list card" ng-if="preferences.shufflingEnabled" ng-class="{'cardHidden': !cardVisibility.shuffling}" ng-show="getCoins('shuffling').length">
-            <div class="item pointer item-icon-right item-heading" ng-click="toggleCardVisibility('shuffling')">
-              <div translate>Shuffling In-Progress ( {{ getCoins('shuffling').length }} )</div>
-              <div translate class="subtitle">All coins in active shuffle rounds from your Bitcoin Cash (BCH) wallet</div>
-            </div>
-            <div ng-show="cardVisibility.shuffling">
-              <a
-                ng-repeat="oneCoin in getCoins('shuffling') track by $index"
-                ng-click="abortShuffle(oneCoin)"
-                ng-style="{ 'background-color': oneCoin.abortShuffleClicked ? 'salmon' : '#FF8209' }"
-                class="item item-sub wallet">
-      
-                <div ng-if="!oneCoin.abortShuffleClicked">
-                  <div>
-                    {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )
-                  </div>
-                  <div>
-                    {{ oneCoin.amountSatoshis }} sats ( {{ oneCoin.amountBch.toFixed(8) }} BCH )
-                  </div>
-                  <div v-show="oneCoin.playersInRound !== client.serverStats.poolSize">
-                    Players: {{ oneCoin.playersInRound ? oneCoin.playersInRound : 0 }} of {{ client.serverStats.poolSize }}
-                  </div>
-                  <div v-show="oneCoin.playersInRound === client.serverStats.poolSize">
-      
-                  </div>
+                <div class="shuffle-server-message">
+                    {{ client.serverStats.poolSize ? client.serverStats.connections + ' shufflers ' : 'disconnected' }}
                 </div>
-      
-                <div ng-if="oneCoin.abortShuffleClicked">
-                  <div>
-                    Are you sure you want to change your mind?
-                  </div>
-                  <div>
-                    It might annoy the server and get you a 5 minute ban...
-                  </div>
+                <div class="shuffle-server-message">
+                    {{ client.serverStats.banned ? '( temporarily disconnected )' : preferences.serverStatsUri }}
                 </div>
-      
-              </a>
             </div>
-          </div>
-      
-          <div class="list card" ng-class="{'cardHidden': !cardVisibility.unshuffled}">
-            <div class="item pointer item-icon-right item-heading" ng-click="toggleCardVisibility('unshuffled')">
-              <div translate>Unshuffled ( {{ getCoins('unshuffled').length }} )</div>
-              <div translate class="subtitle">All unshuffled coins currently in your Bitcoin Cash (BCH) wallet</div>
-            </div>
-            <div ng-show="cardVisibility.unshuffled">
-              <a
-                ng-repeat="oneCoin in getCoins('unshuffled') track by $index"
-                ng-style="{ 'background-color': oneCoin.shuffleThisCoin ? '#FF8209' : 'rgb(238, 182, 64)' }"
-                ng-click="toggleShuffle(oneCoin)"
-                class="item item-sub wallet">
-      
-                <div>
-                  {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )  {{ !oneCoin.confirmations ? '( Waiting for confirmations )' : '' }}
+        </div>
+
+        <div class="list card round" ng-if="showProgressBar">
+            <div class="item">
+
+              <div class="progress-message">
+                Your coins are {{ status.stats.percentShuffleableComplete }}% shuffled
+              </div>
+              <div class="progress-bar-container">
+                <div class="progress-bar">
+                  <span class="progress-bar-fill" ng-style="{'width': getProgressStat() }"></span>
                 </div>
-                <div>
-                  {{ oneCoin.amountSatoshis }} sats ( {{ oneCoin.amountBch.toFixed(8) }} BCH ) {{ oneCoin.shuffleThisCoin ? '( Queued for shuffle )' : '' }}
-                </div>
-      
-              </a>
+              </div>
             </div>
-          </div>
-      
-          <div class="list card" ng-class="{'cardHidden': !cardVisibility.shuffled}">
-            <div class="item pointer item-icon-right item-heading" ng-click="toggleCardVisibility('shuffled')">
-              <div translate>Shuffled ( {{ getCoins('shuffled').length }} )</div>
-              <div translate class="subtitle">All shuffled coins in all your Bitcoin Cash (BCH) wallets</div>
-            </div>
-            <div ng-show="cardVisibility.shuffled">
-              <a
-                ng-repeat="oneCoin in getCoins('shuffled') track by $index"
-                ng-style="{ 'background-color': oneCoin.shuffled ? 'rgb(34, 204, 119)' : 'rgb(238, 182, 64)' }"
-                ng-click="toggleShuffle(oneCoin)"
-                class="item item-sub wallet">
-                <div>
-                  {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )
+        </div>
+
+        <div class="list card round" style="cursor: pointer">
+            <div class="wallet-container">
+
+                <div class="wallet-details" style="border-bottom:{{$last ? '0px' : '1px solid lightgray'}}"  ng-repeat="oneWallet in getWallets() track by $index" ng-if="!oneWallet.isCashShuffleWallet" ng-click="toggleShuffleWallet(oneWallet)" >
+                    <div class="radio-container-content">
+
+                        <div class="radio-container">
+                            <div class="radio">
+                                <span class="radio-selected" ng-style="{ 'background-color': oneWallet.shuffleThisWallet ? '#00bd89' : 'white' }"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wallet-icon-container">
+
+                        <div class="icon">
+                          <img
+                            src="img/bitcoin-wallet.svg"
+                            ng-style="{'background-color': oneWallet.color || '#00bd89'}"
+                            class="wallet-icon"/>
+                        </div>
+
+                    </div>
+                    <div class="wallet-info-container">
+
+                        <div class="wallet-info">
+                            <div class="wallet-name">{{ oneWallet.name }}</div>
+                            <div class="wallet-balance" ng-if="!oneWallet.shufflingComplete">{{ oneWallet.stats && oneWallet.stats.totalBch.toFixed(5) }} BCH</div>
+
+                            <div class="wallet-message-container" ng-if="oneWallet.shuffleThisWallet">
+
+                                <div class="wallet-message-content">
+                                    <div class="wallet-message" ng-if="oneWallet.stats.unconfirmed && !oneWallet.shufflingComplete">
+                                        <span class="bold">{{ oneWallet.stats.unconfirmed }}</span> BCH unconfirmed
+                                    </div>
+                                    <div class="wallet-message" ng-if="oneWallet.shufflingComplete && !oneWallet.stats.shuffling">
+                                        No coins to shuffle!
+                                    </div>
+                                    <div class="wallet-message" class="wallet-stat" ng-if="oneWallet.coins.shuffling.length">
+                                        Now shuffling <span class="bold">{{ oneWallet.coins.shuffling.length }}</span> coins ( <span class="bold">{{ oneWallet.stats.shuffling.toFixed(4) }}</span>) BCH
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wallet-message-container" ng-if="!oneWallet.shuffleThisWallet">
+
+                                <div class="wallet-message-content">
+                                    <div class="wallet-message">
+                                        Click to make the coins in this wallet private using CashShuffle
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
                 </div>
-                <div>
-                  {{ oneCoin.amountSatoshis }} sats ( {{ oneCoin.amountBch.toFixed(8) }} BCH )
-                </div>
-      
-              </a>
+                
+
             </div>
-          </div>
-      
-          <div class="list card" ng-class="{'cardHidden': !cardVisibility.dust}" ng-show="getCoins('dust').length">
-            <div class="item pointer item-icon-right item-heading" ng-click="toggleCardVisibility('dust')">
-              <div translate>Dust ( {{ getCoins('dust').length }} )</div>
-              <div translate class="subtitle">Coins that are too small to shuffle</div>
-            </div>
-            <div ng-show="cardVisibility.dust">
-              <a
-                ng-repeat="oneCoin in getCoins('dust') track by $index"
-                class="item item-sub wallet">
-                <div>
-                  {{ oneCoin.walletName }} ( {{ displayCoinId(oneCoin) }} )
-                </div>
-                <div>
-                  {{ oneCoin.amountSatoshis }} sats ( {{ oneCoin.amountBch.toFixed(8) }} BCH )
-                </div>
-              </a>
-            </div>
-          </div>
+        </div>
+
     </div>
+
   </ion-content>
 </ion-view>

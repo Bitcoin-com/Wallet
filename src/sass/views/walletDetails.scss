@@ -224,16 +224,20 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
         margin-bottom: 0;
       }
       .button {
-        border: 2px solid;
+        font-family:"Gilroy-SemiBold", sans-serif;
+        font-weight:normal;
+        border: 1px solid #C7CDD8;
         border-radius: 3px;
-        padding: 6px 2px 6px 2px;
+        padding: 16px;
         text-align: center;
         width: 100%;
+        color:#13171F;
         max-width: 300px;
         font-size: 19px;
-        font-weight: bolder;
         min-height: 0;
         line-height: 19px;
+        background: rgb(253, 253, 253);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
       }
     }
   }
@@ -241,6 +245,7 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
     align-items: center;
     color: #fff;
     display: block;
+    font-family:"Gilroy-Bold", sans-serif;
 
     height: 230px;
     @media only screen and (max-height:500px) {
@@ -267,6 +272,7 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
     &-alternative {
       line-height: 36px;
       transition: $wallet-details-collapse-transition;
+      font-family:"Gilroy-SemiBold", sans-serif;
     }
 
     &__button-balance {

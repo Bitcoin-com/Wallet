@@ -30,11 +30,17 @@ angular.module('copayApp.services').service('soundService', function($log, $time
           );
           audio.play({playAudioWhenScreenIsLocked: false}); // XX SP: "Locked" is also the mute switch in iOS
         } else {
-          if (platformInfo.isNW) {
-            soundFile = soundFile.substring(0, soundFile.lastIndexOf('.')) + ".ogg";
-            $log.debug("Playing .ogg file ("+soundFile+"), as NW.js has no mp3 support");
+
+          try {
+            if (platformInfo.isNW) {
+              soundFile = soundFile.substring(0, soundFile.lastIndexOf('.')) + ".ogg";
+              $log.debug("Playing .ogg file ("+soundFile+"), as NW.js has no mp3 support");
+            }
+            new Audio(soundFile).play();
+          } catch(err) {
+            $log.debug("Error playing sound file");
           }
-          new Audio(soundFile).play();
+
         }
       }
     });
