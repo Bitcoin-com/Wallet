@@ -83,6 +83,10 @@
       }
     };
 
+    $scope.onLearnMoreClicked = function() {
+      externalLinkService.open('https://www.youtube.com/watch?v=8g0Levpj1I4');
+    }
+
     $scope.showProgressBar = false;
 
     $scope.getProgressStat = function() {

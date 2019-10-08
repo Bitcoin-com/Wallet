@@ -172,6 +172,14 @@ module.exports = function(grunt) {
         ],
         dest: 'www/lib/bitanalytics.js'
       },
+      cashshufflejs: {
+        src: [
+          'src/js/services/cashshuffle.coinfactory.js',
+          'src/js/services/cashshuffle.service.js',
+          'src/js/controllers/preferencesCashShuffleController.js'
+        ],
+        dest: 'www/js/cashshuffle.js'
+      },
       cashshufflejsweb: {
         src: [
           'node_modules/cashshufflejs-web/dist/ShuffleClient.js'
@@ -208,7 +216,11 @@ module.exports = function(grunt) {
           'bower_components/trezor-connect/connect.js',
           'node_modules/bezier-easing/dist/bezier-easing.min.js',
           'node_modules/cordova-plugin-qrscanner-no-android/dist/cordova-plugin-qrscanner-lib.min.js',
-          'node_modules/cordova-plugin-camera-preview/www/CameraPreview.js'
+          'node_modules/cordova-plugin-camera-preview/www/CameraPreview.js',
+
+          '!src/js/services/cashshuffle.coinfactory.js',
+          '!src/js/services/cashshuffle.service.js',
+          '!src/js/controllers/preferencesCashShuffleController.js'
         ],
         dest: 'www/js/app.js'
       }
@@ -222,8 +234,7 @@ module.exports = function(grunt) {
           'www/js/app.js': ['www/js/app.js'],
           'www/lib/angular-components.js': ['www/lib/angular-components.js'],
           'www/lib/bitcoin-cash-js.js': ['www/lib/bitcoin-cash-js.js'],
-          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js'],
-          'www/lib/ShuffleClient.js': ['www/lib/ShuffleClient.js']
+          'www/lib/bitanalytics.js': ['www/lib/bitanalytics.js']
         }
       }
     },
