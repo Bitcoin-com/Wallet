@@ -44,7 +44,6 @@ angular
     var sendFlowData;
     var config = null;
     var coin = '';
-    var countDown = null;
     var defaults = {};
     var usingCustomFee = false;
     var usingMerchantFee = false;
@@ -71,7 +70,6 @@ angular
       sendFlowData;
       config = null;
       coin = '';
-      countDown = null;
       defaults = {};
       usingCustomFee = false;
       usingMerchantFee = false;
@@ -135,10 +133,16 @@ angular
       vm.thirdParty = null;
       vm.wallet = null;
       vm.memoExpanded = false;
+      vm.countDown = null;
     }
 
+    $scope.$on('$ionicView.leave', onLeave);
     $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
 
+    function onLeave(event, data) {
+      // Stop Countdowns
+      if(vm.countDown) $interval.cancel(vm.countDown);
+    }
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
 
@@ -715,7 +719,7 @@ angular
       vm.paymentExpired = false;
       setExpirationTime();
 
-      countDown = $interval(function() {
+      vm.countDown = $interval(function() {
         setExpirationTime();
       }, 1000);
 
@@ -737,7 +741,7 @@ angular
         vm.paymentExpired = true;
         vm.remainingTimeStr = gettextCatalog.getString('Expired');
         vm.readyToSend = false;
-        if (countDown) $interval.cancel(countDown);
+        if (vm.countDown) $interval.cancel(vm.countDown);
         $timeout(function() {
           $scope.$apply();
         });
