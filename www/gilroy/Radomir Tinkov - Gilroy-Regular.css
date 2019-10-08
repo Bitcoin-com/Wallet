@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Gilroy-Regular";
+    src: url("Radomir Tinkov - Gilroy-Regular.eot");
+    src: url("Radomir Tinkov - Gilroy-Regular.eot?#iefix") format("embedded-opentype"),
+         url("Radomir Tinkov - Gilroy-Regular.woff2") format("woff2"),
+         url("Radomir Tinkov - Gilroy-Regular.woff") format("woff"),
+         url("Radomir Tinkov - Gilroy-Regular.ttf") format("ttf"),
+         url("Radomir Tinkov - Gilroy-Regular.svg#Gilroy-Regular") format("svg");
+    font-style: normal;
+    font-weight: regular;
+}

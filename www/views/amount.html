@@ -6,7 +6,7 @@
       <ion-nav-back-button ng-click="vm.goBack()"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content scroll="false">
-      <div style="order: 0; position: relative;">
+      <div style="order: 0; position: relative;" ng-if="!vm.walletSendingIsDisabled">
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
             <span class="send-amount-header-footer__min" ng-if="vm.minAmount">Min: {{vm.minAmountFormatted}}</span> <span class="send-amount-header-footer__max" ng-if="vm.maxAmount">Max: {{vm.maxAmountFormatted}}</span>
@@ -53,8 +53,14 @@
           </div>  
         </div>
       </div>
-  
-      <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;">
+
+      <div style="position: absolute; margin-top: 57px; width: 100%; text-align: center;" ng-if="vm.walletSendingIsDisabled">
+        <p>You have disabled spending from this wallet.</p>
+        <p>This can be changed back in Privacy Mode preferences.</p>
+        <p>Please press the back button and choose another wallet.</p>
+      </div>
+
+      <div class="keypad-container" style="background: #fff; position: absolute; bottom: 0; margin-bottom: 57px; width: 100%;" ng-if="!vm.walletSendingIsDisabled">
         <div class="sendmax" ng-if="vm.showSendMaxButton || vm.showSendLimitMaxButton">
           <button class="button button-sendmax" ng-click="vm.sendMax()">
               <span>
@@ -95,6 +101,7 @@
       </div>
   
       <button 
+        ng-if="!vm.walletSendingIsDisabled"
         class="button button-full button-primary no-margin" 
         ng-disabled="!vm.allowSend" 
         ng-click="vm.next()"

@@ -27,7 +27,13 @@
           <button class="button button-standard button-primary" ng-click="goCopayers()" translate>Open wallet</button>
         </div>
       </div>
-      <div class="address-info" ng-if="wallet && wallet.isComplete()">
+
+      <div class="address-info" ng-if="wallet.disableReceive">
+        <div class="address-label">
+          <span class="ellipsis">This is a Private Transaction spend-only wallet. You cannot receive payments to it.</span>
+        </div>
+      </div>
+      <div class="address-info" ng-if="wallet && wallet.isComplete() && !wallet.disableReceive">
         <div ng-show="!showingPaymentReceived">
           <div>
             <button ng-show="addr" class="button button-card-style button-no-border button-drop-shadow white" ng-click="requestSpecificAmount()">
@@ -56,8 +62,8 @@
         <!-- animation for payment received -->
         <div class="payment-received-container" ng-show="showingPaymentReceived" ng-click="hidePaymentScreen()">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-            <circle class="path circle" fill="none" stroke="#19B234" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
-            <polyline class="path check" fill="none" stroke="#19B234" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
+            <circle class="path circle" fill="none" stroke="#20BD8B" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1"/>
+            <polyline class="path check" fill="none" stroke="#20BD8B" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 "/>
           </svg>
           <p class="success animated fadeIn">
             <br/>Payment Received!

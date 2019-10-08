@@ -695,7 +695,12 @@ angular.module('copayApp.controllers').controller('confirmController', function(
       if ($state.current.name === "tabs.send.confirm") { // XX SP: Otherwise all open wallets on other devices play this sound if you have been in a send flow before on that device.
         soundService.play('misc/payment_sent.mp3');
       }
-      
+
+      // Update the CashShuffle service's inventory of shuffle-able coins.
+      if ($scope.wallet.coin === 'bch') {
+        $rootScope.$emit('cashshuffle-update-coins', $scope.wallet);
+      }
+
       var channel = "ga";
       if (platformInfo.isCordova) {
         channel = "firebase";

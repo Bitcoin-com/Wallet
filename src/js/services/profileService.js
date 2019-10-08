@@ -58,10 +58,38 @@ angular.module('copayApp.services')
                       || (wallet.coin == 'bch'
                           ? defaults.bitcoinCashWalletColor
                           : defaults.bitcoinWalletColor);
-        wallet.colorIndex = (config.colorIndexFor != null && config.colorIndexFor[wallet.id] != null)
-                      || (wallet.coin == 'bch'
-                          ? defaults.bitcoinCashWalletColorIndex
-                          : defaults.bitcoinWalletColorIndex);
+
+        if (wallet.coin === 'bch') {
+
+          // If this is our CashShuffle spend-only wallet, make it
+          // green and add a flag stating so.
+          if (wallet.name === 'Private Spending Wallet') {
+            wallet.color = '#0073FF';
+            wallet.isCashShuffleWallet = true;
+            wallet.shuffleThisWallet = true;
+          }
+
+          if (config.cashshuffle && config.cashshuffle.statusByWalletId && typeof config.cashshuffle.statusByWalletId[wallet.id] === 'boolean') {
+            wallet.shuffleThisWallet = config.cashshuffle.statusByWalletId[wallet.id];
+          }
+          else {
+            wallet.shuffleThisWallet = false;
+          }
+
+        }
+        else {
+          wallet.isCashShuffleWallet = false;
+          wallet.shuffleThisWallet = false;
+        }
+
+        // Set the `disableReceive` flag to true only for
+        // the CashShuffle spend-only wallets.
+        wallet.disableReceive = wallet.coin == 'bch' && wallet.isCashShuffleWallet ? true : false;
+
+        // Only disable spending if the user has toggled the `spendOnlyShuffled`
+        // setting under CashShuffle preferences.
+        wallet.disableSend = wallet.coin == 'bch' && config.cashshuffle && config.cashshuffle.spendOnlyShuffled && !wallet.isCashShuffleWallet ? true : false;
+
         wallet.email = config.emailFor && config.emailFor[wallet.id];
       });
     }

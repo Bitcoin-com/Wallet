@@ -21,6 +21,8 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   , clipboardService
   , incomingDataService
   , moonPayService
+  , cashshuffleService
+  , popupService
 ) {
   var clipboardHasAddress = false;
   var clipboardHasContent = false;
@@ -30,7 +32,7 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   $scope.walletSelectorTitleForce = true;
 
   moonPayService.getCountryByIpAddress().then(function onGetCountryByIpAddress(user) {
-    isBuyBitcoinAllowed = user.isAllowed;
+    isBuyBitcoinAllowed = user && user.isAllowed || false;
   });
 
   $scope.addContact = function() {
@@ -219,6 +221,12 @@ angular.module('copayApp.controllers').controller('tabSendController', function 
   };
 
   $scope.startWalletToWalletTransfer = function() {
+    // Disable if cash shuffle on
+    if (cashshuffleService.preferences.shufflingEnabled && cashshuffleService.preferences.spendOnlyShuffled) {
+      console.log("Cannot transfer funds when spend only shuffle is enabled");
+      popupService.showAlert(gettextCatalog.getString('Cannot transfer funds when Cash Shuffle spend only is enabled.'));
+      return;
+    }
     console.log('startWalletToWalletTransfer()');
     var params = sendFlowService.state.getClone();
     params.isWalletTransfer = true;

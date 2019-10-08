@@ -2044,6 +2044,9 @@ msgstr ""
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
 msgstr ""
 
+msgid "CashShuffle"
+msgstr ""
+
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:61
 msgid "Notifications"
@@ -2703,6 +2706,10 @@ msgstr ""
 
 #: www/views/tab-send.html:27
 msgid "Transfer between wallets"
+msgstr ""
+
+#: www/views/tab-send.controller.js
+msgid "Cannot transfer funds when Cash Shuffle spend only is enabled."
 msgstr ""
 
 #: www/views/tab-send.html:35

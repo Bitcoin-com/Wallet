@@ -2,6 +2,9 @@
 <span class="title">
   {{wallet.name || wallet.id}}
 </span>
+<span ng-if="wallet.disableSend">
+  (Spending disabled via Privacy Mode Settings)
+</span>
 <p>
   <span ng-if="!wallet.isComplete()" class="assertive" translate>
     Incomplete

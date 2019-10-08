@@ -33,18 +33,18 @@
 
     <div class="buttons row">
       <div class="col">
-        <div class="button button-card-style button-no-border button-drop-shadow white" ui-sref="tabs.receive">
+        <div class="button button-card-style button-drop-shadow white" ui-sref="tabs.receive">
           <span translate>Receive</span>
         </div>
       </div>
       <div class="col"  ng-class="{'ng-hide': walletsWithFunds.length}">
-        <div class="button button-card-style button-no-border button-drop-shadow white"
+        <div class="button button-card-style button-drop-shadow white"
           ng-click="vm.onBuyBitcoin()">
           <span translate>Buy Bitcoin</span>
         </div>
       </div>
       <div class="col" ng-class="{'ng-hide': !walletsWithFunds.length}">
-        <div class="button button-card-style button-no-border button-drop-shadow white"
+        <div class="button button-card-style button-drop-shadow white"
              ng-click="startFreshSend()">
           <span translate>Send</span>
         </div>

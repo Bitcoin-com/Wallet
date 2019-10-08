@@ -428,6 +428,15 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
           }
         }
       })
+      .state('tabs.csPreferences', {
+        url: '/csPreferences',
+        views: {
+          'tab-home@tabs': {
+            controller: 'preferencesCashShuffleController',
+            templateUrl: 'views/preferencesCashShuffle.html'
+          }
+        }
+      })
       .state('tabs.language', {
         url: '/language',
         views: {
@@ -1629,8 +1638,10 @@ angular.module('copayApp').config(function(historicLogProvider, $provide, $logPr
         var matchScan = $ionicHistory.currentStateName() == 'tabs.scan' ? true : false;
         var matchSend = $ionicHistory.currentStateName() == 'tabs.send' ? true : false;
         var matchSettings = $ionicHistory.currentStateName() == 'tabs.settings' ? true : false;
+        var matchCashshuffle = $ionicHistory.currentStateName() == 'tabs.cashshuffle' ? true : false;
+        var matchCSPreferences = $ionicHistory.currentStateName() == 'tabs.csPreferences' ? true : false;
 
-        var fromTabs = matchHome | matchReceive | matchScan | matchSend | matchSettings;
+        var fromTabs = matchHome | matchReceive | matchScan | matchSend | matchSettings | matchCashshuffle | matchCSPreferences;
 
         //onboarding with no back views
         var matchCollectEmail = $ionicHistory.currentStateName() == 'onboarding.collectEmail' ? true : false;

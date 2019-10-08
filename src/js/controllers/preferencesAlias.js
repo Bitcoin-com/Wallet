@@ -17,6 +17,11 @@ angular.module('copayApp.controllers').controller('preferencesAliasController',
         aliasFor: {}
       };
 
+      // Reject reserved wallet names
+      if($scope.alias.value == 'Private Spending Wallet') {
+        return;
+      }
+
       opts.aliasFor[walletId] = $scope.alias.value;
 
       configService.set(opts, function(err) {

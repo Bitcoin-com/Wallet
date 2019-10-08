@@ -80,7 +80,7 @@
             .address {
               display: none;
             }
-            background: #FAB915;
+            background: #327DC0;
             color: #FFF !important;
             border: 0;
             @include button-shadow();
@@ -113,6 +113,11 @@
         width: 95%;
         max-width: none;
         padding: 2px;
+        background:#fdfdfd;
+        border:1px solid #C7CDD8;
+        box-shadow:rgba(0, 0, 0, 0.05) 0px 2px 4px 0px;
+        color:#13171F;
+        font-family:$v-font-family-light;
         &-qr {
           font-weight: bold;
           max-width: none;
@@ -130,6 +135,14 @@
           }
         }
       }
+
+      .button-green {
+        border-color: #11A87E;
+        background-color: #15d6a0;
+        color: #FFF;
+        background: url("../img/p3green.png");
+        background-repeat: repeat-x;
+        border: 1px; }
     }
   }
   .search-input {
