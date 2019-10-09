@@ -4531,6 +4531,12 @@ msgstr ""
 msgid "Shop"
 msgstr ""
 
+msgid "Local Bitcoin Cash"
+msgstr ""
+
+msgid "Buy and sell Bitcoin Cash (BCH) with anyone — anonymously"
+msgstr ""
+
 msgid "Shop Nearby"
 msgstr ""
 
@@ -4565,9 +4571,6 @@ msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up 
 msgstr ""
 
 msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
-msgstr ""
-
-msgid "Earn up to 10% on BCH and BTC"
 msgstr ""
 
 msgid "Invest your Bitcoin Cash (BCH) or Bitcoin Core (BTC) with Cred and earn 10%."

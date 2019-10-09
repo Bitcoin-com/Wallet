@@ -11583,6 +11583,10 @@ ion-tabs .tab-title {
     background-image: url("../img/merchants/cred_banner.png"); }
     #tab-spend #cred .subtitle {
       width: 100%; }
+  #tab-spend #local-bitcoincash {
+    background-image: url("../img/merchants/localbch_banner.png"); }
+    #tab-spend #local-bitcoincash .subtitle {
+      width: 70%; }
   #tab-spend #egifter {
     background-image: url("../img/merchants/egifter_banner.png"); }
   #tab-spend #marcocoino {

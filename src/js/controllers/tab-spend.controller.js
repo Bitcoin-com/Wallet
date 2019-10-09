@@ -24,6 +24,7 @@
     vm.onMerchant = onMerchant;
     vm.onPurseIo = onPurseIo;
     vm.onTravala = onTravala;
+    vm.onLocalBitcoinCash = onLocalBitcoinCash;
 
     // Variables
     vm.merchants = [];
@@ -51,13 +52,6 @@
       
       vm.merchants = [
         {
-          description: gettextCatalog.getString("Visit the peer-to-peer marketplace now"),
-          icon: 'img/merchants/local-bitcoincash.png',
-          id: 'merchant_local_bitcoincash',
-          name: gettextCatalog.getString('Buy Bitcoin without fees'),
-          url: 'https://local.bitcoin.com/?pk_campaign=WalletApp&pk_source=' + os
-        },
-        {
           description: gettextCatalog.getString("The market's highest paying pool"),
           icon: 'img/merchants/mining_merchant_icon.svg',
           id: 'merchant_bitcoincom_pool',
@@ -73,7 +67,6 @@
         }
       ];
       
-      
     }
     
     function onCheapAir() {
@@ -84,6 +77,9 @@
       externalLinkService.open('https://earn.mycred.io/bitcoin?utm_source=BitcoincomWallet&utm_medium=Shop&utm_campaign=Earn');
     }
 
+    function onLocalBitcoinCash() {
+      externalLinkService.open('https://local.bitcoin.com/?pk_campaign=WalletApp&pk_source=' + os);
+    }
 
     function onEGifter() {
       externalLinkService.open('https://giftcards.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
