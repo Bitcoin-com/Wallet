@@ -136,12 +136,14 @@ angular
       vm.countDown = null;
     }
 
-    $scope.$on('$ionicView.leave', onLeave);
+    $scope.$on('$ionicView.beforeLeave', onBeforeLeave);
     $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
 
-    function onLeave(event, data) {
-      // Stop Countdowns
+    function onBeforeLeave(event, data) {
+      // Clear BIP70 state
       if(vm.countDown) $interval.cancel(vm.countDown);
+      vm.paymentExpired = false;
+      vm.remainingTimeStr = '';
     }
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
