@@ -1262,9 +1262,10 @@ angular.module('copayApp.services').factory('walletService', function($log, $tim
       publishFn(wallet, txp, function(err, publishedTxp) {
         ongoingProcess.set('sendingTx', false, customStatusHandler);
         if (err) return cb(bwcError.msg(err));
-
+        publishedTxp.payProUrl = txp.payProUrl;
         ongoingProcess.set('signingTx', true, customStatusHandler);
         root.signTx(wallet, publishedTxp, password, function(err, signedTxp) {
+          signedTxp.payProUrl = txp.payProUrl;
           ongoingProcess.set('signingTx', false, customStatusHandler);
           root.invalidateCache(wallet);
 
