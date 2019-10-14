@@ -49,10 +49,11 @@
             <p ng-if="vm.destination.balanceAmount && vm.destinationWallet.balanceHidden" translate>[Balance Hidden]</p>
           </div>
           <div class="item-content item-content-avatar"
-          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'">
-            <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.thirdParty.name !== 'BitPay' && vm.thirdParty.name !== 'eGifter'">
+          ng-if="vm.thirdParty && (vm.thirdParty.id === 'bip70' || vm.thirdParty.id === 'gocrypto')">
+            <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.thirdParty.name !== 'BitPay' && vm.thirdParty.name !== 'eGifter' && vm.thirdParty.name !== 'GoCrypto'">
             <img ng-if="vm.thirdParty.name === 'BitPay'" src="img/icon-bitpay.svg" class="bg">
             <img ng-if="vm.thirdParty.name === 'eGifter'" src="img/icon-egifter.png" class="bg">
+            <img ng-if="vm.thirdParty.name === 'GoCrypto'" src="img/icon-gocrypto.svg" class="bg">
             <h2>{{vm.destination.name}}</h2>
             <p translate ng-if="!vm.paymentExpired"><span translate>Payment expires:</span> {{vm.remainingTimeStr}}</p>
             <p class="warning" translate ng-if="vm.paymentExpired">Payment request has expired</p>
