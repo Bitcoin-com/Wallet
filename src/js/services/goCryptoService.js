@@ -51,7 +51,8 @@
 
       var trimmedUrl = data.trim();
       if (GOCRYPTO_URL_REGEX.test(trimmedUrl) || GOCRYPTO_BACKWARD_COMPATIBILITY_URL_REGEX.test(trimmedUrl)) {
-        req.url = GOCRYPTO_ENDPOINT_URL + data;
+        var merchantId = new URL(data).searchParams.get("merchant_id");
+        req.url = GOCRYPTO_ENDPOINT_URL + merchantId;
 
         $http(req).then(function(response) {
           if (response.status === 200) {
