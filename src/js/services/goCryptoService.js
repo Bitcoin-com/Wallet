@@ -172,8 +172,8 @@
       if (paymentOption == null) {
         raiseError(
           defer,
-          'Incorrect GoCrypto payment order.',
-          'Incorrect GoCrypto payment order.'
+          'Incorrect GoCrypto payment order details.',
+          'Incorrect GoCrypto payment order details.'
         );
       }
     }
