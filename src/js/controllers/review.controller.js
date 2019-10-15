@@ -39,7 +39,7 @@ angular
     , txFormatService
     , walletService
     ) {
-    
+
     var vm = this;
 
     var sendFlowData;
@@ -60,7 +60,7 @@ angular
     var unitFromSat = 0;
 
     var FEE_TOO_HIGH_LIMIT_PERCENTAGE = 15;
-  
+
     // Functions
     vm.goBack = goBack;
     vm.onReplay = onReplay;
@@ -224,14 +224,14 @@ angular
           if (isValid) {
             _onApprove();
           } else {
-            popupService.showAlert(null, gettextCatalog.getString('GoCrypto payment is no longer valid. Please try again.', function onAlert() {
+            popupService.showAlert(null, gettextCatalog.getString('GoCrypto payment order has expired.', function onAlert() {
               $state.go('tabs.scan').then(function () {
                 $ionicHistory.clearHistory();
               });
             }));
           }
         }, function(err) {
-          popupService.showAlert(null, gettextCatalog.getString('An error occurred while trying to validate GoCrypto payment. Please try again.', function onAlert() {
+          popupService.showAlert(null, gettextCatalog.getString('GoCrypto payment order was not found. Please try again.', function onAlert() {
             $state.go('tabs.scan').then(function () {
               $ionicHistory.clearHistory();
             });
@@ -381,8 +381,8 @@ angular
         //tx.toAddress = vm.thirdParty.toAddress;
         tx.toAddress = bitcoinCashJsService.readAddress(vm.thirdParty.toAddress).legacy;
       }
-      
-      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
+
+      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {
         vm.usingMerchantFee = true;
         tx.feeRate = parseInt(sendFlowData.thirdParty.requiredFeeRate);
       }
@@ -564,7 +564,7 @@ angular
       }
 
       // Check if the recipient is a contact
-      addressbookService.get(originCoin + address, function onGetContact(err, contact) { 
+      addressbookService.get(originCoin + address, function onGetContact(err, contact) {
         if (!err && contact) {
           handleDestinationAsAddressOfContact(contact);
         } else {
@@ -637,7 +637,7 @@ angular
       if (vm.originWallet.coin !== 'bch') {
         return;
       }
-      
+
       var address = vm.destinationAddress;
       if (address) {
         // So the address can be parsed properly
@@ -693,11 +693,11 @@ angular
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
           return cb(err);
-        } 
+        }
         walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
           if (err) {
             return cb(err);
-          } 
+          }
 
           // Need to use the correct service to do it.
           var amount = parseFloat(satoshis / 100000000);
@@ -734,7 +734,7 @@ angular
         ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
         clipboardService.copyToClipboard(explorerTxUrl);
       }
-    
+
     }
 
     function _onTransactionCompletedSuccessfully() {

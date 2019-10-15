@@ -86,14 +86,14 @@
             raiseError(
               defer,
               'Failed to get GoCrypto payment data.',
-              'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+              'GoCrypto payment order was not found. Please try again.'
             );
           }
         }, function(error) {
           raiseError(
             defer,
             'An error occurred while trying to get GoCrypto payment data.',
-            'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+            'GoCrypto payment order was not found. Please try again.'
           );
         });
       } else {
@@ -129,14 +129,14 @@
             raiseError(
               defer,
               'Failed to get GoCrypto payment data.',
-              'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+              'GoCrypto payment order was not found. Please try again.'
             );
           }
         }, function(error) {
           raiseError(
             defer,
             'An error occurred while trying to get GoCrypto payment data.',
-            'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+            'GoCrypto payment order was not found. Please try again.'
           );
         });
       } else {
@@ -153,8 +153,8 @@
       if (expiry_date < Date.now()) {
         raiseError(
           defer,
-          'GoCrypto payment expired.',
-          'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+          'GoCrypto payment order has expired.',
+          'GoCrypto payment order has expired.'
         );
       }
     }
@@ -163,8 +163,8 @@
       if (paymentStatus !== GOCRYPTO_PAYMENT_STATUSES['IN_PAYMENT']) {
         raiseError(
           defer,
-          'Incorrect GoCrypto payment.',
-          'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+          'GoCrypto payment order was not found.',
+          'GoCrypto payment order was not found.'
         );
       }
     }
@@ -173,8 +173,8 @@
       if (paymentOption == null) {
         raiseError(
           defer,
-          'Could not found GoCrypto payment option.',
-          'An error occurred while trying to retrieve GoCrypto POS verification data. Please try again.'
+          'Incorrect GoCrypto payment order details.',
+          'Incorrect GoCrypto payment order details.'
         );
       }
     }
