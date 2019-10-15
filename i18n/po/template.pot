@@ -3827,6 +3827,10 @@ msgid "Community"
 msgstr ""
 
 #: src/js/services/communityService.js:40
+msgid "Bitcoin Loans"
+msgstr ""
+
+#: src/js/services/communityService.js:40
 msgid "Bitcoin Cash Reddit"
 msgstr ""
 
