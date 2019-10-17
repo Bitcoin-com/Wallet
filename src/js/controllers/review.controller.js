@@ -136,18 +136,26 @@ angular
       vm.thirdParty = null;
       vm.wallet = null;
       vm.memoExpanded = false;
-      vm.countDown = null;
     }
 
+    $scope.countDown = null;
     $scope.$on('$ionicView.beforeLeave', onBeforeLeave);
     $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
 
+    function clearTimers() {
+      if ($scope.countDown !== null) {
+        $interval.cancel($scope.countDown);
+        $scope.countDown = null
+      }
+    }
+
     function onBeforeLeave(event, data) {
       // Clear BIP70 state
-      if(vm.countDown) $interval.cancel(vm.countDown);
+      clearTimers();
       vm.paymentExpired = false;
       vm.remainingTimeStr = '';
     }
+
     function onBeforeEnter(event, data) {
       $log.debug('reviewController onBeforeEnter sendflow ', sendFlowService.state);
 
@@ -760,8 +768,8 @@ angular
     function startExpirationTimer(expirationTime) {
       vm.paymentExpired = false;
       setExpirationTime();
-
-      vm.countDown = $interval(function() {
+      clearTimers();
+      $scope.countDown = $interval(function() {
         setExpirationTime();
       }, 1000);
 
@@ -783,7 +791,10 @@ angular
         vm.paymentExpired = true;
         vm.remainingTimeStr = gettextCatalog.getString('Expired');
         vm.readyToSend = false;
-        if (vm.countDown) $interval.cancel(vm.countDown);
+        if ($scope.countDown!== null) {
+          $interval.cancel($scope.countDown);
+          $scope.countDown = null;
+        }
         $timeout(function() {
           $scope.$apply();
         });
@@ -834,6 +845,7 @@ angular
     }
 
     function onSuccessConfirm() {
+      clearTimers();
       // Clear the send flow service state
       sendFlowService.state.clear();
 
