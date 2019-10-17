@@ -226,18 +226,14 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       .button {
         font-family:"Gilroy-SemiBold", sans-serif;
         font-weight:normal;
-        border: 1px solid #C7CDD8;
-        border-radius: 3px;
-        padding: 16px;
-        text-align: center;
-        width: 100%;
-        color:#13171F;
-        max-width: 300px;
-        font-size: 19px;
-        min-height: 0;
-        line-height: 19px;
-        background: rgb(253, 253, 253);
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 4px 0px;
+        background: rgba(0,0,0,0);
+        border-radius:3px;
+        border: 2px solid rgba(255, 255, 255, 0.19);
+        height: 100%;
+        width: 153px;
+        min-height: 32px;
+        max-height: 40px;
+        line-height:40px;
       }
     }
   }
