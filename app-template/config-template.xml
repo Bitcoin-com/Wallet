@@ -88,6 +88,7 @@
 
     <!-- Platform Specific Settings -->
     <platform name="ios">
+      <hook type="after_platform_add" src="app-template/bitcoincom/import_scheme.sh" />
       <config-file platform="ios" target="*-Info.plist" parent="UIStatusBarHidden"><true/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance"><false/></config-file>
       <config-file platform="ios" target="*-Info.plist" parent="NSCameraUsageDescription" overrite="true"><string>Allow the app to use your camera for scanning documents</string></config-file>
