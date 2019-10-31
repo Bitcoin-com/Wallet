@@ -90,3 +90,59 @@ For harward wallets, `coin_type` is always `0`.
 For example, if you need to import a non-multisignatured wallet, account 8, you should enter: `m/44'/0'/8'`
 Note that TREZOR use 1-based account numbers, so if your are trying for example to recover TREZOR multisig account #8, you should enter `m/48'/0'/7'`.
 
+
+### QR Code Export Format
+
+The string format used in the QR code export option is as follows:
+
+```
+<export_type>|<export_data>|<network>|<derivation_path>|<is_data_encrypted>
+```
+
+eg.
+```
+1|dog cat fish rooster bull taxi goal man song hat juice monkey|livenet|m/44'/0'/0'|false
+```
+
+Code reference:
+https://github.com/Bitcoin-com/Wallet/blob/c1e001ef214838d19ee5bde7d6d7434e40104356/src/js/services/walletService.js#L1333
+
+#### export_type - integer
+
+| name     | value |
+|----------|-------|
+| mnemonic | 1     |
+| xpiv     | 2     |
+| xpub     | 3     |
+
+#### export_data - string
+This is the data for the wallet credential, format depends on `export_type`.
+
+eg.
+```
+dog cat fish rooster bull taxi goal man song hat juice monkey
+```
+
+#### network - string
+The network which the wallet has stored value. Network name in lowercase.
+
+eg.
+```
+livenet
+```
+
+#### derivation_path - string
+Derivation path that was used for this mnemonic for which value was stored.
+
+eg.
+```
+m/44'/0'/0'
+```
+
+#### is_data_encrypted - boolean
+Denotes whether or not the `export_data` is encrypted with a passphraase.
+
+eg.
+```
+false
+```
