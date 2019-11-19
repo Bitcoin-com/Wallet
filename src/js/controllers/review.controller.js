@@ -31,6 +31,7 @@ angular
     , $scope
     , sendFlowService
     , sideshiftService
+    , goCryptoService
     , soundService
     , $state
     , $timeout
@@ -38,7 +39,7 @@ angular
     , txFormatService
     , walletService
     ) {
-    
+
     var vm = this;
 
     var sendFlowData;
@@ -56,10 +57,11 @@ angular
     var toAddress = '';
     var tx = {};
     var txPayproData = null;
+    var txGoCryptoData = null;
     var unitFromSat = 0;
 
     var FEE_TOO_HIGH_LIMIT_PERCENTAGE = 15;
-  
+
     // Functions
     vm.goBack = goBack;
     vm.onReplay = onReplay;
@@ -83,6 +85,7 @@ angular
       toAddress = '';
       tx = {};
       txPayproData = null;
+      txGoCryptoData = null;
       unitFromSat = 0;
 
       // Public variables
@@ -180,6 +183,8 @@ angular
             break;
           case 'bip70':
             initBip70();
+          case 'gocrypto':
+            initGoCrypto();
           default:
             _next();
             break;
@@ -208,7 +213,76 @@ angular
     }
 
     vm.approve = function() {
-        
+      if (vm.thirdParty != null && vm.thirdParty.id === 'gocrypto') {
+        goCryptoService.validateTx(vm.thirdParty.url).then(function(isValid) {
+          if (isValid) {
+            _onApprove();
+          } else {
+            popupService.showAlert(null, gettextCatalog.getString('GoCrypto payment order has expired.', function onAlert() {
+              $state.go('tabs.scan').then(function () {
+                $ionicHistory.clearHistory();
+              });
+            }));
+          }
+        }, function(err) {
+          popupService.showAlert(null, gettextCatalog.getString('GoCrypto payment order was not found. Please try again.', function onAlert() {
+            $state.go('tabs.scan').then(function () {
+              $ionicHistory.clearHistory();
+            });
+          }));
+        });
+      } else {
+        _onApprove();
+      }
+    };
+
+    vm.chooseFeeLevel = function(tx, wallet) {
+
+      if (wallet.coin == 'bch') return;
+      if (usingMerchantFee) return;
+
+      var scope = $rootScope.$new(true);
+      scope.network = tx.network;
+      scope.feeLevel = tx.feeLevel;
+      scope.noSave = true;
+      scope.coin = vm.originWallet.coin;
+
+      if (usingCustomFee) {
+        scope.customFeePerKB = tx.feeRate;
+        scope.feePerSatByte = tx.feeRate / 1000;
+      }
+
+      $ionicModal.fromTemplateUrl('views/modals/chooseFeeLevel.html', {
+        scope: scope,
+        backdropClickToClose: false,
+        hardwareBackButtonClose: false
+      }).then(function(modal) {
+        scope.chooseFeeLevelModal = modal;
+        scope.openModal();
+      });
+      scope.openModal = function() {
+        scope.chooseFeeLevelModal.show();
+      };
+
+      scope.hideModal = function(newFeeLevel, customFeePerKB) {
+        scope.chooseFeeLevelModal.hide();
+        $log.debug('New fee level choosen:' + newFeeLevel + ' was:' + tx.feeLevel);
+
+        usingCustomFee = newFeeLevel == 'custom' ? true : false;
+
+        if (tx.feeLevel == newFeeLevel && !usingCustomFee) return;
+
+        tx.feeLevel = newFeeLevel;
+        if (usingCustomFee) tx.feeRate = parseInt(customFeePerKB);
+
+        updateTx(tx, vm.originWallet, {
+          clearCache: true,
+          dryRun: true
+        }, function() {});
+      };
+    };
+
+    function _onApprove() {
       if (!tx || !vm.originWallet) return;
 
       if (vm.paymentExpired) {
@@ -269,53 +343,7 @@ angular
           publishAndSign();
         });
       });
-    };
-
-    vm.chooseFeeLevel = function(tx, wallet) {
-
-      if (wallet.coin == 'bch') return;
-      if (usingMerchantFee) return;
-
-      var scope = $rootScope.$new(true);
-      scope.network = tx.network;
-      scope.feeLevel = tx.feeLevel;
-      scope.noSave = true;
-      scope.coin = vm.originWallet.coin;
-
-      if (usingCustomFee) {
-        scope.customFeePerKB = tx.feeRate;
-        scope.feePerSatByte = tx.feeRate / 1000;
-      }
-
-      $ionicModal.fromTemplateUrl('views/modals/chooseFeeLevel.html', {
-        scope: scope,
-        backdropClickToClose: false,
-        hardwareBackButtonClose: false
-      }).then(function(modal) {
-        scope.chooseFeeLevelModal = modal;
-        scope.openModal();
-      });
-      scope.openModal = function() {
-        scope.chooseFeeLevelModal.show();
-      };
-
-      scope.hideModal = function(newFeeLevel, customFeePerKB) {
-        scope.chooseFeeLevelModal.hide();
-        $log.debug('New fee level choosen:' + newFeeLevel + ' was:' + tx.feeLevel);
-
-        usingCustomFee = newFeeLevel == 'custom' ? true : false;
-
-        if (tx.feeLevel == newFeeLevel && !usingCustomFee) return;
-
-        tx.feeLevel = newFeeLevel;
-        if (usingCustomFee) tx.feeRate = parseInt(customFeePerKB);
-
-        updateTx(tx, vm.originWallet, {
-          clearCache: true,
-          dryRun: true
-        }, function() {});
-      };
-    };
+    }
 
     function createVanityTransaction() {
       var configFeeLevel = config.wallet.settings.feeLevel ? config.wallet.settings.feeLevel : 'normal';
@@ -327,6 +355,7 @@ angular
         fromWalletId: sendFlowData.fromWalletId,
         toAddress: sendFlowData.toAddress,
         paypro: txPayproData,
+        gocrypto: txGoCryptoData,
         outs: sendFlowData.outs,
 
         feeLevel: configFeeLevel,
@@ -346,8 +375,8 @@ angular
         //tx.toAddress = vm.thirdParty.toAddress;
         tx.toAddress = bitcoinCashJsService.readAddress(vm.thirdParty.toAddress).legacy;
       }
-      
-      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {  
+
+      if (sendFlowData.thirdParty && sendFlowData.thirdParty.requiredFeeRate) {
         vm.usingMerchantFee = true;
         tx.feeRate = parseInt(sendFlowData.thirdParty.requiredFeeRate);
       }
@@ -529,7 +558,7 @@ angular
       }
 
       // Check if the recipient is a contact
-      addressbookService.get(originCoin + address, function onGetContact(err, contact) { 
+      addressbookService.get(originCoin + address, function onGetContact(err, contact) {
         if (!err && contact) {
           handleDestinationAsAddressOfContact(contact);
         } else {
@@ -602,7 +631,7 @@ angular
       if (vm.originWallet.coin !== 'bch') {
         return;
       }
-      
+
       var address = vm.destinationAddress;
       if (address) {
         // So the address can be parsed properly
@@ -632,6 +661,17 @@ angular
       };
     }
 
+    function initGoCrypto() {
+      vm.sendingTitle = gettextCatalog.getString('You are paying');
+      vm.memo = vm.thirdParty.memo;
+      vm.memoExpanded = !!vm.memo;
+      vm.destination.name = vm.thirdParty.name;
+
+      txGoCryptoData = {
+        expires: vm.thirdParty.expires
+      };
+    }
+
     function initSideshift(cb) {
       vm.sendingTitle = gettextCatalog.getString('You are shifting');
       if (!vm.thirdParty.data) {
@@ -647,11 +687,11 @@ angular
       walletService.getAddress(vm.originWallet, false, function onReturnWalletAddress(err, returnAddr) {
         if (err) {
           return cb(err);
-        } 
+        }
         walletService.getAddress(toWallet, false, function onWithdrawalWalletAddress(err, withdrawalAddr) {
           if (err) {
             return cb(err);
-          } 
+          }
 
           // Need to use the correct service to do it.
           var amount = parseFloat(satoshis / 100000000);
@@ -688,7 +728,7 @@ angular
         ionicToast.show(gettextCatalog.getString('Copied to clipboard'), 'bottom', false, 3000);
         clipboardService.copyToClipboard(explorerTxUrl);
       }
-    
+
     }
 
     function _onTransactionCompletedSuccessfully() {
@@ -867,6 +907,10 @@ angular
 
       if (tx.paypro)
         startExpirationTimer(tx.paypro.expires);
+
+      if (tx.gocrypto) {
+        startExpirationTimer(tx.gocrypto.expires);
+      }
 
       updateTx(tx, vm.originWallet, {
         dryRun: true
