@@ -1,5 +1,8 @@
 .button-clear{
   background: none !important;
+  &.text-black {
+    color: black;
+  }
 }
 
 .button-skip {

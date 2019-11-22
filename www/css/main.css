@@ -10253,7 +10253,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       text-decoration: none; }
     .button-white.active, .button-white.activated {
       border-color: transparent;
-      background-color: #F1F3FB; }
+      background-color: transparent; }
     .button-white.button-clear {
       border-color: transparent;
       background: none;
@@ -10263,7 +10263,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
       border-color: transparent;
       background: none; }
     .button-white.activated {
-      color: #FFF; }
+      background-color: rgba(0, 0, 0, 0.05); }
     .button-white-outline {
       border-color: #FFFFFF;
       background-color: transparent;
@@ -10274,7 +10274,7 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
         color: #FFFFFF;
         text-decoration: none; }
       .button-white-outline.active, .button-white-outline.activated {
-        border-color: #FFFFFF;
+        border-color: transparent;
         background-color: #FFFFFF; }
       .button-white-outline.button-outline {
         border-color: #FFFFFF;
@@ -10284,6 +10284,8 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
           background-color: #FFFFFF;
           box-shadow: none;
           color: #fff; }
+      .button-white-outline.activated {
+        background-color: rgba(0, 0, 0, 0.1); }
   .button-grey-outline {
     border-color: #727272;
     background-color: transparent;
@@ -10305,18 +10307,20 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
         box-shadow: none;
         color: #fff; }
   .button-card-style {
-    border-radius: 3px;
-    background: white; }
+    border-radius: 3px; }
     .button-card-style.white {
       border-color: transparent;
       background-color: #FFF;
-      color: #15d6a0; }
+      color: #15d6a0;
+      background: white; }
       .button-card-style.white:hover {
         color: #15d6a0;
         text-decoration: none; }
       .button-card-style.white.active, .button-card-style.white.activated {
         border-color: #FFF;
         background-color: #FFF; }
+      .button-card-style.white.activated {
+        background-color: rgba(0, 0, 0, 0.05); }
     .button-card-style.white-outline {
       border-color: #FFF;
       background-color: transparent;
@@ -10332,6 +10336,8 @@ ion-view.deflash-blue:before, ion-view#view-amount:before, ion-view#view-confirm
 
 .button-clear {
   background: none !important; }
+  .button-clear.text-black {
+    color: black; }
 
 .button-skip {
   padding-top: 15px !important;
@@ -12215,11 +12221,12 @@ ion-tabs .tab-title {
       transform: scale3d(0.5, 0.5, 0.5) translateY(0px); }
     #walletDetails .bp-content.collapse .amount-alternative, #walletDetails .bp-content.collapse .send-receive-buttons, #walletDetails .bp-content.collapse .wallet-details-wallet-info {
       opacity: 0; }
+  #walletDetails ion-header-bar.bar.bar-header {
+    background-color: #fbfcff !important; }
   #walletDetails .bar-header {
-    border: 0;
-    background: #eeb640; }
+    border: 0; }
     #walletDetails .bar-header .title, #walletDetails .bar-header .button {
-      color: #fff; }
+      color: #000000; }
     #walletDetails .bar-header .button {
       background-color: transparent; }
   #walletDetails .nav-bar-block, #walletDetails .bar {
@@ -15798,6 +15805,13 @@ account-selector {
           left: 15%;
           width: 70%;
           max-height: 55%; } }
+  #pin .circle {
+    border-radius: 50%;
+    box-shadow: 0 0 3px 0px #5b5b5b;
+    transition: background-color .2s ease-in-out;
+    padding: 7%;
+    margin: 5%;
+    border: 1px solid #0AC18E; }
   #pin .circle-copay {
     border-radius: 50%;
     box-shadow: 0 0 3px 0px #5b5b5b;
@@ -15812,6 +15826,8 @@ account-selector {
     padding: 7%;
     margin: 5%;
     border: 1px solid #0AC18E; }
+  #pin .filled {
+    background-color: #0AC18E; }
   #pin .filled-copay {
     background-color: #494949; }
   #pin .filled-bitpay {

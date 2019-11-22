@@ -16,7 +16,7 @@
     , $timeout
     ) {
     
-    var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=gold';
+    var MARCO_COINO_BASE_URL = 'https://marco-coino.firebaseapp.com/marcocoino-embed.html?zoom=5&color=default';
     var ADD_MERCHANT_URL = 'https://marcocoino.bitcoin.com/submit-listing/';
     var vm = this;
 

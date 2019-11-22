@@ -48,6 +48,7 @@
     var coinsFromSatoshis = 0;
     var listeningAddressLegacy = '';
     var satoshisRequested = 0;
+    var bchAddresses = {};
 
     function _showErrorAndBack(title, msg) {
       popupService.showAlert(title, msg, function() {
@@ -80,8 +81,7 @@
         }
 
         $scope.bchAddressType = 'cashaddr';
-        var bchAddresses = {};
-
+        
         if ($scope.wallet.coin == 'bch') {
             bchAddresses = bitcoinCashJsService.translateAddresses(addr);
             vm.displayAddress = bchAddresses[$scope.bchAddressType];
