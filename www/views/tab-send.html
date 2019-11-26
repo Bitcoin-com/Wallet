@@ -33,9 +33,9 @@
       <div class="send-wrapper item">
         <div class="row">
           <div class="input" ng-class="{'focus': searchFocus}">
-            <input type="text" class="search-input" placeholder="{{'Search or enter bitcoin address' | translate}}"
+            <input type="text" class="search-input" placeholder="{{'Search or enter bitcoin address or alias' | translate}}"
                    ng-model="formData.search" ng-change="findContact(formData.search)" ng-model-onblur
-                   ng-focus="searchInFocus()" ng-blur="searchBlurred()">
+                   ng-focus="searchInFocus()" ng-blur="searchBlurred()" id="search-input">
           </div>
         </div>
         <div class="buttons">

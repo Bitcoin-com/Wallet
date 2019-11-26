@@ -1,0 +1,21 @@
+<ion-popover-view style="height: 0px">
+    <div class="card" style="text-align: center">
+        <div class="item item-heading">
+            <span translate>Alias found!</span>
+        </div>
+          <div class="list">
+                <div class="item" ng-if="opencapAddresses.bch">
+                    <span>{{opencapAddresses.bch}}</span>
+                    <button ng-click="confirmOpenapAddress(opencapAddresses.bch, 'bch')" class="button button-standard button-primary button-outline"  translate>Send BCH</button>
+                </div>
+                <div class="item" ng-if="opencapAddresses.btc">
+                    <span>{{opencapAddresses.btc}}</span>
+                    <button ng-click="confirmOpenapAddress(opencapAddresses.btc, 'btc')" class="button button-standard button-primary button-outline"  translate>Send BTC</button>
+                </div>
+                <span class="item" ng-if="!opencapDnssec" style="color: red; " translate>
+                    DNSSEC not used
+                </span>
+          </div>
+       </div>
+    </div>
+</ion-popover-view>
