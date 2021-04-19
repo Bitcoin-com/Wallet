@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.microsoft.com/networking/OneX/v1" 
+    xmlns="http://www.microsoft.com/networking/OneX/v1"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+   
+  <!-- top-level element -->
+  <xs:element name="OneX">
+    <xs:complexType>
+      <!-- Optional 802.1X settings -->
+      <xs:sequence>
+        <!-- the default value is "false" -->
+        <xs:element name="cacheUserData" type="xs:boolean" minOccurs="0" />
+    
+        <!-- the default value is 60 seconds -->
+        <xs:element name="heldPeriod" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1" />
+              <xs:maxInclusive value="3600" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- the default value is 30 seconds -->                
+        <xs:element name="authPeriod" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1" />
+              <xs:maxInclusive value="3600" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- the default value is 5 seconds -->                
+        <xs:element name="startPeriod" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1" />
+              <xs:maxInclusive value="3600" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- the default value is 3 times -->          
+        <xs:element name="maxStart" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1" />
+              <xs:maxInclusive value="100" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- the default value is 3 times -->                
+        <xs:element name="maxAuthFailures" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:integer">
+              <xs:minInclusive value="1" />
+              <xs:maxInclusive value="100" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- This setting is applicable only for wired Lan. The default value is "compliant" -->   
+        <xs:element name="supplicantMode" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="inhibitTransmission" />
+              <xs:enumeration value="includeLearning" />
+              <xs:enumeration value="compliant" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+    
+        <!-- default value is "machineOrUser" -->
+        <xs:element name="authMode" minOccurs="0">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="machineOrUser" />
+              <xs:enumeration value="machine" />
+              <xs:enumeration value="user" />
+              <xs:enumeration value="guest" />
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:element>
+   
+        <!-- Optional Single Sign On parameters for 802.1X -->
+        <xs:element name="singleSignOn" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- Prelogon or Post Logon Integration -->
+              <xs:element name="type">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="preLogon" />
+                    <xs:enumeration value="postLogon" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- Maximum duration to wait for connection -->
+              <xs:element name="maxDelay" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="0" />
+                    <xs:maxInclusive value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- whether EAP dialogs can be displayed at logon time. The default is false -->
+              <xs:element name="allowAdditionalDialogs" type="xs:boolean" minOccurs="0" />
+
+              <!-- Maximum duration to wait for connection in case UI is to be displayed -->
+              <xs:element name="maxDelayWithAdditionalDialogs" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="0" />
+                    <xs:maxInclusive value="120" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- whether the network uses different VLANs for machine and user authentication. The default is false -->
+              <xs:element name="userBasedVirtualLan" type="xs:boolean" minOccurs="0" />
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- mandatory parameter for 802.1X -->
+        <xs:element name="EAPConfig">
+          <xs:complexType>
+            <xs:sequence>
+              <!-- extension point for other namespaces, especially for EAPHostConfig: EAP namespece -->
+              <xs:any namespace="##other" processContents="lax" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- extension point for other namespaces -->
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
