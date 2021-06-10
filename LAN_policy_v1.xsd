@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://www.microsoft.com/networking/LAN/policy/v1"
+   xmlns="http://www.microsoft.com/networking/LAN/policy/v1"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   elementFormDefault="qualified">
+
+  <!-- type definitions section -->
+  <!-- type definition for name and description -->
+  <xs:simpleType name="nameType">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+      <xs:maxLength value="255" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- element definitions section -->
+  <xs:element name="LANPolicy">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- this is the name of the policy -->
+        <xs:element name="name" type="nameType" />
+        <!-- brief description of the policy, optional -->
+        <xs:element name="description" type="nameType" minOccurs="0" />
+
+        <!-- A/C flags -->
+        <xs:element name="globalFlags">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="enableAutoConfig" type="xs:boolean" />
+
+              <!-- flag to indicate whether to disable explicit credentials (namespace: http://www.microsoft.com/networking/LAN/policy/v2) -->
+              <xs:element name="enableExplicitCreds" type="xs:boolean" minOccurs="0"  maxOccurs="1"/>
+              
+              <!-- value of block timeout period (namespace: http://www.microsoft.com/networking/LAN/policy/v2) -->
+              <!-- the default value is 20 minutes when element not present -->
+              <xs:element name="blockPeriod" minOccurs="0" maxOccurs="1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="0" />
+                    <xs:maxInclusive value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+
+              <!-- extension point for other namespaces -->
+              <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!--
+            List of profiles within the policy. It is optional. 
+            When enableAutoConfig is set to "false", this element SHALL be absent.
+            When present, the list shall contain at least one profile.
+        -->
+        <xs:element name="profileList" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <!--
+                  Placeholder to hook in profile namespace, code must enforce only the profile
+                  namespace is imported here. All other namespaces shall be ignored.
+                  Current implementation only allows one profile in the list. Code must enforce
+                  that only one profile exists in the policy. If more than one profile exists
+                  in the policy, only the first one in the list will be applied.
+              -->
+              <xs:any namespace="##other" processContents="lax" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <!-- extension placeholder for future LAN policy settings, not used in this version -->
+        <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded" />
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
