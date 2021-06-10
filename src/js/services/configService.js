@@ -115,8 +115,10 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
     bitcoinAlias: 'btc',
     bitcoinCashAlias: 'bch',
-    bitcoinWalletColor: '#535353', // Dark Grey
-    bitcoinCashWalletColor: '#eeb640', // Observatory
+    bitcoinWalletColor: '#F9A254', // Light Orange
+    bitcoinCashWalletColor: '#00BD89', // Shamrock
+    bitcoinWalletColorIndex: 6, // Light Orange
+    bitcoinCashWalletColorIndex: 5, // Shamrock
 
     homeSectionIsHidden: {
       services: false
@@ -210,6 +212,7 @@ angular.module('copayApp.services').factory('configService', function(storageSer
 
       configCache.bwsFor = configCache.bwsFor || {};
       configCache.colorFor = configCache.colorFor || {};
+      configCache.colorIndexFor = configCache.colorIndexFor || {};
       configCache.aliasFor = configCache.aliasFor || {};
       configCache.emailFor = configCache.emailFor || {};
 

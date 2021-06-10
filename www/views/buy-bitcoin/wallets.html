@@ -1,0 +1,47 @@
+<ion-view id="tab-buy-bitcoin-amount" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="vm.goBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <h1 translate>
+      Wallets
+    </h1>
+    <div class="apl-list">
+      <div ng-repeat="wallet in vm.wallets">
+        <ion-radio ng-value="wallet.id" ng-model="vm.walletId">
+          <div class="item item-icon-left item-big-icon-left apl-list-item">
+            <i class="icon big-icon-svg" ng-include="'views/includes/walletIcon.html'"></i>
+            <div class="apl-card__title__container">
+              <div class="apl-card__title">
+                {{wallet.name}}
+              </div>
+              <div class="apl-card__subtitle">
+                <wallet-balance
+                  display-as-fiat="{{vdisplayBalanceAsFiat}}"
+                  wallet-balance-hidden="{{wallet.balanceHidden}}"
+                  wallet-coin="{{wallet.coin}}"
+                  wallet-status="{{wallet.status}}"
+                  wallet-cached-balance="{{wallet.cachedBalance}}"
+                  wallet-cached-balance-updated-on="{{wallet.cachedBalanceUpdatedOn}}"
+                  wallet-cached-status="{{wallet.cachedStatus}}"
+                  total-balance-sat="{{wallet.status.totalBalanceSat}}"
+                  />
+              </div>
+            </div>
+          </div>
+        </ion-radio>
+      </div>
+      <div ng-if="vm.wallets.length === 0" class="item apl-list-item">
+        <p><span translate>No wallets.</span></p>
+      </div>
+    </div>
+
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="26px" viewBox="0 0 40 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M5.1277704,-2.07168062e-16 L34.8722296,2.07168062e-16 C36.6552671,-1.2037061e-16 37.3018396,0.185651222 37.9536914,0.534265408 C38.6055433,0.882879593 39.1171204,1.39445674 39.4657346,2.04630859 C39.8143488,2.69816044 40,3.34473292 40,5.1277704 L40,20.5132552 C40,22.2962927 39.8143488,22.9428652 39.4657346,23.594717 C39.1171204,24.2465689 38.6055433,24.758146 37.9536914,25.1067602 C37.3018396,25.4553744 36.6552671,25.6410256 34.8722296,25.6410256 L5.1277704,25.6410256 C3.34473292,25.6410256 2.69816044,25.4553744 2.04630859,25.1067602 C1.39445674,24.758146 0.882879593,24.2465689 0.534265408,23.594717 C0.185651222,22.9428652 8.02470732e-17,22.2962927 -1.38112041e-16,20.5132552 L1.38112041e-16,5.1277704 C-8.02470732e-17,3.34473292 0.185651222,2.69816044 0.534265408,2.04630859 C0.882879593,1.39445674 1.39445674,0.882879593 2.04630859,0.534265408 C2.69816044,0.185651222 3.34473292,1.2037061e-16 5.1277704,-2.07168062e-16 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Payment-method" transform="translate(-16.000000, -300.000000)">
+            <g id="Credit-card" transform="translate(0.000000, 274.000000)">
+                <g id="Group-2" transform="translate(16.000000, 26.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle" fill="#3478F7" xlink:href="#path-1"></use>
+                    <circle id="Oval-3" fill="#602497" mask="url(#mask-2)" cx="4" cy="21" r="13"></circle>
+                    <circle id="Oval-3-Copy" fill="#0A0F2F" mask="url(#mask-2)" cx="28.5" cy="0.5" r="17.5"></circle>
+                    <circle id="Oval-4" fill="#DA3B23" mask="url(#mask-2)" cx="26.5" cy="17.5" r="4.5"></circle>
+                    <circle id="Oval-4-Copy" fill="#ECA338" mask="url(#mask-2)" cx="32.5" cy="17.5" r="4.5"></circle>
+                    <circle id="Oval-4" fill="#DA3B23" opacity="0.434095982" mask="url(#mask-2)" cx="26.5" cy="17.5" r="4.5"></circle>
+                    <circle id="Oval-4-Copy" fill="#ECA338" opacity="0.434095982" mask="url(#mask-2)" cx="32.5" cy="17.5" r="4.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

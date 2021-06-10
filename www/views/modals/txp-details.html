@@ -1,12 +1,12 @@
 <ion-modal-view id="txp-details" ng-controller="txpDetailsController" ng-init="init()">
-  <ion-header-bar align-title="center" class="bar-royal">
-    <button class="button button-clear" ng-click="close()">
+  <ion-header-bar align-title="center">
+    <button class="button button-dark" ng-click="close()" translate>
       Close
     </button>
     <div class="title" translate>
       Payment Proposal
     </div>
-    <button class="button button-clear" ng-click="reject()" ng-disabled="loading" ng-if="isShared && tx.pendingForUs">
+    <button class="button button-dark" ng-click="reject()" ng-disabled="loading" ng-if="isShared && tx.pendingForUs">
       Reject
     </button>
   </ion-header-bar>

@@ -3,6 +3,10 @@
 */
 
 .item {
+  .title {
+    font-weight: bold;
+  }
+
   &.item-compact {
     padding: 11px 13px;
   }
@@ -45,5 +49,24 @@
     + .item-content {
       padding-top: 0;
     }
+  }
+}
+
+.item-radio {
+  input {
+      &:checked {
+          &+ .radio-content {
+              .item-content {
+                  background: #0AC18E;
+                  
+                  &, .item-note {
+                    color: #fff;
+                  }
+              }
+          }
+      }
+  }
+  .radio-icon {
+    display: none;
   }
 }

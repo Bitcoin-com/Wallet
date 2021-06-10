@@ -1,0 +1,160 @@
+#tab-spend {
+  background-color: #FBFCFF;
+  
+  #featured-end {
+    margin-top: 16px;
+
+    &::after {
+      margin-bottom: 0;
+    }
+  }
+
+  #marcocoino-icon {
+    width: 62px;
+    height: 62px;
+    background-image: url("../img/merchants/marcocoino.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 11px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    float: right;
+    margin: 0px 16px;
+  }
+
+  #merchants {
+    .icon.big-icon-svg:before {
+      font-size: 40px;
+      line-height: 40px;
+      height: 40px;
+      width: 40px;
+    }
+
+    .icon.big-icon-svg {
+      img {
+        height: 40px;
+        width: 40px;
+      }
+    }
+  }
+
+  #merchants {
+    .item-big-icon-left {
+      .icon.big-icon {
+        height: 40px;
+        width: 40px;
+
+        img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
+  }
+
+  &.apl {
+
+    h2 {
+      font-size: 17px;
+      height: 22px;
+      margin-top: 19px;
+    }
+
+    .item {
+      h2 {
+        margin-top: 0;
+      }
+    }
+
+    .merchant-showcase-container {
+      margin-bottom: 8px;
+      margin-top: 8px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .merchant-showcase {
+      color: white;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border-radius: 6px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+      // So that cards with a 1 line subtitle are the same height as cards with
+      // a 2-line subtitle. Cards that have subtitles with more lines will be
+      // taller.
+      min-height: 99px;
+      padding-bottom: 16px;
+      padding-top: 16px;
+
+      h1 {
+        color: white;
+        margin-top: 0;
+
+      }
+
+      .subtitle {
+        width: 65%;
+
+        p {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 14px;
+          line-height: normal;
+          margin-bottom: 0;
+        }
+      }
+
+      &.light {
+
+        h1 {
+          color: black;
+        }
+
+        .subtitle {
+          p {
+            color: rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+    }
+  }
+
+  .apl-card__subtitle.multiline {
+    height: auto;
+  }
+
+  #cheapair {
+    background-image: url("../img/merchants/cheapair_banner.jpg");
+
+    .subtitle {
+      width: 100%;
+    }
+  }
+
+  #egifter {
+    background-image: url("../img/merchants/egifter_banner.png");
+  }
+
+  #marcocoino {
+    background-image: url("../img/merchants/map_bg.jpg");
+
+    .subtitle {
+      width: auto;
+    }
+  }
+
+  #purse-io {
+    background-image: url("../img/merchants/purse_banner.png");
+
+    .subtitle {
+      width: 70%;
+    }
+  }
+
+  #travala {
+    background-image: url("../img/merchants/travala_bg.jpg");
+
+    .subtitle {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,83 @@
+<ion-view id="tab-spend" class="apl light" show-tabs>
+  <ion-nav-bar>
+    <ion-nav-title>{{'Shop' | translate}}</ion-nav-title>
+  </ion-nav-bar>
+  <ion-content>
+    <div id="top-limit"></div>
+    <h1>Featured Businesses</h1>
+    <div class="merchant-showcase-container">
+      <div id="marcocoino" class="merchant-showcase light track_shop_screen_tap_on_featured_business" ui-sref="tabs.spend.marcoCoino">
+        <div id="marcocoino-icon"></div>
+        <h1 translate>Shop Nearby</h1>
+        <div class="subtitle">
+          <p translate>Find businesses in your area that accept Bitcoin Cash</p>
+        </div>
+      </div>
+    </div>
+    <div class="merchant-showcase-container">
+      <div id="purse-io" class="merchant-showcase track_shop_screen_tap_on_featured_business" ng-click="vm.onPurseIo()">
+        <h1>Purse.io</h1>
+        <div class="subtitle">
+          <p translate>Get up to 30% off Amazon when you pay with Bitcoin Cash</p>
+        </div>
+      </div>
+    </div>
+    <div class="merchant-showcase-container">
+      <div id="egifter" class="merchant-showcase light track_shop_screen_tap_on_featured_business"  ng-click="vm.onEGifter()">
+        <h1>eGifter</h1>
+        <div class="subtitle">
+          <p translate>Digital giftcards from some of the biggest brand names</p>
+        </div>
+      </div>
+    </div>
+    <div class="merchant-showcase-container">
+      <div id="travala" class="merchant-showcase light track_shop_screen_tap_on_featured_business"  ng-click="vm.onTravala()">
+        <h1>Travala.com</h1>
+        <div class="subtitle">
+          <p translate>Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%.</p>
+        </div>
+      </div>
+    </div>
+    <div class="merchant-showcase-container">
+      <div id="cheapair" class="merchant-showcase light track_shop_screen_tap_on_featured_business"  ng-click="vm.onCheapAir()">
+        <h1>CheapAir</h1>
+        <div class="subtitle">
+          <p translate>Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals.</p>
+        </div>
+      </div>
+    </div>
+    <div id="featured-end" class="apl-divider"></div>
+    <div class="apl-list">
+
+      <div class="item apl-list-item item-button-right">
+        <div class="button-right-container">
+          <div class="button-right track_shop_screen_tap_on_learn_more" ng-click="vm.onStartAccepting()" translate>More</div>
+        </div>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" translate>Are you a business owner?</div>
+          <div class="apl-card__subtitle multiline">
+            Start accepting payments easily with Bitcoin Cash today. We can show you how.
+          </div>
+        </div>
+      </div>       
+      
+    </div>
+    <h1 ng-if="vm.merchants.length &gt; 0">Buy with Bitcoin Cash</h1>
+    <div id="merchants" class="apl-list">
+      <div ng-repeat="merchant in vm.merchants track by $index">
+        <div id="{{merchant.id}}" class="item item-icon-left item-big-icon-left apl-list-item track_shop_screen_tap_on_standard_business" ng-click="vm.onMerchant($index)" >
+          <i class="icon big-icon-svg">
+            <img src="{{merchant.icon}}" />
+          </i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              {{merchant.name}}
+            </div>
+            <div class="apl-card__subtitle">
+              {{merchant.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

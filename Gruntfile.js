@@ -21,15 +21,15 @@ module.exports = function(grunt) {
         command: 'cordova prepare android && cordova build android --release',
       },
       build_ios_debug: {
-        command: 'cordova prepare ios && cordova build ios --debug',
+        command: 'cordova prepare ios && cordova build ios --debug --buildFlag="-UseModernBuildSystem=0"',
         options: {
           maxBuffer: 3200 * 1024
         }
       },
       build_ios_release: {
-        command: 'cordova prepare ios && cordova build ios --release',
+        command: 'cordova prepare ios && cordova build ios --release --buildFlag="-UseModernBuildSystem=0"',
         options: {
-          maxBuffer: 1600 * 1024
+          maxBuffer: 3200 * 1024
         }
       },
       chrome: {
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         command: 'node ./util/buildExternalServices.js'
       },
       get_nwjs_for_pkg: {
-        command: 'if [ ! -d ./cache/0.19.5-pkg/osx64/nwjs.app ]; then cd ./cache; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output nwjs.zip; unzip nwjs.zip; mkdir -p ./0.19.5-pkg/osx64; cp -R ./nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./0.19.5-pkg/osx64/; fi'
+        command: 'if [ ! -d ./cache/0.19.4/osx64/nwjs.app ]; then mkdir -p ./cache/0.19.4/osx64; curl https://dl.nwjs.io/v0.19.5-mas-beta/nwjs-mas-v0.19.5-osx-x64.zip --output ./cache/nwjs.zip; unzip ./cache/nwjs.zip -d ./cache; cp -R ./cache/nwjs-mas-v0.19.5-osx-x64/nwjs.app  ./cache/0.19.4/osx64/; fi'
       },
       log_android: {
         command: 'adb logcat | grep chromium',
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
       sign_android: {
         // When the build log outputs "Built the following apk(s):", it seems to need the filename to start with "android-release".
         // It looks like it simply lists all apk files starting with "android-release"
-        command: 'rm -f platforms/android/build/outputs/apk/android-release-signed-*.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/android-release-signed.apk  platforms/android/build/outputs/apk/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/android-release-signed.apk platforms/android/build/outputs/apk/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
+        command: 'rm -f platforms/android/build/outputs/apk/release/*-android-signed-aligned.apk; jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../bitcoin-com-release-key.jks -signedjar platforms/android/build/outputs/apk/release/android-release-signed.apk  platforms/android/build/outputs/apk/release/android-release-unsigned.apk bitcoin-com && zipalign -v 4 platforms/android/build/outputs/apk/release/android-release-signed.apk platforms/android/build/outputs/apk/release/bitcoin-com-wallet-<%= pkg.fullVersion %>-android-signed-aligned.apk',
         stdin: true,
       },
       sign_desktop_dist: {
@@ -105,7 +105,7 @@ module.exports = function(grunt) {
           'src/js/directives/*.js',
           'src/js/filters/*.js',
           'src/js/routes.js',
-          'src/js/services/*.js',
+          'src/js/services/**/*.js',
           'src/js/models/*.js',
           'src/js/controllers/**/*.js'
         ],
@@ -175,6 +175,7 @@ module.exports = function(grunt) {
       js: {
         src: [
           'src/js/app.js',
+          'src/js/generated/constants/*.js',
           'src/js/routes.js',
           'src/js/decorators/*.js',
 
@@ -187,8 +188,8 @@ module.exports = function(grunt) {
           'src/js/models/*.js',
           '!src/js/models/*.spec.js',
 
-          'src/js/services/*.js',
-          '!src/js/services/*.spec.js',
+          'src/js/services/**/*.js',
+          '!src/js/services/**/*.spec.js',
 
           'src/js/controllers/**/*.js',
           '!src/js/controllers/**/*.spec.js',
@@ -200,7 +201,8 @@ module.exports = function(grunt) {
           'src/js/trezor-url.js',
           'bower_components/trezor-connect/connect.js',
           'node_modules/bezier-easing/dist/bezier-easing.min.js',
-          'node_modules/cordova-plugin-qrscanner/dist/cordova-plugin-qrscanner-lib.min.js'
+          'node_modules/cordova-plugin-qrscanner-no-android/dist/cordova-plugin-qrscanner-lib.min.js',
+          'node_modules/cordova-plugin-camera-preview/www/CameraPreview.js'
         ],
         dest: 'www/js/app.js'
       }
@@ -242,6 +244,42 @@ module.exports = function(grunt) {
       },
     },
     copy: {
+      gen_constant_leanplum_dev: {
+        src: 'src/js/templates/constants/leanplum-config.constant.js',
+        dest: 'src/js/generated/constants/leanplum-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processLeanplumConfig(content, 'dev');
+          },
+        },
+      },
+      gen_constant_leanplum_prod: {
+        src: 'src/js/templates/constants/leanplum-config.constant.js',
+        dest: 'src/js/generated/constants/leanplum-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processLeanplumConfig(content, 'prod');
+          },
+        },
+      },
+      gen_constant_moonpay_dev: {
+        src: 'src/js/templates/constants/moonpay-config.constant.js',
+        dest: 'src/js/generated/constants/moonpay-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processMoonPayConfig(content, 'dev');
+          },
+        },
+      },
+      gen_constant_moonpay_prod: {
+        src: 'src/js/templates/constants/moonpay-config.constant.js',
+        dest: 'src/js/generated/constants/moonpay-config.constant.js',
+        options: {
+          process: function (content, srcpath) {
+            return processMoonPayConfig(content, 'prod');
+          },
+        },
+      },
       ionic_fonts: {
         expand: true,
         flatten: true,
@@ -289,6 +327,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',
@@ -313,6 +352,7 @@ module.exports = function(grunt) {
             'CFBundleShortVersionString': '<%= pkg.version %>',
             'CFBundleVersion': '<%= pkg.androidVersion %>',
             'LSApplicationCategoryType': 'public.app-category.finance',
+            'NSCameraUsageDescription': 'The camera is used to scan QR codes.',
             'CFBundleURLTypes': [
               {
                 'CFBundleURLName': 'URI Handler',
@@ -345,14 +385,13 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  grunt.registerTask('default', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
-  grunt.registerTask('prod', ['default', 'uglify']);
+  
+  grunt.registerTask('default', ['pre-dev', 'main']);
+  grunt.registerTask('main', ['nggettext_compile', 'exec:appConfig', 'exec:externalServices', 'browserify', 'sass', 'concat', 'copy:ionic_fonts', 'copy:ionic_js']);
+  grunt.registerTask('pre-dev', ['copy:gen_constant_leanplum_dev', 'copy:gen_constant_moonpay_dev']);
+  grunt.registerTask('prod', ['copy:gen_constant_leanplum_prod', 'copy:gen_constant_moonpay_prod', 'main', 'uglify']);
   grunt.registerTask('translate', ['nggettext_extract']);
   grunt.registerTask('chrome', ['default','exec:chrome']);
-  grunt.registerTask('wp', ['prod', 'exec:wp']);
-  grunt.registerTask('wp-copy', ['default', 'exec:wpcopy']);
-  grunt.registerTask('wp-init', ['default', 'exec:wpinit']);
   grunt.registerTask('cordovaclean', ['exec:cordovaclean']);
 
   // Build all
@@ -397,5 +436,69 @@ module.exports = function(grunt) {
   grunt.registerTask('sign-desktop', ['exec:sign_desktop_dist']);
 
   // Release desktop
-  grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']); 
+  grunt.registerTask('build-desktop-release', ['build-desktop', 'sign-desktop']);
+
+
+  function processLeanplumConfig(content, env) {
+    var leanplumConfig = {};
+    try {
+      leanplumConfig = grunt.file.readJSON('../wallet-configs/app-v1/leanplum-config.json');
+    } catch (e) {
+      // Without this, there is no clue on the console about what happened.
+      if (env === 'prod') {
+        console.error('Error reading JSON', e);
+        throw e;
+      } else { // Allow people to build if they don't care about Leanplum
+        console.warn('Failed to read Leanplum config JSON', e);
+        return content;
+      }
+    }
+
+    var leanplumForEnv = env === 'prod' ? leanplumConfig.prod : leanplumConfig.dev;
+    var appId = leanplumForEnv.appId;
+    var key = leanplumForEnv.key;
+    console.log('Leanplum env:    "' + env + '"');
+    console.log('Leanplum app ID: "' + appId + '"');
+    console.log('Leanplum key:    "' + key + '"');
+
+    var newContent = '// Generated\n' + content
+      .replace("appId: ''","appId: '" + appId + "'")
+      .replace("key: ''", "key: '" + key + "'");
+    return newContent;
+  }
+
+  function processMoonPayConfig(content, env) {
+    var moonPayConfig = {};
+    try {
+      moonPayConfig = grunt.file.readJSON('../wallet-configs/app-v1/moonpay-config.json');
+    } catch (e) {
+      // Without this, there is no clue on the console about what happened.
+      if (env === 'prod') {
+        console.error('Error reading JSON', e);
+        throw e;
+      } else { // Allow people to build if they don't care about MoonPay
+        console.warn('Failed to read MoonPay config JSON', e);
+        return content;
+      }
+    }
+
+    var moonPayForEnv = env === 'prod' ? moonPayConfig.prod : moonPayConfig.dev;
+    var baseUrl = moonPayForEnv.baseUrl;
+    var pubKey = moonPayForEnv.pubKey;
+    var secretKey = moonPayForEnv.secretKey;
+    var vgsIdentifier = moonPayForEnv.vgsIdentifier;
+    console.log('MoonPay env:            "' + env + '"');
+    console.log('MoonPay baseUrl:        "' + baseUrl + '"');
+    console.log('MoonPay pubKey:         "' + pubKey + '"');
+    console.log('MoonPay secretKey:      "' + secretKey + '"');
+    console.log('Moonpay VGS Identifier: "' + vgsIdentifier + '"');
+
+    var newContent = '// Generated\n' + content
+      .replace("baseUrl: ''","baseUrl: '" + baseUrl + "'")
+      .replace("pubKey: ''", "pubKey: '" + pubKey + "'")
+      .replace("secretKey: ''", "secretKey: '" + secretKey + "'")
+      .replace("vgsIdentifier: ''", "vgsIdentifier: '" + vgsIdentifier + "'")
+      .replace("env: ''", "env: '" + env + "'");
+    return newContent;
+  }
 };

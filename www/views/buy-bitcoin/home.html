@@ -1,0 +1,70 @@
+<ion-view id="tab-buy-bitcoin" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button track_buy_bitcoin_screen_close" ng-click="vm.goBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content class="apl">
+    <img class="intro" src="img/buy-bitcoin/buy-bitcoin.svg" />
+    <h1 class="center" translate>
+      Buy Bitcoin Cash (BCH)
+    </h1>
+    <p ng-if="vm.customer.dailyLimit > 0" class="center" translate>
+      You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month.
+    </p>
+    <p ng-if="vm.identityCheck && vm.identityCheck.result === 'rejected'" class="center" translate>
+      Your account verification was rejected.
+    </p>
+    <p ng-if="!vm.identityCheck && vm.customer.dailyLimit === 0" class="center" translate>
+      In order to purchase Bitcoin Cash, you are required to provide some personal information.
+    </p>
+    <div class="apl-button-container">
+      <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" 
+        ng-click="vm.didPushBuyInstantly()"
+        ng-if="vm.customer.dailyLimit > 0" 
+        translate>
+        Buy Bitcoin Cash
+      </div>
+      <div class="apl-button track_buy_bitcoin_tap_on_buy_instantly" 
+        ng-click="vm.didPushProvideInformation()"
+        ng-if="vm.customer.dailyLimit === 0 && !vm.identityCheck" 
+        ui-sref="tabs.buybitcoin-kyc-personal-info"
+        translate>
+        Provide my information
+      </div>
+    </div>
+    <div>
+      <h1 ng-show="vm.customer.dailyLimit > 0" translate>
+        Quick Links
+      </h1>
+      <div class="apl-list" ng-show="vm.customer.dailyLimit > 0">
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods"
+          ng-click="vm.onVerificationSelect()"
+          ng-if="(!vm.identityCheck) || (vm.identityCheck && vm.identityCheck.status !== 'completed') || (vm.identityCheck && vm.identityCheck.result === 'rejected')">
+          <p translate>Increase Purchase Limit</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods"
+          ng-click="vm.onBuyWithoutFees()">
+          <p translate>Buy Without Fees</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_payment_methods"
+          ui-sref="tabs.buybitcoin-paymentmethods">
+          <p translate>Payment Methods</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_tap_on_purchase_history"
+          ui-sref="tabs.buybitcoin-purchasehistory">
+          <p translate>Purchase History</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+    <div class="center-container">
+      <small class="center terms"><a class="track_buy_bitcoin_tap_on_terms_of_service" ng-click="vm.onTermsOfUse()" translate>Terms of Service</a> & <a class="track_buy_bitcoin_tap_on_privacy_policy" ng-click="vm.onPrivacyPolicy()" translate>Privacy Policy</a></small>
+    </div>
+  </ion-content>
+</ion-view>

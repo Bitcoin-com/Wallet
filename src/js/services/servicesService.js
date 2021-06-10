@@ -2,10 +2,10 @@
 angular.module('copayApp.services').factory('servicesService', function(configService, $log, lodash) {
   var root = {};
   var services = [{
-    name: 'shapeshift',
-    title: 'Shapeshift',
-    icon: 'icon-shapeshift',
-    href: 'https://shapeshift.io/'
+    name: 'sideshift',
+    title: 'SideShift AI',
+    icon: 'icon-sideshift',
+    sref: 'tabs.sideshift'
   }];
 
   root.register = function(serviceInfo) {

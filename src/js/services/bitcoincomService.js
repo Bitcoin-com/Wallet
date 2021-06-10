@@ -19,9 +19,9 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
 
   var cashGamesItem = {
     name: 'games',
-    title: gettextCatalog.getString('Bitcoin Cash Games'),
+    title: gettextCatalog.getString('Bitcoin Games'),
     icon: 'icon-games',
-    href: 'https://cashgames.bitcoin.com'
+    href: 'https://games.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os
   };
 
   var newsItem = {
@@ -29,13 +29,6 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     title: gettextCatalog.getString('News'),
     icon: 'icon-news',
     href: 'https://news.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=News'
-  };
-
-  var poolItem = {
-    name: 'pool',
-    title: gettextCatalog.getString('Mining Pool'),
-    icon: 'icon-mining',
-    href: 'https://pool.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Pool'
   };
 
   var toolsItem = {
@@ -57,6 +50,27 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
     title: gettextCatalog.getString('Free Bitcoin Cash'),
     icon: 'icon-faucet',
     href: 'https://free.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os + '&utm_campaign=Faucet'
+  };
+
+  var sideShiftItem = {
+    name: 'sideshift',
+    title: gettextCatalog.getString('Exchange between BTC and BCH'),
+    icon: 'icon-sideshift',
+    sref: 'tabs.sideshift'
+  };
+
+  var bchRedditItem = {
+    name: 'bchreddit',
+    title: gettextCatalog.getString('Bitcoin Cash Reddit'),
+    icon: 'icon-reddit-white',
+    href: 'http://reddit.com/r/btc'
+  };
+
+  var bitcoincomTwitterItem = {
+    name: 'bitcoincomTwitter',
+    title: gettextCatalog.getString('Bitcoin.com Twitter'),
+    icon: 'icon-twitter-white',
+    href: 'https://twitter.com/BTCTN'
   };
 
   var _getBitPay = function(endpoint) {
@@ -89,10 +103,12 @@ angular.module('copayApp.services').factory('bitcoincomService', function(gettex
       nextStepsService.register(cashGamesItem);
     }
     nextStepsService.register(newsItem);
-    nextStepsService.register(poolItem);
     nextStepsService.register(toolsItem);
     nextStepsService.register(priceChartItem);
     nextStepsService.register(faucetItem);
+    nextStepsService.register(sideShiftItem);
+    nextStepsService.register(bchRedditItem);
+    nextStepsService.register(bitcoincomTwitterItem);
   };
 
   register();

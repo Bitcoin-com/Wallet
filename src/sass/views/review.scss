@@ -1,5 +1,9 @@
 #view-review {
 
+  .header {
+    @include p3-green();
+  }
+
   slide-to-accept, slide-to-accept-success {
     margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
     margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
@@ -12,7 +16,7 @@
     position: absolute;
   }
 
-  .shapeshift-banner, .bitpay-banner, .egifter-banner {
+  .sideshift-banner, .bitpay-banner, .egifter-banner {
     box-shadow: none;
   }
 

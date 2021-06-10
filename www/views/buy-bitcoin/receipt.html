@@ -1,0 +1,107 @@
+<ion-view id="buy-bitcoin-receipt" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <h1 translate>
+      Receipt
+    </h1>
+    <p>{{ vm.createdTime | date:'medium' }}</p>
+    <h3 translate>
+      Status
+    </h3>
+    <p ng-if="vm.status == 'completed'" translate>Completed</p>
+    <p ng-if="vm.status == 'pending'" translate>Pending</p>
+    <p ng-if="vm.status == 'failed'" translate>Failed</p>
+    <p ng-if="vm.status == 'waitingAuthorization'" translate>Waiting for authorization</p>
+    <div>
+      <div class="apl-divider"></div>
+      <div class="apl-amount-totals">
+        <table>
+          <tr class="apl-amount-totals-item">
+            <td class="apl-amount-totals-title purchased" ng-if="vm.haveTxInfo"><formatted-amount value="{{vm.lineItems.bchQty}}" currency="{{vm.coin | uppercase}}"></formatted-amount> @ {{vm.rateEur | currency:'': 2}} EUR</td>
+            <td class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.cost | currency:'':2}} EUR</td>
+          </tr>
+          <tr class="apl-amount-totals-item">
+            <td class="apl-amount-totals-title" translate>Processing Fee</td>
+            <td class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.processingFee | currency:'':2}} EUR</td>
+          </tr>
+          <tr class="apl-amount-totals-item total">
+            <td class="apl-amount-totals-title" translate>Total</td>
+            <td class="apl-amount-totals-price" ng-if="vm.haveTxInfo">{{vm.lineItems.total | currency:'':2}} EUR</td>
+          </tr>
+        </table>
+      </div>
+      <div class="apl-divider"></div>
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title" ng-if="vm.status !== 'completed'" translate>Depositing to</div>
+      <div class="apl-list-title" ng-if="vm.status === 'completed'" translate>Deposited to</div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ui-sref="tabs.wallet({ walletId: '{{vm.wallet.id}}' })" ng-if="vm.wallet">
+        <i class="icon big-icon-svg">
+          <img src="img/icon-wallet.svg" ng-class="{'wallet-background-color-default': !vm.wallet.color}" ng-style="{'background-color': vm.wallet.color}" class="bg"/>
+        </i>
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">
+            {{vm.wallet.name}}
+          </div>
+          <div class="apl-card__subtitle">
+            <wallet-balance
+              display-as-fiat="{{vm.displayBalanceAsFiat}}"
+              wallet-balance-hidden="{{vm.wallet.balanceHidden}}"
+              wallet-coin="{{vm.wallet.coin}}"
+              wallet-status="{{vm.wallet.status}}"
+              wallet-cached-balance="{{vm.wallet.cachedBalance}}"
+              wallet-cached-balance-updated-on="{{vm.wallet.cachedBalanceUpdatedOn}}"
+              wallet-cached-status="{{vm.wallet.cachedStatus}}"
+              total-balance-sat="{{vm.wallet.status.totalBalanceSat}}"
+              />
+          </div>
+        </div>
+      </div>
+      <div class="item item-icon-left apl-list-item" ng-if="!vm.wallet">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">
+            {{vm.walletAddress}}
+          </div>
+          <div class="apl-card__subtitle"></div>
+        </div>  
+      </div>  
+    </div>
+    <div class="apl-list">
+      <div class="apl-list-title" translate>
+        Payment Method
+      </div>
+      <div ng-if="vm.paymentMethod">
+        <payment-method-item pm="vm.paymentMethod"></payment-method-item>
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodLoading">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">&nbsp;</div>
+          <div class="apl-card__subtitle" translate>
+            Loading...
+          </div>
+        </div>
+      </div>
+      <div class="item item-icon-left item-big-icon-left apl-list-item" ng-if="vm.paymentMethodError">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title" translate>Unknown</div>
+          <div class="apl-card__subtitle" translate>{{vm.paymentMethodError}}</div>
+        </div>
+      </div>
+      <div class="apl-list" ng-if="vm.status == 'completed'">
+        <a class="item item-icon-right apl-list-item" ng-click="vm.onViewOnBlockchain()">
+          <p translate>See on Blockchain</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item " ng-click="vm.onShareTransaction()">
+          <p translate>Share this Transaction</p>
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

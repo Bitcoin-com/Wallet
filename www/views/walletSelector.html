@@ -1,10 +1,10 @@
 <ion-view id="wallet-origin-destination" hide-tabs>
-  <ion-nav-bar class="bar-royal">
+  <ion-nav-bar>
     <ion-nav-title>{{sendFlowTitle}}</ion-nav-title>
     <ion-nav-back-button ng-click="goBack()"></ion-nav-back-button>
   </ion-nav-bar>
   <ion-content>
-    <div ng-if="thirdParty && thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div ng-if="thirdParty && thirdParty.id === 'sideshift'" ng-include="'views/thirdparty/sideshift-header.html'"></div>
     <div ng-if="thirdParty && thirdParty.id === 'bip70' && thirdParty.name === 'BitPay'" ng-include="'views/thirdparty/bitpay-header.html'"></div>
     <div ng-if="thirdParty && thirdParty.id === 'bip70' && thirdParty.name === 'eGifter'" ng-include="'views/thirdparty/egifter-header.html'"></div>
     <div class="header--request" ng-if="isPaymentRequest">

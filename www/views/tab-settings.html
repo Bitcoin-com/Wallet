@@ -1,6 +1,7 @@
 <ion-view id="tab-settings" class="settings" show-tabs>
-  <ion-nav-bar class="bar-royal">
+  <ion-nav-bar>
     <ion-nav-title>{{'Settings' | translate}}</ion-nav-title>
+    <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
 
   <ion-content>
@@ -98,22 +99,6 @@
           {{method}}
         </span>
         <i class="icon bp-arrow-right"></i>
-      </a>
-
-      <div class="item item-divider" ng-show="walletsBch[0]">{{'Bitcoin Cash (BCH)' | translate}}</div>
-
-      <a class="item item-icon-left item-icon-right" href
-           ui-sref="tabs.preferences({'walletId': wallet.id})"
-           ng-repeat="wallet in walletsBch track by $index">
-        <span ng-include="'views/includes/walletListSettings.html'"></span>
-      </a>
-
-      <div class="item item-divider" ng-show="walletsBtc[0]">{{'Bitcoin Core (BTC)' | translate}}</div>
-
-      <a class="item item-icon-left item-icon-right" href
-           ui-sref="tabs.preferences({'walletId': wallet.id})"
-           ng-repeat="wallet in walletsBtc track by $index">
-        <span ng-include="'views/includes/walletListSettings.html'"></span>
       </a>
 
       <div class="item item-divider" ng-show="bitpayAccounts || buyAndSellServices[0]">{{'Integrations' | translate}}</div>

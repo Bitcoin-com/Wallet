@@ -6,33 +6,9 @@ angular
   .module('bitcoincom.controllers')
   .controller('amountController', amountController);
 
-function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, shapeshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
+function amountController(configService, $filter, gettextCatalog, $ionicHistory, $ionicModal, $ionicScrollDelegate, lodash, $log, nodeWebkitService, rateService, $scope, $state, $timeout, sendFlowService, sideshiftService, txFormatService, platformInfo, ongoingProcess, popupService, profileService, walletService, $window) {
   var vm = this;
-
-  // Variables
-  vm.allowSend = false;
-  vm.altCurrencyList = [];
-  vm.alternativeAmount = '';
-  vm.alternativeUnit = '';
-  vm.amount = '0';
-  vm.availableFunds = '';
-  vm.canSendAllAvailableFunds = true;
-  vm.errorMessage = '';
-  // Use insufficient for logic, as when the amount is invalid, funds being
-  // either sufficent or insufficient doesn't make sense.
-  vm.fundsAreInsufficient = false;
-  vm.globalResult = '';
-  vm.isRequestingSpecificAmount = false;
-  vm.listComplete = false;
-  vm.lastUsedPopularList = [];
-  vm.maxAmount = 0;
-  vm.minAmount = 0;
-  vm.sendableFunds = '';
-  vm.showSendMaxButton = false;
-  vm.showSendLimitMaxButton = false;
-  vm.thirdParty = false;
-  vm.unit = '';
-
+  
   // Functions
   vm.changeUnit = changeUnit;
   vm.close = close;
@@ -46,7 +22,6 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   vm.removeDigit = removeDigit;
   vm.save = save;
   vm.sendMax = sendMax;
-  
 
   $scope.$on('$ionicView.beforeEnter', onBeforeEnter);
   $scope.$on('$ionicView.leave', onLeave);
@@ -74,13 +49,65 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   var unitIndex = 0;
   var unitToSatoshi;
   var useSendMax = false;
+  var useSendLimitedMax = false;
   var walletSpendableAmount = {
     crypto: '',
     satoshis: null
   };
 
-  function onLeave() {
-    angular.element($window).off('keydown');
+  function initVariables() {
+    // Private variables
+    altCurrencyModal = null;
+    altUnitIndex = 0;
+    availableUnits = [];
+    canSendMax = true;
+    fiatCode;
+    isNW = platformInfo.isNW;
+    isAndroid = platformInfo.isAndroid;
+    isIos = platformInfo.isIOS;
+    lastUsedAltCurrencyList = [];
+    passthroughParams = {};
+    satToUnit;
+    transactionSendableAmount = {
+      crypto: '',
+      satoshis: null
+    };
+    unitDecimals;
+    unitIndex = 0;
+    unitToSatoshi;
+    useSendMax = false;
+    useSendLimitedMax = false;
+    walletSpendableAmount = {
+      crypto: '',
+      satoshis: null
+    };
+
+    // Public variables
+    vm.allowSend = false;
+    vm.altCurrencyList = [];
+    vm.alternativeAmount = '';
+    vm.alternativeUnit = '';
+    vm.amount = '0';
+    vm.availableFunds = '';
+    vm.balanceHidden = true;
+    vm.canSendAllAvailableFunds = true;
+    vm.errorMessage = '';
+    // Use insufficient for logic, as when the amount is invalid, funds being
+    // either sufficent or insufficient doesn't make sense.
+    vm.fundsAreInsufficient = false;
+    vm.globalResult = '';
+    vm.isRequestingSpecificAmount = false;
+    vm.listComplete = false;
+    vm.lastUsedPopularList = [];
+    vm.maxAmount = 0;
+    vm.minAmount = 0;
+    vm.minAmountFormatted = '';
+    vm.maxAmountFormatted = '';
+    vm.sendableFunds = '';
+    vm.showSendMaxButton = false;
+    vm.showSendLimitMaxButton = false;
+    vm.thirdParty = null;
+    vm.unit = '';
   }
 
   function onBeforeEnter(event, data) {
@@ -88,11 +115,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       sendFlowService.state.pop();
     }
     
+
+    // Init before entering on this screen
+    initVariables();
     initCurrencies();
+    // Then start
 
     passthroughParams = sendFlowService.state.getClone();
     console.log('amount onBeforeEnter after back sendflow ', passthroughParams);
 
+
+    // Init thirdParty, should be done for all the variable
+    vm.thirdParty = null;
+    
     vm.fromWalletId = passthroughParams.fromWalletId;
     vm.toWalletId = passthroughParams.toWalletId;
     vm.minAmount = parseFloat(passthroughParams.minAmount);
@@ -206,24 +241,29 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
       if (passthroughParams.fromWalletId) {
         var fromWallet = profileService.getWallet(passthroughParams.fromWalletId);
+        vm.balanceHidden = fromWallet.balanceHidden;
         updateAvailableFundsFromWallet(fromWallet);
       }
 
       if (passthroughParams.thirdParty) {
         vm.thirdParty = passthroughParams.thirdParty; // Parse stringified JSON-object
         if (vm.thirdParty) {
-          initShapeshift();
+          initSideshift();
         }
       }
     }
+  }
+
+  function onLeave() {
+    angular.element($window).off('keydown');
   }
 
   function goBack() {
     sendFlowService.router.goBack();
   }
 
-  function initShapeshift() {
-    if (vm.thirdParty.id === 'shapeshift') {
+  function initSideshift() {
+    if (vm.thirdParty.id === 'sideshift') {
       vm.thirdParty.data = vm.thirdParty.data || {};
 
       vm.fromWallet = profileService.getWallet(vm.fromWalletId);
@@ -233,18 +273,19 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
       vm.showSendLimitMaxButton = false;
       vm.canSendAllAvailableFunds = false;
 
-      ongoingProcess.set('connectingShapeshift', true);
-      shapeshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
-        ongoingProcess.set('connectingShapeshift', false);
+      ongoingProcess.set('connectingSideshift', true);
+      sideshiftService.getMarketData(vm.fromWallet.coin, vm.toWallet.coin, function onMarketData(err, data) {
+        ongoingProcess.set('connectingSideshift', false);
         if (err) {
           // Error stop here
-          popupService.showAlert(gettextCatalog.getString('Shapeshift Error'), err.message, function () {
+          popupService.showAlert(gettextCatalog.getString('SideShift AI Error'), err.message, function () {
             goBack();
           });
         } else {
           vm.thirdParty.data.minAmount = vm.minAmount = parseFloat(data.minimum);
           vm.thirdParty.data.maxAmount = vm.maxAmount = parseFloat(data.maxLimit);
           setMaximumButtonFromWallet(vm.fromWallet);
+          updateMinAndMaxAmountsIfNeeded();
         }
       });
     }
@@ -265,7 +306,11 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
   }
 
   function sendMax() {
-    if (canSendMax) {
+    if (vm.showSendLimitMaxButton) {
+      useSendLimitedMax = true
+      finish();
+    }
+    else if (canSendMax) {
       useSendMax = true;
       finish();
     } else {
@@ -445,7 +490,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     if (vm.fundsAreInsufficient) {
       vm.errorMessage = gettextCatalog.getString('Not enough available funds');
 
-    } else if (amountInCrypto && vm.thirdParty && vm.thirdParty.id === 'shapeshift') {
+    } else if (amountInCrypto && vm.thirdParty && vm.thirdParty.id === 'sideshift') {
       if (amountInCrypto < vm.minAmount) {
         vm.errorMessage = gettextCatalog.getString('Amount is below minimum');
 
@@ -502,13 +547,13 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
 
     var satoshis = 0;
     if (unit.isFiat) {
-      satoshis = Math.floor(fromFiat(uiAmount) * unitToSatoshi);
+      satoshis = Math.round(fromFiat(uiAmount) * unitToSatoshi);
     } else {
-      satoshis = Math.floor(uiAmount * unitToSatoshi);
+      satoshis = Math.round(uiAmount * unitToSatoshi);
     }
 
     var confirmData = {
-      amount: (useSendMax && canSendMax) ? undefined : satoshis,
+      amount: (useSendLimitedMax) ? transactionSendableAmount.satoshis : satoshis,
       displayAddress: passthroughParams.displayAddress,
       fromWalletId: passthroughParams.fromWalletId,
       sendMax: useSendMax,
@@ -656,6 +701,7 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
           }
         });
       }
+      updateMinAndMaxAmountsIfNeeded();
       updateMaximumButtonIfNeeded();
     }
   }
@@ -695,6 +741,31 @@ function amountController(configService, $filter, gettextCatalog, $ionicHistory,
     }
 
     setMaximumButtonFromWallet(wallet);
+  }
+
+  function updateMinAndMaxAmountsIfNeeded() {
+    if(vm.minAmount || vm.maxAmount) {
+      if (availableUnits[unitIndex].isFiat) {
+        var coin = availableUnits[altUnitIndex].id;
+        txFormatService.formatAlternativeStr(coin, vm.minAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              vm.minAmountFormatted = formatted;
+            });
+          }
+        });
+        txFormatService.formatAlternativeStr(coin, vm.maxAmount * unitToSatoshi, function formatCallback(formatted){
+          if (formatted) {
+            $scope.$apply(function onApply() {
+              vm.maxAmountFormatted = formatted;
+            });
+          }
+        });
+      } else {
+        vm.minAmountFormatted = vm.minAmount.toString();
+        vm.maxAmountFormatted = vm.maxAmount.toString();
+      }
+    }
   }
 
   function updateMaximumButtonIfNeeded() {

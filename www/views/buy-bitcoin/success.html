@@ -1,0 +1,49 @@
+<ion-view id="buy-bitcoin-success" class="apl" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="secondary">
+      <button class="button apl-close-button" ng-click="vm.onDone()">
+        <span translate>Done</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="apl">
+      <img id="checkmark" src="img/buy-bitcoin/checkmark.svg"/>
+      <h1 ng-if="vm.status != 'failed'" translate>Success!</h1>
+      <h1 ng-if="vm.status == 'failed'" translate>Failed</h1>
+      <div class="clear"></div>
+      <p class="message" ng-if="vm.status == 'completed'" translate>Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet.</p>
+      <p class="message" ng-if="vm.status == 'pending'" translate>Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon.</p>
+      <p class="message" ng-if="vm.status == 'failed'" translate>Your order has failed.</p>
+      <p class="message" ng-if="vm.status == 'failed' && vm.failureReason" translate>{{vm.failureReason}}</p>
+      <p class="message" ng-if="vm.status == 'waitingAuthorization'" translate>Your order is waiting for authorization.</p>
+      <div id="amount-container" ng-if="vm.quoteCurrencyAmount" >
+        <formatted-amount class="crypto-amount" value="{{vm.quoteCurrencyAmount}}" currency="{{vm.coin | uppercase}}"></formatted-amount>
+      </div>
+      <div id="amount-container" >
+        <formatted-amount class="fiat-amount" value="{{vm.purchasedAmount}}" currency="{{vm.purchasedCurrency}}"></formatted-amount>
+      </div>
+      <div class="apl-list">
+        <a class="item item-icon-right apl-list-item unready track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet" ng-if="!vm.walletName">
+          <p ng-if="!vm.walletName" translate>Go to Wallet</p>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_wallet" ng-click="vm.onGoToWallet()" ng-if="vm.walletName">
+            <p ng-if="vm.walletName" translate>Go to {{vm.walletName}}</p>
+            <i class="icon bp-arrow-right"></i>
+          </a>                                                                                                  
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_receipt" ng-click="vm.onSeeReceipt()">
+            <p translate>See Receipt</p>
+            <i class="icon bp-arrow-right"></i>
+          </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_see_purchase_history" ui-sref="tabs.buybitcoin-purchasehistory">
+          <p translate>Purchase History</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+        <a class="item item-icon-right apl-list-item track_buy_bitcoin_purchase_success_screen_tap_on_make_another_purchase" ng-click="vm.onMakeAnotherPurchase()">
+          <p translate>Make Another Purchase</p>
+          <i class="icon bp-arrow-right"></i>
+        </a>
+      </div>
+  </div>
+  </ion-content>
+</ion-view>

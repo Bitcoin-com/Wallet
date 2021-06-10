@@ -1,0 +1,4641 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: bitcoincom-wallet\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: bitcoincom-wallet\n"
+"X-Crowdin-Language: bg\n"
+"X-Crowdin-File: template.pot\n"
+"Last-Translator: emilold\n"
+"Language-Team: Bulgarian\n"
+"Language: bg\n"
+"PO-Revision-Date: 2019-06-04 08:09\n"
+
+#: www/views/modals/paypro.html:34
+msgid "(Trusted)"
+msgstr "(Доверени)"
+
+#: www/views/includes/txp.html:23
+#: www/views/includes/walletHistory.html:64
+msgid "(possible double spend)"
+msgstr "(възможно е двойно харчене)"
+
+#: www/views/modals/txp-details.html:159
+msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
+msgstr "Предложение за плащане може да бъде изтрито ако 1) Вие сте създателя и друг съсобственик не е подписал, или 2) 24 часа са минали от създаването на предложението."
+
+#: www/views/tx-details.html:82
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "— {{vm.btx.feeRateStr}} транзакции"
+
+#: www/views/modals/txp-details.html:102
+msgid "- {{tx.feeRateStr}} of the transaction"
+msgstr "- {{tx.feeRateStr}} от транзакцията"
+
+#: www/views/feedback/rateApp.html:7
+msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "Оценка с 5 звезди ще помогне на {{appName}} да достигне повече ръце, а повече потребители означава че повече ресурси ще бъдат заделени за програмата!"
+
+#: www/views/mercadoLibre.html:18
+#: www/views/mercadoLibre.html:40
+msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
+msgstr "Могат да бъдат използвани <b>Само</b>за Меркадо Livre (Бразилия)"
+
+#: src/js/controllers/feedback/send.js:27
+#: www/views/feedback/complete.html:21
+msgid "A member of the team will review your feedback as soon as possible."
+msgstr "Член на екипа ще разгледа вашите препоръки възможно най-скоро."
+
+#: src/js/controllers/confirm.js:401
+msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
+msgstr "Общо {{amountAboveMaxSizeStr}} бяха изключени. Превишен е максималният размер за транзакция."
+
+#: src/js/controllers/confirm.js:395
+msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
+msgstr "Общо {{amountBelowFeeStr}} бяха изключени. Тези средства идват от инпути по-малки от мрежовата таксата."
+
+#: src/js/controllers/preferencesAbout.js:6
+#: www/views/tab-settings.html:156
+msgid "About"
+msgstr "Относно"
+
+#: src/js/controllers/modals/txpDetails.js:62
+#: src/js/controllers/tx-details.js:79
+msgid "Accepted"
+msgstr "Прието"
+
+#: www/views/preferencesInformation.html:72
+msgid "Account"
+msgstr "Сметка"
+
+#: www/views/join.html:72
+#: www/views/tab-create-personal.html:45
+#: www/views/tab-create-shared.html:74
+#: www/views/tab-import-hardware.html:19
+msgid "Account Number"
+msgstr "Номер на сметка"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "Незабавни транзакции с ниски такси"
+
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr "Недостатъчно средства"
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr "Промяна на валута"
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr "Налични средства"
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr "Използвай всички налични средства"
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr "Напред"
+
+#: www/views/preferencesBitpayServices.html:23
+msgid "Accounts"
+msgstr "Сметки"
+
+#: www/views/bitpayCard.html:56
+msgid "Activity"
+msgstr "Дейност"
+
+#: src/js/services/bitpayAccountService.js:83
+msgid "Add Account"
+msgstr "Добавяне на акаунт"
+
+#: src/js/services/bitpayAccountService.js:69
+msgid "Add BitPay Account?"
+msgstr "Добавяне на BitPay акаунт?"
+
+#: www/views/addressbook.add.html:4
+#: www/views/addressbook.html:22
+msgid "Add Contact"
+msgstr "Добави контакт"
+
+#: www/views/bitpayCard.html:28
+msgid "Add Funds"
+msgstr "Добави Средства"
+
+#: www/views/confirm.html:94
+msgid "Add Memo"
+msgstr "Добави Бележка"
+
+#: www/views/join.html:87
+#: www/views/tab-create-personal.html:59
+#: www/views/tab-create-shared.html:88
+msgid "Add a password"
+msgstr "Добави парола"
+
+#: www/views/includes/accountSelector.html:27
+msgid "Add account"
+msgstr "Добавяне на акаунт"
+
+#: www/views/join.html:90
+#: www/views/tab-create-personal.html:62
+#: www/views/tab-create-shared.html:91
+msgid "Add an optional password to secure the recovery phrase"
+msgstr "Добавяне на опционална парола за предпазване на възстановителната фраза"
+
+#: www/views/includes/incomingDataMenu.html:41
+msgid "Add as a contact"
+msgstr "Добави като контакт"
+
+#: src/js/controllers/confirm.js:424
+msgid "Add description"
+msgstr "Добави описание"
+
+#: www/views/topup.html:6
+msgid "Add funds"
+msgstr "Добави средства"
+
+#: src/js/services/bitpayAccountService.js:78
+msgid "Add this BitPay account ({{email}})?"
+msgstr "Добави този BitPay акаунт ({{email}})?"
+
+#: www/views/add.html:3
+msgid "Add wallet"
+msgstr "Добави портфейл"
+
+#: www/views/addressbook.view.html:26
+#: www/views/customAmount.html:28
+#: www/views/modals/paypro.html:24
+msgid "Address"
+msgstr "Адрес"
+
+#: www/views/addressbook.html:6
+#: www/views/tab-settings.html:13
+msgid "Address Book"
+msgstr "Адресна книга"
+
+#: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
+msgid "Address Type"
+msgstr "Тип на Адреса"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Cash Адрес"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Legacy"
+
+#: www/views/addresses.html:64
+msgid "Addresses With Balance"
+msgstr "Адреси с Баланс"
+
+#: www/views/tab-settings.html:149
+msgid "Advanced"
+msgstr "За напреднали"
+
+#: www/views/advancedSettings.html:3
+msgid "Advanced Settings"
+msgstr "Настройки за Напреднали"
+
+#: www/views/bitpayCard.html:62
+msgid "All"
+msgstr "Всички"
+
+#: www/views/allAddresses.html:3
+msgid "All Addresses"
+msgstr "Всички Aдреси"
+
+#: www/views/modals/wallet-balance.html:18
+msgid "All of your bitcoin wallet balance may not be available for immediate spending."
+msgstr "Средствата от биткойн портфейлите може да не са налични за незабавно харчене."
+
+#: www/views/tab-receive.html:25
+msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgstr "Всички подписващи устройства трябва да бъдат добавени към тази мултисиг сметка, преди биткойн адреса да е създаден."
+
+#: www/views/tab-scan.html:21
+msgid "Allow Camera Access"
+msgstr "Позволи достъп до камерата"
+
+#: www/views/onboarding/notifications.html:7
+msgid "Allow notifications"
+msgstr "Позволи нотификации"
+
+#: www/views/onboarding/disclaimer.html:14
+msgid "Almost done! Let's review."
+msgstr "Почти готови! Нека да разгледаме."
+
+#: www/views/preferencesAltCurrency.html:4
+#: www/views/tab-settings.html:79
+msgid "Alternative Currency"
+msgstr "Алтернативна валута"
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr "Цена показване"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr "Държавна Валута"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr "Криптовалута"
+
+#: src/js/controllers/buyAmazon.js:98
+msgid "Amazon.com is not available at this moment. Please try back later."
+msgstr "Amazon.com не е налична в този момент. Моля, опитайте отново по-късно."
+
+#: www/views/amount.html:44
+#: www/views/customAmount.html:34
+#: www/views/includes/output.html:7
+msgid "Amount"
+msgstr "Сума"
+
+#: src/js/services/bwcError.js:110
+msgid "Amount below minimum allowed"
+msgstr "Сума под минималната разрешена стойност"
+
+#: src/js/controllers/confirm.js:216
+msgid "Amount too big"
+msgstr "Твърде голяма сума"
+
+#: www/views/includes/walletHistory.html:31
+msgid "Amount too low to spend"
+msgstr "Сумата е твърде ниска за да бъде похарчена"
+
+#: src/js/controllers/tab-home.js:147
+msgid "An update to this app is available. For your security, please update to the latest version."
+msgstr "Има налична актуализация за тази програма. За вашата сигурност моля обновете до последната версия."
+
+#: www/views/backupWarning.html:14
+msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgstr "Всеки който има резервната ви фраза може да достъпи и похарчи вашия биткойн."
+
+#: www/views/addresses.html:94
+msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgstr "Приблизителна Bitcoin такса за изпращане (с нормален приоритет)"
+
+#: www/views/backupWarning.html:10
+msgid "Are you being watched?"
+msgstr "Наблюдават ли ви?"
+
+#: src/js/controllers/preferencesExternal.js:15
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgstr "Наблюдават ли ви? Всеки който има вашата резервна фраза може да достъпи и похарчи вашия биткойн."
+
+#: src/js/controllers/copayers.js:56
+msgid "Are you sure you want to cancel and delete this wallet?"
+msgstr "Наистина ли искате да се откажете и да изтриете този портфейл?"
+
+#: src/js/controllers/addressbookView.js:37
+msgid "Are you sure you want to delete this contact?"
+msgstr "Наистина ли искате да изтриете този контакт?"
+
+#: src/js/controllers/preferencesDelete.js:25
+msgid "Are you sure you want to delete this wallet?"
+msgstr "Наистина ли искате да изтриете този портфейл?"
+
+#: src/js/controllers/modals/txpDetails.js:154
+msgid "Are you sure you want to reject this transaction?"
+msgstr "Наистина ли искате да откажете тази транзакция?"
+
+#: src/js/controllers/modals/txpDetails.js:171
+msgid "Are you sure you want to remove this transaction?"
+msgstr "Наистина ли искате да премахнете тази транзакция?"
+
+#: src/js/controllers/onboarding/backupRequest.js:23
+msgid "Are you sure you want to skip it?"
+msgstr "Наистина ли искате да пропуснете това?"
+
+#: www/views/modals/bitpay-card-confirmation.html:4
+msgid "Are you sure you would like to log out of your BitPay Card account?"
+msgstr "Наистина ли искате да излезете от вашия BitPay Card акаунт?"
+
+#: src/js/controllers/preferencesBitpayCard.js:7
+#: src/js/controllers/preferencesBitpayServices.js:20
+msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
+msgstr "Наистина ли искате да премахнете вашата BitPay Card ({{lastFourDigits}}) от това устройство?"
+
+#: www/views/includes/walletInfo.html:10
+msgid "Auditable"
+msgstr "Проверяеми"
+
+#: www/views/modals/wallet-balance.html:42
+msgid "Available"
+msgstr "Наличност"
+
+#: www/views/includes/available-balance.html:3
+msgid "Available Balance"
+msgstr "Наличен Баланс"
+
+#: www/views/modals/chooseFeeLevel.html:24
+#: www/views/preferencesFee.html:15
+msgid "Average confirmation time"
+msgstr "Средно време за потвърждение"
+
+#: www/views/join.html:143
+#: www/views/tab-create-personal.html:113
+#: www/views/tab-create-shared.html:142
+#: www/views/tab-import-phrase.html:51
+msgid "BIP32 path for address derivation"
+msgstr "BIP32 път за адресна деривация"
+
+#: www/views/cashScan.html:25
+msgid "BTC wallets"
+msgstr "BTC портфейли"
+
+#: www/views/preferences.html:34
+msgid "Backup"
+msgstr "Резервно Копие"
+
+#: www/views/includes/backupNeededPopup.html:7
+msgid "Backup Needed"
+msgstr "Необходимо е Резервно Копие"
+
+#: src/js/controllers/lockSetup.js:87
+msgid "Backup all livenet wallets before using this function"
+msgstr "Направете резервни копия на портфейлите си преди да ползвате тази функция"
+
+#: src/js/controllers/cashScan.js:64
+#: www/views/includes/walletListSettings.html:12
+#: www/views/preferences.html:36
+msgid "Backup needed"
+msgstr "Необходимо е резервно копие"
+
+#: www/views/includes/backupNeededPopup.html:9
+msgid "Backup now"
+msgstr "Направи резервно копие"
+
+#: www/views/onboarding/backupRequest.html:11
+#: www/views/tab-export-file.html:89
+msgid "Backup wallet"
+msgstr "Създаване на резервно копие"
+
+#: src/js/controllers/lockSetup.js:84
+msgid "Backup your wallet before using this function"
+msgstr "Направете резервно копие на портфейла преди да ползвате тази функция"
+
+#: src/js/services/profileService.js:446
+msgid "Bad wallet invitation"
+msgstr "Невалидна портфейл покана"
+
+#: www/views/preferencesInformation.html:102
+msgid "Balance By Address"
+msgstr "Баланс по Адрес"
+
+#: www/views/includes/confirmBackupPopup.html:7
+msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
+msgstr "Не забравяйте да запазите възстановителната си фраза на сигурно място. Ако програмата бъде изтрита, парите ви не могат да бъдат възстановени без нея."
+
+#: www/views/preferencesBitpayServices.html:9
+msgid "BitPay Visa&reg; Cards"
+msgstr "BitPay Visa&reg; карти"
+
+#: www/views/addressbook.add.html:38
+#: www/views/includes/incomingDataMenu.html:29
+msgid "Bitcoin Address"
+msgstr "Bitcoin адрес"
+
+#: www/views/cashScan.html:4
+msgid "Bitcoin Cash (BCH) Balances"
+msgstr "Bitcoin Cash (BCH) Баланси"
+
+#: www/views/preferencesCash.html:3
+#: www/views/tab-settings.html:47
+msgid "Bitcoin Cash Support"
+msgstr "Bitcoin Cash Поддръжка"
+
+#: www/views/tab-home.html:98
+#: www/views/tab-settings.html:115
+msgid "Bitcoin Cash Wallets"
+msgstr "Bitcoin Cash Портфейли"
+
+#: www/views/modals/chooseFeeLevel.html:4
+#: www/views/preferencesFee.html:4
+#: www/views/tab-settings.html:90
+msgid "Bitcoin Network Fee Policy"
+msgstr "Политика за Bitcoin такси"
+
+#: www/views/tab-home.html:83
+#: www/views/tab-settings.html:107
+msgid "Bitcoin Core Wallets"
+msgstr "Bitcoin Core Портфейли"
+
+#: src/js/services/incomingData.js:151
+msgid "Bitcoin cash Payment"
+msgstr "Bitcoin Cash Плащане"
+
+#: www/views/onboarding/tour.html:31
+msgid "Bitcoin is a currency."
+msgstr "Bitcoin е валута."
+
+#: www/views/onboarding/disclaimer.html:15
+msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
+msgstr "Bitcoin е различен &ndash; не може да бъде безопасно съхраняван в банка или уеб сървър."
+
+#: www/views/onboarding/tour.html:18
+msgid "Bitcoin is secure,<br>digital money."
+msgstr "Bitcoin е надежна, <br>дигитални валута."
+
+#: www/views/preferencesFee.html:11
+msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgstr "Bitcoin транзакциите включват такса събирана от майнърите в мрежата."
+
+#: www/views/buyAmazon.html:108
+msgid "Bought {{amountUnitStr}}"
+msgstr "Купени {{amountUnitStr}}"
+
+#: www/views/modals/txp-details.html:36
+msgid "Broadcast Payment"
+msgstr "Излъчване на Плащане"
+
+#: src/js/controllers/modals/txpDetails.js:64
+#: src/js/controllers/tx-details.js:81
+msgid "Broadcasted"
+msgstr "Излъчено"
+
+#: src/js/services/onGoingProcess.js:11
+msgid "Broadcasting transaction"
+msgstr "Транзакцията се излъчва"
+
+#: www/views/unsupported.html:6
+msgid "Browser unsupported"
+msgstr "Неподдържан браузър"
+
+#: www/views/buyAmazon.html:5
+#: www/views/buyMercadoLibre.html:6
+msgid "Buy"
+msgstr "Купи"
+
+#: www/views/includes/buyAndSellCard.html:3
+msgid "Buy &amp; Sell Bitcoin"
+msgstr "Купи &amp; Продай Bitcoin"
+
+#: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
+msgid "Buy Bitcoin"
+msgstr "Купи Bitcoin"
+
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Купи или Продай Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Свързване с Ексчейндж"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Купи или продай bitcoin директно от портфейла си, свързвайки своите акаунти за ексчейндж."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Купи Bitcoin с Kредитна Kарта"
+
+#: www/views/mercadoLibre.html:22
+#: www/views/mercadoLibre.html:50
+msgid "Buy a Gift Card"
+msgstr "Купи Подаръчна Карта"
+
+#: src/js/controllers/buyAmazon.js:334
+msgid "Buy from"
+msgstr "Купи от"
+
+#: src/js/services/onGoingProcess.js:40
+msgid "Buying Bitcoin..."
+msgstr "Купуване на Bitcoin..."
+
+#: src/js/services/onGoingProcess.js:12
+msgid "Calculating fee"
+msgstr "Изчисляване на такса"
+
+#: src/js/controllers/buyAmazon.js:313
+#: src/js/controllers/buyMercadoLibre.js:307
+#: src/js/controllers/confirm.js:550
+#: src/js/controllers/topup.js:287
+#: src/js/services/incomingData.js:154
+#: src/js/services/popupService.js:62
+#: src/js/services/popupService.js:73
+#: www/views/addressbook.add.html:10
+#: www/views/feedback/send.html:5
+#: www/views/includes/incomingDataMenu.html:22
+#: www/views/includes/incomingDataMenu.html:54
+#: www/views/includes/incomingDataMenu.html:73
+#: www/views/includes/incomingDataMenu.html:97
+#: www/views/includes/note.html:6
+#: www/views/modals/bitpay-card-confirmation.html:8
+#: www/views/modals/confirmation.html:13
+msgid "Cancel"
+msgstr "Отказ"
+
+#: www/views/copayers.html:36
+msgid "Cancel invitation"
+msgstr "Отмяна на покана"
+
+#: src/js/controllers/onboarding/tour.js:52
+msgid "Cannot Create Wallet"
+msgstr "Портфейла не може да бъде създаден"
+
+#: src/js/services/profileService.js:442
+msgid "Cannot join the same wallet more than once"
+msgstr "Не може да се присъедините към портфейла повече от веднъж"
+
+#: www/views/includes/bitpayCardsCard.html:2
+msgid "Cards"
+msgstr "Карти"
+
+#: www/views/modals/paypro.html:30
+msgid "Certified by"
+msgstr "Сертифицирано от"
+
+#: www/views/preferencesExternal.html:19
+msgid "Check installation and retry."
+msgstr "Проверете инсталацията и опитайте отново."
+
+#: www/views/tab-import-file.html:4
+msgid "Choose a backup file from your computer"
+msgstr "Изберете файл с резервно копие от вашия компютър"
+
+#: www/views/modals/wallets.html:9
+msgid "Choose your destination wallet"
+msgstr "Изберете портфейл на получател"
+
+#: www/views/modals/wallets.html:10
+msgid "Choose your source wallet"
+msgstr "Изберете портфейл източник"
+
+#: www/views/backup.html:61
+msgid "Clear"
+msgstr "Изчисти"
+
+#: www/views/preferencesHistory.html:24
+msgid "Clear cache"
+msgstr "Изчистване на кеша"
+
+#: src/js/controllers/confirm.js:373
+#: src/js/controllers/modals/txpDetails.js:49
+msgid "Click to accept"
+msgstr "Щракнете за да приемете"
+
+#: src/js/controllers/confirm.js:367
+msgid "Click to pay"
+msgstr "Щракнете за да платите"
+
+#: src/js/controllers/confirm.js:379
+#: src/js/controllers/modals/txpDetails.js:42
+msgid "Click to send"
+msgstr "Щракнете за да изпратите"
+
+#: www/views/customAmount.html:4
+#: www/views/modals/mercadolibre-card-details.html:3
+#: www/views/modals/paypro.html:4
+#: www/views/modals/pin.html:3
+#: www/views/modals/search.html:3
+#: www/views/modals/wallet-balance.html:3
+#: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
+msgid "Close"
+msgstr "Затвори"
+
+#: www/views/includes/cash.html:2
+#: www/views/preferencesInformation.html:17
+msgid "Coin"
+msgstr "Монети"
+
+#: www/views/preferences.html:22
+msgid "Color"
+msgstr "Цвят"
+
+#: www/views/preferencesAbout.html:21
+msgid "Commit hash"
+msgstr "Изпрати хеш"
+
+#: www/views/preferences.html:49
+msgid "Complete the backup process to use this option"
+msgstr "Създай резервно копие за да ползваш тази опция"
+
+#: www/views/bitpayCard.html:93
+msgid "Completed"
+msgstr "Готово"
+
+#: src/js/controllers/buyAmazon.js:311
+#: src/js/controllers/buyMercadoLibre.js:305
+#: src/js/controllers/confirm.js:549
+#: src/js/controllers/copayers.js:55
+#: src/js/controllers/topup.js:285
+#: www/views/backup.html:60
+#: www/views/backup.html:79
+#: www/views/confirm.html:4
+#: www/views/onboarding/collectEmail.html:32
+msgid "Confirm"
+msgstr "Потвърди"
+
+#: www/views/modals/terms.html:26
+#: www/views/onboarding/disclaimer.html:44
+msgid "Confirm &amp; Finish"
+msgstr "Потвърди &amp; Приключи"
+
+#: www/views/buyAmazon.html:90
+msgid "Confirm purchase"
+msgstr "Потвърди покупката"
+
+#: www/views/modals/pin.html:10
+msgid "Confirm your PIN"
+msgstr "Потвърдете вашия ПИН"
+
+#: src/js/services/walletService.js:1033
+msgid "Confirm your new spending password"
+msgstr "Потвърдете паролата си за харчене"
+
+#: www/views/tx-details.html:98
+msgid "Confirmations"
+msgstr "Потвърждения"
+
+#: www/views/bitpayCard.html:68
+#: www/views/modals/wallet-balance.html:61
+msgid "Confirming"
+msgstr "Потвърждаване"
+
+#: www/views/bitpayCardIntro.html:37
+msgid "Connect my BitPay Card"
+msgstr "Свържи моята BitPay карта"
+
+#: src/js/services/onGoingProcess.js:13
+msgid "Connecting to Coinbase..."
+msgstr "Свързване към Coinbase..."
+
+#: src/js/services/onGoingProcess.js:14
+msgid "Connecting to Glidera..."
+msgstr "Свързване към Glidera..."
+
+#: src/js/services/bwcError.js:53
+msgid "Connection reset by peer"
+msgstr "Връзката бе прекъсната от пиъра"
+
+#: www/views/tab-send.html:85
+msgid "Contacts"
+msgstr "Контакти"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "Запазени често използвани адреси"
+
+#: www/views/onboarding/notifications.html:9
+msgid "Continue"
+msgstr "Напред"
+
+#: www/views/preferencesLanguage.html:26
+msgid "Contribute Translations"
+msgstr "Помогни с Превеждането"
+
+#: src/js/controllers/confirm.js:130
+msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Copay поддържа Bitcoin Cash само с новия адресен формат"
+
+#: src/js/services/bwcError.js:62
+msgid "Copayer already in this wallet"
+msgstr "Ко-платеца е вече добавен в портфейла"
+
+#: src/js/services/bwcError.js:77
+msgid "Copayer already voted on this spend proposal"
+msgstr "Ко-платеца вече гласува за това предложение за харчене"
+
+#: src/js/services/bwcError.js:107
+msgid "Copayer data mismatch"
+msgstr "Несъвпадение на данни на ко-платец"
+
+#: www/views/includes/walletActivity.html:2
+msgid "Copayer joined"
+msgstr "Ко-платец добавен"
+
+#: www/views/preferencesInformation.html:94
+msgid "Copayer {{$index}}"
+msgstr "Ко-платец {{$index}}"
+
+#: src/js/controllers/copayers.js:79
+#: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
+#: www/views/includes/copyToClipboard.html:4
+msgid "Copied to clipboard"
+msgstr "Копирано"
+
+#: www/views/tab-export-file.html:94
+msgid "Copy this text as it is to a safe place (notepad or email)"
+msgstr "Копирайте този текст без модификации и на безопасно място (notepad или email)"
+
+#: www/views/includes/incomingDataMenu.html:51
+#: www/views/includes/incomingDataMenu.html:70
+#: www/views/includes/incomingDataMenu.html:94
+#: www/views/includes/logOptions.html:9
+#: www/views/tab-export-file.html:78
+msgid "Copy to clipboard"
+msgstr "Копирай"
+
+#: src/js/controllers/buyMercadoLibre.js:102
+msgid "Could not access Gift Card Service"
+msgstr "Няма достъп до услугите за Подаръчни Карти"
+
+#: www/views/tab-import-phrase.html:2
+msgid "Could not access the wallet at the server. Please check:"
+msgstr "Няма достъп до портфейл на сървъра. Моля, проверете:"
+
+#: src/js/controllers/buyAmazon.js:102
+msgid "Could not access to Amazon.com"
+msgstr "Няма достъп до Amazon.com"
+
+#: src/js/services/profileService.js:511
+msgid "Could not access wallet"
+msgstr "Няма достъп до портфейла"
+
+#: src/js/controllers/confirm.js:210
+msgid "Could not add message to imported wallet without shared encrypting key"
+msgstr "Неуспешно добавяне на съобщение към портфейла без споделен криптиращ ключ"
+
+#: src/js/controllers/modals/txpDetails.js:199
+msgid "Could not broadcast payment"
+msgstr "Неуспешно излъчване на плащане"
+
+#: src/js/services/bwcError.js:41
+msgid "Could not build transaction"
+msgstr "Неуспешно конструиране на транзакция"
+
+#: src/js/services/walletService.js:854
+msgid "Could not create address"
+msgstr "Неуспешно създаване на адрес"
+
+#: src/js/controllers/topup.js:92
+msgid "Could not create the invoice"
+msgstr "Неуспешно създаване на фактура"
+
+#: src/js/controllers/buyAmazon.js:164
+#: src/js/controllers/buyMercadoLibre.js:164
+#: src/js/controllers/topup.js:142
+msgid "Could not create transaction"
+msgstr "Неуспешно създаване на транзакция"
+
+#: src/js/services/profileService.js:350
+msgid "Could not create using the specified extended private key"
+msgstr "Неуспешно създаване чрез разширен таен ключ"
+
+#: src/js/services/profileService.js:362
+msgid "Could not create using the specified extended public key"
+msgstr "Неуспешно създаване чрез разширен публичен ключ"
+
+#: src/js/services/profileService.js:338
+msgid "Could not create: Invalid wallet recovery phrase"
+msgstr "Не можа да създаде: Невалидна възстановителна фраза"
+
+#: src/js/controllers/import.js:114
+msgid "Could not decrypt file, check your password"
+msgstr "Не можа да дешифрира портфейл. Проверете паролата си"
+
+#: src/js/controllers/modals/txpDetails.js:181
+msgid "Could not delete payment proposal"
+msgstr "Неуспешно изтриване на предложение за плащане"
+
+#: src/js/controllers/cashScan.js:117
+msgid "Could not duplicate"
+msgstr "Неуспешно дуплициране"
+
+#: src/js/services/feeService.js:73
+msgid "Could not get dynamic fee"
+msgstr "Неуспешно вземане на динамична такса"
+
+#: src/js/services/feeService.js:43
+msgid "Could not get dynamic fee for level: {{feeLevel}}"
+msgstr "Неуспешно взимане на динамична такса за ниво: {{feeLevel}}"
+
+#: src/js/controllers/modals/feeLevels.js:112
+msgid "Could not get fee levels"
+msgstr "Неуспешно взимане на нива за такси"
+
+#: src/js/controllers/buyAmazon.js:122
+#: src/js/controllers/buyMercadoLibre.js:122
+#: src/js/controllers/topup.js:100
+msgid "Could not get the invoice"
+msgstr "Неуспешно взимане на фактура"
+
+#: src/js/controllers/bitpayCard.js:66
+msgid "Could not get transactions"
+msgstr "Неуспешно взимане на транзакции"
+
+#: src/js/services/profileService.js:615
+#: src/js/services/profileService.js:650
+#: src/js/services/profileService.js:674
+msgid "Could not import"
+msgstr "Неуспешен импорт"
+
+#: src/js/services/profileService.js:584
+msgid "Could not import. Check input file and spending password"
+msgstr "Неуспешен импорт. Проверете входящия файл и паролата за отключване"
+
+#: src/js/services/profileService.js:457
+msgid "Could not join wallet"
+msgstr "Неуспешно присъединяване на портфейл"
+
+#: src/js/controllers/modals/txpDetails.js:161
+msgid "Could not reject payment"
+msgstr "Неуспешно отказване на плащане"
+
+#: src/js/controllers/preferencesBitpayServices.js:33
+msgid "Could not remove account"
+msgstr "Неуспешно премахване на акаунта"
+
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:50
+msgid "Could not remove card"
+msgstr "Неуспешно премахване на картата"
+
+#: src/js/services/walletService.js:776
+msgid "Could not save preferences on the server"
+msgstr "Неуспешен запис на настройките в сървъра"
+
+#: src/js/controllers/modals/txpDetails.js:147
+msgid "Could not send payment"
+msgstr "Неуспешно изпращане на плащане"
+
+#: src/js/controllers/buyAmazon.js:325
+#: src/js/controllers/buyMercadoLibre.js:318
+#: src/js/controllers/topup.js:299
+msgid "Could not send transaction"
+msgstr "Неуспешно изпращане на транзакция"
+
+#: www/views/walletDetails.html:210
+msgid "Could not update transaction history"
+msgstr "Неудмспешно актуализиране на историята на транзакциите"
+
+#: src/js/controllers/addresses.js:29
+#: src/js/controllers/addresses.js:37
+#: src/js/controllers/copayers.js:30
+#: src/js/controllers/walletDetails.js:78
+msgid "Could not update wallet"
+msgstr "Неуспешно обновяване на портфейла"
+
+#: www/views/tab-create-personal.html:3
+msgid "Create Personal Wallet"
+msgstr "Създай личен портфейл"
+
+#: www/views/tab-create-shared.html:3
+msgid "Create Shared Wallet"
+msgstr "Създай споделен портфейл"
+
+#: www/views/onboarding/tour.html:51
+#: www/views/tab-home.html:75
+#: www/views/tab-send.html:75
+msgid "Create bitcoin wallet"
+msgstr "Създай Bitcoin портфейл"
+
+#: www/views/tab-create-personal.html:131
+msgid "Create new wallet"
+msgstr "Създай нов портфейл"
+
+#: www/views/add.html:22
+msgid "Create shared wallet"
+msgstr "Създай споделен портфейл"
+
+#: www/views/tab-create-shared.html:160
+msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr "Създаване на {{formData.requiredCopayers}} от {{formData.totalCopayers}} портфейл"
+
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Ко-платци"
+
+#: www/views/modals/txp-details.html:81
+#: www/views/tx-details.html:60
+msgid "Created by"
+msgstr "Създадено от"
+
+#: src/js/services/onGoingProcess.js:18
+msgid "Creating Wallet..."
+msgstr "Портфейла се създава..."
+
+#: src/js/services/onGoingProcess.js:17
+msgid "Creating transaction"
+msgstr "Транзакцията се създава"
+
+#: www/views/modals/chooseFeeLevel.html:34
+#: www/views/preferencesFee.html:20
+msgid "Current fee rate for this policy"
+msgstr "Текуща такса за тази политика"
+
+#: src/js/services/feeService.js:15
+msgid "Custom"
+msgstr "По избор"
+
+#: www/views/customAmount.html:9
+msgid "Custom Amount"
+msgstr "Избор на Сума"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Custom Fee"
+msgstr "Избор на Такса"
+
+#: www/views/modals/mercadolibre-card-details.html:56
+#: www/views/modals/txp-details.html:87
+#: www/views/tx-details.html:66
+msgid "Date"
+msgstr "Дата"
+
+#: www/views/preferencesDeleteWallet.html:21
+msgid "Delete"
+msgstr "Изтриване"
+
+#: www/views/modals/txp-details.html:164
+msgid "Delete Payment Proposal"
+msgstr "Изтриване на Предложение за Плащане"
+
+#: www/views/preferencesAdvanced.html:33
+#: www/views/preferencesDeleteWallet.html:3
+msgid "Delete Wallet"
+msgstr "Изтриване на портфейла"
+
+#: www/views/copayers.html:59
+msgid "Delete it and create a new one"
+msgstr "Изтрий и създай отново"
+
+#: src/js/services/onGoingProcess.js:19
+msgid "Deleting Wallet..."
+msgstr "Изтриване на Портфейл..."
+
+#: src/js/services/onGoingProcess.js:28
+msgid "Deleting payment proposal"
+msgstr "Изтриване на предложение за плащане"
+
+#: www/views/join.html:141
+#: www/views/tab-create-personal.html:111
+#: www/views/tab-create-shared.html:140
+#: www/views/tab-import-phrase.html:49
+msgid "Derivation Path"
+msgstr "Деривационен Път"
+
+#: www/views/preferencesInformation.html:47
+msgid "Derivation Strategy"
+msgstr "Деривационна Стратегия"
+
+#: www/views/buyAmazon.html:39
+#: www/views/buyMercadoLibre.html:38
+#: www/views/modals/mercadolibre-card-details.html:6
+#: www/views/topup.html:45
+msgid "Details"
+msgstr "Детайли"
+
+#: src/js/controllers/lockSetup.js:9
+#: src/js/controllers/tab-settings.js:65
+#: www/views/tab-settings.html:50
+msgid "Disabled"
+msgstr "Изключено"
+
+#: www/views/includes/backupNeededPopup.html:10
+#: www/views/onboarding/backupRequest.html:12
+msgid "Do it later"
+msgstr "Направи го по-късно"
+
+#: www/views/tab-export-file.html:29
+msgid "Do not include private key"
+msgstr "Не включвай таен ключ"
+
+#: www/views/preferencesLanguage.html:21
+msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
+msgstr "Не виждате вашия език в Crowdin? Обърнете се към собственика в Crowdin! Ще се радваме да поддържаме вашия език."
+
+#: www/views/tab-export-file.html:59
+#: www/views/tab-home.html:22
+msgid "Download"
+msgstr "Изтегляне"
+
+#: www/views/cashScan.html:37
+msgid "Duplicate for BCH"
+msgstr "Дубликат за ВСН"
+
+#: src/js/services/onGoingProcess.js:49
+msgid "Duplicating wallet..."
+msgstr "Дублира портфейла..."
+
+#: www/views/addresses.html:19
+msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgstr "Всеки bitcoin портфейл може да генерира милиони адреси от вашите 12 думи. Нов адрес е автоматично генериран и се показва за всяко плащане което получавате."
+
+#: src/js/services/feeService.js:13
+msgid "Economy"
+msgstr "Икономия"
+
+#: www/views/onboarding/collectEmail.html:27
+msgid "Edit"
+msgstr "Редактиране"
+
+#: www/views/addressbook.add.html:29
+#: www/views/addressbook.view.html:22
+msgid "Email"
+msgstr "Имейл"
+
+#: www/views/preferencesNotifications.html:42
+msgid "Email Address"
+msgstr "Имейл адрес"
+
+#: src/js/services/bwcError.js:122
+msgid "Empty addresses limit reached. New addresses cannot be generated."
+msgstr "Достигнат е максимумът за празни адреси. Нови адреси не могат да бъдат генерирани."
+
+#: www/views/preferencesCash.html:17
+msgid "Enable Bitcoin Cash wallet creation and operation within the App."
+msgstr "Разреши създаването и ползването на Bitcoin Cash портфейли."
+
+#: www/views/tab-scan.html:19
+msgid "Enable camera access in your device settings to get started."
+msgstr "Разрешете достъп до камерата в настройките за да започнете."
+
+#: www/views/preferencesNotifications.html:29
+msgid "Enable email notifications"
+msgstr "Разрешаване на имейл нотификации"
+
+#: www/views/preferencesNotifications.html:12
+msgid "Enable push notifications"
+msgstr "Разрешаване на нотификации"
+
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr "Разрешаване на звук"
+
+#: www/views/tab-scan.html:18
+msgid "Enable the camera to get started."
+msgstr "Разреши достъп до камерата за да започнеш."
+
+#: www/views/tab-settings.html:49
+msgid "Enabled"
+msgstr "Разрешено"
+
+#: src/js/services/walletService.js:1047
+#: src/js/services/walletService.js:1062
+msgid "Enter Spending Password"
+msgstr "Въведи Парола за Харчене"
+
+#: src/js/services/bitpayAccountService.js:110
+msgid "Enter Two Factor for your BitPay account"
+msgstr "Въведи втората аутентикация за своя BitPay акаунт"
+
+#: www/views/amount.html:4
+msgid "Enter Amount"
+msgstr "Въведи Сума"
+
+#: www/views/modals/chooseFeeLevel.html:41
+msgid "Enter custom fee"
+msgstr "Въведи такса по избор"
+
+#: src/js/services/walletService.js:1029
+msgid "Enter new spending password"
+msgstr "Въведи нова парола за харчене"
+
+#: www/views/join.html:79
+#: www/views/tab-create-personal.html:51
+#: www/views/tab-create-shared.html:80
+msgid "Enter the recovery phrase (BIP39)"
+msgstr "Въведи фраза за възстановяване (BIP39)"
+
+#: www/views/onboarding/collectEmail.html:13
+msgid "Enter your email"
+msgstr "Въведи своя имейл"
+
+#: www/views/backup.html:69
+msgid "Enter your password"
+msgstr "Въведи паролата си"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/addressbookAdd.js:30
+#: src/js/controllers/addressbookView.js:42
+#: src/js/controllers/addresses.js:125
+#: src/js/controllers/addresses.js:126
+#: src/js/controllers/bitpayCard.js:66
+#: src/js/controllers/bitpayCardIntro.js:40
+#: src/js/controllers/bitpayCardIntro.js:81
+#: src/js/controllers/buyAmazon.js:24
+#: src/js/controllers/buyAmazon.js:35
+#: src/js/controllers/buyMercadoLibre.js:24
+#: src/js/controllers/buyMercadoLibre.js:35
+#: src/js/controllers/confirm.js:307
+#: src/js/controllers/copayers.js:67
+#: src/js/controllers/create.js:161
+#: src/js/controllers/create.js:174
+#: src/js/controllers/create.js:180
+#: src/js/controllers/create.js:186
+#: src/js/controllers/create.js:208
+#: src/js/controllers/create.js:215
+#: src/js/controllers/create.js:233
+#: src/js/controllers/export.js:109
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:154
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: src/js/controllers/export.js:47
+#: src/js/controllers/export.js:53
+#: src/js/controllers/feedback/send.js:23
+#: src/js/controllers/import.js:119
+#: src/js/controllers/import.js:131
+#: src/js/controllers/import.js:149
+#: src/js/controllers/import.js:200
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:238
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:266
+#: src/js/controllers/import.js:278
+#: src/js/controllers/import.js:288
+#: src/js/controllers/import.js:312
+#: src/js/controllers/import.js:325
+#: src/js/controllers/import.js:335
+#: src/js/controllers/import.js:345
+#: src/js/controllers/import.js:369
+#: src/js/controllers/import.js:382
+#: src/js/controllers/import.js:85
+#: src/js/controllers/import.js:98
+#: src/js/controllers/join.js:125
+#: src/js/controllers/join.js:139
+#: src/js/controllers/join.js:145
+#: src/js/controllers/join.js:151
+#: src/js/controllers/join.js:174
+#: src/js/controllers/join.js:182
+#: src/js/controllers/join.js:200
+#: src/js/controllers/modals/feeLevels.js:9
+#: src/js/controllers/modals/txpDetails.js:140
+#: src/js/controllers/paperWallet.js:47
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:33
+#: src/js/controllers/preferencesBitpayServices.js:50
+#: src/js/controllers/preferencesDelete.js:36
+#: src/js/controllers/preferencesExternal.js:20
+#: src/js/controllers/tab-home.js:174
+#: src/js/controllers/tab-send.js:143
+#: src/js/controllers/tabsController.js:36
+#: src/js/controllers/tabsController.js:7
+#: src/js/controllers/topup.js:21
+#: src/js/controllers/topup.js:32
+#: src/js/controllers/tx-details.js:119
+#: src/js/services/incomingData.js:101
+#: src/js/services/incomingData.js:125
+#: src/js/services/incomingData.js:168
+#: www/views/mercadoLibreCards.html:19
+#: www/views/modals/mercadolibre-card-details.html:45
+msgid "Error"
+msgstr "Грешка"
+
+#: src/js/controllers/confirm.js:502
+msgid "Error at confirm"
+msgstr "Грешка при потвърждение"
+
+#: src/js/controllers/buyAmazon.js:179
+msgid "Error creating gift card"
+msgstr "Грешка при създаване на подаръчна карта"
+
+#: src/js/controllers/buyAmazon.js:94
+#: src/js/controllers/buyMercadoLibre.js:94
+msgid "Error creating the invoice"
+msgstr "Грешка при създаване на фактура"
+
+#: src/js/services/profileService.js:412
+msgid "Error creating wallet"
+msgstr "Грешка при създаване на портфейл"
+
+#: src/js/controllers/confirm.js:296
+msgid "Error getting SendMax information"
+msgstr "Грешка при получаване на информация за ИзпратиМаксимум"
+
+#: src/js/controllers/buyAmazon.js:136
+#: src/js/controllers/buyMercadoLibre.js:136
+#: src/js/controllers/topup.js:114
+msgid "Error in Payment Protocol"
+msgstr "Грешка в протокола за плащане"
+
+#: src/js/controllers/bitpayCardIntro.js:14
+msgid "Error pairing BitPay Account"
+msgstr "Грешка при свързване с BitPay сметката"
+
+#: src/js/controllers/paperWallet.js:41
+msgid "Error scanning funds:"
+msgstr "Грешка при сканиране на средства:"
+
+#: src/js/controllers/paperWallet.js:90
+msgid "Error sweeping wallet:"
+msgstr "Грешка при взимане на портфейла:"
+
+#: src/js/controllers/bitpayCardIntro.js:20
+msgid "Error updating Debit Cards"
+msgstr "Грешка при актуализиране на дебитните карти"
+
+#: src/js/services/bwcError.js:143
+msgid "Exceeded daily limit of $500 per user"
+msgstr "Превишен е дневния лимит от $500 на потребител"
+
+#: src/js/controllers/confirm.js:461
+#: www/views/confirm.html:27
+#: www/views/mercadoLibreCards.html:25
+#: www/views/modals/mercadolibre-card-details.html:34
+#: www/views/modals/txp-details.html:119
+msgid "Expired"
+msgstr "Изтекъл"
+
+#: www/views/modals/paypro.html:54
+#: www/views/modals/txp-details.html:125
+msgid "Expires"
+msgstr "Изтича"
+
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Покажи Legacy адрес"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Покажи адрес в нов стил"
+
+#: www/views/preferencesAdvanced.html:21
+msgid "Export Wallet"
+msgstr "Експортирай Портфейл"
+
+#: www/views/preferencesHistory.html:11
+#: www/views/preferencesHistory.html:14
+msgid "Export to file"
+msgstr "Експортирай във файл"
+
+#: www/views/export.html:3
+msgid "Export wallet"
+msgstr "Експортирай портфейл"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL адрес на сървър за портфейл"
+
+#: src/js/services/walletService.js:1174
+#: www/views/tab-export-qrCode.html:9
+msgid "Exporting via QR not supported for this wallet"
+msgstr "Експорт чрез QR не се поддържа за този портфейл"
+
+#: www/views/preferencesInformation.html:89
+msgid "Extended Public Keys"
+msgstr "Експортирани Публични Ключове"
+
+#: src/js/services/onGoingProcess.js:20
+msgid "Extracting Wallet information..."
+msgstr "Експортиране на портфейлна информация..."
+
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: www/views/tab-export-file.html:4
+msgid "Failed to export"
+msgstr "Грешка при експорт"
+
+#: www/views/tab-create-personal.html:14
+#: www/views/tab-create-shared.html:14
+msgid "Family vacation funds"
+msgstr "Средства за ваканция"
+
+#: www/views/tx-details.html:79
+msgid "Fee"
+msgstr "Такса"
+
+#: www/views/modals/chooseFeeLevel.html:75
+msgid "Fee level"
+msgstr "Ниво на таксуване"
+
+#: src/js/controllers/modals/feeLevels.js:100
+msgid "Fee level is not defined"
+msgstr "Ниво на таксуване не е определено"
+
+#: www/views/confirm.html:79
+#: www/views/modals/txp-details.html:99
+msgid "Fee:"
+msgstr "Такса:"
+
+#: src/js/controllers/feedback/send.js:23
+msgid "Feedback could not be submitted. Please try again later."
+msgstr "Препоръката не беше пратена. Моля, опитайте отново по-късно."
+
+#: src/js/services/onGoingProcess.js:42
+msgid "Fetching BitPay Account..."
+msgstr "Извличане на BitPay сметка..."
+
+#: src/js/services/onGoingProcess.js:21
+msgid "Fetching payment information"
+msgstr "Извличане на информация за плащане"
+
+#: www/views/export.html:14
+#: www/views/import.html:16
+msgid "File/Text"
+msgstr "Файл/текст"
+
+#: www/views/preferencesLogs.html:17
+msgid "Filter setting"
+msgstr "Настройка на филтъра"
+
+#: src/js/services/fingerprintService.js:43
+#: src/js/services/fingerprintService.js:48
+msgid "Finger Scan Failed"
+msgstr "Взимането на Отпечатък се Провали"
+
+#: src/js/controllers/feedback/send.js:34
+#: www/views/feedback/complete.html:7
+msgid "Finish"
+msgstr "Завърши"
+
+#: www/views/tab-create-personal.html:123
+#: www/views/tab-create-shared.html:152
+msgid "For audit purposes"
+msgstr "За ревизионни цели"
+
+#: src/js/controllers/topup.js:308
+#: www/views/buyAmazon.html:29
+#: www/views/buyMercadoLibre.html:28
+#: www/views/confirm.html:65
+#: www/views/modals/txp-details.html:74
+#: www/views/topup.html:34
+#: www/views/tx-details.html:52
+#: www/views/review.html:22
+msgid "From"
+msgstr "От"
+
+#: src/js/controllers/bitpayCardIntro.js:71
+msgid "From BitPay account"
+msgstr "От BitPay сметка"
+
+#: www/views/tab-import-phrase.html:57
+msgid "From Hardware Wallet"
+msgstr "От Хардуерен Портфейл"
+
+#: www/views/tab-export-qrCode.html:5
+msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
+msgstr "В получаващото устройство отидете към Добавяне на портфейл &gt; Импортиране на портфейл и сканирайте този QR код"
+
+#: src/js/services/bwcError.js:74
+msgid "Funds are locked by pending spend proposals"
+msgstr "Средствата са заключени от текущи предложения за харчене"
+
+#: www/views/paperWallet.html:16
+msgid "Funds found:"
+msgstr "Открити средства:"
+
+#: www/views/topup.html:49
+msgid "Funds to be added"
+msgstr "Средства за добавяне"
+
+#: www/views/paperWallet.html:51
+msgid "Funds transferred"
+msgstr "Средствата са изпратени"
+
+#: www/views/topup.html:103
+msgid "Funds were added to debit card"
+msgstr "Средства бяха добавени към дебитна карта"
+
+#: www/views/paperWallet.html:22
+msgid "Funds will be transferred to"
+msgstr "Средства ще бъдат пратени до"
+
+#: www/views/tab-receive.html:51
+msgid "Generate new address"
+msgstr "Генерирай нов адрес"
+
+#: src/js/services/onGoingProcess.js:22
+msgid "Generating .csv file..."
+msgstr "Генериране на .csv файл..."
+
+#: src/js/services/onGoingProcess.js:37
+msgid "Generating new address..."
+msgstr "Генериране на нов адрес..."
+
+#: www/views/bitpayCardIntro.html:23
+msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
+msgstr "Вземи местни пари навсякъде където отидеш, от Виза<sup>&reg;</sup> съвместим ATM. Банкови такси може да бъдат добавени."
+
+#: www/views/onboarding/collectEmail.html:15
+msgid "Get news and updates from BitPay"
+msgstr "Получаване на новини и актуализации от BitPay"
+
+#: www/views/onboarding/welcome.html:8
+#: www/views/bitpayCard.html:49
+msgid "Get started"
+msgstr "Първи стъпки"
+
+#: www/views/addressbook.html:20
+msgid "Get started by adding your first one."
+msgstr "Започнете като добавите първия."
+
+#: src/js/services/onGoingProcess.js:23
+msgid "Getting fee levels..."
+msgstr "Взимане на нива за таксуване..."
+
+#: www/views/buyAmazon.html:43
+#: www/views/buyMercadoLibre.html:42
+msgid "Gift Card"
+msgstr "Подаръчна карта"
+
+#: www/views/modals/mercadolibre-card-details.html:30
+#: www/views/modals/mercadolibre-card-details.html:35
+msgid "Gift Card is not available to use anymore"
+msgstr "Подаръчната карта не е налична за ползване"
+
+#: src/js/controllers/buyAmazon.js:204
+msgid "Gift card expired"
+msgstr "Подаръчната карта е изтекла"
+
+#: www/views/buyAmazon.html:111
+msgid "Gift card generated and ready to use."
+msgstr "Подаръчната карта е създадена и готова за ползване."
+
+#: src/js/controllers/bitpayCard.js:114
+#: src/js/controllers/bitpayCard.js:124
+#: src/js/controllers/cashScan.js:20
+#: src/js/controllers/onboarding/terms.js:23
+#: src/js/controllers/preferences.js:67
+#: src/js/controllers/preferencesAbout.js:16
+#: src/js/controllers/preferencesCash.js:34
+#: src/js/controllers/preferencesLanguage.js:14
+#: src/js/controllers/tab-home.js:149
+#: src/js/controllers/tab-settings.js:53
+#: src/js/controllers/tx-details.js:193
+#: src/js/controllers/tx-details.js:56
+msgid "Go Back"
+msgstr "Назад"
+
+#: src/js/controllers/confirm.js:131
+#: src/js/controllers/onboarding/backupRequest.js:20
+#: src/js/controllers/onboarding/backupRequest.js:26
+#: src/js/services/bitpayAccountService.js:84
+msgid "Go back"
+msgstr "Назад"
+
+#: www/views/backupWarning.html:15
+#: www/views/includes/confirmBackupPopup.html:8
+#: www/views/onboarding/tour.html:23
+msgid "Got it"
+msgstr "Разбирам"
+
+#: www/views/preferencesInformation.html:53
+#: www/views/preferencesInformation.html:59
+msgid "Hardware Wallet"
+msgstr "Хардуерен Портфейл"
+
+#: www/views/preferencesExternal.html:18
+msgid "Hardware not connected."
+msgstr "Хардуера не е свързан."
+
+#: www/views/import.html:20
+msgid "Hardware wallet"
+msgstr "Хардуерен портфейл"
+
+#: src/js/controllers/create.js:180
+#: src/js/controllers/join.js:145
+msgid "Hardware wallets are not yet supported with Bitcoin Cash"
+msgstr "Хардуерни портфейли все още не се поддържат с Bitcoin Cash"
+
+#: www/views/tab-settings.html:20
+msgid "Help & Support"
+msgstr "Помощ & Поддръжка"
+
+#: src/js/controllers/bitpayCard.js:112
+#: src/js/controllers/tab-settings.js:51
+msgid "Help and support information is available at the website."
+msgstr "Информация за помощ и поддръжка е достъпна на сайта."
+
+#: www/views/addresses.html:25
+msgid "Hide"
+msgstr "Скрий"
+
+#: www/views/preferences.html:27
+msgid "Hide Balance"
+msgstr "Скрий баланса"
+
+#: www/views/advancedSettings.html:30
+msgid "Hide Next Steps Card"
+msgstr "Скрий картите за следващите стъпки"
+
+#: www/views/join.html:49
+#: www/views/tab-create-personal.html:28
+#: www/views/tab-create-shared.html:57
+#: www/views/tab-export-file.html:25
+#: www/views/tab-import-file.html:30
+#: www/views/tab-import-hardware.html:31
+#: www/views/tab-import-phrase.html:36
+msgid "Hide advanced options"
+msgstr "Скрий разширените опции"
+
+#: www/views/tabs.html:3
+msgid "Home"
+msgstr "Начало"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+#: src/js/controllers/feedback/send.js:69
+msgid "How could we improve your experience?"
+msgstr "Как да подобрим използването на портфейла?"
+
+#: www/views/feedback/rateCard.html:3
+msgid "How do you like {{appName}}?"
+msgstr "Харесва ли ви {{appName}}?"
+
+#: src/js/controllers/feedback/rateCard.js:29
+msgid "I don't like it"
+msgstr "Не ми харесва"
+
+#: www/views/onboarding/disclaimer.html:43
+msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
+msgstr "Прочетох, разбрах и се съгласявам с <a ng-click=\"openTerms()\" translate=\"\">условията за ползване</a>."
+
+#: www/views/modals/terms.html:22
+msgid "I have read, understood, and agree with the Terms of use."
+msgstr "Прочетох, разбрах и се съгласявам с условията за ползване."
+
+#: www/views/join.html:137
+#: www/views/tab-create-personal.html:107
+#: www/views/tab-create-shared.html:136
+msgid "I have written it down"
+msgstr "Написах го"
+
+#: src/js/controllers/feedback/rateCard.js:35
+msgid "I like the app"
+msgstr "Харесвам портфейла"
+
+#: src/js/controllers/feedback/rateCard.js:26
+msgid "I think this app is terrible."
+msgstr "Мисля че портфейла е ужасен."
+
+#: src/js/controllers/onboarding/backupRequest.js:19
+#: www/views/includes/screenshotWarningModal.html:9
+msgid "I understand"
+msgstr "Разбирам"
+
+#: www/views/onboarding/disclaimer.html:21
+msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgstr "Разбирам, че ако този портфейл е преместен в друго устройство или изтрит, моя bitcoin може да бъде възстановен само с фразата за резервно копие."
+
+#: www/views/onboarding/disclaimer.html:18
+msgid "I understand that my funds are held securely on this device, not by a company."
+msgstr "Аз разбирам, че ми средства се съхраняват сигурно на това устройство, не от фирма."
+
+#: www/views/backup.html:36
+msgid "I've written it down"
+msgstr "Написах го"
+
+#: www/views/preferences.html:45
+msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
+msgstr "Ако е активирана, цялата чувствителна информация (частен ключ и фраза за възстановяване) и действия (разходи и експортиране), свързани с този портфейл ще бъдат защитени."
+
+#: www/views/advancedSettings.html:23
+msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
+msgstr "Ако е разрешено, карта на Последни транзакции - списък на транзакции във всички портфейли - ще се появи в раздела Начало."
+
+#: www/views/advancedSettings.html:14
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Ако настройката е активирана, портфейлите ще се опитват да използвт непотвърдени средства. Изключването на опцията може да доведе до забавяне на транзакции."
+
+#: src/js/controllers/onboarding/backupRequest.js:18
+msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgstr "Ако това устройство се замени или тази апликация се изтрие, нито вие, нито BitPay може да възстанови вашите средства без бекъп."
+
+#: www/views/feedback/complete.html:23
+msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
+msgstr "Ако имате допълнителни препоръки, моля кажете ни чрез клик върху \"Изпрати Препоръки\" опцията в настройките."
+
+#: www/views/includes/screenshotWarningModal.html:8
+msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
+msgstr "Ако направите снимка на екрана, вашият портфейл може да бъде видян от други приложения. Може да направите безопасно копие с лист и химикалка."
+
+#: www/views/tab-import-hardware.html:42
+#: www/views/tab-import-phrase.html:80
+msgid "Import"
+msgstr "Импортиране"
+
+#: www/views/import.html:3
+msgid "Import Wallet"
+msgstr "Импортирай Портфейл"
+
+#: www/views/tab-import-file.html:41
+msgid "Import backup"
+msgstr "Импортирай резервно копие"
+
+#: www/views/add.html:38
+msgid "Import wallet"
+msgstr "Импортирай портфейл"
+
+#: src/js/services/onGoingProcess.js:24
+msgid "Importing Wallet..."
+msgstr "Портфейла се импортира..."
+
+#: www/views/backup.html:72
+msgid "In order to verify your wallet backup, please type your password."
+msgstr "За да проверите вашия портфейл, моля въведете паролата си."
+
+#: www/views/mercadoLibreCards.html:24
+#: www/views/modals/mercadolibre-card-details.html:29
+msgid "Inactive"
+msgstr "Неактивни"
+
+#: www/views/includes/walletItem.html:9
+#: www/views/includes/walletList.html:6
+#: www/views/includes/walletListSettings.html:9
+#: www/views/includes/walletSelector.html:16
+msgid "Incomplete"
+msgstr "Незавършени"
+
+#: www/views/tab-receive.html:22
+msgid "Incomplete wallet"
+msgstr "Незавършен портфейл"
+
+#: www/views/modals/pin.html:12
+msgid "Incorrect PIN, try again."
+msgstr "Неправилен ПИН, опитайте отново."
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/import.js:85
+msgid "Incorrect code format"
+msgstr "Неправилен формат на кода"
+
+#: src/js/services/bwcError.js:113
+msgid "Incorrect network address"
+msgstr "Неправилен мрежов адрес"
+
+#: src/js/controllers/confirm.js:114
+#: src/js/controllers/confirm.js:306
+#: src/js/services/bwcError.js:44
+msgid "Insufficient confirmed funds"
+msgstr "Недостатъчно потвърдени средства"
+
+#: src/js/controllers/topup.js:165
+#: src/js/controllers/topup.js:177
+#: src/js/services/bwcError.js:71
+msgid "Insufficient funds for fee"
+msgstr "Недостатъчни средства за такса"
+
+#: www/views/tab-settings.html:123
+msgid "Integrations"
+msgstr "Интеграции"
+
+#: www/views/includes/walletHistory.html:49
+msgid "Invalid"
+msgstr "Невалидно"
+
+#: src/js/controllers/buyAmazon.js:137
+#: src/js/controllers/buyMercadoLibre.js:137
+#: src/js/controllers/topup.js:115
+msgid "Invalid URL"
+msgstr "Невалиден URL адрес"
+
+#: src/js/controllers/create.js:186
+#: src/js/controllers/import.js:345
+#: src/js/controllers/join.js:151
+msgid "Invalid account number"
+msgstr "Невалиден акаунт номер"
+
+#: src/js/services/bwcError.js:119
+msgid "Invalid address"
+msgstr "Невалиден адрес"
+
+#: src/js/controllers/tabsController.js:7
+msgid "Invalid data"
+msgstr "Невалидни данни"
+
+#: src/js/controllers/create.js:161
+#: src/js/controllers/import.js:266
+#: src/js/controllers/join.js:125
+msgid "Invalid derivation path"
+msgstr "Невалиден път за деривация"
+
+#: src/js/controllers/copayers.js:90
+msgid "Invitation to share a {{appName}} Wallet"
+msgstr "Покана за споделяне на {{appName}} портфейл"
+
+#: www/views/mercadoLibreCards.html:20
+#: www/views/modals/mercadolibre-card-details.html:48
+msgid "Invoice expired"
+msgstr "Фактурата е изтекла"
+
+#: src/js/controllers/feedback/send.js:79
+msgid "Is there anything we could do better?"
+msgstr "Има ли нещо, което бихме могли да направим по-добре?"
+
+#: www/views/backup.html:54
+msgid "Is this correct?"
+msgstr "Правилно ли е?"
+
+#: www/views/onboarding/collectEmail.html:22
+msgid "Is this email address correct?"
+msgstr "Този имейл адрес правилен ли е?"
+
+#: www/views/addresses.html:25
+msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
+msgstr "Добра идея е да избягвате преизползването на адреси - така едновременно оставате по-скрити и пазите биткойните си от хипотетична атака от квантови компютри."
+
+#: src/js/controllers/backup.js:76
+msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
+msgstr "Важно е да запишете вашата резервна фраза правилно. Ако нещо се случи с портфейла си, ще ви трябва това архивно копие за възстановяване на парите. Моля прегледайте думите и опитайте отново."
+
+#: www/views/join.html:151
+msgid "Join"
+msgstr "Присъединете се"
+
+#: src/js/controllers/copayers.js:85
+msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
+msgstr "Присъединете се към {{appName}} портфейл. Тук е кодът на поканата: {{secret}}. Можете да изтеглите {{appName}} за вашия телефон или компютър {{appUrl}}"
+
+#: www/views/add.html:30
+#: www/views/join.html:5
+msgid "Join shared wallet"
+msgstr "Присъедини се към споделен портфейл"
+
+#: src/js/services/onGoingProcess.js:25
+msgid "Joining Wallet..."
+msgstr "Присъединяване към Портфейл..."
+
+#: www/views/onboarding/tour.html:22
+msgid "Just scan the code to pay."
+msgstr "Просто сканирай кода за да платиш."
+
+#: src/js/services/bwcError.js:116
+msgid "Key already associated with an existing wallet"
+msgstr "Ключа вече е свързан със съществуващ портфейл"
+
+#: www/views/preferencesLanguage.html:4
+#: www/views/tab-settings.html:68
+msgid "Language"
+msgstr "Език"
+
+#: www/views/bitpayCard.html:61
+msgid "Last Month"
+msgstr "Миналия месец"
+
+#: src/js/controllers/confirm.js:132
+#: www/views/preferences.html:48
+#: www/views/preferencesCash.html:18
+#: www/views/tx-details.html:94
+msgid "Learn more"
+msgstr "Научете повече"
+
+#: www/views/backup.html:43
+msgid "Let's verify your backup phrase."
+msgstr "Нека проверим вашата резервна фраза."
+
+#: www/views/addresses.html:45
+#: www/views/allAddresses.html:14
+msgid "Loading addresses..."
+msgstr "Зареждане на адреси..."
+
+#: src/js/services/onGoingProcess.js:35
+msgid "Loading transaction info..."
+msgstr "Зареждане на транзакционна информация..."
+
+#: www/views/tab-settings.html:100
+msgid "Lock App"
+msgstr "Заключи Програмата"
+
+#: src/js/controllers/lockSetup.js:23
+msgid "Lock by Fingerprint"
+msgstr "Заключи с Отпечатък"
+
+#: src/js/controllers/lockSetup.js:14
+msgid "Lock by PIN"
+msgstr "Заключи с ПИН"
+
+#: www/views/modals/wallet-balance.html:80
+msgid "Locked"
+msgstr "Заключено"
+
+#: src/js/services/bwcError.js:86
+msgid "Locktime in effect. Please wait to create a new spend proposal"
+msgstr "Действа блокировка. Моля, изчакайте, за да се предложи ново плащане"
+
+#: src/js/services/bwcError.js:89
+msgid "Locktime in effect. Please wait to remove this spend proposal"
+msgstr "Действа блокировка. Моля, изчакайте за да се премахне предложеното плащане"
+
+#: www/views/includes/logOptions.html:3
+msgid "Log options"
+msgstr "Опции за регистрационния файл"
+
+#: www/views/modals/bitpay-card-confirmation.html:14
+msgid "Log out"
+msgstr "Да се излезе"
+
+#: www/views/addresses.html:87
+msgid "Low amount inputs"
+msgstr "Low amount inputs"
+
+#: www/views/includes/walletHistory.html:27
+msgid "Low fees"
+msgstr "Малка комисия"
+
+#: www/views/onboarding/tour.html:38
+msgid "Makes sense"
+msgstr "Напълно разумно"
+
+#: src/js/controllers/modals/search.js:61
+msgid "Matches:"
+msgstr "Съвпадения:"
+
+#: www/views/includes/copayers.html:4
+#: www/views/preferencesInformation.html:85
+msgid "Me"
+msgstr "Аз"
+
+#: src/js/controllers/feedback/rateCard.js:32
+msgid "Meh - it's alright"
+msgstr "Еми - става"
+
+#: src/js/controllers/tx-details.js:165
+#: www/views/modals/paypro.html:48
+#: www/views/modals/txp-details.html:93
+#: www/views/tx-details.html:72
+msgid "Memo"
+msgstr "Наръчник"
+
+#: www/views/mercadoLibre.html:6
+msgid "Mercado Livre Brazil Gift Cards"
+msgstr "Подаръчни карти Mercado Livre (Бразилия)"
+
+#: src/js/controllers/buyMercadoLibre.js:98
+msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
+msgstr "Сервизът на картите, предназначени като подарък Mercadolibre сега е недостъпен. Опитайте по-късно."
+
+#: www/views/modals/txp-details.html:131
+msgid "Merchant Message"
+msgstr "Съобщение от продавача"
+
+#: www/views/buyAmazon.html:55
+#: www/views/buyMercadoLibre.html:54
+#: www/views/topup.html:63
+msgid "Miner Fee"
+msgstr "Комисия на майнъра"
+
+#: src/js/services/bwcError.js:134
+msgid "Missing parameter"
+msgstr "Недостигащ параметър"
+
+#: src/js/services/bwcError.js:32
+msgid "Missing private keys to sign"
+msgstr "Отсъстват закритите ключове за подпис"
+
+#: www/views/preferences.html:61
+#: www/views/preferencesAdvanced.html:3
+msgid "More Options"
+msgstr "Допълнителни параметри"
+
+#: www/views/includes/walletHistory.html:47
+#: www/views/tx-details.html:19
+msgid "Moved"
+msgstr "Преместено"
+
+#: src/js/controllers/tx-details.js:131
+msgid "Moved Funds"
+msgstr "Преместени средства"
+
+#: www/views/modals/txp-details.html:57
+msgid "Multiple recipients"
+msgstr "Няколко получатели"
+
+#: www/views/tab-import-phrase.html:8
+msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
+msgstr "Забележка: за импортиране на портмонето от друга програма, отворете \"Да се добави портмоне\" &gt; \"Да се създаде лично портмоне\", и посочете там ключовата фраза."
+
+#: www/views/addressbook.add.html:21
+#: www/views/addressbook.view.html:18
+#: www/views/preferences.html:15
+#: www/views/preferencesAlias.html:17
+msgid "Name"
+msgstr "Название"
+
+#: www/views/buyAmazon.html:49
+#: www/views/buyMercadoLibre.html:48
+#: www/views/topup.html:56
+msgid "Network Cost"
+msgstr "Разходи на мрежата"
+
+#: src/js/services/bwcError.js:47
+msgid "Network error"
+msgstr "Грешка на мрежата"
+
+#: www/views/includes/walletActivity.html:43
+msgid "New Proposal"
+msgstr "Да се предложи плащането"
+
+#: src/js/controllers/addresses.js:126
+msgid "New address could not be generated. Please try again."
+msgstr "Адресът не може да е генериран. Опитайте по-късно."
+
+#: www/views/add.html:14
+msgid "New personal wallet"
+msgstr "Ново лично портмоне"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Next steps"
+msgstr "По-нататъшни стъпки"
+
+#: www/views/tab-receive.html:16
+msgid "No Wallet"
+msgstr "Няма портмонета"
+
+#: src/js/controllers/buyAmazon.js:115
+#: src/js/controllers/buyMercadoLibre.js:115
+msgid "No access key defined"
+msgstr "Ключът за достъп не е даден"
+
+#: www/views/onboarding/backupRequest.html:5
+msgid "No backup, no bitcoin."
+msgstr "Няма резервно копие - няма биткойни."
+
+#: www/views/addressbook.html:19
+msgid "No contacts yet"
+msgstr "Няма контакти"
+
+#: www/views/preferencesLogs.html:16
+msgid "No entries for this log level"
+msgstr "За това ниво на водене на журнала записи няма"
+
+#: www/views/preferencesExternal.html:12
+msgid "No hardware information available."
+msgstr "Информацията за апаратното осигуряване отсъства."
+
+#: www/views/tab-import-hardware.html:3
+msgid "No hardware wallets supported on this device"
+msgstr "Апаратните портмонета не се поддържат от тази уредба."
+
+#: www/views/proposals.html:24
+msgid "No pending proposals"
+msgstr "Няма предложени плащания"
+
+#: www/views/activity.html:25
+msgid "No recent transactions"
+msgstr "Няма неотдавнашни транзакции"
+
+#: src/js/controllers/buyAmazon.js:44
+#: src/js/controllers/topup.js:47
+msgid "No signing proposal: No private key"
+msgstr "Няма предложения за абониране: няма приватен ключ"
+
+#: www/views/walletDetails.html:204
+msgid "No transactions yet"
+msgstr "Транзакции засега не е имало"
+
+#: src/js/controllers/preferencesDelete.js:15
+msgid "No wallet found"
+msgstr "Портмонетата не са открити"
+
+#: src/js/controllers/preferencesDelete.js:8
+msgid "No wallet selected"
+msgstr "Не е избрано портмонето"
+
+#: src/js/controllers/buyAmazon.js:300
+#: src/js/controllers/buyMercadoLibre.js:292
+#: src/js/controllers/confirm.js:85
+#: src/js/controllers/topup.js:265
+msgid "No wallets available"
+msgstr "Няма портмонета"
+
+#: www/views/paperWallet.html:45
+msgid "No wallets available to receive funds"
+msgstr "Няма за къде да се преведат средствата"
+
+#: www/views/cashScan.html:15
+msgid "No wallets eligible for Bitcoin Cash support"
+msgstr "Няма портмонета с възможността за поддържане Bitcoin Cash"
+
+#: src/js/controllers/cashScan.js:58
+msgid "Non BIP44 wallet"
+msgstr "Не е портмоне BIP44"
+
+#: www/views/cashScan.html:46
+msgid "Non eligible BTC wallets"
+msgstr "Неподходящи портмонета BTC"
+
+#: src/js/services/feeService.js:12
+msgid "Normal"
+msgstr "Обикновена"
+
+#: src/js/services/bwcError.js:80
+msgid "Not authorized"
+msgstr "Не е оторизиран"
+
+#: src/js/controllers/confirm.js:307
+msgid "Not enough funds for fee"
+msgstr "Не са достатъчни средствата за заплащане на комисията"
+
+#: www/views/onboarding/tour.html:50
+msgid "Not even BitPay can access it."
+msgstr "BitPay няма да може да получи достъп самостоятелно."
+
+#: src/js/controllers/paperWallet.js:47
+msgid "Not funds found"
+msgstr "Средствата не са открити"
+
+#: www/views/feedback/rateApp.html:3
+#: www/views/onboarding/notifications.html:8
+msgid "Not now"
+msgstr "Не сега"
+
+#: www/views/includes/output.html:15
+msgid "Note"
+msgstr "Забележка"
+
+#: www/views/backup.html:19
+msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
+msgstr "Забележка: ако това портмоне ВСН е дубликат на портмонето ВТС, то при тях е еднаква ключовата фраза."
+
+#: www/views/modals/wallets.html:25
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgstr "Внимание: само 1-1 портмонета (изискващи един подпис) могат да са използвани за продажба на биткойн"
+
+#: www/views/preferencesNotifications.html:3
+#: www/views/tab-settings.html:61
+msgid "Notifications"
+msgstr "Уведомявания"
+
+#: www/views/onboarding/collectEmail.html:9
+msgid "Notifications by email"
+msgstr "Уведомявания по електронна поща"
+
+#: www/views/tx-details.html:117
+msgid "Notify me if confirmed"
+msgstr "Да се уведомява при потвърждаване"
+
+#: www/views/preferencesNotifications.html:24
+msgid "Notify me when transactions are confirmed"
+msgstr "Да бъда уведомяван при потвърждаване на транзакциите"
+
+#: www/views/includes/backupNeededPopup.html:8
+msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
+msgstr "Ако това устройство бъде изгубено, без резервно копие ще е невъзможно да е възстановен достъпът към парите. Точно сега е времето да се създаде резервно копие."
+
+#: www/views/backupWarning.html:11
+msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
+msgstr "Тъкмо е време да се оцени окръжението. Прозорци наблизо? Скрити камери? Шпиони на плещите?"
+
+#: src/js/controllers/buyAmazon.js:312
+#: src/js/controllers/topup.js:286
+#: src/js/services/incomingData.js:153
+#: src/js/services/popupService.js:16
+#: src/js/services/popupService.js:52
+#: src/js/services/popupService.js:61
+#: src/js/services/popupService.js:72
+#: www/views/modals/chooseFeeLevel.html:6
+msgid "OK"
+msgstr "ДОБРЕ"
+
+#: www/views/modals/tx-status.html:12
+#: www/views/modals/tx-status.html:24
+#: www/views/modals/tx-status.html:36
+#: www/views/modals/tx-status.html:46
+msgid "OKAY"
+msgstr "ДОБРЕ"
+
+#: www/views/modals/terms.html:15
+msgid "Official English Disclaimer"
+msgstr "Официален оригинал"
+
+#: src/js/controllers/feedback/send.js:64
+msgid "Oh no!"
+msgstr "О не!"
+
+#: src/js/controllers/buyMercadoLibre.js:306
+msgid "Ok"
+msgstr "ОК"
+
+#: www/views/tab-home.html:39
+msgid "On this screen you can see all your wallets, accounts, and assets."
+msgstr "На тази вложка вие можете да видите всички ваши портмонета, отчетни записи и активи."
+
+#: src/js/controllers/bitpayCard.js:113
+#: src/js/controllers/cashScan.js:19
+#: src/js/controllers/preferences.js:66
+#: src/js/controllers/preferencesCash.js:33
+#: src/js/controllers/tab-settings.js:52
+#: src/js/controllers/tx-details.js:55
+msgid "Open"
+msgstr "Да се отвори"
+
+#: src/js/controllers/preferencesLanguage.js:13
+msgid "Open Crowdin"
+msgstr "Да се отвори Crowdin"
+
+#: src/js/controllers/preferencesAbout.js:15
+msgid "Open GitHub"
+msgstr "Отворени GitHub"
+
+#: src/js/controllers/preferencesAbout.js:13
+msgid "Open GitHub Project"
+msgstr "Отворете проекта GitHub"
+
+#: src/js/controllers/bitpayCard.js:123
+#: src/js/controllers/tx-details.js:192
+msgid "Open Explorer"
+msgstr "Да се отвори обзорът"
+
+#: www/views/tab-scan.html:22
+msgid "Open Settings"
+msgstr "Да се отворят Параметрите"
+
+#: src/js/controllers/preferencesLanguage.js:11
+msgid "Open Translation Community"
+msgstr "Да се редактира превода"
+
+#: src/js/controllers/onboarding/terms.js:22
+msgid "Open Website"
+msgstr "Да се премине на сайта"
+
+#: src/js/controllers/preferencesCash.js:32
+msgid "Open bitcoincash.org?"
+msgstr "Да се отвори ли bitcoincash.org?"
+
+#: src/js/controllers/cashScan.js:18
+msgid "Open the recovery tool."
+msgstr "Да се отвори инструментът за възстановяване."
+
+#: www/views/tab-receive.html:27
+msgid "Open wallet"
+msgstr "Да се отвори портмонето"
+
+#: www/views/includes/incomingDataMenu.html:19
+msgid "Open website"
+msgstr "Да се отвори сайтът"
+
+#: www/views/bitpayCardIntro.html:34
+msgid "Order the BitPay Card"
+msgstr "Да се поръча BitPay Card"
+
+#: www/views/join.html:105
+#: www/views/join.html:96
+#: www/views/tab-create-personal.html:69
+#: www/views/tab-create-personal.html:77
+#: www/views/tab-create-shared.html:106
+#: www/views/tab-create-shared.html:98
+#: www/views/tab-import-file.html:18
+#: www/views/tab-import-phrase.html:41
+msgid "Password"
+msgstr "Парола"
+
+#: src/js/controllers/import.js:98
+msgid "Password required. Make sure to enter your password in advanced options"
+msgstr "Необходима е парола. Убедете се, че сте вкарали вашата парола в разширени нагласи"
+
+#: www/views/join.html:33
+msgid "Paste invitation here"
+msgstr "Поставете поканата тук"
+
+#: www/views/tab-import-file.html:13
+msgid "Paste the backup plain text code"
+msgstr "Поставете кода на резервното копие с обичаен текст"
+
+#: www/views/bitpayCardIntro.html:28
+msgid "Pay 0% fees to turn bitcoin into dollars."
+msgstr "Плащайте нулева комисия за конвертиране на биткойни в долари на САЩ."
+
+#: www/views/modals/paypro.html:18
+msgid "Pay To"
+msgstr "Да се изпрати плащането"
+
+#: src/js/controllers/modals/txpDetails.js:51
+#: www/views/modals/tx-status.html:33
+msgid "Payment Accepted"
+msgstr "Плащането е прието"
+
+#: www/views/confirm.html:25
+msgid "Payment Expires:"
+msgstr "Срок на плащането:"
+
+#: www/views/modals/txp-details.html:6
+msgid "Payment Proposal"
+msgstr "Предложено плащане"
+
+#: www/views/modals/tx-status.html:21
+msgid "Payment Proposal Created"
+msgstr "Плащането е предложено"
+
+#: www/views/tab-home.html:46
+msgid "Payment Proposals"
+msgstr "Предложени плащания"
+
+#: src/js/services/payproService.js:32
+msgid "Payment Protocol Invalid"
+msgstr "Невалиден протокол на плащането"
+
+#: src/js/services/payproService.js:18
+msgid "Payment Protocol not supported on Chrome App"
+msgstr "Платежният протокол не се поддържа в приложението Chrome"
+
+#: www/views/includes/walletActivity.html:20
+msgid "Payment Received"
+msgstr "Плащането е получено"
+
+#: www/views/modals/tx-status.html:43
+#: www/views/modals/txp-details.html:43
+msgid "Payment Rejected"
+msgstr "Плащането е отклонено"
+
+#: src/js/controllers/modals/txpDetails.js:44
+#: www/views/confirm.html:124
+#: www/views/includes/walletActivity.html:11
+#: www/views/modals/txp-details.html:42
+msgid "Payment Sent"
+msgstr "Плащането е изпратено"
+
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr "Да се сподели транзакцията"
+
+#: www/views/modals/txp-details.html:32
+msgid "Payment accepted, but not yet broadcasted"
+msgstr "Плащането е прието, но още не е изпратено"
+
+#: www/views/modals/txp-details.html:40
+msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
+msgstr "Плащането е прието и ще е изпратен Glidera. В случай на проблем, то може да е премахнато шест часа след създаването."
+
+#: src/js/services/incomingData.js:152
+msgid "Payment address was translated to new Bitcoin Cash address format:"
+msgstr "Адресът за плащане е бил преведен в нов формат на адреса Bitcoin Cash:"
+
+#: www/views/modals/txp-details.html:107
+msgid "Payment details"
+msgstr "Детайли на плащането"
+
+#: www/views/modals/paypro.html:6
+msgid "Payment Request"
+msgstr "Запитване за плащане"
+
+#: www/views/mercadoLibreCards.html:22
+#: www/views/modals/mercadolibre-card-details.html:39
+msgid "Pending"
+msgstr "Очакване"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "В очакване на авторизиране"
+
+#: www/views/proposals.html:4
+msgid "Pending Proposals"
+msgstr "Разглеждани плащания"
+
+#: www/views/preferencesDeleteWallet.html:13
+msgid "Permanently delete this wallet."
+msgstr "Завинаги да се премахне това портмоне."
+
+#: src/js/services/profileService.js:403
+msgid "Personal Wallet"
+msgstr "Лично портмоне"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Мое портмоне {{coin}}"
+
+#: www/views/backup.html:25
+msgid "Please carefully write down this phrase."
+msgstr "Внимателно запишете ключовата фраза."
+
+#: www/views/tab-scan.html:20
+msgid "Please connect a camera to get started."
+msgstr "За да се започне, включете камерата."
+
+#: src/js/controllers/import.js:278
+msgid "Please enter the recovery phrase"
+msgstr "Вкарайте ключовата фраза"
+
+#: src/js/controllers/create.js:174
+#: src/js/controllers/join.js:139
+msgid "Please enter the wallet recovery phrase"
+msgstr "Вкарайте ключовата фраза на портмонето"
+
+#: www/views/modals/pin.html:9
+msgid "Please enter your PIN"
+msgstr "Моля, вкарайте Вашия PIN-код"
+
+#: www/views/backup.html:53
+msgid "Please tap each word in the correct order."
+msgstr "Натиснете върху екрана на сензорното устройство всяка дума в правилен ред."
+
+#: src/js/services/bwcError.js:101
+msgid "Please upgrade Copay to perform this action"
+msgstr "Моля, обновете Copay за изпълнение на това действие"
+
+#: www/views/walletDetails.html:142
+#: www/views/walletDetails.html:62
+msgid "Please wait"
+msgstr "Моля, изчакайте"
+
+#: src/js/controllers/import.js:238
+msgid "Please, select your backup file"
+msgstr "Моля, изберете вашия файл от резервното копие"
+
+#: www/views/bitpayCard.html:81
+msgid "Pre-Auth Holds"
+msgstr "Предварително авторизиране"
+
+#: www/views/tab-settings.html:40
+msgid "Preferences"
+msgstr "Параметри"
+
+#: src/js/services/onGoingProcess.js:38
+msgid "Preparing addresses..."
+msgstr "Подготовка на адресите..."
+
+#: src/js/controllers/export.js:198
+msgid "Preparing backup..."
+msgstr "Подготовка на резервното копие..."
+
+#: src/js/routes.js:1264
+msgid "Press again to exit"
+msgstr "Натиснете още веднъж за изход"
+
+#: src/js/services/feeService.js:11
+msgid "Priority"
+msgstr "Приоритетна"
+
+#: www/views/includes/incomingDataMenu.html:80
+msgid "Private Key"
+msgstr "Личен ключ"
+
+#: src/js/controllers/paperWallet.js:136
+msgid "Private key encrypted. Enter password"
+msgstr "Личният ключ е с шифър. Вкарайте паролата"
+
+#: src/js/services/bwcError.js:35
+msgid "Private key is encrypted, cannot sign"
+msgstr "Затвореният ключ е шифрован, не може да се подпише"
+
+#: www/views/includes/walletActivity.html:51
+msgid "Proposal Accepted"
+msgstr "Плащането е прието"
+
+#: src/js/controllers/modals/txpDetails.js:61
+#: src/js/controllers/tx-details.js:78
+#: www/views/confirm.html:125
+msgid "Proposal Created"
+msgstr "Плащането е създадено"
+
+#: www/views/includes/walletActivity.html:27
+msgid "Proposal Deleted"
+msgstr "Плащането е премахнато"
+
+#: www/views/includes/walletActivity.html:35
+msgid "Proposal Rejected"
+msgstr "Плащането е отклонено"
+
+#: www/views/walletDetails.html:189
+msgid "Proposals"
+msgstr "Предложени плащания"
+
+#: src/js/controllers/buyAmazon.js:282
+msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
+msgstr "Ограничаване на сумата за покупка — {{limitPerDay}} {{currency}} за ден"
+
+#: src/js/controllers/buyMercadoLibre.js:281
+msgid "Purchase amount must be a value between 50 and 2000"
+msgstr "Сумата на покупката следва да е от 50 до 2000"
+
+#: www/views/onboarding/notifications.html:3
+msgid "Push Notifications"
+msgstr "Push-уведомявания"
+
+#: www/views/preferencesNotifications.html:17
+msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
+msgstr "Push-уведомявания за {{appName}} в настоящото време са изключени. Включете ги в Параметрите."
+
+#: www/views/export.html:17
+msgid "QR Code"
+msgstr "QR-код"
+
+#: www/views/onboarding/disclaimer.html:13
+msgid "Quick review!"
+msgstr "Бърз преглед!"
+
+#: src/js/controllers/create.js:84
+#: src/js/controllers/join.js:68
+msgid "Random"
+msgstr "Случайное"
+
+#: www/views/feedback/rateApp.html:14
+msgid "Rate on the app store"
+msgstr "Гласувай в магазина за приложения"
+
+#: www/views/addresses.html:52
+msgid "Read less"
+msgstr "Да се покаже по-малко"
+
+#: www/views/addresses.html:51
+msgid "Read more"
+msgstr "Да се покаже повече"
+
+#: src/js/controllers/preferences.js:65
+#: src/js/controllers/tx-details.js:54
+msgid "Read more in our Wiki"
+msgstr "По-подробно - в нашата Wiki"
+
+#: src/js/controllers/cashScan.js:61
+msgid "Read only wallet"
+msgstr "Портмоне само за четене"
+
+#: www/views/tab-receive.html:3
+#: www/views/tabs.html:7
+msgid "Receive"
+msgstr "Да се получи"
+
+#: www/views/customAmount.html:44
+msgid "Receive in"
+msgstr "Получи в"
+
+#: www/views/includes/walletHistory.html:24
+#: www/views/tx-details.html:18
+msgid "Received"
+msgstr "Получено е"
+
+#: src/js/controllers/tx-details.js:130
+msgid "Received Funds"
+msgstr "Получени средства"
+
+#: www/views/includes/walletHistory.html:57
+#: www/views/tx-details.html:24
+msgid "Receiving"
+msgstr "Получаване"
+
+#: www/views/bitpayCard.html:60
+#: www/views/includes/walletHistory.html:3
+msgid "Recent"
+msgstr "Неотдавнашни"
+
+#: www/views/advancedSettings.html:21
+msgid "Recent Transaction Card"
+msgstr "Неотдавнашни транзакции"
+
+#: www/views/activity.html:4
+#: www/views/tab-home.html:58
+msgid "Recent Transactions"
+msgstr "Неотдавнашни транзакции"
+
+#: www/views/amount.html:18
+#: www/views/tab-send.html:9
+msgid "Recipient"
+msgstr "Получател"
+
+#: www/views/modals/txp-details.html:62
+msgid "Recipients"
+msgstr "Получатели"
+
+#: www/views/import.html:12
+msgid "Recovery phrase"
+msgstr "Ключова фраза"
+
+#: src/js/services/onGoingProcess.js:26
+msgid "Recreating Wallet..."
+msgstr "Възсъздавам портмонето..."
+
+#: www/views/modals/mercadolibre-card-details.html:22
+msgid "Redeem now"
+msgstr "Да се изгаси"
+
+#: src/js/controllers/modals/txpDetails.js:63
+#: src/js/controllers/tx-details.js:80
+msgid "Rejected"
+msgstr "Отклонен"
+
+#: src/js/services/onGoingProcess.js:27
+msgid "Rejecting payment proposal"
+msgstr "Отклоняване на плащането"
+
+#: www/views/preferencesAbout.html:9
+msgid "Release information"
+msgstr "Информация за випуска"
+
+#: www/views/addressbook.view.html:36
+#: www/views/modals/mercadolibre-card-details.html:69
+msgid "Remove"
+msgstr "Да се премахне"
+
+#: src/js/controllers/preferencesBitpayServices.js:7
+msgid "Remove BitPay Account?"
+msgstr "Да се премахне ли BitPay акаунт?"
+
+#: src/js/controllers/preferencesBitpayServices.js:19
+msgid "Remove BitPay Card?"
+msgstr "Да се премахне ли BitPay картата?"
+
+#: src/js/controllers/preferencesBitpayServices.js:8
+msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
+msgstr "Премахването на отчетния запис BitPay ще премахне всички свързани данни на отчетния запис BitPay от това устройство. Сигурни ли, че бихте искали да премахнете своя BitPay акаунт ({{email}}) от това устройство?"
+
+#: www/views/join.html:116
+#: www/views/join.html:124
+#: www/views/tab-create-personal.html:86
+#: www/views/tab-create-personal.html:94
+#: www/views/tab-create-shared.html:115
+#: www/views/tab-create-shared.html:123
+#: www/views/tab-export-file.html:17
+msgid "Repeat password"
+msgstr "Повторете паролата"
+
+#: www/views/tab-export-file.html:16
+msgid "Repeat the password"
+msgstr "Повторете паролата"
+
+#: www/views/preferences.html:56
+msgid "Request Fingerprint"
+msgstr "Запитване за пръстови отпечатъци"
+
+#: www/views/tab-receive.html:45
+msgid "Request Specific amount"
+msgstr "Да се запита определена сума"
+
+#: www/views/preferences.html:42
+msgid "Request Spending Password"
+msgstr "Да се запитва платежната парола"
+
+#: www/views/tab-create-shared.html:44
+msgid "Required number of signatures"
+msgstr "Искано число подписи"
+
+#: www/views/onboarding/welcome.html:9
+msgid "Restore from backup"
+msgstr "Да се възстанови от резервното копие"
+
+#: src/js/services/onGoingProcess.js:29
+msgid "Retrieving inputs information"
+msgstr "Получаване на информация за влизанията"
+
+#: src/js/controllers/onboarding/tour.js:56
+msgid "Retry"
+msgstr "Да се повтори опитът"
+
+#: www/views/tab-scan.html:23
+msgid "Retry Camera"
+msgstr "Да се провери камерата"
+
+#: www/views/addressbook.add.html:56
+#: www/views/includes/note.html:9
+#: www/views/preferencesAlias.html:21
+#: www/views/preferencesBwsUrl.html:25
+#: www/views/preferencesNotifications.html:46
+msgid "Save"
+msgstr "Да се запази"
+
+#: www/views/tab-scan.html:3
+#: www/views/tabs.html:11
+msgid "Scan"
+msgstr "Да се сканира"
+
+#: www/views/tab-scan.html:15
+msgid "Scan QR Codes"
+msgstr "Сканиране на QR-кодове"
+
+#: www/views/addresses.html:31
+msgid "Scan addresses for funds"
+msgstr "Да се сканират адресите за откриване на средства"
+
+#: www/views/modals/fingerprintCheck.html:11
+msgid "Scan again"
+msgstr "Да се сканира още веднъж"
+
+#: src/js/services/fingerprintService.js:56
+msgid "Scan your fingerprint please"
+msgstr "Моля, сканирайте вашият отпечатък на пръста"
+
+#: www/views/preferencesCash.html:23
+msgid "Scan your wallets for Bitcoin Cash"
+msgstr "Да се търси във вашите портмонета Bitcoin Cash"
+
+#: src/js/services/onGoingProcess.js:30
+msgid "Scanning Wallet funds..."
+msgstr "Сканиране адресите на портмонето..."
+
+#: www/views/includes/walletList.html:11
+msgid "Scanning funds..."
+msgstr "Сканиране на средствата..."
+
+#: www/views/includes/screenshotWarningModal.html:7
+msgid "Screenshots are not secure"
+msgstr "Скрийншотовете не са безопасни"
+
+#: www/views/modals/search.html:6
+msgid "Search Transactions"
+msgstr "Търсене на транзакции"
+
+#: www/views/tab-send.html:13
+msgid "Search or enter bitcoin address"
+msgstr "Да се намери или вкара биткойн-адрес"
+
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "Буфер на обмяна"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "Буферът на обмяната е празен"
+
+#: www/views/modals/search.html:16
+msgid "Search transactions"
+msgstr "Търсене на транзакции"
+
+#: www/views/preferencesAltCurrency.html:14
+msgid "Search your currency"
+msgstr "Да се намери вашата валута"
+
+#: www/views/preferences.html:30
+msgid "Security"
+msgstr "Сигурност"
+
+#: www/views/modals/mercadolibre-card-details.html:64
+msgid "See invoice"
+msgstr "Преглед на инвойса"
+
+#: www/views/tab-import-file.html:7
+msgid "Select a backup file"
+msgstr "Изберете файла на резервното копие"
+
+#: src/js/controllers/tab-receive.js:139
+msgid "Select a wallet"
+msgstr "Изберете портмонето"
+
+#: www/views/modals/paypro.html:38
+msgid "Self-signed Certificate"
+msgstr "Самозаверени сертификати"
+
+#: src/js/services/onGoingProcess.js:41
+msgid "Selling Bitcoin..."
+msgstr "Продажба на биткойн..."
+
+#: www/views/feedback/send.html:13
+#: www/views/feedback/send.html:43
+#: www/views/tab-send.html:3
+#: www/views/tabs.html:15
+msgid "Send"
+msgstr "Изпрати"
+
+#: www/views/feedback/send.html:3
+#: www/views/tab-settings.html:29
+msgid "Send Feedback"
+msgstr "Изпрати Препоръки"
+
+#: www/views/addressbook.view.html:31
+msgid "Send Money"
+msgstr "Да се изпратят пари"
+
+#: www/views/allAddresses.html:19
+msgid "Send addresses by email"
+msgstr "Да се изпратят адресите по e-mail"
+
+#: www/views/includes/logOptions.html:17
+#: www/views/tab-export-file.html:82
+msgid "Send by email"
+msgstr "Да се изпрати по e-mail"
+
+#: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
+msgid "Send from"
+msgstr "Да се изпрати от"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "Получател"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "Да се постави от буфера за обмяна"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "Да се вкара адресът"
+
+#: www/views/tab-send.html:27
+msgid "Transfer between wallets"
+msgstr "Превод между портмонета"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "Да се сканира QR кодът"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "Изпращайте биткойните още по-бързо!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Запазвайте често използваните адреси на портмонетата и изпращайте на тях биткойни с едно натискане"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "Да се добави първият контакт"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "Вашето портмоне е празно"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "За да се започне работа, купете Bitcoin Cash (BCH) или Bitcoin Core (BTC), или споделите вашия адрес."
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "Вие можете да получавате биткойни от всяко портмоне или сервиз."
+
+#: www/views/tab-send.html:72
+#: www/views/sideshift.html:23
+#: www/views/tab-send.html:33
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "За да се започне работа, нужно ви е да създадете портмоне и получите биткойн."
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "Да се купят биткойни сега"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "Да се покаже моят адрес"
+
+#: www/views/includes/itemSelector.html:8
+msgid "Send max amount"
+msgstr "Да се изпрати макс. сума"
+
+#: www/views/includes/incomingDataMenu.html:46
+msgid "Send payment to this address"
+msgstr "Да се изпрати плащането на този адрес"
+
+#: www/views/feedback/rateApp.html:17
+msgid "Send us feedback instead"
+msgstr "Изпрати ни препоръки вместо това"
+
+#: www/views/confirm.html:15
+#: www/views/includes/txp.html:12
+#: www/views/modals/txp-details.html:19
+#: www/views/tx-details.html:23
+msgid "Sending"
+msgstr "Изпращане"
+
+#: src/js/services/onGoingProcess.js:39
+msgid "Sending 2FA code..."
+msgstr "Изпращане на втория фактор..."
+
+#: src/js/services/onGoingProcess.js:36
+msgid "Sending feedback..."
+msgstr "Изпрати препоръки..."
+
+#: www/views/confirm.html:16
+msgid "Sending maximum amount"
+msgstr "Изпращам максимална сума"
+
+#: src/js/services/onGoingProcess.js:31
+msgid "Sending transaction"
+msgstr "Изпращане на транзакция"
+
+#: src/js/controllers/confirm.js:545
+msgid "Sending {{amountStr}} from your {{name}} wallet"
+msgstr "Изпращане {{amountStr}} от вашето портмоне {{name}}"
+
+#: www/views/includes/walletHistory.html:42
+#: www/views/modals/tx-status.html:9
+#: www/views/topup.html:100
+#: www/views/tx-details.html:17
+msgid "Sent"
+msgstr "Изпратено"
+
+#: src/js/controllers/tx-details.js:129
+msgid "Sent Funds"
+msgstr "Изпратени средства"
+
+#: src/js/services/bwcError.js:38
+msgid "Server response could not be verified"
+msgstr "Отговорът на сървъра не може да е проверен"
+
+#: src/js/controllers/buyAmazon.js:97
+#: src/js/controllers/buyMercadoLibre.js:97
+msgid "Service not available"
+msgstr "Сервизът е недостъпен"
+
+#: www/views/includes/homeIntegrations.html:3
+msgid "Services"
+msgstr "Служби"
+
+#: www/views/preferencesLogs.html:3
+msgid "Session Log"
+msgstr "Журнал на сеанса"
+
+#: www/views/preferencesAbout.html:35
+msgid "Session log"
+msgstr "Журнал на сеанса"
+
+#: www/views/tab-export-file.html:10
+msgid "Set up a password"
+msgstr "Дайте парола"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Set your own fee in satoshis/byte"
+msgstr "Дайте собствена комисия в сатоши/байт"
+
+#: www/views/tab-settings.html:3
+#: www/views/tabs.html:19
+msgid "Settings"
+msgstr "Параметри"
+
+#: www/views/feedback/complete.html:17
+#: www/views/feedback/complete.html:26
+msgid "Share the love by inviting your friends."
+msgstr "Сподели любовта като поканиш приятелите си."
+
+#: www/views/copayers.html:20
+msgid "Share this invitation with your copayers"
+msgstr "Изпратете покана на съсобствениците на портмонето"
+
+#: src/js/controllers/feedback/complete.js:5
+#: www/views/tab-settings.html:36
+msgid "Share {{appName}}"
+msgstr "Сподели {{appName}}"
+
+#: www/views/tab-import-hardware.html:24
+msgid "Shared Wallet"
+msgstr "Общо портмоне"
+
+#: www/views/preferencesExternal.html:34
+msgid "Show Recovery Phrase"
+msgstr "Да се покаже фразата за възстановяване"
+
+#: www/views/tab-receive.html:34
+msgid "Show address"
+msgstr "Да се покаже адресът"
+
+#: www/views/join.html:48
+#: www/views/tab-create-personal.html:27
+#: www/views/tab-create-shared.html:56
+#: www/views/tab-export-file.html:24
+#: www/views/tab-import-file.html:29
+#: www/views/tab-import-hardware.html:30
+#: www/views/tab-import-phrase.html:35
+msgid "Show advanced options"
+msgstr "Да се покажат разширените параметри"
+
+#: www/views/tab-send.html:37
+msgid "Show bitcoin address"
+msgstr "Да се покаже биткойн адресът"
+
+#: www/views/tab-send.html:59
+msgid "Show more"
+msgstr "Да се покаже още"
+
+#: src/js/services/bwcError.js:104
+msgid "Signatures rejected by server"
+msgstr "Подписите са отклонени от сървъра"
+
+#: src/js/services/onGoingProcess.js:32
+msgid "Signing transaction"
+msgstr "Подписване на транзакцията"
+
+#: www/views/onboarding/backupRequest.html:6
+msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
+msgstr "Тъй като портмонето се пази само при вас, необходимо ви е да запишете ключовата фраза в случай на премахване {{appName}}."
+
+#: www/views/tab-create-personal.html:122
+#: www/views/tab-create-shared.html:151
+msgid "Single Address Wallet"
+msgstr "Портмоне с един адрес"
+
+#: www/views/onboarding/collectEmail.html:40
+#: www/views/onboarding/tour.html:11
+msgid "Skip"
+msgstr "Да се пропусне"
+
+#: src/js/controllers/confirm.js:371
+#: src/js/controllers/modals/txpDetails.js:47
+msgid "Slide to accept"
+msgstr "Да се прокара с пръст - да се приеме"
+
+#: www/views/buyAmazon.html:96
+msgid "Slide to buy"
+msgstr "Да се прокара с пръст - да се купи"
+
+#: src/js/controllers/confirm.js:365
+msgid "Slide to pay"
+msgstr "Да се прокара с пръст - да се плати"
+
+#: src/js/controllers/confirm.js:377
+#: src/js/controllers/modals/txpDetails.js:40
+msgid "Slide to send"
+msgstr "Да се прокара с пръст - да се изпрати"
+
+#: www/views/cashScan.html:56
+msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
+msgstr "Някои от вашите портмонета не могат да поддържат Bitcoin Cash Може да се опита получаването на достъп към BCH от тези портмонета чрез"
+
+#: src/js/controllers/create.js:88
+#: src/js/controllers/join.js:71
+msgid "Specify Recovery Phrase..."
+msgstr "Да се посочи ключовата фраза..."
+
+#: src/js/services/bwcError.js:92
+msgid "Spend proposal is not accepted"
+msgstr "Плащането не е прието"
+
+#: src/js/services/bwcError.js:95
+msgid "Spend proposal not found"
+msgstr "Плащането не е намерено"
+
+#: src/js/services/bwcError.js:137
+msgid "Spending Password needed"
+msgstr "Необходима е платежната парола"
+
+#: www/views/walletDetails.html:173
+msgid "Spending this balance will need significant Bitcoin network fees"
+msgstr "За да се похарчи тази сума, ще потрябват значителни комисионни на мрежата Биткойн"
+
+#: www/views/tab-send.html:28
+msgid "Start sending bitcoin"
+msgstr "Да се започне изпращането на bitcoin"
+
+#: www/views/lockSetup.html:3
+msgid "Startup Lock"
+msgstr "Блокировка при пускането"
+
+#: www/views/mercadoLibreCards.html:21
+#: www/views/modals/mercadolibre-card-details.html:42
+msgid "Still pending"
+msgstr "Още в очакване"
+
+#: www/views/topup.html:101
+msgid "Success"
+msgstr "Успешно"
+
+#: src/js/services/feeService.js:14
+msgid "Super Economy"
+msgstr "Много икономична"
+
+#: www/views/preferencesCash.html:11
+msgid "Support Bitcoin Cash"
+msgstr "Поддръжка Bitcoin Cash"
+
+#: www/views/paperWallet.html:7
+msgid "Sweep"
+msgstr "Да се смята"
+
+#: www/views/includes/incomingDataMenu.html:89
+msgctxt "List item"
+msgid "Sweep paper wallet"
+msgstr "Да се попълни от хартиеното портмоне"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "Да се попълни от хартиеното портмоне"
+
+#: src/js/services/onGoingProcess.js:33
+msgid "Sweeping Wallet..."
+msgstr "Четене на портмонето..."
+
+#: www/views/preferencesDeleteWallet.html:16
+msgid "THIS ACTION CANNOT BE REVERSED"
+msgstr "ТОВА ДЕЙСТВИЕ НЕ МОЖЕ ДА Е ОТМЕНЕНО"
+
+#: www/views/onboarding/welcome.html:5
+msgid "Take control of your money,<br>get started with bitcoin."
+msgstr "Вземете вашите финанси под контрол,<br> започнетеда се ползвате с Биткойн."
+
+#: www/views/walletDetails.html:132
+#: www/views/walletDetails.html:52
+msgid "Tap and hold to show"
+msgstr "Докоснете и задържайте, за да покажете"
+
+#: www/views/includes/walletInfo.html:3
+msgid "Tap to recreate"
+msgstr "За да се пресъздаде, натиснете тук"
+
+#: www/views/includes/walletInfo.html:4
+msgid "Tap to retry"
+msgstr "Да се повтори"
+
+#: www/views/termsOfUse.html:3
+msgid "Terms Of Use"
+msgstr "Условия за ползване"
+
+#: www/views/modals/terms.html:3
+#: www/views/onboarding/disclaimer.html:29
+#: www/views/onboarding/disclaimer.html:43
+#: www/views/preferencesAbout.html:30
+msgid "Terms of Use"
+msgstr "Условия за ползване"
+
+#: www/views/tab-create-personal.html:118
+#: www/views/tab-import-phrase.html:68
+msgid "Testnet"
+msgstr "Testnet"
+
+#: www/views/includes/incomingDataMenu.html:61
+msgid "Text"
+msgstr "Текст"
+
+#: src/js/controllers/feedback/send.js:27
+#: src/js/controllers/feedback/send.js:76
+#: www/views/feedback/complete.html:20
+#: www/views/feedback/rateApp.html:4
+msgid "Thank you!"
+msgstr "Благодаря!"
+
+#: src/js/controllers/feedback/send.js:72
+msgid "Thanks!"
+msgstr "Благодаря!"
+
+#: src/js/controllers/feedback/send.js:73
+msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
+msgstr "Това е вълнуващо да се чуе. Ще се радваме да спечелим тази пета звезда от вас – как да подобрим продукта?"
+
+#: src/js/services/ledger.js:152
+msgid "The Ledger Chrome application is not installed"
+msgstr "Приложението Ledger для Chrome не е инсталирано"
+
+#: www/views/modals/wallet-balance.html:55
+msgid "The amount of bitcoin immediately spendable from this wallet."
+msgstr "Сумата биткойни достъпни за извършване на плащания."
+
+#: www/views/modals/wallet-balance.html:93
+msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgstr "Сумата биткойни, отделени като входове за очакващи разглеждане плащания. Сумата се определя от неизразходваните изходи, асоциирани с това портмоне, и може да надвишава сумата, асоциирана с предложените плащания."
+
+#: www/views/modals/wallet-balance.html:74
+msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgstr "Сумата биткойни с по-малко от едно потвърждаване."
+
+#: www/views/tab-import-phrase.html:5
+msgid "The derivation path"
+msgstr "Пътя на деривацията"
+
+#: www/views/onboarding/tour.html:37
+msgid "The exchange rate changes with the market."
+msgstr "Обменните курсове се променят."
+
+#: www/views/preferencesFee.html:12
+msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
+msgstr "Колкото е по-висока комисионната, толкова е по-вероятно майнърите да включат тази транзакция в блока. Текущата комисия се определя въз основа на натоварването на мрежата и избраната политика."
+
+#: www/views/addresses.html:51
+msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
+msgstr "Достигнато е максимално число последователно неизползвани адреси (20). Когато единият от неизползваните адреси ще получи плащане, ще е създаден нов адрес, който ще се отобрази на вложката «Да се получи»."
+
+#: src/js/controllers/onboarding/terms.js:21
+msgid "The official English Terms of Service are available on the BitPay website."
+msgstr "Официалните Условия за обслужване на английски език са достъпни на сайта BitPay."
+
+#: www/views/tab-import-phrase.html:4
+msgid "The password of the recovery phrase (if set)"
+msgstr "Парола на ключовата фраза (ако е инсталирана)"
+
+#: src/js/services/walletService.js:1139
+msgid "The payment was created but could not be completed. Please try again from home screen"
+msgstr "Плащането е било създадено, но не може да е завършено. Моля, върнете се на вложката \"Обзор\" и опитайте отново"
+
+#: www/views/modals/txp-details.html:26
+msgid "The payment was removed by creator"
+msgstr "Плащането е било премахнато от неговия създател"
+
+#: www/views/join.html:91
+#: www/views/tab-create-personal.html:63
+#: www/views/tab-create-shared.html:92
+#: www/views/tab-import-phrase.html:43
+msgid "The recovery phrase could require a password to be imported"
+msgstr "За импортиране на ключовата фраза може да потрябва парола"
+
+#: src/js/services/bwcError.js:56
+msgid "The request could not be understood by the server"
+msgstr "Запитването не е разпознато от сървъра"
+
+#: www/views/addresses.html:52
+msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
+msgstr "Процесът на възстановяване ще спре, когато 20 формирани подред адреси няма да съдържат средства. За да формирате без риск повече адреси, направете плащане върху единия от неизползваните вече формирани адреси."
+
+#: src/js/services/bwcError.js:98
+msgid "The spend proposal is not pending"
+msgstr "Предложеното заплащане вече не е за разглеждане"
+
+#: www/views/modals/wallet-balance.html:36
+msgid "The total amount of bitcoin stored in this wallet."
+msgstr "Сумата биткойни в това портмоне."
+
+#: www/views/preferencesHistory.html:27
+msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
+msgstr "Историята на транзакциите и всяка нова входяща транзакция се кешират в приложението. Тази функция го очиства и отново провежда синхронизиране със сървъра"
+
+#: www/views/tab-import-phrase.html:6
+msgid "The wallet service URL"
+msgstr "Адрес на сървъра Bitcore"
+
+#: src/js/controllers/tab-home.js:38
+msgid "There is a new version of {{appName}} available"
+msgstr "Достъпна е нова версия {{appName}}"
+
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:335
+msgid "There is an error in the form"
+msgstr "Грешка във формата"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+msgid "There's obviously something we're doing wrong."
+msgstr "Очевидно има нещо, което правим грешно."
+
+#: src/js/controllers/feedback/rateCard.js:38
+msgid "This app is fantastic!"
+msgstr "Тази програма е фантастична!"
+
+#: www/views/onboarding/tour.html:47
+msgid "This app stores your bitcoin with cutting-edge security."
+msgstr "Това приложение съхранява биткойни с най-високо ниво на безопасност."
+
+#: src/js/controllers/confirm.js:523
+msgid "This bitcoin payment request has expired."
+msgstr "Срокът на това запитване за плащане изтече."
+
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr "Срок на плащането:"
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr "Срокът на запитването за плащане изтече"
+
+#: www/views/join.html:133
+#: www/views/tab-create-personal.html:103
+#: www/views/tab-create-shared.html:132
+msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
+msgstr "Тази парола не може да е възстановена. Ако се изгуби паролата, вие няма да можете да възстановите своите средства."
+
+#: www/views/backup.html:31
+msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
+msgstr "Тази ключова фраза е била създадена с парола. За възстановяване на портмонето е необходима ключова фраза и нейна парола."
+
+#: www/views/tx-details.html:91
+msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgstr "Сумата на транзакцията е прекалено малка в сравнение с текущите комисионни на Биткойн. За да се изхарчат тези средства, ще потрябва комисионна на мрежата Биткойн, съпоставима със сумата на транзакцията."
+
+#: www/views/tx-details.html:87
+msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
+msgstr "Поради низката комисионна, определена от изпращача, за потвърждаване на транзакцията може да отиде много време или тя може да е отхвърлена"
+
+#: www/views/walletDetails.html:109
+#: www/views/walletDetails.html:29
+msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
+msgstr "Това портмоне не е регистрирано на настоящия сървър Bitcore. Вие можете да го възсъздадете от локалната информация."
+
+#: www/views/modals/txp-details.html:136
+#: www/views/tx-details.html:121
+msgid "Timeline"
+msgstr "Хронология"
+
+#: www/views/confirm.html:31
+#: www/views/includes/output.html:2
+#: www/views/modals/txp-details.html:109
+#: www/views/modals/txp-details.html:53
+#: www/views/tx-details.html:41
+#: www/views/tx-details.html:53
+msgid "To"
+msgstr "За кой"
+
+#: www/views/tab-send.html:32
+msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgstr "За да се започне работата, купете биткойн или споделете вашия адрес. Вие можете да получавате биткойни от всяко портмоне или сервиз."
+
+#: src/js/services/bitpayAccountService.js:73
+msgid "To {{reason}} you must first add your BitPay account - {{email}}"
+msgstr "{{reason}}: отначало е нужно да се добави отчетния запис BitPay — {{email}}"
+
+#: src/js/services/onGoingProcess.js:48
+msgid "Top up in progress..."
+msgstr "Осъществява се попълване..."
+
+#: src/js/controllers/topup.js:206
+msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr "Да се попълни дебитната карта ({{cardLastNumber}}) на {{amountStr}}"
+
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "Старт SideShift AI"
+
+#: www/views/sideshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr "Обмяна BTC за BCH за две минути."
+
+#: www/views/sideshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr "За начало е нужно да се добавят средства в портмонето."
+
+#: www/views/sideshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "Обмяната става бързо. Общата сума ще постъпи за вас в портмонето."
+
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Услугата се предоставя от странична компания SideShift AI, която взима неголяма комисионна. Комисионната ще е показана преди начало на транзакцията."
+
+#: www/views/buyAmazon.html:61
+#: www/views/buyMercadoLibre.html:60
+#: www/views/modals/wallet-balance.html:23
+#: www/views/topup.html:70
+msgid "Total"
+msgstr "Баланс на портмонето"
+
+#: www/views/walletDetails.html:196
+msgid "Total Locked Balance"
+msgstr "Общо блокирани средства"
+
+#: www/views/tab-create-shared.html:35
+msgid "Total number of copayers"
+msgstr "Брой съсобственици"
+
+#: www/views/addresses.html:81
+msgid "Total wallet inputs"
+msgstr "Общо изхода на портмонето"
+
+#: src/js/services/fingerprintService.js:63
+#: src/js/services/fingerprintService.js:68
+msgid "Touch ID Failed"
+msgstr "Грешка Touch ID"
+
+#: src/js/controllers/tx-details.js:12
+msgid "Transaction"
+msgstr "Транзакция"
+
+#: www/views/confirm.html:126
+msgid "Transaction Created"
+msgstr "Транзакцията е създадена"
+
+#: www/views/preferencesAdvanced.html:29
+#: www/views/preferencesHistory.html:3
+msgid "Transaction History"
+msgstr "История на транзакциите"
+
+#: src/js/services/bwcError.js:83
+msgid "Transaction already broadcasted"
+msgstr "Транзакцията вече е изпратена"
+
+#: src/js/controllers/buyAmazon.js:308
+#: src/js/controllers/buyMercadoLibre.js:301
+#: src/js/controllers/topup.js:281
+msgid "Transaction has not been created"
+msgstr "Транзакцията не е създадена"
+
+#: www/views/topup.html:104
+msgid "Transaction initiated"
+msgstr "Транзакцията е започната"
+
+#: src/js/controllers/tx-details.js:119
+msgid "Transaction not available at this time"
+msgstr "Транзакцията е недостъпна в настоящия момент"
+
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/tab-home.js:174
+msgid "Transaction not found"
+msgstr "Транзакцията не е открита"
+
+#: www/views/modals/chooseFeeLevel.html:55
+msgid "Transactions without fee are not supported."
+msgstr "Транзакции без комисионна не се поддържат."
+
+#: src/js/controllers/paperWallet.js:109
+msgid "Transfer to"
+msgstr "Да се преведе в"
+
+#: www/views/tab-send.html:67
+msgid "Transfer to Wallet"
+msgstr "Превод в портмонето"
+
+#: www/views/modals/pin.html:13
+msgid "Try again in {{expires}}"
+msgstr "Опитайте отново чрез {{expires}}"
+
+#: www/views/bitpayCardIntro.html:18
+msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgstr "Превръщайте биткойни в долари на САЩ - плащайте навсякъде, където приемат картите Visa <sup>&reg;</sup>."
+
+#: www/views/tab-import-phrase.html:17
+msgid "Type the Recovery Phrase (usually 12 words)"
+msgstr "Вкарайте ключовата фраза (обикновено дванадесет думи)"
+
+#: src/js/controllers/backup.js:75
+msgid "Uh oh..."
+msgstr "Упс..."
+
+#: www/views/tx-details.html:100
+msgid "Unconfirmed"
+msgstr "Не е потвърдено"
+
+#: www/views/walletDetails.html:190
+msgid "Unsent transactions"
+msgstr "Неизпратени транзакции"
+
+#: www/views/addresses.html:39
+msgid "Unused Addresses"
+msgstr "Неизползвани адреси"
+
+#: www/views/addresses.html:50
+msgid "Unused Addresses Limit"
+msgstr "Лимит за неизползваните адреси"
+
+#: src/js/controllers/tab-home.js:146
+msgid "Update Available"
+msgstr "Достъпно обновяване"
+
+#: www/views/proposals.html:14
+msgid "Updating pending proposals. Please stand by"
+msgstr "Обновяване на очакващите разглеждане плащания. Изчакайте, моля"
+
+#: www/views/walletDetails.html:217
+msgid "Updating transaction history. Please stand by."
+msgstr "Обновяване на историята на транзакциите. Изчакайте, моля."
+
+#: www/views/activity.html:14
+msgid "Updating... Please stand by"
+msgstr "Обновяване... Изчакайте, моля"
+
+#: src/js/services/feeService.js:10
+msgid "Urgent"
+msgstr "Срочно"
+
+#: www/views/advancedSettings.html:12
+msgid "Use Unconfirmed Funds"
+msgstr "Да се използват непотвърдените средства"
+
+#: src/js/services/onGoingProcess.js:34
+msgid "Validating recovery phrase..."
+msgstr "Проверка на ключовата фраза..."
+
+#: www/views/modals/fingerprintCheck.html:4
+msgid "Verify your identity"
+msgstr "Да се потвърди личността"
+
+#: www/views/preferencesAbout.html:14
+#: www/views/preferencesExternal.html:25
+msgid "Version"
+msgstr "Версия"
+
+#: www/views/tab-export-file.html:69
+msgid "View"
+msgstr "Да се прегледа"
+
+#: www/views/addresses.html:34
+msgid "View All Addresses"
+msgstr "Да се прегледат всичките адреси"
+
+#: src/js/controllers/onboarding/terms.js:20
+msgid "View Terms of Service"
+msgstr "Да се прегледат Условията за обслужване"
+
+#: src/js/controllers/bitpayCard.js:122
+#: src/js/controllers/tx-details.js:191
+msgid "View Transaction on Explorer.Bitcoin.com"
+msgstr "Преглед на транзакцията на страницата Explorer.Bitcoin.com"
+
+#: src/js/controllers/tab-home.js:148
+msgid "View Update"
+msgstr "Да се прегледа обновяването"
+
+#: www/views/tx-details.html:147
+msgid "View on blockchain"
+msgstr "Да се погледне в блокчейна"
+
+#: www/views/mercadoLibre.html:26
+msgid "Visit mercadolivre.com.br &rarr;"
+msgstr "Да се посети mercadolivre.com.br &rarr;"
+
+#: www/views/walletDetails.html:182
+msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
+msgstr "ВНИМАНИЕ: Деривация на ключовете не работи на това устройство/портмоне. Никакви действия не могат да са осъществени с това портмоне."
+
+#: www/views/tab-export-file.html:45
+msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "ВНИМАНИЕ: експортираният файл не включва затворен ключ, поради това ще позволи само да преглежда баланса, историята на транзакциите и да предлага плащания. Обаче, той не може да е използван за одобряване (подписване) на предложените плащания, поради това <b> средствата няма да са достъпни от експортирания файл</b>."
+
+#: www/views/tab-export-file.html:36
+msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "ВНИМАНИЕ: Затвореният ключ на това портмоне е недостъпен. Експортираният файл ще позволи само да се преглежда балансът, историята на транзакциите и да се предлагат плащания. Обаче, той не може да е използван за одобряване (подписване) на предложените плащания, поради това <b> средствата няма да са достъпни от експортирания файл</b>."
+
+#: www/views/modals/paypro.html:42
+msgid "WARNING: UNTRUSTED CERTIFICATE"
+msgstr "ВНИМАНИЕ: НЕСИГУРЕН СЕРТИФИКАТ"
+
+#: src/js/services/onGoingProcess.js:15
+msgid "Waiting for Ledger..."
+msgstr "Очакване Ledger..."
+
+#: src/js/services/onGoingProcess.js:16
+msgid "Waiting for Trezor..."
+msgstr "Очакване Trezor..."
+
+#: www/views/copayers.html:48
+msgid "Waiting for copayers"
+msgstr "Очакване на съсобствениците на портмонето"
+
+#: www/views/copayers.html:53
+msgid "Waiting..."
+msgstr "Очакване..."
+
+#: www/views/addresses.html:3
+#: www/views/preferencesAdvanced.html:17
+msgid "Wallet Addresses"
+msgstr "Адреси на портмонето"
+
+#: www/views/preferencesColor.html:4
+msgid "Wallet Color"
+msgstr "Цвят на портмонето"
+
+#: www/views/preferencesInformation.html:29
+msgid "Wallet Configuration (m-n)"
+msgstr "Конфигурация на портмонето (m-n)"
+
+#: www/views/onboarding/collectEmail.html:5
+msgid "Wallet Created"
+msgstr "Портмонето е създадено"
+
+#: www/views/preferencesInformation.html:23
+msgid "Wallet Id"
+msgstr "Идентификатор на портмонето"
+
+#: www/views/preferencesAdvanced.html:13
+#: www/views/preferencesInformation.html:3
+msgid "Wallet Information"
+msgstr "Информация за портмонето"
+
+#: www/views/addresses.html:76
+msgid "Wallet Inputs"
+msgstr "Входове на портмонето"
+
+#: www/views/join.html:26
+msgid "Wallet Invitation"
+msgstr "Покана да се присъедините към портмонето"
+
+#: www/views/join.html:60
+#: www/views/tab-create-personal.html:38
+#: www/views/tab-create-shared.html:67
+msgid "Wallet Key"
+msgstr "Ключова фраза"
+
+#: www/views/preferencesAlias.html:4
+msgid "Wallet Name"
+msgstr "Име на портмонето"
+
+#: www/views/preferencesInformation.html:11
+msgid "Wallet Name (at creation)"
+msgstr "Име на портмонето (при създаване)"
+
+#: www/views/preferencesInformation.html:35
+msgid "Wallet Network"
+msgstr "Мрежа на портмонето"
+
+#: www/views/join.html:77
+#: www/views/tab-create-personal.html:50
+#: www/views/tab-create-shared.html:79
+msgid "Wallet Recovery Phrase"
+msgstr "Ключова фраза на портмонето"
+
+#: src/js/services/bwcError.js:26
+msgid "Wallet Recovery Phrase is invalid"
+msgstr "Ключовата фраза на портмонето е невалидна"
+
+#: www/views/preferencesAdvanced.html:25
+#: www/views/tab-import-phrase.html:73
+msgid "Wallet Service URL"
+msgstr "Адрес на сервиза на портмонето"
+
+#: www/views/preferences.html:4
+msgid "Wallet Settings"
+msgstr "Параметри на портмонето"
+
+#: www/views/tab-import-hardware.html:11
+#: www/views/tab-import-phrase.html:61
+msgid "Wallet Type"
+msgstr "Тип на портмонето"
+
+#: src/js/services/bwcError.js:59
+msgid "Wallet already exists"
+msgstr "Портмонето вече съществува"
+
+#: src/js/services/profileService.js:516
+msgid "Wallet already in {{appName}}"
+msgstr "Портмонето вече е в приложението {{appName}}"
+
+#: www/views/includes/walletActivity.html:6
+msgid "Wallet created"
+msgstr "Портмонето е създадено"
+
+#: www/views/copayers.html:58
+msgid "Wallet incomplete and broken"
+msgstr "Не всички съсобственици се присъединили, портмонето е повредено"
+
+#: src/js/services/bwcError.js:65
+msgid "Wallet is full"
+msgstr "Всички са присъединени"
+
+#: src/js/services/bwcError.js:125
+msgid "Wallet is locked"
+msgstr "Портмонето е блокирано"
+
+#: src/js/services/bwcError.js:128
+msgid "Wallet is not complete"
+msgstr "Не всички съсобственици се присъединили"
+
+#: www/views/tab-create-personal.html:12
+#: www/views/tab-create-shared.html:12
+msgid "Wallet name"
+msgstr "Име на портмонето"
+
+#: src/js/services/bwcError.js:131
+msgid "Wallet needs backup"
+msgstr "Необходимо е да се създаде резервно копие"
+
+#: www/views/tab-receive.html:59
+#: www/views/walletDetails.html:169
+msgid "Wallet not backed up"
+msgstr "Резервното копиране не е изпълнено"
+
+#: src/js/services/bwcError.js:68
+msgid "Wallet not found"
+msgstr "Портмонето не е намерено"
+
+#: src/js/controllers/cashScan.js:81
+#: src/js/controllers/tab-home.js:230
+msgid "Wallet not registered"
+msgstr "Портмонето не е регистрирано"
+
+#: src/js/services/bwcError.js:29
+msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
+msgstr "Портмонето не е регистрирано на сървъра Bitcore. Пресъздайте портмонето, като се възползвате от разширените параметри, за да посочите ключовата фраза"
+
+#: www/views/backup.html:12
+msgid "Wallet recovery phrase not available"
+msgstr "Ключовата фраза на портмонето е недостъпна"
+
+#: src/js/services/bwcError.js:50
+msgid "Wallet service not found"
+msgstr "Сървърът Bitcore не е намерен"
+
+#: www/views/tab-home.html:69
+msgid "Wallets"
+msgstr "Портмонета"
+
+#: src/js/controllers/addressbookView.js:36
+#: src/js/controllers/modals/txpDetails.js:153
+#: src/js/controllers/modals/txpDetails.js:170
+#: src/js/controllers/preferencesDelete.js:24
+#: src/js/controllers/preferencesExternal.js:14
+#: www/views/preferencesDeleteWallet.html:11
+msgid "Warning!"
+msgstr "Внимание!"
+
+#: www/views/modals/txp-details.html:47
+msgid "Warning: this transaction has unconfirmed inputs"
+msgstr "Предупреждение: тази транзакция има непотвърдени входове"
+
+#: src/js/controllers/onboarding/backupRequest.js:17
+msgid "Watch out!"
+msgstr "Внимателно!"
+
+#: src/js/controllers/feedback/send.js:69
+msgid "We'd love to do better."
+msgstr "Ще се радваме да се справим по-добре."
+
+#: www/views/backup.html:35
+msgid "We'll confirm on the next screen."
+msgstr "Ще проверим на следващата стъпка."
+
+#: src/js/controllers/feedback/send.js:77
+msgid "We're always looking for ways to improve {{appName}}."
+msgstr "Винаги търсим начини да подобрим {{appName}}."
+
+#: src/js/controllers/feedback/send.js:83
+msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
+msgstr "Винаги търсим начин да подобрим {{appName}}. Как да подобрим програмата?"
+
+#: www/views/includes/incomingDataMenu.html:6
+msgid "Website"
+msgstr "Сайт"
+
+#: www/views/preferencesLanguage.html:16
+msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
+msgstr "Ние винаги търсим преводачи! Вие можете да поправите превода или да помогнете да се преведе това приложение на роден език, като се присъедините към нашето съдружие на платформата Crowdin."
+
+#: www/views/preferencesAlias.html:11
+msgid "What do you call this wallet?"
+msgstr "Как вие наричате това портмоне?"
+
+#: www/views/preferencesAlias.html:12
+msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
+msgstr "Когато това портмоне е било създадено, то се е наричало &ldquo;{{walletName}}&rdquo;. Вие може да промените изобразяваното име по-долу."
+
+#: www/views/onboarding/collectEmail.html:10
+msgid "Where would you like to receive email notifications about payments?"
+msgstr "Къде вие бихте искали да получавате e-mail-уведомявания за плащанията?"
+
+#: www/views/addresses.html:19
+msgid "Why?"
+msgstr "Защо?"
+
+#: www/views/feedback/rateApp.html:10
+msgid "Would you be willing to rate {{appName}} in the app store?"
+msgstr "Склонни ли сте да гласувате за {{appName}} в магазина за приложения?"
+
+#: www/views/onboarding/notifications.html:4
+msgid "Would you like to receive push notifications about payments?"
+msgstr "Вие бихте ли искали да получавате push-уведомявания за плащанията?"
+
+#: src/js/controllers/import.js:288
+msgid "Wrong number of recovery words:"
+msgstr "Неподходящ брой думи в ключовата фраза:"
+
+#: src/js/services/bwcError.js:140
+msgid "Wrong spending password"
+msgstr "Невярна платежна парола"
+
+#: www/views/modals/confirmation.html:7
+msgid "Yes"
+msgstr "Да"
+
+#: src/js/controllers/onboarding/backupRequest.js:25
+msgid "Yes, skip"
+msgstr "Да, да се пропусне"
+
+#: src/js/controllers/onboarding/backupRequest.js:24
+msgid "You can create a backup later from your wallet settings."
+msgstr "Вие можете да създадете резервно копие по-късно от параметрите на портмонето."
+
+#: src/js/controllers/preferencesLanguage.js:12
+msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
+msgstr "За да се внесе своя влог, регистрирайте се на уеб-сайта за преводи на сдружението Crowdin. Ние ще се радваме да сътрудничаме с Вас!"
+
+#: www/views/tab-scan.html:16
+msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgstr "Вие можете да сканирате биткойн-адреси, запитвания за плащания, хартиени портмонета и много друго."
+
+#: src/js/controllers/preferencesAbout.js:14
+msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
+msgstr "Да се видят последните разработки и да се направи влог в наше приложение с открит изходен код може в нашия проект на платформата GitHub."
+
+#: www/views/onboarding/tour.html:19
+msgid "You can spend bitcoin at millions of websites and stores worldwide."
+msgstr "Може да се харчат биткойните на милиони уеб-сайтове и в магазини по цял свят."
+
+#: www/views/backup.html:15
+msgid "You can still export it from Advanced &gt; Export."
+msgstr "Вие можете да я експортирате в менюто «Разширени &gt; Експорт»."
+
+#: www/views/onboarding/tour.html:32
+msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
+msgstr "Може да ги обменята на друга валута, например, долари на САЩ, евро или паунди."
+
+#: www/views/onboarding/tour.html:46
+msgid "You control your bitcoin."
+msgstr "Вие контролирате Вашите bitcoin-и."
+
+#: www/views/modals/chooseFeeLevel.html:64
+msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
+msgstr "Не следва да се определя комисионна повече от {{maxFeeRecommended}} сатоши/ байт."
+
+#: www/views/modals/bitpay-card-confirmation.html:5
+msgid "You will need to log back for fill in your BitPay Card."
+msgstr "За попълване на картата BitPay Card на вас ще нужно отново да влезете."
+
+#: www/views/preferencesNotifications.html:34
+msgid "You'll receive email notifications about payments sent and received from your wallets."
+msgstr "Вие ще получавате e-mail-уведомявания за входящите и изходящите плащания."
+
+#: www/views/bitpayCard.html:50
+msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
+msgstr "Вашата карта BitPay Card е готова. Попълнете картата и се ползвайте с нея в магазини и банкомати по цял свят."
+
+#: www/views/mercadoLibre.html:57
+#: www/views/mercadoLibreCards.html:6
+msgid "Your Gift Cards"
+msgstr "Мои подаръчни карти"
+
+#: www/views/includes/confirmBackupPopup.html:6
+msgid "Your bitcoin wallet is backed up!"
+msgstr "Резервното копие на портмонето е създадено!"
+
+#: www/views/tab-home.html:36
+msgid "Your bitcoin wallet is ready!"
+msgstr "Вашето портмоне е готово!"
+
+#: www/views/modals/chooseFeeLevel.html:61
+msgid "Your fee is lower than recommended."
+msgstr "Вашата комисионна е под препоръчаната."
+
+#: www/views/feedback/send.html:42
+msgid "Your ideas, feedback, or comments"
+msgstr "Вашите идеи, препоръки, или коментари"
+
+#: www/views/tab-create-shared.html:22
+msgid "Your name"
+msgstr "Вашето име"
+
+#: www/views/join.html:16
+msgid "Your nickname"
+msgstr "Вашият псевдоним"
+
+#: www/views/tab-export-file.html:11
+#: www/views/tab-import-file.html:20
+msgid "Your password"
+msgstr "Вашата парола"
+
+#: www/views/buyAmazon.html:102
+msgid "Your purchase could not be completed"
+msgstr "Не можахте да изпълните покупка"
+
+#: www/views/buyAmazon.html:105
+msgid "Your purchase was added to the list of pending"
+msgstr "Покупката е била добавена в списъка за очакване"
+
+#: www/views/onboarding/backupRequest.html:10
+msgid "Your wallet is never saved to cloud storage or standard device backups."
+msgstr "Вашето портмоне никога не се съхранява в облачното хранилище или в резервните копия на устройството."
+
+#: src/js/services/walletService.js:1030
+msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
+msgstr "Вашето портмоне ще е шифровано. Платежната парола не може да се възстанови. Задължително я запишете."
+
+#: www/views/includes/walletList.html:13
+#: www/views/includes/walletSelector.html:21
+#: www/views/paperWallet.html:33
+#: www/views/tab-receive.html:72
+#: www/views/walletDetails.html:131
+#: www/views/walletDetails.html:51
+msgid "[Balance Hidden]"
+msgstr "[Балансът е скрит]"
+
+#: www/views/walletDetails.html:141
+#: www/views/walletDetails.html:61
+msgid "[Scanning Funds]"
+msgstr "[Сканиране на средствата]"
+
+#: src/js/controllers/bitpayCardIntro.js:11
+msgid "add your BitPay Visa card(s)"
+msgstr "добавете вашата BitPay Visa карта(и)"
+
+#: www/views/includes/available-balance.html:8
+msgid "locked by pending payments"
+msgstr "блокирано от непотвърдени плащания"
+
+#: src/js/services/profileService.js:404
+msgid "me"
+msgstr "на мен"
+
+#: www/views/addressbook.add.html:32
+msgid "name@example.com"
+msgstr "name@example.com"
+
+#: www/views/preferencesHistory.html:15
+msgid "preparing..."
+msgstr "Подготвя се..."
+
+#: www/views/cashScan.html:57
+msgid "recovery tool."
+msgstr "инструмент за възстановяване."
+
+#: src/js/controllers/buyAmazon.js:239
+msgid "{{amountStr}} for Amazon.com Gift Card"
+msgstr "{{amountStr}} за подаръчна карта Amazon.com"
+
+#: src/js/controllers/buyMercadoLibre.js:237
+msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
+msgstr "{{amountStr}} за подаръчна карта Mercado Livre (Бразилия)"
+
+#: www/views/preferencesBwsUrl.html:21
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "На приложението {{appName}} за работа с мрежата, получаване на информация от блокчейна и синхронизиране на портмонетата ще потрябва сервиз на портмонетата Bitcore (BWS). По премълчаване се използва сървърът https://bws.bitcoin.com (публичен сървър BWS на уеб-сайта Bitcoin.com)."
+
+#: src/js/controllers/confirm.js:408
+msgid "{{fee}} will be deducted for bitcoin networking fees."
+msgstr "{{fee}} ще е използвано за плащане на комисионната."
+
+#: www/views/confirm.html:85
+msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}} от изпращаната сума"
+
+#: www/views/walletDetails.html:218
+msgid "{{updatingTxHistoryProgress}} transactions downloaded"
+msgstr "{{updatingTxHistoryProgress}} транзакции са качени"
+
+#: www/views/cashScan.html:33
+#: www/views/copayers.html:46
+#: www/views/includes/walletInfo.html:18
+msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.m}}-из-{{wallet.n}}"
+
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "Сдружение"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Bitcoin.com Twitter"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Обзор Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Игри Bitcoin Cash"
+
+msgid "Bitcoin Games"
+msgstr "Игри Bitcoin"
+
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "Да се сподели програмата \"Портмоне\""
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "Новини"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Start mining Bitcoin"
+msgstr "Да се започне майнингът на биткойни"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "Инструменти"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Динамика на курса на биткойна"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "Bitcoin Cash безплатно"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "Вашите портмонета са готови!"
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "Адресът не съдържа сведения за валутата. Проверете, дали вие изпащате правилна валута."
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr "Проверка на транзакцията"
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr "Вие изпращате"
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr "Вие обменяте"
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr "Къде:"
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr "Да се добави лично съобщение"
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr "Предложено от продавача:"
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr "Вкарайте текста тук"
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr "Лично съобщение:"
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr "по-малко от 1 копейка"
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
+msgstr "По този инвойс плащания вече не се приемат"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "Да се изпрати максимална сума"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "Неизвестна грешка."
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "Не е намерено портмоне Bitcoin Cash за превод на средства."
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "Не е намерен Bitcoin Cash."
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "Намерен е Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "Не е намерено портмоне Bitcoin Core за превод на средства."
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "Не е намерен Bitcoin Core."
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "Грешка на сканирането"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "Данните не са разпознати."
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "Не се поддържа"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet не се поддържа."
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL-адрес"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "Да се отвори в уеб-браузъра"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid address"
+msgstr "Неверен адрес"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "Сумата не е означена"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "Сумата е по-малка от минимума"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "Сумата е повече от ограничението"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Неправилен отговор от Sideshift"
+
+msgid "Insufficient Amount Received"
+msgstr "Получено е непълно плащане"
+
+msgid "Return to Address"
+msgstr "Да се върне към адреса"
+
+msgid "Overpaid!"
+msgstr "Надплащане!"
+
+msgid "Underpaid!"
+msgstr "Недоплащане!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "Грешка при създаване на клиента"
+
+msgid "Enter an email address."
+msgstr "Вкарайте адреса на електронната поща."
+
+msgid "Must be a valid email address."
+msgstr "Адресът на електронната поща следва да е валиден."
+
+msgid "Unable to Create Customer"
+msgstr "Не успя да се създаде клиент"
+
+msgid "Enter a valid email address."
+msgstr "Адресът на електронната поща следва да е валиден."
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "Покупка Bitcoin Cash (BCH)"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "Вие можете да купите още максимум {{vm.dailyRemaining}} днес и {{vm.monthlyRemaining}} през този месец."
+
+msgid "Buy Bitcoin Cash"
+msgstr "Покупка Bitcoin Cash"
+
+msgid "Verify Email"
+msgstr "Потвърди Имейл"
+
+msgid "Error Getting Customer ID"
+msgstr "Грешка при получаване на идентификатора на клиента"
+
+msgid "Error Getting Customer Information"
+msgstr "Грешка при получаване на информация за клиента"
+
+msgid "An error occurred when getting your customer information."
+msgstr "При получаване на информацията за клиента стана грешка."
+
+msgid "Customer information was missing."
+msgstr "Информацията за клиента отсъства."
+
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "Виж <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Условия на обслужване</a> и <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Политиката на конфиденциалността</a>"
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "Грешка при получаване на методите на плащане"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "При получаване на методите на плащане стана грешка."
+
+msgid "No Payment Methods"
+msgstr "Няма метод за плащане"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "За покупка на Bitcoin Cash (BCH) е необходимо да се добави кредитна или дебитова карта."
+
+msgid "Add Card"
+msgstr "Да се добави карта"
+
+msgid "Getting exchange rate..."
+msgstr "Получаване на обменния курс..."
+
+msgid "Waiting for exchange rate."
+msgstr "Очакване получаване на обменния курс."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "За внасяне на депозит е нужно портмоне Bitcoin Cash (BCH)."
+
+msgid "Select a BCH Wallet"
+msgstr "Изберете портмоне ВСН"
+
+msgid "No stored debit or credit cards."
+msgstr "Няма съхранени дебитни или кредитни карти."
+
+msgid "No transactions."
+msgstr "Транзакции засега не е имало."
+
+msgid "Buying Bitcoin Cash..."
+msgstr "Осъществява се покупка на Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr "Грешка на покупката"
+
+msgid "Failed to create transaction."
+msgstr "Не успя да се създаде транзакцията."
+
+msgid "Buy Now"
+msgstr "Да се купи"
+
+msgid "Enter Security Code"
+msgstr "Вкарайте защитния код"
+
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "Въведете трицифрения код на гърба на картата."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr "Купи Bitcoin сега"
+
+msgid "Go to Wallet"
+msgstr "Да се премине в портмонето"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "Да се премине в {{vm.walletName}}"
+
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "Поръчката е потвърдена и очаква изпълнение. {{vm.coin | uppercase}} скоро ще се появи при вас в портмонето."
+
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "Поръчката е изпълнена. {{vm.coin | uppercase}} вече е при вас в портмонето."
+
+msgid "Your order has failed."
+msgstr "Вашата поръчка не е минала."
+
+msgid "Your order is waiting for authorization."
+msgstr "Вашата поръчка е в очакване на авторизация."
+
+msgid "Deposited to"
+msgstr "Портмоне за зачисляване"
+
+msgid "Failed to get transaction data."
+msgstr "Неуспешно получаване на данни за транзакцията."
+
+msgid "Not found."
+msgstr "Не е намерено."
+
+msgid "Failed to get payment method info."
+msgstr "Неуспешно получаване на информация за начина на плащане."
+
+msgid "Waiting for authorization"
+msgstr "В очакване на авторизация"
+
+msgid "Submit"
+msgstr "Изпращане"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Expiration Date"
+msgstr "Срок на годност"
+
+msgid "Type all your card details below."
+msgstr "По-долу въведете данните за картата си."
+
+msgid "Verify and complete your card information."
+msgstr "Проверете и попълнете данните на вашата карта."
+
+msgid "Required"
+msgstr "Задължително"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa, MasterCard или American Express"
+
+msgid "MM/YYYY"
+msgstr "ММ/ГГГГ"
+
+msgid "Card Number"
+msgstr "Номер на картата"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "Неуспешно добавяне на картата"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "Номерът на картата е невалиден. Проверете картата и повторете опита."
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "Номерът CVC е невалиден. (Това са три цифри върху обратната страна на картата — или четири, ако при вас е American Express)."
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "Срокът на действието е невалиден. Проверете картата и повторете опита."
+
+msgid "Invalid card number"
+msgstr "Невалиден номер на картата"
+
+msgid "Invalid expiration date"
+msgstr "Невалиден срок на действието"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "Посочвайте датата във вид ММ/ГГГГ"
+
+msgid "Invalid CVC number"
+msgstr "Невалиден номер на CVC"
+
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Купете Bitcoin Cash веднага с кредитната си карта. Въведете имейла си, за да започнете."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Въведете кода за сигурност, който току-що ви изпратихме, за да потвърдите имейла си."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Ще получавате само имейли, свързани с покупките ви."
+
+msgid "Security code"
+msgstr "Код за сигурност"
+
+msgid "Purchasing"
+msgstr "Покупка"
+
+msgid "Processing Fee"
+msgstr "Комисионна за обработване"
+
+msgid "Deposit to"
+msgstr "Портмоне за зачисляване"
+
+msgid "Add a payment method"
+msgstr "Да се добави методът на плащане"
+
+msgid "Price Per BCH"
+msgstr "Цена на BCH"
+
+msgid "Done"
+msgstr "Готово е"
+
+msgid "Amount must be a positive number."
+msgstr "Сумата следва да е положително число."
+
+msgid "Unable to Purchase"
+msgstr "Грешка на покупката"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Ще пренасочите към банковия си уебсайт, за да разрешите транзакцията."
+
+msgid "Purchase History"
+msgstr "История на покупките"
+
+msgid "Pending Orders"
+msgstr "Поръчки в очакване"
+
+msgid "Pay"
+msgstr "Да се плати"
+
+msgid "Payment Method"
+msgstr "Метод на плащане"
+
+msgid "Add Credit or Debit Card"
+msgstr "Да се добави кредитна или дебитна карта"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "Тази сума надвишава вашия месечен лимит"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "От ежемесечното ограничаване за покупка ({{monthly}}) при вас остана {{remaining}}. За да се купува повече, потвърдете своята самоличност."
+
+msgid "Verify Identity"
+msgstr "Да се потвърди самоличността"
+
+msgid "Deposited to"
+msgstr "Портмоне за зачисляване"
+
+msgid "See on Blockchain"
+msgstr "Виж в блокчейна"
+
+msgid "Wallet address"
+msgstr "Адрес на портмонето"
+
+msgid "Pending Order"
+msgstr "Поръчка в очакване"
+
+msgid "Edit Order"
+msgstr "Да се промени поръчката"
+
+msgid "Cancel Order"
+msgstr "Да се откаже поръчката"
+
+msgid "Success!"
+msgstr "Операцията е изпълнена!"
+
+msgid "Failed"
+msgstr "Не успя"
+
+msgid "Your purchase has been processed."
+msgstr "Вашата покупка е била обработена."
+
+msgid "See Receipt"
+msgstr "Преглед на квитанцията"
+
+msgid "Make Another Purchase"
+msgstr "Да се направи още покупка"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "Фотографирайте вашия документ"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "Да се продължи без потвърждаване на личността"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "Паспорт"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "Национално удостоверение на личността"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "Шофьорска книжка"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "Потвърждение"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "Да се увеличи лимита за покупка"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "Получаване на статута на потвърждаването..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "Вие трябва да изберете държавата."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "Вие трябва да изберете типа на документа."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "Към настоящия момент вие можете да придобиете до €150 в месец без потвърждаване на вашата личност. Потвърдете вашата личност за увеличаване на лимита на покупката до €20000 в месец."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "Лична информация"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "Име"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "Дата на раждане"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "Адрес на улицата"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "Номер на дома, корпуса, апартамента (не е задължително)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "Град"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "Пощенски код"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "Държава"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "Поле задължително за попълване."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "Възраст не по-малко от 18 години."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "Трябва да е валидна дата."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "Изберете държава."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "ул. Черковна"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "София"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "Държава"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "Апартамент 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "Не успя да се запази информацията. Моля, опитайте още веднъж."
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "Обработка на информацията..."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "Не успя да се качи картинката. Моля, опитайте още веднъж."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "Как всичко стана?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "Моля, удостоверете се, че цялата информация на документа добре се вижда и е четлива (без отблясъци и размиване на текста)."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "Да, всичко се вижда добре"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "Да се опита отново"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "Фотографирайте вашия документ"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "Поместете вашия документ изцяло {{vm.documentName}} в рамка. Опитайте се да избегнете отблясъци."
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "Да се мине верификация"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "Тип на документа"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "Да се избере"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "Ако вие вече сте минавали верификация на личността с bitcoin.com, вие можете <a ng-click=\"vm.onRestoreVerify()\"> да я възстановите.</a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "Статут на потвърждението"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "Верификацията е в процес"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "Верификацията успешно е мината!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "Сега вашият акаунт е верифициран. Честито!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "Това няма да отнеме много време. Ние веднага ще ви съобщим, кога вие ще можете да започнете покупката на биткойни."
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "Верификацията не успя да мине"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "За съжаление не успяхме да ви удостоверим. Моля, обърнете се в отбора за подкрепа."
+
+msgid "Self Portrait"
+msgstr "Селфи"
+
+msgid "Shop"
+msgstr "Покупки"
+
+msgid "Shop Nearby"
+msgstr "Да купите около вас"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "Да се намерят най-близките магазини, които приемат за заплащане Bitcoin Cash"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "Възползвайте се с намаление до 30% на Амазон при плащането Bitcoin Cash"
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "Електронни подаръчни сертификати от най-прочути търговски марки"
+
+msgid "Add a Business"
+msgstr "Да се добави място"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "Знаете ли или владеете ли мястото, което приема Bitcoin Cash? Добавете го."
+
+msgid "Buy with Bitcoin Cash"
+msgstr "Да се купи, използвайки Bitcoin Cash"
+
+msgid "Are you a business owner?"
+msgstr "Вие сте собственик на бизнеса?"
+
+msgid "More"
+msgstr "Още"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "Започнете да приемате плащането с Bitcoin Cash днес. Ние можем в това да ви помогнем."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr "На седмо небе заедно с Bitcoin Cash - плащайте авио билети, хотели и наема на колата!"
+
+msgid "The market's highest paying pool"
+msgstr "Най-печеливш майнинг пул на пазара"
+
+msgid "Start mining Bitcoin"
+msgstr "Започнете майнинг на биткойни"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "При плащане с BCH, ще получите обратно 10% върху сметката"
+
+msgid "Get your Bitcoin merch"
+msgstr "Стоки със символи на биткойн"
+
+msgid "E-mail not detected"
+msgstr "Електронният адрес не е намерен"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "За да се добави нов продавач или бизнес, моля, напишете ни на addbusiness@bitcoin.com."
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "Здравейте Bitcoin.com отбор,<br><br>аз бих искал да добавя на картата нов бизнес, който приема Bitcoin Cash за заплащане:<br>- название на предприятието: <br> - физически адрес: <br>- тип на бизнеса: <br><br>информацията, за да се помогне намиррането на Бизнеса:<br>- Google карти позоваване: <br>или<br>- Широчина: <br>- Дължина: <br><br>допълнителната информация:<br>- уеб-сайт:<br>- телефонен номер:<br>"
+
+msgid "Internal Error"
+msgstr "Грешка на приложението"
+
+msgid "Front"
+msgstr "Отпред"
+
+msgid "Take a Selfie"
+msgstr "Да се фотографирате"
+
+msgid "Document + Selfie"
+msgstr "Документ + фото"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Направете фото на документа редом с вашето лице, за да се поберат те в един кадър."
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "Поместете вашия документ изцяло в рамка. Опитайте се да избегнете отблясъци."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr "Изглеждам добре"
+
+msgid "Buying Gift Card..."
+msgstr "Покупка на подаръчен сертификат..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "Грешка. Код на грешката: {{status}}"
+
+msgid "Useful Links"
+msgstr "Полезни позовавания"
+
+msgid "Exchange between BTC and BCH"
+msgstr "Да се обменят ВТС с ВСН"
+
+msgid "Exchange"
+msgstr "Да се обменят"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Вие не можете да изпратите Bitcoin Core на този Bitcoin Cash адрес, тъй като това ще доведе до загуба на вашите средства."
+
+msgid "Your account verification was rejected."
+msgstr "Не успя да мине верификацията на акаунта."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "За да се купи Bitcoin Cash, на нас е нужно вие да предоставите своя лична информация."
+
+msgid "Provide my information"
+msgstr "Да се предостави информацията"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Вие можете да купите {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} днес, и до {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} в този месец."
+
+msgid "Quick Links"
+msgstr "Позовавания"
+
+msgid "Payment Methods"
+msgstr "Начини на плащане"
+
+msgid "Side: {{file.side}}"
+msgstr "Страна: {{file.side}}"
+
+msgid "Approved"
+msgstr "Потвърдено"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Съжаляваме, но сега не можахме да ви потвърдим."
+

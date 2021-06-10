@@ -153,15 +153,18 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       }
     }
   }
+  ion-header-bar.bar.bar-header {
+    background-color: $v-background-root-color !important;  
+  }
   .bar-header {
     border: 0;
-    background: rgb(238, 182, 64);
     .title, .button {
-      color: #fff;
+      color: #000000;
     }
     .button {
       background-color: transparent;
     }
+    
   }
   .nav-bar-block, .bar {
   background-color: inherit !important;
@@ -222,7 +225,7 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       }
       .button {
         border: 2px solid;
-        border-radius: 47px;
+        border-radius: 3px;
         padding: 6px 2px 6px 2px;
         text-align: center;
         width: 100%;
@@ -313,6 +316,17 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
       margin-top: 3px;
     }
   }
+
+  img.satoshi-dice {
+    border-radius: 50%;
+    width: 40px;
+    border: 2px solid #BEBEBE;
+
+    &.received {
+      border-color:#09C286;
+    }
+  }
+
 }
 
 .wallet-details-wallet-info {
@@ -337,7 +351,7 @@ $wallet-details-collapse-transition: all 0.25s ease-in-out;
 }
 
 .wallet-not-backed-up-warning {
-  background: orange;
+  background: $v-error-color;
   text-align: center;
   color: white;
   font-size: 14px;

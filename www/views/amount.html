@@ -1,5 +1,5 @@
 <ion-view id="view-amount" hide-tabs>
-    <ion-nav-bar class="bar-royal">
+    <ion-nav-bar>
       <ion-nav-title>
         {{'Enter Amount' | translate}}
       </ion-nav-title>
@@ -9,7 +9,7 @@
       <div style="order: 0; position: relative;">
         <div class="card item send-amount">
           <div class="send-amount-header-footer">
-            <span class="send-amount-header-footer__min" ng-if="vm.minAmount">Min: {{vm.minAmount}}</span> <span class="send-amount-header-footer__max" ng-if="vm.maxAmount">Max: {{vm.maxAmount}}</span>
+            <span class="send-amount-header-footer__min" ng-if="vm.minAmount">Min: {{vm.minAmountFormatted}}</span> <span class="send-amount-header-footer__max" ng-if="vm.maxAmount">Max: {{vm.maxAmountFormatted}}</span>
           </div>
           <div class="send-amount-tool">
             <div class="send-amount-tool-input amount">
@@ -46,7 +46,9 @@
           <div class="extra available-funds"
             ng-class="{warning: vm.fundsAreInsufficient}"
             ng-if="!vm.isRequestingSpecificAmount" translate>
-              <span translate>Available Funds</span>: <span><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+              <span translate>Available Funds</span>:&ensp;
+              <span ng-if="!vm.balanceHidden"><formatted-amount value="{{vm.availableFunds}}" size-equal="true"></formatted-amount></span>
+              <span ng-if="vm.balanceHidden" translate>[Balance Hidden]</span>
             </div>
           </div>  
         </div>
@@ -58,7 +60,8 @@
               <span>
                 <span ng-if="vm.showSendMaxButton" translate>Use All Available Funds</span>
                 <span ng-if="vm.showSendLimitMaxButton" translate>Send Maximum Amount</span>&ensp;
-                <span class="available-funds-amount">(<formatted-amount value="{{vm.sendableFunds}}"></formatted-amount>)</span>
+                <span ng-if="!vm.balanceHidden" class="available-funds-amount">(<formatted-amount value="{{vm.sendableFunds}}"></formatted-amount>)</span>
+                <span ng-if="vm.balanceHidden" class="available-funds-amount" translate>[Balance Hidden]</span>
               </span>
             </button>
         </div>

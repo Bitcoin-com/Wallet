@@ -1,0 +1,45 @@
+<ion-view id="buy-bitcoin-document-capture"  view-title="{{ vm.titleLabel }}" can-swipe-back="false" style="background: transparent;" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="vm.goBack()">
+        <i class="icon ion-chevron-left"></i>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content scroll="false">
+    <div class="capture-frame">
+      <video autoplay ng-if="vm.isDesktop"></video>
+      <table height="100%" width="100%">
+        <tbody>
+          <tr>
+            <td>
+              <img class="capture-image" src="img/buy-bitcoin/capture-mask.svg" />
+            </td>
+          </tr>
+          <tr height="100%">
+              <td class="mask-cover"></td>
+            </tr>
+          <tr>
+            <td>
+              <div class="mask-cover apl-button-bottom-container" style="position:relative">
+                <div class="center-content">
+                  <img ng-show="vm.imageType === 'selfie'" src="img/buy-bitcoin/selfie.png"/>
+                </div>
+                <h3 class="light-text" translate>{{vm.descriptionHeaderLabel}}</h3>
+                <p class="light-text" translate>{{vm.descriptionLabel}}</p>
+                <div class="camera-controls">
+                  <a ng-click="vm.onCapture()">
+                    <i class="icon">
+                      <div class="icon-capture"></div>
+                    </i>
+                  </a>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-content>
+</ion-view>

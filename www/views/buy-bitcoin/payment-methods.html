@@ -1,0 +1,77 @@
+<ion-view id="tab-buy-bitcoin-amount" class="apl" hide-tabs>
+  <ion-nav-bar>
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button" ng-click="$ionicGoBack()">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+      <button class="button apl-back-button" ng-click="vm.onEdit()" ng-if="!vm.editing">
+        <span translate>Edit</span>
+      </button>
+      <button class="button apl-back-button" ng-click="vm.onDone()" ng-if="vm.editing">
+          <span translate>Done</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content>
+    <div class="top-boundary"></div>
+    <h1 translate>
+      Payment Methods
+    </h1>
+    <div class="apl-list">
+      <div ng-repeat="pm in vm.paymentMethods" ng-if="!vm.paymentMethodsAreLoading">
+        <ion-radio ng-value="pm.id" ng-model="vm.paymentMethodId" ng-if="!vm.editing">
+            <payment-method-item editing="vm.editing" pm="pm"></payment-method-item>
+        </ion-radio>
+        <payment-method-item editing="vm.editing" pm="pm" ng-if="vm.editing"></payment-method-item>
+      </div>
+      <div class="item apl-list-item" ng-if="vm.paymentMethodsAreLoading">
+        <div class="apl-card__title__container">
+          <div class="apl-card__title">&nbsp;</div>
+          <div class="apl-card__subtitle" translate>
+            Loading...
+          </div>
+        </div>
+      </div>
+      <div ng-if="vm.paymentMethods.length === 0 && !vm.paymentMethodsAreLoading" class="item apl-list-item">
+        <p><span translate>No stored debit or credit cards.</span></p>
+      </div>
+      <!--<div class="item item-icon-left item-big-icon-left apl-list-item" ng-value="pm.partialCardNumber" ng-model="vm.defaultPaymentMethod">
+          <i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>
+          <div class="apl-card__title__container">
+            <div class="apl-card__title">
+              Fake
+            </div>
+            <div class="apl-card__subtitle">
+              ••• 1234 56/78
+            </div>
+          </div>
+        </div>-->
+      <a class="item apl-list-item" ng-click="vm.addPaymentMethod()">
+        <p>+ <span translate>Add Credit or Debit Card</span></p>
+      </a>
+      <!--<ion-radio ng-model="choice" ng-value="'A'">
+        <div class="item item-icon-left item-big-icon-left">
+          <i class="icon big-icon-svg">
+            <span class="apl-icon"></span>
+          </i>
+          <div class="apl-card__title">
+            Fake
+          </div>
+          <div class="apl-card__subtitle">
+            ••• 1234 56/78
+          </div>
+        </div> 
+      </ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Choose B</ion-radio>
+      <ion-radio ng-model="choice" ng-value="'C'">Choose C</ion-radio>-->
+    </div>
+
+
+
+
+  </ion-content>
+</ion-view>

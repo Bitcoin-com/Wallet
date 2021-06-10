@@ -1,0 +1,4641 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: bitcoincom-wallet\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: bitcoincom-wallet\n"
+"X-Crowdin-Language: hi\n"
+"X-Crowdin-File: template.pot\n"
+"Last-Translator: emilold\n"
+"Language-Team: Hindi\n"
+"Language: hi\n"
+"PO-Revision-Date: 2019-06-04 04:56\n"
+
+#: www/views/modals/paypro.html:34
+msgid "(Trusted)"
+msgstr "(विश्वसनीय)"
+
+#: www/views/includes/txp.html:23
+#: www/views/includes/walletHistory.html:64
+msgid "(possible double spend)"
+msgstr "(डबल स्पेंड की संभावना)"
+
+#: www/views/modals/txp-details.html:159
+msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
+msgstr "* भुगतान के प्रस्ताव को डिलीट किया जा सकता है यदि 1) आप इसे बनाने वाले हैं, और किसी अन्य कोपेयर ने हस्ताक्षर नहीं किया है, या 2) प्रस्ताव बनाने के बाद 24 घंटे बीत चुके हैं।"
+
+#: www/views/tx-details.html:82
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- ट्रांजैक्शन का {{vm.btx.feeRateStr}}"
+
+#: www/views/modals/txp-details.html:102
+msgid "- {{tx.feeRateStr}} of the transaction"
+msgstr "- ट्रांजैक्शन का {{tx.feeRateStr}}"
+
+#: www/views/feedback/rateApp.html:7
+msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "5-स्टार रेटिंग्स हमें {{appName}} को अधिक लोगों तक पहुंचाने में सहायता करती है, और अधिक यूजर्स का मतलब है ऐप के लिए अधिक संसाधन लगाए जा सकते हैं!"
+
+#: www/views/mercadoLibre.html:18
+#: www/views/mercadoLibre.html:40
+msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
+msgstr "<b>केवल</b> Mercado Livre (ब्राजील) पर रिडीम करने योग्य"
+
+#: src/js/controllers/feedback/send.js:27
+#: www/views/feedback/complete.html:21
+msgid "A member of the team will review your feedback as soon as possible."
+msgstr "टीम का एक सदस्य आपकी फीडबैक की जल्द से जल्द समीक्षा करेगा।"
+
+#: src/js/controllers/confirm.js:401
+msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
+msgstr "कुल {{amountAboveMaxSizeStr}} को बाहर रखा गया था। किसी लेन-देन की स्वीकृत अधिकतम सीमा पार हो गई थी।"
+
+#: src/js/controllers/confirm.js:395
+msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
+msgstr "कुल {{amountBelowFeeStr}} को बाहर रखा गया था। ये फंड प्रदान किए गए नेटवर्क शुल्क से छोटे UTXOs से आते हैं।"
+
+#: src/js/controllers/preferencesAbout.js:6
+#: www/views/tab-settings.html:156
+msgid "About"
+msgstr "परिचय"
+
+#: src/js/controllers/modals/txpDetails.js:62
+#: src/js/controllers/tx-details.js:79
+msgid "Accepted"
+msgstr "स्वीकृत"
+
+#: www/views/preferencesInformation.html:72
+msgid "Account"
+msgstr "खाता"
+
+#: www/views/join.html:72
+#: www/views/tab-create-personal.html:45
+#: www/views/tab-create-shared.html:74
+#: www/views/tab-import-hardware.html:19
+msgid "Account Number"
+msgstr "खाता संख्या"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "कम शुल्क में तत्काल ट्रांजैक्शन्स"
+
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr "अपर्याप्त निधियां"
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr "मुद्रा परिवर्तित करें"
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr "उपलब्ध निधियां"
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr "सभी उपलब्ध निधियों का उपयोग करें"
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr "अगला"
+
+#: www/views/preferencesBitpayServices.html:23
+msgid "Accounts"
+msgstr "खाते"
+
+#: www/views/bitpayCard.html:56
+msgid "Activity"
+msgstr "गतिविधि"
+
+#: src/js/services/bitpayAccountService.js:83
+msgid "Add Account"
+msgstr "खाता जोड़ें"
+
+#: src/js/services/bitpayAccountService.js:69
+msgid "Add BitPay Account?"
+msgstr "BitPay खाता जोड़ना है?"
+
+#: www/views/addressbook.add.html:4
+#: www/views/addressbook.html:22
+msgid "Add Contact"
+msgstr "संपर्क जोड़ें"
+
+#: www/views/bitpayCard.html:28
+msgid "Add Funds"
+msgstr "निधियां जोड़ें"
+
+#: www/views/confirm.html:94
+msgid "Add Memo"
+msgstr "मेमो जोड़ें"
+
+#: www/views/join.html:87
+#: www/views/tab-create-personal.html:59
+#: www/views/tab-create-shared.html:88
+msgid "Add a password"
+msgstr "कोई पासवर्ड जोड़ें"
+
+#: www/views/includes/accountSelector.html:27
+msgid "Add account"
+msgstr "खाता जोड़ें"
+
+#: www/views/join.html:90
+#: www/views/tab-create-personal.html:62
+#: www/views/tab-create-shared.html:91
+msgid "Add an optional password to secure the recovery phrase"
+msgstr "पुनर्प्राप्ति वाक्यांश को सुरक्षित करने के लिए एक वैकल्पिक पासवर्ड जोड़ें"
+
+#: www/views/includes/incomingDataMenu.html:41
+msgid "Add as a contact"
+msgstr "संपर्क के रूप में जोड़ें"
+
+#: src/js/controllers/confirm.js:424
+msgid "Add description"
+msgstr "विवरण जोड़ें"
+
+#: www/views/topup.html:6
+msgid "Add funds"
+msgstr "निधियां जोड़ें"
+
+#: src/js/services/bitpayAccountService.js:78
+msgid "Add this BitPay account ({{email}})?"
+msgstr "इस BitPay खाता ({{email}}) को जोड़ना है?"
+
+#: www/views/add.html:3
+msgid "Add wallet"
+msgstr "वॉलेट जोड़ें"
+
+#: www/views/addressbook.view.html:26
+#: www/views/customAmount.html:28
+#: www/views/modals/paypro.html:24
+msgid "Address"
+msgstr "पता"
+
+#: www/views/addressbook.html:6
+#: www/views/tab-settings.html:13
+msgid "Address Book"
+msgstr "पता पुस्तिका"
+
+#: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
+msgid "Address Type"
+msgstr "पता प्रकार"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "नकद पता"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "लीगेसी"
+
+#: www/views/addresses.html:64
+msgid "Addresses With Balance"
+msgstr "बैलेंस वाले पते"
+
+#: www/views/tab-settings.html:149
+msgid "Advanced"
+msgstr "उन्नत"
+
+#: www/views/advancedSettings.html:3
+msgid "Advanced Settings"
+msgstr "उन्नत सेटिंग्स"
+
+#: www/views/bitpayCard.html:62
+msgid "All"
+msgstr "सभी"
+
+#: www/views/allAddresses.html:3
+msgid "All Addresses"
+msgstr "सभी पते"
+
+#: www/views/modals/wallet-balance.html:18
+msgid "All of your bitcoin wallet balance may not be available for immediate spending."
+msgstr "आपके bitcoin वॉलेट का सारा बैलेंस तत्काल खर्च के लिए उपलब्ध नहीं हो सकता है।"
+
+#: www/views/tab-receive.html:25
+msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgstr "Bitcoin पते बनाने से पहले सभी साइनिंग उपकरणों को इस मल्टीसिग वॉलेट के साथ जोड़ा जाना चाहिए।"
+
+#: www/views/tab-scan.html:21
+msgid "Allow Camera Access"
+msgstr "कैमरा एक्सेस की अनुमति दें"
+
+#: www/views/onboarding/notifications.html:7
+msgid "Allow notifications"
+msgstr "सूचनाओं की अनुमति दें"
+
+#: www/views/onboarding/disclaimer.html:14
+msgid "Almost done! Let's review."
+msgstr "लगभग पूरा हो गया! आइए अब समीक्षा करते हैं।"
+
+#: www/views/preferencesAltCurrency.html:4
+#: www/views/tab-settings.html:79
+msgid "Alternative Currency"
+msgstr "वैकल्पिक मुद्रा"
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr "मूल्य प्रदर्शन"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr "फिएट"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr "क्रिप्टोकरंसी"
+
+#: src/js/controllers/buyAmazon.js:98
+msgid "Amazon.com is not available at this moment. Please try back later."
+msgstr "Amazon.com इस समय उपलब्ध नहीं है। कृपया कुछ देर बाद दुबारा प्रयास करें।"
+
+#: www/views/amount.html:44
+#: www/views/customAmount.html:34
+#: www/views/includes/output.html:7
+msgid "Amount"
+msgstr "राशि"
+
+#: src/js/services/bwcError.js:110
+msgid "Amount below minimum allowed"
+msgstr "न्यूनतम राशि से कम की अनुमति है"
+
+#: src/js/controllers/confirm.js:216
+msgid "Amount too big"
+msgstr "राशि बहुत बड़ी है"
+
+#: www/views/includes/walletHistory.html:31
+msgid "Amount too low to spend"
+msgstr "खर्च करने के लिए राशि बहुत कम है"
+
+#: src/js/controllers/tab-home.js:147
+msgid "An update to this app is available. For your security, please update to the latest version."
+msgstr "इस एप्लिकेशन के लिए एक अपडेट उपलब्ध है। अपनी सुरक्षा के लिए, कृपया नवीनतम संस्करण को अपडेट करें।"
+
+#: www/views/backupWarning.html:14
+msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgstr "आपके बैकअप वाक्यांश के साथ कोई भी आपके bitcoin को एक्सेस या खर्च कर सकता है।"
+
+#: www/views/addresses.html:94
+msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgstr "वॉलेट के बैलेंस (सामान्य प्राथमिकता के साथ) को हस्तांतरित करने के लिए अनुमानित Bitcoin नेटवर्क शुल्क"
+
+#: www/views/backupWarning.html:10
+msgid "Are you being watched?"
+msgstr "क्या आप पर नज़र रखी जा रही है?"
+
+#: src/js/controllers/preferencesExternal.js:15
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgstr "क्या आप पर नज़र रखी जा रही है? आपके पुनर्प्राप्ति वाक्यांश के साथ कोई भी आपके bitcoin को एक्सेस या खर्च कर सकता है।"
+
+#: src/js/controllers/copayers.js:56
+msgid "Are you sure you want to cancel and delete this wallet?"
+msgstr "क्या आप निश्चयपूर्वक इस वॉलेट को रद्द करना और डिलीट करना चाहते हैं?"
+
+#: src/js/controllers/addressbookView.js:37
+msgid "Are you sure you want to delete this contact?"
+msgstr "क्या आप निश्चयपूर्वक इस संपर्क को डिलीट करना चाहते हैं?"
+
+#: src/js/controllers/preferencesDelete.js:25
+msgid "Are you sure you want to delete this wallet?"
+msgstr "क्या आप निश्चयपूर्वक इस वॉलेट को डिलीट करना चाहते हैं?"
+
+#: src/js/controllers/modals/txpDetails.js:154
+msgid "Are you sure you want to reject this transaction?"
+msgstr "क्या आप निश्चयपूर्वक इस लेन-देन को खारिज करना चाहते हैं?"
+
+#: src/js/controllers/modals/txpDetails.js:171
+msgid "Are you sure you want to remove this transaction?"
+msgstr "क्या आप निश्चयपूर्वक इस ट्रांजैक्शन को हटाना चाहते हैं?"
+
+#: src/js/controllers/onboarding/backupRequest.js:23
+msgid "Are you sure you want to skip it?"
+msgstr "क्या आप निश्चयपूर्वक इसे छोड़ना चाहते हैं?"
+
+#: www/views/modals/bitpay-card-confirmation.html:4
+msgid "Are you sure you would like to log out of your BitPay Card account?"
+msgstr "क्या आप निश्चयपूर्वक अपने BitPay Card खाते से लॉग आउट करना चाहेंगे?"
+
+#: src/js/controllers/preferencesBitpayCard.js:7
+#: src/js/controllers/preferencesBitpayServices.js:20
+msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
+msgstr "क्या आप निश्चयपूर्वक अपने BitPay Card ({{lastFourDigits}}) को इस उपकरण से हटाना चाहेंगे?"
+
+#: www/views/includes/walletInfo.html:10
+msgid "Auditable"
+msgstr "लेखापरीक्षा योग्य"
+
+#: www/views/modals/wallet-balance.html:42
+msgid "Available"
+msgstr "उपलब्ध"
+
+#: www/views/includes/available-balance.html:3
+msgid "Available Balance"
+msgstr "उपलब्ध बैलेंस"
+
+#: www/views/modals/chooseFeeLevel.html:24
+#: www/views/preferencesFee.html:15
+msgid "Average confirmation time"
+msgstr "औसत पुष्टिकरण समय"
+
+#: www/views/join.html:143
+#: www/views/tab-create-personal.html:113
+#: www/views/tab-create-shared.html:142
+#: www/views/tab-import-phrase.html:51
+msgid "BIP32 path for address derivation"
+msgstr "ऐडरेस डेरीवेशन के लिए BIP32 पाथ"
+
+#: www/views/cashScan.html:25
+msgid "BTC wallets"
+msgstr "BTC वॉलेट"
+
+#: www/views/preferences.html:34
+msgid "Backup"
+msgstr "बैकअप"
+
+#: www/views/includes/backupNeededPopup.html:7
+msgid "Backup Needed"
+msgstr "बैकअप की आवश्यकता है"
+
+#: src/js/controllers/lockSetup.js:87
+msgid "Backup all livenet wallets before using this function"
+msgstr "इस फंक्शन का प्रयोग करने से पहले सभी लाईवनेट वॉलेट्स का बैकअप लें"
+
+#: src/js/controllers/cashScan.js:64
+#: www/views/includes/walletListSettings.html:12
+#: www/views/preferences.html:36
+msgid "Backup needed"
+msgstr "बैकअप की आवश्यकता है"
+
+#: www/views/includes/backupNeededPopup.html:9
+msgid "Backup now"
+msgstr "अभी बैकअप लें"
+
+#: www/views/onboarding/backupRequest.html:11
+#: www/views/tab-export-file.html:89
+msgid "Backup wallet"
+msgstr "वॉलेट का बैकअप लें"
+
+#: src/js/controllers/lockSetup.js:84
+msgid "Backup your wallet before using this function"
+msgstr "इस फंक्शन का प्रयोग करने से पहले अपने वॉलेट का बैकअप लें"
+
+#: src/js/services/profileService.js:446
+msgid "Bad wallet invitation"
+msgstr "खराब वॉलेट आमंत्रण"
+
+#: www/views/preferencesInformation.html:102
+msgid "Balance By Address"
+msgstr "पते के अनुसार बैलेंस"
+
+#: www/views/includes/confirmBackupPopup.html:7
+msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
+msgstr "अपने पुनर्प्राप्ति वाक्यांश को सुरक्षित स्थान पर संग्रहित करना सुनिश्चित करें । यदि इस एप को डिलीट कर दिया जाता है तो इसके बिना आपके पैसे की वसूली नहीं हो सकती।"
+
+#: www/views/preferencesBitpayServices.html:9
+msgid "BitPay Visa&reg; Cards"
+msgstr "BitPay Visa&reg; कार्ड"
+
+#: www/views/addressbook.add.html:38
+#: www/views/includes/incomingDataMenu.html:29
+msgid "Bitcoin Address"
+msgstr "Bitcoin पता"
+
+#: www/views/cashScan.html:4
+msgid "Bitcoin Cash (BCH) Balances"
+msgstr "Bitcoin कैश (BCH) बैलेंस"
+
+#: www/views/preferencesCash.html:3
+#: www/views/tab-settings.html:47
+msgid "Bitcoin Cash Support"
+msgstr "Bitcoin Cash सहायता"
+
+#: www/views/tab-home.html:98
+#: www/views/tab-settings.html:115
+msgid "Bitcoin Cash Wallets"
+msgstr "Bitcoin Cash वॉलेट्स"
+
+#: www/views/modals/chooseFeeLevel.html:4
+#: www/views/preferencesFee.html:4
+#: www/views/tab-settings.html:90
+msgid "Bitcoin Network Fee Policy"
+msgstr "Bitcoin नेटवर्क शुल्क नीति"
+
+#: www/views/tab-home.html:83
+#: www/views/tab-settings.html:107
+msgid "Bitcoin Core Wallets"
+msgstr "Bitcoin कोर वॉलेट्स"
+
+#: src/js/services/incomingData.js:151
+msgid "Bitcoin cash Payment"
+msgstr "Bitcoin कैश भुगतान"
+
+#: www/views/onboarding/tour.html:31
+msgid "Bitcoin is a currency."
+msgstr "Bitcoin एक मुद्रा है।"
+
+#: www/views/onboarding/disclaimer.html:15
+msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
+msgstr "Bitcoin एक अलग &ndash; है, इसे सुरक्षित रूप से किसी बैंक या वेब सेवा में नहीं रखा जा सकता।"
+
+#: www/views/onboarding/tour.html:18
+msgid "Bitcoin is secure,<br>digital money."
+msgstr "Bitcoin सुरक्षित,<br>डिजीटल पैसा है।"
+
+#: www/views/preferencesFee.html:11
+msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgstr "Bitcoin लेन-देन में नेटवर्क पर माइनरों द्वारा एकत्रित शुल्क शामिल होता है।"
+
+#: www/views/buyAmazon.html:108
+msgid "Bought {{amountUnitStr}}"
+msgstr "खरीदा {{amountUnitStr}}"
+
+#: www/views/modals/txp-details.html:36
+msgid "Broadcast Payment"
+msgstr "भुगतान प्रसारित करें"
+
+#: src/js/controllers/modals/txpDetails.js:64
+#: src/js/controllers/tx-details.js:81
+msgid "Broadcasted"
+msgstr "प्रसारित किया"
+
+#: src/js/services/onGoingProcess.js:11
+msgid "Broadcasting transaction"
+msgstr "ट्रांजैक्शन प्रसारित हो रही है"
+
+#: www/views/unsupported.html:6
+msgid "Browser unsupported"
+msgstr "ब्राउज़र असमर्थित है"
+
+#: www/views/buyAmazon.html:5
+#: www/views/buyMercadoLibre.html:6
+msgid "Buy"
+msgstr "खरीदें"
+
+#: www/views/includes/buyAndSellCard.html:3
+msgid "Buy &amp; Sell Bitcoin"
+msgstr "खरीदें &amp; Bitcoin बेचें"
+
+#: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
+msgid "Buy Bitcoin"
+msgstr "Bitcoin खरीदें"
+
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Bitcoin खरीदें या बेचें"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "एक्सचेंज कनेक्ट करें"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "अपने एक्सचेंज खातों को कनेक्ट करके अपने वॉलेट से सीधे bitcoin खरीदें या बेचें।"
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "क्रैडिट कार्ड से Bitcoin खरीदें"
+
+#: www/views/mercadoLibre.html:22
+#: www/views/mercadoLibre.html:50
+msgid "Buy a Gift Card"
+msgstr "एक गिफ्ट कार्ड खरीदें"
+
+#: src/js/controllers/buyAmazon.js:334
+msgid "Buy from"
+msgstr "यहाँ से खरीदें"
+
+#: src/js/services/onGoingProcess.js:40
+msgid "Buying Bitcoin..."
+msgstr "Bitcoin खरीदे जा रहे हैं..."
+
+#: src/js/services/onGoingProcess.js:12
+msgid "Calculating fee"
+msgstr "शुल्क का परिकलन किया जा रहा है"
+
+#: src/js/controllers/buyAmazon.js:313
+#: src/js/controllers/buyMercadoLibre.js:307
+#: src/js/controllers/confirm.js:550
+#: src/js/controllers/topup.js:287
+#: src/js/services/incomingData.js:154
+#: src/js/services/popupService.js:62
+#: src/js/services/popupService.js:73
+#: www/views/addressbook.add.html:10
+#: www/views/feedback/send.html:5
+#: www/views/includes/incomingDataMenu.html:22
+#: www/views/includes/incomingDataMenu.html:54
+#: www/views/includes/incomingDataMenu.html:73
+#: www/views/includes/incomingDataMenu.html:97
+#: www/views/includes/note.html:6
+#: www/views/modals/bitpay-card-confirmation.html:8
+#: www/views/modals/confirmation.html:13
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: www/views/copayers.html:36
+msgid "Cancel invitation"
+msgstr "आमंत्रण रद्द करें"
+
+#: src/js/controllers/onboarding/tour.js:52
+msgid "Cannot Create Wallet"
+msgstr "वॉलेट क्रीएट नहीं कर सकते"
+
+#: src/js/services/profileService.js:442
+msgid "Cannot join the same wallet more than once"
+msgstr "एक से अधिक बार एक ही वॉलेट में शामिल नहीं हो सकते"
+
+#: www/views/includes/bitpayCardsCard.html:2
+msgid "Cards"
+msgstr "कार्ड्स"
+
+#: www/views/modals/paypro.html:30
+msgid "Certified by"
+msgstr "इनके द्वारा प्रमाणित"
+
+#: www/views/preferencesExternal.html:19
+msgid "Check installation and retry."
+msgstr "इंस्टालेशन जांचें और पुनर्प्रयास करें।"
+
+#: www/views/tab-import-file.html:4
+msgid "Choose a backup file from your computer"
+msgstr "अपने कंप्यूटर से कोई बैकअप फाइल चुनें"
+
+#: www/views/modals/wallets.html:9
+msgid "Choose your destination wallet"
+msgstr "अपना डेस्टीनेशन वॉलेट चुनें"
+
+#: www/views/modals/wallets.html:10
+msgid "Choose your source wallet"
+msgstr "अपना सोर्स वॉलेट चुनें"
+
+#: www/views/backup.html:61
+msgid "Clear"
+msgstr "मिटाएं"
+
+#: www/views/preferencesHistory.html:24
+msgid "Clear cache"
+msgstr "कैशे मिटाएं"
+
+#: src/js/controllers/confirm.js:373
+#: src/js/controllers/modals/txpDetails.js:49
+msgid "Click to accept"
+msgstr "स्वीकार करने के लिए क्लिक करें"
+
+#: src/js/controllers/confirm.js:367
+msgid "Click to pay"
+msgstr "भुगतान करने के लिए क्लिक करें"
+
+#: src/js/controllers/confirm.js:379
+#: src/js/controllers/modals/txpDetails.js:42
+msgid "Click to send"
+msgstr "भेजने के लिए क्लिक करें"
+
+#: www/views/customAmount.html:4
+#: www/views/modals/mercadolibre-card-details.html:3
+#: www/views/modals/paypro.html:4
+#: www/views/modals/pin.html:3
+#: www/views/modals/search.html:3
+#: www/views/modals/wallet-balance.html:3
+#: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
+msgid "Close"
+msgstr "बंद करें"
+
+#: www/views/includes/cash.html:2
+#: www/views/preferencesInformation.html:17
+msgid "Coin"
+msgstr "कॉइन"
+
+#: www/views/preferences.html:22
+msgid "Color"
+msgstr "रंग"
+
+#: www/views/preferencesAbout.html:21
+msgid "Commit hash"
+msgstr "कमिट हैश"
+
+#: www/views/preferences.html:49
+msgid "Complete the backup process to use this option"
+msgstr "इस विकल्प का उपयोग करने के लिए बैकअप प्रक्रिया को पूरा करें"
+
+#: www/views/bitpayCard.html:93
+msgid "Completed"
+msgstr "पूर्ण हुआ"
+
+#: src/js/controllers/buyAmazon.js:311
+#: src/js/controllers/buyMercadoLibre.js:305
+#: src/js/controllers/confirm.js:549
+#: src/js/controllers/copayers.js:55
+#: src/js/controllers/topup.js:285
+#: www/views/backup.html:60
+#: www/views/backup.html:79
+#: www/views/confirm.html:4
+#: www/views/onboarding/collectEmail.html:32
+msgid "Confirm"
+msgstr "पुष्टि करें"
+
+#: www/views/modals/terms.html:26
+#: www/views/onboarding/disclaimer.html:44
+msgid "Confirm &amp; Finish"
+msgstr "पुष्टि करें &amp; समाप्त करें"
+
+#: www/views/buyAmazon.html:90
+msgid "Confirm purchase"
+msgstr "खरीद की पुष्टि करें"
+
+#: www/views/modals/pin.html:10
+msgid "Confirm your PIN"
+msgstr "अपने PIN की पुष्टि करें"
+
+#: src/js/services/walletService.js:1033
+msgid "Confirm your new spending password"
+msgstr "अपने नए खर्च पासवर्ड की पुष्टि करें"
+
+#: www/views/tx-details.html:98
+msgid "Confirmations"
+msgstr "पुष्टिकरण"
+
+#: www/views/bitpayCard.html:68
+#: www/views/modals/wallet-balance.html:61
+msgid "Confirming"
+msgstr "पुष्टि की जा रही है"
+
+#: www/views/bitpayCardIntro.html:37
+msgid "Connect my BitPay Card"
+msgstr "मेरे BitPay Card को कनेक्ट करें"
+
+#: src/js/services/onGoingProcess.js:13
+msgid "Connecting to Coinbase..."
+msgstr "Coinbase से कनेक्ट हो रहा है..."
+
+#: src/js/services/onGoingProcess.js:14
+msgid "Connecting to Glidera..."
+msgstr "Glidera से कनेक्ट हो रहा है..."
+
+#: src/js/services/bwcError.js:53
+msgid "Connection reset by peer"
+msgstr "साथी द्वारा कनेक्शन रीसेट किया गया"
+
+#: www/views/tab-send.html:85
+msgid "Contacts"
+msgstr "संपर्क"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "सहेजे गए अक्सर उपयोग किए गए पते"
+
+#: www/views/onboarding/notifications.html:9
+msgid "Continue"
+msgstr "जारी रखें"
+
+#: www/views/preferencesLanguage.html:26
+msgid "Contribute Translations"
+msgstr "अनुवाद में योगदान करें"
+
+#: src/js/controllers/confirm.js:130
+msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Copay केवल नए संस्करण के संख्या पतों का उपयोग करते हुए Bitcoin कैश का समर्थन करता है"
+
+#: src/js/services/bwcError.js:62
+msgid "Copayer already in this wallet"
+msgstr "कोपेयर पहले से ही इस वॉलेट में शामिल है"
+
+#: src/js/services/bwcError.js:77
+msgid "Copayer already voted on this spend proposal"
+msgstr "कोपेयर ने पहले ही इस खर्च प्रस्ताव पर वोट कर दिया है"
+
+#: src/js/services/bwcError.js:107
+msgid "Copayer data mismatch"
+msgstr "कोपेयर डेटा अनुरूप नहीं"
+
+#: www/views/includes/walletActivity.html:2
+msgid "Copayer joined"
+msgstr "कोपेयर शामिल हुआ"
+
+#: www/views/preferencesInformation.html:94
+msgid "Copayer {{$index}}"
+msgstr "कोपेयर {{$index}}"
+
+#: src/js/controllers/copayers.js:79
+#: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
+#: www/views/includes/copyToClipboard.html:4
+msgid "Copied to clipboard"
+msgstr "क्लिपबोर्ड पर कॉपी हुआ"
+
+#: www/views/tab-export-file.html:94
+msgid "Copy this text as it is to a safe place (notepad or email)"
+msgstr "इस टेक्स्ट को ज्यों का त्यों किसी सुरक्षित जगह (नोटपैड या ईमेल) पर कॉपी करें"
+
+#: www/views/includes/incomingDataMenu.html:51
+#: www/views/includes/incomingDataMenu.html:70
+#: www/views/includes/incomingDataMenu.html:94
+#: www/views/includes/logOptions.html:9
+#: www/views/tab-export-file.html:78
+msgid "Copy to clipboard"
+msgstr "क्लिपबोर्ड पर कॉपी करें"
+
+#: src/js/controllers/buyMercadoLibre.js:102
+msgid "Could not access Gift Card Service"
+msgstr "गिफ्ट कार्ड सेवा को एक्सेस नहीं कर सके"
+
+#: www/views/tab-import-phrase.html:2
+msgid "Could not access the wallet at the server. Please check:"
+msgstr "सर्वर पर वॉलेट को एक्सेस नहीं कर सके। कृपया जांच करें:"
+
+#: src/js/controllers/buyAmazon.js:102
+msgid "Could not access to Amazon.com"
+msgstr "Amazon.com को एक्सेस नहीं कर सके"
+
+#: src/js/services/profileService.js:511
+msgid "Could not access wallet"
+msgstr "वॉलेट को एक्सेस नहीं कर सके"
+
+#: src/js/controllers/confirm.js:210
+msgid "Could not add message to imported wallet without shared encrypting key"
+msgstr "शेयर्ड इन्क्रिप्टिंग की के बिना इम्पोर्ट किए हुए वॉलेट में संदेश नहीं शामिल कर सके"
+
+#: src/js/controllers/modals/txpDetails.js:199
+msgid "Could not broadcast payment"
+msgstr "भुगतान को प्रसारित नहीं कर सके"
+
+#: src/js/services/bwcError.js:41
+msgid "Could not build transaction"
+msgstr "ट्रांजैक्शन निर्मित नहीं कर सके"
+
+#: src/js/services/walletService.js:854
+msgid "Could not create address"
+msgstr "पता क्रीएट नहीं कर सके"
+
+#: src/js/controllers/topup.js:92
+msgid "Could not create the invoice"
+msgstr "चालान क्रीएट नहीं कर सके"
+
+#: src/js/controllers/buyAmazon.js:164
+#: src/js/controllers/buyMercadoLibre.js:164
+#: src/js/controllers/topup.js:142
+msgid "Could not create transaction"
+msgstr "ट्रांजैक्शन क्रीएट नहीं कर सके"
+
+#: src/js/services/profileService.js:350
+msgid "Could not create using the specified extended private key"
+msgstr "निर्दिष्ट विस्तारित निजी कुंजी का उपयोग कर क्रीएट नहीं कर सके"
+
+#: src/js/services/profileService.js:362
+msgid "Could not create using the specified extended public key"
+msgstr "निर्दिष्ट विस्तारित सार्वजनिक कुंजी का उपयोग कर क्रीएट नहीं कर सके"
+
+#: src/js/services/profileService.js:338
+msgid "Could not create: Invalid wallet recovery phrase"
+msgstr "अमान्य वॉलेट पुनर्प्राप्ति वाक्यांश क्रीएट नहीं कर सके"
+
+#: src/js/controllers/import.js:114
+msgid "Could not decrypt file, check your password"
+msgstr "फाइल डीक्रिप्ट नहीं कर सके, अपना पासवर्ड जांचें"
+
+#: src/js/controllers/modals/txpDetails.js:181
+msgid "Could not delete payment proposal"
+msgstr "भुगतान प्रस्ताव डिलीट नहीं कर सके"
+
+#: src/js/controllers/cashScan.js:117
+msgid "Could not duplicate"
+msgstr "डुप्लिकेट नहीं कर सके"
+
+#: src/js/services/feeService.js:73
+msgid "Could not get dynamic fee"
+msgstr "गतिशील शुल्क प्राप्त नहीं कर सके"
+
+#: src/js/services/feeService.js:43
+msgid "Could not get dynamic fee for level: {{feeLevel}}"
+msgstr "इस स्तर के लिए गतिशील शुल्क प्राप्त नहीं कर सके: {{feeLevel}}"
+
+#: src/js/controllers/modals/feeLevels.js:112
+msgid "Could not get fee levels"
+msgstr "शुल्क स्तर नहीं मिल सके"
+
+#: src/js/controllers/buyAmazon.js:122
+#: src/js/controllers/buyMercadoLibre.js:122
+#: src/js/controllers/topup.js:100
+msgid "Could not get the invoice"
+msgstr "चालान नहीं मिल सका"
+
+#: src/js/controllers/bitpayCard.js:66
+msgid "Could not get transactions"
+msgstr "ट्रांजैक्शन्स नहीं मिल सके"
+
+#: src/js/services/profileService.js:615
+#: src/js/services/profileService.js:650
+#: src/js/services/profileService.js:674
+msgid "Could not import"
+msgstr "इम्पोर्ट नहीं कर सके"
+
+#: src/js/services/profileService.js:584
+msgid "Could not import. Check input file and spending password"
+msgstr "इम्पोर्ट नहीं कर सके। इनपुट फाइल एवं खर्च पासवर्ड की जांच करें"
+
+#: src/js/services/profileService.js:457
+msgid "Could not join wallet"
+msgstr "वॉलेट को जोड़ा नहीं जा सका"
+
+#: src/js/controllers/modals/txpDetails.js:161
+msgid "Could not reject payment"
+msgstr "भुगतान अस्वीकार नहीं कर सके"
+
+#: src/js/controllers/preferencesBitpayServices.js:33
+msgid "Could not remove account"
+msgstr "खाता नहीं हटा सके"
+
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:50
+msgid "Could not remove card"
+msgstr "कार्ड नहीं हटा सके"
+
+#: src/js/services/walletService.js:776
+msgid "Could not save preferences on the server"
+msgstr "सर्वर पर प्राथमिकताएं नहीं सहेज सके"
+
+#: src/js/controllers/modals/txpDetails.js:147
+msgid "Could not send payment"
+msgstr "भुगतान नहीं भेज सके"
+
+#: src/js/controllers/buyAmazon.js:325
+#: src/js/controllers/buyMercadoLibre.js:318
+#: src/js/controllers/topup.js:299
+msgid "Could not send transaction"
+msgstr "ट्रांजैक्शन नहीं भेज सके"
+
+#: www/views/walletDetails.html:210
+msgid "Could not update transaction history"
+msgstr "ट्रांजैक्शन इतिहास अपडेट नहीं कर सके"
+
+#: src/js/controllers/addresses.js:29
+#: src/js/controllers/addresses.js:37
+#: src/js/controllers/copayers.js:30
+#: src/js/controllers/walletDetails.js:78
+msgid "Could not update wallet"
+msgstr "वॉलेट अपडेट नहीं कर सके"
+
+#: www/views/tab-create-personal.html:3
+msgid "Create Personal Wallet"
+msgstr "निजी वॉलेट क्रीएट करें"
+
+#: www/views/tab-create-shared.html:3
+msgid "Create Shared Wallet"
+msgstr "शेयर्ड वॉलेट क्रीएट करें"
+
+#: www/views/onboarding/tour.html:51
+#: www/views/tab-home.html:75
+#: www/views/tab-send.html:75
+msgid "Create bitcoin wallet"
+msgstr "Bitcoin वॉलेट क्रीएट करें"
+
+#: www/views/tab-create-personal.html:131
+msgid "Create new wallet"
+msgstr "नया वॉलेट क्रीएट करें"
+
+#: www/views/add.html:22
+msgid "Create shared wallet"
+msgstr "शेयर्ड वॉलेट क्रीएट करें"
+
+#: www/views/tab-create-shared.html:160
+msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr "{{formData.totalCopayers}} वॉलेट-का-{{formData.requiredCopayers}} क्रीएट करें"
+
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "कोपेयर"
+
+#: www/views/modals/txp-details.html:81
+#: www/views/tx-details.html:60
+msgid "Created by"
+msgstr "इनके द्वारा क्रीएट किया गया"
+
+#: src/js/services/onGoingProcess.js:18
+msgid "Creating Wallet..."
+msgstr "वॉलेट क्रीएट हो रहा है..."
+
+#: src/js/services/onGoingProcess.js:17
+msgid "Creating transaction"
+msgstr "ट्रांजैक्शन क्रीएट हो रही है"
+
+#: www/views/modals/chooseFeeLevel.html:34
+#: www/views/preferencesFee.html:20
+msgid "Current fee rate for this policy"
+msgstr "इस नीति के लिए मौजूदा शुल्क दर"
+
+#: src/js/services/feeService.js:15
+msgid "Custom"
+msgstr "कस्टम"
+
+#: www/views/customAmount.html:9
+msgid "Custom Amount"
+msgstr "कस्टम राशि"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Custom Fee"
+msgstr "कस्टम शुल्क"
+
+#: www/views/modals/mercadolibre-card-details.html:56
+#: www/views/modals/txp-details.html:87
+#: www/views/tx-details.html:66
+msgid "Date"
+msgstr "तिथि"
+
+#: www/views/preferencesDeleteWallet.html:21
+msgid "Delete"
+msgstr "डिलीट करें"
+
+#: www/views/modals/txp-details.html:164
+msgid "Delete Payment Proposal"
+msgstr "भुगतान प्रस्ताव डिलीट करें"
+
+#: www/views/preferencesAdvanced.html:33
+#: www/views/preferencesDeleteWallet.html:3
+msgid "Delete Wallet"
+msgstr "वॉलेट डिलीट करें"
+
+#: www/views/copayers.html:59
+msgid "Delete it and create a new one"
+msgstr "इसे डिलीट करें और एक नया बनाएं"
+
+#: src/js/services/onGoingProcess.js:19
+msgid "Deleting Wallet..."
+msgstr "वॉलेट डिलीट हो रहा है..."
+
+#: src/js/services/onGoingProcess.js:28
+msgid "Deleting payment proposal"
+msgstr "भुगतान प्रस्ताव डिलीट हो रहा है"
+
+#: www/views/join.html:141
+#: www/views/tab-create-personal.html:111
+#: www/views/tab-create-shared.html:140
+#: www/views/tab-import-phrase.html:49
+msgid "Derivation Path"
+msgstr "डेरीवेशन पाथ"
+
+#: www/views/preferencesInformation.html:47
+msgid "Derivation Strategy"
+msgstr "डेरीवेशन कार्यनीति"
+
+#: www/views/buyAmazon.html:39
+#: www/views/buyMercadoLibre.html:38
+#: www/views/modals/mercadolibre-card-details.html:6
+#: www/views/topup.html:45
+msgid "Details"
+msgstr "विवरण"
+
+#: src/js/controllers/lockSetup.js:9
+#: src/js/controllers/tab-settings.js:65
+#: www/views/tab-settings.html:50
+msgid "Disabled"
+msgstr "डिसेबल किया"
+
+#: www/views/includes/backupNeededPopup.html:10
+#: www/views/onboarding/backupRequest.html:12
+msgid "Do it later"
+msgstr "इसे बाद में करें"
+
+#: www/views/tab-export-file.html:29
+msgid "Do not include private key"
+msgstr "निजी कुंजी शामिल न करें"
+
+#: www/views/preferencesLanguage.html:21
+msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
+msgstr "Crowdin पर आपको अपनी भाषा नहीं दिख रही? Crowdin पर मालिक के साथ संपर्क करें! हमें आपकी भाषा समर्थित करने में बेहद खुशी होगी।"
+
+#: www/views/tab-export-file.html:59
+#: www/views/tab-home.html:22
+msgid "Download"
+msgstr "डाउनलोड करें"
+
+#: www/views/cashScan.html:37
+msgid "Duplicate for BCH"
+msgstr "BCH का डुप्लिकेट करें"
+
+#: src/js/services/onGoingProcess.js:49
+msgid "Duplicating wallet..."
+msgstr "वॉलेट का डुप्लिकेट बन रहा है..."
+
+#: www/views/addresses.html:19
+msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgstr "प्रत्येक bitcoin वॉलेट आपके 12-शब्दों के बैकअप से अरबों पते उत्पन्न कर सकता है। आपके द्वारा हर बार भुगतान प्राप्त करने पर एक नया पता स्वचालित रूप से बनता है और दिखाया जाता है।"
+
+#: src/js/services/feeService.js:13
+msgid "Economy"
+msgstr "अर्थव्यवस्था"
+
+#: www/views/onboarding/collectEmail.html:27
+msgid "Edit"
+msgstr "एडिट करें"
+
+#: www/views/addressbook.add.html:29
+#: www/views/addressbook.view.html:22
+msgid "Email"
+msgstr "ईमेल"
+
+#: www/views/preferencesNotifications.html:42
+msgid "Email Address"
+msgstr "ईमेल पता"
+
+#: src/js/services/bwcError.js:122
+msgid "Empty addresses limit reached. New addresses cannot be generated."
+msgstr "खाली पतों की सीमा पूरी हो गई है। नए पते नहीं बनाए जा सकते।"
+
+#: www/views/preferencesCash.html:17
+msgid "Enable Bitcoin Cash wallet creation and operation within the App."
+msgstr "एप में Bitcoin Cash वॉलेट क्रिएशन एवं संचालन सक्षम करें।"
+
+#: www/views/tab-scan.html:19
+msgid "Enable camera access in your device settings to get started."
+msgstr "प्रारंभ करने के लिए अपने डिवाइस की सेटिंग्स में कैमरा एक्सेस को सक्षम करें।"
+
+#: www/views/preferencesNotifications.html:29
+msgid "Enable email notifications"
+msgstr "ईमेल सूचनाओं को सक्षम करें"
+
+#: www/views/preferencesNotifications.html:12
+msgid "Enable push notifications"
+msgstr "पुश नोटीफिक्शन्स सक्षम करें"
+
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr "ध्वनि को सक्षम करें"
+
+#: www/views/tab-scan.html:18
+msgid "Enable the camera to get started."
+msgstr "प्रारंभ करने के लिए कैमरा को सक्षम करें।"
+
+#: www/views/tab-settings.html:49
+msgid "Enabled"
+msgstr "सक्षम किया"
+
+#: src/js/services/walletService.js:1047
+#: src/js/services/walletService.js:1062
+msgid "Enter Spending Password"
+msgstr "खर्च पासवर्ड दर्ज करें"
+
+#: src/js/services/bitpayAccountService.js:110
+msgid "Enter Two Factor for your BitPay account"
+msgstr "अपने BitPay खाते के लिए टू फेक्टर दर्ज करें"
+
+#: www/views/amount.html:4
+msgid "Enter Amount"
+msgstr "राशी दर्ज करें"
+
+#: www/views/modals/chooseFeeLevel.html:41
+msgid "Enter custom fee"
+msgstr "कस्टम शुल्क दर्ज करें"
+
+#: src/js/services/walletService.js:1029
+msgid "Enter new spending password"
+msgstr "नया खर्च पासवर्ड दर्ज करें"
+
+#: www/views/join.html:79
+#: www/views/tab-create-personal.html:51
+#: www/views/tab-create-shared.html:80
+msgid "Enter the recovery phrase (BIP39)"
+msgstr "पुनर्प्राप्ति वाक्यांश (BIP39) दर्ज करें"
+
+#: www/views/onboarding/collectEmail.html:13
+msgid "Enter your email"
+msgstr "अपना ईमेल दर्ज करें"
+
+#: www/views/backup.html:69
+msgid "Enter your password"
+msgstr "अपना पासवर्ड दर्ज करें"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/addressbookAdd.js:30
+#: src/js/controllers/addressbookView.js:42
+#: src/js/controllers/addresses.js:125
+#: src/js/controllers/addresses.js:126
+#: src/js/controllers/bitpayCard.js:66
+#: src/js/controllers/bitpayCardIntro.js:40
+#: src/js/controllers/bitpayCardIntro.js:81
+#: src/js/controllers/buyAmazon.js:24
+#: src/js/controllers/buyAmazon.js:35
+#: src/js/controllers/buyMercadoLibre.js:24
+#: src/js/controllers/buyMercadoLibre.js:35
+#: src/js/controllers/confirm.js:307
+#: src/js/controllers/copayers.js:67
+#: src/js/controllers/create.js:161
+#: src/js/controllers/create.js:174
+#: src/js/controllers/create.js:180
+#: src/js/controllers/create.js:186
+#: src/js/controllers/create.js:208
+#: src/js/controllers/create.js:215
+#: src/js/controllers/create.js:233
+#: src/js/controllers/export.js:109
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:154
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: src/js/controllers/export.js:47
+#: src/js/controllers/export.js:53
+#: src/js/controllers/feedback/send.js:23
+#: src/js/controllers/import.js:119
+#: src/js/controllers/import.js:131
+#: src/js/controllers/import.js:149
+#: src/js/controllers/import.js:200
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:238
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:266
+#: src/js/controllers/import.js:278
+#: src/js/controllers/import.js:288
+#: src/js/controllers/import.js:312
+#: src/js/controllers/import.js:325
+#: src/js/controllers/import.js:335
+#: src/js/controllers/import.js:345
+#: src/js/controllers/import.js:369
+#: src/js/controllers/import.js:382
+#: src/js/controllers/import.js:85
+#: src/js/controllers/import.js:98
+#: src/js/controllers/join.js:125
+#: src/js/controllers/join.js:139
+#: src/js/controllers/join.js:145
+#: src/js/controllers/join.js:151
+#: src/js/controllers/join.js:174
+#: src/js/controllers/join.js:182
+#: src/js/controllers/join.js:200
+#: src/js/controllers/modals/feeLevels.js:9
+#: src/js/controllers/modals/txpDetails.js:140
+#: src/js/controllers/paperWallet.js:47
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:33
+#: src/js/controllers/preferencesBitpayServices.js:50
+#: src/js/controllers/preferencesDelete.js:36
+#: src/js/controllers/preferencesExternal.js:20
+#: src/js/controllers/tab-home.js:174
+#: src/js/controllers/tab-send.js:143
+#: src/js/controllers/tabsController.js:36
+#: src/js/controllers/tabsController.js:7
+#: src/js/controllers/topup.js:21
+#: src/js/controllers/topup.js:32
+#: src/js/controllers/tx-details.js:119
+#: src/js/services/incomingData.js:101
+#: src/js/services/incomingData.js:125
+#: src/js/services/incomingData.js:168
+#: www/views/mercadoLibreCards.html:19
+#: www/views/modals/mercadolibre-card-details.html:45
+msgid "Error"
+msgstr "त्रुटि"
+
+#: src/js/controllers/confirm.js:502
+msgid "Error at confirm"
+msgstr "पुष्टि करने पर त्रुटि"
+
+#: src/js/controllers/buyAmazon.js:179
+msgid "Error creating gift card"
+msgstr "गिफ्ट कार्ड क्रीएट करने में त्रुटि"
+
+#: src/js/controllers/buyAmazon.js:94
+#: src/js/controllers/buyMercadoLibre.js:94
+msgid "Error creating the invoice"
+msgstr "चालान बनाने में त्रुटि"
+
+#: src/js/services/profileService.js:412
+msgid "Error creating wallet"
+msgstr "वॉलेट क्रीएट करने में त्रुटि"
+
+#: src/js/controllers/confirm.js:296
+msgid "Error getting SendMax information"
+msgstr "SendMax जानकारी प्राप्त करने में त्रुटि"
+
+#: src/js/controllers/buyAmazon.js:136
+#: src/js/controllers/buyMercadoLibre.js:136
+#: src/js/controllers/topup.js:114
+msgid "Error in Payment Protocol"
+msgstr "भुगतान प्रोटोकॉल में त्रुटि"
+
+#: src/js/controllers/bitpayCardIntro.js:14
+msgid "Error pairing BitPay Account"
+msgstr "BitPay खाते को जोड़ने में त्रुटि"
+
+#: src/js/controllers/paperWallet.js:41
+msgid "Error scanning funds:"
+msgstr "निधियों को स्कैन करने में त्रुटि:"
+
+#: src/js/controllers/paperWallet.js:90
+msgid "Error sweeping wallet:"
+msgstr "वॉलेट स्वीप करने में त्रुटि:"
+
+#: src/js/controllers/bitpayCardIntro.js:20
+msgid "Error updating Debit Cards"
+msgstr "डेबिट कार्ड अपडेट करने में त्रुटि"
+
+#: src/js/services/bwcError.js:143
+msgid "Exceeded daily limit of $500 per user"
+msgstr "प्रति उपयोगकर्ता $५०० की दैनिक सीमा पार हो गई"
+
+#: src/js/controllers/confirm.js:461
+#: www/views/confirm.html:27
+#: www/views/mercadoLibreCards.html:25
+#: www/views/modals/mercadolibre-card-details.html:34
+#: www/views/modals/txp-details.html:119
+msgid "Expired"
+msgstr "समयसीमा समाप्त हो गई"
+
+#: www/views/modals/paypro.html:54
+#: www/views/modals/txp-details.html:125
+msgid "Expires"
+msgstr "समयसीमा समाप्ति"
+
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "लीगेसी पता प्रदर्शित करें"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "नई शैली का पता प्रदर्शित करें"
+
+#: www/views/preferencesAdvanced.html:21
+msgid "Export Wallet"
+msgstr "वॉलेट एक्सपोर्ट करें"
+
+#: www/views/preferencesHistory.html:11
+#: www/views/preferencesHistory.html:14
+msgid "Export to file"
+msgstr "फाइल में एक्सपोर्ट करें"
+
+#: www/views/export.html:3
+msgid "Export wallet"
+msgstr "वॉलेट एक्सपोर्ट करें"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "वॉलेट सेवा URL"
+
+#: src/js/services/walletService.js:1174
+#: www/views/tab-export-qrCode.html:9
+msgid "Exporting via QR not supported for this wallet"
+msgstr "QR के माध्यम से एक्सपोर्ट इस वॉलेट के लिए समर्थित नहीं"
+
+#: www/views/preferencesInformation.html:89
+msgid "Extended Public Keys"
+msgstr "विस्तारित सार्वजनिक कुंजियां"
+
+#: src/js/services/onGoingProcess.js:20
+msgid "Extracting Wallet information..."
+msgstr "वॉलेट की जानकारी निकाली जा रही है..."
+
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: www/views/tab-export-file.html:4
+msgid "Failed to export"
+msgstr "एक्सपोर्ट करने में विफल"
+
+#: www/views/tab-create-personal.html:14
+#: www/views/tab-create-shared.html:14
+msgid "Family vacation funds"
+msgstr "परिवार अवकाश के लिए निधियां"
+
+#: www/views/tx-details.html:79
+msgid "Fee"
+msgstr "शुल्क"
+
+#: www/views/modals/chooseFeeLevel.html:75
+msgid "Fee level"
+msgstr "शुल्क स्तर"
+
+#: src/js/controllers/modals/feeLevels.js:100
+msgid "Fee level is not defined"
+msgstr "शुल्क स्तर निर्धारित नहीं है"
+
+#: www/views/confirm.html:79
+#: www/views/modals/txp-details.html:99
+msgid "Fee:"
+msgstr "शुल्क:"
+
+#: src/js/controllers/feedback/send.js:23
+msgid "Feedback could not be submitted. Please try again later."
+msgstr "फीडबैक सबमिट नहीं की जा सकी। कृपया बाद में दुबारा प्रयास करें।"
+
+#: src/js/services/onGoingProcess.js:42
+msgid "Fetching BitPay Account..."
+msgstr "BitPay खाता ढूँढ़ रहे हैं..."
+
+#: src/js/services/onGoingProcess.js:21
+msgid "Fetching payment information"
+msgstr "भुगतान जानकारी ढूँढ़ रहे हैं"
+
+#: www/views/export.html:14
+#: www/views/import.html:16
+msgid "File/Text"
+msgstr "फाइल/टेक्स्ट"
+
+#: www/views/preferencesLogs.html:17
+msgid "Filter setting"
+msgstr "फिल्टर सेटिंग"
+
+#: src/js/services/fingerprintService.js:43
+#: src/js/services/fingerprintService.js:48
+msgid "Finger Scan Failed"
+msgstr "फिंगर स्कैन विफल हुआ"
+
+#: src/js/controllers/feedback/send.js:34
+#: www/views/feedback/complete.html:7
+msgid "Finish"
+msgstr "समाप्त करें"
+
+#: www/views/tab-create-personal.html:123
+#: www/views/tab-create-shared.html:152
+msgid "For audit purposes"
+msgstr "लेखापरीक्षा प्रयोजनों हेतु"
+
+#: src/js/controllers/topup.js:308
+#: www/views/buyAmazon.html:29
+#: www/views/buyMercadoLibre.html:28
+#: www/views/confirm.html:65
+#: www/views/modals/txp-details.html:74
+#: www/views/topup.html:34
+#: www/views/tx-details.html:52
+#: www/views/review.html:22
+msgid "From"
+msgstr "द्वारा"
+
+#: src/js/controllers/bitpayCardIntro.js:71
+msgid "From BitPay account"
+msgstr "BitPay खाते से"
+
+#: www/views/tab-import-phrase.html:57
+msgid "From Hardware Wallet"
+msgstr "हार्डवेयर वॉलेट से"
+
+#: www/views/tab-export-qrCode.html:5
+msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
+msgstr "डेस्टीनेशन डिवाइस से, वॉलेट जोड़ें पर जाएं &gt; वॉलेट इम्पोर्ट करें और इस QR कोड को स्कैन करें"
+
+#: src/js/services/bwcError.js:74
+msgid "Funds are locked by pending spend proposals"
+msgstr "निधियां लंबित खर्च प्रस्तावों द्वारा लॉक होती हैं"
+
+#: www/views/paperWallet.html:16
+msgid "Funds found:"
+msgstr "प्राप्त हुई निधियां:"
+
+#: www/views/topup.html:49
+msgid "Funds to be added"
+msgstr "जोड़ी जाने वाली निधियां"
+
+#: www/views/paperWallet.html:51
+msgid "Funds transferred"
+msgstr "हस्तांतरित निधियां"
+
+#: www/views/topup.html:103
+msgid "Funds were added to debit card"
+msgstr "डेबिट कार्ड में निधियां जोड़ी गईं"
+
+#: www/views/paperWallet.html:22
+msgid "Funds will be transferred to"
+msgstr "निधियां इसमें हस्तांतरित की जाएंगी"
+
+#: www/views/tab-receive.html:51
+msgid "Generate new address"
+msgstr "नया पता बनाएँ"
+
+#: src/js/services/onGoingProcess.js:22
+msgid "Generating .csv file..."
+msgstr ".csv फाइल उत्पन्न हो रही है..."
+
+#: src/js/services/onGoingProcess.js:37
+msgid "Generating new address..."
+msgstr "नया पता बन रहा है..."
+
+#: www/views/bitpayCardIntro.html:23
+msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
+msgstr "जहाँ कहीं भी आप जाएं, किसी भी वीज़ा <sup>&reg;</sup> अनुकूल ATM से स्थानीय कैश प्राप्त करें। ATM बैंक शुल्क लागू हो सकते हैं।"
+
+#: www/views/onboarding/collectEmail.html:15
+msgid "Get news and updates from BitPay"
+msgstr "BitPay से समाचार और अपडेट्स प्राप्त करें"
+
+#: www/views/onboarding/welcome.html:8
+#: www/views/bitpayCard.html:49
+msgid "Get started"
+msgstr "प्रारंभ करें"
+
+#: www/views/addressbook.html:20
+msgid "Get started by adding your first one."
+msgstr "अपने पहले एक को जोड़कर प्रारंभ करें।"
+
+#: src/js/services/onGoingProcess.js:23
+msgid "Getting fee levels..."
+msgstr "शुल्क स्तर प्राप्त हो रहे हैं..."
+
+#: www/views/buyAmazon.html:43
+#: www/views/buyMercadoLibre.html:42
+msgid "Gift Card"
+msgstr "गिफ्ट कार्ड"
+
+#: www/views/modals/mercadolibre-card-details.html:30
+#: www/views/modals/mercadolibre-card-details.html:35
+msgid "Gift Card is not available to use anymore"
+msgstr "गिफ्ट कार्ड अब उपयोग करने के लिए उपलब्ध नहीं है"
+
+#: src/js/controllers/buyAmazon.js:204
+msgid "Gift card expired"
+msgstr "गिफ्ट कार्ड की समयसीमा समाप्त हो चुकी"
+
+#: www/views/buyAmazon.html:111
+msgid "Gift card generated and ready to use."
+msgstr "गिफ्ट कार्ड उत्पन्न हो चुका और उपयोग करने के लिए तैयार है।"
+
+#: src/js/controllers/bitpayCard.js:114
+#: src/js/controllers/bitpayCard.js:124
+#: src/js/controllers/cashScan.js:20
+#: src/js/controllers/onboarding/terms.js:23
+#: src/js/controllers/preferences.js:67
+#: src/js/controllers/preferencesAbout.js:16
+#: src/js/controllers/preferencesCash.js:34
+#: src/js/controllers/preferencesLanguage.js:14
+#: src/js/controllers/tab-home.js:149
+#: src/js/controllers/tab-settings.js:53
+#: src/js/controllers/tx-details.js:193
+#: src/js/controllers/tx-details.js:56
+msgid "Go Back"
+msgstr "पीछे"
+
+#: src/js/controllers/confirm.js:131
+#: src/js/controllers/onboarding/backupRequest.js:20
+#: src/js/controllers/onboarding/backupRequest.js:26
+#: src/js/services/bitpayAccountService.js:84
+msgid "Go back"
+msgstr "पीछे"
+
+#: www/views/backupWarning.html:15
+#: www/views/includes/confirmBackupPopup.html:8
+#: www/views/onboarding/tour.html:23
+msgid "Got it"
+msgstr "समझ में आया"
+
+#: www/views/preferencesInformation.html:53
+#: www/views/preferencesInformation.html:59
+msgid "Hardware Wallet"
+msgstr "हार्डवेयर वॉलेट"
+
+#: www/views/preferencesExternal.html:18
+msgid "Hardware not connected."
+msgstr "हार्डवेयर कनेक्टेड नहीं है।"
+
+#: www/views/import.html:20
+msgid "Hardware wallet"
+msgstr "हार्डवेयर वॉलेट"
+
+#: src/js/controllers/create.js:180
+#: src/js/controllers/join.js:145
+msgid "Hardware wallets are not yet supported with Bitcoin Cash"
+msgstr "हार्डवेयर वॉलेट अभी तक Bitcoin Cash के साथ समर्थित नहीं हैं"
+
+#: www/views/tab-settings.html:20
+msgid "Help & Support"
+msgstr "सहायता और समर्थन"
+
+#: src/js/controllers/bitpayCard.js:112
+#: src/js/controllers/tab-settings.js:51
+msgid "Help and support information is available at the website."
+msgstr "सहायता और समर्थन जानकारी वेबसाइट पर उपलब्ध है।"
+
+#: www/views/addresses.html:25
+msgid "Hide"
+msgstr "छिपाएं"
+
+#: www/views/preferences.html:27
+msgid "Hide Balance"
+msgstr "बैलेंस छिपाएं"
+
+#: www/views/advancedSettings.html:30
+msgid "Hide Next Steps Card"
+msgstr "नेक्स्ट स्टेप्स कार्ड को छिपाएँ"
+
+#: www/views/join.html:49
+#: www/views/tab-create-personal.html:28
+#: www/views/tab-create-shared.html:57
+#: www/views/tab-export-file.html:25
+#: www/views/tab-import-file.html:30
+#: www/views/tab-import-hardware.html:31
+#: www/views/tab-import-phrase.html:36
+msgid "Hide advanced options"
+msgstr "उन्नत विकल्प छिपाएं"
+
+#: www/views/tabs.html:3
+msgid "Home"
+msgstr "होम"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+#: src/js/controllers/feedback/send.js:69
+msgid "How could we improve your experience?"
+msgstr "हम आपके अनुभव को कैसे बेहतर बना सकते हैं?"
+
+#: www/views/feedback/rateCard.html:3
+msgid "How do you like {{appName}}?"
+msgstr "आपको {{appName}} कितनी पसंद हैं?"
+
+#: src/js/controllers/feedback/rateCard.js:29
+msgid "I don't like it"
+msgstr "मुझे यह पसंद नहीं है"
+
+#: www/views/onboarding/disclaimer.html:43
+msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
+msgstr "मैंने <a ng-click=\"openTerms()\" translate=\"\">उपयोग की शर्तों</a> को पढ़ा, समझा है और इनसे सहमत हूँ।"
+
+#: www/views/modals/terms.html:22
+msgid "I have read, understood, and agree with the Terms of use."
+msgstr "मैंने उपयोग की शर्तों को पढ़ा, समझा है और इनसे सहमत हूँ।"
+
+#: www/views/join.html:137
+#: www/views/tab-create-personal.html:107
+#: www/views/tab-create-shared.html:136
+msgid "I have written it down"
+msgstr "मैंने इसको लिख लिया है"
+
+#: src/js/controllers/feedback/rateCard.js:35
+msgid "I like the app"
+msgstr "मुझे एप पसंद है"
+
+#: src/js/controllers/feedback/rateCard.js:26
+msgid "I think this app is terrible."
+msgstr "मुझे लगता है कि यह एप बेकार है।"
+
+#: src/js/controllers/onboarding/backupRequest.js:19
+#: www/views/includes/screenshotWarningModal.html:9
+msgid "I understand"
+msgstr "मैं समझता/समझती हूँ"
+
+#: www/views/onboarding/disclaimer.html:21
+msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgstr "मैं समझता/समझती हूँ कि यदि इस एप को किसी अन्य डिवाइस पर ले जाया जाता है या डिलीट किया जाता है तो मेरे bitcoin को केवल बैकअप वाक्यांश के साथ पुनर्प्राप्त किया जा सकता है।"
+
+#: www/views/onboarding/disclaimer.html:18
+msgid "I understand that my funds are held securely on this device, not by a company."
+msgstr "मैं समझता/समझती हूँ कि मेरी निधियों को किसी कंपनी द्वारा नहीं बल्कि इस डिवाइस पर सुरक्षित रूप से रखा गया है।"
+
+#: www/views/backup.html:36
+msgid "I've written it down"
+msgstr "मैंने इसे लिख लिया है"
+
+#: www/views/preferences.html:45
+msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
+msgstr "यदि सक्षम किया गया, तो इस वॉलेट से संबद्ध सारी संवेदनशील जानकारी (निजी कुंजी और पुनर्प्राप्ति वाक्यांश) और कार्रवाइयों (खर्च करना एवं एक्सपोर्ट करना) को सुरक्षित रखा जाएगा।"
+
+#: www/views/advancedSettings.html:23
+msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
+msgstr "यदि सक्षम किया गया, तो रीसेंट ट्रांजेक्शन्स कार्ड - सभी वॉलेट्स में होने वाले लेन-देन की सूची - होम टैब में दिखाई देगी ।"
+
+#: www/views/advancedSettings.html:14
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "यदि सक्षम किया गया, तो वॉलेट अपुष्ट निधियां खर्च करने का भी प्रयास करेंगे। इस विकल्प को बंद करने से लेन-देन में विलंब हो सकता है।"
+
+#: src/js/controllers/onboarding/backupRequest.js:18
+msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgstr "यदि इस डिवाइस को बदला जाता है या इस एप को डिलीट किया जाता है, तो ना ही आप और ना ही BitPay बैकअप के बिना आपकी निधियों को पुर्नप्राप्त कर सकते हैं।"
+
+#: www/views/feedback/complete.html:23
+msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
+msgstr "यदि आपके पास अतिरिक्त फीडबैक है, तो कृपया सेटिंग्स टैब में \"फीडबैक भेजें\" विकल्प पर टैप करके हमें बताएं।"
+
+#: www/views/includes/screenshotWarningModal.html:8
+msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
+msgstr "यदि आप स्क्रीनशॉट लेते हैं, तो आपका बैकअप अन्य एप्स द्वारा देखा जा सकता है। आप वास्तविक कागज़ और एक पेन के साथ एक सुरक्षित बैकअप बना सकते हैं।"
+
+#: www/views/tab-import-hardware.html:42
+#: www/views/tab-import-phrase.html:80
+msgid "Import"
+msgstr "इम्पोर्ट"
+
+#: www/views/import.html:3
+msgid "Import Wallet"
+msgstr "वॉलेट इम्पोर्ट करें"
+
+#: www/views/tab-import-file.html:41
+msgid "Import backup"
+msgstr "बैकअप इम्पोर्ट करें"
+
+#: www/views/add.html:38
+msgid "Import wallet"
+msgstr "वॉलेट इम्पोर्ट करें"
+
+#: src/js/services/onGoingProcess.js:24
+msgid "Importing Wallet..."
+msgstr "वॉलेट इम्पोर्ट हो रहा है..."
+
+#: www/views/backup.html:72
+msgid "In order to verify your wallet backup, please type your password."
+msgstr "अपने वॉलेट के बैकअप को सत्यापित करने के लिए, कृपया अपना पासवर्ड टाइप करें।"
+
+#: www/views/mercadoLibreCards.html:24
+#: www/views/modals/mercadolibre-card-details.html:29
+msgid "Inactive"
+msgstr "निष्क्रिय"
+
+#: www/views/includes/walletItem.html:9
+#: www/views/includes/walletList.html:6
+#: www/views/includes/walletListSettings.html:9
+#: www/views/includes/walletSelector.html:16
+msgid "Incomplete"
+msgstr "अपूर्ण"
+
+#: www/views/tab-receive.html:22
+msgid "Incomplete wallet"
+msgstr "अपूर्ण वॉलेट"
+
+#: www/views/modals/pin.html:12
+msgid "Incorrect PIN, try again."
+msgstr "गलत PIN, दुबारा प्रयास करें।"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/import.js:85
+msgid "Incorrect code format"
+msgstr "गलत कोड स्वरूप"
+
+#: src/js/services/bwcError.js:113
+msgid "Incorrect network address"
+msgstr "गलत नेटवर्क पता"
+
+#: src/js/controllers/confirm.js:114
+#: src/js/controllers/confirm.js:306
+#: src/js/services/bwcError.js:44
+msgid "Insufficient confirmed funds"
+msgstr "अपर्याप्त पुष्ट निधियां"
+
+#: src/js/controllers/topup.js:165
+#: src/js/controllers/topup.js:177
+#: src/js/services/bwcError.js:71
+msgid "Insufficient funds for fee"
+msgstr "शुल्क के लिए अपर्याप्त निधियां"
+
+#: www/views/tab-settings.html:123
+msgid "Integrations"
+msgstr "एकीकरण"
+
+#: www/views/includes/walletHistory.html:49
+msgid "Invalid"
+msgstr "अमान्य"
+
+#: src/js/controllers/buyAmazon.js:137
+#: src/js/controllers/buyMercadoLibre.js:137
+#: src/js/controllers/topup.js:115
+msgid "Invalid URL"
+msgstr "अमान्य URL"
+
+#: src/js/controllers/create.js:186
+#: src/js/controllers/import.js:345
+#: src/js/controllers/join.js:151
+msgid "Invalid account number"
+msgstr "अमान्य खाता संख्या"
+
+#: src/js/services/bwcError.js:119
+msgid "Invalid address"
+msgstr "अमान्य पता"
+
+#: src/js/controllers/tabsController.js:7
+msgid "Invalid data"
+msgstr "अमान्य डेटा"
+
+#: src/js/controllers/create.js:161
+#: src/js/controllers/import.js:266
+#: src/js/controllers/join.js:125
+msgid "Invalid derivation path"
+msgstr "अमान्य डेरीवेशन पाथ"
+
+#: src/js/controllers/copayers.js:90
+msgid "Invitation to share a {{appName}} Wallet"
+msgstr "{{appName}} वॉलेट सांझा करने के लिए आमंत्रण"
+
+#: www/views/mercadoLibreCards.html:20
+#: www/views/modals/mercadolibre-card-details.html:48
+msgid "Invoice expired"
+msgstr "चालान की समयसीमा समाप्त हो चुकी"
+
+#: src/js/controllers/feedback/send.js:79
+msgid "Is there anything we could do better?"
+msgstr "क्या कुछ ऐसा है जो हम बेहतर कर सकते थे?"
+
+#: www/views/backup.html:54
+msgid "Is this correct?"
+msgstr "क्या यह सही है?"
+
+#: www/views/onboarding/collectEmail.html:22
+msgid "Is this email address correct?"
+msgstr "क्या यह ईमेल पता सही है?"
+
+#: www/views/addresses.html:25
+msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
+msgstr "पतों के पुन: प्रयोग से बचना एक अच्छा विचार है - यह दोनों आपकी गोपनीयता की सुरक्षा करता है और आपके bitcoins को क्वांटम कंप्यूटरों के काल्पनिक हमलों से सुरक्षित रखता है।"
+
+#: src/js/controllers/backup.js:76
+msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
+msgstr "यह महत्वपूर्ण है कि आप अपने बैकअप वाक्यांश को सही ढंग से लिखें। यदि आपके वॉलेट को कुछ होता है, तो आपको अपने पैसे को पुर्नप्राप्त करने के लिए इस बैकअप की आवश्यकता होगी। कृपया अपने बैकअप की समीक्षा करें और दुबारा प्रयास करें।"
+
+#: www/views/join.html:151
+msgid "Join"
+msgstr "शामिल हों"
+
+#: src/js/controllers/copayers.js:85
+msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
+msgstr "मेरे {{appName}} वॉलेट में शामिल हों। यह है आमंत्रण कोड: {{secret}} आप {{appUrl}} से अपने फोन या डेस्कटॉप के लिए {{appName}} डाउनलोड कर सकते हैं"
+
+#: www/views/add.html:30
+#: www/views/join.html:5
+msgid "Join shared wallet"
+msgstr "शेयर्ड वॉलेट में सम्मिलित हों"
+
+#: src/js/services/onGoingProcess.js:25
+msgid "Joining Wallet..."
+msgstr "वॉलेट में सम्मिलित हो रहे हैं..."
+
+#: www/views/onboarding/tour.html:22
+msgid "Just scan the code to pay."
+msgstr "भुगतान करने के लिए बस कोड को स्कैन करें।"
+
+#: src/js/services/bwcError.js:116
+msgid "Key already associated with an existing wallet"
+msgstr "कुंजी पहले से ही मौजूदा वॉलेट के साथ संबद्ध है"
+
+#: www/views/preferencesLanguage.html:4
+#: www/views/tab-settings.html:68
+msgid "Language"
+msgstr "भाषा"
+
+#: www/views/bitpayCard.html:61
+msgid "Last Month"
+msgstr "पिछले महीने"
+
+#: src/js/controllers/confirm.js:132
+#: www/views/preferences.html:48
+#: www/views/preferencesCash.html:18
+#: www/views/tx-details.html:94
+msgid "Learn more"
+msgstr "अधिक जानें"
+
+#: www/views/backup.html:43
+msgid "Let's verify your backup phrase."
+msgstr "आओ आपके बैकअप वाक्यांश को सत्यापित करें।"
+
+#: www/views/addresses.html:45
+#: www/views/allAddresses.html:14
+msgid "Loading addresses..."
+msgstr "पते लोड हो रहे हैं..."
+
+#: src/js/services/onGoingProcess.js:35
+msgid "Loading transaction info..."
+msgstr "लेन-देन जानकारी लोड हो रही है..."
+
+#: www/views/tab-settings.html:100
+msgid "Lock App"
+msgstr "एप लॉक करें"
+
+#: src/js/controllers/lockSetup.js:23
+msgid "Lock by Fingerprint"
+msgstr "फिंगरप्रिंट से लॉक करें"
+
+#: src/js/controllers/lockSetup.js:14
+msgid "Lock by PIN"
+msgstr "PIN द्वारा लॉक करें"
+
+#: www/views/modals/wallet-balance.html:80
+msgid "Locked"
+msgstr "लॉक हो गई"
+
+#: src/js/services/bwcError.js:86
+msgid "Locktime in effect. Please wait to create a new spend proposal"
+msgstr "लॉकटाइम प्रभाव में है। कृपया नए खर्च प्रस्ताव को क्रीएट करने के लिए प्रतीक्षा करें"
+
+#: src/js/services/bwcError.js:89
+msgid "Locktime in effect. Please wait to remove this spend proposal"
+msgstr "लॉकटाइम प्रभाव में है। कृपया इस खर्च प्रस्ताव को हटाने के लिए प्रतीक्षा करें"
+
+#: www/views/includes/logOptions.html:3
+msgid "Log options"
+msgstr "लॉग विकल्प"
+
+#: www/views/modals/bitpay-card-confirmation.html:14
+msgid "Log out"
+msgstr "लॉग आउट करें"
+
+#: www/views/addresses.html:87
+msgid "Low amount inputs"
+msgstr "कम राशि वाले इनपुट्स"
+
+#: www/views/includes/walletHistory.html:27
+msgid "Low fees"
+msgstr "कम शुल्क"
+
+#: www/views/onboarding/tour.html:38
+msgid "Makes sense"
+msgstr "सही बात है"
+
+#: src/js/controllers/modals/search.js:61
+msgid "Matches:"
+msgstr "इससे मेल खात है:"
+
+#: www/views/includes/copayers.html:4
+#: www/views/preferencesInformation.html:85
+msgid "Me"
+msgstr "मैं"
+
+#: src/js/controllers/feedback/rateCard.js:32
+msgid "Meh - it's alright"
+msgstr "आह - सब ठीक है"
+
+#: src/js/controllers/tx-details.js:165
+#: www/views/modals/paypro.html:48
+#: www/views/modals/txp-details.html:93
+#: www/views/tx-details.html:72
+msgid "Memo"
+msgstr "मेमो"
+
+#: www/views/mercadoLibre.html:6
+msgid "Mercado Livre Brazil Gift Cards"
+msgstr "Mercado Livre Brazil गिफ्ट कार्ड"
+
+#: src/js/controllers/buyMercadoLibre.js:98
+msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
+msgstr "Mercadolibre गिफ्ट कार्ड सेवा इस समय उपलब्ध नहीं है। कृपया बाद में दुबारा प्रयास करें।"
+
+#: www/views/modals/txp-details.html:131
+msgid "Merchant Message"
+msgstr "व्यापारी का संदेश"
+
+#: www/views/buyAmazon.html:55
+#: www/views/buyMercadoLibre.html:54
+#: www/views/topup.html:63
+msgid "Miner Fee"
+msgstr "माइनर का शुल्क"
+
+#: src/js/services/bwcError.js:134
+msgid "Missing parameter"
+msgstr "नामौजूद मापदण्ड"
+
+#: src/js/services/bwcError.js:32
+msgid "Missing private keys to sign"
+msgstr "साइन करने के लिए निजी कुंजियां नामौजूद हैं"
+
+#: www/views/preferences.html:61
+#: www/views/preferencesAdvanced.html:3
+msgid "More Options"
+msgstr "अधिक विकल्प"
+
+#: www/views/includes/walletHistory.html:47
+#: www/views/tx-details.html:19
+msgid "Moved"
+msgstr "स्थानांतरित"
+
+#: src/js/controllers/tx-details.js:131
+msgid "Moved Funds"
+msgstr "स्थानांतरित निधियां"
+
+#: www/views/modals/txp-details.html:57
+msgid "Multiple recipients"
+msgstr "एकाधिक प्राप्तकर्ता"
+
+#: www/views/tab-import-phrase.html:8
+msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
+msgstr "नोट: किसी थर्ड पार्टी सॉफ्टवेयर से वॉलेट इम्पोर्ट करने के लिए, कृप्या वॉलेट जोड़ें पर जाएं &gt; वॉलेट क्रीएट करें, और वहां पुनर्प्राप्ति वाक्यांश को निर्दिष्ट करें।"
+
+#: www/views/addressbook.add.html:21
+#: www/views/addressbook.view.html:18
+#: www/views/preferences.html:15
+#: www/views/preferencesAlias.html:17
+msgid "Name"
+msgstr "नाम"
+
+#: www/views/buyAmazon.html:49
+#: www/views/buyMercadoLibre.html:48
+#: www/views/topup.html:56
+msgid "Network Cost"
+msgstr "नेटवर्क लागत"
+
+#: src/js/services/bwcError.js:47
+msgid "Network error"
+msgstr "नेटवर्क त्रुटि"
+
+#: www/views/includes/walletActivity.html:43
+msgid "New Proposal"
+msgstr "नया प्रस्ताव"
+
+#: src/js/controllers/addresses.js:126
+msgid "New address could not be generated. Please try again."
+msgstr "नया पता नहीं बनाया जा सका। कृपया दुबारा प्रयास करें।"
+
+#: www/views/add.html:14
+msgid "New personal wallet"
+msgstr "नया निजी वॉलेट"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Next steps"
+msgstr "अगले चरण"
+
+#: www/views/tab-receive.html:16
+msgid "No Wallet"
+msgstr "कोई वॉलेट नहीं"
+
+#: src/js/controllers/buyAmazon.js:115
+#: src/js/controllers/buyMercadoLibre.js:115
+msgid "No access key defined"
+msgstr "कोई एक्सेस कुंजी निर्धारित नहीं है"
+
+#: www/views/onboarding/backupRequest.html:5
+msgid "No backup, no bitcoin."
+msgstr "कोई बैकअप नहीं, कोई bitcoin नहीं।"
+
+#: www/views/addressbook.html:19
+msgid "No contacts yet"
+msgstr "अभी तक कोई संपर्क नहीं"
+
+#: www/views/preferencesLogs.html:16
+msgid "No entries for this log level"
+msgstr "इस लॉग स्तर के लिए कोई प्रविष्‍टियां नहीं"
+
+#: www/views/preferencesExternal.html:12
+msgid "No hardware information available."
+msgstr "कोई हार्डवेयर जानकारी उपलब्ध नहीं है।"
+
+#: www/views/tab-import-hardware.html:3
+msgid "No hardware wallets supported on this device"
+msgstr "इस डिवाइस पर कोई हार्डवेयर वॉलेट समर्थित नहीं हैं"
+
+#: www/views/proposals.html:24
+msgid "No pending proposals"
+msgstr "कोई लंबित प्रस्ताव नहीं"
+
+#: www/views/activity.html:25
+msgid "No recent transactions"
+msgstr "कोई ताज़ा लेन-देन नहीं"
+
+#: src/js/controllers/buyAmazon.js:44
+#: src/js/controllers/topup.js:47
+msgid "No signing proposal: No private key"
+msgstr "कोई साइनिंग प्रस्ताव नहीं: कोई निजी कुंजी नहीं"
+
+#: www/views/walletDetails.html:204
+msgid "No transactions yet"
+msgstr "अभी तक कोई ट्रांजैक्शन नहीं"
+
+#: src/js/controllers/preferencesDelete.js:15
+msgid "No wallet found"
+msgstr "कोई वॉलेट नहीं मिला"
+
+#: src/js/controllers/preferencesDelete.js:8
+msgid "No wallet selected"
+msgstr "कोई वॉलेट चयनित नहीं"
+
+#: src/js/controllers/buyAmazon.js:300
+#: src/js/controllers/buyMercadoLibre.js:292
+#: src/js/controllers/confirm.js:85
+#: src/js/controllers/topup.js:265
+msgid "No wallets available"
+msgstr "कोई वॉलेट उपलब्ध नहीं हैं"
+
+#: www/views/paperWallet.html:45
+msgid "No wallets available to receive funds"
+msgstr "निधियां प्राप्त करने के लिए कोई वॉलेट उपलब्ध नहीं हैं"
+
+#: www/views/cashScan.html:15
+msgid "No wallets eligible for Bitcoin Cash support"
+msgstr "Bitcoin Cash समर्थन के लिए कोई वॉलेट पात्र नहीं हैं"
+
+#: src/js/controllers/cashScan.js:58
+msgid "Non BIP44 wallet"
+msgstr "गैर BIP44 वॉलेट"
+
+#: www/views/cashScan.html:46
+msgid "Non eligible BTC wallets"
+msgstr "गैर पात्र BTC वॉलेट्स"
+
+#: src/js/services/feeService.js:12
+msgid "Normal"
+msgstr "सामान्य"
+
+#: src/js/services/bwcError.js:80
+msgid "Not authorized"
+msgstr "अधिकृत नहीं"
+
+#: src/js/controllers/confirm.js:307
+msgid "Not enough funds for fee"
+msgstr "शुल्क के लिए पर्याप्त निधियां नहीं"
+
+#: www/views/onboarding/tour.html:50
+msgid "Not even BitPay can access it."
+msgstr "यहां तक कि BitPay भी इसे एक्सेस नहीं कर सकता।"
+
+#: src/js/controllers/paperWallet.js:47
+msgid "Not funds found"
+msgstr "कोई निधियां नहीं मिली"
+
+#: www/views/feedback/rateApp.html:3
+#: www/views/onboarding/notifications.html:8
+msgid "Not now"
+msgstr "अभी नहीं"
+
+#: www/views/includes/output.html:15
+msgid "Note"
+msgstr "नोट"
+
+#: www/views/backup.html:19
+msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
+msgstr "नोट: यदि यह BCH वॉलेट किसी BTC वॉलेट से डुप्लीकेट किया गया है तो उनका पुनर्प्राप्ति वाक्यांश एक ही है।"
+
+#: www/views/modals/wallets.html:25
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgstr "सूचना: केवल 1-1 (एकल हस्ताक्षर) वाॉलेट्स का इस्तेमाल bitcoin बेचने के लिए किया जा सकता है"
+
+#: www/views/preferencesNotifications.html:3
+#: www/views/tab-settings.html:61
+msgid "Notifications"
+msgstr "सूचनाएं"
+
+#: www/views/onboarding/collectEmail.html:9
+msgid "Notifications by email"
+msgstr "ईमेल द्वारा सूचनाएं"
+
+#: www/views/tx-details.html:117
+msgid "Notify me if confirmed"
+msgstr "यदि पुष्टि हो जाए तो मुझे सूचित करें"
+
+#: www/views/preferencesNotifications.html:24
+msgid "Notify me when transactions are confirmed"
+msgstr "लेन-देन की पुष्टि होने पर मुझे सूचित करें"
+
+#: www/views/includes/backupNeededPopup.html:8
+msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
+msgstr "अभी अपने वॉलेट का बैकअप लेने के लिए अच्छा समय है। यदि यह डिवाइस गुम हो जाए, तो बैकअप के बिना अपनी निधियों को एक्सेस करना असंभव है।"
+
+#: www/views/backupWarning.html:11
+msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
+msgstr "अपनी आसपास की स्थितियों का आकलन करने के लिए यह बिल्कुल सही समय है। आस-पास कोई खुली खिड़कियां तो नहीं? छिपे हुए कैमरे तो नहीं? कोई आपकी पीछे से जासूसी तो नहीं कर रहा?"
+
+#: src/js/controllers/buyAmazon.js:312
+#: src/js/controllers/topup.js:286
+#: src/js/services/incomingData.js:153
+#: src/js/services/popupService.js:16
+#: src/js/services/popupService.js:52
+#: src/js/services/popupService.js:61
+#: src/js/services/popupService.js:72
+#: www/views/modals/chooseFeeLevel.html:6
+msgid "OK"
+msgstr "ठीक है"
+
+#: www/views/modals/tx-status.html:12
+#: www/views/modals/tx-status.html:24
+#: www/views/modals/tx-status.html:36
+#: www/views/modals/tx-status.html:46
+msgid "OKAY"
+msgstr "ठीक है"
+
+#: www/views/modals/terms.html:15
+msgid "Official English Disclaimer"
+msgstr "आधिकारिक अंग्रेज़ी अस्वीकरण"
+
+#: src/js/controllers/feedback/send.js:64
+msgid "Oh no!"
+msgstr "अरे नहीं!"
+
+#: src/js/controllers/buyMercadoLibre.js:306
+msgid "Ok"
+msgstr "ठीक है"
+
+#: www/views/tab-home.html:39
+msgid "On this screen you can see all your wallets, accounts, and assets."
+msgstr "इस स्क्रीन पर आप अपने सभी वॉलेट, खातों, और संपत्तियों को देख सकते हैं।"
+
+#: src/js/controllers/bitpayCard.js:113
+#: src/js/controllers/cashScan.js:19
+#: src/js/controllers/preferences.js:66
+#: src/js/controllers/preferencesCash.js:33
+#: src/js/controllers/tab-settings.js:52
+#: src/js/controllers/tx-details.js:55
+msgid "Open"
+msgstr "खोलें"
+
+#: src/js/controllers/preferencesLanguage.js:13
+msgid "Open Crowdin"
+msgstr "Crowdin खोलें"
+
+#: src/js/controllers/preferencesAbout.js:15
+msgid "Open GitHub"
+msgstr "GitHub खोलें"
+
+#: src/js/controllers/preferencesAbout.js:13
+msgid "Open GitHub Project"
+msgstr "GitHub प्रोजेक्ट खोलें"
+
+#: src/js/controllers/bitpayCard.js:123
+#: src/js/controllers/tx-details.js:192
+msgid "Open Explorer"
+msgstr "एक्सप्लोरर खोलें"
+
+#: www/views/tab-scan.html:22
+msgid "Open Settings"
+msgstr "सेटिंग्स खोलें"
+
+#: src/js/controllers/preferencesLanguage.js:11
+msgid "Open Translation Community"
+msgstr "अनुवाद समुदाय खोलें"
+
+#: src/js/controllers/onboarding/terms.js:22
+msgid "Open Website"
+msgstr "वेबसाइट खोलें"
+
+#: src/js/controllers/preferencesCash.js:32
+msgid "Open bitcoincash.org?"
+msgstr "Bitcoincash.org खोलें?"
+
+#: src/js/controllers/cashScan.js:18
+msgid "Open the recovery tool."
+msgstr "पुनर्प्राप्ति उपकरण खोलें।"
+
+#: www/views/tab-receive.html:27
+msgid "Open wallet"
+msgstr "वॉलेट खोलें"
+
+#: www/views/includes/incomingDataMenu.html:19
+msgid "Open website"
+msgstr "वेबसाइट खोलें"
+
+#: www/views/bitpayCardIntro.html:34
+msgid "Order the BitPay Card"
+msgstr "BitPay Card ऑर्डर करें"
+
+#: www/views/join.html:105
+#: www/views/join.html:96
+#: www/views/tab-create-personal.html:69
+#: www/views/tab-create-personal.html:77
+#: www/views/tab-create-shared.html:106
+#: www/views/tab-create-shared.html:98
+#: www/views/tab-import-file.html:18
+#: www/views/tab-import-phrase.html:41
+msgid "Password"
+msgstr "पासवर्ड"
+
+#: src/js/controllers/import.js:98
+msgid "Password required. Make sure to enter your password in advanced options"
+msgstr "पासवर्ड की आवश्यकता है। उन्नत विकल्पों में अपने पासवर्ड को दर्ज करना सुनिश्चित करें"
+
+#: www/views/join.html:33
+msgid "Paste invitation here"
+msgstr "आमंत्रण को यहां पेस्ट करें"
+
+#: www/views/tab-import-file.html:13
+msgid "Paste the backup plain text code"
+msgstr "बैकअप प्लेन टेक्स्ट कोड को पेस्ट करें"
+
+#: www/views/bitpayCardIntro.html:28
+msgid "Pay 0% fees to turn bitcoin into dollars."
+msgstr "Bitcoin को डॉलरों में बदलने के लिए 0% शुलक का भुगतान करें"
+
+#: www/views/modals/paypro.html:18
+msgid "Pay To"
+msgstr "इसको भुगतान करें"
+
+#: src/js/controllers/modals/txpDetails.js:51
+#: www/views/modals/tx-status.html:33
+msgid "Payment Accepted"
+msgstr "भुगतान स्वीकृत हुआ"
+
+#: www/views/confirm.html:25
+msgid "Payment Expires:"
+msgstr "भुगतान की समयसीमा समाप्ति:"
+
+#: www/views/modals/txp-details.html:6
+msgid "Payment Proposal"
+msgstr "भुगतान प्रस्ताव"
+
+#: www/views/modals/tx-status.html:21
+msgid "Payment Proposal Created"
+msgstr "भुगतान का प्रस्ताव क्रीएट हुआ"
+
+#: www/views/tab-home.html:46
+msgid "Payment Proposals"
+msgstr "भुगतान प्रस्ताव"
+
+#: src/js/services/payproService.js:32
+msgid "Payment Protocol Invalid"
+msgstr "भुगतान का प्रोटोकॉल अमान्य है"
+
+#: src/js/services/payproService.js:18
+msgid "Payment Protocol not supported on Chrome App"
+msgstr "भुगतान का प्रोटोकॉल Chrome एप पर समर्थित नहीं है"
+
+#: www/views/includes/walletActivity.html:20
+msgid "Payment Received"
+msgstr "भुगतान प्राप्त हुआ"
+
+#: www/views/modals/tx-status.html:43
+#: www/views/modals/txp-details.html:43
+msgid "Payment Rejected"
+msgstr "भुगतान अस्वीकृत हुआ"
+
+#: src/js/controllers/modals/txpDetails.js:44
+#: www/views/confirm.html:124
+#: www/views/includes/walletActivity.html:11
+#: www/views/modals/txp-details.html:42
+msgid "Payment Sent"
+msgstr "भुगतान भेजा गया"
+
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr "इस ट्रांजैक्शन को सांझा करें"
+
+#: www/views/modals/txp-details.html:32
+msgid "Payment accepted, but not yet broadcasted"
+msgstr "भुगतान स्वीकृत हुआ, लेकिन अभी प्रसारित नहीं हुआ"
+
+#: www/views/modals/txp-details.html:40
+msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
+msgstr "भुगतान स्वीकृत हुआ। इसे Glidera द्वारा प्रसारित किया जाएगा। यदि कोई समस्या हुई तो, इसे क्रीएट किए जाने के 6 घंटे बाद डिलीट किया जा सकता है।"
+
+#: src/js/services/incomingData.js:152
+msgid "Payment address was translated to new Bitcoin Cash address format:"
+msgstr "भुगतान पते का अनुवाद नए Bitcoin Cash पते स्वरूप में किया गया था:"
+
+#: www/views/modals/txp-details.html:107
+msgid "Payment details"
+msgstr "भुगतान विवरण"
+
+#: www/views/modals/paypro.html:6
+msgid "Payment Request"
+msgstr "भुगतान अनुरोध"
+
+#: www/views/mercadoLibreCards.html:22
+#: www/views/modals/mercadolibre-card-details.html:39
+msgid "Pending"
+msgstr "लंबित"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "प्रमाणीकरण की प्रतीक्षा"
+
+#: www/views/proposals.html:4
+msgid "Pending Proposals"
+msgstr "लंबित प्रस्ताव"
+
+#: www/views/preferencesDeleteWallet.html:13
+msgid "Permanently delete this wallet."
+msgstr "इस वॉलेट को स्थाई रूप से डिलीट करें।"
+
+#: src/js/services/profileService.js:403
+msgid "Personal Wallet"
+msgstr "निजी वॉलेट"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "मेरा {{coin}} वॉलेट"
+
+#: www/views/backup.html:25
+msgid "Please carefully write down this phrase."
+msgstr "कृपया ध्यानपूर्वक इस वाक्यांश को लिखें।"
+
+#: www/views/tab-scan.html:20
+msgid "Please connect a camera to get started."
+msgstr "कृपया प्रारंभ करने के लिए कैमरा कनेक्ट करें।"
+
+#: src/js/controllers/import.js:278
+msgid "Please enter the recovery phrase"
+msgstr "कृपया पुनर्प्राप्ति वाक्यांश दर्ज करें"
+
+#: src/js/controllers/create.js:174
+#: src/js/controllers/join.js:139
+msgid "Please enter the wallet recovery phrase"
+msgstr "कृपया वॉलेट का पुनर्प्राप्ति वाक्यांश दर्ज करें"
+
+#: www/views/modals/pin.html:9
+msgid "Please enter your PIN"
+msgstr "कृपया अपना PIN दर्ज करें"
+
+#: www/views/backup.html:53
+msgid "Please tap each word in the correct order."
+msgstr "कृपया सही क्रम में प्रत्येक शब्द पर टैप करें।"
+
+#: src/js/services/bwcError.js:101
+msgid "Please upgrade Copay to perform this action"
+msgstr "कृपया इस कार्य को करने के लिए Copay को अपग्रेड करें"
+
+#: www/views/walletDetails.html:142
+#: www/views/walletDetails.html:62
+msgid "Please wait"
+msgstr "कृपया प्रतीक्षा करें"
+
+#: src/js/controllers/import.js:238
+msgid "Please, select your backup file"
+msgstr "कृपया, अपनी बैकअप फाइल का चयन करें"
+
+#: www/views/bitpayCard.html:81
+msgid "Pre-Auth Holds"
+msgstr "पूर्व-प्रमाणन पाबंदियां"
+
+#: www/views/tab-settings.html:40
+msgid "Preferences"
+msgstr "प्राथमिकताएं"
+
+#: src/js/services/onGoingProcess.js:38
+msgid "Preparing addresses..."
+msgstr "पते तैयार हो रहे हैं..."
+
+#: src/js/controllers/export.js:198
+msgid "Preparing backup..."
+msgstr "बैकअप तैयार हो रहा है..."
+
+#: src/js/routes.js:1264
+msgid "Press again to exit"
+msgstr "बाहर निकलने के लिए दुबारा दबाएं"
+
+#: src/js/services/feeService.js:11
+msgid "Priority"
+msgstr "प्राथमिकता"
+
+#: www/views/includes/incomingDataMenu.html:80
+msgid "Private Key"
+msgstr "निजी कुंजी"
+
+#: src/js/controllers/paperWallet.js:136
+msgid "Private key encrypted. Enter password"
+msgstr "निजी कुंजी इन्क्रिप्टेड है। पासवर्ड दर्ज करें"
+
+#: src/js/services/bwcError.js:35
+msgid "Private key is encrypted, cannot sign"
+msgstr "निजी कुंजी इन्क्रिप्टेड है, साइन नहीं कर सकते"
+
+#: www/views/includes/walletActivity.html:51
+msgid "Proposal Accepted"
+msgstr "प्रस्ताव स्वीकृत हुआ"
+
+#: src/js/controllers/modals/txpDetails.js:61
+#: src/js/controllers/tx-details.js:78
+#: www/views/confirm.html:125
+msgid "Proposal Created"
+msgstr "प्रस्ताव क्रीएट हुआ"
+
+#: www/views/includes/walletActivity.html:27
+msgid "Proposal Deleted"
+msgstr "प्रस्ताव डिलीट हुआ"
+
+#: www/views/includes/walletActivity.html:35
+msgid "Proposal Rejected"
+msgstr "प्रस्ताव अस्वीकृत हुआ"
+
+#: www/views/walletDetails.html:189
+msgid "Proposals"
+msgstr "प्रस्ताव"
+
+#: src/js/controllers/buyAmazon.js:282
+msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
+msgstr "खरीद राशि {{limitPerDay}} {{currency}} प्रति दिन तक सीमित है"
+
+#: src/js/controllers/buyMercadoLibre.js:281
+msgid "Purchase amount must be a value between 50 and 2000"
+msgstr "खरीद राशि ५० और २००० के बीच के मूल्य की राशि होनी चाहिए"
+
+#: www/views/onboarding/notifications.html:3
+msgid "Push Notifications"
+msgstr "पुश नोटीफिक्शन्स"
+
+#: www/views/preferencesNotifications.html:17
+msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
+msgstr "वर्तमान में {{appName}} के लिए पुश नोटीफिकेशन्स अक्षम हैं। उन्हें सेटिंग्स एप में सक्षम करें।"
+
+#: www/views/export.html:17
+msgid "QR Code"
+msgstr "QR कोड"
+
+#: www/views/onboarding/disclaimer.html:13
+msgid "Quick review!"
+msgstr "त्वरित समीक्षा!"
+
+#: src/js/controllers/create.js:84
+#: src/js/controllers/join.js:68
+msgid "Random"
+msgstr "बेतरतीबा"
+
+#: www/views/feedback/rateApp.html:14
+msgid "Rate on the app store"
+msgstr "एप स्टोर पर रेट करें"
+
+#: www/views/addresses.html:52
+msgid "Read less"
+msgstr "कम पढ़ें"
+
+#: www/views/addresses.html:51
+msgid "Read more"
+msgstr "अधिक पढ़ें"
+
+#: src/js/controllers/preferences.js:65
+#: src/js/controllers/tx-details.js:54
+msgid "Read more in our Wiki"
+msgstr "हमारे Wiki पर अधिक पढ़ें"
+
+#: src/js/controllers/cashScan.js:61
+msgid "Read only wallet"
+msgstr "केवल वॉलेट पढ़ें"
+
+#: www/views/tab-receive.html:3
+#: www/views/tabs.html:7
+msgid "Receive"
+msgstr "प्राप्त करें"
+
+#: www/views/customAmount.html:44
+msgid "Receive in"
+msgstr "इसमें प्राप्त करें"
+
+#: www/views/includes/walletHistory.html:24
+#: www/views/tx-details.html:18
+msgid "Received"
+msgstr "प्राप्त हुआ"
+
+#: src/js/controllers/tx-details.js:130
+msgid "Received Funds"
+msgstr "प्राप्त निधियां"
+
+#: www/views/includes/walletHistory.html:57
+#: www/views/tx-details.html:24
+msgid "Receiving"
+msgstr "प्राप्त हो रही हैं"
+
+#: www/views/bitpayCard.html:60
+#: www/views/includes/walletHistory.html:3
+msgid "Recent"
+msgstr "ताज़ा"
+
+#: www/views/advancedSettings.html:21
+msgid "Recent Transaction Card"
+msgstr "ताज़ा लेन-देन कार्ड"
+
+#: www/views/activity.html:4
+#: www/views/tab-home.html:58
+msgid "Recent Transactions"
+msgstr "ताज़ा लेन-देन"
+
+#: www/views/amount.html:18
+#: www/views/tab-send.html:9
+msgid "Recipient"
+msgstr "प्राप्तकर्ता"
+
+#: www/views/modals/txp-details.html:62
+msgid "Recipients"
+msgstr "प्राप्तकर्ता"
+
+#: www/views/import.html:12
+msgid "Recovery phrase"
+msgstr "पुनर्प्राप्ति वाक्यांश"
+
+#: src/js/services/onGoingProcess.js:26
+msgid "Recreating Wallet..."
+msgstr "वॉलेट दुबारा क्रीएट हो रहा है..."
+
+#: www/views/modals/mercadolibre-card-details.html:22
+msgid "Redeem now"
+msgstr "अभी रिडीम करें"
+
+#: src/js/controllers/modals/txpDetails.js:63
+#: src/js/controllers/tx-details.js:80
+msgid "Rejected"
+msgstr "खारिज हुआ"
+
+#: src/js/services/onGoingProcess.js:27
+msgid "Rejecting payment proposal"
+msgstr "भुगतान प्रस्ताव खारिज हो रहा है"
+
+#: www/views/preferencesAbout.html:9
+msgid "Release information"
+msgstr "जानकारी प्रकाशित करें"
+
+#: www/views/addressbook.view.html:36
+#: www/views/modals/mercadolibre-card-details.html:69
+msgid "Remove"
+msgstr "हटाएं"
+
+#: src/js/controllers/preferencesBitpayServices.js:7
+msgid "Remove BitPay Account?"
+msgstr "BitPay खाता हटाएं?"
+
+#: src/js/controllers/preferencesBitpayServices.js:19
+msgid "Remove BitPay Card?"
+msgstr "BitPay कार्ड हटाएं?"
+
+#: src/js/controllers/preferencesBitpayServices.js:8
+msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
+msgstr "अपने BitPay खाते को हटाने से इस डिवाइस से संबद्ध BitPay खाते का सारा डेटा मिट जाएगा। क्या आप निश्चयपूर्वक इस डिवाइस से अपने BitPay खाते ({{email}}) को हटाना चाहेंगे?"
+
+#: www/views/join.html:116
+#: www/views/join.html:124
+#: www/views/tab-create-personal.html:86
+#: www/views/tab-create-personal.html:94
+#: www/views/tab-create-shared.html:115
+#: www/views/tab-create-shared.html:123
+#: www/views/tab-export-file.html:17
+msgid "Repeat password"
+msgstr "पासवर्ड दुहराएं"
+
+#: www/views/tab-export-file.html:16
+msgid "Repeat the password"
+msgstr "पासवर्ड दुहराएं"
+
+#: www/views/preferences.html:56
+msgid "Request Fingerprint"
+msgstr "फिंगरप्रिंट के लिए अनुरोध करें"
+
+#: www/views/tab-receive.html:45
+msgid "Request Specific amount"
+msgstr "विशिष्ट राशि के लिए अनुरोध करें"
+
+#: www/views/preferences.html:42
+msgid "Request Spending Password"
+msgstr "खर्च पासवर्ड के लिए अनुरोध करें"
+
+#: www/views/tab-create-shared.html:44
+msgid "Required number of signatures"
+msgstr "हस्ताक्षरों की आवश्यक संख्या"
+
+#: www/views/onboarding/welcome.html:9
+msgid "Restore from backup"
+msgstr "बैकअप से पुर्नप्राप्त करें"
+
+#: src/js/services/onGoingProcess.js:29
+msgid "Retrieving inputs information"
+msgstr "इनपुट जानकारी पुर्नप्राप्त हो रही है"
+
+#: src/js/controllers/onboarding/tour.js:56
+msgid "Retry"
+msgstr "दुबारा प्रयास करें"
+
+#: www/views/tab-scan.html:23
+msgid "Retry Camera"
+msgstr "कैमरे के लिए दुबारा प्रयास करें"
+
+#: www/views/addressbook.add.html:56
+#: www/views/includes/note.html:9
+#: www/views/preferencesAlias.html:21
+#: www/views/preferencesBwsUrl.html:25
+#: www/views/preferencesNotifications.html:46
+msgid "Save"
+msgstr "सहेजें"
+
+#: www/views/tab-scan.html:3
+#: www/views/tabs.html:11
+msgid "Scan"
+msgstr "स्कैन करें"
+
+#: www/views/tab-scan.html:15
+msgid "Scan QR Codes"
+msgstr "QR कोड स्कैन करें"
+
+#: www/views/addresses.html:31
+msgid "Scan addresses for funds"
+msgstr "निधियों के लिए पतों को स्कैन करें"
+
+#: www/views/modals/fingerprintCheck.html:11
+msgid "Scan again"
+msgstr "दुबारा स्कैन करें"
+
+#: src/js/services/fingerprintService.js:56
+msgid "Scan your fingerprint please"
+msgstr "कृपया अपना फिंगरप्रिंट स्कैन करें"
+
+#: www/views/preferencesCash.html:23
+msgid "Scan your wallets for Bitcoin Cash"
+msgstr "Bitcoin कैश के लिए अपने वॉलेट्स को स्कैन करें"
+
+#: src/js/services/onGoingProcess.js:30
+msgid "Scanning Wallet funds..."
+msgstr "वॉलेट निधियां स्कैन हो रही हैं..."
+
+#: www/views/includes/walletList.html:11
+msgid "Scanning funds..."
+msgstr "निधियां स्कैन हो रही हैं..."
+
+#: www/views/includes/screenshotWarningModal.html:7
+msgid "Screenshots are not secure"
+msgstr "स्क्रीनशॉट सुरक्षित नहीं हैं"
+
+#: www/views/modals/search.html:6
+msgid "Search Transactions"
+msgstr "ट्रांजेक्शन्स खोजें"
+
+#: www/views/tab-send.html:13
+msgid "Search or enter bitcoin address"
+msgstr "Bitcoin पता खोजें या दर्ज करें"
+
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "क्लिपबोर्ड"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "आपका क्लिपबोर्ड रिक्त है"
+
+#: www/views/modals/search.html:16
+msgid "Search transactions"
+msgstr "ट्रांजैक्शन खोजें"
+
+#: www/views/preferencesAltCurrency.html:14
+msgid "Search your currency"
+msgstr "अपनी मुद्रा खोजें"
+
+#: www/views/preferences.html:30
+msgid "Security"
+msgstr "सुरक्षा"
+
+#: www/views/modals/mercadolibre-card-details.html:64
+msgid "See invoice"
+msgstr "चालान देखें"
+
+#: www/views/tab-import-file.html:7
+msgid "Select a backup file"
+msgstr "किसी बैकअप फाइल का चयन करें"
+
+#: src/js/controllers/tab-receive.js:139
+msgid "Select a wallet"
+msgstr "किसी वॉलेट का चयन करें"
+
+#: www/views/modals/paypro.html:38
+msgid "Self-signed Certificate"
+msgstr "स्व-हस्ताक्षरित प्रमाणपत्र"
+
+#: src/js/services/onGoingProcess.js:41
+msgid "Selling Bitcoin..."
+msgstr "Bitcoin बेचा जा रहा है..."
+
+#: www/views/feedback/send.html:13
+#: www/views/feedback/send.html:43
+#: www/views/tab-send.html:3
+#: www/views/tabs.html:15
+msgid "Send"
+msgstr "भेजें"
+
+#: www/views/feedback/send.html:3
+#: www/views/tab-settings.html:29
+msgid "Send Feedback"
+msgstr "फीडबैक भेजें"
+
+#: www/views/addressbook.view.html:31
+msgid "Send Money"
+msgstr "पैसे भेजें"
+
+#: www/views/allAddresses.html:19
+msgid "Send addresses by email"
+msgstr "ईमेल द्वारा पते भेजें"
+
+#: www/views/includes/logOptions.html:17
+#: www/views/tab-export-file.html:82
+msgid "Send by email"
+msgstr "ईमेल द्वारा भेजें"
+
+#: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
+msgid "Send from"
+msgstr "इनसे भेजें"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "इनको भेजें"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "क्लिपबोर्ड से पेस्ट करें"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "पता पेस्ट करें"
+
+#: www/views/tab-send.html:27
+msgid "Transfer between wallets"
+msgstr "वॉलेट्स के बीच हस्तांतरण करें"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "QR कोड स्कैन करें"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "तेज़ी से Bitcoin भेजें!"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "अक्सर इस्तेमाल किए गए पतों को सहेजें और सिर्फ एक टैप पर उनको Bitcoin भेजें"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "अपना पहला संपर्क जोड़ें"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "आपका Bitcoin वॉलेट खाली है"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "प्रारंभ करने के लिए, Bitcoin Cash (BCH) या Bitcoin Core (BTC) खरीदें, या अपना पता सांझा करें।"
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "आप किसी भी वॉलेट या सेवा से bitcoin प्राप्त कर सकते हैं।"
+
+#: www/views/tab-send.html:72
+#: www/views/sideshift.html:23
+#: www/views/tab-send.html:33
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "प्रारंभ करने के लिए, आपको bitcoin वॉलेट क्रीएट करने और कुछ bitcoin लेने की आवश्यकता होगी।"
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "अभी Bitcoin खरीदें"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "मेरा पता दिखाएं"
+
+#: www/views/includes/itemSelector.html:8
+msgid "Send max amount"
+msgstr "अधिकतम राशि भेजें"
+
+#: www/views/includes/incomingDataMenu.html:46
+msgid "Send payment to this address"
+msgstr "इस पते पर भुगतान भेजें"
+
+#: www/views/feedback/rateApp.html:17
+msgid "Send us feedback instead"
+msgstr "इसके बजाय हमें फीडबैक भेजें"
+
+#: www/views/confirm.html:15
+#: www/views/includes/txp.html:12
+#: www/views/modals/txp-details.html:19
+#: www/views/tx-details.html:23
+msgid "Sending"
+msgstr "भेज रहे हैं"
+
+#: src/js/services/onGoingProcess.js:39
+msgid "Sending 2FA code..."
+msgstr "2FA कोड भेजा जा रहा है..."
+
+#: src/js/services/onGoingProcess.js:36
+msgid "Sending feedback..."
+msgstr "फीडबैक भेजा जा रहा है..."
+
+#: www/views/confirm.html:16
+msgid "Sending maximum amount"
+msgstr "अधिकतम राशि भेजी जा रही है"
+
+#: src/js/services/onGoingProcess.js:31
+msgid "Sending transaction"
+msgstr "ट्रांजैक्शन भेजी जा रही है"
+
+#: src/js/controllers/confirm.js:545
+msgid "Sending {{amountStr}} from your {{name}} wallet"
+msgstr "आपके {{name}} वॉलेट से {{amountStr}} भेजे जा रहे हैं"
+
+#: www/views/includes/walletHistory.html:42
+#: www/views/modals/tx-status.html:9
+#: www/views/topup.html:100
+#: www/views/tx-details.html:17
+msgid "Sent"
+msgstr "भेजी जा चुकी"
+
+#: src/js/controllers/tx-details.js:129
+msgid "Sent Funds"
+msgstr "भेजी गई निधियां"
+
+#: src/js/services/bwcError.js:38
+msgid "Server response could not be verified"
+msgstr "सर्वर के जवाब की पुष्टि नहीं की जा सकी"
+
+#: src/js/controllers/buyAmazon.js:97
+#: src/js/controllers/buyMercadoLibre.js:97
+msgid "Service not available"
+msgstr "सेवा उपलब्ध नहीं है"
+
+#: www/views/includes/homeIntegrations.html:3
+msgid "Services"
+msgstr "सेवाएं"
+
+#: www/views/preferencesLogs.html:3
+msgid "Session Log"
+msgstr "सैशन लॉग"
+
+#: www/views/preferencesAbout.html:35
+msgid "Session log"
+msgstr "सेशन लॉग"
+
+#: www/views/tab-export-file.html:10
+msgid "Set up a password"
+msgstr "कोई पासवर्ड सेट करें"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Set your own fee in satoshis/byte"
+msgstr "स्टोशी/बाइट में अपने खुद का शुल्क तय करें"
+
+#: www/views/tab-settings.html:3
+#: www/views/tabs.html:19
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: www/views/feedback/complete.html:17
+#: www/views/feedback/complete.html:26
+msgid "Share the love by inviting your friends."
+msgstr "अपने दोस्तों को आमंत्रण देते हुए प्यार सांझा करें।"
+
+#: www/views/copayers.html:20
+msgid "Share this invitation with your copayers"
+msgstr "अपने कोपेयर्स के साथ इस आमंत्रण को सांझा करें"
+
+#: src/js/controllers/feedback/complete.js:5
+#: www/views/tab-settings.html:36
+msgid "Share {{appName}}"
+msgstr "{{appName}} को सांझा करें"
+
+#: www/views/tab-import-hardware.html:24
+msgid "Shared Wallet"
+msgstr "शेयर्ड वॉलेट"
+
+#: www/views/preferencesExternal.html:34
+msgid "Show Recovery Phrase"
+msgstr "पुनर्प्राप्ति वाक्यांश दिखाएं"
+
+#: www/views/tab-receive.html:34
+msgid "Show address"
+msgstr "पता दिखाएं"
+
+#: www/views/join.html:48
+#: www/views/tab-create-personal.html:27
+#: www/views/tab-create-shared.html:56
+#: www/views/tab-export-file.html:24
+#: www/views/tab-import-file.html:29
+#: www/views/tab-import-hardware.html:30
+#: www/views/tab-import-phrase.html:35
+msgid "Show advanced options"
+msgstr "उन्नत विकल्प दिखाएं"
+
+#: www/views/tab-send.html:37
+msgid "Show bitcoin address"
+msgstr "Bitcoin पता दिखाएं"
+
+#: www/views/tab-send.html:59
+msgid "Show more"
+msgstr "अधिक दिखाएं"
+
+#: src/js/services/bwcError.js:104
+msgid "Signatures rejected by server"
+msgstr "सर्वर द्वारा अस्वीकृत हस्ताक्षर"
+
+#: src/js/services/onGoingProcess.js:32
+msgid "Signing transaction"
+msgstr "ट्रांजैक्शन पर हस्ताक्षर किए जा रहे हैं"
+
+#: www/views/onboarding/backupRequest.html:6
+msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
+msgstr "चूंकि केवल आपका अपने पैसों पर नियंत्रण है, इसलिए इस एप के डिलीट हो जाने की स्थिति में आपको अपना बैकअप वाक्यांश सहेजने की आवश्यकता होगी।"
+
+#: www/views/tab-create-personal.html:122
+#: www/views/tab-create-shared.html:151
+msgid "Single Address Wallet"
+msgstr "एकल पते वाला वॉलेट"
+
+#: www/views/onboarding/collectEmail.html:40
+#: www/views/onboarding/tour.html:11
+msgid "Skip"
+msgstr "छोड़ें"
+
+#: src/js/controllers/confirm.js:371
+#: src/js/controllers/modals/txpDetails.js:47
+msgid "Slide to accept"
+msgstr "स्वीकार करने के लिए स्लाइड करें"
+
+#: www/views/buyAmazon.html:96
+msgid "Slide to buy"
+msgstr "खरीदने के लिए स्लाइड करें"
+
+#: src/js/controllers/confirm.js:365
+msgid "Slide to pay"
+msgstr "भुगतान करने के लिए स्लाइड करें"
+
+#: src/js/controllers/confirm.js:377
+#: src/js/controllers/modals/txpDetails.js:40
+msgid "Slide to send"
+msgstr "भेजने के लिए स्लाइड करें"
+
+#: www/views/cashScan.html:56
+msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
+msgstr "आपके कुछ वॉलेट Bitcoin Cash समर्थन के लिए पात्र नहीं हैं। आप इसका इस्तेमाल करके इन वॉलेट्स की BCH निधियों को एक्सेस करने का प्रयास कर सकते हैं"
+
+#: src/js/controllers/create.js:88
+#: src/js/controllers/join.js:71
+msgid "Specify Recovery Phrase..."
+msgstr "पुनर्प्राप्ति वाक्यांश निर्दिष्ट करें..."
+
+#: src/js/services/bwcError.js:92
+msgid "Spend proposal is not accepted"
+msgstr "खर्च प्रस्ताव स्वीकृत नहीं है"
+
+#: src/js/services/bwcError.js:95
+msgid "Spend proposal not found"
+msgstr "खर्च प्रस्ताव नहीं मिला"
+
+#: src/js/services/bwcError.js:137
+msgid "Spending Password needed"
+msgstr "खर्च पासवर्ड की आवश्यकता है"
+
+#: www/views/walletDetails.html:173
+msgid "Spending this balance will need significant Bitcoin network fees"
+msgstr "इस बैलेंस को खर्च करने के लिए सार्थक Bitcoin नेटवर्क शुल्क की आवश्यकता होगी"
+
+#: www/views/tab-send.html:28
+msgid "Start sending bitcoin"
+msgstr "Bitcoin भेजना शुरू करें"
+
+#: www/views/lockSetup.html:3
+msgid "Startup Lock"
+msgstr "स्टार्टअप लॉक"
+
+#: www/views/mercadoLibreCards.html:21
+#: www/views/modals/mercadolibre-card-details.html:42
+msgid "Still pending"
+msgstr "अभी भी लंबित है"
+
+#: www/views/topup.html:101
+msgid "Success"
+msgstr "सफल रहा"
+
+#: src/js/services/feeService.js:14
+msgid "Super Economy"
+msgstr "उत्तम अर्थव्यवस्था"
+
+#: www/views/preferencesCash.html:11
+msgid "Support Bitcoin Cash"
+msgstr "Bitcoin Cash का समर्थन करें"
+
+#: www/views/paperWallet.html:7
+msgid "Sweep"
+msgstr "स्वीप करें"
+
+#: www/views/includes/incomingDataMenu.html:89
+msgctxt "List item"
+msgid "Sweep paper wallet"
+msgstr "पेपर वॉलेट स्वीप करें"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "पेपर वॉलेट स्वीप करें"
+
+#: src/js/services/onGoingProcess.js:33
+msgid "Sweeping Wallet..."
+msgstr "वॉलेट स्वीप हो रहा है..."
+
+#: www/views/preferencesDeleteWallet.html:16
+msgid "THIS ACTION CANNOT BE REVERSED"
+msgstr "इस कार्यवाही को औंधा नहीं किया जा सकता"
+
+#: www/views/onboarding/welcome.html:5
+msgid "Take control of your money,<br>get started with bitcoin."
+msgstr "अपने पैसे पर नियंत्रण रखें,<br>bitcoin से शुरूआत करें।"
+
+#: www/views/walletDetails.html:132
+#: www/views/walletDetails.html:52
+msgid "Tap and hold to show"
+msgstr "दिखाने के लिए टैप कर के रखें"
+
+#: www/views/includes/walletInfo.html:3
+msgid "Tap to recreate"
+msgstr "पुन: क्रीएट करने के लिए टैप करें"
+
+#: www/views/includes/walletInfo.html:4
+msgid "Tap to retry"
+msgstr "पुन: प्रयास करने के लिए टैप करें"
+
+#: www/views/termsOfUse.html:3
+msgid "Terms Of Use"
+msgstr "उपयोग की शर्तें"
+
+#: www/views/modals/terms.html:3
+#: www/views/onboarding/disclaimer.html:29
+#: www/views/onboarding/disclaimer.html:43
+#: www/views/preferencesAbout.html:30
+msgid "Terms of Use"
+msgstr "उपयोग की शर्तें"
+
+#: www/views/tab-create-personal.html:118
+#: www/views/tab-import-phrase.html:68
+msgid "Testnet"
+msgstr "Testnet"
+
+#: www/views/includes/incomingDataMenu.html:61
+msgid "Text"
+msgstr "टेक्स्ट"
+
+#: src/js/controllers/feedback/send.js:27
+#: src/js/controllers/feedback/send.js:76
+#: www/views/feedback/complete.html:20
+#: www/views/feedback/rateApp.html:4
+msgid "Thank you!"
+msgstr "आपका धन्यवाद!"
+
+#: src/js/controllers/feedback/send.js:72
+msgid "Thanks!"
+msgstr "धन्यवाद!"
+
+#: src/js/controllers/feedback/send.js:73
+msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
+msgstr "यह सुनने में रोमांचक है। हम आपसे वो पाँचवाँ सितारा प्राप्त करना बेहद पसंद करेंगे – हम आपके अनुभव को कैसे बेहतर बना सकते हैं?"
+
+#: src/js/services/ledger.js:152
+msgid "The Ledger Chrome application is not installed"
+msgstr "Ledger Chrome एप्लिकेशन इंस्टाल नहीं है"
+
+#: www/views/modals/wallet-balance.html:55
+msgid "The amount of bitcoin immediately spendable from this wallet."
+msgstr "इस वॉलेट से तुरंत खर्च होने योग्य bitcoin की राशि।"
+
+#: www/views/modals/wallet-balance.html:93
+msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgstr "इस वॉलेट में संग्रहित bitcoin की राशि जो आपके लंबित लेन-देन प्रस्तावों में इनपुट्स के रूप में निर्धारित है। इस राशि को इस वॉलेट के साथ संबद्ध ना खर्च किए गए ट्रांजैक्शनआउटपुट्स का इस्तेमाल करके निर्धारित किया जाता है और यह आपके लंबित ट्रांजैक्शन प्रस्तावों के साथ संबद्ध वास्तविक राशियों से अधिक हो सकती है।"
+
+#: www/views/modals/wallet-balance.html:74
+msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgstr "इस वॉलेट में 1 से कम ब्लॉकचेन पुष्टिकरण के साथ संग्रहित bitcoin की राशि।"
+
+#: www/views/tab-import-phrase.html:5
+msgid "The derivation path"
+msgstr "डेरीवेशन पाथ"
+
+#: www/views/onboarding/tour.html:37
+msgid "The exchange rate changes with the market."
+msgstr "विनिमय दर बाज़ार के साथ बदलती है।"
+
+#: www/views/preferencesFee.html:12
+msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
+msgstr "जितना अधिक शुल्क, उतना ही अधिक भुगतान किसी माइनर को उस ट्रांजैक्शन को ब्लॉक में शामिल करने के लिए देना होगा। वर्तमान शुल्क नेटवर्क लोड एवं चयनित नीति के आधार पर निर्धारित किए जाते हैं।"
+
+#: www/views/addresses.html:51
+msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
+msgstr "लगातार अप्रयुक्त पतों की अधिकतम संख्या (20) पूरी हो चुकी है। जब आपके अप्रयुक्त पतों में से एक में भुगतान प्राप्त होता है, तो एक नया पता बनेगा और आपके रिसीव टैब में दिखाया जाएगा।"
+
+#: src/js/controllers/onboarding/terms.js:21
+msgid "The official English Terms of Service are available on the BitPay website."
+msgstr "अंग्रेज़ी में आधिकारिक सेवा की शर्तें BitPay की वेबसाइट पर उपलब्ध हैं।"
+
+#: www/views/tab-import-phrase.html:4
+msgid "The password of the recovery phrase (if set)"
+msgstr "पुनर्प्राप्ति वाक्यांश का पासवर्ड (यदि नियत हो)"
+
+#: src/js/services/walletService.js:1139
+msgid "The payment was created but could not be completed. Please try again from home screen"
+msgstr "भुगतान क्रीएट किया गया था लेकिन पूर्ण नहीं हो सका। कृपया होम स्क्रीन से दुबारा प्रयास करें"
+
+#: www/views/modals/txp-details.html:26
+msgid "The payment was removed by creator"
+msgstr "क्रीएटर द्वारा भुगतान हटाया गया था"
+
+#: www/views/join.html:91
+#: www/views/tab-create-personal.html:63
+#: www/views/tab-create-shared.html:92
+#: www/views/tab-import-phrase.html:43
+msgid "The recovery phrase could require a password to be imported"
+msgstr "पुनर्प्राप्ति वाक्यांश को इम्पोर्ट किए जाने के लिए पासवर्ड की आवश्यकता हो सकती है"
+
+#: src/js/services/bwcError.js:56
+msgid "The request could not be understood by the server"
+msgstr "सर्वर द्वारा अनुरोध को समझा नहीं जा सका"
+
+#: www/views/addresses.html:52
+msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
+msgstr "पुनर्प्राप्ति प्रक्रिया तब बंद हो जाएगी जब बिना निधियों वाले लगातार 20 पते बनेंगे। सुरक्षित रूप से और पते बनाने के लिए, पहले से बने हुए किसी एक अप्रयुक्त पते को भुगतान करें।"
+
+#: src/js/services/bwcError.js:98
+msgid "The spend proposal is not pending"
+msgstr "खर्च प्रस्ताव लंबित नहीं है"
+
+#: www/views/modals/wallet-balance.html:36
+msgid "The total amount of bitcoin stored in this wallet."
+msgstr "इस वॉलेट में संग्रहित bitcoin की कुल राशि।"
+
+#: www/views/preferencesHistory.html:27
+msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
+msgstr "ट्रांजैक्शन इतिहास और हर नया नवनिर्वाचित ट्रांजैक्शन इस एप में कैशे किया हुआ है। यह सुविधा इसे क्लीन अप कर देती है और सर्वर से दुबारा सिंक्रनाइज़ करती है"
+
+#: www/views/tab-import-phrase.html:6
+msgid "The wallet service URL"
+msgstr "वॉलेट सेवा URL"
+
+#: src/js/controllers/tab-home.js:38
+msgid "There is a new version of {{appName}} available"
+msgstr "{{appName}} का नया संस्करण उपलब्ध है"
+
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:335
+msgid "There is an error in the form"
+msgstr "प्रपत्र में कोई त्रुटि है"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+msgid "There's obviously something we're doing wrong."
+msgstr "हम स्पष्ट रूप से कुछ गलत कर रहे हैं।"
+
+#: src/js/controllers/feedback/rateCard.js:38
+msgid "This app is fantastic!"
+msgstr "यह एप लाजवाब है!"
+
+#: www/views/onboarding/tour.html:47
+msgid "This app stores your bitcoin with cutting-edge security."
+msgstr "यह एप आपके bitcoin को अत्याधुनिक सुरक्षा के साथ संग्रहित करती है।"
+
+#: src/js/controllers/confirm.js:523
+msgid "This bitcoin payment request has expired."
+msgstr "इस bitcoin भुगतान अनुरोध की समयसीमा समाप्त हो चुकी है।"
+
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr "भुगतान की समयसीमा समाप्ति:"
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr "भुगतान अनुरोध की समयसीमा समाप्त हो चुकी है"
+
+#: www/views/join.html:133
+#: www/views/tab-create-personal.html:103
+#: www/views/tab-create-shared.html:132
+msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
+msgstr "इस पासवर्ड को पुनर्प्राप्त नहीं किया जा सकता। यदि पासवर्ड खो जाए, तो आपके द्वारा निधियों को पुनर्प्राप्त करने का कोई ढंग नहीं है।"
+
+#: www/views/backup.html:31
+msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
+msgstr "यह पुनर्प्राप्ति वाक्यांश पासवर्ड के साथ बनाया गया था। इस वॉलेट को पुनर्प्राप्त करने के लिए, दोनों पुनर्प्राप्ति वाक्यांश और पासवर्ड की आवश्यकता है।"
+
+#: www/views/tx-details.html:91
+msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgstr "लेन-देन की यह राशि वर्तमान Bitcoin नेटवर्क शुल्क की तुलना में बहुत कम है। इन निधियों को खर्च करने के लिए खुद निधियों की तुलना के योग्य Bitcoin नेटवर्क शुल्क लागत की आवश्यकता होगी।"
+
+#: www/views/tx-details.html:87
+msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
+msgstr "इस लेन-देन की पुष्टि करने में लंबा समय लग सकता है या यह भेजने वाले द्वारा निर्धारित किए गए कम शुल्क के कारण खारिज हो सकता है"
+
+#: www/views/walletDetails.html:109
+#: www/views/walletDetails.html:29
+msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
+msgstr "यह वॉलेट दिए गए Bitcore Wallet Service (BWS) में पंजीकृत नहीं है। आप इसे स्थानीय जानकारी से पुन: क्रीएट कर सकते हैं।"
+
+#: www/views/modals/txp-details.html:136
+#: www/views/tx-details.html:121
+msgid "Timeline"
+msgstr "समयरेखा"
+
+#: www/views/confirm.html:31
+#: www/views/includes/output.html:2
+#: www/views/modals/txp-details.html:109
+#: www/views/modals/txp-details.html:53
+#: www/views/tx-details.html:41
+#: www/views/tx-details.html:53
+msgid "To"
+msgstr "इस को"
+
+#: www/views/tab-send.html:32
+msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgstr "प्रारंभ करने के लिए, bitcoin खरीदें या अपना पता सांझा करें। आप किसी भी वॉलेट या सेवा से bitcoin प्राप्त कर सकते हैं।"
+
+#: src/js/services/bitpayAccountService.js:73
+msgid "To {{reason}} you must first add your BitPay account - {{email}}"
+msgstr "{{reason}} के लिए आपके लिए पहले अपने BitPay खाता - {{email}} जोड़ना आवश्यक है"
+
+#: src/js/services/onGoingProcess.js:48
+msgid "Top up in progress..."
+msgstr "टॉप अप प्रगति में है..."
+
+#: src/js/controllers/topup.js:206
+msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr "डेबिट कार्ड ({{cardLastNumber}}) में {{amountStr}} टॉप अप करें"
+
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "SideShift AI प्रारंभ करें"
+
+#: www/views/sideshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr "मिनटों में अपने BTC को BCH में बदलें।"
+
+#: www/views/sideshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr "प्रक्रिया शुरू करने के लिए आपको अपने वॉलेट में निधियां जोड़ने की आवश्यकता है।"
+
+#: www/views/sideshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "प्रक्रिया तेज़ है और आपको अपने वॉलेट में बदली हुई राशि प्राप्त होगी।"
+
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "यह सेवा थर्ड-पार्टी SideShift AI द्वारा प्रदान की जाती है, जो इस सुविधा के लिए थोड़ा सा शुल्क लेगी। यह शुल्क आपके द्वारा ट्रांजैक्शन प्रारंभ करने से पहले दिखाया जाएगा।"
+
+#: www/views/buyAmazon.html:61
+#: www/views/buyMercadoLibre.html:60
+#: www/views/modals/wallet-balance.html:23
+#: www/views/topup.html:70
+msgid "Total"
+msgstr "कुल"
+
+#: www/views/walletDetails.html:196
+msgid "Total Locked Balance"
+msgstr "कुल लॉक्ड बैलेंस"
+
+#: www/views/tab-create-shared.html:35
+msgid "Total number of copayers"
+msgstr "कोपेयर्स की कुल संख्या"
+
+#: www/views/addresses.html:81
+msgid "Total wallet inputs"
+msgstr "कुल वॉलेट इनपुट्स"
+
+#: src/js/services/fingerprintService.js:63
+#: src/js/services/fingerprintService.js:68
+msgid "Touch ID Failed"
+msgstr "टच ID विफल"
+
+#: src/js/controllers/tx-details.js:12
+msgid "Transaction"
+msgstr "ट्रांजैक्शन"
+
+#: www/views/confirm.html:126
+msgid "Transaction Created"
+msgstr "ट्रांजैक्शन क्रीएट हुई"
+
+#: www/views/preferencesAdvanced.html:29
+#: www/views/preferencesHistory.html:3
+msgid "Transaction History"
+msgstr "ट्रांजैक्शन इतिहास"
+
+#: src/js/services/bwcError.js:83
+msgid "Transaction already broadcasted"
+msgstr "ट्रांजैक्शन पहले ही प्रसारित हो चुकी"
+
+#: src/js/controllers/buyAmazon.js:308
+#: src/js/controllers/buyMercadoLibre.js:301
+#: src/js/controllers/topup.js:281
+msgid "Transaction has not been created"
+msgstr "ट्रांजैक्शन क्रीएट नहीं की गई"
+
+#: www/views/topup.html:104
+msgid "Transaction initiated"
+msgstr "ट्रांजैक्शन प्रारंभ हुई"
+
+#: src/js/controllers/tx-details.js:119
+msgid "Transaction not available at this time"
+msgstr "ट्रांजैक्शन इस समय उपलब्ध नहीं है"
+
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/tab-home.js:174
+msgid "Transaction not found"
+msgstr "ट्रांजैक्शन नहीं मिली"
+
+#: www/views/modals/chooseFeeLevel.html:55
+msgid "Transactions without fee are not supported."
+msgstr "बिना शुल्क के ट्रांजैक्शन समर्थित नहीं हैं।"
+
+#: src/js/controllers/paperWallet.js:109
+msgid "Transfer to"
+msgstr "इस को हस्तांतरित करें"
+
+#: www/views/tab-send.html:67
+msgid "Transfer to Wallet"
+msgstr "वॉलेट में हस्तांतरित करें"
+
+#: www/views/modals/pin.html:13
+msgid "Try again in {{expires}}"
+msgstr "{{expires}} में दुबारा प्रयास करें"
+
+#: www/views/bitpayCardIntro.html:18
+msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgstr "Bitcoin को डॉलरों में बदलें, कहीं भी स्वाइप करें Visa<sup>&reg;</sup> स्वीकृत है।"
+
+#: www/views/tab-import-phrase.html:17
+msgid "Type the Recovery Phrase (usually 12 words)"
+msgstr "पुनर्प्राप्ति वाक्यांश (आमतौर पर 12 शब्द) को टाइप करें"
+
+#: src/js/controllers/backup.js:75
+msgid "Uh oh..."
+msgstr "उह ओह..."
+
+#: www/views/tx-details.html:100
+msgid "Unconfirmed"
+msgstr "अपुष्ट"
+
+#: www/views/walletDetails.html:190
+msgid "Unsent transactions"
+msgstr "ना भेजे गए लेन-देन"
+
+#: www/views/addresses.html:39
+msgid "Unused Addresses"
+msgstr "अप्रयुक्त पते"
+
+#: www/views/addresses.html:50
+msgid "Unused Addresses Limit"
+msgstr "अप्रयुक्त पतों की सीमा"
+
+#: src/js/controllers/tab-home.js:146
+msgid "Update Available"
+msgstr "अपडेट उपलब्ध है"
+
+#: www/views/proposals.html:14
+msgid "Updating pending proposals. Please stand by"
+msgstr "लंबित प्रस्ताव अपडेट हो रहे हैं। कृपया समर्थन बनाएँ रखें"
+
+#: www/views/walletDetails.html:217
+msgid "Updating transaction history. Please stand by."
+msgstr "ट्रांजैक्शन इतिहास अपडेट हो रहा है। कृपया समर्थन बनाएँ रखें।"
+
+#: www/views/activity.html:14
+msgid "Updating... Please stand by"
+msgstr "अपडेट हो रहा है... कृपया समर्थन बनाएँ रखें"
+
+#: src/js/services/feeService.js:10
+msgid "Urgent"
+msgstr "अत्यावश्यक"
+
+#: www/views/advancedSettings.html:12
+msgid "Use Unconfirmed Funds"
+msgstr "अपुष्ट निधियों का उपयोग करें"
+
+#: src/js/services/onGoingProcess.js:34
+msgid "Validating recovery phrase..."
+msgstr "पुनर्प्राप्ति वाक्यांश मान्य हो रहा है..."
+
+#: www/views/modals/fingerprintCheck.html:4
+msgid "Verify your identity"
+msgstr "अपनी पहचान सत्यापित करें"
+
+#: www/views/preferencesAbout.html:14
+#: www/views/preferencesExternal.html:25
+msgid "Version"
+msgstr "संस्करण"
+
+#: www/views/tab-export-file.html:69
+msgid "View"
+msgstr "देखें"
+
+#: www/views/addresses.html:34
+msgid "View All Addresses"
+msgstr "सभी पते देखें"
+
+#: src/js/controllers/onboarding/terms.js:20
+msgid "View Terms of Service"
+msgstr "सेवा की शर्तें देखें"
+
+#: src/js/controllers/bitpayCard.js:122
+#: src/js/controllers/tx-details.js:191
+msgid "View Transaction on Explorer.Bitcoin.com"
+msgstr "Explorer.Bitcoin.com पर ट्रांजैक्शन देखें"
+
+#: src/js/controllers/tab-home.js:148
+msgid "View Update"
+msgstr "अपडेट देखें"
+
+#: www/views/tx-details.html:147
+msgid "View on blockchain"
+msgstr "ब्लॉकचैन पर देखें"
+
+#: www/views/mercadoLibre.html:26
+msgid "Visit mercadolivre.com.br &rarr;"
+msgstr "mercadolivre.com.br &rarr; विज़िट करें"
+
+#: www/views/walletDetails.html:182
+msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
+msgstr "चेतावनी: की डेरीवेशन (Key derivation) इस डिवाइस/वॉलेट पर काम नहीं कर रहा है। इस वॉलेट पर क्रियाएं निष्पादित नहीं की जा सकतीं।"
+
+#: www/views/tab-export-file.html:45
+msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "चेतावनी: निजी कुंजी शामिल नहीं करने से वॉलेट बैलेंस, ट्रांजैक्शन इतिहास की जांच करने और एक्सपोर्ट से खर्च प्रस्ताव क्रीएट करने की अनुमति मिलती है। हालांकि, इससे प्रस्तावों को मंज़ूरी देने (साइन करने) की अनुमति नहीं मिलती, इसलिए <b>निधिया एक्सपोर्ट से सुलभ नहीं होंगी</b>।"
+
+#: www/views/tab-export-file.html:36
+msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "चेतावनी: इस वॉलेट की निजी कुंजी उपलब्ध नहीं है। एक्सपोर्ट वॉलेट बैलेंस, ट्रांजैक्शन इतिहास की जांच करने और एक्सपोर्ट से खर्च प्रस्ताव क्रीएट करने की अनुमति देता है। हालांकि, यह प्रस्तावों को मंज़ूरी देने (साइन करने) की अनुमति नहीं देता, इसलिए <b>निधियां एक्सपोर्ट से सुलभ नहीं होंगी</b>।"
+
+#: www/views/modals/paypro.html:42
+msgid "WARNING: UNTRUSTED CERTIFICATE"
+msgstr "चेतावनी: अविश्वसनीय प्रमाणपत्र"
+
+#: src/js/services/onGoingProcess.js:15
+msgid "Waiting for Ledger..."
+msgstr "Ledger के लिए प्रतीक्षा की जा रही है..."
+
+#: src/js/services/onGoingProcess.js:16
+msgid "Waiting for Trezor..."
+msgstr "Trezor के लिए प्रतीक्षा की जा रही है..."
+
+#: www/views/copayers.html:48
+msgid "Waiting for copayers"
+msgstr "कोपेयर्स के लिए प्रतीक्षा कर रहे हैं"
+
+#: www/views/copayers.html:53
+msgid "Waiting..."
+msgstr "प्रतीक्षा की जा रही है..."
+
+#: www/views/addresses.html:3
+#: www/views/preferencesAdvanced.html:17
+msgid "Wallet Addresses"
+msgstr "वॉलेट के पते"
+
+#: www/views/preferencesColor.html:4
+msgid "Wallet Color"
+msgstr "वॉलेट का रंग"
+
+#: www/views/preferencesInformation.html:29
+msgid "Wallet Configuration (m-n)"
+msgstr "वॉलेट की कन्फीग्रेशन (एम-एन)"
+
+#: www/views/onboarding/collectEmail.html:5
+msgid "Wallet Created"
+msgstr "वॉलेट क्रीएट हुआ"
+
+#: www/views/preferencesInformation.html:23
+msgid "Wallet Id"
+msgstr "वॉलेट आईडी"
+
+#: www/views/preferencesAdvanced.html:13
+#: www/views/preferencesInformation.html:3
+msgid "Wallet Information"
+msgstr "वॉलेट की जानकारी"
+
+#: www/views/addresses.html:76
+msgid "Wallet Inputs"
+msgstr "वॉलेट इनपुट्स"
+
+#: www/views/join.html:26
+msgid "Wallet Invitation"
+msgstr "वॉलेट आमंत्रण"
+
+#: www/views/join.html:60
+#: www/views/tab-create-personal.html:38
+#: www/views/tab-create-shared.html:67
+msgid "Wallet Key"
+msgstr "वॉलेट की कुंजी"
+
+#: www/views/preferencesAlias.html:4
+msgid "Wallet Name"
+msgstr "वॉलेट का नाम"
+
+#: www/views/preferencesInformation.html:11
+msgid "Wallet Name (at creation)"
+msgstr "वॉलेट का नाम (क्रीएट करते समय)"
+
+#: www/views/preferencesInformation.html:35
+msgid "Wallet Network"
+msgstr "वॉलेट नेटवर्क"
+
+#: www/views/join.html:77
+#: www/views/tab-create-personal.html:50
+#: www/views/tab-create-shared.html:79
+msgid "Wallet Recovery Phrase"
+msgstr "वॉलेट पुनर्प्राप्ति वाक्यांश"
+
+#: src/js/services/bwcError.js:26
+msgid "Wallet Recovery Phrase is invalid"
+msgstr "वॉलेट पुनर्प्राप्ति वाक्यांश अमान्य है"
+
+#: www/views/preferencesAdvanced.html:25
+#: www/views/tab-import-phrase.html:73
+msgid "Wallet Service URL"
+msgstr "वॉलेट सेवा URL"
+
+#: www/views/preferences.html:4
+msgid "Wallet Settings"
+msgstr "वॉलेट सेटिंग्स"
+
+#: www/views/tab-import-hardware.html:11
+#: www/views/tab-import-phrase.html:61
+msgid "Wallet Type"
+msgstr "वॉलेट की किस्म"
+
+#: src/js/services/bwcError.js:59
+msgid "Wallet already exists"
+msgstr "वॉलेट पहले से ही मौजूद है"
+
+#: src/js/services/profileService.js:516
+msgid "Wallet already in {{appName}}"
+msgstr "वॉलेट पहले से ही {{appName}} में है"
+
+#: www/views/includes/walletActivity.html:6
+msgid "Wallet created"
+msgstr "वॉलेट क्रीएट हुआ"
+
+#: www/views/copayers.html:58
+msgid "Wallet incomplete and broken"
+msgstr "वॉलेट अधूरा और टूटा हुआ है"
+
+#: src/js/services/bwcError.js:65
+msgid "Wallet is full"
+msgstr "वॉलेट भरा हुआ है"
+
+#: src/js/services/bwcError.js:125
+msgid "Wallet is locked"
+msgstr "वॉलेट लॉक्ड है"
+
+#: src/js/services/bwcError.js:128
+msgid "Wallet is not complete"
+msgstr "वॉलेट पूरा नहीं है"
+
+#: www/views/tab-create-personal.html:12
+#: www/views/tab-create-shared.html:12
+msgid "Wallet name"
+msgstr "वॉलेट का नाम"
+
+#: src/js/services/bwcError.js:131
+msgid "Wallet needs backup"
+msgstr "वॉलेट को बैकअप की आवश्यकता है"
+
+#: www/views/tab-receive.html:59
+#: www/views/walletDetails.html:169
+msgid "Wallet not backed up"
+msgstr "वॉलेट का बैकअप नहीं लिया गया है"
+
+#: src/js/services/bwcError.js:68
+msgid "Wallet not found"
+msgstr "वॉलेट नहीं मिला"
+
+#: src/js/controllers/cashScan.js:81
+#: src/js/controllers/tab-home.js:230
+msgid "Wallet not registered"
+msgstr "वॉलेट पंजीकृत नहीं"
+
+#: src/js/services/bwcError.js:29
+msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
+msgstr "वॉलेट, वॉलेट सेवा में पंजीकृत नहीं है। इसे अपना पुनर्प्राप्ति वाक्यांश नियत करने के लिए \"उन्न्त विकल्पों\" का इस्तेमाल करके \"वॉलेट क्रीएट करें\" से पुन: क्रीएट करें"
+
+#: www/views/backup.html:12
+msgid "Wallet recovery phrase not available"
+msgstr "वॉलेट का पुनर्प्राप्ति वाक्यांश उपलब्ध नहीं है"
+
+#: src/js/services/bwcError.js:50
+msgid "Wallet service not found"
+msgstr "वॉलेट सेवा नहीं मिली"
+
+#: www/views/tab-home.html:69
+msgid "Wallets"
+msgstr "वॉलेट"
+
+#: src/js/controllers/addressbookView.js:36
+#: src/js/controllers/modals/txpDetails.js:153
+#: src/js/controllers/modals/txpDetails.js:170
+#: src/js/controllers/preferencesDelete.js:24
+#: src/js/controllers/preferencesExternal.js:14
+#: www/views/preferencesDeleteWallet.html:11
+msgid "Warning!"
+msgstr "चेतावनी!"
+
+#: www/views/modals/txp-details.html:47
+msgid "Warning: this transaction has unconfirmed inputs"
+msgstr "चेतावनी: इस लेन-देन में अपुष्ट इनपुट हैं"
+
+#: src/js/controllers/onboarding/backupRequest.js:17
+msgid "Watch out!"
+msgstr "ध्यान रहे!"
+
+#: src/js/controllers/feedback/send.js:69
+msgid "We'd love to do better."
+msgstr "हमें बेहतर कार्य करने से खुशी होगी।"
+
+#: www/views/backup.html:35
+msgid "We'll confirm on the next screen."
+msgstr "हम अगली स्क्रीन पर पुष्टि करेंगे।"
+
+#: src/js/controllers/feedback/send.js:77
+msgid "We're always looking for ways to improve {{appName}}."
+msgstr "हम हमेशा {{appName}} को सुधारने के ढंगों की तलाश में रहते हैं।"
+
+#: src/js/controllers/feedback/send.js:83
+msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
+msgstr "हम हमेशा {{appName}} को सुधारने के ढंगों की तलाश में रहते हैं। हम आपके अनुभव को कैसे बेहतर बना सकते हैं?"
+
+#: www/views/includes/incomingDataMenu.html:6
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: www/views/preferencesLanguage.html:16
+msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
+msgstr "हम हमेशा अनुवाद के लिए योगदानों की तलाश में रहते हैं! आप Crowdin पर हमारे समुदाय में शामिल होकर सुधार कर सकते हैं या इस एप को अपनी स्थानीय भाषा में उपलब्ध करवाने में सहायता कर सकते हैं।"
+
+#: www/views/preferencesAlias.html:11
+msgid "What do you call this wallet?"
+msgstr "आप इस वॉलेट को क्या कहते हैं?"
+
+#: www/views/preferencesAlias.html:12
+msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
+msgstr "जब यह वॉलेट क्रीएट किया गया था, तो इसको &ldquo;{{walletName}}&rdquo; कहा जाता था। आप नीचे इस डिवाइस पर दिखाए गए नाम को बदल सकते हैं।"
+
+#: www/views/onboarding/collectEmail.html:10
+msgid "Where would you like to receive email notifications about payments?"
+msgstr "आप भुगतानों से संबंधित ईमेल सुतचनाएँ कहाँ प्राप्त करना पसंद करेंगे?"
+
+#: www/views/addresses.html:19
+msgid "Why?"
+msgstr "क्यों?"
+
+#: www/views/feedback/rateApp.html:10
+msgid "Would you be willing to rate {{appName}} in the app store?"
+msgstr "क्या आप एप स्टोर में {{appName}} को रेट करना चाहेंगे?"
+
+#: www/views/onboarding/notifications.html:4
+msgid "Would you like to receive push notifications about payments?"
+msgstr "क्या आप भुगतानों के बारे में पुश नोटीफिकेशन्स प्राप्त करना पसंद करेंगे?"
+
+#: src/js/controllers/import.js:288
+msgid "Wrong number of recovery words:"
+msgstr "पुनर्प्राप्ति शब्दों की गलत संख्या:"
+
+#: src/js/services/bwcError.js:140
+msgid "Wrong spending password"
+msgstr "गलत खर्च पासवर्ड"
+
+#: www/views/modals/confirmation.html:7
+msgid "Yes"
+msgstr "हाँ"
+
+#: src/js/controllers/onboarding/backupRequest.js:25
+msgid "Yes, skip"
+msgstr "हां, छोड़ें"
+
+#: src/js/controllers/onboarding/backupRequest.js:24
+msgid "You can create a backup later from your wallet settings."
+msgstr "आप अपनी वॉलेट सेटिंग्स से बाद में बैकअप बना सकते हैं।"
+
+#: src/js/controllers/preferencesLanguage.js:12
+msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
+msgstr "आप हमारी Crowdin समुदाय की अनुवाद वेबसाइट पर साइन अप करके योगदान कर सकते हैं। हम आप से जानने की आशा रखते हैं!"
+
+#: www/views/tab-scan.html:16
+msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgstr "आप bitcoin पतों, भुगतान अनुरोधों, पेपर वॉलेट्स, और बहुत कुछ स्कैन कर सकते हैं।"
+
+#: src/js/controllers/preferencesAbout.js:14
+msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
+msgstr "आप GitHub पर हमारे प्रोजेक्ट पर जाकर नवीनतम विकास देख सकते हैं और इस ओपन सोर्स एप में योगदान कर सकते हैं।"
+
+#: www/views/onboarding/tour.html:19
+msgid "You can spend bitcoin at millions of websites and stores worldwide."
+msgstr "आप विश्व भर की लाखों वेबसाइट्स और स्टोर्स में bitcoin खर्च कर सकते हैं।"
+
+#: www/views/backup.html:15
+msgid "You can still export it from Advanced &gt; Export."
+msgstr "आप इसे अभी भी एडवान्स्ड &gt; एक्सपोर्ट से एक्सपोर्ट कर सकते हैं।"
+
+#: www/views/onboarding/tour.html:32
+msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
+msgstr "आप इसका अन्य मुद्राओं जैसे अमरीकी डॉलरों, यूरोज़, या पाउंड्स के बदले में व्यापार कर सकते हैं।"
+
+#: www/views/onboarding/tour.html:46
+msgid "You control your bitcoin."
+msgstr "आप अपने bitcoin को स्वंय नियंत्रित करते हैं।"
+
+#: www/views/modals/chooseFeeLevel.html:64
+msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
+msgstr "आपको {{maxFeeRecommended}} स्टोशी/बाइट से अधिक शुल्क नियत नहीं करना चाहिए।"
+
+#: www/views/modals/bitpay-card-confirmation.html:5
+msgid "You will need to log back for fill in your BitPay Card."
+msgstr "आपको अपने BitPay Card को भरने के लिए लॉग बैक करने की आवश्यकता होगी।"
+
+#: www/views/preferencesNotifications.html:34
+msgid "You'll receive email notifications about payments sent and received from your wallets."
+msgstr "आपको अपने वॉलेट में से भेजे गए और प्राप्त हुए भुगतानों से संबंधित ईमेल सूचनाएँ प्राप्त होंगी।"
+
+#: www/views/bitpayCard.html:50
+msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
+msgstr "आपका BitPay Card तैयार है। विश्वभर के स्टोर्स और ATM पर इसका इस्तेमाल करना प्रारंभ करने के लिए अपने कार्ड में निधियां जोडें।"
+
+#: www/views/mercadoLibre.html:57
+#: www/views/mercadoLibreCards.html:6
+msgid "Your Gift Cards"
+msgstr "आपके गिफ्ट कार्ड"
+
+#: www/views/includes/confirmBackupPopup.html:6
+msgid "Your bitcoin wallet is backed up!"
+msgstr "आपके bitcoin वॉलेट का बैकअप हो गया है!"
+
+#: www/views/tab-home.html:36
+msgid "Your bitcoin wallet is ready!"
+msgstr "आपका bitcoin वॉलेट तैयार है!"
+
+#: www/views/modals/chooseFeeLevel.html:61
+msgid "Your fee is lower than recommended."
+msgstr "आपका शुल्क अनुशंसित से कम है ।"
+
+#: www/views/feedback/send.html:42
+msgid "Your ideas, feedback, or comments"
+msgstr "आपके विचार, फीडबैक या टिप्पणियां"
+
+#: www/views/tab-create-shared.html:22
+msgid "Your name"
+msgstr "आपका नाम"
+
+#: www/views/join.html:16
+msgid "Your nickname"
+msgstr "आपका निकनेम"
+
+#: www/views/tab-export-file.html:11
+#: www/views/tab-import-file.html:20
+msgid "Your password"
+msgstr "आपका पासवर्ड"
+
+#: www/views/buyAmazon.html:102
+msgid "Your purchase could not be completed"
+msgstr "आपकी खरीदारी पूरी नहीं हो सकी"
+
+#: www/views/buyAmazon.html:105
+msgid "Your purchase was added to the list of pending"
+msgstr "आपकी खरीदारी को लंबित खरीदारियों की सूची में शामिल कर दिया गया है"
+
+#: www/views/onboarding/backupRequest.html:10
+msgid "Your wallet is never saved to cloud storage or standard device backups."
+msgstr "आपके वॉलेट को कभी भी क्लाउड स्टोरेज या स्टेंडर्ड डिवाइस बैकअप्स में नहीं सहेजा जाता।"
+
+#: src/js/services/walletService.js:1030
+msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
+msgstr "आपकी वॉलेट की कुंजी इन्क्रिप्टेड होगी। खर्च पासवर्ड को पुनर्प्राप्त नहीं किया जा सकता। इसे लिखना सुनिश्चित करें।"
+
+#: www/views/includes/walletList.html:13
+#: www/views/includes/walletSelector.html:21
+#: www/views/paperWallet.html:33
+#: www/views/tab-receive.html:72
+#: www/views/walletDetails.html:131
+#: www/views/walletDetails.html:51
+msgid "[Balance Hidden]"
+msgstr "[बैलेंस छिपा हुआ है]"
+
+#: www/views/walletDetails.html:141
+#: www/views/walletDetails.html:61
+msgid "[Scanning Funds]"
+msgstr "[निधियां स्कैन हो रही हैं]"
+
+#: src/js/controllers/bitpayCardIntro.js:11
+msgid "add your BitPay Visa card(s)"
+msgstr "BitPay Visa कार्ड(कार्ड्स) जोड़ें"
+
+#: www/views/includes/available-balance.html:8
+msgid "locked by pending payments"
+msgstr "लंबित भुगतानों द्वारा लॉक्ड"
+
+#: src/js/services/profileService.js:404
+msgid "me"
+msgstr "मैं"
+
+#: www/views/addressbook.add.html:32
+msgid "name@example.com"
+msgstr "name@example.com"
+
+#: www/views/preferencesHistory.html:15
+msgid "preparing..."
+msgstr "तैयार हो रहा है..."
+
+#: www/views/cashScan.html:57
+msgid "recovery tool."
+msgstr "पुनर्प्राप्ति टूल।"
+
+#: src/js/controllers/buyAmazon.js:239
+msgid "{{amountStr}} for Amazon.com Gift Card"
+msgstr "Amazon.com गिफ्ट कार्ड के लिए {{amountStr}}"
+
+#: src/js/controllers/buyMercadoLibre.js:237
+msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
+msgstr "Mercado Livre Brazil गिफ्ट कार्ड के लिए {{amountStr}}"
+
+#: www/views/preferencesBwsUrl.html:21
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} ब्लॉकचेन जानकारी, नेटवर्किंग और वॉलेट सिंक्रनाइज़ेशन के लिए Bitcore Wallet Service (BWS) पर निर्भर करती है। डिफॉल्ट कन्फीग्रेशन https://bws.bitcoin.com (Bitcoin.com की सावर्जनिक BWS उदाहरण) की ओर इशारा करती है।"
+
+#: src/js/controllers/confirm.js:408
+msgid "{{fee}} will be deducted for bitcoin networking fees."
+msgstr "bitcoin नेटवर्किंग शुल्क के लिए {{fee}} काटी जाएगी।"
+
+#: www/views/confirm.html:85
+msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
+msgstr "भेजी जाने वाली राशि का {{tx.txp[wallet.id].feeRatePerStr}}"
+
+#: www/views/walletDetails.html:218
+msgid "{{updatingTxHistoryProgress}} transactions downloaded"
+msgstr "{{updatingTxHistoryProgress}} ट्रांजैक्शन्स डाउनलोड हुए"
+
+#: www/views/cashScan.html:33
+#: www/views/copayers.html:46
+#: www/views/includes/walletInfo.html:18
+msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.n}}-का-{{wallet.m}}"
+
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "समुदाय"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "Bitcoin Cash Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Bitcoin.com ट्विटर"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "Bitcoin.com के बारे में जानें"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "Bitcoin Cash गेम्ज़"
+
+msgid "Bitcoin Games"
+msgstr ""
+
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "वॉलेट एप को सांझा करें"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "समाचार"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Start mining Bitcoin"
+msgstr "Bitcoin को माइन करना शुरू करें"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "उपकरण"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "Bitcoin मूल्य चार्ट्स"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "नि:शुल्क Bitcoin Cash"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "आपके Bitcoin वॉलेट तैयार हैं!"
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "पते में मुद्रा की जानकारी शामिल नहीं है, कृपया सुनिश्चित करें कि आप सही मुद्रा भेज रहे हैं।"
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr "लेन-देन की समीक्षा करें"
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr "आप भेज रहे हैं"
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr "आप स्थानांतरण कर रहे हैं"
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr "इसको:"
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr "व्यक्तिगत नोट शामिल करें"
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr "व्यापारी द्वारा सुझाया गया:"
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr "यहाँ टेक्स्ट दर्ज करें"
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr "व्यक्तिगत नोट:"
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr "1 सेंट से कम"
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
+msgstr "यह चालान अब भुगतान स्वीकार नहीं कर रहा है"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "अधिकतम राशि भेजें"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "अज्ञात त्रुटि।"
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "निधियां हस्तांतरित करने के लिए कोई Bitcoin Cash वॉलेट नहीं मिला।"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "कोई Bitcoin Cash नहीं मिला ।"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "प्राप्त हुआ Bitcoin Core:"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "निधियां हस्तांतरित करने के लिए कोई Bitcoin Core वॉलेट नहीं मिला।"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "कोई Bitcoin Core नहीं मिला।"
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "स्कैन विफल हुआ"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "डेटा पहचान नहीं पाए।"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "असमर्थित"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "Testnet समर्थित नहीं है।"
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "वेब ब्राउज़र में खोलें"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid address"
+msgstr "अमान्य पता"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "राशि निर्धारित नहीं है"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "राशि न्यूनतम से कम है"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "राशि सीमा से ऊपर है"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Sideshift से अमान्य जवाब"
+
+msgid "Insufficient Amount Received"
+msgstr "अपर्याप्त राशि प्राप्त हुई"
+
+msgid "Return to Address"
+msgstr "पते पर लौटें"
+
+msgid "Overpaid!"
+msgstr "अधिक भुगतान हुआ!"
+
+msgid "Underpaid!"
+msgstr "कम भुगतान हुआ!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "ग्राहक बनाने में त्रुटि"
+
+msgid "Enter an email address."
+msgstr "कोई ईमेल पता दर्ज करें।"
+
+msgid "Must be a valid email address."
+msgstr "कोई मान्य ईमेल पता होना चाहिए।"
+
+msgid "Unable to Create Customer"
+msgstr "ग्राहक बनाने में असमर्थ"
+
+msgid "Enter a valid email address."
+msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "Bitcoin Cash (BCH) खरीदें"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "आप आज {{vm.dailyRemaining}} तक, और इस माह {{vm.monthlyRemaining}} तक खरीद सकते हैं।"
+
+msgid "Buy Bitcoin Cash"
+msgstr "Bitcoin Cash खरीदें"
+
+msgid "Verify Email"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr "ग्राहक ID प्राप्त करने में त्रुटि"
+
+msgid "Error Getting Customer Information"
+msgstr "ग्राहक जानकारी प्राप्त करने में त्रुटि"
+
+msgid "An error occurred when getting your customer information."
+msgstr "आपकी ग्राहक जानकारी प्राप्त करते समय त्रुटि उत्पन्न हुई।"
+
+msgid "Customer information was missing."
+msgstr "ग्राहक जानकारी अनुपलब्ध थी।"
+
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "भुगतान विधियां प्राप्त करने में त्रुटि"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "आपकी भुगतान विधियों को प्राप्त करते समय त्रुटि उत्पन्न हुई।"
+
+msgid "No Payment Methods"
+msgstr "कोई भुगतान विधियां नहीं"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "आपको Bitcoin Cash (BCH) खरीदने के लिए क्रैडिट या डेबिट कार्ड जोड़ना होगा।"
+
+msgid "Add Card"
+msgstr "कार्ड जोड़ें"
+
+msgid "Getting exchange rate..."
+msgstr "विनिमय दर प्राप्त हो रही है..."
+
+msgid "Waiting for exchange rate."
+msgstr "विनिमय दर के लिए प्रतीक्षा कर रहे हैं।"
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "आपके पास जमा करने के लिए Bitcoin Cash (BCH) वॉलेट आवश्यक होना चाहिए।"
+
+msgid "Select a BCH Wallet"
+msgstr "BCH वॉलेट का चयन करें"
+
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr "Bitcoin Cash खरीदा जा रहा है..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr "खरीदारी विफल हुई"
+
+msgid "Failed to create transaction."
+msgstr "ट्रांजैक्शन करने में विफल हुए।"
+
+msgid "Buy Now"
+msgstr "अभी खरीदें"
+
+msgid "Enter Security Code"
+msgstr "सुरक्षा कोड दर्ज करें"
+
+msgid "Enter the 3 digit code on the back of your card."
+msgstr ""
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
+msgid "Go to Wallet"
+msgstr "वॉलेट में जाएं"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "{{vm.walletName}} में जाएं"
+
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
+
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
+
+msgid "Your order has failed."
+msgstr "आपका ऑर्डर विफल हो गया।"
+
+msgid "Your order is waiting for authorization."
+msgstr "आपका ऑर्डर प्राधिकरण के लिए प्रतीक्षा कर रहा है।"
+
+msgid "Deposited to"
+msgstr "इसमें जमा किया गया"
+
+msgid "Failed to get transaction data."
+msgstr "ट्रांजैक्शन डेटा प्राप्त करने में विफल हुए।"
+
+msgid "Not found."
+msgstr "नहीं मिला।"
+
+msgid "Failed to get payment method info."
+msgstr "भुगतान विधि की जानकारी प्राप्त करने में विफल हुए।"
+
+msgid "Waiting for authorization"
+msgstr "प्राधिकरण के लिए प्रतीक्षा की जा रही है"
+
+msgid "Submit"
+msgstr ""
+
+msgid "Back"
+msgstr "पीछे"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr "अपनी कार्ड जानकारी को सत्यापित और पूरा करें।"
+
+msgid "Required"
+msgstr "आवश्यक"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa, MC, या AMEX"
+
+msgid "MM/YYYY"
+msgstr "MM/YYYY"
+
+msgid "Card Number"
+msgstr "कार्ड संख्या"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "कार्ड जोड़ने में असमर्थ"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "कार्ड संख्या अमान्य है। अपना कार्ड जांचें और दुबारा प्रयास करें।"
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "CVC संख्या अमान्य है। आपके कार्ड के पिछले भाग में 3 अंक। यदि आप AMEX का इस्तेमाल कर रहे हैं तो 4 अंक।"
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "समयसीमा समाप्ति दिनांक अमान्य है। अपना कार्ड जांचें और दुबारा प्रयास करें।"
+
+msgid "Invalid card number"
+msgstr "अमान्य कार्ड संख्या"
+
+msgid "Invalid expiration date"
+msgstr "अमान्य समयसीमा समाप्ति दिनांक"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "अपेक्षित दिनांक स्वरूप MM/YYYY का पालन करें"
+
+msgid "Invalid CVC number"
+msgstr "अमान्य CVC संख्या"
+
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+msgid "Purchasing"
+msgstr "खरीदारी की जा रही है"
+
+msgid "Processing Fee"
+msgstr "प्रोसेसिंग शुल्क"
+
+msgid "Deposit to"
+msgstr "इसमें जमा करें"
+
+msgid "Add a payment method"
+msgstr "कोई भुगतान विधि जोड़ें"
+
+msgid "Price Per BCH"
+msgstr "प्रति BCH मूल्य"
+
+msgid "Done"
+msgstr "हो गया"
+
+msgid "Amount must be a positive number."
+msgstr "राशि एक धनात्मक संख्या होनी चाहिए।"
+
+msgid "Unable to Purchase"
+msgstr "खरीदने में असमर्थ"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
+
+msgid "Purchase History"
+msgstr "खरीद इतिहास"
+
+msgid "Pending Orders"
+msgstr "लंबित ऑर्डर"
+
+msgid "Pay"
+msgstr "भुगतान करें"
+
+msgid "Payment Method"
+msgstr "भुगतान विधि"
+
+msgid "Add Credit or Debit Card"
+msgstr "क्रेडिट या डेबिट कार्ड जोड़ें"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "यह राशि आपकी मासिक सीमा से अधिक है"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "आपके पास आपकी {{monthly}} मासिक खरीद सीमा का {{remaining}} शेष रह गया है। अधिक खरीदने के लिए अपनी पहचान सत्यापित करें।"
+
+msgid "Verify Identity"
+msgstr "पहचान सत्यापित करें"
+
+msgid "Deposited to"
+msgstr "इसमें जमा किया गया"
+
+msgid "See on Blockchain"
+msgstr "ब्लॉकचैन पर देखें"
+
+msgid "Wallet address"
+msgstr "वॉलेट का पता"
+
+msgid "Pending Order"
+msgstr "लंबित ऑर्डर"
+
+msgid "Edit Order"
+msgstr "ऑर्डर को एडिट करें"
+
+msgid "Cancel Order"
+msgstr "ऑर्डर को रद्द करें"
+
+msgid "Success!"
+msgstr "सफल रहा!"
+
+msgid "Failed"
+msgstr "विफल हुआ"
+
+msgid "Your purchase has been processed."
+msgstr "आपकी खरीदारी प्रोसेस कर दी गई है।"
+
+msgid "See Receipt"
+msgstr "रसीद देखें"
+
+msgid "Make Another Purchase"
+msgstr "एक और खरीद करें"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "फोटोग्राफ दस्तावेज़"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "असत्यापित जारी रखें"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "पासपोर्ट"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "राष्ट्रीय ID"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "ड्राइविंग लाइसेंस"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "सत्यापन"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "खरीद सीमा बढ़ाएं"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "सत्यापन की स्थिति प्राप्त की जा रही है..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "आपको किसी एक देश का चयन करना होगा।"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "आपको किसी एक दस्तावेज़ प्रकार का चयन करना होगा।"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "वर्तमान में आपको अपनी पहचान सत्यापित किए बिना प्रति माह €150 तक की खरीदारी करने की आज्ञा है। अपनी खरीद सीमा को प्रति माह €20,000 तक करने के लिए अपनी पहचान को सत्यापित करें।"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "व्यक्तिगत जानकारी"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "प्रथम नाम"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "सरनेम"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "जन्म तिथि"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "गली का पता"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "अपार्टमेंट, स्युईट, इमारत (वैकल्पिक)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "नगर/शहर"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "पोस्टल कोड"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "देश"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "फील्ड आवश्यक है।"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "कम से कम 18 वर्ष की आयु होना आवश्यक है।"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "123 Maple Street"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "टोक्यो"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "जापान"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "अपार्टमेंट 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "जानकारी जमा करने में विफल हुए। कृपया दुबारा प्रयास करें।"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "जानकारी भेजी जा रही है..."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "तस्वीर अपलोड करने में विफल हुए। कृपया दुबारा प्रयास करें।"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "यह कैसा लग कहा है?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "कृपया सुनिश्चित करें कि आपके दस्तावेज़ पर विवरण बिना किसी धब्बे या चौंध के स्पष्ट और पढ़ने योग्य होने चाहिए।"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "हाँ, यह पढ़ने योग्य हैं"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "दुबारा तस्वीर खींचें"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "अपने दस्तावेज़ की तस्वीर खींचें"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "फ्रेम में अपने {{vm.documentName}} के 4 कोनों को स्पष्ट रूप से स्थिति में रखें। किसी भी चौंध से बचें।"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "सत्यापित हों"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "दस्तावेज़ प्रकार"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "चुनें"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "यदि आपने पहले bitcoin.com पर अपनी पहचान सत्यापित कर ली है तो आप <a ng-click=\"vm.onRestoreVerify()\">अपने सत्यापन को पुनर्प्राप्त कर सकते हैं।</a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "सत्यापन स्थिति"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "आप सत्यापित किए जा रहे हैं"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "आप सत्यापित हो चुके!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "आपका खाता अब सत्यापित है। बधाई हो!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "इसमें ज़्यादा समय नहीं लगेगा। हम आपको जल्द ही बता देंगे तांकि आप bitcoin खरीदना शुरू कर सकें।"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "सत्यापन विफल हुआ"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "हमें खेद है, लेकिन हम इस समय आपको सत्यापित नहीं कर पा रहे हैं। कृपया अतिरिक्त सहायता के लिए सपोर्ट(support) से संपर्क करें।"
+
+msgid "Self Portrait"
+msgstr "सेल्फ पोर्ट्रेट"
+
+msgid "Shop"
+msgstr "खरीदारी करें"
+
+msgid "Shop Nearby"
+msgstr "आस-पास खरीदारी करें"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "अपने क्षेत्र में Bitcoin Cash स्वीकार करने वाले व्यवसाय ढूँढ़ें"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "Bitcoin Cash से भुगतान करने पर Amazon पर 30% तक की छूट पाएँ"
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "कुछ सबसे नामचीन ब्रांडों की ओर से डिजीटल गिफ्ट कार्ड"
+
+msgid "Add a Business"
+msgstr "व्यवसाय जोड़ें"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "क्या आपका कोई ऐसा व्यवसाय है या क्या आप ऐसे किसी व्यवसाय के बारे में जानते है जो Bitcoin Cash स्वीकार करता हो? उसे जोड़ें।"
+
+msgid "Buy with Bitcoin Cash"
+msgstr "Bitcoin Cash से खरीदें"
+
+msgid "Are you a business owner?"
+msgstr "क्या आप किसी व्यवसाय के मालिक हैं?"
+
+msgid "More"
+msgstr "अधिक"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "आज ही Bitcoin Cash के साथ आसानी से भुगतान स्वीकार करना प्रारंभ करें। हम आपको दिखा सकते हैं कि ऐसा कैसे करना है।"
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr "Bitcoin Cash का इस्तेमाल कर सब कुछ प्राप्त करें। फ्लाइट्स, होटल, और किराए पर कार।"
+
+msgid "The market's highest paying pool"
+msgstr "बाज़ार का सबसे अधिक भुगतान करने वाला व्यवसायिक संघ"
+
+msgid "Start mining Bitcoin"
+msgstr "Bitcoin माइन करना शुरू करें"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "BCH के साथ भुगतान करें, 10% वापिस प्राप्त करें"
+
+msgid "Get your Bitcoin merch"
+msgstr "अपना Bitcoin मर्चेनडाईज़ प्राप्त करें"
+
+msgid "E-mail not detected"
+msgstr "ई-मेल का पता नहीं लगाया जा सका"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "नए व्यापारी को जोड़ने के लिए, कृपया सारी जानकारी सहित एक ईमेल addbusiness@bitcoin.com को भेजें।"
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "हैलो Bitcoin.com टीम, <br><br>मैं आपकी वॉलेट एप के नक्शे में भुगतान के रूप में Bitcoin Cash स्वीकार करने वाले एक नए व्यवसाय को शामिल करना चाहूँगा(गी):<br>- व्यवसाय का नाम:<br>- भौतिक पता: <br>- व्यवसाय की किस्म: <br><br>व्यवसाय की जगह ढूँढ़ने के लिए जानकारी:<br>- गूगल मैप्स के लिंक: <br>या<br>- अकांक्ष रेखा: <br>-देशान्तर रेखा: <br><br>वैकल्पिक अतिरिक्त जानकारी:<br>- वेबसाइट:<br>- फोन नंबर:<br>"
+
+msgid "Internal Error"
+msgstr "आंतरिक त्रुटि"
+
+msgid "Front"
+msgstr "सामने"
+
+msgid "Take a Selfie"
+msgstr "एक सेल्फी लें"
+
+msgid "Document + Selfie"
+msgstr "दस्तावेज़ + सेल्फी"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "अपने चेहरे के पास अपने दस्तावेज़ को पकड़ कर उसकी तस्वीर लें।"
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "फ्रेम में अपने दस्तावेज़ के 4 कोनों को स्पष्ट रूप से स्थिति में रखें। किसी भी चौंध से बचें।"
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr "गिफ्ट कार्ड खरीदा जा रहा है..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "त्रुटि। स्थिति कोड: {{status}}"
+
+msgid "Useful Links"
+msgstr "उपयोगी लिंक्स"
+
+msgid "Exchange between BTC and BCH"
+msgstr "BTC और BCH में विनिमय करें"
+
+msgid "Exchange"
+msgstr "विनिमय करें"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "आप इस Bitcoin Cash पते पर Bitcoin Core नहीं भेज सकते। इसके परिणामवश निधियों का नुकसान हो सकता है।"
+
+msgid "Your account verification was rejected."
+msgstr "आपके खाते के सत्यापन को अस्वीकार कर दिया गया था।"
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Bitcoin Cash खरीदने के लिए, आपको कुछ व्यक्तिगत जानकारी देने की आवश्यकता होगी।"
+
+msgid "Provide my information"
+msgstr "मेरी जानकारी प्रदान करें"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "आप आज {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} तक, और इस माह {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} तक की खरीदारी कर सकते हैं।"
+
+msgid "Quick Links"
+msgstr "त्वरित लिंक्स"
+
+msgid "Payment Methods"
+msgstr "भुगतान विधियां"
+
+msgid "Side: {{file.side}}"
+msgstr "साइड: {{file.side}}"
+
+msgid "Approved"
+msgstr "अनुमोदित"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "हमें खेद है लेकिन हम इस समय आपको सत्यापित नहीं कर पा रहे हैं।"
+

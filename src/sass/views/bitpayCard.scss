@@ -101,8 +101,8 @@
       &.pending svg .nc-icon-wrapper g,
       &.pending svg .nc-icon-wrapper path,
       &.pending .tx-icon .houston {
-        stroke: $v-bitcoin-orange;
-        color: $v-bitcoin-orange;
+        stroke: $v-bitcoin-green;;
+        color: $v-bitcoin-green;;
       }
     }
     .total {
@@ -176,7 +176,7 @@
       color: $v-dark-gray;
     }
     &--pending {
-      color: $v-bitcoin-orange;
+      color: $v-bitcoin-green;;
     }
   }
   .tx-time {

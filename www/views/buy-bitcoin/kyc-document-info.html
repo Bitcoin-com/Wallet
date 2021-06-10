@@ -1,0 +1,45 @@
+<ion-view id="tab-buy-bitcoin-document-info" class="apl" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button track_buy_bitcoin_welcome_screen_close" ng-click="$ionicGoBack(-1)">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+  <ion-content >
+    <div class="top-boundary"></div>
+    <h1 class="center" translate>Get Verified</h1>
+    <div class="center">
+      <p translate>You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month.</p>
+    </div>
+    <div class="apl-divider"></div>
+    <form name="documentForm" novalidate>
+      <div class="row">
+        <label for="country" translate>Country</label>
+        <select ng-model="vm.country"
+          name="country"
+          ng-required="true"
+          ng-change="vm.onCountrySelect()">
+          <option value="">Select</option>
+          <option ng-repeat="country in vm.countries track by country.alpha3" value="{{country.alpha3}}">{{country.name}}</option>
+        </select>
+      </div>
+      <div class="error" ng-show="documentForm.country.$error.required" translate>You must select a country.</div>
+      <div class="apl-divider"></div>
+      <div class="row">
+        <label for="type" translate>Document Type</label>
+        <select ng-model="vm.documentType"
+          name="documentType"
+          ng-required="true">
+          <option value="" translate>Select</option>
+          <option ng-repeat="document in vm.supportedDocuments track by $index" value="{{document}}">{{vm.supportedDocumentLabels[document]}}</option>
+        </select>
+      </div>
+      <div class="error" ng-show="vm.country &&documentForm.documentType.$error.required" translate>You must select a document type.</div>
+    </form>
+    <div class="apl-divider"></div>
+    <div class="apl-button-bottom-container no-shadow">
+      <a class="apl-button" ng-click="vm.onStartPhotograph()" translate>Photograph document</a>
+    </div>
+  </ion-content>
+</ion-view>

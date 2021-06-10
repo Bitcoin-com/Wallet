@@ -30,7 +30,7 @@ describe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress).toBeUndefined();
-    expect(parsed.isTestnet).toBeUndefined();
+    expect(parsed.isTestnet).toBe(false);
     expect(parsed.url).toBe('https://bitpay.com/i/SmHdie5dvBnG5kouZzEPzu');
   });
 
@@ -52,6 +52,18 @@ describe('bitcoinUriService', function() {
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress.legacy).toBe('mkDQrKfSFD441JxrD1iPBsJFExgkvrPGQn');
     expect(parsed.isTestnet).toBe(true);
+  });
+
+  it('Bitcoin Cash uri with amount that needs correct rounding.', function() {
+
+    var parsed = bitcoinUriService.parse('bitcoincash:qqx0ff5n04z4m83dnrj3khkcdexlnqlttckeq9q8ke?amount=0.00013000');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.amount).toBe('0.00013000');
+    expect(parsed.amountInSatoshis).toBe(13000);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qqx0ff5n04z4m83dnrj3khkcdexlnqlttckeq9q8ke');
+    expect(parsed.isTestnet).toBe(false);
   });
 
   it('Bitcoin Cash uri with extended params', function() {
@@ -171,6 +183,16 @@ describe('bitcoinUriService', function() {
     expect(parsed.isTestnet).toBe(false);
   });
 
+  it('legacy address with bch prefix', function() {
+
+    var parsed = bitcoinUriService.parse('bch:19yUdM2H7sADrabR6Afu9zTpmwqr6WYprX');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.legacy).toBe('19yUdM2H7sADrabR6Afu9zTpmwqr6WYprX');
+    expect(parsed.isTestnet).toBe(false);
+  });
+
   it('cashAddr testnet with prefix', function() {
 
     var parsed = bitcoinUriService.parse('bchtest:qpcz6pmurq9ctg5848trzz9zmuuygj4q5qam7ph3gt');
@@ -188,6 +210,16 @@ describe('bitcoinUriService', function() {
     expect(parsed.isValid).toBe(true);
     expect(parsed.coin).toBe('bch');
     expect(parsed.publicAddress.cashAddr).toBe('qzzg9nmc5vx8gap6xfatx3twnsdn2yrmcssulsmy44');
+    expect(parsed.isTestnet).toBe(false);
+  });
+
+  it('cashAddr with bch prefix', function() {
+
+    var parsed = bitcoinUriService.parse('bch:qpqzqtjqqc00nsxj0e3kevz65ujg4yt5z5w99jap5f');
+
+    expect(parsed.isValid).toBe(true);
+    expect(parsed.coin).toBe('bch');
+    expect(parsed.publicAddress.cashAddr).toBe('qpqzqtjqqc00nsxj0e3kevz65ujg4yt5z5w99jap5f');
     expect(parsed.isTestnet).toBe(false);
   });
 

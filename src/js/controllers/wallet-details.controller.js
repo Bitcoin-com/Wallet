@@ -1,6 +1,40 @@
 'use strict';
 
-angular.module('copayApp.controllers').controller('walletDetailsController', function($scope, $rootScope, $interval, $timeout, $filter, $log, $ionicModal, $ionicPopover, $state, $stateParams, $ionicHistory, profileService, lodash, configService, platformInfo, walletService, txpModalService, externalLinkService, popupService, addressbookService, sendFlowService, storageService, $ionicScrollDelegate, $window, bwcError, gettextCatalog, timeService, feeService, appConfigService, rateService, walletHistoryService) {
+angular.module('copayApp.controllers').controller('walletDetailsController', function(
+  satoshiDiceService
+  , $scope
+  , $rootScope
+  , $interval
+  , $timeout
+  , $filter
+  , $log
+  , $ionicModal
+  , $ionicPopover
+  , $state
+  , $stateParams
+  , $ionicHistory
+  , profileService
+  , lodash
+  , configService
+  , platformInfo
+  , walletService
+  , txpModalService
+  , externalLinkService
+  , popupService
+  , addressbookService
+  , sendFlowService
+  , storageService
+  , $ionicScrollDelegate
+  , $window
+  , bwcError
+  , gettextCatalog
+  , timeService
+  , feeService
+  , appConfigService
+  , rateService
+  , walletHistoryService
+  , moonPayService
+  ) {
   // Desktop can display 13 rows of transactions, bump it up to a nice round 15.
   var DISPLAY_PAGE_SIZE = 15;
   var currentTxHistoryDisplayPage = 0;
@@ -15,7 +49,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     updatingTxHistory: false,
     fetchedAllTxHistory: false,
     //updateTxHistoryError: false
-    updateTxHistoryFailed: false
+    updateTxHistoryFailed: false,
+
+    getSatoshiDiceIconUrl: getSatoshiDiceIconUrl,
+    openWalletSettings: openWalletSettings
   };
 
   // Need flag for when to allow infinite scroll at bottom
@@ -44,15 +81,36 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   $scope.wallet = null;
   $scope.walletId = '';
   $scope.walletNotRegistered = false;
+  $scope.isBuyBitcoinAllowed = false
+  $scope.walletBackgroundUrl = ""
 
-    
-    
+  $scope.walletColorMap = [
+      '../img/colors/cinnabar.png',
+      '../img/colors/carrot-orange.png',
+      '../img/colors/light-salmon.png',
+      '../img/colors/metallic-gold.png',
+      '../img/colors/feijoa.png',
+      '../img/colors/shamrock.png',
+      '../img/colors/light-orange.png',
+      '../img/colors/dark-grey.png',
+      '../img/colors/turquoise-blue.png',
+      '../img/colors/cornflower-blue.png',
+     '../img/colors/free-speech-blue.png',
+     '../img/colors/deep-lilac.png',
+     '../img/colors/free-speech-magenta.png',
+    '../img/colors/brilliant-rose.png',
+    '../img/colors/light-slate-grey.png'
+  ]
+
+  moonPayService.getCountryByIpAddress().then(function onGetCountrByIpAddress(user) {
+    $scope.isBuyBitcoinAllowed = user.isAllowed;
+  });
 
   var channel = "ga";
   if (platformInfo.isCordova) {
     channel = "firebase";
   }
-  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [], [channel]);
+  var log = new window.BitAnalytics.LogEvent("wallet_details_open", [{}, {}, {}], [channel, 'leanplum']);
   window.BitAnalytics.LogEventHandlers.postEvent(log);
 
   $scope.openExternalLink = function(url, target) {
@@ -114,6 +172,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     });
   };
+
+  function openWalletSettings() {
+    $state.go('tabs.preferences', {'walletId': $scope.wallet.id, 'backToDetails': true});
+  }
 
   $scope.openSearchModal = function() {
     $scope.color = $scope.wallet.color;
@@ -234,7 +296,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
       $scope.$broadcast('scroll.infiniteScrollComplete');
 
       if (err) {
-        console.error('pagination Failed to get history.', err);
+        $log.error('pagination Failed to get history.', err);
         $scope.vm.updateTxHistoryFailed = true;
         return;
       }
@@ -362,11 +424,14 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   var scrollWatcherInitialized;
 
   $scope.$on("$ionicView.enter", function(event, data) {
-    if ($scope.isCordova && $scope.isAndroid) setAndroidStatusBarColor();
     scrollWatcherInitialized = true;
   });
 
   $scope.$on("$ionicView.beforeEnter", function(event, data) {
+    if ($window.StatusBar) {
+      $window.StatusBar.styleDefault();
+    }
+
     configService.whenAvailable(function (config) {
       $scope.selectedPriceDisplay = config.wallet.settings.priceDisplay;
 
@@ -377,7 +442,10 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
 
     $scope.walletId = data.stateParams.walletId;
     $scope.wallet = profileService.getWallet($scope.walletId);
+    $scope.walletBackgroundUrl = $scope.walletBackgroundUrl = $scope.wallet.colorIndex;
+    console.log('')
     if (!$scope.wallet) return;
+    $scope.status = $scope.wallet.status;
     $scope.requiresMultipleSignatures = $scope.wallet.credentials.m > 1;
 
     $scope.vm.gettingInitialHistory = true;
@@ -399,7 +467,7 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     ];
   });
 
-  var refreshInterval;
+  var refreshInterval = null;
 
   $scope.$on("$ionicView.afterEnter", function onAfterEnter(event, data) {
     updateTxHistoryFromCachedData();
@@ -411,24 +479,37 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
     }, 1000);
   });
 
-  $scope.$on("$ionicView.afterLeave", function(event, data) {
-    $interval.cancel(refreshInterval);
-    if ($window.StatusBar) {
-      $window.StatusBar.backgroundColorByHexString('#000000');
-    }
-  });
+  $scope.$on("$ionicView.afterLeave", _onAfterLeave);
+  $scope.$on("$ionicView.leave", _onLeave);
 
-  $scope.$on("$ionicView.leave", function(event, data) {
+  function getSatoshiDiceIconUrl() {
+    return satoshiDiceService.iconUrl;
+  }
+
+  function _onAfterLeave(event, data) {
+    if (refreshInterval !== null) {
+      $interval.cancel(refreshInterval);
+      refreshInterval = null;
+    }
+    if ($window.StatusBar) {
+      $window.StatusBar.backgroundColorByHexString('#FBFCFF');
+    }
+  }
+
+  function _onLeave(event, data) {
     lodash.each(listeners, function(x) {
       x();
     });
-  });
+  }
+
+  function _callLeaveHandlers() {
+    _onLeave();
+    _onAfterLeave();
+  }
 
   function setAndroidStatusBarColor() {
     var SUBTRACT_AMOUNT = 15;
-    var walletColor;
-    if (!$scope.wallet.color) walletColor = appConfigService.name == 'copay' ? '#019477' : '#4a90e2';
-    else walletColor = $scope.wallet.color;
+    var walletColor = "#ffffff";
     var rgb = hexToRgb(walletColor);
     var keys = Object.keys(rgb);
     keys.forEach(function(k) {
@@ -468,12 +549,15 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   }
 
   $scope.goToSend = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     sendFlowService.start({
+      coin: $scope.wallet.coin,
       fromWalletId: $scope.wallet.id
     });
     
   };
   $scope.goToReceive = function() {
+    _callLeaveHandlers(); // During testing these weren't automatically called
     $state.go('tabs.home', {
       walletId: $scope.wallet.id
     }).then(function () {
@@ -485,11 +569,11 @@ angular.module('copayApp.controllers').controller('walletDetailsController', fun
   };
   
   $scope.goToBuy = function() {
-    $state.go('tabs.home', {
-      walletId: $scope.wallet.id
-    }).then(function () {
-      $ionicHistory.clearHistory();
-      $state.go('tabs.buyandsell');
-    });
+    if ($scope.isBuyBitcoinAllowed) {
+      moonPayService.start();
+    } else {
+      var os = platformInfo.isAndroid ? 'android' : platformInfo.isIOS ? 'ios' : 'desktop';
+      externalLinkService.open('https://purchase.bitcoin.com/?utm_source=WalletApp&utm_medium=' + os);
+    }
   };
 });

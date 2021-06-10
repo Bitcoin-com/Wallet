@@ -1,0 +1,28 @@
+<ion-view id="marco-coino" class="apl light" show-tabs>
+  <ion-nav-bar>
+    <ion-nav-title>{{'Shop Bitcoin'}}</ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div id="container">
+      <iframe id="marco-coino-iframe" src="{{vm.marcocoinoUrl}}"></iframe>
+
+      <div id="add-merchant">
+        <div class="apl-list">
+          <div class="item apl-list-item item-button-right">
+            <div class="button-right-container">
+              <a ng-click="vm.addMerchant()" class="button-right" translate>Add</a>
+            </div>
+            <div class="apl-card__title__container">
+              <div class="apl-card__title" translate>Add a Business</div>
+              <div class="apl-card__subtitle multiline" translate>
+                  Do you have or know a business that accepts Bitcoin Cash?
+              </div>
+            </div>
+          </div>       
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

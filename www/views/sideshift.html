@@ -1,0 +1,33 @@
+<ion-view id="sideshift" class="settings" show-tabs>
+  <ion-nav-bar>
+    <ion-nav-title>
+      {{'SideShift AI'|translate}}
+    </ion-nav-title>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content>
+    <div ng-include="'views/thirdparty/sideshift-header.html'"></div>
+    <div class="list card empty-case">
+      <div>
+        <img class="swap-image" src="img/sideshift_swap.png"/>
+      </div>
+      <div class="subtitle">
+        <p translate>Exchange your BTC to BCH in minutes.</p>
+        <div ng-show="!walletsWithFunds.length">
+          <p translate>To start the process you need to add funds to your wallet.</p>
+        </div>
+        <div ng-show="walletsWithFunds.length">
+          <p translate>The process is fast and you will receive the exchanged amount in your wallet.</p>
+        </div>
+        <div ng-show="!hasWallets" translate>To get started, you'll need to create a bitcoin wallet and get some bitcoin.</div>
+        <div class="padding buttons">
+          <button class="button button-standard button-green" ng-click="buyBitcoin()" ng-show="!walletsWithFunds.length" translate>Buy Bitcoin now</button>
+          <button class="button button-standard button-white" ng-click="showMyAddress()" ng-show="!walletsWithFunds.length" translate>Show my address</button>
+          <button class="button button-standard button-green" ng-click="createWallet()" ng-show="!hasWallets" translate>Create bitcoin wallet</button>
+          <button class="button button-standard button-sideshift track_sideshift_start_click" ng-click="sideshift()" ng-show="walletsWithFunds.length" translate>Start SideShift AI</button>
+        </div>
+      </div>
+    </div>
+    <div class="third-party-notice" translate>This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction.</div>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-view class="apl" can-swipe-back="false" hide-tabs>
+  <ion-nav-bar >
+    <ion-nav-buttons side="primary">
+      <button class="button apl-back-button track_buy_bitcoin_welcome_screen_close" ng-click="$ionicGoBack(-2)">
+        <i class="icon ion-chevron-left"></i><span translate>Back</span>
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content class="apl fullscreen">
+    <div id="buy-bitcoin-welcome">
+      <div class="image-container">
+        <img src="img/buy-bitcoin/buy-bitcoin.svg"/>
+      </div>
+      <h1 ng-if="!vm.securityCodeMode" class="center" translate>Buy Bitcoin Cash</h1>
+      <h1 ng-if="vm.securityCodeMode" class="center" translate>Verify Email</h1>
+      <p class="center" ng-if="!vm.securityCodeMode" translate>Buy Bitcoin Cash instantly with your credit card. Enter your email to get started.</p>
+      <p class="center" ng-if="vm.securityCodeMode" translate>Enter the security code we've just sent you to verify your email.</p>
+      <small class="center" translate="">You will only receive emails related to your purchases.</small>
+      <div>
+        <div class="apl-divider"></div>
+        <form ng-if="!vm.securityCodeMode" name="emailForm" ng-submit="vm.preAuthenticateCustomer()" novalidate>
+          <div class="row">
+            <label for="email-entry" translate>Email</label>
+            <input id="email-entry"
+            name="email"
+            type="email"
+            placeholder="satoshi@bitcoin.com"
+            ng-required="true"
+            ng-model="vm.email"
+            ng-model-options="{ debounce: 1000 }"
+            required>
+          </div>
+          <div class="error" ng-show="emailForm.email.$error.email" translate>Must be a valid email address.</div>
+        </form>
+        <form ng-if="vm.securityCodeMode" name="securityCodeForm" ng-submit="vm.authenticateCustomer()" novalidate>
+          <div class="row">
+            <label for="securityCode-entry" translate>Security code</label>
+            <input id="securityCode-entry"
+            name="securityCode"
+            type="text"
+            placeholder="1234"
+            ng-required="true"
+            ng-model="vm.securityCode"
+            ng-model-options="{ debounce: 1000 }"
+            required>
+          </div>
+        </form>
+        <div class="apl-divider"></div>
+      </div>
+      <div id="bottom-button" class="apl-button-bottom-container no-shadow">
+        <a ng-if="!vm.securityCodeMode" class="apl-button" ng-click="vm.preAuthenticateCustomer()" translate>Get Started</a>
+        <a ng-if="vm.securityCodeMode" class="apl-button" ng-click="vm.authenticateCustomer()" translate>Verify Email</a>
+      </div>
+  </div>
+  </ion-content>
+</ion-view>

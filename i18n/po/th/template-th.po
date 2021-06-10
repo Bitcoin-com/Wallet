@@ -1,0 +1,4642 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: bitcoincom-wallet\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: crowdin.com\n"
+"X-Crowdin-Project: bitcoincom-wallet\n"
+"X-Crowdin-Language: th\n"
+"X-Crowdin-File: template.pot\n"
+"Last-Translator: emilold\n"
+"Language-Team: Thai\n"
+"Language: th\n"
+"PO-Revision-Date: 2019-06-04 04:55\n"
+
+#: www/views/modals/paypro.html:34
+msgid "(Trusted)"
+msgstr "(เชื่อถือ)"
+
+#: www/views/includes/txp.html:23
+#: www/views/includes/walletHistory.html:64
+msgid "(possible double spend)"
+msgstr "(อาจมีการจ่ายซ้ำ)"
+
+#: www/views/modals/txp-details.html:159
+msgid "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
+msgstr "ข้อเสนอในการจ่ายสามารถถูกลบได้ถ้า 1) คุณเป็นผู้สร้างกระเป๋านี้ และไม่มีcopayerอื่นเคยลงนาม หรือ 2) ผ่านมา24ชั่วโมงแล้วหลังจากที่กระเป๋าได้ถูกสร้างขึ้น"
+
+#: www/views/tx-details.html:82
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} ของธุรกรรม"
+
+#: www/views/modals/txp-details.html:102
+msgid "- {{tx.feeRateStr}} of the transaction"
+msgstr "- {{tx.feeRateStr}} ของธุรกรรม"
+
+#: www/views/feedback/rateApp.html:7
+msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "การให้คะแนน 5 ดาว{{appName}}จะช่วยให้เรามีผู้ใช้มากขึ้นและมากไปกว่านั้นทางผู้ใช้ยิ่งมากยิ่งทำให้เราขยันขันแข็งมากยิ่งขึ้น"
+
+#: www/views/mercadoLibre.html:18
+#: www/views/mercadoLibre.html:40
+msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
+msgstr "<b> เฉพาะ </b> กู้คืนได้ที่ Mercado Livre (บราซิล)"
+
+#: src/js/controllers/feedback/send.js:27
+#: www/views/feedback/complete.html:21
+msgid "A member of the team will review your feedback as soon as possible."
+msgstr "ทางทีมงานจะทำการตรวจสอบคำติชมของคุณโดยเร็วที่สุด"
+
+#: src/js/controllers/confirm.js:401
+msgid "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size allowed for a transaction was exceeded."
+msgstr "ทั้งหมดของ {{amountAboveMaxSizeStr}} ถูกแยกออก เพราะเกินขีดจำกัดที่กำหนดสำหรับการทำธุรกรรม"
+
+#: src/js/controllers/confirm.js:395
+msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
+msgstr "ทั้งหมด {{amountBelowFeeStr}} ถูกแยกออก เงินเหล่านี้มาจาก UTXOs มีขนาดเล็กกว่าค่าเครือข่ายที่ให้บริการ"
+
+#: src/js/controllers/preferencesAbout.js:6
+#: www/views/tab-settings.html:156
+msgid "About"
+msgstr "เกี่ยวกับ"
+
+#: src/js/controllers/modals/txpDetails.js:62
+#: src/js/controllers/tx-details.js:79
+msgid "Accepted"
+msgstr "ยอมรับ"
+
+#: www/views/preferencesInformation.html:72
+msgid "Account"
+msgstr "บัญชี"
+
+#: www/views/join.html:72
+#: www/views/tab-create-personal.html:45
+#: www/views/tab-create-shared.html:74
+#: www/views/tab-import-hardware.html:19
+msgid "Account Number"
+msgstr "หมายเลขบัญชี"
+
+#: www/views/tab-home.html:61
+msgid "Instant transactions with low fees"
+msgstr "ค่าธรรมเนียมการธุรกรรมที่ต่ำทันที"
+
+#: www/views/walletSelector.html:49
+msgid "Insufficient funds"
+msgstr "เงินไม่เพียงพอ"
+
+#: www/views/amount.html:42
+msgid "Change Currency"
+msgstr "เปลี่ยนสกุลเงิน"
+
+#: www/views/amount.html:49
+msgid "Available Funds"
+msgstr "พบยอดเงิน"
+
+#: www/views/amount.html:59
+msgid "Use All Available Funds"
+msgstr "ใช้ยอดเงินที่พบทั้งหมด"
+
+#: www/views/amount.html:99
+msgid "Next"
+msgstr "ถัดไป"
+
+#: www/views/preferencesBitpayServices.html:23
+msgid "Accounts"
+msgstr "หลายบัญชี"
+
+#: www/views/bitpayCard.html:56
+msgid "Activity"
+msgstr "กิจกรรม"
+
+#: src/js/services/bitpayAccountService.js:83
+msgid "Add Account"
+msgstr "เพิ่มบัญชี"
+
+#: src/js/services/bitpayAccountService.js:69
+msgid "Add BitPay Account?"
+msgstr "เพิ่มบัญชี BitPay"
+
+#: www/views/addressbook.add.html:4
+#: www/views/addressbook.html:22
+msgid "Add Contact"
+msgstr "เพิ่มผู้ติดต่อ"
+
+#: www/views/bitpayCard.html:28
+msgid "Add Funds"
+msgstr "เพิ่มเงิน"
+
+#: www/views/confirm.html:94
+msgid "Add Memo"
+msgstr "เพิ่มบันทึก"
+
+#: www/views/join.html:87
+#: www/views/tab-create-personal.html:59
+#: www/views/tab-create-shared.html:88
+msgid "Add a password"
+msgstr "เพิ่มรหัสผ่าน"
+
+#: www/views/includes/accountSelector.html:27
+msgid "Add account"
+msgstr "เพิ่มบัญชี"
+
+#: www/views/join.html:90
+#: www/views/tab-create-personal.html:62
+#: www/views/tab-create-shared.html:91
+msgid "Add an optional password to secure the recovery phrase"
+msgstr "เพิ่มรหัสผ่านเพิ่มเติมเพื่อยืนยันกลุ่มคำการกู้คืน"
+
+#: www/views/includes/incomingDataMenu.html:41
+msgid "Add as a contact"
+msgstr "เพิ่มเป็นผู้ติดต่อ"
+
+#: src/js/controllers/confirm.js:424
+msgid "Add description"
+msgstr "เพิ่มคำอธิบาย"
+
+#: www/views/topup.html:6
+msgid "Add funds"
+msgstr "เพิ่มเงิน"
+
+#: src/js/services/bitpayAccountService.js:78
+msgid "Add this BitPay account ({{email}})?"
+msgstr "เพิ่มบัญชีBitPay นี้ ({{email}})"
+
+#: www/views/add.html:3
+msgid "Add wallet"
+msgstr "เพิ่มกระเป๋าสตางค์"
+
+#: www/views/addressbook.view.html:26
+#: www/views/customAmount.html:28
+#: www/views/modals/paypro.html:24
+msgid "Address"
+msgstr "ที่อยู่"
+
+#: www/views/addressbook.html:6
+#: www/views/tab-settings.html:13
+msgid "Address Book"
+msgstr "สมุดรายชื่อ"
+
+#: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
+msgid "Address Type"
+msgstr "ชนิดของที่อยู่"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "ที่อยู่เงินสด"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Legacy"
+
+#: www/views/addresses.html:64
+msgid "Addresses With Balance"
+msgstr "ที่อยู่ที่มียอดคงเหลือ"
+
+#: www/views/tab-settings.html:149
+msgid "Advanced"
+msgstr "ขั้นสูง"
+
+#: www/views/advancedSettings.html:3
+msgid "Advanced Settings"
+msgstr "ตั้งค่าขั้นสูง"
+
+#: www/views/bitpayCard.html:62
+msgid "All"
+msgstr "ทั้งหมด"
+
+#: www/views/allAddresses.html:3
+msgid "All Addresses"
+msgstr " ที่อยู่ทั้งหมด"
+
+#: www/views/modals/wallet-balance.html:18
+msgid "All of your bitcoin wallet balance may not be available for immediate spending."
+msgstr "ยอดเงินทั้งหมดในกระเป๋าอาจจะไม่สามารถใช้จ่ายได้ทันที"
+
+#: www/views/tab-receive.html:25
+msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgstr "อุปกรณ์ทั้งหมดจำเป็นต้องถูกเพิ่มไปยังกระเป๋านี้ก่อนถึงจะสร้างที่อยู่ Bitcoin ได้"
+
+#: www/views/tab-scan.html:21
+msgid "Allow Camera Access"
+msgstr "อนุญาตการเข้าถึงกล้อง"
+
+#: www/views/onboarding/notifications.html:7
+msgid "Allow notifications"
+msgstr "อนุญาตการแจ้งเตือน"
+
+#: www/views/onboarding/disclaimer.html:14
+msgid "Almost done! Let's review."
+msgstr "เกือบเสร็จแล้ว! ลองทบทวนดู"
+
+#: www/views/preferencesAltCurrency.html:4
+#: www/views/tab-settings.html:79
+msgid "Alternative Currency"
+msgstr "สกุลเงินอื่นๆ"
+
+#: www/views/tab-settings.html:75
+msgid "Price Display"
+msgstr "แสดงราคา"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:12
+msgid "Fiat"
+msgstr "Държавна Валута"
+
+#: src/js/controllers/tab-settings.js:19
+#: www/views/preferencesPriceDisplay.html:15
+msgid "Cryptocurrency"
+msgstr "คริปโทเคอร์เรนซี"
+
+#: src/js/controllers/buyAmazon.js:98
+msgid "Amazon.com is not available at this moment. Please try back later."
+msgstr "Amazon.com ไม่พร้อมใช้งานขณะนี้ กรุณาลองใหม่ภายหลัง"
+
+#: www/views/amount.html:44
+#: www/views/customAmount.html:34
+#: www/views/includes/output.html:7
+msgid "Amount"
+msgstr "ยอดเงิน"
+
+#: src/js/services/bwcError.js:110
+msgid "Amount below minimum allowed"
+msgstr "ยอดเงินต่ำกว่าขั้นต่ำที่กำหนด"
+
+#: src/js/controllers/confirm.js:216
+msgid "Amount too big"
+msgstr "จำนวนเงินที่มากเกินไป"
+
+#: www/views/includes/walletHistory.html:31
+msgid "Amount too low to spend"
+msgstr "ยอดต่ำเกินไปที่จะจ่าย"
+
+#: src/js/controllers/tab-home.js:147
+msgid "An update to this app is available. For your security, please update to the latest version."
+msgstr "เวอร์ชั่นใหม่พร้อมใช้งานแล้ว เพื่อความปลอดภัยของคุณ กรุณาอัพเดตให้เป็นเวอร์ชั่นล่าสุด"
+
+#: www/views/backupWarning.html:14
+msgid "Anyone with your backup phrase can access or spend your bitcoin."
+msgstr "ใครก็ตามที่ทราบกลุ่มคำสำรองข้อมูลของคุณ จะสามารถเข้าถึงและใช้จ่ายเงินของคุณได้"
+
+#: www/views/addresses.html:94
+msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgstr "ค่าธรรมเนียมโดยประมาณของเครือข่าย Bitcoin เพื่อโอนยอดในกระเป๋า  (โดยแบบด่วนแบบปกติ)"
+
+#: www/views/backupWarning.html:10
+msgid "Are you being watched?"
+msgstr "มีใครกำลังแอบมองคุณหรือไม่?"
+
+#: src/js/controllers/preferencesExternal.js:15
+msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgstr "ใครกำลังแอบมองคุณหรือไม่? ใครที่มีวลีกู้คืนของคุณสามารถเข้าถึงกระเป๋าและใช้เงินของคุณได้นะ"
+
+#: src/js/controllers/copayers.js:56
+msgid "Are you sure you want to cancel and delete this wallet?"
+msgstr "คุณแน่ใจนะว่าต้องการยกเลิก และลบกระเป๋านี้?"
+
+#: src/js/controllers/addressbookView.js:37
+msgid "Are you sure you want to delete this contact?"
+msgstr "คุณต้องการยืนยันการลบผู้ติดต่อนี้หรือไม่?"
+
+#: src/js/controllers/preferencesDelete.js:25
+msgid "Are you sure you want to delete this wallet?"
+msgstr "คุณแน่ใจนะว่าต้องการลบกระเป๋านี้?"
+
+#: src/js/controllers/modals/txpDetails.js:154
+msgid "Are you sure you want to reject this transaction?"
+msgstr "คุณแน่ใจนะว่าต้องการปฏิเสธรายการนี้?"
+
+#: src/js/controllers/modals/txpDetails.js:171
+msgid "Are you sure you want to remove this transaction?"
+msgstr "คุณแน่ใจนะว่าต้องการลบธุรกรรมนี้?"
+
+#: src/js/controllers/onboarding/backupRequest.js:23
+msgid "Are you sure you want to skip it?"
+msgstr "คุณต้องการข้าม แน่ใจหรือไม่?"
+
+#: www/views/modals/bitpay-card-confirmation.html:4
+msgid "Are you sure you would like to log out of your BitPay Card account?"
+msgstr "คุณต้องการออกจากบัญชีของบัตร BitPay แน่ใจหรือไม่?"
+
+#: src/js/controllers/preferencesBitpayCard.js:7
+#: src/js/controllers/preferencesBitpayServices.js:20
+msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
+msgstr " คุณแน่ใจนะว่าต้องการลบบัตร Bitpay ของคุณจากอุปกรณ์นี้ {{lastFourDigits}}"
+
+#: www/views/includes/walletInfo.html:10
+msgid "Auditable"
+msgstr "ตรวจสอบได้"
+
+#: www/views/modals/wallet-balance.html:42
+msgid "Available"
+msgstr "พร้อมใช้งาน"
+
+#: www/views/includes/available-balance.html:3
+msgid "Available Balance"
+msgstr "มียอดพร้อมใช้งาน"
+
+#: www/views/modals/chooseFeeLevel.html:24
+#: www/views/preferencesFee.html:15
+msgid "Average confirmation time"
+msgstr "เวลายืนยันโดยเฉลี่ย"
+
+#: www/views/join.html:143
+#: www/views/tab-create-personal.html:113
+#: www/views/tab-create-shared.html:142
+#: www/views/tab-import-phrase.html:51
+msgid "BIP32 path for address derivation"
+msgstr "BIP32 สำหรับแหล่งที่มาของที่อยู่"
+
+#: www/views/cashScan.html:25
+msgid "BTC wallets"
+msgstr "กระเป๋าสตางค์ BTC"
+
+#: www/views/preferences.html:34
+msgid "Backup"
+msgstr "การสำรองข้อมูล"
+
+#: www/views/includes/backupNeededPopup.html:7
+msgid "Backup Needed"
+msgstr "จำเป็นต้องสำรองข้อมูล"
+
+#: src/js/controllers/lockSetup.js:87
+msgid "Backup all livenet wallets before using this function"
+msgstr "สำรองข้อมูลกระเป๋าสตางค์ของคุณก่อนที่จะใช้ฟังก์ชันนี้"
+
+#: src/js/controllers/cashScan.js:64
+#: www/views/includes/walletListSettings.html:12
+#: www/views/preferences.html:36
+msgid "Backup needed"
+msgstr "จำเป็นต้องสำรองข้อมูล"
+
+#: www/views/includes/backupNeededPopup.html:9
+msgid "Backup now"
+msgstr "สำรองข้อมูลเดี๋ยวนี้"
+
+#: www/views/onboarding/backupRequest.html:11
+#: www/views/tab-export-file.html:89
+msgid "Backup wallet"
+msgstr "สำรองข้อมูลกระเป๋าสตางค์"
+
+#: src/js/controllers/lockSetup.js:84
+msgid "Backup your wallet before using this function"
+msgstr "สำรองข้อมูลกระเป๋าสตางค์ของคุณก่อนที่จะใช้ฟังก์ชันนี้"
+
+#: src/js/services/profileService.js:446
+msgid "Bad wallet invitation"
+msgstr "การเชิญไม่ดีนัก"
+
+#: www/views/preferencesInformation.html:102
+msgid "Balance By Address"
+msgstr "ยอดคงเหลือของที่อยู่"
+
+#: www/views/includes/confirmBackupPopup.html:7
+msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
+msgstr "ตรวจสอบให้แน่ใจว่าเก็บวลีกู้คืนของคุณในที่ๆปลอดภัย ถ้าแอปฯนี้ถูกลบ เงินของคุณไม่สามารถกู้คืนได้"
+
+#: www/views/preferencesBitpayServices.html:9
+msgid "BitPay Visa&reg; Cards"
+msgstr "บัตร BitPay&amp;reg;"
+
+#: www/views/addressbook.add.html:38
+#: www/views/includes/incomingDataMenu.html:29
+msgid "Bitcoin Address"
+msgstr "ที่อยู่Bitcoin "
+
+#: www/views/cashScan.html:4
+msgid "Bitcoin Cash (BCH) Balances"
+msgstr "ยอดเงิน Bitcoin (BCH)"
+
+#: www/views/preferencesCash.html:3
+#: www/views/tab-settings.html:47
+msgid "Bitcoin Cash Support"
+msgstr "รองรับเงินสด Bitcoin"
+
+#: www/views/tab-home.html:98
+#: www/views/tab-settings.html:115
+msgid "Bitcoin Cash Wallets"
+msgstr "กระเป๋าเงิน Bitcoin"
+
+#: www/views/modals/chooseFeeLevel.html:4
+#: www/views/preferencesFee.html:4
+#: www/views/tab-settings.html:90
+msgid "Bitcoin Network Fee Policy"
+msgstr "ค่าธรรมเนียมเครือข่าย Bitcoin"
+
+#: www/views/tab-home.html:83
+#: www/views/tab-settings.html:107
+msgid "Bitcoin Core Wallets"
+msgstr "กระเป๋า Bitcoin หลัก"
+
+#: src/js/services/incomingData.js:151
+msgid "Bitcoin cash Payment"
+msgstr "การชำระเงินสด Bitcoin"
+
+#: www/views/onboarding/tour.html:31
+msgid "Bitcoin is a currency."
+msgstr "Bitcoin คือ สกุลเงิน"
+
+#: www/views/onboarding/disclaimer.html:15
+msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
+msgstr "Bitcoinแตกต่าง &amp;ndash; ไม่ปลอดภัยหากเก็บที่ธนาคารหรือเว็บไซต์"
+
+#: www/views/onboarding/tour.html:18
+msgid "Bitcoin is secure,<br>digital money."
+msgstr "Bitcoin มีความปลอดภัย<br>เงินดิจิตอล"
+
+#: www/views/preferencesFee.html:11
+msgid "Bitcoin transactions include a fee collected by miners on the network."
+msgstr "การทำธุรกรรม Bitcoin รวมถึงค่าธรรมเนียมที่เรียกเก็บโดยไมเนอร์ในเครือข่าย"
+
+#: www/views/buyAmazon.html:108
+msgid "Bought {{amountUnitStr}}"
+msgstr "ซื้อแล้ว {{amountUnitStr}}"
+
+#: www/views/modals/txp-details.html:36
+msgid "Broadcast Payment"
+msgstr "ทำการชำระเงิน"
+
+#: src/js/controllers/modals/txpDetails.js:64
+#: src/js/controllers/tx-details.js:81
+msgid "Broadcasted"
+msgstr "เรียบร้อยแล้ว"
+
+#: src/js/services/onGoingProcess.js:11
+msgid "Broadcasting transaction"
+msgstr "กำลังดำเนินการ"
+
+#: www/views/unsupported.html:6
+msgid "Browser unsupported"
+msgstr "ไม่รองรับเบราว์เซอร์"
+
+#: www/views/buyAmazon.html:5
+#: www/views/buyMercadoLibre.html:6
+msgid "Buy"
+msgstr "ซื้อ"
+
+#: www/views/includes/buyAndSellCard.html:3
+msgid "Buy &amp; Sell Bitcoin"
+msgstr "ซื้อ &amp;amp; ขาย Bitcoin"
+
+#: www/views/tab-send.html:35
+#: src/js/services/buyAndSellService.js:26
+msgid "Buy Bitcoin"
+msgstr "ซื้อ Bitcoin"
+
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "ซื้อหรือขาย Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "เชื่อมต่อการแลกเปลี่ยน"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "ซื้อหรือขาย bitcoin จากกระเป๋าของคุณโดยตรง โดยการเชื่อมต่อบัญชีแลกเปลี่ยนเงินตราผู้ใช้ของคุณ"
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "ซื้อ Bitcoin ด้วยบัตรเครดิต"
+
+#: www/views/mercadoLibre.html:22
+#: www/views/mercadoLibre.html:50
+msgid "Buy a Gift Card"
+msgstr "ซื้อบัตรของขวัญ"
+
+#: src/js/controllers/buyAmazon.js:334
+msgid "Buy from"
+msgstr "ซื้อจาก"
+
+#: src/js/services/onGoingProcess.js:40
+msgid "Buying Bitcoin..."
+msgstr "กำลังซื้อ Bitcoin"
+
+#: src/js/services/onGoingProcess.js:12
+msgid "Calculating fee"
+msgstr "กำลังคำนวณค่าธรรมเนียม"
+
+#: src/js/controllers/buyAmazon.js:313
+#: src/js/controllers/buyMercadoLibre.js:307
+#: src/js/controllers/confirm.js:550
+#: src/js/controllers/topup.js:287
+#: src/js/services/incomingData.js:154
+#: src/js/services/popupService.js:62
+#: src/js/services/popupService.js:73
+#: www/views/addressbook.add.html:10
+#: www/views/feedback/send.html:5
+#: www/views/includes/incomingDataMenu.html:22
+#: www/views/includes/incomingDataMenu.html:54
+#: www/views/includes/incomingDataMenu.html:73
+#: www/views/includes/incomingDataMenu.html:97
+#: www/views/includes/note.html:6
+#: www/views/modals/bitpay-card-confirmation.html:8
+#: www/views/modals/confirmation.html:13
+msgid "Cancel"
+msgstr "ยกเลิก"
+
+#: www/views/copayers.html:36
+msgid "Cancel invitation"
+msgstr "ยกเลิกการเชิญ"
+
+#: src/js/controllers/onboarding/tour.js:52
+msgid "Cannot Create Wallet"
+msgstr "ไม่สามารถสร้างกระเป๋าได้"
+
+#: src/js/services/profileService.js:442
+msgid "Cannot join the same wallet more than once"
+msgstr "ไม่สามารถเข้ากระเป๋าเดิมมากกว่าหนึ่งครั้ง"
+
+#: www/views/includes/bitpayCardsCard.html:2
+msgid "Cards"
+msgstr "บัตร"
+
+#: www/views/modals/paypro.html:30
+msgid "Certified by"
+msgstr "รับรองโดย"
+
+#: www/views/preferencesExternal.html:19
+msgid "Check installation and retry."
+msgstr "ตรวจสอบการติดตั้งและลองอีกครั้ง"
+
+#: www/views/tab-import-file.html:4
+msgid "Choose a backup file from your computer"
+msgstr "เลือกไฟล์สำรองข้อมูลจากคอมพิวเตอร์ของคุณ"
+
+#: www/views/modals/wallets.html:9
+msgid "Choose your destination wallet"
+msgstr "เลือกกระเป๋าปลายทางที่ต้องการส่ง"
+
+#: www/views/modals/wallets.html:10
+msgid "Choose your source wallet"
+msgstr "เลือกกระเป๋าของคุณ"
+
+#: www/views/backup.html:61
+msgid "Clear"
+msgstr "ล้าง"
+
+#: www/views/preferencesHistory.html:24
+msgid "Clear cache"
+msgstr "ล้างแคช"
+
+#: src/js/controllers/confirm.js:373
+#: src/js/controllers/modals/txpDetails.js:49
+msgid "Click to accept"
+msgstr "คลิกเพื่อตกลง"
+
+#: src/js/controllers/confirm.js:367
+msgid "Click to pay"
+msgstr "คลิกเพื่อชำระเงิน"
+
+#: src/js/controllers/confirm.js:379
+#: src/js/controllers/modals/txpDetails.js:42
+msgid "Click to send"
+msgstr "คลิกเพื่อส่ง"
+
+#: www/views/customAmount.html:4
+#: www/views/modals/mercadolibre-card-details.html:3
+#: www/views/modals/paypro.html:4
+#: www/views/modals/pin.html:3
+#: www/views/modals/search.html:3
+#: www/views/modals/wallet-balance.html:3
+#: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
+msgid "Close"
+msgstr "ปิด"
+
+#: www/views/includes/cash.html:2
+#: www/views/preferencesInformation.html:17
+msgid "Coin"
+msgstr "เหรียญ"
+
+#: www/views/preferences.html:22
+msgid "Color"
+msgstr "สี"
+
+#: www/views/preferencesAbout.html:21
+msgid "Commit hash"
+msgstr "Commit hash"
+
+#: www/views/preferences.html:49
+msgid "Complete the backup process to use this option"
+msgstr "ทำการสำรองข้อมูลจะใช้ตัวเลือกนี้"
+
+#: www/views/bitpayCard.html:93
+msgid "Completed"
+msgstr "เสร็จสมบูรณ์"
+
+#: src/js/controllers/buyAmazon.js:311
+#: src/js/controllers/buyMercadoLibre.js:305
+#: src/js/controllers/confirm.js:549
+#: src/js/controllers/copayers.js:55
+#: src/js/controllers/topup.js:285
+#: www/views/backup.html:60
+#: www/views/backup.html:79
+#: www/views/confirm.html:4
+#: www/views/onboarding/collectEmail.html:32
+msgid "Confirm"
+msgstr "ยืนยัน"
+
+#: www/views/modals/terms.html:26
+#: www/views/onboarding/disclaimer.html:44
+msgid "Confirm &amp; Finish"
+msgstr "ยืนยันเสร็จสิ้น &amp;amp;"
+
+#: www/views/buyAmazon.html:90
+msgid "Confirm purchase"
+msgstr "ยืนยันการซื้อ"
+
+#: www/views/modals/pin.html:10
+msgid "Confirm your PIN"
+msgstr "ยืนยันรหัสผ่าน"
+
+#: src/js/services/walletService.js:1033
+msgid "Confirm your new spending password"
+msgstr "ยืนยันรหัสผ่านการใช้จ่ายของคุณใหม่"
+
+#: www/views/tx-details.html:98
+msgid "Confirmations"
+msgstr "ทำการยืนยัน"
+
+#: www/views/bitpayCard.html:68
+#: www/views/modals/wallet-balance.html:61
+msgid "Confirming"
+msgstr "กำลังยืนยัน"
+
+#: www/views/bitpayCardIntro.html:37
+msgid "Connect my BitPay Card"
+msgstr "เชื่อมต่อการ์ด BitPay ของฉัน"
+
+#: src/js/services/onGoingProcess.js:13
+msgid "Connecting to Coinbase..."
+msgstr "กำลังเชื่อมต่อกับ Coinbase ..."
+
+#: src/js/services/onGoingProcess.js:14
+msgid "Connecting to Glidera..."
+msgstr "กำลังเชื่อมต่อกับ Coinbase..."
+
+#: src/js/services/bwcError.js:53
+msgid "Connection reset by peer"
+msgstr "การเชื่อมต่อใหม่โดยคนอื่น"
+
+#: www/views/tab-send.html:85
+msgid "Contacts"
+msgstr "รายชื่อ"
+
+#: www/views/tab-send.html:86
+msgid "Saved frequently used addresses"
+msgstr "บันทึกที่อยู่ที่ใช้บ่อย"
+
+#: www/views/onboarding/notifications.html:9
+msgid "Continue"
+msgstr "ขั้นตอนต่อไป "
+
+#: www/views/preferencesLanguage.html:26
+msgid "Contribute Translations"
+msgstr "ช่วยแปล"
+
+#: src/js/controllers/confirm.js:130
+msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Copay สนับสนุนเงิน Bitcoin ที่ใช้ที่อยู่เวอร์ชั่นใหม่เท่านั้น"
+
+#: src/js/services/bwcError.js:62
+msgid "Copayer already in this wallet"
+msgstr "Copayer อยู่ในกระเป๋านี้แล้ว"
+
+#: src/js/services/bwcError.js:77
+msgid "Copayer already voted on this spend proposal"
+msgstr "Copayer ถูกเลือกในข้อเสนอการใช้จ่ายนี้"
+
+#: src/js/services/bwcError.js:107
+msgid "Copayer data mismatch"
+msgstr "Copayer ข้อมูลไม่ตรงกัน"
+
+#: www/views/includes/walletActivity.html:2
+msgid "Copayer joined"
+msgstr "เข้าร่วม copayer แล้ว"
+
+#: www/views/preferencesInformation.html:94
+msgid "Copayer {{$index}}"
+msgstr "Copayer {{$index}}"
+
+#: src/js/controllers/copayers.js:79
+#: src/js/controllers/export.js:193
+#: src/js/controllers/confirm.js:41
+#: www/views/includes/copyToClipboard.html:4
+msgid "Copied to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ด"
+
+#: www/views/tab-export-file.html:94
+msgid "Copy this text as it is to a safe place (notepad or email)"
+msgstr "คัดลอกข้อความนี้ไปยังที่ๆปลอดภัย (notepad หรืออีเมล)"
+
+#: www/views/includes/incomingDataMenu.html:51
+#: www/views/includes/incomingDataMenu.html:70
+#: www/views/includes/incomingDataMenu.html:94
+#: www/views/includes/logOptions.html:9
+#: www/views/tab-export-file.html:78
+msgid "Copy to clipboard"
+msgstr "คัดลอกไปยังคลิปบอร์ด"
+
+#: src/js/controllers/buyMercadoLibre.js:102
+msgid "Could not access Gift Card Service"
+msgstr "ไม่สามารถเข้าถึงบริการบัตรของขวัญ"
+
+#: www/views/tab-import-phrase.html:2
+msgid "Could not access the wallet at the server. Please check:"
+msgstr "ไม่สามารถเข้าถึงกระเป๋าที่เซิร์ฟเวอร์ได้ โปรดตรวจทาน:"
+
+#: src/js/controllers/buyAmazon.js:102
+msgid "Could not access to Amazon.com"
+msgstr "สามารถเข้าถึง Amazon.com"
+
+#: src/js/services/profileService.js:511
+msgid "Could not access wallet"
+msgstr "ไม่สามารถเข้าถึงกระเป๋าได้"
+
+#: src/js/controllers/confirm.js:210
+msgid "Could not add message to imported wallet without shared encrypting key"
+msgstr "ไม่สามารถเพิ่มข้อความนำเข้ากระเป๋าโดยไม่มีการคีย์เข้ารหัสลับที่ใช้ร่วมกัน"
+
+#: src/js/controllers/modals/txpDetails.js:199
+msgid "Could not broadcast payment"
+msgstr "ไม่สามารถทำการชำระเงิน"
+
+#: src/js/services/bwcError.js:41
+msgid "Could not build transaction"
+msgstr "ไม่สามารถทำธุรกรรมใดๆได้"
+
+#: src/js/services/walletService.js:854
+msgid "Could not create address"
+msgstr "ไม่สามารถสร้างที่อยู่ได้"
+
+#: src/js/controllers/topup.js:92
+msgid "Could not create the invoice"
+msgstr "ไม่สามารถสร้างใบแจ้งหนี้ได้"
+
+#: src/js/controllers/buyAmazon.js:164
+#: src/js/controllers/buyMercadoLibre.js:164
+#: src/js/controllers/topup.js:142
+msgid "Could not create transaction"
+msgstr "ไม่สามารถทำธุรกรรมใดๆได้"
+
+#: src/js/services/profileService.js:350
+msgid "Could not create using the specified extended private key"
+msgstr "ไม่สามารถสร้างโดยใช้คีย์ส่วนตัวเพิ่มเติมที่ระบุ"
+
+#: src/js/services/profileService.js:362
+msgid "Could not create using the specified extended public key"
+msgstr "ไม่สามารถสร้างโดยใช้คีย์สาธารณะที่ระบุเพิ่มเติม"
+
+#: src/js/services/profileService.js:338
+msgid "Could not create: Invalid wallet recovery phrase"
+msgstr "ไม่สามารถสร้างได้: ไม่พบวลีกู้คืนกระเป๋าสตางค์"
+
+#: src/js/controllers/import.js:114
+msgid "Could not decrypt file, check your password"
+msgstr "ไม่สามารถถอดรหัสไฟล์ โปรดตรวจสอบรหัสผ่านของคุณ"
+
+#: src/js/controllers/modals/txpDetails.js:181
+msgid "Could not delete payment proposal"
+msgstr "ไม่สามารถลบคำขอการชำระเงินได้"
+
+#: src/js/controllers/cashScan.js:117
+msgid "Could not duplicate"
+msgstr "ไม่สามารถทำซ้ำ"
+
+#: src/js/services/feeService.js:73
+msgid "Could not get dynamic fee"
+msgstr "ไม่สามารถรับค่าธรรมเนียมแบบไดนามิก"
+
+#: src/js/services/feeService.js:43
+msgid "Could not get dynamic fee for level: {{feeLevel}}"
+msgstr "ไม่สามารถรับค่าธรรมเนียมแบบไดนามิกสำหรับระดับ: {{feeLevel}}"
+
+#: src/js/controllers/modals/feeLevels.js:112
+msgid "Could not get fee levels"
+msgstr "ไม่สามารถรับค่าธรรมเนียมระดับนี้"
+
+#: src/js/controllers/buyAmazon.js:122
+#: src/js/controllers/buyMercadoLibre.js:122
+#: src/js/controllers/topup.js:100
+msgid "Could not get the invoice"
+msgstr "ไม่สามารถรับใบแจ้งหนี้"
+
+#: src/js/controllers/bitpayCard.js:66
+msgid "Could not get transactions"
+msgstr "ไม่สามารถรับธุรกรรม"
+
+#: src/js/services/profileService.js:615
+#: src/js/services/profileService.js:650
+#: src/js/services/profileService.js:674
+msgid "Could not import"
+msgstr "ไม่สามารถนำเข้า"
+
+#: src/js/services/profileService.js:584
+msgid "Could not import. Check input file and spending password"
+msgstr "ไม่สามารถนำเข้าได้ โปรดตรวจสอบแฟ้มการป้อนข้อมูลและรหัสผ่าน"
+
+#: src/js/services/profileService.js:457
+msgid "Could not join wallet"
+msgstr "ไม่สามารถเข้ากระเป๋าสตางค์ได้"
+
+#: src/js/controllers/modals/txpDetails.js:161
+msgid "Could not reject payment"
+msgstr "ไม่สามารถปฏิเสธการชำระเงิน"
+
+#: src/js/controllers/preferencesBitpayServices.js:33
+msgid "Could not remove account"
+msgstr "ไม่สามารถลบบัญชี"
+
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:50
+msgid "Could not remove card"
+msgstr "ไม่สามารถเอาออกบัตร"
+
+#: src/js/services/walletService.js:776
+msgid "Could not save preferences on the server"
+msgstr "ไม่สามารถบันทึกการตั้งค่าบนเซิร์ฟเวอร์"
+
+#: src/js/controllers/modals/txpDetails.js:147
+msgid "Could not send payment"
+msgstr "ไม่สามารถทำการชำระเงิน"
+
+#: src/js/controllers/buyAmazon.js:325
+#: src/js/controllers/buyMercadoLibre.js:318
+#: src/js/controllers/topup.js:299
+msgid "Could not send transaction"
+msgstr "ไม่สามารถทำธุรกรรมใดๆได้"
+
+#: www/views/walletDetails.html:210
+msgid "Could not update transaction history"
+msgstr "ไม่สามารถอัพเดตประวัติธุรกรรมได้"
+
+#: src/js/controllers/addresses.js:29
+#: src/js/controllers/addresses.js:37
+#: src/js/controllers/copayers.js:30
+#: src/js/controllers/walletDetails.js:78
+msgid "Could not update wallet"
+msgstr "ไม่สามารถอัพเดตกระเป๋าสตางค์"
+
+#: www/views/tab-create-personal.html:3
+msgid "Create Personal Wallet"
+msgstr "สร้างกระเป๋าส่วนตัว"
+
+#: www/views/tab-create-shared.html:3
+msgid "Create Shared Wallet"
+msgstr "สร้างกระเป๋าสตางค์ที่ใช้ร่วมกัน"
+
+#: www/views/onboarding/tour.html:51
+#: www/views/tab-home.html:75
+#: www/views/tab-send.html:75
+msgid "Create bitcoin wallet"
+msgstr "สร้างกระเป๋าสตางค์ bitcoin"
+
+#: www/views/tab-create-personal.html:131
+msgid "Create new wallet"
+msgstr "สร้างกระเป๋าสตางค์ใหม่"
+
+#: www/views/add.html:22
+msgid "Create shared wallet"
+msgstr "สร้างกระเป๋าสตางค์ที่ใช้ร่วมกัน"
+
+#: www/views/tab-create-shared.html:160
+msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr "สร้าง {{formData.requiredCopayers}}-ของ -{{formData.totalCopayers}} กระเป๋าสตางค์"
+
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Copayers"
+
+#: www/views/modals/txp-details.html:81
+#: www/views/tx-details.html:60
+msgid "Created by"
+msgstr "สร้างขึ้นโดย"
+
+#: src/js/services/onGoingProcess.js:18
+msgid "Creating Wallet..."
+msgstr "กำลังสร้างกระเป๋า"
+
+#: src/js/services/onGoingProcess.js:17
+msgid "Creating transaction"
+msgstr "กำลังดำเนินการ"
+
+#: www/views/modals/chooseFeeLevel.html:34
+#: www/views/preferencesFee.html:20
+msgid "Current fee rate for this policy"
+msgstr "อัตราค่าธรรมเนียมปัจจุบัน"
+
+#: src/js/services/feeService.js:15
+msgid "Custom"
+msgstr "กำหนดเอง"
+
+#: www/views/customAmount.html:9
+msgid "Custom Amount"
+msgstr "จำนวนเงินที่กำหนดเอง"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Custom Fee"
+msgstr "กำหนดค่าธรรมเนียมเอง"
+
+#: www/views/modals/mercadolibre-card-details.html:56
+#: www/views/modals/txp-details.html:87
+#: www/views/tx-details.html:66
+msgid "Date"
+msgstr "วันที่"
+
+#: www/views/preferencesDeleteWallet.html:21
+msgid "Delete"
+msgstr "ลบ"
+
+#: www/views/modals/txp-details.html:164
+msgid "Delete Payment Proposal"
+msgstr "ลบข้อเสนอการชำระเงิน"
+
+#: www/views/preferencesAdvanced.html:33
+#: www/views/preferencesDeleteWallet.html:3
+msgid "Delete Wallet"
+msgstr "ลบกระเป๋าสตางค์"
+
+#: www/views/copayers.html:59
+msgid "Delete it and create a new one"
+msgstr "ลบ และสร้างใหม่"
+
+#: src/js/services/onGoingProcess.js:19
+msgid "Deleting Wallet..."
+msgstr "กำลังลบกระเป๋า..."
+
+#: src/js/services/onGoingProcess.js:28
+msgid "Deleting payment proposal"
+msgstr "ลบข้อเสนอการชำระเงิน"
+
+#: www/views/join.html:141
+#: www/views/tab-create-personal.html:111
+#: www/views/tab-create-shared.html:140
+#: www/views/tab-import-phrase.html:49
+msgid "Derivation Path"
+msgstr "ที่มา"
+
+#: www/views/preferencesInformation.html:47
+msgid "Derivation Strategy"
+msgstr "กลยุทธ์การได้มา"
+
+#: www/views/buyAmazon.html:39
+#: www/views/buyMercadoLibre.html:38
+#: www/views/modals/mercadolibre-card-details.html:6
+#: www/views/topup.html:45
+msgid "Details"
+msgstr "รายละเอียด"
+
+#: src/js/controllers/lockSetup.js:9
+#: src/js/controllers/tab-settings.js:65
+#: www/views/tab-settings.html:50
+msgid "Disabled"
+msgstr "ถูกปิดใช้งาน"
+
+#: www/views/includes/backupNeededPopup.html:10
+#: www/views/onboarding/backupRequest.html:12
+msgid "Do it later"
+msgstr "ทำในภายหลัง"
+
+#: www/views/tab-export-file.html:29
+msgid "Do not include private key"
+msgstr "ไม่มีคีย์ส่วนตัว"
+
+#: www/views/preferencesLanguage.html:21
+msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
+msgstr "ไม่พบภาษาที่คุณต้องการใน Crowdin? ติดต่อไปยัง Crowdin เรายินดีที่จะช่วยเหลือคุณ"
+
+#: www/views/tab-export-file.html:59
+#: www/views/tab-home.html:22
+msgid "Download"
+msgstr "ดาวน์โหลด"
+
+#: www/views/cashScan.html:37
+msgid "Duplicate for BCH"
+msgstr "ทำ BCH ซ้ำ"
+
+#: src/js/services/onGoingProcess.js:49
+msgid "Duplicating wallet..."
+msgstr "กำลังทำกระเป๋าซ้ำ..."
+
+#: www/views/addresses.html:19
+msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgstr "แต่ละกระเป๋าสามารถสร้างได้พันล้านที่อยู่จากการสำรองข้อมูล 12 คำ ที่อยู่ใหม่จะถูกสร้างขึ้นโดยอัตโนมัติ และแสดงในแต่ละครั้งที่คุณได้รับการชำระเงิน"
+
+#: src/js/services/feeService.js:13
+msgid "Economy"
+msgstr "แบบคุ้มค่า"
+
+#: www/views/onboarding/collectEmail.html:27
+msgid "Edit"
+msgstr "แก้ไข"
+
+#: www/views/addressbook.add.html:29
+#: www/views/addressbook.view.html:22
+msgid "Email"
+msgstr "อีเมล"
+
+#: www/views/preferencesNotifications.html:42
+msgid "Email Address"
+msgstr "ที่อยู่อีเมล"
+
+#: src/js/services/bwcError.js:122
+msgid "Empty addresses limit reached. New addresses cannot be generated."
+msgstr "ถึงขีดจำกัดที่อยู่ว่างเปล่า ไม่สามารถสร้างที่อยู่ใหม่ได้"
+
+#: www/views/preferencesCash.html:17
+msgid "Enable Bitcoin Cash wallet creation and operation within the App."
+msgstr "เปิดการสร้างและการดำเนินงานกระเป๋าเงินสด Bitcoin "
+
+#: www/views/tab-scan.html:19
+msgid "Enable camera access in your device settings to get started."
+msgstr "เปิดใช้งานการตั้งค่าอุปกรณ์ของคุณเพื่อเริ่มต้นเข้ากล้อง"
+
+#: www/views/preferencesNotifications.html:29
+msgid "Enable email notifications"
+msgstr "เปิดใช้งานการแจ้งเตือนอีเมล"
+
+#: www/views/preferencesNotifications.html:12
+msgid "Enable push notifications"
+msgstr "เปิดใช้งานการแจ้งเตือน"
+
+#: www/views/preferencesNotifications.html:33
+msgid "Enable sound"
+msgstr "เปิดเสียง"
+
+#: www/views/tab-scan.html:18
+msgid "Enable the camera to get started."
+msgstr "เปิดใช้กล้องในการเริ่มต้น"
+
+#: www/views/tab-settings.html:49
+msgid "Enabled"
+msgstr "เปิดใช้งานแล้ว"
+
+#: src/js/services/walletService.js:1047
+#: src/js/services/walletService.js:1062
+msgid "Enter Spending Password"
+msgstr "ป้อนรหัสผ่านในการใช้จ่าย"
+
+#: src/js/services/bitpayAccountService.js:110
+msgid "Enter Two Factor for your BitPay account"
+msgstr "  กรอก 2 ปัจจัยสำหรับบัญชี BitPay ของคุณ"
+
+#: www/views/amount.html:4
+msgid "Enter Amount"
+msgstr "ป้อนยอดเงิน"
+
+#: www/views/modals/chooseFeeLevel.html:41
+msgid "Enter custom fee"
+msgstr "ป้อนค่าธรรมเนียมที่กำหนดเอง"
+
+#: src/js/services/walletService.js:1029
+msgid "Enter new spending password"
+msgstr "ป้อนรหัสผ่านในการใช้จ่าย"
+
+#: www/views/join.html:79
+#: www/views/tab-create-personal.html:51
+#: www/views/tab-create-shared.html:80
+msgid "Enter the recovery phrase (BIP39)"
+msgstr "ป้อนวลีกู้คืน (BIP39)"
+
+#: www/views/onboarding/collectEmail.html:13
+msgid "Enter your email"
+msgstr "เพิ่มอีเมลของคุณ"
+
+#: www/views/backup.html:69
+msgid "Enter your password"
+msgstr "พิมพ์รหัสผ่าน"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/addressbookAdd.js:30
+#: src/js/controllers/addressbookView.js:42
+#: src/js/controllers/addresses.js:125
+#: src/js/controllers/addresses.js:126
+#: src/js/controllers/bitpayCard.js:66
+#: src/js/controllers/bitpayCardIntro.js:40
+#: src/js/controllers/bitpayCardIntro.js:81
+#: src/js/controllers/buyAmazon.js:24
+#: src/js/controllers/buyAmazon.js:35
+#: src/js/controllers/buyMercadoLibre.js:24
+#: src/js/controllers/buyMercadoLibre.js:35
+#: src/js/controllers/confirm.js:307
+#: src/js/controllers/copayers.js:67
+#: src/js/controllers/create.js:161
+#: src/js/controllers/create.js:174
+#: src/js/controllers/create.js:180
+#: src/js/controllers/create.js:186
+#: src/js/controllers/create.js:208
+#: src/js/controllers/create.js:215
+#: src/js/controllers/create.js:233
+#: src/js/controllers/export.js:109
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:154
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: src/js/controllers/export.js:47
+#: src/js/controllers/export.js:53
+#: src/js/controllers/feedback/send.js:23
+#: src/js/controllers/import.js:119
+#: src/js/controllers/import.js:131
+#: src/js/controllers/import.js:149
+#: src/js/controllers/import.js:200
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:238
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:266
+#: src/js/controllers/import.js:278
+#: src/js/controllers/import.js:288
+#: src/js/controllers/import.js:312
+#: src/js/controllers/import.js:325
+#: src/js/controllers/import.js:335
+#: src/js/controllers/import.js:345
+#: src/js/controllers/import.js:369
+#: src/js/controllers/import.js:382
+#: src/js/controllers/import.js:85
+#: src/js/controllers/import.js:98
+#: src/js/controllers/join.js:125
+#: src/js/controllers/join.js:139
+#: src/js/controllers/join.js:145
+#: src/js/controllers/join.js:151
+#: src/js/controllers/join.js:174
+#: src/js/controllers/join.js:182
+#: src/js/controllers/join.js:200
+#: src/js/controllers/modals/feeLevels.js:9
+#: src/js/controllers/modals/txpDetails.js:140
+#: src/js/controllers/paperWallet.js:47
+#: src/js/controllers/preferencesBitpayCard.js:20
+#: src/js/controllers/preferencesBitpayServices.js:33
+#: src/js/controllers/preferencesBitpayServices.js:50
+#: src/js/controllers/preferencesDelete.js:36
+#: src/js/controllers/preferencesExternal.js:20
+#: src/js/controllers/tab-home.js:174
+#: src/js/controllers/tab-send.js:143
+#: src/js/controllers/tabsController.js:36
+#: src/js/controllers/tabsController.js:7
+#: src/js/controllers/topup.js:21
+#: src/js/controllers/topup.js:32
+#: src/js/controllers/tx-details.js:119
+#: src/js/services/incomingData.js:101
+#: src/js/services/incomingData.js:125
+#: src/js/services/incomingData.js:168
+#: www/views/mercadoLibreCards.html:19
+#: www/views/modals/mercadolibre-card-details.html:45
+msgid "Error"
+msgstr "ไม่สำเร็จ"
+
+#: src/js/controllers/confirm.js:502
+msgid "Error at confirm"
+msgstr "ยืนยันผิดพลาด"
+
+#: src/js/controllers/buyAmazon.js:179
+msgid "Error creating gift card"
+msgstr "การสร้างบัตรกำนัลผิดพลาด"
+
+#: src/js/controllers/buyAmazon.js:94
+#: src/js/controllers/buyMercadoLibre.js:94
+msgid "Error creating the invoice"
+msgstr "การสร้างใบแจ้งหนี้ผิดพลาด"
+
+#: src/js/services/profileService.js:412
+msgid "Error creating wallet"
+msgstr "มีข้อผิดพลาดในการสร้างกระเป๋า"
+
+#: src/js/controllers/confirm.js:296
+msgid "Error getting SendMax information"
+msgstr "ข้อผิดพลาดการรับข้อมูล SendMax"
+
+#: src/js/controllers/buyAmazon.js:136
+#: src/js/controllers/buyMercadoLibre.js:136
+#: src/js/controllers/topup.js:114
+msgid "Error in Payment Protocol"
+msgstr "ข้อผิดพลาดในโพรโทคอลการชำระเงิน"
+
+#: src/js/controllers/bitpayCardIntro.js:14
+msgid "Error pairing BitPay Account"
+msgstr "มีข้อผิดพลาดในการจับคู่บัญชี BitPay"
+
+#: src/js/controllers/paperWallet.js:41
+msgid "Error scanning funds:"
+msgstr "มีข้อผิดพลาดการสแกน:"
+
+#: src/js/controllers/paperWallet.js:90
+msgid "Error sweeping wallet:"
+msgstr "มีข้อผิดพลาด:"
+
+#: src/js/controllers/bitpayCardIntro.js:20
+msgid "Error updating Debit Cards"
+msgstr "มีข้อผิดพลาดในการปรับปรุงบัตรเดบิต"
+
+#: src/js/services/bwcError.js:143
+msgid "Exceeded daily limit of $500 per user"
+msgstr "เกิน500ดอลลาร์ รายวันต่อคน"
+
+#: src/js/controllers/confirm.js:461
+#: www/views/confirm.html:27
+#: www/views/mercadoLibreCards.html:25
+#: www/views/modals/mercadolibre-card-details.html:34
+#: www/views/modals/txp-details.html:119
+msgid "Expired"
+msgstr "หมดอายุ"
+
+#: www/views/modals/paypro.html:54
+#: www/views/modals/txp-details.html:125
+msgid "Expires"
+msgstr "หมดอายุ"
+
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "แสดงที่อยู่เดิม"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "แสดงที่อยู่ในรูปแบบใหม่"
+
+#: www/views/preferencesAdvanced.html:21
+msgid "Export Wallet"
+msgstr "นำกระเป๋าออก"
+
+#: www/views/preferencesHistory.html:11
+#: www/views/preferencesHistory.html:14
+msgid "Export to file"
+msgstr "ส่งออกไปยังแฟ้ม"
+
+#: www/views/export.html:3
+msgid "Export wallet"
+msgstr "นำกระเป๋าออก"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "บริการกระเป๋า URL"
+
+#: src/js/services/walletService.js:1174
+#: www/views/tab-export-qrCode.html:9
+msgid "Exporting via QR not supported for this wallet"
+msgstr "ไม่สนับสนุนการส่งออกผ่าน QR สำหรับกระเป๋านี้"
+
+#: www/views/preferencesInformation.html:89
+msgid "Extended Public Keys"
+msgstr "ขยายคีย์สาธารณะ"
+
+#: src/js/services/onGoingProcess.js:20
+msgid "Extracting Wallet information..."
+msgstr "แยกข้อมูลกระเป๋าสตางค์..."
+
+#: src/js/controllers/export.js:115
+#: src/js/controllers/export.js:126
+#: src/js/controllers/export.js:160
+#: src/js/controllers/export.js:171
+#: www/views/tab-export-file.html:4
+msgid "Failed to export"
+msgstr "การส่งล้มเหลว"
+
+#: www/views/tab-create-personal.html:14
+#: www/views/tab-create-shared.html:14
+msgid "Family vacation funds"
+msgstr "งบประมาณวันพักผ่อนครอบครัว"
+
+#: www/views/tx-details.html:79
+msgid "Fee"
+msgstr "ค่าธรรมเนียม"
+
+#: www/views/modals/chooseFeeLevel.html:75
+msgid "Fee level"
+msgstr "ระดับค่าธรรมเนียม"
+
+#: src/js/controllers/modals/feeLevels.js:100
+msgid "Fee level is not defined"
+msgstr "ไม่ได้กำหนดระดับค่าธรรมเนียม"
+
+#: www/views/confirm.html:79
+#: www/views/modals/txp-details.html:99
+msgid "Fee:"
+msgstr "ค่าธรรมเนียม:"
+
+#: src/js/controllers/feedback/send.js:23
+msgid "Feedback could not be submitted. Please try again later."
+msgstr "ไม่สามารถส่งคำติชมได้ โปรดลองอีกครั้งในภายหลัง"
+
+#: src/js/services/onGoingProcess.js:42
+msgid "Fetching BitPay Account..."
+msgstr "ดึงข้อมูลบัญชี BitPay ..."
+
+#: src/js/services/onGoingProcess.js:21
+msgid "Fetching payment information"
+msgstr "ดึงข้อมูลการชำระเงิน"
+
+#: www/views/export.html:14
+#: www/views/import.html:16
+msgid "File/Text"
+msgstr "ไฟล์/ข้อความ"
+
+#: www/views/preferencesLogs.html:17
+msgid "Filter setting"
+msgstr "การตั้งค่าตัวกรอง"
+
+#: src/js/services/fingerprintService.js:43
+#: src/js/services/fingerprintService.js:48
+msgid "Finger Scan Failed"
+msgstr "การสแกนนิ้วมือล้มเหลว"
+
+#: src/js/controllers/feedback/send.js:34
+#: www/views/feedback/complete.html:7
+msgid "Finish"
+msgstr "เสร็จสิ้น"
+
+#: www/views/tab-create-personal.html:123
+#: www/views/tab-create-shared.html:152
+msgid "For audit purposes"
+msgstr "สำหรับวัตถุประสงค์ในการตรวจสอบ"
+
+#: src/js/controllers/topup.js:308
+#: www/views/buyAmazon.html:29
+#: www/views/buyMercadoLibre.html:28
+#: www/views/confirm.html:65
+#: www/views/modals/txp-details.html:74
+#: www/views/topup.html:34
+#: www/views/tx-details.html:52
+#: www/views/review.html:22
+msgid "From"
+msgstr "จาก"
+
+#: src/js/controllers/bitpayCardIntro.js:71
+msgid "From BitPay account"
+msgstr "จากบัญชี BitPay"
+
+#: www/views/tab-import-phrase.html:57
+msgid "From Hardware Wallet"
+msgstr "จากฮาร์ดแวร์ของกระเป๋า"
+
+#: www/views/tab-export-qrCode.html:5
+msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
+msgstr "จากอุปกรณ์ปลายทาง ไปเพิ่มสตางค์ &amp;gt; นำเข้ากระเป๋าสตางค์ และสแกน QR code นี้"
+
+#: src/js/services/bwcError.js:74
+msgid "Funds are locked by pending spend proposals"
+msgstr "เงินถูกล็อค อยู่ระหว่างดำเนินการ"
+
+#: www/views/paperWallet.html:16
+msgid "Funds found:"
+msgstr "พบยอดเงิน:"
+
+#: www/views/topup.html:49
+msgid "Funds to be added"
+msgstr "ยอดเงินที่จะถูกเพิ่ม"
+
+#: www/views/paperWallet.html:51
+msgid "Funds transferred"
+msgstr "เงินโอนเรียบเงิน"
+
+#: www/views/topup.html:103
+msgid "Funds were added to debit card"
+msgstr "ยอดเงินถูกเพิ่มในบัตรเดบิต"
+
+#: www/views/paperWallet.html:22
+msgid "Funds will be transferred to"
+msgstr "ยอดเงินจะถูกโอนไปยัง"
+
+#: www/views/tab-receive.html:51
+msgid "Generate new address"
+msgstr "สร้างบัญชีใหม่"
+
+#: src/js/services/onGoingProcess.js:22
+msgid "Generating .csv file..."
+msgstr "กำลังสร้างไฟล์ .csv"
+
+#: src/js/services/onGoingProcess.js:37
+msgid "Generating new address..."
+msgstr "การสร้างที่อยู่ใหม่"
+
+#: www/views/bitpayCardIntro.html:23
+msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
+msgstr "รับเงินสดได้ทุกที่ที่คุณไป ได้ทุกวีซ่า<sup>&amp;reg;</sup> ใช้ได้หลาย ATM  แต่อาจมีค่าธรรมเนียม"
+
+#: www/views/onboarding/collectEmail.html:15
+msgid "Get news and updates from BitPay"
+msgstr "รับข่าวสารและอัพเดตจาก BitPay"
+
+#: www/views/onboarding/welcome.html:8
+#: www/views/bitpayCard.html:49
+msgid "Get started"
+msgstr "เริ่มเลย"
+
+#: www/views/addressbook.html:20
+msgid "Get started by adding your first one."
+msgstr "เริ่มต้น โดยการเพิ่มเครื่องครั้งแรก"
+
+#: src/js/services/onGoingProcess.js:23
+msgid "Getting fee levels..."
+msgstr "กำลังรับค่าระดับ..."
+
+#: www/views/buyAmazon.html:43
+#: www/views/buyMercadoLibre.html:42
+msgid "Gift Card"
+msgstr "บัตรของขวัญ"
+
+#: www/views/modals/mercadolibre-card-details.html:30
+#: www/views/modals/mercadolibre-card-details.html:35
+msgid "Gift Card is not available to use anymore"
+msgstr "ไม่สามารถใช้บัตรของขวัญนี้อีกแล้ว"
+
+#: src/js/controllers/buyAmazon.js:204
+msgid "Gift card expired"
+msgstr "บัตรกำนัลหมดอายุ"
+
+#: www/views/buyAmazon.html:111
+msgid "Gift card generated and ready to use."
+msgstr "สร้างบัตรของขวัญสำเร็จ และพร้อมใช้แล้ว"
+
+#: src/js/controllers/bitpayCard.js:114
+#: src/js/controllers/bitpayCard.js:124
+#: src/js/controllers/cashScan.js:20
+#: src/js/controllers/onboarding/terms.js:23
+#: src/js/controllers/preferences.js:67
+#: src/js/controllers/preferencesAbout.js:16
+#: src/js/controllers/preferencesCash.js:34
+#: src/js/controllers/preferencesLanguage.js:14
+#: src/js/controllers/tab-home.js:149
+#: src/js/controllers/tab-settings.js:53
+#: src/js/controllers/tx-details.js:193
+#: src/js/controllers/tx-details.js:56
+msgid "Go Back"
+msgstr "ย้อนกลับ"
+
+#: src/js/controllers/confirm.js:131
+#: src/js/controllers/onboarding/backupRequest.js:20
+#: src/js/controllers/onboarding/backupRequest.js:26
+#: src/js/services/bitpayAccountService.js:84
+msgid "Go back"
+msgstr "ย้อนกลับ"
+
+#: www/views/backupWarning.html:15
+#: www/views/includes/confirmBackupPopup.html:8
+#: www/views/onboarding/tour.html:23
+msgid "Got it"
+msgstr "เข้าใจแล้ว"
+
+#: www/views/preferencesInformation.html:53
+#: www/views/preferencesInformation.html:59
+msgid "Hardware Wallet"
+msgstr "ฮาร์ดแวร์ของกระเป๋า"
+
+#: www/views/preferencesExternal.html:18
+msgid "Hardware not connected."
+msgstr "ฮาร์ดแวร์ที่ไม่ได้เชื่อมต่อ"
+
+#: www/views/import.html:20
+msgid "Hardware wallet"
+msgstr "ฮาร์ดแวร์ของกระเป๋า"
+
+#: src/js/controllers/create.js:180
+#: src/js/controllers/join.js:145
+msgid "Hardware wallets are not yet supported with Bitcoin Cash"
+msgstr "กระเป๋าฮาร์ดแวร์ไม่ได้รองรับกับเงินสด Bitcoin"
+
+#: www/views/tab-settings.html:20
+msgid "Help & Support"
+msgstr "ช่วยเหลือและสนับสนุน"
+
+#: src/js/controllers/bitpayCard.js:112
+#: src/js/controllers/tab-settings.js:51
+msgid "Help and support information is available at the website."
+msgstr "ช่วยเหลือ และศึกษาข้อมูลได้ที่เว็บไซต์"
+
+#: www/views/addresses.html:25
+msgid "Hide"
+msgstr "ซ่อน"
+
+#: www/views/preferences.html:27
+msgid "Hide Balance"
+msgstr "ซ่อนยอดเงินคงเหลือ"
+
+#: www/views/advancedSettings.html:30
+msgid "Hide Next Steps Card"
+msgstr "ซ่อนบัตรขั้นตอนถัดไป"
+
+#: www/views/join.html:49
+#: www/views/tab-create-personal.html:28
+#: www/views/tab-create-shared.html:57
+#: www/views/tab-export-file.html:25
+#: www/views/tab-import-file.html:30
+#: www/views/tab-import-hardware.html:31
+#: www/views/tab-import-phrase.html:36
+msgid "Hide advanced options"
+msgstr "ซ่อนตัวเลือกขั้นสูง"
+
+#: www/views/tabs.html:3
+msgid "Home"
+msgstr "หน้าหลัก"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+#: src/js/controllers/feedback/send.js:69
+msgid "How could we improve your experience?"
+msgstr "เราสามารถปรับปรุงประสบการณ์ของคุณ"
+
+#: www/views/feedback/rateCard.html:3
+msgid "How do you like {{appName}}?"
+msgstr "คุณพึงพอใจหรือไม่? {{appName}}"
+
+#: src/js/controllers/feedback/rateCard.js:29
+msgid "I don't like it"
+msgstr "ไม่ชอบ"
+
+#: www/views/onboarding/disclaimer.html:43
+msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
+msgstr "ฉันได้อ่านทำความเข้าใจแล้ว และยอมรับ <a ng-click=\"openTerms()\" translate=\"\">เงื่อนไขการใช้งาน</a>"
+
+#: www/views/modals/terms.html:22
+msgid "I have read, understood, and agree with the Terms of use."
+msgstr "ฉันได้อ่านทำความเข้าใจแล้ว และยอมรับเงื่อนไขการใช้บริการ"
+
+#: www/views/join.html:137
+#: www/views/tab-create-personal.html:107
+#: www/views/tab-create-shared.html:136
+msgid "I have written it down"
+msgstr "ฉันเขียนมันลงแล้ว"
+
+#: src/js/controllers/feedback/rateCard.js:35
+msgid "I like the app"
+msgstr "ฉันชอบแอปนี้"
+
+#: src/js/controllers/feedback/rateCard.js:26
+msgid "I think this app is terrible."
+msgstr "ฉันคิดว่า มันน่ากลัว"
+
+#: src/js/controllers/onboarding/backupRequest.js:19
+#: www/views/includes/screenshotWarningModal.html:9
+msgid "I understand"
+msgstr "ฉันเข้าใจ"
+
+#: www/views/onboarding/disclaimer.html:21
+msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgstr "ฉันเข้าใจว่าถ้าแอปนี้ถูกลบหรือถูกใช้ในเครื่องมืออื่น Bitcoinของฉันจะสามารถกู้คืนโดยใช้กลุ่มคำสำรองข้อมูล"
+
+#: www/views/onboarding/disclaimer.html:18
+msgid "I understand that my funds are held securely on this device, not by a company."
+msgstr "ฉันเข้าใจว่า เงินของฉันอยู่อย่างปลอดภัยบนอุปกรณ์นี้  ไม่ใช่โดยบริษัท"
+
+#: www/views/backup.html:36
+msgid "I've written it down"
+msgstr "ฉันเขียนมันลงแล้ว"
+
+#: www/views/preferences.html:45
+msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
+msgstr "ถ้าเปิดใช้งาน ข้อมูลที่สำคัญทั้ง (คีย์ส่วนตัวและกลุ่มคำการกู้คืน) และการกระทำ (การใช้จ่ายและการส่งออก) ที่เกี่ยวข้องกับกระเป๋าเงินนี้จะได้รับการคุ้มครอง"
+
+#: www/views/advancedSettings.html:23
+msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
+msgstr "ถ้าเปิดใช้งาน บัตรธุรกรรมล่าสุด -รายการธุรกรรมที่เกิดขึ้นในกระเป๋าเงินทั้งหมด - จะแสดงในแท็บหน้าแรก"
+
+#: www/views/advancedSettings.html:14
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "ถ้าเปิดใช้งาน กระเป๋าจะยังคงพยายามจะจ่ายยอดที่ยังไม่ได้ยืนยัน การปิดตัวเลือกนี้อาจทำให้เกิดความล่าช้าของธุรกรรม"
+
+#: src/js/controllers/onboarding/backupRequest.js:18
+msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgstr "ถ้าอุปกรณ์นี้จะถูกแทนที่หรือแอปฯนี้ถูกลบ ไม่ว่าคุณหรือ BitPay จะไม่สามารถกู้เงินของคุณได้โดยไม่สำรองข้อมูล"
+
+#: www/views/feedback/complete.html:23
+msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
+msgstr "หากท่านมีคำติชมหรือข้อเสนอแนะเพิ่มเติมโปรดแจ้งให้เราทราบโดยการคลิกที่''ส่งคำติชม''ในแถบการตั้งค่า"
+
+#: www/views/includes/screenshotWarningModal.html:8
+msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
+msgstr "อาจจะไม่ปลอดภัยหากคุณบันทึกภาพหน้าจอ  แต่คุณสามารถทำการสำรองข้อมูลที่ปลอดภัยโดยการเขียนบันทึกลงกระดาษ"
+
+#: www/views/tab-import-hardware.html:42
+#: www/views/tab-import-phrase.html:80
+msgid "Import"
+msgstr "นำเข้า"
+
+#: www/views/import.html:3
+msgid "Import Wallet"
+msgstr "นำกระเป๋าสตางค์เข้า"
+
+#: www/views/tab-import-file.html:41
+msgid "Import backup"
+msgstr "สำรองข้อมูลนำเข้า"
+
+#: www/views/add.html:38
+msgid "Import wallet"
+msgstr "นำกระเป๋าสตางค์เข้า"
+
+#: src/js/services/onGoingProcess.js:24
+msgid "Importing Wallet..."
+msgstr "กำลังทำการนำกระเป๋าเข้า"
+
+#: www/views/backup.html:72
+msgid "In order to verify your wallet backup, please type your password."
+msgstr "หากต้องการตรวจสอบการสำรองข้อมูลของคุณกรุณายืนยันรหัสผ่าน"
+
+#: www/views/mercadoLibreCards.html:24
+#: www/views/modals/mercadolibre-card-details.html:29
+msgid "Inactive"
+msgstr "ไม่ได้ใช้งาน"
+
+#: www/views/includes/walletItem.html:9
+#: www/views/includes/walletList.html:6
+#: www/views/includes/walletListSettings.html:9
+#: www/views/includes/walletSelector.html:16
+msgid "Incomplete"
+msgstr "ไม่สมบูรณ์"
+
+#: www/views/tab-receive.html:22
+msgid "Incomplete wallet"
+msgstr "กระเป๋าสตางค์ที่ไม่สมบูรณ์"
+
+#: www/views/modals/pin.html:12
+msgid "Incorrect PIN, try again."
+msgstr "PIN ไม่ถูกต้อง ลองอีกครั้ง"
+
+#. Trying to import a malformed wallet export QR code
+#: src/js/controllers/import.js:85
+msgid "Incorrect code format"
+msgstr "รูปแบบรหัสไม่ถูกต้อง"
+
+#: src/js/services/bwcError.js:113
+msgid "Incorrect network address"
+msgstr "ที่อยู่เครือข่ายไม่ถูกต้อง"
+
+#: src/js/controllers/confirm.js:114
+#: src/js/controllers/confirm.js:306
+#: src/js/services/bwcError.js:44
+msgid "Insufficient confirmed funds"
+msgstr "เงินทุนที่ยืนยันไม่เพียงพอ"
+
+#: src/js/controllers/topup.js:165
+#: src/js/controllers/topup.js:177
+#: src/js/services/bwcError.js:71
+msgid "Insufficient funds for fee"
+msgstr "ค่าธรรมเนียมไม่เพียงพอ"
+
+#: www/views/tab-settings.html:123
+msgid "Integrations"
+msgstr "การรวบรวม"
+
+#: www/views/includes/walletHistory.html:49
+msgid "Invalid"
+msgstr "ไม่ถูกต้อง!"
+
+#: src/js/controllers/buyAmazon.js:137
+#: src/js/controllers/buyMercadoLibre.js:137
+#: src/js/controllers/topup.js:115
+msgid "Invalid URL"
+msgstr "URL ไม่ถูกต้อง"
+
+#: src/js/controllers/create.js:186
+#: src/js/controllers/import.js:345
+#: src/js/controllers/join.js:151
+msgid "Invalid account number"
+msgstr "หมายเลขบัตรไม่ถูกต้อง"
+
+#: src/js/services/bwcError.js:119
+msgid "Invalid address"
+msgstr "ที่อยู่ไม่ถูกต้อง"
+
+#: src/js/controllers/tabsController.js:7
+msgid "Invalid data"
+msgstr "ข้อมูลไม่ถูกต้อง"
+
+#: src/js/controllers/create.js:161
+#: src/js/controllers/import.js:266
+#: src/js/controllers/join.js:125
+msgid "Invalid derivation path"
+msgstr "แหล่งที่มาไม่ถูกต้อง"
+
+#: src/js/controllers/copayers.js:90
+msgid "Invitation to share a {{appName}} Wallet"
+msgstr "ส่งคำเชิญเพื่อบอกต่อกระเป๋า{{appName}}"
+
+#: www/views/mercadoLibreCards.html:20
+#: www/views/modals/mercadolibre-card-details.html:48
+msgid "Invoice expired"
+msgstr "ใบแจ้งหนี้หมดอายุ"
+
+#: src/js/controllers/feedback/send.js:79
+msgid "Is there anything we could do better?"
+msgstr "พอจะมีอะไรที่เราสามารถทำให้ดีขึ้นได้บ้าง"
+
+#: www/views/backup.html:54
+msgid "Is this correct?"
+msgstr "ถูกต้องหรือไม่?"
+
+#: www/views/onboarding/collectEmail.html:22
+msgid "Is this email address correct?"
+msgstr "อีเมลนี้ถูกต้องหรือไม่?"
+
+#: www/views/addresses.html:25
+msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
+msgstr "จะดีกว่าหากหลีกเลี่ยงการใช้ที่อยู่ซ้ำ ทั้งความปลอดภัย และเป็นการปกป้องความเป็นส่วนตัวของคุณ"
+
+#: src/js/controllers/backup.js:76
+msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
+msgstr "มันสำคัญมากหากคุณบันทึกกลุ่มคำเหล่านี้อย่างถูกต้อง เพราะถ้ามีอะไรเกิดขึ้นกับกระเป๋าของคุณ คุณจะต้องสำรองข้อมูลนี้เพื่อกู้คืนเงินของคุณ กรุณาตรวจสอบการสำรองข้อมูลของคุณ และลองอีกครั้ง"
+
+#: www/views/join.html:151
+msgid "Join"
+msgstr "เข้าร่วม"
+
+#: src/js/controllers/copayers.js:85
+msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
+msgstr "เข้าร่วมกระเป๋าของฉัน {{appName}} และนี่เป็นรหัสการเชิญ {{secret}} คุณสามารถดาวน์โหลด {{appName}} สำหรับโทรศัพท์หรือคอมพิวเตอร์ที่นี่ {{appUrl}}"
+
+#: www/views/add.html:30
+#: www/views/join.html:5
+msgid "Join shared wallet"
+msgstr "เข้าร่วมกระเป๋าร่วมกัน"
+
+#: src/js/services/onGoingProcess.js:25
+msgid "Joining Wallet..."
+msgstr "กำลังเข้าร่วมกระเป๋า..."
+
+#: www/views/onboarding/tour.html:22
+msgid "Just scan the code to pay."
+msgstr "เพียงสแกนรหัสการชำระเงิน"
+
+#: src/js/services/bwcError.js:116
+msgid "Key already associated with an existing wallet"
+msgstr "คีย์ที่เกี่ยวข้องกับกระเป๋ามีอยู่แล้ว"
+
+#: www/views/preferencesLanguage.html:4
+#: www/views/tab-settings.html:68
+msgid "Language"
+msgstr "ภาษา"
+
+#: www/views/bitpayCard.html:61
+msgid "Last Month"
+msgstr "เดือนสุดท้าย"
+
+#: src/js/controllers/confirm.js:132
+#: www/views/preferences.html:48
+#: www/views/preferencesCash.html:18
+#: www/views/tx-details.html:94
+msgid "Learn more"
+msgstr "เรียนรู้เพิ่มเติม"
+
+#: www/views/backup.html:43
+msgid "Let's verify your backup phrase."
+msgstr "ตรวจสอบกลุ่มคำสำรองข้อมูลของคุณ"
+
+#: www/views/addresses.html:45
+#: www/views/allAddresses.html:14
+msgid "Loading addresses..."
+msgstr "กำลังดึงข้อมูลที่อยู่..."
+
+#: src/js/services/onGoingProcess.js:35
+msgid "Loading transaction info..."
+msgstr "กำลังดาวน์โหลดข้อมูล..."
+
+#: www/views/tab-settings.html:100
+msgid "Lock App"
+msgstr "ล็อคแอป"
+
+#: src/js/controllers/lockSetup.js:23
+msgid "Lock by Fingerprint"
+msgstr "โดยการสแกนลายนิ้วมือ"
+
+#: src/js/controllers/lockSetup.js:14
+msgid "Lock by PIN"
+msgstr "ล็อกด้วยรหัส"
+
+#: www/views/modals/wallet-balance.html:80
+msgid "Locked"
+msgstr "ล็อคแล้ว"
+
+#: src/js/services/bwcError.js:86
+msgid "Locktime in effect. Please wait to create a new spend proposal"
+msgstr "Locktime มีผลบังคับใช้ กรุณารอสักครู่เพื่อสร้างข้อเสนอการจ่ายใหม่"
+
+#: src/js/services/bwcError.js:89
+msgid "Locktime in effect. Please wait to remove this spend proposal"
+msgstr "Locktime มีผลบังคับใช้ กรุณารอสักครู่เพื่อลบข้อเสนอการจ่ายใหม่"
+
+#: www/views/includes/logOptions.html:3
+msgid "Log options"
+msgstr "เข้าสู่ตัวเลือก"
+
+#: www/views/modals/bitpay-card-confirmation.html:14
+msgid "Log out"
+msgstr "ออกจากระบบ"
+
+#: www/views/addresses.html:87
+msgid "Low amount inputs"
+msgstr "ยอดเงินต่ำ"
+
+#: www/views/includes/walletHistory.html:27
+msgid "Low fees"
+msgstr "ค่าธรรมเนียมต่ำ"
+
+#: www/views/onboarding/tour.html:38
+msgid "Makes sense"
+msgstr "มีเหตุผล"
+
+#: src/js/controllers/modals/search.js:61
+msgid "Matches:"
+msgstr "ตรงกัน:"
+
+#: www/views/includes/copayers.html:4
+#: www/views/preferencesInformation.html:85
+msgid "Me"
+msgstr "ฉัน"
+
+#: src/js/controllers/feedback/rateCard.js:32
+msgid "Meh - it's alright"
+msgstr "โอ้! ไม่เป็นไร"
+
+#: src/js/controllers/tx-details.js:165
+#: www/views/modals/paypro.html:48
+#: www/views/modals/txp-details.html:93
+#: www/views/tx-details.html:72
+msgid "Memo"
+msgstr "บันทึก"
+
+#: www/views/mercadoLibre.html:6
+msgid "Mercado Livre Brazil Gift Cards"
+msgstr "บัตรของขวัญ Mercado Livre Brazil"
+
+#: src/js/controllers/buyMercadoLibre.js:98
+msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
+msgstr "บัตรของขวัญ Mercadolibre ไม่พร้อมใช้งานในขณะนี้ กรุณาลองอีกครั้งภายหลัง"
+
+#: www/views/modals/txp-details.html:131
+msgid "Merchant Message"
+msgstr "ข้อความร้านค้า"
+
+#: www/views/buyAmazon.html:55
+#: www/views/buyMercadoLibre.html:54
+#: www/views/topup.html:63
+msgid "Miner Fee"
+msgstr "ค่าธรรมเนียมไมเนอร์"
+
+#: src/js/services/bwcError.js:134
+msgid "Missing parameter"
+msgstr "พารามิเตอร์ที่ขาดหายไป"
+
+#: src/js/services/bwcError.js:32
+msgid "Missing private keys to sign"
+msgstr "ไม่พบคีย์ส่วนตัวเพื่อเข้าสู่ระบบ"
+
+#: www/views/preferences.html:61
+#: www/views/preferencesAdvanced.html:3
+msgid "More Options"
+msgstr "ตัวเลือกเพิ่มเติม"
+
+#: www/views/includes/walletHistory.html:47
+#: www/views/tx-details.html:19
+msgid "Moved"
+msgstr "ย้ายแล้ว"
+
+#: src/js/controllers/tx-details.js:131
+msgid "Moved Funds"
+msgstr "ย้ายเงินแล้ว"
+
+#: www/views/modals/txp-details.html:57
+msgid "Multiple recipients"
+msgstr "ผู้รับหลายคน"
+
+#: www/views/tab-import-phrase.html:8
+msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
+msgstr "หมายเหตุ: การนำเข้ากระเป๋าสตางค์จากบุคคลที่3 กรุณาเพิ่มกระเป๋า &gt; สร้างกระเป๋า และระบุรหัสกู้ตรงนั้น"
+
+#: www/views/addressbook.add.html:21
+#: www/views/addressbook.view.html:18
+#: www/views/preferences.html:15
+#: www/views/preferencesAlias.html:17
+msgid "Name"
+msgstr "ชื่อ"
+
+#: www/views/buyAmazon.html:49
+#: www/views/buyMercadoLibre.html:48
+#: www/views/topup.html:56
+msgid "Network Cost"
+msgstr "ต้นทุนของเครือข่าย"
+
+#: src/js/services/bwcError.js:47
+msgid "Network error"
+msgstr "ข้อผิดพลาดเครือข่าย"
+
+#: www/views/includes/walletActivity.html:43
+msgid "New Proposal"
+msgstr "ข้อเสนอใหม่"
+
+#: src/js/controllers/addresses.js:126
+msgid "New address could not be generated. Please try again."
+msgstr "ไม่สามารถสร้างที่อยู่ใหม่ โปรดลองอีกครั้ง"
+
+#: www/views/add.html:14
+msgid "New personal wallet"
+msgstr "กระเป๋าสตางค์ส่วนตัวใหม่"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Next steps"
+msgstr "ขั้นตอนถัดไป"
+
+#: www/views/tab-receive.html:16
+msgid "No Wallet"
+msgstr "ไม่พบกระเป๋า"
+
+#: src/js/controllers/buyAmazon.js:115
+#: src/js/controllers/buyMercadoLibre.js:115
+msgid "No access key defined"
+msgstr "ไม่พบคีย์การเข้าถึงที่กำหนด"
+
+#: www/views/onboarding/backupRequest.html:5
+msgid "No backup, no bitcoin."
+msgstr "ไม่พบการสำรองข้อมูล และไม่พบยอดเงิน"
+
+#: www/views/addressbook.html:19
+msgid "No contacts yet"
+msgstr "ยังไม่มีรายชื่อ"
+
+#: www/views/preferencesLogs.html:16
+msgid "No entries for this log level"
+msgstr "ไม่มีรายการสำหรับการบันทึกนี้"
+
+#: www/views/preferencesExternal.html:12
+msgid "No hardware information available."
+msgstr "ไม่พบข้อมูลฮาร์ดแวร์ที่พร้อมใช้งาน"
+
+#: www/views/tab-import-hardware.html:3
+msgid "No hardware wallets supported on this device"
+msgstr "ไม่พบฮาร์ดแวร์กระเป๋าที่รองรับเครื่องมือนี้"
+
+#: www/views/proposals.html:24
+msgid "No pending proposals"
+msgstr "ไม่มีข้อเสนอที่รอดำเนินการ"
+
+#: www/views/activity.html:25
+msgid "No recent transactions"
+msgstr "ไม่พบธุรกรรมล่าสุด"
+
+#: src/js/controllers/buyAmazon.js:44
+#: src/js/controllers/topup.js:47
+msgid "No signing proposal: No private key"
+msgstr "ไม่มีข้อเสนอการลงนาม: ไม่มีรหัสส่วนตัว"
+
+#: www/views/walletDetails.html:204
+msgid "No transactions yet"
+msgstr "ยังไม่มีการทำธุรกรรม"
+
+#: src/js/controllers/preferencesDelete.js:15
+msgid "No wallet found"
+msgstr "ไม่พบกระเป๋า"
+
+#: src/js/controllers/preferencesDelete.js:8
+msgid "No wallet selected"
+msgstr "ยังไม่เลือกกระเป๋า"
+
+#: src/js/controllers/buyAmazon.js:300
+#: src/js/controllers/buyMercadoLibre.js:292
+#: src/js/controllers/confirm.js:85
+#: src/js/controllers/topup.js:265
+msgid "No wallets available"
+msgstr "ไม่พบกระเป๋าที่พร้อมใช้งาน"
+
+#: www/views/paperWallet.html:45
+msgid "No wallets available to receive funds"
+msgstr "ไม่มีกระเป๋าที่พร้อมรับเงิน"
+
+#: www/views/cashScan.html:15
+msgid "No wallets eligible for Bitcoin Cash support"
+msgstr "ไม่มีกระเป๋าที่เหมาะกับการสนับสนุน Bitcoin"
+
+#: src/js/controllers/cashScan.js:58
+msgid "Non BIP44 wallet"
+msgstr "ไม่พบกระเป๋า BIP44"
+
+#: www/views/cashScan.html:46
+msgid "Non eligible BTC wallets"
+msgstr "ไม่พบกระเป๋า BTC ที่เหมาะสม"
+
+#: src/js/services/feeService.js:12
+msgid "Normal"
+msgstr "ปกติ"
+
+#: src/js/services/bwcError.js:80
+msgid "Not authorized"
+msgstr "ไม่มีอำนาจ"
+
+#: src/js/controllers/confirm.js:307
+msgid "Not enough funds for fee"
+msgstr "ไม่เพียงพอสำหรับค่าธรรมเนียม"
+
+#: www/views/onboarding/tour.html:50
+msgid "Not even BitPay can access it."
+msgstr "BitPay ก็เข้าถึงไม่ได้เช่นกัน "
+
+#: src/js/controllers/paperWallet.js:47
+msgid "Not funds found"
+msgstr "ไม่พบยอดเงิน"
+
+#: www/views/feedback/rateApp.html:3
+#: www/views/onboarding/notifications.html:8
+msgid "Not now"
+msgstr "ไม่ใช่ตอนนี้"
+
+#: www/views/includes/output.html:15
+msgid "Note"
+msgstr "บันทึก"
+
+#: www/views/backup.html:19
+msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
+msgstr "หมายเหตุ:ถ้ากระเป๋า BCH อันนี้ถูกทำซ้ำจากการเป๋า BTC จะสามารถใช้กลุ่มคำที่ใช้สำรองข้อมูลเดียวกันได้"
+
+#: www/views/modals/wallets.html:25
+msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgstr "ข้อสังเกต: แค่ 1-1(ลายเซ็นเดียว)สามารถใช้เพื่อขาย bitcoin ได้"
+
+#: www/views/preferencesNotifications.html:3
+#: www/views/tab-settings.html:61
+msgid "Notifications"
+msgstr "การแจ้งเตือน"
+
+#: www/views/onboarding/collectEmail.html:9
+msgid "Notifications by email"
+msgstr "การแจ้งเตือนทางอีเมล"
+
+#: www/views/tx-details.html:117
+msgid "Notify me if confirmed"
+msgstr "แจ้งให้ฉันทราบถ้ายืนยันแล้ว"
+
+#: www/views/preferencesNotifications.html:24
+msgid "Notify me when transactions are confirmed"
+msgstr "แจ้งให้ฉันทราบเมื่อธุรกรรมได้รับการยืนยัน"
+
+#: www/views/includes/backupNeededPopup.html:8
+msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
+msgstr "ถึงเวลาทำการสำรองข้อมูลกระเป๋าสตางค์ของคุณ เพราะถ้าอุปกรณ์นี้หายไป คุณจะเข้าถึงเงินของคุณไม่ได้ ถ้าไม่สำรองข้อมูล"
+
+#: www/views/backupWarning.html:11
+msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
+msgstr "ตอนนี้เหมาะแก่การมองดูรอบๆคุณว่าคุณอยู่ใกล้หน้าต่างไหม มีกล้องซ่อนอยู่ไหม หรือมีใครแอบจ้องมองคุณอยู่หรือไม่"
+
+#: src/js/controllers/buyAmazon.js:312
+#: src/js/controllers/topup.js:286
+#: src/js/services/incomingData.js:153
+#: src/js/services/popupService.js:16
+#: src/js/services/popupService.js:52
+#: src/js/services/popupService.js:61
+#: src/js/services/popupService.js:72
+#: www/views/modals/chooseFeeLevel.html:6
+msgid "OK"
+msgstr "ตกลง"
+
+#: www/views/modals/tx-status.html:12
+#: www/views/modals/tx-status.html:24
+#: www/views/modals/tx-status.html:36
+#: www/views/modals/tx-status.html:46
+msgid "OKAY"
+msgstr "โอเค!"
+
+#: www/views/modals/terms.html:15
+msgid "Official English Disclaimer"
+msgstr "Official English Disclaimer"
+
+#: src/js/controllers/feedback/send.js:64
+msgid "Oh no!"
+msgstr "โอ้ไม่!"
+
+#: src/js/controllers/buyMercadoLibre.js:306
+msgid "Ok"
+msgstr "ตกลง"
+
+#: www/views/tab-home.html:39
+msgid "On this screen you can see all your wallets, accounts, and assets."
+msgstr "บนหน้าจอนี้ คุณสามารถดูได้ทั้งหมดในกระเป๋า บัญชี สินทรัพย์"
+
+#: src/js/controllers/bitpayCard.js:113
+#: src/js/controllers/cashScan.js:19
+#: src/js/controllers/preferences.js:66
+#: src/js/controllers/preferencesCash.js:33
+#: src/js/controllers/tab-settings.js:52
+#: src/js/controllers/tx-details.js:55
+msgid "Open"
+msgstr "เปิด"
+
+#: src/js/controllers/preferencesLanguage.js:13
+msgid "Open Crowdin"
+msgstr "เปิด Crowdin"
+
+#: src/js/controllers/preferencesAbout.js:15
+msgid "Open GitHub"
+msgstr "เปิด GitHub"
+
+#: src/js/controllers/preferencesAbout.js:13
+msgid "Open GitHub Project"
+msgstr "เปิดโปรเจค GitHub"
+
+#: src/js/controllers/bitpayCard.js:123
+#: src/js/controllers/tx-details.js:192
+msgid "Open Explorer"
+msgstr "เปิด Explorer"
+
+#: www/views/tab-scan.html:22
+msgid "Open Settings"
+msgstr "เปิดการตั้งค่า"
+
+#: src/js/controllers/preferencesLanguage.js:11
+msgid "Open Translation Community"
+msgstr "เข้าสู่การแปลภาษา"
+
+#: src/js/controllers/onboarding/terms.js:22
+msgid "Open Website"
+msgstr "เปิดเว็บไซต์"
+
+#: src/js/controllers/preferencesCash.js:32
+msgid "Open bitcoincash.org?"
+msgstr "ต้องการเปิด  bitcoincash.org?"
+
+#: src/js/controllers/cashScan.js:18
+msgid "Open the recovery tool."
+msgstr "เปิดใช้เครื่องมือ"
+
+#: www/views/tab-receive.html:27
+msgid "Open wallet"
+msgstr "เปิดกระเป๋า"
+
+#: www/views/includes/incomingDataMenu.html:19
+msgid "Open website"
+msgstr "เปิดเว็บไซต์"
+
+#: www/views/bitpayCardIntro.html:34
+msgid "Order the BitPay Card"
+msgstr "ทำการสั่งซื้อการ์ด BitPay"
+
+#: www/views/join.html:105
+#: www/views/join.html:96
+#: www/views/tab-create-personal.html:69
+#: www/views/tab-create-personal.html:77
+#: www/views/tab-create-shared.html:106
+#: www/views/tab-create-shared.html:98
+#: www/views/tab-import-file.html:18
+#: www/views/tab-import-phrase.html:41
+msgid "Password"
+msgstr "รหัสผ่าน"
+
+#: src/js/controllers/import.js:98
+msgid "Password required. Make sure to enter your password in advanced options"
+msgstr "ต้องกรอกรหัสผ่าน ให้แน่ใจที่จะป้อนรหัสผ่านในขั้นต่อๆไป"
+
+#: www/views/join.html:33
+msgid "Paste invitation here"
+msgstr "ป้อนการเชิญที่นี่"
+
+#: www/views/tab-import-file.html:13
+msgid "Paste the backup plain text code"
+msgstr "วางรหัสข้อความสำรองธรรมดา"
+
+#: www/views/bitpayCardIntro.html:28
+msgid "Pay 0% fees to turn bitcoin into dollars."
+msgstr "จ่ายค่าธรรมเนียม 0% เปลี่ยน bitcoin เป็นดอลลาร์"
+
+#: www/views/modals/paypro.html:18
+msgid "Pay To"
+msgstr "จ่ายไปยัง"
+
+#: src/js/controllers/modals/txpDetails.js:51
+#: www/views/modals/tx-status.html:33
+msgid "Payment Accepted"
+msgstr "ยอมรับการชำระเงิน"
+
+#: www/views/confirm.html:25
+msgid "Payment Expires:"
+msgstr "การชำระเงินที่หมดอายุ:"
+
+#: www/views/modals/txp-details.html:6
+msgid "Payment Proposal"
+msgstr "ข้อเสนอการชำระเงิน"
+
+#: www/views/modals/tx-status.html:21
+msgid "Payment Proposal Created"
+msgstr "ข้อเสนอการชำระเงินที่สร้างขึ้น"
+
+#: www/views/tab-home.html:46
+msgid "Payment Proposals"
+msgstr "ข้อเสนอการชำระเงิน"
+
+#: src/js/services/payproService.js:32
+msgid "Payment Protocol Invalid"
+msgstr "การชำระเงินไม่ถูกต้องของโพรโทคอล"
+
+#: src/js/services/payproService.js:18
+msgid "Payment Protocol not supported on Chrome App"
+msgstr "โพรโทคอลการชำระเงินที่ไม่สนับสนุนบนแอป Chrome"
+
+#: www/views/includes/walletActivity.html:20
+msgid "Payment Received"
+msgstr "ได้รับการชำระเงินแล้ว"
+
+#: www/views/modals/tx-status.html:43
+#: www/views/modals/txp-details.html:43
+msgid "Payment Rejected"
+msgstr "การชำระเงินถูกปฏิเสธ"
+
+#: src/js/controllers/modals/txpDetails.js:44
+#: www/views/confirm.html:124
+#: www/views/includes/walletActivity.html:11
+#: www/views/modals/txp-details.html:42
+msgid "Payment Sent"
+msgstr "ส่งการชำระเงินแล้ว"
+
+#: www/views/includes/slideToAcceptSuccess.html:12
+msgid "Share this transaction"
+msgstr "แบ่งปันธุรกรรมนี้"
+
+#: www/views/modals/txp-details.html:32
+msgid "Payment accepted, but not yet broadcasted"
+msgstr "ยอมรับการชำระเงินแล้วแต่ยังไม่ได้ทำการส่ง"
+
+#: www/views/modals/txp-details.html:40
+msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
+msgstr "ยืนยันการชำระเงินแล้ว จะถูกส่งโดยGlidera หากเกิดปัญหาจะสามารถลบได้ 6 ชั่วโมงหลังจากสร้างเสร็จ"
+
+#: src/js/services/incomingData.js:152
+msgid "Payment address was translated to new Bitcoin Cash address format:"
+msgstr "ที่อยู่การชำระเงินถูกแปลเป็นรูปแบบเงินสดBitcoinแบบใหม่:"
+
+#: www/views/modals/txp-details.html:107
+msgid "Payment details"
+msgstr "รายละเอียดการชำระเงิน"
+
+#: www/views/modals/paypro.html:6
+msgid "Payment Request"
+msgstr "คำขอชำระเงิน"
+
+#: www/views/mercadoLibreCards.html:22
+#: www/views/modals/mercadolibre-card-details.html:39
+msgid "Pending"
+msgstr "อยู่ระหว่างดำเนินการ"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "รอการรับรองความถูกต้อง"
+
+#: www/views/proposals.html:4
+msgid "Pending Proposals"
+msgstr "ข้อเสนอที่ค้างอยู่"
+
+#: www/views/preferencesDeleteWallet.html:13
+msgid "Permanently delete this wallet."
+msgstr "ทำการลบกระเป๋านี้อย่างถาวร"
+
+#: src/js/services/profileService.js:403
+msgid "Personal Wallet"
+msgstr "กระเป๋าสตางค์ส่วนตัว"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "กระเป๋าสตางค์ของฉัน {{coin}}"
+
+#: www/views/backup.html:25
+msgid "Please carefully write down this phrase."
+msgstr "โปรดเขียนอย่างระมัดระวัง"
+
+#: www/views/tab-scan.html:20
+msgid "Please connect a camera to get started."
+msgstr "โปรดเชื่อมต่อกับกล้องเพื่อเริ่มต้น"
+
+#: src/js/controllers/import.js:278
+msgid "Please enter the recovery phrase"
+msgstr "กรุณาใส่คำกู้คืน"
+
+#: src/js/controllers/create.js:174
+#: src/js/controllers/join.js:139
+msgid "Please enter the wallet recovery phrase"
+msgstr "โปรดป้อนวลีกู้คืนกระเป๋าสตางค์"
+
+#: www/views/modals/pin.html:9
+msgid "Please enter your PIN"
+msgstr "โปรดป้อน PIN ของคุณ"
+
+#: www/views/backup.html:53
+msgid "Please tap each word in the correct order."
+msgstr "โปรดแตะแต่ละคำในลำดับที่ถูกต้อง"
+
+#: src/js/services/bwcError.js:101
+msgid "Please upgrade Copay to perform this action"
+msgstr "กรุณาอัพเดต Copay ในการดำเนินการนี้"
+
+#: www/views/walletDetails.html:142
+#: www/views/walletDetails.html:62
+msgid "Please wait"
+msgstr "กรุณารอสักครู่"
+
+#: src/js/controllers/import.js:238
+msgid "Please, select your backup file"
+msgstr "กรุณาเลือกไฟล์สำรองข้อมูล"
+
+#: www/views/bitpayCard.html:81
+msgid "Pre-Auth Holds"
+msgstr " Pre-Auth Holds"
+
+#: www/views/tab-settings.html:40
+msgid "Preferences"
+msgstr "การตั้งค่า"
+
+#: src/js/services/onGoingProcess.js:38
+msgid "Preparing addresses..."
+msgstr "กำลังเตรียมที่อยู่..."
+
+#: src/js/controllers/export.js:198
+msgid "Preparing backup..."
+msgstr "กำลังเตรียมการสำรองข้อมูล..."
+
+#: src/js/routes.js:1264
+msgid "Press again to exit"
+msgstr "กดอีกครั้งเพื่อออก"
+
+#: src/js/services/feeService.js:11
+msgid "Priority"
+msgstr "แบบด่วน"
+
+#: www/views/includes/incomingDataMenu.html:80
+msgid "Private Key"
+msgstr "คีย์ส่วนตัว"
+
+#: src/js/controllers/paperWallet.js:136
+msgid "Private key encrypted. Enter password"
+msgstr "เข้ารหัสคีย์ส่วนตัว ป้อนรหัสผ่าน"
+
+#: src/js/services/bwcError.js:35
+msgid "Private key is encrypted, cannot sign"
+msgstr "คีย์ส่วนตัวถูกเข้ารหัสแล้ว ไม่สามารถเข้าสู่ระบบ"
+
+#: www/views/includes/walletActivity.html:51
+msgid "Proposal Accepted"
+msgstr "ยอมรับข้อเสนอ"
+
+#: src/js/controllers/modals/txpDetails.js:61
+#: src/js/controllers/tx-details.js:78
+#: www/views/confirm.html:125
+msgid "Proposal Created"
+msgstr "สร้างข้อเสนอแล้ว"
+
+#: www/views/includes/walletActivity.html:27
+msgid "Proposal Deleted"
+msgstr "ลบข้อเสนอแล้ว"
+
+#: www/views/includes/walletActivity.html:35
+msgid "Proposal Rejected"
+msgstr "ข้อเสนอถูกปฏิเสธ"
+
+#: www/views/walletDetails.html:189
+msgid "Proposals"
+msgstr "\n"
+"ข้อเสนอ"
+
+#: src/js/controllers/buyAmazon.js:282
+msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
+msgstr "มีการจำกัดยอดการซื้อต่อวัน {{limitPerDay}}{{currency}}"
+
+#: src/js/controllers/buyMercadoLibre.js:281
+msgid "Purchase amount must be a value between 50 and 2000"
+msgstr "ยอดการซื้อต้องมีมูลค่าระหว่าง 50-2000"
+
+#: www/views/onboarding/notifications.html:3
+msgid "Push Notifications"
+msgstr "แจ้งเตือน"
+
+#: www/views/preferencesNotifications.html:17
+msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
+msgstr "การแจ้งเตือนสำหรับ {{appName}} ถูกปิดการใช้งานในขณะนี้ เปิดใช้งานที่การตั้งค่าของแอปฯ"
+
+#: www/views/export.html:17
+msgid "QR Code"
+msgstr "บาร์โค้ด"
+
+#: www/views/onboarding/disclaimer.html:13
+msgid "Quick review!"
+msgstr "ตรวจสอบด่วน!"
+
+#: src/js/controllers/create.js:84
+#: src/js/controllers/join.js:68
+msgid "Random"
+msgstr "ทำการสุ่ม"
+
+#: www/views/feedback/rateApp.html:14
+msgid "Rate on the app store"
+msgstr "ให้คะแนนแอปฯนี้บน app store"
+
+#: www/views/addresses.html:52
+msgid "Read less"
+msgstr "ย่อลง"
+
+#: www/views/addresses.html:51
+msgid "Read more"
+msgstr "อ่านเพิ่ม"
+
+#: src/js/controllers/preferences.js:65
+#: src/js/controllers/tx-details.js:54
+msgid "Read more in our Wiki"
+msgstr "อ่านเพิ่มในวิกิ"
+
+#: src/js/controllers/cashScan.js:61
+msgid "Read only wallet"
+msgstr "อ่านแค่ที่กระเป๋านี้"
+
+#: www/views/tab-receive.html:3
+#: www/views/tabs.html:7
+msgid "Receive"
+msgstr "รับเงิน"
+
+#: www/views/customAmount.html:44
+msgid "Receive in"
+msgstr "รับเงินเข้า"
+
+#: www/views/includes/walletHistory.html:24
+#: www/views/tx-details.html:18
+msgid "Received"
+msgstr "รับแล้ว"
+
+#: src/js/controllers/tx-details.js:130
+msgid "Received Funds"
+msgstr "รับยอดเงินแล้ว"
+
+#: www/views/includes/walletHistory.html:57
+#: www/views/tx-details.html:24
+msgid "Receiving"
+msgstr "กำลังรับเงิน"
+
+#: www/views/bitpayCard.html:60
+#: www/views/includes/walletHistory.html:3
+msgid "Recent"
+msgstr "ล่าสุด"
+
+#: www/views/advancedSettings.html:21
+msgid "Recent Transaction Card"
+msgstr "การ์ดธุรกรรมล่าสุด"
+
+#: www/views/activity.html:4
+#: www/views/tab-home.html:58
+msgid "Recent Transactions"
+msgstr "ธุรกรรมล่าสุด"
+
+#: www/views/amount.html:18
+#: www/views/tab-send.html:9
+msgid "Recipient"
+msgstr "ผู้รับ"
+
+#: www/views/modals/txp-details.html:62
+msgid "Recipients"
+msgstr "ผู้รับ"
+
+#: www/views/import.html:12
+msgid "Recovery phrase"
+msgstr "กลุ่มคำกู้คืนกระเป๋า"
+
+#: src/js/services/onGoingProcess.js:26
+msgid "Recreating Wallet..."
+msgstr "กำลังสร้างกระเป๋า..."
+
+#: www/views/modals/mercadolibre-card-details.html:22
+msgid "Redeem now"
+msgstr "กู้คืนตอนนี้"
+
+#: src/js/controllers/modals/txpDetails.js:63
+#: src/js/controllers/tx-details.js:80
+msgid "Rejected"
+msgstr "ปฏิเสธ"
+
+#: src/js/services/onGoingProcess.js:27
+msgid "Rejecting payment proposal"
+msgstr "ปฎิเสธข้อเสนอการชำระเงิน"
+
+#: www/views/preferencesAbout.html:9
+msgid "Release information"
+msgstr "ปล่อยข้อมูล"
+
+#: www/views/addressbook.view.html:36
+#: www/views/modals/mercadolibre-card-details.html:69
+msgid "Remove"
+msgstr "ย้ายออก"
+
+#: src/js/controllers/preferencesBitpayServices.js:7
+msgid "Remove BitPay Account?"
+msgstr "เอาบัญชี BitPay ออก"
+
+#: src/js/controllers/preferencesBitpayServices.js:19
+msgid "Remove BitPay Card?"
+msgstr "เอาบัตร BitPay ออก"
+
+#: src/js/controllers/preferencesBitpayServices.js:8
+msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
+msgstr "การลบบัญชี BitPay ของคุณจะเป็นการลบบัญชี BitPay ที่สร้างแล้วทั้งหมดจากอุปกรณ์นี้ คุณแน่ใจหรือไม่ว่าต้องการลบบัญชี BitPay ({{email}}) จากอุปกรณ์นี้  "
+
+#: www/views/join.html:116
+#: www/views/join.html:124
+#: www/views/tab-create-personal.html:86
+#: www/views/tab-create-personal.html:94
+#: www/views/tab-create-shared.html:115
+#: www/views/tab-create-shared.html:123
+#: www/views/tab-export-file.html:17
+msgid "Repeat password"
+msgstr "ป้อนรหัสผ่านอีกครั้ง"
+
+#: www/views/tab-export-file.html:16
+msgid "Repeat the password"
+msgstr "ป้อนรหัสผ่านอีกครั้ง"
+
+#: www/views/preferences.html:56
+msgid "Request Fingerprint"
+msgstr "ส่งคำขอสแกนนิ้วมือ"
+
+#: www/views/tab-receive.html:45
+msgid "Request Specific amount"
+msgstr "ขอยอดที่เฉพาะเจาะจง"
+
+#: www/views/preferences.html:42
+msgid "Request Spending Password"
+msgstr "ขอรหัสการจ่าย"
+
+#: www/views/tab-create-shared.html:44
+msgid "Required number of signatures"
+msgstr "ระบุจำนวนลายเซ็นที่ต้องการ"
+
+#: www/views/onboarding/welcome.html:9
+msgid "Restore from backup"
+msgstr "ติดตั้งใหม่จาการสำรองข้อมูล"
+
+#: src/js/services/onGoingProcess.js:29
+msgid "Retrieving inputs information"
+msgstr "กู้ข้อมูล"
+
+#: src/js/controllers/onboarding/tour.js:56
+msgid "Retry"
+msgstr "ลองอีกครั้ง"
+
+#: www/views/tab-scan.html:23
+msgid "Retry Camera"
+msgstr "ลองกล้องอีกครั้ง"
+
+#: www/views/addressbook.add.html:56
+#: www/views/includes/note.html:9
+#: www/views/preferencesAlias.html:21
+#: www/views/preferencesBwsUrl.html:25
+#: www/views/preferencesNotifications.html:46
+msgid "Save"
+msgstr "บันทึก"
+
+#: www/views/tab-scan.html:3
+#: www/views/tabs.html:11
+msgid "Scan"
+msgstr "สแกน"
+
+#: www/views/tab-scan.html:15
+msgid "Scan QR Codes"
+msgstr "สแกนรหัส QR โค้ด"
+
+#: www/views/addresses.html:31
+msgid "Scan addresses for funds"
+msgstr "สแกนที่อยู่ที่มียอดเงิน"
+
+#: www/views/modals/fingerprintCheck.html:11
+msgid "Scan again"
+msgstr "สแกนอีกครั้ง"
+
+#: src/js/services/fingerprintService.js:56
+msgid "Scan your fingerprint please"
+msgstr "โปรดสแกนนิ้วมือของคุณ"
+
+#: www/views/preferencesCash.html:23
+msgid "Scan your wallets for Bitcoin Cash"
+msgstr "สแกนกระเป๋าของคุณสำหรับเงินสดBitcoin "
+
+#: src/js/services/onGoingProcess.js:30
+msgid "Scanning Wallet funds..."
+msgstr "กำลังสแกนยอดเงิน..."
+
+#: www/views/includes/walletList.html:11
+msgid "Scanning funds..."
+msgstr "กำลังสแกนยอดเงิน..."
+
+#: www/views/includes/screenshotWarningModal.html:7
+msgid "Screenshots are not secure"
+msgstr "ไม่ปลอดภัยหากคุณทำการบันทึกภาพหน้าจอ"
+
+#: www/views/modals/search.html:6
+msgid "Search Transactions"
+msgstr "ค้นหาธุรกรรม"
+
+#: www/views/tab-send.html:13
+msgid "Search or enter bitcoin address"
+msgstr "ค้นหา หรือป้อนที่อยู่ของ bitcoin"
+
+#: src/js/controllers/tab-send.js:28
+msgid "Clipboard"
+msgstr "คลิปบอร์ด"
+
+#: src/js/controllers/tab-send.js:29
+msgid "Your Clipboard is empty"
+msgstr "คลิปบอร์ดของคุณว่างเปล่า"
+
+#: www/views/modals/search.html:16
+msgid "Search transactions"
+msgstr "ค้นหาธุรกรรม"
+
+#: www/views/preferencesAltCurrency.html:14
+msgid "Search your currency"
+msgstr "ค้นหาสกุลเงินของคุณ"
+
+#: www/views/preferences.html:30
+msgid "Security"
+msgstr "ความปลอดภัย"
+
+#: www/views/modals/mercadolibre-card-details.html:64
+msgid "See invoice"
+msgstr "ดูใบแจ้งหนี้"
+
+#: www/views/tab-import-file.html:7
+msgid "Select a backup file"
+msgstr "เลือกไฟล์สำรองข้อมูล"
+
+#: src/js/controllers/tab-receive.js:139
+msgid "Select a wallet"
+msgstr "เลือกกระเป๋าสตางค์"
+
+#: www/views/modals/paypro.html:38
+msgid "Self-signed Certificate"
+msgstr "รับรองด้วยตนเอง"
+
+#: src/js/services/onGoingProcess.js:41
+msgid "Selling Bitcoin..."
+msgstr "กำลังขาย Bitcoin ..."
+
+#: www/views/feedback/send.html:13
+#: www/views/feedback/send.html:43
+#: www/views/tab-send.html:3
+#: www/views/tabs.html:15
+msgid "Send"
+msgstr "จ่ายเงิน"
+
+#: www/views/feedback/send.html:3
+#: www/views/tab-settings.html:29
+msgid "Send Feedback"
+msgstr "ส่งคำติชม"
+
+#: www/views/addressbook.view.html:31
+msgid "Send Money"
+msgstr "โอนเงิน"
+
+#: www/views/allAddresses.html:19
+msgid "Send addresses by email"
+msgstr "ส่งที่อยู่ Bitcoin ทางอีเมล"
+
+#: www/views/includes/logOptions.html:17
+#: www/views/tab-export-file.html:82
+msgid "Send by email"
+msgstr "ส่งทางอีเมล"
+
+#: src/js/controllers/confirm.js:177
+#: src/js/controllers/tab-send.js:94
+msgid "Send from"
+msgstr "ส่งจาก"
+
+#: src/js/controllers/tab-send.js:77
+msgid "Send to"
+msgstr "ส่งไปยัง"
+
+#: www/views/tab-send.html:20
+msgid "Paste Clipboard"
+msgstr "วางคลิปบอร์ด"
+
+#: www/views/tab-send.html:21
+msgid "Paste Address"
+msgstr "วางที่อยู่"
+
+#: www/views/tab-send.html:27
+msgid "Transfer between wallets"
+msgstr "โอนเงินระหว่างกระเป๋าของคุณ"
+
+#: www/views/tab-send.html:35
+msgid "Scan QR Code"
+msgstr "สแกนรหัส QR โค้ด"
+
+#: www/views/tab-send.html:46
+msgid "Send Bitcoin faster!"
+msgstr "ส่ง Bitcoin ให้เร็วขึ้น"
+
+#: www/views/tab-send.html:50
+msgid "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "บันทึกที่อยู่ที่ทำการส่งบ่อยครั้ง"
+
+#: www/views/tab-send.html:55
+msgid "Add your first contact"
+msgstr "เพิ่มรายชื่อแรกของคุณ"
+
+#: www/views/tab-send.html:65
+msgid "Your Bitcoin wallet is empty"
+msgstr "กระเป๋าBitcoin ของคุณว่างเปล่า"
+
+#: www/views/tab-send.html:69
+msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "ในการเริ่ม ให้ทำการซื้อเงินสด BCH หรือ BTC หรือไม่ก็แชร์ที่อยู่ของคุณ"
+
+#: www/views/tab-send.html:70
+msgid "You can receive bitcoin from any wallet or service."
+msgstr "คุณสามารถรับbitcoinได้จากกระเป๋าเงินหรือบริการใดๆก็ได้"
+
+#: www/views/tab-send.html:72
+#: www/views/sideshift.html:23
+#: www/views/tab-send.html:33
+msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "ในการเริ่มต้นคุณจะต้องสร้างกระเป๋าเงินbitcoin และรับเงินbitcoin"
+
+#: www/views/tab-send.html:74
+msgid "Buy Bitcoin now"
+msgstr "ซื้อ Bitcoin"
+
+#: www/views/tab-send.html:76
+msgid "Show my address"
+msgstr "แสดงที่อยู่ของฉัน"
+
+#: www/views/includes/itemSelector.html:8
+msgid "Send max amount"
+msgstr "โอนเงินที่มีอยู่ทั้งหมด"
+
+#: www/views/includes/incomingDataMenu.html:46
+msgid "Send payment to this address"
+msgstr "ชำระเงินไปยังที่อยู่นี้"
+
+#: www/views/feedback/rateApp.html:17
+msgid "Send us feedback instead"
+msgstr "ส่งคำติชมแทน"
+
+#: www/views/confirm.html:15
+#: www/views/includes/txp.html:12
+#: www/views/modals/txp-details.html:19
+#: www/views/tx-details.html:23
+msgid "Sending"
+msgstr "การโอนเงิน"
+
+#: src/js/services/onGoingProcess.js:39
+msgid "Sending 2FA code..."
+msgstr "ส่งรหัสการตรวจสอบ"
+
+#: src/js/services/onGoingProcess.js:36
+msgid "Sending feedback..."
+msgstr "การส่งคำติชม"
+
+#: www/views/confirm.html:16
+msgid "Sending maximum amount"
+msgstr "การส่งเงินที่มีอยู่ทั้งหมด"
+
+#: src/js/services/onGoingProcess.js:31
+msgid "Sending transaction"
+msgstr "การทำธุรกรรม"
+
+#: src/js/controllers/confirm.js:545
+msgid "Sending {{amountStr}} from your {{name}} wallet"
+msgstr "กำลังส่ง {{amountStr}} จากกระเป๋า{{name}} ของคุณ"
+
+#: www/views/includes/walletHistory.html:42
+#: www/views/modals/tx-status.html:9
+#: www/views/topup.html:100
+#: www/views/tx-details.html:17
+msgid "Sent"
+msgstr "ส่งแล้ว"
+
+#: src/js/controllers/tx-details.js:129
+msgid "Sent Funds"
+msgstr "ส่งยอดนี้แล้ว"
+
+#: src/js/services/bwcError.js:38
+msgid "Server response could not be verified"
+msgstr "ไม่สามารถตรวจสอบเซิร์ฟเวอร์ได้"
+
+#: src/js/controllers/buyAmazon.js:97
+#: src/js/controllers/buyMercadoLibre.js:97
+msgid "Service not available"
+msgstr "การบริการไม่พร้อมใช้งาน"
+
+#: www/views/includes/homeIntegrations.html:3
+msgid "Services"
+msgstr "บริการ"
+
+#: www/views/preferencesLogs.html:3
+msgid "Session Log"
+msgstr "บันทึกของเซสชัน"
+
+#: www/views/preferencesAbout.html:35
+msgid "Session log"
+msgstr "บันทึกของเซสชัน"
+
+#: www/views/tab-export-file.html:10
+msgid "Set up a password"
+msgstr "ตั้งค่ารหัสผ่าน"
+
+#: src/js/controllers/preferencesFee.js:85
+msgid "Set your own fee in satoshis/byte"
+msgstr "กำหนดค่าธรรมเนียมของคุณเองใน satoshis/byt"
+
+#: www/views/tab-settings.html:3
+#: www/views/tabs.html:19
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+#: www/views/feedback/complete.html:17
+#: www/views/feedback/complete.html:26
+msgid "Share the love by inviting your friends."
+msgstr "แบ่งปันความรักด้วยการชวนเพื่อนของคุณ"
+
+#: www/views/copayers.html:20
+msgid "Share this invitation with your copayers"
+msgstr "แบ่งปันคำเชิญนี้กับ copayers ของคุณ"
+
+#: src/js/controllers/feedback/complete.js:5
+#: www/views/tab-settings.html:36
+msgid "Share {{appName}}"
+msgstr "แชร์ {{appName}}"
+
+#: www/views/tab-import-hardware.html:24
+msgid "Shared Wallet"
+msgstr "แชร์กระเป๋า"
+
+#: www/views/preferencesExternal.html:34
+msgid "Show Recovery Phrase"
+msgstr "แสดงกลุ่มคำกู้คืน"
+
+#: www/views/tab-receive.html:34
+msgid "Show address"
+msgstr "แสดงที่อยู่"
+
+#: www/views/join.html:48
+#: www/views/tab-create-personal.html:27
+#: www/views/tab-create-shared.html:56
+#: www/views/tab-export-file.html:24
+#: www/views/tab-import-file.html:29
+#: www/views/tab-import-hardware.html:30
+#: www/views/tab-import-phrase.html:35
+msgid "Show advanced options"
+msgstr "แสดงตัวเลือกขั้นสูง"
+
+#: www/views/tab-send.html:37
+msgid "Show bitcoin address"
+msgstr "แสดงที่อยู่ของ bitcoin"
+
+#: www/views/tab-send.html:59
+msgid "Show more"
+msgstr "แสดงเพิ่มเติม"
+
+#: src/js/services/bwcError.js:104
+msgid "Signatures rejected by server"
+msgstr "ลายเซ็นที่ถูกปฏิเสธ โดยเซิร์ฟเวอร์"
+
+#: src/js/services/onGoingProcess.js:32
+msgid "Signing transaction"
+msgstr "กำลังลงนามการทำธุรกรรม"
+
+#: www/views/onboarding/backupRequest.html:6
+msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
+msgstr "เพราะคุณเท่านั้นที่สามารถควบคุมเงินของคุณได้ คุณจำเป็นต้องทำการสำรองข้อมูลในกรณีหากแอปของคุณถูกลบ"
+
+#: www/views/tab-create-personal.html:122
+#: www/views/tab-create-shared.html:151
+msgid "Single Address Wallet"
+msgstr "ที่อยู่กระเป๋าสตางค์เดียว"
+
+#: www/views/onboarding/collectEmail.html:40
+#: www/views/onboarding/tour.html:11
+msgid "Skip"
+msgstr "ข้าม"
+
+#: src/js/controllers/confirm.js:371
+#: src/js/controllers/modals/txpDetails.js:47
+msgid "Slide to accept"
+msgstr "เลื่อนเพื่อยืนยัน"
+
+#: www/views/buyAmazon.html:96
+msgid "Slide to buy"
+msgstr "เลื่อนเพื่อซื้อ"
+
+#: src/js/controllers/confirm.js:365
+msgid "Slide to pay"
+msgstr "คลิกเพื่อชำระเงิน"
+
+#: src/js/controllers/confirm.js:377
+#: src/js/controllers/modals/txpDetails.js:40
+msgid "Slide to send"
+msgstr "เลื่อนเพื่อยืนยันการส่ง"
+
+#: www/views/cashScan.html:56
+msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
+msgstr "บางกระเป๋าของคุณจะไม่สามารถรองรับเงิน Bitcoin คุณสามารถเข้าถึงเงิน BCH จากกระเป๋าเหล่านี้โดยใช้การ"
+
+#: src/js/controllers/create.js:88
+#: src/js/controllers/join.js:71
+msgid "Specify Recovery Phrase..."
+msgstr "ระบุกลุ่มคำการกู้คืน..."
+
+#: src/js/services/bwcError.js:92
+msgid "Spend proposal is not accepted"
+msgstr "ไม่ยอมรับข้อเสนอการชำระเงินนี้"
+
+#: src/js/services/bwcError.js:95
+msgid "Spend proposal not found"
+msgstr "ไม่พบข้อเสนอนี้"
+
+#: src/js/services/bwcError.js:137
+msgid "Spending Password needed"
+msgstr "จำเป็นต้องใส่รหัสผ่าน"
+
+#: www/views/walletDetails.html:173
+msgid "Spending this balance will need significant Bitcoin network fees"
+msgstr "การชำระยอดนี้จะจำเป็นต้องมีค่าธรรมเนียมเครือข่าย Bitcoin"
+
+#: www/views/tab-send.html:28
+msgid "Start sending bitcoin"
+msgstr "เริ่มการส่ง Bitcoin"
+
+#: www/views/lockSetup.html:3
+msgid "Startup Lock"
+msgstr "Startup Lock"
+
+#: www/views/mercadoLibreCards.html:21
+#: www/views/modals/mercadolibre-card-details.html:42
+msgid "Still pending"
+msgstr "ยังดำเนินการอยู่"
+
+#: www/views/topup.html:101
+msgid "Success"
+msgstr "สำเร็จ"
+
+#: src/js/services/feeService.js:14
+msgid "Super Economy"
+msgstr "แบบคุ้มค่ามากๆ"
+
+#: www/views/preferencesCash.html:11
+msgid "Support Bitcoin Cash"
+msgstr "สนับสนุนเงิน Bitcoin"
+
+#: www/views/paperWallet.html:7
+msgid "Sweep"
+msgstr "ค้นหา"
+
+#: www/views/includes/incomingDataMenu.html:89
+msgctxt "List item"
+msgid "Sweep paper wallet"
+msgstr "ค้นหากระเป๋าเปเปอร์"
+
+#: www/views/paperWallet.html:3
+msgctxt "Page title"
+msgid "Sweep Paper Wallet"
+msgstr "ค้นหา Paper Wallet"
+
+#: src/js/services/onGoingProcess.js:33
+msgid "Sweeping Wallet..."
+msgstr "กำลังค้นหากระเป๋า..."
+
+#: www/views/preferencesDeleteWallet.html:16
+msgid "THIS ACTION CANNOT BE REVERSED"
+msgstr "การกระทำนี้ไม่สามารถย้อนกลับได้"
+
+#: www/views/onboarding/welcome.html:5
+msgid "Take control of your money,<br>get started with bitcoin."
+msgstr "ควบคุมเงินคุณ<br>เริ่มต้นด้วย bitcoin"
+
+#: www/views/walletDetails.html:132
+#: www/views/walletDetails.html:52
+msgid "Tap and hold to show"
+msgstr "แตะค้างไว้เพื่อแสดง"
+
+#: www/views/includes/walletInfo.html:3
+msgid "Tap to recreate"
+msgstr "แตะเพื่อสร้าง"
+
+#: www/views/includes/walletInfo.html:4
+msgid "Tap to retry"
+msgstr "แตะเพื่อลองอีกครั้ง"
+
+#: www/views/termsOfUse.html:3
+msgid "Terms Of Use"
+msgstr "เงื่อนไขการใช้"
+
+#: www/views/modals/terms.html:3
+#: www/views/onboarding/disclaimer.html:29
+#: www/views/onboarding/disclaimer.html:43
+#: www/views/preferencesAbout.html:30
+msgid "Terms of Use"
+msgstr "เงื่อนไขการใช้"
+
+#: www/views/tab-create-personal.html:118
+#: www/views/tab-import-phrase.html:68
+msgid "Testnet"
+msgstr "Testnet"
+
+#: www/views/includes/incomingDataMenu.html:61
+msgid "Text"
+msgstr "ข้อความ"
+
+#: src/js/controllers/feedback/send.js:27
+#: src/js/controllers/feedback/send.js:76
+#: www/views/feedback/complete.html:20
+#: www/views/feedback/rateApp.html:4
+msgid "Thank you!"
+msgstr "ขอบคุณมากๆ"
+
+#: src/js/controllers/feedback/send.js:72
+msgid "Thanks!"
+msgstr "ขอบคุณ!"
+
+#: src/js/controllers/feedback/send.js:73
+msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
+msgstr "ฟังดูน่าสนใจนะ และเราใคร่ยินดีที่จะได้รับห้าดาวจากคุณ และเราจะสามารถช่วยเหลือคุณได้อย่างไร?"
+
+#: src/js/services/ledger.js:152
+msgid "The Ledger Chrome application is not installed"
+msgstr "แอปฯ Ledger Chrome ไม่ได้ติดตั้งไว้"
+
+#: www/views/modals/wallet-balance.html:55
+msgid "The amount of bitcoin immediately spendable from this wallet."
+msgstr "ยอดของ bitcoin ที่ใช้จ่ายได้ทันทีของกระเป๋านี้"
+
+#: www/views/modals/wallet-balance.html:93
+msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgstr "จำนวนยอดของ bitcoin ที่เก็บไว้ในกระเป๋านี้ถูกจัดสรรไว้ในส่วนของการดำเนินการด้านข้อเสนอการทำธุรกรรม ซึ่งเชื่อมโยงกับกระเป๋าเงินนี้และอาจมากกว่าจำนวนเงินจริงที่เกี่ยวข้องกับข้อเสนอการทำธุรกรรมที่ค้างอยู่ของคุณ"
+
+#: www/views/modals/wallet-balance.html:74
+msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgstr "ยอด bitcoin ที่เก็บในกระเป๋านี้มีบล็อคเชนการยืนยันน้อยกว่า 1"
+
+#: www/views/tab-import-phrase.html:5
+msgid "The derivation path"
+msgstr "ความเป็นมา"
+
+#: www/views/onboarding/tour.html:37
+msgid "The exchange rate changes with the market."
+msgstr "อัตราแลกเปลี่ยนเปลี่ยนแปลงไปตามตลาด"
+
+#: www/views/preferencesFee.html:12
+msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
+msgstr "ยิ่งค่าธรรมเนียมสูง ยิ่งเป็นแรงจูงใจให้กับไมเนอร์ในบล็อก และค่าธรรมเนียมปัจจุบันจะขึ้นอยู่กับเครือข่ายและนโยบายที่เลือก"
+
+#: www/views/addresses.html:51
+msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
+msgstr " ถึงจำนวนสูงสุด 20 จำนวนสำหรับที่อยู่ที่ไม่มีการใช้งานแล้ว เมื่อไหร่ที่หนึ่งในที่อยู่ที่ไม่มีการใช้งานของคุณรับการชำระเงิน ที่อยู่ใหม่จะถูกสร้างใหม่และจะแสดงที่แถบการรับ"
+
+#: src/js/controllers/onboarding/terms.js:21
+msgid "The official English Terms of Service are available on the BitPay website."
+msgstr "มีเงื่อนการให้บริการอย่างเป็นทางการบนเว็บไซต์ของBitPay"
+
+#: www/views/tab-import-phrase.html:4
+msgid "The password of the recovery phrase (if set)"
+msgstr "รหัสเพื่อเข้าสู่กลุ่มคำการกู้คืน(ถ้าได้กำหนดไว้)"
+
+#: src/js/services/walletService.js:1139
+msgid "The payment was created but could not be completed. Please try again from home screen"
+msgstr "การชำระเงินได้ถูกสร้างขึ้นแล้วแต่ไม่สามารถทำให้สมบูรณ์ได้ โปรดลองอีกครั้งจากหน้าแรก"
+
+#: www/views/modals/txp-details.html:26
+msgid "The payment was removed by creator"
+msgstr "การชำระเงินได้ถูกลบโดยผู้สร้าง"
+
+#: www/views/join.html:91
+#: www/views/tab-create-personal.html:63
+#: www/views/tab-create-shared.html:92
+#: www/views/tab-import-phrase.html:43
+msgid "The recovery phrase could require a password to be imported"
+msgstr "สามารถขอรหัสผ่านสำหรับการนำเข้ากลุ่มคำกู้คืนกระเป๋า"
+
+#: src/js/services/bwcError.js:56
+msgid "The request could not be understood by the server"
+msgstr "เซิร์ฟเวอร์ไม่เข้าใจการร้องขอ"
+
+#: www/views/addresses.html:52
+msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
+msgstr "เพื่อการสร้างที่อยู่เพิ่มเติมอย่างปลอดภัย ให้ทำการชำระเงินไปยังที่อยู่ใดที่อยู่นึงที่แสดงในแถบ เพราะกระบวนการการคืนค่าจะหยุดเมื่อมี 20 ที่อยู่ที่ไม่พบยอดแสดงขึ้นมาในแถบ"
+
+#: src/js/services/bwcError.js:98
+msgid "The spend proposal is not pending"
+msgstr "ข้อเสนอการใช้จ่ายไม่ได้รอดำเนินการ"
+
+#: www/views/modals/wallet-balance.html:36
+msgid "The total amount of bitcoin stored in this wallet."
+msgstr "ยอดรวมของ bitcoin ที่เก็บไว้ในกระเป๋านี้"
+
+#: www/views/preferencesHistory.html:27
+msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
+msgstr "ประวัติธุรกรรมและธุรกรรมใหม่จะถูกเก็บไว้ในแอปฯชั่วคราว และคุณลักษณะนี้จะทำการล้างและประสานอีกครั้งจากเซิฟเวอร์ "
+
+#: www/views/tab-import-phrase.html:6
+msgid "The wallet service URL"
+msgstr " URLการบริการกระเป๋า"
+
+#: src/js/controllers/tab-home.js:38
+msgid "There is a new version of {{appName}} available"
+msgstr "นี่เป็นเวอร์ชั่นใหม่ของ {{appName}} ที่พร้อมใช้งาน"
+
+#: src/js/controllers/import.js:229
+#: src/js/controllers/import.js:254
+#: src/js/controllers/import.js:335
+msgid "There is an error in the form"
+msgstr "มีข้อผิดพลาดในแบบฟอร์ม"
+
+#: src/js/controllers/feedback/send.js:61
+#: src/js/controllers/feedback/send.js:65
+msgid "There's obviously something we're doing wrong."
+msgstr "เห็นได้ชัดว่ามีบางสิ่งที่เรากำลังทำผิด"
+
+#: src/js/controllers/feedback/rateCard.js:38
+msgid "This app is fantastic!"
+msgstr "แอพนี้ยอดเยี่ยมมาก!"
+
+#: www/views/onboarding/tour.html:47
+msgid "This app stores your bitcoin with cutting-edge security."
+msgstr "แอปฯนี้เก็บbitcoin ของคุณด้วยการรักษาความปลอดภัยที่ล้ำสมัย"
+
+#: src/js/controllers/confirm.js:523
+msgid "This bitcoin payment request has expired."
+msgstr "คำขอชำระเงินbitcoinนี้หมดอายุ"
+
+#: www/views/review.html:55
+msgid "Payment expires:"
+msgstr "การชำระเงินที่หมดอายุ:"
+
+#: www/views/review.html:56
+msgid "Payment request has expired"
+msgstr "คำขอชำระเงินหมดอายุ"
+
+#: www/views/join.html:133
+#: www/views/tab-create-personal.html:103
+#: www/views/tab-create-shared.html:132
+msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
+msgstr "รหัสผ่านนี้ไม่สามารถกู้คืน ถ้ารหัสผ่านที่หายไป ไม่มีทางคุณสามารถกู้คืนเงินของคุณได้"
+
+#: www/views/backup.html:31
+msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
+msgstr "กลุ่มคำการกู้คืนนี้ถูกสร้างขึ้นโดยมีรหัสผ่าน ถ้าจะกู้คืนกระเป๋านี้จะต้องทราบกลุ่มคำกู้คืนข้อมูลและรหัสผ่านด้วย"
+
+#: www/views/tx-details.html:91
+msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgstr "ยอดของการทำธุรกรรมนี้น้อยเกินไปเมื่อเทียบกับค่าธรรมเนียมเครือข่าย Bitcoin ในขณะนี้ ยอดเงินจะต้องสมเหตุสมผลกับค่าธรรมเนียมด้วย"
+
+#: www/views/tx-details.html:87
+msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
+msgstr "ธุรกรรมนี้อาจใช้เวลานานเพื่อยืนยันหรืออาจจะถูกลดลงเนื่องจากการกำหนดค่าธรรมเนียมที่ต่ำของผู้ส่งเอง"
+
+#: www/views/walletDetails.html:109
+#: www/views/walletDetails.html:29
+msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
+msgstr "กระเป๋านี้ยังไม่ได้ลงทะเบียน BWS คุณสามารถสร้างใหม่ได้จากข้อมูลท้องถิ่นที่อาศัยอยู่"
+
+#: www/views/modals/txp-details.html:136
+#: www/views/tx-details.html:121
+msgid "Timeline"
+msgstr "ไทม์ไลน์"
+
+#: www/views/confirm.html:31
+#: www/views/includes/output.html:2
+#: www/views/modals/txp-details.html:109
+#: www/views/modals/txp-details.html:53
+#: www/views/tx-details.html:41
+#: www/views/tx-details.html:53
+msgid "To"
+msgstr "ไปยัง"
+
+#: www/views/tab-send.html:32
+msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgstr "เริ่มต้นโดยการซื้อ bitcoin หรือแชร์ที่อยู่ของคุณ คุณจะสามรถรับเงินจากใครก็ได้หรือบริการไหนก็ได้เช่นกัน"
+
+#: src/js/services/bitpayAccountService.js:73
+msgid "To {{reason}} you must first add your BitPay account - {{email}}"
+msgstr "{{reason}}คุณต้องเพิ่มบัญชีBitPay ก่อน{{email}}"
+
+#: src/js/services/onGoingProcess.js:48
+msgid "Top up in progress..."
+msgstr "อยู่ระหว่างดำเนินการ..."
+
+#: src/js/controllers/topup.js:206
+msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr " {{amountStr}} ไปยังบัตรเดบิต {{cardLastNumber}}"
+
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "เริ่ม SideShift AI"
+
+#: www/views/sideshift.html:30
+msgid "Exchange your BTC to BCH in minutes."
+msgstr "แลก BTC เป็น BCH แค่แปปเดียว"
+
+#: www/views/sideshift.html:30
+msgid "To start the process you need to add funds to your wallet."
+msgstr "การเริ่มต้นขั้นตอน คุณจำเป็นต้องเพิ่มเงินในกระเป๋าของคุณ"
+
+#: www/views/sideshift.html:30
+msgid "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "กระบวนการเป็นไปอย่างรวดเร็ว และคุณจะได้รับเงินที่แลกแล้วในกระเป๋าของคุณ"
+
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "บริการนี้เป็นบริการของ SideShift AI บุคคลที่สาม ที่จะเรียกเก็บค่าธรรมเนียมบริการจากคุณ คุณจะทราบค่าธรรมเนียมก่อนทำธุรกรรมทุกครั้ง"
+
+#: www/views/buyAmazon.html:61
+#: www/views/buyMercadoLibre.html:60
+#: www/views/modals/wallet-balance.html:23
+#: www/views/topup.html:70
+msgid "Total"
+msgstr "ทั้งหมด"
+
+#: www/views/walletDetails.html:196
+msgid "Total Locked Balance"
+msgstr "ยอดทั้งหมดที่ล็อค"
+
+#: www/views/tab-create-shared.html:35
+msgid "Total number of copayers"
+msgstr "จำนวน copayersทั้งหมด"
+
+#: www/views/addresses.html:81
+msgid "Total wallet inputs"
+msgstr "กระเป๋าทั้งหมด"
+
+#: src/js/services/fingerprintService.js:63
+#: src/js/services/fingerprintService.js:68
+msgid "Touch ID Failed"
+msgstr "สแกนล้มเหลว"
+
+#: src/js/controllers/tx-details.js:12
+msgid "Transaction"
+msgstr "ธุรกรรม"
+
+#: www/views/confirm.html:126
+msgid "Transaction Created"
+msgstr "ธุรกรรมที่สร้างขึ้นแล้ว"
+
+#: www/views/preferencesAdvanced.html:29
+#: www/views/preferencesHistory.html:3
+msgid "Transaction History"
+msgstr "ประวัติการทำธุรกรรม"
+
+#: src/js/services/bwcError.js:83
+msgid "Transaction already broadcasted"
+msgstr "ธุรกรรมถูกส่งแล้ว"
+
+#: src/js/controllers/buyAmazon.js:308
+#: src/js/controllers/buyMercadoLibre.js:301
+#: src/js/controllers/topup.js:281
+msgid "Transaction has not been created"
+msgstr "ยังไม่ได้สร้างธุรกรรม"
+
+#: www/views/topup.html:104
+msgid "Transaction initiated"
+msgstr "ธุรกรรมที่สร้างขึ้นแล้ว"
+
+#: src/js/controllers/tx-details.js:119
+msgid "Transaction not available at this time"
+msgstr "ธุรกรรมที่ไม่พร้อมใช้งานในขณะนี้"
+
+#: src/js/controllers/activity.js:45
+#: src/js/controllers/tab-home.js:174
+msgid "Transaction not found"
+msgstr "ไม่พบธุรกรรม"
+
+#: www/views/modals/chooseFeeLevel.html:55
+msgid "Transactions without fee are not supported."
+msgstr "ไม่รองรับธุรกรรมที่ไม่มีค่าธรรมเนียม"
+
+#: src/js/controllers/paperWallet.js:109
+msgid "Transfer to"
+msgstr "โอนย้ายไปยัง"
+
+#: www/views/tab-send.html:67
+msgid "Transfer to Wallet"
+msgstr "โอนไปยังกระเป๋าสตางค์"
+
+#: www/views/modals/pin.html:13
+msgid "Try again in {{expires}}"
+msgstr "ลองอีกครั้งใน {{expires}}"
+
+#: www/views/bitpayCardIntro.html:18
+msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgstr "เปลี่ยน bitcoin เป็นดอลลาร์ ยอมรับทุกวีซ่า<sup>&amp;reg;</sup>"
+
+#: www/views/tab-import-phrase.html:17
+msgid "Type the Recovery Phrase (usually 12 words)"
+msgstr "พิมพ์วลีกู้คืน (ปกติมี 12 คำ)"
+
+#: src/js/controllers/backup.js:75
+msgid "Uh oh..."
+msgstr "โอ้ไม่..."
+
+#: www/views/tx-details.html:100
+msgid "Unconfirmed"
+msgstr "ยังไม่ได้ยืนยัน"
+
+#: www/views/walletDetails.html:190
+msgid "Unsent transactions"
+msgstr "ธุรกรรมที่ไม่ได้ส่ง"
+
+#: www/views/addresses.html:39
+msgid "Unused Addresses"
+msgstr "ที่อยู่ที่ไม่ได้ใช้งาน"
+
+#: www/views/addresses.html:50
+msgid "Unused Addresses Limit"
+msgstr "ขีดจำกัดที่อยู่ที่ไม่มีการใช้งาน"
+
+#: src/js/controllers/tab-home.js:146
+msgid "Update Available"
+msgstr "การอัพเดตพร้อมใช้งาน"
+
+#: www/views/proposals.html:14
+msgid "Updating pending proposals. Please stand by"
+msgstr "กำลังอัพเดตข้อเสนอที่ค้างอยู่ โปรดรอสักครู่"
+
+#: www/views/walletDetails.html:217
+msgid "Updating transaction history. Please stand by."
+msgstr "กำลังอัพเดตประวัติธุรกรรม โปรดรอสักครู่"
+
+#: www/views/activity.html:14
+msgid "Updating... Please stand by"
+msgstr "กำลังอัพเดต...โปรดรอสักครู่"
+
+#: src/js/services/feeService.js:10
+msgid "Urgent"
+msgstr "เร่งด่วน"
+
+#: www/views/advancedSettings.html:12
+msgid "Use Unconfirmed Funds"
+msgstr "ใช้เงินที่ยังไม่ได้ยืนยัน"
+
+#: src/js/services/onGoingProcess.js:34
+msgid "Validating recovery phrase..."
+msgstr "ตรวจสอบวลีกู้คืน..."
+
+#: www/views/modals/fingerprintCheck.html:4
+msgid "Verify your identity"
+msgstr "ยืนยันตัวตน"
+
+#: www/views/preferencesAbout.html:14
+#: www/views/preferencesExternal.html:25
+msgid "Version"
+msgstr "เวอร์ชัน"
+
+#: www/views/tab-export-file.html:69
+msgid "View"
+msgstr "เรียกดู"
+
+#: www/views/addresses.html:34
+msgid "View All Addresses"
+msgstr "ดูที่อยู่ทั้งหมด"
+
+#: src/js/controllers/onboarding/terms.js:20
+msgid "View Terms of Service"
+msgstr "ดูเงื่อนไขการใช้บริการ"
+
+#: src/js/controllers/bitpayCard.js:122
+#: src/js/controllers/tx-details.js:191
+msgid "View Transaction on Explorer.Bitcoin.com"
+msgstr "ดูธุรกรรมบน Explorer.Bitcoin.com"
+
+#: src/js/controllers/tab-home.js:148
+msgid "View Update"
+msgstr "ตรวจสอบอัพเดต"
+
+#: www/views/tx-details.html:147
+msgid "View on blockchain"
+msgstr "ดูที่บล็อคเชน"
+
+#: www/views/mercadoLibre.html:26
+msgid "Visit mercadolivre.com.br &rarr;"
+msgstr "เข้าชม mercadolivre.com.br &amp;rarr;"
+
+#: www/views/walletDetails.html:182
+msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
+msgstr "คำเตือน: คีย์นี้ใช้ไม่ได้บนอุปกรณ์/กระเป๋านี้ ไม่สามารถดำเนินการได้บนกระเป๋านี้"
+
+#: www/views/tab-export-file.html:45
+msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "คำเตือน: ไม่พบคีย์ส่วนตัวที่อนุญาตให้ตรวจสอบยอดคงเหลือ ประวัติการทำะธุรกรรมและสร้างข้อเสนอใดๆ อย่างไรก็ตาม ไม่อนุญาตให้อนุมัติ(เซ็น) ข้อเสนอ ดังนั้น <b>ยอดเงินจะไม่สามารถเข้าถึงได้</b>"
+
+#: www/views/tab-export-file.html:36
+msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "คำเตือน: คีย์ส่วนตัวของกระเป๋านี้ไม่พร้อมใช้งาน อนุญาตให้ตรวจสอบยอดคงเหลือ ประวัติการทำธุรกรรม และสร้างข้อเสนอการใช้จ่าย อย่างไรก็ตาม ไม่อนุญาตให้อนุมัติ  ดังนั้น <b> จะไม่สามารถเข้าถึงได้ </b>"
+
+#: www/views/modals/paypro.html:42
+msgid "WARNING: UNTRUSTED CERTIFICATE"
+msgstr "คำเตือน: ใบรับรองที่ไม่น่าเชื่อถือ"
+
+#: src/js/services/onGoingProcess.js:15
+msgid "Waiting for Ledger..."
+msgstr "กำลังรอ  Ledger.."
+
+#: src/js/services/onGoingProcess.js:16
+msgid "Waiting for Trezor..."
+msgstr "กำลังรอ Trezor..."
+
+#: www/views/copayers.html:48
+msgid "Waiting for copayers"
+msgstr "กำลังรอcopayers..."
+
+#: www/views/copayers.html:53
+msgid "Waiting..."
+msgstr "กำลังรอ..."
+
+#: www/views/addresses.html:3
+#: www/views/preferencesAdvanced.html:17
+msgid "Wallet Addresses"
+msgstr "ที่อยู่กระเป๋าสตางค์"
+
+#: www/views/preferencesColor.html:4
+msgid "Wallet Color"
+msgstr "สีกระเป๋าสตางค์"
+
+#: www/views/preferencesInformation.html:29
+msgid "Wallet Configuration (m-n)"
+msgstr "องค์ประกอบกระเป๋า (m-n)"
+
+#: www/views/onboarding/collectEmail.html:5
+msgid "Wallet Created"
+msgstr "สร้างกระเป๋าแล้ว"
+
+#: www/views/preferencesInformation.html:23
+msgid "Wallet Id"
+msgstr "ไอดีกระเป๋า"
+
+#: www/views/preferencesAdvanced.html:13
+#: www/views/preferencesInformation.html:3
+msgid "Wallet Information"
+msgstr "ข้อมูลกระเป๋าสตางค์"
+
+#: www/views/addresses.html:76
+msgid "Wallet Inputs"
+msgstr "กระเป๋าสตางค์อินพุต"
+
+#: www/views/join.html:26
+msgid "Wallet Invitation"
+msgstr "คำเชิญกระเป๋า"
+
+#: www/views/join.html:60
+#: www/views/tab-create-personal.html:38
+#: www/views/tab-create-shared.html:67
+msgid "Wallet Key"
+msgstr "คีย์กรเป๋า"
+
+#: www/views/preferencesAlias.html:4
+msgid "Wallet Name"
+msgstr "ชื่อกระเป๋า"
+
+#: www/views/preferencesInformation.html:11
+msgid "Wallet Name (at creation)"
+msgstr "ชื่อกระเป๋า (ที่การสร้าง)"
+
+#: www/views/preferencesInformation.html:35
+msgid "Wallet Network"
+msgstr "เครือข่ายกระเป๋า"
+
+#: www/views/join.html:77
+#: www/views/tab-create-personal.html:50
+#: www/views/tab-create-shared.html:79
+msgid "Wallet Recovery Phrase"
+msgstr "กลุ่มคำเพื่อกู้คืนกระเป๋า"
+
+#: src/js/services/bwcError.js:26
+msgid "Wallet Recovery Phrase is invalid"
+msgstr "กลุ่มคำกู้คืนกระเป๋าไม่ถูกต้อง"
+
+#: www/views/preferencesAdvanced.html:25
+#: www/views/tab-import-phrase.html:73
+msgid "Wallet Service URL"
+msgstr " URLการบริการกระเป๋า"
+
+#: www/views/preferences.html:4
+msgid "Wallet Settings"
+msgstr "การตั้งค่ากระเป๋า"
+
+#: www/views/tab-import-hardware.html:11
+#: www/views/tab-import-phrase.html:61
+msgid "Wallet Type"
+msgstr "ประเภทกระเป๋า"
+
+#: src/js/services/bwcError.js:59
+msgid "Wallet already exists"
+msgstr "มีกระเป๋าเงินอยู่แล้ว"
+
+#: src/js/services/profileService.js:516
+msgid "Wallet already in {{appName}}"
+msgstr "มีกระเป๋าใน {{appName}} แล้ว"
+
+#: www/views/includes/walletActivity.html:6
+msgid "Wallet created"
+msgstr "สร้างกระเป๋าแล้ว"
+
+#: www/views/copayers.html:58
+msgid "Wallet incomplete and broken"
+msgstr "กระเป๋าเงินไม่สมบูรณ์และพัง"
+
+#: src/js/services/bwcError.js:65
+msgid "Wallet is full"
+msgstr "กระเป๋าสตางค์เต็ม"
+
+#: src/js/services/bwcError.js:125
+msgid "Wallet is locked"
+msgstr "กระเป๋าสตางค์ถูกล็อก"
+
+#: src/js/services/bwcError.js:128
+msgid "Wallet is not complete"
+msgstr "กระเป๋าสตางค์ยังไม่สมบูรณ์"
+
+#: www/views/tab-create-personal.html:12
+#: www/views/tab-create-shared.html:12
+msgid "Wallet name"
+msgstr "ชื่อกระเป๋าสตางค์"
+
+#: src/js/services/bwcError.js:131
+msgid "Wallet needs backup"
+msgstr "กระเป๋าสตางค์ต้องสำรองข้อมูล"
+
+#: www/views/tab-receive.html:59
+#: www/views/walletDetails.html:169
+msgid "Wallet not backed up"
+msgstr "กระเป๋าสตางค์ที่ไม่ได้สำรอง"
+
+#: src/js/services/bwcError.js:68
+msgid "Wallet not found"
+msgstr "ไม่พบกระเป๋าเงิน"
+
+#: src/js/controllers/cashScan.js:81
+#: src/js/controllers/tab-home.js:230
+msgid "Wallet not registered"
+msgstr "กระเป๋าสตางค์ที่ไม่ได้ลงทะเบียน"
+
+#: src/js/services/bwcError.js:29
+msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
+msgstr "กระเป๋านี้ยังไม่ได้ลงทะเบียน  สร้างใหม่จาก \"Create Wallet\" โดยใช้ \"Advanced Options\" เพื่อกู้คืนกระเป๋า"
+
+#: www/views/backup.html:12
+msgid "Wallet recovery phrase not available"
+msgstr "ไม่พบกลุ่มคำที่ตรงกับกระเป๋าของคุณ"
+
+#: src/js/services/bwcError.js:50
+msgid "Wallet service not found"
+msgstr "ไม่พบบริการกระเป๋าสตางค์"
+
+#: www/views/tab-home.html:69
+msgid "Wallets"
+msgstr "กระเป๋าสตางค์"
+
+#: src/js/controllers/addressbookView.js:36
+#: src/js/controllers/modals/txpDetails.js:153
+#: src/js/controllers/modals/txpDetails.js:170
+#: src/js/controllers/preferencesDelete.js:24
+#: src/js/controllers/preferencesExternal.js:14
+#: www/views/preferencesDeleteWallet.html:11
+msgid "Warning!"
+msgstr "คำเตือน!"
+
+#: www/views/modals/txp-details.html:47
+msgid "Warning: this transaction has unconfirmed inputs"
+msgstr "คำเตือน: ธุรกรรมนี้ยังไม่ได้ถูกยืนยัน"
+
+#: src/js/controllers/onboarding/backupRequest.js:17
+msgid "Watch out!"
+msgstr "ระวัง!"
+
+#: src/js/controllers/feedback/send.js:69
+msgid "We'd love to do better."
+msgstr "เราต้องการทำให้ดีขึ้นกว่าเดิม"
+
+#: www/views/backup.html:35
+msgid "We'll confirm on the next screen."
+msgstr "เราจะยืนยันบนหน้าจอถัดไป"
+
+#: src/js/controllers/feedback/send.js:77
+msgid "We're always looking for ways to improve {{appName}}."
+msgstr "เรามองหาวิธีที่จะปรับปรุงอยู่เสมอ{{appName}}"
+
+#: src/js/controllers/feedback/send.js:83
+msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
+msgstr "เรามองหาวิธีที่จะปรับปรุงอยู่เสมอ{{appName}} จะสามารถแก้ไขให้ดีขึ้นได้อย่างไร?"
+
+#: www/views/includes/incomingDataMenu.html:6
+msgid "Website"
+msgstr "เว็บไซต์"
+
+#: www/views/preferencesLanguage.html:16
+msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
+msgstr "ทางทีมงานใคร่ยินดีหากท่านต้องการช่วยแปลภาษา ท่านสามารถทำการแก้ไขหรือช่วยทำให้แอปฯนี้พร้อมใช้งานในภาษาท้องถิ่นของคุณ โดยการเข้าร่วมการแปลที่เว็บไชต์ Crowdin "
+
+#: www/views/preferencesAlias.html:11
+msgid "What do you call this wallet?"
+msgstr "เรียกกระเป๋านี้ว่าอะไร?"
+
+#: www/views/preferencesAlias.html:12
+msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
+msgstr "เมื่อสร้างกระเป๋าสำเร็จกระเป๋าจะถูกเรียกว่า &amp;ldquo;{{walletName}}&amp;rdquo; คุณสามารถเปลี่ยนชื่อตามที่แสดงอยู่ด้านล่างนี้"
+
+#: www/views/onboarding/collectEmail.html:10
+msgid "Where would you like to receive email notifications about payments?"
+msgstr "คุณต้องการรับอีเมลแจ้งเตือนเกี่ยวกับการชำระเงินช่องทางใด?"
+
+#: www/views/addresses.html:19
+msgid "Why?"
+msgstr "ทำไม?"
+
+#: www/views/feedback/rateApp.html:10
+msgid "Would you be willing to rate {{appName}} in the app store?"
+msgstr "คุณจะยินดีที่ให้คะแนน {{appName}} ใน app store หรือไม่?"
+
+#: www/views/onboarding/notifications.html:4
+msgid "Would you like to receive push notifications about payments?"
+msgstr "คุณต้องการรับการแจ้งเตือนการชำระเงินหรือไม่?"
+
+#: src/js/controllers/import.js:288
+msgid "Wrong number of recovery words:"
+msgstr "จำนวนคำที่กู้คืนไม่ถูกต้อง:"
+
+#: src/js/services/bwcError.js:140
+msgid "Wrong spending password"
+msgstr "รหัสผ่านผิด!"
+
+#: www/views/modals/confirmation.html:7
+msgid "Yes"
+msgstr "ใช่!"
+
+#: src/js/controllers/onboarding/backupRequest.js:25
+msgid "Yes, skip"
+msgstr "ใช่,ข้าม "
+
+#: src/js/controllers/onboarding/backupRequest.js:24
+msgid "You can create a backup later from your wallet settings."
+msgstr "คุณสามารถสร้างการสำรองข้อมูลในภายหลังจากการตั้งค่า"
+
+#: src/js/controllers/preferencesLanguage.js:12
+msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
+msgstr "อย่ารอช้าเพราะคุณสามารถสร้างผลงานโดยการลงทะเบียนในเว็บไซต์ Crowdin community translation ของเรา"
+
+#: www/views/tab-scan.html:16
+msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgstr "คุณสามารถสแกนที่อยู่ bitcoin,คำขอชำระเงิน,การ์ดกระเป๋า และอื่นๆ"
+
+#: src/js/controllers/preferencesAbout.js:14
+msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
+msgstr "คุณจะสามารถพบการพัฒนาล่าสุด และสนับสนุนแอปฯนี้ โดยการเข้าเยี่ยมชมโปรเจคของพวกเราได้ที่ GitHub"
+
+#: www/views/onboarding/tour.html:19
+msgid "You can spend bitcoin at millions of websites and stores worldwide."
+msgstr "คุณสามารถใช้ bitcoin กับนับล้านเว็บไซต์และร้านค้าทั่วโลก"
+
+#: www/views/backup.html:15
+msgid "You can still export it from Advanced &gt; Export."
+msgstr "คุณยังคงสามารถนำออกจาก &gt; การนำออกขั้นสูง"
+
+#: www/views/onboarding/tour.html:32
+msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
+msgstr "คุณสามารถทำการซื้อขายกับสกุลอื่นๆได้ เช่น ดอลลาร์สหรัฐฯ ยูโร ปอนด์"
+
+#: www/views/onboarding/tour.html:46
+msgid "You control your bitcoin."
+msgstr "คุณควบคุรกระเป๋าของคุณเอง"
+
+#: www/views/modals/chooseFeeLevel.html:64
+msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
+msgstr "คุณไม่ควรตั้งค่าธรรมเนียมสูงกว่า {{maxFeeRecommended}} satoshis/byte."
+
+#: www/views/modals/bitpay-card-confirmation.html:5
+msgid "You will need to log back for fill in your BitPay Card."
+msgstr "คุณจะต้องกรอกข้อมูลในบัตร BitPay ของคุณ "
+
+#: www/views/preferencesNotifications.html:34
+msgid "You'll receive email notifications about payments sent and received from your wallets."
+msgstr "คุณจะได้รับอีเมลแจ้งเตือนเกี่ยวกับการชำระเงินที่ส่ง และรับจากกระเป๋าของคุณ"
+
+#: www/views/bitpayCard.html:50
+msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
+msgstr "บัตรBitPayของคุณพร้อมใช้งานแล้ว เพิ่มเงินไปยังบัตรของคุณเพื่อเริ่มใช้งานที่ร้านค้าและดูกดเงินทั่วโลก"
+
+#: www/views/mercadoLibre.html:57
+#: www/views/mercadoLibreCards.html:6
+msgid "Your Gift Cards"
+msgstr "บัตรของขวัญของคุณ"
+
+#: www/views/includes/confirmBackupPopup.html:6
+msgid "Your bitcoin wallet is backed up!"
+msgstr "กระเป๋าของคุณได้ทำการสำรองข้อมูลแล้ว"
+
+#: www/views/tab-home.html:36
+msgid "Your bitcoin wallet is ready!"
+msgstr "กระเป๋าBitcoin ของคุณพร้อมใช้งานแล้ว"
+
+#: www/views/modals/chooseFeeLevel.html:61
+msgid "Your fee is lower than recommended."
+msgstr "ค่าธรรมเนียมต่ำกว่าที่แนะนำ"
+
+#: www/views/feedback/send.html:42
+msgid "Your ideas, feedback, or comments"
+msgstr "ไอเดีย คำติชม ข้อคิดเห็นของคุณ"
+
+#: www/views/tab-create-shared.html:22
+msgid "Your name"
+msgstr "ชื่อของคุณ"
+
+#: www/views/join.html:16
+msgid "Your nickname"
+msgstr "ชื่อเล่นของคุณ"
+
+#: www/views/tab-export-file.html:11
+#: www/views/tab-import-file.html:20
+msgid "Your password"
+msgstr "รหัสผ่านของคุณ"
+
+#: www/views/buyAmazon.html:102
+msgid "Your purchase could not be completed"
+msgstr "ไม่สามารถทำการซื้อ"
+
+#: www/views/buyAmazon.html:105
+msgid "Your purchase was added to the list of pending"
+msgstr "การซื้อของถูกเพิ่มในรายการที่ค้างอยู่"
+
+#: www/views/onboarding/backupRequest.html:10
+msgid "Your wallet is never saved to cloud storage or standard device backups."
+msgstr "กระเป๋าเงินของคุณไม่เคยถูกบันทึกไว้ในที่เก็บข้อมูลบนคลาวด์หรือการสำรองข้อมูลอุปกรณ์พื้นฐาน"
+
+#: src/js/services/walletService.js:1030
+msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
+msgstr "กระเป๋าเงินของคุณจะถูกเข้ารหัส รหัสการจ่ายจะไม่สามารถกู้คืนได้ ตรวจสอบอีกครั้งก่อนเติมข้อมูล"
+
+#: www/views/includes/walletList.html:13
+#: www/views/includes/walletSelector.html:21
+#: www/views/paperWallet.html:33
+#: www/views/tab-receive.html:72
+#: www/views/walletDetails.html:131
+#: www/views/walletDetails.html:51
+msgid "[Balance Hidden]"
+msgstr "[ยอดเงินที่ซ่อน]"
+
+#: www/views/walletDetails.html:141
+#: www/views/walletDetails.html:61
+msgid "[Scanning Funds]"
+msgstr "[กำลังสแกนเงิน]"
+
+#: src/js/controllers/bitpayCardIntro.js:11
+msgid "add your BitPay Visa card(s)"
+msgstr "เพิ่มการ์ด BitPay Visa ของคุณ"
+
+#: www/views/includes/available-balance.html:8
+msgid "locked by pending payments"
+msgstr "รออนุมัติการชำระเงิน"
+
+#: src/js/services/profileService.js:404
+msgid "me"
+msgstr "ฉัน"
+
+#: www/views/addressbook.add.html:32
+msgid "name@example.com"
+msgstr "name@example.com"
+
+#: www/views/preferencesHistory.html:15
+msgid "preparing..."
+msgstr "กำลังเตรียม"
+
+#: www/views/cashScan.html:57
+msgid "recovery tool."
+msgstr "เครื่องมือการกู้คืน"
+
+#: src/js/controllers/buyAmazon.js:239
+msgid "{{amountStr}} for Amazon.com Gift Card"
+msgstr "{{amountStr}} สำหรับบัตรของขวัญ Amazon.com"
+
+#: src/js/controllers/buyMercadoLibre.js:237
+msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
+msgstr "{{amountStr}} สำหรับบัตรของขวัญ Mercado Livre Brazil"
+
+#: www/views/preferencesBwsUrl.html:21
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} ขึ้นอยู่กับบริการกระเป๋า Bitcore (BWS) สำหรับข้อมูลบล็อกเชน การติดต่อและการเชื่องโยงของกระเป๋า การกำหนดค่าเริ่มต้นที่ https://bws.bitcoin.com (Bitcoin.com's ตัวอย่างBWSสาธารณะ)"
+
+#: src/js/controllers/confirm.js:408
+msgid "{{fee}} will be deducted for bitcoin networking fees."
+msgstr "{{fee}} จะถูกหักค่าธรรมเนียมสำหรับเครือข่าย Bitcoin"
+
+#: www/views/confirm.html:85
+msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}}  สำหรับการส่งยอดเงิน"
+
+#: www/views/walletDetails.html:218
+msgid "{{updatingTxHistoryProgress}} transactions downloaded"
+msgstr "{{updatingTxHistoryProgress}} ดาวน์โหลดธุรกรรม "
+
+#: www/views/cashScan.html:33
+#: www/views/copayers.html:46
+#: www/views/includes/walletInfo.html:18
+msgid "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.m}}-ของ -{{wallet.n}}"
+
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
+
+#: www/views/includes/community.html:3
+msgid "Community"
+msgstr "ชุมนุม"
+
+#: src/js/services/communityService.js:40
+msgid "Bitcoin Cash Reddit"
+msgstr "เงินสด Bitcoin Reddit"
+
+#: src/js/services/communityService.js:47
+msgid "Bitcoin.com Twitter"
+msgstr "Bitcoin.com Twitter"
+
+#: www/views/includes/nextSteps.html:3
+msgid "Explore Bitcoin.com"
+msgstr "สำรวจ Bitcoin.com"
+
+#: src/js/services/bitcoincomService.js:21
+msgid "Bitcoin Cash Games"
+msgstr "เกมเงินสด Bitcoin"
+
+msgid "Bitcoin Games"
+msgstr ""
+
+#: www/views/includes/community.html:29
+msgid "Share the Wallet App"
+msgstr "แชร์ให้เพื่อนรู้จัก"
+
+#: src/js/services/bitcoincomService.js:28
+msgid "News"
+msgstr "ข่าวสาร"
+
+#: src/js/services/bitcoincomService.js:35
+msgid "Start mining Bitcoin"
+msgstr "เริ่มการส่ง Bitcoin"
+
+#: src/js/services/bitcoincomService.js:42
+msgid "Tools"
+msgstr "เครื่องมือ"
+
+#: src/js/services/bitcoincomService.js:49
+msgid "Bitcoin Price Charts"
+msgstr "กราฟราคา Bitcoin"
+
+#: src/js/services/bitcoincomService.js:56
+msgid "Free Bitcoin Cash"
+msgstr "เงิน Bitcoin ฟรี"
+
+#: www/views/tab-home.html:30
+msgid "Your Bitcoin Wallets are ready!"
+msgstr "กระเป๋าสตางค์ Bitcoin ของคุณพร้อมแล้ว"
+
+#: src/js/controllers/amount.js:49
+msgid "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "ที่อยู่นี้ไม่สัมพันธ์กับสกุลเงินดังกล่าว โปรดเลือกสกุลเงินที่ถูกต้อง"
+
+#: www/views/review.html:4
+msgid "Review Transaction"
+msgstr "ตรวจทานธุรกรรม"
+
+#: src/js/controllers/review.controller.js:36
+msgid "You are sending"
+msgstr "กำลังส่ง"
+
+#: src/js/controllers/review.controller.js:66
+msgid "You are shifting"
+msgstr "กำลังส่ง"
+
+#: www/views/review.html:36
+msgid "To:"
+msgstr "ถึง:"
+
+#: www/views/review.html:53
+msgid "Add personal note"
+msgstr "เพิ่มบันทึกส่วนตัว"
+
+#: www/views/review.html:87
+msgid "Suggested by merchant:"
+msgstr "แนะนำโดยร้านค้า:"
+
+#: src/js/controllers/review.controller.js:37
+msgid "Enter text here"
+msgstr "ป้อนข้อความที่นี่"
+
+#: www/views/review.html:57
+msgid "Personal note:"
+msgstr "บันทึกส่วนบุคคล:"
+
+#: www/views/review.html:69
+msgid "Less than 1 cent"
+msgstr "ต่ำกว่า 1 เซนต์"
+
+#: src/js/services/incomingData.js:129
+msgid "This invoice is no longer accepting payments"
+msgstr "ไม่สามารถชำระเงินได้"
+
+#: www/views/amount.html.js:60
+msgid "Send Maximum Amount"
+msgstr "ส่งเงินที่มีอยู่ทั้งหมด"
+
+#: src/js/controllers/amount.controller.js:239
+msgid "Unknown error."
+msgstr "ข้อผิดพลาดที่ไม่รู้จัก"
+
+#: www/views/paperWallet.html:48
+msgid "No Bitcoin Cash wallet to transfer funds to found."
+msgstr "ไม่พบกระเป๋าเงินสด bitcoin ที่จะโอน"
+
+#: www/views/paperWallet.html:54
+msgid "No Bitcoin Cash found."
+msgstr "ไม่พบ Bitcoin"
+
+#: www/views/paperWallet.html:60
+msgid "Bitcoin Core found:"
+msgstr "พบยอด Bitcoin Core :"
+
+#: www/views/paperWallet.html:98
+msgid "No Bitcoin Core wallet to transfer funds to found."
+msgstr "ไม่พบกระเป๋า Bitcoin Core ที่จะโอน"
+
+#: www/views/paperWallet.html:104
+msgid "No Bitcoin Core found."
+msgstr "ไม่พบ Bitcoin หลัก"
+
+#: src/js/controllers/tab-scan.js:120
+msgid "Scan Failed"
+msgstr "สแกนล้มเหลว"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Data not recognised."
+msgstr "ข้อมูลไม่รองรับ"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Unsupported"
+msgstr "ไม่สนับสนุน"
+
+#: src/js/controllers/tab-scan.js:121
+msgid "Testnet is not supported."
+msgstr "ไม่รองรับ Testnet"
+
+#: www/views/includes/incomingDataMenu.html:81
+msgid "URL"
+msgstr "URL"
+
+#: www/views/includes/incomingDataMenu.html:90
+msgid "Open in web browser"
+msgstr "เปิดในเว็บเบราว์เซอร์"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid address"
+msgstr "ที่อยู่ไม่ถูกต้อง"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is not defined"
+msgstr "ไม่กำหนดยอดเงิน"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is below the minimun"
+msgstr "ยอดเงินต่ำกว่าขั้นต่ำที่กำหนด"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Amount is above the limit"
+msgstr "ยอดเงินเกินขีดจำกัด"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr " มีการตอบสนองที่ไม่ถูกต้องจาก Sideshift"
+
+msgid "Insufficient Amount Received"
+msgstr "ได้รับเงินไม่เพียงพอ"
+
+msgid "Return to Address"
+msgstr "กลับไปยังที่อยู่"
+
+msgid "Overpaid!"
+msgstr "มากเกินไป!"
+
+msgid "Underpaid!"
+msgstr "ต่ำเกินไป!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "ข้อผิดพลาดการสร้างลูกค้า"
+
+msgid "Enter an email address."
+msgstr "ป้อนที่อยู่อีเมล"
+
+msgid "Must be a valid email address."
+msgstr "ต้องเป็นที่อยู่ที่ถูกต้อง"
+
+msgid "Unable to Create Customer"
+msgstr "ไม่สามารถสร้างลูกค้าได้"
+
+msgid "Enter a valid email address."
+msgstr ""
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "ซื้อเงินสด Bitcoin (BCH)"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "วันนี้คุณสามารถซื้อได้ถึง {{vm.dailyRemaining}} และมากถึง{{vm.monthlyRemaining}} ในเดือนนี้"
+
+msgid "Buy Bitcoin Cash"
+msgstr "ซื้อเงินสด Bitcoin"
+
+msgid "Verify Email"
+msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr "เกิดข้อผิดพลาดในการรับไอดีลูกค้า"
+
+msgid "Error Getting Customer Information"
+msgstr "เกิดข้อผิดพลาดในการรับข้อมูลลูกค้า"
+
+msgid "An error occurred when getting your customer information."
+msgstr "เกิดข้อผิดพลาดเมื่อเรียกใช้ข้อมูลของลูกค้า"
+
+msgid "Customer information was missing."
+msgstr "ข้อมูลลูกค้าผิดพลาด"
+
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "ข้อผิดพลาดในการรับวิธีการชำระเงิน"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "เกิดข้อผิดพลาดเมื่อทำการรับวิธีการชำระเงินของคุณ"
+
+msgid "No Payment Methods"
+msgstr "ไม่พบวิธีการชำระเงิน"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "คุณจะต้องเพิ่มบัตรเดบิต หรือเครดิตเพื่อซื้อเงินสด Bitcoin (BCH)"
+
+msgid "Add Card"
+msgstr "เพิ่มบัตร"
+
+msgid "Getting exchange rate..."
+msgstr "กำลังรับอัตราแลกเปลี่ยน ..."
+
+msgid "Waiting for exchange rate."
+msgstr "กำลังรออัตราแลกเปลี่ยน ..."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "คุณจะต้องมีเงินสด Bitcoin (BCH)เพื่อฝากเข้า"
+
+msgid "Select a BCH Wallet"
+msgstr "เลือกกระเป๋า BCH"
+
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr "กำลังซื้อเงินสด Bitcoin..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr "การซื้อล้มเหลว"
+
+msgid "Failed to create transaction."
+msgstr "ไม่สามารถทำธุรกรรมใดๆได้"
+
+msgid "Buy Now"
+msgstr "ซื้อตอนนี้"
+
+msgid "Enter Security Code"
+msgstr "ป้อนรหัสความปลอดภัย"
+
+msgid "Enter the 3 digit code on the back of your card."
+msgstr ""
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
+msgid "Go to Wallet"
+msgstr "ไปที่กระเป๋าสตางค์"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "ไปที่ {{vm.walletName}}"
+
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
+
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
+
+msgid "Your order has failed."
+msgstr "การสั่งซื้อล้มเหลว"
+
+msgid "Your order is waiting for authorization."
+msgstr "ใบสั่งซื้อของคุณกำลังรอการอนุมัติ"
+
+msgid "Deposited to"
+msgstr "ฝากไปยัง"
+
+msgid "Failed to get transaction data."
+msgstr "การเรียกข้อมูลธุรกรรมล้มเหลว"
+
+msgid "Not found."
+msgstr "ไม่พบ"
+
+msgid "Failed to get payment method info."
+msgstr "ไม่สามารถรับข้อมูลวิธีการชำระเงิน"
+
+msgid "Waiting for authorization"
+msgstr "กำลังรอการอนุมัติ"
+
+msgid "Submit"
+msgstr ""
+
+msgid "Back"
+msgstr "ย้อนกลับ"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr "ตรวจสอบ และกรอกข้อมูลบัตรของคุณ"
+
+msgid "Required"
+msgstr "ต้องระบุ"
+
+msgid "Visa, MC, or AMEX"
+msgstr "วีซ่า,MC หรือ AMEX"
+
+msgid "MM/YYYY"
+msgstr "เดือน/ปีค.ศ."
+
+msgid "Card Number"
+msgstr "หมายเลขบัตร"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "ไม่สามารถเพิ่มบัตร"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "หมายเลขบัตรไม่ถูกต้อง ตรวจสอบบัตรของคุณ และลองอีกครั้ง"
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "เลข CVC ไม่ถูกต้อง มันคือเลข 3 หลักด้านหลังการ์ด หรือเลข 4 หลักถ้าคุณกำลังใช้ AMEX"
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr " วันหมดเขตไม่ถูกต้อง ตรวจสอบบัตรของคุณ และลองอีกครั้ง"
+
+msgid "Invalid card number"
+msgstr "หมายเลขบัตรไม่ถูกต้อง"
+
+msgid "Invalid expiration date"
+msgstr "วันหมดเขตไม่ถูกต้อง"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "โปรดกรอกตามรูปแบบนี้ เดือน/ปีค.ศ."
+
+msgid "Invalid CVC number"
+msgstr "เลข CVC ไม่ถูกต้อง"
+
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+msgid "Purchasing"
+msgstr "การจัดซื้อ"
+
+msgid "Processing Fee"
+msgstr "ค่าดำเนินการ"
+
+msgid "Deposit to"
+msgstr "ฝากไปยัง"
+
+msgid "Add a payment method"
+msgstr "เพิ่มวิธีการชำระเงิน"
+
+msgid "Price Per BCH"
+msgstr "ราคาต่อ BCH"
+
+msgid "Done"
+msgstr "เรียบร้อย"
+
+msgid "Amount must be a positive number."
+msgstr "ยอดเงินต้องเป็นจำนวนบวก"
+
+msgid "Unable to Purchase"
+msgstr "ไม่สามารถซื้อได้"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
+
+msgid "Purchase History"
+msgstr "ประวัติการซื้อ"
+
+msgid "Pending Orders"
+msgstr "รอรับคำสั่ง"
+
+msgid "Pay"
+msgstr "จ่าย"
+
+msgid "Payment Method"
+msgstr "วิธีการชำระเงิน"
+
+msgid "Add Credit or Debit Card"
+msgstr "เพิ่มเครดิตหรือบัตรเดบิต"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "เงินจำนวนนี้เกินขีดจำกัดรายเดือนของคุณ"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "คุณมี {{remaining}} เหลือ {{monthly}} ขีดจำกัดการซื้อรายเดือนของคุณ ตรวจสอบตัวตนของคุณในการซื้อเพิ่มเติม"
+
+msgid "Verify Identity"
+msgstr "ยืนยันตัวตน"
+
+msgid "Deposited to"
+msgstr "ฝากไปยัง"
+
+msgid "See on Blockchain"
+msgstr "ดูเกี่ยวกับ Blockchain"
+
+msgid "Wallet address"
+msgstr "ที่อยู่กระเป๋าสตางค์"
+
+msgid "Pending Order"
+msgstr "รอรับคำสั่ง"
+
+msgid "Edit Order"
+msgstr "แก้ไขรายการ"
+
+msgid "Cancel Order"
+msgstr "ยกเลิกรายการ"
+
+msgid "Success!"
+msgstr "สำเร็จ!"
+
+msgid "Failed"
+msgstr "ล้มเหลว"
+
+msgid "Your purchase has been processed."
+msgstr "อยู่ในขั้นตอนการซื้อ"
+
+msgid "See Receipt"
+msgstr "ดูใบเสร็จ"
+
+msgid "Make Another Purchase"
+msgstr "ทำการซื้อเพิ่ม"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "ถ่ายภาพเอกสาร"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "ข้ามการตรวจสอบ"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "หนังสือเดินทาง"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "เลขบัตรประชาชน"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "ใบอนุญาตขับขี่"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "การตรวจสอบ"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "เพิ่มวงเงินในการซื้อ"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "ทำการตรวจสอบสถานะ..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "โปรดเลือกประเทศของคุณ"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "โปรดเลือกชนิดของเอกสาร"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "ขณะนี้คุณสามารถทำการซื้อได้ถึง 150 ยูโรต่อเดือนแล้วโดยไม่ต้องยืนยันตัวตน และคุณสามารถทำการยืนยันตัวตนเพื่อเพิ่มวงเงินในการซื้อได้ถึง 20,000 ยูโรต่อเดือน"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "ข้อมูลส่วนตัว"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr " ชื่อจริง"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "นามสกุล"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "วันเดือนปีเกิด"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "ถนน"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "อาคาร/ตึก (ถ้ามี)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "เมือง"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "รหัสไปรษณีย์"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "ประเทศ"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "จำเป็นต้องกรอกข้อมูล"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "ต้องมีอายุอย่างน้อย 18 ปี"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "123 ถนนเมเปิล"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "โตเกียว"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "ญี่ปุ่น"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "Apt 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "การส่งข้อมูลล้มเหลว โปรดลองอีกครั้ง"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "กำลังส่งข้อมูล"
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "การอัปโหลดภาพล้มเหลว โปรดลองอีกครั้ง"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "มีรูปลักษณ์แบบไหน?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "ตรวจทานรายละเอียดบนเอกสารของคุณว่าสามารถอ่านได้ชัดเจน"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "สามารถอ่านได้"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "ถ่ายใหม่"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "ถ่ายภาพเอกสารของคุณ"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "จัดตำแหน่ง {{vm.documentName}} ของคุณให้อยู่ในกรอบ 4 มุมอย่างชัดเจน และหลีกเลี่ยงแสงจ้า"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "ยืนยันแล้ว"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "ชนิดเอกสาร"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "เลือก"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "หากก่อนหน้านี้คุณเคยยืนยันตัวตนของคุณแล้วกับ bitcoin.com คุณสามารถ <a ng-click=\"vm.onRestoreVerify()\"> คืนค่าการตรวจสอบของคุณ </a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "สถานะการตรวจสอบ"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "อยู่ระหว่างการยืนยันตัวตน"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "ยืนยันตัวตนแล้ว!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "ขณะนี้บัญชีของคุณได้รับการยืนยันแล้ว ขอแสดงความยินดีด้วย!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "ใช้เวลานานเกินไปเราจะแจ้งให้ท่านทราบเร็วๆนี้ หลังจากนั้นคุณจะสามารถเริ่มการซื้อBitcoinได้"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "การตรวจสอบล้มเหลว"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "ทางเราต้องขออภัยด้วยที่เราไม่สามารถยืนยันตัวตนของคุณในขณะนี้ โปรดติดต่อฝ่ายสนับสนุนสำหรับความช่วยเหลือเพิ่มเติม"
+
+msgid "Self Portrait"
+msgstr " ภาพถ่ายบุคคล"
+
+msgid "Shop"
+msgstr "ซื้อของ"
+
+msgid "Shop Nearby"
+msgstr "ร้านค้าใกล้เคียงฉัน"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "ค้นหาร้านค้าในพื้นที่ที่รับเงินสด Bitcoin"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "รับส่วนลดมากถึง 30% ที่ Amazon หากจ่ายด้วยเงินสด Bitcoin"
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "บัตรกำนัลดิจิทัลจากหลายแบรนด์ชื่อดัง"
+
+msgid "Add a Business"
+msgstr "เพิ่มธุรกิจ"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "คุณมีร้านค้าหรือรู้จักธุรกิจที่รับเงินสด Bitcoin ไหม เพิ่มธุรกิจเลย"
+
+msgid "Buy with Bitcoin Cash"
+msgstr "ซื้อ Bitcoin Cash"
+
+msgid "Are you a business owner?"
+msgstr "คุณเป็นเจ้าของธุรกิจใช่ไหม"
+
+msgid "More"
+msgstr "เพิ่มเติม"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "ดูวิธีการรับชำระเงินด้วย Bitcoin ได้ง่ายๆได้เลย"
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr " เข้าสู่ยุคของ Bitcoin Cash สามารถจองตั๋วเครื่องบิน จองโรงแรม หรือเช่ารถก็ได้ "
+
+msgid "The market's highest paying pool"
+msgstr "เป็นตลาดที่มีการใช้จ่ายเงินสูงสุด"
+
+msgid "Start mining Bitcoin"
+msgstr "เริ่ม  Bitcoin mining"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "ชำระเงินด้วย BCH รับเงินคืน 10%"
+
+msgid "Get your Bitcoin merch"
+msgstr "รับ Bitcoin merch ของคุณ "
+
+msgid "E-mail not detected"
+msgstr "ไม่พบอีเมล์"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "ในกรณีหากต้องเพิ่มร้านค้า กรุณาส่งข้อมูลรายละเอียดไปยังอีเมลนี้ addbusiness@bitcoin.com."
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "ทักทายทีม Bitcoin.com <br><br> ฉันอยากจะเพิ่มร้านค้าใหม่ที่รับชำระเงินด้วย Bitcoin Cash ไปยังพิกัดแผนที่ของแอปฯ <br> ชื่อของธุรกิจ <br> ที่อยู่ <br> ประเภทธุรกิจ <br><br> ข้อมูลเพื่อช่วยในการค้นหา <br> ลิงค์ของแผนที่ <br> หรือ <br>. พิกัดละติจูด <br> พิกัดลองติจูด <br><br> ข้อมูลประกอบเพิ่มเติม <br> เว็บไซต์ <br> เบอร์โทร <br>  "
+
+msgid "Internal Error"
+msgstr "ข้อผิดพลาดภายใน"
+
+msgid "Front"
+msgstr "ด้านหน้า"
+
+msgid "Take a Selfie"
+msgstr "ถ่ายรูปเซลฟี่"
+
+msgid "Document + Selfie"
+msgstr "เอกสาร + ถ่ายเซลฟี่"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "โปรดถือเอกสารไว้ข้างๆหน้าของคุณและทำการถ่ายภาพ"
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "หลีกเลี่ยงแสงจ้าและจัดตำแหน่งเอกสารให้อยู่ในกรอบทั้ง 4 มุมอย่างชัดเจน "
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr "ทำการซื้อบัตรของขวัญ..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "เกิดข้อผิดพลาด รหัสสถานะ {{status}}"
+
+msgid "Useful Links"
+msgstr "ลิ้งค์สาระ "
+
+msgid "Exchange between BTC and BCH"
+msgstr "ทำการแลกระหว่าง BTC และ BCH"
+
+msgid "Exchange"
+msgstr "แลกเปลี่ยน"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "นี่อาจจะยอดเงินที่หายไป คุณไม่สามารถส่ง Bitcoin Core ไปยังที่อยู่ Bitcoin Cash นี้ "
+
+msgid "Your account verification was rejected."
+msgstr "계정 인증을 실패했습니다."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr ""
+
+msgid "Provide my information"
+msgstr ""
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr ""
+
+msgid "Quick Links"
+msgstr ""
+
+msgid "Payment Methods"
+msgstr ""
+
+msgid "Side: {{file.side}}"
+msgstr ""
+
+msgid "Approved"
+msgstr ""
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr ""
+

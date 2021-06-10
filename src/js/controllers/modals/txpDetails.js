@@ -38,7 +38,7 @@ angular.module('copayApp.controllers').controller('txpDetailsController', functi
     txFormatService.formatAlternativeStr($scope.wallet.coin, $scope.tx.fee, function(v) {
       $scope.tx.feeFiatStr = v;
     });
-    $scope.tx.feeRateStr = ($scope.tx.fee / ($scope.tx.amount + $scope.tx.fee) * 100).toFixed(2) + '%';
+    $scope.tx.feeRateStr = ($scope.tx.fee / $scope.tx.amount * 100).toFixed(2) + '%';
     $scope.tx.feeLevelStr = feeService.feeOpts[$scope.tx.feeLevel];
   };
 

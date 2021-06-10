@@ -1,0 +1,56 @@
+<ion-view id="tab-buy-bitcoin-add-card-form" class="apl" hide-tabs>
+    <ion-nav-bar>
+      <ion-nav-buttons side="primary">
+        <button class="button apl-back-button" ng-click="vm.didPushBack()">
+          <i class="icon ion-chevron-left"></i><span translate>Back</span>
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="secondary">
+        <button class="button apl-back-button" ng-click="vm.didPushAdd()">
+          <span translate>Finish</span>
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content id="add-card-form">
+      <div class="form-header">
+        <h1 translate>
+          Add Card
+        </h1>
+        <h5>
+          {{vm.subtext}}
+        </h5>
+      </div>
+      
+      <div class="apl-divider"></div>
+      <form name="cardForm" class="apl-list" novalidate>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              Card Number
+            </label>
+            <div id="cc-number"></div>
+          </div>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              Expiration Date
+            </label>
+            <div id="cc-expiration"></div>
+          </div>
+        </div>
+        <div class="apl-divider"></div>
+        <div class="apl-list-item">
+          <div class="apl-field">
+            <label translate>
+              CVC
+            </label>
+            <div id="cc-cvc"></div>
+          </div>
+        </div>
+      </form>
+      <div class="apl-divider"></div>
+      <div class="keyboard-bottom-space"></div>
+    </ion-content>
+  </ion-view>

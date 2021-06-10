@@ -11,11 +11,11 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Vietnamese\n"
 "Language: vi\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2019-06-04 04:55\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
-msgstr "(Đáng tin cậy)"
+msgstr "(Tin cậy)"
 
 #: www/views/includes/txp.html:23
 #: www/views/includes/walletHistory.html:64
@@ -27,23 +27,21 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* A payment proposal can be deleted if 1) you are the creator, and no other copayer has signed, or 2) 24 hours have passed since the proposal was created."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} of the transaction"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} của giao dịch"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
-msgstr "{{tx.feeRateStr}} của giao dịch"
+msgstr "- {{tx.feeRateStr}} của giao dịch"
 
 #: www/views/feedback/rateApp.html:7
 msgid "5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
-msgstr "{{appName}} 5-star ratings help us get {{appName}} into more hands, and more users means more resources can be committed to the app!"
+msgstr "Xếp hạng 5 sao giúp chúng tôi đưa {{appName}} đến với nhiều người dùng hơn và thêm người dùng đồng nghĩa với thêm tài nguyên có thể được đầu tư vào ứng dụng!"
 
 #: www/views/mercadoLibre.html:18
 #: www/views/mercadoLibre.html:40
 msgid "<b>Only</b> redeemable on Mercado Livre (Brazil)"
-msgstr "<b>Only</b> redeemable on \n"
-"Mercado Livre (Brazil) #\n\n"
-"2"
+msgstr "<b>Only</b> redeemable on Mercado Livre (Brazil)"
 
 #: src/js/controllers/feedback/send.js:27
 #: www/views/feedback/complete.html:21
@@ -56,49 +54,48 @@ msgstr "A total of {{amountAboveMaxSizeStr}} were excluded. The maximum size all
 
 #: src/js/controllers/confirm.js:395
 msgid "A total of {{amountBelowFeeStr}} were excluded. These funds come from UTXOs smaller than the network fee provided."
-msgstr "{{amountBelowFeeStr}} Tổng cộng {{amountBelowFeeStr}} đã bị loại trừ. Số tiền này đến từ UTXOs nhỏ hơn chi phí mạng cung cấp.#\n"
-"1."
+msgstr "Tổng cộng {{amountBelowFeeStr}} đã được loại trừ. Số tiền này đến từ các Đầu ra giao dịch chưa dùng đến (UTXO) nhỏ hơn phí mạng lưới được cung cấp."
 
 #: src/js/controllers/preferencesAbout.js:6
 #: www/views/tab-settings.html:156
 msgid "About"
-msgstr "About"
+msgstr "Giới thiệu"
 
 #: src/js/controllers/modals/txpDetails.js:62
 #: src/js/controllers/tx-details.js:79
 msgid "Accepted"
-msgstr "Chấp nhận"
+msgstr "Đã chấp nhận"
 
 #: www/views/preferencesInformation.html:72
 msgid "Account"
-msgstr "Account"
+msgstr "Tài khoản"
 
 #: www/views/join.html:72
 #: www/views/tab-create-personal.html:45
 #: www/views/tab-create-shared.html:74
 #: www/views/tab-import-hardware.html:19
 msgid "Account Number"
-msgstr "Account Number0941162662"
+msgstr "Số tài khoản"
 
 #: www/views/tab-home.html:61
 msgid "Instant transactions with low fees"
-msgstr "Instant transactions with low fees"
+msgstr "Giao dịch tức thì với mức phí thấp"
 
 #: www/views/walletSelector.html:49
 msgid "Insufficient funds"
-msgstr "Not enough money"
+msgstr "Không đủ tiền"
 
 #: www/views/amount.html:42
 msgid "Change Currency"
-msgstr "Change Currency"
+msgstr "Thay đổi loại tiền tệ"
 
 #: www/views/amount.html:49
 msgid "Available Funds"
-msgstr "Available Fund"
+msgstr "Tiền có sẵn"
 
 #: www/views/amount.html:59
 msgid "Use All Available Funds"
-msgstr "Use All Available Funds"
+msgstr "Sử dụng tất cả tiền có sẵn"
 
 #: www/views/amount.html:99
 msgid "Next"
@@ -106,48 +103,48 @@ msgstr "Tiếp theo"
 
 #: www/views/preferencesBitpayServices.html:23
 msgid "Accounts"
-msgstr "Accounts"
+msgstr "Tài khoản"
 
 #: www/views/bitpayCard.html:56
 msgid "Activity"
-msgstr "Activity"
+msgstr "Hoạt động"
 
 #: src/js/services/bitpayAccountService.js:83
 msgid "Add Account"
-msgstr "Add Account"
+msgstr "Thêm tài khoản"
 
 #: src/js/services/bitpayAccountService.js:69
 msgid "Add BitPay Account?"
-msgstr "Add BitPay Account?"
+msgstr "Thêm tài khoản BitPay?"
 
 #: www/views/addressbook.add.html:4
 #: www/views/addressbook.html:22
 msgid "Add Contact"
-msgstr "Add Contact"
+msgstr "Thêm liên hệ"
 
 #: www/views/bitpayCard.html:28
 msgid "Add Funds"
-msgstr "Add Funds"
+msgstr "Nạp tiền"
 
 #: www/views/confirm.html:94
 msgid "Add Memo"
-msgstr "Add Memo"
+msgstr "Thêm bản ghi nhớ"
 
 #: www/views/join.html:87
 #: www/views/tab-create-personal.html:59
 #: www/views/tab-create-shared.html:88
 msgid "Add a password"
-msgstr "Add a password"
+msgstr "Thêm mật khẩu"
 
 #: www/views/includes/accountSelector.html:27
 msgid "Add account"
-msgstr "Add account"
+msgstr "Thêm tài khoản"
 
 #: www/views/join.html:90
 #: www/views/tab-create-personal.html:62
 #: www/views/tab-create-shared.html:91
 msgid "Add an optional password to secure the recovery phrase"
-msgstr "Add an optional password to secure the recovery phrase"
+msgstr "Thêm mật khẩu tùy chọn để bảo mật cụm từ khôi phục"
 
 #: www/views/includes/incomingDataMenu.html:41
 msgid "Add as a contact"
@@ -155,7 +152,7 @@ msgstr "Thêm như một liên hệ"
 
 #: src/js/controllers/confirm.js:424
 msgid "Add description"
-msgstr "Add description"
+msgstr "Thêm mô tả"
 
 #: www/views/topup.html:6
 msgid "Add funds"
@@ -163,7 +160,7 @@ msgstr "Nạp tiền"
 
 #: src/js/services/bitpayAccountService.js:78
 msgid "Add this BitPay account ({{email}})?"
-msgstr "Add this BitPay account ({{email}})?"
+msgstr "Thêm BitPay ({{email}}) tài khoản này?"
 
 #: www/views/add.html:3
 msgid "Add wallet"
@@ -173,7 +170,7 @@ msgstr "Thêm ví"
 #: www/views/customAmount.html:28
 #: www/views/modals/paypro.html:24
 msgid "Address"
-msgstr "Address"
+msgstr "Địa chỉ"
 
 #: www/views/addressbook.html:6
 #: www/views/tab-settings.html:13
@@ -181,12 +178,23 @@ msgid "Address Book"
 msgstr "Sổ địa chỉ"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
-msgstr "Address Type"
+msgstr "Loại địa chỉ"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Địa chỉ tiền mặt"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Địa chỉ cũ"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
-msgstr "Addresses With Balance"
+msgstr "Địa chỉ với số dư"
 
 #: www/views/tab-settings.html:149
 msgid "Advanced"
@@ -194,7 +202,7 @@ msgstr "Nâng cao"
 
 #: www/views/advancedSettings.html:3
 msgid "Advanced Settings"
-msgstr "Advanced Settings"
+msgstr "Cài đặt nâng cao"
 
 #: www/views/bitpayCard.html:62
 msgid "All"
@@ -202,7 +210,7 @@ msgstr "Tất cả"
 
 #: www/views/allAddresses.html:3
 msgid "All Addresses"
-msgstr "All Addresses"
+msgstr "Tất cả địa chỉ"
 
 #: www/views/modals/wallet-balance.html:18
 msgid "All of your bitcoin wallet balance may not be available for immediate spending."
@@ -210,290 +218,306 @@ msgstr "Tất cả số dư ví bitcoin của bạn có thể không có sẵn c
 
 #: www/views/tab-receive.html:25
 msgid "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
-msgstr "All signing devices must be added to this multisig wallet before bitcoin addresses can be created."
+msgstr "Tất cả thiết bị ký phải được thêm vào ví đa chữ ký này trước khi có thể tạo địa chỉ bitcoin."
 
 #: www/views/tab-scan.html:21
 msgid "Allow Camera Access"
-msgstr "Allow Camera Access"
+msgstr "Cho phép truy cập camera"
 
 #: www/views/onboarding/notifications.html:7
 msgid "Allow notifications"
-msgstr "Allow notification"
+msgstr "Cho phép thông báo"
 
 #: www/views/onboarding/disclaimer.html:14
 msgid "Almost done! Let's review."
-msgstr "Almost done! Let's review."
+msgstr "Sắp xong rồi! Hãy cùng xem lại."
 
 #: www/views/preferencesAltCurrency.html:4
 #: www/views/tab-settings.html:79
 msgid "Alternative Currency"
-msgstr "Alternative Currency"
+msgstr "Loại tiền tệ thay thế"
 
 #: www/views/tab-settings.html:75
 msgid "Price Display"
-msgstr "Price Display"
+msgstr "Hiển thị giá"
 
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:12
 msgid "Fiat"
-msgstr "Fiat"
+msgstr "Tiền pháp định"
 
 #: src/js/controllers/tab-settings.js:19
 #: www/views/preferencesPriceDisplay.html:15
 msgid "Cryptocurrency"
-msgstr "Cryptocurrencyg"
+msgstr "Đồng tiền kỹ thuật số"
 
 #: src/js/controllers/buyAmazon.js:98
 msgid "Amazon.com is not available at this moment. Please try back later."
-msgstr "Amazon.com is not available at this moment. Please try back later."
+msgstr "Amazon.com hiện không khả dụng. Vui lòng thử lại sau."
 
 #: www/views/amount.html:44
 #: www/views/customAmount.html:34
 #: www/views/includes/output.html:7
 msgid "Amount"
-msgstr "Amount"
+msgstr "Số tiền"
 
 #: src/js/services/bwcError.js:110
 msgid "Amount below minimum allowed"
-msgstr "Amount below minimum allowed"
+msgstr "Số tiền dưới mức tối thiểu cho phép"
 
 #: src/js/controllers/confirm.js:216
 msgid "Amount too big"
-msgstr "Amount too big"
+msgstr "Số tiền quá lớn"
 
 #: www/views/includes/walletHistory.html:31
 msgid "Amount too low to spend"
-msgstr "Amount too low to spend"
+msgstr "Số tiền quá thấp để chi tiêu"
 
 #: src/js/controllers/tab-home.js:147
 msgid "An update to this app is available. For your security, please update to the latest version."
-msgstr "An update to this app is available. For your security, please update to the latest version."
+msgstr "Sẵn có bản cập nhật cho ứng dụng này. Vì lý do bảo mật, bạn vui lòng cập nhật lên phiên bản mới nhất."
 
 #: www/views/backupWarning.html:14
 msgid "Anyone with your backup phrase can access or spend your bitcoin."
-msgstr "Anyone with your backup phrase can access or spend your bitcoin."
+msgstr "Bất kỳ ai có cụm từ sao lưu của bạn đều có thể truy cập hoặc chi tiêu bitcoin của bạn."
 
 #: www/views/addresses.html:94
 msgid "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
-msgstr "Approximate Bitcoin network fee to transfer wallet's balance (with normal priority)"
+msgstr "Phí mạng Bitcoin gần đúng để chuyển số dư của ví (với mức độ ưu tiên bình thường)"
 
 #: www/views/backupWarning.html:10
 msgid "Are you being watched?"
-msgstr "Are you being watched?"
+msgstr "Bạn đang bị theo dõi?"
 
 #: src/js/controllers/preferencesExternal.js:15
 msgid "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
-msgstr "Are you being watched? Anyone with your recovery phrase can access or spend your bitcoin."
+msgstr "Bạn đang bị theo dõi? Bất kỳ ai có cụm từ khôi phục của bạn đều có thể truy cập hoặc chi tiêu bitcoin của bạn."
 
 #: src/js/controllers/copayers.js:56
 msgid "Are you sure you want to cancel and delete this wallet?"
-msgstr "Are you sure you want to cancel and delete this wallet?"
+msgstr "Bạn có chắc chắn muốn hủy và xóa ví này?"
 
 #: src/js/controllers/addressbookView.js:37
 msgid "Are you sure you want to delete this contact?"
-msgstr "Are you sure you want to delete this contact?"
+msgstr "Bạn có chắc chắn muốn xóa liên hệ này?"
 
 #: src/js/controllers/preferencesDelete.js:25
 msgid "Are you sure you want to delete this wallet?"
-msgstr "Are you sure you want to delete this wallet?"
+msgstr "Bạn có chắc chắn muốn xóa ví này?"
 
 #: src/js/controllers/modals/txpDetails.js:154
 msgid "Are you sure you want to reject this transaction?"
-msgstr "Are you sure you want to reject this transaction?"
+msgstr "Bạn có chắc chắn muốn từ chối giao dịch này?"
 
 #: src/js/controllers/modals/txpDetails.js:171
 msgid "Are you sure you want to remove this transaction?"
-msgstr "Are you sure you want to remove this transaction?"
+msgstr "Bạn có chắc chắn muốn xóa giao dịch này?"
 
 #: src/js/controllers/onboarding/backupRequest.js:23
 msgid "Are you sure you want to skip it?"
-msgstr "Are you sure you want to skip it?"
+msgstr "Bạn có chắc chắn muốn bỏ qua nó?"
 
 #: www/views/modals/bitpay-card-confirmation.html:4
 msgid "Are you sure you would like to log out of your BitPay Card account?"
-msgstr "Are you sure you would like to log out of your BitPay Card account?"
+msgstr "Bạn có chắc chắn muốn đăng xuất khỏi tài khoản Thẻ BitPay của mình không?"
 
 #: src/js/controllers/preferencesBitpayCard.js:7
 #: src/js/controllers/preferencesBitpayServices.js:20
 msgid "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
-msgstr "Are you sure you would like to remove your BitPay Card ({{lastFourDigits}}) from this device?"
+msgstr "Bạn có chắc chắn muốn xóa Thẻ BitPay của bạn ({{lastFourDigits}}) khỏi thiết bị này không?"
 
 #: www/views/includes/walletInfo.html:10
 msgid "Auditable"
-msgstr "Auditable"
+msgstr "Có thể kiểm toán"
 
 #: www/views/modals/wallet-balance.html:42
 msgid "Available"
-msgstr "Available"
+msgstr "Khả dụng"
 
 #: www/views/includes/available-balance.html:3
 msgid "Available Balance"
-msgstr "Available Balance"
+msgstr "Số dư khả dụng"
 
 #: www/views/modals/chooseFeeLevel.html:24
 #: www/views/preferencesFee.html:15
 msgid "Average confirmation time"
-msgstr "Average confirmation time"
+msgstr "Thời gian xác nhận trung bình"
 
 #: www/views/join.html:143
 #: www/views/tab-create-personal.html:113
 #: www/views/tab-create-shared.html:142
 #: www/views/tab-import-phrase.html:51
 msgid "BIP32 path for address derivation"
-msgstr "BIP32 path for address derivation"
+msgstr "Đường dẫn BIP32 để dẫn xuất địa chỉ"
 
 #: www/views/cashScan.html:25
 msgid "BTC wallets"
-msgstr "BTC wallets"
+msgstr "Ví BTC"
 
 #: www/views/preferences.html:34
 msgid "Backup"
-msgstr "Backup"
+msgstr "Sao lưu"
 
 #: www/views/includes/backupNeededPopup.html:7
 msgid "Backup Needed"
-msgstr "Backup Needed"
+msgstr "Cần sao lưu"
 
 #: src/js/controllers/lockSetup.js:87
 msgid "Backup all livenet wallets before using this function"
-msgstr "Backup all livenet wallets before using this function"
+msgstr "Sao lưu tất cả ví livenet trước khi sử dụng chức năng này"
 
 #: src/js/controllers/cashScan.js:64
 #: www/views/includes/walletListSettings.html:12
 #: www/views/preferences.html:36
 msgid "Backup needed"
-msgstr "Backup needed"
+msgstr "Cần sao lưu"
 
 #: www/views/includes/backupNeededPopup.html:9
 msgid "Backup now"
-msgstr "Backup now"
+msgstr "Sao lưu ngay"
 
 #: www/views/onboarding/backupRequest.html:11
 #: www/views/tab-export-file.html:89
 msgid "Backup wallet"
-msgstr "Backup wallet"
+msgstr "Sao lưu ví"
 
 #: src/js/controllers/lockSetup.js:84
 msgid "Backup your wallet before using this function"
-msgstr "Backup your wallet before using this function"
+msgstr "Sao lưu ví của bạn trước khi sử dụng chức năng này"
 
 #: src/js/services/profileService.js:446
 msgid "Bad wallet invitation"
-msgstr "Bad wallet invitation"
+msgstr "Lời mời sử dụng ví xấu"
 
 #: www/views/preferencesInformation.html:102
 msgid "Balance By Address"
-msgstr "Balance By Address"
+msgstr "Số dư theo địa chỉ"
 
 #: www/views/includes/confirmBackupPopup.html:7
 msgid "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
-msgstr "Be sure to store your recovery phrase in a secure place. If this app is deleted, your money cannot be recovered without it."
+msgstr "Hãy chắc chắn lưu trữ cụm từ khôi phục của bạn ở nơi an toàn. Nếu ứng dụng này bị xóa, tiền của bạn sẽ không thể phục hồi nếu không có cụm từ khôi phục."
 
 #: www/views/preferencesBitpayServices.html:9
 msgid "BitPay Visa&reg; Cards"
-msgstr "BitPay Visa & reg; thẻ"
+msgstr "Thẻ Visa&reg; BitPay"
 
 #: www/views/addressbook.add.html:38
 #: www/views/includes/incomingDataMenu.html:29
 msgid "Bitcoin Address"
-msgstr "Bitcoin Address"
+msgstr "Địa chỉ Bitcoin"
 
 #: www/views/cashScan.html:4
 msgid "Bitcoin Cash (BCH) Balances"
-msgstr "Bitcoin Cash (BCH) Balances"
+msgstr "Số dư Bitcoin Cash (BCH)"
 
 #: www/views/preferencesCash.html:3
 #: www/views/tab-settings.html:47
 msgid "Bitcoin Cash Support"
-msgstr "Bitcoin Cash Support"
+msgstr "Hỗ trợ Bitcoin Cash"
 
 #: www/views/tab-home.html:98
 #: www/views/tab-settings.html:115
 msgid "Bitcoin Cash Wallets"
-msgstr "Bitcoin Cash Wallets"
+msgstr "Ví Bitcoin Cash"
 
 #: www/views/modals/chooseFeeLevel.html:4
 #: www/views/preferencesFee.html:4
 #: www/views/tab-settings.html:90
 msgid "Bitcoin Network Fee Policy"
-msgstr "Bitcoin Network Fee Policy"
+msgstr "Chính sách phí mạng lưới Bitcoin"
 
 #: www/views/tab-home.html:83
 #: www/views/tab-settings.html:107
 msgid "Bitcoin Core Wallets"
-msgstr "Bitcoin Core Wallets"
+msgstr "Ví Bitcoin Core"
 
 #: src/js/services/incomingData.js:151
 msgid "Bitcoin cash Payment"
-msgstr "Bitcoin cash Payment"
+msgstr "Thanh toán Bitcoin cash"
 
 #: www/views/onboarding/tour.html:31
 msgid "Bitcoin is a currency."
-msgstr "Bitcoin is a currency."
+msgstr "Bitcoin là một loại tiền tệ."
 
 #: www/views/onboarding/disclaimer.html:15
 msgid "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
-msgstr "Bitcoin is different &ndash; it cannot be safely held with a bank or web service."
+msgstr "Bitcoin thì khác &ndash; không thể giữ loại tiền tệ này một cách an toàn với một dịch vụ ngân hàng hay dịch vụ web."
 
 #: www/views/onboarding/tour.html:18
 msgid "Bitcoin is secure,<br>digital money."
-msgstr "Bitcoin is secure,<br>digital money."
+msgstr "Bitcoin là tiền kỹ thuật số,<br>an toàn."
 
 #: www/views/preferencesFee.html:11
 msgid "Bitcoin transactions include a fee collected by miners on the network."
-msgstr "Bitcoin transactions include a fee collected by miners on the network."
+msgstr "Các giao dịch bitcoin bao gồm một khoản phí do các thợ mỏ trên mạng lưới thu thập."
 
 #: www/views/buyAmazon.html:108
 msgid "Bought {{amountUnitStr}}"
-msgstr "Bought {{amountUnitStr}}"
+msgstr "Đã mua {{amountUnitStr}}"
 
 #: www/views/modals/txp-details.html:36
 msgid "Broadcast Payment"
-msgstr "Broadcast Payment"
+msgstr "Phát rộng thanh toán"
 
 #: src/js/controllers/modals/txpDetails.js:64
 #: src/js/controllers/tx-details.js:81
 msgid "Broadcasted"
-msgstr "Broadcasted"
+msgstr "Đã phát rộng"
 
 #: src/js/services/onGoingProcess.js:11
 msgid "Broadcasting transaction"
-msgstr "Broadcasting transaction"
+msgstr "Giao dịch phát rộng"
 
 #: www/views/unsupported.html:6
 msgid "Browser unsupported"
-msgstr "Browser unsupported"
+msgstr "Trình duyệt không được hỗ trợ"
 
 #: www/views/buyAmazon.html:5
 #: www/views/buyMercadoLibre.html:6
 msgid "Buy"
-msgstr "Browser unsupported"
+msgstr "Mua"
 
 #: www/views/includes/buyAndSellCard.html:3
 msgid "Buy &amp; Sell Bitcoin"
-msgstr "Buy &amp; Sell Bitcoin"
+msgstr "Mua &amp; bán Bitcoin"
 
 #: www/views/tab-send.html:35
 #: src/js/services/buyAndSellService.js:26
 msgid "Buy Bitcoin"
-msgstr "Buy Bitcoin"
+msgstr "Mua Bitcoin"
+
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Mua hoặc bán Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Kết nối với một Sàn giao dịch"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Mua hoặc bán bitcoin trực tiếp từ ví của bạn bằng cách kết nối các tài khoản giao dịch của bạn."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Mua Bitcoin bằng thẻ tín dụng"
 
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
-msgstr "Buy a Gift Card"
+msgstr "Mua thẻ quà tặng"
 
 #: src/js/controllers/buyAmazon.js:334
 msgid "Buy from"
-msgstr "Buy from"
+msgstr "Mua từ"
 
 #: src/js/services/onGoingProcess.js:40
 msgid "Buying Bitcoin..."
-msgstr "Buying Bitcoin..."
+msgstr "Đang mua Bitcoin..."
 
 #: src/js/services/onGoingProcess.js:12
 msgid "Calculating fee"
-msgstr "Calculating fee"
+msgstr "Tính toán chi phí"
 
 #: src/js/controllers/buyAmazon.js:313
 #: src/js/controllers/buyMercadoLibre.js:307
@@ -512,65 +536,65 @@ msgstr "Calculating fee"
 #: www/views/modals/bitpay-card-confirmation.html:8
 #: www/views/modals/confirmation.html:13
 msgid "Cancel"
-msgstr "Cancel"
+msgstr "Hủy"
 
 #: www/views/copayers.html:36
 msgid "Cancel invitation"
-msgstr "Cancel invitation"
+msgstr "Hủy lời mời"
 
 #: src/js/controllers/onboarding/tour.js:52
 msgid "Cannot Create Wallet"
-msgstr "Cannot Create Wallet"
+msgstr "Không thể tạo ví"
 
 #: src/js/services/profileService.js:442
 msgid "Cannot join the same wallet more than once"
-msgstr ""
+msgstr "Không thể tham gia cùng một ví nhiều hơn một lần"
 
 #: www/views/includes/bitpayCardsCard.html:2
 msgid "Cards"
-msgstr "Cards"
+msgstr "Thẻ"
 
 #: www/views/modals/paypro.html:30
 msgid "Certified by"
-msgstr "Certified by"
+msgstr "Được chứng nhận bởi"
 
 #: www/views/preferencesExternal.html:19
 msgid "Check installation and retry."
-msgstr "Check installation and retry."
+msgstr "Kiểm tra cài đặt và thử lại."
 
 #: www/views/tab-import-file.html:4
 msgid "Choose a backup file from your computer"
-msgstr "Choose a backup file from your computer"
+msgstr "Chọn một tệp sao lưu từ máy tính của bạn"
 
 #: www/views/modals/wallets.html:9
 msgid "Choose your destination wallet"
-msgstr "Choose your destination wallet"
+msgstr "Chọn ví đích của bạn"
 
 #: www/views/modals/wallets.html:10
 msgid "Choose your source wallet"
-msgstr "Choose your source wallet"
+msgstr "Chọn ví nguồn của bạn"
 
 #: www/views/backup.html:61
 msgid "Clear"
-msgstr "Clear"
+msgstr "Xóa"
 
 #: www/views/preferencesHistory.html:24
 msgid "Clear cache"
-msgstr "Clear cache"
+msgstr "Xóa bộ nhớ cache"
 
 #: src/js/controllers/confirm.js:373
 #: src/js/controllers/modals/txpDetails.js:49
 msgid "Click to accept"
-msgstr "Click to accept"
+msgstr "Nhấn để chấp nhận"
 
 #: src/js/controllers/confirm.js:367
 msgid "Click to pay"
-msgstr "Click to pay"
+msgstr "Nhấn để trả tiền"
 
 #: src/js/controllers/confirm.js:379
 #: src/js/controllers/modals/txpDetails.js:42
 msgid "Click to send"
-msgstr "Click to send"
+msgstr "Nhấp để gửi"
 
 #: www/views/customAmount.html:4
 #: www/views/modals/mercadolibre-card-details.html:3
@@ -579,29 +603,30 @@ msgstr "Click to send"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
-msgstr "Close"
+msgstr "Đóng"
 
 #: www/views/includes/cash.html:2
 #: www/views/preferencesInformation.html:17
 msgid "Coin"
-msgstr "Coin"
+msgstr "Đồng xu"
 
 #: www/views/preferences.html:22
 msgid "Color"
-msgstr "Color"
+msgstr "Màu sắc"
 
 #: www/views/preferencesAbout.html:21
 msgid "Commit hash"
-msgstr "Commit hash"
+msgstr "Băm cam kết"
 
 #: www/views/preferences.html:49
 msgid "Complete the backup process to use this option"
-msgstr "Complete the backup process to use this option"
+msgstr "Hoàn tất quá trình sao lưu để sử dụng tùy chọn này"
 
 #: www/views/bitpayCard.html:93
 msgid "Completed"
-msgstr "Completed"
+msgstr "Đã hoàn tất"
 
 #: src/js/controllers/buyAmazon.js:311
 #: src/js/controllers/buyMercadoLibre.js:305
@@ -613,100 +638,100 @@ msgstr "Completed"
 #: www/views/confirm.html:4
 #: www/views/onboarding/collectEmail.html:32
 msgid "Confirm"
-msgstr "Confirm"
+msgstr "Xác nhận"
 
 #: www/views/modals/terms.html:26
 #: www/views/onboarding/disclaimer.html:44
 msgid "Confirm &amp; Finish"
-msgstr "Confirm &amp; Finish"
+msgstr "Xác nhận &amp; kết thúc"
 
 #: www/views/buyAmazon.html:90
 msgid "Confirm purchase"
-msgstr "Confirm purchase"
+msgstr "Xác nhận mua"
 
 #: www/views/modals/pin.html:10
 msgid "Confirm your PIN"
-msgstr "Confirm your PIN"
+msgstr "Xác nhận mã PIN của bạn"
 
 #: src/js/services/walletService.js:1033
 msgid "Confirm your new spending password"
-msgstr "Confirm your new spending password"
+msgstr "Xác nhận mật khẩu chi tiêu mới"
 
 #: www/views/tx-details.html:98
 msgid "Confirmations"
-msgstr "Confirmations"
+msgstr "Xác nhận"
 
 #: www/views/bitpayCard.html:68
 #: www/views/modals/wallet-balance.html:61
 msgid "Confirming"
-msgstr "Confirming"
+msgstr "Xác nhận"
 
 #: www/views/bitpayCardIntro.html:37
 msgid "Connect my BitPay Card"
-msgstr "Connect my BitPay Card"
+msgstr "Kết nối Thẻ BitPay của tôi"
 
 #: src/js/services/onGoingProcess.js:13
 msgid "Connecting to Coinbase..."
-msgstr "Connecting to Coinbase..."
+msgstr "Đang kết nối với Coinbase..."
 
 #: src/js/services/onGoingProcess.js:14
 msgid "Connecting to Glidera..."
-msgstr "Connecting to Glidera..."
+msgstr "Đang kết nối với Glidera..."
 
 #: src/js/services/bwcError.js:53
 msgid "Connection reset by peer"
-msgstr "Connection reset by peer"
+msgstr "Kết nối được đặt lại bởi máy ngang hàng"
 
 #: www/views/tab-send.html:85
 msgid "Contacts"
-msgstr "Contacts"
+msgstr "Liên hệ"
 
 #: www/views/tab-send.html:86
 msgid "Saved frequently used addresses"
-msgstr "Saved frequently used addresses"
+msgstr "Các địa chỉ được sử dụng thường xuyên đã lưu"
 
 #: www/views/onboarding/notifications.html:9
 msgid "Continue"
-msgstr "Continue"
+msgstr "Tiếp tục"
 
 #: www/views/preferencesLanguage.html:26
 msgid "Contribute Translations"
-msgstr "Contribute Translations"
+msgstr "Đóng góp bản dịch"
 
 #: src/js/controllers/confirm.js:130
 msgid "Copay only supports Bitcoin Cash using new version numbers addresses"
-msgstr "Copay only supports Bitcoin Cash using new version numbers addresses"
+msgstr "Copay chỉ hỗ trợ Bitcoin Cash sử dụng địa chỉ số phiên bản mới"
 
 #: src/js/services/bwcError.js:62
 msgid "Copayer already in this wallet"
-msgstr "Copayer already in this wallet"
+msgstr "Nhà giao dịch Copay đã có trong ví này"
 
 #: src/js/services/bwcError.js:77
 msgid "Copayer already voted on this spend proposal"
-msgstr "Copayer already voted on this spend proposal"
+msgstr "Nhà giao dịch Copay đã bình chọn cho đề xuất chi tiêu này"
 
 #: src/js/services/bwcError.js:107
 msgid "Copayer data mismatch"
-msgstr "Copayer data mismatch"
+msgstr "Dữ liệu của nhà giao dịch Copay không khớp"
 
 #: www/views/includes/walletActivity.html:2
 msgid "Copayer joined"
-msgstr "Copayer joined"
+msgstr "Nhà giao dịch Copay đã tham gia"
 
 #: www/views/preferencesInformation.html:94
 msgid "Copayer {{$index}}"
-msgstr "Copayer {{$index}}"
+msgstr "Nhà giao dịch Copay {{$index}}"
 
 #: src/js/controllers/copayers.js:79
 #: src/js/controllers/export.js:193
 #: src/js/controllers/confirm.js:41
 #: www/views/includes/copyToClipboard.html:4
 msgid "Copied to clipboard"
-msgstr "Copied to clipboard"
+msgstr "Đã sao chép vào bảng ghi tạm"
 
 #: www/views/tab-export-file.html:94
 msgid "Copy this text as it is to a safe place (notepad or email)"
-msgstr "Copy this text as it is to a safe place (notepad or email)"
+msgstr "Sao chép nguyên văn văn bản này vào một nơi an toàn (notepad hoặc email)"
 
 #: www/views/includes/incomingDataMenu.html:51
 #: www/views/includes/incomingDataMenu.html:70
@@ -714,296 +739,300 @@ msgstr "Copy this text as it is to a safe place (notepad or email)"
 #: www/views/includes/logOptions.html:9
 #: www/views/tab-export-file.html:78
 msgid "Copy to clipboard"
-msgstr "Copy to clipboard"
+msgstr "Sao chép vào bảng ghi tạm"
 
 #: src/js/controllers/buyMercadoLibre.js:102
 msgid "Could not access Gift Card Service"
-msgstr "Could not access Gift Card Service"
+msgstr "Không thể truy cập Dịch vụ thẻ quà tặng"
 
 #: www/views/tab-import-phrase.html:2
 msgid "Could not access the wallet at the server. Please check:"
-msgstr "Could not access the wallet at the server. Please check:"
+msgstr "Không thể truy cập ví tại máy chủ. Vui lòng kiểm tra:"
 
 #: src/js/controllers/buyAmazon.js:102
 msgid "Could not access to Amazon.com"
-msgstr "Could not access to Amazon.com"
+msgstr "Không thể truy cập Amazon.com"
 
 #: src/js/services/profileService.js:511
 msgid "Could not access wallet"
-msgstr "Could not access wallet"
+msgstr "Không thể truy cập ví"
 
 #: src/js/controllers/confirm.js:210
 msgid "Could not add message to imported wallet without shared encrypting key"
-msgstr "Could not add message to imported wallet without shared encrypting key"
+msgstr "Không thể thêm tin nhắn vào ví đã nhập mà không có khóa mã hóa chung"
 
 #: src/js/controllers/modals/txpDetails.js:199
 msgid "Could not broadcast payment"
-msgstr "Could not broadcast payment"
+msgstr "Không thể phát rộng thanh toán"
 
 #: src/js/services/bwcError.js:41
 msgid "Could not build transaction"
-msgstr "Could not build transaction"
+msgstr "Không thể xây dựng giao dịch"
 
 #: src/js/services/walletService.js:854
 msgid "Could not create address"
-msgstr "Could not create address"
+msgstr "Không thể tạo địa chỉ"
 
 #: src/js/controllers/topup.js:92
 msgid "Could not create the invoice"
-msgstr "Could not create the invoice"
+msgstr "Không thể tạo hoá đơn"
 
 #: src/js/controllers/buyAmazon.js:164
 #: src/js/controllers/buyMercadoLibre.js:164
 #: src/js/controllers/topup.js:142
 msgid "Could not create transaction"
-msgstr "Could not create transaction"
+msgstr "Không thể tạo giao dịch"
 
 #: src/js/services/profileService.js:350
 msgid "Could not create using the specified extended private key"
-msgstr "Could not create using the specified extended private key"
+msgstr "Không thể tạo bằng khóa riêng mở rộng đã chỉ định"
 
 #: src/js/services/profileService.js:362
 msgid "Could not create using the specified extended public key"
-msgstr "Could not create using the specified extended public key"
+msgstr "Không thể tạo bằng khóa công khai mở rộng đã chỉ định"
 
 #: src/js/services/profileService.js:338
 msgid "Could not create: Invalid wallet recovery phrase"
-msgstr "Could not create: Invalid wallet recovery phrase"
+msgstr "Không thể tạo: Cụm từ khôi phục ví không hợp lệ"
 
 #: src/js/controllers/import.js:114
 msgid "Could not decrypt file, check your password"
-msgstr "Could not decrypt file, check your password"
+msgstr "Không thể giải mã tệp, hãy kiểm tra mật khẩu của bạn"
 
 #: src/js/controllers/modals/txpDetails.js:181
 msgid "Could not delete payment proposal"
-msgstr "Could not delete payment proposal"
+msgstr "Không thể xóa đề nghị thanh toán"
 
 #: src/js/controllers/cashScan.js:117
 msgid "Could not duplicate"
-msgstr "Could not duplicate"
+msgstr "Không thể nhân đôi"
 
 #: src/js/services/feeService.js:73
 msgid "Could not get dynamic fee"
-msgstr "Could not get dynamic fee"
+msgstr "Không thể lấy phí động"
 
 #: src/js/services/feeService.js:43
 msgid "Could not get dynamic fee for level: {{feeLevel}}"
-msgstr "Could not get dynamic fee for level: {{feeLevel}}"
+msgstr "Không thể lấy phí động cho cấp độ: {{feeLevel}}"
 
 #: src/js/controllers/modals/feeLevels.js:112
 msgid "Could not get fee levels"
-msgstr "Could not get fee levels"
+msgstr "Không thể lấy cấp độ phí"
 
 #: src/js/controllers/buyAmazon.js:122
 #: src/js/controllers/buyMercadoLibre.js:122
 #: src/js/controllers/topup.js:100
 msgid "Could not get the invoice"
-msgstr "Could not get invoice"
+msgstr "Không thể lấy hoá đơn"
 
 #: src/js/controllers/bitpayCard.js:66
 msgid "Could not get transactions"
-msgstr "Could not get transactions"
+msgstr "Không thể lấy giao dịch"
 
 #: src/js/services/profileService.js:615
 #: src/js/services/profileService.js:650
 #: src/js/services/profileService.js:674
 msgid "Could not import"
-msgstr "Could not import"
+msgstr "Không thể nhập"
 
 #: src/js/services/profileService.js:584
 msgid "Could not import. Check input file and spending password"
-msgstr "Could not import. Check input file and spending password"
+msgstr "Không thể nhập. Hãy kiểm tra tệp đầu vào và mật khẩu chi tiêu"
 
 #: src/js/services/profileService.js:457
 msgid "Could not join wallet"
-msgstr "Could not join wallet"
+msgstr "Không thể tham gia ví"
 
 #: src/js/controllers/modals/txpDetails.js:161
 msgid "Could not reject payment"
-msgstr "Could not reject payment"
+msgstr "Không thể từ chối thanh toán"
 
 #: src/js/controllers/preferencesBitpayServices.js:33
 msgid "Could not remove account"
-msgstr "Could not remove account"
+msgstr "Không thể xóa tài khoản"
 
 #: src/js/controllers/preferencesBitpayCard.js:20
 #: src/js/controllers/preferencesBitpayServices.js:50
 msgid "Could not remove card"
-msgstr "Could not remove card"
+msgstr "Không thể xóa thẻ"
 
 #: src/js/services/walletService.js:776
 msgid "Could not save preferences on the server"
-msgstr "Could not save preferences on the server"
+msgstr "Không thể lưu tùy chọn ưu tiên trên máy chủ"
 
 #: src/js/controllers/modals/txpDetails.js:147
 msgid "Could not send payment"
-msgstr "Could not send payment"
+msgstr "Không thể gửi thanh toán"
 
 #: src/js/controllers/buyAmazon.js:325
 #: src/js/controllers/buyMercadoLibre.js:318
 #: src/js/controllers/topup.js:299
 msgid "Could not send transaction"
-msgstr "Could not send transaction"
+msgstr "Không thể gửi giao dịch"
 
 #: www/views/walletDetails.html:210
 msgid "Could not update transaction history"
-msgstr "Could not update transaction history"
+msgstr "Không thể cập nhật lịch sử giao dịch"
 
 #: src/js/controllers/addresses.js:29
 #: src/js/controllers/addresses.js:37
 #: src/js/controllers/copayers.js:30
 #: src/js/controllers/walletDetails.js:78
 msgid "Could not update wallet"
-msgstr "Could not update wallet"
+msgstr "Không thể cập nhật ví"
 
 #: www/views/tab-create-personal.html:3
 msgid "Create Personal Wallet"
-msgstr "Create Personal Wallet"
+msgstr "Tạo ví cá nhân"
 
 #: www/views/tab-create-shared.html:3
 msgid "Create Shared Wallet"
-msgstr "Generate Wallet"
+msgstr "Tạo ví dùng chung"
 
 #: www/views/onboarding/tour.html:51
 #: www/views/tab-home.html:75
 #: www/views/tab-send.html:75
 msgid "Create bitcoin wallet"
-msgstr "Create bitcoin wallet"
+msgstr "Tạo ví bitcoin"
 
 #: www/views/tab-create-personal.html:131
 msgid "Create new wallet"
-msgstr "Create new wallet"
+msgstr "Tạo ví mới"
 
 #: www/views/add.html:22
 msgid "Create shared wallet"
-msgstr "Create shared wallet"
+msgstr "Tạo ví dùng chung"
 
 #: www/views/tab-create-shared.html:160
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
-msgstr "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
+msgstr "Tạo ví {{formData.requiredCopayers}}/{{formData.totalCopayers}}"
+
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Nhà giao dịch Copay"
 
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
-msgstr "Created by"
+msgstr "Tạo bởi"
 
 #: src/js/services/onGoingProcess.js:18
 msgid "Creating Wallet..."
-msgstr "Creating Wallet..."
+msgstr "Đang tạo ví..."
 
 #: src/js/services/onGoingProcess.js:17
 msgid "Creating transaction"
-msgstr "Creating transaction"
+msgstr "Tạo giao dịch"
 
 #: www/views/modals/chooseFeeLevel.html:34
 #: www/views/preferencesFee.html:20
 msgid "Current fee rate for this policy"
-msgstr "Current fee rate for this policy"
+msgstr "Tỷ lệ phí hiện tại cho chính sách này"
 
 #: src/js/services/feeService.js:15
 msgid "Custom"
-msgstr "Custom"
+msgstr "Tuỳ chỉnh"
 
 #: www/views/customAmount.html:9
 msgid "Custom Amount"
-msgstr "Custom"
+msgstr "Số tiền tùy chỉnh"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Custom Fee"
-msgstr "Custom Fee"
+msgstr "Phí tùy chỉnh"
 
 #: www/views/modals/mercadolibre-card-details.html:56
 #: www/views/modals/txp-details.html:87
 #: www/views/tx-details.html:66
 msgid "Date"
-msgstr "Date"
+msgstr "Ngày"
 
 #: www/views/preferencesDeleteWallet.html:21
 msgid "Delete"
-msgstr "Delete"
+msgstr "Xóa"
 
 #: www/views/modals/txp-details.html:164
 msgid "Delete Payment Proposal"
-msgstr "Delete Payment Proposal"
+msgstr "Xóa đề nghị thanh toán"
 
 #: www/views/preferencesAdvanced.html:33
 #: www/views/preferencesDeleteWallet.html:3
 msgid "Delete Wallet"
-msgstr "Delete Wallet"
+msgstr "Xóa ví"
 
 #: www/views/copayers.html:59
 msgid "Delete it and create a new one"
-msgstr "Delete it and create a new one"
+msgstr "Xóa và tạo mới"
 
 #: src/js/services/onGoingProcess.js:19
 msgid "Deleting Wallet..."
-msgstr "Deleting Wallet..."
+msgstr "Đang xóa ví..."
 
 #: src/js/services/onGoingProcess.js:28
 msgid "Deleting payment proposal"
-msgstr "Deleting payment proposal"
+msgstr "Xóa đề nghị thanh toán"
 
 #: www/views/join.html:141
 #: www/views/tab-create-personal.html:111
 #: www/views/tab-create-shared.html:140
 #: www/views/tab-import-phrase.html:49
 msgid "Derivation Path"
-msgstr "Derivation Path"
+msgstr "Đường dẫn dẫn xuất"
 
 #: www/views/preferencesInformation.html:47
 msgid "Derivation Strategy"
-msgstr "Derivation Strategy"
+msgstr "Chiến lược dẫn xuất"
 
 #: www/views/buyAmazon.html:39
 #: www/views/buyMercadoLibre.html:38
 #: www/views/modals/mercadolibre-card-details.html:6
 #: www/views/topup.html:45
 msgid "Details"
-msgstr "Details"
+msgstr "Thông tin chi tiết"
 
 #: src/js/controllers/lockSetup.js:9
 #: src/js/controllers/tab-settings.js:65
 #: www/views/tab-settings.html:50
 msgid "Disabled"
-msgstr "Disabled"
+msgstr "Đã tắt"
 
 #: www/views/includes/backupNeededPopup.html:10
 #: www/views/onboarding/backupRequest.html:12
 msgid "Do it later"
-msgstr "Do it later"
+msgstr "Thực hiện sau"
 
 #: www/views/tab-export-file.html:29
 msgid "Do not include private key"
-msgstr "Do not include private key"
+msgstr "Không bao gồm khóa riêng"
 
 #: www/views/preferencesLanguage.html:21
 msgid "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
-msgstr "Don't see your language on Crowdin? Contact the Owner on Crowdin! We'd love to support your language."
+msgstr "Không thấy ngôn ngữ của bạn trên Crowdin? Hãy liên hệ với Chủ sở hữu trên Crowdin! Chúng tôi sẵn lòng hỗ trợ ngôn ngữ của bạn."
 
 #: www/views/tab-export-file.html:59
 #: www/views/tab-home.html:22
 msgid "Download"
-msgstr "Download"
+msgstr "Tải về"
 
 #: www/views/cashScan.html:37
 msgid "Duplicate for BCH"
-msgstr "Duplicate for BCH"
+msgstr "Nhân đôi cho BCH"
 
 #: src/js/services/onGoingProcess.js:49
 msgid "Duplicating wallet..."
-msgstr "Duplicating wallet..."
+msgstr "Đang nhân đôi ví..."
 
 #: www/views/addresses.html:19
 msgid "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
-msgstr "Each bitcoin wallet can generate billions of addresses from your 12-word backup. A new address is automatically generated and shown each time you receive a payment."
+msgstr "Mỗi ví bitcoin có thể tạo ra hàng tỷ địa chỉ từ cụm từ sao lưu gồm 12 từ của bạn. Một địa chỉ mới được tạo tự động và hiển thị mỗi khi bạn nhận được thanh toán."
 
 #: src/js/services/feeService.js:13
 msgid "Economy"
-msgstr "Economy"
+msgstr "Nền kinh tế"
 
 #: www/views/onboarding/collectEmail.html:27
 msgid "Edit"
-msgstr "Edit"
+msgstr "Chỉnh sửa"
 
 #: www/views/addressbook.add.html:29
 #: www/views/addressbook.view.html:22
@@ -1012,74 +1041,74 @@ msgstr "Email"
 
 #: www/views/preferencesNotifications.html:42
 msgid "Email Address"
-msgstr "Email Address"
+msgstr "Địa chỉ email"
 
 #: src/js/services/bwcError.js:122
 msgid "Empty addresses limit reached. New addresses cannot be generated."
-msgstr "Empty addresses limit reached. New addresses cannot be generated."
+msgstr "Đã đạt đến giới hạn địa chỉ trống. Không thể tạo địa chỉ mới."
 
 #: www/views/preferencesCash.html:17
 msgid "Enable Bitcoin Cash wallet creation and operation within the App."
-msgstr "Enable Bitcoin Cash wallet creation and operation within the App."
+msgstr "Bật tính năng tạo và vận hành ví Bitcoin Cash trong Ứng dụng."
 
 #: www/views/tab-scan.html:19
 msgid "Enable camera access in your device settings to get started."
-msgstr "Enable camera access in your device settings to get started."
+msgstr "Bật tính năng truy cập camera trong cài đặt thiết bị của bạn để bắt đầu."
 
 #: www/views/preferencesNotifications.html:29
 msgid "Enable email notifications"
-msgstr "Enable email notifications"
+msgstr "Bật thông báo email"
 
 #: www/views/preferencesNotifications.html:12
 msgid "Enable push notifications"
-msgstr "Enable push notifications"
+msgstr "Bật thông báo đẩy"
 
 #: www/views/preferencesNotifications.html:33
 msgid "Enable sound"
-msgstr "Enable sound"
+msgstr "Bật âm thanh"
 
 #: www/views/tab-scan.html:18
 msgid "Enable the camera to get started."
-msgstr "Enable the camera to get started."
+msgstr "Bật camera để bắt đầu."
 
 #: www/views/tab-settings.html:49
 msgid "Enabled"
-msgstr "Enabled"
+msgstr "Đã bật"
 
 #: src/js/services/walletService.js:1047
 #: src/js/services/walletService.js:1062
 msgid "Enter Spending Password"
-msgstr "Enter Spending Password"
+msgstr "Nhập mật khẩu chi tiêu"
 
 #: src/js/services/bitpayAccountService.js:110
 msgid "Enter Two Factor for your BitPay account"
-msgstr "Enter Two Factor for your BitPay account"
+msgstr "Nhập Hai yếu tố cho tài khoản BitPay của bạn"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
-msgstr "Enter amount"
+msgid "Enter Amount"
+msgstr "Nhập số tiền"
 
 #: www/views/modals/chooseFeeLevel.html:41
 msgid "Enter custom fee"
-msgstr "Enter custom fee"
+msgstr "Nhập phí tùy chỉnh"
 
 #: src/js/services/walletService.js:1029
 msgid "Enter new spending password"
-msgstr "Enter new spending password"
+msgstr "Nhập mật khẩu chi tiêu mới"
 
 #: www/views/join.html:79
 #: www/views/tab-create-personal.html:51
 #: www/views/tab-create-shared.html:80
 msgid "Enter the recovery phrase (BIP39)"
-msgstr "Enter the recovery phrase (BIP39)"
+msgstr "Nhập cụm từ khôi phục (BIP39)"
 
 #: www/views/onboarding/collectEmail.html:13
 msgid "Enter your email"
-msgstr "Enter your email"
+msgstr "Nhập email của bạn"
 
 #: www/views/backup.html:69
 msgid "Enter your password"
-msgstr "Enter your password"
+msgstr "Nhập mật khẩu của bạn"
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/activity.js:45
@@ -1158,54 +1187,54 @@ msgstr "Enter your password"
 #: www/views/mercadoLibreCards.html:19
 #: www/views/modals/mercadolibre-card-details.html:45
 msgid "Error"
-msgstr "Error"
+msgstr "Lỗi"
 
 #: src/js/controllers/confirm.js:502
 msgid "Error at confirm"
-msgstr "Error at confirm"
+msgstr "Lỗi khi xác nhận"
 
 #: src/js/controllers/buyAmazon.js:179
 msgid "Error creating gift card"
-msgstr "Error creating gift card"
+msgstr "Lỗi tạo thẻ quà tặng"
 
 #: src/js/controllers/buyAmazon.js:94
 #: src/js/controllers/buyMercadoLibre.js:94
 msgid "Error creating the invoice"
-msgstr "Error creating the invoice"
+msgstr "Lỗi tạo hoá đơn"
 
 #: src/js/services/profileService.js:412
 msgid "Error creating wallet"
-msgstr "Error creating wallet"
+msgstr "Lỗi tạo ví"
 
 #: src/js/controllers/confirm.js:296
 msgid "Error getting SendMax information"
-msgstr "Error getting SendMax information"
+msgstr "Lỗi nhận thông tin SendMax"
 
 #: src/js/controllers/buyAmazon.js:136
 #: src/js/controllers/buyMercadoLibre.js:136
 #: src/js/controllers/topup.js:114
 msgid "Error in Payment Protocol"
-msgstr "Error in Payment Protocol"
+msgstr "Lỗi trong Giao thức thanh toán"
 
 #: src/js/controllers/bitpayCardIntro.js:14
 msgid "Error pairing BitPay Account"
-msgstr "Error pairing BitPay Account"
+msgstr "Lỗi ghép đôi Tài khoản BitPay"
 
 #: src/js/controllers/paperWallet.js:41
 msgid "Error scanning funds:"
-msgstr "Error scanning funds:"
+msgstr "Lỗi quét tiền:"
 
 #: src/js/controllers/paperWallet.js:90
 msgid "Error sweeping wallet:"
-msgstr "Error sweeping wallet:"
+msgstr "Lỗi quét ví:"
 
 #: src/js/controllers/bitpayCardIntro.js:20
 msgid "Error updating Debit Cards"
-msgstr "Error updating Debit Cards"
+msgstr "Lỗi cập nhật Thẻ ghi nợ"
 
 #: src/js/services/bwcError.js:143
 msgid "Exceeded daily limit of $500 per user"
-msgstr "Exceeded daily limit of $500 per user"
+msgstr "Vượt quá giới hạn hàng ngày $500 cho mỗi người dùng"
 
 #: src/js/controllers/confirm.js:461
 #: www/views/confirm.html:27
@@ -1213,38 +1242,51 @@ msgstr "Exceeded daily limit of $500 per user"
 #: www/views/modals/mercadolibre-card-details.html:34
 #: www/views/modals/txp-details.html:119
 msgid "Expired"
-msgstr "Expired"
+msgstr "Đã hết hạn"
 
 #: www/views/modals/paypro.html:54
 #: www/views/modals/txp-details.html:125
 msgid "Expires"
-msgstr "Expires"
+msgstr "Hết hạn"
+
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Hiển thị địa chỉ cũ"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Hiển thị địa chỉ kiểu mới"
 
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
-msgstr "Export Wallet"
+msgstr "Xuất ví"
 
 #: www/views/preferencesHistory.html:11
 #: www/views/preferencesHistory.html:14
 msgid "Export to file"
-msgstr "Export Wallet"
+msgstr "Xuất ra tệp"
 
 #: www/views/export.html:3
 msgid "Export wallet"
-msgstr "Export wallet"
+msgstr "Xuất ví"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL dịch vụ ví"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
 msgid "Exporting via QR not supported for this wallet"
-msgstr "Exporting via QR not supported for this wallet"
+msgstr "Xuất qua QR không được hỗ trợ cho ví này"
 
 #: www/views/preferencesInformation.html:89
 msgid "Extended Public Keys"
-msgstr "Extended Public Keys"
+msgstr "Khóa công khai mở rộng"
 
 #: src/js/services/onGoingProcess.js:20
 msgid "Extracting Wallet information..."
-msgstr "Extracting Wallet information..."
+msgstr "Trích xuất thông tin Ví..."
 
 #: src/js/controllers/export.js:115
 #: src/js/controllers/export.js:126
@@ -1252,65 +1294,65 @@ msgstr "Extracting Wallet information..."
 #: src/js/controllers/export.js:171
 #: www/views/tab-export-file.html:4
 msgid "Failed to export"
-msgstr "Failed to export"
+msgstr "Không thể xuất"
 
 #: www/views/tab-create-personal.html:14
 #: www/views/tab-create-shared.html:14
 msgid "Family vacation funds"
-msgstr "Family vacation funds"
+msgstr "Tiền nghỉ dưỡng của gia đình"
 
 #: www/views/tx-details.html:79
 msgid "Fee"
-msgstr "Fee"
+msgstr "Phí"
 
 #: www/views/modals/chooseFeeLevel.html:75
 msgid "Fee level"
-msgstr "Fee level"
+msgstr "Mức phí"
 
 #: src/js/controllers/modals/feeLevels.js:100
 msgid "Fee level is not defined"
-msgstr "Fee level is not defined"
+msgstr "Mức phí chưa được xác định"
 
 #: www/views/confirm.html:79
 #: www/views/modals/txp-details.html:99
 msgid "Fee:"
-msgstr "Fee:"
+msgstr "Phí:"
 
 #: src/js/controllers/feedback/send.js:23
 msgid "Feedback could not be submitted. Please try again later."
-msgstr "Feedback could not be submitted. Please try again later."
+msgstr "Không thể gửi phản hồi. Vui lòng thử lại sau."
 
 #: src/js/services/onGoingProcess.js:42
 msgid "Fetching BitPay Account..."
-msgstr "Fetching BitPay Account..."
+msgstr "Đang tìm nạp tài khoản BitPay..."
 
 #: src/js/services/onGoingProcess.js:21
 msgid "Fetching payment information"
-msgstr "Fetching payment information"
+msgstr "Tìm nạp thông tin thanh toán"
 
 #: www/views/export.html:14
 #: www/views/import.html:16
 msgid "File/Text"
-msgstr "File/Text"
+msgstr "Tệp/văn bản"
 
 #: www/views/preferencesLogs.html:17
 msgid "Filter setting"
-msgstr "Filter setting"
+msgstr "Cài đặt bộ lọc"
 
 #: src/js/services/fingerprintService.js:43
 #: src/js/services/fingerprintService.js:48
 msgid "Finger Scan Failed"
-msgstr "Finger Scan Failed"
+msgstr "Không thể quét vân tay"
 
 #: src/js/controllers/feedback/send.js:34
 #: www/views/feedback/complete.html:7
 msgid "Finish"
-msgstr "Finish"
+msgstr "Kết thúc"
 
 #: www/views/tab-create-personal.html:123
 #: www/views/tab-create-shared.html:152
 msgid "For audit purposes"
-msgstr "For audit purposes"
+msgstr "Cho các mục đích kiểm toán"
 
 #: src/js/controllers/topup.js:308
 #: www/views/buyAmazon.html:29
@@ -1321,94 +1363,94 @@ msgstr "For audit purposes"
 #: www/views/tx-details.html:52
 #: www/views/review.html:22
 msgid "From"
-msgstr "From"
+msgstr "Từ"
 
 #: src/js/controllers/bitpayCardIntro.js:71
 msgid "From BitPay account"
-msgstr "From BitPay account"
+msgstr "Từ tài khoản BitPay"
 
 #: www/views/tab-import-phrase.html:57
 msgid "From Hardware Wallet"
-msgstr "From Hardware Wallet"
+msgstr "Từ Ví cứng"
 
 #: www/views/tab-export-qrCode.html:5
 msgid "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
-msgstr "From the destination device, go to Add wallet &gt; Import wallet and scan this QR code"
+msgstr "Từ thiết bị đích, đi tới Thêm ví &gt; Nhập ví và quét mã QR này"
 
 #: src/js/services/bwcError.js:74
 msgid "Funds are locked by pending spend proposals"
-msgstr "Funds are locked by pending spend proposals"
+msgstr "Tiền đang bị khóa bởi các đề xuất chi tiêu đang chờ xử lý"
 
 #: www/views/paperWallet.html:16
 msgid "Funds found:"
-msgstr "Funds found:"
+msgstr "Tìm thấy tiền:"
 
 #: www/views/topup.html:49
 msgid "Funds to be added"
-msgstr "Funds to be added"
+msgstr "Tiền sẽ được thêm"
 
 #: www/views/paperWallet.html:51
 msgid "Funds transferred"
-msgstr "Funds transferred"
+msgstr "Tiền đã chuyển"
 
 #: www/views/topup.html:103
 msgid "Funds were added to debit card"
-msgstr "Funds were added to debit card"
+msgstr "Tiền đã được thêm vào thẻ ghi nợ"
 
 #: www/views/paperWallet.html:22
 msgid "Funds will be transferred to"
-msgstr "Funds will be transferred to"
+msgstr "Tiền sẽ được chuyển tới"
 
 #: www/views/tab-receive.html:51
 msgid "Generate new address"
-msgstr "Generate new address"
+msgstr "Tạo địa chỉ mới"
 
 #: src/js/services/onGoingProcess.js:22
 msgid "Generating .csv file..."
-msgstr "Generating .csv file..."
+msgstr "Đang tạo tệp .csv..."
 
 #: src/js/services/onGoingProcess.js:37
 msgid "Generating new address..."
-msgstr "Generating new address..."
+msgstr "Đang tạo địa chỉ mới..."
 
 #: www/views/bitpayCardIntro.html:23
 msgid "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
-msgstr "Get local cash anywhere you go, from any Visa<sup>&reg;</sup> compatible ATM. ATM bank fees may apply."
+msgstr "Nhận tiền mặt nội địa ở bất cứ nơi nào bạn đến, từ bất kỳ máy ATM tương thích với thẻ Visa<sup>&reg;</sup> nào. Phí ngân hàng ATM có thể áp dụng."
 
 #: www/views/onboarding/collectEmail.html:15
 msgid "Get news and updates from BitPay"
-msgstr "Get news and updates from BitPay"
+msgstr "Nhận tin tức và thông tin cập nhật từ BitPay"
 
 #: www/views/onboarding/welcome.html:8
 #: www/views/bitpayCard.html:49
 msgid "Get started"
-msgstr "Get started"
+msgstr "Bắt đầu"
 
 #: www/views/addressbook.html:20
 msgid "Get started by adding your first one."
-msgstr "Get started by adding your first one."
+msgstr "Bắt đầu bằng cách thêm địa chỉ đầu tiên của bạn."
 
 #: src/js/services/onGoingProcess.js:23
 msgid "Getting fee levels..."
-msgstr "Getting fee levels..."
+msgstr "Đang lấy mức phí..."
 
 #: www/views/buyAmazon.html:43
 #: www/views/buyMercadoLibre.html:42
 msgid "Gift Card"
-msgstr "Gift Card"
+msgstr "Thẻ quà tặng"
 
 #: www/views/modals/mercadolibre-card-details.html:30
 #: www/views/modals/mercadolibre-card-details.html:35
 msgid "Gift Card is not available to use anymore"
-msgstr "Gift Card is not available to use anymore"
+msgstr "Thẻ quà tặng không còn khả dụng để sử dụng nữa"
 
 #: src/js/controllers/buyAmazon.js:204
 msgid "Gift card expired"
-msgstr "Gift card expired"
+msgstr "Thẻ quà tặng đã hết hạn"
 
 #: www/views/buyAmazon.html:111
 msgid "Gift card generated and ready to use."
-msgstr "Gift card generated and ready to use."
+msgstr "Thẻ quà tặng đã được tạo và sẵn sàng để sử dụng."
 
 #: src/js/controllers/bitpayCard.js:114
 #: src/js/controllers/bitpayCard.js:124
@@ -1423,59 +1465,59 @@ msgstr "Gift card generated and ready to use."
 #: src/js/controllers/tx-details.js:193
 #: src/js/controllers/tx-details.js:56
 msgid "Go Back"
-msgstr "Go Back"
+msgstr "Quay lại"
 
 #: src/js/controllers/confirm.js:131
 #: src/js/controllers/onboarding/backupRequest.js:20
 #: src/js/controllers/onboarding/backupRequest.js:26
 #: src/js/services/bitpayAccountService.js:84
 msgid "Go back"
-msgstr "Go back"
+msgstr "Quay lại"
 
 #: www/views/backupWarning.html:15
 #: www/views/includes/confirmBackupPopup.html:8
 #: www/views/onboarding/tour.html:23
 msgid "Got it"
-msgstr "Got it"
+msgstr "Đã hiểu"
 
 #: www/views/preferencesInformation.html:53
 #: www/views/preferencesInformation.html:59
 msgid "Hardware Wallet"
-msgstr "Hardware Wallet"
+msgstr "Ví cứng"
 
 #: www/views/preferencesExternal.html:18
 msgid "Hardware not connected."
-msgstr "Hardware not connected."
+msgstr "Phần cứng không được kết nối."
 
 #: www/views/import.html:20
 msgid "Hardware wallet"
-msgstr "Hardware wallet"
+msgstr "Ví cứng"
 
 #: src/js/controllers/create.js:180
 #: src/js/controllers/join.js:145
 msgid "Hardware wallets are not yet supported with Bitcoin Cash"
-msgstr "Hardware wallets are not yet supported with Bitcoin Cash"
+msgstr "Ví cứng chưa được hỗ trợ với Bitcoin Cash"
 
 #: www/views/tab-settings.html:20
 msgid "Help & Support"
-msgstr "Help & Support"
+msgstr "Trợ giúp & Hỗ trợ"
 
 #: src/js/controllers/bitpayCard.js:112
 #: src/js/controllers/tab-settings.js:51
 msgid "Help and support information is available at the website."
-msgstr "Help and support information is available at the website."
+msgstr "Thông tin trợ giúp và hỗ trợ có sẵn tại trang web."
 
 #: www/views/addresses.html:25
 msgid "Hide"
-msgstr "Hide"
+msgstr "Ẩn"
 
 #: www/views/preferences.html:27
 msgid "Hide Balance"
-msgstr "Hide Balance"
+msgstr "Ẩn số dư"
 
 #: www/views/advancedSettings.html:30
 msgid "Hide Next Steps Card"
-msgstr "Hide Next Steps Card"
+msgstr "Ẩn thẻ Các bước tiếp theo"
 
 #: www/views/join.html:49
 #: www/views/tab-create-personal.html:28
@@ -1485,555 +1527,555 @@ msgstr "Hide Next Steps Card"
 #: www/views/tab-import-hardware.html:31
 #: www/views/tab-import-phrase.html:36
 msgid "Hide advanced options"
-msgstr "Hide advanced options"
+msgstr "Ẩn tùy chọn nâng cao"
 
 #: www/views/tabs.html:3
 msgid "Home"
-msgstr "Home"
+msgstr "Trang chủ"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 #: src/js/controllers/feedback/send.js:69
 msgid "How could we improve your experience?"
-msgstr "How could we improve your experience?"
+msgstr "Chúng tôi có thể cải thiện trải nghiệm của bạn bằng cách nào?"
 
 #: www/views/feedback/rateCard.html:3
 msgid "How do you like {{appName}}?"
-msgstr "How do you like {{appName}}?"
+msgstr "Bạn thích {{appName}} tới mức nào?"
 
 #: src/js/controllers/feedback/rateCard.js:29
 msgid "I don't like it"
-msgstr "I don't like it"
+msgstr "Tôi không thích ứng dụng này"
 
 #: www/views/onboarding/disclaimer.html:43
 msgid "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
-msgstr "I have read, understood, and agree to the <a ng-click=\"openTerms()\" translate=\"\">Terms of Use</a>."
+msgstr "Tôi đã đọc, hiểu và đồng ý với <a ng-click=\"openTerms()\" translate=\"\">Điều khoản sử dụng</a>."
 
 #: www/views/modals/terms.html:22
 msgid "I have read, understood, and agree with the Terms of use."
-msgstr "I have read, understood, and agree with the Terms of use."
+msgstr "Tôi đã đọc, hiểu và đồng ý với Điều khoản sử dụng."
 
 #: www/views/join.html:137
 #: www/views/tab-create-personal.html:107
 #: www/views/tab-create-shared.html:136
 msgid "I have written it down"
-msgstr "I have written it down"
+msgstr "Tôi đã viết nó ra"
 
 #: src/js/controllers/feedback/rateCard.js:35
 msgid "I like the app"
-msgstr "I like the app"
+msgstr "Tôi thích ứng dụng"
 
 #: src/js/controllers/feedback/rateCard.js:26
 msgid "I think this app is terrible."
-msgstr "I think this app is terrible."
+msgstr "Tôi nghĩ ứng dụng này thật kinh khủng."
 
 #: src/js/controllers/onboarding/backupRequest.js:19
 #: www/views/includes/screenshotWarningModal.html:9
 msgid "I understand"
-msgstr "I understand"
+msgstr "Tôi hiểu"
 
 #: www/views/onboarding/disclaimer.html:21
 msgid "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
-msgstr "I understand that if this app is moved to another device or deleted, my bitcoin can only be recovered with the backup phrase."
+msgstr "Tôi hiểu rằng nếu ứng dụng này được chuyển sang thiết bị khác hoặc bị xóa, bitcoin của tôi chỉ có thể được phục hồi bằng cụm từ sao lưu."
 
 #: www/views/onboarding/disclaimer.html:18
 msgid "I understand that my funds are held securely on this device, not by a company."
-msgstr "I understand that my funds are held securely on this device, not by a company."
+msgstr "Tôi hiểu rằng tiền của tôi được giữ an toàn trên thiết bị này chứ không phải bởi một công ty."
 
 #: www/views/backup.html:36
 msgid "I've written it down"
-msgstr "I've written it down"
+msgstr "Tôi đã viết nó ra"
 
 #: www/views/preferences.html:45
 msgid "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
-msgstr "If enabled, all sensitive information (private key and recovery phrase) and actions (spending and exporting) associated with this wallet will be protected."
+msgstr "Nếu được bật, mọi thông tin nhạy cảm (khóa riêng và cụm từ khôi phục) và các hành động (chi tiêu và xuất) liên kết với ví này sẽ được bảo vệ."
 
 #: www/views/advancedSettings.html:23
 msgid "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
-msgstr "If enabled, the Recent Transactions card - a list of transactions occuring across all wallets - will appear in the Home tab."
+msgstr "Nếu được bật, thẻ Giao dịch gần đây - danh sách các giao dịch xảy ra trên tất cả các ví - sẽ xuất hiện trong tab Trang chủ."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Nếu được bật, ví cũng sẽ cố gắng chi tiêu tiền chưa được xác nhận. Tắt tùy chọn này có thể gây ra sự chậm trễ trong giao dịch."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
-msgstr "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
+msgstr "Nếu thiết bị này được thay thế hoặc ứng dụng này bị xóa, cả bạn và BitPay đều không thể lấy lại tiền của bạn nếu không có bản sao lưu."
 
 #: www/views/feedback/complete.html:23
 msgid "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
-msgstr "If you have additional feedback, please let us know by tapping the \"Send feedback\" option in the Settings tab."
+msgstr "Nếu bạn có thêm phản hồi, vui lòng cho chúng tôi biết bằng cách nhấn vào tùy chọn \"Gửi phản hồi\" trong tab Cài đặt."
 
 #: www/views/includes/screenshotWarningModal.html:8
 msgid "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
-msgstr "If you take a screenshot, your backup may be viewed by other apps. You can make a safe backup with physical paper and a pen."
+msgstr "Nếu bạn chụp ảnh màn hình, bản sao lưu của bạn có thể được xem bằng các ứng dụng khác. Bạn có thể tạo một bản sao lưu an toàn bằng giấy và bút."
 
 #: www/views/tab-import-hardware.html:42
 #: www/views/tab-import-phrase.html:80
 msgid "Import"
-msgstr "Import"
+msgstr "Nhập"
 
 #: www/views/import.html:3
 msgid "Import Wallet"
-msgstr "Import Wallet"
+msgstr "Nhập ví"
 
 #: www/views/tab-import-file.html:41
 msgid "Import backup"
-msgstr "Import backup"
+msgstr "Nhập bản sao lưu"
 
 #: www/views/add.html:38
 msgid "Import wallet"
-msgstr "Import wallet"
+msgstr "Nhập ví"
 
 #: src/js/services/onGoingProcess.js:24
 msgid "Importing Wallet..."
-msgstr "Importing Wallet..."
+msgstr "Đang nhập ví..."
 
 #: www/views/backup.html:72
 msgid "In order to verify your wallet backup, please type your password."
-msgstr "In order to verify your wallet backup, please type your password."
+msgstr "Để xác minh bản sao lưu ví của bạn, vui lòng nhập mật khẩu của bạn."
 
 #: www/views/mercadoLibreCards.html:24
 #: www/views/modals/mercadolibre-card-details.html:29
 msgid "Inactive"
-msgstr "Inactive"
+msgstr "Không hoạt động"
 
 #: www/views/includes/walletItem.html:9
 #: www/views/includes/walletList.html:6
 #: www/views/includes/walletListSettings.html:9
 #: www/views/includes/walletSelector.html:16
 msgid "Incomplete"
-msgstr "Incomplete"
+msgstr "Không đầy đủ"
 
 #: www/views/tab-receive.html:22
 msgid "Incomplete wallet"
-msgstr "Incomplete wallet"
+msgstr "Ví không đầy đủ"
 
 #: www/views/modals/pin.html:12
 msgid "Incorrect PIN, try again."
-msgstr "Incorrect PIN, try again."
+msgstr "Mã PIN không chính xác, hãy thử lại."
 
 #. Trying to import a malformed wallet export QR code
 #: src/js/controllers/import.js:85
 msgid "Incorrect code format"
-msgstr "Incorrect code format"
+msgstr "Định dạng mã không chính xác"
 
 #: src/js/services/bwcError.js:113
 msgid "Incorrect network address"
-msgstr "Incorrect network address"
+msgstr "Địa chỉ mạng không chính xác"
 
 #: src/js/controllers/confirm.js:114
 #: src/js/controllers/confirm.js:306
 #: src/js/services/bwcError.js:44
 msgid "Insufficient confirmed funds"
-msgstr "Insufficient confirmed funds"
+msgstr "Tiền đã xác nhận không đủ"
 
 #: src/js/controllers/topup.js:165
 #: src/js/controllers/topup.js:177
 #: src/js/services/bwcError.js:71
 msgid "Insufficient funds for fee"
-msgstr "Insufficient funds for fee"
+msgstr "Không đủ tiền để trả phí"
 
 #: www/views/tab-settings.html:123
 msgid "Integrations"
-msgstr "Integrations"
+msgstr "Tích hợp"
 
 #: www/views/includes/walletHistory.html:49
 msgid "Invalid"
-msgstr "Invalid"
+msgstr "Không hợp lệ"
 
 #: src/js/controllers/buyAmazon.js:137
 #: src/js/controllers/buyMercadoLibre.js:137
 #: src/js/controllers/topup.js:115
 msgid "Invalid URL"
-msgstr "Invalid URL"
+msgstr "URL không hợp lệ"
 
 #: src/js/controllers/create.js:186
 #: src/js/controllers/import.js:345
 #: src/js/controllers/join.js:151
 msgid "Invalid account number"
-msgstr "Invalid account number"
+msgstr "Số tài khoản không hợp lệ"
 
 #: src/js/services/bwcError.js:119
 msgid "Invalid address"
-msgstr "Invalid address"
+msgstr "Địa chỉ không hợp lệ"
 
 #: src/js/controllers/tabsController.js:7
 msgid "Invalid data"
-msgstr "Invalid data"
+msgstr "Dữ liệu không hợp lệ"
 
 #: src/js/controllers/create.js:161
 #: src/js/controllers/import.js:266
 #: src/js/controllers/join.js:125
 msgid "Invalid derivation path"
-msgstr "Invalid derivation path"
+msgstr "Đường dẫn dẫn xuất không hợp lệ"
 
 #: src/js/controllers/copayers.js:90
 msgid "Invitation to share a {{appName}} Wallet"
-msgstr "Invitation to share a {{appName}} Wallet"
+msgstr "Lời mời chia sẻ Ví {{appName}}"
 
 #: www/views/mercadoLibreCards.html:20
 #: www/views/modals/mercadolibre-card-details.html:48
 msgid "Invoice expired"
-msgstr "Invoice expired"
+msgstr "Hoá đơn đã hết hạn"
 
 #: src/js/controllers/feedback/send.js:79
 msgid "Is there anything we could do better?"
-msgstr "Is there anything we could do better?"
+msgstr "Có bất cứ điều gì chúng tôi có thể làm tốt hơn không?"
 
 #: www/views/backup.html:54
 msgid "Is this correct?"
-msgstr "Is this correct?"
+msgstr "Cái này có đúng không?"
 
 #: www/views/onboarding/collectEmail.html:22
 msgid "Is this email address correct?"
-msgstr "Is this email address correct?"
+msgstr "Địa chỉ email này có đúng không?"
 
 #: www/views/addresses.html:25
 msgid "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
-msgstr "It's a good idea to avoid reusing addresses - this both protects your privacy and keeps your bitcoins secure against hypothetical attacks by quantum computers."
+msgstr "Nên tránh sử dụng lại địa chỉ - điều này vừa để bảo vệ quyền riêng tư của bạn vừa để giữ an toàn cho bitcoin của bạn khỏi các cuộc tấn công giả định của máy tính lượng tử."
 
 #: src/js/controllers/backup.js:76
 msgid "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
-msgstr "It's important that you write your backup phrase down correctly. If something happens to your wallet, you'll need this backup to recover your money. Please review your backup and try again."
+msgstr "Điều quan trọng là bạn phải viết ra chính xác cụm từ sao lưu của mình. Nếu có vấn đề xảy ra với ví của bạn, bạn sẽ cần cụm từ sao lưu này để lấy lại tiền của mình. Vui lòng xem lại cụm từ sao lưu của bạn và thử lại."
 
 #: www/views/join.html:151
 msgid "Join"
-msgstr "Join"
+msgstr "Tham gia"
 
 #: src/js/controllers/copayers.js:85
 msgid "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
-msgstr "Join my {{appName}} Wallet. Here is the invitation code: {{secret}} You can download {{appName}} for your phone or desktop at {{appUrl}}"
+msgstr "Hãy tham gia Ví {{appName}} của tôi. Đây là mã mời tham gia: {{secret}} Bạn có thể tải về {{appName}} cho điện thoại hoặc máy tính để bàn của bạn tại {{appUrl}}"
 
 #: www/views/add.html:30
 #: www/views/join.html:5
 msgid "Join shared wallet"
-msgstr "Join shared wallet"
+msgstr "Tham gia ví dùng chung"
 
 #: src/js/services/onGoingProcess.js:25
 msgid "Joining Wallet..."
-msgstr "Joining Wallet..."
+msgstr "Đang tham gia ví..."
 
 #: www/views/onboarding/tour.html:22
 msgid "Just scan the code to pay."
-msgstr "Just scan the code to pay."
+msgstr "Chỉ cần quét mã để thanh toán."
 
 #: src/js/services/bwcError.js:116
 msgid "Key already associated with an existing wallet"
-msgstr "Key already associated with an existing wallet"
+msgstr "Khóa đã được liên kết với một ví hiện có"
 
 #: www/views/preferencesLanguage.html:4
 #: www/views/tab-settings.html:68
 msgid "Language"
-msgstr "Language"
+msgstr "Ngôn ngữ"
 
 #: www/views/bitpayCard.html:61
 msgid "Last Month"
-msgstr "Last Month"
+msgstr "Tháng trước"
 
 #: src/js/controllers/confirm.js:132
 #: www/views/preferences.html:48
 #: www/views/preferencesCash.html:18
 #: www/views/tx-details.html:94
 msgid "Learn more"
-msgstr "Learn more"
+msgstr "Tìm hiểu thêm"
 
 #: www/views/backup.html:43
 msgid "Let's verify your backup phrase."
-msgstr "Let's verify your backup phrase."
+msgstr "Hãy xác minh cụm từ sao lưu của bạn."
 
 #: www/views/addresses.html:45
 #: www/views/allAddresses.html:14
 msgid "Loading addresses..."
-msgstr "Loading addresses..."
+msgstr "Đang tải địa chỉ..."
 
 #: src/js/services/onGoingProcess.js:35
 msgid "Loading transaction info..."
-msgstr "Loading transaction info..."
+msgstr "Đang tải thông tin giao dịch..."
 
 #: www/views/tab-settings.html:100
 msgid "Lock App"
-msgstr "Lock App"
+msgstr "Khóa ứng dụng"
 
 #: src/js/controllers/lockSetup.js:23
 msgid "Lock by Fingerprint"
-msgstr "Lock by Fingerprint"
+msgstr "Khóa bằng vân tay"
 
 #: src/js/controllers/lockSetup.js:14
 msgid "Lock by PIN"
-msgstr "Lock by PIN"
+msgstr "Khóa bằng mã PIN"
 
 #: www/views/modals/wallet-balance.html:80
 msgid "Locked"
-msgstr "Locked"
+msgstr "Đã khóa"
 
 #: src/js/services/bwcError.js:86
 msgid "Locktime in effect. Please wait to create a new spend proposal"
-msgstr "Locktime in effect. Please wait to create a new spend proposal"
+msgstr "Thời gian khóa đang có hiệu lực. Vui lòng đợi để tạo một đề xuất chi tiêu mới"
 
 #: src/js/services/bwcError.js:89
 msgid "Locktime in effect. Please wait to remove this spend proposal"
-msgstr "Locktime in effect. Please wait to remove this spend proposal"
+msgstr "Thời gian khóa đang có hiệu lực. Vui lòng đợi để xóa đề xuất chi tiêu này"
 
 #: www/views/includes/logOptions.html:3
 msgid "Log options"
-msgstr "Log options"
+msgstr "Tùy chọn lưu nhật ký"
 
 #: www/views/modals/bitpay-card-confirmation.html:14
 msgid "Log out"
-msgstr "Log out"
+msgstr "Đăng xuất"
 
 #: www/views/addresses.html:87
 msgid "Low amount inputs"
-msgstr "Low amount inputs"
+msgstr "Giá trị đầu vào thấp"
 
 #: www/views/includes/walletHistory.html:27
 msgid "Low fees"
-msgstr "Low fees"
+msgstr "Phí thấp"
 
 #: www/views/onboarding/tour.html:38
 msgid "Makes sense"
-msgstr "Makes sense"
+msgstr "Có ý nghĩa"
 
 #: src/js/controllers/modals/search.js:61
 msgid "Matches:"
-msgstr "Matches:"
+msgstr "Kết quả khớp:"
 
 #: www/views/includes/copayers.html:4
 #: www/views/preferencesInformation.html:85
 msgid "Me"
-msgstr "Me"
+msgstr "Tôi"
 
 #: src/js/controllers/feedback/rateCard.js:32
 msgid "Meh - it's alright"
-msgstr "Meh - it's alright"
+msgstr "Ồ - không sao đâu mà"
 
 #: src/js/controllers/tx-details.js:165
 #: www/views/modals/paypro.html:48
 #: www/views/modals/txp-details.html:93
 #: www/views/tx-details.html:72
 msgid "Memo"
-msgstr "Memo"
+msgstr "Bản ghi nhớ"
 
 #: www/views/mercadoLibre.html:6
 msgid "Mercado Livre Brazil Gift Cards"
-msgstr "Mercado Livre Brazil Gift Cards"
+msgstr "Thẻ quà tặng Mercado Livre Brazil"
 
 #: src/js/controllers/buyMercadoLibre.js:98
 msgid "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
-msgstr "Mercadolibre Gift Card Service is not available at this moment. Please try back later."
+msgstr "Dịch vụ thẻ quà tặng Mercadolibre hiện không khả dụng. Vui lòng thử lại sau."
 
 #: www/views/modals/txp-details.html:131
 msgid "Merchant Message"
-msgstr "Merchant Message"
+msgstr "Tin nhắn của người bán"
 
 #: www/views/buyAmazon.html:55
 #: www/views/buyMercadoLibre.html:54
 #: www/views/topup.html:63
 msgid "Miner Fee"
-msgstr "Miner Fee"
+msgstr "Phí thợ mỏ"
 
 #: src/js/services/bwcError.js:134
 msgid "Missing parameter"
-msgstr "Missing parameter"
+msgstr "Thiếu thông số"
 
 #: src/js/services/bwcError.js:32
 msgid "Missing private keys to sign"
-msgstr "Missing private keys to sign"
+msgstr "Thiếu các khóa riêng để ký"
 
 #: www/views/preferences.html:61
 #: www/views/preferencesAdvanced.html:3
 msgid "More Options"
-msgstr "More Options"
+msgstr "Thêm tùy chọn"
 
 #: www/views/includes/walletHistory.html:47
 #: www/views/tx-details.html:19
 msgid "Moved"
-msgstr "Moved"
+msgstr "Đã di chuyển"
 
 #: src/js/controllers/tx-details.js:131
 msgid "Moved Funds"
-msgstr "Moved Funds"
+msgstr "Tiền đã chuyển"
 
 #: www/views/modals/txp-details.html:57
 msgid "Multiple recipients"
-msgstr "Multiple recipients"
+msgstr "Nhiều người nhận"
 
 #: www/views/tab-import-phrase.html:8
 msgid "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
-msgstr "NOTE: To import a wallet from a 3rd party software, please go to Add Wallet &gt; Create Wallet, and specify the Recovery Phrase there."
+msgstr "LƯU Ý: Để nhập ví từ phần mềm bên thứ 3, vui lòng tới Thêm ví &gt; Tạo ví rồi chỉ định Cụm từ khôi phục ở đó."
 
 #: www/views/addressbook.add.html:21
 #: www/views/addressbook.view.html:18
 #: www/views/preferences.html:15
 #: www/views/preferencesAlias.html:17
 msgid "Name"
-msgstr "Name"
+msgstr "Tên"
 
 #: www/views/buyAmazon.html:49
 #: www/views/buyMercadoLibre.html:48
 #: www/views/topup.html:56
 msgid "Network Cost"
-msgstr "Network Cost"
+msgstr "Chi phí mạng"
 
 #: src/js/services/bwcError.js:47
 msgid "Network error"
-msgstr "Network error"
+msgstr "Lỗi mạng"
 
 #: www/views/includes/walletActivity.html:43
 msgid "New Proposal"
-msgstr "New Proposal"
+msgstr "Đề nghị mới"
 
 #: src/js/controllers/addresses.js:126
 msgid "New address could not be generated. Please try again."
-msgstr "New address could not be generated. Please try again."
+msgstr "Không thể tạo địa chỉ mới. Vui lòng thử lại."
 
 #: www/views/add.html:14
 msgid "New personal wallet"
-msgstr "New personal wallet"
+msgstr "Ví cá nhân mới"
 
 #: www/views/includes/nextSteps.html:3
 msgid "Next steps"
-msgstr "Next steps"
+msgstr "Các bước tiếp theo"
 
 #: www/views/tab-receive.html:16
 msgid "No Wallet"
-msgstr "No Wallet"
+msgstr "Không có ví"
 
 #: src/js/controllers/buyAmazon.js:115
 #: src/js/controllers/buyMercadoLibre.js:115
 msgid "No access key defined"
-msgstr "No access key defined"
+msgstr "Không có khóa truy cập được xác định"
 
 #: www/views/onboarding/backupRequest.html:5
 msgid "No backup, no bitcoin."
-msgstr "No backup, no bitcoin."
+msgstr "Không có sao lưu, không có bitcoin."
 
 #: www/views/addressbook.html:19
 msgid "No contacts yet"
-msgstr "No contacts yet"
+msgstr "Chưa có địa chỉ liên lạc nào"
 
 #: www/views/preferencesLogs.html:16
 msgid "No entries for this log level"
-msgstr "No entries for this log level"
+msgstr "Không có mục nhập nào cho cấp độ nhật ký này"
 
 #: www/views/preferencesExternal.html:12
 msgid "No hardware information available."
-msgstr "No hardware information available."
+msgstr "Không có sẵn thông tin phần cứng nào."
 
 #: www/views/tab-import-hardware.html:3
 msgid "No hardware wallets supported on this device"
-msgstr "No hardware wallets supported on this device"
+msgstr "Không có ví cứng nào được hỗ trợ trên thiết bị này"
 
 #: www/views/proposals.html:24
 msgid "No pending proposals"
-msgstr "No pending proposals"
+msgstr "Không có đề nghị nào đang chờ xử lý"
 
 #: www/views/activity.html:25
 msgid "No recent transactions"
-msgstr "No recent transactions"
+msgstr "Không có giao dịch nào gần đây"
 
 #: src/js/controllers/buyAmazon.js:44
 #: src/js/controllers/topup.js:47
 msgid "No signing proposal: No private key"
-msgstr "No signing proposal: No private key"
+msgstr "Không có đề nghị ký: Không có khóa riêng"
 
 #: www/views/walletDetails.html:204
 msgid "No transactions yet"
-msgstr "No transactions yet"
+msgstr "Chưa có giao dịch nào"
 
 #: src/js/controllers/preferencesDelete.js:15
 msgid "No wallet found"
-msgstr "No wallet found"
+msgstr "Không tìm thấy ví"
 
 #: src/js/controllers/preferencesDelete.js:8
 msgid "No wallet selected"
-msgstr "No wallet selected"
+msgstr "Chưa có ví nào được chọn"
 
 #: src/js/controllers/buyAmazon.js:300
 #: src/js/controllers/buyMercadoLibre.js:292
 #: src/js/controllers/confirm.js:85
 #: src/js/controllers/topup.js:265
 msgid "No wallets available"
-msgstr "No wallets available"
+msgstr "Không có ví nào khả dụng"
 
 #: www/views/paperWallet.html:45
 msgid "No wallets available to receive funds"
-msgstr "No wallets available to receive funds"
+msgstr "Không có ví nào khả dụng để nhận tiền"
 
 #: www/views/cashScan.html:15
 msgid "No wallets eligible for Bitcoin Cash support"
-msgstr "No wallets eligible for Bitcoin Cash support"
+msgstr "Không có ví nào đủ điều kiện nhận hỗ trợ Bitcoin Cash"
 
 #: src/js/controllers/cashScan.js:58
 msgid "Non BIP44 wallet"
-msgstr "Non BIP44 wallet"
+msgstr "Không phải ví BIP44"
 
 #: www/views/cashScan.html:46
 msgid "Non eligible BTC wallets"
-msgstr "Non eligible BTC wallets"
+msgstr "Không phải ví BTC đủ điều kiện"
 
 #: src/js/services/feeService.js:12
 msgid "Normal"
-msgstr "Normal"
+msgstr "Bình thường"
 
 #: src/js/services/bwcError.js:80
 msgid "Not authorized"
-msgstr "Not authorized"
+msgstr "Không được phép"
 
 #: src/js/controllers/confirm.js:307
 msgid "Not enough funds for fee"
-msgstr "Not enough funds for fee"
+msgstr "Không đủ tiền để trả phí"
 
 #: www/views/onboarding/tour.html:50
 msgid "Not even BitPay can access it."
-msgstr "Not even BitPay can access it."
+msgstr "Thậm chí cả BitPay cũng không thể truy cập vào đó."
 
 #: src/js/controllers/paperWallet.js:47
 msgid "Not funds found"
-msgstr "Not funds found"
+msgstr "Không tìm thấy tiền"
 
 #: www/views/feedback/rateApp.html:3
 #: www/views/onboarding/notifications.html:8
 msgid "Not now"
-msgstr "Not now"
+msgstr "Không phải bây giờ"
 
 #: www/views/includes/output.html:15
 msgid "Note"
-msgstr "Note"
+msgstr "Lưu ý"
 
 #: www/views/backup.html:19
 msgid "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
-msgstr "Note: if this BCH wallet was duplicated from a BTC wallet, they share the same recovery phrase."
+msgstr "Lưu ý: nếu ví BCH này được nhân đôi từ một ví BTC, các ví sẽ có cùng chung cụm từ khôi phục."
 
 #: www/views/modals/wallets.html:25
 msgid "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
-msgstr "Notice: only 1-1 (single signature) wallets can be used for sell bitcoin"
+msgstr "Lưu ý: chỉ có thể sử dụng ví 1-1 (chữ ký đơn) để bán bitcoin"
 
 #: www/views/preferencesNotifications.html:3
 #: www/views/tab-settings.html:61
 msgid "Notifications"
-msgstr "Notifications"
+msgstr "Thông báo"
 
 #: www/views/onboarding/collectEmail.html:9
 msgid "Notifications by email"
-msgstr "Notifications by email"
+msgstr "Thông báo qua email"
 
 #: www/views/tx-details.html:117
 msgid "Notify me if confirmed"
-msgstr "Notify me if confirmed"
+msgstr "Thông báo cho tôi nếu được xác nhận"
 
 #: www/views/preferencesNotifications.html:24
 msgid "Notify me when transactions are confirmed"
-msgstr "Notify me when transactions are confirmed"
+msgstr "Thông báo cho tôi khi giao dịch được xác nhận"
 
 #: www/views/includes/backupNeededPopup.html:8
 msgid "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
-msgstr "Now is a good time to backup your wallet. If this device is lost, it is impossible to access your funds without a backup."
+msgstr "Bây giờ là thời điểm tốt để sao lưu ví của bạn. Nếu thiết bị này bị mất, sẽ không thể truy cập tiền của bạn mà không có bản sao lưu."
 
 #: www/views/backupWarning.html:11
 msgid "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
-msgstr "Now is a perfect time to assess your surroundings. Nearby windows? Hidden cameras? Shoulder-spies?"
+msgstr "Bây giờ là thời điểm hoàn hảo để đánh giá môi trường xung quanh bạn. Cửa sổ gần đó? Camera ẩn? Gián điệp nhìn trộm?"
 
 #: src/js/controllers/buyAmazon.js:312
 #: src/js/controllers/topup.js:286
@@ -2051,15 +2093,15 @@ msgstr "OK"
 #: www/views/modals/tx-status.html:36
 #: www/views/modals/tx-status.html:46
 msgid "OKAY"
-msgstr "OKAY"
+msgstr "OK"
 
 #: www/views/modals/terms.html:15
 msgid "Official English Disclaimer"
-msgstr "Official English Disclaimer"
+msgstr "Tuyên bố từ chối trách nhiệm chính thức bằng tiếng Anh"
 
 #: src/js/controllers/feedback/send.js:64
 msgid "Oh no!"
-msgstr "Oh no!"
+msgstr "Ồ không!"
 
 #: src/js/controllers/buyMercadoLibre.js:306
 msgid "Ok"
@@ -2067,7 +2109,7 @@ msgstr "Ok"
 
 #: www/views/tab-home.html:39
 msgid "On this screen you can see all your wallets, accounts, and assets."
-msgstr "On this screen you can see all your wallets, accounts, and assets."
+msgstr "Trên màn hình này bạn có thể xem tất cả ví, tài khoản và tài sản của bạn."
 
 #: src/js/controllers/bitpayCard.js:113
 #: src/js/controllers/cashScan.js:19
@@ -2076,56 +2118,56 @@ msgstr "On this screen you can see all your wallets, accounts, and assets."
 #: src/js/controllers/tab-settings.js:52
 #: src/js/controllers/tx-details.js:55
 msgid "Open"
-msgstr "Open"
+msgstr "Mở"
 
 #: src/js/controllers/preferencesLanguage.js:13
 msgid "Open Crowdin"
-msgstr "Open Crowdin"
+msgstr "Mở Crowdin"
 
 #: src/js/controllers/preferencesAbout.js:15
 msgid "Open GitHub"
-msgstr "Open GitHub"
+msgstr "Mở GitHub"
 
 #: src/js/controllers/preferencesAbout.js:13
 msgid "Open GitHub Project"
-msgstr "Open GitHub Project"
+msgstr "Mở Dự án GitHub"
 
 #: src/js/controllers/bitpayCard.js:123
 #: src/js/controllers/tx-details.js:192
 msgid "Open Explorer"
-msgstr "Open Explorer"
+msgstr "Mở Explorer"
 
 #: www/views/tab-scan.html:22
 msgid "Open Settings"
-msgstr "Open Settings"
+msgstr "Mở Cài đặt"
 
 #: src/js/controllers/preferencesLanguage.js:11
 msgid "Open Translation Community"
-msgstr "Open Translation Community"
+msgstr "Mở Cộng đồng dịch thuật"
 
 #: src/js/controllers/onboarding/terms.js:22
 msgid "Open Website"
-msgstr "Open Website"
+msgstr "Mở Trang web"
 
 #: src/js/controllers/preferencesCash.js:32
 msgid "Open bitcoincash.org?"
-msgstr "Open bitcoincash.org?"
+msgstr "Mở bitcoincash.org?"
 
 #: src/js/controllers/cashScan.js:18
 msgid "Open the recovery tool."
-msgstr "Open the recovery tool."
+msgstr "Mở công cụ phục hồi."
 
 #: www/views/tab-receive.html:27
 msgid "Open wallet"
-msgstr "Hardware Wallet"
+msgstr "Mở ví"
 
 #: www/views/includes/incomingDataMenu.html:19
 msgid "Open website"
-msgstr "Open website"
+msgstr "Mở trang web"
 
 #: www/views/bitpayCardIntro.html:34
 msgid "Order the BitPay Card"
-msgstr "Order the BitPay Card"
+msgstr "Yêu cầu Thẻ BitPay"
 
 #: www/views/join.html:105
 #: www/views/join.html:96
@@ -2136,347 +2178,355 @@ msgstr "Order the BitPay Card"
 #: www/views/tab-import-file.html:18
 #: www/views/tab-import-phrase.html:41
 msgid "Password"
-msgstr "Password"
+msgstr "Mật khẩu"
 
 #: src/js/controllers/import.js:98
 msgid "Password required. Make sure to enter your password in advanced options"
-msgstr "Password required. Make sure to enter your password in advanced options"
+msgstr "Yêu cầu mật khẩu. Hãy chắc chắn nhập mật khẩu trong tuỳ chọn nâng cao"
 
 #: www/views/join.html:33
 msgid "Paste invitation here"
-msgstr "Paste invitation here"
+msgstr "Dán lời mời ở đây"
 
 #: www/views/tab-import-file.html:13
 msgid "Paste the backup plain text code"
-msgstr "Paste the backup plain text code"
+msgstr "Dán mã sao lưu dạng văn bản thuần túy"
 
 #: www/views/bitpayCardIntro.html:28
 msgid "Pay 0% fees to turn bitcoin into dollars."
-msgstr "Pay 0% fees to turn bitcoin into dollars."
+msgstr "Biến bitcoin thành đô la mà không mất phí."
 
 #: www/views/modals/paypro.html:18
 msgid "Pay To"
-msgstr "Pay To"
+msgstr "Trả cho"
 
 #: src/js/controllers/modals/txpDetails.js:51
 #: www/views/modals/tx-status.html:33
 msgid "Payment Accepted"
-msgstr "Payment Accepted"
+msgstr "Đã chấp nhận thanh toán"
 
 #: www/views/confirm.html:25
 msgid "Payment Expires:"
-msgstr "Payment Expires:"
+msgstr "Thanh toán hết hạn:"
 
 #: www/views/modals/txp-details.html:6
 msgid "Payment Proposal"
-msgstr "Payment Proposal"
+msgstr "Đề nghị thanh toán"
 
 #: www/views/modals/tx-status.html:21
 msgid "Payment Proposal Created"
-msgstr "Payment Proposal Created"
+msgstr "Đã tạo đề nghị thanh toán"
 
 #: www/views/tab-home.html:46
 msgid "Payment Proposals"
-msgstr "Payment Proposals"
+msgstr "Đề nghị thanh toán"
 
 #: src/js/services/payproService.js:32
 msgid "Payment Protocol Invalid"
-msgstr "Payment Protocol Invalid"
+msgstr "Giao thức thanh toán không hợp lệ"
 
 #: src/js/services/payproService.js:18
 msgid "Payment Protocol not supported on Chrome App"
-msgstr "Payment Protocol not supported on Chrome App"
+msgstr "Giao thức thanh toán không được hỗ trợ trên Ứng dụng Chrome"
 
 #: www/views/includes/walletActivity.html:20
 msgid "Payment Received"
-msgstr "Payment Received"
+msgstr "Đã nhận thanh toán"
 
 #: www/views/modals/tx-status.html:43
 #: www/views/modals/txp-details.html:43
 msgid "Payment Rejected"
-msgstr "Payment Rejected"
+msgstr "Đã từ chối thanh toán"
 
 #: src/js/controllers/modals/txpDetails.js:44
 #: www/views/confirm.html:124
 #: www/views/includes/walletActivity.html:11
 #: www/views/modals/txp-details.html:42
 msgid "Payment Sent"
-msgstr "Payment Sent"
+msgstr "Đã gửi thanh toán"
 
 #: www/views/includes/slideToAcceptSuccess.html:12
 msgid "Share this transaction"
-msgstr "Share this transaction"
+msgstr "Chia sẻ giao dịch này"
 
 #: www/views/modals/txp-details.html:32
 msgid "Payment accepted, but not yet broadcasted"
-msgstr "Payment accepted, but not yet broadcasted"
+msgstr "Thanh toán đã được chấp nhận nhưng chưa được phát rộng"
 
 #: www/views/modals/txp-details.html:40
 msgid "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
-msgstr "Payment accepted. It will be broadcasted by Glidera. In case there is a problem, it can be deleted 6 hours after it was created."
+msgstr "Đã chấp nhận thanh toán. Nó sẽ được Glidera phát rộng. Trong trường hợp xảy ra vấn đề, có thể xóa nó 6 giờ sau khi tạo."
 
 #: src/js/services/incomingData.js:152
 msgid "Payment address was translated to new Bitcoin Cash address format:"
-msgstr "Payment address was translated to new Bitcoin Cash address format:"
+msgstr "Địa chỉ thanh toán đã được dịch sang định dạng địa chỉ Bitcoin Cash mới:"
 
 #: www/views/modals/txp-details.html:107
 msgid "Payment details"
-msgstr "Payment details"
+msgstr "Chi tiết thanh toán"
 
 #: www/views/modals/paypro.html:6
 msgid "Payment Request"
-msgstr "Payment Request"
+msgstr "Yêu cầu thanh toán"
 
 #: www/views/mercadoLibreCards.html:22
 #: www/views/modals/mercadolibre-card-details.html:39
 msgid "Pending"
-msgstr "Pending"
+msgstr "Đang chờ xử lý"
+
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "Đang chờ ủy quyền"
 
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
-msgstr "Pending Proposals"
+msgstr "Đề nghị đang chờ xử lý"
 
 #: www/views/preferencesDeleteWallet.html:13
 msgid "Permanently delete this wallet."
-msgstr "Permanently delete this wallet."
+msgstr "Xoá ví này vĩnh viễn."
 
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
-msgstr "Personal Wallet"
+msgstr "Ví cá nhân"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Ví {{coin}} của tôi"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
-msgstr "Please carefully write down this phrase."
+msgstr "Vui lòng viết ra cụm từ này cẩn thận."
 
 #: www/views/tab-scan.html:20
 msgid "Please connect a camera to get started."
-msgstr "Please connect a camera to get started."
+msgstr "Vui lòng kết nối một camera để bắt đầu."
 
 #: src/js/controllers/import.js:278
 msgid "Please enter the recovery phrase"
-msgstr "Please enter the recovery phrase"
+msgstr "Vui lòng nhập cụm từ khôi phục"
 
 #: src/js/controllers/create.js:174
 #: src/js/controllers/join.js:139
 msgid "Please enter the wallet recovery phrase"
-msgstr "Please enter the wallet recovery phrase"
+msgstr "Vui lòng nhập cụm từ khôi phục ví"
 
 #: www/views/modals/pin.html:9
 msgid "Please enter your PIN"
-msgstr "Please enter your PIN"
+msgstr "Vui lòng nhập mã PIN của bạn"
 
 #: www/views/backup.html:53
 msgid "Please tap each word in the correct order."
-msgstr "Please tap each word in the correct order."
+msgstr "Xin vui lòng nhấn vào từng từ theo đúng thứ tự."
 
 #: src/js/services/bwcError.js:101
 msgid "Please upgrade Copay to perform this action"
-msgstr "Please upgrade Copay to perform this action"
+msgstr "Vui lòng nâng cấp Copay để thực hiện hành động này"
 
 #: www/views/walletDetails.html:142
 #: www/views/walletDetails.html:62
 msgid "Please wait"
-msgstr "Please wait"
+msgstr "Vui lòng chờ"
 
 #: src/js/controllers/import.js:238
 msgid "Please, select your backup file"
-msgstr "Please, select your backup file"
+msgstr "Vui lòng chọn tệp sao lưu của bạn"
 
 #: www/views/bitpayCard.html:81
 msgid "Pre-Auth Holds"
-msgstr "Pre-Auth Holds"
+msgstr "Tạm giữ chờ ủy quyền"
 
 #: www/views/tab-settings.html:40
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "Tùy chọn ưu tiên"
 
 #: src/js/services/onGoingProcess.js:38
 msgid "Preparing addresses..."
-msgstr "Preparing addresses..."
+msgstr "Đang chuẩn bị địa chỉ..."
 
 #: src/js/controllers/export.js:198
 msgid "Preparing backup..."
-msgstr "Preparing backup..."
+msgstr "Đang chuẩn bị sao lưu..."
 
 #: src/js/routes.js:1264
 msgid "Press again to exit"
-msgstr "Press again to exit"
+msgstr "Nhấn một lần nữa để thoát"
 
 #: src/js/services/feeService.js:11
 msgid "Priority"
-msgstr "Priority"
+msgstr "Ưu tiên"
 
 #: www/views/includes/incomingDataMenu.html:80
 msgid "Private Key"
-msgstr "Private Key"
+msgstr "Khóa riêng"
 
 #: src/js/controllers/paperWallet.js:136
 msgid "Private key encrypted. Enter password"
-msgstr "Private key encrypted. Enter password"
+msgstr "Đã mã hóa khóa riêng. Hãy nhập mật khẩu"
 
 #: src/js/services/bwcError.js:35
 msgid "Private key is encrypted, cannot sign"
-msgstr "Private key is encrypted, cannot sign"
+msgstr "Khóa riêng đã được mã hóa, không thể ký"
 
 #: www/views/includes/walletActivity.html:51
 msgid "Proposal Accepted"
-msgstr "Proposal Accepted"
+msgstr "Đã chấp nhận đề nghị"
 
 #: src/js/controllers/modals/txpDetails.js:61
 #: src/js/controllers/tx-details.js:78
 #: www/views/confirm.html:125
 msgid "Proposal Created"
-msgstr "Proposal Created"
+msgstr "Đã tạo đề nghị"
 
 #: www/views/includes/walletActivity.html:27
 msgid "Proposal Deleted"
-msgstr "Proposal Deleted"
+msgstr "Đã xóa đề nghị"
 
 #: www/views/includes/walletActivity.html:35
 msgid "Proposal Rejected"
-msgstr "Proposal Rejected"
+msgstr "Đã từ chối đề nghị"
 
 #: www/views/walletDetails.html:189
 msgid "Proposals"
-msgstr "Proposals"
+msgstr "Đề nghị"
 
 #: src/js/controllers/buyAmazon.js:282
 msgid "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
-msgstr "Purchase Amount is limited to {{limitPerDay}} {{currency}} per day"
+msgstr "Số lượng mua được giới hạn ở {{limitPerDay}} {{currency}} mỗi ngày"
 
 #: src/js/controllers/buyMercadoLibre.js:281
 msgid "Purchase amount must be a value between 50 and 2000"
-msgstr "Purchase amount must be a value between 50 and 2000"
+msgstr "Số lượng mua phải có giá trị trong khoảng từ 50 đến năm 2000"
 
 #: www/views/onboarding/notifications.html:3
 msgid "Push Notifications"
-msgstr "Push Notifications"
+msgstr "Thông báo đẩy"
 
 #: www/views/preferencesNotifications.html:17
 msgid "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
-msgstr "Push notifications for {{appName}} are currently disabled. Enable them in the Settings app."
+msgstr "Thông báo đẩy cho {{appName}} hiện đang tắt. Hãy bật chúng trong phần Cài đặt ứng dụng."
 
 #: www/views/export.html:17
 msgid "QR Code"
-msgstr "QR Code"
+msgstr "Mã QR"
 
 #: www/views/onboarding/disclaimer.html:13
 msgid "Quick review!"
-msgstr "Quick review!"
+msgstr "Xem xét nhanh!"
 
 #: src/js/controllers/create.js:84
 #: src/js/controllers/join.js:68
 msgid "Random"
-msgstr "Random"
+msgstr "Ngẫu nhiên"
 
 #: www/views/feedback/rateApp.html:14
 msgid "Rate on the app store"
-msgstr "Rate on the app store"
+msgstr "Tỷ lệ trên cửa hàng ứng dụng"
 
 #: www/views/addresses.html:52
 msgid "Read less"
-msgstr "Read less"
+msgstr "Đọc ít hơn"
 
 #: www/views/addresses.html:51
 msgid "Read more"
-msgstr "Read more"
+msgstr "Đọc thêm"
 
 #: src/js/controllers/preferences.js:65
 #: src/js/controllers/tx-details.js:54
 msgid "Read more in our Wiki"
-msgstr "Read more in our Wiki"
+msgstr "Đọc thêm trên trang Wiki của chúng tôi"
 
 #: src/js/controllers/cashScan.js:61
 msgid "Read only wallet"
-msgstr "Read only wallet"
+msgstr "Chỉ đọc về ví"
 
 #: www/views/tab-receive.html:3
 #: www/views/tabs.html:7
 msgid "Receive"
-msgstr "Receive"
+msgstr "Nhận"
 
 #: www/views/customAmount.html:44
 msgid "Receive in"
-msgstr "Receive in"
+msgstr "Nhận bằng"
 
 #: www/views/includes/walletHistory.html:24
 #: www/views/tx-details.html:18
 msgid "Received"
-msgstr "Received"
+msgstr "Đã nhận"
 
 #: src/js/controllers/tx-details.js:130
 msgid "Received Funds"
-msgstr "Received Funds"
+msgstr "Tiền đã nhận"
 
 #: www/views/includes/walletHistory.html:57
 #: www/views/tx-details.html:24
 msgid "Receiving"
-msgstr "Receiving"
+msgstr "Đang nhận"
 
 #: www/views/bitpayCard.html:60
 #: www/views/includes/walletHistory.html:3
 msgid "Recent"
-msgstr "Recent"
+msgstr "Gần đây"
 
 #: www/views/advancedSettings.html:21
 msgid "Recent Transaction Card"
-msgstr "Recent Transaction Card"
+msgstr "Thẻ giao dịch gần đây"
 
 #: www/views/activity.html:4
 #: www/views/tab-home.html:58
 msgid "Recent Transactions"
-msgstr "Recent Transactions"
+msgstr "Giao dịch gần đây"
 
 #: www/views/amount.html:18
 #: www/views/tab-send.html:9
 msgid "Recipient"
-msgstr "Recipient"
+msgstr "Người nhận"
 
 #: www/views/modals/txp-details.html:62
 msgid "Recipients"
-msgstr "Recipients"
+msgstr "Người nhận"
 
 #: www/views/import.html:12
 msgid "Recovery phrase"
-msgstr "Recovery phrase"
+msgstr "Cụm từ khôi phục"
 
 #: src/js/services/onGoingProcess.js:26
 msgid "Recreating Wallet..."
-msgstr "Recreating Wallet..."
+msgstr "Đang tạo lại ví..."
 
 #: www/views/modals/mercadolibre-card-details.html:22
 msgid "Redeem now"
-msgstr "Redeem now"
+msgstr "Đổi thưởng bây giờ"
 
 #: src/js/controllers/modals/txpDetails.js:63
 #: src/js/controllers/tx-details.js:80
 msgid "Rejected"
-msgstr "Rejected"
+msgstr "Đã từ chối"
 
 #: src/js/services/onGoingProcess.js:27
 msgid "Rejecting payment proposal"
-msgstr "Rejecting payment proposal"
+msgstr "Từ chối đề nghị thanh toán"
 
 #: www/views/preferencesAbout.html:9
 msgid "Release information"
-msgstr "Release information"
+msgstr "Thông tin phát hành"
 
 #: www/views/addressbook.view.html:36
 #: www/views/modals/mercadolibre-card-details.html:69
 msgid "Remove"
-msgstr "Remove"
+msgstr "Xóa bỏ"
 
 #: src/js/controllers/preferencesBitpayServices.js:7
 msgid "Remove BitPay Account?"
-msgstr "Remove BitPay Account?"
+msgstr "Xóa bỏ Tài khoản BitPay?"
 
 #: src/js/controllers/preferencesBitpayServices.js:19
 msgid "Remove BitPay Card?"
-msgstr "Remove BitPay Card?"
+msgstr "Xóa bỏ Thẻ BitPay?"
 
 #: src/js/controllers/preferencesBitpayServices.js:8
 msgid "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
-msgstr "Removing your BitPay account will remove all associated BitPay account data from this device. Are you sure you would like to remove your BitPay Account ({{email}}) from this device?"
+msgstr "Khi xóa tài khoản BitPay của bạn, tất cả dữ liệu tài khoản BitPay liên kết sẽ bị xóa khỏi thiết bị này. Bạn có chắc chắn muốn xóa Tài khoản BitPay ({{email}}) khỏi thiết bị này không?"
 
 #: www/views/join.html:116
 #: www/views/join.html:124
@@ -2486,43 +2536,43 @@ msgstr "Removing your BitPay account will remove all associated BitPay account d
 #: www/views/tab-create-shared.html:123
 #: www/views/tab-export-file.html:17
 msgid "Repeat password"
-msgstr "Repeat password"
+msgstr "Nhập lại mật khẩu"
 
 #: www/views/tab-export-file.html:16
 msgid "Repeat the password"
-msgstr "Repeat the password"
+msgstr "Nhập lại mật khẩu"
 
 #: www/views/preferences.html:56
 msgid "Request Fingerprint"
-msgstr "Request Fingerprint"
+msgstr "Yêu cầu dấu vân tay"
 
 #: www/views/tab-receive.html:45
 msgid "Request Specific amount"
-msgstr "Request Specific amount"
+msgstr "Yêu cầu số tiền cụ thể"
 
 #: www/views/preferences.html:42
 msgid "Request Spending Password"
-msgstr "Request Spending Password"
+msgstr "Yêu cầu mật khẩu chi tiêu"
 
 #: www/views/tab-create-shared.html:44
 msgid "Required number of signatures"
-msgstr "Required number of signatures"
+msgstr "Số lượng chữ ký bắt buộc"
 
 #: www/views/onboarding/welcome.html:9
 msgid "Restore from backup"
-msgstr "Restore from backup"
+msgstr "Khôi phục từ bản sao lưu"
 
 #: src/js/services/onGoingProcess.js:29
 msgid "Retrieving inputs information"
-msgstr "Retrieving inputs information"
+msgstr "Truy xuất thông tin đầu vào"
 
 #: src/js/controllers/onboarding/tour.js:56
 msgid "Retry"
-msgstr "Retry"
+msgstr "Thử lại"
 
 #: www/views/tab-scan.html:23
 msgid "Retry Camera"
-msgstr "Retry Camera"
+msgstr "Thử lại Camera"
 
 #: www/views/addressbook.add.html:56
 #: www/views/includes/note.html:9
@@ -2530,290 +2580,290 @@ msgstr "Retry Camera"
 #: www/views/preferencesBwsUrl.html:25
 #: www/views/preferencesNotifications.html:46
 msgid "Save"
-msgstr "Save"
+msgstr "Lưu"
 
 #: www/views/tab-scan.html:3
 #: www/views/tabs.html:11
 msgid "Scan"
-msgstr "Scan"
+msgstr "Quét"
 
 #: www/views/tab-scan.html:15
 msgid "Scan QR Codes"
-msgstr "Scan QR Codes"
+msgstr "Quét mã QR"
 
 #: www/views/addresses.html:31
 msgid "Scan addresses for funds"
-msgstr "Scan addresses for funds"
+msgstr "Quét địa chỉ để nhận tiền"
 
 #: www/views/modals/fingerprintCheck.html:11
 msgid "Scan again"
-msgstr "Scan again"
+msgstr "Quét lại"
 
 #: src/js/services/fingerprintService.js:56
 msgid "Scan your fingerprint please"
-msgstr "Scan your fingerprint please"
+msgstr "Vui lòng quét vân tay của bạn"
 
 #: www/views/preferencesCash.html:23
 msgid "Scan your wallets for Bitcoin Cash"
-msgstr "Scan your wallets for Bitcoin Cash"
+msgstr "Quét ví của bạn để nhận Bitcoin Cash"
 
 #: src/js/services/onGoingProcess.js:30
 msgid "Scanning Wallet funds..."
-msgstr "Scanning Wallet funds..."
+msgstr "Đang quét tiền trong Ví..."
 
 #: www/views/includes/walletList.html:11
 msgid "Scanning funds..."
-msgstr "Scanning funds..."
+msgstr "Đang quét tiền..."
 
 #: www/views/includes/screenshotWarningModal.html:7
 msgid "Screenshots are not secure"
-msgstr "Screenshots are not secure"
+msgstr "Ảnh chụp màn hình là không an toàn"
 
 #: www/views/modals/search.html:6
 msgid "Search Transactions"
-msgstr "Search Transactions"
+msgstr "Tìm kiếm giao dịch"
 
 #: www/views/tab-send.html:13
 msgid "Search or enter bitcoin address"
-msgstr "Search or enter bitcoin address"
+msgstr "Tìm kiếm hoặc nhập địa chỉ bitcoin"
 
 #: src/js/controllers/tab-send.js:28
 msgid "Clipboard"
-msgstr "Clipboard"
+msgstr "Bảng ghi tạm"
 
 #: src/js/controllers/tab-send.js:29
 msgid "Your Clipboard is empty"
-msgstr "Your Clipboard is empty"
+msgstr "Bảng ghi của bạn đang trống"
 
 #: www/views/modals/search.html:16
 msgid "Search transactions"
-msgstr "Search transactions"
+msgstr "Tìm kiếm giao dịch"
 
 #: www/views/preferencesAltCurrency.html:14
 msgid "Search your currency"
-msgstr "Search your currency"
+msgstr "Tìm kiếm loại tiền tệ"
 
 #: www/views/preferences.html:30
 msgid "Security"
-msgstr "Security"
+msgstr "Bảo mật"
 
 #: www/views/modals/mercadolibre-card-details.html:64
 msgid "See invoice"
-msgstr "See invoice"
+msgstr "Xem hóa đơn"
 
 #: www/views/tab-import-file.html:7
 msgid "Select a backup file"
-msgstr "Select a backup file"
+msgstr "Chọn một tệp sao lưu"
 
 #: src/js/controllers/tab-receive.js:139
 msgid "Select a wallet"
-msgstr "Select a wallet"
+msgstr "Chọn ví"
 
 #: www/views/modals/paypro.html:38
 msgid "Self-signed Certificate"
-msgstr "Self-signed Certificate"
+msgstr "Chứng chỉ tự ký"
 
 #: src/js/services/onGoingProcess.js:41
 msgid "Selling Bitcoin..."
-msgstr "Selling Bitcoin..."
+msgstr "Đang bán Bitcoin..."
 
 #: www/views/feedback/send.html:13
 #: www/views/feedback/send.html:43
 #: www/views/tab-send.html:3
 #: www/views/tabs.html:15
 msgid "Send"
-msgstr "Send"
+msgstr "Gửi"
 
 #: www/views/feedback/send.html:3
 #: www/views/tab-settings.html:29
 msgid "Send Feedback"
-msgstr "Send Feedback"
+msgstr "Gửi phản hồi"
 
 #: www/views/addressbook.view.html:31
 msgid "Send Money"
-msgstr "Send Money"
+msgstr "Gửi tiền"
 
 #: www/views/allAddresses.html:19
 msgid "Send addresses by email"
-msgstr "Send addresses by email"
+msgstr "Gửi địa chỉ qua email"
 
 #: www/views/includes/logOptions.html:17
 #: www/views/tab-export-file.html:82
 msgid "Send by email"
-msgstr "Send by email"
+msgstr "Gửi qua email"
 
 #: src/js/controllers/confirm.js:177
 #: src/js/controllers/tab-send.js:94
 msgid "Send from"
-msgstr "Send from"
+msgstr "Gửi từ"
 
 #: src/js/controllers/tab-send.js:77
 msgid "Send to"
-msgstr "Send to"
+msgstr "Gửi đến"
 
 #: www/views/tab-send.html:20
 msgid "Paste Clipboard"
-msgstr "Paste Clipboard"
+msgstr "Dán bảng ghi tạm"
 
 #: www/views/tab-send.html:21
 msgid "Paste Address"
-msgstr "Paste Address"
+msgstr "Dán địa chỉ"
 
 #: www/views/tab-send.html:27
 msgid "Transfer between wallets"
-msgstr "Transfer between wallets"
+msgstr "Chuyển tiền giữa các ví"
 
 #: www/views/tab-send.html:35
 msgid "Scan QR Code"
-msgstr "Scan QR Code"
+msgstr "Quét mã QR"
 
 #: www/views/tab-send.html:46
 msgid "Send Bitcoin faster!"
-msgstr "Send Bitcoin faster!"
+msgstr "Gửi Bitcoin nhanh hơn!"
 
 #: www/views/tab-send.html:50
 msgid "Save frequently used addresses and send them Bitcoin in just one tap"
-msgstr "Save frequently used addresses and send them Bitcoin in just one tap"
+msgstr "Lưu các địa chỉ được sử dụng thường xuyên và gửi Bitcoin tới đó chỉ bằng một cú chạm"
 
 #: www/views/tab-send.html:55
 msgid "Add your first contact"
-msgstr "Add your first contact"
+msgstr "Thêm liên hệ đầu tiên của bạn"
 
 #: www/views/tab-send.html:65
 msgid "Your Bitcoin wallet is empty"
-msgstr "Your Bitcoin wallet is empty"
+msgstr "Ví Bitcoin của bạn đang trống"
 
 #: www/views/tab-send.html:69
 msgid "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
-msgstr "To get started, buy Bitcoin Cash (BCH) or Bitcoin Core (BTC), or share your address."
+msgstr "Để bắt đầu, hãy mua Bitcoin Cash (BCH) hoặc Bitcoin Core (BTC) hoặc chia sẻ địa chỉ của bạn."
 
 #: www/views/tab-send.html:70
 msgid "You can receive bitcoin from any wallet or service."
-msgstr "You can receive bitcoin from any wallet or service."
+msgstr "Bạn có thể nhận bitcoin từ bất kỳ ví hoặc dịch vụ nào."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
-msgstr "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
+msgstr "Để bắt đầu, bạn sẽ cần tạo ví bitcoin và nhận một ít bitcoin."
 
 #: www/views/tab-send.html:74
 msgid "Buy Bitcoin now"
-msgstr "Buy Bitcoin now"
+msgstr "Mua Bitcoin ngay"
 
 #: www/views/tab-send.html:76
 msgid "Show my address"
-msgstr "Show my address"
+msgstr "Hiển thị địa chỉ của tôi"
 
 #: www/views/includes/itemSelector.html:8
 msgid "Send max amount"
-msgstr "Send max amount"
+msgstr "Gửi số tiền tối đa"
 
 #: www/views/includes/incomingDataMenu.html:46
 msgid "Send payment to this address"
-msgstr "Send payment to this address"
+msgstr "Gửi thanh toán đến địa chỉ này"
 
 #: www/views/feedback/rateApp.html:17
 msgid "Send us feedback instead"
-msgstr "Send us feedback instead"
+msgstr "Thay vào đó hãy gửi thông tin phản hồi cho chúng tôi"
 
 #: www/views/confirm.html:15
 #: www/views/includes/txp.html:12
 #: www/views/modals/txp-details.html:19
 #: www/views/tx-details.html:23
 msgid "Sending"
-msgstr "Sending"
+msgstr "Đang gửi"
 
 #: src/js/services/onGoingProcess.js:39
 msgid "Sending 2FA code..."
-msgstr "Sending 2FA code..."
+msgstr "Đang gửi mã 2FA..."
 
 #: src/js/services/onGoingProcess.js:36
 msgid "Sending feedback..."
-msgstr "Sending feedback..."
+msgstr "Đang gửi phản hồi..."
 
 #: www/views/confirm.html:16
 msgid "Sending maximum amount"
-msgstr "Sending maximum amount"
+msgstr "Gửi số tiền tối đa"
 
 #: src/js/services/onGoingProcess.js:31
 msgid "Sending transaction"
-msgstr "Sending transaction"
+msgstr "Đang gửi giao dịch"
 
 #: src/js/controllers/confirm.js:545
 msgid "Sending {{amountStr}} from your {{name}} wallet"
-msgstr "Sending {{amountStr}} from your {{name}} wallet"
+msgstr "Gửi {{amountStr}} từ ví {{name}} của bạn"
 
 #: www/views/includes/walletHistory.html:42
 #: www/views/modals/tx-status.html:9
 #: www/views/topup.html:100
 #: www/views/tx-details.html:17
 msgid "Sent"
-msgstr "Sent"
+msgstr "Đã gửi"
 
 #: src/js/controllers/tx-details.js:129
 msgid "Sent Funds"
-msgstr "Sent Funds"
+msgstr "Đã gửi tiền"
 
 #: src/js/services/bwcError.js:38
 msgid "Server response could not be verified"
-msgstr "Server response could not be verified"
+msgstr "Không thể xác minh phản hồi của máy chủ"
 
 #: src/js/controllers/buyAmazon.js:97
 #: src/js/controllers/buyMercadoLibre.js:97
 msgid "Service not available"
-msgstr "Service not available"
+msgstr "Dịch vụ không khả dụng"
 
 #: www/views/includes/homeIntegrations.html:3
 msgid "Services"
-msgstr "Services"
+msgstr "Dịch vụ"
 
 #: www/views/preferencesLogs.html:3
 msgid "Session Log"
-msgstr "Scan your fingerprint please"
+msgstr "Nhật ký phiên"
 
 #: www/views/preferencesAbout.html:35
 msgid "Session log"
-msgstr "Session log"
+msgstr "Nhật ký phiên"
 
 #: www/views/tab-export-file.html:10
 msgid "Set up a password"
-msgstr "Set up a password"
+msgstr "Thiết lập một mật khẩu"
 
 #: src/js/controllers/preferencesFee.js:85
 msgid "Set your own fee in satoshis/byte"
-msgstr "Set your own fee in satoshis/byte"
+msgstr "Thiết lập phí của riêng bạn bằng satoshis/byte"
 
 #: www/views/tab-settings.html:3
 #: www/views/tabs.html:19
 msgid "Settings"
-msgstr "Settings"
+msgstr "Cài đặt"
 
 #: www/views/feedback/complete.html:17
 #: www/views/feedback/complete.html:26
 msgid "Share the love by inviting your friends."
-msgstr "Share the love by inviting your friends."
+msgstr "Chia sẻ tình yêu bằng cách mời bạn bè."
 
 #: www/views/copayers.html:20
 msgid "Share this invitation with your copayers"
-msgstr "Share this invitation with your copayers"
+msgstr "Chia sẻ lời mời này với các nhà giao dịch copay của bạn"
 
 #: src/js/controllers/feedback/complete.js:5
 #: www/views/tab-settings.html:36
 msgid "Share {{appName}}"
-msgstr "Share {{appName}}"
+msgstr "Chia sẻ {{appName}}"
 
 #: www/views/tab-import-hardware.html:24
 msgid "Shared Wallet"
-msgstr "Shared Wallet"
+msgstr "Ví dùng chung"
 
 #: www/views/preferencesExternal.html:34
 msgid "Show Recovery Phrase"
-msgstr "Show Recovery Phrase"
+msgstr "Hiển thị Cụm từ khôi phục"
 
 #: www/views/tab-receive.html:34
 msgid "Show address"
-msgstr "Show address"
+msgstr "Hiển thị địa chỉ"
 
 #: www/views/join.html:48
 #: www/views/tab-create-personal.html:27
@@ -2823,155 +2873,155 @@ msgstr "Show address"
 #: www/views/tab-import-hardware.html:30
 #: www/views/tab-import-phrase.html:35
 msgid "Show advanced options"
-msgstr "Show advanced options"
+msgstr "Hiển thị tùy chọn nâng cao"
 
 #: www/views/tab-send.html:37
 msgid "Show bitcoin address"
-msgstr "Show bitcoin address"
+msgstr "Hiển thị địa chỉ bitcoin"
 
 #: www/views/tab-send.html:59
 msgid "Show more"
-msgstr "Show more"
+msgstr "Hiển thị thêm"
 
 #: src/js/services/bwcError.js:104
 msgid "Signatures rejected by server"
-msgstr "Signatures rejected by server"
+msgstr "Chữ ký bị máy chủ từ chối"
 
 #: src/js/services/onGoingProcess.js:32
 msgid "Signing transaction"
-msgstr "Signing transaction"
+msgstr "Đang ký giao dịch"
 
 #: www/views/onboarding/backupRequest.html:6
 msgid "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
-msgstr "Since only you control your money, you’ll need to save your backup phrase in case this app is deleted."
+msgstr "Vì chỉ có bạn kiểm soát tiền của mình, bạn sẽ cần lưu cụm từ sao lưu của mình đề phòng trường hợp ứng dụng này bị xóa."
 
 #: www/views/tab-create-personal.html:122
 #: www/views/tab-create-shared.html:151
 msgid "Single Address Wallet"
-msgstr "Single Address Wallet"
+msgstr "Ví một địa chỉ"
 
 #: www/views/onboarding/collectEmail.html:40
 #: www/views/onboarding/tour.html:11
 msgid "Skip"
-msgstr "Skip"
+msgstr "Bỏ qua"
 
 #: src/js/controllers/confirm.js:371
 #: src/js/controllers/modals/txpDetails.js:47
 msgid "Slide to accept"
-msgstr "Slide to accept"
+msgstr "Trượt để chấp nhận"
 
 #: www/views/buyAmazon.html:96
 msgid "Slide to buy"
-msgstr "Slide to buy"
+msgstr "Trượt để mua"
 
 #: src/js/controllers/confirm.js:365
 msgid "Slide to pay"
-msgstr "Slide to pay"
+msgstr "Trượt để trả"
 
 #: src/js/controllers/confirm.js:377
 #: src/js/controllers/modals/txpDetails.js:40
 msgid "Slide to send"
-msgstr "Slide to send"
+msgstr "Trượt để gửi"
 
 #: www/views/cashScan.html:56
 msgid "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
-msgstr "Some of your wallets are not eligible for Bitcoin Cash support. You can try to access BCH funds from these wallets using the"
+msgstr "Một số ví của bạn không đủ điều kiện để nhận hỗ trợ Bitcoin Cash. Bạn có thể thử truy cập tiền BCH từ các ví này bằng cách sử dụng"
 
 #: src/js/controllers/create.js:88
 #: src/js/controllers/join.js:71
 msgid "Specify Recovery Phrase..."
-msgstr "Specify Recovery Phrase..."
+msgstr "Xác định Cụm từ khôi phục..."
 
 #: src/js/services/bwcError.js:92
 msgid "Spend proposal is not accepted"
-msgstr "Spend proposal is not accepted"
+msgstr "Đề nghị chi tiêu không được chấp nhận"
 
 #: src/js/services/bwcError.js:95
 msgid "Spend proposal not found"
-msgstr "Spend proposal not found"
+msgstr "Không tìm thấy đề nghị chi tiêu"
 
 #: src/js/services/bwcError.js:137
 msgid "Spending Password needed"
-msgstr "Spending Password needed"
+msgstr "Cần Mật khẩu chi tiêu"
 
 #: www/views/walletDetails.html:173
 msgid "Spending this balance will need significant Bitcoin network fees"
-msgstr "Spending this balance will need significant Bitcoin network fees"
+msgstr "Sẽ cần phí mạng Bitcoin đáng kể để chi tiêu số dư này"
 
 #: www/views/tab-send.html:28
 msgid "Start sending bitcoin"
-msgstr "Start sending bitcoin"
+msgstr "Bắt đầu gửi bitcoin"
 
 #: www/views/lockSetup.html:3
 msgid "Startup Lock"
-msgstr "Startup Lock"
+msgstr "Khóa khởi động"
 
 #: www/views/mercadoLibreCards.html:21
 #: www/views/modals/mercadolibre-card-details.html:42
 msgid "Still pending"
-msgstr "Still pending"
+msgstr "Vẫn đang chờ xử lý"
 
 #: www/views/topup.html:101
 msgid "Success"
-msgstr "Success"
+msgstr "Thành công"
 
 #: src/js/services/feeService.js:14
 msgid "Super Economy"
-msgstr "Super Economy"
+msgstr "Nền kinh tế siêu cấp"
 
 #: www/views/preferencesCash.html:11
 msgid "Support Bitcoin Cash"
-msgstr "Support Bitcoin Cash"
+msgstr "Hỗ trợ Bitcoin Cash"
 
 #: www/views/paperWallet.html:7
 msgid "Sweep"
-msgstr "Sweep"
+msgstr "Quét"
 
 #: www/views/includes/incomingDataMenu.html:89
 msgctxt "List item"
 msgid "Sweep paper wallet"
-msgstr ""
+msgstr "Quét ví giấy"
 
 #: www/views/paperWallet.html:3
 msgctxt "Page title"
 msgid "Sweep Paper Wallet"
-msgstr "Sweep Paper Wallet"
+msgstr "Quét ví giấy"
 
 #: src/js/services/onGoingProcess.js:33
 msgid "Sweeping Wallet..."
-msgstr "Sweeping Wallet..."
+msgstr "Đang quét ví..."
 
 #: www/views/preferencesDeleteWallet.html:16
 msgid "THIS ACTION CANNOT BE REVERSED"
-msgstr "THIS ACTION CANNOT BE REVERSED"
+msgstr "KHÔNG THỂ HOÀN TÁC HÀNH ĐỘNG NÀY"
 
 #: www/views/onboarding/welcome.html:5
 msgid "Take control of your money,<br>get started with bitcoin."
-msgstr "Take control of your money,<br>get started with bitcoin."
+msgstr "Giành quyền kiểm soát tiền của bạn,<br>bắt đầu với bitcoin."
 
 #: www/views/walletDetails.html:132
 #: www/views/walletDetails.html:52
 msgid "Tap and hold to show"
-msgstr "Tap and hold to show"
+msgstr "Chạm và giữ để hiển thị"
 
 #: www/views/includes/walletInfo.html:3
 msgid "Tap to recreate"
-msgstr "Tap to recreate"
+msgstr "Chạm vào để tạo lại"
 
 #: www/views/includes/walletInfo.html:4
 msgid "Tap to retry"
-msgstr "Tap to retry"
+msgstr "Chạm vào để thử lại"
 
 #: www/views/termsOfUse.html:3
 msgid "Terms Of Use"
-msgstr "Terms Of Use"
+msgstr "Điều khoản sử dụng"
 
 #: www/views/modals/terms.html:3
 #: www/views/onboarding/disclaimer.html:29
 #: www/views/onboarding/disclaimer.html:43
 #: www/views/preferencesAbout.html:30
 msgid "Terms of Use"
-msgstr "Terms of Use"
+msgstr "Điều khoản sử dụng"
 
 #: www/views/tab-create-personal.html:118
 #: www/views/tab-import-phrase.html:68
@@ -2980,164 +3030,164 @@ msgstr "Testnet"
 
 #: www/views/includes/incomingDataMenu.html:61
 msgid "Text"
-msgstr "Text"
+msgstr "Văn bản"
 
 #: src/js/controllers/feedback/send.js:27
 #: src/js/controllers/feedback/send.js:76
 #: www/views/feedback/complete.html:20
 #: www/views/feedback/rateApp.html:4
 msgid "Thank you!"
-msgstr "Thank you!"
+msgstr "Cảm ơn bạn!"
 
 #: src/js/controllers/feedback/send.js:72
 msgid "Thanks!"
-msgstr "Thanks!"
+msgstr "Xin cảm ơn!"
 
 #: src/js/controllers/feedback/send.js:73
 msgid "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
-msgstr "That's exciting to hear. We'd love to earn that fifth star from you – how could we improve your experience?"
+msgstr "Thật vui khi nhận được phản hồi của bạn. Chúng tôi muốn kiếm được ngôi sao thứ năm từ bạn – chúng tôi có thể cải thiện trải nghiệm của bạn bằng cách nào?"
 
 #: src/js/services/ledger.js:152
 msgid "The Ledger Chrome application is not installed"
-msgstr "The Ledger Chrome application is not installed"
+msgstr "Ứng dụng Ledger Chrome chưa được cài đặt"
 
 #: www/views/modals/wallet-balance.html:55
 msgid "The amount of bitcoin immediately spendable from this wallet."
-msgstr "The amount of bitcoin immediately spendable from this wallet."
+msgstr "Số lượng bitcoin có thể chi tiêu ngay lập tức từ ví này."
 
 #: www/views/modals/wallet-balance.html:93
 msgid "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
-msgstr "The amount of bitcoin stored in this wallet that is allocated as inputs to your pending transaction proposals. The amount is determined using unspent transaction outputs associated with this wallet and may be more than the actual amounts associated with your pending transaction proposals."
+msgstr "Số lượng bitcoin được lưu trữ trong ví này được phân bổ làm đầu vào cho các đề nghị giao dịch đang chờ xử lý của bạn. Số lượng này được xác định bằng cách sử dụng các đầu ra giao dịch chưa được chi tiêu liên kết với ví này và có thể nhiều hơn số lượng thực tế được liên kết với các đề nghị giao dịch đang chờ xử lý của bạn."
 
 #: www/views/modals/wallet-balance.html:74
 msgid "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
-msgstr "The amount of bitcoin stored in this wallet with less than 1 blockchain confirmation."
+msgstr "Số lượng bitcoin được lưu trữ trong ví này với dưới 1 xác nhận blockchain."
 
 #: www/views/tab-import-phrase.html:5
 msgid "The derivation path"
-msgstr "The derivation path"
+msgstr "Đường dẫn dẫn xuất"
 
 #: www/views/onboarding/tour.html:37
 msgid "The exchange rate changes with the market."
-msgstr "The exchange rate changes with the market."
+msgstr "Tỷ giá hối đoái thay đổi tùy theo thị trường."
 
 #: www/views/preferencesFee.html:12
 msgid "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
-msgstr "The higher the fee, the greater the incentive a miner has to include that transaction in a block. Current fees are determined based on network load and the selected policy."
+msgstr "Phí càng cao, thợ mỏ càng phải đưa nhiều ưu đãi giao dịch đó vào một khối. Phí hiện tại được xác định dựa trên tải mạng và chính sách đã chọn."
 
 #: www/views/addresses.html:51
 msgid "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
-msgstr "The maximum number of consecutive unused addresses (20) has been reached. When one of your unused addresses receives a payment, a new address will be generated and shown in your Receive tab."
+msgstr "Đã đạt tới số lượng địa chỉ chưa sử dụng liên tiếp tối đa (20). Khi một trong những địa chỉ chưa sử dụng của bạn nhận được thanh toán, một địa chỉ mới sẽ được tạo và hiển thị trong tab Nhận của bạn."
 
 #: src/js/controllers/onboarding/terms.js:21
 msgid "The official English Terms of Service are available on the BitPay website."
-msgstr "The official English Terms of Service are available on the BitPay website."
+msgstr "Điều khoản dịch vụ chính thức bằng tiếng Anh có sẵn trên trang web BitPay."
 
 #: www/views/tab-import-phrase.html:4
 msgid "The password of the recovery phrase (if set)"
-msgstr "The password of the recovery phrase (if set)"
+msgstr "Mật khẩu của cụm từ khôi phục (nếu được đặt)"
 
 #: src/js/services/walletService.js:1139
 msgid "The payment was created but could not be completed. Please try again from home screen"
-msgstr "The payment was created but could not be completed. Please try again from home screen"
+msgstr "Thanh toán đã được tạo nhưng chưa thể hoàn tất. Vui lòng thử lại từ màn hình chính"
 
 #: www/views/modals/txp-details.html:26
 msgid "The payment was removed by creator"
-msgstr "The payment was removed by creator"
+msgstr "Thanh toán đã bị xóa bởi người tạo"
 
 #: www/views/join.html:91
 #: www/views/tab-create-personal.html:63
 #: www/views/tab-create-shared.html:92
 #: www/views/tab-import-phrase.html:43
 msgid "The recovery phrase could require a password to be imported"
-msgstr "The recovery phrase could require a password to be imported"
+msgstr "Cụm từ khôi phục có thể yêu cầu nhập mật khẩu"
 
 #: src/js/services/bwcError.js:56
 msgid "The request could not be understood by the server"
-msgstr "The request could not be understood by the server"
+msgstr "Máy chủ không thể hiểu được yêu cầu"
 
 #: www/views/addresses.html:52
 msgid "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
-msgstr "The restore process will stop when 20 addresses are generated in a row which contain no funds. To safely generate more addresses, make a payment to one of the unused addresses which has already been generated."
+msgstr "Quá trình khôi phục sẽ dừng khi 20 địa chỉ được tạo liên tiếp không chứa tiền. Để tạo nhiều địa chỉ một cách an toàn, hãy gửi thanh toán tới một trong những địa chỉ đã tạo chưa sử dụng."
 
 #: src/js/services/bwcError.js:98
 msgid "The spend proposal is not pending"
-msgstr "The spend proposal is not pending"
+msgstr "Không phải đề nghị chi tiêu đang chờ xử lý"
 
 #: www/views/modals/wallet-balance.html:36
 msgid "The total amount of bitcoin stored in this wallet."
-msgstr "The total amount of bitcoin stored in this wallet."
+msgstr "Tổng số lượng bitcoin được lưu trữ trong ví này."
 
 #: www/views/preferencesHistory.html:27
 msgid "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
-msgstr "The transaction history and every new incoming transaction are cached in the app. This feature clean this up and synchronizes again from the server"
+msgstr "Lịch sử giao dịch và mọi giao dịch đến mới được lưu trong bộ nhớ cache trong ứng dụng. Tính năng này dọn sạch ứng dụng và đồng bộ hóa lại từ máy chủ"
 
 #: www/views/tab-import-phrase.html:6
 msgid "The wallet service URL"
-msgstr "The wallet service URL"
+msgstr "URL dịch vụ ví"
 
 #: src/js/controllers/tab-home.js:38
 msgid "There is a new version of {{appName}} available"
-msgstr "There is a new version of {{appName}} available"
+msgstr "Đã có phiên bản mới của {{appName}}"
 
 #: src/js/controllers/import.js:229
 #: src/js/controllers/import.js:254
 #: src/js/controllers/import.js:335
 msgid "There is an error in the form"
-msgstr "There is an error in the form"
+msgstr "Có một lỗi trong mẫu"
 
 #: src/js/controllers/feedback/send.js:61
 #: src/js/controllers/feedback/send.js:65
 msgid "There's obviously something we're doing wrong."
-msgstr "There's obviously something we're doing wrong."
+msgstr "Rõ ràng có điều gì đó chúng tôi đang làm sai."
 
 #: src/js/controllers/feedback/rateCard.js:38
 msgid "This app is fantastic!"
-msgstr "This app is fantastic!"
+msgstr "Ứng dụng này thật tuyệt vời!"
 
 #: www/views/onboarding/tour.html:47
 msgid "This app stores your bitcoin with cutting-edge security."
-msgstr "This app stores your bitcoin with cutting-edge security."
+msgstr "Ứng dụng này lưu trữ bitcoin của bạn với công nghệ bảo mật tiên tiến."
 
 #: src/js/controllers/confirm.js:523
 msgid "This bitcoin payment request has expired."
-msgstr "This bitcoin payment request has expired."
+msgstr "Yêu cầu thanh toán bitcoin này đã hết hạn."
 
 #: www/views/review.html:55
 msgid "Payment expires:"
-msgstr "Payment expires:"
+msgstr "Thanh toán hết hạn:"
 
 #: www/views/review.html:56
 msgid "Payment request has expired"
-msgstr "Payment request has expired"
+msgstr "Yêu cầu thanh toán đã hết hạn"
 
 #: www/views/join.html:133
 #: www/views/tab-create-personal.html:103
 #: www/views/tab-create-shared.html:132
 msgid "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
-msgstr "This password cannot be recovered. If the password is lost, there is no way you could recover your funds."
+msgstr "Không thể phục hồi mật khẩu này. Nếu mật khẩu bị mất, không có cách nào để bạn có thể lấy lại tiền của mình."
 
 #: www/views/backup.html:31
 msgid "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
-msgstr "This recovery phrase was created with a password. To recover this wallet both the recovery phrase and password are needed."
+msgstr "Cụm từ khôi phục này đã được tạo bằng mật khẩu. Để khôi phục ví này, cần phải có cả cụm từ khôi phục và mật khẩu."
 
 #: www/views/tx-details.html:91
 msgid "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
-msgstr "This transaction amount is too small compared to current Bitcoin network fees. Spending these funds will need a Bitcoin network fee cost comparable to the funds itself."
+msgstr "Số tiền giao dịch này quá nhỏ so với phí mạng Bitcoin hiện tại. Chi tiêu số tiền này sẽ tốn phí mạng Bitcoin tương đương với chính số tiền này."
 
 #: www/views/tx-details.html:87
 msgid "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
-msgstr "This transaction could take a long time to confirm or could be dropped due to the low fees set by the sender"
+msgstr "Giao dịch này có thể mất nhiều thời gian để xác nhận hoặc có thể bị hủy do mức phí thấp mà người gửi đặt ra"
 
 #: www/views/walletDetails.html:109
 #: www/views/walletDetails.html:29
 msgid "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
-msgstr "This wallet is not registered at the given Bitcore Wallet Service (BWS). You can recreate it from the local information."
+msgstr "Ví này không được đăng ký tại Dịch vụ Ví Bitcore (BWS) đã cho. Bạn có thể tạo lại nó từ thông tin cục bộ."
 
 #: www/views/modals/txp-details.html:136
 #: www/views/tx-details.html:121
 msgid "Timeline"
-msgstr "Timeline"
+msgstr "Dòng thời gian"
 
 #: www/views/confirm.html:31
 #: www/views/includes/output.html:2
@@ -3146,388 +3196,388 @@ msgstr "Timeline"
 #: www/views/tx-details.html:41
 #: www/views/tx-details.html:53
 msgid "To"
-msgstr "To"
+msgstr "Tới"
 
 #: www/views/tab-send.html:32
 msgid "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
-msgstr "To get started, buy bitcoin or share your address. You can receive bitcoin from any wallet or service."
+msgstr "Để bắt đầu, hãy mua bitcoin hoặc chia sẻ địa chỉ của bạn. Bạn có thể nhận bitcoin từ bất kỳ ví hoặc dịch vụ nào."
 
 #: src/js/services/bitpayAccountService.js:73
 msgid "To {{reason}} you must first add your BitPay account - {{email}}"
-msgstr "To {{reason}} you must first add your BitPay account - {{email}}"
+msgstr "Để {{reason}}, trước tiên bạn phải thêm tài khoản BitPay của mình - {{email}}"
 
 #: src/js/services/onGoingProcess.js:48
 msgid "Top up in progress..."
-msgstr "Top up in progress..."
+msgstr "Đang nạp tiền..."
 
 #: src/js/controllers/topup.js:206
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
-msgstr "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
+msgstr "Nạp {{amountStr}} vào thẻ ghi nợ ({{cardLastNumber}})"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "Start ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "Bắt đầu SideShift AI"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
-msgstr "Exchange your BTC to BCH in minutes."
+msgstr "Đổi BTC của bạn sang BCH chỉ trong vài phút."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
-msgstr "To start the process you need to add funds to your wallet."
+msgstr "Để bắt đầu quá trình, bạn cần thêm tiền vào ví của mình."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
-msgstr "The process is fast and you will receive the exchanged amount in your wallet."
+msgstr "Quá trình này diễn ra nhanh chóng và bạn sẽ nhận được số tiền đã chuyển đổi trong ví của mình."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Dịch vụ này được cung cấp bởi SideShift AI bên thứ ba và bên này sẽ tính một khoản phí dịch vụ nho nhỏ. Phí sẽ được hiển thị trước khi bạn bắt đầu giao dịch."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
 #: www/views/modals/wallet-balance.html:23
 #: www/views/topup.html:70
 msgid "Total"
-msgstr "Total"
+msgstr "Tổng cộng"
 
 #: www/views/walletDetails.html:196
 msgid "Total Locked Balance"
-msgstr "Total Locked Balance"
+msgstr "Tổng số dư bị khóa"
 
 #: www/views/tab-create-shared.html:35
 msgid "Total number of copayers"
-msgstr "Total number of copayers"
+msgstr "Tổng số nhà giao dịch copay"
 
 #: www/views/addresses.html:81
 msgid "Total wallet inputs"
-msgstr "Total wallet inputs"
+msgstr "Tổng đầu vào ví"
 
 #: src/js/services/fingerprintService.js:63
 #: src/js/services/fingerprintService.js:68
 msgid "Touch ID Failed"
-msgstr "Touch ID Failed"
+msgstr "Cảm biến vân tay bị lỗi"
 
 #: src/js/controllers/tx-details.js:12
 msgid "Transaction"
-msgstr "Transaction"
+msgstr "Giao dịch"
 
 #: www/views/confirm.html:126
 msgid "Transaction Created"
-msgstr "Transaction Created"
+msgstr "Đã tạo giao dịch"
 
 #: www/views/preferencesAdvanced.html:29
 #: www/views/preferencesHistory.html:3
 msgid "Transaction History"
-msgstr "Transaction History"
+msgstr "Lịch sử giao dịch"
 
 #: src/js/services/bwcError.js:83
 msgid "Transaction already broadcasted"
-msgstr "Transaction already broadcasted"
+msgstr "Giao dịch đã phát rộng"
 
 #: src/js/controllers/buyAmazon.js:308
 #: src/js/controllers/buyMercadoLibre.js:301
 #: src/js/controllers/topup.js:281
 msgid "Transaction has not been created"
-msgstr "Transaction has not been created"
+msgstr "Giao dịch chưa được tạo"
 
 #: www/views/topup.html:104
 msgid "Transaction initiated"
-msgstr "Transaction initiated"
+msgstr "Đã khởi tạo giao dịch"
 
 #: src/js/controllers/tx-details.js:119
 msgid "Transaction not available at this time"
-msgstr "Transaction not available at this time"
+msgstr "Giao dịch không khả dụng tại thời điểm này"
 
 #: src/js/controllers/activity.js:45
 #: src/js/controllers/tab-home.js:174
 msgid "Transaction not found"
-msgstr "Transaction not found"
+msgstr "Không tìm thấy giao dịch"
 
 #: www/views/modals/chooseFeeLevel.html:55
 msgid "Transactions without fee are not supported."
-msgstr "Transactions without fee are not supported."
+msgstr "Giao dịch miễn phí không được hỗ trợ."
 
 #: src/js/controllers/paperWallet.js:109
 msgid "Transfer to"
-msgstr "Transfer to"
+msgstr "Chuyển đến"
 
 #: www/views/tab-send.html:67
 msgid "Transfer to Wallet"
-msgstr "Transfer to Wallet"
+msgstr "Chuyển đến Ví"
 
 #: www/views/modals/pin.html:13
 msgid "Try again in {{expires}}"
-msgstr "Try again in {{expires}}"
+msgstr "Thử lại sau {{expires}}"
 
 #: www/views/bitpayCardIntro.html:18
 msgid "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
-msgstr "Turn bitcoin into dollars, swipe anywhere Visa<sup>&reg;</sup> is accepted."
+msgstr "Biến bitcoin thành đô la, quét ở bất cứ nơi nào chấp nhận thẻ Visa<sup>&reg;</sup>."
 
 #: www/views/tab-import-phrase.html:17
 msgid "Type the Recovery Phrase (usually 12 words)"
-msgstr "Type the Recovery Phrase (usually 12 words)"
+msgstr "Nhập Cụm từ khôi phục (thường gồm 12 từ)"
 
 #: src/js/controllers/backup.js:75
 msgid "Uh oh..."
-msgstr "Uh oh..."
+msgstr "Ừ ồ..."
 
 #: www/views/tx-details.html:100
 msgid "Unconfirmed"
-msgstr "Unconfirmed"
+msgstr "Chưa xác nhận"
 
 #: www/views/walletDetails.html:190
 msgid "Unsent transactions"
-msgstr "Unsent transactions"
+msgstr "Giao dịch chưa gửi"
 
 #: www/views/addresses.html:39
 msgid "Unused Addresses"
-msgstr "Unused Addresses"
+msgstr "Địa chỉ chưa sử dụng"
 
 #: www/views/addresses.html:50
 msgid "Unused Addresses Limit"
-msgstr "Unused Addresses Limit"
+msgstr "Giới hạn địa chỉ chưa sử dụng"
 
 #: src/js/controllers/tab-home.js:146
 msgid "Update Available"
-msgstr "Update Available"
+msgstr "Có sẵn bản cập nhật"
 
 #: www/views/proposals.html:14
 msgid "Updating pending proposals. Please stand by"
-msgstr "Updating pending proposals. Please stand by"
+msgstr "Đang cập nhật đề nghị đang chờ xử lý. Vui lòng chờ"
 
 #: www/views/walletDetails.html:217
 msgid "Updating transaction history. Please stand by."
-msgstr "Updating transaction history. Please stand by."
+msgstr "Đang cập nhật lịch sử giao dịch. Vui lòng chờ."
 
 #: www/views/activity.html:14
 msgid "Updating... Please stand by"
-msgstr "Updating... Please stand by"
+msgstr "Đang cập nhật... Vui lòng chờ"
 
 #: src/js/services/feeService.js:10
 msgid "Urgent"
-msgstr "Urgent"
+msgstr "Khẩn cấp"
 
 #: www/views/advancedSettings.html:12
 msgid "Use Unconfirmed Funds"
-msgstr "Use Unconfirmed Funds"
+msgstr "Sử dụng số tiền chưa được xác nhận"
 
 #: src/js/services/onGoingProcess.js:34
 msgid "Validating recovery phrase..."
-msgstr "Validating recovery phrase..."
+msgstr "Đang xác thực cụm từ khôi phục..."
 
 #: www/views/modals/fingerprintCheck.html:4
 msgid "Verify your identity"
-msgstr "Verify your identity"
+msgstr "Xác minh danh tính của bạn"
 
 #: www/views/preferencesAbout.html:14
 #: www/views/preferencesExternal.html:25
 msgid "Version"
-msgstr "Version"
+msgstr "Phiên bản"
 
 #: www/views/tab-export-file.html:69
 msgid "View"
-msgstr "View"
+msgstr "Xem"
 
 #: www/views/addresses.html:34
 msgid "View All Addresses"
-msgstr "View All Addresses"
+msgstr "Xem tất cả địa chỉ"
 
 #: src/js/controllers/onboarding/terms.js:20
 msgid "View Terms of Service"
-msgstr "View Terms of Service"
+msgstr "Xem Điều khoản dịch vụ"
 
 #: src/js/controllers/bitpayCard.js:122
 #: src/js/controllers/tx-details.js:191
 msgid "View Transaction on Explorer.Bitcoin.com"
-msgstr "View Transaction on Explorer.Bitcoin.com"
+msgstr "Xem giao dịch trên Explorer.Bitcoin.com"
 
 #: src/js/controllers/tab-home.js:148
 msgid "View Update"
-msgstr "View Update"
+msgstr "Xem cập nhật"
 
 #: www/views/tx-details.html:147
 msgid "View on blockchain"
-msgstr "View on blockchain"
+msgstr "Xem trên blockchain"
 
 #: www/views/mercadoLibre.html:26
 msgid "Visit mercadolivre.com.br &rarr;"
-msgstr "Visit mercadolivre.com.br &rarr;"
+msgstr "Truy cập mercadolivre.com.br &rarr;"
 
 #: www/views/walletDetails.html:182
 msgid "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
-msgstr "WARNING: Key derivation is not working on this device/wallet. Actions cannot be performed on this wallet."
+msgstr "CẢNH BÁO: Đường dẫn dẫn xuất chính không hoạt động trên thiết bị/ví này. Không thể thực hiện hành động trên ví này."
 
 #: www/views/tab-export-file.html:45
 msgid "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr "WARNING: Not including the private key allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "CẢNH BÁO: Không bao gồm khóa riêng sẽ cho phép kiểm tra số dư ví, lịch sử giao dịch và tạo đề nghị chi tiêu từ dữ liệu xuất. Tuy nhiên, không cho phép phê duyệt (ký) đề nghị, vì vậy <b>sẽ không thể sử dụng tiền từ dữ liệu xuất</b>."
 
 #: www/views/tab-export-file.html:36
 msgid "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
-msgstr "WARNING: The private key of this wallet is not available. The export allows to check the wallet balance, transaction history, and create spend proposals from the export. However, does not allow to approve (sign) proposals, so <b>funds will not be accessible from the export</b>."
+msgstr "CẢNH BÁO: Khóa riêng của ví này không khả dụng. Tính năng xuất cho phép kiểm tra số dư ví, lịch sử giao dịch và tạo đề nghị chi tiêu từ dữ liệu xuất. Tuy nhiên, không cho phép phê duyệt (ký) đề nghị, vì vậy <b>sẽ không thể sử dụng tiền từ dữ liệu xuất</b>."
 
 #: www/views/modals/paypro.html:42
 msgid "WARNING: UNTRUSTED CERTIFICATE"
-msgstr "WARNING: UNTRUSTED CERTIFICATE"
+msgstr "CẢNH BÁO: CHỨNG NHẬN KHÔNG ĐÁNG TIN CẬY"
 
 #: src/js/services/onGoingProcess.js:15
 msgid "Waiting for Ledger..."
-msgstr "Waiting for Ledger..."
+msgstr "Đang chờ Ledger..."
 
 #: src/js/services/onGoingProcess.js:16
 msgid "Waiting for Trezor..."
-msgstr "Waiting for Trezor..."
+msgstr "Đang chờ Trezor..."
 
 #: www/views/copayers.html:48
 msgid "Waiting for copayers"
-msgstr "Waiting for copayers"
+msgstr "Đang chờ nhà giao dịch copay"
 
 #: www/views/copayers.html:53
 msgid "Waiting..."
-msgstr "Waiting..."
+msgstr "Đang đợi..."
 
 #: www/views/addresses.html:3
 #: www/views/preferencesAdvanced.html:17
 msgid "Wallet Addresses"
-msgstr "Wallet Addresses"
+msgstr "Địa chỉ ví"
 
 #: www/views/preferencesColor.html:4
 msgid "Wallet Color"
-msgstr "Wallet Color"
+msgstr "Màu ví"
 
 #: www/views/preferencesInformation.html:29
 msgid "Wallet Configuration (m-n)"
-msgstr "Wallet Configuration (m-n)"
+msgstr "Cấu hình ví (m-n)"
 
 #: www/views/onboarding/collectEmail.html:5
 msgid "Wallet Created"
-msgstr "Wallet Created"
+msgstr "Đã tạo Ví"
 
 #: www/views/preferencesInformation.html:23
 msgid "Wallet Id"
-msgstr "Wallet Id"
+msgstr "Id ví"
 
 #: www/views/preferencesAdvanced.html:13
 #: www/views/preferencesInformation.html:3
 msgid "Wallet Information"
-msgstr "Wallet Information"
+msgstr "Thông tin ví"
 
 #: www/views/addresses.html:76
 msgid "Wallet Inputs"
-msgstr "Wallet Inputs"
+msgstr "Đầu vào ví"
 
 #: www/views/join.html:26
 msgid "Wallet Invitation"
-msgstr "Wallet Invitation"
+msgstr "Lời mời tham gia ví"
 
 #: www/views/join.html:60
 #: www/views/tab-create-personal.html:38
 #: www/views/tab-create-shared.html:67
 msgid "Wallet Key"
-msgstr "Wallet Key"
+msgstr "Khóa ví"
 
 #: www/views/preferencesAlias.html:4
 msgid "Wallet Name"
-msgstr "New personal wallet"
+msgstr "Tên Ví"
 
 #: www/views/preferencesInformation.html:11
 msgid "Wallet Name (at creation)"
-msgstr "Wallet Name (at creation)"
+msgstr "Tên Ví (lúc tạo)"
 
 #: www/views/preferencesInformation.html:35
 msgid "Wallet Network"
-msgstr "Wallet Network"
+msgstr "Mạng lưới Ví"
 
 #: www/views/join.html:77
 #: www/views/tab-create-personal.html:50
 #: www/views/tab-create-shared.html:79
 msgid "Wallet Recovery Phrase"
-msgstr "Wallet Recovery Phrase"
+msgstr "Cụm từ khôi phục Ví"
 
 #: src/js/services/bwcError.js:26
 msgid "Wallet Recovery Phrase is invalid"
-msgstr "Wallet Recovery Phrase is invalid"
+msgstr "Cụm từ khôi phục Ví không hợp lệ"
 
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "Wallet Service URL"
+msgstr "URL dịch vụ Ví"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
-msgstr "Wallet Settings"
+msgstr "Cài đặt Ví"
 
 #: www/views/tab-import-hardware.html:11
 #: www/views/tab-import-phrase.html:61
 msgid "Wallet Type"
-msgstr "Wallet Type"
+msgstr "Loại Ví"
 
 #: src/js/services/bwcError.js:59
 msgid "Wallet already exists"
-msgstr "Wallet already exists"
+msgstr "Ví đã tồn tại"
 
 #: src/js/services/profileService.js:516
 msgid "Wallet already in {{appName}}"
-msgstr "Wallet already in {{appName}}"
+msgstr "Ví đã có trong {{appName}}"
 
 #: www/views/includes/walletActivity.html:6
 msgid "Wallet created"
-msgstr "Wallet created"
+msgstr "Đã tạo Ví"
 
 #: www/views/copayers.html:58
 msgid "Wallet incomplete and broken"
-msgstr "Wallet incomplete and broken"
+msgstr "Ví chưa hoàn thiện và bị hỏng"
 
 #: src/js/services/bwcError.js:65
 msgid "Wallet is full"
-msgstr "Wallet is full"
+msgstr "Ví đầy"
 
 #: src/js/services/bwcError.js:125
 msgid "Wallet is locked"
-msgstr "Wallet is locked"
+msgstr "Ví bị khóa"
 
 #: src/js/services/bwcError.js:128
 msgid "Wallet is not complete"
-msgstr "Wallet is not complete"
+msgstr "Ví chưa hoàn thiện"
 
 #: www/views/tab-create-personal.html:12
 #: www/views/tab-create-shared.html:12
 msgid "Wallet name"
-msgstr "Wallet name"
+msgstr "Tên Ví"
 
 #: src/js/services/bwcError.js:131
 msgid "Wallet needs backup"
-msgstr "Wallet needs backup"
+msgstr "Ví cần sao lưu"
 
 #: www/views/tab-receive.html:59
 #: www/views/walletDetails.html:169
 msgid "Wallet not backed up"
-msgstr "Wallet not backed up"
+msgstr "Ví chưa sao lưu"
 
 #: src/js/services/bwcError.js:68
 msgid "Wallet not found"
-msgstr "Wallet not found"
+msgstr "Không tìm thấy ví"
 
 #: src/js/controllers/cashScan.js:81
 #: src/js/controllers/tab-home.js:230
 msgid "Wallet not registered"
-msgstr "Wallet not registered"
+msgstr "Ví chưa đăng ký"
 
 #: src/js/services/bwcError.js:29
 msgid "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
-msgstr "Wallet not registered at the wallet service. Recreate it from \"Create Wallet\" using \"Advanced Options\" to set your recovery phrase"
+msgstr "Ví chưa được đăng ký tại dịch vụ ví. Hãy tạo lại từ \"Tạo ví\", sử dụng \"Tùy chọn nâng cao\" để đặt cụm từ khôi phục của bạn"
 
 #: www/views/backup.html:12
 msgid "Wallet recovery phrase not available"
-msgstr "Wallet recovery phrase not available"
+msgstr "Cụm từ khôi phục ví không khả dụng"
 
 #: src/js/services/bwcError.js:50
 msgid "Wallet service not found"
-msgstr "Wallet service not found"
+msgstr "Không tìm thấy dịch vụ ví"
 
 #: www/views/tab-home.html:69
 msgid "Wallets"
-msgstr "Wallets"
+msgstr "Ví"
 
 #: src/js/controllers/addressbookView.js:36
 #: src/js/controllers/modals/txpDetails.js:153
@@ -3536,177 +3586,177 @@ msgstr "Wallets"
 #: src/js/controllers/preferencesExternal.js:14
 #: www/views/preferencesDeleteWallet.html:11
 msgid "Warning!"
-msgstr "Warning!"
+msgstr "Cảnh báo!"
 
 #: www/views/modals/txp-details.html:47
 msgid "Warning: this transaction has unconfirmed inputs"
-msgstr "Warning: this transaction has unconfirmed inputs"
+msgstr "Cảnh báo: giao dịch này có đầu vào chưa được xác nhận"
 
 #: src/js/controllers/onboarding/backupRequest.js:17
 msgid "Watch out!"
-msgstr "Watch out!"
+msgstr "Coi chừng!"
 
 #: src/js/controllers/feedback/send.js:69
 msgid "We'd love to do better."
-msgstr "We'd love to do better."
+msgstr "Chúng tôi muốn làm tốt hơn."
 
 #: www/views/backup.html:35
 msgid "We'll confirm on the next screen."
-msgstr "We'll confirm on the next screen."
+msgstr "Chúng tôi sẽ xác nhận trên màn hình tiếp theo."
 
 #: src/js/controllers/feedback/send.js:77
 msgid "We're always looking for ways to improve {{appName}}."
-msgstr "We're always looking for ways to improve {{appName}}."
+msgstr "Chúng tôi luôn tìm cách cải thiện {{appName}}."
 
 #: src/js/controllers/feedback/send.js:83
 msgid "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
-msgstr "We're always looking for ways to improve {{appName}}. How could we improve your experience?"
+msgstr "Chúng tôi luôn tìm cách cải thiện {{appName}}. Chúng tôi có thể cải thiện trải nghiệm của bạn bằng cách nào?"
 
 #: www/views/includes/incomingDataMenu.html:6
 msgid "Website"
-msgstr "Website"
+msgstr "Trang web"
 
 #: www/views/preferencesLanguage.html:16
 msgid "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
-msgstr "We’re always looking for translation contributions! You can make corrections or help to make this app available in your native language by joining our community on Crowdin."
+msgstr "Chúng tôi luôn luôn tìm kiếm đóng góp bản dịch! Bạn có thể chỉnh sửa hoặc giúp để ứng dụng này có sẵn bằng ngôn ngữ mẹ đẻ của bạn bằng cách tham gia cộng đồng của chúng tôi trên Crowdin."
 
 #: www/views/preferencesAlias.html:11
 msgid "What do you call this wallet?"
-msgstr "What do you call this wallet?"
+msgstr "Bạn gọi ví này là gì?"
 
 #: www/views/preferencesAlias.html:12
 msgid "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
-msgstr "When this wallet was created, it was called &ldquo;{{walletName}}&rdquo;. You can change the name displayed on this device below."
+msgstr "Khi ví này được tạo, nó tên là &ldquo;{{walletName}}&rdquo;. Bạn có thể thay đổi tên hiển thị trên thiết bị này bên dưới."
 
 #: www/views/onboarding/collectEmail.html:10
 msgid "Where would you like to receive email notifications about payments?"
-msgstr "Where would you like to receive email notifications about payments?"
+msgstr "Bạn muốn nhận thông báo qua email về thanh toán ở đâu?"
 
 #: www/views/addresses.html:19
 msgid "Why?"
-msgstr "Why?"
+msgstr "Tại sao?"
 
 #: www/views/feedback/rateApp.html:10
 msgid "Would you be willing to rate {{appName}} in the app store?"
-msgstr "Would you be willing to rate {{appName}} in the app store?"
+msgstr "Bạn có sẵn sàng đánh giá {{appName}} trong cửa hàng ứng dụng không?"
 
 #: www/views/onboarding/notifications.html:4
 msgid "Would you like to receive push notifications about payments?"
-msgstr "Would you like to receive push notifications about payments?"
+msgstr "Bạn có muốn nhận thông báo đẩy về thanh toán không?"
 
 #: src/js/controllers/import.js:288
 msgid "Wrong number of recovery words:"
-msgstr "Wrong number of recovery words:"
+msgstr "Sai số từ khôi phục:"
 
 #: src/js/services/bwcError.js:140
 msgid "Wrong spending password"
-msgstr "Wrong spending password"
+msgstr "Sai mật khẩu chi tiêu"
 
 #: www/views/modals/confirmation.html:7
 msgid "Yes"
-msgstr "Yes"
+msgstr "Có"
 
 #: src/js/controllers/onboarding/backupRequest.js:25
 msgid "Yes, skip"
-msgstr "Yes, skip"
+msgstr "Có, bỏ qua"
 
 #: src/js/controllers/onboarding/backupRequest.js:24
 msgid "You can create a backup later from your wallet settings."
-msgstr "You can create a backup later from your wallet settings."
+msgstr "Bạn có thể tạo bản sao lưu sau từ cài đặt ví của bạn."
 
 #: src/js/controllers/preferencesLanguage.js:12
 msgid "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
-msgstr "You can make contributions by signing up on our Crowdin community translation website. We’re looking forward to hearing from you!"
+msgstr "Bạn có thể đóng góp bằng cách đăng ký trên trang web dịch thuật cộng đồng Crowdin của chúng tôi. Chúng tôi rất mong nhận được phản hồi từ bạn!"
 
 #: www/views/tab-scan.html:16
 msgid "You can scan bitcoin addresses, payment requests, paper wallets, and more."
-msgstr "You can scan bitcoin addresses, payment requests, paper wallets, and more."
+msgstr "Bạn có thể quét địa chỉ bitcoin, yêu cầu thanh toán, ví giấy, v.v."
 
 #: src/js/controllers/preferencesAbout.js:14
 msgid "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
-msgstr "You can see the latest developments and contribute to this open source app by visiting our project on GitHub."
+msgstr "Bạn có thể thấy những phát triển mới nhất và đóng góp cho ứng dụng nguồn mở này bằng cách truy cập dự án của chúng tôi trên GitHub."
 
 #: www/views/onboarding/tour.html:19
 msgid "You can spend bitcoin at millions of websites and stores worldwide."
-msgstr "You can spend bitcoin at millions of websites and stores worldwide."
+msgstr "Bạn có thể chi tiêu bitcoin tại hàng triệu trang web và cửa hàng trên toàn thế giới."
 
 #: www/views/backup.html:15
 msgid "You can still export it from Advanced &gt; Export."
-msgstr "You can still export it from Advanced &gt; Export."
+msgstr "Bạn vẫn có thể xuất nó từ Xuất &gt; nâng cao."
 
 #: www/views/onboarding/tour.html:32
 msgid "You can trade it for other currencies like US Dollars, Euros, or Pounds."
-msgstr "You can trade it for other currencies like US Dollars, Euros, or Pounds."
+msgstr "Bạn có thể đổi nó lấy các loại tiền tệ khác như Đô la Mỹ, Euro hoặc Bảng Anh."
 
 #: www/views/onboarding/tour.html:46
 msgid "You control your bitcoin."
-msgstr "You control your bitcoin."
+msgstr "Bạn kiểm soát bitcoin của mình."
 
 #: www/views/modals/chooseFeeLevel.html:64
 msgid "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
-msgstr "You should not set a fee higher than {{maxFeeRecommended}} satoshis/byte."
+msgstr "Bạn không nên đặt mức phí cao hơn {{maxFeeRecommended}} satoshis/byte."
 
 #: www/views/modals/bitpay-card-confirmation.html:5
 msgid "You will need to log back for fill in your BitPay Card."
-msgstr "You will need to log back for fill in your BitPay Card."
+msgstr "Bạn sẽ cần phải đăng nhập lại để điền vào Thẻ BitPay của mình."
 
 #: www/views/preferencesNotifications.html:34
 msgid "You'll receive email notifications about payments sent and received from your wallets."
-msgstr "You'll receive email notifications about payments sent and received from your wallets."
+msgstr "Bạn sẽ nhận được thông báo qua email về các khoản thanh toán được gửi và nhận từ ví của bạn."
 
 #: www/views/bitpayCard.html:50
 msgid "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
-msgstr "Your BitPay Card is ready. Add funds to your card to start using it at stores and ATMs worldwide."
+msgstr "Thẻ BitPay của bạn đã sẵn sàng. Nạp tiền vào thẻ của bạn để bắt đầu sử dụng tại các cửa hàng và ATM trên toàn thế giới."
 
 #: www/views/mercadoLibre.html:57
 #: www/views/mercadoLibreCards.html:6
 msgid "Your Gift Cards"
-msgstr "Your Gift Cards"
+msgstr "Thẻ quà tặng của bạn"
 
 #: www/views/includes/confirmBackupPopup.html:6
 msgid "Your bitcoin wallet is backed up!"
-msgstr "Your bitcoin wallet is backed up!"
+msgstr "Ví bitcoin của bạn đã được sao lưu!"
 
 #: www/views/tab-home.html:36
 msgid "Your bitcoin wallet is ready!"
-msgstr "Your bitcoin wallet is ready!"
+msgstr "Ví bitcoin của bạn đã sẵn sàng!"
 
 #: www/views/modals/chooseFeeLevel.html:61
 msgid "Your fee is lower than recommended."
-msgstr "Your fee is lower than recommended."
+msgstr "Phí của bạn thấp hơn mức khuyến nghị."
 
 #: www/views/feedback/send.html:42
 msgid "Your ideas, feedback, or comments"
-msgstr "Your ideas, feedback, or comments"
+msgstr "Ý tưởng, phản hồi hoặc ý kiến của bạn"
 
 #: www/views/tab-create-shared.html:22
 msgid "Your name"
-msgstr "Your name"
+msgstr "Tên bạn"
 
 #: www/views/join.html:16
 msgid "Your nickname"
-msgstr "Your nickname"
+msgstr "Biệt hiệu của bạn"
 
 #: www/views/tab-export-file.html:11
 #: www/views/tab-import-file.html:20
 msgid "Your password"
-msgstr "Your password"
+msgstr "Mật khẩu của bạn"
 
 #: www/views/buyAmazon.html:102
 msgid "Your purchase could not be completed"
-msgstr "Your purchase could not be completed"
+msgstr "Không thể hoàn tất giao dịch mua của bạn"
 
 #: www/views/buyAmazon.html:105
 msgid "Your purchase was added to the list of pending"
-msgstr "Your purchase was added to the list of pending"
+msgstr "Giao dịch mua của bạn đã được thêm vào danh sách chờ xử lý"
 
 #: www/views/onboarding/backupRequest.html:10
 msgid "Your wallet is never saved to cloud storage or standard device backups."
-msgstr "Your wallet is never saved to cloud storage or standard device backups."
+msgstr "Ví của bạn không bao giờ được lưu vào bộ lưu trữ đám mây hoặc các thiết bị sao lưu tiêu chuẩn."
 
 #: src/js/services/walletService.js:1030
 msgid "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
-msgstr "Your wallet key will be encrypted. The Spending Password cannot be recovered. Be sure to write it down."
+msgstr "Khóa ví của bạn sẽ được mã hóa. Mật khẩu chi tiêu không thể phục hồi. Hãy chắc chắn viết nó ra."
 
 #: www/views/includes/walletList.html:13
 #: www/views/includes/walletSelector.html:21
@@ -3715,24 +3765,24 @@ msgstr "Your wallet key will be encrypted. The Spending Password cannot be recov
 #: www/views/walletDetails.html:131
 #: www/views/walletDetails.html:51
 msgid "[Balance Hidden]"
-msgstr "[Balance Hidden]"
+msgstr "[Số dư bị ẩn]"
 
 #: www/views/walletDetails.html:141
 #: www/views/walletDetails.html:61
 msgid "[Scanning Funds]"
-msgstr "[Scanning Funds]"
+msgstr "[Đang quét tiền]"
 
 #: src/js/controllers/bitpayCardIntro.js:11
 msgid "add your BitPay Visa card(s)"
-msgstr "add your BitPay Visa card(s)"
+msgstr "thêm (các) thẻ Visa BitPay của bạn"
 
 #: www/views/includes/available-balance.html:8
 msgid "locked by pending payments"
-msgstr "locked by pending payments"
+msgstr "bị khóa bởi các khoản thanh toán đang chờ xử lý"
 
 #: src/js/services/profileService.js:404
 msgid "me"
-msgstr "me"
+msgstr "tôi"
 
 #: www/views/addressbook.add.html:32
 msgid "name@example.com"
@@ -3740,207 +3790,852 @@ msgstr "name@example.com"
 
 #: www/views/preferencesHistory.html:15
 msgid "preparing..."
-msgstr "preparing..."
+msgstr "đang chuẩn bị..."
 
 #: www/views/cashScan.html:57
 msgid "recovery tool."
-msgstr "recovery tool."
+msgstr "công cụ phục hồi."
 
 #: src/js/controllers/buyAmazon.js:239
 msgid "{{amountStr}} for Amazon.com Gift Card"
-msgstr "{{amountStr}} for Amazon.com Gift Card"
+msgstr "{{amountStr}} cho Thẻ quà tặng Amazon.com"
 
 #: src/js/controllers/buyMercadoLibre.js:237
 msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
-msgstr "{{amountStr}} for Mercado Livre Brazil Gift Card"
+msgstr "{{amountStr}} cho Thẻ quà tặng Mercado Livre Brazil"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "{{appName}} lấy thông tin blockchain, nối mạng và đồng bộ hóa ví qua Dịch vụ Ví Bitcore (BWS). Cấu hình mặc định trỏ tới https://bws.bitcoin.com (phiên bản BWS công khai của Bitcoin.com)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
-msgstr "{{fee}} will be deducted for bitcoin networking fees."
+msgstr "{{fee}} phí vào mạng bitcoin sẽ được khấu trừ."
 
 #: www/views/confirm.html:85
 msgid "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
-msgstr "{{tx.txp[wallet.id].feeRatePerStr}}  of the sending amount"
+msgstr "{{tx.txp[wallet.id].feeRatePerStr}}  số tiền gửi"
 
 #: www/views/walletDetails.html:218
 msgid "{{updatingTxHistoryProgress}} transactions downloaded"
-msgstr "{{updatingTxHistoryProgress}} transactions downloaded"
+msgstr "{{updatingTxHistoryProgress}} giao dịch được tải xuống"
 
 #: www/views/cashScan.html:33
 #: www/views/copayers.html:46
 #: www/views/includes/walletInfo.html:18
 msgid "{{wallet.m}}-of-{{wallet.n}}"
-msgstr "{{wallet.m}}-of-{{wallet.n}}"
+msgstr "{{wallet.m}} / {{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
-msgstr "Community"
+msgstr "Cộng đồng"
 
 #: src/js/services/communityService.js:40
 msgid "Bitcoin Cash Reddit"
-msgstr "Bitcoin Cash Reddit"
+msgstr "Reddit của Bitcoin Cash"
 
 #: src/js/services/communityService.js:47
 msgid "Bitcoin.com Twitter"
-msgstr "Bitcoin.com Twitter"
+msgstr "Twitter của Bitcoin.com "
 
 #: www/views/includes/nextSteps.html:3
 msgid "Explore Bitcoin.com"
-msgstr "Explore Bitcoin.com"
+msgstr "Khám phá Bitcoin.com"
 
 #: src/js/services/bitcoincomService.js:21
 msgid "Bitcoin Cash Games"
-msgstr "Bitcoin Cash Games"
+msgstr "Trò chơi Bitcoin Cash"
+
+msgid "Bitcoin Games"
+msgstr ""
 
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
-msgstr ""
+msgstr "Chia sẻ Ứng dụng Ví"
 
 #: src/js/services/bitcoincomService.js:28
 msgid "News"
-msgstr "News"
+msgstr "Tin tức"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Mining Pool"
+msgid "Start mining Bitcoin"
+msgstr "Bắt đầu khai thác bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
-msgstr "Tools"
+msgstr "Công cụ"
 
 #: src/js/services/bitcoincomService.js:49
 msgid "Bitcoin Price Charts"
-msgstr "Bitcoin Price Charts"
+msgstr "Biểu đồ giá Bitcoin"
 
 #: src/js/services/bitcoincomService.js:56
 msgid "Free Bitcoin Cash"
-msgstr "Free Bitcoin Cash"
+msgstr "Bitcoin Cash miễn phí"
 
 #: www/views/tab-home.html:30
 msgid "Your Bitcoin Wallets are ready!"
-msgstr "Your Bitcoin Wallets are ready!"
+msgstr "Ví Bitcoin của bạn đã sẵn sàng!"
 
 #: src/js/controllers/amount.js:49
 msgid "Address does not contain currency information, please make sure you are sending the correct currency."
-msgstr "Address does not contain currency information, please make sure you are sending the correct currency."
+msgstr "Địa chỉ không chứa thông tin loại tiền tệ, vui lòng đảm bảo bạn đang gửi đúng loại tiền tệ."
 
 #: www/views/review.html:4
 msgid "Review Transaction"
-msgstr "Review Transaction"
+msgstr "Xem lại giao dịch"
 
 #: src/js/controllers/review.controller.js:36
 msgid "You are sending"
-msgstr "You are sending"
+msgstr "Bạn đang gửi"
 
 #: src/js/controllers/review.controller.js:66
 msgid "You are shifting"
-msgstr "You are shifting"
+msgstr "Bạn đang chuyển"
 
 #: www/views/review.html:36
 msgid "To:"
-msgstr "To:"
+msgstr "Tới:"
 
 #: www/views/review.html:53
 msgid "Add personal note"
-msgstr "Add personal note"
+msgstr "Thêm ghi chú cá nhân"
 
 #: www/views/review.html:87
 msgid "Suggested by merchant:"
-msgstr "Suggested by merchant:"
+msgstr "Do người bán đề xuất:"
 
 #: src/js/controllers/review.controller.js:37
 msgid "Enter text here"
-msgstr "Enter text here"
+msgstr "Nhập văn bản ở đây"
 
 #: www/views/review.html:57
 msgid "Personal note:"
-msgstr "Personal note:"
+msgstr "Ghi chú cá nhân:"
 
 #: www/views/review.html:69
 msgid "Less than 1 cent"
-msgstr "Less than 1 cent"
+msgstr "Dưới 1 xu"
 
 #: src/js/services/incomingData.js:129
 msgid "This invoice is no longer accepting payments"
-msgstr "This invoice is no longer accepting payments"
+msgstr "Hóa đơn này không còn chấp nhận thanh toán nữa"
 
 #: www/views/amount.html.js:60
 msgid "Send Maximum Amount"
-msgstr ""
+msgstr "Gửi số tiền tối đa"
 
 #: src/js/controllers/amount.controller.js:239
 msgid "Unknown error."
-msgstr ""
+msgstr "Lỗi không xác định."
 
 #: www/views/paperWallet.html:48
 msgid "No Bitcoin Cash wallet to transfer funds to found."
-msgstr ""
+msgstr "Không tìm thấy ví Bitcoin Cash để chuyển tiền vào."
 
 #: www/views/paperWallet.html:54
 msgid "No Bitcoin Cash found."
-msgstr ""
+msgstr "Không tìm thấy Bitcoin Cash."
 
 #: www/views/paperWallet.html:60
 msgid "Bitcoin Core found:"
-msgstr ""
+msgstr "Tìm thấy Bitcoin Core:"
 
 #: www/views/paperWallet.html:98
 msgid "No Bitcoin Core wallet to transfer funds to found."
-msgstr ""
+msgstr "Không tìm thấy ví Bitcoin Core để chuyển tiền vào."
 
 #: www/views/paperWallet.html:104
 msgid "No Bitcoin Core found."
-msgstr ""
+msgstr "Không tìm thấy Bitcoin Core."
 
 #: src/js/controllers/tab-scan.js:120
 msgid "Scan Failed"
-msgstr ""
+msgstr "Quét bị lỗi"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Data not recognised."
-msgstr ""
+msgstr "Dữ liệu không được công nhận."
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Unsupported"
-msgstr ""
+msgstr "Không được hỗ trợ"
 
 #: src/js/controllers/tab-scan.js:121
 msgid "Testnet is not supported."
-msgstr ""
+msgstr "Testnet không được hỗ trợ."
 
 #: www/views/includes/incomingDataMenu.html:81
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: www/views/includes/incomingDataMenu.html:90
 msgid "Open in web browser"
-msgstr ""
+msgstr "Mở trong trình duyệt web"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
-msgstr ""
+msgstr "Địa chỉ không hợp lệ"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
-msgstr ""
+msgstr "Số tiền không xác định"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
-msgstr ""
+msgstr "Số tiền dưới mức tối thiểu"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
+msgstr "Số tiền cao hơn mức giới hạn"
+
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Phản hồi không hợp lệ từ Sideshift"
+
+msgid "Insufficient Amount Received"
+msgstr "Số tiền đã nhận không đủ"
+
+msgid "Return to Address"
+msgstr "Quay trở lại Địa chỉ"
+
+msgid "Overpaid!"
+msgstr "Trả thừa!"
+
+msgid "Underpaid!"
+msgstr "Trả thiếu!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "Lỗi tạo khách hàng"
+
+msgid "Enter an email address."
+msgstr "Nhập địa chỉ email."
+
+msgid "Must be a valid email address."
+msgstr "Phải là địa chỉ email hợp lệ."
+
+msgid "Unable to Create Customer"
+msgstr "Unable to Create Customer"
+
+msgid "Enter a valid email address."
 msgstr ""
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "Buy Bitcoin Cash (BCH)"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "Bạn có thể mua lên đến {{vm.dailyRemaining}} hôm nay và lên đến {{vm.monthlyRemaining}} trong tháng này."
+
+msgid "Buy Bitcoin Cash"
+msgstr "Mua Bitcoin Cash"
+
+msgid "Verify Email"
 msgstr ""
+
+msgid "Error Getting Customer ID"
+msgstr "Lỗi lấy ID khách hàng"
+
+msgid "Error Getting Customer Information"
+msgstr "Lỗi lấy thông tin khách hàng"
+
+msgid "An error occurred when getting your customer information."
+msgstr "Đã xảy ra lỗi khi lấy thông tin khách hàng của bạn."
+
+msgid "Customer information was missing."
+msgstr "Thiếu thông tin khách hàng."
+
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr ""
+
+msgid "Terms of Service"
+msgstr ""
+
+msgid "Privacy Policy"
+msgstr ""
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "Phương thức thanh toán nhận được lỗi"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "Đã xảy ra lỗi khi nhận phương thức thanh toán của bạn."
+
+msgid "No Payment Methods"
+msgstr "Không có phương thức thanh toán"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "Bạn phải thêm thẻ tín dụng hoặc thẻ ghi nợ để mua Bitcoin Cash (BCH)."
+
+msgid "Add Card"
+msgstr "Thêm thẻ"
+
+msgid "Getting exchange rate..."
+msgstr "Đang nhận tỷ giá..."
+
+msgid "Waiting for exchange rate."
+msgstr "Đang chờ tỷ giá."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "Bạn phải có ví Bitcoin Cash (BCH) để gửi tiền vào."
+
+msgid "Select a BCH Wallet"
+msgstr "Chọn ví BCH"
+
+msgid "No stored debit or credit cards."
+msgstr ""
+
+msgid "No transactions."
+msgstr ""
+
+msgid "Buying Bitcoin Cash..."
+msgstr "Đang mua Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr "Không thể mua"
+
+msgid "Failed to create transaction."
+msgstr "Không thể tạo giao dịch."
+
+msgid "Buy Now"
+msgstr "Mua ngay"
+
+msgid "Enter Security Code"
+msgstr "Nhập mã bảo mật"
+
+msgid "Enter the 3 digit code on the back of your card."
+msgstr ""
+
+msgid "Buy Bitcoin Cash Now"
+msgstr ""
+
+msgid "Go to Wallet"
+msgstr "Đi tới Ví"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "Đi tới {{vm.walletName}}"
+
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr ""
+
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr ""
+
+msgid "Your order has failed."
+msgstr "Đơn hàng của bạn đã bị lỗi."
+
+msgid "Your order is waiting for authorization."
+msgstr "Đặt hàng của bạn đang chờ cấp phép."
+
+msgid "Deposited to"
+msgstr "Gửi tiền vào"
+
+msgid "Failed to get transaction data."
+msgstr "Không thể lấy dữ liệu giao dịch."
+
+msgid "Not found."
+msgstr "Không tìm thấy."
+
+msgid "Failed to get payment method info."
+msgstr "Không thể lấy thông tin phương thức thanh toán."
+
+msgid "Waiting for authorization"
+msgstr "Đang chờ ủy quyền"
+
+msgid "Submit"
+msgstr ""
+
+msgid "Back"
+msgstr "Quay lại"
+
+msgid "Expiration Date"
+msgstr ""
+
+msgid "Type all your card details below."
+msgstr ""
+
+msgid "Verify and complete your card information."
+msgstr "Xác minh và hoàn tất thông tin thẻ của bạn."
+
+msgid "Required"
+msgstr "Bắt buộc"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa, MC hoặc AMEX"
+
+msgid "MM/YYYY"
+msgstr "MM/YYYY"
+
+msgid "Card Number"
+msgstr "Số thẻ"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "Không thể thêm thẻ"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "Số thẻ không hợp lệ. Hãy kiểm tra thẻ của bạn và thử lại."
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "Số CVC không hợp lệ. 3 chữ số ở mặt sau thẻ của bạn. 4 chữ số nếu bạn đang sử dụng AMEX."
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "Ngày hết hạn không hợp lệ. Hãy kiểm tra thẻ của bạn và thử lại."
+
+msgid "Invalid card number"
+msgstr "Số thẻ không hợp lệ"
+
+msgid "Invalid expiration date"
+msgstr "Ngày hết hạn không hợp lệ"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "Sử dụng định dạng ngày mong đợi MM/YYYY"
+
+msgid "Invalid CVC number"
+msgstr "Số CVC không hợp lệ"
+
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr ""
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr ""
+
+msgid "You will only receive emails related to your purchases."
+msgstr ""
+
+msgid "Security code"
+msgstr ""
+
+msgid "Purchasing"
+msgstr "Đang mua"
+
+msgid "Processing Fee"
+msgstr "Phí xử lý"
+
+msgid "Deposit to"
+msgstr "Gửi tiền vào"
+
+msgid "Add a payment method"
+msgstr "Thêm phương thức thanh toán"
+
+msgid "Price Per BCH"
+msgstr "Giá trên mỗi BCH"
+
+msgid "Done"
+msgstr "Xong"
+
+msgid "Amount must be a positive number."
+msgstr "Số tiền phải là một số dương."
+
+msgid "Unable to Purchase"
+msgstr "Không thể mua"
+
+msgid "3D secure"
+msgstr ""
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr ""
+
+msgid "Purchase History"
+msgstr "Lịch sử mua"
+
+msgid "Pending Orders"
+msgstr "Đơn hàng đang chờ xử lý"
+
+msgid "Pay"
+msgstr "Thanh toán"
+
+msgid "Payment Method"
+msgstr "Phương thức thanh toán"
+
+msgid "Add Credit or Debit Card"
+msgstr "Thêm thẻ Visa Sacombank"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "Số của bạn1000000ⁿ"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "{{remaining}}."
+
+msgid "Verify Identity"
+msgstr "Xác minh danh tính"
+
+msgid "Deposited to"
+msgstr "Gửi tiền vào"
+
+msgid "See on Blockchain"
+msgstr "Xem trên Blockchain"
+
+msgid "Wallet address"
+msgstr "Địa chỉ ví"
+
+msgid "Pending Order"
+msgstr "Đơn hàng đang chờ xử lý"
+
+msgid "Edit Order"
+msgstr "Chỉnh sửa đơn hàng"
+
+msgid "Cancel Order"
+msgstr "Hủy đơn hàng"
+
+msgid "Success!"
+msgstr "Thành công!"
+
+msgid "Failed"
+msgstr "Không thành công"
+
+msgid "Your purchase has been processed."
+msgstr "Giao dịch mua của bạn đã được xử lý."
+
+msgid "See Receipt"
+msgstr "Xem biên nhận"
+
+msgid "Make Another Purchase"
+msgstr "Thực hiện giao dịch mua khác"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "Chụp ảnh tài liệu"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "Tiếp tục chưa được xác minh"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "Hộ chiếu"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "ID quốc gia"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "Giấy phép lái xe"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "Xác minh"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "Tăng giới hạn mua"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "Đang lấy Trạng thái xác minh..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "Bạn phải chọn một quốc gia."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "Bạn phải chọn loại tài liệu."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "Bạn hiện được phép mua tối đa €150 mỗi tháng mà không cần xác minh danh tính. Hãy xác minh danh tính của bạn để tăng giới hạn mua hàng của bạn lên €20.000 mỗi tháng."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "Thông tin cá nhân"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "Tên"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "Họ"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "Ngày sinh"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "Địa chỉ đường"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "Căn hộ, Khu nhà, Tòa nhà (Không bắt buộc)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "Thị trấn/Thành phố"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "Mã bưu chính"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "Quốc gia"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "Trường bắt buộc."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "Phải ít nhất 18 tuổi."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr ""
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "123 Maple Street"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "Tokyo"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "Nhật Bản"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "Apt 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "Không thể gửi thông tin. Vui lòng thử lại."
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "Đang gửi thông tin..."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "Không thể tải ảnh lên. Vui lòng thử lại."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "Trông nó như thế nào?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "Đảm bảo rằng các chi tiết trên tài liệu của bạn rõ ràng và dễ đọc, không bị mờ hay lóa."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "Có, tài liệu dễ đọc"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "Chụp lại ảnh"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "Chụp ảnh tài liệu của bạn"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "Đặt 4 góc của {{vm.documentName}} của bạn rõ ràng trong khung. Tránh để bị lóa."
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "Yêu cầu xác minh"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "Loại tài liệu"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "Chọn"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "Nếu trước đây bạn đã xác minh danh tính của mình với bitcoin.com, bạn có thể <a ng-click=\"vm.onRestoreVerify()\">khôi phục xác minh của bạn.</a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "Trạng thái xác minh"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "Bạn đang được xác minh"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "Bạn đã được xác minh!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "Tài khoản của bạn hiện đã được xác minh. Xin chúc mừng!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "Sẽ không nên mất quá nhiều thời gian đâu. Chúng tôi sẽ cho bạn biết sớm để bạn có thể bắt đầu mua bitcoin."
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "Không thể xác minh"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "Chúng tôi rất tiếc nhưng chúng tôi không thể xác minh bạn tại thời điểm này. Vui lòng liên hệ với bộ phận hỗ trợ để được trợ giúp thêm."
+
+msgid "Self Portrait"
+msgstr "Chân dung tự họa"
+
+msgid "Shop"
+msgstr "Cửa hàng"
+
+msgid "Shop Nearby"
+msgstr "Cửa hàng gần đó"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "Tìm các doanh nghiệp trong khu vực của bạn chấp nhận Bitcoin Cash"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "Nhận chiết khấu tới 30% trên Amazon khi bạn thanh toán bằng Bitcoin Cash"
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "Thẻ quà tặng kỹ thuật số từ một số tên thương hiệu lớn nhất"
+
+msgid "Add a Business"
+msgstr "Thêm doanh nghiệp"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "Bạn có hoặc biết một doanh nghiệp chấp nhận Bitcoin Cash không? Hãy thêm nó."
+
+msgid "Buy with Bitcoin Cash"
+msgstr "Mua bằng Bitcoin Cash"
+
+msgid "Are you a business owner?"
+msgstr "Bạn có phải là chủ doanh nghiệp không?"
+
+msgid "More"
+msgstr "Thêm"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "Bắt đầu chấp nhận thanh toán dễ dàng với Bitcoin Cash ngay hôm nay. Chúng tôi sẽ chỉ bạn cách làm."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr ""
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr "Bay bằng Bitcoin Cash. Các chuyến bay, khách sạn và thuê xe."
+
+msgid "The market's highest paying pool"
+msgstr "Nhóm thanh toán cao nhất thị trường"
+
+msgid "Start mining Bitcoin"
+msgstr "Bắt đầu khai thác Bitcoin"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "Thanh toán bằng BCH, nhận lại 10%"
+
+msgid "Get your Bitcoin merch"
+msgstr "Nhận hàng hóa mua bằng Bitcoin của bạn"
+
+msgid "E-mail not detected"
+msgstr "Email không được phát hiện"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "Để thêm người bán mới, vui lòng gửi email chứa tất cả thông tin đến addbusiness@bitcoin.com."
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "Xin chào đội ngũ Bitcoin.com,<br><br>Tôi muốn thêm một doanh nghiệp mới chấp nhận Bitcoin Cash dưới dạng thanh toán vào bản đồ trong ứng dụng Ví của bạn:<br>- Tên doanh nghiệp:<br>- Địa chỉ thực: <br>- Loại doanh nghiệp: <br><br>Thông tin giúp định vị doanh nghiệp:<br>- Liên kết Google Maps: <br>or<br>- Vĩ độ: <br>- Kinh độ: <br><br>Thông tin bổ sung tùy chọn:<br>- Trang web:<br>- Số điện thoại:<br>"
+
+msgid "Internal Error"
+msgstr "Lỗi nội bộ"
+
+msgid "Front"
+msgstr "Trước"
+
+msgid "Take a Selfie"
+msgstr "Tự chụp ảnh"
+
+msgid "Document + Selfie"
+msgstr "Tài liệu + Ảnh tự chụp"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Chụp ảnh tài liệu của bạn đặt bên cạnh khuôn mặt của bạn."
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "Đặt 4 góc của tài liệu của bạn rõ ràng trong khung. Tránh để bị lóa."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr ""
+
+msgid "I look good"
+msgstr ""
+
+msgid "Buying Gift Card..."
+msgstr "Đang mua thẻ quà tặng..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "Lỗi. Mã trạng thái: {{status}}"
+
+msgid "Useful Links"
+msgstr "Liên kết hữu ích"
+
+msgid "Exchange between BTC and BCH"
+msgstr "Chuyển đổi giữa BTC và BCH"
+
+msgid "Exchange"
+msgstr "Chuyển đổi"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Bạn không thể gửi Bitcoin Core đến địa chỉ Bitcoin Cash này. Điều này sẽ dẫn đến mất tiền."
+
+msgid "Your account verification was rejected."
+msgstr "Xác minh tài khoản của bạn đã bị từ chối."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Để có thể mua Bitcoin Cash, bạn cần cung cấp một số thông tin cá nhân."
+
+msgid "Provide my information"
+msgstr "Cung cấp thông tin của tôi"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Bạn có thể mua lên tới {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} hôm nay và lên tới {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} trong tháng này."
+
+msgid "Quick Links"
+msgstr "Liên kết nhanh"
+
+msgid "Payment Methods"
+msgstr "Phương thức thanh toán"
+
+msgid "Side: {{file.side}}"
+msgstr "Mặt: {{file.side}}"
+
+msgid "Approved"
+msgstr "Đã phê duyệt"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Chúng tôi rất tiếc nhưng chúng tôi không thể xác minh bạn tại thời điểm này."
 

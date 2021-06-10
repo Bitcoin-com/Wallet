@@ -1,5 +1,5 @@
 <ion-view id="view-review" can-swipe-back="false" hide-tabs>
-  <ion-nav-bar class="bar-royal {{vm.origin.currency.toLowerCase()}}">
+  <ion-nav-bar class="{{vm.origin.currency.toLowerCase()}}">
     <ion-nav-title>
       {{'Review Transaction' | translate}}
     </ion-nav-title>
@@ -7,7 +7,7 @@
   </ion-nav-bar>
 
   <ion-content class="padded-bottom-cta-with-summary bg-neutral">
-    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'shapeshift'" ng-include="'views/thirdparty/shapeshift-header.html'"></div>
+    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'sideshift'" ng-include="'views/thirdparty/sideshift-header.html'"></div>
     <div class="header {{vm.origin.currency.toLowerCase()}}" ng-class="vm.thirdParty.id">
       <div class="content">
         <p>{{vm.sendingTitle}}</p>
@@ -27,7 +27,8 @@
                 ></div>
             </i>
             <h2>{{vm.originWallet.name}} <span class="highlight" style="color: {{vm.origin.currencyColor}}">({{vm.origin.currency}})</span></h2>
-            <p ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>
+            <p ng-if="!vm.originWallet.balanceHidden" ng-show="vm.origin.balanceAmount">{{vm.origin.balanceAmount}} {{vm.origin.balanceCurrency}}</p>
+            <p ng-if="vm.originWallet.balanceHidden" translate>[Balance Hidden]</p>
           </div>
         </div>
       </div>
@@ -36,19 +37,20 @@
         <div class="item item-compact" translate>To:</div>
         <div class="item item-gutterless item-complex item-avatar">
           <div class="item-content item-content-avatar"
-          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet' || vm.destination.kind == 'shapeshift'">
+          ng-if="vm.destination.kind === 'contact' || vm.destination.kind === 'wallet' || vm.destination.kind == 'sideshift'">
             <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.destination.kind === 'contact'">
-            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet' || vm.destination.kind === 'shapeshift'">
+            <i class="icon big-icon-svg theme-circle theme-circle-services" ng-if="vm.destination.kind === 'wallet' || vm.destination.kind === 'sideshift'">
                 <div class="bg icon-wallet"
                   style="background-color: {{vm.destination.color}}"
                 ></div>
             </i>
-            <h2>{{vm.destination.name}}<span class="highlight" style="color: {{vm.destination.currencyColor}}" ng-if="vm.destination.currency"> ({{vm.destination.currency}})</span></h2></h2>
-            <p ng-if="vm.destination.balanceAmount">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
+            <h2>{{vm.destination.name}}<span class="highlight" style="color: {{vm.destination.currencyColor}}" ng-if="vm.destination.currency"> ({{vm.destination.currency}})</span></h2>
+            <p ng-if="vm.destination.balanceAmount && (!vm.destinationWallet || !vm.destinationWallet.balanceHidden)">{{vm.destination.balanceAmount}} {{vm.destination.balanceCurrency}}</p>
+            <p ng-if="vm.destination.balanceAmount && vm.destinationWallet.balanceHidden" translate>[Balance Hidden]</p>
           </div>
           <div class="item-content item-content-avatar"
-          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'
-           && (vm.thirdParty.name === 'BitPay' || vm.thirdParty.name === 'eGifter')">
+          ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'">
+            <img src="img/contact-placeholder.svg" class="bg" ng-if="vm.thirdParty.name !== 'BitPay' && vm.thirdParty.name !== 'eGifter'">
             <img ng-if="vm.thirdParty.name === 'BitPay'" src="img/icon-bitpay.svg" class="bg">
             <img ng-if="vm.thirdParty.name === 'eGifter'" src="img/icon-egifter.png" class="bg">
             <h2>{{vm.destination.name}}</h2>
@@ -89,7 +91,7 @@
   </ion-content>
 
   <div class="fee-summary">
-    <div ng-if="vm.thirdParty && vm.thirdParty.id === 'bip70'" translate>Suggested by merchant:</div>
+    <div ng-if="vm.usingMerchantFee" translate>Suggested by merchant:</div>
     <div class="amount">
       <div class="fee-fiat positive" ng-if="vm.feeLessThanACent"><span translate>Fee:</span> <span translate>Less than 1 cent</span></div>
       <div class="fee-fiat" ng-class="vm.feeIsHigh ? 'negative' : 'positive'" ng-if="!vm.feeLessThanACent"><span translate>Fee:</span> {{vm.feeFiat}} {{vm.feeCurrency}}</div>
@@ -114,8 +116,14 @@
     {{vm.buttonText}}
   </slide-to-accept>
   <slide-to-accept-success
+    slide-success-amount-won="vm.amountWon"
+    slide-success-destination-address="vm.destinationAddress"
+    slide-success-destination-is-a-game="vm.destinationIsAGame"
+    slide-success-did-lose="vm.didLose"
+    slide-success-did-win="vm.didWin"
     slide-success-show="vm.sendStatus === 'success'"
     slide-success-on-confirm="vm.onSuccessConfirm()"
+    slide-success-on_replay="vm.onReplay()"
     slide-success-on-share="vm.onShareTransaction"
     slide-success-hide-on-confirm="true">
     <span ng-show="vm.originWallet.m == 1 && (vm.originWallet.canSign() || vm.originWallet.isPrivKeyExternal())" translate>Payment Sent</span>

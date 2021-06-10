@@ -1,0 +1,645 @@
+.apl {
+  $button-right-width: 78;
+
+  background-color: $v-background-root-color;
+  color: #000;
+  padding: 0;
+  padding-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */  
+  padding-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+
+  .fullscreen {
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  .has-bottom-button {
+    // 86px for bottom button container
+    bottom: 86px;
+    // constant(safe-area-inset-bottom); /* iOS 11.0 */
+    bottom: calc(86px + constant(safe-area-inset-bottom));
+    // env(safe-area-inset-bottom));     /* iOS 11.2 */
+    bottom: calc(86px + env(safe-area-inset-bottom));
+  }
+
+  // Resolves scroll behavior issues when the content top element adjusts the margin-top. Use a top-boundary div above the offending element to correct scroll.
+  .top-boundary {
+    height:0.000001px;
+  }
+
+  h1, h2 {
+    font-size: 22px;
+    font-weight: bold;
+    height: 28px;
+    letter-spacing: 0.35px;
+    line-height: 28px;
+    padding: 0 16px;
+    text-align: left;
+    margin-top: 22px;
+  }
+
+  h3 {
+    width: 172px;
+    height: 18px;
+    color: #787878;
+    font-family: ProximaNova;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: -0.08px;
+    line-height: 18px;
+    margin: 16px 0 0 16px;
+  }
+
+  p {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  select {
+    background: #f8f8f8;
+    border: none;
+    text-align: right;
+    text-align-last: right;
+  }
+
+
+  &-amount {
+    padding: 0 16px;
+    &-title {
+      color: rgba(0, 0, 0, 0.40);
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: -0.08px;
+      line-height: 18px;
+    }
+    input {
+      color: #000000;
+      display: inline-block !important;
+      font-size: 50px;
+      line-height: 50px;
+      font-weight: bold;
+      min-height: 60px;
+      letter-spacing: 0.29px;
+      margin: 8px 0;
+      text-align: left;
+      width: 75vw;
+      padding: 0;
+
+      &::placeholder {
+        color: #444;
+      }
+    }
+    &-currency {
+      display: inline-block;
+      font-size: 50px;
+      margin-top: 2px;
+      transition: all 0.4s ease-in-out;
+      vertical-align: text-top;
+    }
+    &:not(.apl-amount-switcher) {
+      &:after {
+        border-bottom: 1px solid $v-bitcoin-green;
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+      }
+    }
+    &-totals {
+      margin-top: 14px;
+      padding: 0 16px;
+      &-item {
+        clear: both;
+        margin: 4px 0;
+        color: #787878;
+        font-size: 15px;
+        font-weight: 500;
+        //height: 20px;
+        letter-spacing: -0.24px;
+        line-height: 20px;
+        text-align: left;
+        &.total {
+          color: #000;
+        }
+      }
+      /*
+      &-title {
+        display: inline-block;
+      }
+      &-price {
+        //float: right;
+        text-align: right;
+      }
+      */
+    }
+    &-switcher {
+      margin-top: 12px;
+      min-height: 100px;
+      position: relative;
+      .apl-amount-currency {
+        font-size: 28px;
+      }
+      &-left, &-right {
+        display: inline-block;
+        margin-bottom: 0;
+        opacity: 1;
+        position: absolute;
+        transition: all 0.4s ease-in-out;
+        white-space: nowrap;
+        width: 48%;
+        .apl-amount-currency {
+          margin-top: 1px;
+        }
+        input {
+          transition: all 0.4s ease-in-out;
+          font-size: 28px;
+          width: 75%;
+        }
+      }
+      &-left {
+        &:after {
+          content: '';
+          border-bottom: 1px solid $v-bitcoin-green;
+          display: block;
+          height: 1px;
+          position: absolute;
+          left: 0;
+          right: 16px;
+        }
+      }
+      &-right {
+        right: 0;
+        &:after {
+          content: '';
+          border-bottom: 1px solid $v-bitcoin-green;
+          display: block;
+          height: 1px;
+          position: absolute;
+          left: 0;
+          right: 16px;
+        }
+      }
+      &.right-active {
+        .apl-amount-switcher-left {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+        .apl-amount-switcher-right {
+          * {
+            font-size: 50px;
+          }
+          width: 100%;
+        }
+      }
+      &.left-active {
+        .apl-amount-switcher-right {
+          opacity: 0;
+          height: 0;
+        }
+        .apl-amount-switcher-left {
+          * {
+            font-size: 50px;
+          }
+          width: 100%;
+        }
+      }
+    }
+  }
+  &-field {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      caret-color: $v-bitcoin-green;
+      &::placeholder {
+        color: #D8D8D8;
+      }
+    }
+  }
+
+  &-icon {
+    background: #FA5B5B;
+    border-radius: 10px 10px 10px 10px;
+    height: 40px;
+    width: 40px;
+    &.c1 {
+      background: #4DCBC3;
+    }
+    &.c2 {
+      background: #5B97FA;
+    }
+    &.c2 {
+      background: $v-bitcoin-green;
+    }
+  }
+
+  .item {
+    background: transparent;
+    border: 0;
+    padding: 20px;
+    &.item-big-icon-left {
+      padding-left: 72px;
+    }
+    &.activated {
+      background: #F2F2F2;
+    }
+
+    p {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+  &-card {
+    background: #FFFFFF;
+    border-radius: 9px 9px 9px 9px;
+    box-shadow: 0 5px 34px 0 rgba(0, 0, 0, 0.11);
+    height: 77px;
+    margin: 0 16px;
+
+    &__warning {
+      color: $v-error-color;
+    }
+
+    &__danger {
+      color: $v-error-color;
+    }
+
+    &__title {
+      color: #000000;
+      font-size: 17px;
+      font-weight: bold;
+      text-align: left;
+      letter-spacing: -0.41px;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+
+      &.add {
+        ::before {
+          content: "+ ";
+        }
+      }
+
+      & .right {
+        float: right;
+      }
+    }
+    &__subtitle {
+      clear: both;
+      color: #808080;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: left;
+      letter-spacing: -0.2px;
+
+      &.multiline {
+        height: auto;
+        line-height: normal;
+      }
+
+      & .right {
+        float: right;
+      }
+    }
+  }
+  &-divider {
+    &:after {
+      content: '';
+      border-bottom: 1px solid #eaeaea;
+      display: block;
+      height: 1px;
+      width: 100%;
+      margin: 8px 0;
+    }
+
+    &-transparent:after {
+      border-bottom: transparent !important;
+    }
+  }
+  &-back-button,
+  &-close-button {
+    border: 0;
+    background: #FFF;
+    color: #000;
+  }
+  &-list {
+    &-title {
+      width: 172px;
+      height: 18px;
+      color: #787878;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: -0.08px;
+      line-height: 18px;
+      margin: 18px 0 0 16px;
+    }
+    &-item {
+      .validation-error {
+        color: $v-warning-color-2;;
+      }
+    }
+    
+    .item {
+      border: 0;
+      padding-left: 18px;
+
+      h2 {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      p {
+        color: #000000;
+        font-size: 17px;
+        font-weight: 600;
+        text-align: left;
+        letter-spacing: -0.41px;
+        line-height: 22px;
+      }
+      &:after {
+        position: absolute;
+        content: '';
+        // Setting the border does not work in Safari 12.0.1 or iOS.
+        // Sometimes the border gets rendered as black, regardless of the specified
+        //border-bottom: 1px solid rgb(229, 229, 229);
+        background-color: rgb(229, 229, 229);
+        height: 1px;
+        bottom: 0px;
+        left: 16px;
+        right: 16px;
+      }
+
+      &.item-button-right {
+        padding-right: #{$button-right-width + 32}px;
+      }
+
+      &.item-big-icon-left {
+        padding-left: 68px;
+        .big-icon-svg {
+          padding: 0 0 0 16px;
+        }
+        &:after {
+          position: absolute;
+          left: 68px;
+          right: 16px;
+        }
+
+        &.editing {
+          padding-left: 112px;
+
+          .big-icon-svg {
+            padding: 0 0 0 60px;
+
+            &.delete {
+              padding: 0 0 0 16px;
+
+              img {
+                height: 22px;
+                width: 22px;
+              }
+            }
+          }
+
+          &:after {
+            left: 112px;
+          }
+
+          /*
+          .delete {
+            .big-icon-svg {
+              padding: 0 0 0 16px;
+            }
+          }*/
+        }
+
+      }
+      
+      & .coming-soon {
+        background: rgba(255, 255, 255, 0.5);
+        color: #445;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        text-align: right;
+
+        &-contents {
+          flex: 0;
+          padding-right: 16px;
+        }
+      }
+      
+      &.unready {
+        p {
+          color: #7f7f7f;
+        }
+      }
+    }
+    .item-icon-left .icon {
+      left: 0;
+    }
+
+    .item-icon-right.icon {
+      left: auto;
+      padding-right: 16px;
+      right: 0px;
+      
+      &.selected {
+        color: #27C792;
+      }
+    }
+
+    .item-radio {
+      padding: 0;
+
+      .big-icon-svg {
+        padding: 16px 0 16px 16px;
+        
+      }
+
+      .item {
+        padding-top: 20;
+        padding-bottom: 20;
+      }
+
+      .item-content {
+        padding-top: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+      }
+
+      .radio-icon {
+        height: auto;
+        padding-top: 20px;
+        padding-right: 16px;
+        color: #27C792;
+      }
+
+      .radio-content {
+        &:after {
+          background-color: blue;
+          position: absolute;
+          content: 'Hello';
+          border-bottom: 2px solid #000;// #e5e5e5;
+          height: 20px;
+          bottom: 2px;
+          left: 16px;
+          right: 16px;
+        }
+      }
+    }
+
+  }
+  &-button {
+    @include p3-green();
+    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    letter-spacing: -0.43px;
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+    text-decoration: none;
+    
+    &-transparent {
+      background: transparent;
+      color: black;
+    }
+
+    &.unready {
+      background: rgba(10, 193, 142, 0.5);
+    }
+
+
+    &-container {
+      padding: 16px;
+    }
+
+    &-bottom-container {
+      background: #FFFFFF;
+      bottom: 0px;
+      box-shadow: 0 2px 20px 0 rgba(0,0,0,0.10);
+      height: 86px;
+      margin-bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+      margin-bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+      padding: 18px 16px;
+      position: fixed;
+      width: 100%;
+      
+      &.no-shadow {
+        box-shadow: none;
+      }
+
+    }
+  }
+
+  &-button-bottom-container {
+    button {
+      font-family: 'ProximaNova';
+      line-height: normal;
+    }
+  }
+
+  .apl-list-item {
+    &.item-button-right {
+      .button-right-container {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        bottom: 16px;
+
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .button-right {
+          font-weight: bold;
+          background-color: #EFEFF4;
+          padding: 4px 16px;
+          border-radius: 23px;
+          width: $button-right-width + px;
+          text-align: center;
+          
+        }
+
+        a.button-right {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .bar .buttons {
+  
+    & span {
+      display: inline;
+      font-size: 17px;
+      letter-spacing: -0.41px;
+    }
+    
+    & .apl-back-button span {
+      margin-left: 2px;
+    }
+  }
+
+  .bottom-button-shadow-spacer {
+    height: 20px;
+  }
+
+  .center {
+    text-align: center;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .center-container {
+    text-align: center;
+
+    .center {
+      display: inline-block;
+    }
+  }
+
+  small {
+    color: rgba(0, 0, 0, 0.32);
+  }
+  .keyboard-bottom-space {
+    height: 44px;
+  }  
+
+  .apl-amount-totals {
+    table {
+      width: 100%;
+
+      td {
+        padding: 2px 0;
+      }
+    }
+
+    .apl-amount-totals-price {
+      text-align: right;
+    }
+  }
+  
+}
+
+
+

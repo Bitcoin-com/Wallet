@@ -4,7 +4,7 @@ i18n/crowdin_api_key.txt
 src/js/translations.js
 
 package-lock.json
-
+package.json
 
 # cordova
 plugins
@@ -90,6 +90,7 @@ src/sass/*.css
 src/sass/app
 
 # copay www
+www/css/*
 www/lib/*
 www/js/app.js
 
@@ -107,3 +108,7 @@ www/img/app
 ## Firebase
 /GoogleService-Info.plist
 /google-services.json
+src/js/generated
+
+##Intellij
+.idea

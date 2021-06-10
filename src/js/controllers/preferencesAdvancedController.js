@@ -6,7 +6,7 @@ angular.module('copayApp.controllers').controller('preferencesAdvancedController
   $scope.wallet = wallet;
 
   $scope.goToAddresses = function() {
-    $state.go('tabs.settings.addresses', {
+    $state.go('tabs.preferences.addresses', {
       walletId: $stateParams.walletId,
     });
   };

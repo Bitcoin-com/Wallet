@@ -1,0 +1,137 @@
+#buy-bitcoin-document-capture {
+  background: transparent;
+
+  .mask-frame {
+    display:flex;
+    flex-flow: row wrap;
+  }
+
+  .mask-full {
+    width: 100%;
+    height: 33%;
+  }
+  .mask-edge {
+    width: 15%;
+    height: 33%;
+  }
+  .mask-window {
+    width: 70%;
+    height: 33%;
+  }
+
+  .capture-view {
+    clip: inset(5%, 290px, 190px, 10px);
+  }
+
+  .mask-cover {
+    background: rgba($color: #000000, $alpha: .8)
+  }
+
+  .icon-flash, .icon-camera-toggle, .icon-capture {
+    border-radius: 50%;
+    width: 4em;
+    height: 4em;
+    background-color: rgba(13, 13, 13, 0.79);
+    background-repeat: no-repeat;
+    background-clip: padding-box;
+    background-size: 100%;
+    display: inline-block;
+    margin: 2em 1em;
+    cursor: pointer;
+    // hover for desktop only
+    body:not(.platform-cordova) &:hover {
+      background-color: rgba(31, 40, 78, 0.79);
+    }
+    &.active, &:active {
+      background-color: rgba(100, 124, 232, 0.79);
+    }
+  }
+
+  .icon-capture {
+    background-image: url("../img/icon-capture.svg");
+  }
+  
+  .icon-flash {
+    background-image: url("../img/icon-flash.svg");
+  }
+
+  .icon-camera-toggle {
+    background-image: url("../img/icon-camera-toggle.svg");
+  }
+
+  .light-text {
+    color:white;
+    line-height: 22px;
+  }
+  
+  h3.light-text {
+    line-height: 28px;
+  }
+
+  .camera-controls {
+    display:flex;
+    justify-content: center;
+  }
+
+  .center-content {
+    display:flex;
+    justify-content: center;
+
+    & img {
+      max-height: 15vh;
+      max-width: 400px;
+    }
+  }
+
+  .capture-frame {
+    height: 100%;
+
+    video {
+      position: absolute;
+      top: 0px;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .capture-image {
+      width: 100%;
+      line-height: 0px;
+    }
+  }
+
+  .preview-frame {
+    height: 100%;
+    background-color: white !important;
+
+    .preview-image {
+      img {
+        margin: 5%;
+        border-radius: 5px;
+      }
+    }
+  }
+
+
+
+  .apl-button-bottom-container {
+    height: auto !important;
+
+    h3, p {
+      text-align: center;
+    }
+  }
+
+  table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    tr {
+      border:0;
+      padding: 0;
+      margin: 0;
+    }
+
+    td {
+      line-height: 0;
+    }
+  }
+}

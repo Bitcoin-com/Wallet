@@ -11,7 +11,7 @@ msgstr ""
 "Last-Translator: emilold\n"
 "Language-Team: Czech\n"
 "Language: cs\n"
-"PO-Revision-Date: 2018-09-15 05:56\n"
+"PO-Revision-Date: 2019-06-04 08:09\n"
 
 #: www/views/modals/paypro.html:34
 msgid "(Trusted)"
@@ -27,8 +27,8 @@ msgid "* A payment proposal can be deleted if 1) you are the creator, and no oth
 msgstr "* Návrh platby může být smazán 1) pokud jste jej vytvořili a nebyl podepsán nikým jiným, nebo 2) uběhlo 24 od doby, kdy byl návrh vytvořen."
 
 #: www/views/tx-details.html:82
-msgid "- {{btx.feeRateStr}} of the transaction"
-msgstr "- {{btx.feeRateStr}} transakce"
+msgid "- {{vm.btx.feeRateStr}} of the transaction"
+msgstr "- {{vm.btx.feeRateStr}} transakce"
 
 #: www/views/modals/txp-details.html:102
 msgid "- {{tx.feeRateStr}} of the transaction"
@@ -178,8 +178,19 @@ msgid "Address Book"
 msgstr "Adresář"
 
 #: www/views/preferencesInformation.html:41
+#: www/views/tab-receive.html:73
 msgid "Address Type"
 msgstr "Typ adresy"
+
+#: www/views/tab-receive.html:76
+#: www/views/addresses.html:45
+msgid "Cash Address"
+msgstr "Adresa Cash"
+
+#: www/views/tab-receive.html:77
+#: www/views/addresses.html:46
+msgid "Legacy"
+msgstr "Starý typ"
 
 #: www/views/addresses.html:64
 msgid "Addresses With Balance"
@@ -475,6 +486,22 @@ msgstr "Koupit &amp; prodat Bitcoin"
 msgid "Buy Bitcoin"
 msgstr "Koupit Bitcoin"
 
+#: www/views/buyandsell.html:5
+msgid "Buy or Sell Bitcoin"
+msgstr "Koupit nebo prodat Bitcoin"
+
+#: www/views/buyandsell.html:13
+msgid "Connect an Exchange"
+msgstr "Připojit server Exchange"
+
+#: www/views/buyandsell.html:14
+msgid "Buy or sell bitcoin directly from your wallet by connecting your exchange accounts."
+msgstr "Kupujte nebo prodávejte bitcoin přímo z vaší peněženky propojením účtů serveru Exchange."
+
+#: src/js/services/buy-bitcoin-com.service.js:14
+msgid "Buy Bitcoin With Credit Card"
+msgstr "Koupit Bitcoin pomocí kreditní karty"
+
 #: www/views/mercadoLibre.html:22
 #: www/views/mercadoLibre.html:50
 msgid "Buy a Gift Card"
@@ -576,6 +603,7 @@ msgstr "Kliknutím odešlete"
 #: www/views/modals/search.html:3
 #: www/views/modals/wallet-balance.html:3
 #: www/views/modals/wallets.html:5
+#: www/views/modals/txp-details.html:4
 msgid "Close"
 msgstr "Zavřít"
 
@@ -879,6 +907,10 @@ msgstr "Vytvořit sdílenou peněženku"
 msgid "Create {{formData.requiredCopayers}}-of-{{formData.totalCopayers}} wallet"
 msgstr "Vytvořit peněženku {{formData.requiredCopayers}}-z-{{formData.totalCopayers}}"
 
+#: www/views/preferencesInformation.html:79
+msgid "Copayers"
+msgstr "Spoluplátci"
+
 #: www/views/modals/txp-details.html:81
 #: www/views/tx-details.html:60
 msgid "Created by"
@@ -1053,7 +1085,7 @@ msgid "Enter Two Factor for your BitPay account"
 msgstr "Zadejte dvoufázové ověření Vašeho BitPay účtu"
 
 #: www/views/amount.html:4
-msgid "Enter amount"
+msgid "Enter Amount"
 msgstr "Zadejte částku"
 
 #: www/views/modals/chooseFeeLevel.html:41
@@ -1217,6 +1249,14 @@ msgstr "Vypršela platnost"
 msgid "Expires"
 msgstr "Vypršení platnosti"
 
+#: www/views/modals/txp-details.html:65
+msgid "Display legacy address"
+msgstr "Zobrazit starý typ adresy"
+
+#: www/views/modals/txp-details.html:68
+msgid "Display new style address"
+msgstr "Zobrazit nový typ adresy"
+
 #: www/views/preferencesAdvanced.html:21
 msgid "Export Wallet"
 msgstr "Exportovat peněženku"
@@ -1229,6 +1269,11 @@ msgstr "Exportovat do souboru"
 #: www/views/export.html:3
 msgid "Export wallet"
 msgstr "Exportovat peněženku"
+
+#: www/views/preferencesBwsUrl.html:3
+#: www/views/preferencesBwsUrl.html:13
+msgid "Wallet Service URL"
+msgstr "URL služby pro peněženky"
 
 #: src/js/services/walletService.js:1174
 #: www/views/tab-export-qrCode.html:9
@@ -1550,8 +1595,8 @@ msgid "If enabled, the Recent Transactions card - a list of transactions occurin
 msgstr "Je-li povoleno, zobrazí se na kartě Domů karta Nedávné transakce - seznam posledních transakcí napříč všemi peněženkami."
 
 #: www/views/advancedSettings.html:14
-msgid "If enabled, wallets will also try to spend unconfirmed funds. This option may cause transaction delays."
-msgstr "Je-li povoleno, peněženky se také pokusí utratit peníze z doposud nepotvrzených transakcí. Tato možnost může způsobit zpoždění následujících transakcí."
+msgid "If enabled, wallets will also try to spend unconfirmed funds. Turning off this option may cause transaction delays."
+msgstr "Je-li povoleno, peněženky se také pokusí utratit peníze z doposud nepotvrzených transakcí. Vypnutí této možnosti může způsobit zpoždění transakcí."
 
 #: src/js/controllers/onboarding/backupRequest.js:18
 msgid "If this device is replaced or this app is deleted, neither you nor BitPay can recover your funds without a backup."
@@ -2229,6 +2274,10 @@ msgstr "Žádost o platbu"
 msgid "Pending"
 msgstr "Čeká na vyřízení"
 
+#: www/views/buy-bitcoin/purchase-history.html:44
+msgid "Awaiting Auth"
+msgstr "Čekání na autorizaci"
+
 #: www/views/proposals.html:4
 msgid "Pending Proposals"
 msgstr "Čekající návrhy"
@@ -2240,6 +2289,10 @@ msgstr "Trvale odstranit tuto peněženku."
 #: src/js/services/profileService.js:403
 msgid "Personal Wallet"
 msgstr "Osobní peněženka"
+
+#: src/js/services/profileService.js:419
+msgid "My {{coin}} Wallet"
+msgstr "Moje peněženka {{coin}}"
 
 #: www/views/backup.html:25
 msgid "Please carefully write down this phrase."
@@ -2689,7 +2742,7 @@ msgid "You can receive bitcoin from any wallet or service."
 msgstr "Můžete přijímat Bitcoin z jakékoliv peněženky nebo služby."
 
 #: www/views/tab-send.html:72
-#: www/views/shapeshift.html:23
+#: www/views/sideshift.html:23
 #: www/views/tab-send.html:33
 msgid "To get started, you'll need to create a bitcoin wallet and get some bitcoin."
 msgstr "Chcete-li začít, budete muset vytvořit Bitcoin peněženku a Bitcoin získat."
@@ -3161,25 +3214,25 @@ msgstr "Navyšování v průběhu..."
 msgid "Top up {{amountStr}} to debit card ({{cardLastNumber}})"
 msgstr "Navýšit debetní kartu ({{cardLastNumber}}) o {{amountStr}}"
 
-#: www/views/shapeshift.html:30
-msgid "Start ShapeShift"
-msgstr "Spustit ShapeShift"
+#: www/views/sideshift.html:30
+msgid "Start SideShift AI"
+msgstr "Start SideShift AI"
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "Exchange your BTC to BCH in minutes."
 msgstr "Vyměňte BTC za BCH za několik minut."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "To start the process you need to add funds to your wallet."
 msgstr "Ke spuštění procesu musíte do peněženky přidat prostředky."
 
-#: www/views/shapeshift.html:30
+#: www/views/sideshift.html:30
 msgid "The process is fast and you will receive the exchanged amount in your wallet."
 msgstr "Tento proces je rychlý a vyměněnou částku dostanete do peněženky."
 
-#: www/views/shapeshift.html:34
-msgid "This service is provided by the third-party ShapeShift, who will charge a small fee for the service. The fee will be shown before you start the transaction."
-msgstr "Tuto službu poskytuje nezávislý poskytovatel ShapeShift, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
+#: www/views/sideshift.html:34
+msgid "This service is provided by the third-party SideShift AI, who will charge a small fee for the service. The fee will be shown before you start the transaction."
+msgstr "Tuto službu poskytuje nezávislý poskytovatel SideShift AI, který za službu účtuje malý poplatek. Poplatek se zobrazí před spuštěním transakce."
 
 #: www/views/buyAmazon.html:61
 #: www/views/buyMercadoLibre.html:60
@@ -3448,7 +3501,7 @@ msgstr "Neplatná fráze k obnovení peněženky"
 #: www/views/preferencesAdvanced.html:25
 #: www/views/tab-import-phrase.html:73
 msgid "Wallet Service URL"
-msgstr "URL služby pro peněženky"
+msgstr "URL Peněženky"
 
 #: www/views/preferences.html:4
 msgid "Wallet Settings"
@@ -3752,8 +3805,8 @@ msgid "{{amountStr}} for Mercado Livre Brazil Gift Card"
 msgstr "{{amountStr}} pro Mercado Livre Brazil dárkovou kartu"
 
 #: www/views/preferencesBwsUrl.html:21
-msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and Copayer synchronization. The default configuration points to https://bws.bitpay.com (BitPay's public BWS instance)."
-msgstr "{{appName}} závisí na službě Bitcore Wallet Service (BWS) pro zajištění komunikace se sítí, zjišťování blockchain informací a synchronizaci spoluplátců. Výchozí konfigurace odkazuje na https://bws.bitpay.com (veřejná instance BitPay BWS)."
+msgid "{{appName}} depends on Bitcore Wallet Service (BWS) for blockchain information, networking and wallet synchronization. The default configuration points to https://bws.bitcoin.com (Bitcoin.com's public BWS instance)."
+msgstr "Zajištění komunikace se sítí, zjišťování blockchain informací a synchronizace peněženky v {{appName}} závisí na službě Bitcore Wallet Service (BWS). Výchozí konfigurace odkazuje na https://bws.bitcoin.com (veřejná instance Bitcoin.com BWS)."
 
 #: src/js/controllers/confirm.js:408
 msgid "{{fee}} will be deducted for bitcoin networking fees."
@@ -3773,9 +3826,9 @@ msgstr "{{updatingTxHistoryProgress}} transakcí staženo"
 msgid "{{wallet.m}}-of-{{wallet.n}}"
 msgstr "{{wallet.m}}-z-{{wallet.n}}"
 
-#: src/js/services/shapeshiftService.js:8
-msgid "Shapeshift"
-msgstr "Shapeshift"
+#: src/js/services/sideshiftService.js:8
+msgid "Sideshift"
+msgstr "Sideshift"
 
 #: www/views/includes/community.html:3
 msgid "Community"
@@ -3797,6 +3850,9 @@ msgstr "Prohlédnout Bitcoin.com"
 msgid "Bitcoin Cash Games"
 msgstr "Bitcoin Cash hry"
 
+msgid "Bitcoin Games"
+msgstr "Bitcoin hry"
+
 #: www/views/includes/community.html:29
 msgid "Share the Wallet App"
 msgstr "Sdílet aplikaci peněženky"
@@ -3806,8 +3862,8 @@ msgid "News"
 msgstr "Novinky"
 
 #: src/js/services/bitcoincomService.js:35
-msgid "Mining Pool"
-msgstr "Těžební pool"
+msgid "Start mining Bitcoin"
+msgstr "Začněte těžit Bitcoin"
 
 #: src/js/services/bitcoincomService.js:42
 msgid "Tools"
@@ -3921,23 +3977,665 @@ msgstr "URL"
 msgid "Open in web browser"
 msgstr "Otevřít ve webovém prohlížeči"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Invalid address"
 msgstr "Neplatná adresa"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is not defined"
 msgstr "Částka nedefinována"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is below the minimun"
 msgstr "Nižší než minimální částka"
 
-#: src/js/services/shapeshift.service.js.html:90
+#: src/js/services/sideshift.service.js.html:90
 msgid "Amount is above the limit"
 msgstr "Nadlimitní částka"
 
-#: src/js/services/shapeshift.service.js.html:90
-msgid "Invalid response from Shapeshift"
-msgstr "Neplatná odpověď z Shapeshift"
+#: src/js/services/sideshift.service.js.html:90
+msgid "Invalid response from Sideshift"
+msgstr "Neplatná odpověď z Sideshift"
+
+msgid "Insufficient Amount Received"
+msgstr "Přijata nedostatečná částka"
+
+msgid "Return to Address"
+msgstr "Návrat na adresu"
+
+msgid "Overpaid!"
+msgstr "Přeplatek!"
+
+msgid "Underpaid!"
+msgstr "Nedoplatek!"
+
+#: src/js/controllers/buy-bitcoin/welcome.controller.js
+msgid "Error Creating Customer"
+msgstr "Chyba při vytváření zákazníka"
+
+msgid "Enter an email address."
+msgstr "Zadejte e-mailovou adresu."
+
+msgid "Must be a valid email address."
+msgstr "Musí to být platná e-mailová adresa."
+
+msgid "Unable to Create Customer"
+msgstr "Nelze vytvořit zákazníka"
+
+msgid "Enter a valid email address."
+msgstr "Musí to být platná e-mailová adresa."
+
+#: www/views/buy-bitcoin/home.html
+msgid "Buy Bitcoin Cash (BCH)"
+msgstr "Koupit Bitcoin Cash (BCH)"
+
+msgid "You can purchase up to {{vm.dailyRemaining}} today, and up to {{vm.monthlyRemaining}} this month."
+msgstr "Dnes si můžete koupit až {{vm.dailyRemaining}} a až {{vm.monthlyRemaining}} tento měsíc."
+
+msgid "Buy Bitcoin Cash"
+msgstr "Koupit Bitcoin Cash"
+
+msgid "Verify Email"
+msgstr "Ověřovací email"
+
+msgid "Error Getting Customer ID"
+msgstr "Chyba načítání ID zákazníka"
+
+msgid "Error Getting Customer Information"
+msgstr "Chyba načítání údajů o zákazníkovi"
+
+msgid "An error occurred when getting your customer information."
+msgstr "Došlo k chybě při získávání informací o zákazníkovi."
+
+msgid "Customer information was missing."
+msgstr "Chybí informace o zákazníkovi."
+
+msgid "See the <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">Terms of Service</a> & <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">Privacy Policy</a>"
+msgstr "Viz naše <a class=\"track_buy_bitcoin_tap_on_terms_of_service\" ng-click=\"vm.onTermsOfUse()\">podmínky</a> a <a class=\"track_buy_bitcoin_tap_on_privacy_policy\" ng-click=\"vm.onPrivacyPolicy()\">zásady ochrany osobních údajů</a>"
+
+msgid "Terms of Service"
+msgstr "Podmínky"
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany osobních údajů"
+
+#: www/views/buy-bitcoin/amount.html
+msgid "Error Getting Payment Methods"
+msgstr "Chyba načítání způsobu platby"
+
+msgid "An error occurred when getting your payment methods."
+msgstr "Došlo k chybě při získávání vašich způsobů platby."
+
+msgid "No Payment Methods"
+msgstr "Žádné způsoby platby"
+
+msgid "You must add a credit or debit card to buy Bitcoin Cash (BCH)."
+msgstr "K nákupu Bitcoin Cash (BCH) Je třeba přidat kreditní nebo debetní kartu."
+
+msgid "Add Card"
+msgstr "Přidat kartu"
+
+msgid "Getting exchange rate..."
+msgstr "Načítá se směnný kurz..."
+
+msgid "Waiting for exchange rate."
+msgstr "Čeká se na směnný kurz."
+
+msgid "You must have a Bitcoin Cash (BCH) wallet to deposit in to."
+msgstr "K uložení musíte mít peněženku Bitcoin Cash (BCH)."
+
+msgid "Select a BCH Wallet"
+msgstr "Zvolte BCH peněženku"
+
+msgid "No stored debit or credit cards."
+msgstr "Žádné uložené debetní nebo kreditní karty."
+
+msgid "No transactions."
+msgstr "Zatím žádné transakce."
+
+msgid "Buying Bitcoin Cash..."
+msgstr "Kupuje se Bitcoin Cash..."
+
+msgid "Verifying your email..."
+msgstr ""
+
+msgid "Creating customer ID..."
+msgstr ""
+
+msgid "Contacting the card issuer..."
+msgstr ""
+
+msgid "Checking Status..."
+msgstr ""
+
+msgid "Loading Profile..."
+msgstr ""
+
+msgid "Purchase Failed"
+msgstr "Nákup selhal"
+
+msgid "Failed to create transaction."
+msgstr "Nelze vytvořit transakci."
+
+msgid "Buy Now"
+msgstr "Koupit teď"
+
+msgid "Enter Security Code"
+msgstr "Zadejte bezpečnostní kód"
+
+msgid "Enter the 3 digit code on the back of your card."
+msgstr "Zadejte 3 až místný kód ze zadní strany vaší karty."
+
+msgid "Buy Bitcoin Cash Now"
+msgstr "Koupit Bitcoin Cash"
+
+msgid "Go to Wallet"
+msgstr "Přejít do peněženky"
+
+msgid "Go to {{vm.walletName}}"
+msgstr "Přejít do {{vm.walletName}}"
+
+msgid "Your order has been approved and is pending completion. Your {{vm.coin | uppercase}} will be available in your wallet soon."
+msgstr "Vaše objednávka byla schválena a čeká na dokončení. Váš {{vm.coin | uppercase}} bude brzy k dispozici ve vaší peněžence."
+
+msgid "Your order has been completed. You can now find your {{vm.coin | uppercase}} in your wallet."
+msgstr "Vaše objednávka byla dokončena. Vaše {{vm.coin | uppercase}} teď najdete ve své peněžence."
+
+msgid "Your order has failed."
+msgstr "Vaše objednávka selhala."
+
+msgid "Your order is waiting for authorization."
+msgstr "Vaše objednávka čeká na autorizaci."
+
+msgid "Deposited to"
+msgstr "Uloženo do"
+
+msgid "Failed to get transaction data."
+msgstr "Nelze získat data transakce."
+
+msgid "Not found."
+msgstr "Nenalezeno."
+
+msgid "Failed to get payment method info."
+msgstr "Nepodařilo se získat informace o způsobu platby."
+
+msgid "Waiting for authorization"
+msgstr "Čekání na autorizaci"
+
+msgid "Submit"
+msgstr "Předložit"
+
+msgid "Back"
+msgstr "Zpět"
+
+msgid "Expiration Date"
+msgstr "Datum spotřeby"
+
+msgid "Type all your card details below."
+msgstr "Níže zadejte všechny podrobnosti o vaší kartě."
+
+msgid "Verify and complete your card information."
+msgstr "Zkontrolujte a vyplňte údaje o vaší kartě."
+
+msgid "Required"
+msgstr "Požadováno"
+
+msgid "Visa, MC, or AMEX"
+msgstr "Visa, MC nebo AMEX"
+
+msgid "MM/YYYY"
+msgstr "MM/RRRR"
+
+msgid "Card Number"
+msgstr "Číslo karty"
+
+msgid "CVC"
+msgstr "CVC"
+
+msgid "Unable to Add Card"
+msgstr "Nelze přidat kartu"
+
+msgid "Card number is invalid. Check your card and try again."
+msgstr "Číslo karty je neplatné. Zkontrolujte kartu a opakujte akci."
+
+msgid "CVC number is invalid. The 3 digits in the back part of your card. 4 digits if you are using AMEX."
+msgstr "CVC číslo je neplatné. 3 číslice na zadní straně vaší karty. Pokud používáte AMEX, jsou to 4 číslice."
+
+msgid "Expiration date is invalid. Check your card and try again."
+msgstr "Datum expirace je neplatné. Zkontrolujte kartu a opakujte akci."
+
+msgid "Invalid card number"
+msgstr "Neplatné číslo karty"
+
+msgid "Invalid expiration date"
+msgstr "Neplatné datum expirace"
+
+msgid "Follow expected date format MM/YYYY"
+msgstr "Očekávaný formát data: MM/RRRR"
+
+msgid "Invalid CVC number"
+msgstr "Neplatné číslo CVC"
+
+msgid "Buy Bitcoin Cash instantly with your credit card. Enter your email to get started."
+msgstr "Koupit Bitcoin hotovosti okamžitě s vaší kreditní kartou. Chcete-li začít, zadejte svůj e-mail."
+
+msgid "Enter the security code we've just sent you to verify your email."
+msgstr "Zadejte bezpečnostní kód, který jsme vám právě poslali, abyste ověřili svůj e-mail."
+
+msgid "You will only receive emails related to your purchases."
+msgstr "Dostanete pouze e-maily týkající se vašich nákupů."
+
+msgid "Security code"
+msgstr "Bezpečnostní kód"
+
+msgid "Purchasing"
+msgstr "Nákup"
+
+msgid "Processing Fee"
+msgstr "Poplatek za zpracování"
+
+msgid "Deposit to"
+msgstr "Vklad do"
+
+msgid "Add a payment method"
+msgstr "Přidat způsob platby"
+
+msgid "Price Per BCH"
+msgstr "Cena za BCH"
+
+msgid "Done"
+msgstr "Hotovo"
+
+msgid "Amount must be a positive number."
+msgstr "Částka musí být kladné číslo."
+
+msgid "Unable to Purchase"
+msgstr "Nelze provést nákup"
+
+msgid "3D secure"
+msgstr "3D secure"
+
+msgid "You will redirect to your bank website to authorize the transaction."
+msgstr "Budete přesměrováni na webovou stránku své banky, abyste transakci autorizovali."
+
+msgid "Purchase History"
+msgstr "Historie nákupů"
+
+msgid "Pending Orders"
+msgstr "Nevyřízené objednávky"
+
+msgid "Pay"
+msgstr "Zaplatit"
+
+msgid "Payment Method"
+msgstr "Způsob platby"
+
+msgid "Add Credit or Debit Card"
+msgstr "Přidat kreditní nebo debetní kartu"
+
+msgid "This amount exceeds your monthly limit"
+msgstr "Tato částka překračuje váš měsíční limit"
+
+msgid "You have {{remaining}} remaining of your {{monthly}} monthly purchase limit. Verify your identity to purchase more."
+msgstr "Zbývá vám {{remaining}} vašeho měsíčního limitu {{monthly}}. K dalším nákupům proveďte ověření identity."
+
+msgid "Verify Identity"
+msgstr "Ověřit totožnost"
+
+msgid "Deposited to"
+msgstr "Uloženo do"
+
+msgid "See on Blockchain"
+msgstr "Zobrazit na blockchainu"
+
+msgid "Wallet address"
+msgstr "Adresa peněženky"
+
+msgid "Pending Order"
+msgstr "Nevyřízená objednávka"
+
+msgid "Edit Order"
+msgstr "Upravit objednávku"
+
+msgid "Cancel Order"
+msgstr "Zrušit objednávku"
+
+msgid "Success!"
+msgstr "Úspěch!"
+
+msgid "Failed"
+msgstr "Selhalo"
+
+msgid "Your purchase has been processed."
+msgstr "Váš nákup byl zpracován."
+
+msgid "See Receipt"
+msgstr "Zobrazit stvrzenku"
+
+msgid "Make Another Purchase"
+msgstr "Další nákup"
+
+#: www/views/kyc-document-info.html:53
+msgid "Photograph document"
+msgstr "Vyfotit dokument"
+
+#: www/views/kyc-document-info.html:56
+msgid "Continue unverified"
+msgstr "Pokračovat bez ověření"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Passport"
+msgstr "Cestovní pas"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "National ID"
+msgstr "Národní ID"
+
+#: src/controllers/buy-bitcoin/kyc-document-info.controller.js:0
+msgid "Driving License"
+msgstr "Řidičský průkaz"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Verification"
+msgstr "Ověření"
+
+#: src/controllers/buy-bitcoin/home.html:0
+msgid "Increase Purchase Limit"
+msgstr "Zvýšit limit pro nákup"
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Getting Verification Status..."
+msgstr "Zjišťování stavu ověření..."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a country."
+msgstr "Musíte zvolit stát."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You must select a document type."
+msgstr "Musíte zvolit typ dokumentu."
+
+#: src/controllers/buy-bitcoin/kyc-document-info.html:0
+msgid "You are currently allowed to purchase up to €150 per month without verifying your identity. Verify your identity to increase your purchase limit to €20,000 per month."
+msgstr "V současnosti můžete zakoupit až 150€ měsíčně bez ověření své identity. Ověřte svou identitu ke zvýšení svého limitu na 20000€ měsíčně."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Personal Information"
+msgstr "Osobní informace"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "First Name"
+msgstr "Křestní jméno"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Last Name"
+msgstr "Příjmení"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Date of Birth"
+msgstr "Datum narození"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Street Address"
+msgstr "Ulice a č.p./č.o."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt, Suite, Building (Optional)"
+msgstr "Číslo bytu (nepovinné)"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Town/City"
+msgstr "Město"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Postal Code"
+msgstr "PSČ"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Country"
+msgstr "Stát"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Field is required."
+msgstr "Vyžadované pole."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be at least 18 years old."
+msgstr "Pouze starší 18-ti let."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Must be a valid date."
+msgstr "Musí být správné datum."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Select a country."
+msgstr "Vyber zemi."
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "123 Maple Street"
+msgstr "123 Maple Street"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Tokyo"
+msgstr "Tokyo"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Japan"
+msgstr "Japan"
+
+#: www/views/buy-bitcoin/kyc-personal-info.html:0
+msgid "Apt 1"
+msgstr "Byt 1"
+
+#: src/controllers/buy-bitcoin/kyc-personal-info.js:0
+msgid "Failed to submit information. Please try again."
+msgstr "Nezdařilo se odeslat informace. Zkuste to, prosím, znovu."
+
+#: src/js/services/onGoingProcess.js:0
+msgid "Sending Info..."
+msgstr "Odesílání informací..."
+
+#: src/controllers/buy-bitcoin/kyc-document-verify.controller.js:0
+msgid "Failed to upload image. Please try again."
+msgstr "Nezdařilo se odeslat foto. Zkuste to, prosím, později."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "How does it look?"
+msgstr "Jak to vypadá?"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Make sure the details on your document are clear and readable with no blur or glare."
+msgstr "Ujistěte se, že podrobnosti Vašeho dokumentu jsou jasně čitelné, bez rozmazání a odlesku."
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Yes, it's readable"
+msgstr "Ano, jsou čitelné"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Retake the picture"
+msgstr "Znovu vyfotit"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Photograph your document"
+msgstr "Vyfoťte svůj dokument"
+
+#: www/views/buy-bitcoin/kyc-document-capture.html
+msgid "Position the 4 corners of your {{vm.documentName}} clearly in the frame. Avoid any glare."
+msgstr "Nastavte svůj {{vm.documentName}} do rámečku a vyhněte se odleskům."
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Get Verified"
+msgstr "Nechte se ověřit"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Document Type"
+msgstr "Typ dokumentu"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "Select"
+msgstr "Vybrat"
+
+#: www/views/buy-bitcoin/kyc-document-info.html
+msgid "If you have previously verified your identity with bitcoin.com you can <a ng-click=\"vm.onRestoreVerify()\">restore your verification.</a>"
+msgstr "Pokud jste svou identitu již dříve nechali ověřit na Bitcoin.com, klikněte na <a ng-click=\"vm.onRestoreVerify()\">obnovit své ověření.</a>"
+
+#: www/views/buy-bitcoin/kyc-status.html
+msgid "Verification Status"
+msgstr "Stav ověření"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Being Verified"
+msgstr "Probíhá ověření"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "You're Verified!"
+msgstr "Ověřeno!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Your account is now verified. Congrats!"
+msgstr "Váš účet je nyní ověřen. Gratulujeme!"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "This shouldn't take too long. We'll let you know soon so you can get started buying bitcoin."
+msgstr "Nemělo by to trvat příliš dlouho. Dáme Vám vědět co nejdříve, abyste mohli začít nakupovat."
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "Verification Failed"
+msgstr "Ověření selhalo"
+
+#:src/controllers/buy-bitcoin/kyc-status.controller.js:0
+msgid "We're sorry but we're not able to verify you at this time. Please contact support for additional assistance."
+msgstr "Je nám líto, ale nejsme Vás schopni nyní ověřit. Kontaktujte, prosím, podporu."
+
+msgid "Self Portrait"
+msgstr "Autoportrét"
+
+msgid "Shop"
+msgstr "Obchod"
+
+msgid "Shop Nearby"
+msgstr "Nejbližší obchod"
+
+msgid "Find businesses in your area that accept Bitcoin Cash"
+msgstr "Najděte podniky ve svém okolí, kde přijímají Bitcoin Cash"
+
+msgid "Get up to 30% off Amazon when you pay with Bitcoin Cash"
+msgstr "Získejte slevu až 30% na Amazon při platbě pomocí Bitcoin Cash"
+
+msgid "Digital giftcards from some of the biggest brand names"
+msgstr "Digitální dárkové kupóny od nejznámějších obchodních značek"
+
+msgid "Add a Business"
+msgstr "Přidat podnik"
+
+msgid "Do you have or know a business that accepts Bitcoin Cash? Add it."
+msgstr "Máte nebo znáte podnik, který přijímá Bitcoin Cash? Přidejte jej."
+
+msgid "Buy with Bitcoin Cash"
+msgstr "Nakoupit pomocí Bitcoin Cash"
+
+msgid "Are you a business owner?"
+msgstr "Jste majitelem firmy?"
+
+msgid "More"
+msgstr "Více"
+
+msgid "Start accepting payments easily with Bitcoin Cash today. We can show you how."
+msgstr "Začněte přijímat platby snadno pomocí Bitcoin Cash již dnes. Ukážeme Vám jak."
+
+msgid "Book hotels, villas, apartments, and more using Bitcoin Cash and save up to 40%."
+msgstr "Rezervujte si hotely, vily, apartmány a více pomocí Bitcoin Cash a ušetříte až 40%."
+
+msgid "Take to the skies using Bitcoin Cash. Flights, hotels, and car rentals."
+msgstr "Zamiřte do nebes s pomocí Bitcoin Cash. Lety, hotely a půjčovny aut."
+
+msgid "The market's highest paying pool"
+msgstr "Nejlépe platící pool na trhu"
+
+msgid "Start mining Bitcoin"
+msgstr "Začněte těžit Bitcoin"
+
+msgid "Pay with BCH, get 10% back"
+msgstr "Zaplaťte pomocí BCH, ušetřete 10%"
+
+msgid "Get your Bitcoin merch"
+msgstr "Získejte své Bitcoin zboží"
+
+msgid "E-mail not detected"
+msgstr "E-mail nenalezen"
+
+msgid "In order to add a new merchant, please send an email with all the info to addbusiness@bitcoin.com."
+msgstr "Chcete-li přidat nového obchodníka, zašlete e-mail s veškerými informacemi na addbusiness@bitcoin.com."
+
+msgid "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+msgstr "Hello Bitcoin.com team,<br><br>I would like to add a new business that accepts Bitcoin Cash as payment to the map in your Wallet app:<br>- Name of the business:<br>- Physical address: <br>- Type of business: <br><br>Information to help locate the business:<br>- Google Maps Link: <br>or<br>- Latitude: <br>- Longitude: <br><br>Optional extra Information:<br>- Website:<br>- Phone number:<br>"
+
+msgid "Internal Error"
+msgstr "Interní chyba"
+
+msgid "Front"
+msgstr "Přední strana"
+
+msgid "Take a Selfie"
+msgstr "Vyfotit selfie"
+
+msgid "Document + Selfie"
+msgstr "Doklad + foto"
+
+msgid "Take a picture of your document held up beside your face."
+msgstr "Držte dokument blízko tváře a pořiďte foto tak, aby se vešlo do jednoho snímku."
+
+msgid "Position the 4 corners of your document clearly in the frame. Avoid any glare."
+msgstr "Nastavte svůj dokument do rámečku a vyhněte se odleskům."
+
+msgid "Make sure your head is entirely within the frame and there is no blur."
+msgstr "Ujistěte se, že je hlava zcela v rámu."
+
+msgid "I look good"
+msgstr "vypadám dobře"
+
+msgid "Buying Gift Card..."
+msgstr "Nákup dárkového kupónu..."
+
+msgid "Error. Status code: {{status}}"
+msgstr "Chyba. Kód chyby: {{status}}"
+
+msgid "Useful Links"
+msgstr "Užitečné odkazy"
+
+msgid "Exchange between BTC and BCH"
+msgstr "Vyměnit BTC na BCH"
+
+msgid "Exchange"
+msgstr "Vyměnit"
+
+msgid "You cannot send Bitcoin Core to this Bitcoin Cash address. This would result in lost funds."
+msgstr "Nemůžete odeslat Bitcoin Core na tuto Bitcoin Cash adresu. Následkem toho utrpíte ztrátu vašich prostředků."
+
+msgid "Your account verification was rejected."
+msgstr "Ověření vašeho účtu bylo zamítnuto."
+
+msgid "In order to purchase Bitcoin Cash, you are required to provide some personal information."
+msgstr "Chcete-li zakoupit službu Bitcoin Cash, musíte poskytnout některé osobní údaje."
+
+msgid "Provide my information"
+msgstr "Poskytnout mé údaje"
+
+msgid "You can purchase up to {{vm.customer.dailyLimitRemaining | currency : '€ ' : 2}} today, and up to {{vm.customer.monthlyLimitRemaining | currency : '€ ' : 2}} this month."
+msgstr "Můžete si zakoupit {{vm.customer.dailyLimitRemaining | currency: '€': 2}} dnes, až do {{vm.customer.monthlyLimitRemaining |currency: '€': 2}} tento měsíc."
+
+msgid "Quick Links"
+msgstr "Rychlé odkazy"
+
+msgid "Payment Methods"
+msgstr "Způsoby platby"
+
+msgid "Side: {{file.side}}"
+msgstr "Strana: {{file.side}}"
+
+msgid "Approved"
+msgstr "Schváleno"
+
+msgid "We're sorry but we're not able to verify you at this time."
+msgstr "Je nám líto, ale momentálně vás nemůžeme ověřit."
 

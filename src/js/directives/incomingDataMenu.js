@@ -12,12 +12,12 @@ angular.module('copayApp.directives')
 
             if (scope.data.parsed.privateKey) {
               scope.type = "privateKey";
-            } else if (scope.data.parsed.url) {
+            } else if (scope.data.parsed.url || scope.data.parsed.bareUrl) {
               scope.type = "url";
             } else if (scope.data.parsed.publicAddress) {
               scope.type = "bitcoinAddress";
-              var prefix = scope.data.parsed.isTestnet ? 'bchtest:' : 'bitcoincash:';
-              scope.data.toAddress = (prefix + scope.data.parsed.publicAddress.cashAddr) || scope.data.parsed.publicAddress.legacy || scope.data.parsed.publicAddress.bitpay;
+              var prefix = scope.data.coin === 'bch' ? (scope.data.parsed.isTestnet ? 'bchtest:' : 'bitcoincash:') : '';
+              scope.data.toAddress = (scope.data.parsed.publicAddress.cashAddr ? prefix + scope.data.parsed.publicAddress.cashAddr : false) || scope.data.parsed.publicAddress.legacy || scope.data.parsed.publicAddress.bitpay;
             } else {
               scope.type = "text";
             }
